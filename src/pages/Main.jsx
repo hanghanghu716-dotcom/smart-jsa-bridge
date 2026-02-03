@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import AdBanner from './AdBanner'; // [추가됨] 광고 컴포넌트 가져오기
+import AdBanner from '../AdBanner'; // [추가됨] 광고 컴포넌트 가져오기
 
 export default function Main() {
   const [currentSlide, setCurrentSlide] = useState(0);
