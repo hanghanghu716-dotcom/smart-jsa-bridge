@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AdBanner from './AdBanner'; // [추가됨] 광고 컴포넌트 가져오기
 
 export default function Main() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,12 +42,13 @@ export default function Main() {
       {/* 3. 메인 레이아웃 (3열 구조) */}
       <div style={styles.mainLayout}>
         
-        {/* [좌측 광고] 원본 크기 유지 */}
+        {/* [좌측 광고] 이미지 -> AdBanner 교체 */}
         <aside style={styles.sideAd}>
-          <img src="/images/ads1.png" alt="AD 1" style={styles.adImg} />
+          {/* slot 번호는 나중에 애드센스에서 발급받아 넣으면 됩니다 */}
+          <AdBanner slot="1000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
-        {/* [중앙 콘텐츠] 좌측 정렬 기반의 가독성 설계 */}
+        {/* [중앙 콘텐츠] */}
         <main style={styles.centerContent}>
           <div style={styles.heroContent}>
             <h2 style={styles.mainTitle}>
@@ -63,16 +65,17 @@ export default function Main() {
           </div>
         </main>
 
-        {/* [우측 광고] 원본 크기 유지 */}
+        {/* [우측 광고] 이미지 -> AdBanner 교체 */}
         <aside style={styles.sideAd}>
-          <img src="/images/ads2.png" alt="AD 2" style={styles.adImg} />
+          <AdBanner slot="1000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
       {/* 4. 하단 영역 (광고 + 인디케이터) */}
       <footer style={styles.footerArea}>
+        {/* [하단 광고] 이미지 -> AdBanner 교체 */}
         <div style={styles.bottomAdWrapper}>
-          <img src="/images/ads3.png" alt="AD 3" style={styles.bottomAdImg} />
+          <AdBanner slot="1000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
         
         <div style={styles.bottomLine}>
@@ -98,12 +101,11 @@ const styles = {
   header: { padding: '2.5rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff' },
 
-  /* 3열 레이아웃: 콘텐츠를 좌측으로 밀기 위해 centerContent에 flex: 1 부여 */
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10 },
   sideAd: { display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  /* 광고 이미지가 사라지므로 adImg 스타일은 삭제해도 되지만 혹시 몰라 유지 */
   adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '650px', borderRadius: '4px', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' },
 
-  /* 중앙 콘텐츠: 정가운데가 아닌 좌측 정렬 지향 */
   centerContent: { flex: 1, display: 'flex', justifyContent: 'flex-start', paddingLeft: '2rem' },
   heroContent: { maxWidth: '750px', textAlign: 'left' },
   mainTitle: { fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem', color: '#fff', wordBreak: 'keep-all' },
@@ -113,7 +115,6 @@ const styles = {
 
   footerArea: { width: '100%', padding: '0 5rem 2.5rem', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' },
-  bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '110px', borderRadius: '4px', boxShadow: '0 10px 20px rgba(0,0,0,0.4)' },
   
   bottomLine: { width: '100%', display: 'flex', gap: '10px', height: '2px', marginBottom: '1.2rem' },
   lineItem: { flex: 1, transition: 'background-color 0.6s' },
