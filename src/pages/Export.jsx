@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import AdBanner from '../AdBanner'; // [추가] 광고 컴포넌트 불러오기
 
 export default function Export() {
   const navigate = useNavigate();
@@ -125,6 +126,8 @@ export default function Export() {
               <h3 style={styles.modalTitle}>{isProcessing ? "데이터 정밀 처리 중..." : "리포트 구성 완료"}</h3>
               <p style={styles.modalSub}>{isProcessing ? "작업 단계별 무결성 검사 및 여백 최적화를 진행 중입니다." : "선언하신 작업의 보고서 데이터가 준비되었습니다."}</p>
             </div>
+            
+            {/* 모달 내부의 가상 광고 영역 (이 부분은 디자인 요소이므로 그대로 둠) */}
             <div style={styles.virtualAdBox}>
               <div style={styles.adBadge}>AD</div>
               <div style={styles.adContent}>
@@ -133,6 +136,7 @@ export default function Export() {
                 <div style={styles.adMockBtn}>무료 체험하기</div>
               </div>
             </div>
+
             <div style={styles.modalBtnArea}>
               {!isProcessing ? (
                 <button style={styles.modalActionBtn} onClick={executeFinalAction}>
@@ -151,7 +155,10 @@ export default function Export() {
       <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd} className="no-print"><img src="/images/ads1.png" alt="AD 1" style={styles.adImg} /></aside>
+        {/* [좌측 광고] */}
+        <aside style={styles.sideAd} className="no-print">
+          <AdBanner slot="5000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
@@ -165,6 +172,7 @@ export default function Export() {
               <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>4</div><span style={styles.stepTextActive}>최종 출력</span></div>
             </nav>
 
+            {/* 실제 보고서 영역 (광고 없음, 출력용) */}
             <div style={styles.previewArea} className="preview-area">
               <div className="reportPaper" style={styles.reportPaper}>
                 <div className="reportTopSection" style={styles.reportTopSection}>
@@ -250,9 +258,18 @@ export default function Export() {
           </div>
         </main>
 
-        <aside style={styles.sideAd} className="no-print"><img src="/images/ads2.png" alt="AD 2" style={styles.adImg} /></aside>
+        {/* [우측 광고] */}
+        <aside style={styles.sideAd} className="no-print">
+          <AdBanner slot="5000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
       </div>
-      <footer style={styles.footerArea} className="no-print"><div style={styles.bottomAdWrapper}><img src="/images/ads3.png" alt="AD 3" style={styles.bottomAdImg} /></div></footer>
+
+      {/* [하단 광고] */}
+      <footer style={styles.footerArea} className="no-print">
+        <div style={styles.bottomAdWrapper}>
+          <AdBanner slot="5000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
+        </div>
+      </footer>
     </div>
   );
 }
@@ -285,8 +302,11 @@ const styles = {
   header: { padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.2rem', fontWeight: '900', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10, overflow: 'hidden' },
-  sideAd: { flexShrink: 0 },
-  adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '550px', borderRadius: '4px' },
+  
+  // [수정] 광고가 중앙에 오도록 정렬 속성 추가
+  sideAd: { flexShrink: 0, width: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  // adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '550px', borderRadius: '4px' }, // 사용 안 함
+  
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', height: '94%' },
   formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column' },
   previewArea: { flex: 1, overflowY: 'auto', backgroundColor: '#fff', borderRadius: '4px', padding: '2.5rem', marginBottom: '1rem' },
@@ -325,5 +345,5 @@ const styles = {
   nextBtn: { flex: 2, padding: '0.9rem', backgroundColor: '#4caf50', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10 },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '90px' }
+  // bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '90px' } // 사용 안 함
 };

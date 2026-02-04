@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import AdBanner from '../AdBanner'; // [추가] 광고 컴포넌트 불러오기
 
 // ----------------------------------------------------------------------
 // [내장 DB] 안전보건공단 표준 작업 안전수칙 데이터베이스
@@ -170,7 +171,6 @@ const RISK_DATABASE = [
       { factor: "폐페인트 방치로 인한 환경 오염/화재", measure: "지정 폐기물 처리 절차 준수" }
     ]
   },
-
   {
     keywords: ["철거", "파쇄", "브레이커", "압쇄기", "구조물해체"],
     risks: [
@@ -261,7 +261,6 @@ const RISK_DATABASE = [
       { factor: "장시간 고개 젖힘 작업으로 인한 거북목/통증", measure: "정기적 스트레칭 및 작업대 높이 조절" }
     ]
   },
-
   {
     keywords: ["지게차", "상하차", "포크", "파레트", "적재"],
     risks: [
@@ -344,7 +343,7 @@ const RISK_DATABASE = [
       { factor: "트레이 단부 날카로운 부위에 베임", measure: "방검 장갑 착용 및 마감재 설치" },
       { factor: "전선 견인 중 손가락 협착", measure: "견인기(윈치) 사용 시 수신호 준수" },
       { factor: "입선 작업 중 케이블 피복 손상", measure: "풀링 윤활제 사용 및 날카로운 부분 보강" },
-      { factor: "상부 자재 낙하로 하부 타격", measure: "하부 통제 및 공구 낙하 방지 끈" },
+      { factor: "상부 자재 낙하로 하부 타격", measure: "하부 통제 및 공구 낙하방지 끈" },
       { factor: "전동 공구 사용 중 감전", measure: "차단기 점검 및 피복 상태 확인" },
       { factor: "사다리 작업 중 전도", measure: "최상단 작업 금지 및 하부 조력자" },
       { factor: "케이블 하중에 의한 트레이 붕괴", measure: "지지대(Saddle) 간격 준수 및 보강" },
@@ -837,51 +836,44 @@ export default function Analysis() {
   const location = useLocation();
   const scrollRef = useRef(null);
 
-const {
-  procedures = [],
-  formData = {},
-  participants = [],
-  analysisData: incomingAnalysisData,
-} = location.state || {};
+  const {
+    procedures = [],
+    formData = {},
+    participants = [],
+    analysisData: incomingAnalysisData,
+  } = location.state || {};
 
-// Analysis.jsx 내부
+  // 1. 초기값: 이전 단계(Procedure)에서 넘겨준 분석 데이터가 있다면 그것을 우선 사용
+  const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
 
-// Analysis.jsx 내부 수정 제안
+  // 2. 동기화 로직 보강
+  useEffect(() => {
+    if (procedures && procedures.length > 0) {
+      setInsideAnalysisData(); 
+    }
+  }, [procedures]);
 
-// 1. 초기값: 이전 단계(Procedure)에서 넘겨준 분석 데이터가 있다면 그것을 우선 사용
-const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
-
-// 2. 동기화 로직 보강
-useEffect(() => {
-  if (procedures && procedures.length > 0) {
-    setInsideAnalysisData(); // 함수화하거나 아래 로직 실행
-  }
-}, [procedures]);
-
-const setInsideAnalysisData = () => {
-  setAnalysisData(prevData => {
-    // 1순위: 현재 상태값, 2순위: 전달받은 초기값
-    const baseData = prevData.length > 0 ? prevData : (incomingAnalysisData || []);
-    
-    return procedures.map((newProc, idx) => {
-      const existingData = baseData.find(d => d.id === idx);
-      if (existingData) {
-        return { ...existingData, proc: newProc }; // 절차 내용만 최신으로 갱신
-      }
-      return { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+  const setInsideAnalysisData = () => {
+    setAnalysisData(prevData => {
+      // 1순위: 현재 상태값, 2순위: 전달받은 초기값
+      const baseData = prevData.length > 0 ? prevData : (incomingAnalysisData || []);
+      
+      return procedures.map((newProc, idx) => {
+        const existingData = baseData.find(d => d.id === idx);
+        if (existingData) {
+          return { ...existingData, proc: newProc }; // 절차 내용만 최신으로 갱신
+        }
+        return { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+      });
     });
-  });
-};
+  };
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
-
-  // 로딩 상태가 필요 없지만 UI 일관성을 위해 유지 (즉시 완료됨)
   const [isLoading, setIsLoading] = useState(false);
 
-// 기존: const currentStep = analysisData[activeIdx];
-// 수정: 데이터가 없을 경우를 대비한 방어 코드
-const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
+  // 데이터가 없을 경우를 대비한 방어 코드
+  const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
 
 
   // --------------------------------------------------------------------
@@ -891,7 +883,6 @@ const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activ
     if (currentStep?.proc?.stepDetail) {
       setIsLoading(true);
 
-      // 약간의 지연(0.3초)을 주어 분석하는 느낌을 줌 (선택사항)
       setTimeout(() => {
         const results = getRisksFromLocalDB(currentStep.proc.stepDetail);
         setRecommendations(results);
@@ -906,17 +897,16 @@ const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activ
   // --------------------------------------------------------------------
   // [핸들러] (기존 동일)
   // --------------------------------------------------------------------
-const scroll = (direction) => {
-  if (scrollRef.current) {
-    const { scrollLeft, clientWidth } = scrollRef.current;
-    // 한번 클릭 시 카드 한 개 정도의 너비(약 250px)만큼 이동하게 설정
-    const scrollAmount = 260; 
-    scrollRef.current.scrollTo({ 
-      left: scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount), 
-      behavior: 'smooth' 
-    });
-  }
-};
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollAmount = 260; 
+      scrollRef.current.scrollTo({ 
+        left: scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount), 
+        behavior: 'smooth' 
+      });
+    }
+  };
   const addRisk = (rec) => {
     const newData = [...analysisData];
     const isManual = rec.type === 'manual';
@@ -984,8 +974,10 @@ const scroll = (direction) => {
       </header>
 
       <div style={styles.mainLayout}>
+        {/* [좌측 광고] */}
         <aside style={styles.sideAd}>
-          <div style={styles.adPlaceholder}>AD Area 1</div>
+           {/* 분석 페이지용 임시 슬롯 번호 */}
+          <AdBanner slot="4000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
@@ -1118,14 +1110,16 @@ const scroll = (direction) => {
           </div>
         </main>
 
+        {/* [우측 광고] */}
         <aside style={styles.sideAd}>
-          <div style={styles.adPlaceholder}>AD Area 2</div>
+          <AdBanner slot="4000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
       <footer style={styles.footerArea}>
+        {/* [하단 광고] */}
         <div style={styles.bottomAdWrapper}>
-          <div style={styles.bottomAdPlaceholder}>AD Area 3 (Banner)</div>
+          <AdBanner slot="4000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
       </footer>
     </div>
@@ -1140,10 +1134,13 @@ const styles = {
   header: { padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center' },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer', margin: 0 },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 2rem', gap: '2rem', zIndex: 10, overflow: 'hidden', justifyContent: 'center' },
-  sideAd: { flexShrink: 0, width: '150px', display: 'none' },
+  
+  // [수정] 광고가 보이도록 display: flex 로 변경
+  sideAd: { flexShrink: 0, width: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1400px', width: '100%' },
-  adPlaceholder: { width: '100%', height: '600px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '8px', color: '#444', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem' },
-  bottomAdPlaceholder: { width: '728px', height: '90px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '4px', color: '#444', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  // adPlaceholder: { ... }, // 삭제함
+  // bottomAdPlaceholder: { ... }, // 삭제함
   formCard: { width: '100%', backgroundColor: 'rgba(18, 18, 18, 0.95)', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.8)', maxHeight: '85vh', display: 'flex', flexDirection: 'column' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },

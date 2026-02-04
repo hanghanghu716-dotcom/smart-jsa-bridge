@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import AdBanner from '../AdBanner'; // [추가] 광고 컴포넌트 불러오기
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -90,8 +91,10 @@ export default function Info() {
       </header>
 
       <div style={styles.mainLayout}>
+        {/* [좌측 광고] */}
         <aside style={styles.sideAd}>
-          <img src="/images/ads1.png" alt="AD 1" style={styles.adImg} />
+          {/* 슬롯 번호는 나중에 애드센스에서 '세로형 광고'를 새로 만들어 교체하세요 */}
+          <AdBanner slot="2000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
@@ -268,14 +271,16 @@ export default function Info() {
           </div>
         </main>
 
+        {/* [우측 광고] */}
         <aside style={styles.sideAd}>
-          <img src="/images/ads2.png" alt="AD 2" style={styles.adImg} />
+          <AdBanner slot="2000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
       <footer style={styles.footerArea}>
+        {/* [하단 광고] */}
         <div style={styles.bottomAdWrapper}>
-          <img src="/images/ads3.png" alt="AD 3" style={styles.bottomAdImg} />
+          <AdBanner slot="2000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
       </footer>
     </div>
@@ -291,8 +296,11 @@ const styles = {
   header: { padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10, overflow: 'hidden' },
-  sideAd: { flexShrink: 0 },
-  adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '650px', borderRadius: '4px' },
+  
+  // [수정] 광고가 중앙에 오도록 flex 속성 추가
+  sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 
+  
+  // adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '650px', borderRadius: '4px' }, // 사용 안 함
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', maxHeight: '78vh', display: 'flex', flexDirection: 'column' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
@@ -336,7 +344,7 @@ const styles = {
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10 },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '90px' },
+  // bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '90px' }, // 사용 안 함
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.7rem' },
   inputGroupFull: { display: 'flex', flexDirection: 'column', gap: '0.7rem', marginBottom: '1.5rem' },
 };
