@@ -436,22 +436,27 @@ const RISK_DATABASE = [
 // ----------------------------------------------------------------------
 // [로직] 텍스트에서 키워드를 찾아 DB에서 꺼내오는 함수
 // ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// [로직] 텍스트에서 키워드를 찾아 DB에서 꺼내오는 함수 (수정됨)
+// ----------------------------------------------------------------------
 const getRisksFromLocalDB = (text = "") => {
   if (!text) return [];
   
   let foundRisks = [];
-  // 입력 문장에서 모든 공백 및 줄바꿈 제거
   const normalizedInput = text.toString().replace(/\s+/g, "").toLowerCase();
 
-  RISK_DATABASE.forEach(category => {
-    const hasKeyword = category.keywords.some(keyword => {
-      // DB 키워드에서도 모든 공백 제거 후 비교
+  // [수정 핵심] RISK_DATABASE가 이중 배열([[{...}]])이므로 .flat()을 사용하여 1차원으로 펼침
+  RISK_DATABASE.flat().forEach(item => {
+    // 데이터 보호 조치: keywords가 없는 항목은 건너뜀
+    if (!item?.keywords) return;
+
+    const hasKeyword = item.keywords.some(keyword => {
       const normalizedKeyword = keyword.toString().replace(/\s+/g, "").toLowerCase();
       return normalizedInput.includes(normalizedKeyword);
     });
 
     if (hasKeyword) {
-      foundRisks = [...foundRisks, ...category.risks];
+      foundRisks = [...foundRisks, ...item.risks];
     }
   });
 
@@ -827,4 +832,5 @@ const styles = {
   nextBtn: { flex: 2, padding: '1.2rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.1rem', boxShadow: '0 4px 15px rgba(255,255,255,0.2)' },
   footerArea: { width: '100%', padding: '0.5rem 0 1.5rem', zIndex: 10 },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
+
 };
