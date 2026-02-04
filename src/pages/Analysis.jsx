@@ -512,26 +512,56 @@ const RISK_DATABASE = [
 // ----------------------------------------------------------------------
 // [로직] 텍스트에서 키워드를 찾아 DB에서 꺼내오는 함수 (수정됨)
 // ----------------------------------------------------------------------
-const getRisksFromLocalDB = (text = "") => {
+const getRisksFromLocalDB = (text = "", formData = {}) => {
   if (!text) return [];
 
   let foundRisks = [];
   const normalizedInput = text.toString().replace(/\s+/g, "").toLowerCase();
 
-  // [수정 핵심] RISK_DATABASE가 이중 배열([[{...}]])이므로 .flat()을 사용하여 1차원으로 펼침
+  // 1. 기본 키워드 기반 DB 검색
   RISK_DATABASE.flat().forEach(item => {
-    // 데이터 보호 조치: keywords가 없는 항목은 건너뜀
     if (!item?.keywords) return;
-
     const hasKeyword = item.keywords.some(keyword => {
       const normalizedKeyword = keyword.toString().replace(/\s+/g, "").toLowerCase();
       return normalizedInput.includes(normalizedKeyword);
     });
-
     if (hasKeyword) {
       foundRisks = [...foundRisks, ...item.risks];
     }
   });
+
+  // 2. [추가] 신입 작업자 관련 위험 요인 주입
+  if (formData.hasNewWorker) {
+    foundRisks.unshift({
+      factor: "신입 및 미숙련 작업자의 작업 숙련도 부족으로 인한 돌발 사고",
+      measure: "작업 전담 멘토(사수) 지정 및 작업 전 절차 재교육, 현장 밀착 감시 수행"
+    });
+  }
+
+  // 3. [추가] 날씨/환경 관련 위험 요인 주입
+  switch (formData.weather) {
+    case "비":
+    case "눈":
+      foundRisks.push({
+        factor: "우천/강설로 인한 바닥 미끄러짐 및 장비 제동 거리 증가",
+        measure: "작업 구간 미끄럼 방지 조치(모래 살포 등) 및 장비 저속 운행, 필요 시 야외 작업 중단"
+      });
+      break;
+    case "강풍":
+      foundRisks.push({
+        factor: "강풍에 의한 자재 비래(날림) 및 고소 작업자 중심 상실",
+        measure: "풍속 측정 후 기준 초과 시 고소 작업 중단 및 야적 자재 결속 상태 강화"
+      });
+      break;
+    case "폭염":
+      foundRisks.push({
+        factor: "고온 노출에 의한 온열 질환(열사병 등) 및 집중력 저하",
+        measure: "매 시간 10~15분 휴식 시간 보장, 시원한 음용수 제공 및 '온열질환 예방 가이드' 준수"
+      });
+      break;
+    default:
+      break;
+  }
 
   return foundRisks;
 };
@@ -583,37 +613,31 @@ export default function Analysis() {
   // 데이터가 없을 경우를 대비한 방어 코드
   const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
 
-  // [수정됨] 데이터 로딩 및 DB 검색 로직 (안전장치 포함)
   useEffect(() => {
     const step = analysisData[activeIdx];
     const targetText = step?.proc?.stepDetail || "";
 
-    // 1. 로딩 시작
     setIsLoading(true);
 
-    // 2. 0.5초 딜레이 후 분석
     const searchTimer = setTimeout(() => {
       try {
-        // [TRY] 에러가 발생할 수 있는 코드를 실행
         if (targetText.trim() !== "") {
-          const results = getRisksFromLocalDB(targetText);
+          // [변경] getRisksFromLocalDB 호출 시 formData 전달
+          const results = getRisksFromLocalDB(targetText, formData);
           setRecommendations(results);
         } else {
           setRecommendations([]);
         }
       } catch (error) {
-        // [CATCH] 에러 발생 시 콘솔에 출력하고 멈춤 방지
         console.error("위험요인 분석 중 오류 발생:", error);
-        setRecommendations([]); // 에러 시 빈 추천 목록 표시
+        setRecommendations([]);
       } finally {
-        // [FINALLY] 성공하든 실패하든 '무조건' 로딩 종료 (가장 중요)
         setIsLoading(false);
       }
     }, 500);
 
     return () => clearTimeout(searchTimer);
-  }, [activeIdx, analysisData.length, currentStep?.proc?.stepDetail]);
-
+  }, [activeIdx, analysisData.length, currentStep?.proc?.stepDetail, formData]); // formData 의존성 추가
   // --------------------------------------------------------------------
   // [핸들러] (기존 동일)
   // --------------------------------------------------------------------
