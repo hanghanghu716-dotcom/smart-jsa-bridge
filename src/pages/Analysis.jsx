@@ -647,20 +647,21 @@ const RISK_DATABASE = [
 // ----------------------------------------------------------------------
 const getRisksFromLocalDB = (text = "") => {
   let foundRisks = [];
+  
+  // 1. 입력 텍스트에서 모든 공백 제거 및 소문자화
+  const normalizedText = text.replace(/\s+/g, "").toLowerCase();
 
-  // 1. DB 순회하며 키워드 매칭
   RISK_DATABASE.forEach(category => {
-    // 해당 카테고리의 키워드가 하나라도 포함되어 있는지 확인
-    const hasKeyword = category.keywords.some(keyword => text.includes(keyword));
+    // 2. 키워드들도 공백을 제거하여 비교
+    const hasKeyword = category.keywords.some(keyword => {
+      const normalizedKeyword = keyword.replace(/\s+/g, "").toLowerCase();
+      return normalizedText.includes(normalizedKeyword);
+    });
+
     if (hasKeyword) {
       foundRisks = [...foundRisks, ...category.risks];
     }
   });
-
-  // 2. 매칭된 게 없으면 기본값 제공
-  if (foundRisks.length === 0) {
-
-  }
 
   return foundRisks;
 };
@@ -713,24 +714,30 @@ export default function Analysis() {
   // 데이터가 없을 경우를 대비한 방어 코드
   const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
 
+// [수정] 데이터 로딩 및 DB 검색 로직
+useEffect(() => {
+  // 1. 분석할 텍스트가 있는지 먼저 확인합니다.
+  const targetText = currentStep?.proc?.stepDetail;
 
-  // --------------------------------------------------------------------
-  // [실행] DB 조회 (동기 방식이라 매우 빠름)
-  // --------------------------------------------------------------------
-  useEffect(() => {
-    if (currentStep?.proc?.stepDetail) {
-      setIsLoading(true);
+  if (targetText && targetText.trim() !== "") {
+    setIsLoading(true); // 로딩 시작 (다이얼로그/스피너 활성화)
 
-      setTimeout(() => {
-        const results = getRisksFromLocalDB(currentStep.proc.stepDetail);
-        setRecommendations(results);
-        setIsLoading(false);
-      }, 300);
+    // 2. 텍스트가 DOM에 안정적으로 매핑될 시간을 준 뒤 검색 수행
+    const searchTimer = setTimeout(() => {
+      const results = getRisksFromLocalDB(targetText);
+      setRecommendations(results);
+      setIsLoading(false); // 로딩 종료
+    }, 600); // 0.6초 정도의 대기 시간을 주어 사용자에게 '분석 중'임을 인지시킵니다.
 
-      if (scrollRef.current) scrollRef.current.scrollLeft = 0;
-    }
-  }, [activeIdx]);
-
+    if (scrollRef.current) scrollRef.current.scrollLeft = 0;
+    
+    return () => clearTimeout(searchTimer);
+  } else {
+    // 텍스트가 없으면 추천 목록 초기화
+    setRecommendations([]);
+    setIsLoading(false);
+  }
+}, [activeIdx, currentStep?.proc?.stepDetail]); // 의존성에 상세 내용 추가
 
   // --------------------------------------------------------------------
   // [핸들러] (기존 동일)
@@ -799,9 +806,22 @@ export default function Analysis() {
       setActiveIdx(activeIdx - 1);
     }
   };
-
-  return (
+return (
     <div style={styles.wrapper}>
+      {/* [추가] 분석 중 전체 화면 차단 다이얼로그 */}
+      {isLoading && (
+        <div style={styles.dialogOverlay}>
+          <div style={styles.dialogBox}>
+            <div style={styles.spinner}></div>
+            <h3 style={styles.dialogTitle}>위험요인 분석 중</h3>
+            <p style={styles.dialogText}>
+              작업 내용을 바탕으로<br />
+              안전 데이터베이스를 검색하고 있습니다.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
         <div style={styles.dimOverlay} />
@@ -812,15 +832,12 @@ export default function Analysis() {
       </header>
 
       <div style={styles.mainLayout}>
-        {/* [좌측 광고] */}
         <aside style={styles.sideAd}>
-          {/* 분석 페이지용 임시 슬롯 번호 */}
           <AdBanner slot="4000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
               <div style={styles.stepLineActive} />
@@ -854,19 +871,14 @@ export default function Analysis() {
                   <p style={styles.manualText}>새 위험요인<br />수동 작성</p>
                 </div>
 
-                {isLoading ? (
-                  <>
-                    <div style={styles.loadingCard}>DB 검색 중...</div>
-                  </>
-                ) : (
-                  recommendations.map((rec, i) => (
-                    <div key={i} style={styles.recommendCard} onClick={() => addRisk(rec)}>
-                      <div style={styles.recBadge}>추천</div>
-                      <p style={styles.recFactor}>{rec.factor}</p>
-                      <p style={styles.recMeasure}>{rec.measure}</p>
-                    </div>
-                  ))
-                )}
+                {/* DB 검색 결과 렌더링 */}
+                {recommendations.map((rec, i) => (
+                  <div key={i} style={styles.recommendCard} onClick={() => addRisk(rec)}>
+                    <div style={styles.recBadge}>추천</div>
+                    <p style={styles.recFactor}>{rec.factor}</p>
+                    <p style={styles.recMeasure}>{rec.measure}</p>
+                  </div>
+                ))}
 
                 {!isLoading && recommendations.length === 0 && (
                   <div style={styles.emptyCard}>추천 데이터 없음</div>
@@ -898,11 +910,8 @@ export default function Analysis() {
                     value={currentStep.riskLevel}
                     onChange={(e) => updateStepRisk('riskLevel', parseInt(e.target.value))}
                   >
-                    {/* 1부터 25까지(5x5 매트릭스 기준) 모든 위험도 등급 선택 가능 */}
                     {Array.from({ length: 25 }, (_, i) => i + 1).map(n => (
-                      <option key={n} value={n}>
-                        {n} {n === (currentStep.frequency * currentStep.severity) ? "" : ""}
-                      </option>
+                      <option key={n} value={n}>{n}</option>
                     ))}
                   </select>
                 </div>
@@ -944,18 +953,15 @@ export default function Analysis() {
                 {activeIdx === analysisData.length - 1 ? '작성 완료 및 출력' : '다음 작업 단계 분석'}
               </button>
             </div>
-
           </div>
         </main>
 
-        {/* [우측 광고] */}
         <aside style={styles.sideAd}>
           <AdBanner slot="4000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
       <footer style={styles.footerArea}>
-        {/* [하단 광고] */}
         <div style={styles.bottomAdWrapper}>
           <AdBanner slot="4000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
@@ -966,19 +972,21 @@ export default function Analysis() {
 
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
+  // [추가] 다이얼로그 관련 스타일
+  dialogOverlay: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 9999 },
+  dialogBox: { backgroundColor: '#1a1a1a', padding: '2.5rem', borderRadius: '16px', border: '1px solid #333', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' },
+  dialogTitle: { color: '#fff', fontSize: '1.2rem', margin: 0, fontWeight: '800' },
+  dialogText: { color: '#888', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 },
+  spinner: { width: '40px', height: '40px', border: '4px solid rgba(0, 123, 255, 0.1)', borderTop: '4px solid #007bff', borderRadius: '50%', animation: 'spin 1s linear infinite' },
+  
   bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
   bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
   dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', zIndex: 1 },
   header: { padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center' },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer', margin: 0 },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 2rem', gap: '2rem', zIndex: 10, overflow: 'hidden', justifyContent: 'center' },
-
-  // [수정] 광고가 보이도록 display: flex 로 변경
   sideAd: { flexShrink: 0, width: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center' },
-
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1400px', width: '100%' },
-  // adPlaceholder: { ... }, // 삭제함
-  // bottomAdPlaceholder: { ... }, // 삭제함
   formCard: { width: '100%', backgroundColor: 'rgba(18, 18, 18, 0.95)', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.8)', maxHeight: '85vh', display: 'flex', flexDirection: 'column' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
@@ -1002,21 +1010,10 @@ const styles = {
   label: { fontSize: '0.85rem', color: '#888', fontWeight: '700' },
   arrowBox: { display: 'flex', gap: '0.5rem' },
   arrowBtn: { backgroundColor: '#333', border: '1px solid #555', color: '#fff', padding: '4px 10px', borderRadius: '4px', cursor: 'pointer', transition: 'background 0.2s' },
-  sliderContainer: {
-    display: 'flex',
-    gap: '1rem',
-    overflowX: 'auto',         // 기능은 유지하되
-    paddingBottom: '0.8rem',
-    scrollBehavior: 'smooth',
-    marginBottom: '1.5rem',
-    // 스크롤바 숨기기 (표준 및 브라우저별 설정)
-    msOverflowStyle: 'none',   // IE, Edge
-    scrollbarWidth: 'none',    // Firefox
-    WebkitOverflowScrolling: 'touch', // iOS 가속 스크롤
-  }, manualAddCard: { minWidth: '220px', width: '220px', height: '160px', backgroundColor: 'rgba(0, 123, 255, 0.05)', border: '2px dashed #007bff', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', flexShrink: 0 },
+  sliderContainer: { display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.8rem', scrollBehavior: 'smooth', marginBottom: '1.5rem', msOverflowStyle: 'none', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' },
+  manualAddCard: { minWidth: '220px', width: '220px', height: '160px', backgroundColor: 'rgba(0, 123, 255, 0.05)', border: '2px dashed #007bff', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', flexShrink: 0 },
   plusIcon: { fontSize: '2.5rem', color: '#007bff', fontWeight: '300', marginBottom: '0.5rem' },
   manualText: { color: '#007bff', fontSize: '0.85rem', fontWeight: '700', textAlign: 'center', lineHeight: '1.4' },
-  loadingCard: { minWidth: '240px', width: '240px', height: '160px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#007bff', fontSize: '0.9rem', flexShrink: 0, fontWeight: 'bold' },
   recommendCard: { minWidth: '240px', width: '240px', height: '160px', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px', padding: '1.2rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'border-color 0.2s', flexShrink: 0, position: 'relative' },
   recBadge: { position: 'absolute', top: '10px', right: '10px', fontSize: '0.7rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 5px', borderRadius: '3px' },
   recFactor: { color: '#fff', fontSize: '0.9rem', fontWeight: '700', lineHeight: '1.4', marginBottom: '0.5rem', paddingRight: '50px', wordBreak: 'keep-all' },
@@ -1026,19 +1023,15 @@ const styles = {
   riskInputGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
   select: { backgroundColor: '#222', border: '1px solid #444', color: '#fff', padding: '0.5rem 1rem', borderRadius: '4px', outline: 'none', width: '80px', textAlign: 'center' },
   riskResultGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingLeft: '2rem', borderLeft: '1px solid #333', minWidth: '100px', alignItems: 'center' },
-  riskDisplay: { fontSize: '2rem', fontWeight: '900', lineHeight: 1 },
   table: { width: '100%', borderCollapse: 'collapse', marginTop: '1rem' },
   th: { padding: '1rem', backgroundColor: '#151515', color: '#888', fontSize: '0.75rem', textAlign: 'left', borderBottom: '2px solid #333' },
   td: { padding: '0.8rem 0.5rem', borderBottom: '1px solid #222', color: '#fff', fontSize: '0.95rem', verticalAlign: 'top' },
   emptyTd: { padding: '3rem', textAlign: 'center', color: '#444', fontSize: '0.9rem' },
   inlineInput: { width: '100%', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', padding: '0.8rem', borderRadius: '4px', outline: 'none', fontSize: '0.9rem', resize: 'none', fontFamily: 'inherit', lineHeight: '1.5' },
-  inlineInputFocus: { borderColor: '#007bff' },
   deleteBtn: { backgroundColor: 'rgba(255, 77, 77, 0.1)', color: '#ff4d4d', border: '1px solid rgba(255, 77, 77, 0.3)', padding: '6px 14px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' },
   btnArea: { marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', gap: '1.2rem', borderTop: '1px solid rgba(255,255,255,0.1)' },
   prevBtn: { flex: 1, padding: '1.2rem', backgroundColor: 'transparent', color: '#aaa', border: '1px solid #444', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' },
   nextBtn: { flex: 2, padding: '1.2rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.1rem', boxShadow: '0 4px 15px rgba(255,255,255,0.2)' },
   footerArea: { width: '100%', padding: '0.5rem 0 1.5rem', zIndex: 10 },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-
 };
-
