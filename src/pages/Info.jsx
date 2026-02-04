@@ -9,8 +9,8 @@ const DEFAULT_FORM_DATA = {
   workDate: '',
   managerName: '',
   workType: '정기작업',
-  weather: '맑음', // [기능 추가] 기본 날씨 설정
-  hasNewWorker: false, // [기능 추가] 신입 작업자 포함 여부
+  weather: '맑음',
+  hasNewWorker: false,
   ppe: [],
   permits: [],
   equipment: '',
@@ -24,7 +24,6 @@ export default function Info() {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(10).fill(''));
 
-  /* ✅ 뒤로 가기 시 최신 데이터 재주입 */
   useEffect(() => {
     if (location.state?.formData) {
       setFormData(location.state.formData);
@@ -179,8 +178,7 @@ export default function Info() {
                     </div>
                   </div>
 
-                  {/* [신규] 날씨 선택 및 신입 작업자 체크 영역 */}
-                  <div style={styles.row}>
+                  <div style={{ ...styles.row, alignItems: 'flex-end' }}>
                     <div style={styles.flexItem}>
                       <label style={styles.label}>현장 날씨</label>
                       <select
@@ -198,7 +196,7 @@ export default function Info() {
                         <option value="한파">한파/저온</option>
                       </select>
                     </div>
-                    <div style={{ ...styles.flexItem, justifyContent: 'flex-end', paddingBottom: '0.8rem' }}>
+                    <div style={styles.flexItem}>
                       <label style={styles.checkLabelHighlight}>
                         <input
                           type="checkbox"
@@ -210,7 +208,8 @@ export default function Info() {
                         <span style={{ 
                           color: formData.hasNewWorker ? '#ff4d4d' : '#888', 
                           fontWeight: 'bold',
-                          transition: 'color 0.2s'
+                          transition: 'color 0.2s',
+                          fontSize: '0.9rem'
                         }}>
                           신입/미숙련 작업자 포함
                         </span>
@@ -349,16 +348,16 @@ const styles = {
   safetySection: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.6rem 0.4rem', backgroundColor: '#161616', padding: '1rem', borderRadius: '8px' },
   checkLabel: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' },
-  checkLabelHighlight: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer', backgroundColor: '#161616', padding: '0.75rem 1rem', borderRadius: '6px', border: '1px solid #333' },
+  checkLabelHighlight: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer', backgroundColor: '#161616', padding: '0 1rem', borderRadius: '6px', border: '1px solid #333', height: '45px', boxSizing: 'border-box' },
   label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
-  input: { padding: '0.75rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
-  inputDate: { padding: '0.7rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', colorScheme: 'dark', width: '100%', boxSizing: 'border-box' },
-  selectInput: { padding: '0.75rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
+  input: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
+  inputDate: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', colorScheme: 'dark', width: '100%', boxSizing: 'border-box' },
+  selectInput: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box', cursor: 'pointer' },
   textarea: { padding: '0.8rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', minHeight: '80px', outline: 'none', resize: 'none' },
   row: { display: 'flex', gap: '1rem' },
   flexItem: { display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 },
   participantGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' },
-  participantBox: { display: 'flex', alignItems: 'center', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', paddingLeft: '10px' },
+  participantBox: { display: 'flex', alignItems: 'center', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', paddingLeft: '10px', height: '40px' },
   pNumber: { fontSize: '0.7rem', color: '#555', fontWeight: '800', width: '20px' },
   pInput: { flex: 1, padding: '0.7rem', backgroundColor: 'transparent', border: 'none', color: '#fff', fontSize: '0.9rem', outline: 'none' },
   checkboxSmall: { width: '1.1rem', height: '1.1rem', cursor: 'pointer' },
