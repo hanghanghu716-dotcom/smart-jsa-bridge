@@ -86,7 +86,7 @@ export default function Main() {
             }} />
           ))}
         </div>
-        <p style={styles.copyright}>© 2026 Smart JSA Bridge. 대한민국 산업안전의 디지털 전환</p>
+<p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Created by <strong>yizuno</strong></p>
       </footer>
     </div>
   );
@@ -119,4 +119,5 @@ const styles = {
   bottomLine: { width: '100%', display: 'flex', gap: '10px', height: '2px', marginBottom: '1.2rem' },
   lineItem: { flex: 1, transition: 'background-color 0.6s' },
   copyright: { textAlign: 'center', fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)' }
+
 };
