@@ -2,6 +2,90 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner'; // [추가] 광고 컴포넌트 불러오기
 
+const HIGH_RISK_TASKS = [
+  {
+    title: "화기 작업",
+    risks: [
+      { factor: "용접/절단 불티 비산으로 인한 주변 가연물 화재", measure: "작업 반경 11m 이내 가연물 제거 및 방화포 설치, 소화기 비치" },
+      { factor: "인화성 가스 체류 구역 내 스파크에 의한 폭발", measure: "작업 전 가스 농도 측정 및 가동 중인 설비와 격리(LOTO) 확인" },
+      { factor: "밀폐공간 내 용접 흄 및 유해가스 체류로 인한 중독", measure: "국소배기장치 가동 및 송기마스크 또는 특급 방진마스크 착용" },
+      { factor: "용접기 외함 누전 및 홀더 충전부 접촉에 의한 감전", measure: "자동전격방지기 작동 확인 및 절연 장갑/장화 착용" }
+    ]
+  },
+  {
+    title: "중량물 작업",
+    risks: [
+      { factor: "양중 중 와이어로프/슬링벨트 파단으로 인한 자재 낙하", measure: "줄걸이 용구 사전 점검(마모, 소선 단선) 및 정격 하중 준수" },
+      { factor: "중량물 인양 중 무게중심 상실로 인한 장비 전도 및 타격", measure: "지반 다짐 확인 및 아웃트리거 받침판 설치, 신호수 전담 배치" },
+      { factor: "인양물 회전 및 흔들림으로 인한 주변 작업자 협착(끼임)", measure: "유도 로프(Tag Line) 사용으로 작업자와 자재 간 안전거리 확보" },
+      { factor: "인양 반경 내 비인가자 무단 진입으로 인한 충돌", measure: "작업 반경 하부 통제구역 설정 및 라바콘/경고표지판 설치" }
+    ]
+  },
+  {
+    title: "방사선 작업",
+    risks: [
+      { factor: "방사선원 노출로 인한 작업자 및 주변인 급성 피폭", measure: "방사선 관리구역 설정 및 경고등 설치, 전담 감시인 배치" },
+      { factor: "투과검사 중 차폐 불량으로 인한 방사선 누출", measure: "검사 목적 외 인원 접근 차단 및 납 차폐체(Shielding) 활용" },
+      { factor: "선원(Source) 분실 또는 관리 부주의로 인한 대형 사고", measure: "방사선원 인출/회수 시 계측기를 이용한 실시간 모니터링" },
+      { factor: "비인가자의 작업 구역 진입 및 방사선 노출", measure: "개인 선량계(TLD) 필수 착용 및 작업 시간 제한(ALARA 원칙 준수)" }
+    ]
+  },
+  {
+    title: "밀폐공간 작업",
+    risks: [
+      { factor: "내부 산소 결핍 및 유해 가스(H2S, CO)에 의한 질식", measure: "진입 전/중 산소 및 가스 농도 측정, 강제 환기 장치 상시 가동" },
+      { factor: "사고 발생 시 내부 구조 지연으로 인한 동반 재해", measure: "구조용 삼각대 및 윈치 선설치, 외부 감시인과 통신 체계 유지" },
+      { factor: "공간 내 정전기 및 유증기에 의한 화재/폭발", measure: "방폭형 조명기구 및 저전압(24V) 임시 전등 사용" },
+      { factor: "내부 협소 공간에서의 이동 중 실족 및 전도", measure: "작업장 조도(75럭스 이상) 확보 및 미끄럼 방지 안전화 착용" }
+    ]
+  },
+  {
+    title: "정전 작업",
+    risks: [
+      { factor: "차단기 개방 후 케이블 내 잔류 전하에 의한 감전", measure: "검전기를 이용한 무전압 확인 및 접지 걸이 설치로 잔류 전하 제거" },
+      { factor: "작업 중 제3자의 임의 전원 투입으로 인한 사고", measure: "잠금장치 및 표지판(LOTO) 설치, 작업자 개인 키 휴대 보관" },
+      { factor: "특고압 차단기 조작 시 아크(Arc) 폭발에 의한 화상", measure: "방염 작업복 및 보안면 착용 후 차단기 측면에서 조작" },
+      { factor: "오조작으로 인한 활선부 접근 및 감전", measure: "활선 접근 경보표시기 패용 및 절연 방호구 설치" }
+    ]
+  },
+  {
+    title: "굴착 작업",
+    risks: [
+      { factor: "굴착 법면 토사 붕괴로 인한 작업자 매몰", measure: "지반 안식각 준수 및 흙막이 지보공 설치, 상부 자재 적치 금지" },
+      { factor: "지하 매설물(가스관, 전기 케이블) 파손에 의한 폭발/감전", measure: "도면 확인 및 인력 시굴착(줄파기)을 통한 위치 사전 파악" },
+      { factor: "굴착 단부 및 개구부에서의 작업자/장비 추락", measure: "단부 안전난간 및 접근 방지책 설치, 야간 경광등 배치" },
+      { factor: "지반 침하에 의한 인근 구조물 붕괴 및 균열", measure: "계측기 설치를 통한 변위 모니터링 및 배수 설비 가동" }
+    ]
+  },
+  {
+    title: "고소 작업",
+    risks: [
+      { factor: "작업 발판 단부 및 개구부에서의 작업자 추락", measure: "안전난간 설치 및 그네식 안전대 체결(생명줄 확보 확인)" },
+      { factor: "상부 작업 중 수공구/자재 낙하로 인한 하부 타격", measure: "공구 낙하방지끈 사용 및 발판 틈새 막음 조치, 하부 통제" },
+      { factor: "강풍 등 기상 악화 시 중심 상실로 인한 추락", measure: "순간풍속 10m/s 이상 시 작업 중단 및 자재 고정 상태 점검" },
+      { factor: "비계/고소작업대 구조 결함에 의한 무너짐", measure: "승인된 발판 사용 및 사용 전 장비/구조물 일일 점검 실시" }
+    ]
+  },
+  {
+    title: "가연성가스 작업",
+    risks: [
+      { factor: "배관 개방 중 잔류 가스 누출에 의한 폭발 및 화재", measure: "작업 전 질소 퍼지(Purge) 및 가스 검지기 상시 휴대" },
+      { factor: "가스 누출 구역 내 정전기/스파크 발생에 의한 인화", measure: "방폭형 공구 사용 및 제전복/제전화 착용, 정전기 방지 접지" },
+      { factor: "고압 가스 분출 시 압력에 의한 신체 타격", measure: "단계적 감압 절차 준수 및 내압 방호벽 설치" },
+      { factor: "가스 누출에 의한 산소 결핍 및 중독 사고", measure: "휴대용 농도 측정기 패용 및 2인 1조 작업(감시인 포함)" }
+    ]
+  },
+  {
+    title: "일반 작업",
+    risks: [
+      { factor: "작업장 정리정돈 미흡으로 인한 전도(넘어짐)", measure: "통로 자재 적치 금지 및 케이블 거치대 사용, 즉시 청소" },
+      { factor: "작업 전 위험요인 공유 부족으로 인한 안전사고", measure: "작업 전 TBM(Tool Box Meeting)을 통한 위험 포인트 재교육" },
+      { factor: "날카로운 단면 및 돌출부에 의한 베임/찔림", measure: "방검 장갑 착용 및 돌출 부위 보호캡 설치" },
+      { factor: "반복적인 중량물 취급으로 인한 근골격계 질환", measure: "중량물 취급 기준 준수 및 보조 양중 장비 활용" }
+    ]
+  }
+];
+
 const RISK_DATABASE = [
   [
     // 1. 작업 단계 및 유형
@@ -509,9 +593,6 @@ const RISK_DATABASE = [
     }
   ]
 ];
-// ----------------------------------------------------------------------
-// [로직] 텍스트에서 키워드를 찾아 DB에서 꺼내오는 함수 (수정됨)
-// ----------------------------------------------------------------------
 const getRisksFromLocalDB = (text = "", formData = {}) => {
   if (!text) return [];
 
@@ -530,7 +611,7 @@ const getRisksFromLocalDB = (text = "", formData = {}) => {
     }
   });
 
-  // 2. [추가] 신입 작업자 관련 위험 요인 주입
+  // 2. 신입 작업자 관련 위험 요인
   if (formData.hasNewWorker) {
     foundRisks.unshift({
       factor: "신입 및 미숙련 작업자의 작업 숙련도 부족으로 인한 돌발 사고",
@@ -538,7 +619,7 @@ const getRisksFromLocalDB = (text = "", formData = {}) => {
     });
   }
 
-  // 3. [추가] 날씨/환경 관련 위험 요인 주입
+  // 3. 날씨/환경 관련 위험 요인
   switch (formData.weather) {
     case "비":
     case "눈":
@@ -581,10 +662,14 @@ export default function Analysis() {
     analysisData: incomingAnalysisData,
   } = location.state || {};
 
-  // 1. 초기값: 이전 단계(Procedure)에서 넘겨준 분석 데이터가 있다면 그것을 우선 사용
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [recommendations, setRecommendations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // 🔑 고위험 작업 필터 상태 추가
+  const [selectedHighRisk, setSelectedHighRisk] = useState("");
 
-  // 2. 동기화 로직 보강
   useEffect(() => {
     if (procedures && procedures.length > 0) {
       setInsideAnalysisData();
@@ -593,36 +678,25 @@ export default function Analysis() {
 
   const setInsideAnalysisData = () => {
     setAnalysisData(prevData => {
-      // 1순위: 현재 상태값, 2순위: 전달받은 초기값
       const baseData = prevData.length > 0 ? prevData : (incomingAnalysisData || []);
-
       return procedures.map((newProc, idx) => {
         const existingData = baseData.find(d => d.id === idx);
-        if (existingData) {
-          return { ...existingData, proc: newProc }; // 절차 내용만 최신으로 갱신
-        }
+        if (existingData) return { ...existingData, proc: newProc };
         return { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
       });
     });
   };
 
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [recommendations, setRecommendations] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // 데이터가 없을 경우를 대비한 방어 코드
   const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
 
   useEffect(() => {
     const step = analysisData[activeIdx];
     const targetText = step?.proc?.stepDetail || "";
-
     setIsLoading(true);
 
     const searchTimer = setTimeout(() => {
       try {
         if (targetText.trim() !== "") {
-          // [변경] getRisksFromLocalDB 호출 시 formData 전달
           const results = getRisksFromLocalDB(targetText, formData);
           setRecommendations(results);
         } else {
@@ -637,20 +711,15 @@ export default function Analysis() {
     }, 500);
 
     return () => clearTimeout(searchTimer);
-  }, [activeIdx, analysisData.length, currentStep?.proc?.stepDetail, formData]); // formData 의존성 추가
-  // --------------------------------------------------------------------
-  // [핸들러] (기존 동일)
-  // --------------------------------------------------------------------
+  }, [activeIdx, analysisData.length, currentStep?.proc?.stepDetail, formData]);
+
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollAmount = 260;
-      scrollRef.current.scrollTo({
-        left: scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount),
-        behavior: 'smooth'
-      });
+      const scrollAmount = direction === 'left' ? -260 : 260;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
+
   const addRisk = (rec) => {
     const newData = [...analysisData];
     const isManual = rec.type === 'manual';
@@ -693,6 +762,7 @@ export default function Analysis() {
   const handleNext = () => {
     if (activeIdx < analysisData.length - 1) {
       setActiveIdx(activeIdx + 1);
+      setSelectedHighRisk(""); // 다음 단계로 넘어갈 때 필터 초기화
     } else {
       navigate('/export', { state: { analysisData, formData, participants, procedures } });
     }
@@ -703,32 +773,24 @@ export default function Analysis() {
       navigate('/procedure', { state: { procedures, formData, participants, analysisData } });
     } else {
       setActiveIdx(activeIdx - 1);
+      setSelectedHighRisk(""); // 이전 단계로 돌아갈 때 필터 초기화
     }
   };
+
   return (
     <div style={styles.wrapper}>
-      {/* [추가] 분석 중 전체 화면 차단 다이얼로그 */}
       {isLoading && (
         <div style={styles.dialogOverlay}>
           <div style={styles.dialogBox}>
             <div style={styles.spinner}></div>
             <h3 style={styles.dialogTitle}>위험요인 분석 중</h3>
-            <p style={styles.dialogText}>
-              작업 내용을 바탕으로<br />
-              안전 데이터베이스를 검색하고 있습니다.
-            </p>
+            <p style={styles.dialogText}>작업 내용을 바탕으로<br />안전 데이터베이스를 검색하고 있습니다.</p>
           </div>
         </div>
       )}
 
-      <div style={styles.bgWrapper}>
-        <div style={styles.bgImage} />
-        <div style={styles.dimOverlay} />
-      </div>
-
-      <header style={styles.header}>
-        <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-      </header>
+      <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
+      <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
@@ -739,12 +801,9 @@ export default function Analysis() {
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
-              <div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div>
-              <div style={styles.stepLineActive} />
-              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>위험 분석</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>최종 출력</span></div>
+              <div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div>
+              <div style={styles.stepLineActive} /><div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>위험 분석</span></div>
+              <div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>최종 출력</span></div>
             </nav>
 
             <div style={styles.formHeader}>
@@ -756,6 +815,19 @@ export default function Analysis() {
             </div>
 
             <div style={styles.scrollArea}>
+              {/* 🔑 고위험 작업 필터 선택 UI 추가 */}
+              <div style={styles.filterArea}>
+                <label style={styles.label}>⚠️ 고위험 작업 필터 (해당 시 선택)</label>
+                <select 
+                  style={styles.highRiskSelect} 
+                  value={selectedHighRisk} 
+                  onChange={(e) => setSelectedHighRisk(e.target.value)}
+                >
+                  <option value="">(미선택 - 지능형 자동 제안 사용)</option>
+                  {HIGH_RISK_TASKS.map(t => <option key={t.title} value={t.title}>{t.title}</option>)}
+                </select>
+              </div>
+
               <div style={styles.recHeader}>
                 <span style={styles.label}>추천 항목(DB) 및 수동 추가</span>
                 <div style={styles.arrowBox}>
@@ -766,20 +838,27 @@ export default function Analysis() {
 
               <div style={styles.sliderContainer} ref={scrollRef}>
                 <div style={styles.manualAddCard} onClick={() => addRisk({ type: 'manual' })}>
-                  <div style={styles.plusIcon}>+</div>
-                  <p style={styles.manualText}>새 위험요인<br />수동 작성</p>
+                  <div style={styles.plusIcon}>+</div><p style={styles.manualText}>새 위험요인<br />수동 작성</p>
                 </div>
 
-                {/* DB 검색 결과 렌더링 */}
-                {recommendations.map((rec, i) => (
-                  <div key={i} style={styles.recommendCard} onClick={() => addRisk(rec)}>
-                    <div style={styles.recBadge}>추천</div>
-                    <p style={styles.recFactor}>{rec.factor}</p>
-                    <p style={styles.recMeasure}>{rec.measure}</p>
-                  </div>
-                ))}
+                {/* 🔑 필터 여부에 따른 카드 렌더링 분기 */}
+                {selectedHighRisk ? (
+                  HIGH_RISK_TASKS.find(t => t.title === selectedHighRisk)?.risks.map((rec, i) => (
+                    <div key={`hr-${i}`} style={{...styles.recommendCard, borderColor: '#ff4d4d'}} onClick={() => addRisk(rec)}>
+                      <div style={{...styles.recBadge, color: '#ff4d4d', borderColor: '#ff4d4d'}}>고위험</div>
+                      <p style={styles.recFactor}>{rec.factor}</p><p style={styles.recMeasure}>{rec.measure}</p>
+                    </div>
+                  ))
+                ) : (
+                  recommendations.map((rec, i) => (
+                    <div key={`rec-${i}`} style={styles.recommendCard} onClick={() => addRisk(rec)}>
+                      <div style={styles.recBadge}>추천</div>
+                      <p style={styles.recFactor}>{rec.factor}</p><p style={styles.recMeasure}>{rec.measure}</p>
+                    </div>
+                  ))
+                )}
 
-                {!isLoading && recommendations.length === 0 && (
+                {!isLoading && !selectedHighRisk && recommendations.length === 0 && (
                   <div style={styles.emptyCard}>추천 데이터 없음</div>
                 )}
               </div>
@@ -809,9 +888,7 @@ export default function Analysis() {
                     value={currentStep.riskLevel}
                     onChange={(e) => updateStepRisk('riskLevel', parseInt(e.target.value))}
                   >
-                    {Array.from({ length: 25 }, (_, i) => i + 1).map(n => (
-                      <option key={n} value={n}>{n}</option>
-                    ))}
+                    {Array.from({ length: 25 }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}
                   </select>
                 </div>
               </div>
@@ -871,13 +948,11 @@ export default function Analysis() {
 
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
-  // [추가] 다이얼로그 관련 스타일
   dialogOverlay: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 9999 },
   dialogBox: { backgroundColor: '#1a1a1a', padding: '2.5rem', borderRadius: '16px', border: '1px solid #333', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' },
   dialogTitle: { color: '#fff', fontSize: '1.2rem', margin: 0, fontWeight: '800' },
   dialogText: { color: '#888', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 },
   spinner: { width: '40px', height: '40px', border: '4px solid rgba(0, 123, 255, 0.1)', borderTop: '4px solid #007bff', borderRadius: '50%', animation: 'spin 1s linear infinite' },
-
   bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
   bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
   dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', zIndex: 1 },
@@ -905,6 +980,8 @@ const styles = {
   stepTitleBadge: { display: 'inline-block', padding: '4px 10px', backgroundColor: 'rgba(0, 123, 255, 0.2)', color: '#4da3ff', fontSize: '0.8rem', fontWeight: 'bold', borderRadius: '4px', alignSelf: 'flex-start', border: '1px solid rgba(0, 123, 255, 0.3)' },
   stepDetailText: { fontSize: '1rem', color: '#ddd', lineHeight: '1.5' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '10px', marginBottom: '1.5rem' },
+  filterArea: { display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.2rem' },
+  highRiskSelect: { backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.9rem', fontWeight: 'bold', cursor: 'pointer', width: 'fit-content' },
   recHeader: { display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', alignItems: 'center' },
   label: { fontSize: '0.85rem', color: '#888', fontWeight: '700' },
   arrowBox: { display: 'flex', gap: '0.5rem' },
