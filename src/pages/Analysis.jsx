@@ -508,27 +508,29 @@ export default function Analysis() {
 
 // [수정] 데이터 로딩 및 DB 검색 로직
 useEffect(() => {
-  // activeIdx에 해당하는 데이터가 있는지 확인
   const step = analysisData[activeIdx];
-  const targetText = step?.proc?.stepDetail;
+  const targetText = step?.proc?.stepDetail || "";
 
-  if (targetText && targetText.trim() !== "") {
-    setIsLoading(true);
+  // 1. 일단 로딩을 시작합니다. (사용자님의 의도 반영)
+  setIsLoading(true);
 
-    const searchTimer = setTimeout(() => {
+  // 2. 0.5초의 '분석 텀'을 무조건 가집니다.
+  const searchTimer = setTimeout(() => {
+    if (targetText.trim() !== "") {
+      // 텍스트가 있으면 DB 검색 수행
       const results = getRisksFromLocalDB(targetText);
       setRecommendations(results);
-      setIsLoading(false);
-    }, 500); // 0.5초 대기로 안정성 확보
+    } else {
+      // 텍스트가 없어도 결과값만 비우고 넘어갑니다.
+      setRecommendations([]);
+    }
+    
+    // 3. 분석이 끝났으므로 로딩을 해제합니다.
+    setIsLoading(false);
+  }, 500);
 
-    return () => clearTimeout(searchTimer);
-  } else {
-    // 데이터가 아직 안 들어왔거나 없을 경우
-    setRecommendations([]);
-    // 페이지 처음 진입 시 데이터 생성 대기를 위해 로딩을 유지할 수도 있음
-  }
-  // 의존성 배열에 analysisData를 반드시 포함하여 데이터 안착을 감시합니다.
-}, [activeIdx, analysisData, currentStep?.proc?.stepDetail]);
+  return () => clearTimeout(searchTimer);
+}, [activeIdx, analysisData.length, currentStep?.proc?.stepDetail]);
 
   // --------------------------------------------------------------------
   // [핸들러] (기존 동일)

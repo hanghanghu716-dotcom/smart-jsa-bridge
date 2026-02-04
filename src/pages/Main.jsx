@@ -4,7 +4,7 @@ import AdBanner from '../AdBanner'; // [추가됨] 광고 컴포넌트 가져오
 
 export default function Main() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const slides = [
     '/images/image1.jpg', '/images/image2.jpg', '/images/image3.jpg',
     '/images/image4.jpg', '/images/image5.jpg', '/images/image6.jpg'
@@ -41,7 +41,7 @@ export default function Main() {
 
       {/* 3. 메인 레이아웃 (3열 구조) */}
       <div style={styles.mainLayout}>
-        
+
         {/* [좌측 광고] 이미지 -> AdBanner 교체 */}
         <aside style={styles.sideAd}>
           {/* slot 번호는 나중에 애드센스에서 발급받아 넣으면 됩니다 */}
@@ -52,11 +52,11 @@ export default function Main() {
         <main style={styles.centerContent}>
           <div style={styles.heroContent}>
             <h2 style={styles.mainTitle}>
-              데이터로 잇는 안전,<br/>
+              데이터로 잇는 안전,<br />
               사람을 지키는 기술
             </h2>
             <p style={styles.subTitle}>
-              현장의 육안 점검과 전문가의 안전 데이터를 결합하여,<br/>
+              현장의 육안 점검과 전문가의 안전 데이터를 결합하여,<br />
               놓치기 쉬운 잠재 위험 요인을 정밀하게 분석합니다.
             </p>
             <div style={styles.buttonWrapper}>
@@ -77,7 +77,7 @@ export default function Main() {
         <div style={styles.bottomAdWrapper}>
           <AdBanner slot="1000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
-        
+
         <div style={styles.bottomLine}>
           {slides.map((_, i) => (
             <div key={i} style={{
@@ -86,7 +86,7 @@ export default function Main() {
             }} />
           ))}
         </div>
-<p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Created by <strong>yizuno</strong></p>
+        <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Created by <strong>yizuno</strong></p>
       </footer>
     </div>
   );
@@ -115,9 +115,8 @@ const styles = {
 
   footerArea: { width: '100%', padding: '0 5rem 2.5rem', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' },
-  
+
   bottomLine: { width: '100%', display: 'flex', gap: '10px', height: '2px', marginBottom: '1.2rem' },
   lineItem: { flex: 1, transition: 'background-color 0.6s' },
   copyright: { textAlign: 'center', fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)' }
-
 };
