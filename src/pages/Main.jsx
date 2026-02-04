@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import AdBanner from '../AdBanner'; // [추가됨] 광고 컴포넌트 가져오기
+// AdBanner는 승인 전까지 주석 처리를 권장합니다.
 
 export default function Main() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,104 +19,129 @@ export default function Main() {
 
   return (
     <div style={styles.wrapper}>
-      {/* 1. 배경 슬라이드 레이어 */}
-      <div style={styles.bgWrapper}>
-        {slides.map((src, index) => (
-          <div
-            key={src}
-            style={{
-              ...styles.bgImage,
-              backgroundImage: `url(${src})`,
-              opacity: index === currentSlide ? 1 : 0,
-            }}
-          />
-        ))}
-        <div style={styles.dimOverlay} />
-      </div>
+      {/* 1. Hero Section: NEOM 스타일의 몰입형 배경 */}
+      <section style={styles.heroSection}>
+        <div style={styles.bgWrapper}>
+          {slides.map((src, index) => (
+            <div
+              key={src}
+              style={{
+                ...styles.bgImage,
+                backgroundImage: `url(${src})`,
+                opacity: index === currentSlide ? 1 : 0,
+              }}
+            />
+          ))}
+          <div style={styles.dimOverlay} />
+        </div>
 
-      {/* 2. 상단 헤더 */}
-      <header style={styles.header}>
-        <h1 style={styles.logo}>Smart JSA Bridge</h1>
-      </header>
+        <header style={styles.header}>
+          <h1 style={styles.logo}>Smart JSA Bridge</h1>
+        </header>
 
-      {/* 3. 메인 레이아웃 (3열 구조) */}
-      <div style={styles.mainLayout}>
+        <div style={styles.mainLayout}>
+          {/* [좌측 광고 주석 처리]
+          <aside style={styles.sideAd}>
+            <AdBanner slot="1000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
+          </aside> 
+          */}
 
-        {/* [좌측 광고] 이미지 -> AdBanner 교체 */}
-        <aside style={styles.sideAd}>
-          {/* slot 번호는 나중에 애드센스에서 발급받아 넣으면 됩니다 */}
-          <AdBanner slot="1000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+          <main style={styles.centerContent}>
+            <div style={styles.heroContent}>
+              <h2 style={styles.mainTitle}>
+                THE FUTURE OF<br />
+                INDUSTRIAL SAFETY
+              </h2>
+              <p style={styles.subTitle}>
+                데이터와 기술로 구현하는 무재해 사업장.<br />
+                Smart JSA Bridge가 안전의 새로운 기준을 제시합니다.
+              </p>
+              <div style={styles.buttonWrapper}>
+                <Link to="/info" style={styles.primaryBtn}>START ANALYSIS</Link>
+              </div>
+            </div>
+          </main>
 
-        {/* [중앙 콘텐츠] */}
-        <main style={styles.centerContent}>
-          <div style={styles.heroContent}>
-            <h2 style={styles.mainTitle}>
-              데이터로 잇는 안전,<br />
-              사람을 지키는 기술
-            </h2>
-            <p style={styles.subTitle}>
-              현장의 육안 점검과 전문가의 안전 데이터를 결합하여,<br />
-              놓치기 쉬운 잠재 위험 요인을 정밀하게 분석합니다.
+          {/* [우측 광고 주석 처리]
+          <aside style={styles.sideAd}>
+            <AdBanner slot="1000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
+          </aside> 
+          */}
+        </div>
+        
+        {/* 스크롤 유도 아이콘 */}
+        <div style={styles.scrollIndicator}>SCROLL TO EXPLORE</div>
+      </section>
+
+      {/* 2. Content Section: 애드센스 승인을 위한 정보성 영역 */}
+      <section style={styles.contentSection}>
+        <div style={styles.container}>
+          <div style={styles.textBlock}>
+            <span style={styles.overline}>WHAT IS JSA</span>
+            <h3 style={styles.contentTitle}>작업안전분석(JSA)의 혁신</h3>
+            <p style={styles.contentPara}>
+              Smart JSA Bridge는 전통적인 안전 관리 방식을 디지털로 전환합니다. 
+              단순한 서류 작성을 넘어, 방대한 안전 데이터베이스를 기반으로 현장의 잠재적 위험 요인을 
+              실시간으로 식별하고 최적화된 감소 대책을 제안합니다.
             </p>
-            <div style={styles.buttonWrapper}>
-              <Link to="/info" style={styles.primaryBtn}>위험성 평가 작성하기</Link>
+          </div>
+
+          <div style={styles.featureGrid}>
+            <div style={styles.featureItem}>
+              <h4 style={styles.featureTab}>01. DATA DRIVEN</h4>
+              <p style={styles.featureDesc}>수천 건의 산업 재해 사례 분석을 통해 도출된 정밀한 위험 요인 DB를 제공합니다.</p>
+            </div>
+            <div style={styles.featureItem}>
+              <h4 style={styles.featureTab}>02. COMPLIANCE</h4>
+              <p style={styles.featureDesc}>고용노동부 및 국제 안전 기준을 준수하는 표준화된 보고서 형식을 보장합니다.</p>
+            </div>
+            <div style={styles.featureItem}>
+              <h4 style={styles.featureTab}>03. EFFICIENCY</h4>
+              <p style={styles.featureDesc}>지능형 검색 알고리즘을 통해 JSA 수립 시간을 기존 대비 70% 이상 단축합니다.</p>
             </div>
           </div>
-        </main>
+        </div>
+      </section>
 
-        {/* [우측 광고] 이미지 -> AdBanner 교체 */}
-        <aside style={styles.sideAd}>
-          <AdBanner slot="1000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
-      </div>
-
-      {/* 4. 하단 영역 (광고 + 인디케이터) */}
       <footer style={styles.footerArea}>
-        {/* [하단 광고] 이미지 -> AdBanner 교체 */}
-        <div style={styles.bottomAdWrapper}>
-          <AdBanner slot="1000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
-        </div>
-
-        <div style={styles.bottomLine}>
-          {slides.map((_, i) => (
-            <div key={i} style={{
-              ...styles.lineItem,
-              backgroundColor: i === currentSlide ? '#fff' : 'rgba(255,255,255,0.2)'
-            }} />
-          ))}
-        </div>
-        <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Created by <strong>yizuno</strong></p>
+        <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Inspired by Future Technology.</p>
       </footer>
     </div>
   );
 }
 
 const styles = {
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
+  wrapper: { backgroundColor: '#000', color: '#fff', width: '100%', overflowX: 'hidden' },
+  heroSection: { position: 'relative', height: '100vh', width: '100%', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
   bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center', transition: 'opacity 2s ease-in-out' },
-  dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%)', zIndex: 1 },
-
+  dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%)', zIndex: 1 },
+  
   header: { padding: '2.5rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff' },
+  logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '4px', textTransform: 'uppercase' },
 
-  mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10 },
-  sideAd: { display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
-  /* 광고 이미지가 사라지므로 adImg 스타일은 삭제해도 되지만 혹시 몰라 유지 */
-  adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '650px', borderRadius: '4px', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' },
+  mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', zIndex: 10 },
+  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', textAlign: 'center' },
+  heroContent: { maxWidth: '900px' },
+  mainTitle: { fontSize: 'clamp(3rem, 8vw, 5.5rem)', fontWeight: '800', lineHeight: '1', letterSpacing: '-2px', marginBottom: '2rem' },
+  subTitle: { fontSize: '1.2rem', lineHeight: '1.6', opacity: 0.8, marginBottom: '3rem', fontWeight: '300' },
+  primaryBtn: { display: 'inline-block', padding: '1rem 3rem', border: '1px solid #fff', color: '#fff', fontSize: '0.9rem', fontWeight: 'bold', textDecoration: 'none', letterSpacing: '2px', transition: '0.3s' },
 
-  centerContent: { flex: 1, display: 'flex', justifyContent: 'flex-start', paddingLeft: '2rem' },
-  heroContent: { maxWidth: '750px', textAlign: 'left' },
-  mainTitle: { fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem', color: '#fff', wordBreak: 'keep-all' },
-  subTitle: { fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem', fontWeight: '300', color: '#fff', wordBreak: 'keep-all' },
-  buttonWrapper: { display: 'flex', justifyContent: 'flex-start' },
-  primaryBtn: { display: 'inline-block', padding: '1.2rem 4rem', backgroundColor: '#fff', color: '#000', borderRadius: '4rem', fontSize: '1.1rem', fontWeight: 'bold', textDecoration: 'none', boxShadow: '0 15px 30px rgba(0,0,0,0.4)' },
+  scrollIndicator: { position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', fontSize: '0.7rem', letterSpacing: '3px', opacity: 0.5, zIndex: 10 },
 
-  footerArea: { width: '100%', padding: '0 5rem 2.5rem', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' },
-  bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' },
+  /* Content Section */
+  contentSection: { padding: '10rem 5rem', backgroundColor: '#fff', color: '#000' },
+  container: { maxWidth: '1200px', margin: '0 auto' },
+  textBlock: { maxWidth: '800px', marginBottom: '6rem' },
+  overline: { fontSize: '0.8rem', fontWeight: '700', letterSpacing: '3px', color: '#888', display: 'block', marginBottom: '1rem' },
+  contentTitle: { fontSize: '3rem', fontWeight: '800', marginBottom: '2rem', letterSpacing: '-1px' },
+  contentPara: { fontSize: '1.25rem', lineHeight: '1.7', color: '#333', fontWeight: '400' },
+  
+  featureGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4rem' },
+  featureItem: { borderTop: '1px solid #eee', paddingTop: '2rem' },
+  featureTab: { fontSize: '0.9rem', fontWeight: '800', marginBottom: '1rem', letterSpacing: '1px' },
+  featureDesc: { fontSize: '1rem', lineHeight: '1.6', color: '#666' },
 
-  bottomLine: { width: '100%', display: 'flex', gap: '10px', height: '2px', marginBottom: '1.2rem' },
-  lineItem: { flex: 1, transition: 'background-color 0.6s' },
-  copyright: { textAlign: 'center', fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)' }
+  footerArea: { padding: '4rem 5rem', backgroundColor: '#000', textAlign: 'center' },
+  copyright: { fontSize: '0.7rem', color: '#444', letterSpacing: '1px' }
 };
