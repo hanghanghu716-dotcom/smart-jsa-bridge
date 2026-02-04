@@ -646,16 +646,17 @@ const RISK_DATABASE = [
 // [로직] 텍스트에서 키워드를 찾아 DB에서 꺼내오는 함수
 // ----------------------------------------------------------------------
 const getRisksFromLocalDB = (text = "") => {
-  let foundRisks = [];
+  if (!text) return [];
   
-  // 1. 입력 텍스트에서 모든 공백 제거 및 소문자화
-  const normalizedText = text.replace(/\s+/g, "").toLowerCase();
+  let foundRisks = [];
+  // 입력 문장에서 모든 공백 및 줄바꿈 제거
+  const normalizedInput = text.toString().replace(/\s+/g, "").toLowerCase();
 
   RISK_DATABASE.forEach(category => {
-    // 2. 키워드들도 공백을 제거하여 비교
     const hasKeyword = category.keywords.some(keyword => {
-      const normalizedKeyword = keyword.replace(/\s+/g, "").toLowerCase();
-      return normalizedText.includes(normalizedKeyword);
+      // DB 키워드에서도 모든 공백 제거 후 비교
+      const normalizedKeyword = keyword.toString().replace(/\s+/g, "").toLowerCase();
+      return normalizedInput.includes(normalizedKeyword);
     });
 
     if (hasKeyword) {
@@ -716,28 +717,27 @@ export default function Analysis() {
 
 // [수정] 데이터 로딩 및 DB 검색 로직
 useEffect(() => {
-  // 1. 분석할 텍스트가 있는지 먼저 확인합니다.
-  const targetText = currentStep?.proc?.stepDetail;
+  // activeIdx에 해당하는 데이터가 있는지 확인
+  const step = analysisData[activeIdx];
+  const targetText = step?.proc?.stepDetail;
 
   if (targetText && targetText.trim() !== "") {
-    setIsLoading(true); // 로딩 시작 (다이얼로그/스피너 활성화)
+    setIsLoading(true);
 
-    // 2. 텍스트가 DOM에 안정적으로 매핑될 시간을 준 뒤 검색 수행
     const searchTimer = setTimeout(() => {
       const results = getRisksFromLocalDB(targetText);
       setRecommendations(results);
-      setIsLoading(false); // 로딩 종료
-    }, 600); // 0.6초 정도의 대기 시간을 주어 사용자에게 '분석 중'임을 인지시킵니다.
+      setIsLoading(false);
+    }, 500); // 0.5초 대기로 안정성 확보
 
-    if (scrollRef.current) scrollRef.current.scrollLeft = 0;
-    
     return () => clearTimeout(searchTimer);
   } else {
-    // 텍스트가 없으면 추천 목록 초기화
+    // 데이터가 아직 안 들어왔거나 없을 경우
     setRecommendations([]);
-    setIsLoading(false);
+    // 페이지 처음 진입 시 데이터 생성 대기를 위해 로딩을 유지할 수도 있음
   }
-}, [activeIdx, currentStep?.proc?.stepDetail]); // 의존성에 상세 내용 추가
+  // 의존성 배열에 analysisData를 반드시 포함하여 데이터 안착을 감시합니다.
+}, [activeIdx, analysisData, currentStep?.proc?.stepDetail]);
 
   // --------------------------------------------------------------------
   // [핸들러] (기존 동일)
