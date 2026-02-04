@@ -10,7 +10,7 @@ const RISK_DATABASE = [
   // [보수/정비]
    {
 
-    "keywords": ["작업준비", "공통안전", "작업전", "TBM", "보호구"],
+    "keywords": ["작업준비", "공통안전", "작업전", "TBM", "보호구", "작업 전", "안전 교육", "안전교육"],
 
     "risks": [
 
@@ -1039,4 +1039,5 @@ const styles = {
   nextBtn: { flex: 2, padding: '1.2rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.1rem', boxShadow: '0 4px 15px rgba(255,255,255,0.2)' },
   footerArea: { width: '100%', padding: '0.5rem 0 1.5rem', zIndex: 10 },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
+
 };
