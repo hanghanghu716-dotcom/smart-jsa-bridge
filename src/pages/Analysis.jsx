@@ -10,7 +10,7 @@ const RISK_DATABASE = [
   // [보수/정비]
    {
 
-    "keywords": ["작업준비", "공통안전", "작업전", "TBM", "보호구", "작업 전", "안전 교육", "안전교육"],
+    "keywords": ["작업준비", "공통안전", "작업전", "TBM", "보호구", "작업 전", "안전 교육", "안전교육", "작업 준비"],
 
     "risks": [
 
@@ -1041,3 +1041,4 @@ const styles = {
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
 
 };
+
