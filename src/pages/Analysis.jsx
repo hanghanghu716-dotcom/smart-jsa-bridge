@@ -319,6 +319,7 @@ const RISK_DATABASE = [
         { "factor": "리모컨 조작 실수로 인한 급제동 균형 상실", "measure": "조작 숙달자 운행 및 저속 모드 사용" }
       ]
     },
+
     {
       "keywords": ["승강기", "엘리베이터"],
       "risks": [
@@ -327,6 +328,31 @@ const RISK_DATABASE = [
         { "factor": "와이어로프 교체 중 카 낙하", "measure": "카 상부 안전 고리 체결 및 비상 정지 장치 작동 확인" },
         { "factor": "권상기 회전부에 장갑 말림", "measure": "회전부 방호 덮개 설치 및 밀착형 장갑 착용" },
         { "factor": "제어반 점검 중 충전부 노출에 의한 감전", "measure": "절연 매트 설치 및 절연 공구 사용" }
+      ]
+    },
+    {
+      "keywords": ["설치"],
+      "risks": [
+        {
+          "factor": "중량물 설치 중 양중 와이어로프 파단으로 인한 자재 낙하",
+          "measure": "양중 전 용구(슬링벨트, 와이어) 점검 및 하부 출입 통제"
+        },
+        {
+          "factor": "설치 장소의 협소함으로 인한 구조물과 작업자 간의 협착",
+          "measure": "작업 지휘자 배치 및 비상 정지 장치(Emergency Stop) 확보"
+        },
+        {
+          "factor": "수평 조절 및 고정 작업 중 수공구 사용 미숙으로 인한 손가락 골절",
+          "measure": "규격 공구 사용 및 동력 전달 부위 방호 덮개 확인"
+        },
+        {
+          "factor": "설치 위치로 이동 중 바닥 적재물에 의한 전도(넘어짐)",
+          "measure": "작업 통로 사전 정리정돈(5S) 및 조명 조도 확보"
+        },
+        {
+          "factor": "동력원(전기, 유압) 연결 작업 중 오조작으로 인한 불시 가동",
+          "measure": "LOTO(Lock-Out, Tag-Out) 절차 준수 및 에너지 차단 확인"
+        }
       ]
     },
     {
@@ -488,7 +514,7 @@ const RISK_DATABASE = [
 // ----------------------------------------------------------------------
 const getRisksFromLocalDB = (text = "") => {
   if (!text) return [];
-  
+
   let foundRisks = [];
   const normalizedInput = text.toString().replace(/\s+/g, "").toLowerCase();
 
@@ -557,7 +583,7 @@ export default function Analysis() {
   // 데이터가 없을 경우를 대비한 방어 코드
   const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
 
-// [수정됨] 데이터 로딩 및 DB 검색 로직 (안전장치 포함)
+  // [수정됨] 데이터 로딩 및 DB 검색 로직 (안전장치 포함)
   useEffect(() => {
     const step = analysisData[activeIdx];
     const targetText = step?.proc?.stepDetail || "";
