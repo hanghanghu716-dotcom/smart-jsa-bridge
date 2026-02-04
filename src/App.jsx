@@ -4,6 +4,9 @@ import Info from './pages/Info';
 import Analysis from './pages/Analysis';
 import Export from './pages/Export';
 import Procedure from './pages/Procedure';
+import About from './pages/About';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
         <Route path="/info" element={<Info />} />
         <Route path="/analysis" element={<Analysis />} />
         <Route path="/export" element={<Export />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+
       </Routes>
     </Router>
   );

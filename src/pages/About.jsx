@@ -50,4 +50,4 @@ const styles = {
   articleH3: { fontSize: '1.6rem', fontWeight: '800', marginTop: '60px', marginBottom: '24px' },
   heroImg: { width: '100%', height: '500px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px', marginTop: '60px' },
   footer: { padding: '80px 0', backgroundColor: '#1c1b1f', color: '#888', textAlign: 'center', fontSize: '0.9rem' }
-};
+};  
