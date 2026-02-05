@@ -96,6 +96,7 @@ export default function Info() {
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
+            {/* ✅ 스테퍼 UI를 Procedure와 동일하게 수정 */}
             <nav style={styles.stepper}>
               <div style={styles.stepItemActive}>
                 <div style={styles.stepBadgeActive}>1</div>
@@ -333,11 +334,21 @@ const styles = {
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', maxHeight: '78vh', display: 'flex', flexDirection: 'column' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
+  
+  // ✅ 스테퍼 관련 스타일 업데이트 (Procedure와 동기화)
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 }, // 비활성 단계 투명도 적용
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
+  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
   stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
+  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
+  stepText: { fontSize: '0.85rem', color: '#aaa' },
   stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
+  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
   stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
+  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
+
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
   formGrid: { display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '2.5rem', marginBottom: '0.5rem' },
