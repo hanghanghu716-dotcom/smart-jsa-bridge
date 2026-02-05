@@ -33,12 +33,30 @@ export default function Main() {
           <aside style={styles.sideAd}></aside>
         </div>
         
-        {/* ✅ 교정된 스크롤 인디케이터: flex-shrink 방지 및 두께 확보 */}
-        <div style={styles.scrollGuide}>
-          <span style={styles.scrollLabel}>SCROLL TO EXPLORE</span>
-          <div style={styles.scrollTrack}>
-            <div style={styles.scrollThumb}></div>
+        {/* ✅ 교정된 인디케이터: Info.jsx의 스테퍼 스타일을 적용하여 일관성 확보 */}
+        <div style={styles.indicatorWrapper}>
+          <div style={styles.stepper}>
+            <div style={styles.stepItemActive}>
+              <div style={styles.stepBadgeActive}>1</div>
+              <span style={styles.stepTextActive}>기본 정보</span>
+            </div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}>
+              <div style={styles.stepBadge}>2</div>
+              <span style={styles.stepText}>작업 절차</span>
+            </div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}>
+              <div style={styles.stepBadge}>3</div>
+              <span style={styles.stepText}>위험 분석</span>
+            </div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}>
+              <div style={styles.stepBadge}>4</div>
+              <span style={styles.stepText}>최종 출력</span>
+            </div>
           </div>
+          <span style={styles.scrollLabel}>SCROLL TO EXPLORE</span>
         </div>
       </section>
 
@@ -141,11 +159,17 @@ const styles = {
   buttonWrapper: { display: 'flex' },
   primaryBtn: { display: 'inline-block', padding: '1.2rem 4rem', backgroundColor: '#fff', color: '#000', borderRadius: '4rem', fontSize: '1.1rem', fontWeight: 'bold', textDecoration: 'none' },
 
-  /* ✅ 스크롤 인디케이터 교정 스타일 */
-  scrollGuide: { position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center', zIndex: 10, flexShrink: 0 },
-  scrollLabel: { color: '#fff', fontSize: '0.7rem', opacity: 0.5, letterSpacing: '3px', display: 'block', marginBottom: '12px' },
-  scrollTrack: { width: '3px', height: '60px', backgroundColor: 'rgba(255,255,255,0.2)', margin: '0 auto', position: 'relative', borderRadius: '3px', overflow: 'hidden', minWidth: '3px' },
-  scrollThumb: { position: 'absolute', top: 0, left: 0, width: '100%', height: '30%', backgroundColor: '#fff', borderRadius: '3px' },
+  /* ✅ Info.jsx 스타일을 적용한 새로운 인디케이터 스타일 */
+  indicatorWrapper: { position: 'absolute', bottom: '60px', left: '50%', transform: 'translateX(-50%)', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' },
+  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' },
+  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.8rem' },
+  stepBadgeActive: { width: '28px', height: '28px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 15px rgba(0,123,255,0.8)' },
+  stepTextActive: { fontSize: '0.95rem', color: '#fff', fontWeight: '700', letterSpacing: '1px' },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.8rem', opacity: 0.5 },
+  stepBadge: { width: '28px', height: '28px', backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: '#fff' },
+  stepText: { fontSize: '0.95rem', color: '#fff', fontWeight: '500' },
+  stepLine: { width: '40px', height: '1px', backgroundColor: 'rgba(255,255,255,0.2)' },
+  scrollLabel: { color: '#fff', fontSize: '0.7rem', opacity: 0.4, letterSpacing: '4px', display: 'block', textTransform: 'uppercase' },
 
   m3Section: { padding: '160px 0' },
   valueRow: { display: 'flex', gap: '100px', alignItems: 'center' },
