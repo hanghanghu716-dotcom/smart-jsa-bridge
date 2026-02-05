@@ -716,26 +716,11 @@ export default function Analysis() {
     setAnalysisData(newData);
   };
 
-  // ✅ 보정된 이전 버튼 로직: 첫 단계일 경우 Procedure로 이동
-  const handlePrev = () => {
-    if (activeIdx > 0) {
-      setActiveIdx(activeIdx - 1);
-    } else {
-      // 첫 번째 분석 단계에서 '이전' 클릭 시 작업 절차 화면으로 이동
-      navigate('/procedure', {
-        state: {
-          formData,
-          participants,
-          procedures,
-          analysisData // 현재까지의 분석 데이터를 Procedure에 전달하여 데이터 보존
-        }
-      });
-    }
-  };
+  const scroll = (dir) => { if (scrollRef.current) scrollRef.current.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' }); };
 
   return (
     <div style={styles.wrapper}>
-      {isLoading && <div style={styles.dialogOverlay}><div style={styles.dialogBox}><div style={styles.spinner} /><h3>지능형 분석 진행 중...</h3></div></div>}
+      {isLoading && <div style={styles.dialogOverlay}><div style={styles.dialogBox}><div style={styles.spinner} /><h3>위험요인 분석 중...</h3></div></div>}
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
@@ -743,6 +728,7 @@ export default function Analysis() {
       <div style={styles.mainLayout}>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
+            {/* ✅ 스테퍼: Procedure.jsx와 완벽 동일하게 보정 */}
             <nav style={styles.stepper}>
                <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
                <div style={styles.stepLineActive} />
@@ -755,7 +741,8 @@ export default function Analysis() {
 
             <div style={styles.formHeader}>
               <div style={styles.headerTitleGroup}>
-                <h2 style={styles.formTitle}>03. 유해·위험요인 분석 ({activeIdx + 1}/{analysisData.length})</h2>
+                <h2 style={styles.formTitle}>03. 유해·위험요인 분석</h2>
+                <span style={styles.stepCountBadge}>{activeIdx + 1} / {analysisData.length}</span>
               </div>
               <div style={styles.stepContext}>
                 <div style={styles.stepTitleRow}>
@@ -768,36 +755,101 @@ export default function Analysis() {
 
             <div style={styles.scrollArea}>
               <div style={styles.analysisGrid}>
+                
+                {/* 👈 좌측 패널 (비중 축소) */}
                 <section style={styles.leftPanel}>
                   <div style={styles.filterArea}>
                     <label style={styles.label}>⚠️ 고위험 작업 필터</label>
+                    {/* ✅ 필터 크기 1/3 축소 */}
                     <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => setSelectedHighRisk(e.target.value)}>
                       <option value="">(자동 제안)</option>
                       {HIGH_RISK_TASKS.map(t => <option key={t.title} value={t.title}>{t.title}</option>)}
                     </select>
                   </div>
-                  <span style={{...styles.label, marginBottom: '0.8rem', display: 'block'}}>추천 위험요인 DB</span>
-                  <div style={styles.gridContainer}>
+
+                  <div style={styles.recHeader}>
+                    <span style={styles.label}>추천 위험요인 DB</span>
+                    <div style={styles.arrowBox}>
+                      <button style={styles.arrowBtn} onClick={() => scroll('left')}>←</button>
+                      <button style={styles.arrowBtn} onClick={() => scroll('right')}>→</button>
+                    </div>
+                  </div>
+
+                  <div style={styles.sliderContainer} ref={scrollRef}>
                     <div style={styles.manualAddCard} onClick={() => addRisk({ type: 'manual' })}>
                       <div style={styles.plusIcon}>+</div><p style={styles.manualText}>수동 작성</p>
                     </div>
-                    {/* (카드 렌더링 로직 생략 - 이전과 동일) */}
+                    {selectedHighRisk ? (
+                      HIGH_RISK_TASKS.find(t => t.title === selectedHighRisk)?.risks.map((rec, i) => (
+                        <div key={`hr-${i}`} style={{...styles.recommendCard, borderColor: '#ff4d4d'}} onClick={() => addRisk(rec)}>
+                          <div style={{...styles.recBadge, color: '#ff4d4d', borderColor: '#ff4d4d'}}>고위험</div>
+                          <p style={styles.recFactor}>{rec.factor}</p>
+                          <p style={styles.recMeasure}>{rec.measure}</p>
+                        </div>
+                      ))
+                    ) : (
+                      recommendations.map((rec, i) => (
+                        <div key={`rec-${i}`} style={styles.recommendCard} onClick={() => addRisk(rec)}>
+                          <div style={styles.recBadge}>추천</div>
+                          <p style={styles.recFactor}>{rec.factor}</p>
+                          <p style={styles.recMeasure}>{rec.measure}</p>
+                        </div>
+                      ))
+                    )}
                   </div>
                 </section>
 
+                {/* 👉 우측 패널 (내용 강조를 위해 비중 확대) */}
                 <section style={styles.rightPanel}>
-                  {/* (우측 테이블 렌더링 로직 생략 - 이전과 동일) */}
+                  <div style={styles.rightHeader}>
+                    <span style={styles.label}>평가 결과 및 대책 ({currentStep.risks.length})</span>
+                    
+                    <div style={styles.riskScoreContainer}>
+                      <div style={styles.riskInputSet}>
+                        <span style={styles.miniLabel}>빈도(F)</span>
+                        <select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>
+                          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
+                        </select>
+                      </div>
+                      <div style={styles.riskMultiply}>×</div>
+                      <div style={styles.riskInputSet}>
+                        <span style={styles.miniLabel}>강도(S)</span>
+                        <select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>
+                          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
+                        </select>
+                      </div>
+                      <div style={styles.riskEqual}>=</div>
+                      <div style={{...styles.riskResultBadge, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}>
+                        {currentStep.riskLevel}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={styles.selectedListScroll}>
+                    <table style={styles.table}>
+                      <thead>
+                        <tr><th style={{width:'45%'}}>유해·위험요인</th><th style={{width:'45%'}}>감소대책</th><th style={{width:'10%'}}>삭제</th></tr>
+                      </thead>
+                      <tbody>
+                        {currentStep.risks.length === 0 ? <tr><td colSpan="3" style={styles.emptyTd}>좌측 카드를 클릭하여 추가하세요.</td></tr> : 
+                        currentStep.risks.map(r => (
+                          <tr key={r.id}>
+                            <td style={styles.td}><textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskContent(r.id, 'factor', e.target.value)} rows={3} /></td>
+                            <td style={styles.td}><textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskContent(r.id, 'measure', e.target.value)} rows={3} /></td>
+                            <td style={{textAlign:'center', verticalAlign:'middle'}}><button style={styles.smallDeleteBtn} onClick={() => deleteRisk(r.id)}>×</button></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </section>
               </div>
             </div>
 
             <div style={styles.btnArea}>
-              {/* ✅ 수정한 handlePrev 적용 */}
-              <button style={styles.prevBtn} onClick={handlePrev}>
-                {activeIdx === 0 ? "작업 절차 수정" : "이전 작업 단계"}
-              </button>
+              <button style={styles.prevBtn} onClick={() => setActiveIdx(Math.max(0, activeIdx - 1))}>이전 작업 단계</button>
               <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/export', { state: { analysisData, formData, participants, procedures } })}>
-                {activeIdx === analysisData.length - 1 ? '최종 보고서 생성' : '다음 작업 단계 분석'}
+                {activeIdx === analysisData.length - 1 ? '분석 완료 및 보고서 생성' : '다음 작업 단계 분석'}
               </button>
             </div>
           </div>
@@ -816,68 +868,73 @@ const styles = {
   logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { flex: 1, display: 'flex', padding: '0 5rem', zIndex: 10, overflow: 'hidden' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  
+  // ✅ maxWidth를 1440px로 조정
   formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', flexDirection: 'column', maxHeight: '78vh', boxShadow: '0 40px 80px rgba(0,0,0,0.9)' },
   
-  // ✅ 인디케이터 절대 찌그러짐 방지
-  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem', flexShrink: 0 },
+  // ✅ 스테퍼 스타일을 Procedure.jsx와 완전 동일하게 규격화
+  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3, flexShrink: 0 },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 },
   stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa', flexShrink: 0 },
   stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)', flexShrink: 0 },
   stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', flexShrink: 0 },
-  stepText: { fontSize: '0.85rem', color: '#aaa', whiteSpace: 'nowrap' },
-  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700', whiteSpace: 'nowrap' },
-  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700', whiteSpace: 'nowrap' },
+  stepText: { fontSize: '0.85rem', color: '#aaa' },
+  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
+  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
   stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)', flexShrink: 0 },
   stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50', flexShrink: 0 },
 
   formHeader: { borderLeft: '5px solid #007bff', paddingLeft: '1rem', marginBottom: '1.2rem' },
-  headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem' },
+  headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
   formTitle: { fontSize: '1.4rem', color: '#fff', fontWeight: '800', margin: 0 },
-  stepContext: { backgroundColor: 'rgba(255,255,255,0.03)', padding: '0.8rem 1rem', borderRadius: '6px', marginTop: '0.8rem' },
+  stepCountBadge: { backgroundColor: '#333', color: '#aaa', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
+  stepContext: { backgroundColor: 'rgba(255,255,255,0.03)', padding: '0.8rem 1rem', borderRadius: '6px' },
   stepTitleRow: { display: 'flex', alignItems: 'center', gap: '0.8rem' },
   stepLabel: { fontSize: '0.75rem', color: '#007bff', fontWeight: 'bold' },
   stepValue: { fontSize: '1rem', color: '#fff' },
   stepDetailText: { color: '#888', fontSize: '0.85rem', marginTop: '0.3rem' },
 
   scrollArea: { flex: 1, overflow: 'hidden' },
-  // ✅ 그리드 비율 1 : 1.8로 조정 (우측을 더 길게)
-  analysisGrid: { display: 'grid', gridTemplateColumns: '1fr 1.8fr', gap: '2rem', height: '100%', overflow: 'hidden' },
+  // ✅ 그리드 비율 1 : 1.6으로 조정
+  analysisGrid: { display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '2rem', height: '100%', overflow: 'hidden' },
   leftPanel: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
   
   filterArea: { marginBottom: '1.2rem' },
-  highRiskSelect: { width: '180px', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.85rem' },
+  // ✅ 필터 너비를 1/3 수준으로 제한
+  highRiskSelect: { width: '100%', maxWidth: '220px', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.85rem', outline: 'none' },
   
-  // ✅ 카드를 2열 그리드로 배열 및 수직 스크롤
-  gridContainer: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', overflowY: 'auto', paddingRight: '0.5rem', flex: 1 },
-  recommendCard: { backgroundColor: '#161616', border: '1px solid #333', borderRadius: '8px', padding: '1rem', cursor: 'pointer', position: 'relative', minHeight: '120px' },
-  manualAddCard: { border: '1px dashed #007bff', backgroundColor: 'rgba(0,123,255,0.05)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#007bff', cursor: 'pointer', minHeight: '120px' },
+  recHeader: { display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' },
+  arrowBox: { display: 'flex', gap: '0.4rem' },
+  arrowBtn: { backgroundColor: '#222', border: '1px solid #333', color: '#fff', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' },
+  sliderContainer: { display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none' },
+  recommendCard: { minWidth: '220px', height: '130px', backgroundColor: '#161616', border: '1px solid #333', borderRadius: '8px', padding: '1rem', cursor: 'pointer', position: 'relative' },
+  manualAddCard: { minWidth: '140px', height: '130px', border: '1px dashed #007bff', backgroundColor: 'rgba(0,123,255,0.05)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#007bff', cursor: 'pointer' },
   plusIcon: { fontSize: '1.5rem' },
   manualText: { fontSize: '0.8rem', fontWeight: 'bold' },
   recBadge: { position: 'absolute', top: '10px', right: '10px', fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
-  recFactor: { color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '0.4rem', wordBreak: 'keep-all' },
-  recMeasure: { color: '#777', fontSize: '0.75rem', lineHeight: '1.4', wordBreak: 'keep-all' },
+  recFactor: { color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '0.4rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' },
+  recMeasure: { color: '#777', fontSize: '0.75rem', lineHeight: '1.3' },
 
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', paddingBottom: '0.6rem', borderBottom: '1px solid #222' },
   riskScoreContainer: { display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#111', padding: '4px 10px', borderRadius: '8px', border: '1px solid #333' },
   riskInputSet: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
-  miniLabel: { fontSize: '0.55rem', color: '#555' },
-  miniSelect: { backgroundColor: 'transparent', border: 'none', color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', outline: 'none' },
+  miniLabel: { fontSize: '0.55rem', color: '#555', marginBottom: '1px' },
+  miniSelect: { backgroundColor: 'transparent', border: 'none', color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', outline: 'none', cursor: 'pointer' },
   riskMultiply: { color: '#444', fontSize: '0.7rem' },
   riskEqual: { color: '#444', fontSize: '0.7rem' },
   riskResultBadge: { width: '24px', height: '24px', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900', fontSize: '0.85rem' },
 
   selectedListScroll: { flex: 1, overflowY: 'auto' },
   table: { width: '100%', borderCollapse: 'collapse' },
-  tableHeader: { position: 'sticky', top: 0, backgroundColor: '#121212', zIndex: 5 },
   td: { padding: '0.5rem 0.2rem', borderBottom: '1px solid #1a1a1a' },
-  inlineInput: { width: '100%', backgroundColor: '#111', border: '1px solid #222', color: '#ddd', padding: '0.6rem', borderRadius: '4px', resize: 'none', outline: 'none', fontSize: '0.85rem' },
+  inlineInput: { width: '100%', backgroundColor: '#111', border: '1px solid #222', color: '#ddd', padding: '0.5rem', borderRadius: '4px', resize: 'none', outline: 'none', fontSize: '0.8rem' },
   smallDeleteBtn: { backgroundColor: 'transparent', color: '#444', border: '1px solid #333', borderRadius: '4px', width: '22px', height: '22px', cursor: 'pointer' },
-  emptyTd: { padding: '4rem 0', color: '#333', textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold' },
+  emptyTd: { padding: '3rem 0', color: '#444', textAlign: 'center', fontSize: '0.85rem' },
 
-  btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem', flexShrink: 0 },
+  btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', fontWeight: '700', cursor: 'pointer' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', borderRadius: '8px', fontWeight: '800', cursor: 'pointer', fontSize: '1.05rem' },
   label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
@@ -889,9 +946,7 @@ const styles = {
 const styleTag = document.createElement("style");
 styleTag.innerHTML = `
   @keyframes spin { to { transform: rotate(360deg); } }
-  .gridContainer::-webkit-scrollbar { width: 4px; }
-  .gridContainer::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
   .selectedListScroll::-webkit-scrollbar { width: 4px; }
-  .selectedListScroll::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+  .selectedListScroll::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
 `;
 document.head.appendChild(styleTag);
