@@ -4,66 +4,36 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Main() {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    '/images/image1.jpg',
-    '/images/image2.jpg',
-    '/images/image3.jpg',
-    '/images/image4.jpg',
-    '/images/image5.jpg',
-    '/images/image6.jpg'
-  ];
+  const slides = ['/images/image1.jpg', '/images/image2.jpg', '/images/image3.jpg', '/images/image4.jpg', '/images/image5.jpg', '/images/image6.jpg'];
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    const timer = setInterval(() => { setCurrentSlide((prev) => (prev + 1) % slides.length); }, 5000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
   return (
     <div style={styles.wrapper}>
-      {/* SECTION 1: HERO */}
       <section style={styles.heroSection}>
         <div style={styles.bgWrapper}>
           {slides.map((src, index) => (
-            <div
-              key={src}
-              style={{
-                ...styles.bgImage,
-                backgroundImage: `url(${src})`,
-                opacity: index === currentSlide ? 1 : 0
-              }}
-            />
+            <div key={src} style={{ ...styles.bgImage, backgroundImage: `url(${src})`, opacity: index === currentSlide ? 1 : 0 }} />
           ))}
           <div style={styles.dimOverlay} />
         </div>
-        <header style={styles.header}>
-          <h1 style={styles.logo} onClick={() => navigate('/')}>
-            Smart JSA Bridge
-          </h1>
-        </header>
+        <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
         <div style={styles.mainLayout}>
           <aside style={styles.sideAd}></aside>
           <main style={styles.centerContent}>
             <div style={styles.heroContent}>
-              <h2 style={styles.mainTitle}>
-                데이터로 잇는 안전,<br />사람을 지키는 기술
-              </h2>
-              <p style={styles.subTitle}>
-                현장의 육안 점검과 지능형 분석 데이터를 결합하여,<br />
-                놓치기 쉬운 잠재 위험 요인을 정밀하게 도출합니다.
-              </p>
-              <div style={styles.buttonWrapper}>
-                <Link to="/info" style={styles.primaryBtn}>
-                  위험성 평가 작성하기
-                </Link>
-              </div>
+              <h2 style={styles.mainTitle}>데이터로 잇는 안전,<br />사람을 지키는 기술</h2>
+              <p style={styles.subTitle}>현장의 육안 점검과 지능형 분석 데이터를 결합하여,<br />놓치기 쉬운 잠재 위험 요인을 정밀하게 도출합니다.</p>
+              <div style={styles.buttonWrapper}><Link to="/info" style={styles.primaryBtn}>위험성 평가 작성하기</Link></div>
             </div>
           </main>
           <aside style={styles.sideAd}></aside>
         </div>
-
-        {/* ✅ 교정된 스크롤 가이드 인디게이터 */}
+        
+        {/* ✅ 교정된 스크롤 인디케이터: flex-shrink 방지 및 두께 확보 */}
         <div style={styles.scrollGuide}>
           <span style={styles.scrollLabel}>SCROLL TO EXPLORE</span>
           <div style={styles.scrollTrack}>
@@ -72,7 +42,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 2: VALUE PROPOSITION */}
       <section style={styles.m3Section}>
         <div style={styles.container}>
           <div style={styles.valueRow}>
@@ -81,17 +50,11 @@ export default function Main() {
               <h3 style={styles.m3Title}>실질적 위험 발굴을 돕는<br />지능형 안전 분석 파트너</h3>
               <div style={styles.valuePoint}>
                 <h4 style={styles.valuePointTitle}>체계적인 데이터 매칭</h4>
-                <p style={styles.valuePointPara}>
-                  수많은 작업 시나리오 분석을 통해 구축된 데이터베이스를 기반으로,<br />
-                  현장 상황에 가장 부합하는 유해위험요인을 지능적으로 제안합니다.
-                </p>
+                <p style={styles.valuePointPara}>수많은 작업 시나리오 분석을 통해 구축된 데이터베이스를 기반으로,<br />현장 상황에 가장 부합하는 유해위험요인을 지능적으로 제안합니다.</p>
               </div>
               <div style={styles.valuePoint}>
                 <h4 style={styles.valuePointTitle}>편집 기반의 무결성 확보</h4>
-                <p style={styles.valuePointPara}>
-                  제시된 추천 항목을 토대로 사용자가 직접 현장의 특수성을 반영함으로써,<br />
-                  실무적 효용성과 법적 준수성을 동시에 갖춘 보고서를 완성합니다.
-                </p>
+                <p style={styles.valuePointPara}>제시된 추천 항목을 토대로 사용자가 직접 현장의 특수성을 반영함으로써,<br />실무적 효용성과 법적 준수성을 동시에 갖춘 보고서를 완성합니다.</p>
               </div>
             </div>
             <div style={styles.valueImageSide}>
@@ -101,7 +64,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 3: 9대 핵심 작업 분석 가이드 */}
       <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}}>
         <div style={styles.container}>
           <div style={styles.m3Header}>
@@ -131,7 +93,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 4: FAQ */}
       <section style={styles.m3Section}>
         <div style={styles.container}>
           <div style={styles.m3Header}>
@@ -141,26 +102,11 @@ export default function Main() {
           <div style={styles.faqWrapper}>
             <div style={styles.faqBlock}>
               <h5 style={styles.faqQ}>Q. 본 서비스로 생성된 보고서가 법적 효력을 갖습니까?</h5>
-              <p style={styles.faqA}>
-                네, 산업안전보건법 제36조(위험성평가의 실시)에 따르면 사업주는 유해·위험요인을 찾아내어 위험성을 결정하고 조치를 취한 뒤 그 결과를 기록·보존해야 합니다. 
-                Smart JSA Bridge를 통해 생성된 PDF 리포트는 이러한 법적 절차를 준수하여 작성된 결과물로써, 현장 관리자의 최종 검토와 근로자 공유(서명)가 완료되면 공신력 있는 안전 보건 기록물로 인정됩니다.
-              </p>
+              <p style={styles.faqA}>네, 산업안전보건법 제36조에 의거한 법적 절차를 준수합니다. 관리자의 최종 검토와 근로자 서명이 완료되면 공신력 있는 안전 보건 기록물로 인정됩니다.</p>
             </div>
             <div style={styles.faqBlock}>
               <h5 style={styles.faqQ}>Q. 서비스가 법적 책임을 대신해 주나요?</h5>
-              <p style={styles.faqA}>
-                아니요. 본 서비스는 안전 관리 업무의 효율성을 높이고 올바른 위험 식별을 돕는 '전문가 조력 도구'이자 '교육 플랫폼'입니다. 
-                현장의 기계 상태, 작업 환경, 기상 조건 등은 실시간으로 변화하며 이는 시스템이 모두 파악할 수 없는 변수입니다. 
-                따라서 최종 보고서의 내용을 당사 사업장의 실제 환경에 맞춰 검토하고 편집할 최종적인 권한과 책임은 사용자(사업주 및 안전관리자)에게 있습니다.
-              </p>
-            </div>
-            <div style={styles.faqBlock}>
-              <h5 style={styles.faqQ}>Q. 위험도(Risk) 산출 로직은 무엇인가요?</h5>
-              <div style={styles.mathCard}>Risk (위험도) = Frequency (빈도) × Severity (강도)</div>
-              <p style={styles.faqA}>
-                본 시스템은 고용노동부의 '위험성평가 가이드'에 따른 5x5 Matrix법을 차용합니다. 사고가 발생할 확률(빈도)과 발생 시 초래되는 부상의 정도(강도)를 곱하여 수치화하며, 
-                계산된 위험도 점수에 따라 '허용 불가(즉시 중단)', '상당한 위험(계획적 개선)', '경미한 위험(유지 관리)' 등의 등급을 사용자에게 제안합니다.
-              </p>
+              <p style={styles.faqA}>아니요. 본 서비스는 효율적 위험 식별을 돕는 조력 도구입니다. 최종 보고서의 내용 검토 및 편집에 대한 책임은 사업주 및 안전관리자에게 있습니다.</p>
             </div>
           </div>
         </div>
@@ -170,11 +116,6 @@ export default function Main() {
         <div style={styles.container}>
           <div style={styles.footerFlex}>
             <p>© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
-            <div style={styles.footerLinks}>
-              <Link to="/privacy" style={styles.fLink}>개인정보처리방침</Link>
-              <Link to="/terms" style={styles.fLink}>이용약관</Link>
-              <Link to="/about" style={styles.fLink}>서비스 소개</Link>
-            </div>
           </div>
         </div>
       </footer>
@@ -190,65 +131,42 @@ const styles = {
   bgImage: { position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'opacity 2s ease-in-out' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%)', zIndex: 1 },
   header: { padding: '2.5rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10 },
   sideAd: { width: '160px', flexShrink: 0 },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'flex-start', paddingLeft: '2rem', color: '#fff' },
   heroContent: { maxWidth: '750px' },
-  mainTitle: { fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem', wordBreak: 'keep-all' },
-  subTitle: { fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem', wordBreak: 'keep-all' },
+  mainTitle: { fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: '800', lineHeight: '1.2', marginBottom: '2rem' },
+  subTitle: { fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem' },
   buttonWrapper: { display: 'flex' },
   primaryBtn: { display: 'inline-block', padding: '1.2rem 4rem', backgroundColor: '#fff', color: '#000', borderRadius: '4rem', fontSize: '1.1rem', fontWeight: 'bold', textDecoration: 'none' },
 
-  /* ✅ 수정된 스크롤 가이드 스타일 */
-  scrollGuide: { position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center', zIndex: 10 },
+  /* ✅ 스크롤 인디케이터 교정 스타일 */
+  scrollGuide: { position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center', zIndex: 10, flexShrink: 0 },
   scrollLabel: { color: '#fff', fontSize: '0.7rem', opacity: 0.5, letterSpacing: '3px', display: 'block', marginBottom: '12px' },
-  scrollTrack: { 
-    width: '3px',           // 1px에서 3px로 두께 확장
-    height: '60px', 
-    backgroundColor: 'rgba(255,255,255,0.2)', 
-    margin: '0 auto', 
-    position: 'relative',
-    borderRadius: '3px'    // 찌그러짐 방지를 위한 라운딩
-  },
-  scrollThumb: { 
-    position: 'absolute', 
-    top: 0, 
-    left: 0, 
-    width: '100%', 
-    height: '30%', 
-    backgroundColor: '#fff',
-    borderRadius: '3px'    // 트랙과 동일한 라운딩 적용
-  },
+  scrollTrack: { width: '3px', height: '60px', backgroundColor: 'rgba(255,255,255,0.2)', margin: '0 auto', position: 'relative', borderRadius: '3px', overflow: 'hidden', minWidth: '3px' },
+  scrollThumb: { position: 'absolute', top: 0, left: 0, width: '100%', height: '30%', backgroundColor: '#fff', borderRadius: '3px' },
 
   m3Section: { padding: '160px 0' },
   valueRow: { display: 'flex', gap: '100px', alignItems: 'center' },
   valueTextSide: { flex: 1.2 },
   valuePoint: { marginBottom: '60px' },
   valuePointTitle: { fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px', color: '#111' },
-  valuePointPara: { fontSize: '1.15rem', lineHeight: '2.0', color: '#444', wordBreak: 'keep-all' },
+  valuePointPara: { fontSize: '1.15rem', lineHeight: '2.0', color: '#444' },
   valueImageSide: { flex: 1 },
   imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px', boxShadow: '0 30px 60px rgba(0,0,0,0.1)' },
-  
-  m3Header: { marginBottom: '100px' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px', marginBottom: '24px', display: 'block' },
-  m3Title: { fontSize: '3.5rem', fontWeight: '900', marginBottom: '32px', letterSpacing: '-1.5px', wordBreak: 'keep-all', color: '#111' },
-  
+  m3Title: { fontSize: '3.5rem', fontWeight: '900', marginBottom: '32px', color: '#111' },
   jsaCardGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' },
-  jsaCard: { padding: '48px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px', position: 'relative', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' },
+  jsaCard: { padding: '48px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px', position: 'relative' },
   jsaBadge: { position: 'absolute', top: '32px', right: '32px', fontSize: '1.2rem', fontWeight: '900', color: '#f0f0f0' },
   jsaCardTitle: { fontSize: '1.6rem', fontWeight: '800', marginBottom: '32px', color: '#111' },
   jsaFactorBox: { marginBottom: '24px', paddingLeft: '16px', borderLeft: '3px solid #ff4d4d' },
   jsaMeasureBox: { paddingLeft: '16px', borderLeft: '3px solid #007bff' },
-
   faqWrapper: { maxWidth: '1000px' },
   faqBlock: { marginBottom: '100px' },
-  faqQ: { fontSize: '1.6rem', fontWeight: '800', color: '#007bff', marginBottom: '32px', letterSpacing: '-0.5px' },
-  faqA: { fontSize: '1.2rem', lineHeight: '2.1', color: '#444', wordBreak: 'keep-all' },
-  mathCard: { backgroundColor: '#111', padding: '32px', borderRadius: '12px', color: '#fff', textAlign: 'center', fontSize: '1.5rem', fontWeight: '700', margin: '32px 0', letterSpacing: '0.5px' },
-
+  faqQ: { fontSize: '1.6rem', fontWeight: '800', color: '#007bff', marginBottom: '32px' },
+  faqA: { fontSize: '1.2rem', lineHeight: '2.1', color: '#444' },
   finalFooter: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
-  footerFlex: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
-  footerLinks: { display: 'flex', gap: '40px' },
-  fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' }
+  footerFlex: { display: 'flex', justifyContent: 'center', alignItems: 'center' }
 };
