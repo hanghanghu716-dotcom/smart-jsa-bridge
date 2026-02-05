@@ -7,22 +7,24 @@ import Procedure from './pages/Procedure';
 import About from './pages/About';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import MobileGuard from './MobileGuard';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* 각 경로(Path)에 맞는 컴포넌트를 연결합니다 */}
-        <Route path="/" element={<Main />} />
-        <Route path="/procedure" element={<Procedure />} />
-        <Route path="/info" element={<Info />} />
-        <Route path="/analysis" element={<Analysis />} />
-        <Route path="/export" element={<Export />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />
-
-      </Routes>
+      {/* 전역 모바일 차단 가드 적용 */}
+      <MobileGuard>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/procedure" element={<Procedure />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/analysis" element={<Analysis />} />
+          <Route path="/export" element={<Export />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+        </Routes>
+      </MobileGuard>
     </Router>
   );
 }
