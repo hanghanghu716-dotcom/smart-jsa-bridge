@@ -1,46 +1,78 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import AdBanner from '../AdBanner'; // [심사 전략] 광고 슬롯 전체 주석 처리
 
 export default function Main() {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = ['/images/image1.jpg', '/images/image2.jpg', '/images/image3.jpg', '/images/image4.jpg', '/images/image5.jpg', '/images/image6.jpg'];
+  const slides = [
+    '/images/image1.jpg',
+    '/images/image2.jpg',
+    '/images/image3.jpg',
+    '/images/image4.jpg',
+    '/images/image5.jpg',
+    '/images/image6.jpg'
+  ];
 
   useEffect(() => {
-    const timer = setInterval(() => { setCurrentSlide((prev) => (prev + 1) % slides.length); }, 5000);
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
   return (
     <div style={styles.wrapper}>
-      {/* SECTION 1: HERO - 사용자 원본 디자인 (규격 및 로직 100% 보존) */}
+      {/* SECTION 1: HERO */}
       <section style={styles.heroSection}>
         <div style={styles.bgWrapper}>
           {slides.map((src, index) => (
-            <div key={src} style={{ ...styles.bgImage, backgroundImage: `url(${src})`, opacity: index === currentSlide ? 1 : 0 }} />
+            <div
+              key={src}
+              style={{
+                ...styles.bgImage,
+                backgroundImage: `url(${src})`,
+                opacity: index === currentSlide ? 1 : 0
+              }}
+            />
           ))}
           <div style={styles.dimOverlay} />
         </div>
-        <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
+        <header style={styles.header}>
+          <h1 style={styles.logo} onClick={() => navigate('/')}>
+            Smart JSA Bridge
+          </h1>
+        </header>
         <div style={styles.mainLayout}>
           <aside style={styles.sideAd}></aside>
           <main style={styles.centerContent}>
             <div style={styles.heroContent}>
-              <h2 style={styles.mainTitle}>데이터로 잇는 안전,<br />사람을 지키는 기술</h2>
-              <p style={styles.subTitle}>현장의 육안 점검과 지능형 분석 데이터를 결합하여,<br />놓치기 쉬운 잠재 위험 요인을 정밀하게 도출합니다.</p>
-              <div style={styles.buttonWrapper}><Link to="/info" style={styles.primaryBtn}>위험성 평가 작성하기</Link></div>
+              <h2 style={styles.mainTitle}>
+                데이터로 잇는 안전,<br />사람을 지키는 기술
+              </h2>
+              <p style={styles.subTitle}>
+                현장의 육안 점검과 지능형 분석 데이터를 결합하여,<br />
+                놓치기 쉬운 잠재 위험 요인을 정밀하게 도출합니다.
+              </p>
+              <div style={styles.buttonWrapper}>
+                <Link to="/info" style={styles.primaryBtn}>
+                  위험성 평가 작성하기
+                </Link>
+              </div>
             </div>
           </main>
           <aside style={styles.sideAd}></aside>
         </div>
+
+        {/* ✅ 교정된 스크롤 가이드 인디게이터 */}
         <div style={styles.scrollGuide}>
           <span style={styles.scrollLabel}>SCROLL TO EXPLORE</span>
-          <div style={styles.scrollTrack}><div style={styles.scrollThumb}></div></div>
+          <div style={styles.scrollTrack}>
+            <div style={styles.scrollThumb}></div>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 2: VALUE PROPOSITION - 줄간격 개선 및 이미지 삽입 (Material Design 3) */}
+      {/* SECTION 2: VALUE PROPOSITION */}
       <section style={styles.m3Section}>
         <div style={styles.container}>
           <div style={styles.valueRow}>
@@ -48,12 +80,18 @@ export default function Main() {
               <span style={styles.m3Tag}>CORE VALUE</span>
               <h3 style={styles.m3Title}>실질적 위험 발굴을 돕는<br />지능형 안전 분석 파트너</h3>
               <div style={styles.valuePoint}>
-                <h4>체계적인 데이터 매칭</h4>
-                <p>수많은 작업 시나리오 분석을 통해 구축된 데이터베이스를 기반으로,<br />현장 상황에 가장 부합하는 유해위험요인을 지능적으로 제안합니다.</p>
+                <h4 style={styles.valuePointTitle}>체계적인 데이터 매칭</h4>
+                <p style={styles.valuePointPara}>
+                  수많은 작업 시나리오 분석을 통해 구축된 데이터베이스를 기반으로,<br />
+                  현장 상황에 가장 부합하는 유해위험요인을 지능적으로 제안합니다.
+                </p>
               </div>
               <div style={styles.valuePoint}>
-                <h4>편집 기반의 무결성 확보</h4>
-                <p>제시된 추천 항목을 토대로 사용자가 직접 현장의 특수성을 반영함으로써,<br />실무적 효용성과 법적 준수성을 동시에 갖춘 보고서를 완성합니다.</p>
+                <h4 style={styles.valuePointTitle}>편집 기반의 무결성 확보</h4>
+                <p style={styles.valuePointPara}>
+                  제시된 추천 항목을 토대로 사용자가 직접 현장의 특수성을 반영함으로써,<br />
+                  실무적 효용성과 법적 준수성을 동시에 갖춘 보고서를 완성합니다.
+                </p>
               </div>
             </div>
             <div style={styles.valueImageSide}>
@@ -63,7 +101,7 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 3: 9대 핵심 작업 분석 가이드 (가독성 및 로직 강화) */}
+      {/* SECTION 3: 9대 핵심 작업 분석 가이드 */}
       <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}}>
         <div style={styles.container}>
           <div style={styles.m3Header}>
@@ -93,7 +131,7 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 4: FAQ - 풍성한 답변 및 최적화된 밀도 */}
+      {/* SECTION 4: FAQ */}
       <section style={styles.m3Section}>
         <div style={styles.container}>
           <div style={styles.m3Header}>
@@ -145,7 +183,6 @@ export default function Main() {
 }
 
 const styles = {
-  /* GLOBAL & HERO (원본 1:1 복구) */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
   container: { maxWidth: '1440px', margin: '0 auto', padding: '0 80px' },
   heroSection: { position: 'relative', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
@@ -160,30 +197,43 @@ const styles = {
   heroContent: { maxWidth: '750px' },
   mainTitle: { fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem', wordBreak: 'keep-all' },
   subTitle: { fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem', wordBreak: 'keep-all' },
+  buttonWrapper: { display: 'flex' },
   primaryBtn: { display: 'inline-block', padding: '1.2rem 4rem', backgroundColor: '#fff', color: '#000', borderRadius: '4rem', fontSize: '1.1rem', fontWeight: 'bold', textDecoration: 'none' },
 
+  /* ✅ 수정된 스크롤 가이드 스타일 */
   scrollGuide: { position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center', zIndex: 10 },
   scrollLabel: { color: '#fff', fontSize: '0.7rem', opacity: 0.5, letterSpacing: '3px', display: 'block', marginBottom: '12px' },
-  scrollTrack: { width: '1px', height: '60px', backgroundColor: 'rgba(255,255,255,0.2)', margin: '0 auto', position: 'relative' },
-  scrollThumb: { position: 'absolute', top: 0, left: 0, width: '100%', height: '30%', backgroundColor: '#fff' },
+  scrollTrack: { 
+    width: '3px',           // 1px에서 3px로 두께 확장
+    height: '60px', 
+    backgroundColor: 'rgba(255,255,255,0.2)', 
+    margin: '0 auto', 
+    position: 'relative',
+    borderRadius: '3px'    // 찌그러짐 방지를 위한 라운딩
+  },
+  scrollThumb: { 
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    width: '100%', 
+    height: '30%', 
+    backgroundColor: '#fff',
+    borderRadius: '3px'    // 트랙과 동일한 라운딩 적용
+  },
 
-  /* M3 Sections (공간감 확보 및 줄간격 개선) */
   m3Section: { padding: '160px 0' },
   valueRow: { display: 'flex', gap: '100px', alignItems: 'center' },
   valueTextSide: { flex: 1.2 },
   valuePoint: { marginBottom: '60px' },
+  valuePointTitle: { fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px', color: '#111' },
+  valuePointPara: { fontSize: '1.15rem', lineHeight: '2.0', color: '#444', wordBreak: 'keep-all' },
   valueImageSide: { flex: 1 },
   imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px', boxShadow: '0 30px 60px rgba(0,0,0,0.1)' },
   
   m3Header: { marginBottom: '100px' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px', marginBottom: '24px', display: 'block' },
   m3Title: { fontSize: '3.5rem', fontWeight: '900', marginBottom: '32px', letterSpacing: '-1.5px', wordBreak: 'keep-all', color: '#111' },
-  m3Desc: { fontSize: '1.4rem', lineHeight: '2.0', color: '#49454f', wordBreak: 'keep-all' },
   
-  valuePointTitle: { fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px' },
-  valuePointPara: { fontSize: '1.15rem', lineHeight: '2.0', color: '#444', wordBreak: 'keep-all' },
-
-  /* JSA Grid (가독성 개선) */
   jsaCardGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' },
   jsaCard: { padding: '48px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px', position: 'relative', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' },
   jsaBadge: { position: 'absolute', top: '32px', right: '32px', fontSize: '1.2rem', fontWeight: '900', color: '#f0f0f0' },
@@ -191,14 +241,12 @@ const styles = {
   jsaFactorBox: { marginBottom: '24px', paddingLeft: '16px', borderLeft: '3px solid #ff4d4d' },
   jsaMeasureBox: { paddingLeft: '16px', borderLeft: '3px solid #007bff' },
 
-  /* FAQ (오밀조밀함 해결 및 풍성한 내용) */
   faqWrapper: { maxWidth: '1000px' },
   faqBlock: { marginBottom: '100px' },
   faqQ: { fontSize: '1.6rem', fontWeight: '800', color: '#007bff', marginBottom: '32px', letterSpacing: '-0.5px' },
   faqA: { fontSize: '1.2rem', lineHeight: '2.1', color: '#444', wordBreak: 'keep-all' },
   mathCard: { backgroundColor: '#111', padding: '32px', borderRadius: '12px', color: '#fff', textAlign: 'center', fontSize: '1.5rem', fontWeight: '700', margin: '32px 0', letterSpacing: '0.5px' },
 
-  /* Footer */
   finalFooter: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
   footerFlex: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
   footerLinks: { display: 'flex', gap: '40px' },

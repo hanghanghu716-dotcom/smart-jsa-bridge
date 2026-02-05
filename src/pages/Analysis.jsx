@@ -655,359 +655,207 @@ export default function Analysis() {
   const location = useLocation();
   const scrollRef = useRef(null);
 
-  const {
-    procedures = [],
-    formData = {},
-    participants = [],
-    analysisData: incomingAnalysisData,
-  } = location.state || {};
-
+  const { procedures = [], formData = {}, participants = [], analysisData: incomingAnalysisData } = location.state || {};
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
-  // 🔑 고위험 작업 필터 상태 추가
   const [selectedHighRisk, setSelectedHighRisk] = useState("");
 
   useEffect(() => {
-    if (procedures && procedures.length > 0) {
-      setInsideAnalysisData();
+    if (procedures?.length > 0) {
+      setAnalysisData(prevData => {
+        const baseData = prevData.length > 0 ? prevData : (incomingAnalysisData || []);
+        return procedures.map((newProc, idx) => {
+          const existingData = baseData.find(d => d.id === idx);
+          if (existingData) return { ...existingData, proc: newProc };
+          return { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+        });
+      });
     }
   }, [procedures]);
-
-  const setInsideAnalysisData = () => {
-    setAnalysisData(prevData => {
-      const baseData = prevData.length > 0 ? prevData : (incomingAnalysisData || []);
-      return procedures.map((newProc, idx) => {
-        const existingData = baseData.find(d => d.id === idx);
-        if (existingData) return { ...existingData, proc: newProc };
-        return { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
-      });
-    });
-  };
-
-  const currentStep = analysisData && analysisData[activeIdx] ? analysisData[activeIdx] : { proc: {}, risks: [] };
 
   useEffect(() => {
     const step = analysisData[activeIdx];
     const targetText = step?.proc?.stepDetail || "";
     setIsLoading(true);
-
     const searchTimer = setTimeout(() => {
-      try {
-        if (targetText.trim() !== "") {
-          const results = getRisksFromLocalDB(targetText, formData);
-          setRecommendations(results);
-        } else {
-          setRecommendations([]);
-        }
-      } catch (error) {
-        console.error("위험요인 분석 중 오류 발생:", error);
-        setRecommendations([]);
-      } finally {
-        setIsLoading(false);
-      }
+      if (targetText.trim() !== "") setRecommendations(getRisksFromLocalDB(targetText, formData));
+      else setRecommendations([]);
+      setIsLoading(false);
     }, 500);
-
     return () => clearTimeout(searchTimer);
-  }, [activeIdx, analysisData.length, currentStep?.proc?.stepDetail, formData]);
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -260 : 260;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  }, [activeIdx, analysisData, formData]);
 
   const addRisk = (rec) => {
     const newData = [...analysisData];
     const isManual = rec.type === 'manual';
-    const newRisk = {
-      id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      factor: isManual ? '' : rec.factor,
-      measure: isManual ? '' : rec.measure
-    };
+    const newRisk = { id: `risk-${Date.now()}`, factor: isManual ? '' : rec.factor, measure: isManual ? '' : rec.measure };
     newData[activeIdx].risks.push(newRisk);
-    setAnalysisData(newData);
-  };
-
-  const updateRiskContent = (riskId, field, value) => {
-    const newData = [...analysisData];
-    const targetStep = newData[activeIdx];
-    targetStep.risks = targetStep.risks.map(risk =>
-      risk.id === riskId ? { ...risk, [field]: value } : risk
-    );
     setAnalysisData(newData);
   };
 
   const deleteRisk = (riskId) => {
     const newData = [...analysisData];
-    newData[activeIdx].risks = newData[activeIdx].risks.filter(risk => risk.id !== riskId);
+    newData[activeIdx].risks = newData[activeIdx].risks.filter(r => r.id !== riskId);
+    setAnalysisData(newData);
+  };
+
+  const updateRiskContent = (riskId, field, value) => {
+    const newData = [...analysisData];
+    newData[activeIdx].risks = newData[activeIdx].risks.map(r => r.id === riskId ? { ...r, [field]: value } : r);
     setAnalysisData(newData);
   };
 
   const updateStepRisk = (field, value) => {
     const newData = [...analysisData];
     const target = newData[activeIdx];
-    if (field === 'frequency' || field === 'severity') {
-      target[field] = parseInt(value);
-      target.riskLevel = target.frequency * target.severity;
-    } else {
-      target[field] = value;
-    }
+    target[field] = parseInt(value);
+    target.riskLevel = target.frequency * target.severity;
     setAnalysisData(newData);
   };
 
-  const handleNext = () => {
-    if (activeIdx < analysisData.length - 1) {
-      setActiveIdx(activeIdx + 1);
-      setSelectedHighRisk(""); // 다음 단계로 넘어갈 때 필터 초기화
-    } else {
-      navigate('/export', { state: { analysisData, formData, participants, procedures } });
-    }
-  };
+  const scroll = (dir) => { if (scrollRef.current) scrollRef.current.scrollBy({ left: dir === 'left' ? -260 : 260, behavior: 'smooth' }); };
 
-  const handlePrev = () => {
-    if (activeIdx === 0) {
-      navigate('/procedure', { state: { procedures, formData, participants, analysisData } });
-    } else {
-      setActiveIdx(activeIdx - 1);
-      setSelectedHighRisk(""); // 이전 단계로 돌아갈 때 필터 초기화
-    }
-  };
+  const currentStep = analysisData[activeIdx] || { proc: {}, risks: [] };
 
   return (
     <div style={styles.wrapper}>
-      {isLoading && (
-        <div style={styles.dialogOverlay}>
-          <div style={styles.dialogBox}>
-            <div style={styles.spinner}></div>
-            <h3 style={styles.dialogTitle}>위험요인 분석 중</h3>
-            <p style={styles.dialogText}>작업 내용을 바탕으로<br />안전 데이터베이스를 검색하고 있습니다.</p>
-          </div>
-        </div>
-      )}
-
+      {isLoading && <div style={styles.dialogOverlay}><div style={styles.dialogBox}><div style={styles.spinner} /><h3>분석 중...</h3></div></div>}
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
-          <AdBanner slot="4000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
-
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
-              <div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div>
-              <div style={styles.stepLineActive} /><div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>위험 분석</span></div>
-              <div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>최종 출력</span></div>
+               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span>기본 정보</span></div>
+               <div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span>작업 절차</span></div>
+               <div style={styles.stepLineActive} /><div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span>위험 분석</span></div>
+               <div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span>최종 출력</span></div>
             </nav>
 
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>03. 유해·위험요인 분석 ({activeIdx + 1}/{analysisData.length})</h2>
               <div style={styles.stepContext}>
-                <span style={styles.stepTitleBadge}>STEP {activeIdx + 1}. {currentStep?.proc?.stepTitle}</span>
-                <p style={styles.stepDetailText}>{currentStep?.proc?.stepDetail || "작업 내용이 없습니다."}</p>
+                <span style={styles.stepTitleBadge}>STEP {activeIdx + 1}. {currentStep.proc?.stepTitle}</span>
+                <p style={styles.stepDetailText}>{currentStep.proc?.stepDetail}</p>
               </div>
             </div>
 
             <div style={styles.scrollArea}>
-              {/* 🔑 고위험 작업 필터 선택 UI 추가 */}
-              <div style={styles.filterArea}>
-                <label style={styles.label}>⚠️ 고위험 작업 필터 (해당 시 선택)</label>
-                <select 
-                  style={styles.highRiskSelect} 
-                  value={selectedHighRisk} 
-                  onChange={(e) => setSelectedHighRisk(e.target.value)}
-                >
-                  <option value="">(미선택 - 지능형 자동 제안 사용)</option>
-                  {HIGH_RISK_TASKS.map(t => <option key={t.title} value={t.title}>{t.title}</option>)}
-                </select>
+              <div style={styles.analysisGrid}>
+                {/* 👈 좌측 패널: 탐색 및 평가 */}
+                <section style={styles.leftPanel}>
+                  <div style={styles.filterArea}>
+                    <label style={styles.label}>⚠️ 고위험 작업 필터</label>
+                    <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => setSelectedHighRisk(e.target.value)}>
+                      <option value="">(미선택 - 지능형 자동 제안)</option>
+                      {HIGH_RISK_TASKS.map(t => <option key={t.title} value={t.title}>{t.title}</option>)}
+                    </select>
+                  </div>
+                  <div style={styles.recHeader}><span style={styles.label}>추천 항목(DB)</span><div style={styles.arrowBox}><button style={styles.arrowBtn} onClick={() => scroll('left')}>←</button><button style={styles.arrowBtn} onClick={() => scroll('right')}>→</button></div></div>
+                  <div style={styles.sliderContainer} ref={scrollRef}>
+                    <div style={styles.manualAddCard} onClick={() => addRisk({ type: 'manual' })}><div style={styles.plusIcon}>+</div><p>수동 작성</p></div>
+                    {selectedHighRisk ? (
+                      HIGH_RISK_TASKS.find(t => t.title === selectedHighRisk)?.risks.map((rec, i) => (
+                        <div key={`hr-${i}`} style={{...styles.recommendCard, borderColor: '#ff4d4d'}} onClick={() => addRisk(rec)}><div style={{...styles.recBadge, color: '#ff4d4d', borderColor: '#ff4d4d'}}>고위험</div><p style={styles.recFactor}>{rec.factor}</p></div>
+                      ))
+                    ) : (
+                      recommendations.map((rec, i) => (
+                        <div key={`rec-${i}`} style={styles.recommendCard} onClick={() => addRisk(rec)}><div style={styles.recBadge}>추천</div><p style={styles.recFactor}>{rec.factor}</p></div>
+                      ))
+                    )}
+                  </div>
+                  <div style={styles.riskControlRow}>
+                    <div style={styles.riskInputGroup}><span style={styles.label}>빈도</span><select style={styles.select} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                    <div style={styles.riskInputGroup}><span style={styles.label}>강도</span><select style={styles.select} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                    <div style={styles.riskResultGroup}><span style={styles.label}>위험도 [제안: {currentStep.frequency * currentStep.severity}]</span><div style={{...styles.riskVal, color: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}>{currentStep.riskLevel}</div></div>
+                  </div>
+                </section>
+
+                {/* 👉 우측 패널: 목록 및 편집 */}
+                <section style={styles.rightPanel}>
+                  <div style={styles.rightHeader}><span style={styles.label}>선택된 위험요인 목록 ({currentStep.risks.length})</span></div>
+                  <div style={styles.selectedListScroll}>
+                    <table style={styles.table}>
+                      <thead><tr><th style={{width:'45%'}}>위험요인</th><th style={{width:'45%'}}>대책</th><th style={{width:'10%'}}>삭제</th></tr></thead>
+                      <tbody>
+                        {currentStep.risks.length === 0 ? <tr><td colSpan="3" style={styles.emptyTd}>좌측 카드를 클릭하세요.</td></tr> : 
+                        currentStep.risks.map(r => (
+                          <tr key={r.id}>
+                            <td><textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskContent(r.id, 'factor', e.target.value)} rows={3} /></td>
+                            <td><textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskContent(r.id, 'measure', e.target.value)} rows={3} /></td>
+                            <td style={{textAlign:'center'}}><button style={styles.smallDeleteBtn} onClick={() => deleteRisk(r.id)}>×</button></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
               </div>
-
-              <div style={styles.recHeader}>
-                <span style={styles.label}>추천 항목(DB) 및 수동 추가</span>
-                <div style={styles.arrowBox}>
-                  <button style={styles.arrowBtn} onClick={() => scroll('left')}>←</button>
-                  <button style={styles.arrowBtn} onClick={() => scroll('right')}>→</button>
-                </div>
-              </div>
-
-              <div style={styles.sliderContainer} ref={scrollRef}>
-                <div style={styles.manualAddCard} onClick={() => addRisk({ type: 'manual' })}>
-                  <div style={styles.plusIcon}>+</div><p style={styles.manualText}>새 위험요인<br />수동 작성</p>
-                </div>
-
-                {/* 🔑 필터 여부에 따른 카드 렌더링 분기 */}
-                {selectedHighRisk ? (
-                  HIGH_RISK_TASKS.find(t => t.title === selectedHighRisk)?.risks.map((rec, i) => (
-                    <div key={`hr-${i}`} style={{...styles.recommendCard, borderColor: '#ff4d4d'}} onClick={() => addRisk(rec)}>
-                      <div style={{...styles.recBadge, color: '#ff4d4d', borderColor: '#ff4d4d'}}>고위험</div>
-                      <p style={styles.recFactor}>{rec.factor}</p><p style={styles.recMeasure}>{rec.measure}</p>
-                    </div>
-                  ))
-                ) : (
-                  recommendations.map((rec, i) => (
-                    <div key={`rec-${i}`} style={styles.recommendCard} onClick={() => addRisk(rec)}>
-                      <div style={styles.recBadge}>추천</div>
-                      <p style={styles.recFactor}>{rec.factor}</p><p style={styles.recMeasure}>{rec.measure}</p>
-                    </div>
-                  ))
-                )}
-
-                {!isLoading && !selectedHighRisk && recommendations.length === 0 && (
-                  <div style={styles.emptyCard}>추천 데이터 없음</div>
-                )}
-              </div>
-
-              <div style={styles.riskControlRow}>
-                <div style={styles.riskInputGroup}>
-                  <span style={styles.label}>빈도(가능성)</span>
-                  <select style={styles.select} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>
-                    {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
-                  </select>
-                </div>
-                <div style={styles.riskInputGroup}>
-                  <span style={styles.label}>강도(중대성)</span>
-                  <select style={styles.select} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>
-                    {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
-                  </select>
-                </div>
-                <div style={styles.riskResultGroup}>
-                  <span style={styles.label}>위험도(R) [제안: {currentStep.frequency * currentStep.severity}]</span>
-                  <select
-                    style={{
-                      ...styles.select,
-                      fontWeight: 'bold',
-                      color: currentStep.riskLevel >= 9 ? '#ff4d4d' : (currentStep.riskLevel >= 4 ? '#ffcc00' : '#007bff'),
-                      border: `2px solid ${currentStep.riskLevel >= 9 ? '#ff4d4d' : (currentStep.riskLevel >= 4 ? '#ffcc00' : '#007bff')}`
-                    }}
-                    value={currentStep.riskLevel}
-                    onChange={(e) => updateStepRisk('riskLevel', parseInt(e.target.value))}
-                  >
-                    {Array.from({ length: 25 }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}
-                  </select>
-                </div>
-              </div>
-
-              <table style={styles.table}>
-                <thead>
-                  <tr>
-                    <th style={{ ...styles.th, width: '40%' }}>선택된 유해·위험요인 (편집 가능)</th>
-                    <th style={{ ...styles.th, width: '45%' }}>해당 작업 감소대책 (편집 가능)</th>
-                    <th style={{ ...styles.th, width: '15%', textAlign: 'center' }}>관리</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentStep.risks.length === 0 ? (
-                    <tr><td colSpan="3" style={styles.emptyTd}>위 카드를 클릭하여 위험요인을 추가하거나 수동으로 입력하세요.</td></tr>
-                  ) : (
-                    currentStep.risks.map((risk) => (
-                      <tr key={risk.id}>
-                        <td style={styles.td}>
-                          <textarea style={styles.inlineInput} placeholder="유해·위험요인" value={risk.factor} onChange={(e) => updateRiskContent(risk.id, 'factor', e.target.value)} rows={2} />
-                        </td>
-                        <td style={styles.td}>
-                          <textarea style={styles.inlineInput} placeholder="감소대책" value={risk.measure} onChange={(e) => updateRiskContent(risk.id, 'measure', e.target.value)} rows={2} />
-                        </td>
-                        <td style={{ ...styles.td, textAlign: 'center' }}>
-                          <button style={styles.deleteBtn} onClick={() => deleteRisk(risk.id)}>삭제</button>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={handlePrev}>이전 단계</button>
-              <button style={styles.nextBtn} onClick={handleNext}>
-                {activeIdx === analysisData.length - 1 ? '작성 완료 및 출력' : '다음 작업 단계 분석'}
-              </button>
+              <button style={styles.prevBtn} onClick={() => setActiveIdx(Math.max(0, activeIdx - 1))}>이전</button>
+              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/export', { state: { analysisData, formData } })}>다음</button>
             </div>
           </div>
         </main>
-
-        <aside style={styles.sideAd}>
-          <AdBanner slot="4000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
       </div>
-
-      <footer style={styles.footerArea}>
-        <div style={styles.bottomAdWrapper}>
-          <AdBanner slot="4000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
-        </div>
-      </footer>
     </div>
   );
 }
 
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
-  dialogOverlay: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 9999 },
-  dialogBox: { backgroundColor: '#1a1a1a', padding: '2.5rem', borderRadius: '16px', border: '1px solid #333', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' },
-  dialogTitle: { color: '#fff', fontSize: '1.2rem', margin: 0, fontWeight: '800' },
-  dialogText: { color: '#888', fontSize: '0.9rem', lineHeight: '1.6', margin: 0 },
-  spinner: { width: '40px', height: '40px', border: '4px solid rgba(0, 123, 255, 0.1)', borderTop: '4px solid #007bff', borderRadius: '50%', animation: 'spin 1s linear infinite' },
-  bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
-  bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.5)', zIndex: 1 },
-  header: { padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center' },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer', margin: 0 },
-  mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 2rem', gap: '2rem', zIndex: 10, overflow: 'hidden', justifyContent: 'center' },
-  sideAd: { flexShrink: 0, width: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '1400px', width: '100%' },
-  formCard: { width: '100%', backgroundColor: 'rgba(18, 18, 18, 0.95)', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.8)', maxHeight: '85vh', display: 'flex', flexDirection: 'column' },
-  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
-  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
-  stepText: { fontSize: '0.85rem', color: '#aaa' },
-  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
-  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
+  bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
+  bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
+  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1 },
+  header: { padding: '1.2rem 5rem', zIndex: 10 },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer' },
+  mainLayout: { flex: 1, display: 'flex', padding: '0 2rem', zIndex: 10, overflow: 'hidden' },
+  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.95)', border: '1px solid #333', borderRadius: '12px', padding: '2rem', display: 'flex', flexDirection: 'column', maxHeight: '85vh' },
+  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', marginBottom: '1.5rem', color: '#888', fontSize: '0.85rem' },
+  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold' },
+  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' },
   stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
-  formHeader: { marginBottom: '1.5rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff', marginBottom: '0.5rem' },
-  stepContext: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-  stepTitleBadge: { display: 'inline-block', padding: '4px 10px', backgroundColor: 'rgba(0, 123, 255, 0.2)', color: '#4da3ff', fontSize: '0.8rem', fontWeight: 'bold', borderRadius: '4px', alignSelf: 'flex-start', border: '1px solid rgba(0, 123, 255, 0.3)' },
-  stepDetailText: { fontSize: '1rem', color: '#ddd', lineHeight: '1.5' },
-  scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '10px', marginBottom: '1.5rem' },
-  filterArea: { display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.2rem' },
-  highRiskSelect: { backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.9rem', fontWeight: 'bold', cursor: 'pointer', width: 'fit-content' },
-  recHeader: { display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', alignItems: 'center' },
-  label: { fontSize: '0.85rem', color: '#888', fontWeight: '700' },
-  arrowBox: { display: 'flex', gap: '0.5rem' },
-  arrowBtn: { backgroundColor: '#333', border: '1px solid #555', color: '#fff', padding: '4px 10px', borderRadius: '4px', cursor: 'pointer', transition: 'background 0.2s' },
-  sliderContainer: { display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.8rem', scrollBehavior: 'smooth', marginBottom: '1.5rem', msOverflowStyle: 'none', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' },
-  manualAddCard: { minWidth: '220px', width: '220px', height: '160px', backgroundColor: 'rgba(0, 123, 255, 0.05)', border: '2px dashed #007bff', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', flexShrink: 0 },
-  plusIcon: { fontSize: '2.5rem', color: '#007bff', fontWeight: '300', marginBottom: '0.5rem' },
-  manualText: { color: '#007bff', fontSize: '0.85rem', fontWeight: '700', textAlign: 'center', lineHeight: '1.4' },
-  recommendCard: { minWidth: '240px', width: '240px', height: '160px', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px', padding: '1.2rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'border-color 0.2s', flexShrink: 0, position: 'relative' },
-  recBadge: { position: 'absolute', top: '10px', right: '10px', fontSize: '0.7rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 5px', borderRadius: '3px' },
-  recFactor: { color: '#fff', fontSize: '0.9rem', fontWeight: '700', lineHeight: '1.4', marginBottom: '0.5rem', paddingRight: '50px', wordBreak: 'keep-all' },
-  recMeasure: { color: '#888', fontSize: '0.8rem', lineHeight: '1.4', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' },
-  emptyCard: { minWidth: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#555', fontSize: '0.9rem', border: '1px solid #333', borderRadius: '8px' },
-  riskControlRow: { display: 'flex', gap: '2rem', alignItems: 'center', marginBottom: '1.5rem', padding: '1.2rem', backgroundColor: '#111', borderRadius: '8px', border: '1px solid #222' },
-  riskInputGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-  select: { backgroundColor: '#222', border: '1px solid #444', color: '#fff', padding: '0.5rem 1rem', borderRadius: '4px', outline: 'none', width: '80px', textAlign: 'center' },
-  riskResultGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingLeft: '2rem', borderLeft: '1px solid #333', minWidth: '100px', alignItems: 'center' },
-  table: { width: '100%', borderCollapse: 'collapse', marginTop: '1rem' },
-  th: { padding: '1rem', backgroundColor: '#151515', color: '#888', fontSize: '0.75rem', textAlign: 'left', borderBottom: '2px solid #333' },
-  td: { padding: '0.8rem 0.5rem', borderBottom: '1px solid #222', color: '#fff', fontSize: '0.95rem', verticalAlign: 'top' },
-  emptyTd: { padding: '3rem', textAlign: 'center', color: '#444', fontSize: '0.9rem' },
-  inlineInput: { width: '100%', backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', padding: '0.8rem', borderRadius: '4px', outline: 'none', fontSize: '0.9rem', resize: 'none', fontFamily: 'inherit', lineHeight: '1.5' },
-  deleteBtn: { backgroundColor: 'rgba(255, 77, 77, 0.1)', color: '#ff4d4d', border: '1px solid rgba(255, 77, 77, 0.3)', padding: '6px 14px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' },
-  btnArea: { marginTop: 'auto', paddingTop: '1.5rem', display: 'flex', gap: '1.2rem', borderTop: '1px solid rgba(255,255,255,0.1)' },
-  prevBtn: { flex: 1, padding: '1.2rem', backgroundColor: 'transparent', color: '#aaa', border: '1px solid #444', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' },
-  nextBtn: { flex: 2, padding: '1.2rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.1rem', boxShadow: '0 4px 15px rgba(255,255,255,0.2)' },
-  footerArea: { width: '100%', padding: '0.5rem 0 1.5rem', zIndex: 10 },
-  bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
+  formHeader: { borderLeft: '5px solid #007bff', paddingLeft: '1rem', marginBottom: '1.5rem' },
+  formTitle: { fontSize: '1.4rem', color: '#fff', marginBottom: '0.5rem' },
+  stepTitleBadge: { backgroundColor: 'rgba(0,123,255,0.2)', color: '#4da3ff', padding: '4px 10px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 'bold' },
+  stepDetailText: { color: '#ddd', marginTop: '0.5rem' },
+  scrollArea: { flex: 1, overflow: 'hidden' },
+  
+  /* 2분할 그리드 스타일 */
+  analysisGrid: { display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '2rem', height: '100%' },
+  leftPanel: { display: 'flex', flexDirection: 'column', borderRight: '1px solid rgba(255,255,255,0.05)', paddingRight: '1rem' },
+  rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '8px', padding: '1rem' },
+  selectedListScroll: { flex: 1, overflowY: 'auto' },
+  
+  filterArea: { marginBottom: '1rem' },
+  highRiskSelect: { backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.5rem', borderRadius: '6px', fontWeight: 'bold', outline: 'none' },
+  recHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' },
+  arrowBox: { display: 'flex', gap: '0.3rem' },
+  arrowBtn: { backgroundColor: '#333', border: 'none', color: '#fff', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer' },
+  sliderContainer: { display: 'flex', gap: '0.8rem', overflowX: 'auto', paddingBottom: '0.5rem', marginBottom: '1rem', scrollbarWidth: 'none' },
+  recommendCard: { minWidth: '220px', height: '140px', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px', padding: '1rem', cursor: 'pointer', position: 'relative' },
+  manualAddCard: { minWidth: '200px', height: '140px', border: '2px dashed #007bff', backgroundColor: 'rgba(0,123,255,0.05)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#007bff', cursor: 'pointer' },
+  recBadge: { position: 'absolute', top: '10px', right: '10px', fontSize: '0.7rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
+  recFactor: { color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', lineHeight: '1.4' },
+  riskControlRow: { display: 'flex', gap: '1.5rem', padding: '1rem', backgroundColor: '#111', borderRadius: '8px', marginTop: 'auto' },
+  riskInputGroup: { display: 'flex', flexDirection: 'column', gap: '0.3rem' },
+  select: { backgroundColor: '#222', border: '1px solid #444', color: '#fff', padding: '0.3rem', borderRadius: '4px' },
+  riskResultGroup: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', borderLeft: '1px solid #333' },
+  riskVal: { fontSize: '1.5rem', fontWeight: 'bold' },
+  
+  table: { width: '100%', borderCollapse: 'collapse' },
+  th: { backgroundColor: '#151515', color: '#888', fontSize: '0.75rem', padding: '0.8rem', textAlign: 'left', borderBottom: '2px solid #333' },
+  td: { padding: '0.6rem', borderBottom: '1px solid #222' },
+  inlineInput: { width: '100%', backgroundColor: 'transparent', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', resize: 'none', outline: 'none' },
+  smallDeleteBtn: { backgroundColor: 'transparent', color: '#ff4d4d', border: '1px solid #ff4d4d', borderRadius: '4px', width: '22px', height: '22px', cursor: 'pointer' },
+  btnArea: { display: 'flex', gap: '1rem', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #333' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#aaa', border: '1px solid #444', borderRadius: '8px', cursor: 'pointer' },
+  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' },
+  label: { fontSize: '0.8rem', color: '#888', fontWeight: 'bold' }
 };
