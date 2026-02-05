@@ -1,19 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import AdBanner from '../AdBanner'; // [추가] 광고 컴포넌트 불러오기
+import AdBanner from '../AdBanner'; 
 
 export default function Export() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 상태 관리
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
 
-  // 전달받은 데이터 추출
   const { 
     analysisData: initialData = [], 
     formData = {}, 
@@ -21,22 +19,36 @@ export default function Export() {
     procedures = [] 
   } = location.state || {};
 
-  // YES/NO 체크 상태 관리를 위해 내부 state로 변환
   const [analysisData, setAnalysisData] = useState(initialData);
+
+  // 애니메이션 스피너 주입
+  useEffect(() => {
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = `
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .loader-spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid rgba(0, 123, 255, 0.2);
+        border-top-color: #007bff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+    `;
+    document.head.appendChild(styleTag);
+    return () => document.head.removeChild(styleTag);
+  }, []);
 
   const handleEdit = () => {
     navigate('/analysis', { state: { analysisData, formData, participants, procedures } });
   };
 
-  // 상호 배타적 체크박스 로직 (YES/NO 중복 체크 방지)
   const handleCheck = (index, value) => {
     const newData = [...analysisData];
-    // 이미 체크된 것을 다시 누르면 해제(null), 아니면 해당 값 설정
     newData[index].checkStatus = newData[index].checkStatus === value ? null : value;
     setAnalysisData(newData);
   };
 
-  // PDF 생성 로직
   const generatePDF = async () => {
     const paper = document.querySelector('.reportPaper');
     if (!paper) return null;
@@ -44,10 +56,9 @@ export default function Export() {
     try {
       const doc = new jsPDF('l', 'mm', 'a4');
       const pageWidth = 297;
-      const pageHeight = 210;
       const margin = 12;
       const contentWidth = pageWidth - (margin * 2);
-      const pageLimitY = pageHeight - margin;
+      const pageLimitY = 210 - margin;
 
       const capture = async (query) => {
         const el = paper.querySelector(query);
@@ -102,10 +113,12 @@ export default function Export() {
     setPendingAction(type);
     setIsModalOpen(true);
     setIsProcessing(true);
+    // 인위적인 지연을 주어 광고 노출 및 처리 프로세스 시각화
     setTimeout(() => { setIsProcessing(false); }, 3000);
   };
 
   const executeFinalAction = async () => {
+    setIsProcessing(true); // 실제 생성 단계에서 다시 활성화
     const doc = await generatePDF();
     if (doc) {
       if (pendingAction === 'preview') {
@@ -113,6 +126,7 @@ export default function Export() {
       } else {
         doc.save(`JSA_Report_${formData.projectName || 'export'}.pdf`);
       }
+      setIsProcessing(false);
       setIsModalOpen(false);
     }
   };
@@ -124,10 +138,9 @@ export default function Export() {
           <div style={styles.modalContent}>
             <div style={styles.modalHeader}>
               <h3 style={styles.modalTitle}>{isProcessing ? "데이터 정밀 처리 중..." : "리포트 구성 완료"}</h3>
-              <p style={styles.modalSub}>{isProcessing ? "작업 단계별 무결성 검사 및 여백 최적화를 진행 중입니다." : "선언하신 작업의 보고서 데이터가 준비되었습니다."}</p>
+              <p style={styles.modalSub}>{isProcessing ? "A4 규격에 맞춰 행 분할 및 무결성 검사를 진행 중입니다." : "선언하신 작업의 보고서 데이터가 준비되었습니다."}</p>
             </div>
             
-            {/* 모달 내부의 가상 광고 영역 (이 부분은 디자인 요소이므로 그대로 둠) */}
             <div style={styles.virtualAdBox}>
               <div style={styles.adBadge}>AD</div>
               <div style={styles.adContent}>
@@ -138,14 +151,22 @@ export default function Export() {
             </div>
 
             <div style={styles.modalBtnArea}>
-              {!isProcessing ? (
-                <button style={styles.modalActionBtn} onClick={executeFinalAction}>
-                  {pendingAction === 'preview' ? "PDF 미리보기 열기" : "보고서 PDF 저장"}
-                </button>
+              {isProcessing ? (
+                <div style={styles.loaderContainer}>
+                  <div className="loader-spinner"></div>
+                  <div style={styles.loaderTexts}>
+                    <p style={styles.loaderMainText}>시스템이 페이지 레이아웃을 최적화하고 있습니다.</p>
+                    <p style={styles.loaderSubText}>잠시만 기다려 주십시오...</p>
+                  </div>
+                </div>
               ) : (
-                <div style={styles.loaderBox}><div style={styles.loader}></div><p style={styles.loadingText}>A4 규격에 맞춰 행 분할 중...</p></div>
+                <>
+                  <button style={styles.modalActionBtn} onClick={executeFinalAction}>
+                    {pendingAction === 'preview' ? "PDF 미리보기 열기" : "보고서 PDF 저장"}
+                  </button>
+                  <button style={styles.modalCloseBtn} onClick={() => setIsModalOpen(false)}>취소</button>
+                </>
               )}
-              <button style={styles.modalCloseBtn} onClick={() => setIsModalOpen(false)}>취소</button>
             </div>
           </div>
         </div>
@@ -155,7 +176,6 @@ export default function Export() {
       <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
       <div style={styles.mainLayout}>
-        {/* [좌측 광고] */}
         <aside style={styles.sideAd} className="no-print">
           <AdBanner slot="5000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
@@ -172,9 +192,9 @@ export default function Export() {
               <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>4</div><span style={styles.stepTextActive}>최종 출력</span></div>
             </nav>
 
-            {/* 실제 보고서 영역 (광고 없음, 출력용) */}
             <div style={styles.previewArea} className="preview-area">
               <div className="reportPaper" style={styles.reportPaper}>
+                {/* 보고서 내부 테이블 및 레이아웃은 기존 코드 유지 */}
                 <div className="reportTopSection" style={styles.reportTopSection}>
                   <div style={styles.titleWrapper}>
                     <h2 style={styles.reportTitle}>작업안전분석(JSA) 작업시트</h2>
@@ -225,22 +245,8 @@ export default function Export() {
                         <td style={{ ...styles.atCenterSmall, fontWeight: '700', color: step.riskLevel >= 9 ? '#d32f2f' : '#1976d2' }}>{step.riskLevel}</td>
                         <td style={styles.atCheck}>
                           <div style={styles.checkWrap}>
-                            <label style={styles.miniLabel}>
-                              <input 
-                                type="checkbox" 
-                                checked={step.checkStatus === 'YES'} 
-                                onChange={() => handleCheck(i, 'YES')}
-                                style={styles.rectInput} 
-                              /> YES
-                            </label>
-                            <label style={{...styles.miniLabel}}>
-                              <input 
-                                type="checkbox" 
-                                checked={step.checkStatus === 'NO'} 
-                                onChange={() => handleCheck(i, 'NO')}
-                                style={styles.rectInput} 
-                              /> NO
-                            </label>
+                            <label style={styles.miniLabel}><input type="checkbox" checked={step.checkStatus === 'YES'} onChange={() => handleCheck(i, 'YES')} style={styles.rectInput} /> YES</label>
+                            <label style={styles.miniLabel}><input type="checkbox" checked={step.checkStatus === 'NO'} onChange={() => handleCheck(i, 'NO')} style={styles.rectInput} /> NO</label>
                           </div>
                         </td>
                       </tr>
@@ -258,13 +264,11 @@ export default function Export() {
           </div>
         </main>
 
-        {/* [우측 광고] */}
         <aside style={styles.sideAd} className="no-print">
           <AdBanner slot="5000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
-      {/* [하단 광고] */}
       <footer style={styles.footerArea} className="no-print">
         <div style={styles.bottomAdWrapper}>
           <AdBanner slot="5000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
@@ -275,26 +279,39 @@ export default function Export() {
 }
 
 const styles = {
+  // 스테퍼 교정: flex-shrink 추가 및 정렬 보정
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
-  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
+  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 },
+  stepBadgeDone: { width: '26px', height: '26px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.8rem', flexShrink: 0 },
   stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff' },
+  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 },
+  stepBadgeActive: { width: '26px', height: '26px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 'bold', color: '#fff', flexShrink: 0 },
   stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepLineActive: { width: '40px', height: '1.5px', backgroundColor: '#4caf50' },
+  stepLineActive: { width: '40px', height: '1.5px', backgroundColor: '#4caf50', flexShrink: 0 },
 
-  modalOverlay: { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.92)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
-  modalContent: { width: '600px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2.5rem', textAlign: 'center' },
+  // 모달 및 로딩 레이아웃
+  modalOverlay: { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.95)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
+  modalContent: { width: '550px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2.5rem', textAlign: 'center' },
+  modalHeader: { marginBottom: '1.5rem' },
   modalTitle: { color: '#fff', fontSize: '1.4rem', fontWeight: '800', marginBottom: '0.6rem' },
-  modalSub: { color: '#666', fontSize: '0.85rem', marginBottom: '2rem' },
-  virtualAdBox: { backgroundColor: '#000', border: '1px solid #222', borderRadius: '10px', padding: '1.5rem', textAlign: 'left', marginBottom: '2rem' },
+  modalSub: { color: '#666', fontSize: '0.85rem' },
+  
+  virtualAdBox: { backgroundColor: '#000', border: '1px solid #222', borderRadius: '10px', padding: '1.5rem', textAlign: 'left', marginBottom: '1.5rem' },
   adBadge: { fontSize: '0.6rem', color: '#444', border: '1px solid #444', padding: '1px 5px', borderRadius: '3px', float: 'right' },
   adTitle: { color: '#007bff', fontSize: '1.1rem', fontWeight: '700', marginBottom: '0.4rem' },
   adText: { color: '#888', fontSize: '0.85rem', lineHeight: '1.5', marginBottom: '1rem' },
   adMockBtn: { display: 'inline-block', padding: '0.5rem 1rem', backgroundColor: '#222', color: '#fff', borderRadius: '4px', fontSize: '0.75rem' },
-  modalActionBtn: { width: '100%', padding: '1.1rem', backgroundColor: '#4caf50', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '800', fontSize: '1rem' },
-  modalCloseBtn: { marginTop: '1rem', color: '#444', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' },
+  
+  loaderContainer: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', padding: '1rem 0' },
+  loaderTexts: { textAlign: 'center' },
+  loaderMainText: { color: '#fff', fontSize: '0.95rem', fontWeight: '600', margin: '0 0 4px 0' },
+  loaderSubText: { color: '#555', fontSize: '0.8rem', margin: 0 },
 
+  modalBtnArea: { display: 'flex', flexDirection: 'column', gap: '0.8rem' },
+  modalActionBtn: { width: '100%', padding: '1.1rem', backgroundColor: '#4caf50', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '800', fontSize: '1rem' },
+  modalCloseBtn: { color: '#555', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.85rem' },
+
+  // 기존 래퍼 및 레이아웃 스타일
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
   bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
@@ -302,11 +319,7 @@ const styles = {
   header: { padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.2rem', fontWeight: '900', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10, overflow: 'hidden' },
-  
-  // [수정] 광고가 중앙에 오도록 정렬 속성 추가
   sideAd: { flexShrink: 0, width: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  // adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '550px', borderRadius: '4px' }, // 사용 안 함
-  
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', height: '94%' },
   formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column' },
   previewArea: { flex: 1, overflowY: 'auto', backgroundColor: '#fff', borderRadius: '4px', padding: '2.5rem', marginBottom: '1rem' },
@@ -334,16 +347,13 @@ const styles = {
   atCenterNo: { border: '1px solid #000', textAlign: 'center', padding: '8px', fontSize: '11px', width: '35px' },
   atStepTitle: { border: '1px solid #000', padding: '8px', fontSize: '11px', fontWeight: '500', width: '120px', backgroundColor: '#fcfcfc' },
   atCenterSmall: { border: '1px solid #000', textAlign: 'center', padding: '8px', fontSize: '11px', width: '40px' },
-  // 확인 컬럼 스타일 정밀 보정
   atCheck: { border: '1px solid #000', width: '85px', textAlign: 'center', padding: '4px 0' },
   checkWrap: { display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' },
   miniLabel: { fontSize: '10px', fontWeight: 'bold', display: 'flex', alignItems: 'center', cursor: 'pointer' },
   rectInput: { width: '13px', height: '13px', margin: '0 3px 0 0', cursor: 'pointer' },
-
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '0.9rem', backgroundColor: 'transparent', color: '#9e9e9e', border: '1px solid #424242', borderRadius: '4px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '0.9rem', backgroundColor: '#4caf50', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10 },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  // bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '90px' } // 사용 안 함
 };
