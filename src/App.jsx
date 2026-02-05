@@ -8,21 +8,28 @@ import About from './pages/About';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import MobileGuard from './MobileGuard';
+import JraJsa from './pages/Jrajsa';
+import Regulation from './pages/Regulation';
+import ProtectiveEquipment from './pages/ProtectiveEquipment';
+import RiskClassification from './pages/RiskClassification';
 
 function App() {
   return (
     <Router>
-      {/* 전역 모바일 차단 가드 적용 */}
       <MobileGuard>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/procedure" element={<Procedure />} />
           <Route path="/info" element={<Info />} />
           <Route path="/analysis" element={<Analysis />} />
+          <Route path="/jrajsa" element={<JraJsa />} />
           <Route path="/export" element={<Export />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/regulation" element={<Regulation />} />
+          <Route path="/riskclassification" element={<RiskClassification />} />
+          <Route path="/protectiveequipment" element={<ProtectiveEquipment />} />
         </Routes>
       </MobileGuard>
     </Router>
