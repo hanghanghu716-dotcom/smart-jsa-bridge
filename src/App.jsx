@@ -12,12 +12,21 @@ import JraJsa from './pages/Jrajsa';
 import Regulation from './pages/Regulation';
 import ProtectiveEquipment from './pages/ProtectiveEquipment';
 import RiskClassification from './pages/RiskClassification';
+import JsaSamplePreview from './pages/JsaSamplePreview';
+
+/* 가이드 페이지 임포트 */
+import ConstructionGuide from './pages/guideline/ConstructionGuide';
+import HighRiskGuide from './pages/guideline/HighRiskGuide';
+import GeneralGuide from './pages/guideline/GeneralGuide';
+import ManufacturingGuide from './pages/guideline/ManufacturingGuide';
+import ChemicalGasGuide from './pages/guideline/ChemicalGasGuide';
 
 function App() {
   return (
     <Router>
       <MobileGuard>
         <Routes>
+          {/* 기본 서비스 경로 */}
           <Route path="/" element={<Main />} />
           <Route path="/procedure" element={<Procedure />} />
           <Route path="/info" element={<Info />} />
@@ -26,10 +35,18 @@ function App() {
           <Route path="/export" element={<Export />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/jsasamplepreview" element={<JsaSamplePreview />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/regulation" element={<Regulation />} />
           <Route path="/riskclassification" element={<RiskClassification />} />
           <Route path="/protectiveequipment" element={<ProtectiveEquipment />} />
+
+          {/* JSA 가이드 섹션 - 경로를 /guideline/으로 통일 */}
+          <Route path="/guideline/construction" element={<ConstructionGuide />} />
+          <Route path="/guideline/high-risk" element={<HighRiskGuide />} />
+          <Route path="/guideline/general" element={<GeneralGuide />} />
+          <Route path="/guideline/manufacturing" element={<ManufacturingGuide />} />
+          <Route path="/guideline/chemical" element={<ChemicalGasGuide />} />
         </Routes>
       </MobileGuard>
     </Router>
