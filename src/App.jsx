@@ -20,7 +20,6 @@ import HighRiskGuide from './pages/guideline/HighRiskGuide';
 import GeneralGuide from './pages/guideline/GeneralGuide';
 import ManufacturingGuide from './pages/guideline/ManufacturingGuide';
 import ChemicalGasGuide from './pages/guideline/ChemicalGasGuide';
-import ChemicalGasGuide from './pages/guideline/CommonGuide';
 import CommonGuide from './pages/guideline/CommonGuide';
 
 function App() {
