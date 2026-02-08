@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import AdBanner from '../AdBanner'; // [심사 전략] 광고 슬롯 전체 주석 처리
 
 export default function Main() {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // 사이드바 상태만 추가
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const slides = ['/images/image1.jpg', '/images/image2.jpg', '/images/image3.jpg', '/images/image4.jpg', '/images/image5.jpg', '/images/image6.jpg'];
 
@@ -16,7 +15,7 @@ export default function Main() {
 
   return (
     <div style={styles.wrapper}>
-      {/* SECTION 1: HERO - 사용자 원본 디자인 및 위치 규격 100% 보존 */}
+      {/* SECTION 1: HERO */}
       <section style={styles.heroSection}>
         <div style={styles.bgWrapper}>
           {slides.map((src, index) => (
@@ -25,12 +24,9 @@ export default function Main() {
           <div style={styles.dimOverlay} />
         </div>
 
-        {/* HEADER: 위치 보존을 위해 최소한의 구조만 수정 */}
         <header style={styles.header}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-
-            {/* 메뉴 트리거만 우측에 조용히 배치 */}
             <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
               <span style={styles.menuText}>MENU</span>
               <div style={styles.hamburger}>
@@ -41,7 +37,7 @@ export default function Main() {
           </div>
         </header>
 
-        {/* SIDE MENU (사이드바) */}
+        {/* SIDE MENU (사이드바) - App.jsx의 경로와 일치하도록 /guideline/ 으로 수정 */}
         <div style={{
           ...styles.sideDrawer,
           transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
@@ -52,23 +48,22 @@ export default function Main() {
           </div>
           <nav style={styles.drawerNav}>
             <div style={styles.navCategory}>CONTENTS</div>
-            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
-              위험성평가 실시규정 가이드
-            </Link>
-            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
-              위험성평가(JRA/JSA) 실무 프로세스
-            </Link>
-            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
-              보호구에 관하여
-            </Link>
-            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
-              일반 작업/고위험 작업
-            </Link>
+            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가 실시규정 가이드</Link>
+            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가(JRA/JSA) 실무 프로세스</Link>
+            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>보호구에 관하여</Link>
+            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>일반 작업/고위험 작업</Link>
+            
+            <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (수익형 견본)</div>
+            {/* [수정] App.jsx의 path="/guideline/..." 와 주소를 정확히 맞춤 */}
+            <Link to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>건설업 JSA (10종)</Link>
+            <Link to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>고위험 특수작업 JSA (10종)</Link>
+            <Link to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>기타 일반작업 JSA (10종)</Link>
+            <Link to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>제조업 JSA (10종)</Link>
+            <Link to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>화공·가스 작업 JSA (10종)</Link>
           </nav>
         </div>
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
-        {/* 중앙 콘텐츠 레이아웃: 원본 패딩 및 위치값 100% 유지 */}
         <div style={styles.mainLayout}>
           <aside style={styles.sideAd}></aside>
           <main style={styles.centerContent}>
@@ -87,7 +82,7 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 2: VALUE PROPOSITION (원본 유지) */}
+      {/* SECTION 2, 3, 4 및 FOOTER 원본 규격 유지 */}
       <section style={styles.m3Section}>
         <div style={styles.container}>
           <div style={styles.valueRow}>
@@ -110,36 +105,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 3, 4 및 FOOTER 모두 사용자 원본 규격 유지 */}
-      <section style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }}>
-        <div style={styles.container}>
-          <div style={styles.m3Header}>
-            <span style={styles.m3Tag}>ANALYSIS GUIDES</span>
-            <h3 style={styles.m3Title}>9대 고위험 작업별 위험 분석 가이드</h3>
-          </div>
-          <div style={styles.jsaCardGrid}>
-            {[
-              { id: '01', title: '일반 및 공통안전', f: '작업자 건강상태 및 심리적 불안정 미확인', m: 'TBM 활용 혈압 측정 및 음주 여부 확인 실시' },
-              { id: '02', title: '고소 작업', f: '작업 발판 단부 및 개구부에서의 작업자 추락', m: '그네식 안전대 착용 및 생명줄(Life-line) 체결 철저' },
-              { id: '03', title: '화기 작업', f: '용접 불티 비산으로 인한 주변 가연물 화재/폭발', m: '가연물 제거, 비산 방지포 설치 및 화기 감시자 배치' },
-              { id: '04', title: '밀폐 공간', f: '내부 산소 결핍 및 유해가스에 의한 질식/중독', m: '진입 전 농도 측정 및 이동식 송풍기 상시 환기 가동' },
-              { id: '05', title: '정전 및 전기', f: '전기 정비 중 제3자의 불시 투입에 의한 감전', m: 'LOTO(잠금장치 및 표지판) 설치 및 키 개인 보관' },
-              { id: '06', title: '굴착 작업', f: '법면 붕괴로 인한 작업자 매몰 및 장비 전도', m: '지반 안식각 준수 및 흙막이 지보공 설치 상태 점검' },
-              { id: '07', title: '중장비 운용', f: '장비 사각지대 위치 보행자와의 충돌 및 끼임', m: '전담 신호수 배치 및 후방 카메라/감지기 작동 확인' },
-              { id: '08', title: '중량물 취급', f: '줄걸이 용구 파단으로 인한 인양물 낙하 및 타격', m: '용구 마모 상태 점검 및 유도 로프(Tag Line) 사용' },
-              { id: '09', title: '가연성 가스', f: '배관 기밀 시험 중 누출 가스에 의한 인화/폭발', m: '정전기 방지 조치 및 검지기를 활용한 정밀 점검' }
-            ].map(item => (
-              <div key={item.id} style={styles.jsaCard}>
-                <span style={styles.jsaBadge}>{item.id}</span>
-                <h5 style={styles.jsaCardTitle}>{item.title}</h5>
-                <div style={styles.jsaFactorBox}><strong>위험요인</strong><p>{item.f}</p></div>
-                <div style={styles.jsaMeasureBox}><strong>감소대책</strong><p>{item.m}</p></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <div style={styles.footerFlex}>
@@ -157,7 +122,6 @@ export default function Main() {
 }
 
 const styles = {
-  /* 사용자 원본 스타일 규격 절대 보존 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
   container: { maxWidth: '1440px', margin: '0 auto', padding: '0 80px' },
   heroSection: { position: 'relative', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
@@ -178,7 +142,6 @@ const styles = {
   scrollTrack: { width: '1px', height: '60px', backgroundColor: 'rgba(255,255,255,0.2)', margin: '0 auto', position: 'relative' },
   scrollThumb: { position: 'absolute', top: 0, left: 0, width: '100%', height: '30%', backgroundColor: '#fff' },
 
-  /* 추가된 메뉴 스타일 (기본 디자인에 영향 주지 않음) */
   menuTrigger: { display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer' },
   menuText: { color: '#fff', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '2px' },
   hamburger: { display: 'flex', flexDirection: 'column', gap: '6px' },
@@ -186,31 +149,24 @@ const styles = {
   sideDrawer: {
     position: 'fixed', top: 0, right: 0, width: '400px', height: '100vh',
     backgroundColor: '#fff', zIndex: 1000, transition: 'transform 0.4s ease',
-    boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column'
+    boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column',
+    /* 스크롤 기능 추가 */
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch'
   },
-  drawerHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '60px' },
+  drawerHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '60px', flexShrink: 0 },
   closeBtn: { cursor: 'pointer', fontSize: '0.9rem', fontWeight: '800', color: '#111' },
-  drawerNav: { display: 'flex', flexDirection: 'column', gap: '10px' },
+  drawerNav: { display: 'flex', flexDirection: 'column', gap: '10px', paddingBottom: '100px' },
   navCategory: { fontSize: '0.7rem', fontWeight: '900', color: '#888', letterSpacing: '2px', marginBottom: '20px' },
   drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.2rem', fontWeight: '700', padding: '20px 0', borderBottom: '1px solid #f0f0f0' },
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(8px)' },
 
-  /* 나머지 M3 스타일 원본 보존 */
   m3Section: { padding: '160px 0' },
   valueRow: { display: 'flex', gap: '100px', alignItems: 'center' },
   valueTextSide: { flex: 1.2 },
   valuePoint: { marginBottom: '60px' },
   valueImageSide: { flex: 1 },
   imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px', boxShadow: '0 30px 60px rgba(0,0,0,0.1)' },
-  m3Header: { marginBottom: '100px' },
-  m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px', marginBottom: '24px', display: 'block' },
-  m3Title: { fontSize: '3.5rem', fontWeight: '900', marginBottom: '32px', color: '#111' },
-  jsaCardGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' },
-  jsaCard: { padding: '48px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px', position: 'relative', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' },
-  jsaBadge: { position: 'absolute', top: '32px', right: '32px', fontSize: '1.2rem', fontWeight: '900', color: '#f0f0f0' },
-  jsaCardTitle: { fontSize: '1.6rem', fontWeight: '800', marginBottom: '32px', color: '#111' },
-  jsaFactorBox: { marginBottom: '24px', paddingLeft: '16px', borderLeft: '3px solid #ff4d4d' },
-  jsaMeasureBox: { paddingLeft: '16px', borderLeft: '3px solid #007bff' },
   finalFooter: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
   footerFlex: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
   footerLinks: { display: 'flex', gap: '40px' },
