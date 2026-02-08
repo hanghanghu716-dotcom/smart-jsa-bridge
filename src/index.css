@@ -1,5 +1,8 @@
+/* 1. 반드시 최상단에 위치해야 하는 임포트 (v4 방식) */
+@import "tailwindcss";
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
+/* 2. 전역 스타일 설정 */
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +11,8 @@
 
 :root {
   font-family: 'Pretendard', -apple-system, sans-serif;
-  background-color: #000;
+  /* 배경색을 주석 처리하거나 제거하여 Tailwind의 bg-white가 작동하게 합니다 */
+  /* background-color: #000; */ 
   color: #fff;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -19,12 +23,12 @@ body, #root {
   min-height: 100vh;
 }
 
-/* index.css */
+/* 3. 기존 반응형 쿼리 유지 */
 @media (max-width: 1024px) {
   .mobile-block-view { 
-    display: flex !important; /* 모바일 시 차단창 활성화 */
+    display: flex !important; 
   }
   .main-app-content { 
-    display: none !important; /* 모바일 시 기존 앱 숨김 */
+    display: none !important; 
   }
 }
