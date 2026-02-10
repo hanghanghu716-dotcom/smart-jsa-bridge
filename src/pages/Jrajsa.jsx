@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function JraJsa() {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // JSA 실행 상세 흐름 데이터
   const fullProcess = [
     { t: "01. 절차서 작성", c: "사업장 특성에 맞는 JSA 표준 운영 지침 수립" },
     { t: "02. 분석 팀 구성", c: "관리감독자, 안전전문가, 현장 숙련 근로자 매칭" },
@@ -19,63 +20,65 @@ export default function JraJsa() {
   return (
     <div style={styles.wrapper}>
       {/* HEADER */}
-      <header style={styles.header}>
-        <div style={styles.container}>
+      <header style={styles.header} className="max-lg:!px-6">
+        <div className="flex justify-between items-center h-full">
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+          <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
+            <span style={styles.menuText} className="max-lg:hidden">MENU</span>
+            <div style={styles.hamburger}>
+              <div style={styles.bar}></div>
+              <div style={styles.bar}></div>
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section style={styles.heroSection}>
+      {/* SIDE DRAWER (Navigation) */}
+      <div style={{
+        ...styles.sideDrawer,
+        transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
+        visibility: isMenuOpen ? 'visible' : 'hidden',
+        width: window.innerWidth < 1024 ? '100%' : '400px'
+      }}>
+        <div style={styles.drawerHeader}>
+          <div style={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>✕ CLOSE</div>
+        </div>
+        <nav style={styles.drawerNav}>
+          <div style={styles.navCategory}>CONTENTS</div>
+          <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가 실시규정 가이드</Link>
+          <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가(JRA/JSA) 실무 프로세스</Link>
+          <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>보호구에 관하여</Link>
+          <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>일반 작업/고위험 작업</Link>
+        </nav>
+      </div>
+      {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
+
+{/* HERO SECTION */}
+      <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
-          <span style={styles.m3Tag}>INTEGRATED SAFETY COMPLIANCE</span>
-          <h2 style={styles.mainTitle}>위험성평가(JRA/JSA) 실무 프로세스 및<br />법적 이행 규정 통합 기술 지침</h2>
-          <p style={styles.subTitle}>
-            산업안전보건법 제36조를 완벽히 준수하며 현장 무재해를 실현하기 위한<br />
-            전문적인 분석 방법론과 상세 실행 절차를 통합 제공합니다.
+          <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">INTEGRATED SAFETY COMPLIANCE</span>
+          
+          {/* 제목 부분: '프로세스' 뒤 줄바꿈 및 '및' 정렬 위치 수정 */}
+          <h2 style={{...styles.mainTitle, fontSize: undefined}} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">위험성평가(JRA/JSA) 실무 프로세스</span>
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">및 법적 이행 규정 통합 기술 지침</span>
+          </h2>
+
+          {/* 서브타이틀 부분: '위한' 뒤 줄바꿈 및 정렬 위치 수정 */}
+          <p style={styles.subTitle} className="text-[14px] lg:text-[1.15rem]">
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">산업안전보건법 제36조를 준수하며 현장 무재해를 실현하기 위한</span>
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">전문 방법론을 제공합니다.</span>
           </p>
         </div>
       </section>
 
-      {/* SECTION 1: JRA 원칙 */}
-      <section style={styles.m3Section}>
+      {/* SECTION 3: JSA 흐름 (3열 -> 1열 전환) */}
+      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
         <div style={styles.container}>
-          <h3 style={styles.sectionTitle}>1. 작업위험성평가(JRA) 수행 원칙</h3>
-          <p style={styles.para}>
-            <strong>JRA(Job Risk Assessment)</strong>는 모든 작업을 대상으로 사업장 내 근원적 위험을 파악하여 사고를 미연에 방지하는 핵심 절차입니다.
-          </p>
-          <div style={styles.infoBox}>
-            <ul style={styles.infoList}>
-              <li>작업절차서 제·개정 시 반드시 위험성평가를 선행해야 함</li>
-              <li>작업 조건 및 방법 변경 시 즉시 중지 후 재평가 실시 필수</li>
-              <li>중대재해 발생 혹은 공정 변경 시 수시평가를 통해 안전 무결성 확보</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: 법적 근거 */}
-      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}}>
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle}>2. 산업안전보건법 제36조 및 의무 사항</h3>
-          <div style={styles.legalBox}>
-            <p style={styles.legalText}>
-              <strong>제36조(위험성평가의 실시)</strong> ① 사업주는 건설물, 설비, 원재료, 작업행동 등으로 인한 유해·위험요인을 파악하여 위험성을 결정하고 조치를 취하여야 한다.
-            </p>
-            <p style={styles.legalText}>
-              ② 실시 시 반드시 <strong>근로자를 참여</strong>시켜야 하며, 결과물은 <strong>최소 3년 이상 보존</strong>해야 합니다.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: JSA 흐름 (모든 카드 파란색 강조 적용) */}
-      <section style={styles.m3Section}>
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle}>3. JSA 실행 표준 프로세스 9단계</h3>
-          <div style={styles.flowGrid}>
+          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. JSA 실행 표준 프로세스 9단계</h3>
+          <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
             {fullProcess.map((step, i) => (
-              <div key={i} style={styles.flowCard}>
+              <div key={i} style={styles.flowCard} className="max-lg:!p-6 max-lg:!rounded-none">
                 <span style={styles.flowIdx}>{step.t.split('.')[0]}</span>
                 <h4 style={styles.flowT}>{step.t.split('. ')[1]}</h4>
                 <p style={styles.flowC}>{step.c}</p>
@@ -85,11 +88,11 @@ export default function JraJsa() {
         </div>
       </section>
 
-      {/* SECTION 4: 실시 규정 */}
-      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}}>
+      {/* SECTION 4: 실시 규정 (3열 -> 1열 전환) */}
+      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}} className="max-lg:!py-16 max-lg:!px-6">
         <div style={styles.container}>
-          <h3 style={styles.sectionTitle}>4. 위험성평가 실시 규정 필수 항목</h3>
-          <div style={styles.checkGrid}>
+          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">4. 위험성평가 실시 규정 필수 항목</h3>
+          <div style={styles.checkGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
             {[
               { t: "목적 및 방법", c: "추진 목표 및 사업장 특화 기법 선정" },
               { t: "수행 조직/역할", c: "관리책임자 및 근로자의 구체적 R&R" },
@@ -98,7 +101,7 @@ export default function JraJsa() {
               { t: "위험성 결정 기준", c: "수준 산정을 위한 고유 판단 기준" },
               { t: "기록 보존 지침", c: "3년 보존 의무 및 서식 표준화" }
             ].map((item, i) => (
-              <div key={i} style={styles.checkItem}>
+              <div key={i} style={styles.checkItem} className="max-lg:!p-6">
                 <h4 style={styles.itemHeader}>● {item.t}</h4>
                 <p style={styles.itemContent}>{item.c}</p>
               </div>
@@ -107,82 +110,71 @@ export default function JraJsa() {
         </div>
       </section>
 
-      {/* SECTION 5 & 6: 비교 및 체크리스트 */}
-      <section style={styles.m3Section}>
+      {/* SECTION 5 & 6: 비교 및 체크리스트 (2열 -> 1열 전환 핵심 수정 부분) */}
+      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
         <div style={styles.container}>
-          <div style={styles.splitRow}>
-            <div style={styles.splitLeft}>
-              <h3 style={styles.sectionTitleSmall}>5. JRA vs JSA 비교 분석</h3>
-              <table style={styles.table}>
-                <thead>
-                  <tr style={styles.tableHeadRow}>
-                    <th style={styles.th}>구분</th>
-                    <th style={styles.th}>JRA</th>
-                    <th style={styles.th}>JSA</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={styles.tdBold}>평가 대상</td>
-                    <td style={styles.td}>공정 및 설비 전체</td>
-                    <td style={styles.td}>세부 작업 행동</td>
-                  </tr>
-                  <tr>
-                    <td style={styles.tdBold}>참여 주체</td>
-                    <td style={styles.td}>관리자 및 전문가</td>
-                    <td style={styles.td}>현장 근로자 핵심</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div style={styles.splitRow} className="max-lg:!flex-col max-lg:!gap-16">
+            <div style={styles.splitLeft} className="w-full">
+              <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">5. JRA vs JSA 비교 분석</h3>
+              <div className="overflow-x-auto">
+                <table style={styles.table} className="min-w-[450px]">
+                  <thead>
+                    <tr style={styles.tableHeadRow}>
+                      <th style={styles.th}>구분</th>
+                      <th style={styles.th}>JRA</th>
+                      <th style={styles.th}>JSA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={styles.tdBold}>평가 대상</td>
+                      <td style={styles.td}>공정 및 설비 전체</td>
+                      <td style={styles.td}>세부 작업 행동</td>
+                    </tr>
+                    <tr>
+                      <td style={styles.tdBold}>참여 주체</td>
+                      <td style={styles.td}>관리자 및 전문가</td>
+                      <td style={styles.td}>현장 근로자 핵심</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div style={styles.splitRight}>
-              <h3 style={styles.sectionTitleSmall}>6. JSA 필수 수행 체크리스트</h3>
-              <ul style={styles.checklist}>
+            <div style={styles.splitRight} className="w-full">
+              <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">6. JSA 필수 수행 체크리스트</h3>
+              <ul style={styles.checklist} className="max-lg:!pl-4">
                 {[
                   "표준 절차서(SOP)가 부재하거나 불명확한가?",
                   "원하지 않는 사고가 종종 발생하는 작업인가?",
                   "작업자가 해당 공정에 대한 경험이 부족한가?",
                   "고도의 숙련도나 특수 훈련이 필요한 작업인가?"
-                ].map((t, i) => <li key={i} style={styles.checkli}>● {t}</li>)}
+                ].map((t, i) => <li key={i} style={styles.checkli} className="text-sm lg:text-base">● {t}</li>)}
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7: 산정 공식 (디자인 통일) */}
-      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}}>
+      {/* SECTION 7: 산정 공식 */}
+      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}} className="max-lg:!py-16 max-lg:!px-6">
         <div style={styles.container}>
-          <h3 style={styles.sectionTitle}>7. 정량적 위험성 산정 로직</h3>
-          <p style={styles.para}>위험도를 수치화하여 객관적인 개선 우선순위를 결정하는 표준 공식입니다.</p>
-          <div style={styles.mathCardNormal}>
-            <div style={styles.mathDisplay}>
-              <span style={styles.mathVar}>Risk</span>
-              <span style={styles.mathOp}>=</span>
-              <span style={styles.mathVar}>Frequency</span>
-              <span style={styles.mathOp}>×</span>
-              <span style={styles.mathVar}>Severity</span>
+          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">7. 정량적 위험성 산정 로직</h3>
+          <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10">
+            <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
+              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Risk</span>
+              <span style={styles.mathOp} className="max-lg:!mx-2">=</span>
+              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Frequency</span>
+              <span style={styles.mathOp} className="max-lg:!mx-2">×</span>
+              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Severity</span>
             </div>
-            <p style={styles.mathCaption}>위험성 = 사고 발생 빈도(확률) × 결과의 중대성(강도)</p>
+            <p style={styles.mathCaption} className="max-lg:text-xs">위험성 = 사고 발생 빈도(확률) × 결과의 중대성(강도)</p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 8: 마무리 결언 */}
-      <section style={styles.m3Section}>
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle}>8. 결론 및 제언</h3>
-          <p style={styles.para}>
-            위험성평가는 단순한 법적 절차를 넘어 근로자의 안전을 실질적으로 보장하는 가장 강력한 예방 도구입니다. 
-            현장의 끊임없는 유해 요인 발굴과 안전 대책의 철저한 이행을 통해 사고 없는 사업장을 구축하시기 바랍니다. 
-            <strong> Smart JSA Bridge</strong>는 데이터 기반의 정밀한 분석으로 사용자님의 안전 관리를 끝까지 지원하겠습니다.
-          </p>
-        </div>
-      </section>
-
-      <footer style={styles.finalFooter}>
-        <div style={styles.container}>
-          <p>© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
+      <footer style={styles.finalFooter} className="max-lg:!py-12">
+        <div style={styles.container} className="max-lg:!px-6 text-center">
+          <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
         </div>
       </footer>
     </div>
@@ -190,65 +182,64 @@ export default function JraJsa() {
 }
 
 const styles = {
-  /* 글로벌 폰트 및 레이아웃 최적화 */
-  wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', lineHeight: '1.7' },
-  container: { maxWidth: '1200px', margin: '0 auto', padding: '0 40px' },
-  header: { padding: '2rem 0', borderBottom: '1px solid #eee' },
-  logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer' },
+  wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
+  container: { maxWidth: '1200px', margin: '0 auto' },
+  header: { padding: '2.5rem 0', zIndex: 10, borderBottom: '1px solid #f0f0f0' },
+  logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', color: '#111' },
   
+  menuTrigger: { display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer' },
+  menuText: { color: '#111', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '1px' },
+  hamburger: { display: 'flex', flexDirection: 'column', gap: '5px' },
+  bar: { width: '20px', height: '2px', backgroundColor: '#111' },
+  sideDrawer: { position: 'fixed', top: 0, right: 0, height: '100vh', backgroundColor: '#fff', zIndex: 1000, transition: 'transform 0.4s ease', boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column', overflowY: 'auto' },
+  drawerHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '60px' },
+  closeBtn: { cursor: 'pointer', fontSize: '0.9rem', fontWeight: '800', color: '#111' },
+  drawerNav: { display: 'flex', flexDirection: 'column', gap: '10px' },
+  navCategory: { fontSize: '0.7rem', fontWeight: '900', color: '#888', letterSpacing: '2px', marginBottom: '20px' },
+  drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f0f0f0' },
+  menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(8px)' },
+
   heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
-  m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.85rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
-  mainTitle: { fontSize: '2.8rem', fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
-  subTitle: { fontSize: '1.15rem', opacity: 0.8, lineHeight: '1.8' },
+  m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
+  mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
+  subTitle: { opacity: 0.8, lineHeight: '1.8', wordBreak: 'keep-all' },
   
   m3Section: { padding: '100px 0' },
-  sectionTitle: { fontSize: '2.2rem', fontWeight: '800', marginBottom: '40px', letterSpacing: '-1px' },
-  sectionTitleSmall: { fontSize: '1.6rem', fontWeight: '800', marginBottom: '30px' },
-  para: { fontSize: '1.15rem', color: '#333', marginBottom: '35px', wordBreak: 'keep-all' },
+  sectionTitle: { fontWeight: '800', marginBottom: '40px', letterSpacing: '-1px' },
+  sectionTitleSmall: { fontWeight: '800', marginBottom: '30px' },
+  para: { fontSize: '1.1rem', color: '#333', marginBottom: '35px', wordBreak: 'keep-all' },
   
   infoBox: { padding: '35px', backgroundColor: '#f8f9fa', borderRadius: '16px', borderLeft: '6px solid #007bff' },
-  infoList: { paddingLeft: '20px', fontSize: '1.1rem', color: '#333', display: 'flex', flexDirection: 'column', gap: '15px' },
+  infoList: { paddingLeft: '20px', fontSize: '1.05rem', color: '#333', display: 'flex', flexDirection: 'column', gap: '15px' },
 
-  legalBox: { padding: '40px', backgroundColor: '#f1f3f9', borderRadius: '16px', borderLeft: '6px solid #1c1b1f' },
-  legalText: { fontSize: '1.1rem', color: '#333', marginBottom: '15px', lineHeight: '1.8' },
-  
-  /* 9단계 카드: 모든 카드 파란색 강조 및 그림자 적용 */
   flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px' },
-  flowCard: { 
-    padding: '30px', 
-    backgroundColor: '#fff', 
-    borderRadius: '16px', 
-    borderTop: '5px solid #007bff', 
-    boxShadow: '0 8px 25px rgba(0, 123, 255, 0.08)',
-    transition: 'transform 0.3s ease'
-  },
-  flowIdx: { fontSize: '0.9rem', fontWeight: '900', color: '#007bff', display: 'block', marginBottom: '12px' },
-  flowT: { fontSize: '1.25rem', fontWeight: '800', color: '#111', marginBottom: '12px' },
-  flowC: { fontSize: '1rem', color: '#555', lineHeight: '1.6' },
+  flowCard: { padding: '30px', backgroundColor: '#fff', borderRadius: '16px', borderTop: '5px solid #007bff', boxShadow: '0 8px 25px rgba(0, 123, 255, 0.08)' },
+  flowIdx: { fontSize: '0.8rem', fontWeight: '900', color: '#007bff', display: 'block', marginBottom: '12px' },
+  flowT: { fontSize: '1.15rem', fontWeight: '800', color: '#111', marginBottom: '12px' },
+  flowC: { fontSize: '0.95rem', color: '#555', lineHeight: '1.6' },
 
   checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px' },
-  checkItem: { padding: '30px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' },
-  itemHeader: { fontSize: '1.15rem', fontWeight: '800', color: '#007bff', marginBottom: '12px' },
-  itemContent: { fontSize: '1rem', color: '#555', lineHeight: '1.6' },
-  
+  checkItem: { padding: '30px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px' },
+  itemHeader: { fontSize: '1.1rem', fontWeight: '800', color: '#007bff', marginBottom: '12px' },
+  itemContent: { fontSize: '0.95rem', color: '#555' },
+
   splitRow: { display: 'flex', gap: '60px' },
   splitLeft: { flex: 1.2 },
   splitRight: { flex: 1 },
   checklist: { listStyle: 'none', padding: 0 },
-  checkli: { fontSize: '1.1rem', color: '#444', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' },
+  checkli: { color: '#444', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' },
 
   table: { width: '100%', borderCollapse: 'collapse' },
   tableHeadRow: { backgroundColor: '#f8f9fa' },
-  th: { padding: '18px', border: '1px solid #eee', textAlign: 'left', fontWeight: '800', fontSize: '1.1rem' },
-  td: { padding: '18px', border: '1px solid #eee', fontSize: '1.05rem', color: '#444' },
-  tdBold: { padding: '18px', border: '1px solid #eee', fontWeight: '800', backgroundColor: '#fcfcfc', fontSize: '1.05rem' },
+  th: { padding: '15px', border: '1px solid #eee', textAlign: 'left', fontWeight: '800' },
+  td: { padding: '15px', border: '1px solid #eee', color: '#444' },
+  tdBold: { padding: '15px', border: '1px solid #eee', fontWeight: '800', backgroundColor: '#fcfcfc' },
   
-  /* 산정 공식 패턴 통일 */
-  mathCardNormal: { padding: '60px 40px', backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #eee', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' },
+  mathCardNormal: { padding: '60px 40px', backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #eee', textAlign: 'center' },
   mathDisplay: { display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '25px' },
-  mathVar: { fontStyle: 'italic', fontFamily: '"Times New Roman", serif', fontSize: '2.4rem', fontWeight: '600', color: '#111' },
-  mathOp: { margin: '0 25px', fontSize: '2rem', color: '#888' },
-  mathCaption: { fontSize: '1.1rem', color: '#666', opacity: 0.8 },
+  mathVar: { fontStyle: 'italic', fontFamily: 'serif', fontSize: '2rem', fontWeight: '600', color: '#111' },
+  mathOp: { margin: '0 20px', fontSize: '1.5rem', color: '#888' },
+  mathCaption: { fontSize: '0.95rem', color: '#666' },
   
-  finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff', textAlign: 'center', fontSize: '1rem' }
+  finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff' }
 };
