@@ -13,7 +13,7 @@ import Regulation from './pages/Regulation';
 import ProtectiveEquipment from './pages/ProtectiveEquipment';
 import RiskClassification from './pages/RiskClassification';
 import JsaSamplePreview from './pages/JsaSamplePreview';
-
+import MyLibrary from './pages/MyLibrary'; // 신규 컴포넌트
 /* 가이드 페이지 임포트 */
 import ConstructionGuide from './pages/guideline/ConstructionGuide';
 import HighRiskGuide from './pages/guideline/HighRiskGuide';
@@ -21,6 +21,11 @@ import GeneralGuide from './pages/guideline/GeneralGuide';
 import ManufacturingGuide from './pages/guideline/ManufacturingGuide';
 import ChemicalGasGuide from './pages/guideline/ChemicalGasGuide';
 import CommonGuide from './pages/guideline/CommonGuide';
+import Login from './pages/Login'; 
+import ResetPassword from './pages/ResetPassword'; 
+import Dashboard from './components/Dashboard';
+import ProfileSettings from './components/ProfileSettings';
+import PublicExplore from './components/PublicExplore';
 
 function App() {
   return (
@@ -41,6 +46,10 @@ function App() {
           <Route path="/regulation" element={<Regulation />} />
           <Route path="/riskclassification" element={<RiskClassification />} />
           <Route path="/protectiveequipment" element={<ProtectiveEquipment />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/library" element={<MyLibrary />} />
+
 
           {/* JSA 가이드 섹션 - 경로를 /guideline/으로 통일 */}
           <Route path="/guideline/construction" element={<ConstructionGuide />} />
@@ -49,6 +58,11 @@ function App() {
           <Route path="/guideline/manufacturing" element={<ManufacturingGuide />} />
           <Route path="/guideline/chemical" element={<ChemicalGasGuide />} />
           <Route path="/guideline/common" element={<CommonGuide />} />
+
+
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<ProfileSettings />} />
+          <Route path="/explore" element={<PublicExplore />} />
         </Routes>
       </MobileGuard>
     </Router>

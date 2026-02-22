@@ -8,7 +8,13 @@ export default function Analysis() {
   const location = useLocation();
   const scrollRef = useRef(null);
 
-  const { procedures = [], formData = {}, participants = [], analysisData: incomingAnalysisData } = location.state || {};
+  const { 
+    id: existingId = null, 
+    procedures = [], 
+    formData = {}, 
+    participants = [], 
+    analysisData: incomingAnalysisData 
+  } = location.state || {};
   
   const [dbRisks, setDbRisks] = useState([]); 
   const [categories, setCategories] = useState([]); 
@@ -18,12 +24,16 @@ export default function Analysis() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedHighRisk, setSelectedHighRisk] = useState(""); 
 
+  const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
+  const [myLibraryItems, setMyLibraryItems] = useState([]);
+  const [selectedLibProject, setSelectedLibProject] = useState(null);
+
   useEffect(() => {
     const fetchRiskMaster = async () => {
       setIsLoading(true);
       const { data, error } = await supabase.from('Risk_Master').select('*');
       if (!error && data) {
-        setDbRisks(data);
+        setDbRisks(data.map(d => ({ ...d, source: 'master' })));
         const uniqueCats = [...new Set(data.map(item => item.category))].filter(Boolean);
         setCategories(uniqueCats);
       }
@@ -32,88 +42,83 @@ export default function Analysis() {
     fetchRiskMaster();
   }, []);
 
-  const getRisksFromDBByTokens = (title = "", detail = "", currentFormData = {}) => {
-    const combinedText = `${title} ${detail}`.trim();
-    if (!combinedText || dbRisks.length === 0) return [];
+  const handleVote = async (riskId, type, e) => {
+    e.stopPropagation();
+    try {
+      const field = type === 'up' ? 'upvotes' : 'reports';
+      await supabase.rpc('increment_risk_stats', { row_id: riskId, stat_field: field });
+      alert(type === 'up' ? "추천되었습니다." : "신고되었습니다.");
+    } catch (err) { alert("처리 중 오류 발생"); }
+  };
 
-    const tokens = combinedText.split(/[\s,./]+/).filter(t => t.trim().length > 0);
-    const uniqueTokens = [...new Set(tokens.map(t => t.toLowerCase()))];
+  const fetchMyLibrary = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return alert("로그인이 필요합니다.");
+    const { data } = await supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id);
+    setMyLibraryItems(data || []);
+    setSelectedLibProject(null);
+    setIsLibraryModalOpen(true);
+  };
+
+  const applyStepData = (stepData) => {
+    const newData = [...analysisData];
+    newData[activeIdx].risks = stepData.risks.map(r => ({
+      ...r,
+      id: `lib-${Date.now()}-${Math.random()}`
+    }));
+    newData[activeIdx].frequency = stepData.frequency || 1;
+    newData[activeIdx].severity = stepData.severity || 1;
+    newData[activeIdx].riskLevel = (stepData.frequency || 1) * (stepData.severity || 1);
     
+    setAnalysisData(newData);
+    setIsLibraryModalOpen(false);
+    alert(`'${stepData.proc.stepTitle}' 데이터를 가져왔습니다.`);
+  };
+
+  const getRisksFromDBByTokens = async (title = "", detail = "", currentFormData = {}) => {
+    const combinedText = `${title} ${detail}`.trim();
+    if (!combinedText) return [];
+    const tokens = combinedText.split(/[\s,./]+/).filter(t => t.trim().length >= 2);
+    const uniqueTokens = [...new Set(tokens.map(t => t.toLowerCase()))];
     let matchedRisks = [];
     const seenFactors = new Set(); 
-
-    uniqueTokens.forEach(token => {
-      dbRisks.forEach(item => {
-        if (!item.keywords || !Array.isArray(item.keywords)) return;
-        const isMatched = item.keywords.some(kw => {
-          const cleanKw = kw.toString().replace(/\s+/g, "").toLowerCase();
-          return token.includes(cleanKw) || cleanKw.includes(token);
-        });
-        if (isMatched && !seenFactors.has(item.risk_factor)) {
-          matchedRisks.push({ factor: item.risk_factor, measure: item.measure, category: item.category });
-          seenFactors.add(item.risk_factor);
-        }
-      });
+    dbRisks.forEach(item => {
+      const isMatched = item.keywords?.some(kw => uniqueTokens.some(token => token.includes(kw.toLowerCase())));
+      if (isMatched && !seenFactors.has(item.risk_factor)) {
+        matchedRisks.push({ ...item, source: 'master' });
+        seenFactors.add(item.risk_factor);
+      }
     });
-
-    if (currentFormData.hasNewWorker) {
-      matchedRisks.unshift({
-        factor: "신입 및 미숙련 작업자의 작업 숙련도 부족으로 인한 돌발 사고",
-        measure: "작업 전담 멘토(사수) 지정 및 작업 전 절차 재교육, 현장 밀착 감시 수행"
-      });
-    }
     return matchedRisks;
   };
 
   useEffect(() => {
     if (procedures?.length > 0) {
-      setAnalysisData(prevData => {
-        const baseData = prevData.length > 0 ? prevData : (incomingAnalysisData || []);
-        return procedures.map((newProc, idx) => {
-          const existingData = baseData.find(d => d.id === idx);
-          if (existingData) return { ...existingData, proc: newProc };
-          return { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
-        });
-      });
+      setAnalysisData(prevData => procedures.map((newProc, idx) => {
+        const existingData = prevData.find(d => d.id === idx) || (incomingAnalysisData || []).find(d => d.id === idx);
+        return existingData ? { ...existingData, proc: newProc } : { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+      }));
     }
-  }, [procedures]);
+  }, [procedures, incomingAnalysisData]);
 
   const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
 
   useEffect(() => {
-    if (selectedHighRisk) {
-      const filtered = dbRisks
-        .filter(r => r.category === selectedHighRisk)
-        .map(r => ({ factor: r.risk_factor, measure: r.measure, category: r.category }));
-      setRecommendations(filtered);
-    } else {
-      const searchTimer = setTimeout(() => {
-        setRecommendations(getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "", formData));
-      }, 300);
-      return () => clearTimeout(searchTimer);
-    }
+    const updateRecommendations = async () => {
+      if (selectedHighRisk) setRecommendations(dbRisks.filter(r => r.category === selectedHighRisk).map(r => ({ ...r, source: 'master' })));
+      else setRecommendations(await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "", formData));
+    };
+    updateRecommendations();
   }, [activeIdx, currentStep.proc, selectedHighRisk, dbRisks, formData]);
 
   const handlePrev = () => {
-    if (activeIdx === 0) navigate('/procedure', { state: { formData, participants, procedures, analysisData } });
+    if (activeIdx === 0) navigate('/procedure', { state: { id: existingId, formData, participants, procedures, analysisData } });
     else setActiveIdx(activeIdx - 1);
   };
 
   const addRisk = (rec) => {
     const newData = [...analysisData];
-    newData[activeIdx].risks.push({ id: `risk-${Date.now()}`, factor: rec.factor, measure: rec.measure });
-    setAnalysisData(newData);
-  };
-
-  const deleteRisk = (riskId) => {
-    const newData = [...analysisData];
-    newData[activeIdx].risks = newData[activeIdx].risks.filter(r => r.id !== riskId);
-    setAnalysisData(newData);
-  };
-
-  const updateRiskContent = (riskId, field, value) => {
-    const newData = [...analysisData];
-    newData[activeIdx].risks = newData[activeIdx].risks.map(r => r.id === riskId ? { ...r, [field]: value } : r);
+    newData[activeIdx].risks.push({ id: `risk-${Date.now()}`, factor: rec.risk_factor || rec.factor, measure: rec.measure, category: rec.category || "기타" });
     setAnalysisData(newData);
   };
 
@@ -129,7 +134,47 @@ export default function Analysis() {
 
   return (
     <div style={styles.wrapper}>
-      {isLoading && <div style={styles.dialogOverlay}><div style={styles.dialogBox}><div style={styles.spinner} /><h3>데이터 동기화 중...</h3></div></div>}
+      {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
+      
+      {isLibraryModalOpen && (
+        <div style={styles.dialogOverlay} onClick={() => setIsLibraryModalOpen(false)}>
+          <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
+            <div style={styles.modalHeader}>
+              <h3 style={{ margin: 0 }}>작업 단계 선택</h3>
+              <button style={styles.closeBtnSmall} onClick={() => setIsLibraryModalOpen(false)}>✕</button>
+            </div>
+            <div style={styles.libList}>
+              {!selectedLibProject ? (
+                myLibraryItems.length === 0 ? <p style={styles.emptyText}>저장된 라이브러리가 없습니다.</p> :
+                myLibraryItems.map(item => (
+                  <div key={item.id} style={styles.libItem} onClick={() => setSelectedLibProject(item.jsa_projects)}>
+                    <div style={styles.libInfo}>
+                      <span style={styles.libCategory}>{item.category_id ? "📁 폴더분류" : "📄 미분류"}</span>
+                      <strong style={styles.libTitleText}>{item.jsa_projects.title}</strong>
+                    </div>
+                    <span>➡️</span>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <button style={styles.backBtn} onClick={() => setSelectedLibProject(null)}>⬅️ 목록 돌아가기</button>
+                  {selectedLibProject.analysis_data.map((step, idx) => (
+                    <div key={idx} style={styles.libStepItem} onClick={() => applyStepData(step)}>
+                      <div style={styles.stepInfo}>
+                        <span style={styles.stepIdxBadge}>Step {idx + 1}</span>
+                        <strong style={styles.stepTitleText}>{step.proc.stepTitle}</strong>
+                      </div>
+                      <div style={styles.stepPreview}>{step.risks.length}개 위험요인</div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 배경 레이어 원본 유지 */}
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
@@ -152,10 +197,7 @@ export default function Analysis() {
                 <span style={styles.stepCountBadge}>{activeIdx + 1} / {analysisData.length}</span>
               </div>
               <div style={styles.stepContext}>
-                <div style={styles.stepTitleRow}>
-                  <span style={styles.stepLabel}>현재 단계</span>
-                  <strong style={styles.stepValue}>{currentStep.proc?.stepTitle}</strong>
-                </div>
+                <div style={styles.stepTitleRow}><span style={styles.stepLabel}>현재 단계</span><strong style={styles.stepValue}>{currentStep.proc?.stepTitle}</strong></div>
                 <p style={styles.stepDetailText}>{currentStep.proc?.stepDetail}</p>
               </div>
             </div>
@@ -164,33 +206,25 @@ export default function Analysis() {
               <div style={styles.analysisGrid}>
                 <section style={styles.leftPanel}>
                   <div style={styles.filterArea}>
-                    <label style={styles.label}>⚠️ 고위험 작업 필터</label>
+                    <label style={styles.label}>⚠️ 고위험 필터</label>
                     <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => setSelectedHighRisk(e.target.value)}>
                       <option value="">(자동 제안)</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
+                    <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>📂 라이브러리 스텝 호출</button>
                   </div>
 
                   <div style={styles.recHeader}>
-                    <span style={styles.label}>추천 위험요인 DB</span>
-                    <div style={styles.arrowBox}>
-                      <button style={styles.arrowBtn} onClick={() => scroll('left')}>←</button>
-                      <button style={styles.arrowBtn} onClick={() => scroll('right')}>→</button>
-                    </div>
+                    <span style={styles.label}>안전 지식 베이스 (표준/공유)</span>
+                    <div style={styles.arrowBox}><button style={styles.arrowBtn} onClick={() => scroll('left')}>←</button><button style={styles.arrowBtn} onClick={() => scroll('right')}>→</button></div>
                   </div>
 
                   <div style={styles.sliderContainer} ref={scrollRef}>
-                    <div style={styles.manualAddCard} onClick={() => addRisk({ factor: '', measure: '' })}>
-                      <div style={styles.plusIcon}>+</div><p style={styles.manualText}>수동 작성</p>
-                    </div>
+                    <div style={styles.manualAddCard} onClick={() => addRisk({ factor: '', measure: '' })}><div style={styles.plusIcon}>+</div><p style={styles.manualText}>수동 작성</p></div>
                     {recommendations.map((rec, i) => (
-                      <div key={`rec-${i}`} style={{...styles.recommendCard, borderColor: selectedHighRisk ? '#ff4d4d' : '#333'}} onClick={() => addRisk(rec)}>
-                        <div style={styles.badgeGroup}>
-                           <div style={selectedHighRisk ? styles.recBadgeHigh : styles.recBadge}>{selectedHighRisk ? "고위험" : "추천"}</div>
-                           {rec.category && <div style={styles.categoryBadge}>{rec.category}</div>}
-                        </div>
-                        <p style={styles.recFactor}>{rec.factor}</p>
-                        <p style={styles.recMeasure}>{rec.measure}</p>
+                      <div key={`rec-${i}`} style={styles.recommendCard} onClick={() => addRisk(rec)}>
+                        <div style={styles.badgeGroup}><div style={styles.recBadge}>{rec.source === 'master' ? "공식" : "공유"}</div></div>
+                        <p style={styles.recFactor}>{rec.risk_factor || rec.factor}</p><p style={styles.recMeasure}>{rec.measure}</p>
                       </div>
                     ))}
                   </div>
@@ -200,46 +234,24 @@ export default function Analysis() {
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>평가 결과 및 대책 ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
-                      <div style={styles.riskInputSet}>
-                        <span style={styles.miniLabel}>빈도(F)</span>
-                        <select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>
-                          {[1, 2, 3, 4, 5].map(n => <option key={n} value={n} style={styles.selectOption}>{n}</option>)}
-                        </select>
-                      </div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>빈도</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-                      <div style={styles.riskInputSet}>
-                        <span style={styles.miniLabel}>강도(S)</span>
-                        <select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>
-                          {[1, 2, 3, 4, 5].map(n => <option key={n} value={n} style={styles.selectOption}>{n}</option>)}
-                        </select>
-                      </div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>강도</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
-                      <div style={styles.riskInputSet}>
-                        <span style={styles.miniLabel}>위험도(R)</span>
-                        <select
-                          style={{...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}
-                          value={currentStep.riskLevel}
-                          onChange={(e) => updateStepRisk('riskLevel', e.target.value)}
-                        >
-                          {Array.from({ length: 25 }, (_, i) => i + 1).map(n => <option key={n} value={n} style={styles.selectOption}>{n}</option>)}
-                        </select>
-                      </div>
+                      <div style={{...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}>{currentStep.riskLevel}</div>
                     </div>
                   </div>
                   <div style={styles.selectedListScroll}>
                     <table style={styles.table}>
-                      <thead>
-                        <tr><th style={{ width: '45%' }}>유해·위험요인</th><th style={{ width: '45%' }}>감소대책</th><th style={{ width: '10%' }}>삭제</th></tr>
-                      </thead>
+                      <thead><tr><th>유해·위험요인</th><th>감소대책</th><th>삭제</th></tr></thead>
                       <tbody>
-                        {currentStep.risks.length === 0 ? <tr><td colSpan="3" style={styles.emptyTd}>좌측 카드를 클릭하여 추가하세요.</td></tr> :
-                          currentStep.risks.map(r => (
-                            <tr key={r.id}>
-                              <td style={styles.td}><textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskContent(r.id, 'factor', e.target.value)} rows={3} /></td>
-                              <td style={styles.td}><textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskContent(r.id, 'measure', e.target.value)} rows={3} /></td>
-                              <td style={{ textAlign: 'center', verticalAlign: 'middle' }}><button style={styles.smallDeleteBtn} onClick={() => deleteRisk(r.id)}>×</button></td>
-                            </tr>
-                          ))}
+                        {currentStep.risks.map(r => (
+                          <tr key={r.id}>
+                            <td style={styles.td}><textarea style={styles.inlineInput} value={r.factor} onChange={(e) => { const nd = [...analysisData]; nd[activeIdx].risks = nd[activeIdx].risks.map(risk => risk.id === r.id ? {...risk, factor: e.target.value} : risk); setAnalysisData(nd); }} rows={3} /></td>
+                            <td style={styles.td}><textarea style={styles.inlineInput} value={r.measure} onChange={(e) => { const nd = [...analysisData]; nd[activeIdx].risks = nd[activeIdx].risks.map(risk => risk.id === r.id ? {...risk, measure: e.target.value} : risk); setAnalysisData(nd); }} rows={3} /></td>
+                            <td style={{ textAlign: 'center' }}><button style={styles.smallDeleteBtn} onClick={() => { const nd = [...analysisData]; nd[activeIdx].risks = nd[activeIdx].risks.filter(risk => risk.id !== r.id); setAnalysisData(nd); }}>×</button></td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
@@ -249,40 +261,62 @@ export default function Analysis() {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
-              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/export', { state: { analysisData, formData, participants, procedures } })}>
+              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/export', { state: { id: existingId, isFork: location.state?.isFork, analysisData, formData, participants, procedures } })}>
                 {activeIdx === analysisData.length - 1 ? '분석 완료 및 보고서 생성' : '다음 작업 단계 분석'}
               </button>
             </div>
           </div>
         </main>
       </div>
+
+      <footer style={styles.footerArea}>
+        <div style={styles.bottomAdWrapper}>
+          <AdBanner slot="3000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
+        </div>
+      </footer>
     </div>
   );
 }
 
 const styles = {
-  // [원본 디자인 스타일 100% 동일 유지 + 버튼 커서 pointer 추가]
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
+  // ✅ [수정] 배경이 보이도록 backgroundColor를 transparent로 고정
+  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
   header: { padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
+  
+  // ✅ [원본 유지] 레이아웃 규격 절대 변경 금지
   mainLayout: { flex: 1, display: 'flex', padding: '0 5rem', zIndex: 10, overflow: 'hidden' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', flexDirection: 'column', maxHeight: '85vh', height: '750px', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', overflowY: 'auto' },
+  formCard: { 
+    width: '100%', 
+    maxWidth: '1440px', 
+    backgroundColor: 'rgba(18, 18, 18, 0.98)', 
+    border: '1px solid rgba(255,255,255,0.12)', 
+    borderRadius: '12px', 
+    padding: '2rem 2.5rem', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    maxHeight: '82vh', 
+    boxShadow: '0 40px 80px rgba(0,0,0,0.9)', 
+    overflow: 'hidden' 
+  },
+  
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
-  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
-  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
-  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: '#aaa' },
+  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
+  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
+  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
+  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
   stepText: { fontSize: '0.85rem', color: '#aaa' },
+  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
+  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
+  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
+  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
+
   formHeader: { borderLeft: '5px solid #007bff', paddingLeft: '1rem', marginBottom: '1.2rem' },
   headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
   formTitle: { fontSize: '1.4rem', color: '#fff', fontWeight: '800', margin: 0 },
@@ -297,27 +331,33 @@ const styles = {
   leftPanel: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
   filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
-  highRiskSelect: { width: '100%', maxWidth: '220px', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.85rem', outline: 'none' },
+  highRiskSelect: { width: '100%', maxWidth: '140px', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' },
+  libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold' },
   recHeader: { display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' },
   arrowBox: { display: 'flex', gap: '0.4rem' },
-  arrowBtn: { backgroundColor: '#222', border: '1px solid #333', color: '#fff', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' },
-  sliderContainer: { display: 'grid', gridTemplateRows: 'repeat(2, 130px)', gridAutoFlow: 'column', gap: '1rem', overflowX: 'auto', paddingBottom: '1rem' },
+  arrowBtn: { backgroundColor: '#222', border: '1px solid #333', color: '#fff', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer' },
+  sliderContainer: { 
+    display: 'grid', 
+    gridTemplateRows: 'repeat(2, 130px)', 
+    gridAutoFlow: 'column', 
+    gap: '1rem', 
+    overflowX: 'auto', 
+    paddingBottom: '1rem'
+  },
   recommendCard: { minWidth: '220px', height: '130px', backgroundColor: '#161616', border: '1px solid #333', borderRadius: '8px', padding: '1rem', cursor: 'pointer', position: 'relative' },
   manualAddCard: { width: '220px', height: '130px', border: '1px dashed #007bff', backgroundColor: 'rgba(0,123,255,0.05)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#007bff', cursor: 'pointer' },
   plusIcon: { fontSize: '1.5rem' },
   manualText: { fontSize: '0.8rem', fontWeight: 'bold' },
-  badgeGroup: { position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '5px' },
+  badgeGroup: { position: 'absolute', top: '10px', right: '10px' },
   recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
-  recBadgeHigh: { fontSize: '0.6rem', color: '#ff4d4d', border: '1px solid #ff4d4d', padding: '1px 4px', borderRadius: '3px' },
-  categoryBadge: { fontSize: '0.6rem', color: '#007bff', border: '1px solid #007bff', padding: '1px 4px', borderRadius: '3px' },
-  recFactor: { marginTop: '1.5rem', color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' },
+  recFactor: { marginTop: '1.5rem', color: '#fff', fontSize: '0.85rem', fontWeight: 'bold' },
   recMeasure: { color: '#777', fontSize: '0.75rem' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
   riskScoreContainer: { display: 'flex', gap: '1rem', alignItems: 'center' },
   riskInputSet: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
-  miniLabel: { fontSize: '0.6rem', color: '#666', marginBottom: '2px' },
+  miniLabel: { fontSize: '0.6rem', color: '#666' },
   miniSelect: { backgroundColor: '#111', color: '#fff', border: '1px solid #444', padding: '2px 5px', borderRadius: '4px' },
-  riskResultSelect: { width: '40px', height: '30px', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 'bold', textAlign: 'center' },
+  riskResultSelect: { width: '40px', height: '30px', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '30px' },
   riskMultiply: { color: '#444' },
   riskEqual: { color: '#444' },
   selectedListScroll: { flex: 1, overflowY: 'auto' },
@@ -325,16 +365,38 @@ const styles = {
   td: { padding: '8px', borderBottom: '1px solid #1a1a1a' },
   inlineInput: { width: '100%', backgroundColor: '#111', color: '#ddd', border: '1px solid #222', padding: '0.5rem', borderRadius: '4px', resize: 'none', fontSize: '0.8rem' },
   smallDeleteBtn: { backgroundColor: 'transparent', color: '#444', border: '1px solid #333', cursor: 'pointer', borderRadius: '4px' },
-  emptyTd: { padding: '3rem 0', color: '#444', textAlign: 'center' },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', fontWeight: '700', cursor: 'pointer' },
-  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', fontWeight: '800', borderRadius: '8px', cursor: 'pointer' },
-  label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
+  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', fontWeight: '800', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' },
   dialogOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  dialogBox: { textAlign: 'center', color: '#fff' },
-  spinner: { width: '40px', height: '40px', border: '3px solid #007bff', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }
+  spinner: { width: '40px', height: '40px', border: '3px solid #007bff', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' },
+  libModalContent: { width: '550px', maxHeight: '650px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column' },
+  modalHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #222', paddingBottom: '1rem', marginBottom: '1rem' },
+  closeBtnSmall: { background: 'none', border: 'none', color: '#fff', fontSize: '1.2rem', cursor: 'pointer' },
+  backBtn: { padding: '0.6rem', marginBottom: '1rem', backgroundColor: '#222', color: '#888', border: '1px solid #333', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', textAlign: 'left' },
+  libList: { overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '10px' },
+  libItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: '#1a1a1a', border: '1px solid #222', borderRadius: '8px', cursor: 'pointer' },
+  libStepItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: '#000', border: '1px solid #007bff', borderRadius: '8px', cursor: 'pointer' },
+  libInfo: { display: 'flex', flexDirection: 'column', gap: '4px' },
+  libCategory: { fontSize: '0.7rem', color: '#007bff' },
+  libTitleText: { fontSize: '0.9rem', color: '#eee' },
+  stepIdxBadge: { fontSize: '0.7rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 5px', borderRadius: '3px', width: 'fit-content' },
+  stepTitleText: { fontSize: '1rem', color: '#fff', marginTop: '5px' },
+  stepPreview: { fontSize: '0.75rem', color: '#666' },
+  label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
+  
+  // ✅ [핵심 수정] 하단 검은색 바만 제거하기 위해 backgroundColor를 transparent로 고정
+  footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10, backgroundColor: 'transparent' },
+  bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
 };
 
-const styleTag = document.createElement("style");
-styleTag.innerHTML = `@keyframes spin { to { transform: rotate(360deg); } } .selectedListScroll::-webkit-scrollbar { width: 4px; } .selectedListScroll::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }`;
-document.head.appendChild(styleTag);
+// 전역 스타일
+if (typeof document !== 'undefined') {
+  const styleTag = document.createElement("style");
+  styleTag.innerHTML = `
+    @keyframes spin { to { transform: rotate(360deg); } }
+    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
+    *::-webkit-scrollbar { display: none !important; }
+  `;
+  document.head.appendChild(styleTag);
+}
