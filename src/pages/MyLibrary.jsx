@@ -9,37 +9,80 @@ export default function MyLibrary() {
   const [favorites, setFavorites] = useState([]);
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null);
+  // ✅ [교정] 평면 배열을 트리 구조로 변환하는 헬퍼 함수
+  const buildFolderTree = (items, parentId = null) => {
+    return items
+      .filter(item => item.parent_id === parentId)
+      .map(item => ({
+        ...item,
+        children: buildFolderTree(items, item.id) // 재귀 호출로 자식 폴더 탐색
+      }));
+  };
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchLibraryData();
-  }, []);
+    useEffect(() => {
+      const checkAuth = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          alert("로그인이 필요한 서비스입니다.");
+          navigate('/login');
+          return;
+        }
+        fetchLibraryData();
+      };
 
-  const fetchLibraryData = async () => {
-    setIsLoading(true);
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    checkAuth();
+  }, [navigate]);
 
-    // 카테고리(폴더)와 즐겨찾기 목록 동시 호출
-    const [cats, favs] = await Promise.all([
-      supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
-      supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id)
-    ]);
 
-    setCategories(cats.data || []);
-    setFavorites(favs.data || []);
-    setIsLoading(false);
-  };
+const fetchLibraryData = async () => {
+  setIsLoading(true);
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
 
-  const createCategory = async () => {
-    if (!newCatName.trim()) return;
-    const { data: { user } } = await supabase.auth.getUser();
-    const { error } = await supabase
-      .from('user_jsa_categories')
-      .insert({ user_id: user.id, category_name: newCatName });
+  // 1. 카테고리, 즐겨찾기(스크랩), 내가 작성한 JSA(대시보드 데이터)를 동시에 호출
+  const [cats, favs, authored] = await Promise.all([
+    supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
+    supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
+    // 기존 Dashboard.jsx에 있던 본인 작성 데이터 호출 로직 통합
+    supabase.from('jsa_projects').select('*').eq('author_id', user.id).order('created_at', { ascending: false })
+  ]);
 
-    if (!error) { setNewCatName(""); fetchLibraryData(); }
-  };
+  setCategories(cats.data || []);
+
+  // 2. 통합 리스트 생성: 스크랩 데이터와 본인 작성 데이터를 구분하여 합침
+    const combined = [
+      ...(favs.data || []).map(item => ({ 
+        ...item, 
+        displayType: 'SCRAP', // 스크랩 식별자
+        originData: item.jsa_projects 
+      })),
+      ...(authored.data || []).map(item => ({ 
+        id: `mine-${item.id}`, 
+        displayType: 'MY_JSA', // 하단 삭제/이동 로직의 if문과 정확히 일치시킴
+        originData: item,
+        category_id: item.category_id || null // DB에 저장된 폴더 위치를 무시하지 않고 그대로 가져옴
+      }))
+    ];
+
+  setFavorites(combined); 
+  setIsLoading(false);
+};
+
+const createCategory = async () => {
+  if (!newCatName.trim()) return;
+  const { data: { user } } = await supabase.auth.getUser();
+  
+  const { error } = await supabase
+    .from('user_jsa_categories')
+    .insert({ 
+      user_id: user.id, 
+      category_name: newCatName,
+      parent_id: selectedCatId // ✅ [교정] 현재 선택된 폴더 ID를 부모로 지정 (없으면 null)
+    });
+
+  if (!error) { setNewCatName(""); fetchLibraryData(); }
+};
 
   const deleteCategory = async (e, catId, catName) => {
     e.stopPropagation();
@@ -56,17 +99,26 @@ export default function MyLibrary() {
     }
   };
 
-  const moveFavorite = async (favId, catId) => {
-    const { error } = await supabase
-      .from('user_favorites')
-      .update({ category_id: catId || null })
-      .eq('id', favId);
-    if (!error) fetchLibraryData();
+// ✅ [교정] 내 작성글(jsa_projects)과 스크랩(user_favorites)을 구분하여 폴더 이동
+  const moveFavorite = async (favId, catId, displayType) => {
+    if (displayType === 'MY_JSA') {
+      const realId = favId.replace('mine-', ''); // 'mine-' 접두사 제거 후 실제 ID 추출
+      await supabase.from('jsa_projects').update({ category_id: catId || null }).eq('id', realId);
+    } else {
+      await supabase.from('user_favorites').update({ category_id: catId || null }).eq('id', favId);
+    }
+    fetchLibraryData();
   };
 
-  const removeFavorite = async (favId) => {
+  // ✅ [교정] 내 작성글과 스크랩을 구분하여 삭제
+  const removeFavorite = async (favId, displayType) => {
     if (window.confirm("이 항목을 보관함에서 삭제하시겠습니까?")) {
-      await supabase.from('user_favorites').delete().eq('id', favId);
+      if (displayType === 'MY_JSA') {
+        const realId = favId.replace('mine-', '');
+        await supabase.from('jsa_projects').delete().eq('id', realId);
+      } else {
+        await supabase.from('user_favorites').delete().eq('id', favId);
+      }
       fetchLibraryData();
     }
   };
@@ -112,25 +164,19 @@ export default function MyLibrary() {
                 >
                   📂 전체 보기 ({favorites.length})
                 </div>
-                <div style={styles.catScrollArea}>
-                  {categories.map(cat => (
-                    <div 
-                      key={cat.id} 
-                      style={selectedCatId === cat.id ? styles.catItemActive : styles.catItem}
-                      onClick={() => setSelectedCatId(cat.id)}
-                    >
-                      <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        📁 {cat.category_name}
-                      </span>
-                      <button 
-                        style={styles.catDelBtn} 
-                        onClick={(e) => deleteCategory(e, cat.id, cat.category_name)}
-                      >
-                        🗑️
-                      </button>
-                    </div>
-                  ))}
-                </div>
+              <div style={styles.catScrollArea}>
+                {/* ✅ [교정] 트리 구조로 변환된 데이터를 재귀 컴포넌트로 전달 */}
+                {buildFolderTree(categories).map(rootFolder => (
+                  <FolderItem 
+                    key={rootFolder.id} 
+                    folder={rootFolder} 
+                    selectedId={selectedCatId} 
+                    onSelect={setSelectedCatId} 
+                    onDelete={deleteCategory}
+                    favorites={favorites} // ✅ 추가됨
+                  />
+                ))}
+              </div>
               </aside>
 
               {/* 우측: JSA 카드 리스트 */}
@@ -139,36 +185,61 @@ export default function MyLibrary() {
                   <div style={styles.loader}>지식 자산 로딩 중...</div>
                 ) : (
                   <div style={styles.jsaGrid}>
-                    {favorites
-                      .filter(f => !selectedCatId || f.category_id === selectedCatId)
-                      .map(f => (
-                        <div key={f.id} style={styles.jsaCard}>
-                          <div style={styles.cardTop}>
-                            <span style={styles.tagBadge}>
-                              {f.jsa_projects?.tags?.[0] || "일반작업"}
-                            </span>
-                            <button style={styles.delBtn} onClick={() => removeFavorite(f.id)}>✕</button>
-                          </div>
-                          <h4 style={styles.cardTitle}>{f.jsa_projects?.title}</h4>
-                          
-                          <div style={styles.cardActions}>
+                {favorites
+                  .filter(f => !selectedCatId || f.category_id === selectedCatId)
+                  .map(f => (
+                    <div key={f.id} style={styles.jsaCard}>
+                      <div style={styles.cardTop}>
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                          {/* ✅ 내가 작성한 것과 스크랩을 구분하는 뱃지 추가 */}
+                          <span style={{ 
+                            fontSize: '0.6rem', 
+                            padding: '2px 6px', 
+                            borderRadius: '4px',
+                            backgroundColor: f.displayType === 'MY_JSA' ? '#4caf50' : '#007bff',
+                            color: '#fff' 
+                          }}>
+                            {f.displayType === 'MY_JSA' ? '내 작성' : '스크랩'}
+                          </span>
+                          <span style={styles.tagBadge}>
+                            {f.originData?.tags?.[0] || "일반작업"}
+                          </span>
+                        </div>
+                        <button style={styles.delBtn} onClick={() => removeFavorite(f.id, f.displayType)}>✕</button>
+                      </div>
+                      
+                      {/* ✅ 데이터 참조 경로를 originData로 변경 */}
+                      <h4 style={styles.cardTitle}>{f.originData?.title}</h4>
+                      
+                      <div style={styles.cardActions}>
+             {/* 폴더 이동 셀렉트 박스 수정 */}
                             <select 
                               style={styles.moveSelect}
                               value={f.category_id || ""} 
-                              onChange={(e) => moveFavorite(f.id, e.target.value)}
+                              onChange={(e) => moveFavorite(f.id, e.target.value, f.displayType)}
                             >
-                              <option value="">폴더 이동...</option>
-                              {categories.map(c => <option key={c.id} value={c.id}>{c.category_name}</option>)}
-                            </select>
-                            <button 
-                              style={styles.useBtn} 
-                              onClick={() => navigate('/analysis', { state: { ...f.jsa_projects.form_data, analysisData: f.jsa_projects.analysis_data, isFork: true } })}
-                            >
-                              작성 시작
-                            </button>
-                          </div>
-                        </div>
-                      ))}
+                          <option value="">폴더 이동...</option>
+                          {categories.map(c => <option key={c.id} value={c.id}>{c.category_name}</option>)}
+                        </select>
+                          {/* ✅ [교정] Analysis.jsx가 요구하는 정확한 데이터 구조(State)로 조립하여 전달 */}
+                          <button 
+                            style={styles.useBtn} 
+                            onClick={() => navigate('/analysis', { 
+                              state: { 
+                                formData: f.originData?.form_data || {}, 
+                                participants: f.originData?.participants || [],
+                                analysisData: f.originData?.analysis_data || [],
+                                // DB의 analysisData 내부에서 절차(proc) 정보만 추출하여 복원
+                                procedures: (f.originData?.analysis_data || []).map(d => d.proc).filter(Boolean),
+                                isFork: true 
+                              } 
+                            })}
+                          >
+                            작성 시작
+                          </button>
+                      </div>
+                    </div>
+                  ))}
                   </div>
                 )}
               </section>
@@ -194,6 +265,48 @@ export default function MyLibrary() {
     </div>
   );
 }
+
+// ✅ [교정] favorites 속성 추가 및 아이템 수 계산 로직 반영
+const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level = 0 }) => {
+  const [isExpanded, setIsExpanded] = React.useState(true);
+  const hasChildren = folder.children && folder.children.length > 0;
+
+  // 현재 폴더에 속한 아이템 개수 계산
+  const itemCount = favorites.filter(f => f.category_id === folder.id).length;
+
+  return (
+    <div style={{ marginLeft: `${level * 12}px` }}>
+      <div 
+        style={selectedId === folder.id ? styles.catItemActive : styles.catItem}
+        onClick={() => onSelect(folder.id)}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flex: 1, overflow: 'hidden' }}>
+          {hasChildren && (
+            <span onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }} style={{ cursor: 'pointer', fontSize: '0.8rem' }}>
+              {isExpanded ? '▼' : '▶'}
+            </span>
+          )}
+          <span style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+            {hasChildren ? (isExpanded ? '📂' : '📁') : '📁'} {folder.category_name} <span style={{fontSize:'0.75rem', opacity:0.7}}>({itemCount})</span>
+          </span>
+        </div>
+        <button style={styles.catDelBtn} onClick={(e) => onDelete(e, folder.id, folder.category_name)}>🗑️</button>
+      </div>
+
+      {isExpanded && folder.children.map(child => (
+        <FolderItem 
+          key={child.id} 
+          folder={child} 
+          selectedId={selectedId} 
+          onSelect={onSelect} 
+          onDelete={onDelete} 
+          favorites={favorites} // 자식에게도 전달
+          level={level + 1} 
+        />
+      ))}
+    </div>
+  );
+};
 
 const styles = {
   // Info.jsx 배경 스타일 그대로 적용

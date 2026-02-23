@@ -87,7 +87,19 @@ export default function Main() {
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
                 <Link to="/explore" style={styles.headerLink}>사례 탐색</Link>
-                <Link to="/library" style={styles.headerLink}>내 보관함</Link>
+                {/* Link 대신 span이나 div를 사용하여 핸들러 연결 */}
+                <span 
+                  style={{ ...styles.headerLink, cursor: 'pointer' }} 
+                  onClick={() => {
+                    if (user) {
+                      navigate('/library');
+                    } else {
+                      setIsStartModalOpen(true); // 로그인 유도 모달 표시
+                    }
+                  }}
+                >
+                  내 보관함
+                </span>
               </div>
               
               <span style={styles.separator}>|</span>

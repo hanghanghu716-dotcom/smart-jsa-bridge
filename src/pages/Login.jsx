@@ -31,9 +31,7 @@ export default function Login() {
       }
       
       const forbiddenDB = [
-        '관리자', '운영자', '어드민', 'admin', 'administrator', 'root', 'system', 'support',
-        '씨발', '시발', '병신', '개새끼', '존나', '섹스', '포르노', '도박', '카지노', '토토',
-        '바다이야기', '일베', '메갈', '노무현', '문재인', '윤석열', '이재명', '한동훈'
+        '관리자', '운영자', '어드민', 'admin', 'administrator', 'root', 'system', 'support'
       ];
 
       const hasBadWord = forbiddenDB.some(word => nickname.toLowerCase().includes(word));

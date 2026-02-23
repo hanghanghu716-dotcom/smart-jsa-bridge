@@ -23,7 +23,6 @@ import ChemicalGasGuide from './pages/guideline/ChemicalGasGuide';
 import CommonGuide from './pages/guideline/CommonGuide';
 import Login from './pages/Login'; 
 import ResetPassword from './pages/ResetPassword'; 
-import Dashboard from './components/Dashboard';
 import ProfileSettings from './components/ProfileSettings';
 import PublicExplore from './components/PublicExplore';
 
@@ -59,8 +58,6 @@ function App() {
           <Route path="/guideline/chemical" element={<ChemicalGasGuide />} />
           <Route path="/guideline/common" element={<CommonGuide />} />
 
-
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<ProfileSettings />} />
           <Route path="/explore" element={<PublicExplore />} />
         </Routes>

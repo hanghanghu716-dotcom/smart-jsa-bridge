@@ -86,7 +86,7 @@ export default function Export() {
       if (projectError) throw projectError;
 
       alert("클라우드 저장 및 자동 태그 분류가 완료되었습니다.");
-      navigate('/dashboard');
+      navigate('/library');
     } catch (error) {
       alert(`처리 실패: ${error.message}`);
     } finally { setIsProcessing(false); }
