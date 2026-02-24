@@ -184,20 +184,83 @@ export default function Procedure() {
 
 
 const styles = {
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
-  bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
-  bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { padding: '1.2rem 5rem', zIndex: 10 },
+  // 1. 래퍼: 최소 높이만 지정하고, z-index 컨텍스트를 생성하지 않도록 복원
+  wrapper: { 
+    display: 'flex', 
+    flexDirection: 'column',
+    minHeight: '100vh', 
+    width: '100%',
+    backgroundColor: '#000' 
+  },
+
+  // 2. 🌟 배경 래퍼: 창(Viewport) 전체에 완전히 고정시킴
+  bgWrapper: { 
+    position: 'fixed', // 스크롤이나 내부 콘텐츠 수축에 절대 영향 받지 않음
+    top: 0, 
+    left: 0, 
+    width: '100vw',  
+    height: '100vh', 
+    zIndex: 0,       // -1이 아니라 0으로 두어 숨겨지지 않게 함
+    pointerEvents: 'none' // 배경이 클릭 등 마우스 이벤트를 방해하지 않게 함
+  },
+
+  // 3. 배경 이미지: 화면에 꽉 차게 채움
+  bgImage: { 
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    width: '100%', 
+    height: '100%', 
+    backgroundImage: 'url(/images/image2.jpg)', 
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center', 
+    filter: 'brightness(0.3)' 
+  },
+  
+  // 4. 어두운 오버레이
+  dimOverlay: { 
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    width: '100%', 
+    height: '100%', 
+    background: 'rgba(0,0,0,0.4)', 
+    zIndex: 1 
+  },
+
+  // 5. 헤더: 배경 위로 올라오도록 zIndex 조정
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
-  mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10, overflow: 'hidden' },
   
-  // [수정] 광고 중앙 정렬을 위한 Flex 속성 추가
+  // 6. 메인 레이아웃: 배경 위로 올라오도록 포지션과 zIndex 조정
+  mainLayout: { 
+    position: 'relative', // 중요: zIndex가 먹히려면 position이 필요함
+    flex: 1, 
+    display: 'flex', 
+    alignItems: 'center', 
+    padding: '0 5rem 100px', 
+    gap: '4rem', 
+    zIndex: 10, 
+    overflow: 'hidden' 
+  },
+
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  
-  // adImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '650px', borderRadius: '4px' }, // 사용 안 함
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', maxHeight: '78vh', display: 'flex', flexDirection: 'column' },
+  
+  // 7. 폼 카드: 수축 방지를 위해 고정 높이 유지
+  formCard: { 
+    width: '100%', 
+    maxWidth: '1440px', 
+    height: '75vh', 
+    backgroundColor: 'rgba(18, 18, 18, 0.98)', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
+    borderRadius: '12px', 
+    padding: '2rem 2.5rem', 
+    boxShadow: '0 40px 80px rgba(0,0,0,0.9)', 
+    display: 'flex', 
+    flexDirection: 'column',
+    overflow: 'hidden'
+  },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
@@ -226,7 +289,48 @@ const styles = {
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10 },
+  // ✅ [교정] 푸터를 절대 위치(Absolute)로 고정하여 화면 높이 계산을 방해하지 않게 함
+  footerArea: { 
+    width: '100%', 
+    padding: '1.5rem 5rem', 
+    zIndex: 10, 
+    position: 'absolute', 
+    bottom: 0, 
+    backgroundColor: 'transparent',
+    display: 'flex',
+    justifyContent: 'center'
+  },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  // bottomAdImg: { display: 'block', width: 'auto', height: 'auto', maxHeight: '90px' } // 사용 안 함
 };
+// ✅ 스크롤 기능을 전역적으로 복원하되, 지저분한 스크롤바만 보이지 않게 처리
+if (typeof document !== 'undefined') {
+  const styleId = "jsa-bridge-global-style";
+  let styleTag = document.getElementById(styleId);
+  
+  if (!styleTag) {
+    styleTag = document.createElement("style");
+    styleTag.id = styleId;
+    document.head.appendChild(styleTag);
+  }
+
+  styleTag.innerHTML = `
+    /* 1. 브라우저 기본 배경과 높이 설정 (스크롤 차단 해제) */
+    html, body, #root { 
+      min-height: 100%; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #000 !important;
+      overflow-y: auto !important; /* 🌟 핵심: 모든 페이지에서 휠 작동 허용 */
+    }
+
+    /* 2. 스크롤바의 시각적 형태만 제거 (모든 브라우저 대응) */
+    * { 
+      -ms-overflow-style: none !important; 
+      scrollbar-width: none !important; 
+      outline: none !important; 
+    }
+    *::-webkit-scrollbar { 
+      display: none !important; 
+    }
+  `;
+}

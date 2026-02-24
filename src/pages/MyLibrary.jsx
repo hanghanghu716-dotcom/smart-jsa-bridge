@@ -309,20 +309,53 @@ const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level =
 };
 
 const styles = {
-  // Info.jsx 배경 스타일 그대로 적용
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
-  bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
-  bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.4)', zIndex: 1 },
+  // 1. 최상위 컨테이너: 배경색을 검은색으로 밀봉하고 최소 높이를 확보
+  wrapper: { 
+    display: 'flex', 
+    flexDirection: 'column', 
+    minHeight: '100vh', 
+    width: '100%', 
+    backgroundColor: '#000',
+    position: 'relative'
+  },
+
+  // 2. 🌟 핵심 교정 (bgWrapper): 레이아웃의 영향을 받지 않도록 fixed로 브라우저에 고정
+  bgWrapper: { 
+    position: 'fixed', // ✅ 콘텐츠 크기와 상관없이 브라우저 창에 고정
+    top: 0, 
+    left: 0, 
+    width: '100vw', 
+    height: '100vh', 
+    zIndex: 0,         
+    pointerEvents: 'none' // 배경이 클릭 이벤트를 방해하지 않도록 설정
+  },
+  bgImage: { 
+    position: 'absolute', 
+    inset: 0, // top, left, right, bottom을 0으로 고정
+    width: '100%', 
+    height: '100%', 
+    backgroundImage: 'url(/images/image5.jpg)', 
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center', 
+    filter: 'brightness(0.3)' 
+  },
+  dimOverlay: { 
+    position: 'absolute', 
+    inset: 0, 
+    background: 'rgba(0,0,0,0.4)', 
+    zIndex: 1 
+  },
   
-  header: { padding: '1.2rem 5rem', zIndex: 10 },
+  // 3. 헤더 및 메인 레이아웃: 배경 위로 띄우기 위해 zIndex와 position 설정
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   
   mainLayout: { 
+    position: 'relative', // ✅ zIndex 적용을 위해 설정
     flex: 1, 
     display: 'flex', 
     alignItems: 'center', 
-    padding: '0 5rem 120px', // 푸터 광고를 고려한 여백
+    padding: '0 5rem 120px', // 푸터 광고 영역 확보
     gap: '4rem', 
     zIndex: 10, 
     overflow: 'hidden' 
@@ -330,11 +363,19 @@ const styles = {
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   
-  // 레이아웃 최대화 (maxWidth: 'none')
+  // 4. 폼 카드: 고정 높이(75vh)를 사용하여 데이터가 적어도 화면 구성을 유지
   formCard: { 
-    width: '100%', maxWidth: 'none', backgroundColor: 'rgba(18, 18, 18, 0.98)', 
-    border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2.5rem', 
-    display: 'flex', flexDirection: 'column', height: '75vh', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', overflow: 'hidden' 
+    width: '100%', 
+    maxWidth: 'none', 
+    backgroundColor: 'rgba(18, 18, 18, 0.98)', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
+    borderRadius: '12px', 
+    padding: '2.5rem', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    height: '75vh', 
+    boxShadow: '0 40px 80px rgba(0,0,0,0.9)', 
+    overflow: 'hidden' 
   },
   
   libHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid #222', paddingBottom: '1.5rem' },
@@ -363,7 +404,7 @@ const styles = {
   
   loader: { textAlign: 'center', padding: '5rem', color: '#444' },
   
-  // ✅ 푸터 수정: 하단 흰색 바 제거를 위해 absolute 위치와 투명도 적용
+  // 5. 푸터: 화면 하단에 절대 위치로 고정 (mainLayout의 패딩 덕분에 겹치지 않음)
   footerArea: { 
     width: '100%', 
     zIndex: 10, 
@@ -377,9 +418,35 @@ const styles = {
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
 };
 
-// 전역 스타일로 스크롤바 숨김 처리
+// ✅ 스크롤 기능을 전역적으로 복원하되, 지저분한 스크롤바만 보이지 않게 처리
 if (typeof document !== 'undefined') {
-  const styleTag = document.createElement("style");
-  styleTag.innerHTML = `* { -ms-overflow-style: none !important; scrollbar-width: none !important; } *::-webkit-scrollbar { display: none !important; }`;
-  document.head.appendChild(styleTag);
+  const styleId = "jsa-bridge-global-style";
+  let styleTag = document.getElementById(styleId);
+  
+  if (!styleTag) {
+    styleTag = document.createElement("style");
+    styleTag.id = styleId;
+    document.head.appendChild(styleTag);
+  }
+
+  styleTag.innerHTML = `
+    /* 1. 브라우저 기본 배경과 높이 설정 (스크롤 차단 해제) */
+    html, body, #root { 
+      min-height: 100%; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #000 !important;
+      overflow-y: auto !important; /* 🌟 핵심: 모든 페이지에서 휠 작동 허용 */
+    }
+
+    /* 2. 스크롤바의 시각적 형태만 제거 (모든 브라우저 대응) */
+    * { 
+      -ms-overflow-style: none !important; 
+      scrollbar-width: none !important; 
+      outline: none !important; 
+    }
+    *::-webkit-scrollbar { 
+      display: none !important; 
+    }
+  `;
 }

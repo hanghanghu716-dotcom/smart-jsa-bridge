@@ -279,27 +279,59 @@ export default function Analysis() {
 }
 
 const styles = {
-  // ✅ [수정] 배경이 보이도록 backgroundColor를 transparent로 고정
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent' },
+  // ✅ [교정] 배경색을 검은색으로 지정하여 이미지 로딩 전 흰색 공란 노출 방지
+  wrapper: { 
+    position: 'relative', 
+    height: '100vh', 
+    width: '100%', 
+    overflow: 'hidden', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    backgroundColor: '#000' 
+  },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
-  bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
+  // ✅ [교정] 배경 위치를 상단/좌측에 0으로 고정
+  bgImage: { 
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    inset: 0, 
+    backgroundImage: 'url(/images/image3.jpg)', 
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center',
+    filter: 'brightness(0.3)' 
+  },
+  dimOverlay: { 
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    inset: 0, 
+    background: 'rgba(0,0,0,0.4)', 
+    zIndex: 1 
+  },
   header: { padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
   
-  // ✅ [원본 유지] 레이아웃 규격 절대 변경 금지
-  mainLayout: { flex: 1, display: 'flex', padding: '0 5rem', zIndex: 10, overflow: 'hidden' },
+  // ✅ [교정] 메인 레이아웃에 하단 여백을 주어 푸터와의 충돌 방지
+  mainLayout: { 
+    flex: 1, 
+    display: 'flex', 
+    padding: '0 5rem 60px', 
+    zIndex: 10, 
+    overflow: 'hidden' 
+  },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  // ✅ [교정] maxHeight 대신 고정 height(80vh)를 사용하여 항목 수와 무관하게 크기 유지
   formCard: { 
     width: '100%', 
     maxWidth: '1440px', 
+    height: '80vh',
     backgroundColor: 'rgba(18, 18, 18, 0.98)', 
-    border: '1px solid rgba(255,255,255,0.12)', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
     borderRadius: '12px', 
     padding: '2rem 2.5rem', 
     display: 'flex', 
     flexDirection: 'column', 
-    maxHeight: '82vh', 
     boxShadow: '0 40px 80px rgba(0,0,0,0.9)', 
     overflow: 'hidden' 
   },
@@ -385,18 +417,46 @@ const styles = {
   stepPreview: { fontSize: '0.75rem', color: '#666' },
   label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
   
-  // ✅ [핵심 수정] 하단 검은색 바만 제거하기 위해 backgroundColor를 transparent로 고정
-  footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10, backgroundColor: 'transparent' },
+  // ✅ [교정] 푸터를 절대 위치로 최하단에 고정하여 메인 콘텐츠 영역을 밀어내지 않게 함
+  footerArea: { 
+    width: '100%', 
+    padding: '1.5rem 5rem', 
+    zIndex: 10, 
+    position: 'absolute', 
+    bottom: 0, 
+    backgroundColor: 'transparent' 
+  },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
 };
-
-// 전역 스타일
+// ✅ 스크롤 기능을 전역적으로 복원하되, 지저분한 스크롤바만 보이지 않게 처리
 if (typeof document !== 'undefined') {
-  const styleTag = document.createElement("style");
+  const styleId = "jsa-bridge-global-style";
+  let styleTag = document.getElementById(styleId);
+  
+  if (!styleTag) {
+    styleTag = document.createElement("style");
+    styleTag.id = styleId;
+    document.head.appendChild(styleTag);
+  }
+
   styleTag.innerHTML = `
-    @keyframes spin { to { transform: rotate(360deg); } }
-    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
-    *::-webkit-scrollbar { display: none !important; }
+    /* 1. 브라우저 기본 배경과 높이 설정 (스크롤 차단 해제) */
+    html, body, #root { 
+      min-height: 100%; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #000 !important;
+      overflow-y: auto !important; /* 🌟 핵심: 모든 페이지에서 휠 작동 허용 */
+    }
+
+    /* 2. 스크롤바의 시각적 형태만 제거 (모든 브라우저 대응) */
+    * { 
+      -ms-overflow-style: none !important; 
+      scrollbar-width: none !important; 
+      outline: none !important; 
+    }
+    *::-webkit-scrollbar { 
+      display: none !important; 
+    }
   `;
-  document.head.appendChild(styleTag);
 }

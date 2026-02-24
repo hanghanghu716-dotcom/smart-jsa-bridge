@@ -323,21 +323,79 @@ export default function Info() {
 }
 
 const styles = {
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
-  bgWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 },
-  bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', width: '100%', height: '100%', background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { padding: '1.2rem 5rem', zIndex: 10 },
+  // 1. 최상위 컨테이너: 배경이 보이도록 투명도를 유지하고 최소 높이 확보
+  wrapper: { 
+    position: 'relative', 
+    minHeight: '100vh', 
+    width: '100%', 
+    display: 'flex', 
+    flexDirection: 'column',
+    backgroundColor: 'transparent',
+    overflowX: 'hidden' 
+  },
+
+  // 2. 🌟 핵심 교정 (bgWrapper): 브라우저 창에 배경을 박아버려 세로를 가득 채움
+  bgWrapper: { 
+    position: 'fixed', // ✅ 레이아웃 수축에 영향을 받지 않고 화면에 고정
+    top: 0, 
+    left: 0, 
+    width: '100vw', 
+    height: '100vh', // ✅ 화면의 세로 최대 크기에 절대적으로 맞춤
+    zIndex: 0,
+    pointerEvents: 'none' // 배경이 클릭 이벤트를 방해하지 않도록 설정
+  },
+
+  // 3. 배경 이미지 및 오버레이: fixed된 부모 안에서 꽉 차게 설정
+  bgImage: { 
+    position: 'absolute', 
+    inset: 0, 
+    backgroundImage: 'url(/images/image1.jpg)', 
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center',
+    filter: 'brightness(0.3)' 
+  },
+  dimOverlay: { 
+    position: 'absolute', 
+    inset: 0, 
+    background: 'rgba(0,0,0,0.4)', 
+    zIndex: 1 
+  },
+
+  // 4. 헤더 및 메인 레이아웃: 배경 위로 띄우기 위해 zIndex와 position 설정
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
-  mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10, overflow: 'hidden' },
+  
+  mainLayout: { 
+    position: 'relative',
+    flex: 1, 
+    display: 'flex', 
+    alignItems: 'center', 
+    padding: '0 5rem 120px', // 푸터 광고 영역 확보
+    gap: '4rem', 
+    zIndex: 10, 
+    overflow: 'hidden' 
+  },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', maxHeight: '78vh', display: 'flex', flexDirection: 'column' },
+  
+  // 5. 폼 카드: 고정 높이(78vh)를 유지하여 레이아웃 안정성 확보
+  formCard: { 
+    width: '100%', 
+    maxWidth: '1440px', 
+    height: '78vh',
+    backgroundColor: 'rgba(18, 18, 18, 0.98)', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
+    borderRadius: '12px', 
+    padding: '2rem 2.5rem', 
+    boxShadow: '0 40px 80px rgba(0,0,0,0.9)', 
+    display: 'flex', 
+    flexDirection: 'column',
+    overflow: 'hidden'
+  },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
   
-  // ✅ 스테퍼 관련 스타일 업데이트 (Procedure와 동기화)
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 }, // 비활성 단계 투명도 적용
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
@@ -375,8 +433,37 @@ const styles = {
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  footerArea: { width: '100%', padding: '0.5rem 5rem 1.5rem', zIndex: 10 },
+  
+  // 6. 푸터: 화면 하단 절대 위치 고정
+  footerArea: { 
+    width: '100%', 
+    zIndex: 10, 
+    position: 'absolute', 
+    bottom: 0, 
+    padding: '1.5rem 5rem',
+    backgroundColor: 'transparent',
+    display: 'flex',
+    justifyContent: 'center'
+  },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.7rem' },
   inputGroupFull: { display: 'flex', flexDirection: 'column', gap: '0.7rem', marginBottom: '1.5rem' },
 };
+
+// 🌟 글로벌 스타일 강제 주입: 브라우저 기본 배경 자체를 제거하고 스크롤 기능 보존
+if (typeof document !== 'undefined') {
+  const styleTag = document.createElement("style");
+  styleTag.innerHTML = `
+    html, body, #root { 
+      background-color: #000 !important; 
+      margin: 0; 
+      padding: 0; 
+      height: 100%; 
+      width: 100%; 
+      overflow-y: auto !important; 
+    }
+    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
+    *::-webkit-scrollbar { display: none !important; }
+  `;
+  document.head.appendChild(styleTag);
+}

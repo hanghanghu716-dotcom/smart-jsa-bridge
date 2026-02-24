@@ -4,24 +4,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner'; 
-
-// [핵심] 지능형 키워드 맵 - 실제 산업현장 JSA 및 9대 고위험 가이드 반영
-const EXTENDED_KEYWORD_MAP = {
-  "건설/토목": ["건축", "토목", "콘크리트", "철근", "거푸집", "타설", "철골", "조적", "미장", "도장", "가설"],
-  "제조/가공": ["컨베이어", "회전체", "프레스", "사출", "압출", "조립", "가공", "기계설비", "동력원"],
-  "화공/플랜트": ["배관", "밸브", "펌프", "반응기", "열교환기", "컴프레서", "퍼지", "기밀시험", "블라인드", "플랜지", "누출"],
-  "전기/통신": ["배전반", "수배전반", "전신주", "케이블", "포설", "통신망"],
-  "고소작업": ["사다리", "비계", "고소작업대", "렌탈", "달비계", "지붕", "개구부", "슬라브", "추락", "떨어짐", "안전대", "생명줄"],
-  "화기작업": ["용접", "절단", "그라인더", "산소", "아세틸렌", "불티", "토치", "화재", "폭발", "용단", "비산방지포"],
-  "밀폐공간": ["맨홀", "탱크", "핏트", "반응기", "산소결핍", "황화수소", "유해가스", "환기", "송풍기", "질식", "농도측정"],
-  "전기/정전작업": ["정전", "활선", "LOTO", "감전", "접지", "차단기", "절연", "아크", "검전기"],
-  "중장비운용": ["지게차", "굴착기", "포크레인", "덤프트럭", "펌프카", "고소작업차", "사각지대", "충돌", "부딪힘", "협착", "신호수"],
-  "중량물취급": ["크레인", "호이스트", "슬링벨트", "샤클", "인양", "줄걸이", "타워크레인", "낙하", "유도로프", "타격"],
-  "굴착작업": ["터파기", "흙막이", "붕괴", "매몰", "동바리", "사면", "안식각", "지보공"],
-  "유해화학/가스": ["가연성", "인화성", "독성", "산", "알칼리", "MSDS", "화상", "중독", "방독마스크", "가스검지기"],
-  "끼임/협착": ["말림", "끼임", "협착", "회전부", "기어", "롤러", "방호덮개", "연동장치"],
-  "전도/넘어짐": ["미끄러짐", "넘어짐", "전도", "정리정돈", "장애물", "통로", "조도", "결빙"]
-};
+import { extractAutoTagsFromJSA } from '../utils/TagDictionary';
 
 export default function Export() {
   const navigate = useNavigate();
@@ -42,20 +25,7 @@ export default function Export() {
 
   const [analysisData, setAnalysisData] = useState(initialData);
 
-  // [신규 로직] 자동 태그 추출 함수
-  const extractAutoTags = () => {
-    // 분석 데이터 전체(위험요인+대책)와 프로젝트 제목을 하나의 텍스트로 결합
-    const combinedContent = (JSON.stringify(analysisData) + (formData.projectName || "")).toLowerCase();
-    const tags = new Set();
-
-    Object.entries(EXTENDED_KEYWORD_MAP).forEach(([tag, keywords]) => {
-      if (keywords.some(kw => combinedContent.includes(kw))) {
-        tags.add(tag);
-      }
-    });
-
-    return Array.from(tags);
-  };
+  // ✅ [교정] 구형 함수의 잔재(return Array.from(tags); };)를 삭제하여 함수 흐름을 정상화함
 
   const handleCloudAction = async () => {
     setIsProcessing(true);
@@ -63,8 +33,8 @@ export default function Export() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return alert("로그인이 필요한 서비스입니다.");
 
-      // 1. 저장 시 자동 태깅 수행
-      const autoTags = extractAutoTags();
+      // ✅ [교정] 300종 다차원 태그 모듈을 사용하여 정밀 태깅 수행
+      const autoTags = extractAutoTagsFromJSA(formData.projectName || "", analysisData);
 
       const projectData = {
         author_id: user.id,
@@ -72,7 +42,7 @@ export default function Export() {
         form_data: formData,
         participants: participants,
         analysis_data: analysisData,
-        tags: autoTags, // 🔑 추출된 태그 배열 저장
+        tags: autoTags, 
         is_public: true, 
         updated_at: new Date(),
       };
@@ -236,19 +206,71 @@ export default function Export() {
       </div>
     </div>
   );
-}
+} // ✅ [교정] 컴포넌트 함수가 여기서 정상적으로 닫힘
 
 const styles = {
-  // [기존 디자인 규격 유지]
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
+  // ✅ [교정] 하단 흰색 공란 방지를 위해 배경색을 검은색으로 고정
+  wrapper: { 
+    position: 'relative', 
+    height: '100vh', 
+    width: '100%', 
+    overflow: 'hidden', 
+    display: 'flex', 
+    flexDirection: 'column',
+    backgroundColor: '#000' 
+  },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
-  bgImage: { position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
+  // ✅ [교정] 배경 이미지를 최상단/좌측에 고정
+  bgImage: { 
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    width: '100%', 
+    height: '100%', 
+    backgroundImage: 'url(/images/image4.jpg)', 
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center', // 추가: 이미지 중앙 정렬
+    filter: 'brightness(0.3)' 
+  },
+  dimOverlay: { 
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    inset: 0, 
+    background: 'rgba(0,0,0,0.4)', 
+    zIndex: 1 
+  },
   header: { padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.2rem', fontWeight: '900', color: '#fff', cursor: 'pointer' },
-  mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', zIndex: 10, overflow: 'hidden' },
-  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', height: '94%' },
-  formCard: { width: '100%', maxWidth: '1440px', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column' },
+  // ✅ [교정] 하단 여백을 충분히 확보하여 공란 발생 억제
+  mainLayout: { 
+    flex: 1, 
+    display: 'flex', 
+    alignItems: 'center', 
+    padding: '0 5rem 60px', 
+    zIndex: 10, 
+    overflow: 'hidden' 
+  },
+  centerContent: { 
+    flex: 1, 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center' // height '94%' 제거 후 중앙 정렬로 대체
+  },
+  // ✅ [교정] 항목 수에 상관없이 카드 크기를 유지하여 하단 공란 수축 방지
+  formCard: { 
+    width: '100%', 
+    maxWidth: '1440px', 
+    height: '78vh', // 고정 높이 부여
+    backgroundColor: 'rgba(18, 18, 18, 0.98)', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
+    borderRadius: '12px', 
+    padding: '2rem 2.5rem', 
+    display: 'flex', 
+    flexDirection: 'column',
+    overflow: 'hidden', // 내부 요소 넘침 방지
+    boxShadow: '0 40px 80px rgba(0,0,0,0.9)'
+  },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepBadgeDone: { width: '26px', height: '26px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.8rem' },
@@ -292,9 +314,35 @@ const styles = {
   loaderMainText: { color: '#fff', marginTop: '10px' }
 };
 
-// 스크롤바/애니메이션 스타일
+// ✅ 스크롤 기능을 전역적으로 복원하되, 지저분한 스크롤바만 보이지 않게 처리
 if (typeof document !== 'undefined') {
-  const styleTag = document.createElement("style");
-  styleTag.innerHTML = `@keyframes spin { to { transform: rotate(360deg); } } .loader-spinner { width: 32px; height: 32px; border: 3px solid rgba(0, 123, 255, 0.2); border-top-color: #007bff; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto; }`;
-  document.head.appendChild(styleTag);
+  const styleId = "jsa-bridge-global-style";
+  let styleTag = document.getElementById(styleId);
+  
+  if (!styleTag) {
+    styleTag = document.createElement("style");
+    styleTag.id = styleId;
+    document.head.appendChild(styleTag);
+  }
+
+  styleTag.innerHTML = `
+    /* 1. 브라우저 기본 배경과 높이 설정 (스크롤 차단 해제) */
+    html, body, #root { 
+      min-height: 100%; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #000 !important;
+      overflow-y: auto !important; /* 🌟 핵심: 모든 페이지에서 휠 작동 허용 */
+    }
+
+    /* 2. 스크롤바의 시각적 형태만 제거 (모든 브라우저 대응) */
+    * { 
+      -ms-overflow-style: none !important; 
+      scrollbar-width: none !important; 
+      outline: none !important; 
+    }
+    *::-webkit-scrollbar { 
+      display: none !important; 
+    }
+  `;
 }

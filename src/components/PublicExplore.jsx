@@ -3,19 +3,41 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 
-// [1단계 연동] Export.jsx와 동일한 카테고리 구성
-const FILTER_CATEGORIES = [
-  { name: "산업군", tags: ["건설/토목", "제조/가공", "화공/플랜트", "전기/통신"] },
-  { name: "9대 고위험 작업", tags: ["고소작업", "화기작업", "밀폐공간", "전기/정전작업", "중장비운용", "중량물취급", "굴착작업", "유해화학/가스"] },
-  { name: "사고 유형", tags: ["끼임/협착", "전도/넘어짐"] }
-];
+// ✅ [교정] 300종 태그 임포트 및 접두사(Prefix) 기반 동적 카테고리 그룹화
+import { DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary';
 
+const allTags = Object.keys(DIMENSIONAL_KEYWORD_MAP);
+
+const FILTER_CATEGORIES = [
+  {
+    name: "산업 / 공정 / 일반작업",
+    tags: allTags.filter(t => !t.startsWith('설비(') && !t.startsWith('사고(') && !/^(관리|준비|보호구|절차|마무리|기타)\(/.test(t))
+  },
+  {
+    name: "안전 보건 관리 및 절차",
+    tags: allTags.filter(t => /^(관리|준비|보호구|절차|마무리|기타)\(/.test(t))
+  },
+  {
+    name: "기계 및 설비 (80종)",
+    tags: allTags.filter(t => t.startsWith('설비('))
+  },
+  {
+    name: "표준 사고 유형",
+    tags: allTags.filter(t => t.startsWith('사고('))
+  }
+];
 export default function PublicExplore() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState([]); // 다중 선택 태그
   const [isLoading, setIsLoading] = useState(true);
+
+  const [expandedGroups, setExpandedGroups] = useState({ "산업 / 공정 / 일반작업": true });
+
+  const toggleGroup = (name) => {
+    setExpandedGroups(prev => ({ ...prev, [name]: !prev[name] }));
+  };
 
   useEffect(() => {
     fetchPublicProjects();
@@ -75,9 +97,15 @@ export default function PublicExplore() {
             <button style={styles.resetBtn} onClick={() => setSelectedTags([])}>초기화</button>
           </div>
           
-          {FILTER_CATEGORIES.map(cat => (
-            <div key={cat.name} style={styles.filterGroup}>
+        {/* ✅ [교정] 사이드바 태그 리스트에 아코디언 UI 적용 */}
+        {FILTER_CATEGORIES.map(cat => (
+          <div key={cat.name} style={styles.filterGroup}>
+            <div style={styles.groupHeader} onClick={() => toggleGroup(cat.name)}>
               <h4 style={styles.groupLabel}>{cat.name}</h4>
+              <span style={styles.accordionIcon}>{expandedGroups[cat.name] ? '▼' : '▶'}</span>
+            </div>
+            
+            {expandedGroups[cat.name] && (
               <div style={styles.tagGrid}>
                 {cat.tags.map(tag => (
                   <button 
@@ -89,8 +117,9 @@ export default function PublicExplore() {
                   </button>
                 ))}
               </div>
-            </div>
-          ))}
+            )}
+          </div>
+        ))}
         </aside>
 
         {/* 우측: 검색 결과 리스트 */}
@@ -140,12 +169,15 @@ const styles = {
   searchContainer: { flex: 1, maxWidth: '600px' },
   searchInput: { width: '100%', padding: '0.8rem 1.2rem', backgroundColor: '#111', border: '1px solid #333', borderRadius: '8px', color: '#fff', outline: 'none' },
   mainLayout: { display: 'flex', padding: '2rem 5rem', gap: '3rem' },
-  sidebar: { width: '280px', flexShrink: 0, backgroundColor: '#0a0a0a', padding: '1.5rem', borderRadius: '12px', border: '1px solid #222', height: 'fit-content' },
-  sidebarHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' },
+// ✅ [교정] 아코디언 관련 스타일 추가 및 사이드바 스크롤 최적화
+  sidebar: { width: '320px', flexShrink: 0, backgroundColor: '#0a0a0a', padding: '1.5rem', borderRadius: '12px', border: '1px solid #222', maxHeight: '80vh', overflowY: 'auto' },
+  sidebarHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', position: 'sticky', top: 0, backgroundColor: '#0a0a0a', paddingBottom: '10px', zIndex: 10 },
   sidebarTitle: { fontSize: '0.9rem', color: '#888', fontWeight: 'bold' },
   resetBtn: { background: 'none', border: 'none', color: '#007bff', fontSize: '0.75rem', cursor: 'pointer' },
-  filterGroup: { marginBottom: '2rem' },
-  groupLabel: { fontSize: '0.8rem', color: '#555', marginBottom: '0.8rem', borderLeft: '3px solid #007bff', paddingLeft: '8px' },
+  filterGroup: { marginBottom: '1.5rem' },
+  groupHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', marginBottom: '0.8rem', padding: '0.5rem', backgroundColor: '#111', borderRadius: '6px' },
+  groupLabel: { fontSize: '0.85rem', color: '#fff', borderLeft: '3px solid #007bff', paddingLeft: '8px', margin: 0, fontWeight: 'bold' },
+  accordionIcon: { fontSize: '0.7rem', color: '#888' },
   tagGrid: { display: 'flex', flexWrap: 'wrap', gap: '0.5rem' },
   tagItem: { padding: '0.4rem 0.7rem', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '4px', fontSize: '0.75rem', color: '#aaa', cursor: 'pointer' },
   tagItemActive: { padding: '0.4rem 0.7rem', backgroundColor: '#007bff', border: '1px solid #007bff', borderRadius: '4px', fontSize: '0.75rem', color: '#fff', cursor: 'pointer', fontWeight: 'bold' },
