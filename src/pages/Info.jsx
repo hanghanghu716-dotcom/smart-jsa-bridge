@@ -22,7 +22,7 @@ export default function Info() {
   const location = useLocation();
 
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
-  const [participants, setParticipants] = useState(Array(10).fill(''));
+  const [participants, setParticipants] = useState(Array(14).fill(''));
 
   useEffect(() => {
     if (location.state?.formData) {
@@ -33,17 +33,36 @@ export default function Info() {
     }
   }, [location.state]);
 
+  // ✅ [추가] 홈 버튼 클릭 시 데이터 삭제 경고 로직
+  const handleLogoClick = () => {
+    if (window.confirm("메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.")) {
+      navigate('/');
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    if (name === 'ppe' || name === 'permits') {
+    if (name === 'permits') {
+      setFormData((prev) => {
+        let newList;
+        if (value === '일반') {
+          newList = checked ? ['일반'] : [];
+        } else {
+          const filtered = prev.permits.filter(p => p !== '일반');
+          newList = checked ? [...filtered, value] : filtered.filter(p => p !== value);
+        }
+        return { ...prev, permits: newList };
+      });
+      return;
+    }
+
+    if (name === 'ppe') {
       setFormData((prev) => {
         const list = prev[name];
         return {
           ...prev,
-          [name]: checked
-            ? [...list, value]
-            : list.filter((item) => item !== value),
+          [name]: checked ? [...list, value] : list.filter((item) => item !== value),
         };
       });
       return;
@@ -64,11 +83,18 @@ export default function Info() {
   };
 
   const handleNext = () => {
+    if (!formData.projectName.trim()) {
+      alert("프로젝트명은 필수 입력 사항입니다. 작업의 명칭을 입력해 주세요.");
+      return;
+    }
+
+    // ✅ [교정] 이전 단계에서 넘어온 절차 및 분석 데이터를 보존하여 전달
     navigate('/procedure', {
       state: {
         formData,
         participants,
-        analysisData: location.state?.analysisData,
+        procedures: location.state?.procedures, // 기존 데이터 보존
+        analysisData: location.state?.analysisData, // 기존 데이터 보존
       },
     });
   };
@@ -84,7 +110,8 @@ export default function Info() {
       </div>
 
       <header style={styles.header}>
-        <h1 style={styles.logo} onClick={() => navigate('/')}>
+        {/* ✅ [수정] onClick 이벤트 변경 */}
+        <h1 style={styles.logo} onClick={handleLogoClick}>
           Smart JSA Bridge
         </h1>
       </header>
@@ -96,7 +123,6 @@ export default function Info() {
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            {/* ✅ 스테퍼 UI를 Procedure와 동일하게 수정 */}
             <nav style={styles.stepper}>
               <div style={styles.stepItemActive}>
                 <div style={styles.stepBadgeActive}>1</div>
@@ -124,11 +150,20 @@ export default function Info() {
             </div>
 
             <div style={styles.scrollArea}>
+              <div style={styles.warningBox}>
+                <p style={styles.warningText}>
+                  ⚠️ <strong>이용 주의 사항:</strong> 작성하신 JSA 결과물은 데이터 공유 정책에 따라 타 사용자에게 노출될 수 있습니다. 
+                  비정확한 정보, 허위 사실 또는 음란물 등 부적절한 콘텐츠가 포함될 경우, 예고 없이 삭제될 수 있으며 해당 계정에 대한 경고 및 이용 제한 조치가 취해질 수 있음을 알려드립니다.
+                </p>
+              </div>
+
               <div style={styles.formGrid}>
                 <section style={styles.leftSection}>
                   <div style={styles.row}>
                     <div style={{ ...styles.flexItem, flex: 2 }}>
-                      <label style={styles.label}>프로젝트명</label>
+                      <label style={styles.label}>
+                        프로젝트명 <span style={{ color: '#ff4d4d' }}>(필수)</span>
+                      </label>
                       <input
                         name="projectName"
                         value={formData.projectName}
@@ -260,18 +295,29 @@ export default function Info() {
                 <section style={styles.safetySection}>
                   <label style={styles.label}>허가 대상 작업</label>
                   <div style={styles.checkGrid}>
-                    {permitOptions.map((item) => (
-                      <label key={item} style={styles.checkLabel}>
-                        <input
-                          type="checkbox"
-                          name="permits"
-                          value={item}
-                          checked={formData.permits.includes(item)}
-                          onChange={handleChange}
-                        />
-                        {item}
-                      </label>
-                    ))}
+                    {permitOptions.map((item) => {
+                      const isGeneralSelected = formData.permits.includes('일반');
+                      const isOthersSelected = formData.permits.some(p => p !== '일반');
+                      const isDisabled = (item === '일반' && isOthersSelected) || (item !== '일반' && isGeneralSelected);
+
+                      return (
+                        <label key={item} style={{
+                          ...styles.checkLabel,
+                          opacity: isDisabled ? 0.3 : 1,
+                          cursor: isDisabled ? 'not-allowed' : 'pointer'
+                        }}>
+                          <input
+                            type="checkbox"
+                            name="permits"
+                            value={item}
+                            checked={formData.permits.includes(item)}
+                            onChange={handleChange}
+                            disabled={isDisabled}
+                          />
+                          {item}
+                        </label>
+                      );
+                    })}
                   </div>
                 </section>
               </div>
@@ -298,7 +344,7 @@ export default function Info() {
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={() => navigate('/')}>
+              <button style={styles.prevBtn} onClick={handleLogoClick}>
                 처음으로
               </button>
               <button style={styles.nextBtn} onClick={handleNext}>
@@ -323,90 +369,27 @@ export default function Info() {
 }
 
 const styles = {
-  // 1. 최상위 컨테이너: 배경이 보이도록 투명도를 유지하고 최소 높이 확보
-  wrapper: { 
-    position: 'relative', 
-    minHeight: '100vh', 
-    width: '100%', 
-    display: 'flex', 
-    flexDirection: 'column',
-    backgroundColor: 'transparent',
-    overflowX: 'hidden' 
-  },
-
-  // 2. 🌟 핵심 교정 (bgWrapper): 브라우저 창에 배경을 박아버려 세로를 가득 채움
-  bgWrapper: { 
-    position: 'fixed', // ✅ 레이아웃 수축에 영향을 받지 않고 화면에 고정
-    top: 0, 
-    left: 0, 
-    width: '100vw', 
-    height: '100vh', // ✅ 화면의 세로 최대 크기에 절대적으로 맞춤
-    zIndex: 0,
-    pointerEvents: 'none' // 배경이 클릭 이벤트를 방해하지 않도록 설정
-  },
-
-  // 3. 배경 이미지 및 오버레이: fixed된 부모 안에서 꽉 차게 설정
-  bgImage: { 
-    position: 'absolute', 
-    inset: 0, 
-    backgroundImage: 'url(/images/image1.jpg)', 
-    backgroundSize: 'cover', 
-    backgroundPosition: 'center',
-    filter: 'brightness(0.3)' 
-  },
-  dimOverlay: { 
-    position: 'absolute', 
-    inset: 0, 
-    background: 'rgba(0,0,0,0.4)', 
-    zIndex: 1 
-  },
-
-  // 4. 헤더 및 메인 레이아웃: 배경 위로 띄우기 위해 zIndex와 position 설정
+  wrapper: { position: 'relative', minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', overflowX: 'hidden' },
+  bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
+  bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
+  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
-  
-  mainLayout: { 
-    position: 'relative',
-    flex: 1, 
-    display: 'flex', 
-    alignItems: 'center', 
-    padding: '0 5rem 120px', // 푸터 광고 영역 확보
-    gap: '4rem', 
-    zIndex: 10, 
-    overflow: 'hidden' 
-  },
+  mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 120px', gap: '4rem', zIndex: 10, overflow: 'hidden' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  
-  // 5. 폼 카드: 고정 높이(78vh)를 유지하여 레이아웃 안정성 확보
-  formCard: { 
-    width: '100%', 
-    maxWidth: '1440px', 
-    height: '78vh',
-    backgroundColor: 'rgba(18, 18, 18, 0.98)', 
-    border: '1px solid rgba(255, 255, 255, 0.12)', 
-    borderRadius: '12px', 
-    padding: '2rem 2.5rem', 
-    boxShadow: '0 40px 80px rgba(0,0,0,0.9)', 
-    display: 'flex', 
-    flexDirection: 'column',
-    overflow: 'hidden'
-  },
+  formCard: { width: '100%', maxWidth: '1440px', height: '78vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
-  
+  warningBox: { backgroundColor: 'rgba(255, 77, 77, 0.08)', border: '1px solid rgba(255, 77, 77, 0.3)', borderRadius: '8px', padding: '1rem 1.2rem', marginBottom: '1.5rem' },
+  warningText: { fontSize: '0.82rem', color: '#ff7675', margin: 0, lineHeight: '1.6', fontWeight: '500' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
   stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
-  stepText: { fontSize: '0.85rem', color: '#aaa' },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
   stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
+  stepText: { fontSize: '0.85rem', color: '#aaa' },
   stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
-
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
   formGrid: { display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '2.5rem', marginBottom: '0.5rem' },
@@ -416,7 +399,7 @@ const styles = {
   safetyGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', marginBottom: '1.5rem' },
   safetySection: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.6rem 0.4rem', backgroundColor: '#161616', padding: '1rem', borderRadius: '8px' },
-  checkLabel: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' },
+  checkLabel: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' },
   checkLabelHighlight: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer', backgroundColor: '#161616', padding: '0 1rem', borderRadius: '6px', border: '1px solid #333', height: '45px', boxSizing: 'border-box' },
   label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
   input: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
@@ -433,37 +416,8 @@ const styles = {
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  
-  // 6. 푸터: 화면 하단 절대 위치 고정
-  footerArea: { 
-    width: '100%', 
-    zIndex: 10, 
-    position: 'absolute', 
-    bottom: 0, 
-    padding: '1.5rem 5rem',
-    backgroundColor: 'transparent',
-    display: 'flex',
-    justifyContent: 'center'
-  },
+  footerArea: { width: '100%', zIndex: 10, position: 'absolute', bottom: 0, padding: '1.5rem 5rem', backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.7rem' },
   inputGroupFull: { display: 'flex', flexDirection: 'column', gap: '0.7rem', marginBottom: '1.5rem' },
 };
-
-// 🌟 글로벌 스타일 강제 주입: 브라우저 기본 배경 자체를 제거하고 스크롤 기능 보존
-if (typeof document !== 'undefined') {
-  const styleTag = document.createElement("style");
-  styleTag.innerHTML = `
-    html, body, #root { 
-      background-color: #000 !important; 
-      margin: 0; 
-      padding: 0; 
-      height: 100%; 
-      width: 100%; 
-      overflow-y: auto !important; 
-    }
-    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
-    *::-webkit-scrollbar { display: none !important; }
-  `;
-  document.head.appendChild(styleTag);
-}

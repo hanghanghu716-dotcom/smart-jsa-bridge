@@ -42,7 +42,6 @@ export default function Main() {
       alert("해당 기능은 PC 버전에서 최적화되어 있습니다. 상세 작성은 웹을 이용해 주시기 바랍니다.");
       return;
     }
-
     if (user) {
       navigate('/info', { state: { isMember: true } });
     } else {
@@ -52,7 +51,6 @@ export default function Main() {
 
   return (
     <div style={styles.wrapper}>
-      {/* 시작 선택 모달 */}
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
@@ -70,7 +68,6 @@ export default function Main() {
         </div>
       )}
 
-      {/* SECTION 1: HERO */}
       <section style={styles.heroSection}>
         <div style={styles.bgWrapper}>
           {slides.map((src, index) => (
@@ -83,27 +80,20 @@ export default function Main() {
           <div className="flex justify-between items-center h-full">
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
             
-            {/* ✅ [교정] 헤더 영역: 사례 탐색/내 보관함 배치 및 구분선 적용 */}
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
                 <Link to="/explore" style={styles.headerLink}>사례 탐색</Link>
-                {/* Link 대신 span이나 div를 사용하여 핸들러 연결 */}
                 <span 
                   style={{ ...styles.headerLink, cursor: 'pointer' }} 
                   onClick={() => {
-                    if (user) {
-                      navigate('/library');
-                    } else {
-                      setIsStartModalOpen(true); // 로그인 유도 모달 표시
-                    }
+                    if (user) { navigate('/library'); } 
+                    else { setIsStartModalOpen(true); }
                   }}
                 >
                   내 보관함
                 </span>
               </div>
-              
               <span style={styles.separator}>|</span>
-
               <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
                 <span style={styles.menuText} className="max-lg:hidden">MENU</span>
                 <div style={styles.hamburger}>
@@ -115,7 +105,6 @@ export default function Main() {
           </div>
         </header>
 
-        {/* ✅ 가이드바: 원본 디자인 유지 및 인사말 줄바꿈 적용 */}
         <div style={{
           ...styles.sideDrawer,
           transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
@@ -128,14 +117,19 @@ export default function Main() {
           <nav style={styles.drawerNav}>
             <div style={styles.navCategory}>USER ACCOUNT</div>
             {user ? (
-              <div style={styles.userBadge}>
-                {/* ✅ 수정: 줄바꿈이 적용된 환영 문구 */}
-                <div style={{ marginBottom: '10px', lineHeight: '1.6' }}>
-                  <strong>{user.email}</strong> 님<br />
-                  환영합니다.
+              <>
+                <div style={styles.userBadge}>
+                  <div style={{ marginBottom: '10px', lineHeight: '1.6' }}>
+                    <strong>{user.email}</strong> 님<br />
+                    환영합니다.
+                  </div>
+                  <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>로그아웃</button>
                 </div>
-                <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>로그아웃</button>
-              </div>
+                {/* ✅ [추가] 회원정보 수정 및 통계 링크 삽입 */}
+                <Link to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
+                  회원정보 수정 및 지식 통계
+                </Link>
+              </>
             ) : (
               <Link to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>로그인 / 회원가입</Link>
             )}
@@ -177,7 +171,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* SECTION 2: CORE VALUE */}
       <section style={styles.m3Section} className="max-lg:!py-20">
         <div style={styles.container}>
           <div className="flex flex-col lg:flex-row lg:gap-[100px] items-center">
@@ -200,7 +193,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* ✅ SECTION 3: 9대 고위험 가이드 (원본 데이터 유지 및 복구) */}
       <section style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }} className="max-lg:!py-20">
         <div style={styles.container}>
           <div style={styles.m3Header} className="px-6 lg:px-0">
@@ -247,11 +239,9 @@ export default function Main() {
 }
 
 const styles = {
-  // ✅ 헤더 우측 영역 레이아웃 및 구분선 스타일
   headerRight: { display: 'flex', alignItems: 'center' },
   headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },
   separator: { color: 'rgba(255,255,255,0.3)', margin: '0 2.5rem', fontSize: '0.8rem', pointerEvents: 'none' },
-
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
   container: { maxWidth: '1440px', margin: '0 auto' },
   heroSection: { position: 'relative', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
@@ -267,7 +257,6 @@ const styles = {
   mainTitle: { fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem' },
   subTitle: { lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem' },
   primaryBtn: { display: 'inline-block', padding: '1.2rem 4.5rem', backgroundColor: '#fff', color: '#000', borderRadius: '4rem', fontSize: '1.1rem', fontWeight: 'bold', border: 'none', cursor: 'pointer' },
-  
   modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 3000, display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(8px)' },
   modalContent: { backgroundColor: '#111', padding: '3.5rem', borderRadius: '24px', textAlign: 'center', width: '90%', maxWidth: '480px', border: '1px solid #333' },
   modalTitle: { color: '#fff', fontSize: '1.6rem', fontWeight: '800', marginBottom: '1.2rem' },
@@ -276,13 +265,10 @@ const styles = {
   loginBtn: { padding: '1.2rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
   guestBtn: { padding: '1.2rem', backgroundColor: '#222', color: '#fff', border: '1px solid #444', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
   closeText: { marginTop: '1.5rem', background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.85rem', textDecoration: 'underline' },
-
   menuTrigger: { display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer' },
   menuText: { color: '#fff', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '2px' },
   hamburger: { display: 'flex', flexDirection: 'column', gap: '6px' },
   bar: { width: '24px', height: '2px', backgroundColor: '#fff' },
-  
-  // ✅ 가이드바: 원본 디자인 100% 준수
   sideDrawer: { position: 'fixed', top: 0, right: 0, height: '100vh', backgroundColor: '#fff', zIndex: 1000, transition: 'transform 0.4s ease', boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column', overflowY: 'auto' },
   drawerHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '60px' },
   closeBtn: { cursor: 'pointer', fontSize: '0.9rem', fontWeight: '800', color: '#111' },
@@ -292,7 +278,6 @@ const styles = {
   userBadge: { backgroundColor: '#f8f9fa', padding: '1.5rem', borderRadius: '12px', marginBottom: '20px', fontSize: '0.9rem', color: '#111' },
   logoutLink: { display: 'block', marginTop: '10px', color: '#ff4d4d', border: 'none', background: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', fontSize: '0.8rem' },
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999 },
-
   m3Section: { padding: '160px 0' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px' },
   m3Title: { fontSize: '3.5rem', fontWeight: '900', color: '#111' },
