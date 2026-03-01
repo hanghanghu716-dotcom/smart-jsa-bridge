@@ -44,7 +44,6 @@ export default function Analysis() {
     fetchRiskMaster();
   }, []);
 
-  // ✅ [추가] 홈 버튼 클릭 시 데이터 삭제 경고 로직
   const handleLogoClick = () => {
     if (window.confirm("메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.")) {
       navigate('/');
@@ -203,7 +202,6 @@ export default function Analysis() {
 
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}>
-        {/* ✅ [수정] onClick 이벤트 변경 */}
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
       </header>
 
@@ -220,7 +218,7 @@ export default function Analysis() {
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div>
               <div style={styles.stepLineActive} />
               <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>위험 분석</span></div>
-              <div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>최종 출력</span></div>
+              <div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>양식 설정</span></div>
             </nav>
 
             <div style={styles.formHeader}>
@@ -315,8 +313,8 @@ export default function Analysis() {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
-              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/export', { state: { existingId, analysisData, formData, participants, procedures } })}>
-                {activeIdx === analysisData.length - 1 ? '분석 완료 및 보고서 생성' : '다음 작업 단계 분석'}
+              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layoutbuilder', { state: { existingId, analysisData, formData, participants, procedures } })}>
+                {activeIdx === analysisData.length - 1 ? '분석 완료 및 양식 설정' : '다음 작업 단계 분석'}
               </button>
             </div>
           </div>
@@ -404,32 +402,7 @@ const styles = {
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', fontWeight: '700', cursor: 'pointer' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', fontWeight: '800', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' },
-  dialogOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  spinner: { width: '40px', height: '40px', border: '3px solid #007bff', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' },
-  libModalContent: { width: '600px', maxHeight: '70vh', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column' },
-  modalHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #222', paddingBottom: '1rem', marginBottom: '1rem' },
-  closeBtnSmall: { background: 'none', border: 'none', color: '#fff', fontSize: '1.2rem', cursor: 'pointer' },
-  backBtn: { padding: '0.6rem', marginBottom: '1rem', backgroundColor: '#222', color: '#888', border: '1px solid #333', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', textAlign: 'left' },
-  libList: { overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '10px' },
-  libItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: '#1a1a1a', border: '1px solid #222', borderRadius: '8px', cursor: 'pointer' },
-  libStepItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', backgroundColor: '#000', border: '1px solid #007bff', borderRadius: '8px', cursor: 'pointer' },
   footerArea: { width: '100%', padding: '1rem 5rem', zIndex: 10, position: 'absolute', bottom: 0, backgroundColor: 'transparent' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
 };
-
-if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-global-style";
-  let styleTag = document.getElementById(styleId);
-  if (!styleTag) {
-    styleTag = document.createElement("style");
-    styleTag.id = styleId;
-    document.head.appendChild(styleTag);
-  }
-  styleTag.innerHTML = `
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; }
-    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
-    *::-webkit-scrollbar { display: none !important; }
-  `;
-}

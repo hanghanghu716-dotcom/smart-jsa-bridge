@@ -25,6 +25,7 @@ import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword'; 
 import Profile from './pages/Profile';
 import PublicExplore from './components/PublicExplore';
+import LayoutBuilder from './pages/LayoutBuilder';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
           <Route path="/guideline/chemical" element={<ChemicalGasGuide />} />
           <Route path="/guideline/common" element={<CommonGuide />} />
 
+          <Route path="/layoutbuilder" element={<LayoutBuilder />} />
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/explore" element={<PublicExplore />} />
         </Routes>
