@@ -10,6 +10,7 @@ export default function MyLibrary() {
   const [reports, setReports] = useState([]); 
   const [blocks, setBlocks] = useState([]);   
   const [projectBlocks, setProjectBlocks] = useState([]); 
+  const [layouts, setLayouts] = useState([]); // 추가: 저장된 양식 상태
   
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null); 
@@ -44,19 +45,21 @@ export default function MyLibrary() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const [cats, favs, authored, reps, blks, pBlks] = await Promise.all([
+    const [cats, favs, authored, reps, blks, pBlks, userLayouts] = await Promise.all([
       supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
       supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
       supabase.from('jsa_projects').select('*').eq('author_id', user.id).order('created_at', { ascending: false }),
       supabase.from('user_reports').select('*, jsa_projects(title)').eq('reporter_id', user.id),
       supabase.from('user_blocks').select('*, profiles:blocked_user_id(username)').eq('blocker_id', user.id),
-      supabase.from('user_project_blocks').select('*, jsa_projects(title)').eq('user_id', user.id)
+      supabase.from('user_project_blocks').select('*, jsa_projects(title)').eq('user_id', user.id),
+      supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }) // 추가: 양식 데이터 호출
     ]);
 
     setCategories(cats.data || []);
     setReports(reps.data || []);
     setBlocks(blks.data || []);
     setProjectBlocks(pBlks.data || []);
+    setLayouts(userLayouts.data || []); // 추가: 상태 업데이트
 
     const combined = [
       ...(favs.data || []).map(item => ({ ...item, displayType: 'SCRAP', originData: item.jsa_projects })),
@@ -102,7 +105,7 @@ export default function MyLibrary() {
     await supabase.from('user_jsa_categories').insert({ 
       user_id: user.id, 
       category_name: newCatName, 
-      parent_id: (selectedCatId && selectedCatId !== 'SYSTEM_FOLDER') ? selectedCatId : null 
+      parent_id: (selectedCatId && selectedCatId !== 'SYSTEM_FOLDER' && selectedCatId !== 'LAYOUT_FOLDER') ? selectedCatId : null 
     });
     setNewCatName(""); fetchLibraryData();
   };
@@ -166,6 +169,13 @@ export default function MyLibrary() {
                 >
                   신고 및 차단 관리
                 </div>
+                {/* 추가: 양식 관리 탭 */}
+                <div 
+                  style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat}
+                  onClick={() => setSelectedCatId('LAYOUT_FOLDER')}
+                >
+                  저장된 양식 관리 ({layouts.length})
+                </div>
                 <div style={styles.catDivider} />
                 <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>
                   전체 보기 ({favorites.length})
@@ -203,6 +213,25 @@ export default function MyLibrary() {
                         <div key={p.id} style={styles.mRow}>
                           <span>작업물 숨김: {p.jsa_projects?.title}</span>
                           <button style={styles.mBtn} onClick={() => handleWithdraw('projectBlock', p.id)}>해제</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : selectedCatId === 'LAYOUT_FOLDER' ? (
+                  /* 추가: 양식 관리 뷰 */
+                  <div style={styles.managementView}>
+                    <div style={styles.mGroup}>
+                      <h4 style={styles.mTitle}>내 양식 목록</h4>
+                      {layouts.length === 0 && <div style={{color: '#888', fontSize: '0.85rem'}}>저장된 양식이 없습니다.</div>}
+                      {layouts.map(l => (
+                        <div key={l.id} style={styles.mRow}>
+                          <span>[양식] {l.name} <span style={{fontSize:'0.75rem', color:'#666', marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
+                          <button style={styles.mBtn} onClick={async () => {
+                            if(window.confirm("이 양식을 삭제하시겠습니까?")) {
+                              await supabase.from('user_layouts').delete().eq('id', l.id);
+                              fetchLibraryData();
+                            }
+                          }}>삭제</button>
                         </div>
                       ))}
                     </div>
@@ -346,6 +375,9 @@ const styles = {
   catSidebar: { borderRight: '1px solid #222', paddingRight: '1rem', overflowY: 'auto' },
   systemCat: { padding: '1rem', color: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
   systemCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  // 추가: 양식 관리 버튼 스타일
+  layoutCat: { padding: '1rem', color: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
+  layoutCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   catDivider: { height: '1px', backgroundColor: '#222', margin: '10px 0' },
   catItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: '#888', cursor: 'pointer', fontSize: '0.85rem' },
   catItemActive: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: '#fff', backgroundColor: '#222', borderRadius: '8px', fontSize: '0.85rem' },

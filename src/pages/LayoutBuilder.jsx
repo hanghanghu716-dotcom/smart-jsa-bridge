@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
+import { supabase } from '../supabaseClient';
 
 /**
  * [LayoutBuilder 컴포넌트]
@@ -49,6 +50,65 @@ export default function LayoutBuilder() {
   const [isDraggingGrid, setIsDraggingGrid] = useState(false);
   const [editingCell, setEditingCell] = useState(null); 
 
+  // --- [양식 저장 및 불러오기 상태 추가] ---
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showLoadModal, setShowLoadModal] = useState(false);
+  const [saveName, setSaveName] = useState('');
+  const [savedLayouts, setSavedLayouts] = useState([]);
+
+  const handleSaveLayout = async () => {
+    if (!saveName.trim()) return alert("양식 이름을 입력해주세요.");
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return alert("로그인이 필요합니다.");
+
+    const layoutData = { gridData, orientation, activeOrder, bindingStartRow, userColumns };
+
+    const { error } = await supabase.from('user_layouts').insert({
+      user_id: user.id,
+      name: saveName,
+      layout_data: layoutData
+    });
+
+    if (error) {
+      console.error(error);
+      alert("양식 저장 중 오류가 발생했습니다.");
+    } else {
+      alert("양식이 저장되었습니다.");
+      setShowSaveModal(false);
+      setSaveName('');
+    }
+  };
+
+  const fetchLayouts = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { data, error } = await supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false });
+    if (!error && data) setSavedLayouts(data);
+  };
+
+  const openLoadModal = () => {
+    fetchLayouts();
+    setShowLoadModal(true);
+  };
+
+  const applyLayout = (layout) => {
+    if (!window.confirm(`'${layout.name}' 양식을 불러오시겠습니까? 현재 작업 내역이 덮어씌워집니다.`)) return;
+    const d = layout.layout_data;
+    setOrientation(d.orientation || 'landscape');
+    setActiveOrder(d.activeOrder || []);
+    setBindingStartRow(d.bindingStartRow || 17);
+    setUserColumns(d.userColumns || []);
+    setGridData(d.gridData || {});
+    setShowLoadModal(false);
+  };
+
+  const deleteLayout = async (id) => {
+    if (!window.confirm("이 양식을 삭제하시겠습니까?")) return;
+    await supabase.from('user_layouts').delete().eq('id', id);
+    fetchLayouts();
+  };
+  // ------------------------------------
+
   useEffect(() => { rebuildGrid(); }, [activeOrder, bindingStartRow, orientation, userColumns]);
 
   const rebuildGrid = () => {
@@ -86,9 +146,9 @@ export default function LayoutBuilder() {
           border: `2px solid ${meta.color || '#adb5bd'}`,
           rowSpan: BINDING_ROW_HEIGHT,
           colSpan: colSpan,
-          align: meta.align || 'center',
+          align: isUser ? (meta.align || 'center') : 'center',
           bold: true,
-          fontSize: '11px',
+          fontSize: isUser ? '11px' : '8px',
           isBindingRoot: true
         };
 
@@ -122,7 +182,6 @@ export default function LayoutBuilder() {
 
   useEffect(() => { window.addEventListener('mouseup', handleMouseUp); return () => window.removeEventListener('mouseup', handleMouseUp); }, []);
 
-  // ✅ [개선] 병합 해제 시 위치 틀어짐 방지를 위해 속성 완전 삭제
   const unmergeCells = () => {
     if (!selection) return;
     setGridData(prev => {
@@ -172,7 +231,6 @@ export default function LayoutBuilder() {
     });
   };
 
-  // ✅ [개선] 'none' 설정 시 속성을 삭제하여 기본 점선 가이드가 보이도록 조치
   const setBorder = (style) => {
     if (!selection) return;
     setGridData(prev => {
@@ -210,7 +268,6 @@ export default function LayoutBuilder() {
     });
   };
 
-  // ✅ [수정] analysis.jsx로 돌아갈 때 모든 현재 작업 데이터를 state에 실어서 보냄
   const goBackToAnalysis = () => {
     navigate('/analysis', { 
       state: { 
@@ -260,6 +317,10 @@ export default function LayoutBuilder() {
                   <div style={{display:'flex', justifyContent:'space-between', marginTop:'4px'}}><span style={styles.infoBadge}>{orientation === 'landscape' ? "가로형" : "세로형"}</span><span style={{fontSize:'0.55rem', color:'#ff4d4d', fontWeight:'bold'}}>* 출력 여백 40px 반영</span></div>
                   <div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>확대/축소</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div>
                   <div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>데이터 시작 행: {bindingStartRow+1}</span><input type="range" min="0" max="45" value={bindingStartRow} onChange={e => setBindingStartRow(parseInt(e.target.value))} style={styles.rangeInputCompact} /></div>
+                  <div style={styles.buttonGroupSmall}>
+                    <button style={{...styles.miniBtn, backgroundColor: '#4caf50'}} onClick={() => setShowSaveModal(true)}>양식 저장</button>
+                    <button style={{...styles.miniBtn, backgroundColor: '#007bff'}} onClick={openLoadModal}>불러오기</button>
+                  </div>
                 </div>
                 <div style={styles.toolSectionCompact}>
                   <h3 style={styles.toolTitleMini}>항목 관리</h3>
@@ -275,6 +336,43 @@ export default function LayoutBuilder() {
         </main>
         <aside style={styles.sideAd}><AdBanner slot="4000000002" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
+
+      {showSaveModal && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalContent}>
+            <h3 style={styles.modalTitle}>현재 양식 저장</h3>
+            <input style={styles.modalInput} placeholder="양식 이름을 입력하세요" value={saveName} onChange={(e) => setSaveName(e.target.value)} />
+            <div style={styles.modalBtnGroup}>
+              <button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>취소</button>
+              <button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>저장하기</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showLoadModal && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalContent}>
+            <h3 style={styles.modalTitle}>내 양식 불러오기</h3>
+            <div style={styles.layoutListWrapper}>
+              {savedLayouts.length === 0 ? (
+                <div style={{ color: '#888', fontSize: '0.8rem', textAlign: 'center', padding: '1rem' }}>저장된 양식이 없습니다.</div>
+              ) : (
+                savedLayouts.map(layout => (
+                  <div key={layout.id} style={styles.layoutListItem}>
+                    <span style={{ flex: 1, color: '#fff', fontSize: '0.85rem' }}>{layout.name}</span>
+                    <button style={styles.modalBtnPrimary} onClick={() => applyLayout(layout)}>적용</button>
+                    <button style={styles.layoutDeleteBtn} onClick={() => deleteLayout(layout.id)}>삭제</button>
+                  </div>
+                ))
+              )}
+            </div>
+            <div style={styles.modalBtnGroup}>
+              <button style={{...styles.modalBtnSecondary, width: '100%'}} onClick={() => setShowLoadModal(false)}>닫기</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -329,5 +427,16 @@ const styles = {
   formatBtn: { flex: 1, padding: '8px', backgroundColor: '#333', color: '#fff', border: '1px solid #444', borderRadius: '4px', fontSize: '0.7rem', cursor: 'pointer' },
   sizeInputBox: { display: 'flex', alignItems: 'center', gap: '4px', backgroundColor: '#000', padding: '0 8px', borderRadius: '4px', border: '1px solid #444' },
   paletteContainer: { display: 'flex', gap: '6px', padding: '8px', backgroundColor: '#111', borderRadius: '6px', flexWrap: 'wrap' },
-  colorCircle: { width: '18px', height: '18px', borderRadius: '50%', cursor: 'pointer', transition: 'transform 0.1s' }
+  colorCircle: { width: '18px', height: '18px', borderRadius: '50%', cursor: 'pointer', transition: 'transform 0.1s' },
+
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  modalContent: { backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', padding: '2rem', width: '400px', maxWidth: '90%', display: 'flex', flexDirection: 'column', gap: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.9)' },
+  modalTitle: { fontSize: '1.2rem', color: '#fff', fontWeight: 'bold', margin: 0 },
+  modalInput: { backgroundColor: '#0a0a0a', border: '1px solid #444', color: '#fff', padding: '0.8rem', borderRadius: '6px', fontSize: '0.9rem', outline: 'none' },
+  modalBtnGroup: { display: 'flex', gap: '10px' },
+  modalBtnPrimary: { flex: 1, backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '0.8rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
+  modalBtnSecondary: { flex: 1, backgroundColor: '#333', color: '#fff', border: 'none', padding: '0.8rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
+  layoutListWrapper: { display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '250px', overflowY: 'auto', borderTop: '1px solid #333', borderBottom: '1px solid #333', padding: '10px 0' },
+  layoutListItem: { display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#222', padding: '10px', borderRadius: '6px' },
+  layoutDeleteBtn: { backgroundColor: 'transparent', color: '#ff4d4d', border: '1px solid #ff4d4d', padding: '0.5rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.75rem' }
 };
