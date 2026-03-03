@@ -90,7 +90,6 @@ export default function Export() {
     if (cell.bindingType?.startsWith('USER_')) content = cell.text ? cell.text.replace(/\[|\]/g, "") : "";
     const finalRowSpan = isBinding ? 1 : (cell.rowSpan || 1);
 
-    // ✅ [교정] 첫 문장 치우침 현상 해결을 위해 textIndent 제거 및 padding 정렬
     const hasBullet = content.includes('•');
 
     return (
@@ -100,8 +99,8 @@ export default function Export() {
         padding: '6px 4px', fontSize: cell.fontSize || '11px', fontWeight: cell.bold ? 'bold' : 'normal', textDecoration: cell.underline ? 'underline' : 'none', 
         display: 'flex', alignItems: 'center', justifyContent: cell.align || 'center',
         whiteSpace: 'pre-wrap', wordBreak: 'break-all', boxSizing: 'border-box',
-        paddingLeft: hasBullet ? '14px' : '6px', // 일관된 왼쪽 여백 부여
-        textIndent: '0' // 첫 문장만 튀어나가는 현상 방지
+        paddingLeft: hasBullet ? '14px' : '6px', 
+        textIndent: '0' 
       }}>{content}</div>
     );
   };
@@ -119,16 +118,44 @@ export default function Export() {
     cellEntries.filter(c => c.r >= savedBindingStartRow + BINDING_ROW_HEIGHT).forEach(c => elements.push(renderCell(c, c.r + rowOffset, c.c)));
     
     return ( 
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: `repeat(${COLS}, ${BASE_CELL_SIZE}px)`, 
-        gridAutoRows: `minmax(${BASE_CELL_SIZE}px, auto)`, 
-        width: `${COLS * BASE_CELL_SIZE}px`, 
-        backgroundColor: '#fff', 
-        margin: '0 auto'
-      }}> 
-        {elements} 
-      </div> 
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        {/* 템플릿 헤더 영역 */}
+        <div style={styles.templateHeader}>
+          <div style={styles.templateTitle}>작업안전분석(JSA)</div>
+          <table style={styles.templateMetaTable}>
+            <tbody>
+              <tr>
+                <th style={styles.th}>작업명</th><td style={styles.td}>{formData.projectName || ''}</td>
+                <th rowSpan="2" style={{...styles.th, width: '40px'}}>결<br/>재</th>
+                <th style={styles.th}>작성</th><th style={styles.th}>검토</th><th style={styles.th}>승인</th>
+              </tr>
+              <tr>
+                <th style={styles.th}>작업일자</th><td style={styles.td}></td>
+                <td style={styles.td}></td><td style={styles.td}></td><td style={styles.td}></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* 기존 데이터 표(그리드) 영역 */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: `repeat(${COLS}, ${BASE_CELL_SIZE}px)`, 
+          gridAutoRows: `minmax(${BASE_CELL_SIZE}px, auto)`, 
+          width: `${COLS * BASE_CELL_SIZE}px`, 
+          backgroundColor: '#fff', 
+          margin: '0 auto',
+          border: '2px solid #000'
+        }}> 
+          {elements} 
+        </div> 
+
+        {/* 템플릿 푸터 영역 */}
+        <div style={styles.templateFooter}>
+          <span style={{fontWeight: 'bold'}}>Smart JSA Bridge - 안전관리시스템</span>
+          <span>Page 1 / 1</span>
+        </div>
+      </div>
     );
   };
 
@@ -166,12 +193,10 @@ export default function Export() {
       let leftHeightMm = contentHeightMm;
       let positionMm = 0;
 
-      // ✅ [교정] 루프 조건 강화하여 잔여 여백 무시 (빈 페이지 방지)
       while (leftHeightMm > 2) {
         let maxPageHeightMm = pageHeight - (margin * 2);
         let sliceHeightMm = leftHeightMm > maxPageHeightMm ? maxPageHeightMm : leftHeightMm;
         
-        // ✅ [교정] 행 잘림 방지를 위해 현재 페이지 한계점 내 최적 절단면 탐색
         if (leftHeightMm > maxPageHeightMm) {
           const targetBottom = positionMm + maxPageHeightMm;
           const validBottoms = cellBottoms.filter(b => b > positionMm + 2 && b <= targetBottom);
@@ -195,7 +220,6 @@ export default function Export() {
         leftHeightMm -= sliceHeightMm;
         positionMm += sliceHeightMm;
 
-        // ✅ [교정] 남은 컨텐츠가 확실히 있을 때만 새 페이지 추가
         if (leftHeightMm > 2) {
           doc.addPage();
         }
@@ -264,7 +288,15 @@ const styles = {
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2000 },
-  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' }
+  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' },
+
+  // 추가된 템플릿 헤더 및 푸터 스타일
+  templateHeader: { width: '100%', display: 'flex', flexDirection: 'column', gap: '10px' },
+  templateTitle: { fontSize: '24px', fontWeight: '900', textAlign: 'center', color: '#000', marginBottom: '10px', letterSpacing: '2px' },
+  templateMetaTable: { width: '100%', borderCollapse: 'collapse', border: '2px solid #000' },
+  th: { border: '1px solid #000', backgroundColor: '#f0f0f0', padding: '8px', fontSize: '12px', fontWeight: 'bold', textAlign: 'center', color: '#000' },
+  td: { border: '1px solid #000', padding: '8px', fontSize: '12px', minWidth: '80px', height: '30px' },
+  templateFooter: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '2px solid #000', paddingTop: '10px', fontSize: '12px', color: '#333' }
 };
 
 if (typeof document !== 'undefined') {

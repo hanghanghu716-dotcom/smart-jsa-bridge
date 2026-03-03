@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
 import { supabase } from '../supabaseClient';
@@ -25,6 +25,57 @@ const TAG_META = {
   'DATA_RISK': { label: '위험성', color: '#e83e8c', width: 2, align: 'center' },
 };
 
+// [성능 최적화] 리렌더링을 방지하기 위해 분리된 개별 Cell 컴포넌트
+const MemoCell = React.memo(({
+  r, c, cellKey, data, isSelected, isEditing, isBinding, bindingStartRow,
+  onMouseDown, onMouseEnter, onClick, onChange, onBlur
+}) => {
+  const isAuto = r >= bindingStartRow && r < bindingStartRow + BINDING_ROW_HEIGHT;
+  const borderStyle = isSelected || isEditing ? '2px solid #007bff' : (data.border || (isAuto ? '1px dashed #fab005' : '1px dotted #eee'));
+  const bgStyle = isSelected ? 'rgba(0,123,255,0.1)' : (data.bg || (isAuto ? '#fff9db' : '#fff'));
+
+  return (
+    <div
+      onMouseDown={() => onMouseDown(r, c)}
+      onMouseEnter={() => onMouseEnter(r, c)}
+      onClick={() => onClick(cellKey, isBinding)}
+      style={{
+        gridRow: `${r + 1} / span ${data.rowSpan || 1}`,
+        gridColumn: `${c + 1} / span ${data.colSpan || 1}`,
+        border: borderStyle,
+        background: bgStyle,
+        color: data.color || '#000',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: data.align || 'center',
+        fontSize: data.fontSize || '11px',
+        fontWeight: data.bold ? 'bold' : 'normal',
+        textDecoration: data.underline ? 'underline' : 'none',
+        overflow: 'hidden',
+        position: 'relative'
+      }}
+    >
+      {isEditing ? (
+        <div style={{width:'100%', height:'100%', display:'flex', alignItems:'center', justifyContent: data.align || 'center', padding:'0 4px'}}>
+          <input
+            autoFocus
+            style={{width:'100%', background:'none', border:'none', outline:'none', fontSize: data.fontSize || '11px', textAlign: data.align || 'center'}}
+            value={data.text || ""}
+            onChange={(e) => onChange(cellKey, e.target.value)}
+            onBlur={onBlur}
+          />
+          <span className="cursor" />
+        </div>
+      ) : (data.text || "")}
+    </div>
+  );
+}, (prev, next) => {
+  return prev.data === next.data &&
+         prev.isSelected === next.isSelected &&
+         prev.isEditing === next.isEditing &&
+         prev.bindingStartRow === next.bindingStartRow;
+});
+
 export default function LayoutBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,18 +90,20 @@ export default function LayoutBuilder() {
   const [zoom, setZoom] = useState(1.0); 
   const COLS = orientation === 'landscape' ? 56 : 40; 
 
-  const [activeOrder, setActiveOrder] = useState(
+const [activeOrder, setActiveOrder] = useState(
     savedActiveOrder || Object.keys(TAG_META).filter(k => k !== 'DATA_PHOTO')
   ); 
-  const [bindingStartRow, setBindingStartRow] = useState(savedBindingStartRow || 17);
+  const [bindingStartRow, setBindingStartRow] = useState(savedBindingStartRow || 0);
   const [userColumns, setUserColumns] = useState(savedUserColumns || []);
   
   const [draggedIdx, setDraggedIdx] = useState(null);
   const [selection, setSelection] = useState(null);
-  const [isDraggingGrid, setIsDraggingGrid] = useState(false);
   const [editingCell, setEditingCell] = useState(null); 
 
-  // --- [양식 저장 및 불러오기 상태 추가] ---
+  // 드래그 최적화를 위한 상태 Ref
+  const isDraggingRef = useRef(false);
+  const dragStartRef = useRef(null);
+
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showLoadModal, setShowLoadModal] = useState(false);
   const [saveName, setSaveName] = useState('');
@@ -96,7 +149,7 @@ export default function LayoutBuilder() {
     const d = layout.layout_data;
     setOrientation(d.orientation || 'landscape');
     setActiveOrder(d.activeOrder || []);
-    setBindingStartRow(d.bindingStartRow || 17);
+    setBindingStartRow(d.bindingStartRow || 0);
     setUserColumns(d.userColumns || []);
     setGridData(d.gridData || {});
     setShowLoadModal(false);
@@ -107,7 +160,6 @@ export default function LayoutBuilder() {
     await supabase.from('user_layouts').delete().eq('id', id);
     fetchLayouts();
   };
-  // ------------------------------------
 
   useEffect(() => { rebuildGrid(); }, [activeOrder, bindingStartRow, orientation, userColumns]);
 
@@ -143,7 +195,7 @@ export default function LayoutBuilder() {
           text: isUser ? meta.label : `[${meta.label}]`, 
           color: isUser ? '#000' : (meta.color || '#999'),
           bg: isUser ? '#f1f3f5' : (meta.color ? `${meta.color}15` : '#f8f9fa'),
-          border: `2px solid ${meta.color || '#adb5bd'}`,
+          border: `1px solid ${meta.color || '#adb5bd'}`,
           rowSpan: BINDING_ROW_HEIGHT,
           colSpan: colSpan,
           align: isUser ? (meta.align || 'center') : 'center',
@@ -174,13 +226,54 @@ export default function LayoutBuilder() {
     setDraggedIdx(targetIdx);
   };
 
-  const handleCellClick = (key) => { if (gridData[key]?.bindingType) return; setEditingCell(key); };
-  const handleCellChange = (key, value) => { setGridData(prev => ({ ...prev, [key]: { ...prev[key], text: value, hidden: false } })); };
-  const handleMouseDown = (r, c) => { setEditingCell(null); setSelection({ minR: r, maxR: r, minC: c, maxC: c }); setIsDraggingGrid(true); };
-  const handleMouseEnter = (r, c) => { if (isDraggingGrid) setSelection(prev => ({ ...prev, maxR: Math.max(prev.minR, r), maxC: Math.max(prev.minC, c), minR: Math.min(prev.minR, r), minC: Math.min(prev.minC, c) })); };
-  const handleMouseUp = () => setIsDraggingGrid(false);
+  const toggleTag = (key) => {
+    if (activeOrder.includes(key)) {
+      setActiveOrder(prev => prev.filter(k => k !== key));
+    } else {
+      setActiveOrder(prev => [...prev, key]);
+    }
+  };
 
-  useEffect(() => { window.addEventListener('mouseup', handleMouseUp); return () => window.removeEventListener('mouseup', handleMouseUp); }, []);
+  // [성능 최적화] 이벤트 핸들러 메모이제이션
+  const handleCellClick = useCallback((key, isBinding) => { 
+    if (isBinding) return; 
+    setEditingCell(key); 
+  }, []);
+
+  const handleCellChange = useCallback((key, value) => { 
+    setGridData(prev => ({ ...prev, [key]: { ...prev[key], text: value, hidden: false } })); 
+  }, []);
+
+  const handleBlur = useCallback(() => setEditingCell(null), []);
+
+  const handleMouseDown = useCallback((r, c) => { 
+    setEditingCell(null); 
+    dragStartRef.current = { r, c };
+    setSelection({ minR: r, maxR: r, minC: c, maxC: c }); 
+    isDraggingRef.current = true; 
+  }, []);
+
+  const handleMouseEnter = useCallback((r, c) => { 
+    if (isDraggingRef.current && dragStartRef.current) { 
+      const startR = dragStartRef.current.r;
+      const startC = dragStartRef.current.c;
+      setSelection({
+        minR: Math.min(startR, r),
+        maxR: Math.max(startR, r),
+        minC: Math.min(startC, c),
+        maxC: Math.max(startC, c)
+      });
+    } 
+  }, []);
+
+  const handleMouseUp = useCallback(() => {
+    isDraggingRef.current = false;
+  }, []);
+
+  useEffect(() => { 
+    window.addEventListener('mouseup', handleMouseUp); 
+    return () => window.removeEventListener('mouseup', handleMouseUp); 
+  }, [handleMouseUp]);
 
   const unmergeCells = () => {
     if (!selection) return;
@@ -285,6 +378,21 @@ export default function LayoutBuilder() {
 
   const officialColors = ['#ffffff', '#f2f2f2', '#d9d9d9', '#e7f1ff', '#f0f8ff', '#fff9e6'];
 
+  // [구조 최적화] hidden 처리된 노드를 제외하고, 화면에 그릴 블록들만 추출하여 계산
+  const visibleCells = useMemo(() => {
+    const cells = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const key = `${r}-${c}`;
+        const data = gridData[key] || {};
+        if (!data.hidden) {
+          cells.push({ r, c, key, data });
+        }
+      }
+    }
+    return cells;
+  }, [gridData, COLS]);
+
   return (
     <div style={styles.wrapper}>
       <style>{`
@@ -329,7 +437,44 @@ export default function LayoutBuilder() {
                   <button style={styles.addBtnMini} onClick={addUserColumn}>+ 항목 추가</button>
                 </div>
               </aside>
-              <section style={styles.gridCanvasWrapper}><div style={styles.canvasScrollArea}><div className="canvas-container" style={{ transform: `scale(${zoom})` }}><div style={{ display: 'grid', gridTemplateColumns: `repeat(${COLS}, ${BASE_CELL_SIZE}px)`, gridAutoRows: `${BASE_CELL_SIZE}px`, backgroundColor: '#fff', width: 'fit-content' }}>{Array.from({length: ROWS}).map((_, r) => Array.from({length: COLS}).map((_, c) => { const key = `${r}-${c}`; const data = gridData[key] || {}; if (data.hidden) return null; const isSelected = selection && r >= selection.minR && r <= selection.maxR && c >= selection.minC && c <= selection.maxC; const isEditing = editingCell === key; const isAuto = r >= bindingStartRow && r < bindingStartRow + BINDING_ROW_HEIGHT; return ( <div key={key} onMouseDown={()=>handleMouseDown(r, c)} onMouseEnter={()=>handleMouseEnter(r, c)} onClick={() => handleCellClick(key)} style={{ gridRow: `span ${data.rowSpan || 1}`, gridColumn: `span ${data.colSpan || 1}`, border: isSelected || isEditing ? '2px solid #007bff' : (data.border || (isAuto ? '1px dashed #fab005' : '1px dotted #eee')), background: isSelected ? 'rgba(0,123,255,0.1)' : (data.bg || (isAuto ? '#fff9db' : '#fff')), color: data.color || '#000', display: 'flex', alignItems: 'center', justifyContent: data.align || 'center', fontSize: data.fontSize || '11px', fontWeight: data.bold ? 'bold' : 'normal', textDecoration: data.underline ? 'underline' : 'none', overflow: 'hidden', position: 'relative' }}> {isEditing ? ( <div style={{width:'100%', height:'100%', display:'flex', alignItems:'center', justifyContent: data.align || 'center', padding:'0 4px'}}><input autoFocus style={{width:'100%', background:'none', border:'none', outline:'none', fontSize: data.fontSize || '11px', textAlign: data.align || 'center'}} value={data.text || ""} onChange={(e)=>handleCellChange(key, e.target.value)} onBlur={()=>setEditingCell(null)} /><span className="cursor" /></div> ) : (data.text || "")} </div> ); }))}</div></div></div></section>
+              <section style={styles.gridCanvasWrapper}>
+                <div style={styles.canvasScrollArea}>
+                  <div className="canvas-container" style={{ transform: `scale(${zoom})` }}>
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: `repeat(${COLS}, ${BASE_CELL_SIZE}px)`, 
+                      gridTemplateRows: `repeat(${ROWS}, ${BASE_CELL_SIZE}px)`, // 명시적 행 크기 고정
+                      backgroundColor: '#fff', 
+                      width: 'fit-content' 
+                    }}>
+                      {visibleCells.map(cell => {
+                        const isSelected = selection && cell.r >= selection.minR && cell.r <= selection.maxR && cell.c >= selection.minC && cell.c <= selection.maxC;
+                        const isEditing = editingCell === cell.key;
+                        const isBinding = !!cell.data.bindingType;
+
+                        return (
+                          <MemoCell
+                            key={cell.key}
+                            r={cell.r}
+                            c={cell.c}
+                            cellKey={cell.key}
+                            data={cell.data}
+                            isSelected={isSelected}
+                            isEditing={isEditing}
+                            isBinding={isBinding}
+                            bindingStartRow={bindingStartRow}
+                            onMouseDown={handleMouseDown}
+                            onMouseEnter={handleMouseEnter}
+                            onClick={handleCellClick}
+                            onChange={handleCellChange}
+                            onBlur={handleBlur}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToAnalysis}>처음으로</button><button style={styles.nextBtnLight} onClick={goToExport}>최종 출력 단계로 이동</button></div>
           </div>
