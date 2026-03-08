@@ -27,6 +27,10 @@ import Profile from './pages/Profile';
 import PublicExplore from './components/PublicExplore';
 import LayoutBuilder from './pages/LayoutBuilder';
 
+// [기능 추가]: 6단계 개편에 따른 신규 컴포넌트 임포트
+import ModuleBuilder from './pages/ModuleBuilder';
+import TableBuilder from './pages/TableBuilder';
+
 function App() {
   return (
     <Router>
@@ -60,6 +64,11 @@ function App() {
           <Route path="/guideline/common" element={<CommonGuide />} />
 
           <Route path="/layoutbuilder" element={<LayoutBuilder />} />
+          
+          {/* [기능 추가]: 분할된 문서 모듈 구성 및 표 구성 라우트 추가 */}
+          <Route path="/layout-module" element={<ModuleBuilder />} />
+          <Route path="/layout-table" element={<TableBuilder />} />
+
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/explore" element={<PublicExplore />} />
         </Routes>

@@ -3,6 +3,12 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
 
+/**
+ * [Analysis 컴포넌트 - 6단계 개편 반영본]
+ * 역할: Step 3. 유해·위험요인 분석 및 대책 수립
+ * 에디터 위치: src/pages/Analysis.jsx
+ */
+
 export default function Analysis() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -156,8 +162,6 @@ export default function Analysis() {
     else setActiveIdx(activeIdx - 1);
   };
 
-  const scroll = (dir) => { if (scrollRef.current) scrollRef.current.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' }); };
-
   return (
     <div style={styles.wrapper}>
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
@@ -212,13 +216,20 @@ export default function Analysis() {
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
+            
+            {/* [변경됨] 6단계 Stepper 적용 */}
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
               <div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div>
               <div style={styles.stepLineActive} />
               <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>위험 분석</span></div>
-              <div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>양식 설정</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>문서 모듈 구성</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>데이터 표 구성</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
             </nav>
 
             <div style={styles.formHeader}>
@@ -313,8 +324,9 @@ export default function Analysis() {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
-              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layoutbuilder', { state: { existingId, analysisData, formData, participants, procedures } })}>
-                {activeIdx === analysisData.length - 1 ? '분석 완료 및 양식 설정' : '다음 작업 단계 분석'}
+              {/* [변경됨] 다음 라우팅 경로를 /layoutbuilder 에서 /layout-module 로 변경 */}
+              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { state: { existingId, analysisData, formData, participants, procedures } })}>
+                {activeIdx === analysisData.length - 1 ? '분석 완료 및 모듈 설정으로 이동' : '다음 작업 단계 분석'}
               </button>
             </div>
           </div>
@@ -345,18 +357,18 @@ const styles = {
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   formCard: { width: '100%', maxWidth: '1440px', height: '80vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', flexDirection: 'column', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', overflow: 'hidden' },
-  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
-  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
-  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
-  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
-  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: '0.75rem' },
-  stepText: { fontSize: '0.85rem', color: '#aaa' },
+  stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.6rem' },
+  stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
+  stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
+  stepBadgeActive: { width: '20px', height: '20px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff' },
+  stepBadgeDone: { width: '20px', height: '20px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
+  stepTextActive: { fontSize: '0.8rem', color: '#fff', fontWeight: '700' },
+  stepTextDone: { fontSize: '0.8rem', color: '#4caf50', fontWeight: '700' },
+  stepLineActive: { width: '20px', height: '1.5px', backgroundColor: '#4caf50' },
+  stepLine: { width: '20px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 0.3 },
+  stepBadge: { width: '20px', height: '20px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: '0.75rem' },
+  stepText: { fontSize: '0.8rem', color: '#aaa' },
   formHeader: { borderLeft: '5px solid #007bff', paddingLeft: '1rem', marginBottom: '1.2rem' },
   headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
   formTitle: { fontSize: '1.4rem', color: '#fff', fontWeight: '800', margin: 0 },
@@ -405,4 +417,31 @@ const styles = {
   footerArea: { width: '100%', padding: '1rem 5rem', zIndex: 10, position: 'absolute', bottom: 0, backgroundColor: 'transparent' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
+  dialogOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2000 },
+  spinner: { width: '40px', height: '40px', border: '4px solid #333', borderTop: '4px solid #007bff', borderRadius: '50%', animation: 'spin 1s linear infinite' },
+  libModalContent: { backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', padding: '2rem', width: '600px', maxWidth: '90%', display: 'flex', flexDirection: 'column', gap: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.9)' },
+  modalHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#fff', borderBottom: '1px solid #333', paddingBottom: '1rem' },
+  closeBtnSmall: { backgroundColor: 'transparent', color: '#aaa', border: 'none', fontSize: '1.2rem', cursor: 'pointer' },
+  libList: { display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '400px', overflowY: 'auto' },
+  libItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#222', padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: '1px solid #333' },
+  libInfo: { display: 'flex', flexDirection: 'column', gap: '4px' },
+  libCategory: { fontSize: '0.7rem', color: '#007bff', fontWeight: 'bold' },
+  libTitleText: { color: '#fff', fontSize: '0.9rem' },
+  emptyText: { color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.9rem' },
+  backBtn: { backgroundColor: 'transparent', color: '#aaa', border: 'none', textAlign: 'left', padding: '0.5rem 0', cursor: 'pointer', fontSize: '0.85rem' },
+  libStepItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#222', padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: '1px dashed #444' },
+  stepInfo: { display: 'flex', alignItems: 'center', gap: '10px' },
+  stepIdxBadge: { backgroundColor: '#333', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' },
+  stepTitleText: { color: '#fff', fontSize: '0.9rem' },
+  stepPreview: { color: '#ff4d4d', fontSize: '0.75rem', fontWeight: 'bold' }
 };
+
+if (typeof document !== 'undefined') {
+  const styleId = "jsa-bridge-analysis-style";
+  if (!document.getElementById(styleId)) {
+    const styleTag = document.createElement("style");
+    styleTag.id = styleId;
+    styleTag.innerHTML = ` @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } `;
+    document.head.appendChild(styleTag);
+  }
+}
