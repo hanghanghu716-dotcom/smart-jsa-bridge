@@ -10,16 +10,16 @@ import { supabase } from '../supabaseClient';
  */
 
 const TAG_META = {
-  // 일반 JSA 태그
+  // 일반 JSA 및 공통 태그
   'DATA_STEP_NO': { label: '작업번호', color: '#6c757d', width: 2, align: 'center' },
-  'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 5, align: 'left' },
+  'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
   'DATA_PHOTO': { label: '관련사진', color: '#6f42c1', width: 3, align: 'center' },
   'DATA_HAZARD': { label: '유해위험요인', color: '#dc3545', isFlex: true, align: 'left' },
   'DATA_CURRENT_MEASURE': { label: '현재 안전대책', color: '#fd7e14', isFlex: true, align: 'left' },
   'DATA_RECOMMEND_MEASURE': { label: '감소권고대책', color: '#198754', isFlex: true, align: 'left' },
-  'DATA_SEVERITY': { label: '중대성', color: '#20c997', width: 2, align: 'center' },
-  'DATA_FREQUENCY': { label: '가능성', color: '#20c997', width: 2, align: 'center' },
-  'DATA_RISK': { label: '위험성', color: '#e83e8c', width: 2, align: 'center' },
+  'DATA_FREQUENCY': { label: '가능성(빈도)', color: '#20c997', width: 3, align: 'center' }, 
+  'DATA_SEVERITY': { label: '중대성(강도)', color: '#20c997', width: 3, align: 'center' }, 
+  'DATA_RISK': { label: '위험성', color: '#e83e8c', width: 3, align: 'center' },
 
   // KRAS 표준 양식 전용 태그
   'DATA_KRAS_STEP': { label: '세부 작업 내용', color: '#0d6efd', width: 4, align: 'center' },
@@ -27,19 +27,16 @@ const TAG_META = {
   'DATA_KRAS_HAZARD_DETAIL': { label: '위험발생 상황 및 결과', color: '#dc3545', isFlex: true, align: 'left' },
   'DATA_KRAS_BASIS': { label: '관련근거(법적기준)', color: '#6c757d', width: 3, align: 'center' },
   'DATA_KRAS_CURRENT': { label: '현재의 안전보건조치', color: '#fd7e14', isFlex: true, align: 'left' },
-  'DATA_KRAS_FREQ': { label: '가능성(빈도)', color: '#20c997', width: 2, align: 'center' },
-  'DATA_KRAS_SEV': { label: '중대성(강도)', color: '#20c997', width: 2, align: 'center' },
-  'DATA_KRAS_RISK': { label: '위험성', color: '#e83e8c', width: 2, align: 'center' },
   'DATA_KRAS_RECOMMEND': { label: '위험성 감소대책', color: '#198754', isFlex: true, align: 'left' },
-  'DATA_KRAS_AFTER': { label: '개선후 위험성', color: '#17a2b8', width: 3, align: 'center' },
-  'DATA_KRAS_SCHED': { label: '개선 예정일', color: '#ffc107', width: 3, align: 'center' },
+  'DATA_KRAS_AFTER': { label: '개선후 위험성', color: '#17a2b8', width: 4, align: 'center' },
+  'DATA_KRAS_SCHED': { label: '개선 예정일', color: '#ffc107', width: 4, align: 'center' },
   'DATA_KRAS_COMP': { label: '완료일', color: '#28a745', width: 3, align: 'center' },
-  'DATA_KRAS_MANAGER': { label: '담당자', color: '#6610f2', width: 2, align: 'center' },
+  'DATA_KRAS_MANAGER': { label: '담당자', color: '#6610f2', width: 3, align: 'center' },
 };
 
 const COLUMN_GROUPS = [
   { label: '유해 위험요인 파악', children: ['DATA_KRAS_HAZARD_CLASS', 'DATA_KRAS_HAZARD_DETAIL'] },
-  { label: '위험성', children: ['DATA_KRAS_FREQ', 'DATA_KRAS_SEV', 'DATA_KRAS_RISK'] }
+  { label: '위험성', children: ['DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK'] }
 ];
 
 const getNormalizedOrder = (order) => {
@@ -72,20 +69,19 @@ export default function TableBuilder() {
   
   const { 
     existingId, analysisData = [], formData = {}, participants = [], procedures = [], 
-    savedHeaderPreset, savedFooterPreset, savedModules,
-    savedActiveOrder, savedOrientation, savedUserColumns
+    savedActiveOrder, savedOrientation, savedUserColumns,
+    docTitle, appr1, appr2, appr3, savedSignatureRows
   } = location.state || {};
 
   const [orientation, setOrientation] = useState(savedOrientation || 'landscape');
   const [zoom, setZoom] = useState(1.0); 
   const COLS = orientation === 'landscape' ? 56 : 40; 
+  const PAPER_WIDTH = orientation === 'landscape' ? '1080px' : '750px';
 
   const [activeOrder, setActiveOrder] = useState(() => {
     const initialOrder = savedActiveOrder || [
-      'DATA_KRAS_STEP', 'DATA_KRAS_HAZARD_CLASS', 'DATA_KRAS_HAZARD_DETAIL', 
-      'DATA_KRAS_BASIS', 'DATA_KRAS_CURRENT', 'DATA_KRAS_FREQ', 'DATA_KRAS_SEV', 
-      'DATA_KRAS_RISK', 'DATA_KRAS_RECOMMEND', 'DATA_KRAS_AFTER', 
-      'DATA_KRAS_SCHED', 'DATA_KRAS_COMP', 'DATA_KRAS_MANAGER'
+      'DATA_STEP_NO', 'DATA_STEP_TITLE', 'DATA_HAZARD', 'DATA_RECOMMEND_MEASURE',
+      'DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK'
     ];
     return getNormalizedOrder(initialOrder);
   }); 
@@ -102,7 +98,6 @@ export default function TableBuilder() {
     }
   }, [activeOrder]);
 
-  // [정렬 개선]: 가변 너비 항목(isFlex) 포함 시 콘텐츠 길이에 의한 틀어짐 원천 차단
   const currentItems = activeOrder.filter(key => TAG_META[key] || userColumns.find(u => u.id === key));
   const fixedWidthTotal = currentItems.reduce((sum, key) => {
     const meta = TAG_META[key] || userColumns.find(u => u.id === key);
@@ -130,25 +125,13 @@ export default function TableBuilder() {
   });
   if (tempGroup) layoutGroups.push(tempGroup);
 
-  // 셀 너비 계산 함수: 콘텐츠와 무관하게 고정 퍼센트 반환
-  const getGroupLayout = (group) => {
-    let groupTotalPercent = 0;
-    const childrenStyles = group.keys.map(key => {
-      const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-      const isFlex = meta?.isFlex;
-      // 가변 너비 항목도 사전에 계산된 고정 비율로 처리
-      const basisPercent = isFlex ? (remainingSpace / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
-      groupTotalPercent += basisPercent;
-      return { key, meta, basisPercent };
-    });
-    return { groupTotalPercent, childrenStyles };
-  };
+  const hasGroups = layoutGroups.some(g => g.isGroup);
 
   const handleSaveLayout = async () => {
     if (!saveName.trim()) return alert("양식 이름을 입력해주세요.");
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return alert("로그인이 필요합니다.");
-    const layoutData = { headerPreset: savedHeaderPreset, footerPreset: savedFooterPreset, activeModules: savedModules, orientation, activeOrder, userColumns };
+    const layoutData = { docTitle, appr1, appr2, appr3, signatureRows: savedSignatureRows, orientation, activeOrder, userColumns };
     const { error } = await supabase.from('user_layouts').insert({ user_id: user.id, name: saveName, layout_data: layoutData });
     if (error) { console.error(error); alert("양식 저장 중 오류가 발생했습니다."); } 
     else { alert("전체 양식 설정이 성공적으로 스크랩되었습니다."); setShowSaveModal(false); setSaveName(''); }
@@ -187,34 +170,66 @@ export default function TableBuilder() {
     });
   };
 
-  const renderDataTableHeader = () => (
-    <div style={{ display: 'flex', borderBottom: '1px solid #000', borderLeft: '1px solid #000', backgroundColor: '#fff' }}>
-      {layoutGroups.map((group, idx) => {
-        const { groupTotalPercent, childrenStyles } = getGroupLayout(group);
-        if (group.isGroup) {
-          return (
-            <div key={`h-group-${idx}`} style={{ flex: `0 0 ${groupTotalPercent}%`, width: `${groupTotalPercent}%`, display: 'flex', flexDirection: 'column', borderRight: '1px solid #000', boxSizing: 'border-box' }}>
-              <div style={{ padding: '8px', textAlign: 'center', fontWeight: 'bold', fontSize: '11px', borderBottom: '1px solid #000', color: '#000', backgroundColor: '#f2f2f2' }}>{group.label}</div>
-              <div style={{ display: 'flex', flex: 1 }}>
-                {childrenStyles.map((item, i) => (
-                  <div key={`h-cell-${item.key}`} style={{ flex: `0 0 ${(item.basisPercent / groupTotalPercent) * 100}%`, width: `${(item.basisPercent / groupTotalPercent) * 100}%`, padding: '8px 4px', borderRight: i === childrenStyles.length - 1 ? 'none' : '1px solid #000', textAlign: 'center', fontWeight: 'bold', fontSize: '11px', color: '#000', backgroundColor: '#f9f9f9', display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box' }}>
-                    {item.meta.label}
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        } else {
-          const item = childrenStyles[0];
-          return (
-            <div key={`h-single-${item.key}`} style={{ flex: `0 0 ${item.basisPercent}%`, width: `${item.basisPercent}%`, padding: '8px 4px', borderRight: '1px solid #000', textAlign: 'center', fontWeight: 'bold', fontSize: '11px', color: '#000', backgroundColor: '#f2f2f2', display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box' }}>
-              {item.meta.label}
-            </div>
-          );
-        }
-      })}
-    </div>
-  );
+const renderDataTablePreview = () => {
+    if (currentItems.length === 0) return null;
+    return (
+      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed', backgroundColor: '#fff', color: '#000' }}>
+        <colgroup>
+          {currentItems.map(key => {
+            const meta = TAG_META[key] || userColumns.find(u => u.id === key);
+            let pct = meta.isFlex ? (remainingSpace / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
+            return <col key={key} style={{ width: `${pct}%` }} />;
+          })}
+        </colgroup>
+        <thead>
+          <tr>
+            {layoutGroups.map((group, idx) => {
+              if (group.isGroup) {
+                return <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: '11px', textAlign: 'center', color: '#000' }}>{group.label}</th>;
+              } else {
+                const key = group.keys[0];
+                const meta = TAG_META[key] || userColumns.find(u => u.id === key);
+                let label = meta.label;
+                if (key === 'DATA_FREQUENCY') label = "가능성\n(빈도)";
+                if (key === 'DATA_SEVERITY') label = "중대성\n(강도)";
+                return <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: '11px', textAlign: 'center', whiteSpace: 'pre-wrap', color: '#000' }}>{label}</th>;
+              }
+            })}
+          </tr>
+          {hasGroups && (
+            <tr>
+              {layoutGroups.filter(g => g.isGroup).flatMap(group =>
+                group.keys.map(key => {
+                  const meta = TAG_META[key] || userColumns.find(u => u.id === key);
+                  let label = meta.label;
+                  if (key === 'DATA_KRAS_AFTER') label = "개선후\n위험성";
+                  if (key === 'DATA_KRAS_SCHED') label = "개선\n예정일";
+                  return <th key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: '11px', textAlign: 'center', whiteSpace: 'pre-wrap', color: '#000' }}>{label}</th>;
+                })
+              )}
+            </tr>
+          )}
+        </thead>
+        <tbody>
+          <tr>
+            {currentItems.map((key, i) => {
+              const meta = TAG_META[key] || userColumns.find(u => u.id === key);
+              return (
+                <td key={`dummy-${key}`} style={{ border: '1px solid #000', padding: '10px 4px', fontSize: '11px', color: '#000', textAlign: meta.align || 'center', verticalAlign: 'middle', wordBreak: 'break-all' }}>
+                  (작성 예시)
+                </td>
+              );
+            })}
+          </tr>
+          <tr>
+             <td colSpan={currentItems.length} style={{ border: '1px solid #000', padding: '20px', textAlign: 'center', color: '#000', fontSize: '12px', backgroundColor: '#fafafa' }}>
+               ... 실제 위험성 평가 데이터 전개 영역 ...
+             </td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
 
   const goBackToModuleBuilder = () => navigate('/layout-module', { state: { ...location.state, savedActiveOrder: activeOrder, savedOrientation: orientation, savedUserColumns: userColumns } });
   const goToExport = () => navigate('/export', { state: { ...location.state, savedActiveOrder: activeOrder, savedOrientation: orientation, savedUserColumns: userColumns } });
@@ -223,7 +238,10 @@ export default function TableBuilder() {
     <div style={styles.wrapper}>
       <style>{`
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        .canvas-container { transform-origin: top center; transition: transform 0.2s ease; margin: 0 auto; background-color: #fff; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.7); width: fit-content; min-width: 800px; }
+        .canvas-container { 
+          transform-origin: top center; transition: transform 0.2s ease; margin: 0 auto; background-color: #fff; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.7); width: fit-content; 
+          box-sizing: border-box; font-family: "Malgun Gothic", sans-serif;
+        }
         .tag-item { transition: transform 0.2s ease, background 0.2s; }
       `}</style>
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
@@ -252,41 +270,14 @@ export default function TableBuilder() {
               </aside>
               <section style={styles.gridCanvasWrapper}>
                 <div style={styles.canvasScrollArea}>
-                  <div className="canvas-container" style={{ transform: `scale(${zoom})`, width: orientation === 'landscape' ? '1100px' : '750px' }}>
-                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginBottom: '20px', fontSize: '13px' }}>[이전 단계(Step 4)에서 설정한 상단 모듈 영역]</div>
-                    <div style={{ width: '100%', borderTop: '2px solid #000', borderBottom: '2px solid #000' }}>
-                      {renderDataTableHeader()}
-                      
-                      {/* [완전 해결]: 콘텐츠 길이에 상관없이 수학적으로 고정된 퍼센트 너비 강제 적용 */}
-                      <div style={{ display: 'flex', borderBottom: '1px dotted #ccc', borderLeft: '1px solid #000' }}>
-                        {layoutGroups.map((group, idx) => {
-                          const { groupTotalPercent, childrenStyles } = getGroupLayout(group);
-                          if (group.isGroup) {
-                            return (
-                              <div key={`d-group-${idx}`} style={{ flex: `0 0 ${groupTotalPercent}%`, width: `${groupTotalPercent}%`, display: 'flex', borderRight: '1px solid #000', boxSizing: 'border-box' }}>
-                                {childrenStyles.map((item, i) => (
-                                  <div key={`d-cell-${item.key}`} style={{ flex: `0 0 ${(item.basisPercent / groupTotalPercent) * 100}%`, width: `${(item.basisPercent / groupTotalPercent) * 100}%`, padding: '10px 4px', borderRight: i === childrenStyles.length - 1 ? 'none' : '1px solid #000', textAlign: item.meta.align || 'center', fontSize: '11px', color: '#555', boxSizing: 'border-box' }}>
-                                    (작성 예시)
-                                  </div>
-                                ))}
-                              </div>
-                            );
-                          } else {
-                            const item = childrenStyles[0];
-                            return (
-                              <div key={`d-single-${item.key}`} style={{ flex: `0 0 ${item.basisPercent}%`, width: `${item.basisPercent}%`, padding: '10px 4px', borderRight: '1px solid #000', textAlign: item.meta.align || 'center', fontSize: '11px', color: '#555', boxSizing: 'border-box' }}>
-                                (작성 예시)
-                              </div>
-                            );
-                          }
-                        })}
-                      </div>
-
-                      <div style={{ display: 'flex', borderBottom: '1px solid #000', borderLeft: '1px solid #000', backgroundColor: '#fafafa' }}>
-                         <div style={{ width: '100%', padding: '20px', textAlign: 'center', color: '#aaa', fontSize: '12px', borderRight: '1px solid #000' }}>... 실제 위험성 평가 데이터 전개 영역 ...</div>
-                      </div>
-                    </div>
-                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginTop: '20px', fontSize: '13px' }}>[이전 단계(Step 4)에서 설정한 하단 모듈 영역]</div>
+                  <div className="canvas-container" style={{ transform: `scale(${zoom})`, width: PAPER_WIDTH }}>
+                    
+                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginBottom: '20px', fontSize: '13px' }}>[문서 통합 헤더 영역]</div>
+                    
+                    {renderDataTablePreview()}
+                    
+                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginTop: '20px', fontSize: '13px' }}>[참여자 서명란 영역]</div>
+                  
                   </div>
                 </div>
               </section>

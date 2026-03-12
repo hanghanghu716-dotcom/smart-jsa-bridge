@@ -4,87 +4,198 @@ import AdBanner from '../AdBanner';
 
 /**
  * [ModuleBuilder 컴포넌트]
- * 역할: Step 4. 문서 모듈 구성 (JSA 데이터 표를 제외한 PTW 및 부가 문서 블록 설정)
+ * 역할: Step 4. 문서 모듈 구성 (통합 고정 헤더 및 부가 문서 블록 설정)
  * 에디터 위치: src/pages/ModuleBuilder.jsx
  */
-
-// [프리셋 정의]
-const HEADER_PRESETS = [
-  { id: 'h_kras', label: 'KRAS 표준 (안전보건공단)' },
-  { id: 'h_standard', label: '일반 JSA 헤더 (결재란 포함)' },
-  { id: 'h_simple', label: '간편 헤더 (문서 정보만)' },
-  { id: 'h_none', label: '헤더 없음' }
-];
-
-const FOOTER_PRESETS = [
-  { id: 'f_standard', label: '표준 푸터 (서명란 포함)' },
-  { id: 'f_notice', label: '주의사항 및 범례' },
-  { id: 'f_none', label: '푸터 없음' }
-];
-
-// [신규 추가: 부가 모듈 리스트]
-const OPTIONAL_MODULES = [
-  { id: 'mod_job_info', label: '작업 개요 블록', desc: '작업명, 작업지역, 수행부서, 수행일자' },
-  { id: 'mod_ppe', label: '개인보호구(PPE) 및 장비', desc: '필수 개인보호구 리스트 및 필요 장비/공구' },
-  { id: 'mod_high_risk', label: '허가 대상 고위험작업', desc: '화기, 밀폐, 정전 등 9대 고위험작업 체크란' },
-  { id: 'mod_loto', label: '에너지 차단 및 격리(LOTO)', desc: '차단 개소 및 LOTO 자물쇠 확인란' },
-  { id: 'mod_watcher', label: '작업지휘자 및 감시인', desc: '신호수, 화재감시자 등 지정 및 서명란' },
-  { id: 'mod_gas', label: '환경 및 가스 농도 측정', desc: 'O2, LEL, 독성가스 측정 기록표' },
-  { id: 'mod_simops', label: '동시작업(SIMOPS) 간섭 확인', desc: '인접 구역 타 작업 유무 및 안전조치' },
-  { id: 'mod_tbm', label: 'TBM 참석자 명부', desc: '작업 전 교육 전달사항 및 근로자 서명란' }
-];
 
 export default function ModuleBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
   
   const { 
-    savedHeaderPreset, savedFooterPreset, savedModules
+    existingId = null,
+    analysisData = [],
+    procedures = [],
+    formData = {}, 
+    participants = [],
+    savedSignatureRows,
+    docTitle: savedDocTitle,
+    appr1: savedAppr1,
+    appr2: savedAppr2,
+    appr3: savedAppr3
   } = location.state || {};
 
-  const [headerPreset, setHeaderPreset] = useState(savedHeaderPreset || 'h_kras');
-  const [footerPreset, setFooterPreset] = useState(savedFooterPreset || 'f_none');
-  
-  // 모듈 활성화 상태 관리 (기본값으로 작업개요, PPE, TBM 활성화)
-  const [activeModules, setActiveModules] = useState(
-    savedModules || ['mod_job_info', 'mod_ppe', 'mod_tbm']
-  );
+  const [signatureRows, setSignatureRows] = useState(savedSignatureRows || 1);
 
-  const toggleModule = (moduleId) => {
-    setActiveModules(prev => 
-      prev.includes(moduleId) 
-        ? prev.filter(id => id !== moduleId)
-        : [...prev, moduleId]
-    );
-  };
+  // 문서 타이틀 및 결재란 헤더 수정용 상태 관리
+  const [docTitle, setDocTitle] = useState(savedDocTitle || '위험성평가표 (JSA)');
+  const [appr1, setAppr1] = useState(savedAppr1 || '작성');
+  const [appr2, setAppr2] = useState(savedAppr2 || '검토');
+  const [appr3, setAppr3] = useState(savedAppr3 || '승인');
 
   const goBackToAnalysis = () => {
     navigate('/analysis', { state: location.state });
   };
 
   const goToTableBuilder = () => {
-    // 다음 단계인 Step 5 (TableBuilder)로 상태 전달
     navigate('/layout-table', { 
       state: { 
         ...location.state, 
-        savedHeaderPreset: headerPreset,
-        savedFooterPreset: footerPreset,
-        savedModules: activeModules
+        savedSignatureRows: signatureRows,
+        docTitle,
+        appr1,
+        appr2,
+        appr3
       } 
     });
   };
 
-  // 모듈 시각화 렌더러 (미리보기용 블록)
-  const renderModulePreview = (moduleId) => {
-    const moduleInfo = OPTIONAL_MODULES.find(m => m.id === moduleId);
-    if (!moduleInfo) return null;
+  // 6분할 Colgroup을 활용한 수평적 행 구조 렌더링 및 Info 데이터 바인딩
+  const renderUnifiedHeader = () => {
+    const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '11px', textAlign: 'center', color: '#000' };
+    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: 'nowrap' };
+    const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
+
+    const ppeOthers = formData?.ppe?.filter(p => !['안전모','안전화','보안경','장갑','방진마스크'].includes(p)).join(', ');
+    const permitOthers = formData?.permits?.filter(p => !['일반','화기','밀폐','정전','고소','중량물','굴착'].includes(p)).join(', ');
 
     return (
-      <div key={moduleId} style={styles.previewBlock}>
-        <div style={styles.previewBlockHeader}>{moduleInfo.label}</div>
-        <div style={styles.previewBlockDesc}>{moduleInfo.desc}</div>
+      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed' }}>
+        <colgroup>
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '20%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '30%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '20%' }} />
+        </colgroup>
+        <tbody>
+          <tr>
+            <td style={labelTdStyle}>작업명</td>
+            <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
+            <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle' }}>
+              {docTitle}
+            </td>
+            <td colSpan={2} style={{ padding: 0, border: '1px solid #000' }}>
+              <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
+                <tbody>
+                  <tr>
+                    <td rowSpan={2} style={{ borderRight: '1px solid #000', width: '20px', writingMode: 'vertical-rl', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none' }}>결재</td>
+                    <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr1}</td>
+                    <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr2}</td>
+                    <td style={{ borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr3}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ borderRight: '1px solid #000', height: '45px' }}></td>
+                    <td style={{ borderRight: '1px solid #000' }}></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          
+          <tr>
+            <td style={labelTdStyle}>작업구역</td>
+            <td style={commonTdStyle}>{formData?.workLocation || ''}</td>
+            <td style={labelTdStyle}>수행부서</td>
+            <td style={commonTdStyle}>{formData?.department || ''}</td>
+            <td style={labelTdStyle}>수행일자</td>
+            <td style={commonTdStyle}>{formData?.workDate || ''}</td>
+          </tr>
+
+          <tr>
+            <td style={labelTdStyle}>개인보호구</td>
+            <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
+              <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} 안전모</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} 안전화</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('보안경') ? '☑' : '□'} 보안경</span>
+                <span style={checkboxItemStyle}>□ 안전대</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} 방진/방독마스크</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} 안전장갑</span>
+                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  {ppeOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)
+                </span>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style={labelTdStyle}>고위험작업</td>
+            <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
+              <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} 화기</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} 밀폐</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} 정전/활선</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} 고소</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} 중량물취급</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} 굴착</span>
+                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
+                  {permitOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)
+                </span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderModulePreview = () => {
+    const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '10px', textAlign: 'center', color: '#000' };
+    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%' };
+
+    const sigRows = Array.from({ length: signatureRows }, (_, i) => i);
+    const cols = Array.from({ length: 8 }, (_, i) => i);
+    
+    return (
+      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', borderTop: 'none', tableLayout: 'fixed' }}>
+        <tbody>
+          <tr>
+            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none'}}>참여자</td>
+            {cols.map(c => {
+              const pName = participants?.[c] || '';
+              return (
+                <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'bottom', color: '#000', borderTop: 'none'}}>
+                  {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
+                  <span style={{color: '#888'}}>(인)</span>
+                </td>
+              );
+            })}
+          </tr>
+          {sigRows.slice(1).map(r => (
+            <tr key={`sig-row-${r}`}>
+              {cols.map(c => {
+                const pIdx = r * 8 + c;
+                const pName = participants?.[pIdx] || '';
+                return (
+                  <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'bottom', color: '#000'}}>
+                    {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
+                    <span style={{color: '#888'}}>(인)</span>
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderDynamicLayout = () => {
+    const TableBlock = (
+      <div key="table-block" style={{...styles.previewBlock, backgroundColor: 'rgba(40, 167, 69, 0.05)', border: '2px dashed #28a745', borderTop: 'none', padding: '40px 10px', margin: '0 0 -1px 0'}}>
+        <div style={{ color: '#28a745', textAlign: 'center', fontSize: '1rem', fontWeight: 'bold' }}>[위험성 평가 데이터 테이블 구역]</div>
+        <div style={{ textAlign: 'center', color: '#28a745', fontSize: '0.8rem', marginTop: '5px' }}>Step 5에서 설정한 컬럼 데이터가 이 위치에 자동으로 삽입됩니다.</div>
       </div>
     );
+
+    let layoutElements = [];
+    layoutElements.push(renderModulePreview());
+    layoutElements.push(TableBlock);
+
+    return layoutElements;
   };
 
   return (
@@ -96,7 +207,6 @@ export default function ModuleBuilder() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             
-            {/* 6단계로 확장된 Stepper */}
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div><div style={styles.stepLineActive} />
@@ -108,75 +218,60 @@ export default function ModuleBuilder() {
             
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>| 04. 문서 모듈 구성</h2>
-              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>JSA 본문 데이터 표를 제외한 헤더/푸터 및 안전작업허가(PTW) 부가 요소를 선택합니다.</p>
+              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>JSA 본문 헤더 정보 및 안전작업허가(PTW) 부가 요소를 설정합니다.</p>
             </div>
 
             <div style={styles.builderLayout}>
-              {/* 좌측: 모듈 설정 패널 */}
-              <aside style={styles.configPanel}>
+              <aside style={styles.toolbarSliding}>
                 
-                <div style={styles.configSection}>
-                  <h3 style={styles.configTitle}>1. 기본 프리셋 설정</h3>
-                  <div style={styles.selectGroup}>
-                    <label style={styles.selectLabel}>상단 헤더(머리말) 양식</label>
-                    <select style={styles.selectBox} value={headerPreset} onChange={(e) => setHeaderPreset(e.target.value)}>
-                      {HEADER_PRESETS.map(preset => <option key={preset.id} value={preset.id}>{preset.label}</option>)}
-                    </select>
-                  </div>
-                  <div style={styles.selectGroup}>
-                    <label style={styles.selectLabel}>하단 푸터(꼬리말) 양식</label>
-                    <select style={styles.selectBox} value={footerPreset} onChange={(e) => setFooterPreset(e.target.value)}>
-                      {FOOTER_PRESETS.map(preset => <option key={preset.id} value={preset.id}>{preset.label}</option>)}
-                    </select>
+                <div style={styles.toolSectionCompact}>
+                  <h3 style={styles.toolTitleMini}>문서 헤더 텍스트 설정</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div style={styles.inputFieldCompact}>
+                      <span style={styles.inputLabel}>문서 제목</span>
+                      <input type="text" value={docTitle} onChange={(e) => setDocTitle(e.target.value)} style={styles.panelInput} />
+                    </div>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <div style={styles.inputFieldCompact}>
+                        <span style={styles.inputLabel}>결재란 1</span>
+                        <input type="text" value={appr1} onChange={(e) => setAppr1(e.target.value)} style={styles.panelInput} />
+                      </div>
+                      <div style={styles.inputFieldCompact}>
+                        <span style={styles.inputLabel}>결재란 2</span>
+                        <input type="text" value={appr2} onChange={(e) => setAppr2(e.target.value)} style={styles.panelInput} />
+                      </div>
+                      <div style={styles.inputFieldCompact}>
+                        <span style={styles.inputLabel}>결재란 3</span>
+                        <input type="text" value={appr3} onChange={(e) => setAppr3(e.target.value)} style={styles.panelInput} />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div style={styles.configSection}>
-                  <h3 style={styles.configTitle}>2. 부가 모듈 선택 (토글)</h3>
-                  <div style={styles.toggleList}>
-                    {OPTIONAL_MODULES.map(module => {
-                      const isActive = activeModules.includes(module.id);
-                      return (
-                        <div key={module.id} style={{...styles.toggleItem, borderColor: isActive ? '#007bff' : '#333', backgroundColor: isActive ? 'rgba(0,123,255,0.1)' : '#1e1e1e'}} onClick={() => toggleModule(module.id)}>
-                          <div style={{ flex: 1 }}>
-                            <div style={{...styles.toggleTitle, color: isActive ? '#fff' : '#aaa'}}>{module.label}</div>
-                            <div style={styles.toggleDesc}>{module.desc}</div>
-                          </div>
-                          <div style={{...styles.switchWrapper, backgroundColor: isActive ? '#007bff' : '#444'}}>
-                            <div style={{...styles.switchHandle, transform: isActive ? 'translateX(20px)' : 'translateX(0)'}} />
-                          </div>
-                        </div>
-                      );
-                    })}
+                <div style={styles.toolSectionCompact}>
+                  <h3 style={styles.toolTitleMini}>서명란 설정</h3>
+                  <div style={{...styles.inputFieldCompact, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <span style={styles.inputLabel}>서명란 줄 추가 (1줄 = 8명)</span>
+                    <div style={styles.buttonGroupSmall}>
+                      <button onClick={() => setSignatureRows(Math.max(1, signatureRows - 1))} style={styles.miniBtnControl}>-</button>
+                      <span style={{ color: '#007bff', fontSize: '1rem', width: '24px', textAlign: 'center', fontWeight: 'bold' }}>{signatureRows}</span>
+                      <button onClick={() => setSignatureRows(signatureRows + 1)} style={styles.miniBtnControl}>+</button>
+                    </div>
                   </div>
                 </div>
 
               </aside>
 
-              {/* 우측: 모듈 레이아웃 미리보기 */}
               <section style={styles.previewPanel}>
                 <div style={styles.previewHeader}>문서 구조 미리보기 (구상도)</div>
                 <div style={styles.previewCanvas}>
-                  
-                  {headerPreset !== 'h_none' && (
-                    <div style={{...styles.previewBlock, backgroundColor: '#2b2b2b', border: '1px solid #555'}}>
-                      <div style={styles.previewBlockHeader}>[헤더 구역] {HEADER_PRESETS.find(p=>p.id===headerPreset)?.label}</div>
+                  {/* 통합된 너비 및 폰트 세팅 반영 */}
+                  <div style={styles.documentSheet}>
+                    {renderUnifiedHeader()}
+                    <div style={{ width: '100%' }}>
+                      {renderDynamicLayout()}
                     </div>
-                  )}
-
-                  {OPTIONAL_MODULES.map(m => activeModules.includes(m.id) ? renderModulePreview(m.id) : null)}
-
-                  <div style={{...styles.previewBlock, backgroundColor: 'rgba(40, 167, 69, 0.1)', border: '2px dashed #28a745', padding: '30px 10px'}}>
-                    <div style={{...styles.previewBlockHeader, color: '#28a745', textAlign: 'center'}}>[위험성 평가 데이터 테이블 구역]</div>
-                    <div style={{...styles.previewBlockDesc, textAlign: 'center', color: '#28a745'}}>다음 단계(Step 5)에서 상세 구조를 구성합니다.</div>
                   </div>
-
-                  {footerPreset !== 'f_none' && (
-                    <div style={{...styles.previewBlock, backgroundColor: '#2b2b2b', border: '1px solid #555'}}>
-                      <div style={styles.previewBlockHeader}>[푸터 구역] {FOOTER_PRESETS.find(p=>p.id===footerPreset)?.label}</div>
-                    </div>
-                  )}
-
                 </div>
               </section>
             </div>
@@ -203,8 +298,7 @@ const styles = {
   mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 5rem 20px', zIndex: 10, gap: '3rem', overflow: 'hidden' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1400px', height: '85vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.8)' },
-  
+  formCard: { width: '100%', maxWidth: '1550px', height: '85vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.8)' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', gap: '0.5rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
   stepBadgeDone: { width: '20px', height: '20px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
@@ -217,34 +311,36 @@ const styles = {
   stepText: { fontSize: '0.8rem', color: '#aaa' },
   stepLine: { width: '20px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
   stepLineActive: { width: '20px', height: '1px', backgroundColor: '#4caf50' },
-  
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
-  builderLayout: { display: 'flex', flex: 1, gap: '2rem', overflow: 'hidden' },
-  
-  configPanel: { width: '450px', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflowY: 'auto', paddingRight: '10px' },
-  configSection: { backgroundColor: 'rgba(30, 30, 30, 0.95)', border: '1px solid #333', borderRadius: '10px', padding: '1.5rem' },
-  configTitle: { color: '#fff', fontSize: '1.05rem', fontWeight: 'bold', margin: '0 0 1rem 0', borderBottom: '1px solid #444', paddingBottom: '0.8rem' },
-  
-  selectGroup: { marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '6px' },
-  selectLabel: { color: '#bbb', fontSize: '0.85rem', fontWeight: 'bold' },
-  selectBox: { width: '100%', padding: '10px', backgroundColor: '#111', color: '#fff', border: '1px solid #444', borderRadius: '6px', fontSize: '0.9rem', outline: 'none' },
-
-  toggleList: { display: 'flex', flexDirection: 'column', gap: '10px' },
-  toggleItem: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', border: '1px solid', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s ease' },
-  toggleTitle: { fontSize: '0.95rem', fontWeight: 'bold', marginBottom: '4px' },
-  toggleDesc: { fontSize: '0.75rem', color: '#888' },
-  switchWrapper: { width: '44px', height: '24px', borderRadius: '12px', position: 'relative', transition: 'background-color 0.2s' },
-  switchHandle: { width: '20px', height: '20px', backgroundColor: '#fff', borderRadius: '50%', position: 'absolute', top: '2px', left: '2px', transition: 'transform 0.2s ease' },
-
+  builderLayout: { display: 'flex', flex: 1, gap: '1.5rem', overflow: 'hidden' },
+  toolbarSliding: { width: '320px', backgroundColor: 'rgba(24, 24, 24, 0.95)', border: '1px solid #333', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflowY: 'auto' },
+  toolSectionCompact: { display: 'flex', flexDirection: 'column', gap: '0.8rem' },
+  toolTitleMini: { color: '#aaa', fontSize: '0.85rem', fontWeight: '900', borderLeft: '3px solid #007bff', paddingLeft: '8px', margin: 0 },
+  inputFieldCompact: { backgroundColor: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', border: '1px solid #333', display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 },
+  inputLabel: { fontSize: '0.75rem', color: '#ccc', fontWeight: 'bold' },
+  panelInput: { width: '100%', padding: '6px', backgroundColor: '#222', color: '#fff', border: '1px solid #555', borderRadius: '4px', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' },
+  buttonGroupSmall: { display: 'flex', gap: '6px', alignItems: 'center' },
+  miniBtnControl: { width: '28px', height: '28px', backgroundColor: '#222', color: '#fff', border: '1px solid #555', borderRadius: '6px', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' },
   previewPanel: { flex: 1, backgroundColor: 'rgba(20, 20, 20, 0.8)', borderRadius: '10px', border: '1px solid #333', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   previewHeader: { padding: '1rem', backgroundColor: '#111', color: '#fff', fontSize: '0.9rem', fontWeight: 'bold', borderBottom: '1px solid #333', textAlign: 'center' },
-  previewCanvas: { flex: 1, overflowY: 'auto', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' },
+  previewCanvas: { flex: 1, overflow: 'auto', padding: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#333' },
   
-  previewBlock: { width: '80%', maxWidth: '700px', backgroundColor: '#1e1e1e', border: '1px solid #444', borderRadius: '6px', padding: '15px', transition: 'all 0.3s ease' },
-  previewBlockHeader: { color: '#fff', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '4px' },
-  previewBlockDesc: { color: '#888', fontSize: '0.75rem' },
-
+  // Export 화면과 일치하도록 폭, 폰트, Box-sizing 등 속성 통일
+  documentSheet: { 
+    backgroundColor: '#fff', 
+    width: '1080px', 
+    minHeight: '750px', 
+    padding: '40px', 
+    boxShadow: '0 10px 40px rgba(0,0,0,0.5)', 
+    display: 'flex', 
+    flexDirection: 'column',
+    boxSizing: 'border-box',
+    fontFamily: '"Malgun Gothic", sans-serif',
+    margin: '0 auto'
+  },
+  
+  previewBlock: { width: '100%', backgroundColor: 'transparent', border: 'none' },
   btnAreaLayout: { marginTop: '1.5rem', display: 'flex', gap: '1rem' },
   prevBtnDark: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtnLight: { flex: 2, padding: '1rem', backgroundColor: '#007bff', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' }
