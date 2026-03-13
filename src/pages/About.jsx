@@ -5,8 +5,11 @@ export default function About() {
 
   return (
     <div style={styles.wrapper}>
-      <header style={styles.header}>
-        <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+      {/* HEADER */}
+      <header style={styles.header} className="max-lg:!px-6">
+        <div style={styles.container} className="flex justify-between items-center h-full w-full">
+          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+        </div>
       </header>
       
       <section style={styles.contentSection}>

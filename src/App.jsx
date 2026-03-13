@@ -26,6 +26,7 @@ import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import PublicExplore from './components/PublicExplore';
 import LayoutBuilder from './pages/LayoutBuilder';
+import FactorDictionary from './pages/FactorDictionary';
 
 // [기능 추가]: 6단계 개편에 따른 신규 컴포넌트 임포트
 import ModuleBuilder from './pages/ModuleBuilder';
@@ -62,7 +63,7 @@ function App() {
           <Route path="/guideline/manufacturing" element={<ManufacturingGuide />} />
           <Route path="/guideline/chemical" element={<ChemicalGasGuide />} />
           <Route path="/guideline/common" element={<CommonGuide />} />
-
+          <Route path="/dictionary" element={<FactorDictionary />} />
           <Route path="/layoutbuilder" element={<LayoutBuilder />} />
           
           {/* [기능 추가]: 분할된 문서 모듈 구성 및 표 구성 라우트 추가 */}

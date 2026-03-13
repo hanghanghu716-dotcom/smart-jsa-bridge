@@ -32,17 +32,11 @@ export default function RiskClassification() {
 
   return (
     <div style={styles.wrapper}>
-      {/* HEADER: 내비게이션 메뉴 통합 */}
+
+      {/* HEADER */}
       <header style={styles.header} className="max-lg:!px-6">
-        <div className="flex justify-between items-center h-full">
+        <div style={styles.container} className="flex justify-between items-center h-full w-full">
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-          <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
-            <span style={styles.menuText} className="max-lg:hidden">MENU</span>
-            <div style={styles.hamburger}>
-              <div style={styles.bar}></div>
-              <div style={styles.bar}></div>
-            </div>
-          </div>
         </div>
       </header>
 

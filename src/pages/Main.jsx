@@ -139,6 +139,7 @@ export default function Main() {
             <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가(JRA/JSA) 실무 프로세스</Link>
             <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>보호구에 관하여</Link>
             <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>일반 작업/고위험 작업</Link>
+            <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험요인·대책 DB</Link>
             
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
             <Link to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>작업 전 위험성평가 예시</Link>

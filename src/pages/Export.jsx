@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
+import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; // 태그 추출 모듈 및 표준 사전 임포트 추가
 
 /**
  * [Export 컴포넌트]
@@ -11,7 +12,8 @@ import AdBanner from '../AdBanner';
  */
 
 const TAG_META = {
-  'DATA_STEP_NO': { label: '작업번호', color: '#6c757d', width: 2, align: 'center' },
+  // '작업번호'를 '작업\n번호'로 변경하여 줄바꿈 적용
+  'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
   'DATA_PHOTO': { label: '관련사진', color: '#6f42c1', width: 3, align: 'center' },
   'DATA_HAZARD': { label: '유해위험요인', color: '#dc3545', isFlex: true, align: 'left' },
@@ -92,20 +94,32 @@ export default function Export() {
 
   const handleLogoClick = () => { if (window.confirm("메인 화면으로 이동하시겠습니까?")) navigate('/'); };
 
-  const handleCloudAction = async () => {
+const handleCloudAction = async () => {
     setIsProcessing(true);
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return alert("로그인이 필요한 서비스입니다.");
-      const autoTags = [formData.projectName, ...(analysisData.map(d => d.proc?.stepTitle))].filter(Boolean);
+      
+      // 1. 기존의 정밀 분석 모듈을 통한 다차원 태그 추출 (과거 방식의 장점)
+      const rawAutoTags = extractAutoTagsFromJSA(formData.projectName || "", analysisData);
+
+      // 2. 추출된 태그 중 PublicExplore의 사이드바 필터(DIMENSIONAL_KEYWORD_MAP)에 등록된 유효 키워드만 필터링 (현재 방식의 장점)
+      const validTagKeys = Object.keys(DIMENSIONAL_KEYWORD_MAP);
+      const standardizedTags = rawAutoTags.filter(tag => validTagKeys.includes(tag));
       
       const projectData = { 
         user_id: user.id, 
+        author_id: user.id,
+        title: formData.projectName, 
+        tags: standardizedTags, // 검증을 통과한 표준 태그만 저장
+        is_public: true, 
+        
         project_name: formData.projectName, 
+        auto_tags: standardizedTags,
+
         form_data: formData, 
         analysis_data: analysisData, 
         custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation }, 
-        auto_tags: autoTags,
         updated_at: new Date() 
       };
       
@@ -114,9 +128,9 @@ export default function Export() {
       alert("클라우드 저장이 완료되었습니다.");
     } catch (err) { alert("저장 중 오류 발생: " + err.message); } finally { setIsProcessing(false); }
   };
-
   const renderUnifiedHeader = () => {
-    const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000' };
+    // padding을 2px 6px 10px 6px로 변경하여 텍스트를 4px 위로 올림
+    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000' };
     const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: 'nowrap' };
     const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
 
@@ -137,28 +151,31 @@ export default function Export() {
           <tr>
             <td style={labelTdStyle}>작업명</td>
             <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
-            <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle' }}>
+            <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle', padding: '0px 6px 14px 6px' }}>
               {docTitle}
             </td>
-            <td colSpan={2} style={{ padding: 0, border: '1px solid #000' }}>
+
+            <td colSpan={2} style={{ padding: 0, border: '1px solid #888' }}>
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    <td rowSpan={2} style={{ borderRight: '1px solid #000', width: '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle' }}>
+                    {/* 결재란 내부 텍스트 4px 상향을 위해 패딩 조정 */}
+                    <td rowSpan={2} style={{ borderRight: '1px solid #888', width: '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>
                       결<br />재
                     </td>
-                    <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle' }}>{appr1}</td>
-                    <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle' }}>{appr2}</td>
-                    <td style={{ borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle' }}>{appr3}</td>
+                    <td style={{ borderRight: '1px solid #888', borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>{appr1}</td>
+                    <td style={{ borderRight: '1px solid #888', borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>{appr2}</td>
+                    <td style={{ borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>{appr3}</td>
                   </tr>
                   <tr>
-                    <td style={{ borderRight: '1px solid #000', height: '45px' }}></td>
-                    <td style={{ borderRight: '1px solid #000' }}></td>
+                    <td style={{ borderRight: '1px solid #888', height: '45px' }}></td>
+                    <td style={{ borderRight: '1px solid #888' }}></td>
                     <td></td>
                   </tr>
                 </tbody>
               </table>
             </td>
+
           </tr>
           
           <tr>
@@ -172,7 +189,7 @@ export default function Export() {
 
           <tr>
             <td style={labelTdStyle}>개인보호구</td>
-            <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
+            <td colSpan={5} style={{ ...commonTdStyle, padding: '2px 8px 10px 8px' }}>
               <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} 안전모</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} 안전화</span>
@@ -189,7 +206,7 @@ export default function Export() {
 
           <tr>
             <td style={labelTdStyle}>고위험작업</td>
-            <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
+            <td colSpan={5} style={{ ...commonTdStyle, padding: '2px 8px 10px 8px' }}>
               <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} 화기</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} 밀폐</span>
@@ -209,14 +226,14 @@ export default function Export() {
   };
 
   const renderSignatureTable = () => {
-    const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000' };
-    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%' };
-
+    // padding 상향 조정
+    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000' };
+    const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%' };
     const sigRows = Array.from({ length: savedSignatureRows }, (_, i) => i);
     const cols = Array.from({ length: 8 }, (_, i) => i);
     
     return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #888', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>        
         <tbody>
           <tr>
             <td rowSpan={savedSignatureRows} style={{...labelTdStyle}}>참여자</td>
@@ -250,13 +267,14 @@ export default function Export() {
   };
 
   const renderDataTable = () => {
-
+    // 본문 텍스트 4px 상향을 위해 padding: '4px 4px 12px 4px'로 변경
     const commonTdStyle = {
-    border: '1px solid #000',
-    padding: '8px 4px',
-    fontSize: '10.5px',
-    verticalAlign: 'middle'
+      border: '1px solid #888', 
+      padding: '4px 4px 12px 4px',
+      fontSize: '10.5px',
+      verticalAlign: 'middle'
     };
+
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
 
     const currentItems = savedActiveOrder.filter(key => TAG_META[key] || savedUserColumns.find(u => u.id === key));
@@ -383,14 +401,17 @@ export default function Export() {
     if (!paper) return setIsProcessing(false);
 
     try {
-        const canvas = await html2canvas(paper, { 
-          scale: 2,
-          useCORS: true, 
-          backgroundColor: '#ffffff',
-          logging: false,
-          imageTimeout: 0,
-          letterRendering: true
-        });
+      // 스크롤 위치에 따른 캡처 어긋남 방지
+      window.scrollTo(0, 0);
+
+      const canvas = await html2canvas(paper, { 
+        scale: 2,
+        useCORS: true, 
+        backgroundColor: '#ffffff',
+        logging: false,
+        imageTimeout: 0,
+        scrollY: 0
+      });
       
       const imgWidthPx = canvas.width;
       const imgHeightPx = canvas.height;
@@ -407,9 +428,40 @@ export default function Export() {
       let leftHeightMm = contentHeightMm;
       let positionMm = 0;
 
+      // DOM 내 모든 행(tr)의 하단 Y좌표 비율을 미리 계산 (페이지 단절 방지용)
+      const paperRect = paper.getBoundingClientRect();
+      const trElements = paper.querySelectorAll('tr');
+      const cutPointRatios = Array.from(trElements).map(el => {
+        return (el.getBoundingClientRect().bottom - paperRect.top) / paperRect.height;
+      }).sort((a, b) => a - b); // 오름차순 정렬
+
       while (leftHeightMm > 0) {
         let maxPageHeightMm = pageHeight - (margin * 2);
         let sliceHeightMm = leftHeightMm > maxPageHeightMm ? maxPageHeightMm : leftHeightMm;
+
+        // 페이지를 넘어가야 할 경우, 가장 가까운 행(tr)의 하단에서 자르도록 보정
+        if (leftHeightMm > maxPageHeightMm) {
+          const currentCanvasY = positionMm / pxToMm;
+          const maxCanvasY = currentCanvasY + (maxPageHeightMm / pxToMm);
+          
+          let bestCutCanvasY = maxCanvasY;
+          let foundCutPoint = false;
+
+          for (let i = 0; i < cutPointRatios.length; i++) {
+            const elBottomPx = cutPointRatios[i] * imgHeightPx;
+            // 현재 Y위치보다 약간 아래이면서(무한루프 방지), 최대 페이지 높이보다는 작은 위치 탐색
+            if (elBottomPx > currentCanvasY + 20 && elBottomPx <= maxCanvasY) {
+              bestCutCanvasY = elBottomPx;
+              foundCutPoint = true;
+            } else if (elBottomPx > maxCanvasY) {
+              break; // 범위를 벗어나면 중단
+            }
+          }
+
+          if (foundCutPoint) {
+            sliceHeightMm = (bestCutCanvasY - currentCanvasY) * pxToMm;
+          }
+        }
 
         const sourceY = positionMm / pxToMm;
         const sourceH = sliceHeightMm / pxToMm;
@@ -418,20 +470,33 @@ export default function Export() {
         tempCanvas.width = imgWidthPx;
         tempCanvas.height = sourceH;
         const ctx = tempCanvas.getContext('2d');
-        ctx.drawImage(canvas, 0, sourceY, imgWidthPx, sourceH, 0, 0, imgWidthPx, sourceH);
+        
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        
+        ctx.drawImage(
+          canvas, 
+          0, Math.floor(sourceY), Math.floor(imgWidthPx), Math.floor(sourceH), 
+          0, 0, Math.floor(imgWidthPx), Math.floor(sourceH)
+        );
         
         doc.addImage(tempCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, sliceHeightMm);
         
         leftHeightMm -= sliceHeightMm;
         positionMm += sliceHeightMm;
 
-        if (leftHeightMm > 0) {
+        if (leftHeightMm > 0.1) {
           doc.addPage();
         }
       }
 
       doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
-    } catch (error) { alert("PDF 생성 실패"); } finally { setIsProcessing(false); }
+    } catch (error) { 
+      console.error(error);
+      alert("PDF 생성 실패"); 
+    } finally { 
+      setIsProcessing(false); 
+    }
   };
 
   return (
@@ -494,7 +559,7 @@ const styles = {
   stepLineActive: { width: '20px', height: '1px', backgroundColor: '#4caf50' },
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
-  previewArea: { flex: 1, overflowY: 'auto', backgroundColor: '#111', borderRadius: '10px', padding: '3rem', display: 'flex', justifyContent: 'center', border: '1px solid #333' },
+  previewArea: { flex: 1, overflow: 'auto', backgroundColor: '#111', borderRadius: '10px', padding: '3rem', border: '1px solid #333' },
   reportPaper: { 
     color: '#000', 
     backgroundColor: '#fff', 
