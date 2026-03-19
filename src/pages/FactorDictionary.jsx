@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
+import AdBanner from '../AdBanner'; // AdBanner 임포트 추가
 
 export default function FactorDictionary() {
   const navigate = useNavigate();
@@ -145,7 +146,6 @@ const handleSearch = (e) => {
             표준 유해·위험요인 및<br className="max-lg:hidden" />감소대책 통합 사전
           </h2>
           
-          {/* 구글 애드센스 승인을 위한 전문 텍스트 (Valueable Inventory 확보용) */}
           <div style={styles.seoContextBox}>
             <p style={styles.seoText}>
               본 데이터베이스는 KOSHA(안전보건공단) 가이드 및 산업안전보건법에 기초하여 도출된 1,000여 개의 표준 유해·위험요인과 그에 상응하는 감소대책 매칭 데이터를 제공합니다. 현장 안전관리자 및 작업자는 본 사전을 활용하여 공종별 잠재 위험을 사전에 식별하고, 실효성 있는 안전 대책을 수립할 수 있습니다.
@@ -188,61 +188,73 @@ const handleSearch = (e) => {
         </div>
       </section>
 
-      {/* DATA LIST SECTION */}
+      {/* DATA LIST SECTION: 광고 배너 추가를 위한 레이아웃 개편 */}
       <section style={styles.dataSection} className="max-lg:!px-6 max-lg:!py-10">
-        <div style={styles.container}>
-          {loading ? (
-            <div style={styles.loadingState}>데이터를 불러오는 중입니다...</div>
-          ) : data.length === 0 ? (
-            <div style={styles.emptyState}>검색 결과가 없습니다. 다른 키워드로 검색해 보세요.</div>
-          ) : (
-            <div style={styles.dataGrid}>
-              {data.map((item) => (
-                <div key={item.id} style={styles.dataCard}>
-                  <div style={styles.cardCategory}>{item.category}</div>
-                  
-                  <div style={styles.factorBox}>
-                    <strong style={styles.boxLabelRed}>유해·위험요인</strong>
-                    <p style={styles.boxContent}>{item.risk_factor}</p>
-                  </div>
-                  
-                  <div style={styles.measureBox}>
-                    <strong style={styles.boxLabelBlue}>감소대책</strong>
-                    <p style={styles.boxContent}>{item.measure}</p>
-                  </div>
-                  
-                    {item.keywords && getParsedKeywords(item.keywords).length > 0 && (
-                    <div style={styles.keywordWrap}>
-                      {getParsedKeywords(item.keywords).map((kw, idx) => (
-                        <span key={idx} style={styles.keywordBadge}>#{kw}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+        <div style={styles.mainLayout}>
+          {/* 좌측 광고 */}
+          <aside style={styles.sideAd}>
+            <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          </aside>
 
-          {/* PAGINATION */}
-          {totalPages > 1 && (
-            <div style={styles.pagination}>
-              <button 
-                disabled={currentPage === 1} 
-                onClick={() => setCurrentPage(prev => prev - 1)}
-                style={{ ...styles.pageBtn, opacity: currentPage === 1 ? 0.5 : 1 }}
-              >
-                이전
-              </button>
-              <span style={styles.pageInfo}>{currentPage} / {totalPages}</span>
-              <button 
-                disabled={currentPage === totalPages} 
-                onClick={() => setCurrentPage(prev => prev + 1)}
-                style={{ ...styles.pageBtn, opacity: currentPage === totalPages ? 0.5 : 1 }}
-              >
-                다음
-              </button>
-            </div>
-          )}
+          <div style={styles.centerContent}>
+            {loading ? (
+              <div style={styles.loadingState}>데이터를 불러오는 중입니다...</div>
+            ) : data.length === 0 ? (
+              <div style={styles.emptyState}>검색 결과가 없습니다. 다른 키워드로 검색해 보세요.</div>
+            ) : (
+              <div style={styles.dataGrid}>
+                {data.map((item) => (
+                  <div key={item.id} style={styles.dataCard}>
+                    <div style={styles.cardCategory}>{item.category}</div>
+                    
+                    <div style={styles.factorBox}>
+                      <strong style={styles.boxLabelRed}>유해·위험요인</strong>
+                      <p style={styles.boxContent}>{item.risk_factor}</p>
+                    </div>
+                    
+                    <div style={styles.measureBox}>
+                      <strong style={styles.boxLabelBlue}>감소대책</strong>
+                      <p style={styles.boxContent}>{item.measure}</p>
+                    </div>
+                    
+                      {item.keywords && getParsedKeywords(item.keywords).length > 0 && (
+                      <div style={styles.keywordWrap}>
+                        {getParsedKeywords(item.keywords).map((kw, idx) => (
+                          <span key={idx} style={styles.keywordBadge}>#{kw}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* PAGINATION */}
+            {totalPages > 1 && (
+              <div style={styles.pagination}>
+                <button 
+                  disabled={currentPage === 1} 
+                  onClick={() => setCurrentPage(prev => prev - 1)}
+                  style={{ ...styles.pageBtn, opacity: currentPage === 1 ? 0.5 : 1 }}
+                >
+                  이전
+                </button>
+                <span style={styles.pageInfo}>{currentPage} / {totalPages}</span>
+                <button 
+                  disabled={currentPage === totalPages} 
+                  onClick={() => setCurrentPage(prev => prev + 1)}
+                  style={{ ...styles.pageBtn, opacity: currentPage === totalPages ? 0.5 : 1 }}
+                >
+                  다음
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* 우측 광고 */}
+          <aside style={styles.sideAd}>
+            <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          </aside>
         </div>
       </section>
 
@@ -258,7 +270,7 @@ const handleSearch = (e) => {
 
 const styles = {
   wrapper: { backgroundColor: '#fcfcfc', color: '#1c1b1f', width: '100%', overflowX: 'hidden', fontFamily: 'Pretendard, sans-serif' },
-  container: { maxWidth: '1000px', margin: '0 auto' }, // 콘텐츠 집중도를 위해 폭을 약간 줄임
+  container: { maxWidth: '1000px', margin: '0 auto' },
   
   header: { padding: '2.5rem 0', zIndex: 10, backgroundColor: '#fff', borderBottom: '1px solid #f0f0f0' },
   logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', color: '#111' },
@@ -289,7 +301,13 @@ const styles = {
   resultCount: { fontSize: '0.9rem', color: '#666', textAlign: 'right' },
 
   dataSection: { padding: '60px 0 100px 0' },
-  dataGrid: { display: 'flex', flexDirection: 'column', gap: '24px' },
+  
+  /* 광고 레이아웃 스타일 추가 */
+  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
+  sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '40px' },
+  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', maxWidth: '1000px', alignItems: 'center' },
+
+  dataGrid: { display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' },
   dataCard: { padding: '30px', backgroundColor: '#fff', borderRadius: '16px', border: '1px solid #eee', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' },
   cardCategory: { display: 'inline-block', padding: '6px 14px', backgroundColor: '#f1f3f9', color: '#555', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '800', marginBottom: '20px' },
   

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AdBanner from '../AdBanner'; // AdBanner 임포트 추가
 
 export default function RiskClassification() {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export default function RiskClassification() {
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
-      {/* HERO SECTION: 줄바꿈 및 들여쓰기 정밀 조정 */}
+      {/* HERO SECTION: 화면 전체 너비 유지 */}
       <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
           <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">KOSHA & MOEL STANDARD</span>
@@ -75,102 +76,116 @@ export default function RiskClassification() {
         </div>
       </section>
 
-      {/* SECTION 1: DEFINITION (2열 -> 1열) */}
-      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">1. 작업 성격에 따른 기본 정의</h3>
-          <div style={styles.splitRow} className="max-lg:!flex-col max-lg:!gap-6">
-            <div style={styles.cardHalf} className="w-full max-lg:!p-6">
-              <h4 style={styles.itemHeader}>일반작업 (General Work)</h4>
-              <p style={styles.itemContent}>상시 발생하는 반복적 작업으로, 기존 표준작업절차서(SOP) 내에서 위험 요인이 충분히 통제되는 작업을 의미합니다.</p>
-            </div>
-            <div style={styles.cardHalfHighlight} className="w-full max-lg:!p-6">
-              <h4 style={styles.itemHeader}>고위험작업 (High-Risk Work)</h4>
-              <p style={styles.itemContent}>단 한 번의 실수가 중대재해로 직결될 수 있는 에너지를 다루거나, 비일상적으로 수행되는 고난도 작업을 의미합니다.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 메인 레이아웃: 광고 배너 및 콘텐츠 정렬 */}
+      <div style={styles.mainLayout}>
+        {/* 좌측 광고 */}
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
 
-      {/* SECTION 2: RISK MATRIX (표 스크롤 및 공식 최적화) */}
-      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">2. 정량적 분류 기준 (Risk Matrix)</h3>
-          
-          <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10 max-lg:!mb-10">
-            <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
-              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Risk Score</span>
-              <span style={styles.mathOp} className="max-lg:!mx-2">=</span>
-              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Frequency</span>
-              <span style={styles.mathOp} className="max-lg:!mx-2">×</span>
-              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Severity</span>
-            </div>
-          </div>
-
-          <div style={styles.matrixContainer} className="max-lg:!p-4">
-            <h4 style={styles.matrixTitle} className="text-lg lg:text-xl">리스크 매트릭스 (5단계 빈도 × 4단계 강도)</h4>
-            <div className="overflow-x-auto">
-              <table style={styles.matrixTable} className="min-w-[700px]">
-                {/* ... 매트릭스 테이블 내부 로직 동일 ... */}
-                <thead>
-                  <tr>
-                    <th colSpan="2" rowSpan="2" style={styles.matrixCorner}>빈도 \ 강도</th>
-                    <th colSpan="4" style={styles.matrixMainHeader}>강도 (Severity)</th>
-                  </tr>
-                  <tr>
-                    {[1, 2, 3, 4].map(s => (
-                      <th key={s} style={styles.matrixSubHeader}>
-                        <div style={styles.headerNum}>{s}</div>
-                        <div style={styles.headerLabel}>{severityLabels[s]}</div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[5, 4, 3, 2, 1].map((f) => (
-                    <tr key={f}>
-                      {f === 5 && (
-                        <td rowSpan="5" style={styles.matrixAxisY}>
-                          <div style={styles.verticalText}>빈도 (Frequency)</div>
-                        </td>
-                      )}
-                      <td style={styles.matrixSideHeader}>
-                        <div style={styles.sideNum}>{f}</div>
-                        <div style={styles.sideLabel}>{frequencyLabels[f]}</div>
-                      </td>
-                      {[1, 2, 3, 4].map((s) => {
-                        const score = f * s;
-                        const config = getRiskConfig(score);
-                        return (
-                          <td key={s} style={{...styles.matrixCell, backgroundColor: config.bg, color: config.color, border: `1px solid ${config.border}`}}>
-                            <div style={styles.scoreNum}>{score}</div>
-                            <div style={styles.scoreLabel}>{config.label}</div>
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: 9대 작업 (3열 -> 1열 전환) */}
-      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. 현장 9대 고위험 작업 유형</h3>
-          <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-            {highRiskTasks.map((task, i) => (
-              <div key={i} style={styles.flowCard} className="max-lg:!p-6">
-                <h4 style={styles.flowT}>{task.t}</h4>
-                <p style={styles.flowC}>{task.c}</p>
+        <div style={styles.centerContent}>
+          {/* SECTION 1: DEFINITION */}
+          <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">1. 작업 성격에 따른 기본 정의</h3>
+              <div style={styles.splitRow} className="max-lg:!flex-col max-lg:!gap-6">
+                <div style={styles.cardHalf} className="w-full max-lg:!p-6">
+                  <h4 style={styles.itemHeader}>일반작업 (General Work)</h4>
+                  <p style={styles.itemContent}>상시 발생하는 반복적 작업으로, 기존 표준작업절차서(SOP) 내에서 위험 요인이 충분히 통제되는 작업을 의미합니다.</p>
+                </div>
+                <div style={styles.cardHalfHighlight} className="w-full max-lg:!p-6">
+                  <h4 style={styles.itemHeader}>고위험작업 (High-Risk Work)</h4>
+                  <p style={styles.itemContent}>단 한 번의 실수가 중대재해로 직결될 수 있는 에너지를 다루거나, 비일상적으로 수행되는 고난도 작업을 의미합니다.</p>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          </section>
+
+          {/* SECTION 2: RISK MATRIX */}
+          <section style={{...styles.m3Section, backgroundColor: '#fcfcfc', width: '100%'}} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">2. 정량적 분류 기준 (Risk Matrix)</h3>
+              
+              <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10 max-lg:!mb-10">
+                <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Risk Score</span>
+                  <span style={styles.mathOp} className="max-lg:!mx-2">=</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Frequency</span>
+                  <span style={styles.mathOp} className="max-lg:!mx-2">×</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Severity</span>
+                </div>
+              </div>
+
+              <div style={styles.matrixContainer} className="max-lg:!p-4">
+                <h4 style={styles.matrixTitle} className="text-lg lg:text-xl">리스크 매트릭스 (5단계 빈도 × 4단계 강도)</h4>
+                <div className="overflow-x-auto">
+                  <table style={styles.matrixTable} className="min-w-[700px]">
+                    <thead>
+                      <tr>
+                        <th colSpan="2" rowSpan="2" style={styles.matrixCorner}>빈도 \ 강도</th>
+                        <th colSpan="4" style={styles.matrixMainHeader}>강도 (Severity)</th>
+                      </tr>
+                      <tr>
+                        {[1, 2, 3, 4].map(s => (
+                          <th key={s} style={styles.matrixSubHeader}>
+                            <div style={styles.headerNum}>{s}</div>
+                            <div style={styles.headerLabel}>{severityLabels[s]}</div>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[5, 4, 3, 2, 1].map((f) => (
+                        <tr key={f}>
+                          {f === 5 && (
+                            <td rowSpan="5" style={styles.matrixAxisY}>
+                              <div style={styles.verticalText}>빈도 (Frequency)</div>
+                            </td>
+                          )}
+                          <td style={styles.matrixSideHeader}>
+                            <div style={styles.sideNum}>{f}</div>
+                            <div style={styles.sideLabel}>{frequencyLabels[f]}</div>
+                          </td>
+                          {[1, 2, 3, 4].map((s) => {
+                            const score = f * s;
+                            const config = getRiskConfig(score);
+                            return (
+                              <td key={s} style={{...styles.matrixCell, backgroundColor: config.bg, color: config.color, border: `1px solid ${config.border}`}}>
+                                <div style={styles.scoreNum}>{score}</div>
+                                <div style={styles.scoreLabel}>{config.label}</div>
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SECTION 3: 9대 작업 */}
+          <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. 현장 9대 고위험 작업 유형</h3>
+              <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
+                {highRiskTasks.map((task, i) => (
+                  <div key={i} style={styles.flowCard} className="max-lg:!p-6">
+                    <h4 style={styles.flowT}>{task.t}</h4>
+                    <p style={styles.flowC}>{task.c}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+
+        {/* 우측 광고 */}
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
+      </div>
 
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
@@ -182,7 +197,6 @@ export default function RiskClassification() {
 }
 
 const styles = {
-  /* 스타일 규격 통일 (Main.jsx 참조) */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden', fontFamily: 'Pretendard, sans-serif' },
   container: { maxWidth: '1200px', margin: '0 auto' },
   header: { padding: '2.5rem 0', zIndex: 10, borderBottom: '1px solid #f0f0f0' },
@@ -200,26 +214,31 @@ const styles = {
   drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f0f0f0' },
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(8px)' },
 
-  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
+  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff', width: '100%' },
   m3Tag: { color: '#448AFF', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
   mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
   subTitle: { opacity: 0.8, lineHeight: '1.8', wordBreak: 'keep-all' },
   
-  m3Section: { padding: '100px 0' },
+  /* 레이아웃 시스템 추가 */
+  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
+  sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '100px' },
+  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', maxWidth: '1200px', alignItems: 'center' },
+
+  m3Section: { padding: '100px 0', width: '100%' },
   sectionTitle: { fontWeight: '800', marginBottom: '40px', letterSpacing: '-0.5px' },
   
-  splitRow: { display: 'flex', gap: '24px' },
+  splitRow: { display: 'flex', gap: '24px', width: '100%' },
   cardHalf: { flex: 1, padding: '30px', backgroundColor: '#f8f9fa', borderRadius: '16px', border: '1px solid #eee' },
   cardHalfHighlight: { flex: 1, padding: '30px', backgroundColor: '#fff', borderRadius: '16px', border: '1px solid #eee', borderTop: '6px solid #FF5252', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' },
   itemHeader: { fontSize: '1.2rem', fontWeight: '800', marginBottom: '15px' },
   itemContent: { fontSize: '0.95rem', color: '#555' },
   
-  mathCardNormal: { padding: '40px', backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #eee', textAlign: 'center', marginBottom: '50px' },
+  mathCardNormal: { padding: '40px', backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #eee', textAlign: 'center', marginBottom: '50px', width: '100%' },
   mathDisplay: { display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' },
   mathVar: { fontSize: '2rem', fontWeight: '700', color: '#111', fontStyle: 'italic' },
   mathOp: { fontSize: '1.5rem', color: '#bbb' },
   
-  matrixContainer: { backgroundColor: '#fff', padding: '30px', borderRadius: '20px', border: '1px solid #eee', marginBottom: '40px' },
+  matrixContainer: { backgroundColor: '#fff', padding: '30px', borderRadius: '20px', border: '1px solid #eee', marginBottom: '40px', width: '100%' },
   matrixTitle: { fontWeight: '800', marginBottom: '30px', textAlign: 'center' },
   matrixTable: { width: '100%', borderCollapse: 'separate', borderSpacing: '8px' },
   matrixCorner: { fontSize: '0.8rem', color: '#999' },
@@ -236,7 +255,7 @@ const styles = {
   scoreNum: { fontSize: '1.5rem', fontWeight: '900' },
   scoreLabel: { fontSize: '0.75rem', fontWeight: '800' },
 
-  flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' },
+  flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', width: '100%' },
   flowCard: { padding: '25px', backgroundColor: '#fff', borderRadius: '16px', borderTop: '4px solid #448AFF', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' },
   flowT: { fontSize: '1.15rem', fontWeight: '800', marginBottom: '10px' },
   flowC: { fontSize: '0.9rem', color: '#666', lineHeight: '1.6' },

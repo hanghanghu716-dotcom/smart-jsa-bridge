@@ -195,6 +195,9 @@ useEffect(() => {
               )}
             </div>
           ))}
+          <div style={styles.sidebarAdWrapper}>
+            <AdBanner slot="3978298367" style={{ width: '100%', height: '250px' }} format="vertical" />
+          </div>
         </aside>
 
         <main style={styles.content}>
@@ -204,9 +207,18 @@ useEffect(() => {
 
           {isLoading ? (
             <div style={styles.loader}>지식 베이스 탐색 중...</div>
-          ) : (
+              ) : (
             <div style={styles.grid}>
-              {filteredProjects.map(p => (
+              {filteredProjects.map((p, index) => (
+                <React.Fragment key={p.id}>
+                  {/* ✅ [추가] 8번째 카드마다 광고 카드 삽입 */}
+                  {index !== 0 && index % 8 === 0 && (
+                    <div style={styles.gridAdCard}>
+                      <span style={styles.adBadge}>SPONSORED</span>
+                      <AdBanner slot="9761676307" style={{ width: '100%', height: '200px' }} format="rectangle" />
+                    </div>
+                  )}
+                
                 <div key={p.id} style={styles.card} className="card">
                   <div style={styles.cardTop}>
                     <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', flex: 1 }}>
@@ -256,6 +268,7 @@ useEffect(() => {
                     </div>
                   </div>
                 </div>
+                </React.Fragment>
               ))}
             </div>
           )}
@@ -316,7 +329,11 @@ const styles = {
   optionLabel: { display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.8rem', color: '#444', cursor: 'pointer' },
   modalBtns: { display: 'flex', gap: '10px' },
   reportSubmitBtn: { flex: 1, padding: '0.8rem', backgroundColor: '#ff4d4d', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' },
-  modalCloseBtn: { flex: 1, padding: '0.8rem', backgroundColor: '#111', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }
+  modalCloseBtn: { flex: 1, padding: '0.8rem', backgroundColor: '#111', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' },
+  // ✅ [추가] 광고 관련 스타일
+  sidebarAdWrapper: { marginTop: '2rem', textAlign: 'center', borderTop: '1px solid #111', paddingTop: '1.5rem' },
+  gridAdCard: { backgroundColor: '#050505', border: '1px solid #111', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '320px' },
+  adBadge: { alignSelf: 'flex-start', fontSize: '0.55rem', color: '#333', marginBottom: '10px', fontWeight: 'bold' }
 };
 
 if (typeof document !== 'undefined') {

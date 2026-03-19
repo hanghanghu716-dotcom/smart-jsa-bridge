@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AdBanner from '../AdBanner'; // AdBanner 임포트 추가
 
 export default function JraJsa() {
   const navigate = useNavigate();
@@ -53,18 +54,14 @@ export default function JraJsa() {
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
-{/* HERO SECTION */}
+      {/* HERO SECTION: 화면 전체 너비 유지 */}
       <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
           <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">INTEGRATED SAFETY COMPLIANCE</span>
-          
-          {/* 제목 부분: '프로세스' 뒤 줄바꿈 및 '및' 정렬 위치 수정 */}
           <h2 style={{...styles.mainTitle, fontSize: undefined}} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">위험성평가(JRA/JSA) 실무 프로세스</span>
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">및 법적 이행 규정 통합 기술 지침</span>
           </h2>
-
-          {/* 서브타이틀 부분: '위한' 뒤 줄바꿈 및 정렬 위치 수정 */}
           <p style={styles.subTitle} className="text-[14px] lg:text-[1.15rem]">
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">산업안전보건법 제36조를 준수하며 현장 무재해를 실현하기 위한</span>
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">전문 방법론을 제공합니다.</span>
@@ -72,105 +69,120 @@ export default function JraJsa() {
         </div>
       </section>
 
-      {/* SECTION 3: JSA 흐름 (3열 -> 1열 전환) */}
-      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. JSA 실행 표준 프로세스 9단계</h3>
-          <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-            {fullProcess.map((step, i) => (
-              <div key={i} style={styles.flowCard} className="max-lg:!p-6 max-lg:!rounded-none">
-                <span style={styles.flowIdx}>{step.t.split('.')[0]}</span>
-                <h4 style={styles.flowT}>{step.t.split('. ')[1]}</h4>
-                <p style={styles.flowC}>{step.c}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 메인 레이아웃: 광고 배너 및 콘텐츠 정렬 */}
+      <div style={styles.mainLayout}>
+        {/* 좌측 광고 */}
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
 
-      {/* SECTION 4: 실시 규정 (3열 -> 1열 전환) */}
-      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">4. 위험성평가 실시 규정 필수 항목</h3>
-          <div style={styles.checkGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-            {[
-              { t: "목적 및 방법", c: "추진 목표 및 사업장 특화 기법 선정" },
-              { t: "수행 조직/역할", c: "관리책임자 및 근로자의 구체적 R&R" },
-              { t: "평가 대상 선정", c: "모든 작업 및 설비의 리스트업" },
-              { t: "시기 및 주기", c: "최초/정기/수시 평가 조건 명시" },
-              { t: "위험성 결정 기준", c: "수준 산정을 위한 고유 판단 기준" },
-              { t: "기록 보존 지침", c: "3년 보존 의무 및 서식 표준화" }
-            ].map((item, i) => (
-              <div key={i} style={styles.checkItem} className="max-lg:!p-6">
-                <h4 style={styles.itemHeader}>● {item.t}</h4>
-                <p style={styles.itemContent}>{item.c}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5 & 6: 비교 및 체크리스트 (2열 -> 1열 전환 핵심 수정 부분) */}
-      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <div style={styles.splitRow} className="max-lg:!flex-col max-lg:!gap-16">
-            <div style={styles.splitLeft} className="w-full">
-              <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">5. JRA vs JSA 비교 분석</h3>
-              <div className="overflow-x-auto">
-                <table style={styles.table} className="min-w-[450px]">
-                  <thead>
-                    <tr style={styles.tableHeadRow}>
-                      <th style={styles.th}>구분</th>
-                      <th style={styles.th}>JRA</th>
-                      <th style={styles.th}>JSA</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style={styles.tdBold}>평가 대상</td>
-                      <td style={styles.td}>공정 및 설비 전체</td>
-                      <td style={styles.td}>세부 작업 행동</td>
-                    </tr>
-                    <tr>
-                      <td style={styles.tdBold}>참여 주체</td>
-                      <td style={styles.td}>관리자 및 전문가</td>
-                      <td style={styles.td}>현장 근로자 핵심</td>
-                    </tr>
-                  </tbody>
-                </table>
+        <div style={styles.centerContent}>
+          {/* SECTION 3: JSA 흐름 */}
+          <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. JSA 실행 표준 프로세스 9단계</h3>
+              <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
+                {fullProcess.map((step, i) => (
+                  <div key={i} style={styles.flowCard} className="max-lg:!p-6 max-lg:!rounded-none">
+                    <span style={styles.flowIdx}>{step.t.split('.')[0]}</span>
+                    <h4 style={styles.flowT}>{step.t.split('. ')[1]}</h4>
+                    <p style={styles.flowC}>{step.c}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            <div style={styles.splitRight} className="w-full">
-              <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">6. JSA 필수 수행 체크리스트</h3>
-              <ul style={styles.checklist} className="max-lg:!pl-4">
+          </section>
+
+          {/* SECTION 4: 실시 규정 */}
+          <section style={{...styles.m3Section, backgroundColor: '#fcfcfc', width: '100%'}} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">4. 위험성평가 실시 규정 필수 항목</h3>
+              <div style={styles.checkGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
                 {[
-                  "표준 절차서(SOP)가 부재하거나 불명확한가?",
-                  "원하지 않는 사고가 종종 발생하는 작업인가?",
-                  "작업자가 해당 공정에 대한 경험이 부족한가?",
-                  "고도의 숙련도나 특수 훈련이 필요한 작업인가?"
-                ].map((t, i) => <li key={i} style={styles.checkli} className="text-sm lg:text-base">● {t}</li>)}
-              </ul>
+                  { t: "목적 및 방법", c: "추진 목표 및 사업장 특화 기법 선정" },
+                  { t: "수행 조직/역할", c: "관리책임자 및 근로자의 구체적 R&R" },
+                  { t: "평가 대상 선정", c: "모든 작업 및 설비의 리스트업" },
+                  { t: "시기 및 주기", c: "최초/정기/수시 평가 조건 명시" },
+                  { t: "위험성 결정 기준", c: "수준 산정을 위한 고유 판단 기준" },
+                  { t: "기록 보존 지침", c: "3년 보존 의무 및 서식 표준화" }
+                ].map((item, i) => (
+                  <div key={i} style={styles.checkItem} className="max-lg:!p-6">
+                    <h4 style={styles.itemHeader}>● {item.t}</h4>
+                    <p style={styles.itemContent}>{item.c}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* SECTION 7: 산정 공식 */}
-      <section style={{...styles.m3Section, backgroundColor: '#fcfcfc'}} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">7. 정량적 위험성 산정 로직</h3>
-          <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10">
-            <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
-              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Risk</span>
-              <span style={styles.mathOp} className="max-lg:!mx-2">=</span>
-              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Frequency</span>
-              <span style={styles.mathOp} className="max-lg:!mx-2">×</span>
-              <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Severity</span>
+          {/* SECTION 5 & 6: 비교 및 체크리스트 */}
+          <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <div style={styles.splitRow} className="max-lg:!flex-col max-lg:!gap-16">
+                <div style={styles.splitLeft} className="w-full">
+                  <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">5. JRA vs JSA 비교 분석</h3>
+                  <div className="overflow-x-auto">
+                    <table style={styles.table} className="min-w-[450px]">
+                      <thead>
+                        <tr style={styles.tableHeadRow}>
+                          <th style={styles.th}>구분</th>
+                          <th style={styles.th}>JRA</th>
+                          <th style={styles.th}>JSA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={styles.tdBold}>평가 대상</td>
+                          <td style={styles.td}>공정 및 설비 전체</td>
+                          <td style={styles.td}>세부 작업 행동</td>
+                        </tr>
+                        <tr>
+                          <td style={styles.tdBold}>참여 주체</td>
+                          <td style={styles.td}>관리자 및 전문가</td>
+                          <td style={styles.td}>현장 근로자 핵심</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div style={styles.splitRight} className="w-full">
+                  <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">6. JSA 필수 수행 체크리스트</h3>
+                  <ul style={styles.checklist} className="max-lg:!pl-4">
+                    {[
+                      "표준 절차서(SOP)가 부재하거나 불명확한가?",
+                      "원하지 않는 사고가 종종 발생하는 작업인가?",
+                      "작업자가 해당 공정에 대한 경험이 부족한가?",
+                      "고도의 숙련도나 특수 훈련이 필요한 작업인가?"
+                    ].map((t, i) => <li key={i} style={styles.checkli} className="text-sm lg:text-base">● {t}</li>)}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <p style={styles.mathCaption} className="max-lg:text-xs">위험성 = 사고 발생 빈도(확률) × 결과의 중대성(강도)</p>
-          </div>
+          </section>
+
+          {/* SECTION 7: 산정 공식 */}
+          <section style={{...styles.m3Section, backgroundColor: '#fcfcfc', width: '100%'}} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">7. 정량적 위험성 산정 로직</h3>
+              <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10">
+                <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Risk</span>
+                  <span style={styles.mathOp} className="max-lg:!mx-2">=</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Frequency</span>
+                  <span style={styles.mathOp} className="max-lg:!mx-2">×</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Severity</span>
+                </div>
+                <p style={styles.mathCaption} className="max-lg:text-xs">위험성 = 사고 발생 빈도(확률) × 결과의 중대성(강도)</p>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+
+        {/* 우측 광고 */}
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
+      </div>
 
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
@@ -199,31 +211,33 @@ const styles = {
   drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f0f0f0' },
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(8px)' },
 
-  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
+  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff', width: '100%' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
   mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
   subTitle: { opacity: 0.8, lineHeight: '1.8', wordBreak: 'keep-all' },
   
-  m3Section: { padding: '100px 0' },
+  /* 레이아웃 시스템 추가 */
+  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
+  sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '100px' },
+  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', maxWidth: '1200px', alignItems: 'center' },
+
+  m3Section: { padding: '100px 0', width: '100%' },
   sectionTitle: { fontWeight: '800', marginBottom: '40px', letterSpacing: '-1px' },
   sectionTitleSmall: { fontWeight: '800', marginBottom: '30px' },
   para: { fontSize: '1.1rem', color: '#333', marginBottom: '35px', wordBreak: 'keep-all' },
   
-  infoBox: { padding: '35px', backgroundColor: '#f8f9fa', borderRadius: '16px', borderLeft: '6px solid #007bff' },
-  infoList: { paddingLeft: '20px', fontSize: '1.05rem', color: '#333', display: 'flex', flexDirection: 'column', gap: '15px' },
-
-  flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px' },
+  flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px', width: '100%' },
   flowCard: { padding: '30px', backgroundColor: '#fff', borderRadius: '16px', borderTop: '5px solid #007bff', boxShadow: '0 8px 25px rgba(0, 123, 255, 0.08)' },
   flowIdx: { fontSize: '0.8rem', fontWeight: '900', color: '#007bff', display: 'block', marginBottom: '12px' },
   flowT: { fontSize: '1.15rem', fontWeight: '800', color: '#111', marginBottom: '12px' },
   flowC: { fontSize: '0.95rem', color: '#555', lineHeight: '1.6' },
 
-  checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px' },
+  checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px', width: '100%' },
   checkItem: { padding: '30px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px' },
   itemHeader: { fontSize: '1.1rem', fontWeight: '800', color: '#007bff', marginBottom: '12px' },
   itemContent: { fontSize: '0.95rem', color: '#555' },
 
-  splitRow: { display: 'flex', gap: '60px' },
+  splitRow: { display: 'flex', gap: '60px', width: '100%' },
   splitLeft: { flex: 1.2 },
   splitRight: { flex: 1 },
   checklist: { listStyle: 'none', padding: 0 },
@@ -235,7 +249,7 @@ const styles = {
   td: { padding: '15px', border: '1px solid #eee', color: '#444' },
   tdBold: { padding: '15px', border: '1px solid #eee', fontWeight: '800', backgroundColor: '#fcfcfc' },
   
-  mathCardNormal: { padding: '60px 40px', backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #eee', textAlign: 'center' },
+  mathCardNormal: { padding: '60px 40px', backgroundColor: '#fff', borderRadius: '20px', border: '1px solid #eee', textAlign: 'center', width: '100%' },
   mathDisplay: { display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '25px' },
   mathVar: { fontStyle: 'italic', fontFamily: 'serif', fontSize: '2rem', fontWeight: '600', color: '#111' },
   mathOp: { margin: '0 20px', fontSize: '1.5rem', color: '#888' },

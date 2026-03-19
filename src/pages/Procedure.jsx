@@ -93,6 +93,10 @@ export default function Procedure() {
             <h3 style={styles.modalTitle}>분석 포맷 선택</h3>
             <p style={styles.modalSub}>수행하고자 하는 JSA 분석의 정밀도를 선택해 주십시오.</p>
             
+            <div style={styles.modalAdWrapper}>
+              <AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" />
+            </div>
+
             <div style={styles.typeGrid}>
               <div style={styles.typeCard} onClick={() => startAnalysis('2-step')}>
                 <div style={styles.typeBadge}>Standard</div>
@@ -262,7 +266,17 @@ const styles = {
   typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
   typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
   typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
-  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline' }
+  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline' },
+  // styles 객체 내부에 아래 항목을 추가하세요.
+  modalAdWrapper: {
+  width: '100%',
+  marginBottom: '1.5rem',
+  display: 'flex',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  borderRadius: '8px',
+  backgroundColor: 'rgba(255,255,255,0.03)'
+},
 };
 
 if (typeof document !== 'undefined') {

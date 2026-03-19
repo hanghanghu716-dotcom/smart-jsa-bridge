@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AdBanner from '../AdBanner'; // AdBanner 임포트 추가
 
 export default function ProtectiveEquipment() {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export default function ProtectiveEquipment() {
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
-      {/* HERO SECTION: 텍스트 줄바꿈 및 들여쓰기 수정 */}
+      {/* HERO SECTION: 화면 전체 너비 유지 */}
       <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
           <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">PERSONAL PROTECTIVE EQUIPMENT</span>
@@ -69,7 +70,6 @@ export default function ProtectiveEquipment() {
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">안전인증(KC) 통합 기술 가이드</span>
           </h2>
           
-          {/* 요청하신 3단계 줄바꿈 적용 */}
           <p style={styles.subTitle} className="text-[14px] lg:text-[1.15rem]">
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">안전인증 확인은 현장 안전의 시작입니다. 부위별 보호구의</span>
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">특성과 KOSHA 인증 기준에 따른 법규를 한눈에</span>
@@ -78,42 +78,56 @@ export default function ProtectiveEquipment() {
         </div>
       </section>
 
-      {/* SECTION 1: 보호구 분류 (카드 잘림 현상 수정) */}
-      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">1. 부위별 보호구 분류 및 세부 유형</h3>
-          <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-            {ppeTypes.map((ppe, i) => (
-              /* max-lg:!border-x-0 제거하여 카드 형태 유지 */
-              <div key={i} style={styles.flowCard} className="max-lg:!p-6">
-                <span style={styles.flowIdx}>{ppe.t.split('.')[0]}</span>
-                <h4 style={styles.flowT}>{ppe.t.split('. ')[1]}</h4>
-                <p style={styles.flowC}>{ppe.c}</p>
-                <div style={styles.subTagBox}>
-                  {ppe.tags.map((tag, idx) => (
-                    <span key={idx} style={styles.subTag}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 메인 레이아웃: 광고 배너 및 콘텐츠 정렬 */}
+      <div style={styles.mainLayout}>
+        {/* 좌측 광고 */}
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
 
-      {/* 이하 섹션들에도 동일한 카드 레이아웃 적용 */}
-      <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
-        <div style={styles.container}>
-          <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. 보호구 안전인증 자주 묻는 질문</h3>
-          <div style={styles.checkGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-            {certificationFaq.map((item, i) => (
-              <div key={i} style={styles.checkItem} className="max-lg:!p-6">
-                <h4 style={styles.itemHeader}>Q. {item.q}</h4>
-                <p style={styles.itemContent}>{item.a}</p>
+        <div style={styles.centerContent}>
+          {/* SECTION 1: 보호구 분류 */}
+          <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">1. 부위별 보호구 분류 및 세부 유형</h3>
+              <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
+                {ppeTypes.map((ppe, i) => (
+                  <div key={i} style={styles.flowCard} className="max-lg:!p-6">
+                    <span style={styles.flowIdx}>{ppe.t.split('.')[0]}</span>
+                    <h4 style={styles.flowT}>{ppe.t.split('. ')[1]}</h4>
+                    <p style={styles.flowC}>{ppe.c}</p>
+                    <div style={styles.subTagBox}>
+                      {ppe.tags.map((tag, idx) => (
+                        <span key={idx} style={styles.subTag}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          </section>
+
+          {/* SECTION 3: 보호구 안전인증 자주 묻는 질문 */}
+          <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
+            <div style={styles.container}>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. 보호구 안전인증 자주 묻는 질문</h3>
+              <div style={styles.checkGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
+                {certificationFaq.map((item, i) => (
+                  <div key={i} style={styles.checkItem} className="max-lg:!p-6">
+                    <h4 style={styles.itemHeader}>Q. {item.q}</h4>
+                    <p style={styles.itemContent}>{item.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+
+        {/* 우측 광고 */}
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
+      </div>
 
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
@@ -125,7 +139,6 @@ export default function ProtectiveEquipment() {
 }
 
 const styles = {
-  /* [기존 스타일 유지] */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
   container: { maxWidth: '1200px', margin: '0 auto' },
   header: { padding: '2.5rem 0', zIndex: 10, borderBottom: '1px solid #f0f0f0' },
@@ -141,20 +154,26 @@ const styles = {
   navCategory: { fontSize: '0.7rem', fontWeight: '900', color: '#888', letterSpacing: '2px', marginBottom: '20px' },
   drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f0f0f0' },
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(8px)' },
-  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff' },
+  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff', width: '100%' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
   mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
   subTitle: { opacity: 0.8, lineHeight: '1.8', wordBreak: 'keep-all' },
-  m3Section: { padding: '100px 0' },
+
+  /* 레이아웃 시스템 추가 */
+  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
+  sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '100px' },
+  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', maxWidth: '1200px', alignItems: 'center' },
+
+  m3Section: { padding: '100px 0', width: '100%' },
   sectionTitle: { fontWeight: '800', marginBottom: '40px', letterSpacing: '-1px' },
-  flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' },
+  flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', width: '100%' },
   flowCard: { padding: '25px', backgroundColor: '#fff', borderRadius: '16px', borderTop: '5px solid #007bff', boxShadow: '0 8px 25px rgba(0, 123, 255, 0.08)' },
   flowIdx: { fontSize: '0.8rem', fontWeight: '900', color: '#007bff', display: 'block', marginBottom: '10px' },
   flowT: { fontSize: '1.1rem', fontWeight: '800', color: '#111', marginBottom: '10px' },
   flowC: { fontSize: '0.9rem', color: '#555', lineHeight: '1.6', marginBottom: '15px' },
   subTagBox: { display: 'flex', flexWrap: 'wrap', gap: '6px' },
   subTag: { padding: '4px 10px', backgroundColor: '#f0f4f8', borderRadius: '4px', fontSize: '0.75rem', color: '#007bff', fontWeight: '700' },
-  checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '25px' },
+  checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '25px', width: '100%' },
   checkItem: { padding: '30px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px' },
   itemHeader: { fontSize: '1.1rem', fontWeight: '800', color: '#007bff', marginBottom: '12px' },
   itemContent: { fontSize: '0.95rem', color: '#555' },
