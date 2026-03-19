@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
+import AdSenseUnit from '../components/AdSenseUnit'; // 광고 컴포넌트 임포트
 
 export default function Main() {
   const navigate = useNavigate();
@@ -17,6 +18,11 @@ export default function Main() {
     '/images/image5.jpg',
     '/images/image6.jpg'
   ];
+
+  // 애드센스 설정 정보
+  const PUBLISHER_ID = 'ca-pub-9791625990220699';
+  const MAIN_SIDE_SLOT_ID = '3978298367';
+  const MAIN_MOBILE_BRIDGE_SLOT_ID = '이곳에_메인_모바일_브릿지_슬롯ID_입력';
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -125,7 +131,6 @@ export default function Main() {
                   </div>
                   <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>로그아웃</button>
                 </div>
-                {/* ✅ [추가] 회원정보 수정 및 통계 링크 삽입 */}
                 <Link to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
                   회원정보 수정 및 지식 통계
                 </Link>
@@ -153,7 +158,14 @@ export default function Main() {
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
         <div style={styles.mainLayout} className="max-lg:!px-6 max-lg:!flex-col">
-          <aside className="hidden lg:block" style={styles.sideAd}></aside> 
+          {/* [좌측 광고 삽입] */}
+          <aside className="hidden lg:block" style={styles.sideAd}>
+            <div style={styles.adPlaceholder}>
+              <span style={styles.adLabel}>AD (LEFT)</span>
+              <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
+            </div>
+          </aside> 
+
           <main style={styles.centerContent} className="max-lg:!pl-0">
             <div style={styles.heroContent}>
               <h2 className="text-[28px] lg:text-[clamp(2.5rem,5vw,3.8rem)] font-extrabold leading-tight mb-6" style={styles.mainTitle}>
@@ -168,9 +180,24 @@ export default function Main() {
               </button>
             </div>
           </main>
-          <aside className="hidden lg:block" style={styles.sideAd}></aside>
+
+          {/* [우측 광고 삽입] */}
+          <aside className="hidden lg:block" style={styles.sideAd}>
+            <div style={styles.adPlaceholder}>
+              <span style={styles.adLabel}>AD (RIGHT)</span>
+              <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
+            </div>
+          </aside>
         </div>
       </section>
+
+      {/* [모바일 최적화]: 히어로 섹션 직후 모바일 브릿지 광고 추가 */}
+      <div className="lg:hidden" style={styles.mobileAdSector}>
+        <div style={styles.mobileAdBox}>
+           <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
+           <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_MOBILE_BRIDGE_SLOT_ID} format="horizontal" style={{ display: 'block' }} />
+        </div>
+      </div>
 
       <section style={styles.m3Section} className="max-lg:!py-20">
         <div style={styles.container}>
@@ -240,6 +267,7 @@ export default function Main() {
 }
 
 const styles = {
+  /* 사용자 원본 스타일 100% 유지 */
   headerRight: { display: 'flex', alignItems: 'center' },
   headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },
   separator: { color: 'rgba(255,255,255,0.3)', margin: '0 2.5rem', fontSize: '0.8rem', pointerEvents: 'none' },
@@ -292,5 +320,22 @@ const styles = {
   footerFlex: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
   footerLinks: { display: 'flex', gap: '40px' },
   fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' },
-  imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' }
+  imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' },
+
+  /* [기능 추가] 광고 관련 신규 스타일 */
+  adPlaceholder: { 
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: 'rgba(255,255,255,0.05)', 
+    border: '1px dashed rgba(255,255,255,0.2)', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0' 
+  },
+  adLabel: { fontSize: '10px', color: 'rgba(255,255,255,0.3)', fontWeight: 'bold', marginBottom: '8px' },
+  adLabelDark: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', marginBottom: '8px' },
+  mobileAdSector: { width: '100%', padding: '20px 24px', backgroundColor: '#fff' },
+  mobileAdBox: { width: '100%', minHeight: '100px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0' }
 };

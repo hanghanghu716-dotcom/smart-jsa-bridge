@@ -98,6 +98,7 @@ export default function TableBuilder() {
     }
   }, [activeOrder]);
 
+  // --- 레이아웃 및 그룹 계산 (사이드바와 테이블에서 공통 사용) ---
   const currentItems = activeOrder.filter(key => TAG_META[key] || userColumns.find(u => u.id === key));
   const fixedWidthTotal = currentItems.reduce((sum, key) => {
     const meta = TAG_META[key] || userColumns.find(u => u.id === key);
@@ -137,19 +138,35 @@ export default function TableBuilder() {
     else { alert("전체 양식 설정이 성공적으로 스크랩되었습니다."); setShowSaveModal(false); setSaveName(''); }
   };
 
-  const handleDragOver = (e, targetIdx) => {
+  // 그룹 단위 드래그 앤 드롭 핸들러
+  const handleDragOver = (e, targetGroupIdx) => {
     e.preventDefault();
-    if (draggedIdx === null || draggedIdx === targetIdx) return;
-    const newOrder = [...activeOrder];
-    const movedItem = newOrder.splice(draggedIdx, 1)[0];
-    newOrder.splice(targetIdx, 0, movedItem);
+    if (draggedIdx === null || draggedIdx === targetGroupIdx) return;
+    
+    const newGroups = [...layoutGroups];
+    const movedGroup = newGroups.splice(draggedIdx, 1)[0];
+    newGroups.splice(targetGroupIdx, 0, movedGroup);
+    
+    // 다시 평탄화하여 activeOrder 업데이트
+    const newOrder = newGroups.flatMap(g => g.keys);
     setActiveOrder(newOrder);
-    setDraggedIdx(targetIdx);
+    setDraggedIdx(targetGroupIdx);
   };
 
   const toggleTag = (key) => {
-    if (activeOrder.includes(key)) setActiveOrder(prev => prev.filter(k => k !== key));
-    else setActiveOrder(prev => [...prev, key]);
+    // 위험성 그룹 (빈도, 강도, 위험성) 통합 처리
+    const riskGroupKeys = ['DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK'];
+    if (riskGroupKeys.includes(key)) {
+      const isAnyActive = riskGroupKeys.some(k => activeOrder.includes(k));
+      if (isAnyActive) {
+        setActiveOrder(prev => prev.filter(k => !riskGroupKeys.includes(k)));
+      } else {
+        setActiveOrder(prev => [...prev, ...riskGroupKeys]);
+      }
+    } else {
+      if (activeOrder.includes(key)) setActiveOrder(prev => prev.filter(k => k !== key));
+      else setActiveOrder(prev => [...prev, key]);
+    }
   };
 
   const addUserColumn = () => {
@@ -266,7 +283,66 @@ const renderDataTablePreview = () => {
               <aside style={styles.toolbarSliding}>
                 <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>전체 통합 저장</h3><button style={{...styles.miniBtn, backgroundColor: '#4caf50', padding: '12px'}} onClick={() => setShowSaveModal(true)}>현재까지의 전체 설정 스크랩하기</button><span style={{ fontSize: '0.65rem', color: '#888', marginTop: '4px' }}>* Step 4의 모듈 설정과 현재의 테이블 설정이 함께 저장됩니다.</span></div>
                 <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>테이블 용지 방향</h3><div style={styles.buttonGroupSmall}><button style={{...styles.miniBtn, backgroundColor: orientation === 'landscape' ? '#444' : '#222'}} onClick={() => setOrientation('landscape')}>가로형 (권장)</button><button style={{...styles.miniBtn, backgroundColor: orientation === 'portrait' ? '#444' : '#222'}} onClick={() => setOrientation('portrait')}>세로형</button></div><div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>미리보기 확대/축소</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div></div>
-                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>컬럼 항목 구성 (Drag & Drop)</h3><div style={styles.tagToggleContainerCompact}>{Object.keys(TAG_META).map(key => { const isActive = activeOrder.includes(key); return ( <button key={key} onClick={() => toggleTag(key)} style={{...styles.tagBtnSmall, backgroundColor: isActive ? TAG_META[key].color : '#161616', color: isActive ? '#fff' : '#666', borderColor: TAG_META[key].color, opacity: 1}}>{TAG_META[key].label}</button> ); })}</div><div style={styles.dragScrollArea}>{activeOrder.map((key, idx) => { const meta = TAG_META[key] || userColumns.find(u => u.id === key); if (!meta) return null; const isUser = key.startsWith('USER_'); return ( <div key={key} draggable onDragStart={() => setDraggedIdx(idx)} onDragOver={(e) => handleDragOver(e, idx)} className="tag-item" style={{...styles.dragTagMini, borderColor: meta.color || '#444', backgroundColor: meta.color ? `${meta.color}33` : '#222'}}> <span style={{cursor:'grab', color:'#888', marginRight:'8px'}}>☰</span> {isUser ? ( <div style={{display:'flex', gap:'4px', flex:1, alignItems:'center'}}> <input style={styles.miniInputNoBorder} value={meta.label} onChange={(e) => setUserColumns(prev => prev.map(u => u.id === key ? {...u, label: e.target.value} : u))} /> <div style={{display:'flex', alignItems:'center', gap:'2px', backgroundColor:'rgba(0,0,0,0.5)', padding:'0 4px', borderRadius:'4px'}}><span style={{fontSize:'0.6rem', color:'#555'}}>너비</span><input type="number" style={styles.numInputPure} value={meta.width} onChange={(e) => handleWidthChange(key, e.target.value)} /></div> <button onClick={() => { setActiveOrder(prev => prev.filter(k=>k!==key)); setUserColumns(prev => prev.filter(u=>u.id!==key)); }} style={styles.miniDelBtnActive}>×</button> </div> ) : <span style={{flex:1, fontSize:'0.75rem', color:'#eee'}}>{meta.label}</span>} </div> ); })}</div><button style={styles.addBtnMini} onClick={addUserColumn}>+ 커스텀 항목 추가</button></div>
+                <div style={styles.toolSectionCompact}>
+                  <h3 style={styles.toolTitleMini}>컬럼 항목 구성 (Drag & Drop)</h3>
+                  
+                  {/* 통합 토글 영역: 위험성(3개 항목)은 하나로 표시 */}
+                  <div style={styles.tagToggleContainerCompact}>
+                    {Object.keys(TAG_META)
+                      .filter(key => !['DATA_FREQUENCY', 'DATA_SEVERITY'].includes(key)) // 개별 버튼 제외
+                      .map(key => {
+                        const isActive = activeOrder.includes(key);
+                        const label = key === 'DATA_RISK' ? '위험성 (통합)' : TAG_META[key].label;
+                        return (
+                          <button 
+                            key={key} 
+                            onClick={() => toggleTag(key)} 
+                            style={{...styles.tagBtnSmall, backgroundColor: isActive ? TAG_META[key].color : '#161616', color: isActive ? '#fff' : '#666', borderColor: TAG_META[key].color, opacity: 1}}
+                          >
+                            {label}
+                          </button>
+                        );
+                    })}
+                  </div>
+
+                  {/* 드래그 앤 드롭 영역: layoutGroups를 순회하여 위험성을 한 묶음으로 취급 */}
+                  <div style={styles.dragScrollArea}>
+                    {layoutGroups.map((group, idx) => {
+                      const isRiskGroup = group.isGroup && group.label === '위험성';
+                      const key = group.keys[0];
+                      const meta = isRiskGroup 
+                        ? { label: '위험성 (가능성·중대성·산정)', color: TAG_META['DATA_RISK'].color }
+                        : (TAG_META[key] || userColumns.find(u => u.id === key));
+                      
+                      if (!meta) return null;
+                      const isUser = key.startsWith('USER_');
+
+                      return (
+                        <div 
+                          key={isRiskGroup ? 'group-risk' : key} 
+                          draggable 
+                          onDragStart={() => setDraggedIdx(idx)} 
+                          onDragOver={(e) => handleDragOver(e, idx)} 
+                          className="tag-item" 
+                          style={{...styles.dragTagMini, borderColor: meta.color || '#444', backgroundColor: meta.color ? `${meta.color}33` : '#222'}}
+                        >
+                          <span style={{cursor:'grab', color:'#888', marginRight:'8px'}}>☰</span>
+                          {isUser ? (
+                            <div style={{display:'flex', gap:'4px', flex:1, alignItems:'center'}}>
+                              <input style={styles.miniInputNoBorder} value={meta.label} onChange={(e) => setUserColumns(prev => prev.map(u => u.id === key ? {...u, label: e.target.value} : u))} />
+                              <div style={{display:'flex', alignItems:'center', gap:'2px', backgroundColor:'rgba(0,0,0,0.5)', padding:'0 4px', borderRadius:'4px'}}><span style={{fontSize:'0.6rem', color:'#555'}}>너비</span><input type="number" style={styles.numInputPure} value={meta.width} onChange={(e) => handleWidthChange(key, e.target.value)} /></div>
+                              <button onClick={() => { setActiveOrder(prev => prev.filter(k=>k!==key)); setUserColumns(prev => prev.filter(u=>u.id!==key)); }} style={styles.miniDelBtnActive}>×</button>
+                            </div>
+                          ) : (
+                            <span style={{flex:1, fontSize:'0.75rem', color:'#eee'}}>{meta.label}</span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  
+                  <button style={styles.addBtnMini} onClick={addUserColumn}>+ 커스텀 항목 추가</button>
+                </div>
               </aside>
               <section style={styles.gridCanvasWrapper}>
                 <div style={styles.canvasScrollArea}>

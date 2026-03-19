@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import AdSenseUnit from '../components/AdSenseUnit'; // 광고 컴포넌트
 
 export default function About() {
   const navigate = useNavigate();
+
+  // 애드센스 설정 정보
+  const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
+  const LEFT_SIDEBAR_SLOT_ID = '이곳에_왼쪽_광고_슬롯ID_입력'; 
+  const RIGHT_SIDEBAR_SLOT_ID = '이곳에_오른쪽_광고_슬롯ID_입력';
 
   return (
     <div style={styles.wrapper}>
@@ -13,18 +19,85 @@ export default function About() {
       </header>
       
       <section style={styles.contentSection}>
-        <div style={styles.container}>
-          <span style={styles.tag}>ABOUT US</span>
-          <h2 style={styles.heading}>데이터로 잇는 안전,<br />사람을 지키는 기술</h2>
+        {/* 광고 배치를 위해 컨테이너에 relative 속성만 일시적으로 부여합니다 */}
+        <div style={{ ...styles.container, position: 'relative' }}>
+          
+          {/* [가시성 광고 영역: 왼쪽] */}
+          <aside className="max-lg:hidden" style={styles.adSlotLeft}>
+            <div style={styles.adPlaceholderBox}>
+              <span style={styles.adLabel}>AD (LEFT)</span>
+              <AdSenseUnit 
+                client={PUBLISHER_ID} 
+                slot={LEFT_SIDEBAR_SLOT_ID} 
+                format="vertical" 
+                style={{ width: '160px', height: '600px' }} 
+              />
+            </div>
+          </aside>
+
+          {/* [가시성 광고 영역: 오른쪽] */}
+          <aside className="max-lg:hidden" style={styles.adSlotRight}>
+            <div style={styles.adPlaceholderBox}>
+              <span style={styles.adLabel}>AD (RIGHT)</span>
+              <AdSenseUnit 
+                client={PUBLISHER_ID} 
+                slot={RIGHT_SIDEBAR_SLOT_ID} 
+                format="vertical" 
+                style={{ width: '160px', height: '600px' }} 
+              />
+            </div>
+          </aside>
+
+          {/* 원본 내용 유지 시작 */}
+          <span style={styles.tag}>THE SAFETY REPOSITORY</span>
+          <h2 style={styles.heading}>파편화된 안전 지식을<br />라이브러리로 연결하다</h2>
           
           <div style={styles.articleSection}>
-            <p style={styles.articleP}>Smart JSA Bridge는 관리자가 단순 서류 작업의 부담을 덜고, <strong>본질적인 현장 위험 발굴에만 집중할 수 있는 기술적 교량</strong>이 되고자 합니다.</p>
-            <p style={styles.articleP}>9대 고위험 작업군을 비롯한 수많은 분석 시나리오를 바탕으로 지능형 위험 식별 환경을 제공하여, 무재해 현장을 향한 가장 빠른 경로를 제시합니다.</p>
+            <h3 style={styles.articleH3}>The Library for Safety Managers</h3>
+            <p style={styles.articleP}>
+              Smart JSA Bridge는 개별 PC 속에 잠들어 있던 실제 JSA 양식들을 양지로 끌어올려, <strong>안전 관리자들이 서로의 노하우를 라이브러리화하고 공유하는 오픈 소스형 저장소</strong>입니다.
+              단순한 서류 작성을 넘어, 전국의 산업 현장에서 검증된 최적의 안전 로직을 누구나 활용하고 개선할 수 있는 기술적 교량이 되고자 합니다.
+            </p>
+
+            <h3 style={styles.articleH3}>Core Values / 핵심 가치</h3>
+            <ul style={styles.listWrapper}>
+              <li style={styles.listItem}>
+                <span style={styles.listBullet}>•</span> 
+                <strong>검증된 실무 데이터 기반:</strong> 추상적인 가이드가 아닌, 현장 전문가들이 직접 작성하고 사용한 실질적인 JSA 템플릿을 기반으로 합니다.
+              </li>
+              <li style={styles.listItem}>
+                <span style={styles.listBullet}>•</span> 
+                <strong>지식의 선순환(Fork & Contribute):</strong> 우수한 JSA 양식을 자신의 현장에 맞춰 수정하여 활용하고, 이를 다시 라이브러리에 기여함으로써 전체 산업 안전 수준을 상향 평준화합니다.
+              </li>
+              <li style={styles.listItem}>
+                <span style={styles.listBullet}>•</span> 
+                <strong>고위험군 특화 라이브러리:</strong> 9대 고위험 작업군을 포함하여 업종별, 설비별로 세분화된 분석 시나리오 저장소를 구축합니다.
+              </li>
+            </ul>
+
+            <h3 style={styles.articleH3}>How It Works / 서비스 흐름</h3>
+            <p style={styles.articleP}>Smart JSA Bridge는 커뮤니티의 힘으로 안전을 지킵니다.</p>
+            <ul style={styles.listWrapper}>
+              <li style={styles.listItem}><span style={styles.listBullet}>1.</span> <strong>Browse Library:</strong> 방대한 저장소에서 현재 필요한 작업 종류에 맞는 JSA 양식을 검색합니다.</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>2.</span> <strong>Adopt & Customize:</strong> 적합한 양식을 선택하여 내 작업 환경의 특성에 맞게 세부 수치를 조정합니다.</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>3.</span> <strong>Export & Share:</strong> 완성된 JSA를 출력하여 현장에 적용하고, 개선된 로직은 다시 커뮤니티에 공유할 수 있습니다.</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>4.</span> <strong>Standardization:</strong> 수많은 피드백을 거친 양식은 해당 업종의 '골든 스탠다드'로 자리 잡습니다.</li>
+            </ul>
+
+            <h3 style={styles.articleH3}>Data Security Philosophy</h3>
+            <p style={styles.articleP}>
+              공유의 가치는 안전한 보안 위에서만 존재할 수 있습니다. 
+              Smart JSA Bridge는 <strong>'민감 정보 비저장 원칙'</strong>에 따라 프로젝트명, 실제 성명, 설비 상세 명칭 등 식별 가능한 데이터는 수집하지 않으며, 오직 '작업-위험-대책'으로 이어지는 순수한 기술적 로직만을 라이브러리화합니다.
+            </p>
           </div>
 
           <div style={styles.imgContainer}>
              <div style={{...styles.heroImg, backgroundImage: 'url(/images/image6.jpg)'}} />
+             <p style={{...styles.articleP, fontSize: '0.85rem', color: '#888', textAlign: 'center', marginTop: '12px'}}>
+               Smart JSA Bridge: 집단 지성으로 완성하는 무재해 현장의 파트너
+             </p>
           </div>
+          {/* 원본 내용 유지 끝 */}
         </div>
       </section>
 
@@ -34,41 +107,55 @@ export default function About() {
 }
 
 const styles = {
-  /* 레이아웃: 여백 압축 */
+  /* 사용자님의 원본 스타일 그대로 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
-  
-  /* 콘텐츠 섹션: 상하 패딩을 80px로 대폭 축소 (기존 160px) */
   contentSection: { padding: '80px 0', flex: 1 },
   container: { maxWidth: '750px', margin: '0 auto', padding: '0 32px' },
-
-  /* 타이포그래피: 크기 축소 및 가독성 유지 */
   tag: { color: '#007bff', fontWeight: '900', fontSize: '0.75rem', letterSpacing: '3px', marginBottom: '16px', display: 'block' },
   heading: { fontSize: '2.5rem', fontWeight: '900', marginBottom: '24px', letterSpacing: '-1.5px', lineHeight: '1.2', wordBreak: 'keep-all', color: '#000' },
   subHeading: { fontSize: '1.1rem', lineHeight: '1.6', color: '#49454f', marginBottom: '60px', wordBreak: 'keep-all' },
-
-  /* 본문 영역: 오밀조밀함을 방지하는 최적 간격 */
   articleSection: { marginBottom: '60px' },
   articleH3: { fontSize: '1.3rem', fontWeight: '800', marginTop: '40px', marginBottom: '20px', color: '#000' },
   articleP: { fontSize: '1.05rem', lineHeight: '1.8', color: '#444', marginBottom: '24px', wordBreak: 'keep-all' },
-  
-  /* 리스트: 수직 간격을 12px로 정돈 (기존 28px) */
   listWrapper: { paddingLeft: '0', marginBottom: '32px', listStyleType: 'none' },
-  listItem: { 
-    position: 'relative',
-    fontSize: '1rem', 
-    lineHeight: '1.8', 
-    color: '#444', 
-    marginBottom: '12px', 
-    wordBreak: 'keep-all',
-    paddingLeft: '24px'
-  },
+  listItem: { position: 'relative', fontSize: '1rem', lineHeight: '1.8', color: '#444', marginBottom: '12px', wordBreak: 'keep-all', paddingLeft: '24px' },
   listBullet: { position: 'absolute', left: 0, color: '#007bff', fontWeight: 'bold' },
-
-  /* 시각 요소: 이미지 크기 축소 */
   imgContainer: { marginTop: '40px' },
   heroImg: { width: '100%', height: '350px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '16px' },
+  footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' }
+  /* [기능 추가] 광고 가시성 스타일 - 본문 디자인에 영향을 주지 않음 */
+  adSlotLeft: {
+    position: 'absolute',
+    right: '100%',
+    marginRight: '20px',
+    top: '0',
+    width: '160px'
+  },
+  adSlotRight: {
+    position: 'absolute',
+    left: '100%',
+    marginLeft: '20px',
+    top: '0',
+    width: '160px'
+  },
+  adPlaceholderBox: {
+    width: '160px',
+    minHeight: '600px',
+    backgroundColor: '#f5f5f5', // 회색 박스로 가시성 확보
+    border: '1px dashed #ddd',
+    borderRadius: '8px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '10px 0'
+  },
+  adLabel: {
+    fontSize: '11px',
+    color: '#ccc',
+    fontWeight: 'bold',
+    marginBottom: '10px'
+  }
 };

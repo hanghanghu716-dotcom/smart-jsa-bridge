@@ -16,7 +16,7 @@ const AdBanner = ({ slot, style, format = 'auto', responsive = 'true' }) => {
       <ins
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', height: '100%' }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"  /* 나중에 실제 승인된 번호로 교체 필요 */
+        data-ad-client="ca-pub-9791625990220699"  /* 나중에 실제 승인된 번호로 교체 필요 */
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive={responsive}

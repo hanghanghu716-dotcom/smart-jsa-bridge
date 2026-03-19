@@ -29,12 +29,22 @@ export default function PublicExplore() {
 
   const [expandedGroups, setExpandedGroups] = useState({ "산업 / 공정 / 일반작업": true });
 
-  useEffect(() => {
-    fetchPublicProjects();
+useEffect(() => {
+    const checkUserAndFetch = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        alert("로그인이 필요한 서비스입니다. 로그인 페이지로 이동합니다.");
+        navigate('/login'); // 사용자님의 환경에 맞는 로그인 경로로 수정하십시오.
+        return;
+      }
+      fetchPublicProjects();
+    };
+
+    checkUserAndFetch();
     const closeMenu = () => setActiveMenuId(null);
     window.addEventListener('click', closeMenu);
     return () => window.removeEventListener('click', closeMenu);
-  }, [sortBy]);
+  }, [sortBy, navigate]);
 
   const fetchPublicProjects = async () => {
     setIsLoading(true);
@@ -77,7 +87,10 @@ export default function PublicExplore() {
   const submitReport = async (e) => {
     e.stopPropagation();
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user) {
+      alert("신고 기능을 이용하려면 로그인이 필요합니다.");
+      return;
+    }
     try {
       await supabase.from('user_reports').insert({ reporter_id: user.id, project_id: reportTarget.id, reason: reportReason });
       if (isHideProject) await supabase.from('user_project_blocks').upsert({ user_id: user.id, project_id: reportTarget.id });

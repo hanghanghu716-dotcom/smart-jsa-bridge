@@ -118,7 +118,7 @@ export default function Info() {
 
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
-          <AdBanner slot="2000000001" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
@@ -355,13 +355,13 @@ export default function Info() {
         </main>
 
         <aside style={styles.sideAd}>
-          <AdBanner slot="2000000002" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
       <footer style={styles.footerArea}>
         <div style={styles.bottomAdWrapper}>
-          <AdBanner slot="2000000003" style={{ width: '728px', height: '90px' }} format="horizontal" />
+          <AdBanner slot="1284119169" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
       </footer>
     </div>
@@ -375,7 +375,8 @@ const styles = {
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
-  mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 120px', gap: '4rem', zIndex: 10, overflow: 'hidden' },
+  /* ✅ [수정] padding 하단 여백 축소 및 overflow 설정 변경 */
+  mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 20px', gap: '4rem', zIndex: 10, overflow: 'visible' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   formCard: { width: '100%', maxWidth: '1440px', height: '78vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
@@ -416,7 +417,8 @@ const styles = {
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  footerArea: { width: '100%', zIndex: 10, position: 'absolute', bottom: 0, padding: '1.5rem 5rem', backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
+  /* ✅ [수정] position: 'absolute' 제거하여 겹침 방지 */
+  footerArea: { width: '100%', zIndex: 10, position: 'relative', padding: '1.5rem 5rem', backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.7rem' },
   inputGroupFull: { display: 'flex', flexDirection: 'column', gap: '0.7rem', marginBottom: '1.5rem' },
