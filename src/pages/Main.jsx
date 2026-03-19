@@ -22,7 +22,7 @@ export default function Main() {
   // 애드센스 설정 정보
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
   const MAIN_SIDE_SLOT_ID = '3978298367';
-  const MAIN_MOBILE_BRIDGE_SLOT_ID = '이곳에_메인_모바일_브릿지_슬롯ID_입력';
+  const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -158,9 +158,9 @@ export default function Main() {
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
         <div style={styles.mainLayout} className="max-lg:!px-6 max-lg:!flex-col">
-          {/* [좌측 광고 삽입] */}
+          {/* [좌측 광고 고정 적용] */}
           <aside className="hidden lg:block" style={styles.sideAd}>
-            <div style={styles.adPlaceholder}>
+            <div style={styles.adPlaceholderFixedLeft}>
               <span style={styles.adLabel}>AD (LEFT)</span>
               <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
             </div>
@@ -181,9 +181,9 @@ export default function Main() {
             </div>
           </main>
 
-          {/* [우측 광고 삽입] */}
+          {/* [우측 광고 고정 적용] */}
           <aside className="hidden lg:block" style={styles.sideAd}>
-            <div style={styles.adPlaceholder}>
+            <div style={styles.adPlaceholderFixedRight}>
               <span style={styles.adLabel}>AD (RIGHT)</span>
               <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
             </div>
@@ -267,7 +267,6 @@ export default function Main() {
 }
 
 const styles = {
-  /* 사용자 원본 스타일 100% 유지 */
   headerRight: { display: 'flex', alignItems: 'center' },
   headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },
   separator: { color: 'rgba(255,255,255,0.3)', margin: '0 2.5rem', fontSize: '0.8rem', pointerEvents: 'none' },
@@ -322,8 +321,17 @@ const styles = {
   fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' },
   imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' },
 
-  /* [기능 추가] 광고 관련 신규 스타일 */
-  adPlaceholder: { 
+  /* [기능 추가 및 수정]: 광고 고정(Fixed) 스타일 */
+  adLabel: { fontSize: '10px', color: 'rgba(255,255,255,0.3)', fontWeight: 'bold', marginBottom: '8px' },
+  adLabelDark: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', marginBottom: '8px' },
+  mobileAdSector: { width: '100%', padding: '20px 24px', backgroundColor: '#fff' },
+  mobileAdBox: { width: '100%', minHeight: '100px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0' },
+
+  adPlaceholderFixedLeft: { 
+    position: 'fixed',
+    top: '50%',
+    left: '20px',
+    transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 
     backgroundColor: 'rgba(255,255,255,0.05)', 
@@ -332,10 +340,23 @@ const styles = {
     display: 'flex', 
     flexDirection: 'column', 
     alignItems: 'center', 
-    padding: '10px 0' 
+    padding: '10px 0',
+    zIndex: 100
   },
-  adLabel: { fontSize: '10px', color: 'rgba(255,255,255,0.3)', fontWeight: 'bold', marginBottom: '8px' },
-  adLabelDark: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', marginBottom: '8px' },
-  mobileAdSector: { width: '100%', padding: '20px 24px', backgroundColor: '#fff' },
-  mobileAdBox: { width: '100%', minHeight: '100px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0' }
+  adPlaceholderFixedRight: { 
+    position: 'fixed',
+    top: '50%',
+    right: '20px',
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: 'rgba(255,255,255,0.05)', 
+    border: '1px dashed rgba(255,255,255,0.2)', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0',
+    zIndex: 100
+  }
 };

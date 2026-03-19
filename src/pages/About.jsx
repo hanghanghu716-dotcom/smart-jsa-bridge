@@ -6,8 +6,8 @@ export default function About() {
 
   // 애드센스 설정 정보
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
-  const LEFT_SIDEBAR_SLOT_ID = '이곳에_왼쪽_광고_슬롯ID_입력'; 
-  const RIGHT_SIDEBAR_SLOT_ID = '이곳에_오른쪽_광고_슬롯ID_입력';
+  const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
+  const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
 
   return (
     <div style={styles.wrapper}>

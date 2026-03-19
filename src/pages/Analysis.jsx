@@ -211,7 +211,7 @@ export default function Analysis() {
 
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
-          <AdBanner slot="3000000004" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner slot="39782983673978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
@@ -333,13 +333,13 @@ export default function Analysis() {
         </main>
 
         <aside style={styles.sideAd}>
-          <AdBanner slot="3000000005" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
       <footer style={styles.footerArea}>
         <div style={styles.bottomAdWrapper}>
-          <AdBanner slot="3000000006" style={{ width: '728px', height: '90px' }} format="horizontal" />
+          <AdBanner slot="12841191691284119169" style={{ width: '728px', height: '90px' }} format="horizontal" />
         </div>
       </footer>
     </div>

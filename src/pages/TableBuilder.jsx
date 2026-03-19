@@ -264,7 +264,7 @@ const renderDataTablePreview = () => {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="4000000001" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
@@ -361,7 +361,7 @@ const renderDataTablePreview = () => {
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToModuleBuilder}>이전: 문서 모듈 구성 (Step 4)</button><button style={styles.nextBtnLight} onClick={goToExport}>최종 출력 단계로 이동 (Step 6)</button></div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="4000000002" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
       {showSaveModal && ( <div style={styles.modalOverlay}><div style={styles.modalContent}><h3 style={styles.modalTitle}>전체 양식 스크랩에 추가</h3><p style={{ color: '#aaa', fontSize: '0.8rem', marginTop: '-10px', textAlign: 'center' }}>Step 4의 문서 모듈과 현재 구성한 테이블 설정이 병합되어 저장됩니다.</p><input style={styles.modalInput} placeholder="스크랩할 이름을 입력하세요" value={saveName} onChange={(e) => setSaveName(e.target.value)} /><div style={styles.modalBtnGroup}><button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>취소</button><button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>저장하기</button></div></div></div> )}
     </div>

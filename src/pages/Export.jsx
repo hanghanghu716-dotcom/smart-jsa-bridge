@@ -506,7 +506,7 @@ const handleCloudAction = async () => {
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="5000000001" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper} className="no-print">
@@ -532,7 +532,7 @@ const handleCloudAction = async () => {
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="5000000002" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
     </div>
   );
