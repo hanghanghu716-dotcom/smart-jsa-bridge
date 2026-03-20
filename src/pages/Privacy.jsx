@@ -9,7 +9,7 @@ export default function About() {
   const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
   
-  // [기능 추가]: 모바일 전용 광고 슬롯 ID (디스플레이 광고 - 사각형 권장)
+  // 모바일 전용 광고 슬롯 ID (디스플레이 광고 - 사각형 권장)
   const MOBILE_IN_FEED_SLOT_ID = '이곳에_모바일_중간_광고_슬롯ID_입력';
 
   return (
@@ -22,35 +22,32 @@ export default function About() {
       </header>
       
       <section style={styles.contentSection} className="max-lg:!py-10">
+        {/* [수정] 광고 가동방식 변경을 위해 최상위 section에 relative 속성 부여 */}
         <div style={{ ...styles.container, position: 'relative' }}>
           
-          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Privacy 위치 20px + Main 기능 Sticky) */}
-          <aside className="max-lg:hidden" style={styles.adSlotLeft}>
-            <div style={styles.stickyWrapper}>
-              <div style={styles.adPlaceholderBox}>
-                <span style={styles.adLabel}>AD (LEFT)</span>
-                <AdSenseUnit 
-                  client={PUBLISHER_ID} 
-                  slot={LEFT_SIDEBAR_SLOT_ID} 
-                  format="vertical" 
-                  style={{ width: '160px', height: '600px' }} 
-                />
-              </div>
+          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Main.jsx Fixed 가동방식 적용 + 20px 간격 유지) */}
+          <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
+            <div style={styles.adPlaceholderBox}>
+              <span style={styles.adLabel}>AD (LEFT)</span>
+              <AdSenseUnit 
+                client={PUBLISHER_ID} 
+                slot={LEFT_SIDEBAR_SLOT_ID} 
+                format="vertical" 
+                style={{ width: '160px', height: '600px' }} 
+              />
             </div>
           </aside>
 
-          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Privacy 위치 20px + Main 기능 Sticky) */}
-          <aside className="max-lg:hidden" style={styles.adSlotRight}>
-            <div style={styles.stickyWrapper}>
-              <div style={styles.adPlaceholderBox}>
-                <span style={styles.adLabel}>AD (RIGHT)</span>
-                <AdSenseUnit 
-                  client={PUBLISHER_ID} 
-                  slot={RIGHT_SIDEBAR_SLOT_ID} 
-                  format="vertical" 
-                  style={{ width: '160px', height: '600px' }} 
-                />
-              </div>
+          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Main.jsx Fixed 가동방식 적용 + 20px 간격 유지) */}
+          <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
+            <div style={styles.adPlaceholderBox}>
+              <span style={styles.adLabel}>AD (RIGHT)</span>
+              <AdSenseUnit 
+                client={PUBLISHER_ID} 
+                slot={RIGHT_SIDEBAR_SLOT_ID} 
+                format="vertical" 
+                style={{ width: '160px', height: '600px' }} 
+              />
             </div>
           </aside>
 
@@ -81,7 +78,7 @@ export default function About() {
               </li>
             </ul>
 
-            {/* [기능 추가]: 모바일 전용 중간 광고 영역 (데스크탑에서는 숨김) */}
+            {/* [기능 유지]: 모바일 전용 중간 광고 영역 (데스크탑에서는 숨김) */}
             <div className="lg:hidden" style={styles.mobileAdWrapper}>
                <div style={styles.mobileAdPlaceholder}>
                   <span style={styles.adLabel}>MOBILE AD (IN-FEED)</span>
@@ -126,7 +123,7 @@ export default function About() {
 }
 
 const styles = {
-  /* 원본 스타일 유지 */
+  /* 원본 스타일 절대 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
@@ -145,16 +142,31 @@ const styles = {
   heroImg: { width: '100%', height: '350px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '16px' },
   footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  /* 지침 준수: Privacy 간격(20px) 유지 + Main 가동방식(Sticky) 추가 */
-  adSlotLeft: { position: 'absolute', right: '100%', marginRight: '20px', top: '0', bottom: '0', width: '160px' },
-  adSlotRight: { position: 'absolute', left: '100%', marginLeft: '20px', top: '0', bottom: '0', width: '160px' },
-  
-  // 스크롤 추적을 위한 핵심 스타일
-  stickyWrapper: { position: 'sticky', top: '100px' },
-  
   adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
   adLabel: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
 
   mobileAdWrapper: { margin: '40px 0', width: '100%' },
-  mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }
+  mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' },
+
+  /* [핵심 수정]: Main.jsx 가동방식(Fixed) + Privacy 위치(본문 옆 20px) 조합 */
+  adSlotFixedLeft: { 
+    position: 'fixed',
+    top: '50%',
+    // 계산식: (화면 중앙 50%) - (본문 반폭 375px) - (광고폭 160px) - (간격 20px)
+    left: 'calc(50% - 375px - 160px - 20px)', 
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    zIndex: 100 // 다른 콘텐츠보다 위에 오도록 설정
+  },
+  adSlotFixedRight: { 
+    position: 'fixed',
+    top: '50%',
+    // 계산식: (화면 중앙 50%) - (본문 반폭 375px) - (광고폭 160px) - (간격 20px)
+    right: 'calc(50% - 375px - 160px - 20px)', 
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    zIndex: 100
+  }
 };

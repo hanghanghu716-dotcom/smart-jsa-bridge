@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import AdSenseUnit from '../components/AdSenseUnit'; // [추가] 광고 컴포넌트 임포트
+import AdSenseUnit from '../components/AdSenseUnit';
 
 export default function Terms() {
   const navigate = useNavigate();
 
-  // [추가] 애드센스 설정 정보 (Main과 동일한 ID 사용)
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
   const SIDEBAR_SLOT_ID = '3978298367'; 
 
@@ -17,43 +16,36 @@ export default function Terms() {
         </div>
       </header>
       
-      {/* [수정] 광고 배치를 위해 섹션에 relative 속성 부여 */}
       <section style={{...styles.contentSection, position: 'relative'}}>
         
-        {/* [수정] 본문 컨테이너 내부로 광고 이동 및 Privacy 간격(20px) + Main 기능(Sticky) 적용 */}
-        <div style={{...styles.container, position: 'relative'}}>
-          
-          {/* 좌측 고정 광고 영역 (LG 해상도 이상 노출) */}
-          <aside className="hidden lg:block" style={styles.adSlotLeft}>
-            <div style={styles.stickyWrapper}>
-              <div style={styles.adPlaceholderBox}>
-                <span style={styles.adLabelDark}>AD (LEFT)</span>
-                <AdSenseUnit 
-                  client={PUBLISHER_ID} 
-                  slot={SIDEBAR_SLOT_ID} 
-                  format="vertical" 
-                  style={{ width: '160px', height: '600px' }} 
-                />
-              </div>
-            </div>
-          </aside>
+        {/* [좌측 광고]: Main.jsx의 Fixed 가동방식 적용 + 위치 조정 */}
+        <aside className="hidden lg:block">
+          <div style={styles.adPlaceholderFixedLeft}>
+            <span style={styles.adLabelDark}>AD (LEFT)</span>
+            <AdSenseUnit 
+              client={PUBLISHER_ID} 
+              slot={SIDEBAR_SLOT_ID} 
+              format="vertical" 
+              style={{ width: '160px', height: '600px' }} 
+            />
+          </div>
+        </aside>
 
-          {/* 우측 고정 광고 영역 (LG 해상도 이상 노출) */}
-          <aside className="hidden lg:block" style={styles.adSlotRight}>
-            <div style={styles.stickyWrapper}>
-              <div style={styles.adPlaceholderBox}>
-                <span style={styles.adLabelDark}>AD (RIGHT)</span>
-                <AdSenseUnit 
-                  client={PUBLISHER_ID} 
-                  slot={SIDEBAR_SLOT_ID} 
-                  format="vertical" 
-                  style={{ width: '160px', height: '600px' }} 
-                />
-              </div>
-            </div>
-          </aside>
+        {/* [우측 광고]: Main.jsx의 Fixed 가동방식 적용 + 위치 조정 */}
+        <aside className="hidden lg:block">
+          <div style={styles.adPlaceholderFixedRight}>
+            <span style={styles.adLabelDark}>AD (RIGHT)</span>
+            <AdSenseUnit 
+              client={PUBLISHER_ID} 
+              slot={SIDEBAR_SLOT_ID} 
+              format="vertical" 
+              style={{ width: '160px', height: '600px' }} 
+            />
+          </div>
+        </aside>
 
-          {/* 원본 내용 유지 시작 */}
+        {/* 원본 내용 절대 유지 시작 */}
+        <div style={styles.container}>
           <span style={styles.tag}>TERMS OF SERVICE (GLOBAL REPOSITORY)</span>
           <h2 style={styles.heading}>서비스 이용약관</h2>
           <p style={styles.subHeading}>Smart JSA Bridge는 전 세계 안전 관리자들이 실무 지식을 공유하고 발전시키는 협력형 플랫폼입니다.</p>
@@ -98,8 +90,8 @@ export default function Terms() {
             <h3 style={styles.articleH3}>09. Governing Law / 준거법</h3>
             <p style={styles.articleP}>본 약관은 대한민국 법령을 준거법으로 하며, 국제적 관례에 따른 분쟁 해결 절차를 준수합니다.</p>
           </div>
-          {/* 원본 내용 유지 끝 */}
         </div>
+        {/* 원본 내용 유지 끝 */}
       </section>
 
       <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
@@ -125,10 +117,38 @@ const styles = {
   listBullet: { position: 'absolute', left: 0, color: '#007bff', fontWeight: 'bold' },
   footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  /* 지침 준수: Privacy 간격(20px) + Main 가동방식(Sticky) */
-  adSlotLeft: { position: 'absolute', right: '100%', marginRight: '20px', top: '0', bottom: '0', width: '160px' },
-  adSlotRight: { position: 'absolute', left: '100%', marginLeft: '20px', top: '0', bottom: '0', width: '160px' },
-  stickyWrapper: { position: 'sticky', top: '100px' }, // 스크롤 시 따라오는 기능
+  /* 핵심 지침 이행: Main.jsx의 Fixed 방식 유지 + Privacy의 좁은 간격 적용 */
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
-  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' }
+  adPlaceholderFixedLeft: { 
+    position: 'fixed',
+    top: '50%',
+    left: 'calc(50% - 375px - 160px - 20px)', // (본문 절반 375px) + (광고폭 160px) + (간격 20px)
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: '#f5f5f5', 
+    border: '1px dashed #ddd', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0',
+    zIndex: 100
+  },
+  adPlaceholderFixedRight: { 
+    position: 'fixed',
+    top: '50%',
+    right: 'calc(50% - 375px - 160px - 20px)', // (본문 절반 375px) + (광고폭 160px) + (간격 20px)
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: '#f5f5f5', 
+    border: '1px dashed #ddd', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0',
+    zIndex: 100
+  }
 };
