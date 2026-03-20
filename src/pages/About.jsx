@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import AdSenseUnit from '../components/AdSenseUnit'; // [수정] 광고 컴포넌트 임포트 (Main과 동일)
+import AdSenseUnit from '../components/AdSenseUnit';
 
 export default function About() {
   const navigate = useNavigate();
 
-  // [수정] 애드센스 설정 정보 추가 (Main과 동일한 ID 사용)
+  // 애드센스 설정 정보
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
-  const SIDEBAR_SLOT_ID = '3978298367'; // Main의 MAIN_SIDE_SLOT_ID와 동일
+  const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
+  const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
+  
+  // [기능 추가]: 모바일 전용 광고 슬롯 ID
+  const MOBILE_IN_FEED_SLOT_ID = '이곳에_모바일_중간_광고_슬롯ID_입력';
 
   return (
     <div style={styles.wrapper}>
@@ -17,40 +21,42 @@ export default function About() {
         </div>
       </header>
       
-      {/* [수정] 광고 배치를 위해 최상위 컨테이너에 relative 속성 부여 */}
-      <section style={{...styles.contentSection, position: 'relative'}}>
-        
-        {/* [수정] 좌측 고정 광고 영역 추가 (LG 해상도 이상에서만 노출) */}
-        <aside className="hidden lg:block">
-          <div style={styles.adPlaceholderFixedLeft}>
-            <span style={styles.adLabelDark}>AD (LEFT)</span>
-            <AdSenseUnit 
-              client={PUBLISHER_ID} 
-              slot={SIDEBAR_SLOT_ID} 
-              format="vertical" 
-              style={{ width: '160px', height: '600px' }} 
-            />
-          </div>
-        </aside>
-
-        {/* [수정] 우측 고정 광고 영역 추가 (LG 해상도 이상에서만 노출) */}
-        <aside className="hidden lg:block">
-          <div style={styles.adPlaceholderFixedRight}>
-            <span style={styles.adLabelDark}>AD (RIGHT)</span>
-            <AdSenseUnit 
-              client={PUBLISHER_ID} 
-              slot={SIDEBAR_SLOT_ID} 
-              format="vertical" 
-              style={{ width: '160px', height: '600px' }} 
-            />
-          </div>
-        </aside>
-
-        {/* 원본 내용 절대 유지 시작 */}
-        <div style={styles.container}>
+      <section style={styles.contentSection} className="max-lg:!py-10">
+        <div style={{ ...styles.container, position: 'relative' }}>
           
+          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Privacy 위치 20px + Main 기능 Sticky) */}
+          <aside className="max-lg:hidden" style={styles.adSlotLeft}>
+            <div style={styles.stickyWrapper}>
+              <div style={styles.adPlaceholderBox}>
+                <span style={styles.adLabel}>AD (LEFT)</span>
+                <AdSenseUnit 
+                  client={PUBLISHER_ID} 
+                  slot={LEFT_SIDEBAR_SLOT_ID} 
+                  format="vertical" 
+                  style={{ width: '160px', height: '600px' }} 
+                />
+              </div>
+            </div>
+          </aside>
+
+          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Privacy 위치 20px + Main 기능 Sticky) */}
+          <aside className="hidden lg:block" style={styles.adSlotRight}>
+            <div style={styles.stickyWrapper}>
+              <div style={styles.adPlaceholderBox}>
+                <span style={styles.adLabel}>AD (RIGHT)</span>
+                <AdSenseUnit 
+                  client={PUBLISHER_ID} 
+                  slot={RIGHT_SIDEBAR_SLOT_ID} 
+                  format="vertical" 
+                  style={{ width: '160px', height: '600px' }} 
+                />
+              </div>
+            </div>
+          </aside>
+
+          {/* 원본 내용 절대 유지 시작 */}
           <span style={styles.tag}>THE SAFETY REPOSITORY</span>
-          <h2 style={styles.heading}>파편화된 안전 지식을<br />라이브러리로 연결하다</h2>
+          <h2 style={styles.heading} className="max-lg:!text-[2rem]">파편화된 안전 지식을<br />라이브러리로 연결하다</h2>
           
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>The Library for Safety Managers</h3>
@@ -75,6 +81,19 @@ export default function About() {
               </li>
             </ul>
 
+            {/* [기능 추가]: 모바일 전용 중간 광고 영역 */}
+            <div className="lg:hidden" style={styles.mobileAdWrapper}>
+               <div style={styles.mobileAdPlaceholder}>
+                  <span style={styles.adLabel}>MOBILE AD (IN-FEED)</span>
+                  <AdSenseUnit 
+                    client={PUBLISHER_ID} 
+                    slot={MOBILE_IN_FEED_SLOT_ID} 
+                    format="fluid" 
+                    style={{ display: 'block' }} 
+                  />
+               </div>
+            </div>
+
             <h3 style={styles.articleH3}>How It Works / 서비스 흐름</h3>
             <p style={styles.articleP}>Smart JSA Bridge는 커뮤니티의 힘으로 안전을 지킵니다.</p>
             <ul style={styles.listWrapper}>
@@ -97,8 +116,8 @@ export default function About() {
                Smart JSA Bridge: 집단 지성으로 완성하는 무재해 현장의 파트너
              </p>
           </div>
+          {/* 원본 내용 절대 유지 끝 */}
         </div>
-        {/* 원본 내용 절대 유지 끝 */}
       </section>
 
       <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
@@ -107,7 +126,7 @@ export default function About() {
 }
 
 const styles = {
-  // 원본 스타일 유지
+  /* 원본 스타일 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
@@ -126,40 +145,13 @@ const styles = {
   heroImg: { width: '100%', height: '350px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '16px' },
   footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  // [수정] 광고 가시성 스타일 추가 (About 페이지 블러 처리 해제를 위해 adPlaceholder 스타일을 가시적인 회색 박스로 변경)
-  adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
-  
-  // Main의 adPlaceholderFixedLeft/Right 스타일을 가져와서 적용
-  adPlaceholderFixedLeft: { 
-    position: 'fixed',
-    top: '50%',
-    left: '20px', // 화면 왼쪽 끝에서 20px 띄움
-    transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    backgroundColor: '#f5f5f5', // About 페이지 배경색(흰색)에 맞춘 회색 박스
-    border: '1px dashed #ddd', 
-    borderRadius: '8px', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    padding: '10px 0',
-    zIndex: 100 // 다른 콘텐츠보다 위에 오도록 설정
-  },
-  adPlaceholderFixedRight: { 
-    position: 'fixed',
-    top: '50%',
-    right: '20px', // 화면 오른쪽 끝에서 20px 띄움
-    transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    backgroundColor: '#f5f5f5', 
-    border: '1px dashed #ddd', 
-    borderRadius: '8px', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    padding: '10px 0',
-    zIndex: 100
-  }
+  /* 지침 준수: Privacy 위치(20px) + Main 가동방식(Sticky) */
+  adSlotLeft: { position: 'absolute', right: '100%', marginRight: '20px', top: '0', bottom: '0', width: '160px' },
+  adSlotRight: { position: 'absolute', left: '100%', marginLeft: '20px', top: '0', bottom: '0', width: '160px' },
+  stickyWrapper: { position: 'sticky', top: '100px' }, 
+  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
+  adLabel: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
+
+  mobileAdWrapper: { margin: '40px 0', width: '100%' },
+  mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' }
 };

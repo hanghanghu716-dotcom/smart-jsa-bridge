@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import AdSenseUnit from '../components/AdSenseUnit';
+import AdSenseUnit from '../components/AdSenseUnit'; // [추가] 광고 컴포넌트 임포트
 
 export default function Terms() {
   const navigate = useNavigate();
 
+  // [추가] 애드센스 설정 정보 (Main과 동일한 ID 사용)
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
   const SIDEBAR_SLOT_ID = '3978298367'; 
 
@@ -16,11 +17,13 @@ export default function Terms() {
         </div>
       </header>
       
-      <section style={styles.contentSection}>
-        {/* 본문 컨테이너: relative 설정으로 하위 absolute 요소의 기준점이 됨 */}
-        <div style={{ ...styles.container, position: 'relative' }}>
+      {/* [수정] 광고 배치를 위해 섹션에 relative 속성 부여 */}
+      <section style={{...styles.contentSection, position: 'relative'}}>
+        
+        {/* [수정] 본문 컨테이너 내부로 광고 이동 및 Privacy 간격(20px) + Main 기능(Sticky) 적용 */}
+        <div style={{...styles.container, position: 'relative'}}>
           
-          {/* [좌측 광고]: Sticky 적용으로 스크롤 시 따라옴 */}
+          {/* 좌측 고정 광고 영역 (LG 해상도 이상 노출) */}
           <aside className="hidden lg:block" style={styles.adSlotLeft}>
             <div style={styles.stickyWrapper}>
               <div style={styles.adPlaceholderBox}>
@@ -35,7 +38,7 @@ export default function Terms() {
             </div>
           </aside>
 
-          {/* [우측 광고]: Sticky 적용으로 스크롤 시 따라옴 */}
+          {/* 우측 고정 광고 영역 (LG 해상도 이상 노출) */}
           <aside className="hidden lg:block" style={styles.adSlotRight}>
             <div style={styles.stickyWrapper}>
               <div style={styles.adPlaceholderBox}>
@@ -105,6 +108,7 @@ export default function Terms() {
 }
 
 const styles = {
+  /* 원본 스타일 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
@@ -121,23 +125,10 @@ const styles = {
   listBullet: { position: 'absolute', left: 0, color: '#007bff', fontWeight: 'bold' },
   footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  /* [수정 부분]: Sticky 작동을 위한 스타일 조합 */
-  adSlotLeft: { position: 'absolute', right: '100%', marginRight: '40px', top: '0', bottom: '0', width: '160px' },
-  adSlotRight: { position: 'absolute', left: '100%', marginLeft: '40px', top: '0', bottom: '0', width: '160px' },
-  
-  // 스크롤 시 상단 100px 위치에 고정되도록 설정
-  stickyWrapper: { position: 'sticky', top: '100px' },
-  
+  /* 지침 준수: Privacy 간격(20px) + Main 가동방식(Sticky) */
+  adSlotLeft: { position: 'absolute', right: '100%', marginRight: '20px', top: '0', bottom: '0', width: '160px' },
+  adSlotRight: { position: 'absolute', left: '100%', marginLeft: '20px', top: '0', bottom: '0', width: '160px' },
+  stickyWrapper: { position: 'sticky', top: '100px' }, // 스크롤 시 따라오는 기능
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
-  adPlaceholderBox: { 
-    width: '160px', 
-    minHeight: '600px', 
-    backgroundColor: '#f5f5f5', 
-    border: '1px dashed #ddd', 
-    borderRadius: '8px', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    padding: '10px 0' 
-  }
+  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' }
 };
