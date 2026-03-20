@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import AdSenseUnit from '../components/AdSenseUnit';
 
 export default function Terms() {
   const navigate = useNavigate();
+
+  const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
+  const SIDEBAR_SLOT_ID = '3978298367'; 
 
   return (
     <div style={styles.wrapper}>
@@ -13,7 +17,40 @@ export default function Terms() {
       </header>
       
       <section style={styles.contentSection}>
-        <div style={styles.container}>
+        {/* 본문 컨테이너: relative 설정으로 하위 absolute 요소의 기준점이 됨 */}
+        <div style={{ ...styles.container, position: 'relative' }}>
+          
+          {/* [좌측 광고]: Sticky 적용으로 스크롤 시 따라옴 */}
+          <aside className="hidden lg:block" style={styles.adSlotLeft}>
+            <div style={styles.stickyWrapper}>
+              <div style={styles.adPlaceholderBox}>
+                <span style={styles.adLabelDark}>AD (LEFT)</span>
+                <AdSenseUnit 
+                  client={PUBLISHER_ID} 
+                  slot={SIDEBAR_SLOT_ID} 
+                  format="vertical" 
+                  style={{ width: '160px', height: '600px' }} 
+                />
+              </div>
+            </div>
+          </aside>
+
+          {/* [우측 광고]: Sticky 적용으로 스크롤 시 따라옴 */}
+          <aside className="hidden lg:block" style={styles.adSlotRight}>
+            <div style={styles.stickyWrapper}>
+              <div style={styles.adPlaceholderBox}>
+                <span style={styles.adLabelDark}>AD (RIGHT)</span>
+                <AdSenseUnit 
+                  client={PUBLISHER_ID} 
+                  slot={SIDEBAR_SLOT_ID} 
+                  format="vertical" 
+                  style={{ width: '160px', height: '600px' }} 
+                />
+              </div>
+            </div>
+          </aside>
+
+          {/* 원본 내용 유지 시작 */}
           <span style={styles.tag}>TERMS OF SERVICE (GLOBAL REPOSITORY)</span>
           <h2 style={styles.heading}>서비스 이용약관</h2>
           <p style={styles.subHeading}>Smart JSA Bridge는 전 세계 안전 관리자들이 실무 지식을 공유하고 발전시키는 협력형 플랫폼입니다.</p>
@@ -58,6 +95,7 @@ export default function Terms() {
             <h3 style={styles.articleH3}>09. Governing Law / 준거법</h3>
             <p style={styles.articleP}>본 약관은 대한민국 법령을 준거법으로 하며, 국제적 관례에 따른 분쟁 해결 절차를 준수합니다.</p>
           </div>
+          {/* 원본 내용 유지 끝 */}
         </div>
       </section>
 
@@ -67,41 +105,39 @@ export default function Terms() {
 }
 
 const styles = {
-  /* 레이아웃: 여백 압축 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
-  
-  /* 콘텐츠 섹션: 상하 패딩을 80px로 대폭 축소 (기존 160px) */
   contentSection: { padding: '80px 0', flex: 1 },
   container: { maxWidth: '750px', margin: '0 auto', padding: '0 32px' },
-
-  /* 타이포그래피: 크기 축소 및 가독성 유지 */
   tag: { color: '#007bff', fontWeight: '900', fontSize: '0.75rem', letterSpacing: '3px', marginBottom: '16px', display: 'block' },
   heading: { fontSize: '2.5rem', fontWeight: '900', marginBottom: '24px', letterSpacing: '-1.5px', lineHeight: '1.2', wordBreak: 'keep-all', color: '#000' },
   subHeading: { fontSize: '1.1rem', lineHeight: '1.6', color: '#49454f', marginBottom: '60px', wordBreak: 'keep-all' },
-
-  /* 본문 영역: 오밀조밀함을 방지하는 최적 간격 */
   articleSection: { marginBottom: '60px' },
   articleH3: { fontSize: '1.3rem', fontWeight: '800', marginTop: '40px', marginBottom: '20px', color: '#000' },
   articleP: { fontSize: '1.05rem', lineHeight: '1.8', color: '#444', marginBottom: '24px', wordBreak: 'keep-all' },
-  
-  /* 리스트: 수직 간격을 12px로 정돈 (기존 28px) */
   listWrapper: { paddingLeft: '0', marginBottom: '32px', listStyleType: 'none' },
-  listItem: { 
-    position: 'relative',
-    fontSize: '1rem', 
-    lineHeight: '1.8', 
-    color: '#444', 
-    marginBottom: '12px', 
-    wordBreak: 'keep-all',
-    paddingLeft: '24px'
-  },
+  listItem: { position: 'relative', fontSize: '1rem', lineHeight: '1.8', color: '#444', marginBottom: '12px', wordBreak: 'keep-all', paddingLeft: '24px' },
   listBullet: { position: 'absolute', left: 0, color: '#007bff', fontWeight: 'bold' },
+  footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  /* 시각 요소: 이미지 크기 축소 */
-  imgContainer: { marginTop: '40px' },
-  heroImg: { width: '100%', height: '350px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '16px' },
-
-  footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' }
+  /* [수정 부분]: Sticky 작동을 위한 스타일 조합 */
+  adSlotLeft: { position: 'absolute', right: '100%', marginRight: '40px', top: '0', bottom: '0', width: '160px' },
+  adSlotRight: { position: 'absolute', left: '100%', marginLeft: '40px', top: '0', bottom: '0', width: '160px' },
+  
+  // 스크롤 시 상단 100px 위치에 고정되도록 설정
+  stickyWrapper: { position: 'sticky', top: '100px' },
+  
+  adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
+  adPlaceholderBox: { 
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: '#f5f5f5', 
+    border: '1px dashed #ddd', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0' 
+  }
 };
