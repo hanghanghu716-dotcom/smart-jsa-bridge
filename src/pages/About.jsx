@@ -24,7 +24,7 @@ export default function About() {
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
           
-          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Main.jsx Fixed 방식 + 20px 간격) */}
+          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Main.jsx Fixed 방식 + Privacy 위치 20px) */}
           <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
               <span style={styles.adLabel}>AD (LEFT)</span>
@@ -37,8 +37,8 @@ export default function About() {
             </div>
           </aside>
 
-          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Main.jsx Fixed 방식 + 20px 간격) */}
-          <aside className="hidden lg:block" style={styles.adSlotFixedRight}>
+          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Main.jsx Fixed 방식 + Privacy 위치 20px) */}
+          <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
               <span style={styles.adLabel}>AD (RIGHT)</span>
               <AdSenseUnit 
@@ -147,7 +147,7 @@ const styles = {
   mobileAdWrapper: { margin: '40px 0', width: '100%' },
   mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' },
 
-  /* 핵심 지침: Main.jsx 가동방식(Fixed) + 본문 옆 20px 간격 */
+  /* 핵심 수정: Main.jsx 가동방식(Fixed) + Privacy 위치(20px 간격) 준수 */
   adSlotFixedLeft: { 
     position: 'fixed',
     top: '50%',
