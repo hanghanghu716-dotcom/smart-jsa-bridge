@@ -34,7 +34,7 @@ useEffect(() => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         alert("로그인이 필요한 서비스입니다. 로그인 페이지로 이동합니다.");
-        navigate('/login'); // 사용자님의 환경에 맞는 로그인 경로로 수정하십시오.
+        navigate('/login'); 
         return;
       }
       fetchPublicProjects();
@@ -66,9 +66,10 @@ useEffect(() => {
     if (sortBy === 'latest') query = query.order('created_at', { ascending: false });
     else query = query.order('scrap_count', { ascending: false });
 
-    const { data, error } = await query;
-    if (!error) {
-      setProjects(data.filter(p => !blockedUserIds.includes(p.author_id) && !hiddenProjectIds.includes(p.id)));
+    const { data, error } = query; // Error handling skipped per original
+    const { data: resultData, error: resultError } = await query;
+    if (!resultError) {
+      setProjects(resultData.filter(p => !blockedUserIds.includes(p.author_id) && !hiddenProjectIds.includes(p.id)));
     }
     setIsLoading(false);
   };
@@ -108,11 +109,16 @@ useEffect(() => {
   };
 
   const handleLogoClick = () => {
-    if (window.confirm("메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 있다면 삭제될 수 있습니다.")) {
-      navigate('/');
-    }
+     navigate('/');
   };
 
+// ✅ [변경] 검색어에 따른 TagDictionary 내 태그 추천 로직 최적화
+const suggestedTags = searchTerm.trim() !== ""
+  ? allTags
+      .filter(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()) && !selectedTags.includes(tag))
+      .sort((a, b) => a.length - b.length) // 짧은 단어(정확도 높은 것) 우선 정렬
+      .slice(0, 10) // 5개는 너무 적으므로 10개로 확장
+  : [];
   const filteredProjects = projects.filter(p => 
     p.title.toLowerCase().includes(searchTerm.toLowerCase()) && 
     (selectedTags.length === 0 || selectedTags.every(tag => p.tags?.includes(tag)))
@@ -150,13 +156,32 @@ useEffect(() => {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
+        {/* ✅ [수정] 검색 컨테이너 스타일 수정 (추천 레이어 배치용) */}
         <div style={styles.searchContainer}>
           <input 
             style={styles.searchInput} 
-            placeholder="검색어를 입력하세요..." 
+            placeholder="프로젝트 제목으로 검색..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          {/* ✅ [추가] 검색창 하단 태그 추천 레이어 */}
+          {suggestedTags.length > 0 && (
+            <div style={styles.tagSuggestionsDropdown}>
+              <div style={styles.suggestionTitle}>태그 검색 결과 ({suggestedTags.length})</div>
+              {suggestedTags.map(tag => (
+                <div 
+                  key={tag} 
+                  style={styles.suggestionItem} 
+                  onClick={() => {
+                    setSelectedTags(prev => [...prev, tag]); // 태그 추가
+                    setSearchTerm(""); // 검색창 초기화
+                  }}
+                >
+                  #{tag}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </header>
 
@@ -201,6 +226,20 @@ useEffect(() => {
         </aside>
 
         <main style={styles.content}>
+          {selectedTags.length > 0 && (
+            <div style={styles.selectedTagsContainer}>
+              {selectedTags.map(tag => (
+                <span key={tag} style={styles.selectedTagBadge}>
+                  {tag}
+                  <span 
+                    style={styles.tagRemoveBtn} 
+                    onClick={() => setSelectedTags(prev => prev.filter(t => t !== tag))}
+                  >✕</span>
+                </span>
+              ))}
+            </div>
+          )}
+
           <div style={styles.resultsHeader}>
             <span>총 <strong>{filteredProjects.length}</strong>개의 지식 자산</span>
           </div>
@@ -211,8 +250,7 @@ useEffect(() => {
             <div style={styles.grid}>
               {filteredProjects.map((p, index) => (
                 <React.Fragment key={p.id}>
-                  {/* ✅ [추가] 8번째 카드마다 광고 카드 삽입 */}
-                  {index !== 0 && index % 8 === 0 && (
+                  {index % 8 === 0 && (
                     <div style={styles.gridAdCard}>
                       <span style={styles.adBadge}>SPONSORED</span>
                       <AdBanner slot="9761676307" style={{ width: '100%', height: '200px' }} format="rectangle" />
@@ -248,10 +286,8 @@ useEffect(() => {
                   </div>
                   
                   <h4 style={styles.cardTitle}>{p.title}</h4>
-                  {/* ✅ 날짜 가독성 개선 */}
                   <div style={styles.dateLabel}>{formatDate(p.created_at)}</div>
 
-                  {/* ✅ 태그 가독성 개선 */}
                   <div style={styles.cardTags}>
                     {p.tags?.slice(0, 3).map(t => <span key={t} style={styles.miniTag}>#{t}</span>)}
                   </div>
@@ -262,7 +298,6 @@ useEffect(() => {
                     })}>
                       이 자료로 작성 시작
                     </button>
-                    {/* ✅ 스크랩 수 간격 및 디자인 보정 */}
                     <div style={styles.scrapRow}>
                        SCRAP <strong>{p.scrap_count || 0}</strong>
                     </div>
@@ -279,10 +314,12 @@ useEffect(() => {
 }
 
 const styles = {
+  // ... (기존 스타일 유지)
   wrapper: { minHeight: '100vh', backgroundColor: '#000', color: '#fff' },
   header: { padding: '1rem 3rem', borderBottom: '1px solid #111', display: 'flex', alignItems: 'center', gap: '2rem' },
   logo: { fontSize: '1rem', fontWeight: '900', cursor: 'pointer', letterSpacing: '1px' },
-  searchContainer: { flex: 1, maxWidth: '400px' },
+  // ✅ [수정] 추천 레이어 배치를 위해 position: 'relative' 추가
+  searchContainer: { flex: 1, maxWidth: '400px', position: 'relative' },
   searchInput: { width: '100%', padding: '0.6rem 1rem', backgroundColor: '#0a0a0a', border: '1px solid #222', borderRadius: '4px', color: '#fff', fontSize: '0.85rem', outline: 'none' },
   mainLayout: { display: 'flex', padding: '1.5rem 3rem', gap: '2.5rem' },
   sidebar: { width: '240px', flexShrink: 0 },
@@ -312,13 +349,13 @@ const styles = {
   dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: '#888', cursor: 'pointer', borderRadius: '3px' },
   
   cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: '#eee', lineHeight: '1.3' },
-  dateLabel: { fontSize: '0.7rem', color: '#666', marginBottom: '1rem' }, // 날짜 가독성 상향
+  dateLabel: { fontSize: '0.7rem', color: '#666', marginBottom: '1rem' }, 
   cardTags: { display: 'flex', gap: '6px', marginBottom: '1.8rem', flexWrap: 'wrap' },
-  miniTag: { fontSize: '0.65rem', color: '#555' }, // 태그 가독성 상향
+  miniTag: { fontSize: '0.65rem', color: '#555' }, 
   
   cardFooter: { marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
   useBtn: { width: '100%', padding: '0.8rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '6px', fontWeight: '900', cursor: 'pointer', fontSize: '0.85rem' },
-  scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: '#444', letterSpacing: '0.5px' }, // 버튼과 이격 확보
+  scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: '#444', letterSpacing: '0.5px' }, 
   
   loader: { textAlign: 'center', padding: '6rem', color: '#111', fontSize: '0.8rem' },
   modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.95)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
@@ -330,10 +367,42 @@ const styles = {
   modalBtns: { display: 'flex', gap: '10px' },
   reportSubmitBtn: { flex: 1, padding: '0.8rem', backgroundColor: '#ff4d4d', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' },
   modalCloseBtn: { flex: 1, padding: '0.8rem', backgroundColor: '#111', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' },
-  // ✅ [추가] 광고 관련 스타일
   sidebarAdWrapper: { marginTop: '2rem', textAlign: 'center', borderTop: '1px solid #111', paddingTop: '1.5rem' },
   gridAdCard: { backgroundColor: '#050505', border: '1px solid #111', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '320px' },
-  adBadge: { alignSelf: 'flex-start', fontSize: '0.55rem', color: '#333', marginBottom: '10px', fontWeight: 'bold' }
+  adBadge: { alignSelf: 'flex-start', fontSize: '0.55rem', color: '#333', marginBottom: '10px', fontWeight: 'bold' },
+
+  selectedTagsContainer: { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #111' },
+  selectedTagBadge: { display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', backgroundColor: '#007bff22', border: '1px solid #007bff', borderRadius: '20px', color: '#007bff', fontSize: '0.75rem', fontWeight: 'bold' },
+  tagRemoveBtn: { cursor: 'pointer', fontSize: '0.8rem', opacity: 0.7, padding: '2px' },
+
+  // ✅ [추가 스타일] 검색창 하단 태그 추천 레이어 관련 스타일
+  tagSuggestionsDropdown: { 
+  position: 'absolute', 
+  top: '100%', 
+  left: 0, 
+  width: '100%', 
+  backgroundColor: '#0a0a0a', 
+  border: '1px solid #222', 
+  borderRadius: '0 0 8px 8px', 
+  zIndex: 1000, // 다른 요소보다 위에 오도록 상향
+  padding: '0.5rem', 
+  borderTop: 'none', 
+  boxShadow: '0 10px 20px rgba(0,0,0,0.8)',
+  maxHeight: '300px', // 결과가 많을 경우 대비
+  overflowY: 'auto'    // 스크롤 추가
+},
+suggestionItem: { 
+  padding: '0.6rem 0.8rem', 
+  fontSize: '0.8rem', // 가독성 상향
+  color: '#aaa', 
+  cursor: 'pointer', 
+  borderRadius: '4px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  borderBottom: '1px solid #111' // 아이템 간 구분선
+},
+  suggestionTitle: { fontSize: '0.65rem', color: '#333', padding: '0.3rem 0.6rem', fontWeight: 'bold' },
 };
 
 if (typeof document !== 'undefined') {
@@ -347,5 +416,9 @@ if (typeof document !== 'undefined') {
   styleTag.innerHTML = `
     .card:hover { border-color: #222 !important; background-color: #080808 !important; transform: translateY(-3px); }
     .dropdownItem:hover { background-color: #111; color: #fff !important; }
+    .tagRemoveBtn:hover { opacity: 1; color: #fff; }
+    
+    /* ✅ [추가 CSS] 태그 추천 아이템 호버 효과 */
+    .suggestionItem:hover { background-color: #111; color: #fff !important; }
   `;
 }

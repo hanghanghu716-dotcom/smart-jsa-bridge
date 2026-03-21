@@ -123,27 +123,25 @@ export default function Info() {
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            <nav style={styles.stepper}>
-              <div style={styles.stepItemActive}>
-                <div style={styles.stepBadgeActive}>1</div>
-                <span style={styles.stepTextActive}>기본 정보</span>
-              </div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}>
-                <div style={styles.stepBadge}>2</div>
-                <span style={styles.stepText}>작업 절차</span>
-              </div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}>
-                <div style={styles.stepBadge}>3</div>
-                <span style={styles.stepText}>위험 분석</span>
-              </div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}>
-                <div style={styles.stepBadge}>4</div>
-                <span style={styles.stepText}>최종 출력</span>
-              </div>
-            </nav>
+          <nav style={styles.stepper}>
+            {/* 1단계: 활성 */}
+            <div style={styles.stepItemActive}>
+              <div style={styles.stepBadgeActive}>1</div>
+              <span style={styles.stepTextActive}>기본 정보</span>
+            </div>
+            <div style={styles.stepLine} />
+
+            {/* 2~6단계: 대기 */}
+            <div style={styles.stepItem}><div style={styles.stepBadge}>2</div><span style={styles.stepText}>작업 절차</span></div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>위험 분석</span></div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>모듈 구성</span></div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>표 구성</span></div>
+            <div style={styles.stepLine} />
+            <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
+          </nav>
 
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>01. 작업 기본 정보 및 안전 요건</h2>

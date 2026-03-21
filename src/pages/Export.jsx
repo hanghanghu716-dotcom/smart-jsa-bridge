@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import jsPDF from 'jspdf'; 
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
-import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; // 태그 추출 모듈 및 표준 사전 임포트 추가
-
-/**
- * [Export 컴포넌트]
- * 역할: Step 6. 양식 설정 단계에서 구성한 통합 모듈과 데이터 표를 실제 흑백 출력용 PDF로 렌더링합니다.
- */
+import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; 
 
 const TAG_META = {
-  // '작업번호'를 '작업\n번호'로 변경하여 줄바꿈 적용
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
   'DATA_PHOTO': { label: '관련사진', color: '#6f42c1', width: 3, align: 'center' },
@@ -45,7 +39,9 @@ export default function Export() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [userProfile, setUserProfile] = useState(null); 
-  
+  const [showPublishModal, setShowPublishModal] = useState(false);
+  const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
+
   const { 
     existingId = null, 
     analysisData = [], 
@@ -92,101 +88,114 @@ export default function Export() {
     }
   };
 
-  const handleLogoClick = () => { if (window.confirm("메인 화면으로 이동하시겠습니까?")) navigate('/'); };
+  const handleLogoClick = () => { navigate('/'); };
 
-const handleCloudAction = async () => {
+  const handleCloudAction = async (isPublic) => {
     setIsProcessing(true);
+    setShowPublishModal(false);
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return alert("로그인이 필요한 서비스입니다.");
-      
-      // 1. 기존의 정밀 분석 모듈을 통한 다차원 태그 추출 (과거 방식의 장점)
-      const rawAutoTags = extractAutoTagsFromJSA(formData.projectName || "", analysisData);
 
-      // 2. 추출된 태그 중 PublicExplore의 사이드바 필터(DIMENSIONAL_KEYWORD_MAP)에 등록된 유효 키워드만 필터링 (현재 방식의 장점)
+      // ✅ [보안 강화] 민감 정보(장소, 부서, 날짜, 작성자 등) 제거 로직
+      const securedFormData = {
+        ...formData,
+        department: "",
+        workLocation: "",
+        workDate: "",
+        managerName: "",
+        equipment: "",
+        additionalItems: ""
+      };
+
+      const rawAutoTags = extractAutoTagsFromJSA(formData.projectName || "", analysisData);
       const validTagKeys = Object.keys(DIMENSIONAL_KEYWORD_MAP);
       const standardizedTags = rawAutoTags.filter(tag => validTagKeys.includes(tag));
-      
+
       const projectData = { 
         user_id: user.id, 
-        author_id: user.id,
+        author_id: user.id, 
         title: formData.projectName, 
-        tags: standardizedTags, // 검증을 통과한 표준 태그만 저장
-        is_public: true, 
-        
+        tags: standardizedTags, 
+        is_public: isPublic, 
         project_name: formData.projectName, 
-        auto_tags: standardizedTags,
-
-        form_data: formData, 
+        auto_tags: standardizedTags, 
+        form_data: securedFormData, // 보안 처리된 데이터 저장
         analysis_data: analysisData, 
+        participants: [], // 참여자 명단 공란 처리
         custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation }, 
         updated_at: new Date() 
       };
-      
+
       const { error } = await supabase.from('jsa_projects').upsert(projectData);
       if (error) throw error;
-      alert("클라우드 저장이 완료되었습니다.");
+      alert(isPublic ? "Explore에 보안 저장되었습니다." : "내 보관함에 보안 저장되었습니다.");
     } catch (err) { alert("저장 중 오류 발생: " + err.message); } finally { setIsProcessing(false); }
   };
+
+  const generatePDF = async () => {
+    setIsProcessing(true); const paper = document.querySelector('.reportPaper'); if (!paper) return setIsProcessing(false);
+    try {
+      window.scrollTo(0, 0); const canvas = await html2canvas(paper, { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, imageTimeout: 0, scrollY: 0 });
+      const imgWidthPx = canvas.width; const imgHeightPx = canvas.height; const doc = new jsPDF(savedOrientation === 'landscape' ? 'l' : 'p', 'mm', 'a4');
+      const pageWidth = doc.internal.pageSize.getWidth(); const pageHeight = doc.internal.pageSize.getHeight(); const margin = 10; const contentWidth = pageWidth - (margin * 2); const pxToMm = contentWidth / imgWidthPx;
+      const contentHeightMm = imgHeightPx * pxToMm; let leftHeightMm = contentHeightMm; let positionMm = 0; const paperRect = paper.getBoundingClientRect();
+      const trElements = paper.querySelectorAll('tr'); const cutPointRatios = Array.from(trElements).map(el => (el.getBoundingClientRect().bottom - paperRect.top) / paperRect.height).sort((a, b) => a - b);
+      while (leftHeightMm > 0) {
+        let maxPageHeightMm = pageHeight - (margin * 2); let sliceHeightMm = leftHeightMm > maxPageHeightMm ? maxPageHeightMm : leftHeightMm;
+        if (leftHeightMm > maxPageHeightMm) {
+          const currentCanvasY = positionMm / pxToMm; const maxCanvasY = currentCanvasY + (maxPageHeightMm / pxToMm); let bestCutCanvasY = maxCanvasY; let foundCutPoint = false;
+          for (let i = 0; i < cutPointRatios.length; i++) {
+            const elBottomPx = cutPointRatios[i] * imgHeightPx;
+            if (elBottomPx > currentCanvasY + 20 && elBottomPx <= maxCanvasY) { bestCutCanvasY = elBottomPx; foundCutPoint = true; } else if (elBottomPx > maxCanvasY) { break; }
+          }
+          if (foundCutPoint) sliceHeightMm = (bestCutCanvasY - currentCanvasY) * pxToMm;
+        }
+        const sourceY = positionMm / pxToMm; const sourceH = sliceHeightMm / pxToMm; const tempCanvas = document.createElement('canvas'); tempCanvas.width = imgWidthPx; tempCanvas.height = sourceH;
+        const ctx = tempCanvas.getContext('2d'); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(canvas, 0, Math.floor(sourceY), Math.floor(imgWidthPx), Math.floor(sourceH), 0, 0, Math.floor(imgWidthPx), Math.floor(sourceH));
+        doc.addImage(tempCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, sliceHeightMm);
+        leftHeightMm -= sliceHeightMm; positionMm += sliceHeightMm; if (leftHeightMm > 0.1) doc.addPage();
+      }
+      doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
+    } catch (error) { console.error(error); alert("PDF 생성 실패"); } finally { setIsProcessing(false); }
+  };
+
+  const handlePdfDownload = async () => { setShowPdfAdModal(false); await generatePDF(); };
+
   const renderUnifiedHeader = () => {
-    // padding을 2px 6px 10px 6px로 변경하여 텍스트를 4px 위로 올림
     const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000' };
     const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: 'nowrap' };
     const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
-
     const ppeOthers = formData?.ppe?.filter(p => !['안전모','안전화','보안경','장갑','방진마스크'].includes(p)).join(', ');
     const permitOthers = formData?.permits?.filter(p => !['일반','화기','밀폐','정전','고소','중량물','굴착'].includes(p)).join(', ');
-
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed', position: 'relative', zIndex: 1 }}>
-        <colgroup>
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '20%' }} />
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '30%' }} />
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '20%' }} />
-        </colgroup>
+        <colgroup><col style={{ width: '10%' }} /><col style={{ width: '20%' }} /><col style={{ width: '10%' }} /><col style={{ width: '30%' }} /><col style={{ width: '10%' }} /><col style={{ width: '20%' }} /></colgroup>
         <tbody>
           <tr>
             <td style={labelTdStyle}>작업명</td>
             <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
-            <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle', padding: '0px 6px 14px 6px' }}>
-              {docTitle}
-            </td>
-
+            <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle', padding: '0px 6px 14px 6px' }}>{docTitle}</td>
             <td colSpan={2} style={{ padding: 0, border: '1px solid #888' }}>
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    {/* 결재란 내부 텍스트 4px 상향을 위해 패딩 조정 */}
-                    <td rowSpan={2} style={{ borderRight: '1px solid #888', width: '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>
-                      결<br />재
-                    </td>
+                    <td rowSpan={2} style={{ borderRight: '1px solid #888', width: '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>결<br />재</td>
                     <td style={{ borderRight: '1px solid #888', borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>{appr1}</td>
                     <td style={{ borderRight: '1px solid #888', borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>{appr2}</td>
                     <td style={{ borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0' }}>{appr3}</td>
                   </tr>
-                  <tr>
-                    <td style={{ borderRight: '1px solid #888', height: '45px' }}></td>
-                    <td style={{ borderRight: '1px solid #888' }}></td>
-                    <td></td>
-                  </tr>
+                  <tr><td style={{ borderRight: '1px solid #888', height: '45px' }}></td><td style={{ borderRight: '1px solid #888' }}></td><td></td></tr>
                 </tbody>
               </table>
             </td>
-
           </tr>
-          
           <tr>
-            <td style={labelTdStyle}>작업구역</td>
-            <td style={commonTdStyle}>{formData?.workLocation || ''}</td>
-            <td style={labelTdStyle}>수행부서</td>
-            <td style={commonTdStyle}>{formData?.department || ''}</td>
-            <td style={labelTdStyle}>수행일자</td>
-            <td style={commonTdStyle}>{formData?.workDate || ''}</td>
+            <td style={labelTdStyle}>작업구역</td><td style={commonTdStyle}>{formData?.workLocation || ''}</td>
+            <td style={labelTdStyle}>수행부서</td><td style={commonTdStyle}>{formData?.department || ''}</td>
+            <td style={labelTdStyle}>수행일자</td><td style={commonTdStyle}>{formData?.workDate || ''}</td>
           </tr>
-
           <tr>
             <td style={labelTdStyle}>개인보호구</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '2px 8px 10px 8px' }}>
@@ -197,13 +206,10 @@ const handleCloudAction = async () => {
                 <span style={checkboxItemStyle}>□ 안전대</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} 방진/방독마스크</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} 안전장갑</span>
-                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
-                  {ppeOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)
-                </span>
+                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>{ppeOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)</span>
               </div>
             </td>
           </tr>
-
           <tr>
             <td style={labelTdStyle}>고위험작업</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '2px 8px 10px 8px' }}>
@@ -214,9 +220,7 @@ const handleCloudAction = async () => {
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} 고소</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} 중량물취급</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} 굴착</span>
-                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
-                  {permitOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)
-                </span>
+                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>{permitOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)</span>
               </div>
             </td>
           </tr>
@@ -226,17 +230,15 @@ const handleCloudAction = async () => {
   };
 
   const renderSignatureTable = () => {
-    // padding 상향 조정
     const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000' };
     const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%' };
     const sigRows = Array.from({ length: savedSignatureRows }, (_, i) => i);
     const cols = Array.from({ length: 8 }, (_, i) => i);
-    
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #888', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>        
         <tbody>
           <tr>
-            <td rowSpan={savedSignatureRows} style={{...labelTdStyle}}>참여자</td>
+            <td rowSpan={savedSignatureRows} style={labelTdStyle}>참여자</td>
             {cols.map(c => {
               const pName = participants?.[c] || '';
               return (
@@ -267,96 +269,47 @@ const handleCloudAction = async () => {
   };
 
   const renderDataTable = () => {
-    // 본문 텍스트 4px 상향을 위해 padding: '4px 4px 12px 4px'로 변경
-    const commonTdStyle = {
-      border: '1px solid #888', 
-      padding: '4px 4px 12px 4px',
-      fontSize: '10.5px',
-      verticalAlign: 'middle'
-    };
-
+    const commonTdStyle = { border: '1px solid #888', padding: '4px 4px 12px 4px', fontSize: '10.5px', verticalAlign: 'middle' };
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
-
     const currentItems = savedActiveOrder.filter(key => TAG_META[key] || savedUserColumns.find(u => u.id === key));
     const fixedWidth = currentItems.reduce((sum, key) => {
       const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
       return sum + (meta?.isFlex ? 0 : (parseInt(meta?.width) || 5));
     }, 0);
-    
     const flexItems = currentItems.filter(key => (TAG_META[key]?.isFlex || savedUserColumns.find(u => u.id === key)?.isFlex));
     const remaining = COLS - fixedWidth;
-
-    let groups = [];
-    let currentGroup = null;
-
+    let groups = []; let currentGroup = null;
     currentItems.forEach(key => {
       const groupDef = COLUMN_GROUPS.find(g => g.children.includes(key));
       if (groupDef) {
-        if (currentGroup && currentGroup.label === groupDef.label) {
-          currentGroup.keys.push(key);
-        } else {
-          if (currentGroup) groups.push(currentGroup);
-          currentGroup = { label: groupDef.label, keys: [key], isGroup: true };
-        }
-      } else {
-        if (currentGroup) { groups.push(currentGroup); currentGroup = null; }
-        groups.push({ label: null, keys: [key], isGroup: false });
-      }
+        if (currentGroup && currentGroup.label === groupDef.label) { currentGroup.keys.push(key); }
+        else { if (currentGroup) groups.push(currentGroup); currentGroup = { label: groupDef.label, keys: [key], isGroup: true }; }
+      } else { if (currentGroup) { groups.push(currentGroup); currentGroup = null; } groups.push({ label: null, keys: [key], isGroup: false }); }
     });
     if (currentGroup) groups.push(currentGroup);
-
     const hasGroups = groups.some(g => g.isGroup);
-
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed' }}>
-        <colgroup>
-          {currentItems.map(key => {
+        <colgroup>{currentItems.map(key => {
             const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
             let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
             return <col key={key} style={{ width: `${pct}%` }} />;
-          })}
-        </colgroup>
-          <thead>
-            <tr>
-              {groups.map((group, idx) => {
-                if (group.isGroup) {
-                  return (
-                    <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ 
-                      ...commonTdStyle,
-                      backgroundColor: '#f0f0f0', 
-                      textAlign: 'center',
-                      fontWeight: 'bold' 
-                    }}>
-                      {group.label}
-                    </th>
-                  );
-                } else {
-                  const key = group.keys[0];
-                  const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
-                  let label = meta.label;
-                  if (key === 'DATA_FREQUENCY') label = "가능성\n(빈도)";
-                  if (key === 'DATA_SEVERITY') label = "중대성\n(강도)";
-                  return (
-                    <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ 
-                      ...commonTdStyle,
-                      backgroundColor: '#f0f0f0', 
-                      textAlign: 'center', 
-                      fontWeight: 'bold',
-                      whiteSpace: 'pre-wrap' 
-                    }}>
-                      {label}
-                    </th>
-                  );
-                }
-              })}
-            </tr>
-          </thead>
+          })}</colgroup>
+        <thead>
+          <tr>{groups.map((group, idx) => {
+              if (group.isGroup) { return ( <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{group.label}</th> ); } 
+              else {
+                const key = group.keys[0]; const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); let label = meta.label;
+                if (key === 'DATA_FREQUENCY') label = "가능성\n(빈도)"; if (key === 'DATA_SEVERITY') label = "중대성\n(강도)";
+                return ( <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>{label}</th> );
+              }
+            })}</tr>
+        </thead>
         <tbody>
           {analysisData.map((stepData, stepIdx) => (
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
-                const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
-                let content = "";
+                const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); let content = "";
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = stepData.risks.map(r => `• ${r.factor}`).join('\n');
@@ -366,27 +319,8 @@ const handleCloudAction = async () => {
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency || "-");
                 else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel || "-");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks[0]?.category || "";
-                
-                if (key === 'DATA_PHOTO') {
-                  return (
-                    <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> 
-                      {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ 사진</span>} 
-                    </td>
-                  );
-                }
-
-              return (
-                  <td key={`td-${key}-${stepIdx}`} style={{
-                    ...commonTdStyle,
-                    textAlign: meta.align || 'center',
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'keep-all',
-                    overflowWrap: 'break-word'
-                  }}>
-                    {content}
-                  </td>
-                );
-
+                if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ 사진</span>} </td> ); }
+                return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>{content}</td> );
               })}
             </tr>
           ))}
@@ -395,113 +329,9 @@ const handleCloudAction = async () => {
     );
   };
 
-  const generatePDF = async () => {
-    setIsProcessing(true);
-    const paper = document.querySelector('.reportPaper');
-    if (!paper) return setIsProcessing(false);
-
-    try {
-      // 스크롤 위치에 따른 캡처 어긋남 방지
-      window.scrollTo(0, 0);
-
-      const canvas = await html2canvas(paper, { 
-        scale: 2,
-        useCORS: true, 
-        backgroundColor: '#ffffff',
-        logging: false,
-        imageTimeout: 0,
-        scrollY: 0
-      });
-      
-      const imgWidthPx = canvas.width;
-      const imgHeightPx = canvas.height;
-
-      const doc = new jsPDF(savedOrientation === 'landscape' ? 'l' : 'p', 'mm', 'a4');
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
-      
-      const margin = 10;
-      const contentWidth = pageWidth - (margin * 2);
-      const pxToMm = contentWidth / imgWidthPx;
-      const contentHeightMm = imgHeightPx * pxToMm;
-
-      let leftHeightMm = contentHeightMm;
-      let positionMm = 0;
-
-      // DOM 내 모든 행(tr)의 하단 Y좌표 비율을 미리 계산 (페이지 단절 방지용)
-      const paperRect = paper.getBoundingClientRect();
-      const trElements = paper.querySelectorAll('tr');
-      const cutPointRatios = Array.from(trElements).map(el => {
-        return (el.getBoundingClientRect().bottom - paperRect.top) / paperRect.height;
-      }).sort((a, b) => a - b); // 오름차순 정렬
-
-      while (leftHeightMm > 0) {
-        let maxPageHeightMm = pageHeight - (margin * 2);
-        let sliceHeightMm = leftHeightMm > maxPageHeightMm ? maxPageHeightMm : leftHeightMm;
-
-        // 페이지를 넘어가야 할 경우, 가장 가까운 행(tr)의 하단에서 자르도록 보정
-        if (leftHeightMm > maxPageHeightMm) {
-          const currentCanvasY = positionMm / pxToMm;
-          const maxCanvasY = currentCanvasY + (maxPageHeightMm / pxToMm);
-          
-          let bestCutCanvasY = maxCanvasY;
-          let foundCutPoint = false;
-
-          for (let i = 0; i < cutPointRatios.length; i++) {
-            const elBottomPx = cutPointRatios[i] * imgHeightPx;
-            // 현재 Y위치보다 약간 아래이면서(무한루프 방지), 최대 페이지 높이보다는 작은 위치 탐색
-            if (elBottomPx > currentCanvasY + 20 && elBottomPx <= maxCanvasY) {
-              bestCutCanvasY = elBottomPx;
-              foundCutPoint = true;
-            } else if (elBottomPx > maxCanvasY) {
-              break; // 범위를 벗어나면 중단
-            }
-          }
-
-          if (foundCutPoint) {
-            sliceHeightMm = (bestCutCanvasY - currentCanvasY) * pxToMm;
-          }
-        }
-
-        const sourceY = positionMm / pxToMm;
-        const sourceH = sliceHeightMm / pxToMm;
-
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = imgWidthPx;
-        tempCanvas.height = sourceH;
-        const ctx = tempCanvas.getContext('2d');
-        
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        
-        ctx.drawImage(
-          canvas, 
-          0, Math.floor(sourceY), Math.floor(imgWidthPx), Math.floor(sourceH), 
-          0, 0, Math.floor(imgWidthPx), Math.floor(sourceH)
-        );
-        
-        doc.addImage(tempCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, sliceHeightMm);
-        
-        leftHeightMm -= sliceHeightMm;
-        positionMm += sliceHeightMm;
-
-        if (leftHeightMm > 0.1) {
-          doc.addPage();
-        }
-      }
-
-      doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
-    } catch (error) { 
-      console.error(error);
-      alert("PDF 생성 실패"); 
-    } finally { 
-      setIsProcessing(false); 
-    }
-  };
-
   return (
     <div style={styles.wrapper}>
-      {isProcessing && <div style={styles.modalOverlay}><div style={styles.loaderText}>데이터 처리 중...</div></div>}
+      {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>데이터 처리 중...</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1></header>
@@ -527,13 +357,62 @@ const handleCloudAction = async () => {
             </div>
             <div style={styles.btnArea} className="no-print">
               <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>테이블 구성 수정</button>
-              <button style={{...styles.nextBtn, backgroundColor: '#007bff', color: '#fff'}} onClick={handleCloudAction}>클라우드 저장 (자동 태깅)</button>
-              <button style={styles.nextBtn} onClick={generatePDF}>PDF 파일 생성 및 저장</button>
+              <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>클라우드 저장 (공개 범위 선택)</button>
+              <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>PDF 파일 생성 및 저장</button>
             </div>
           </div>
         </main>
         <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
+
+      {showPdfAdModal && (
+        <div style={styles.modalOverlay} onClick={() => setShowPdfAdModal(false)}>
+          <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
+            <h3 style={styles.modalTitle}>PDF 리포트 생성</h3>
+            <p style={styles.modalSub}>최종 결과물을 PDF 파일로 변환하여 다운로드합니다.</p>
+            <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
+            <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handlePdfDownload}>
+              <div style={styles.typeBadgeActive}>Download</div>
+              <h4 style={styles.typeLabel}>리포트 다운로드 시작</h4>
+              <p style={styles.typeDesc}>고해상도 PDF 파일을 생성합니다.<br/>잠시만 기다려 주십시오.</p>
+            </div>
+            <button style={styles.modalCloseBtn} onClick={() => setShowPdfAdModal(false)}>닫기 (취소)</button>
+          </div>
+        </div>
+      )}
+
+      {showPublishModal && (
+        <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
+          <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
+            <h3 style={styles.modalTitle}>클라우드 저장 설정</h3>
+            {/* ✅ [안내 문구 추가] 보안 처리 알림 */}
+              <p style={{
+                ...styles.modalSub, 
+                color: '#ff7675', 
+                fontWeight: 'bold', 
+                whiteSpace: 'pre-wrap', // 줄바꿈 활성화 속성
+                lineHeight: '1.6'       // 줄 간격 최적화
+              }}>
+                ⚠️ 보안을 위해 부서, 장소, 날짜, 참여자 명단은 {"\n"} 공란으로 처리되어 저장됩니다.
+              </p>
+            <p style={styles.modalSub}>저장할 작업물의 공개 범위를 선택해 주십시오.</p>
+            <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
+            <div style={styles.typeGrid}>
+              <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
+                <div style={styles.typeBadgeActive}>Public</div>
+                <h4 style={styles.typeLabel}>Explore에 공개</h4>
+                <p style={styles.typeDesc}>모든 사용자가 조회 가능하며<br/>안전 지식 공유에 기여합니다.</p>
+              </div>
+              <div style={styles.typeCard} onClick={() => handleCloudAction(false)}>
+                <div style={styles.typeBadge}>Private</div>
+                <h4 style={styles.typeLabel}>내 보관함 저장</h4>
+                <p style={styles.typeDesc}>작성자 본인만 확인 가능하며<br/>개인 프로젝트로 관리됩니다.</p>
+              </div>
+            </div>
+            <button style={styles.modalCloseBtn} onClick={() => setShowPublishModal(false)}>닫기 (취소)</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -560,28 +439,31 @@ const styles = {
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
   previewArea: { flex: 1, overflow: 'auto', backgroundColor: '#111', borderRadius: '10px', padding: '3rem', border: '1px solid #333' },
-  reportPaper: { 
-    color: '#000', 
-    backgroundColor: '#fff', 
-    height: 'auto', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    padding: '40px', 
-    boxShadow: '0 10px 40px rgba(0,0,0,0.8)', 
-    boxSizing: 'border-box', 
-    fontFamily: '"Malgun Gothic", sans-serif',
-    margin: '0 auto'
-  },
+  reportPaper: { color: '#000', backgroundColor: '#fff', height: 'auto', display: 'flex', flexDirection: 'column', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2000 },
-  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' }
+  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  processingOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
+  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' },
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
+  modalContent: { width: '500px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalTitle: { fontSize: '1.5rem', color: '#fff', marginBottom: '0.5rem', fontWeight: '800' },
+  modalSub: { fontSize: '0.9rem', color: '#888', marginBottom: '2rem' },
+  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.03)' },
+  typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
+  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
+  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '2px solid #007bff', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: '#aaa', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
+  typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
+  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
 };
 
 if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-global-style";
+  const styleId = "jsa-bridge-export-style-v2";
   let styleTag = document.getElementById(styleId);
   if (!styleTag) { styleTag = document.createElement("style"); styleTag.id = styleId; document.head.appendChild(styleTag); }
-  styleTag.innerHTML = ` html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; } * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; } *::-webkit-scrollbar { display: none !important; } `;
+  styleTag.innerHTML = `html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; } * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; } *::-webkit-scrollbar { display: none !important; }`;
 }

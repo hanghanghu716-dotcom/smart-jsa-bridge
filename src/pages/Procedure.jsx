@@ -134,25 +134,28 @@ export default function Procedure() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
+              {/* 1단계: 완료 */}
               <div style={styles.stepItemDone}>
                 <div style={styles.stepBadgeDone}>✓</div>
                 <span style={styles.stepTextDone}>기본 정보</span>
               </div>
               <div style={styles.stepLineActive} />
+
+              {/* 2단계: 활성 */}
               <div style={styles.stepItemActive}>
                 <div style={styles.stepBadgeActive}>2</div>
                 <span style={styles.stepTextActive}>작업 절차</span>
               </div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}>
-                <div style={styles.stepBadge}>3</div>
-                <span style={styles.stepText}>위험 분석</span>
-              </div>
+
+              {/* 3~6단계: 대기 */}
+              <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>위험 분석</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}>
-                <div style={styles.stepBadge}>4</div>
-                <span style={styles.stepText}>최종 출력</span>
-              </div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>모듈 구성</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>표 구성</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
             </nav>
 
             <div style={styles.formHeader}>
