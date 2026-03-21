@@ -32,6 +32,73 @@ export default function Analysis() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedHighRisk, setSelectedHighRisk] = useState(""); 
 
+  // ✅ [추가] 다중 선택(체크박스) 상태
+  const [checkedRisks, setCheckedRisks] = useState(new Set());
+  const autoFilledRef = useRef(new Set());
+
+  // ✅ [추가] 1안: 지능형 매칭 엔진용 상태
+  const [recModal, setRecModal] = useState({ isOpen: false, data: [], targetRiskId: null });
+
+  // ✅ [추가] 체크박스 토글 함수
+  const toggleCheck = (rec) => {
+    const newSet = new Set(checkedRisks);
+    if (newSet.has(rec)) newSet.delete(rec);
+    else newSet.add(rec);
+    setCheckedRisks(newSet);
+  };
+
+  // ✅ [교정] 선택된 항목들을 우측 테이블에 일괄 추가하는 함수 (불변성 및 난수 ID 완벽 적용)
+  const handleBulkAdd = () => {
+    if (checkedRisks.size === 0) return alert("추가할 항목을 선택해 주세요.");
+    const newRisks = Array.from(checkedRisks).map((rec, i) => ({
+      id: `risk-bulk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      factor: rec.risk_factor || rec.factor || "",
+      measure: rec.basic_measure || "",
+      current_measure: rec.basic_measure || "",
+      recommend_measure: rec.advanced_measure || "",
+      category: rec.category || "기타"
+    }));
+    
+    setAnalysisData(prev => {
+      const newData = [...prev];
+      newData[activeIdx] = { 
+        ...newData[activeIdx], 
+        risks: [...newData[activeIdx].risks, ...newRisks] 
+      };
+      return newData;
+    });
+    setCheckedRisks(new Set()); // 추가 후 선택 초기화
+  };
+
+  // ✅ [추가] 1안: 매칭 엔진 로직 (텍스트 분석 및 스코어링)
+  const handleOpenRecommendation = (risk) => {
+    const userInput = risk.factor || "";
+    if (userInput.trim().length < 2) return alert("위험요인을 2글자 이상 입력해 주세요.");
+
+    const tokens = userInput.replace(/[^\w\sㄱ-ㅎ가-힣]/g, " ").split(/\s+/).filter(t => t.length >= 2);
+    
+    const scored = dbRisks.map(r => {
+      let score = 0;
+      const kw = r.keywords || [];
+      tokens.forEach(t => {
+        if (kw.some(k => t.includes(k) || k.includes(t))) score += 1;
+      });
+      return { ...r, score };
+    })
+    .filter(r => r.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+    if (scored.length === 0) return alert("매칭되는 추천 대책이 없습니다. 키워드를 보완해 주세요.");
+    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id });
+  };
+
+  // ✅ [추가] 추천된 대책을 테이블에 적용하는 함수
+  const applyRecommendedMeasure = (measureText) => {
+    updateRiskField(recModal.targetRiskId, 'recommend_measure', measureText);
+    setRecModal({ isOpen: false, data: [], targetRiskId: null });
+  };
+
   const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
@@ -67,7 +134,7 @@ export default function Analysis() {
 
   const applyStepData = (stepData) => {
     const mappedRisks = stepData.risks.map(r => ({
-      id: `lib-${Date.now()}-${Math.random()}`,
+      id: `lib-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       factor: r.factor || r.risk_factor,
       measure: r.measure || "",
       current_measure: r.current_measure || r.measure || "",
@@ -76,9 +143,14 @@ export default function Analysis() {
       source: '공유'
     }));
     
-    const newData = [...analysisData];
-    newData[activeIdx].risks = [...newData[activeIdx].risks, ...mappedRisks];
-    setAnalysisData(newData);
+    setAnalysisData(prev => {
+      const newData = [...prev];
+      newData[activeIdx] = {
+        ...newData[activeIdx],
+        risks: [...newData[activeIdx].risks, ...mappedRisks]
+      };
+      return newData;
+    });
     setIsLibraryModalOpen(false);
   };
 
@@ -112,53 +184,81 @@ export default function Analysis() {
 
   useEffect(() => {
     const updateRecommendations = async () => {
+      let matched = [];
       if (selectedHighRisk) {
-        setRecommendations(dbRisks.filter(r => r.category === selectedHighRisk).map(r => ({ ...r, source: 'master' })));
+        matched = dbRisks.filter(r => r.category === selectedHighRisk).map(r => ({ ...r, source: 'master' }));
       } else {
-        const matched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
-        setRecommendations(matched);
+        matched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
       }
+      setRecommendations(matched);
+      setCheckedRisks(new Set()); // ✅ 탭(작업 단계) 이동 시 체크박스 초기화
+      
+      // ✅ [교정] 자동 채우기(Auto-fill) 로직 완벽 제거 완료
     };
     updateRecommendations();
   }, [activeIdx, currentStep.proc, selectedHighRisk, dbRisks]);
 
+  // ✅ [교정] 위험요인 추가 함수 (불변성 및 난수 ID 완벽 적용)
   const addRisk = (rec) => {
-    const baseMeasure = rec.measure || "";
-    const autoRecommend = (m) => {
-      if (!m) return "관리감독 강화 및 작업 전 TBM 시 해당 위험요인 집중 교육";
-      return `[보완] ${m.split(',')[0]} 상태 주기적 점검 및 작업 책임자 상주 확인`;
-    };
-
-    const newData = [...analysisData];
-    newData[activeIdx].risks.push({ 
-      id: `risk-${Date.now()}`, 
-      factor: rec.risk_factor || rec.factor || "", 
-      measure: baseMeasure, 
-      current_measure: baseMeasure, 
-      recommend_measure: autoRecommend(baseMeasure), 
-      category: rec.category || "기타" 
+    setAnalysisData(prev => {
+      const newData = [...prev];
+      newData[activeIdx] = {
+        ...newData[activeIdx],
+        risks: [...newData[activeIdx].risks, { 
+          id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, 
+          factor: rec.risk_factor || rec.factor || "", 
+          measure: rec.basic_measure || "", 
+          current_measure: rec.basic_measure || "", 
+          recommend_measure: rec.advanced_measure || "", 
+          category: rec.category || "기타" 
+        }]
+      };
+      return newData;
     });
-    setAnalysisData(newData);
   };
 
+  // ✅ [교정] 필드 업데이트 함수 (불변성 완벽 적용)
   const updateRiskField = (riskId, field, value) => {
-    const newData = [...analysisData];
-    newData[activeIdx].risks = newData[activeIdx].risks.map(r => 
-      r.id === riskId ? { ...r, [field]: value } : r
-    );
-    setAnalysisData(newData);
+    setAnalysisData(prev => {
+      const newData = [...prev];
+      newData[activeIdx] = {
+        ...newData[activeIdx],
+        risks: newData[activeIdx].risks.map(r => 
+          r.id === riskId ? { ...r, [field]: value } : r
+        )
+      };
+      return newData;
+    });
   };
 
+  // ✅ [교정] 위험성 수준 산출 함수 (불변성 완벽 적용)
   const updateStepRisk = (field, value) => {
-    const newData = [...analysisData];
-    const target = newData[activeIdx];
-    target[field] = parseInt(value);
-    target.riskLevel = target.frequency * target.severity;
-    setAnalysisData(newData);
+    setAnalysisData(prev => {
+      const newData = [...prev];
+      const newFreq = field === 'frequency' ? parseInt(value) : newData[activeIdx].frequency;
+      const newSev = field === 'severity' ? parseInt(value) : newData[activeIdx].severity;
+      newData[activeIdx] = {
+        ...newData[activeIdx],
+        [field]: parseInt(value),
+        riskLevel: newFreq * newSev
+      };
+      return newData;
+    });
   };
 
   const handlePrev = () => {
-    if (activeIdx === 0) navigate('/procedure', { state: { id: existingId, formData, participants, procedures, analysisData } });
+    if (activeIdx === 0) navigate('/procedure', { 
+      state: { 
+        id: existingId, 
+        formData, 
+        participants, 
+        procedures, 
+        analysisData,
+        isFork: location.state?.isFork,
+        parentId: location.state?.parentId, 
+        originalAnalysisData: location.state?.originalAnalysisData 
+      } 
+    });
     else setActiveIdx(activeIdx - 1);
   };
 
@@ -180,7 +280,7 @@ export default function Analysis() {
                   <div key={item.id} style={styles.libItem} onClick={() => setSelectedLibProject(item.jsa_projects)}>
                     <div style={styles.libInfo}>
                       <span style={styles.libCategory}>{item.jsa_projects.tags?.[0] || "미분류"}</span>
-                      <strong style={styles.libTitleText}>{item.jsa_projects.title}</strong>
+                      <span style={styles.libTitleText}>{item.jsa_projects.title}</span>
                     </div>
                     <span>➡️</span>
                   </div>
@@ -204,6 +304,30 @@ export default function Analysis() {
         </div>
       )}
 
+      {/* ✅ [추가] 1안: 감소권고대책 추천 결과 모달 */}
+      {recModal.isOpen && (
+        <div style={styles.dialogOverlay} onClick={() => setRecModal({ isOpen: false, data: [], targetRiskId: null })}>
+          <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
+            <div style={styles.modalHeader}>
+              <h3 style={{ margin: 0 }}>지능형 추가 감소대책 추천</h3>
+              <button style={styles.closeBtnSmall} onClick={() => setRecModal({ isOpen: false, data: [], targetRiskId: null })}>✕</button>
+            </div>
+            <div style={styles.libList}>
+              <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '10px' }}>입력하신 위험요인과 가장 연관성 높은 전문가 대책입니다.</p>
+              {recModal.data.map((item, idx) => (
+                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item.advanced_measure)}>
+                  <div style={{ ...styles.libInfo, flex: 1 }}>
+                    <div style={{ color: '#4caf50', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' }}>매칭 신뢰도: {item.score}점</div>
+                    <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.advanced_measure}</div>
+                  </div>
+                  <span style={{ marginLeft: '10px', color: '#007bff' }}>선택</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
@@ -217,7 +341,6 @@ export default function Analysis() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             
-            {/* [변경됨] 6단계 Stepper 적용 */}
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
               <div style={styles.stepLineActive} />
@@ -255,20 +378,35 @@ export default function Analysis() {
                     <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>📂 라이브러리 스텝 호출</button>
                   </div>
 
-                  <div style={styles.recHeader}>
-                    <span style={styles.label}>안전 지식 베이스 (표준/공유)</span>
-                    <div style={styles.arrowBox}><button style={styles.arrowBtn} onClick={() => scroll('left')}>←</button><button style={styles.arrowBtn} onClick={() => scroll('right')}>→</button></div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
+                    <span style={styles.label}>안전 지식 베이스 (추천 {recommendations.length}건)</span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>+ 빈칸 추가</button>
+                      <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>✓ 선택 항목 일괄 추가</button>
+                    </div>
                   </div>
 
-                  <div style={styles.sliderContainer} ref={scrollRef}>
-                    <div style={styles.manualAddCard} onClick={() => addRisk({ factor: '', measure: '' })}><div style={styles.plusIcon}>+</div><p style={styles.manualText}>수동 작성</p></div>
-                    {recommendations.map((rec, i) => (
-                      <div key={`rec-${i}`} style={styles.recommendCard} onClick={() => addRisk(rec)}>
-                        <div style={styles.badgeGroup}><div style={styles.recBadge}>{rec.source === 'master' ? "공식" : "공유"}</div></div>
-                        <p style={styles.recFactor}>{rec.risk_factor || rec.factor}</p>
-                        <p style={styles.recMeasure}>{rec.measure}</p>
-                      </div>
-                    ))}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'auto', maxHeight: '400px', paddingRight: '5px' }}>
+                    {recommendations.length === 0 ? (
+                      <p style={{ color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>추천된 위험요인이 없습니다.</p>
+                    ) : (
+                      recommendations.map((rec, i) => (
+                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', backgroundColor: '#161616', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
+                          <input 
+                            type="checkbox" 
+                            style={{ marginTop: '4px', cursor: 'pointer', transform: 'scale(1.2)' }}
+                            checked={checkedRisks.has(rec)}
+                            onChange={() => toggleCheck(rec)}
+                          />
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '6px' }}>{rec.risk_factor || rec.factor}</div>
+                            <div style={{ color: '#aaa', fontSize: '0.75rem', marginBottom: '4px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>[기본] {rec.basic_measure || "대책 없음"}</div>
+                            {rec.advanced_measure && <div style={{ color: '#4caf50', fontSize: '0.75rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>[권고] {rec.advanced_measure}</div>}
+                          </div>
+                          <div style={styles.recBadge}>{rec.source === 'master' ? "공식" : "공유"}</div>
+                        </label>
+                      ))
+                    )}
                   </div>
                 </section>
 
@@ -303,7 +441,20 @@ export default function Analysis() {
                       <tbody>
                         {currentStep.risks.map(r => (
                           <tr key={r.id}>
-                            <td style={styles.td}><textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} /></td>
+                            <td style={styles.td}>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
+                                {/* ✅ [추가] 1안: 심화형일 때 위험요인별 추천 버튼 */}
+                                {jsaType !== '2-step' && (
+                                  <button 
+                                    style={{ alignSelf: 'flex-end', backgroundColor: '#333', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
+                                    onClick={() => handleOpenRecommendation(r)}
+                                  >
+                                    ✨ 대책 추천
+                                  </button>
+                                )}
+                              </div>
+                            </td>
                             {jsaType === '2-step' ? (
                               <td style={styles.td}><textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} /></td>
                             ) : (
@@ -312,7 +463,18 @@ export default function Analysis() {
                                 <td style={styles.td}><textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} /></td>
                               </>
                             )}
-                            <td style={{ textAlign: 'center' }}><button style={styles.smallDeleteBtn} onClick={() => { const nd = [...analysisData]; nd[activeIdx].risks = nd[activeIdx].risks.filter(risk => risk.id !== r.id); setAnalysisData(nd); }}>×</button></td>
+                            <td style={{ textAlign: 'center' }}>
+                              <button style={styles.smallDeleteBtn} onClick={() => { 
+                                setAnalysisData(prev => { 
+                                  const newData = [...prev]; 
+                                  newData[activeIdx] = { 
+                                    ...newData[activeIdx], 
+                                    risks: newData[activeIdx].risks.filter(risk => risk.id !== r.id) 
+                                  }; 
+                                  return newData; 
+                                }); 
+                              }}>×</button>
+                            </td>                          
                           </tr>
                         ))}
                       </tbody>
@@ -322,13 +484,24 @@ export default function Analysis() {
               </div>
             </div>
 
-            <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
-              {/* [변경됨] 다음 라우팅 경로를 /layoutbuilder 에서 /layout-module 로 변경 */}
-              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { state: { existingId, analysisData, formData, participants, procedures } })}>
-                {activeIdx === analysisData.length - 1 ? '분석 완료 및 모듈 설정으로 이동' : '다음 작업 단계 분석'}
-              </button>
-            </div>
+              <div style={styles.btnArea}>
+                    <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
+                    <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { 
+                      state: { 
+                        existingId, 
+                        analysisData, 
+                        formData, 
+                        participants, 
+                        procedures,
+                        isFork: location.state?.isFork,
+                        parentId: location.state?.parentId, 
+                        originalAnalysisData: location.state?.originalAnalysisData 
+                      } 
+                    })}>
+                      {activeIdx === analysisData.length - 1 ? '분석 완료 및 모듈 설정으로 이동' : '다음 작업 단계 분석'}
+                    </button>
+                  </div>
+
           </div>
         </main>
 
@@ -385,18 +558,7 @@ const styles = {
   filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
   highRiskSelect: { flex: 1, backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' },
   libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold' },
-  recHeader: { display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' },
-  arrowBox: { display: 'flex', gap: '0.4rem' },
-  arrowBtn: { backgroundColor: '#222', border: '1px solid #333', color: '#fff', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer' },
-  sliderContainer: { display: 'grid', gridTemplateRows: 'repeat(2, 140px)', gridAutoFlow: 'column', gap: '10px', overflowX: 'auto', paddingBottom: '1rem', justifyContent: 'start', gridAutoColumns: '220px' },
-  recommendCard: { width: '220px', height: '140px', backgroundColor: '#161616', border: '1px solid #333', borderRadius: '8px', padding: '1rem', cursor: 'pointer', position: 'relative', overflow: 'hidden' },
-  manualAddCard: { width: '220px', height: '140px', border: '1px dashed #007bff', backgroundColor: 'rgba(0,123,255,0.05)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#007bff', cursor: 'pointer' },
-  plusIcon: { fontSize: '1.5rem' },
-  manualText: { fontSize: '0.8rem', fontWeight: 'bold' },
-  badgeGroup: { position: 'absolute', top: '10px', right: '10px' },
   recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
-  recFactor: { marginTop: '1.5rem', color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' },
-  recMeasure: { color: '#777', fontSize: '0.75rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
   riskScoreContainer: { display: 'flex', gap: '1rem', alignItems: 'center' },
   riskInputSet: { display: 'flex', flexDirection: 'column', alignItems: 'center' },

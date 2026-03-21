@@ -25,13 +25,36 @@ export default function Info() {
   const [participants, setParticipants] = useState(Array(14).fill(''));
 
   useEffect(() => {
+    const isFork = location.state?.isFork;
+
     if (location.state?.formData) {
-      setFormData(location.state.formData);
+      const loadedData = location.state.formData;
+      
+      setFormData(prev => ({
+        ...prev, // DEFAULT_FORM_DATA의 기본 구조(ppe, permits 배열 등) 파괴 방지
+        ...loadedData, // DB에서 불러온 데이터 덮어쓰기
+        ppe: loadedData.ppe || [], // 과거 데이터에 배열이 누락되었을 경우를 대비한 안전 장치
+        permits: loadedData.permits || [], 
+        ...(isFork ? { // 복제 상태일 때 민감 정보 강제 초기화
+          projectName: '',
+          department: '',
+          workLocation: '',
+          workDate: '',
+          managerName: ''
+        } : {})
+      }));
     }
-    if (location.state?.participants) {
-      setParticipants(location.state.participants);
-    }
+
+    if (isFork) {
+      setParticipants(Array(14).fill(''));
+    } else if (location.state?.participants) {
+      const loadedParticipants = location.state.participants || [];
+      // 불러온 명단이 14개 미만이어도 렌더링 에러가 나지 않도록 배열 길이 강제 보장
+      setParticipants(Array(14).fill('').map((_, i) => loadedParticipants[i] || ''));
+    } 
   }, [location.state]);
+
+
 
   // ✅ [추가] 홈 버튼 클릭 시 데이터 삭제 경고 로직
   const handleLogoClick = () => {
@@ -82,22 +105,25 @@ export default function Info() {
     });
   };
 
-  const handleNext = () => {
+const handleNext = () => {
     if (!formData.projectName.trim()) {
       alert("프로젝트명은 필수 입력 사항입니다. 작업의 명칭을 입력해 주세요.");
       return;
     }
 
-    // ✅ [교정] 이전 단계에서 넘어온 절차 및 분석 데이터를 보존하여 전달
     navigate('/procedure', {
       state: {
         formData,
         participants,
-        procedures: location.state?.procedures, // 기존 데이터 보존
-        analysisData: location.state?.analysisData, // 기존 데이터 보존
+        procedures: location.state?.procedures,
+        analysisData: location.state?.analysisData,
+        isFork: location.state?.isFork,
+        parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이
+        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이
       },
     });
   };
+
 
   const ppeOptions = ['안전모', '안전화', '보안경', '장갑', '귀마개', '방진복', '방진마스크'];
   const permitOptions = ['일반', '화기', '밀폐', '정전', '굴착', '방사선', '고소', '중량물', '가연성가스'];

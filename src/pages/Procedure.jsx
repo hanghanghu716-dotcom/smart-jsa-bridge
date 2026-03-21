@@ -69,21 +69,26 @@ export default function Procedure() {
         formData: { ...formData, jsaType },
         participants,
         analysisData: analysisData,
+        isFork: location.state?.isFork,
+        parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이
+        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이
       },
     });
   };
-
+  
   const handlePrev = () => {
-    // ✅ [교정] Info로 돌아갈 때 현재까지 입력한 procedures 데이터를 포함하여 유실 방지
-    navigate('/info', {
-      state: {
-        formData,
-        participants,
-        procedures, // 현재 입력 데이터 전달
-        analysisData: analysisData,
-      },
-    });
-  };
+      navigate('/info', {
+        state: {
+          formData,
+          participants,
+          procedures, 
+          analysisData: analysisData,
+          isFork: location.state?.isFork,
+          parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이 유지
+          originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이 유지
+        },
+      });
+    };
 
   return (
     <div style={styles.wrapper}>

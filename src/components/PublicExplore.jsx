@@ -293,8 +293,16 @@ const suggestedTags = searchTerm.trim() !== ""
                   </div>
 
                   <div style={styles.cardFooter}>
-                    <button style={styles.useBtn} onClick={() => navigate('/analysis', { 
-                      state: { formData: p.form_data, participants: p.participants, analysisData: p.analysis_data, procedures: p.analysis_data.map(d=>d.proc), isFork: true } 
+                    <button style={styles.useBtn} onClick={() => navigate('/info', { 
+                      state: { 
+                        formData: p.form_data, 
+                        participants: p.participants, 
+                        analysisData: p.analysis_data, 
+                        procedures: p.analysis_data.map(d=>d.proc), 
+                        isFork: true,
+                        parentId: p.id, // ✅ [추가] 원본 프로젝트의 ID를 출처 기록용으로 전달
+                        originalAnalysisData: p.analysis_data // ✅ [추가] 최종 단계에서 수정량을 비교하기 위해 원본 데이터 보존 전달
+                      } 
                     })}>
                       이 자료로 작성 시작
                     </button>
@@ -302,6 +310,7 @@ const suggestedTags = searchTerm.trim() !== ""
                        SCRAP <strong>{p.scrap_count || 0}</strong>
                     </div>
                   </div>
+
                 </div>
                 </React.Fragment>
               ))}

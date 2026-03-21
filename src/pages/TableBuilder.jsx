@@ -248,8 +248,29 @@ const renderDataTablePreview = () => {
     );
   };
 
-  const goBackToModuleBuilder = () => navigate('/layout-module', { state: { ...location.state, savedActiveOrder: activeOrder, savedOrientation: orientation, savedUserColumns: userColumns } });
-  const goToExport = () => navigate('/export', { state: { ...location.state, savedActiveOrder: activeOrder, savedOrientation: orientation, savedUserColumns: userColumns } });
+  const goBackToModuleBuilder = () => navigate('/layout-module', { 
+    state: { 
+      ...location.state, 
+      savedActiveOrder: activeOrder, 
+      savedOrientation: orientation, 
+      savedUserColumns: userColumns,
+      isFork: location.state?.isFork,
+      parentId: location.state?.parentId, // ✅ [추가] 이전 단계로 돌아갈 때 원본 출처 ID 릴레이 유지
+      originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이 유지
+    } 
+  });
+  
+  const goToExport = () => navigate('/export', { 
+    state: { 
+      ...location.state, 
+      savedActiveOrder: activeOrder, 
+      savedOrientation: orientation, 
+      savedUserColumns: userColumns,
+      isFork: location.state?.isFork,
+      parentId: location.state?.parentId, // ✅ [추가] 최종 단계(Export)로 원본 출처 ID 릴레이
+      originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 최종 단계(Export)로 변경률 검증용 원본 데이터 릴레이
+    } 
+  });
 
   return (
     <div style={styles.wrapper}>

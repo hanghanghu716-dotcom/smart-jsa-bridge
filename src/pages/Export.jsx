@@ -55,8 +55,22 @@ export default function Export() {
     appr1 = '작성',
     appr2 = '검토',
     appr3 = '승인',
-    savedSignatureRows = 1
+    savedSignatureRows = 1,
+    isFork = false,
+    parentId = null, // ✅ [추가] 릴레이된 원본 출처 ID 수신
+    originalAnalysisData = null // ✅ [추가] 릴레이된 원본 분석 데이터 수신
   } = location.state || {};
+
+  const totalRisks = analysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0);
+  
+  // ✅ [추가] 원본 위험요인 총개수 계산
+  const originalTotalRisks = originalAnalysisData ? originalAnalysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0) : 0;
+
+  // ✅ [추가] 가치 있는 파생작(Diff) 여부 판별: 작업 단계(Step) 추가 OR 위험요인 2개 이상 추가
+  const isValuableFork = isFork && originalAnalysisData && (
+    (analysisData.length > originalAnalysisData.length) || 
+    (totalRisks >= originalTotalRisks + 2)
+  );
 
   const jsaType = formData.jsaType || '2-step';
   const COLS = savedOrientation === 'landscape' ? 56 : 40; 
@@ -124,7 +138,8 @@ export default function Export() {
         analysis_data: analysisData, 
         participants: [], // 참여자 명단 공란 처리
         custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation }, 
-        updated_at: new Date() 
+        updated_at: new Date(),
+        parent_id: parentId || null // ✅ [추가] 복제된 작업물의 원본 출처 DB 기록
       };
 
       const { error } = await supabase.from('jsa_projects').upsert(projectData);
@@ -398,17 +413,34 @@ export default function Export() {
             <p style={styles.modalSub}>저장할 작업물의 공개 범위를 선택해 주십시오.</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
             <div style={styles.typeGrid}>
-              <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
-                <div style={styles.typeBadgeActive}>Public</div>
-                <h4 style={styles.typeLabel}>Explore에 공개</h4>
-                <p style={styles.typeDesc}>모든 사용자가 조회 가능하며<br/>안전 지식 공유에 기여합니다.</p>
-              </div>
+              {/* ✅ [수정] 가치 있는 파생작(isValuableFork)인 경우 Public 허용, 단순 복제만 차단 */}
+              {(isFork && !isValuableFork) ? (
+                <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
+                  <div style={{...styles.typeBadge, backgroundColor: '#444'}}>Public (제한됨)</div>
+                  <h4 style={{...styles.typeLabel, color: '#888'}}>Explore에 공개</h4>
+                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}}>원본 대비 작업 단계가 <br/> 추가되거나 <br/> 위험요인이 2개 이상 <br/> 추가되어야 합니다.</p>
+                </div>
+              ) : totalRisks < 3 ? (
+                <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
+                  <div style={{...styles.typeBadge, backgroundColor: '#444'}}>Public (제한됨)</div>
+                  <h4 style={{...styles.typeLabel, color: '#888'}}>Explore에 공개</h4>
+                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}}>지식 공유를 위해 3개 이상의<br/>위험요인과 대책을 작성해 주십시오.</p>
+                </div>
+              ) : (
+                <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
+                  <div style={styles.typeBadgeActive}>Public</div>
+                  <h4 style={styles.typeLabel}>Explore에 공개</h4>
+                  <p style={styles.typeDesc}>모든 사용자가 조회 가능하며<br/>안전 지식 공유에 기여합니다.</p>
+                </div>
+              )}
+              
               <div style={styles.typeCard} onClick={() => handleCloudAction(false)}>
                 <div style={styles.typeBadge}>Private</div>
                 <h4 style={styles.typeLabel}>내 보관함 저장</h4>
                 <p style={styles.typeDesc}>작성자 본인만 확인 가능하며<br/>개인 프로젝트로 관리됩니다.</p>
               </div>
             </div>
+
             <button style={styles.modalCloseBtn} onClick={() => setShowPublishModal(false)}>닫기 (취소)</button>
           </div>
         </div>

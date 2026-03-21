@@ -34,7 +34,14 @@ export default function ModuleBuilder() {
   const [appr3, setAppr3] = useState(savedAppr3 || '승인');
 
   const goBackToAnalysis = () => {
-    navigate('/analysis', { state: location.state });
+    navigate('/analysis', { 
+      state: { 
+        ...location.state,
+        isFork: location.state?.isFork,
+        parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이 유지
+        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이 유지
+      } 
+    });
   };
 
   const goToTableBuilder = () => {
@@ -45,7 +52,10 @@ export default function ModuleBuilder() {
         docTitle,
         appr1,
         appr2,
-        appr3
+        appr3,
+        isFork: location.state?.isFork,
+        parentId: location.state?.parentId, // ✅ [추가] 다음 단계로 원본 출처 ID 릴레이
+        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 다음 단계로 변경률 검증용 원본 데이터 릴레이
       } 
     });
   };
