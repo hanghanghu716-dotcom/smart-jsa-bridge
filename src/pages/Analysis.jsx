@@ -5,7 +5,7 @@ import AdBanner from '../AdBanner';
 
 /**
  * [Analysis 컴포넌트 - 6단계 개편 반영본]
- * 역할: Step 3. 유해·위험요인 분석 및 대책 수립
+ * 역할: Step 3. 유해·위험요인 분석 및 대책 수립 (1:M:N 체인 및 UI 교정)
  * 에디터 위치: src/pages/Analysis.jsx
  */
 
@@ -32,14 +32,17 @@ export default function Analysis() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedHighRisk, setSelectedHighRisk] = useState(""); 
 
-  // ✅ [추가] 다중 선택(체크박스) 상태
   const [checkedRisks, setCheckedRisks] = useState(new Set());
   const autoFilledRef = useRef(new Set());
 
-  // ✅ [추가] 1안: 지능형 매칭 엔진용 상태
-  const [recModal, setRecModal] = useState({ isOpen: false, data: [], targetRiskId: null });
+  // ✅ 1:M:N 계층 추천을 위한 통합 모달 상태
+  const [recModal, setRecModal] = useState({ 
+    isOpen: false, 
+    data: [], 
+    targetRiskId: null, 
+    type: 'advanced' 
+  });
 
-  // ✅ [추가] 체크박스 토글 함수
   const toggleCheck = (rec) => {
     const newSet = new Set(checkedRisks);
     if (newSet.has(rec)) newSet.delete(rec);
@@ -47,15 +50,16 @@ export default function Analysis() {
     setCheckedRisks(newSet);
   };
 
-  // ✅ [교정] 선택된 항목들을 우측 테이블에 일괄 추가하는 함수 (불변성 및 난수 ID 완벽 적용)
+  // ✅ [교정] 일괄 추가 시 오직 위험요소(factor)만 추가하도록 수정 (자동채우기 제거)
   const handleBulkAdd = () => {
     if (checkedRisks.size === 0) return alert("추가할 항목을 선택해 주세요.");
-    const newRisks = Array.from(checkedRisks).map((rec, i) => ({
+      const newRisks = Array.from(checkedRisks).map((rec) => ({
       id: `risk-bulk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      db_id: rec.id, // DB의 고유 식별자 저장 추가
       factor: rec.risk_factor || rec.factor || "",
-      measure: rec.basic_measure || "",
-      current_measure: rec.basic_measure || "",
-      recommend_measure: rec.advanced_measure || "",
+      measure: "",
+      current_measure: "",
+      recommend_measure: "",
       category: rec.category || "기타"
     }));
     
@@ -67,36 +71,65 @@ export default function Analysis() {
       };
       return newData;
     });
-    setCheckedRisks(new Set()); // 추가 후 선택 초기화
+    setCheckedRisks(new Set()); 
   };
 
-  // ✅ [추가] 1안: 매칭 엔진 로직 (텍스트 분석 및 스코어링)
-  const handleOpenRecommendation = (risk) => {
-    const userInput = risk.factor || "";
-    if (userInput.trim().length < 2) return alert("위험요인을 2글자 이상 입력해 주세요.");
+  // ✅ [교정] 1:M:N 체인 추천 엔진 (중복 제거 및 계층형 필터링)
+  const handleOpenRecommendation = async (risk, type = 'advanced') => {
+    if (type === 'current' && !risk.factor) return alert("위험요인을 먼저 입력해 주세요.");
+    if (type === 'advanced' && !risk.current_measure) return alert("현재 안전대책을 먼저 선택해 주세요.");
 
-    const tokens = userInput.replace(/[^\w\sㄱ-ㅎ가-힣]/g, " ").split(/\s+/).filter(t => t.length >= 2);
-    
-    const scored = dbRisks.map(r => {
-      let score = 0;
-      const kw = r.keywords || [];
-      tokens.forEach(t => {
-        if (kw.some(k => t.includes(k) || k.includes(t))) score += 1;
-      });
-      return { ...r, score };
-    })
-    .filter(r => r.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
+    setIsLoading(true);
+    let scored = [];
 
-    if (scored.length === 0) return alert("매칭되는 추천 대책이 없습니다. 키워드를 보완해 주세요.");
-    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id });
+    if (type === 'current') {
+      // Step M: Current_Measures 테이블에서 DB ID로 조회
+      if (!risk.db_id) {
+          setIsLoading(false);
+          return alert("직접 입력한 위험요인입니다. 대책을 직접 입력해 주세요.");
+      }
+      const { data, error } = await supabase
+        .from('Current_Measures')
+        .select('id, measure_text')
+        .eq('hazard_id', risk.db_id)
+        .order('priority_score', { ascending: false });
+        
+      if (!error && data) {
+        scored = data.map(m => ({ display: m.measure_text, measure_db_id: m.id }));
+      }
+    } else {
+      // Step N: Advanced_Measures 테이블에서 조회 (현재대책 선택 시 저장된 ID 기반)
+      if (!risk.current_measure_db_id) {
+          setIsLoading(false);
+          return alert("먼저 추천 시스템을 통해 현재 안전대책을 선택해 주세요.");
+      }
+      const { data, error } = await supabase
+        .from('Advanced_Measures')
+        .select('id, solution_text')
+        .eq('measure_id', risk.current_measure_db_id);
+        
+      if (!error && data) {
+        scored = data.map(m => ({ display: m.solution_text, advanced_db_id: m.id }));
+      }
+    }
+
+    setIsLoading(false);
+    if (scored.length === 0) return alert("연결된 데이터가 없습니다. 직접 입력해 주세요.");
+    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
 
-  // ✅ [추가] 추천된 대책을 테이블에 적용하는 함수
-  const applyRecommendedMeasure = (measureText) => {
-    updateRiskField(recModal.targetRiskId, 'recommend_measure', measureText);
-    setRecModal({ isOpen: false, data: [], targetRiskId: null });
+  const applyRecommendedMeasure = (item) => {
+    if (jsaType === '2-step') {
+      // 2단계(표준형) 구성일 경우 감소대책 필드에 추가
+      updateRiskField(recModal.targetRiskId, 'measure', item.display);
+    } else if (recModal.type === 'current') {
+      updateRiskField(recModal.targetRiskId, 'current_measure', item.display);
+      // 권고 대책 조회를 위한 연결고리 ID 저장
+      updateRiskField(recModal.targetRiskId, 'current_measure_db_id', item.measure_db_id);
+    } else {
+      updateRiskField(recModal.targetRiskId, 'recommend_measure', item.display);
+    }
+    setRecModal({ isOpen: false, data: [], targetRiskId: null, type: 'advanced' });
   };
 
   const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
@@ -104,17 +137,19 @@ export default function Analysis() {
   const [selectedLibProject, setSelectedLibProject] = useState(null);
 
   useEffect(() => {
-    const fetchRiskMaster = async () => {
+    const fetchHazards = async () => {
       setIsLoading(true);
-      const { data, error } = await supabase.from('Risk_Master').select('*');
+      const { data, error } = await supabase.from('Hazards').select('*');
       if (!error && data) {
-        setDbRisks(data.map(d => ({ ...d, source: 'master' })));
-        const uniqueCats = [...new Set(data.map(item => item.category))].filter(Boolean);
+        // 하위 로직 호환성을 위해 hazard_name을 risk_factor로 임시 매핑
+        const mappedData = data.map(d => ({ ...d, risk_factor: d.hazard_name, source: 'master' }));
+        setDbRisks(mappedData);
+        const uniqueCats = [...new Set(mappedData.map(item => item.category))].filter(Boolean);
         setCategories(uniqueCats);
       }
       setIsLoading(false);
     };
-    fetchRiskMaster();
+    fetchHazards();
   }, []);
 
   const handleLogoClick = () => {
@@ -136,9 +171,9 @@ export default function Analysis() {
     const mappedRisks = stepData.risks.map(r => ({
       id: `lib-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       factor: r.factor || r.risk_factor,
-      measure: r.measure || "",
-      current_measure: r.current_measure || r.measure || "",
-      recommend_measure: r.recommend_measure || "",
+      measure: "",
+      current_measure: "",
+      recommend_measure: "",
       category: r.category || "기타",
       source: '공유'
     }));
@@ -186,19 +221,19 @@ export default function Analysis() {
     const updateRecommendations = async () => {
       let matched = [];
       if (selectedHighRisk) {
-        matched = dbRisks.filter(r => r.category === selectedHighRisk).map(r => ({ ...r, source: 'master' }));
+        const filtered = dbRisks.filter(r => r.category === selectedHighRisk);
+        matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
       } else {
-        matched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
+        const rawMatched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
+        matched = Array.from(new Map(rawMatched.map(item => [item.risk_factor, item])).values());
       }
       setRecommendations(matched);
-      setCheckedRisks(new Set()); // ✅ 탭(작업 단계) 이동 시 체크박스 초기화
-      
-      // ✅ [교정] 자동 채우기(Auto-fill) 로직 완벽 제거 완료
+      setCheckedRisks(new Set()); 
     };
     updateRecommendations();
   }, [activeIdx, currentStep.proc, selectedHighRisk, dbRisks]);
 
-  // ✅ [교정] 위험요인 추가 함수 (불변성 및 난수 ID 완벽 적용)
+  // ✅ [교정] 추가 시 위험요소만 삽입하도록 수정
   const addRisk = (rec) => {
     setAnalysisData(prev => {
       const newData = [...prev];
@@ -206,10 +241,11 @@ export default function Analysis() {
         ...newData[activeIdx],
         risks: [...newData[activeIdx].risks, { 
           id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, 
-          factor: rec.risk_factor || rec.factor || "", 
-          measure: rec.basic_measure || "", 
-          current_measure: rec.basic_measure || "", 
-          recommend_measure: rec.advanced_measure || "", 
+          db_id: rec.id, // DB의 고유 식별자 저장 추가
+          factor: rec.risk_factor || rec.factor || "",
+          measure: "", 
+          current_measure: "", 
+          recommend_measure: "", 
           category: rec.category || "기타" 
         }]
       };
@@ -217,7 +253,6 @@ export default function Analysis() {
     });
   };
 
-  // ✅ [교정] 필드 업데이트 함수 (불변성 완벽 적용)
   const updateRiskField = (riskId, field, value) => {
     setAnalysisData(prev => {
       const newData = [...prev];
@@ -231,7 +266,6 @@ export default function Analysis() {
     });
   };
 
-  // ✅ [교정] 위험성 수준 산출 함수 (불변성 완벽 적용)
   const updateStepRisk = (field, value) => {
     setAnalysisData(prev => {
       const newData = [...prev];
@@ -304,21 +338,21 @@ export default function Analysis() {
         </div>
       )}
 
-      {/* ✅ [추가] 1안: 감소권고대책 추천 결과 모달 */}
+      {/* ✅ 통합 추천 모달 */}
       {recModal.isOpen && (
-        <div style={styles.dialogOverlay} onClick={() => setRecModal({ isOpen: false, data: [], targetRiskId: null })}>
+        <div style={styles.dialogOverlay} onClick={() => setRecModal({ ...recModal, isOpen: false })}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
-              <h3 style={{ margin: 0 }}>지능형 추가 감소대책 추천</h3>
-              <button style={styles.closeBtnSmall} onClick={() => setRecModal({ isOpen: false, data: [], targetRiskId: null })}>✕</button>
+              <h3 style={{ margin: 0 }}>{recModal.type === 'current' ? '현재 안전대책' : '개선권고사항'} 선택</h3>
+              <button style={styles.closeBtnSmall} onClick={() => setRecModal({ ...recModal, isOpen: false })}>✕</button>
             </div>
             <div style={styles.libList}>
-              <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '10px' }}>입력하신 위험요인과 가장 연관성 높은 전문가 대책입니다.</p>
+              <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '10px' }}>
+                {recModal.type === 'current' ? '이 위험요소에 등록된 안전 수칙입니다.' : '현재 대책을 보완하는 상위 개선안입니다.'}
+              </p>
               {recModal.data.map((item, idx) => (
-                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item.advanced_measure)}>
-                  <div style={{ ...styles.libInfo, flex: 1 }}>
-                    <div style={{ color: '#4caf50', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' }}>매칭 신뢰도: {item.score}점</div>
-                    <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.advanced_measure}</div>
+                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>                  <div style={{ ...styles.libInfo, flex: 1 }}>
+                    <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
                   </div>
                   <span style={{ marginLeft: '10px', color: '#007bff' }}>선택</span>
                 </div>
@@ -379,7 +413,7 @@ export default function Analysis() {
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-                    <span style={styles.label}>안전 지식 베이스 (추천 {recommendations.length}건)</span>
+                    <span style={styles.label}>안전 지식 베이스 (위험요소 추출)</span>
                     <div style={{ display: 'flex', gap: '8px' }}>
                       <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>+ 빈칸 추가</button>
                       <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>✓ 선택 항목 일괄 추가</button>
@@ -391,19 +425,16 @@ export default function Analysis() {
                       <p style={{ color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>추천된 위험요인이 없습니다.</p>
                     ) : (
                       recommendations.map((rec, i) => (
-                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', backgroundColor: '#161616', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
+                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#161616', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
                           <input 
                             type="checkbox" 
-                            style={{ marginTop: '4px', cursor: 'pointer', transform: 'scale(1.2)' }}
                             checked={checkedRisks.has(rec)}
                             onChange={() => toggleCheck(rec)}
                           />
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '6px' }}>{rec.risk_factor || rec.factor}</div>
-                            <div style={{ color: '#aaa', fontSize: '0.75rem', marginBottom: '4px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>[기본] {rec.basic_measure || "대책 없음"}</div>
-                            {rec.advanced_measure && <div style={{ color: '#4caf50', fontSize: '0.75rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>[권고] {rec.advanced_measure}</div>}
+                          <div style={{ flex: 1 }}>
+                            <div style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 'bold' }}>{rec.risk_factor || rec.factor}</div>
                           </div>
-                          <div style={styles.recBadge}>{rec.source === 'master' ? "공식" : "공유"}</div>
+                          <div style={styles.recBadge}>{rec.category || "기타"}</div>
                         </label>
                       ))
                     )}
@@ -432,7 +463,7 @@ export default function Analysis() {
                           ) : (
                             <>
                               <th style={styles.th}>현재 안전대책</th>
-                              <th style={styles.th}>추가 감소대책</th>
+                              <th style={styles.th}>개선권고사항</th>
                             </>
                           )}
                           <th style={styles.th}>삭제</th>
@@ -442,25 +473,52 @@ export default function Analysis() {
                         {currentStep.risks.map(r => (
                           <tr key={r.id}>
                             <td style={styles.td}>
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
-                                {/* ✅ [추가] 1안: 심화형일 때 위험요인별 추천 버튼 */}
-                                {jsaType !== '2-step' && (
-                                  <button 
-                                    style={{ alignSelf: 'flex-end', backgroundColor: '#333', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
-                                    onClick={() => handleOpenRecommendation(r)}
-                                  >
-                                    ✨ 대책 추천
-                                  </button>
-                                )}
-                              </div>
+                              <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
                             </td>
                             {jsaType === '2-step' ? (
-                              <td style={styles.td}><textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} /></td>
+                              <td style={styles.td}>
+                                <div style={{ position: 'relative', width: '100%' }}>
+                                  <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
+                                  {!r.measure?.trim() && (
+                                    <button 
+                                      style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
+                                      onClick={() => handleOpenRecommendation(r, 'current')}
+                                    >
+                                      대책 추천
+                                    </button>
+                                  )}
+                                </div>
+                              </td>
                             ) : (
                               <>
-                                <td style={styles.td}><textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} /></td>
-                                <td style={styles.td}><textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} /></td>
+                                <td style={styles.td}>
+                                  {/* ✅ UI 교정: 박스 내부 조건부 버튼 배치 */}
+                                  <div style={{ position: 'relative', width: '100%' }}>
+                                    <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
+                                    {!r.current_measure?.trim() && (
+                                      <button 
+                                        style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
+                                        onClick={() => handleOpenRecommendation(r, 'current')}
+                                      >
+                                        대책 추천
+                                      </button>
+                                    )}
+                                  </div>
+                                </td>
+                                <td style={styles.td}>
+                                  {/* ✅ UI 교정: 박스 내부 조건부 버튼 배치 */}
+                                  <div style={{ position: 'relative', width: '100%' }}>
+                                    <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
+                                    {!r.recommend_measure?.trim() && (
+                                      <button 
+                                        style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
+                                        onClick={() => handleOpenRecommendation(r, 'advanced')}
+                                      >
+                                        권고 추천
+                                      </button>
+                                    )}
+                                  </div>
+                                </td>
                               </>
                             )}
                             <td style={{ textAlign: 'center' }}>
@@ -484,23 +542,23 @@ export default function Analysis() {
               </div>
             </div>
 
-              <div style={styles.btnArea}>
-                    <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
-                    <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { 
-                      state: { 
-                        existingId, 
-                        analysisData, 
-                        formData, 
-                        participants, 
-                        procedures,
-                        isFork: location.state?.isFork,
-                        parentId: location.state?.parentId, 
-                        originalAnalysisData: location.state?.originalAnalysisData 
-                      } 
-                    })}>
-                      {activeIdx === analysisData.length - 1 ? '분석 완료 및 모듈 설정으로 이동' : '다음 작업 단계 분석'}
-                    </button>
-                  </div>
+            <div style={styles.btnArea}>
+              <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
+              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { 
+                state: { 
+                  existingId, 
+                  analysisData, 
+                  formData, 
+                  participants, 
+                  procedures,
+                  isFork: location.state?.isFork,
+                  parentId: location.state?.parentId, 
+                  originalAnalysisData: location.state?.originalAnalysisData 
+                } 
+              })}>
+                {activeIdx === analysisData.length - 1 ? '분석 완료 및 모듈 설정으로 이동' : '다음 작업 단계 분석'}
+              </button>
+            </div>
 
           </div>
         </main>

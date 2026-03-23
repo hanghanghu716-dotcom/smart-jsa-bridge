@@ -1,14 +1,32 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import AdSenseUnit from '../components/AdSenseUnit'; // 광고 컴포넌트 임포트
+import AdSenseUnit from '../components/AdSenseUnit';
+import { useTranslation } from 'react-i18next';
 
 export default function Main() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [user, setUser] = useState(null);
+
+  // [수정] 영국, 미국, 호주, 독일, 프랑스 등 지정하신 국가별 언어 옵션 적용
+  const languages = [
+    { code: 'ko-KR', label: ' 한국어' },
+    { code: 'en-US', label: ' English (US)' },
+    { code: 'en-GB', label: ' English (UK)' },
+    { code: 'en-AU', label: ' English (AU)' },
+    { code: 'de-DE', label: ' Deutsch' },
+    { code: 'fr-FR', label: ' Français' },
+  ];
+
+  const handleLanguageChange = (lngCode) => {
+    i18n.changeLanguage(lngCode);
+    setIsLanguageOpen(false);
+  };
 
   const slides = [
     '/images/image1.jpg',
@@ -19,7 +37,6 @@ export default function Main() {
     '/images/image6.jpg'
   ];
 
-  // 애드센스 설정 정보
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
   const MAIN_SIDE_SLOT_ID = '3978298367';
   const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
@@ -45,7 +62,7 @@ export default function Main() {
 
   const handleStartClick = () => {
     if (window.innerWidth < 1024) {
-      alert("해당 기능은 PC 버전에서 최적화되어 있습니다. 상세 작성은 웹을 이용해 주시기 바랍니다.");
+      alert(t('main.mobileAlert'));
       return;
     }
     if (user) {
@@ -60,16 +77,16 @@ export default function Main() {
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>작업안전분석 시작하기</h3>
+            <h3 style={styles.modalTitle}>{t('main.modalTitle')}</h3>
             <p style={styles.modalSub}>
-              현장 데이터를 클라우드에 보관하고 다른 유저와 공유하시겠습니까?<br />
-              로그인 시 큐레이션 기능을 이용할 수 있습니다.
+              {t('main.modalSub1')}<br />
+              {t('main.modalSub2')}
             </p>
             <div style={styles.modalBtnGroup}>
-              <button style={styles.loginBtn} onClick={() => navigate('/login')}>로그인 및 회원가입</button>
-              <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>비회원으로 즉시 시작</button>
+              <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('main.loginBtn')}</button>
+              <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>{t('main.guestBtn')}</button>
             </div>
-            <button style={styles.closeText} onClick={() => setIsStartModalOpen(false)}>취소</button>
+            <button style={styles.closeText} onClick={() => setIsStartModalOpen(false)}>{t('main.cancelBtn')}</button>
           </div>
         </div>
       )}
@@ -88,7 +105,7 @@ export default function Main() {
             
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
-                <Link to="/explore" style={styles.headerLink}>사례 탐색</Link>
+                <Link to="/explore" style={styles.headerLink}>{t('main.navExplore')}</Link>
                 <span 
                   style={{ ...styles.headerLink, cursor: 'pointer' }} 
                   onClick={() => {
@@ -96,9 +113,37 @@ export default function Main() {
                     else { setIsStartModalOpen(true); }
                   }}
                 >
-                  내 보관함
+                  {t('main.navLibrary')}
                 </span>
               </div>
+              <span style={styles.separator}>|</span>
+              
+              <div style={styles.languageSelectorWrapper}>
+                <div 
+                  style={styles.activeLanguageDisplay} 
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                >
+                  {/* [수정] i18n 언어 코드를 배열과 정확히 매칭하도록 split 제거 */}
+                  {languages.find(lng => lng.code === i18n.language)?.label || 'Language'} 
+                  <span style={{...styles.dropdownArrow, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)'}}>▼</span>
+                </div>
+                {isLanguageOpen && (
+                  <div style={styles.dropdownMenu}>
+                    {languages.map(lng => (
+                      <div 
+                        key={lng.code} 
+                        style={styles.dropdownItem} 
+                        onClick={() => handleLanguageChange(lng.code)}
+                        onMouseEnter={(e) => e.target.style.backgroundColor = '#f1f1f1'}
+                        onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
+                      >
+                        {lng.label}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <span style={styles.separator}>|</span>
               <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
                 <span style={styles.menuText} className="max-lg:hidden">MENU</span>
@@ -126,39 +171,38 @@ export default function Main() {
               <>
                 <div style={styles.userBadge}>
                   <div style={{ marginBottom: '10px', lineHeight: '1.6' }}>
-                    <strong>{user.email}</strong> 님<br />
-                    환영합니다.
+                    <strong>{user.email}</strong> {t('main.welcomeSuffix1')}<br />
+                    {t('main.welcomeSuffix2')}
                   </div>
-                  <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>로그아웃</button>
+                  <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>{t('main.logout')}</button>
                 </div>
                 <Link to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
-                  회원정보 수정 및 지식 통계
+                  {t('main.profileEdit')}
                 </Link>
               </>
             ) : (
-              <Link to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>로그인 / 회원가입</Link>
+              <Link to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.loginSignup')}</Link>
             )}
 
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
-            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가 실시규정 가이드</Link>
-            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가(JRA/JSA) 실무 프로세스</Link>
-            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>보호구에 관하여</Link>
-            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>일반 작업/고위험 작업</Link>
-            <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험요인·대책 DB</Link>
+            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navRegulation')}</Link>
+            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navProcess')}</Link>
+            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navPPE')}</Link>
+            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navRiskClass')}</Link>
+            <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navDB')}</Link>
             
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
-            <Link to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>작업 전 위험성평가 예시</Link>
-            <Link to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>건설업 JSA (10종)</Link>
-            <Link to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>고위험 특수작업 JSA (10종)</Link>
-            <Link to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>제조업 JSA (10종)</Link>
-            <Link to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>화공·가스 작업 JSA (10종)</Link>
-            <Link to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>기타 일반작업 JSA (10종)</Link>
+            <Link to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideCommon')}</Link>
+            <Link to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideConstruction')}</Link>
+            <Link to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideHighRisk')}</Link>
+            <Link to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideManufacturing')}</Link>
+            <Link to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideChemical')}</Link>
+            <Link to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideGeneral')}</Link>
           </nav>
         </div>
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
         <div style={styles.mainLayout} className="max-lg:!px-6 max-lg:!flex-col">
-          {/* [좌측 광고 고정 적용] */}
           <aside className="hidden lg:block" style={styles.sideAd}>
             <div style={styles.adPlaceholderFixedLeft}>
               <span style={styles.adLabel}>AD (LEFT)</span>
@@ -169,19 +213,18 @@ export default function Main() {
           <main style={styles.centerContent} className="max-lg:!pl-0">
             <div style={styles.heroContent}>
               <h2 className="text-[28px] lg:text-[clamp(2.5rem,5vw,3.8rem)] font-extrabold leading-tight mb-6" style={styles.mainTitle}>
-                데이터로 잇는 안전,<br />사람을 지키는 기술
+                {t('main.heroTitle1')}<br />{t('main.heroTitle2')}
               </h2>
               <p className="text-[14px] lg:text-[1.2rem]" style={styles.subTitle}>
-                현장의 육안 점검과 지능형 분석 데이터를 결합하여,<br />
-                놓치기 쉬운 잠재 위험 요인을 정밀하게 도출합니다.
+                {t('main.heroSub1')}<br />
+                {t('main.heroSub2')}
               </p>
               <button onClick={handleStartClick} style={styles.primaryBtn}>
-                위험성 평가 작성하기
+                {t('main.heroBtn')}
               </button>
             </div>
           </main>
 
-          {/* [우측 광고 고정 적용] */}
           <aside className="hidden lg:block" style={styles.sideAd}>
             <div style={styles.adPlaceholderFixedRight}>
               <span style={styles.adLabel}>AD (RIGHT)</span>
@@ -191,7 +234,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* [모바일 최적화]: 히어로 섹션 직후 모바일 브릿지 광고 추가 */}
       <div className="lg:hidden" style={styles.mobileAdSector}>
         <div style={styles.mobileAdBox}>
            <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
@@ -205,12 +247,12 @@ export default function Main() {
             <div style={styles.valueTextSide} className="w-full lg:flex-[1.2]">
               <span style={styles.m3Tag} className="block mb-4">CORE VALUE</span>
               <h3 className="text-[24px] lg:text-[3.5rem] font-black mb-8 leading-tight" style={styles.m3Title}>
-                실질적 위험 발굴을 돕는<br />지능형 안전 분석 파트너
+                {t('main.coreValueTitle1')}<br />{t('main.coreValueTitle2')}
               </h3>
               <div style={styles.valuePoint}>
-                <h4 className="text-lg font-bold mb-2">체계적인 데이터 매칭</h4>
+                <h4 className="text-lg font-bold mb-2">{t('main.coreValueSubtitle')}</h4>
                 <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
-                  수많은 작업 시나리오 분석을 통해 구축된 데이터베이스를 기반으로 제안합니다.
+                  {t('main.coreValueDesc')}
                 </p>
               </div>
             </div>
@@ -225,25 +267,25 @@ export default function Main() {
         <div style={styles.container}>
           <div style={styles.m3Header} className="px-6 lg:px-0">
             <span style={styles.m3Tag} className="block mb-4">ANALYSIS GUIDES</span>
-            <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>9대 고위험 작업별 위험 분석 가이드</h3>
+            <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>{t('main.analysisGuideTitle')}</h3>
           </div>
           <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0">
             {[
-              { id: '01', title: '일반 및 공통안전', f: '작업자 건강상태 및 심리적 불안정 미확인', m: 'TBM 활용 혈압 측정 및 음주 여부 확인 실시' },
-              { id: '02', title: '고소 작업', f: '작업 발판 단부 및 개구부에서의 작업자 추락', m: '그네식 안전대 착용 및 생명줄(Life-line) 체결 철저' },
-              { id: '03', title: '화기 작업', f: '용접 불티 비산으로 인한 주변 가연물 화재/폭발', m: '가연물 제거, 비산 방지포 설치 및 화기 감시자 배치' },
-              { id: '04', title: '밀폐 공간', f: '내부 산소 결핍 및 유해가스에 의한 질식/중독', m: '진입 전 농도 측정 및 이동식 송풍기 상시 환기 가동' },
-              { id: '05', title: '정전 및 전기', f: '전기 정비 중 제3자의 불시 투입에 의한 감전', m: 'LOTO(잠금장치 및 표지판) 설치 및 키 개인 보관' },
-              { id: '06', title: '굴착 작업', f: '법면 붕괴로 인한 작업자 매몰 및 장비 전도', m: '지반 안식각 준수 및 흙막이 지보공 설치 상태 점검' },
-              { id: '07', title: '중장비 운용', f: '장비 사각지대 위치 보행자와의 충돌 및 끼임', m: '전담 신호수 배치 및 후방 카메라/감지기 작동 확인' },
-              { id: '08', title: '중량물 취급', f: '줄걸이 용구 파단으로 인한 인양물 낙하 및 타격', m: '용구 마모 상태 점검 및 유도 로프(Tag Line) 사용' },
-              { id: '09', title: '가연성 가스', f: '배관 기밀 시험 중 누출 가스에 의한 인화/폭발', m: '정전기 방지 조치 및 검지기를 활용한 정밀 점검' }
+              { id: '01', title: t('main.jsaCard.01.title'), f: t('main.jsaCard.01.f'), m: t('main.jsaCard.01.m') },
+              { id: '02', title: t('main.jsaCard.02.title'), f: t('main.jsaCard.02.f'), m: t('main.jsaCard.02.m') },
+              { id: '03', title: t('main.jsaCard.03.title'), f: t('main.jsaCard.03.f'), m: t('main.jsaCard.03.m') },
+              { id: '04', title: t('main.jsaCard.04.title'), f: t('main.jsaCard.04.f'), m: t('main.jsaCard.04.m') },
+              { id: '05', title: t('main.jsaCard.05.title'), f: t('main.jsaCard.05.f'), m: t('main.jsaCard.05.m') },
+              { id: '06', title: t('main.jsaCard.06.title'), f: t('main.jsaCard.06.f'), m: t('main.jsaCard.06.m') },
+              { id: '07', title: t('main.jsaCard.07.title'), f: t('main.jsaCard.07.f'), m: t('main.jsaCard.07.m') },
+              { id: '08', title: t('main.jsaCard.08.title'), f: t('main.jsaCard.08.f'), m: t('main.jsaCard.08.m') },
+              { id: '09', title: t('main.jsaCard.09.title'), f: t('main.jsaCard.09.f'), m: t('main.jsaCard.09.m') }
             ].map(item => (
               <div key={item.id} style={styles.jsaCard}>
                 <span style={styles.jsaBadge}>{item.id}</span>
                 <h5 style={styles.jsaCardTitle}>{item.title}</h5>
-                <div style={styles.jsaFactorBox}><strong>위험요인</strong><p className="text-sm mt-1">{item.f}</p></div>
-                <div style={styles.jsaMeasureBox}><strong>감소대책</strong><p className="text-sm mt-1">{item.m}</p></div>
+                <div style={styles.jsaFactorBox}><strong>{t('main.hazardFactor')}</strong><p className="text-sm mt-1">{item.f}</p></div>
+                <div style={styles.jsaMeasureBox}><strong>{t('main.reductionMeasure')}</strong><p className="text-sm mt-1">{item.m}</p></div>
               </div>
             ))}
           </div>
@@ -255,9 +297,9 @@ export default function Main() {
           <div style={styles.footerFlex}>
             <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
-              <Link to="/privacy" style={styles.fLink}>개인정보처리방침</Link>
-              <Link to="/terms" style={styles.fLink}>이용약관</Link>
-              <Link to="/about" style={styles.fLink}>서비스 소개</Link>
+              <Link to="/privacy" style={styles.fLink}>{t('main.footerPrivacy')}</Link>
+              <Link to="/terms" style={styles.fLink}>{t('main.footerTerms')}</Link>
+              <Link to="/about" style={styles.fLink}>{t('main.footerAbout')}</Link>
             </div>
           </div>
         </div>
@@ -276,7 +318,7 @@ const styles = {
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'opacity 2s ease-in-out' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%)', zIndex: 1 },
-  header: { padding: '2.5rem 5rem', zIndex: 10 },
+  header: { padding: '2.5rem 5rem', zIndex: 1000, position: 'relative' }, 
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10 },
   sideAd: { width: '160px', flexShrink: 0 },
@@ -320,13 +362,10 @@ const styles = {
   footerLinks: { display: 'flex', gap: '40px' },
   fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' },
   imageCard: { width: '100%', height: '550px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '24px' },
-
-  /* [기능 추가 및 수정]: 광고 고정(Fixed) 스타일 */
   adLabel: { fontSize: '10px', color: 'rgba(255,255,255,0.3)', fontWeight: 'bold', marginBottom: '8px' },
   adLabelDark: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', marginBottom: '8px' },
   mobileAdSector: { width: '100%', padding: '20px 24px', backgroundColor: '#fff' },
   mobileAdBox: { width: '100%', minHeight: '100px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0' },
-
   adPlaceholderFixedLeft: { 
     position: 'fixed',
     top: '50%',
@@ -358,5 +397,45 @@ const styles = {
     alignItems: 'center', 
     padding: '10px 0',
     zIndex: 100
+  },
+  languageSelectorWrapper: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  activeLanguageDisplay: {
+    display: 'flex',
+    alignItems: 'center',
+    color: '#ffffff',
+    fontSize: '0.9rem',
+    fontWeight: '700',
+    cursor: 'pointer',
+    padding: '5px 10px',
+    opacity: 0.85,
+    userSelect: 'none'
+  },
+  dropdownArrow: {
+    fontSize: '10px',
+    marginLeft: '6px',
+    transition: 'transform 0.2s',
+  },
+  dropdownMenu: {
+    position: 'absolute',
+    top: '120%',
+    right: 0,
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+    boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+    width: '120px',
+    overflow: 'hidden',
+    zIndex: 2000, 
+  },
+  dropdownItem: {
+    color: '#111111',
+    padding: '12px 15px',
+    fontSize: '14px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    transition: 'background 0.2s',
   }
 };
