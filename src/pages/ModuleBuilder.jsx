@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
+import { useTranslation } from 'react-i18next'; // ✅ [추가]
 
 /**
  * [ModuleBuilder 컴포넌트]
@@ -11,6 +12,7 @@ import AdBanner from '../AdBanner';
 export default function ModuleBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation(['modulebuilder']); // ✅ [추가]
   
   const { 
     existingId = null,
@@ -28,10 +30,10 @@ export default function ModuleBuilder() {
   const [signatureRows, setSignatureRows] = useState(savedSignatureRows || 1);
 
   // 문서 타이틀 및 결재란 헤더 수정용 상태 관리
-  const [docTitle, setDocTitle] = useState(savedDocTitle || '위험성평가표 (JSA)');
-  const [appr1, setAppr1] = useState(savedAppr1 || '작성');
-  const [appr2, setAppr2] = useState(savedAppr2 || '검토');
-  const [appr3, setAppr3] = useState(savedAppr3 || '승인');
+  const [docTitle, setDocTitle] = useState(savedDocTitle || t('default.docTitle', '위험성평가표 (JSA)'));
+  const [appr1, setAppr1] = useState(savedAppr1 || t('default.appr1', '작성'));
+  const [appr2, setAppr2] = useState(savedAppr2 || t('default.appr2', '검토'));
+  const [appr3, setAppr3] = useState(savedAppr3 || t('default.appr3', '승인'));
 
   const goBackToAnalysis = () => {
     navigate('/analysis', { 
@@ -81,7 +83,7 @@ export default function ModuleBuilder() {
         </colgroup>
         <tbody>
           <tr>
-            <td style={labelTdStyle}>작업명</td>
+            <td style={labelTdStyle}>{t('table.projectName')}</td>
             <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
             <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle' }}>
               {docTitle}
@@ -90,7 +92,7 @@ export default function ModuleBuilder() {
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    <td rowSpan={2} style={{ borderRight: '1px solid #000', width: '20px', writingMode: 'vertical-rl', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none' }}>결재</td>
+                    <td rowSpan={2} style={{ borderRight: '1px solid #000', width: '20px', writingMode: 'vertical-rl', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none' }}>{t('table.approval')}</td>
                     <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr1}</td>
                     <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr2}</td>
                     <td style={{ borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr3}</td>
@@ -106,43 +108,43 @@ export default function ModuleBuilder() {
           </tr>
           
           <tr>
-            <td style={labelTdStyle}>작업구역</td>
+            <td style={labelTdStyle}>{t('table.workLocation')}</td>
             <td style={commonTdStyle}>{formData?.workLocation || ''}</td>
-            <td style={labelTdStyle}>수행부서</td>
+            <td style={labelTdStyle}>{t('table.department')}</td>
             <td style={commonTdStyle}>{formData?.department || ''}</td>
-            <td style={labelTdStyle}>수행일자</td>
+            <td style={labelTdStyle}>{t('table.workDate')}</td>
             <td style={commonTdStyle}>{formData?.workDate || ''}</td>
           </tr>
 
           <tr>
-            <td style={labelTdStyle}>개인보호구</td>
+            <td style={labelTdStyle}>{t('table.ppe')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
               <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} 안전모</span>
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} 안전화</span>
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('보안경') ? '☑' : '□'} 보안경</span>
-                <span style={checkboxItemStyle}>□ 안전대</span>
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} 방진/방독마스크</span>
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} 안전장갑</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} {t('ppe.helmet')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} {t('ppe.shoes')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('보안경') ? '☑' : '□'} {t('ppe.glasses')}</span>
+                <span style={checkboxItemStyle}>□ {t('ppe.safetyBelt')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} {t('ppe.mask')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} {t('ppe.gloves')}</span>
                 <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
-                  {ppeOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)
+                  {ppeOthers ? '☑' : '□'} {t('ppe.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)
                 </span>
               </div>
             </td>
           </tr>
 
           <tr>
-            <td style={labelTdStyle}>고위험작업</td>
+            <td style={labelTdStyle}>{t('table.highRiskWork')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
               <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} 화기</span>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} 밀폐</span>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} 정전/활선</span>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} 고소</span>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} 중량물취급</span>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} 굴착</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} {t('permit.hotWork')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} {t('permit.confinedSpace')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} {t('permit.electrical')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} {t('permit.highElevation')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} {t('permit.heavyLifting')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} {t('permit.excavation')}</span>
                 <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
-                  {permitOthers ? '☑' : '□'} 기타(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)
+                  {permitOthers ? '☑' : '□'} {t('permit.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)
                 </span>
               </div>
             </td>
@@ -163,13 +165,13 @@ export default function ModuleBuilder() {
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', borderTop: 'none', tableLayout: 'fixed' }}>
         <tbody>
           <tr>
-            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none'}}>참여자</td>
+            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none'}}>{t('table.participants')}</td>
             {cols.map(c => {
               const pName = participants?.[c] || '';
               return (
                 <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'bottom', color: '#000', borderTop: 'none'}}>
                   {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: '#888'}}>(인)</span>
+                  <span style={{color: '#888'}}>{t('table.signature')}</span>
                 </td>
               );
             })}
@@ -182,7 +184,7 @@ export default function ModuleBuilder() {
                 return (
                   <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'bottom', color: '#000'}}>
                     {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: '#888'}}>(인)</span>
+                    <span style={{color: '#888'}}>{t('table.signature')}</span>
                   </td>
                 );
               })}
@@ -196,8 +198,8 @@ export default function ModuleBuilder() {
   const renderDynamicLayout = () => {
     const TableBlock = (
       <div key="table-block" style={{...styles.previewBlock, backgroundColor: 'rgba(40, 167, 69, 0.05)', border: '2px dashed #28a745', borderTop: 'none', padding: '40px 10px', margin: '0 0 -1px 0'}}>
-        <div style={{ color: '#28a745', textAlign: 'center', fontSize: '1rem', fontWeight: 'bold' }}>[위험성 평가 데이터 테이블 구역]</div>
-        <div style={{ textAlign: 'center', color: '#28a745', fontSize: '0.8rem', marginTop: '5px' }}>Step 5에서 설정한 컬럼 데이터가 이 위치에 자동으로 삽입됩니다.</div>
+        <div style={{ color: '#28a745', textAlign: 'center', fontSize: '1rem', fontWeight: 'bold' }}>{t('preview.tableAreaTitle')}</div>
+        <div style={{ textAlign: 'center', color: '#28a745', fontSize: '0.8rem', marginTop: '5px' }}>{t('preview.tableAreaDesc')}</div>
       </div>
     );
 
@@ -218,40 +220,40 @@ export default function ModuleBuilder() {
           <div style={styles.formCard}>
             
             <nav style={styles.stepper}>
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>위험 분석</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>4</div><span style={styles.stepTextActive}>문서 모듈 구성</span></div><div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>데이터 표 구성</span></div><div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.riskAnalysis')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>4</div><span style={styles.stepTextActive}>{t('step.moduleConfig')}</span></div><div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div><div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
             </nav>
             
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>| 04. 문서 모듈 구성</h2>
-              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>JSA 본문 헤더 정보 및 안전작업허가(PTW) 부가 요소를 설정합니다.</p>
+              <h2 style={styles.formTitle}>{t('header.title')}</h2>
+              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p>
             </div>
 
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
                 
                 <div style={styles.toolSectionCompact}>
-                  <h3 style={styles.toolTitleMini}>문서 헤더 텍스트 설정</h3>
+                  <h3 style={styles.toolTitleMini}>{t('toolbar.headerTextSetting')}</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <div style={styles.inputFieldCompact}>
-                      <span style={styles.inputLabel}>문서 제목</span>
+                      <span style={styles.inputLabel}>{t('toolbar.docTitle')}</span>
                       <input type="text" value={docTitle} onChange={(e) => setDocTitle(e.target.value)} style={styles.panelInput} />
                     </div>
                     <div style={{ display: 'flex', gap: '6px' }}>
                       <div style={styles.inputFieldCompact}>
-                        <span style={styles.inputLabel}>결재란 1</span>
+                        <span style={styles.inputLabel}>{t('toolbar.appr1')}</span>
                         <input type="text" value={appr1} onChange={(e) => setAppr1(e.target.value)} style={styles.panelInput} />
                       </div>
                       <div style={styles.inputFieldCompact}>
-                        <span style={styles.inputLabel}>결재란 2</span>
+                        <span style={styles.inputLabel}>{t('toolbar.appr2')}</span>
                         <input type="text" value={appr2} onChange={(e) => setAppr2(e.target.value)} style={styles.panelInput} />
                       </div>
                       <div style={styles.inputFieldCompact}>
-                        <span style={styles.inputLabel}>결재란 3</span>
+                        <span style={styles.inputLabel}>{t('toolbar.appr3')}</span>
                         <input type="text" value={appr3} onChange={(e) => setAppr3(e.target.value)} style={styles.panelInput} />
                       </div>
                     </div>
@@ -259,9 +261,9 @@ export default function ModuleBuilder() {
                 </div>
 
                 <div style={styles.toolSectionCompact}>
-                  <h3 style={styles.toolTitleMini}>서명란 설정</h3>
+                  <h3 style={styles.toolTitleMini}>{t('toolbar.signatureSetting')}</h3>
                   <div style={{...styles.inputFieldCompact, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <span style={styles.inputLabel}>서명란 줄 추가 (1줄 = 8명)</span>
+                    <span style={styles.inputLabel}>{t('toolbar.addSignatureRow')}</span>
                     <div style={styles.buttonGroupSmall}>
                       <button onClick={() => setSignatureRows(Math.max(1, signatureRows - 1))} style={styles.miniBtnControl}>-</button>
                       <span style={{ color: '#007bff', fontSize: '1rem', width: '24px', textAlign: 'center', fontWeight: 'bold' }}>{signatureRows}</span>
@@ -273,9 +275,8 @@ export default function ModuleBuilder() {
               </aside>
 
               <section style={styles.previewPanel}>
-                <div style={styles.previewHeader}>문서 구조 미리보기 (구상도)</div>
+                <div style={styles.previewHeader}>{t('preview.header')}</div>
                 <div style={styles.previewCanvas}>
-                  {/* 통합된 너비 및 폰트 세팅 반영 */}
                   <div style={styles.documentSheet}>
                     {renderUnifiedHeader()}
                     <div style={{ width: '100%' }}>
@@ -287,8 +288,8 @@ export default function ModuleBuilder() {
             </div>
 
             <div style={styles.btnAreaLayout}>
-              <button style={styles.prevBtnDark} onClick={goBackToAnalysis}>이전 단계 (위험 분석)</button>
-              <button style={styles.nextBtnLight} onClick={goToTableBuilder}>다음: 데이터 표 구성 (Step 5)</button>
+              <button style={styles.prevBtnDark} onClick={goBackToAnalysis}>{t('btn.prev')}</button>
+              <button style={styles.nextBtnLight} onClick={goToTableBuilder}>{t('btn.next')}</button>
             </div>
           </div>
         </main>
@@ -323,7 +324,7 @@ mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 2rem 2
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
   builderLayout: { display: 'flex', flex: 1, gap: '1.5rem', overflow: 'hidden' },
-  toolbarSliding: { width: '320px', backgroundColor: 'rgba(24, 24, 24, 0.95)', border: '1px solid #333', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflowY: 'auto' },
+  toolbarSliding: { width: '320px', backgroundColor: 'rgba(24, 24, 24, 0.95)', border: '1px solid #333', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflow: 'auto' },
   toolSectionCompact: { display: 'flex', flexDirection: 'column', gap: '0.8rem' },
   toolTitleMini: { color: '#aaa', fontSize: '0.85rem', fontWeight: '900', borderLeft: '3px solid #007bff', paddingLeft: '8px', margin: 0 },
   inputFieldCompact: { backgroundColor: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', border: '1px solid #333', display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 },

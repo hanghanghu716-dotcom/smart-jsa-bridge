@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
@@ -6,16 +7,17 @@ import { useTranslation } from 'react-i18next';
 
 export default function Main() {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  // 'main' 네임스페이스만 로드하여 300여 개의 태그 로딩 부하를 방지합니다.
+  const { t, i18n } = useTranslation('main'); 
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [user, setUser] = useState(null);
 
-  // [수정] 영국, 미국, 호주, 독일, 프랑스 등 지정하신 국가별 언어 옵션 적용
   const languages = [
-    { code: 'ko-KR', label: ' 한국어' },
+    { code: 'ko', label: ' 한국어' },
     { code: 'en-US', label: ' English (US)' },
     { code: 'en-GB', label: ' English (UK)' },
     { code: 'en-AU', label: ' English (AU)' },
@@ -62,7 +64,7 @@ export default function Main() {
 
   const handleStartClick = () => {
     if (window.innerWidth < 1024) {
-      alert(t('main.mobileAlert'));
+      alert(t('mobileAlert'));
       return;
     }
     if (user) {
@@ -77,16 +79,16 @@ export default function Main() {
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('main.modalTitle')}</h3>
+            <h3 style={styles.modalTitle}>{t('modalTitle')}</h3>
             <p style={styles.modalSub}>
-              {t('main.modalSub1')}<br />
-              {t('main.modalSub2')}
+              {t('modalSub1')}<br />
+              {t('modalSub2')}
             </p>
             <div style={styles.modalBtnGroup}>
-              <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('main.loginBtn')}</button>
-              <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>{t('main.guestBtn')}</button>
+              <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('loginBtn')}</button>
+              <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>{t('guestBtn')}</button>
             </div>
-            <button style={styles.closeText} onClick={() => setIsStartModalOpen(false)}>{t('main.cancelBtn')}</button>
+            <button style={styles.closeText} onClick={() => setIsStartModalOpen(false)}>{t('cancelBtn')}</button>
           </div>
         </div>
       )}
@@ -105,7 +107,7 @@ export default function Main() {
             
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
-                <Link to="/explore" style={styles.headerLink}>{t('main.navExplore')}</Link>
+                <Link to="/explore" style={styles.headerLink}>{t('navExplore')}</Link>
                 <span 
                   style={{ ...styles.headerLink, cursor: 'pointer' }} 
                   onClick={() => {
@@ -113,7 +115,7 @@ export default function Main() {
                     else { setIsStartModalOpen(true); }
                   }}
                 >
-                  {t('main.navLibrary')}
+                  {t('navLibrary')}
                 </span>
               </div>
               <span style={styles.separator}>|</span>
@@ -123,7 +125,7 @@ export default function Main() {
                   style={styles.activeLanguageDisplay} 
                   onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 >
-                  {/* [수정] i18n 언어 코드를 배열과 정확히 매칭하도록 split 제거 */}
+                  {/* 현재 i18n 언어 설정과 매칭되는 라벨을 표시합니다. */}
                   {languages.find(lng => lng.code === i18n.language)?.label || 'Language'} 
                   <span style={{...styles.dropdownArrow, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)'}}>▼</span>
                 </div>
@@ -134,8 +136,6 @@ export default function Main() {
                         key={lng.code} 
                         style={styles.dropdownItem} 
                         onClick={() => handleLanguageChange(lng.code)}
-                        onMouseEnter={(e) => e.target.style.backgroundColor = '#f1f1f1'}
-                        onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
                       >
                         {lng.label}
                       </div>
@@ -156,6 +156,7 @@ export default function Main() {
           </div>
         </header>
 
+        {/* Side Drawer 부분 */}
         <div style={{
           ...styles.sideDrawer,
           transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
@@ -171,33 +172,33 @@ export default function Main() {
               <>
                 <div style={styles.userBadge}>
                   <div style={{ marginBottom: '10px', lineHeight: '1.6' }}>
-                    <strong>{user.email}</strong> {t('main.welcomeSuffix1')}<br />
-                    {t('main.welcomeSuffix2')}
+                    <strong>{user.email}</strong> {t('welcomeSuffix1')}<br />
+                    {t('welcomeSuffix2')}
                   </div>
-                  <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>{t('main.logout')}</button>
+                  <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>{t('logout')}</button>
                 </div>
                 <Link to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
-                  {t('main.profileEdit')}
+                  {t('profileEdit')}
                 </Link>
               </>
             ) : (
-              <Link to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.loginSignup')}</Link>
+              <Link to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</Link>
             )}
 
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
-            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navRegulation')}</Link>
-            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navProcess')}</Link>
-            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navPPE')}</Link>
-            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navRiskClass')}</Link>
-            <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navDB')}</Link>
+            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</Link>
+            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navProcess')}</Link>
+            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navPPE')}</Link>
+            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRiskClass')}</Link>
+            <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navDB')}</Link>
             
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
-            <Link to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideCommon')}</Link>
-            <Link to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideConstruction')}</Link>
-            <Link to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideHighRisk')}</Link>
-            <Link to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideManufacturing')}</Link>
-            <Link to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideChemical')}</Link>
-            <Link to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('main.navGuideGeneral')}</Link>
+            <Link to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</Link>
+            <Link to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</Link>
+            <Link to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideHighRisk')}</Link>
+            <Link to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideManufacturing')}</Link>
+            <Link to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideChemical')}</Link>
+            <Link to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideGeneral')}</Link>
           </nav>
         </div>
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
@@ -213,14 +214,14 @@ export default function Main() {
           <main style={styles.centerContent} className="max-lg:!pl-0">
             <div style={styles.heroContent}>
               <h2 className="text-[28px] lg:text-[clamp(2.5rem,5vw,3.8rem)] font-extrabold leading-tight mb-6" style={styles.mainTitle}>
-                {t('main.heroTitle1')}<br />{t('main.heroTitle2')}
+                {t('heroTitle1')}<br />{t('heroTitle2')}
               </h2>
               <p className="text-[14px] lg:text-[1.2rem]" style={styles.subTitle}>
-                {t('main.heroSub1')}<br />
-                {t('main.heroSub2')}
+                {t('heroSub1')}<br />
+                {t('heroSub2')}
               </p>
               <button onClick={handleStartClick} style={styles.primaryBtn}>
-                {t('main.heroBtn')}
+                {t('heroBtn')}
               </button>
             </div>
           </main>
@@ -234,6 +235,7 @@ export default function Main() {
         </div>
       </section>
 
+      {/* 모바일 광고 섹션 */}
       <div className="lg:hidden" style={styles.mobileAdSector}>
         <div style={styles.mobileAdBox}>
            <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
@@ -241,18 +243,19 @@ export default function Main() {
         </div>
       </div>
 
+      {/* CORE VALUE 섹션 */}
       <section style={styles.m3Section} className="max-lg:!py-20">
         <div style={styles.container}>
           <div className="flex flex-col lg:flex-row lg:gap-[100px] items-center">
             <div style={styles.valueTextSide} className="w-full lg:flex-[1.2]">
               <span style={styles.m3Tag} className="block mb-4">CORE VALUE</span>
               <h3 className="text-[24px] lg:text-[3.5rem] font-black mb-8 leading-tight" style={styles.m3Title}>
-                {t('main.coreValueTitle1')}<br />{t('main.coreValueTitle2')}
+                {t('coreValueTitle1')}<br />{t('coreValueTitle2')}
               </h3>
               <div style={styles.valuePoint}>
-                <h4 className="text-lg font-bold mb-2">{t('main.coreValueSubtitle')}</h4>
+                <h4 className="text-lg font-bold mb-2">{t('coreValueSubtitle')}</h4>
                 <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
-                  {t('main.coreValueDesc')}
+                  {t('coreValueDesc')}
                 </p>
               </div>
             </div>
@@ -263,29 +266,26 @@ export default function Main() {
         </div>
       </section>
 
+      {/* ANALYSIS GUIDES 섹션 */}
       <section style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }} className="max-lg:!py-20">
         <div style={styles.container}>
           <div style={styles.m3Header} className="px-6 lg:px-0">
             <span style={styles.m3Tag} className="block mb-4">ANALYSIS GUIDES</span>
-            <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>{t('main.analysisGuideTitle')}</h3>
+            <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>{t('analysisGuideTitle')}</h3>
           </div>
           <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0">
-            {[
-              { id: '01', title: t('main.jsaCard.01.title'), f: t('main.jsaCard.01.f'), m: t('main.jsaCard.01.m') },
-              { id: '02', title: t('main.jsaCard.02.title'), f: t('main.jsaCard.02.f'), m: t('main.jsaCard.02.m') },
-              { id: '03', title: t('main.jsaCard.03.title'), f: t('main.jsaCard.03.f'), m: t('main.jsaCard.03.m') },
-              { id: '04', title: t('main.jsaCard.04.title'), f: t('main.jsaCard.04.f'), m: t('main.jsaCard.04.m') },
-              { id: '05', title: t('main.jsaCard.05.title'), f: t('main.jsaCard.05.f'), m: t('main.jsaCard.05.m') },
-              { id: '06', title: t('main.jsaCard.06.title'), f: t('main.jsaCard.06.f'), m: t('main.jsaCard.06.m') },
-              { id: '07', title: t('main.jsaCard.07.title'), f: t('main.jsaCard.07.f'), m: t('main.jsaCard.07.m') },
-              { id: '08', title: t('main.jsaCard.08.title'), f: t('main.jsaCard.08.f'), m: t('main.jsaCard.08.m') },
-              { id: '09', title: t('main.jsaCard.09.title'), f: t('main.jsaCard.09.f'), m: t('main.jsaCard.09.m') }
-            ].map(item => (
-              <div key={item.id} style={styles.jsaCard}>
-                <span style={styles.jsaBadge}>{item.id}</span>
-                <h5 style={styles.jsaCardTitle}>{item.title}</h5>
-                <div style={styles.jsaFactorBox}><strong>{t('main.hazardFactor')}</strong><p className="text-sm mt-1">{item.f}</p></div>
-                <div style={styles.jsaMeasureBox}><strong>{t('main.reductionMeasure')}</strong><p className="text-sm mt-1">{item.m}</p></div>
+            {['01', '02', '03', '04', '05', '06', '07', '08', '09'].map(id => (
+              <div key={id} style={styles.jsaCard}>
+                <span style={styles.jsaBadge}>{id}</span>
+                <h5 style={styles.jsaCardTitle}>{t(`jsaCard.${id}.title`)}</h5>
+                <div style={styles.jsaFactorBox}>
+                  <strong>{t('hazardFactor')}</strong>
+                  <p className="text-sm mt-1">{t(`jsaCard.${id}.f`)}</p>
+                </div>
+                <div style={styles.jsaMeasureBox}>
+                  <strong>{t('reductionMeasure')}</strong>
+                  <p className="text-sm mt-1">{t(`jsaCard.${id}.m`)}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -297,9 +297,9 @@ export default function Main() {
           <div style={styles.footerFlex}>
             <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
-              <Link to="/privacy" style={styles.fLink}>{t('main.footerPrivacy')}</Link>
-              <Link to="/terms" style={styles.fLink}>{t('main.footerTerms')}</Link>
-              <Link to="/about" style={styles.fLink}>{t('main.footerAbout')}</Link>
+              <Link to="/privacy" style={styles.fLink}>{t('footerPrivacy')}</Link>
+              <Link to="/terms" style={styles.fLink}>{t('footerTerms')}</Link>
+              <Link to="/about" style={styles.fLink}>{t('footerAbout')}</Link>
             </div>
           </div>
         </div>
@@ -307,6 +307,7 @@ export default function Main() {
     </div>
   );
 }
+
 
 const styles = {
   headerRight: { display: 'flex', alignItems: 'center' },

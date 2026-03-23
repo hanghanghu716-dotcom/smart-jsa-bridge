@@ -9,7 +9,8 @@ const allTags = Object.keys(DIMENSIONAL_KEYWORD_MAP);
 
 export default function PublicExplore() {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  // [수정] 네임스페이스를 명시적으로 배열 형태로 주입합니다. 첫 번째 요소인 'explore'가 기본값이 됩니다.
+  const { t, i18n } = useTranslation(['explore', 'tags']);
   
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,12 +24,12 @@ export default function PublicExplore() {
   const [isBlockUser, setIsBlockUser] = useState(false);
   const [isHideProject, setIsHideProject] = useState(true);
 
-  // [수정] 컴포넌트 내부로 이동하여 실시간 언어 전환 대응 및 런타임 에러 방지
+  // [수정] 'explore.' 접두사를 제거하고 직접 키를 호출합니다.
   const FILTER_CATEGORIES = [
-    { id: 'industry', name: t('explore.categoryIndustry'), tags: allTags.filter(t => !t.startsWith('설비(') && !t.startsWith('사고(') && !/^(관리|준비|보호구|절차|마무리|기타)\(/.test(t)) },
-    { id: 'safety', name: t('explore.categorySafety'), tags: allTags.filter(t => /^(관리|준비|보호구|절차|마무리|기타)\(/.test(t)) },
-    { id: 'machine', name: t('explore.categoryMachine'), tags: allTags.filter(t => t.startsWith('설비(')) },
-    { id: 'accident', name: t('explore.categoryAccident'), tags: allTags.filter(t => t.startsWith('사고(')) }
+    { id: 'industry', name: t('categoryIndustry'), tags: allTags.filter(t => !t.startsWith('설비(') && !t.startsWith('사고(') && !/^(관리|준비|보호구|절차|마무리|기타)\(/.test(t)) },
+    { id: 'safety', name: t('categorySafety'), tags: allTags.filter(t => /^(관리|준비|보호구|절차|마무리|기타)\(/.test(t)) },
+    { id: 'machine', name: t('categoryMachine'), tags: allTags.filter(t => t.startsWith('설비(')) },
+    { id: 'accident', name: t('categoryAccident'), tags: allTags.filter(t => t.startsWith('사고(')) }
   ];
 
   const [expandedGroups, setExpandedGroups] = useState({ industry: true });
@@ -37,7 +38,7 @@ export default function PublicExplore() {
     const checkUserAndFetch = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        alert(t('explore.alertLoginRequired'));
+        alert(t('alertLoginRequired'));
         navigate('/login'); 
         return;
       }
@@ -79,11 +80,11 @@ export default function PublicExplore() {
 
   const handleFavorite = async (projectId) => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert(t('explore.alertLoginRequired'));
+    if (!user) return alert(t('alertLoginRequired'));
     const { error } = await supabase.from('user_favorites').upsert({ user_id: user.id, project_id: projectId });
     if (!error) {
       await supabase.rpc('increment_scrap_count', { target_project_id: projectId });
-      alert(t('explore.alertSavedToLibrary'));
+      alert(t('alertSavedToLibrary'));
       fetchPublicProjects();
     }
   };
@@ -92,17 +93,17 @@ export default function PublicExplore() {
     e.stopPropagation();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      alert(t('explore.alertReportLoginRequired'));
+      alert(t('alertReportLoginRequired'));
       return;
     }
     try {
       await supabase.from('user_reports').insert({ reporter_id: user.id, project_id: reportTarget.id, reason: reportReason });
       if (isHideProject) await supabase.from('user_project_blocks').upsert({ user_id: user.id, project_id: reportTarget.id });
       if (isBlockUser) await supabase.from('user_blocks').upsert({ blocker_id: user.id, blocked_user_id: reportTarget.author_id });
-      alert(t('explore.alertActionCompleted'));
+      alert(t('alertActionCompleted'));
       setReportTarget(null);
       fetchPublicProjects();
-    } catch (e) { alert(t('explore.alertErrorOccurred')); }
+    } catch (e) { alert(t('alertErrorOccurred')); }
   };
 
   const formatDate = (dateStr) => {
@@ -144,26 +145,26 @@ export default function PublicExplore() {
       {reportTarget && (
         <div style={styles.modalOverlay} onClick={() => setReportTarget(null)}>
           <div style={styles.reportModal} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('explore.reportModalTitle')}</h3>
+            <h3 style={styles.modalTitle}>{t('reportModalTitle')}</h3>
             <textarea 
               style={styles.reportInput} 
-              placeholder={t('explore.reportPlaceholder')}
+              placeholder={t('reportPlaceholder')}
               value={reportReason}
               onChange={(e) => setReportReason(e.target.value)}
             />
             <div style={styles.optionGroup}>
               <label style={styles.optionLabel}>
                 <input type="checkbox" checked={isHideProject} onChange={(e)=>setIsHideProject(e.target.checked)} />
-                {t('explore.hideProjectOption')}
+                {t('hideProjectOption')}
               </label>
               <label style={styles.optionLabel}>
                 <input type="checkbox" checked={isBlockUser} onChange={(e)=>setIsBlockUser(e.target.checked)} />
-                {t('explore.blockUserOption')}
+                {t('blockUserOption')}
               </label>
             </div>
             <div style={styles.modalBtns}>
-              <button style={styles.reportSubmitBtn} onClick={submitReport}>{t('explore.submitReportBtn')}</button>
-              <button style={styles.modalCloseBtn} onClick={() => setReportTarget(null)}>{t('explore.cancelBtn')}</button>
+              <button style={styles.reportSubmitBtn} onClick={submitReport}>{t('submitReportBtn')}</button>
+              <button style={styles.modalCloseBtn} onClick={() => setReportTarget(null)}>{t('cancelBtn')}</button>
             </div>
           </div>
         </div>
@@ -175,13 +176,13 @@ export default function PublicExplore() {
           <input 
             type="text" 
             style={styles.searchInput} 
-            placeholder={t('explore.searchPlaceholder')}
+            placeholder={t('searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           {suggestedTags.length > 0 && (
             <div style={styles.tagSuggestionsDropdown}>
-              <div style={styles.suggestionTitle}>{t('explore.tagSearchResultLabel')} ({suggestedTags.length})</div>
+              <div style={styles.suggestionTitle}>{t('tagSearchResultLabel')} ({suggestedTags.length})</div>
               {suggestedTags.map(tag => (
                 <div 
                   key={tag} 
@@ -191,7 +192,8 @@ export default function PublicExplore() {
                     setSearchTerm(""); 
                   }}
                 >
-                  #{t(`tags.${tag}`)}
+                  {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
+                  #{t(tag, { ns: 'tags' })}
                 </div>
               ))}
             </div>
@@ -202,14 +204,14 @@ export default function PublicExplore() {
       <div style={styles.mainLayout}>
         <aside style={styles.sidebar}>
           <div style={styles.sidebarHeader}>
-            <span style={styles.sidebarTitle}>{t('explore.sidebarTitle')}</span> 
-            <button style={styles.resetBtn} onClick={() => setSelectedTags([])}>{t('explore.resetBtn')}</button>         
+            <span style={styles.sidebarTitle}>{t('sidebarTitle')}</span> 
+            <button style={styles.resetBtn} onClick={() => setSelectedTags([])}>{t('resetBtn')}</button>         
           </div>
           
           <div style={styles.sortSection}>
             <select style={styles.sortSelect} value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-              <option value="latest">{t('explore.sortLatest')}</option>
-              <option value="popular">{t('explore.sortPopular')}</option>
+              <option value="latest">{t('sortLatest')}</option>
+              <option value="popular">{t('sortPopular')}</option>
             </select>
           </div>
 
@@ -227,7 +229,8 @@ export default function PublicExplore() {
                       style={selectedTags.includes(tag) ? styles.tagItemActive : styles.tagItem}
                       onClick={() => setSelectedTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag])}
                     >
-                      {t(`tags.${tag}`)}
+                      {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
+                      {t(tag, { ns: 'tags' })}
                     </button>
                   ))}
                 </div>
@@ -244,7 +247,8 @@ export default function PublicExplore() {
             <div style={styles.selectedTagsContainer}>
               {selectedTags.map(tag => (
                 <span key={tag} style={styles.selectedTagBadge}>
-                  {t(`tags.${tag}`)}
+                  {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
+                  {t(tag, { ns: 'tags' })}
                   <span 
                     style={styles.tagRemoveBtn} 
                     onClick={() => setSelectedTags(prev => prev.filter(t => t !== tag))}
@@ -255,11 +259,11 @@ export default function PublicExplore() {
           )}
 
           <div style={styles.resultsHeader}>
-            <span>{t('explore.totalLabel')}<strong>{filteredProjects.length}</strong>{t('explore.assetCountLabel')}</span>
+            <span>{t('totalLabel')}<strong>{filteredProjects.length}</strong>{t('assetCountLabel')}</span>
           </div>
 
           {isLoading ? (
-            <div style={styles.loader}>{t('explore.loadingLabel')}</div>
+            <div style={styles.loader}>{t('loadingLabel')}</div>
               ) : (
             <div style={styles.grid}>
               {filteredProjects.map((p, index) => (
@@ -278,7 +282,7 @@ export default function PublicExplore() {
                         ...styles.typeBadge,
                         backgroundColor: p.form_data?.jsaType === '3-step' ? '#ff4d4d' : '#444'
                       }}>
-                        {p.form_data?.jsaType === '3-step' ? t('explore.typeAdvanced') : t('explore.typeBasic')}
+                        {p.form_data?.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}
                       </span>
                       {p.form_data?.permits?.slice(0, 2).map(permit => (
                         <span key={permit} style={styles.permitBadge}>{permit}</span>
@@ -292,8 +296,8 @@ export default function PublicExplore() {
                       }}>⋮</button>
                       {activeMenuId === p.id && (
                         <div style={styles.dropdown}>
-                          <div style={styles.dropdownItem} onClick={() => handleFavorite(p.id)}>⭐ {t('explore.saveLibrary')}</div>
-                          <button style={styles.actionButton} onClick={() => startWithProject(p)}>{t('explore.startWithThis')}</button>
+                          <div style={styles.dropdownItem} onClick={() => handleFavorite(p.id)}>⭐ {t('saveLibrary')}</div>
+                          <button style={styles.actionButton} onClick={() => startWithProject(p)}>{t('startWithThis')}</button>
                         </div>
                       )}
                     </div>
@@ -303,12 +307,13 @@ export default function PublicExplore() {
                   <div style={styles.dateLabel}>{formatDate(p.created_at)}</div>
 
                   <div style={styles.cardTags}>
-                    {p.tags?.slice(0, 3).map(tag => <span key={tag} style={styles.miniTag}>#{t(`tags.${tag}`)}</span>)}
+                    {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
+                    {p.tags?.slice(0, 3).map(tag => <span key={tag} style={styles.miniTag}>#{t(tag, { ns: 'tags' })}</span>)}
                   </div>
 
                   <div style={styles.cardFooter}>
                     <button style={styles.useBtn} onClick={() => startWithProject(p)}>
-                      {t('explore.startWithThis')}
+                      {t('startWithThis')}
                     </button>
                     <div style={styles.scrapRow}>
                        SCRAP <strong>{p.scrap_count || 0}</strong>

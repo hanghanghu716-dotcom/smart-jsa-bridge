@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
+import { useTranslation } from 'react-i18next'; // ✅ [추가] 다국어 지원 훅 임포트
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -20,6 +21,7 @@ const DEFAULT_FORM_DATA = {
 export default function Info() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation(['info']); // ✅ [추가] info 네임스페이스 로드
 
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(14).fill(''));
@@ -31,11 +33,11 @@ export default function Info() {
       const loadedData = location.state.formData;
       
       setFormData(prev => ({
-        ...prev, // DEFAULT_FORM_DATA의 기본 구조(ppe, permits 배열 등) 파괴 방지
-        ...loadedData, // DB에서 불러온 데이터 덮어쓰기
-        ppe: loadedData.ppe || [], // 과거 데이터에 배열이 누락되었을 경우를 대비한 안전 장치
+        ...prev, 
+        ...loadedData, 
+        ppe: loadedData.ppe || [], 
         permits: loadedData.permits || [], 
-        ...(isFork ? { // 복제 상태일 때 민감 정보 강제 초기화
+        ...(isFork ? { 
           projectName: '',
           department: '',
           workLocation: '',
@@ -49,16 +51,15 @@ export default function Info() {
       setParticipants(Array(14).fill(''));
     } else if (location.state?.participants) {
       const loadedParticipants = location.state.participants || [];
-      // 불러온 명단이 14개 미만이어도 렌더링 에러가 나지 않도록 배열 길이 강제 보장
       setParticipants(Array(14).fill('').map((_, i) => loadedParticipants[i] || ''));
     } 
   }, [location.state]);
 
 
 
-  // ✅ [추가] 홈 버튼 클릭 시 데이터 삭제 경고 로직
   const handleLogoClick = () => {
-    if (window.confirm("메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.")) {
+    // ✅ [수정] 경고 메시지 다국어 처리
+    if (window.confirm(t('alert.confirmMain'))) {
       navigate('/');
     }
   };
@@ -107,7 +108,8 @@ export default function Info() {
 
 const handleNext = () => {
     if (!formData.projectName.trim()) {
-      alert("프로젝트명은 필수 입력 사항입니다. 작업의 명칭을 입력해 주세요.");
+      // ✅ [수정] 필수 입력 경고 다국어 처리
+      alert(t('alert.projectNameRequired'));
       return;
     }
 
@@ -118,8 +120,8 @@ const handleNext = () => {
         procedures: location.state?.procedures,
         analysisData: location.state?.analysisData,
         isFork: location.state?.isFork,
-        parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이
-        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이
+        parentId: location.state?.parentId, 
+        originalAnalysisData: location.state?.originalAnalysisData 
       },
     });
   };
@@ -136,7 +138,6 @@ const handleNext = () => {
       </div>
 
       <header style={styles.header}>
-        {/* ✅ [수정] onClick 이벤트 변경 */}
         <h1 style={styles.logo} onClick={handleLogoClick}>
           Smart JSA Bridge
         </h1>
@@ -150,34 +151,33 @@ const handleNext = () => {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
           <nav style={styles.stepper}>
-            {/* 1단계: 활성 */}
+            {/* ✅ [수정] 단계별 텍스트 다국어 처리 */}
             <div style={styles.stepItemActive}>
               <div style={styles.stepBadgeActive}>1</div>
-              <span style={styles.stepTextActive}>기본 정보</span>
+              <span style={styles.stepTextActive}>{t('step.basicInfo')}</span>
             </div>
             <div style={styles.stepLine} />
 
-            {/* 2~6단계: 대기 */}
-            <div style={styles.stepItem}><div style={styles.stepBadge}>2</div><span style={styles.stepText}>작업 절차</span></div>
+            <div style={styles.stepItem}><div style={styles.stepBadge}>2</div><span style={styles.stepText}>{t('step.procedure')}</span></div>
             <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>위험 분석</span></div>
+            <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
             <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>모듈 구성</span></div>
+            <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
             <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>표 구성</span></div>
+            <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
             <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
+            <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
           </nav>
 
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>01. 작업 기본 정보 및 안전 요건</h2>
+              <h2 style={styles.formTitle}>{t('form.title')}</h2> {/* ✅ [수정] 헤더 타이틀 다국어 처리 */}
             </div>
 
             <div style={styles.scrollArea}>
               <div style={styles.warningBox}>
                 <p style={styles.warningText}>
-                  ⚠️ <strong>이용 주의 사항:</strong> 작성하신 JSA 결과물은 데이터 공유 정책에 따라 타 사용자에게 노출될 수 있습니다. 
-                  비정확한 정보, 허위 사실 또는 음란물 등 부적절한 콘텐츠가 포함될 경우, 예고 없이 삭제될 수 있으며 해당 계정에 대한 경고 및 이용 제한 조치가 취해질 수 있음을 알려드립니다.
+                  {/* ✅ [수정] 안내 경고문 다국어 처리 */}
+                  ⚠️ <strong>{t('warning.title')}</strong> {t('warning.text')}
                 </p>
               </div>
 
@@ -186,7 +186,8 @@ const handleNext = () => {
                   <div style={styles.row}>
                     <div style={{ ...styles.flexItem, flex: 2 }}>
                       <label style={styles.label}>
-                        프로젝트명 <span style={{ color: '#ff4d4d' }}>(필수)</span>
+                        {/* ✅ [수정] 라벨 다국어 처리 */}
+                        {t('form.projectName')} <span style={{ color: '#ff4d4d' }}>{t('form.required')}</span>
                       </label>
                       <input
                         name="projectName"
@@ -196,7 +197,7 @@ const handleNext = () => {
                       />
                     </div>
                     <div style={{ ...styles.flexItem, flex: 1.2 }}>
-                      <label style={styles.label}>수행 부서</label>
+                      <label style={styles.label}>{t('form.department')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                       <input
                         name="department"
                         value={formData.department}
@@ -207,7 +208,7 @@ const handleNext = () => {
                   </div>
 
                   <div style={styles.inputGroup}>
-                    <label style={styles.label}>작업 위치</label>
+                    <label style={styles.label}>{t('form.workLocation')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                     <input
                       name="workLocation"
                       value={formData.workLocation}
@@ -218,17 +219,23 @@ const handleNext = () => {
 
                   <div style={styles.row}>
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>작업 예정일</label>
+                      <label style={styles.label}>{t('form.workDate')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                       <input
-                        type="date"
+                        type={formData.workDate ? "date" : "text"}
                         name="workDate"
                         value={formData.workDate}
+                        placeholder="YYYY-MM-DD"
+                        onFocus={(e) => (e.target.type = "date")}
+                        onBlur={(e) => {
+                          if (!e.target.value) e.target.type = "text";
+                        }}
                         onChange={handleChange}
                         style={styles.inputDate}
                       />
                     </div>
+
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>현장 책임자</label>
+                      <label style={styles.label}>{t('form.managerName')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                       <input
                         name="managerName"
                         value={formData.managerName}
@@ -240,20 +247,21 @@ const handleNext = () => {
 
                   <div style={{ ...styles.row, alignItems: 'flex-end' }}>
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>현장 날씨</label>
+                      <label style={styles.label}>{t('form.weather')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                       <select
                         name="weather"
                         value={formData.weather}
                         onChange={handleChange}
                         style={styles.selectInput}
                       >
-                        <option value="맑음">맑음</option>
-                        <option value="흐림">흐림</option>
-                        <option value="비">비 (우천)</option>
-                        <option value="눈">눈 (강설)</option>
-                        <option value="강풍">강풍</option>
-                        <option value="폭염">폭염/고온</option>
-                        <option value="한파">한파/저온</option>
+                        {/* ✅ [수정] 옵션 렌더링 텍스트 다국어 처리 (value는 기존 한국어 유지) */}
+                        <option value="맑음">{t('weather.sunny')}</option>
+                        <option value="흐림">{t('weather.cloudy')}</option>
+                        <option value="비">{t('weather.rain')}</option>
+                        <option value="눈">{t('weather.snow')}</option>
+                        <option value="강풍">{t('weather.wind')}</option>
+                        <option value="폭염">{t('weather.heatwave')}</option>
+                        <option value="한파">{t('weather.coldwave')}</option>
                       </select>
                     </div>
                     <div style={styles.flexItem}>
@@ -271,7 +279,7 @@ const handleNext = () => {
                           transition: 'color 0.2s',
                           fontSize: '0.9rem'
                         }}>
-                          신입/미숙련 작업자 포함
+                          {t('form.hasNewWorker')} {/* ✅ [수정] 라벨 다국어 처리 */}
                         </span>
                       </label>
                     </div>
@@ -279,7 +287,7 @@ const handleNext = () => {
                 </section>
 
                 <section style={styles.rightSection}>
-                  <label style={styles.label}>평가 참여자 명단</label>
+                  <label style={styles.label}>{t('form.participants')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                   <div style={styles.participantGrid}>
                     {participants.map((p, i) => (
                       <div key={i} style={styles.participantBox}>
@@ -299,7 +307,7 @@ const handleNext = () => {
 
               <div style={styles.safetyGrid}>
                 <section style={styles.safetySection}>
-                  <label style={styles.label}>개인보호구</label>
+                  <label style={styles.label}>{t('form.ppe')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                   <div style={styles.checkGrid}>
                     {ppeOptions.map((item) => (
                       <label key={item} style={styles.checkLabel}>
@@ -310,14 +318,14 @@ const handleNext = () => {
                           checked={formData.ppe.includes(item)}
                           onChange={handleChange}
                         />
-                        {item}
+                        {t(`ppe.${item}`)} {/* ✅ [수정] 옵션 렌더링 텍스트 다국어 처리 */}
                       </label>
                     ))}
                   </div>
                 </section>
 
                 <section style={styles.safetySection}>
-                  <label style={styles.label}>허가 대상 작업</label>
+                  <label style={styles.label}>{t('form.permits')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                   <div style={styles.checkGrid}>
                     {permitOptions.map((item) => {
                       const isGeneralSelected = formData.permits.includes('일반');
@@ -338,7 +346,7 @@ const handleNext = () => {
                             onChange={handleChange}
                             disabled={isDisabled}
                           />
-                          {item}
+                          {t(`permit.${item}`)} {/* ✅ [수정] 옵션 렌더링 텍스트 다국어 처리 */}
                         </label>
                       );
                     })}
@@ -347,7 +355,7 @@ const handleNext = () => {
               </div>
 
               <div style={styles.inputGroupFull}>
-                <label style={styles.label}>필요 장비</label>
+                <label style={styles.label}>{t('form.equipment')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                 <input
                   name="equipment"
                   value={formData.equipment}
@@ -357,7 +365,7 @@ const handleNext = () => {
               </div>
 
               <div style={styles.inputGroupFull}>
-                <label style={styles.label}>추가 요청 사항</label>
+                <label style={styles.label}>{t('form.additionalItems')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
                 <textarea
                   name="additionalItems"
                   value={formData.additionalItems}
@@ -369,10 +377,10 @@ const handleNext = () => {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handleLogoClick}>
-                처음으로
+                {t('btn.home')} {/* ✅ [수정] 버튼 텍스트 다국어 처리 */}
               </button>
               <button style={styles.nextBtn} onClick={handleNext}>
-                작업 절차 정의 단계로 이동
+                {t('btn.next')} {/* ✅ [수정] 버튼 텍스트 다국어 처리 */}
               </button>
             </div>
           </div>
@@ -399,7 +407,6 @@ const styles = {
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
-  /* ✅ [수정] padding 하단 여백 축소 및 overflow 설정 변경 */
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 20px', gap: '4rem', zIndex: 10, overflow: 'visible' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
@@ -441,7 +448,6 @@ const styles = {
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  /* ✅ [수정] position: 'absolute' 제거하여 겹침 방지 */
   footerArea: { width: '100%', zIndex: 10, position: 'relative', padding: '1.5rem 5rem', backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.7rem' },

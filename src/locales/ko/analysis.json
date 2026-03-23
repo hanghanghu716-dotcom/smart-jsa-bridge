@@ -1,0 +1,73 @@
+{
+  "alert": {
+    "selectItem": "추가할 항목을 선택해 주세요.",
+    "enterFactor": "위험요인을 먼저 입력해 주세요.",
+    "selectCurrentMeasure": "현재 안전대책을 먼저 선택해 주세요.",
+    "manualFactor": "직접 입력한 위험요인입니다. 대책을 직접 입력해 주세요.",
+    "needCurrentMeasure": "먼저 추천 시스템을 통해 현재 안전대책을 선택해 주세요.",
+    "noData": "연결된 데이터가 없습니다. 직접 입력해 주세요.",
+    "confirmMain": "메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.",
+    "loginRequired": "로그인이 필요합니다."
+  },
+  "libModal": {
+    "title": "작업 단계 라이브러리 호출",
+    "empty": "저장된 라이브러리가 없습니다.",
+    "unclassified": "미분류",
+    "backBtn": "⬅️ 목록 돌아가기",
+    "step": "Step",
+    "riskCount": "개 위험요인 포함"
+  },
+  "recModal": {
+    "titleCurrent": "현재 안전대책",
+    "titleAdvanced": "개선권고사항",
+    "descCurrent": "이 위험요소에 등록된 안전 수칙입니다.",
+    "descAdvanced": "현재 대책을 보완하는 상위 개선안입니다.",
+    "selectBtn": "선택"
+  },
+  "step": {
+    "basicInfo": "기본 정보",
+    "procedure": "작업 절차",
+    "riskAnalysis": "위험 분석",
+    "moduleConfig": "문서 모듈 구성",
+    "tableConfig": "데이터 표 구성",
+    "finalOutput": "최종 출력"
+  },
+  "form": {
+    "title": "03. 유해·위험요인 분석",
+    "typeStandard": "(표준형)",
+    "typeAdvanced": "(심화형)",
+    "currentStep": "현재 단계"
+  },
+  "filter": {
+    "label": "⚠️ 고위험 필터",
+    "auto": "(자동 제안)",
+    "loadLibBtn": "📂 라이브러리 스텝 호출"
+  },
+  "base": {
+    "label": "안전 지식 베이스 (위험요소 추출)",
+    "addEmptyBtn": "+ 빈칸 추가",
+    "addBulkBtn": "✓ 선택 항목 일괄 추가",
+    "emptyRec": "추천된 위험요인이 없습니다.",
+    "etc": "기타"
+  },
+  "result": {
+    "label": "평가 결과 및 대책",
+    "freq": "빈도",
+    "sev": "강도"
+  },
+  "table": {
+    "factor": "유해·위험요인",
+    "measure": "감소대책",
+    "currentMeasure": "현재 안전대책",
+    "advancedMeasure": "개선권고사항",
+    "delete": "삭제",
+    "recMeasureBtn": "대책 추천",
+    "recAdvancedBtn": "권고 추천"
+  },
+  "btn": {
+    "prevStep1": "이전 단계(작업 절차)",
+    "prevStep2": "이전 작업 단계",
+    "nextComplete": "분석 완료 및 모듈 설정으로 이동",
+    "nextStep": "다음 작업 단계 분석"
+  }
+}

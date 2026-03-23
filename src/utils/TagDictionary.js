@@ -304,7 +304,8 @@ const applyComplexSemanticRules = (text, tags) => {
   // 키워드: 석면, 분진, 흄, 유기용제, 흡입, 질식 + 마스크, 착용
   if (/(세라크울|석면|분진|흄|fume|유기용제|흡입|질식|유해가스|화학물질|페인트|도장|asbestos|dust|toxic|gas|solvent|inhalation)/.test(lowText) && 
       /(보호구|마스크|방독면|착용|지급|mask|respirator|wear|ppe)/.test(lowText)) {
-    tags.add("보호구(방독/방진마스크)");
+    tags.add("보호구(방진마스크)");
+    tags.add("보호구(방독마스크)");
   }
 
   // 2. 고소 추락 방지 (Fall Protection)
@@ -319,7 +320,7 @@ const applyComplexSemanticRules = (text, tags) => {
   if (/(용접|절단|용단|그라인딩|불티|아크|welding|cutting|grinding|spark|arc|hot work)/.test(lowText) && 
       /(소화기|불꽃방지|비산방지|감시자|fire extinguisher|fire watch|blanket)/.test(lowText)) {
     tags.add("준비(감시자배치)");
-    tags.add("사고(화제)");
+    tags.add("사고(화재)");
   }
 
   // 4. 에너지 차단 (LOTO / Energy Isolation)

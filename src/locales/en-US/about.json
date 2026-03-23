@@ -1,0 +1,39 @@
+{
+  "pageTag": "THE SAFETY REPOSITORY",
+  "mainHeading": {
+    "line1": "Connecting Fragmented Safety Knowledge",
+    "line2": "Into a Comprehensive Library"
+  },
+  "section1": {
+    "title": "The Library for Safety Managers",
+    "content": "Smart JSA Bridge brings actual JSA templates, previously scattered across individual PCs, into the light. It is an <strong>open-source style repository where safety managers can library and share their collective know-how</strong>.<br />Beyond mere paperwork, we aim to be a technical bridge that allows anyone to utilize and improve the best safety logic verified in industrial sites nationwide."
+  },
+  "section2": {
+    "title": "Core Values",
+    "item1": {
+      "bold": "Based on Verified Practical Data:",
+      "desc": "We rely on practical JSA templates directly authored and used by field experts, rather than abstract guidelines."
+    },
+    "item2": {
+      "bold": "Virtuous Cycle of Knowledge (Fork & Contribute):",
+      "desc": "Users can adopt excellent JSA templates by customizing them for their specific sites, and then contribute those improvements back to the library, raising the overall industry safety standard."
+    },
+    "item3": {
+      "bold": "High-Risk Specialized Library:",
+      "desc": "We are building an analysis scenario repository segmented by industry and equipment, including the 9 major high-risk operation categories."
+    }
+  },
+  "section3": {
+    "title": "How It Works",
+    "subtitle": "Smart JSA Bridge protects safety through the power of community.",
+    "step1": { "bold": "Browse Library:", "desc": "Search the vast repository for a JSA template that matches your current task type." },
+    "step2": { "bold": "Adopt & Customize:", "desc": "Select a suitable template and adjust the detailed parameters to fit your work environment." },
+    "step3": { "bold": "Export & Share:", "desc": "Print the completed JSA for field application, and share the improved logic back with the community." },
+    "step4": { "bold": "Standardization:", "desc": "Templates that undergo numerous feedback cycles become the 'Golden Standard' for their respective industries." }
+  },
+  "section4": {
+    "title": "Data Security Philosophy",
+    "content": "The value of sharing can only exist upon a foundation of secure privacy. <br />In accordance with the <strong>'Principle of Non-storage of Sensitive Information'</strong>, Smart JSA Bridge does not collect identifiable data such as project titles, real names, or specific equipment IDs. We only library the pure technical logic: 'Task-Hazard-Measure'."
+  },
+  "imageCaption": "Smart JSA Bridge: Your Partner for Accident-Free Sites, Powered by Collective Intelligence"
+}

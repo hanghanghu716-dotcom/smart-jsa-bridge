@@ -438,7 +438,7 @@ export default function LayoutBuilder() {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="4000000001" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div><div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div><div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>위험 분석</span></div><div style={styles.stepLineActive} /><div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>4</div><span style={styles.stepTextActive}>양식 설정</span></div><div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>최종 출력</span></div></nav>
@@ -509,7 +509,7 @@ export default function LayoutBuilder() {
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToAnalysis}>처음으로</button><button style={styles.nextBtnLight} onClick={goToExport}>최종 출력 단계로 이동</button></div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="4000000002" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
 
       {showPresetModal && (

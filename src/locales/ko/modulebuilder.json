@@ -1,0 +1,67 @@
+{
+  "default": {
+    "docTitle": "위험성평가표 (JSA)",
+    "appr1": "작성",
+    "appr2": "검토",
+    "appr3": "승인"
+  },
+  "table": {
+    "projectName": "작업명",
+    "approval": "결재",
+    "workLocation": "작업구역",
+    "department": "수행부서",
+    "workDate": "수행일자",
+    "ppe": "개인보호구",
+    "highRiskWork": "고위험작업",
+    "participants": "참여자",
+    "signature": "(인)"
+  },
+  "ppe": {
+    "helmet": "안전모",
+    "shoes": "안전화",
+    "glasses": "보안경",
+    "safetyBelt": "안전대",
+    "mask": "방진/방독마스크",
+    "gloves": "안전장갑",
+    "etc": "기타"
+  },
+  "permit": {
+    "hotWork": "화기",
+    "confinedSpace": "밀폐",
+    "electrical": "정전/활선",
+    "highElevation": "고소",
+    "heavyLifting": "중량물취급",
+    "excavation": "굴착",
+    "etc": "기타"
+  },
+  "preview": {
+    "header": "문서 구조 미리보기 (구상도)",
+    "tableAreaTitle": "[위험성 평가 데이터 테이블 구역]",
+    "tableAreaDesc": "Step 5에서 설정한 컬럼 데이터가 이 위치에 자동으로 삽입됩니다."
+  },
+  "step": {
+    "basicInfo": "기본 정보",
+    "procedure": "작업 절차",
+    "riskAnalysis": "위험 분석",
+    "moduleConfig": "문서 모듈 구성",
+    "tableConfig": "데이터 표 구성",
+    "finalOutput": "최종 출력"
+  },
+  "header": {
+    "title": "| 04. 문서 모듈 구성",
+    "subtitle": "JSA 본문 헤더 정보 및 안전작업허가(PTW) 부가 요소를 설정합니다."
+  },
+  "toolbar": {
+    "headerTextSetting": "문서 헤더 텍스트 설정",
+    "docTitle": "문서 제목",
+    "appr1": "결재란 1",
+    "appr2": "결재란 2",
+    "appr3": "결재란 3",
+    "signatureSetting": "서명란 설정",
+    "addSignatureRow": "서명란 줄 추가 (1줄 = 8명)"
+  },
+  "btn": {
+    "prev": "이전 단계 (위험 분석)",
+    "next": "다음: 데이터 표 구성 (Step 5)"
+  }
+}

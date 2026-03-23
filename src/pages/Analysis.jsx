@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
+import { useTranslation } from 'react-i18next'; // [추가]
 
 /**
  * [Analysis 컴포넌트 - 6단계 개편 반영본]
@@ -13,6 +14,7 @@ export default function Analysis() {
   const navigate = useNavigate();
   const location = useLocation();
   const scrollRef = useRef(null);
+  const { t, i18n } = useTranslation(['analysis', 'tags']);
 
   const { 
     id: existingId = null, 
@@ -35,7 +37,6 @@ export default function Analysis() {
   const [checkedRisks, setCheckedRisks] = useState(new Set());
   const autoFilledRef = useRef(new Set());
 
-  // ✅ 1:M:N 계층 추천을 위한 통합 모달 상태
   const [recModal, setRecModal] = useState({ 
     isOpen: false, 
     data: [], 
@@ -50,17 +51,16 @@ export default function Analysis() {
     setCheckedRisks(newSet);
   };
 
-  // ✅ [교정] 일괄 추가 시 오직 위험요소(factor)만 추가하도록 수정 (자동채우기 제거)
   const handleBulkAdd = () => {
-    if (checkedRisks.size === 0) return alert("추가할 항목을 선택해 주세요.");
+    if (checkedRisks.size === 0) return alert(t('alert.selectItem'));
       const newRisks = Array.from(checkedRisks).map((rec) => ({
       id: `risk-bulk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      db_id: rec.id, // DB의 고유 식별자 저장 추가
+      db_id: rec.id,
       factor: rec.risk_factor || rec.factor || "",
       measure: "",
       current_measure: "",
       recommend_measure: "",
-      category: rec.category || "기타"
+      category: rec.category || t('base.etc')
     }));
     
     setAnalysisData(prev => {
@@ -74,57 +74,79 @@ export default function Analysis() {
     setCheckedRisks(new Set()); 
   };
 
-  // ✅ [교정] 1:M:N 체인 추천 엔진 (중복 제거 및 계층형 필터링)
   const handleOpenRecommendation = async (risk, type = 'advanced') => {
-    if (type === 'current' && !risk.factor) return alert("위험요인을 먼저 입력해 주세요.");
-    if (type === 'advanced' && !risk.current_measure) return alert("현재 안전대책을 먼저 선택해 주세요.");
+    if (type === 'current' && !risk.factor) return alert(t('alert.enterFactor'));
+    if (type === 'advanced' && !risk.current_measure) return alert(t('alert.selectCurrentMeasure'));
 
     setIsLoading(true);
     let scored = [];
+    const dbLocale = i18n.language === 'ko' ? 'ko-KR' : 'en-US';
 
     if (type === 'current') {
-      // Step M: Current_Measures 테이블에서 DB ID로 조회
       if (!risk.db_id) {
           setIsLoading(false);
-          return alert("직접 입력한 위험요인입니다. 대책을 직접 입력해 주세요.");
+          return alert(t('alert.manualFactor'));
       }
-      const { data, error } = await supabase
+      
+      const { data: origData, error: origError } = await supabase
         .from('Current_Measures')
-        .select('id, measure_text')
+        .select('id, priority_score')
         .eq('hazard_id', risk.db_id)
         .order('priority_score', { ascending: false });
-        
-      if (!error && data) {
-        scored = data.map(m => ({ display: m.measure_text, measure_db_id: m.id }));
+
+      if (!origError && origData && origData.length > 0) {
+        const measureIds = origData.map(m => m.id);
+        const { data: transData, error: transError } = await supabase
+          .from('Current_Measures_Translations')
+          .select('measure_id, measure_text')
+          .in('measure_id', measureIds)
+          .eq('locale', dbLocale);
+
+        if (!transError && transData) {
+          scored = origData.map(orig => {
+            const trans = transData.find(t => t.measure_id === orig.id);
+            return trans ? { display: trans.measure_text, measure_db_id: orig.id } : null;
+          }).filter(Boolean);
+        }
       }
     } else {
-      // Step N: Advanced_Measures 테이블에서 조회 (현재대책 선택 시 저장된 ID 기반)
       if (!risk.current_measure_db_id) {
           setIsLoading(false);
-          return alert("먼저 추천 시스템을 통해 현재 안전대책을 선택해 주세요.");
+          return alert(t('alert.needCurrentMeasure'));
       }
-      const { data, error } = await supabase
+
+      const { data: origData, error: origError } = await supabase
         .from('Advanced_Measures')
-        .select('id, solution_text')
+        .select('id')
         .eq('measure_id', risk.current_measure_db_id);
         
-      if (!error && data) {
-        scored = data.map(m => ({ display: m.solution_text, advanced_db_id: m.id }));
+      if (!origError && origData && origData.length > 0) {
+        const advIds = origData.map(m => m.id);
+        const { data: transData, error: transError } = await supabase
+          .from('Advanced_Measures_Translations')
+          .select('advanced_measure_id, solution_text')
+          .in('advanced_measure_id', advIds)
+          .eq('locale', dbLocale);
+
+        if (!transError && transData) {
+          scored = origData.map(orig => {
+            const trans = transData.find(t => t.advanced_measure_id === orig.id);
+            return trans ? { display: trans.solution_text, advanced_db_id: orig.id } : null;
+          }).filter(Boolean);
+        }
       }
     }
 
     setIsLoading(false);
-    if (scored.length === 0) return alert("연결된 데이터가 없습니다. 직접 입력해 주세요.");
+    if (scored.length === 0) return alert(t('alert.noData'));
     setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
 
   const applyRecommendedMeasure = (item) => {
     if (jsaType === '2-step') {
-      // 2단계(표준형) 구성일 경우 감소대책 필드에 추가
       updateRiskField(recModal.targetRiskId, 'measure', item.display);
     } else if (recModal.type === 'current') {
       updateRiskField(recModal.targetRiskId, 'current_measure', item.display);
-      // 권고 대책 조회를 위한 연결고리 ID 저장
       updateRiskField(recModal.targetRiskId, 'current_measure_db_id', item.measure_db_id);
     } else {
       updateRiskField(recModal.targetRiskId, 'recommend_measure', item.display);
@@ -139,10 +161,26 @@ export default function Analysis() {
   useEffect(() => {
     const fetchHazards = async () => {
       setIsLoading(true);
-      const { data, error } = await supabase.from('Hazards').select('*');
-      if (!error && data) {
-        // 하위 로직 호환성을 위해 hazard_name을 risk_factor로 임시 매핑
-        const mappedData = data.map(d => ({ ...d, risk_factor: d.hazard_name, source: 'master' }));
+      const dbLocale = i18n.language === 'ko' ? 'ko-KR' : 'en-US';
+
+      setSelectedHighRisk("");
+
+      const [ { data: origHazards, error: origErr }, { data: transHazards, error: transErr } ] = await Promise.all([
+        supabase.from('Hazards').select('*'),
+        supabase.from('Hazards_Translations').select('*').eq('locale', dbLocale)
+      ]);
+
+      if (!origErr && !transErr && origHazards && transHazards) {
+        const mappedData = transHazards.map(trans => {
+          const orig = origHazards.find(o => o.id === trans.hazard_id) || {};
+          return {
+            ...orig, 
+            id: trans.hazard_id, 
+            risk_factor: trans.hazard_name,
+            category: trans.category || orig.category,
+            source: 'master'
+          };
+        });
         setDbRisks(mappedData);
         const uniqueCats = [...new Set(mappedData.map(item => item.category))].filter(Boolean);
         setCategories(uniqueCats);
@@ -150,17 +188,17 @@ export default function Analysis() {
       setIsLoading(false);
     };
     fetchHazards();
-  }, []);
+  }, [i18n.language]);
 
   const handleLogoClick = () => {
-    if (window.confirm("메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.")) {
+    if (window.confirm(t('alert.confirmMain'))) {
       navigate('/');
     }
   };
 
   const fetchMyLibrary = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert("로그인이 필요합니다.");
+    if (!user) return alert(t('alert.loginRequired'));
     const { data } = await supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id);
     setMyLibraryItems(data || []);
     setSelectedLibProject(null);
@@ -174,7 +212,7 @@ export default function Analysis() {
       measure: "",
       current_measure: "",
       recommend_measure: "",
-      category: r.category || "기타",
+      category: r.category || t('base.etc'),
       source: '공유'
     }));
     
@@ -233,7 +271,6 @@ export default function Analysis() {
     updateRecommendations();
   }, [activeIdx, currentStep.proc, selectedHighRisk, dbRisks]);
 
-  // ✅ [교정] 추가 시 위험요소만 삽입하도록 수정
   const addRisk = (rec) => {
     setAnalysisData(prev => {
       const newData = [...prev];
@@ -241,12 +278,12 @@ export default function Analysis() {
         ...newData[activeIdx],
         risks: [...newData[activeIdx].risks, { 
           id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, 
-          db_id: rec.id, // DB의 고유 식별자 저장 추가
+          db_id: rec.id, 
           factor: rec.risk_factor || rec.factor || "",
           measure: "", 
           current_measure: "", 
           recommend_measure: "", 
-          category: rec.category || "기타" 
+          category: rec.category || t('base.etc') 
         }]
       };
       return newData;
@@ -304,16 +341,16 @@ export default function Analysis() {
         <div style={styles.dialogOverlay} onClick={() => setIsLibraryModalOpen(false)}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
-              <h3 style={{ margin: 0 }}>작업 단계 라이브러리 호출</h3>
+              <h3 style={{ margin: 0 }}>{t('libModal.title')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setIsLibraryModalOpen(false)}>✕</button>
             </div>
             <div style={styles.libList}>
               {!selectedLibProject ? (
-                myLibraryItems.length === 0 ? <p style={styles.emptyText}>저장된 라이브러리가 없습니다.</p> :
+                myLibraryItems.length === 0 ? <p style={styles.emptyText}>{t('libModal.empty')}</p> :
                 myLibraryItems.map(item => (
                   <div key={item.id} style={styles.libItem} onClick={() => setSelectedLibProject(item.jsa_projects)}>
                     <div style={styles.libInfo}>
-                      <span style={styles.libCategory}>{item.jsa_projects.tags?.[0] || "미분류"}</span>
+                      <span style={styles.libCategory}>{item.jsa_projects.tags?.[0] || t('libModal.unclassified')}</span>
                       <span style={styles.libTitleText}>{item.jsa_projects.title}</span>
                     </div>
                     <span>➡️</span>
@@ -321,14 +358,14 @@ export default function Analysis() {
                 ))
               ) : (
                 <>
-                  <button style={styles.backBtn} onClick={() => setSelectedLibProject(null)}>⬅️ 목록 돌아가기</button>
+                  <button style={styles.backBtn} onClick={() => setSelectedLibProject(null)}>{t('libModal.backBtn')}</button>
                   {selectedLibProject.analysis_data.map((step, idx) => (
                     <div key={idx} style={styles.libStepItem} onClick={() => applyStepData(step)}>
                       <div style={styles.stepInfo}>
-                        <span style={styles.stepIdxBadge}>Step {idx + 1}</span>
+                        <span style={styles.stepIdxBadge}>{t('libModal.step')} {idx + 1}</span>
                         <strong style={styles.stepTitleText}>{step.proc.stepTitle}</strong>
                       </div>
-                      <div style={styles.stepPreview}>{step.risks.length}개 위험요인 포함</div>
+                      <div style={styles.stepPreview}>{step.risks.length}{t('libModal.riskCount')}</div>
                     </div>
                   ))}
                 </>
@@ -338,23 +375,23 @@ export default function Analysis() {
         </div>
       )}
 
-      {/* ✅ 통합 추천 모달 */}
       {recModal.isOpen && (
         <div style={styles.dialogOverlay} onClick={() => setRecModal({ ...recModal, isOpen: false })}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
-              <h3 style={{ margin: 0 }}>{recModal.type === 'current' ? '현재 안전대책' : '개선권고사항'} 선택</h3>
+              <h3 style={{ margin: 0 }}>{recModal.type === 'current' ? t('recModal.titleCurrent') : t('recModal.titleAdvanced')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setRecModal({ ...recModal, isOpen: false })}>✕</button>
             </div>
             <div style={styles.libList}>
               <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '10px' }}>
-                {recModal.type === 'current' ? '이 위험요소에 등록된 안전 수칙입니다.' : '현재 대책을 보완하는 상위 개선안입니다.'}
+                {recModal.type === 'current' ? t('recModal.descCurrent') : t('recModal.descAdvanced')}
               </p>
               {recModal.data.map((item, idx) => (
-                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>                  <div style={{ ...styles.libInfo, flex: 1 }}>
+                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>                  
+                  <div style={{ ...styles.libInfo, flex: 1 }}>
                     <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
                   </div>
-                  <span style={{ marginLeft: '10px', color: '#007bff' }}>선택</span>
+                  <span style={{ marginLeft: '10px', color: '#007bff' }}>{t('recModal.selectBtn')}</span>
                 </div>
               ))}
             </div>
@@ -376,26 +413,26 @@ export default function Analysis() {
           <div style={styles.formCard}>
             
             <nav style={styles.stepper}>
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div>
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div>
               <div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div>
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div>
               <div style={styles.stepLineActive} />
-              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>위험 분석</span></div>
+              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>{t('step.riskAnalysis')}</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>문서 모듈 구성</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>데이터 표 구성</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
             </nav>
 
             <div style={styles.formHeader}>
               <div style={styles.headerTitleGroup}>
-                <h2 style={styles.formTitle}>03. 유해·위험요인 분석 ({jsaType === '2-step' ? '표준형' : '심화형'})</h2>
+                <h2 style={styles.formTitle}>{t('form.title')} {jsaType === '2-step' ? t('form.typeStandard') : t('form.typeAdvanced')}</h2>
                 <span style={styles.stepCountBadge}>{activeIdx + 1} / {analysisData.length}</span>
               </div>
               <div style={styles.stepContext}>
-                <div style={styles.stepTitleRow}><span style={styles.stepLabel}>현재 단계</span><strong style={styles.stepValue}>{currentStep.proc?.stepTitle}</strong></div>
+                <div style={styles.stepTitleRow}><span style={styles.stepLabel}>{t('form.currentStep')}</span><strong style={styles.stepValue}>{currentStep.proc?.stepTitle}</strong></div>
                 <p style={styles.stepDetailText}>{currentStep.proc?.stepDetail}</p>
               </div>
             </div>
@@ -404,25 +441,25 @@ export default function Analysis() {
               <div style={styles.analysisGrid}>
                 <section style={styles.leftPanel}>
                   <div style={styles.filterArea}>
-                    <label style={styles.label}>⚠️ 고위험 필터</label>
+                    <label style={styles.label}>{t('filter.label')}</label>
                     <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => setSelectedHighRisk(e.target.value)}>
-                      <option value="">(자동 제안)</option>
+                      <option value="">{t('filter.auto')}</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
-                    <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>📂 라이브러리 스텝 호출</button>
+                    <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>{t('filter.loadLibBtn')}</button>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-                    <span style={styles.label}>안전 지식 베이스 (위험요소 추출)</span>
+                    <span style={styles.label}>{t('base.label')}</span>
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>+ 빈칸 추가</button>
-                      <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>✓ 선택 항목 일괄 추가</button>
+                      <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
+                      <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'auto', maxHeight: '400px', paddingRight: '5px' }}>
                     {recommendations.length === 0 ? (
-                      <p style={{ color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>추천된 위험요인이 없습니다.</p>
+                      <p style={{ color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>{t('base.emptyRec')}</p>
                     ) : (
                       recommendations.map((rec, i) => (
                         <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#161616', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
@@ -434,7 +471,7 @@ export default function Analysis() {
                           <div style={{ flex: 1 }}>
                             <div style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 'bold' }}>{rec.risk_factor || rec.factor}</div>
                           </div>
-                          <div style={styles.recBadge}>{rec.category || "기타"}</div>
+                          <div style={styles.recBadge}>{rec.category || t('base.etc')}</div>
                         </label>
                       ))
                     )}
@@ -443,11 +480,11 @@ export default function Analysis() {
 
                 <section style={styles.rightPanel}>
                   <div style={styles.rightHeader}>
-                    <span style={styles.label}>평가 결과 및 대책 ({currentStep.risks.length})</span>
+                    <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>빈도</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>강도</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
                       <div style={{...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}>{currentStep.riskLevel}</div>
                     </div>
@@ -457,16 +494,16 @@ export default function Analysis() {
                     <table style={styles.table}>
                       <thead>
                         <tr>
-                          <th style={styles.th}>유해·위험요인</th>
+                          <th style={styles.th}>{t('table.factor')}</th>
                           {jsaType === '2-step' ? (
-                            <th style={styles.th}>감소대책</th>
+                            <th style={styles.th}>{t('table.measure')}</th>
                           ) : (
                             <>
-                              <th style={styles.th}>현재 안전대책</th>
-                              <th style={styles.th}>개선권고사항</th>
+                              <th style={styles.th}>{t('table.currentMeasure')}</th>
+                              <th style={styles.th}>{t('table.advancedMeasure')}</th>
                             </>
                           )}
-                          <th style={styles.th}>삭제</th>
+                          <th style={styles.th}>{t('table.delete')}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -484,7 +521,7 @@ export default function Analysis() {
                                       style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
                                       onClick={() => handleOpenRecommendation(r, 'current')}
                                     >
-                                      대책 추천
+                                      {t('table.recMeasureBtn')}
                                     </button>
                                   )}
                                 </div>
@@ -492,7 +529,6 @@ export default function Analysis() {
                             ) : (
                               <>
                                 <td style={styles.td}>
-                                  {/* ✅ UI 교정: 박스 내부 조건부 버튼 배치 */}
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
                                     {!r.current_measure?.trim() && (
@@ -500,13 +536,12 @@ export default function Analysis() {
                                         style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
                                         onClick={() => handleOpenRecommendation(r, 'current')}
                                       >
-                                        대책 추천
+                                        {t('table.recMeasureBtn')}
                                       </button>
                                     )}
                                   </div>
                                 </td>
                                 <td style={styles.td}>
-                                  {/* ✅ UI 교정: 박스 내부 조건부 버튼 배치 */}
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
                                     {!r.recommend_measure?.trim() && (
@@ -514,7 +549,7 @@ export default function Analysis() {
                                         style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
                                         onClick={() => handleOpenRecommendation(r, 'advanced')}
                                       >
-                                        권고 추천
+                                        {t('table.recAdvancedBtn')}
                                       </button>
                                     )}
                                   </div>
@@ -543,7 +578,7 @@ export default function Analysis() {
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? '이전 단계(작업 절차)' : '이전 작업 단계'}</button>
+              <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? t('btn.prevStep1') : t('btn.prevStep2')}</button>
               <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { 
                 state: { 
                   existingId, 
@@ -556,7 +591,7 @@ export default function Analysis() {
                   originalAnalysisData: location.state?.originalAnalysisData 
                 } 
               })}>
-                {activeIdx === analysisData.length - 1 ? '분석 완료 및 모듈 설정으로 이동' : '다음 작업 단계 분석'}
+                {activeIdx === analysisData.length - 1 ? t('btn.nextComplete') : t('btn.nextStep')}
               </button>
             </div>
 

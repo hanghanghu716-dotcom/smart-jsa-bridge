@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
+import { useTranslation } from 'react-i18next'; // ✅ [추가] 다국어 지원 훅 임포트
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -9,6 +10,7 @@ const DEFAULT_PROCEDURES = Array(8)
 export default function Procedure() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation(['procedure']); // ✅ [추가] procedure 네임스페이스 로드
 
   const [procedures, setProcedures] = useState(DEFAULT_PROCEDURES);
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
@@ -25,9 +27,9 @@ export default function Procedure() {
     }
   }, [location.state?.procedures]);
 
-  // ✅ [추가] 홈 버튼 클릭 시 데이터 삭제 경고 로직
+  // ✅ [수정] 홈 버튼 클릭 시 데이터 삭제 경고 로직 다국어 처리
   const handleLogoClick = () => {
-    if (window.confirm("메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.")) {
+    if (window.confirm(t('alert.confirmMain'))) {
       navigate('/');
     }
   };
@@ -52,7 +54,8 @@ export default function Procedure() {
     );
 
     if (validProcs.length < 3) {
-      alert('최소 3단계 이상의 절차를 입력해 주십시오.');
+      // ✅ [수정] 필수 절차 단계 알림 다국어 처리
+      alert(t('alert.minSteps'));
       return;
     }
     setIsTypeModalOpen(true);
@@ -95,8 +98,9 @@ export default function Procedure() {
       {isTypeModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsTypeModalOpen(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>분석 포맷 선택</h3>
-            <p style={styles.modalSub}>수행하고자 하는 JSA 분석의 정밀도를 선택해 주십시오.</p>
+            {/* ✅ [수정] 모달 내 텍스트 다국어 처리 */}
+            <h3 style={styles.modalTitle}>{t('modal.title')}</h3>
+            <p style={styles.modalSub}>{t('modal.sub')}</p>
             
             <div style={styles.modalAdWrapper}>
               <AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" />
@@ -105,18 +109,18 @@ export default function Procedure() {
             <div style={styles.typeGrid}>
               <div style={styles.typeCard} onClick={() => startAnalysis('2-step')}>
                 <div style={styles.typeBadge}>Standard</div>
-                <h4 style={styles.typeLabel}>기본 2단계 분석</h4>
-                <p style={styles.typeDesc}>위험요인 ➔ 감소대책<br/>(일반적인 현장 작업용)</p>
+                <h4 style={styles.typeLabel}>{t('modal.standardLabel')}</h4>
+                <p style={styles.typeDesc}>{t('modal.standardDesc1')}<br/>{t('modal.standardDesc2')}</p>
               </div>
               
               <div style={styles.typeCardHighlight} onClick={() => startAnalysis('3-step')}>
                 <div style={styles.typeBadgeActive}>Advanced</div>
-                <h4 style={styles.typeLabel}>심화 3단계 분석</h4>
-                <p style={styles.typeDesc}>위험요인 ➔ 현재 안전대책 ➔ 추가 감소대책<br/>(고위험 공정 및 정밀 분석용)</p>
+                <h4 style={styles.typeLabel}>{t('modal.advancedLabel')}</h4>
+                <p style={styles.typeDesc}>{t('modal.advancedDesc1')}<br/>{t('modal.advancedDesc2')}</p>
               </div>
             </div>
             
-            <button style={styles.modalCloseBtn} onClick={() => setIsTypeModalOpen(false)}>닫기</button>
+            <button style={styles.modalCloseBtn} onClick={() => setIsTypeModalOpen(false)}>{t('modal.closeBtn')}</button>
           </div>
         </div>
       )}
@@ -127,7 +131,6 @@ export default function Procedure() {
       </div>
 
       <header style={styles.header}>
-        {/* ✅ [수정] onClick 이벤트 변경 */}
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
       </header>
 
@@ -139,39 +142,40 @@ export default function Procedure() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
+              {/* ✅ [수정] Stepper 텍스트 다국어 처리 */}
               {/* 1단계: 완료 */}
               <div style={styles.stepItemDone}>
                 <div style={styles.stepBadgeDone}>✓</div>
-                <span style={styles.stepTextDone}>기본 정보</span>
+                <span style={styles.stepTextDone}>{t('step.basicInfo')}</span>
               </div>
               <div style={styles.stepLineActive} />
 
               {/* 2단계: 활성 */}
               <div style={styles.stepItemActive}>
                 <div style={styles.stepBadgeActive}>2</div>
-                <span style={styles.stepTextActive}>작업 절차</span>
+                <span style={styles.stepTextActive}>{t('step.procedure')}</span>
               </div>
               <div style={styles.stepLine} />
 
               {/* 3~6단계: 대기 */}
-              <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>위험 분석</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>모듈 구성</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>표 구성</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
               <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
             </nav>
 
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>02. 작업 절차 상세 정의</h2>
+              <h2 style={styles.formTitle}>{t('form.title')}</h2> {/* ✅ [수정] 폼 타이틀 다국어 처리 */}
             </div>
 
             <div style={styles.scrollArea}>
               <div style={styles.procedureContainer}>
                 <div style={styles.gridHeader}>
-                  <span style={styles.headerLabelShort}>작업 단계</span>
-                  <span style={styles.headerLabelLong}>상세 작업 내용</span>
+                  <span style={styles.headerLabelShort}>{t('form.stepLabel')}</span> {/* ✅ [수정] 라벨 다국어 처리 */}
+                  <span style={styles.headerLabelLong}>{t('form.detailLabel')}</span> {/* ✅ [수정] 라벨 다국어 처리 */}
                 </div>
 
                 {procedures.map((proc, idx) => (
@@ -181,14 +185,14 @@ export default function Procedure() {
                       <input
                         style={styles.inputTitle}
                         value={proc.stepTitle}
-                        placeholder="단계명"
+                        placeholder={t('form.placeholderTitle')} 
                         maxLength={12}
                         onChange={(e) => updateProcedure(idx, 'stepTitle', e.target.value)}
                       />
                       <input
                         style={styles.inputDetail}
                         value={proc.stepDetail}
-                        placeholder="상세 내용"
+                        placeholder={t('form.placeholderDetail')}
                         onChange={(e) => updateProcedure(idx, 'stepDetail', e.target.value)}
                       />
                     </div>
@@ -196,14 +200,14 @@ export default function Procedure() {
                 ))}
 
                 <button style={styles.addBtn} onClick={addStep}>
-                  + 작업 절차 추가 (최대 20단계)
+                  {t('btn.addStep')} {/* ✅ [수정] 추가 버튼 다국어 처리 */}
                 </button>
               </div>
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={handlePrev}>이전으로</button>
-              <button style={styles.nextBtn} onClick={handleOpenModal}>지능형 위험 분석 시작</button>
+              <button style={styles.prevBtn} onClick={handlePrev}>{t('btn.prev')}</button> {/* ✅ [수정] 버튼 다국어 처리 */}
+              <button style={styles.nextBtn} onClick={handleOpenModal}>{t('btn.next')}</button> {/* ✅ [수정] 버튼 다국어 처리 */}
             </div>
           </div>
         </main>
@@ -275,7 +279,6 @@ const styles = {
   typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
   typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
   modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline' },
-  // styles 객체 내부에 아래 항목을 추가하세요.
   modalAdWrapper: {
   width: '100%',
   marginBottom: '1.5rem',

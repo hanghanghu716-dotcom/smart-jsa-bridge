@@ -1,0 +1,37 @@
+{
+  "alert": {
+    "confirmMain": "메인 화면으로 이동하시겠습니까? 작성 중인 데이터가 모두 삭제될 수 있습니다.",
+    "minSteps": "최소 3단계 이상의 절차를 입력해 주십시오."
+  },
+  "modal": {
+    "title": "분석 포맷 선택",
+    "sub": "수행하고자 하는 JSA 분석의 정밀도를 선택해 주십시오.",
+    "standardLabel": "기본 2단계 분석",
+    "standardDesc1": "위험요인 ➔ 감소대책",
+    "standardDesc2": "(일반적인 현장 작업용)",
+    "advancedLabel": "심화 3단계 분석",
+    "advancedDesc1": "위험요인 ➔ 현재 안전대책 ➔ 추가 감소대책",
+    "advancedDesc2": "(고위험 공정 및 정밀 분석용)",
+    "closeBtn": "닫기"
+  },
+  "step": {
+    "basicInfo": "기본 정보",
+    "procedure": "작업 절차",
+    "riskAnalysis": "위험 분석",
+    "moduleConfig": "모듈 구성",
+    "tableConfig": "표 구성",
+    "finalOutput": "최종 출력"
+  },
+  "form": {
+    "title": "02. 작업 절차 상세 정의",
+    "stepLabel": "작업 단계",
+    "detailLabel": "상세 작업 내용",
+    "placeholderTitle": "단계명",
+    "placeholderDetail": "상세 내용"
+  },
+  "btn": {
+    "addStep": "+ 작업 절차 추가 (최대 20단계)",
+    "prev": "이전으로",
+    "next": "지능형 위험 분석 시작"
+  }
+}
