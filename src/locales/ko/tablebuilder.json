@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "양식 이름을 입력해주세요.",
+    "needLogin": "로그인이 필요합니다.",
+    "saveError": "양식 저장 중 오류가 발생했습니다.",
+    "saveSuccess": "전체 양식 설정이 성공적으로 스크랩되었습니다.",
+    "exceedWidth": "사용자 항목들의 총 너비 합계가 한도를 초과할 수 없습니다."
+  },
+  "tags": {
+    "DATA_STEP_NO": "작업번호",
+    "DATA_STEP_TITLE": "작업단계",
+    "DATA_PHOTO": "관련사진",
+    "DATA_HAZARD": "유해위험요인",
+    "DATA_CURRENT_MEASURE": "현재 안전대책",
+    "DATA_RECOMMEND_MEASURE": "감소권고대책",
+    "DATA_FREQUENCY": "가능성(빈도)",
+    "DATA_SEVERITY": "중대성(강도)",
+    "DATA_RISK": "위험성",
+    "DATA_KRAS_STEP": "세부 작업 내용",
+    "DATA_KRAS_HAZARD_CLASS": "위험 분류",
+    "DATA_KRAS_HAZARD_DETAIL": "위험발생 상황 및 결과",
+    "DATA_KRAS_BASIS": "관련근거(법적기준)",
+    "DATA_KRAS_CURRENT": "현재의 안전보건조치",
+    "DATA_KRAS_RECOMMEND": "위험성 감소대책",
+    "DATA_KRAS_AFTER": "개선후 위험성",
+    "DATA_KRAS_SCHED": "개선 예정일",
+    "DATA_KRAS_COMP": "완료일",
+    "DATA_KRAS_MANAGER": "담당자"
+  },
+  "groups": {
+    "hazard": "유해 위험요인 파악",
+    "risk": "위험성"
+  },
+  "preview": {
+    "freqBreak": "가능성\n(빈도)",
+    "sevBreak": "중대성\n(강도)",
+    "afterBreak": "개선후\n위험성",
+    "schedBreak": "개선\n예정일",
+    "example": "(작성 예시)",
+    "dataArea": "... 실제 위험성 평가 데이터 전개 영역 ...",
+    "docHeader": "[문서 통합 헤더 영역]",
+    "signatureArea": "[참여자 서명란 영역]"
+  },
+  "step": {
+    "basicInfo": "기본 정보",
+    "procedure": "작업 절차",
+    "riskAnalysis": "위험 분석",
+    "moduleConfig": "문서 모듈 구성",
+    "tableConfig": "데이터 표 구성",
+    "finalOutput": "최종 출력"
+  },
+  "header": {
+    "title": "| 05. 데이터 표 구성",
+    "subtitle": "위험성 평가 본문이 전개될 표의 항목(Column) 순서와 너비를 정밀하게 조율합니다."
+  },
+  "toolbar": {
+    "saveTitle": "전체 통합 저장",
+    "saveBtn": "현재까지의 전체 설정 스크랩하기",
+    "saveDesc": "* Step 4의 모듈 설정과 현재의 테이블 설정이 함께 저장됩니다.",
+    "orientationTitle": "테이블 용지 방향",
+    "landscape": "가로형 (권장)",
+    "portrait": "세로형",
+    "zoom": "미리보기 확대/축소",
+    "columnConfig": "컬럼 항목 구성 (Drag & Drop)",
+    "riskToggle": "위험성 (통합)",
+    "riskGroupLabel": "위험성 (가능성·중대성·산정)",
+    "newItem": "새 항목",
+    "width": "너비",
+    "addCustom": "+ 커스텀 항목 추가"
+  },
+  "btn": {
+    "prev": "이전: 문서 모듈 구성 (Step 4)",
+    "next": "최종 출력 단계로 이동 (Step 6)"
+  },
+  "modal": {
+    "title": "전체 양식 스크랩에 추가",
+    "desc": "Step 4의 문서 모듈과 현재 구성한 테이블 설정이 병합되어 저장됩니다.",
+    "placeholder": "스크랩할 이름을 입력하세요",
+    "cancel": "취소",
+    "save": "저장하기"
+  }
+}

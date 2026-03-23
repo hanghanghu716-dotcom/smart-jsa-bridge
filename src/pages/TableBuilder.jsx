@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
 import { supabase } from '../supabaseClient';
+import { useTranslation } from 'react-i18next'; // ✅ [추가]
 
 /**
  * [TableBuilder 컴포넌트]
@@ -66,6 +67,8 @@ const getNormalizedOrder = (order) => {
 export default function TableBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, i18n } = useTranslation(['tablebuilder']); // ✅ [추가]
+  const isEnglish = i18n.language?.startsWith('en'); // 영문 판별 변수 선언
   
   const { 
     existingId, analysisData = [], formData = {}, participants = [], procedures = [], 
@@ -129,13 +132,13 @@ export default function TableBuilder() {
   const hasGroups = layoutGroups.some(g => g.isGroup);
 
   const handleSaveLayout = async () => {
-    if (!saveName.trim()) return alert("양식 이름을 입력해주세요.");
+    if (!saveName.trim()) return alert(t('alert.enterName')); // ✅ [수정] 다국어 처리
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert("로그인이 필요합니다.");
+    if (!user) return alert(t('alert.needLogin')); // ✅ [수정] 다국어 처리
     const layoutData = { docTitle, appr1, appr2, appr3, signatureRows: savedSignatureRows, orientation, activeOrder, userColumns };
     const { error } = await supabase.from('user_layouts').insert({ user_id: user.id, name: saveName, layout_data: layoutData });
-    if (error) { console.error(error); alert("양식 저장 중 오류가 발생했습니다."); } 
-    else { alert("전체 양식 설정이 성공적으로 스크랩되었습니다."); setShowSaveModal(false); setSaveName(''); }
+    if (error) { console.error(error); alert(t('alert.saveError')); }  // ✅ [수정] 다국어 처리
+    else { alert(t('alert.saveSuccess')); setShowSaveModal(false); setSaveName(''); } // ✅ [수정] 다국어 처리
   };
 
   // 그룹 단위 드래그 앤 드롭 핸들러
@@ -171,9 +174,9 @@ export default function TableBuilder() {
 
   const addUserColumn = () => {
     const currentSum = userColumns.reduce((sum, c) => sum + (parseInt(c.width) || 0), 0);
-    if (currentSum + 5 > 40) { alert("사용자 항목들의 총 너비 합계가 한도를 초과할 수 없습니다."); return; }
+    if (currentSum + 5 > 40) { alert(t('alert.exceedWidth')); return; } // ✅ [수정] 다국어 처리
     const id = `USER_${Date.now()}`;
-    setUserColumns([...userColumns, { id, label: '새 항목', width: 5, isFlex: false }]);
+    setUserColumns([...userColumns, { id, label: t('toolbar.newItem'), width: 5, isFlex: false }]); // ✅ [수정] 다국어 처리
     setActiveOrder([...activeOrder, id]);
   };
 
@@ -200,16 +203,21 @@ const renderDataTablePreview = () => {
         </colgroup>
         <thead>
           <tr>
+
+
             {layoutGroups.map((group, idx) => {
               if (group.isGroup) {
-                return <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: '11px', textAlign: 'center', color: '#000' }}>{group.label}</th>;
+                const groupLabel = group.label === '유해 위험요인 파악' ? t('groups.hazard') : t('groups.risk');
+                // 폰트 크기 동적 조절, 줄간격 및 강제 줄바꿈(wordBreak, overflowWrap) 속성 추가
+                return <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '10px' : '11px', lineHeight: '1.2', wordBreak: 'break-word', overflowWrap: 'break-word', textAlign: 'center', color: '#000' }}>{groupLabel}</th>;
               } else {
                 const key = group.keys[0];
                 const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-                let label = meta.label;
-                if (key === 'DATA_FREQUENCY') label = "가능성\n(빈도)";
-                if (key === 'DATA_SEVERITY') label = "중대성\n(강도)";
-                return <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: '11px', textAlign: 'center', whiteSpace: 'pre-wrap', color: '#000' }}>{label}</th>;
+                let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
+                if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
+                // 폰트 크기 동적 조절, 줄간격 및 강제 줄바꿈(wordBreak, overflowWrap) 속성 추가
+                return <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
               }
             })}
           </tr>
@@ -218,10 +226,11 @@ const renderDataTablePreview = () => {
               {layoutGroups.filter(g => g.isGroup).flatMap(group =>
                 group.keys.map(key => {
                   const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-                  let label = meta.label;
-                  if (key === 'DATA_KRAS_AFTER') label = "개선후\n위험성";
-                  if (key === 'DATA_KRAS_SCHED') label = "개선\n예정일";
-                  return <th key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: '11px', textAlign: 'center', whiteSpace: 'pre-wrap', color: '#000' }}>{label}</th>;
+                  let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                  if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
+                  if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
+                  // 폰트 크기 동적 조절, 줄간격 및 강제 줄바꿈(wordBreak, overflowWrap) 속성 추가
+                  return <th key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
                 })
               )}
             </tr>
@@ -232,15 +241,17 @@ const renderDataTablePreview = () => {
             {currentItems.map((key, i) => {
               const meta = TAG_META[key] || userColumns.find(u => u.id === key);
               return (
-                <td key={`dummy-${key}`} style={{ border: '1px solid #000', padding: '10px 4px', fontSize: '11px', color: '#000', textAlign: meta.align || 'center', verticalAlign: 'middle', wordBreak: 'break-all' }}>
-                  (작성 예시)
+                // 폰트 크기 동적 조절, 줄간격 추가 및 기존 break-all을 유연한 break-word/anywhere로 교체
+                <td key={`dummy-${key}`} style={{ border: '1px solid #000', padding: '10px 4px', fontSize: isEnglish ? '10px' : '11px', lineHeight: '1.3', color: '#000', textAlign: meta.align || 'center', verticalAlign: 'middle', wordBreak: 'break-word', overflowWrap: 'anywhere' }}>
+                  {t('preview.example')}
                 </td>
               );
             })}
+
           </tr>
           <tr>
              <td colSpan={currentItems.length} style={{ border: '1px solid #000', padding: '20px', textAlign: 'center', color: '#000', fontSize: '12px', backgroundColor: '#fafafa' }}>
-               ... 실제 위험성 평가 데이터 전개 영역 ...
+               {t('preview.dataArea')} {/* ✅ [수정] 다국어 처리 */}
              </td>
           </tr>
         </tbody>
@@ -289,23 +300,24 @@ const renderDataTablePreview = () => {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>위험 분석</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>문서 모듈 구성</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>5</div><span style={styles.stepTextActive}>데이터 표 구성</span></div><div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>최종 출력</span></div>
+              {/* ✅ [수정] 스텝 다국어 처리 */}
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.riskAnalysis')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.moduleConfig')}</span></div><div style={styles.stepLineActive} />
+              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>5</div><span style={styles.stepTextActive}>{t('step.tableConfig')}</span></div><div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
             </nav>
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>| 05. 데이터 표 구성</h2>
-              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>위험성 평가 본문이 전개될 표의 항목(Column) 순서와 너비를 정밀하게 조율합니다.</p>
+              <h2 style={styles.formTitle}>{t('header.title')}</h2> {/* ✅ [수정] 헤더 타이틀 다국어 처리 */}
+              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p> {/* ✅ [수정] 서브타이틀 다국어 처리 */}
             </div>
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
-                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>전체 통합 저장</h3><button style={{...styles.miniBtn, backgroundColor: '#4caf50', padding: '12px'}} onClick={() => setShowSaveModal(true)}>현재까지의 전체 설정 스크랩하기</button><span style={{ fontSize: '0.65rem', color: '#888', marginTop: '4px' }}>* Step 4의 모듈 설정과 현재의 테이블 설정이 함께 저장됩니다.</span></div>
-                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>테이블 용지 방향</h3><div style={styles.buttonGroupSmall}><button style={{...styles.miniBtn, backgroundColor: orientation === 'landscape' ? '#444' : '#222'}} onClick={() => setOrientation('landscape')}>가로형 (권장)</button><button style={{...styles.miniBtn, backgroundColor: orientation === 'portrait' ? '#444' : '#222'}} onClick={() => setOrientation('portrait')}>세로형</button></div><div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>미리보기 확대/축소</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div></div>
+                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>{t('toolbar.saveTitle')}</h3><button style={{...styles.miniBtn, backgroundColor: '#4caf50', padding: '12px'}} onClick={() => setShowSaveModal(true)}>{t('toolbar.saveBtn')}</button><span style={{ fontSize: '0.65rem', color: '#888', marginTop: '4px' }}>{t('toolbar.saveDesc')}</span></div>
+                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>{t('toolbar.orientationTitle')}</h3><div style={styles.buttonGroupSmall}><button style={{...styles.miniBtn, backgroundColor: orientation === 'landscape' ? '#444' : '#222'}} onClick={() => setOrientation('landscape')}>{t('toolbar.landscape')}</button><button style={{...styles.miniBtn, backgroundColor: orientation === 'portrait' ? '#444' : '#222'}} onClick={() => setOrientation('portrait')}>{t('toolbar.portrait')}</button></div><div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>{t('toolbar.zoom')}</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div></div>
                 <div style={styles.toolSectionCompact}>
-                  <h3 style={styles.toolTitleMini}>컬럼 항목 구성 (Drag & Drop)</h3>
+                  <h3 style={styles.toolTitleMini}>{t('toolbar.columnConfig')}</h3>
                   
                   {/* 통합 토글 영역: 위험성(3개 항목)은 하나로 표시 */}
                   <div style={styles.tagToggleContainerCompact}>
@@ -313,7 +325,8 @@ const renderDataTablePreview = () => {
                       .filter(key => !['DATA_FREQUENCY', 'DATA_SEVERITY'].includes(key)) // 개별 버튼 제외
                       .map(key => {
                         const isActive = activeOrder.includes(key);
-                        const label = key === 'DATA_RISK' ? '위험성 (통합)' : TAG_META[key].label;
+                        // ✅ [수정] 토글 버튼 다국어 처리
+                        const label = key === 'DATA_RISK' ? t('toolbar.riskToggle') : t(`tags.${key}`, TAG_META[key].label);
                         return (
                           <button 
                             key={key} 
@@ -332,7 +345,7 @@ const renderDataTablePreview = () => {
                       const isRiskGroup = group.isGroup && group.label === '위험성';
                       const key = group.keys[0];
                       const meta = isRiskGroup 
-                        ? { label: '위험성 (가능성·중대성·산정)', color: TAG_META['DATA_RISK'].color }
+                        ? { label: t('toolbar.riskGroupLabel'), color: TAG_META['DATA_RISK'].color } // ✅ [수정] 그룹 라벨 다국어 처리
                         : (TAG_META[key] || userColumns.find(u => u.id === key));
                       
                       if (!meta) return null;
@@ -351,40 +364,43 @@ const renderDataTablePreview = () => {
                           {isUser ? (
                             <div style={{display:'flex', gap:'4px', flex:1, alignItems:'center'}}>
                               <input style={styles.miniInputNoBorder} value={meta.label} onChange={(e) => setUserColumns(prev => prev.map(u => u.id === key ? {...u, label: e.target.value} : u))} />
-                              <div style={{display:'flex', alignItems:'center', gap:'2px', backgroundColor:'rgba(0,0,0,0.5)', padding:'0 4px', borderRadius:'4px'}}><span style={{fontSize:'0.6rem', color:'#555'}}>너비</span><input type="number" style={styles.numInputPure} value={meta.width} onChange={(e) => handleWidthChange(key, e.target.value)} /></div>
+                              <div style={{display:'flex', alignItems:'center', gap:'2px', backgroundColor:'rgba(0,0,0,0.5)', padding:'0 4px', borderRadius:'4px'}}><span style={{fontSize:'0.6rem', color:'#555'}}>{t('toolbar.width')}</span><input type="number" style={styles.numInputPure} value={meta.width} onChange={(e) => handleWidthChange(key, e.target.value)} /></div>
                               <button onClick={() => { setActiveOrder(prev => prev.filter(k=>k!==key)); setUserColumns(prev => prev.filter(u=>u.id!==key)); }} style={styles.miniDelBtnActive}>×</button>
                             </div>
                           ) : (
-                            <span style={{flex:1, fontSize:'0.75rem', color:'#eee'}}>{meta.label}</span>
+                            // ✅ [수정] 태그 리스트 항목 라벨 다국어 처리
+                            <span style={{flex:1, fontSize:'0.75rem', color:'#eee'}}>{isRiskGroup ? t('toolbar.riskGroupLabel') : t(`tags.${key}`, meta.label)}</span>
                           )}
                         </div>
                       );
                     })}
                   </div>
                   
-                  <button style={styles.addBtnMini} onClick={addUserColumn}>+ 커스텀 항목 추가</button>
+                  <button style={styles.addBtnMini} onClick={addUserColumn}>{t('toolbar.addCustom')}</button> {/* ✅ [수정] 버튼 텍스트 다국어 처리 */}
                 </div>
               </aside>
               <section style={styles.gridCanvasWrapper}>
                 <div style={styles.canvasScrollArea}>
                   <div className="canvas-container" style={{ transform: `scale(${zoom})`, width: PAPER_WIDTH }}>
                     
-                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginBottom: '20px', fontSize: '13px' }}>[문서 통합 헤더 영역]</div>
+                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginBottom: '20px', fontSize: '13px' }}>{t('preview.docHeader')}</div> {/* ✅ [수정] 다국어 처리 */}
                     
                     {renderDataTablePreview()}
                     
-                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginTop: '20px', fontSize: '13px' }}>[참여자 서명란 영역]</div>
+                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginTop: '20px', fontSize: '13px' }}>{t('preview.signatureArea')}</div> {/* ✅ [수정] 다국어 처리 */}
                   
                   </div>
                 </div>
               </section>
             </div>
-            <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToModuleBuilder}>이전: 문서 모듈 구성 (Step 4)</button><button style={styles.nextBtnLight} onClick={goToExport}>최종 출력 단계로 이동 (Step 6)</button></div>
+            {/* ✅ [수정] 이전/다음 버튼 다국어 처리 */}
+            <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToModuleBuilder}>{t('btn.prev')}</button><button style={styles.nextBtnLight} onClick={goToExport}>{t('btn.next')}</button></div>
           </div>
         </main>
         <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
-      {showSaveModal && ( <div style={styles.modalOverlay}><div style={styles.modalContent}><h3 style={styles.modalTitle}>전체 양식 스크랩에 추가</h3><p style={{ color: '#aaa', fontSize: '0.8rem', marginTop: '-10px', textAlign: 'center' }}>Step 4의 문서 모듈과 현재 구성한 테이블 설정이 병합되어 저장됩니다.</p><input style={styles.modalInput} placeholder="스크랩할 이름을 입력하세요" value={saveName} onChange={(e) => setSaveName(e.target.value)} /><div style={styles.modalBtnGroup}><button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>취소</button><button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>저장하기</button></div></div></div> )}
+      {/* ✅ [수정] 모달창 다국어 처리 */}
+      {showSaveModal && ( <div style={styles.modalOverlay}><div style={styles.modalContent}><h3 style={styles.modalTitle}>{t('modal.title')}</h3><p style={{ color: '#aaa', fontSize: '0.8rem', marginTop: '-10px', textAlign: 'center' }}>{t('modal.desc')}</p><input style={styles.modalInput} placeholder={t('modal.placeholder')} value={saveName} onChange={(e) => setSaveName(e.target.value)} /><div style={styles.modalBtnGroup}><button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>{t('modal.cancel')}</button><button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>{t('modal.save')}</button></div></div></div> )}
     </div>
   );
 }

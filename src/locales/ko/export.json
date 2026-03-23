@@ -1,0 +1,116 @@
+{
+  "default": {
+    "docTitle": "위험성평가표 (JSA)",
+    "appr1": "작성",
+    "appr2": "검토",
+    "appr3": "승인"
+  },
+  "alert": {
+    "needLogin": "로그인이 필요한 서비스입니다.",
+    "savePublic": "Explore에 보안 저장되었습니다.",
+    "savePrivate": "내 보관함에 보안 저장되었습니다.",
+    "saveError": "저장 중 오류 발생: ",
+    "pdfError": "PDF 생성 실패"
+  },
+  "header": {
+    "projectName": "작업명",
+    "approval": "결\n재",
+    "workLocation": "작업구역",
+    "department": "수행부서",
+    "workDate": "수행일자",
+    "ppe": "개인보호구",
+    "highRiskWork": "고위험작업"
+  },
+  "ppe": {
+    "helmet": "안전모",
+    "shoes": "안전화",
+    "glasses": "보안경",
+    "safetyBelt": "안전대",
+    "mask": "방진/방독마스크",
+    "gloves": "안전장갑",
+    "etc": "기타"
+  },
+  "permit": {
+    "hotWork": "화기",
+    "confinedSpace": "밀폐",
+    "electrical": "정전/활선",
+    "highElevation": "고소",
+    "heavyLifting": "중량물취급",
+    "excavation": "굴착",
+    "etc": "기타"
+  },
+  "signature": {
+    "participants": "참여자",
+    "sign": "(인)"
+  },
+  "groups": {
+    "hazard": "유해 위험요인 파악",
+    "risk": "위험성"
+  },
+  "tags": {
+    "DATA_STEP_NO": "작업번호",
+    "DATA_STEP_TITLE": "작업단계",
+    "DATA_PHOTO": "관련사진",
+    "DATA_HAZARD": "유해위험요인",
+    "DATA_CURRENT_MEASURE": "현재 안전대책",
+    "DATA_RECOMMEND_MEASURE": "감소권고대책",
+    "DATA_FREQUENCY": "가능성(빈도)",
+    "DATA_SEVERITY": "중대성(강도)",
+    "DATA_RISK": "위험성",
+    "DATA_KRAS_STEP": "세부 작업 내용",
+    "DATA_KRAS_HAZARD_CLASS": "위험 분류",
+    "DATA_KRAS_HAZARD_DETAIL": "위험발생 상황 및 결과",
+    "DATA_KRAS_BASIS": "관련근거(법적기준)",
+    "DATA_KRAS_CURRENT": "현재의 안전보건조치",
+    "DATA_KRAS_RECOMMEND": "위험성 감소대책",
+    "DATA_KRAS_AFTER": "개선후 위험성",
+    "DATA_KRAS_SCHED": "개선 예정일",
+    "DATA_KRAS_COMP": "완료일",
+    "DATA_KRAS_MANAGER": "담당자"
+  },
+  "preview": {
+    "freqBreak": "가능성\n(빈도)",
+    "sevBreak": "중대성\n(강도)",
+    "afterBreak": "개선후\n위험성",
+    "schedBreak": "개선\n예정일"
+  },
+  "table": {
+    "addPhoto": "사진"
+  },
+  "ui": {
+    "processing": "데이터 처리 중..."
+  },
+  "step": {
+    "basicInfo": "기본 정보",
+    "procedure": "작업 절차",
+    "riskAnalysis": "위험 분석",
+    "moduleConfig": "모듈 구성",
+    "tableConfig": "표 구성",
+    "finalOutput": "최종 출력"
+  },
+  "title": {
+    "main": "| 06. 최종 출력"
+  },
+  "btn": {
+    "prev": "테이블 구성 수정",
+    "cloudSave": "클라우드 저장 (공개 범위 선택)",
+    "pdfSave": "PDF 파일 생성 및 저장"
+  },
+  "modal": {
+    "pdfTitle": "PDF 리포트 생성",
+    "pdfSub": "최종 결과물을 PDF 파일로 변환하여 다운로드합니다.",
+    "pdfBtnLabel": "리포트 다운로드 시작",
+    "pdfBtnDesc": "고해상도 PDF 파일을 생성합니다.<br/>잠시만 기다려 주십시오.",
+    "close": "닫기 (취소)",
+    "pubTitle": "클라우드 저장 설정",
+    "pubWarning": "⚠️ 보안을 위해 부서, 장소, 날짜, 참여자 명단은 \n 공란으로 처리되어 저장됩니다.",
+    "pubSub": "저장할 작업물의 공개 범위를 선택해 주십시오.",
+    "pubBadgeLimited": "Public (제한됨)",
+    "pubPublicLabel": "Explore에 공개",
+    "pubForkLimit": "원본 대비 작업 단계가 <br/> 추가되거나 <br/> 위험요인이 2개 이상 <br/> 추가되어야 합니다.",
+    "pubRiskLimit": "지식 공유를 위해 3개 이상의<br/>위험요인과 대책을 작성해 주십시오.",
+    "pubPublicDesc": "모든 사용자가 조회 가능하며<br/>안전 지식 공유에 기여합니다.",
+    "pubPrivateLabel": "내 보관함 저장",
+    "pubPrivateDesc": "작성자 본인만 확인 가능하며<br/>개인 프로젝트로 관리됩니다."
+  }
+}

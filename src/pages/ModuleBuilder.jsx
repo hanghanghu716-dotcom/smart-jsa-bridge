@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
-import { useTranslation } from 'react-i18next'; // ✅ [추가]
+import { useTranslation } from 'react-i18next';
 
 /**
- * [ModuleBuilder 컴포넌트]
- * 역할: Step 4. 문서 모듈 구성 (통합 고정 헤더 및 부가 문서 블록 설정)
+ * [ModuleBuilder 컴포넌트 - 결재 라벨 레이아웃 최적화본]
+ * 역할: Step 4. 문서 모듈 구성 (OSHA 영문 결재란 침범 문제 해결)
  * 에디터 위치: src/pages/ModuleBuilder.jsx
  */
 
 export default function ModuleBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation(['modulebuilder']); // ✅ [추가]
+  const { t, i18n } = useTranslation(['modulebuilder']);
   
+  const isEnglish = i18n.language?.startsWith('en');
+
   const { 
     existingId = null,
     analysisData = [],
@@ -29,7 +31,6 @@ export default function ModuleBuilder() {
 
   const [signatureRows, setSignatureRows] = useState(savedSignatureRows || 1);
 
-  // 문서 타이틀 및 결재란 헤더 수정용 상태 관리
   const [docTitle, setDocTitle] = useState(savedDocTitle || t('default.docTitle', '위험성평가표 (JSA)'));
   const [appr1, setAppr1] = useState(savedAppr1 || t('default.appr1', '작성'));
   const [appr2, setAppr2] = useState(savedAppr2 || t('default.appr2', '검토'));
@@ -40,8 +41,8 @@ export default function ModuleBuilder() {
       state: { 
         ...location.state,
         isFork: location.state?.isFork,
-        parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이 유지
-        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이 유지
+        parentId: location.state?.parentId,
+        originalAnalysisData: location.state?.originalAnalysisData
       } 
     });
   };
@@ -56,52 +57,82 @@ export default function ModuleBuilder() {
         appr2,
         appr3,
         isFork: location.state?.isFork,
-        parentId: location.state?.parentId, // ✅ [추가] 다음 단계로 원본 출처 ID 릴레이
-        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 다음 단계로 변경률 검증용 원본 데이터 릴레이
+        parentId: location.state?.parentId,
+        originalAnalysisData: location.state?.originalAnalysisData
       } 
     });
   };
 
-  // 6분할 Colgroup을 활용한 수평적 행 구조 렌더링 및 Info 데이터 바인딩
   const renderUnifiedHeader = () => {
     const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '11px', textAlign: 'center', color: '#000' };
-    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: 'nowrap' };
-    const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
+    
+    const labelTdStyle = { 
+      ...commonTdStyle, 
+      backgroundColor: '#f2f2f2', 
+      fontWeight: 'bold', 
+      whiteSpace: isEnglish ? 'normal' : 'nowrap',
+      fontSize: isEnglish ? '10px' : '11px',
+      lineHeight: '1.2'
+    };
+
+    const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap', fontSize: isEnglish ? '10px' : '11px' };
 
     const ppeOthers = formData?.ppe?.filter(p => !['안전모','안전화','보안경','장갑','방진마스크'].includes(p)).join(', ');
     const permitOthers = formData?.permits?.filter(p => !['일반','화기','밀폐','정전','고소','중량물','굴착'].includes(p)).join(', ');
 
+    const adaptiveContainerStyle = {
+      display: isEnglish ? 'grid' : 'flex',
+      gridTemplateColumns: isEnglish ? 'repeat(3, 1fr)' : 'none',
+      gap: isEnglish ? '4px' : '0',
+      width: '100%',
+      alignItems: 'center',
+      textAlign: 'left'
+    };
+
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed' }}>
         <colgroup>
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '20%' }} />
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '30%' }} />
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '20%' }} />
+          <col style={{ width: isEnglish ? '15%' : '12%' }} />
+          <col style={{ width: isEnglish ? '15%' : '18%' }} />
+          <col style={{ width: isEnglish ? '12%' : '10%' }} />
+          <col style={{ width: isEnglish ? '28%' : '30%' }} />
+          <col style={{ width: isEnglish ? '12%' : '10%' }} />
+          <col style={{ width: isEnglish ? '18%' : '20%' }} />
         </colgroup>
         <tbody>
           <tr>
             <td style={labelTdStyle}>{t('table.projectName')}</td>
-            <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
-            <td colSpan={2} style={{ ...commonTdStyle, fontSize: '18px', fontWeight: 'bold', verticalAlign: 'middle' }}>
+            <td style={{...commonTdStyle, fontWeight: 'bold', wordBreak: 'break-all'}}>{formData?.projectName || ''}</td>
+            <td colSpan={2} style={{ ...commonTdStyle, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', verticalAlign: 'middle' }}>
               {docTitle}
             </td>
             <td colSpan={2} style={{ padding: 0, border: '1px solid #000' }}>
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    <td rowSpan={2} style={{ borderRight: '1px solid #000', width: '20px', writingMode: 'vertical-rl', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none' }}>{t('table.approval')}</td>
+                    {/* [기능 추가]: 영문 시 스택 구조 레이아웃 적용으로 텍스트 침범 해결 */}
+                    <td rowSpan={2} style={{ 
+                      borderRight: '1px solid #000', 
+                      width: isEnglish ? '60px' : '20px', 
+                      writingMode: isEnglish ? 'horizontal-tb' : 'vertical-rl', 
+                      textAlign: 'center', 
+                      backgroundColor: '#f2f2f2', 
+                      fontWeight: 'bold', 
+                      color: '#000', 
+                      padding: '4px 2px'
+                    }}>
+                      {isEnglish ? (
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: '9px', lineHeight: '1.1' }}>
+                          <span>Compliance</span>
+                          <span>Approval</span>
+                        </div>
+                      ) : t('table.approval')}
+                    </td>
                     <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr1}</td>
                     <td style={{ borderRight: '1px solid #000', borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr2}</td>
                     <td style={{ borderBottom: '1px solid #000', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none' }}>{appr3}</td>
                   </tr>
-                  <tr>
-                    <td style={{ borderRight: '1px solid #000', height: '45px' }}></td>
-                    <td style={{ borderRight: '1px solid #000' }}></td>
-                    <td></td>
-                  </tr>
+                  <tr><td style={{ borderRight: '1px solid #000', height: '45px' }}></td><td style={{ borderRight: '1px solid #000' }}></td><td></td></tr>
                 </tbody>
               </table>
             </td>
@@ -109,7 +140,7 @@ export default function ModuleBuilder() {
           
           <tr>
             <td style={labelTdStyle}>{t('table.workLocation')}</td>
-            <td style={commonTdStyle}>{formData?.workLocation || ''}</td>
+            <td style={{...commonTdStyle, wordBreak: 'break-all'}}>{formData?.workLocation || ''}</td>
             <td style={labelTdStyle}>{t('table.department')}</td>
             <td style={commonTdStyle}>{formData?.department || ''}</td>
             <td style={labelTdStyle}>{t('table.workDate')}</td>
@@ -118,16 +149,16 @@ export default function ModuleBuilder() {
 
           <tr>
             <td style={labelTdStyle}>{t('table.ppe')}</td>
-            <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
-              <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+            <td colSpan={5} style={{ ...commonTdStyle, padding: '8px' }}>
+              <div style={adaptiveContainerStyle}>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} {t('ppe.helmet')}</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} {t('ppe.shoes')}</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('보안경') ? '☑' : '□'} {t('ppe.glasses')}</span>
                 <span style={checkboxItemStyle}>□ {t('ppe.safetyBelt')}</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} {t('ppe.mask')}</span>
                 <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} {t('ppe.gloves')}</span>
-                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
-                  {ppeOthers ? '☑' : '□'} {t('ppe.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)
+                <span style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', fontSize: isEnglish ? '10px' : '11px' }}>
+                  {ppeOthers ? '☑' : '□'} {t('ppe.etc')}(<span style={{ color: '#000', padding: '0 4px' }}>{ppeOthers}</span>)
                 </span>
               </div>
             </td>
@@ -135,16 +166,16 @@ export default function ModuleBuilder() {
 
           <tr>
             <td style={labelTdStyle}>{t('table.highRiskWork')}</td>
-            <td colSpan={5} style={{ ...commonTdStyle, padding: '6px 8px' }}>
-              <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+            <td colSpan={5} style={{ ...commonTdStyle, padding: '8px' }}>
+              <div style={{...adaptiveContainerStyle, gridTemplateColumns: isEnglish ? 'repeat(4, 1fr)' : 'none'}}>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} {t('permit.hotWork')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} {t('permit.confinedSpace')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} {t('permit.electrical')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} {t('permit.highElevation')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} {t('permit.heavyLifting')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} {t('permit.excavation')}</span>
-                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>
-                  {permitOthers ? '☑' : '□'} {t('permit.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)
+                <span style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', fontSize: isEnglish ? '10px' : '11px' }}>
+                  {permitOthers ? '☑' : '□'} {t('permit.etc')}(<span style={{ color: '#000', padding: '0 4px' }}>{permitOthers}</span>)
                 </span>
               </div>
             </td>
@@ -157,7 +188,6 @@ export default function ModuleBuilder() {
   const renderModulePreview = () => {
     const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '10px', textAlign: 'center', color: '#000' };
     const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%' };
-
     const sigRows = Array.from({ length: signatureRows }, (_, i) => i);
     const cols = Array.from({ length: 8 }, (_, i) => i);
     
@@ -165,7 +195,7 @@ export default function ModuleBuilder() {
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', borderTop: 'none', tableLayout: 'fixed' }}>
         <tbody>
           <tr>
-            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none'}}>{t('table.participants')}</td>
+            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none', whiteSpace: isEnglish ? 'normal' : 'nowrap'}}>{t('table.participants')}</td>
             {cols.map(c => {
               const pName = participants?.[c] || '';
               return (
@@ -202,11 +232,9 @@ export default function ModuleBuilder() {
         <div style={{ textAlign: 'center', color: '#28a745', fontSize: '0.8rem', marginTop: '5px' }}>{t('preview.tableAreaDesc')}</div>
       </div>
     );
-
     let layoutElements = [];
     layoutElements.push(renderModulePreview());
     layoutElements.push(TableBlock);
-
     return layoutElements;
   };
 
@@ -218,7 +246,6 @@ export default function ModuleBuilder() {
         <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div><div style={styles.stepLineActive} />
@@ -227,39 +254,23 @@ export default function ModuleBuilder() {
               <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div><div style={styles.stepLine} />
               <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
             </nav>
-            
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>{t('header.title')}</h2>
               <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p>
             </div>
-
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
-                
                 <div style={styles.toolSectionCompact}>
                   <h3 style={styles.toolTitleMini}>{t('toolbar.headerTextSetting')}</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <div style={styles.inputFieldCompact}>
-                      <span style={styles.inputLabel}>{t('toolbar.docTitle')}</span>
-                      <input type="text" value={docTitle} onChange={(e) => setDocTitle(e.target.value)} style={styles.panelInput} />
-                    </div>
+                    <div style={styles.inputFieldCompact}><span style={styles.inputLabel}>{t('toolbar.docTitle')}</span><input type="text" value={docTitle} onChange={(e) => setDocTitle(e.target.value)} style={styles.panelInput} /></div>
                     <div style={{ display: 'flex', gap: '6px' }}>
-                      <div style={styles.inputFieldCompact}>
-                        <span style={styles.inputLabel}>{t('toolbar.appr1')}</span>
-                        <input type="text" value={appr1} onChange={(e) => setAppr1(e.target.value)} style={styles.panelInput} />
-                      </div>
-                      <div style={styles.inputFieldCompact}>
-                        <span style={styles.inputLabel}>{t('toolbar.appr2')}</span>
-                        <input type="text" value={appr2} onChange={(e) => setAppr2(e.target.value)} style={styles.panelInput} />
-                      </div>
-                      <div style={styles.inputFieldCompact}>
-                        <span style={styles.inputLabel}>{t('toolbar.appr3')}</span>
-                        <input type="text" value={appr3} onChange={(e) => setAppr3(e.target.value)} style={styles.panelInput} />
-                      </div>
+                      <div style={styles.inputFieldCompact}><span style={styles.inputLabel}>{t('toolbar.appr1')}</span><input type="text" value={appr1} onChange={(e) => setAppr1(e.target.value)} style={styles.panelInput} /></div>
+                      <div style={styles.inputFieldCompact}><span style={styles.inputLabel}>{t('toolbar.appr2')}</span><input type="text" value={appr2} onChange={(e) => setAppr2(e.target.value)} style={styles.panelInput} /></div>
+                      <div style={styles.inputFieldCompact}><span style={styles.inputLabel}>{t('toolbar.appr3')}</span><input type="text" value={appr3} onChange={(e) => setAppr3(e.target.value)} style={styles.panelInput} /></div>
                     </div>
                   </div>
                 </div>
-
                 <div style={styles.toolSectionCompact}>
                   <h3 style={styles.toolTitleMini}>{t('toolbar.signatureSetting')}</h3>
                   <div style={{...styles.inputFieldCompact, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -271,22 +282,14 @@ export default function ModuleBuilder() {
                     </div>
                   </div>
                 </div>
-
               </aside>
-
               <section style={styles.previewPanel}>
                 <div style={styles.previewHeader}>{t('preview.header')}</div>
                 <div style={styles.previewCanvas}>
-                  <div style={styles.documentSheet}>
-                    {renderUnifiedHeader()}
-                    <div style={{ width: '100%' }}>
-                      {renderDynamicLayout()}
-                    </div>
-                  </div>
+                  <div style={styles.documentSheet}>{renderUnifiedHeader()}<div style={{ width: '100%' }}>{renderDynamicLayout()}</div></div>
                 </div>
               </section>
             </div>
-
             <div style={styles.btnAreaLayout}>
               <button style={styles.prevBtnDark} onClick={goBackToAnalysis}>{t('btn.prev')}</button>
               <button style={styles.nextBtnLight} onClick={goToTableBuilder}>{t('btn.next')}</button>
@@ -306,9 +309,10 @@ const styles = {
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', letterSpacing: '2px' },
-mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 2rem 20px', zIndex: 10, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' },
+  mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 2rem 20px', zIndex: 10, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '160px' },
-  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 0 },  formCard: { width: '100%', maxWidth: '1550px', height: '85vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.8)' },
+  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 0 },
+  formCard: { width: '100%', maxWidth: '1550px', height: '85vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.8)' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', gap: '0.5rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
   stepBadgeDone: { width: '20px', height: '20px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
@@ -335,21 +339,7 @@ mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 2rem 2
   previewPanel: { flex: 1, backgroundColor: 'rgba(20, 20, 20, 0.8)', borderRadius: '10px', border: '1px solid #333', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   previewHeader: { padding: '1rem', backgroundColor: '#111', color: '#fff', fontSize: '0.9rem', fontWeight: 'bold', borderBottom: '1px solid #333', textAlign: 'center' },
   previewCanvas: { flex: 1, overflow: 'auto', padding: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#333' },
-  
-  // Export 화면과 일치하도록 폭, 폰트, Box-sizing 등 속성 통일
-  documentSheet: { 
-    backgroundColor: '#fff', 
-    width: '1080px', 
-    minHeight: '750px', 
-    padding: '40px', 
-    boxShadow: '0 10px 40px rgba(0,0,0,0.5)', 
-    display: 'flex', 
-    flexDirection: 'column',
-    boxSizing: 'border-box',
-    fontFamily: '"Malgun Gothic", sans-serif',
-    margin: '0 auto'
-  },
-  
+  documentSheet: { backgroundColor: '#fff', width: '1080px', minHeight: '750px', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
   previewBlock: { width: '100%', backgroundColor: 'transparent', border: 'none' },
   btnAreaLayout: { marginTop: '1.5rem', display: 'flex', gap: '1rem' },
   prevBtnDark: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
