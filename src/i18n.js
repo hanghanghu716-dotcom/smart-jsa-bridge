@@ -13,7 +13,11 @@ import koModulebuilder from './locales/ko/modulebuilder.json';
 import koTablebuilder from './locales/ko/tablebuilder.json'; 
 import koExport from './locales/ko/export.json';
 import koLogin from './locales/ko/login.json';
-import koDictionary from './locales/ko/dictionary.json'
+import koDictionary from './locales/ko/dictionary.json';
+import koTerms from './locales/ko/terms.json';
+import koMyLibrary from './locales/ko/mylibrary.json';
+import koRegulation from './locales/ko/regulation.json';
+import koJrajsa from './locales/ko/jrajsa.json';
 
 // 2. 영어(US) 리소스 임포트
 import enUSMain from './locales/en-US/main.json';
@@ -27,9 +31,11 @@ import enUSModulebuilder from './locales/en-US/modulebuilder.json';
 import enUSTablebuilder from './locales/en-US/tablebuilder.json'; 
 import enUSExport from './locales/en-US/export.json';
 import enUSLogin from './locales/en-US/login.json';
-import enUSDictionary from './locales/en-US/dictionary.json'
-
-
+import enUSDictionary from './locales/en-US/dictionary.json';
+import enUSTerms from './locales/en-US/terms.json';
+import enUSMyLibrary from './locales/en-US/mylibrary.json';
+import enUSRegulation from './locales/en-US/regulation.json';
+import enUSJrajsa from './locales/en-US/jrajsa.json';
 
 const resources = {
   'ko': { 
@@ -44,8 +50,13 @@ const resources = {
     tablebuilder: koTablebuilder, 
     export: koExport,
     login: koLogin,
-    dictionary: koDictionary
+    dictionary: koDictionary,
+    terms: koTerms,
+    library: koMyLibrary, // 컴포넌트의 useTranslation('library')와 일치시킴
+    regulation: koRegulation,
+    jrajsa: koJrajsa,
   },
+
   'en-US': { 
     main: enUSMain, 
     explore: enUSExplore, 
@@ -58,7 +69,11 @@ const resources = {
     tablebuilder: enUSTablebuilder,
     export: enUSExport,
     login: enUSLogin,
-    dictionary: enUSDictionary
+    dictionary: enUSDictionary,
+    terms: enUSTerms,
+    library: enUSMyLibrary,
+    regulation: enUSRegulation,
+    jrajsa: enUSJrajsa,
   },
   'en-GB': { 
     main: enUSMain, 
@@ -72,7 +87,12 @@ const resources = {
     tablebuilder: enUSTablebuilder,
     export: enUSExport,
     login: enUSLogin,
-    dictionary: enUSDictionary
+    dictionary: enUSDictionary,
+    terms: enUSTerms,
+    library: enUSMyLibrary,
+    regulation: enUSRegulation,
+    jrajsa: enUSJrajsa,
+
   }, 
   'en-AU': { 
     main: enUSMain, 
@@ -86,7 +106,12 @@ const resources = {
     tablebuilder: enUSTablebuilder,
     export: enUSExport,
     login: enUSLogin,
-    dictionary: enUSDictionary
+    dictionary: enUSDictionary,
+    terms: enUSTerms,
+    library: enUSMyLibrary,
+    regulation: enUSRegulation,
+    jrajsa: enUSJrajsa,
+
   }
 };
 
@@ -96,8 +121,9 @@ i18n
     resources,
     lng: 'ko',
     fallbackLng: 'en-US',
-    // ✅ login 네임스페이스 추가 완료
-    ns: ['dictionary','main', 'explore', 'tags', 'about', 'analysis', 'info', 'procedure', 'modulebuilder', 'tablebuilder', 'export', 'login'],
+    // ✅ library 네임스페이스 명칭 통일 완료
+    ns: ['jrajsa','regulation',' library', 'terms', 'dictionary', 'main', 'explore', 'tags', 'about', 'analysis', 'info', 'procedure', 'modulebuilder', 'tablebuilder', 'export', 'login'],
+    defaultNS: 'main',
     interpolation: { 
       escapeValue: false 
     }

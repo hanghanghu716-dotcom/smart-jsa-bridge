@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
+import { useTranslation } from 'react-i18next';
 
 export default function MyLibrary() {
   const navigate = useNavigate();
+  const { t } = useTranslation('library');
   const [categories, setCategories] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [reports, setReports] = useState([]); 
@@ -69,7 +71,6 @@ export default function MyLibrary() {
     setIsLoading(false);
   };
 
-  // ✅ [추가] 공개/비공개 상태 토글 함수
   const handleTogglePublic = async (projectId, currentStatus) => {
     const realId = projectId.replace('mine-', '');
     const { error } = await supabase
@@ -78,18 +79,18 @@ export default function MyLibrary() {
       .eq('id', realId);
 
     if (error) {
-      alert("상태 변경 중 오류가 발생했습니다.");
+      alert(t('errorStatusChange'));
     } else {
       fetchLibraryData();
     }
   };
 
   const handleClone = async (project) => {
-    if (!window.confirm("이 작업물을 내 보관함으로 복제하시겠습니까?")) return;
+    if (!window.confirm(t('confirmClone'))) return;
     const { data: { user } } = await supabase.auth.getUser();
     const cloneData = {
       author_id: user.id,
-      title: `[복제] ${project.title}`,
+      title: `[${t('clonedPrefix')}] ${project.title}`,
       form_data: project.form_data,
       participants: project.participants,
       analysis_data: project.analysis_data,
@@ -97,11 +98,11 @@ export default function MyLibrary() {
       is_public: false,
     };
     const { error } = await supabase.from('jsa_projects').insert(cloneData);
-    if (!error) { alert("복제가 완료되었습니다."); fetchLibraryData(); }
+    if (!error) { alert(t('cloneSuccess')); fetchLibraryData(); }
   };
 
   const handleWithdraw = async (type, id) => {
-    if (!window.confirm("해당 조치를 철회하시겠습니까?")) return;
+    if (!window.confirm(t('confirmWithdraw'))) return;
     const tableMap = { report: 'user_reports', block: 'user_blocks', projectBlock: 'user_project_blocks' };
     await supabase.from(tableMap[type]).delete().eq('id', id);
     fetchLibraryData();
@@ -122,7 +123,7 @@ export default function MyLibrary() {
 
   const deleteCategory = async (e, catId) => {
     e.stopPropagation();
-    if (window.confirm("폴더를 삭제하시겠습니까?")) {
+    if (window.confirm(t('confirmDeleteFolder'))) {
       await supabase.from('user_jsa_categories').delete().eq('id', catId);
       if (selectedCatId === catId) setSelectedCatId(null);
       fetchLibraryData();
@@ -164,19 +165,19 @@ export default function MyLibrary() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <div style={styles.libHeader}>
-              <h2 style={styles.title}>내 지식 보관함</h2>
+              <h2 style={styles.title}>{t('pageTitle')}</h2>
               <div style={styles.addCategoryBox}>
-                <input style={styles.catInput} value={newCatName} onChange={(e)=>setNewCatName(e.target.value)} placeholder="새 폴더 이름" />
-                <button style={styles.catAddBtn} onClick={createCategory}>폴더 추가</button>
+                <input style={styles.catInput} value={newCatName} onChange={(e)=>setNewCatName(e.target.value)} placeholder={t('newFolderPlaceholder')} />
+                <button style={styles.catAddBtn} onClick={createCategory}>{t('addFolderBtn')}</button>
               </div>
             </div>
 
             <div style={styles.contentGrid}>
               <aside style={styles.catSidebar}>
-                <div style={selectedCatId === 'SYSTEM_FOLDER' ? styles.systemCatActive : styles.systemCat} onClick={() => setSelectedCatId('SYSTEM_FOLDER')}>신고 및 차단 관리</div>
-                <div style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat} onClick={() => setSelectedCatId('LAYOUT_FOLDER')}>저장된 양식 관리 ({layouts.length})</div>
+                <div style={selectedCatId === 'SYSTEM_FOLDER' ? styles.systemCatActive : styles.systemCat} onClick={() => setSelectedCatId('SYSTEM_FOLDER')}>{t('menuSystem')}</div>
+                <div style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat} onClick={() => setSelectedCatId('LAYOUT_FOLDER')}>{t('menuLayout')} ({layouts.length})</div>
                 <div style={styles.catDivider} />
-                <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>전체 보기 ({favorites.length})</div>
+                <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>{t('menuViewAll')} ({favorites.length})</div>
                 <div style={styles.catScrollArea}>
                   {buildFolderTree(categories).map(root => (
                     <FolderItem key={root.id} folder={root} selectedId={selectedCatId} onSelect={setSelectedCatId} onDelete={deleteCategory} favorites={favorites} />
@@ -186,30 +187,30 @@ export default function MyLibrary() {
 
               <section style={styles.listSection}>
                 {isLoading ? (
-                  <div style={styles.loader}>지식 자산 로딩 중...</div>
+                  <div style={styles.loader}>{t('loading')}</div>
                 ) : selectedCatId === 'SYSTEM_FOLDER' ? (
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
-                      <h4 style={styles.mTitle}>내 신고 내역</h4>
+                      <h4 style={styles.mTitle}>{t('reportHistoryTitle')}</h4>
                       {reports.map(r => (
                         <div key={r.id} style={styles.mRow}>
-                          <span>[신고] {r.jsa_projects?.title} - {r.reason}</span>
-                          <button style={styles.mBtn} onClick={() => handleWithdraw('report', r.id)}>철회</button>
+                          <span>[{t('reportLabel')}] {r.jsa_projects?.title} - {r.reason}</span>
+                          <button style={styles.mBtn} onClick={() => handleWithdraw('report', r.id)}>{t('withdrawBtn')}</button>
                         </div>
                       ))}
                     </div>
                     <div style={styles.mGroup}>
-                      <h4 style={styles.mTitle}>차단 및 숨김 관리</h4>
+                      <h4 style={styles.mTitle}>{t('blockManagementTitle')}</h4>
                       {blocks.map(b => (
                         <div key={b.id} style={styles.mRow}>
-                          <span>사용자 차단: {b.profiles?.username || "익명"}</span>
-                          <button style={styles.mBtn} onClick={() => handleWithdraw('block', b.id)}>해제</button>
+                          <span>{t('userBlockLabel')}: {b.profiles?.username || t('anonymous')}</span>
+                          <button style={styles.mBtn} onClick={() => handleWithdraw('block', b.id)}>{t('releaseBtn')}</button>
                         </div>
                       ))}
                       {projectBlocks.map(p => (
                         <div key={p.id} style={styles.mRow}>
-                          <span>작업물 숨김: {p.jsa_projects?.title}</span>
-                          <button style={styles.mBtn} onClick={() => handleWithdraw('projectBlock', p.id)}>해제</button>
+                          <span>{t('projectHideLabel')}: {p.jsa_projects?.title}</span>
+                          <button style={styles.mBtn} onClick={() => handleWithdraw('projectBlock', p.id)}>{t('releaseBtn')}</button>
                         </div>
                       ))}
                     </div>
@@ -217,16 +218,16 @@ export default function MyLibrary() {
                 ) : selectedCatId === 'LAYOUT_FOLDER' ? (
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
-                      <h4 style={styles.mTitle}>내 양식 목록</h4>
-                      {layouts.length === 0 && <div style={{color: '#888', fontSize: '0.85rem'}}>저장된 양식이 없습니다.</div>}
+                      <h4 style={styles.mTitle}>{t('layoutListTitle')}</h4>
+                      {layouts.length === 0 && <div style={{color: '#888', fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
                       {layouts.map(l => (
                         <div key={l.id} style={styles.mRow}>
-                          <span>[양식] {l.name} <span style={{fontSize:'0.75rem', color:'#666', marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
+                          <span>[{t('layoutLabel')}] {l.name} <span style={{fontSize:'0.75rem', color:'#666', marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
                           <button style={styles.mBtn} onClick={async () => {
-                            if(window.confirm("이 양식을 삭제하시겠습니까?")) {
+                            if(window.confirm(t('confirmDeleteLayout'))) {
                               await supabase.from('user_layouts').delete().eq('id', l.id); fetchLibraryData();
                             }
-                          }}>삭제</button>
+                          }}>{t('deleteBtn')}</button>
                         </div>
                       ))}
                     </div>
@@ -238,10 +239,9 @@ export default function MyLibrary() {
                         <div style={styles.cardTop}>
                           <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', flex: 1, alignItems: 'center' }}>
                             <span style={{...styles.typeBadge, backgroundColor: f.displayType === 'MY_JSA' ? '#4caf50' : '#007bff'}}>
-                              {f.displayType === 'MY_JSA' ? '내 작성' : '스크랩'}
+                              {f.displayType === 'MY_JSA' ? t('typeMyJsa') : t('typeScrap')}
                             </span>
                             
-                            {/* ✅ [추가] 공개/비공개 배지 */}
                             {f.displayType === 'MY_JSA' && (
                               <span style={{
                                 ...styles.typeBadge, 
@@ -257,7 +257,7 @@ export default function MyLibrary() {
                               ...styles.typeBadge,
                               backgroundColor: f.originData?.form_data?.jsaType === '3-step' ? '#ff4d4d' : '#444'
                             }}>
-                              {f.originData?.form_data?.jsaType === '3-step' ? '심화' : '기본'}
+                              {f.originData?.form_data?.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}
                             </span>
                           </div>
 
@@ -268,25 +268,24 @@ export default function MyLibrary() {
                             }}>⋮</button>
                             {activeMenuId === f.id && (
                               <div style={styles.dropdown}>
-                                {/* ✅ [추가] 공개 상태 변경 메뉴 */}
                                 {f.displayType === 'MY_JSA' && (
                                   <div style={{...styles.dropdownItem, color: '#007bff', fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.id, f.originData?.is_public)}>
-                                    {f.originData?.is_public ? '비공개로 전환' : 'Explore에 공개'}
+                                    {f.originData?.is_public ? t('menuToPrivate') : t('menuToPublic')}
                                   </div>
                                 )}
                                 {f.displayType === 'SCRAP' && (
                                   <>
-                                    <div style={styles.dropdownItem} onClick={() => navigate('/export', { state: { analysisData: f.originData.analysis_data, formData: f.originData.form_data, participants: f.originData.participants } })}>보고서 보기</div>
-                                    <div style={styles.dropdownItem} onClick={() => handleClone(f.originData)}>복제하기</div>
+                                    <div style={styles.dropdownItem} onClick={() => navigate('/export', { state: { analysisData: f.originData.analysis_data, formData: f.originData.form_data, participants: f.originData.participants } })}>{t('menuViewReport')}</div>
+                                    <div style={styles.dropdownItem} onClick={() => handleClone(f.originData)}>{t('menuClone')}</div>
                                   </>
                                 )}
                                 <div style={{...styles.dropdownItem, color: '#ff4d4d'}} onClick={async () => {
-                                  if(window.confirm("삭제하시겠습니까?")) {
+                                  if(window.confirm(t('confirmDeleteItem'))) {
                                     const table = f.displayType === 'MY_JSA' ? 'jsa_projects' : 'user_favorites';
                                     const id = f.displayType === 'MY_JSA' ? f.id.replace('mine-','') : f.id;
                                     await supabase.from(table).delete().eq('id', id); fetchLibraryData();
                                   }
-                                }}>삭제하기</div>
+                                }}>{t('menuDelete')}</div>
                               </div>
                             )}
                           </div>
@@ -298,14 +297,14 @@ export default function MyLibrary() {
                         
                         <div style={styles.cardFooter}>
                           <select style={styles.moveSelect} value={f.category_id || ""} onChange={(e) => moveFavorite(f.id, e.target.value, f.displayType)}>
-                            <option value="">폴더 이동 선택</option>
+                            <option value="">{t('moveFolderSelect')}</option>
                             {categories.map(c => <option key={c.id} value={c.id}>{c.category_name}</option>)}
                           </select>
                           <button style={styles.useBtn} onClick={() => {
                             const targetId = f.displayType === 'MY_JSA' ? f.id.replace('mine-','') : null;
                             navigate('/analysis', { state: { id: targetId, formData: f.originData?.form_data || {}, participants: f.originData?.participants || [], analysisData: f.originData?.analysis_data || [], procedures: (f.originData?.analysis_data || []).map(d => d.proc).filter(Boolean), isFork: f.displayType === 'SCRAP' } });
                           }}>
-                            {f.displayType === 'SCRAP' ? '참조하여 작성' : '수정 및 편집'}
+                            {f.displayType === 'SCRAP' ? t('btnReference') : t('btnEdit')}
                           </button>
                           <div style={styles.scrapRow}>SCRAP {f.originData?.scrap_count || 0}</div>
                         </div>
@@ -325,12 +324,13 @@ export default function MyLibrary() {
 }
 
 const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level = 0 }) => {
+  const { t } = useTranslation('library');
   const itemCount = favorites.filter(f => f.category_id === folder.id).length;
   return (
     <div style={{ marginLeft: `${level * 10}px` }}>
       <div style={selectedId === folder.id ? styles.catItemActive : styles.catItem} onClick={() => onSelect(folder.id)}>
-        <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>[폴더] {folder.category_name} ({itemCount})</span>
-        <button style={styles.catDelBtn} onClick={(e) => onDelete(e, folder.id)}>삭제</button>
+        <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>[{t('folderLabel')}] {folder.category_name} ({itemCount})</span>
+        <button style={styles.catDelBtn} onClick={(e) => onDelete(e, folder.id)}>{t('deleteBtn')}</button>
       </div>
       {folder.children?.map(child => <FolderItem key={child.id} folder={child} selectedId={selectedId} onSelect={onSelect} onDelete={onDelete} favorites={favorites} level={level + 1} />)}
     </div>
@@ -338,6 +338,7 @@ const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level =
 };
 
 const styles = {
+  /* 기존 스타일 유지 (변경 없음) */
   wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: '#000', position: 'relative' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },

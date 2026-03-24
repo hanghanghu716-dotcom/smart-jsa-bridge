@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "regulation": "위험성평가 실시규정 가이드",
+    "jrajsa": "위험성평가(JRA/JSA) 실무 프로세스",
+    "ppe": "보호구에 관하여",
+    "riskClass": "일반 작업/고위험 작업"
+  },
+  "hero": {
+    "tag": "INTEGRATED SAFETY COMPLIANCE",
+    "title1": "위험성평가(JRA/JSA) 실무 프로세스",
+    "title2": "및 법적 이행 규정 통합 기술 지침",
+    "subTitle1": "산업안전보건법 제36조를 준수하며 현장 무재해를 실현하기 위한",
+    "subTitle2": "전문 방법론을 제공합니다."
+  },
+  "section3": {
+    "title": "3. JSA 실행 표준 프로세스 9단계",
+    "process": {
+      "step1": { "idx": "01", "title": "절차서 작성", "desc": "사업장 특성에 맞는 JSA 표준 운영 지침 수립" },
+      "step2": { "idx": "02", "title": "분석 팀 구성", "desc": "관리감독자, 안전전문가, 현장 숙련 근로자 매칭" },
+      "step3": { "idx": "03", "title": "대상 작업 선정", "desc": "JRA 고위험 작업 및 비일상적 작업 우선순위 결정" },
+      "step4": { "idx": "04", "title": "평가 실행", "desc": "작업단계 구분, 유해위험요인 파악, 안전대책 수립" },
+      "step5": { "idx": "05", "title": "검토 및 승인", "desc": "수립 대책의 현장 적용성 검토 및 최종 승인" },
+      "step6": { "idx": "06", "title": "후속 조치", "desc": "설비 개선 및 안전 장구 확충 등 물리적 대책 이행" },
+      "step7": { "idx": "07", "title": "기록 및 교육", "desc": "분석 결과 DB화 및 현장 근로자 전파 교육 실시" },
+      "step8": { "idx": "08", "title": "현장 적용", "desc": "확정된 안전 작업 절차의 실무 투입 및 가동" },
+      "step9": { "idx": "09", "title": "이행 평가", "desc": "대책 이행 여부 상시 모니터링 및 유효성 검증" }
+    }
+  },
+  "section4": {
+    "title": "4. 위험성평가 실시 규정 필수 항목",
+    "rules": {
+      "item1": { "title": "목적 및 방법", "desc": "추진 목표 및 사업장 특화 기법 선정" },
+      "item2": { "title": "수행 조직/역할", "desc": "관리책임자 및 근로자의 구체적 R&R" },
+      "item3": { "title": "평가 대상 선정", "desc": "모든 작업 및 설비의 리스트업" },
+      "item4": { "title": "시기 및 주기", "desc": "최초/정기/수시 평가 조건 명시" },
+      "item5": { "title": "위험성 결정 기준", "desc": "수준 산정을 위한 고유 판단 기준" },
+      "item6": { "title": "기록 보존 지침", "desc": "3년 보존 의무 및 서식 표준화" }
+    }
+  },
+  "section5": {
+    "title": "5. JRA vs JSA 비교 분석",
+    "table": {
+      "header": {
+        "col1": "구분",
+        "col2": "JRA",
+        "col3": "JSA"
+      },
+      "rows": {
+        "row1": {
+          "col1": "평가 대상",
+          "col2": "공정 및 설비 전체",
+          "col3": "세부 작업 행동"
+        },
+        "row2": {
+          "col1": "참여 주체",
+          "col2": "관리자 및 전문가",
+          "col3": "현장 근로자 핵심"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. JSA 필수 수행 체크리스트",
+    "checklist": {
+      "item1": "표준 절차서(SOP)가 부재하거나 불명확한가?",
+      "item2": "원하지 않는 사고가 종종 발생하는 작업인가?",
+      "item3": "작업자가 해당 공정에 대한 경험이 부족한가?",
+      "item4": "고도의 숙련도나 특수 훈련이 필요한 작업인가?"
+    }
+  },
+  "section7": {
+    "title": "7. 정량적 위험성 산정 로직",
+    "math": {
+      "risk": "Risk",
+      "frequency": "Frequency",
+      "severity": "Severity",
+      "caption": "위험성 = 사고 발생 빈도(확률) × 결과의 중대성(강도)"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}
