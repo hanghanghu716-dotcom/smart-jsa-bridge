@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "This nickname cannot be used.",
+    "nickNoSpecial": "Please exclude special characters.",
+    "nickInUse": "This nickname is already in use.",
+    "nickAvailable": "✓ Available nickname.",
+    "pwSafe": "✓ Secure password",
+    "pwRule": "8+ chars: letters, numbers, symbols",
+    "pwMatch": "✓ Passwords match",
+    "pwMismatch": "Passwords do not match"
+  },
+  "alert": {
+    "resetSent": "A password reset link has been sent.",
+    "checkInput": "Please check your input information.",
+    "signupSuccess": "Please click the verification link sent to your email to complete registration."
+  },
+  "ui": {
+    "titleSignup": "User Account Registration",
+    "titleReset": "Password Reset",
+    "titleLogin": "System Access Authentication",
+    "guideSignup": "Please enter the required information for knowledge capitalization.",
+    "guideReset": "A reset link will be sent to your email.",
+    "guideLogin": "Please log in with your registered account to use the service.",
+    "labelEmail": "Email Address",
+    "labelNickname": "Activity Nickname",
+    "placeholderNickname": "Nickname",
+    "labelSector": "Industry Sector",
+    "selectDefault": "Select",
+    "labelPassword": "Password",
+    "placeholderPassword": "8+ chars: letters, numbers, symbols",
+    "labelPasswordConfirm": "Confirm Password",
+    "placeholderPasswordConfirm": "Re-enter exactly",
+    "placeholderPasswordLogin": "Password",
+    "btnForgotPw": "Forgot Password",
+    "btnProcessing": "Processing...",
+    "btnSubmitSignup": "Create User Account",
+    "btnSubmitReset": "Send Reset Email",
+    "btnSubmitLogin": "Access System",
+    "dividerOr": "OR",
+    "btnGoogleLogin": "Continue with Google",
+    "btnSwitchSignup": "Register New User",
+    "btnSwitchLogin": "Log in with Existing Account"
+  },
+  "sector": {
+    "construction": "Construction / Civil / Architecture",
+    "manufacturing": "Manufacturing / Plant / Chemical",
+    "energy": "Energy / Electrical / Gas",
+    "logistics": "Transport / Logistics / Warehouse",
+    "safety": "Safety Management / Consulting",
+    "it": "IT / Systems / Engineering",
+    "public": "Public / Education / Health",
+    "others": "Other Industries"
+  }
+}
