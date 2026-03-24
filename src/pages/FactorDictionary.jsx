@@ -19,19 +19,20 @@ export default function FactorDictionary() {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [categories, setCategories] = useState([]);
 
-// DB에 저장된 실제 로케일 포맷(예: 'ko-KR')과 i18n 언어 코드 매핑 기능 추가
   const getDbLocale = (lang) => {
     if (lang?.includes('ko')) return 'ko-KR';
     if (lang?.includes('en')) return 'en-US';
-    return 'ko-KR'; // 기본값
+    return 'ko-KR'; 
   };
   const currentLocale = getDbLocale(i18n.language);
 
   useEffect(() => {
     const fetchCategories = async () => {
+      // 카테고리 목록도 새로운 뷰에서 가져옵니다.
       const { data, error } = await supabase
-        .from('v_risk_dictionary') // 통합 뷰 테이블로 연결 대상 변경
-        .select('category');
+        .from('v_factor_dictionary_detail') 
+        .select('category')
+        .eq('locale', currentLocale); 
       
       if (!error && data) {
         const uniqueCategories = [...new Set(data.map(item => item.category))].filter(Boolean);
@@ -39,23 +40,24 @@ export default function FactorDictionary() {
       }
     };
     fetchCategories();
-  }, []);
+  }, [currentLocale]); 
 
   const fetchData = async () => {
     setLoading(true);
     try {
+      // ✅ SQL Editor에서 만든 새로운 통합 뷰 단일 호출
       let query = supabase
-        .from('v_risk_dictionary') // 통합 뷰 테이블로 연결 대상 변경
+        .from('v_factor_dictionary_detail')
         .select('*', { count: 'exact' })
-        .eq('locale', currentLocale); // 컬럼명을 locale로 맞추고 매핑된 언어 코드 적용
+        .eq('locale', currentLocale);
 
       if (categoryFilter) {
         query = query.eq('category', categoryFilter);
       }
 
-      // 검색어 필터 (통합 뷰의 컬럼명에 맞추어 조건 확장 적용)
       if (searchTerm) {
-        query = query.or(`hazard_name.ilike.%${searchTerm}%,current_measure_name.ilike.%${searchTerm}%,advanced_measure_name.ilike.%${searchTerm}%`);
+        // 평탄화된 컬럼명에 맞춰 검색 조건 단순화
+        query = query.or(`hazard_name.ilike.%${searchTerm}%,measure_text.ilike.%${searchTerm}%,solution_text.ilike.%${searchTerm}%`);
       }
 
       const from = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -76,7 +78,6 @@ export default function FactorDictionary() {
     }
   };
 
-  // 언어 변경 감지 배열을 currentLocale로 업데이트
   useEffect(() => {
     fetchData();
   }, [currentPage, categoryFilter, currentLocale]);
@@ -202,33 +203,23 @@ export default function FactorDictionary() {
                   <div key={item.id} style={styles.dataCard}>
                     <div style={styles.cardCategory}>{item.category}</div>
                     
-                    {/* ✅ 위험요인 (Hazards) */}
+                    {/* ✅ 유해위험요인 (뷰의 hazard_name 컬럼) */}
                     <div style={styles.factorBox}>
                       <strong style={styles.boxLabelRed}>{t('data.riskFactorLabel')}</strong>
-                      <p style={styles.boxContent}>{item.hazard_name || item.risk_factor}</p>
-                      {/* 상세 설명이 있을 경우 출력 */}
-                      {(item.hazard_description || item.description) && (
-                        <p style={styles.boxDesc}>{item.hazard_description || item.description}</p>
-                      )}
+                      <p style={styles.boxContent}>{item.hazard_name || t('data.empty')}</p>
                     </div>
                     
-                    {/* ✅ 현재 안전대책 (Current Measures) */}
+                    {/* ✅ 현재 안전대책 (뷰의 measure_text 컬럼) */}
                     <div style={styles.measureBox}>
                       <strong style={styles.boxLabelBlue}>{t('data.currentMeasureLabel')}</strong>
-                      <p style={styles.boxContent}>{item.current_measure_name || item.measure_name || item.measure}</p>
-                      {item.current_measure_description && (
-                        <p style={styles.boxDesc}>{item.current_measure_description}</p>
-                      )}
+                      <p style={styles.boxContent}>{item.measure_text || t('data.empty')}</p>
                     </div>
 
-                    {/* ✅ 추가 안전대책 (Advanced Measures) - 데이터가 존재하는 경우에만 노출 */}
-                    {(item.advanced_measure_name || item.advanced_measure_description) && (
-                      <div style={styles.advancedMeasureBox}>
-                        <strong style={styles.boxLabelGreen}>{t('data.advancedMeasureLabel')}</strong>
-                        {item.advanced_measure_name && <p style={styles.boxContent}>{item.advanced_measure_name}</p>}
-                        {item.advanced_measure_description && <p style={styles.boxDesc}>{item.advanced_measure_description}</p>}
-                      </div>
-                    )}
+                    {/* ✅ 추가 안전대책 (뷰의 solution_text 컬럼) */}
+                    <div style={styles.advancedMeasureBox}>
+                      <strong style={styles.boxLabelGreen}>{t('data.advancedMeasureLabel')}</strong>
+                      <p style={styles.boxContent}>{item.solution_text || t('data.empty')}</p>
+                    </div>
                     
                     {item.keywords && getParsedKeywords(item.keywords).length > 0 && (
                       <div style={styles.keywordWrap}>
@@ -312,18 +303,14 @@ const styles = {
   dataGrid: { display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' },
   dataCard: { padding: '30px', backgroundColor: '#fff', borderRadius: '16px', border: '1px solid #eee', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' },
   cardCategory: { display: 'inline-block', padding: '6px 14px', backgroundColor: '#f1f3f9', color: '#555', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '800', marginBottom: '20px' },
-  
   factorBox: { marginBottom: '20px', paddingLeft: '16px', borderLeft: '4px solid #ff4d4d' },
   measureBox: { paddingLeft: '16px', borderLeft: '4px solid #007bff', marginBottom: '20px' },
-  // ✅ [추가] Advanced Measure를 위한 초록색 라벨 및 박스 디자인
   advancedMeasureBox: { paddingLeft: '16px', borderLeft: '4px solid #28a745', marginBottom: '20px' },
   boxLabelRed: { display: 'block', fontSize: '0.85rem', color: '#ff4d4d', marginBottom: '8px' },
   boxLabelBlue: { display: 'block', fontSize: '0.85rem', color: '#007bff', marginBottom: '8px' },
   boxLabelGreen: { display: 'block', fontSize: '0.85rem', color: '#28a745', marginBottom: '8px' },
   boxContent: { fontSize: '1.05rem', color: '#111', lineHeight: '1.6', fontWeight: '700', wordBreak: 'keep-all' },
-  // ✅ [추가] 상세 설명(description)을 위한 보조 텍스트 스타일
   boxDesc: { fontSize: '0.9rem', color: '#666', marginTop: '8px', lineHeight: '1.6', wordBreak: 'keep-all' },
-  
   keywordWrap: { display: 'flex', gap: '8px', flexWrap: 'wrap', borderTop: '1px dashed #eee', paddingTop: '20px' },
   keywordBadge: { fontSize: '0.8rem', color: '#888', backgroundColor: '#f9f9f9', padding: '4px 8px', borderRadius: '4px' },
   loadingState: { textAlign: 'center', padding: '100px 0', color: '#666', fontSize: '1.1rem', fontWeight: 'bold' },

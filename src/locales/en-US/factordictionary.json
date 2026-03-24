@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "drawer": {
+    "contents": "CONTENTS",
+    "regulation": "OSHA Regulations",
+    "jrajsa": "JHA / JSA",
+    "protectiveEquipment": "PPE",
+    "riskClassification": "Hazard Classification",
+    "dictionary": "Hazard Dictionary"
+  },
+  "hero": {
+    "tag": "OCCUPATIONAL SAFETY & HEALTH DATABASE",
+    "titleLine1": "Smart Job Hazard Analysis,",
+    "titleLine2": "Standard Hazard Dictionary",
+    "seoText1": "Search and identify potential workplace hazards and corresponding control measures compliant with OSHA standards.",
+    "seoText2": "Establish a safer work environment and prevent severe incidents through our systematic, data-driven approach."
+  },
+  "filter": {
+    "allCategories": "All Categories",
+    "searchPlaceholder": "Search hazards or control measures...",
+    "searchBtn": "Search",
+    "resultPrefix": "Total ",
+    "resultSuffix": " results"
+  },
+  "data": {
+    "loading": "Loading data...",
+    "empty": "No data found matching your criteria.",
+    "riskFactorLabel": "Identified Hazard",
+    "currentMeasureLabel": "Current Hazard Controls",
+    "advancedMeasureLabel": "Additional Hazard Controls"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next"
+  }
+}

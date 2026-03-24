@@ -1,22 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import AdBanner from '../AdBanner'; // AdBanner 임포트 추가
+import AdBanner from '../AdBanner';
+import { useTranslation } from 'react-i18next';
 
 export default function JraJsa() {
   const navigate = useNavigate();
+  const { t } = useTranslation('jrajsa');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const fullProcess = [
-    { t: "01. 절차서 작성", c: "사업장 특성에 맞는 JSA 표준 운영 지침 수립" },
-    { t: "02. 분석 팀 구성", c: "관리감독자, 안전전문가, 현장 숙련 근로자 매칭" },
-    { t: "03. 대상 작업 선정", c: "JRA 고위험 작업 및 비일상적 작업 우선순위 결정" },
-    { t: "04. 평가 실행", c: "작업단계 구분, 유해위험요인 파악, 안전대책 수립" },
-    { t: "05. 검토 및 승인", c: "수립 대책의 현장 적용성 검토 및 최종 승인" },
-    { t: "06. 후속 조치", c: "설비 개선 및 안전 장구 확충 등 물리적 대책 이행" },
-    { t: "07. 기록 및 교육", c: "분석 결과 DB화 및 현장 근로자 전파 교육 실시" },
-    { t: "08. 현장 적용", c: "확정된 안전 작업 절차의 실무 투입 및 가동" },
-    { t: "09. 이행 평가", c: "대책 이행 여부 상시 모니터링 및 유효성 검증" }
-  ];
 
   return (
     <div style={styles.wrapper}>
@@ -46,10 +36,10 @@ export default function JraJsa() {
         </div>
         <nav style={styles.drawerNav}>
           <div style={styles.navCategory}>CONTENTS</div>
-          <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가 실시규정 가이드</Link>
-          <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가(JRA/JSA) 실무 프로세스</Link>
-          <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>보호구에 관하여</Link>
-          <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>일반 작업/고위험 작업</Link>
+          <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.regulation')}</Link>
+          <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.jrajsa')}</Link>
+          <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.ppe')}</Link>
+          <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.riskClass')}</Link>
         </nav>
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
@@ -57,36 +47,48 @@ export default function JraJsa() {
       {/* HERO SECTION: 화면 전체 너비 유지 */}
       <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
-          <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">INTEGRATED SAFETY COMPLIANCE</span>
+          <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.tag')}</span>
           <h2 style={{...styles.mainTitle, fontSize: undefined}} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
-            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">위험성평가(JRA/JSA) 실무 프로세스</span>
-            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">및 법적 이행 규정 통합 기술 지침</span>
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.title1')}</span>
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.title2')}</span>
           </h2>
           <p style={styles.subTitle} className="text-[14px] lg:text-[1.15rem]">
-            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">산업안전보건법 제36조를 준수하며 현장 무재해를 실현하기 위한</span>
-            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">전문 방법론을 제공합니다.</span>
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.subTitle1')}</span>
+            <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.subTitle2')}</span>
           </p>
         </div>
       </section>
 
-      {/* 메인 레이아웃: 광고 배너 및 콘텐츠 정렬 */}
-      <div style={styles.mainLayout}>
-        {/* 좌측 광고 */}
-        <aside style={styles.sideAd}>
+      {/* [스티키 광고]: 스크롤 시 따라오는 Fixed 방식 적용 */}
+      {/* 좌측 광고 */}
+      <aside className="hidden lg:block">
+        <div style={styles.adPlaceholderFixedLeft}>
+          <span style={styles.adLabelDark}>AD (LEFT)</span>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+        </div>
+      </aside>
 
+      {/* 우측 광고 */}
+      <aside className="hidden lg:block">
+        <div style={styles.adPlaceholderFixedRight}>
+          <span style={styles.adLabelDark}>AD (RIGHT)</span>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </div>
+      </aside>
+
+      {/* 메인 콘텐츠 영역 (중앙 정렬 유지) */}
+      <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
           {/* SECTION 3: JSA 흐름 */}
           <section style={styles.m3Section} className="max-lg:!py-16 max-lg:!px-6">
             <div style={styles.container}>
-              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">3. JSA 실행 표준 프로세스 9단계</h3>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('section3.title')}</h3>
               <div style={styles.flowGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-                {fullProcess.map((step, i) => (
-                  <div key={i} style={styles.flowCard} className="max-lg:!p-6 max-lg:!rounded-none">
-                    <span style={styles.flowIdx}>{step.t.split('.')[0]}</span>
-                    <h4 style={styles.flowT}>{step.t.split('. ')[1]}</h4>
-                    <p style={styles.flowC}>{step.c}</p>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                  <div key={num} style={styles.flowCard} className="max-lg:!p-6 max-lg:!rounded-none">
+                    <span style={styles.flowIdx}>{t(`section3.process.step${num}.idx`)}</span>
+                    <h4 style={styles.flowT}>{t(`section3.process.step${num}.title`)}</h4>
+                    <p style={styles.flowC}>{t(`section3.process.step${num}.desc`)}</p>
                   </div>
                 ))}
               </div>
@@ -96,19 +98,12 @@ export default function JraJsa() {
           {/* SECTION 4: 실시 규정 */}
           <section style={{...styles.m3Section, backgroundColor: '#fcfcfc', width: '100%'}} className="max-lg:!py-16 max-lg:!px-6">
             <div style={styles.container}>
-              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">4. 위험성평가 실시 규정 필수 항목</h3>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('section4.title')}</h3>
               <div style={styles.checkGrid} className="max-lg:!grid-cols-1 max-lg:!gap-4">
-                {[
-                  { t: "목적 및 방법", c: "추진 목표 및 사업장 특화 기법 선정" },
-                  { t: "수행 조직/역할", c: "관리책임자 및 근로자의 구체적 R&R" },
-                  { t: "평가 대상 선정", c: "모든 작업 및 설비의 리스트업" },
-                  { t: "시기 및 주기", c: "최초/정기/수시 평가 조건 명시" },
-                  { t: "위험성 결정 기준", c: "수준 산정을 위한 고유 판단 기준" },
-                  { t: "기록 보존 지침", c: "3년 보존 의무 및 서식 표준화" }
-                ].map((item, i) => (
-                  <div key={i} style={styles.checkItem} className="max-lg:!p-6">
-                    <h4 style={styles.itemHeader}>● {item.t}</h4>
-                    <p style={styles.itemContent}>{item.c}</p>
+                {[1, 2, 3, 4, 5, 6].map((num) => (
+                  <div key={num} style={styles.checkItem} className="max-lg:!p-6">
+                    <h4 style={styles.itemHeader}>● {t(`section4.rules.item${num}.title`)}</h4>
+                    <p style={styles.itemContent}>{t(`section4.rules.item${num}.desc`)}</p>
                   </div>
                 ))}
               </div>
@@ -120,40 +115,34 @@ export default function JraJsa() {
             <div style={styles.container}>
               <div style={styles.splitRow} className="max-lg:!flex-col max-lg:!gap-16">
                 <div style={styles.splitLeft} className="w-full">
-                  <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">5. JRA vs JSA 비교 분석</h3>
+                  <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('section5.title')}</h3>
                   <div className="overflow-x-auto">
                     <table style={styles.table} className="min-w-[450px]">
                       <thead>
                         <tr style={styles.tableHeadRow}>
-                          <th style={styles.th}>구분</th>
-                          <th style={styles.th}>JRA</th>
-                          <th style={styles.th}>JSA</th>
+                          <th style={styles.th}>{t('section5.table.header.col1')}</th>
+                          <th style={styles.th}>{t('section5.table.header.col2')}</th>
+                          <th style={styles.th}>{t('section5.table.header.col3')}</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td style={styles.tdBold}>평가 대상</td>
-                          <td style={styles.td}>공정 및 설비 전체</td>
-                          <td style={styles.td}>세부 작업 행동</td>
-                        </tr>
-                        <tr>
-                          <td style={styles.tdBold}>참여 주체</td>
-                          <td style={styles.td}>관리자 및 전문가</td>
-                          <td style={styles.td}>현장 근로자 핵심</td>
-                        </tr>
+                        {[1, 2].map((num) => (
+                          <tr key={num}>
+                            <td style={styles.tdBold}>{t(`section5.table.rows.row${num}.col1`)}</td>
+                            <td style={styles.td}>{t(`section5.table.rows.row${num}.col2`)}</td>
+                            <td style={styles.td}>{t(`section5.table.rows.row${num}.col3`)}</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <div style={styles.splitRight} className="w-full">
-                  <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">6. JSA 필수 수행 체크리스트</h3>
+                  <h3 style={styles.sectionTitleSmall} className="text-[20px] lg:text-[1.6rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('section6.title')}</h3>
                   <ul style={styles.checklist} className="max-lg:!pl-4">
-                    {[
-                      "표준 절차서(SOP)가 부재하거나 불명확한가?",
-                      "원하지 않는 사고가 종종 발생하는 작업인가?",
-                      "작업자가 해당 공정에 대한 경험이 부족한가?",
-                      "고도의 숙련도나 특수 훈련이 필요한 작업인가?"
-                    ].map((t, i) => <li key={i} style={styles.checkli} className="text-sm lg:text-base">● {t}</li>)}
+                    {[1, 2, 3, 4].map((num) => (
+                      <li key={num} style={styles.checkli} className="text-sm lg:text-base">● {t(`section6.checklist.item${num}`)}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -163,30 +152,25 @@ export default function JraJsa() {
           {/* SECTION 7: 산정 공식 */}
           <section style={{...styles.m3Section, backgroundColor: '#fcfcfc', width: '100%'}} className="max-lg:!py-16 max-lg:!px-6">
             <div style={styles.container}>
-              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">7. 정량적 위험성 산정 로직</h3>
+              <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2.2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('section7.title')}</h3>
               <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10">
                 <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
-                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Risk</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">{t('section7.math.risk')}</span>
                   <span style={styles.mathOp} className="max-lg:!mx-2">=</span>
-                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Frequency</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">{t('section7.math.frequency')}</span>
                   <span style={styles.mathOp} className="max-lg:!mx-2">×</span>
-                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">Severity</span>
+                  <span style={styles.mathVar} className="max-lg:!text-[1.5rem]">{t('section7.math.severity')}</span>
                 </div>
-                <p style={styles.mathCaption} className="max-lg:text-xs">위험성 = 사고 발생 빈도(확률) × 결과의 중대성(강도)</p>
+                <p style={styles.mathCaption} className="max-lg:text-xs">{t('section7.math.caption')}</p>
               </div>
             </div>
           </section>
         </div>
-
-        {/* 우측 광고 */}
-        <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
       </div>
 
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
-          <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
+          <p className="m-0 text-sm opacity-60" dangerouslySetInnerHTML={{ __html: t('footer') }} />
         </div>
       </footer>
     </div>
@@ -194,7 +178,8 @@ export default function JraJsa() {
 }
 
 const styles = {
-  wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
+  /* 원본 스타일 유지 */
+  wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden', position: 'relative' },
   container: { maxWidth: '1200px', margin: '0 auto' },
   header: { padding: '2.5rem 0', zIndex: 10, borderBottom: '1px solid #f0f0f0' },
   logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', color: '#111' },
@@ -211,20 +196,17 @@ const styles = {
   drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f0f0f0' },
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999, backdropFilter: 'blur(8px)' },
 
-  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff', width: '100%' },
+  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff', width: '100%', position: 'relative', zIndex: 10 },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
   mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
   subTitle: { opacity: 0.8, lineHeight: '1.8', wordBreak: 'keep-all' },
   
-  /* 레이아웃 시스템 추가 */
-  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
-  sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '100px' },
-  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', maxWidth: '1200px', alignItems: 'center' },
+  mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' },
+  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px', alignItems: 'center' },
 
   m3Section: { padding: '100px 0', width: '100%' },
   sectionTitle: { fontWeight: '800', marginBottom: '40px', letterSpacing: '-1px' },
   sectionTitleSmall: { fontWeight: '800', marginBottom: '30px' },
-  para: { fontSize: '1.1rem', color: '#333', marginBottom: '35px', wordBreak: 'keep-all' },
   
   flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '25px', width: '100%' },
   flowCard: { padding: '30px', backgroundColor: '#fff', borderRadius: '16px', borderTop: '5px solid #007bff', boxShadow: '0 8px 25px rgba(0, 123, 255, 0.08)' },
@@ -255,5 +237,40 @@ const styles = {
   mathOp: { margin: '0 20px', fontSize: '1.5rem', color: '#888' },
   mathCaption: { fontSize: '0.95rem', color: '#666' },
   
-  finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff' }
+  finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff' },
+
+  /* 스크롤 스티키 광고 스타일 */
+  adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
+  adPlaceholderFixedLeft: { 
+    position: 'fixed',
+    top: '50%',
+    left: 'calc(50% - 600px - 160px - 20px)', // (본문 절반 600px) + (광고폭 160px) + (간격 20px)
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: '#f5f5f5', 
+    border: '1px dashed #ddd', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0',
+    zIndex: 100
+  },
+  adPlaceholderFixedRight: { 
+    position: 'fixed',
+    top: '50%',
+    right: 'calc(50% - 600px - 160px - 20px)', // (본문 절반 600px) + (광고폭 160px) + (간격 20px)
+    transform: 'translateY(-50%)',
+    width: '160px', 
+    minHeight: '600px', 
+    backgroundColor: '#f5f5f5', 
+    border: '1px dashed #ddd', 
+    borderRadius: '8px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    padding: '10px 0',
+    zIndex: 100
+  }
 };

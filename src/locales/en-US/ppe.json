@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Risk Assessment Guidelines",
+    "jrajsa": "JRA/JSA Practical Process",
+    "ppe": "About Personal Protective Equipment",
+    "riskClass": "General / High-Risk Tasks"
+  },
+  "hero": {
+    "tag": "PERSONAL PROTECTIVE EQUIPMENT",
+    "title1": "Industrial PPE Categories &",
+    "title2": "OSHA/ANSI Compliance Guide",
+    "subTitle1": "Verifying safety certifications is the first step to workplace safety. Review",
+    "subTitle2": "the characteristics of each PPE type and strictly comply with",
+    "subTitle3": "OSHA regulations and ANSI/NIOSH standards."
+  },
+  "section1": {
+    "title": "1. PPE Categories and Specific Types",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Head Protection",
+        "desc": "Absorbs impact from falling or flying objects and protects against electrical shocks.",
+        "tags": ["Hard Hats (Type I/II)", "Class G/E/C"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Eye & Face Protection",
+        "desc": "Blocks flying particles, harmful light radiation, and chemical splashes.",
+        "tags": ["Safety Glasses (ANSI Z87.1)", "Goggles", "Face Shields"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Hearing Protection",
+        "desc": "Prevents noise-induced hearing loss in high-decibel environments.",
+        "tags": ["Earplugs", "Earmuffs", "NRR Rated"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Respiratory Protection",
+        "desc": "Protects against dust, harmful gases, and oxygen-deficient atmospheres.",
+        "tags": ["Particulate (N95/P100)", "Gas Masks", "NIOSH SCBA"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Hand Protection",
+        "desc": "Protects against cuts, burns, electrical shocks, and chemical exposure.",
+        "tags": ["Cut-Resistant", "Voltage Rated", "Chemical-Resistant"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Foot Protection",
+        "desc": "Prevents injuries from falling/rolling objects and sharp punctures.",
+        "tags": ["Steel-Toe Boots", "Static Dissipative (SD)"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Fall Protection",
+        "desc": "Arrests falls and absorbs shock during elevated work.",
+        "tags": ["Full-Body Harness", "Lanyards", "Lifelines"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Protective Clothing",
+        "desc": "Shields the entire body from hazardous chemicals and extreme heat.",
+        "tags": ["Hazmat Suits", "Flame-Resistant (FR)", "Arc Flash"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Frequently Asked Questions on PPE Certification",
+    "faq": {
+      "item1": {
+        "q": "What is the difference between OSHA regulations and ANSI standards?",
+        "a": "OSHA sets the mandatory legal safety requirements for workplaces, while ANSI creates the performance and testing consensus standards for PPE that OSHA often adopts by reference."
+      },
+      "item2": {
+        "q": "Can I use CE (European) certified PPE in US workplaces?",
+        "a": "Not automatically. PPE used in US workplaces must meet the specific ANSI, ASTM, or NIOSH standards required by OSHA, regardless of foreign certifications."
+      },
+      "item3": {
+        "q": "Does PPE certification expire?",
+        "a": "While the PPE itself may have a manufacturer's lifespan or expiration date (especially hard hats and harnesses), employers must also ensure the PPE meets the current applicable consensus standard if regulations update."
+      },
+      "item4": {
+        "q": "How do I verify certified PPE?",
+        "a": "Look for the specific ANSI standard marking (e.g., Z87.1 for eyewear) or NIOSH approval labels (e.g., TC numbers for respirators) stamped directly on the equipment or its packaging."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}
