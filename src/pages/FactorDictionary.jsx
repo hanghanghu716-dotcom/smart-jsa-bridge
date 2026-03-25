@@ -199,8 +199,8 @@ export default function FactorDictionary() {
               <div style={styles.emptyState}>{t('data.empty')}</div>
             ) : (
               <div style={styles.dataGrid}>
-                {data.map((item) => (
-                  <div key={item.id} style={styles.dataCard}>
+                {data.map((item, index) => (
+                  <div key={`${item.id}-${index}`} style={styles.dataCard}>
                     <div style={styles.cardCategory}>{item.category}</div>
                     
                     {/* ✅ 유해위험요인 (뷰의 hazard_name 컬럼) */}

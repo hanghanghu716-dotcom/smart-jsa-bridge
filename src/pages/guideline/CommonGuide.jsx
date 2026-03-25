@@ -1,45 +1,37 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // 추가
 import AdBanner from '../../AdBanner';
 
-// 법적 고지 컴포넌트: 부모 패딩의 영향을 받지 않도록 width 100% 설정
-const LegalDisclaimer = () => (
+// 법적 고지 컴포넌트: 다국어 적용
+const LegalDisclaimer = ({ t }) => (
     <div style={{...styles.disclaimer, width: '100%'}} className="max-lg:!px-6 max-lg:!py-4">
         <p style={styles.disclaimerText} className="text-[12px] lg:text-[0.9rem]">
-            ⚠️ [주의] 본 견본은 참고용 자료이며, 위험성평가는 각 사업장의 공정 특성 및 환경에 맞게 반드시 실제 점검을 바탕으로 작성되어야 합니다. <br className="hidden lg:block" />
-            Smart JSA Bridge는 본 자료의 활용으로 발생하는 법적 결과에 대해 책임을 지지 않습니다.
+            {t('disclaimer.text1')} <br className="hidden lg:block" />
+            {t('disclaimer.text2')}
         </p>
     </div>
 );
 
 export default function CommonGuide() {
     const navigate = useNavigate();
+    const { t } = useTranslation('common'); // common 네임스페이스 로드
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const stepSummary = [
-        { step: "01", task: "작업 전 TBM 및 개인보호구 점검", hazard: "작업 범위 미숙지, 보호구 오착용" },
-        { step: "02", task: "추락 방지 시설 점검", hazard: "구명줄 고정점 파손, 악천후 실족" },
-        { step: "03", task: "가연물 격리 및 화재 예방", hazard: "용접 불꽃 비산, 잔류 가스 폭발" },
-        { step: "04", task: "인양 장비 및 줄걸이 셋팅", hazard: "지반 지지력 부족, 줄걸이 파단" },
-        { step: "05", task: "가스 농도 측정 및 환기", hazard: "산소 결핍, 유독가스 체류 질식" },
-        { step: "06", task: "지하 매설물 탐지 및 붕괴 방지", hazard: "매설물 파손 폭발, 사면 붕괴 매몰" },
-        { step: "07", task: "LOTO 체결 및 무전압 확인", hazard: "임의 전원 투입 감전, 잔류 전하 감전" },
-        { step: "08", task: "구획 설정 및 피폭 방지", hazard: "일반인 무단 진입, 방사선 피폭" },
-        { step: "09", task: "설비 시운전 및 루프 테스트", hazard: "인터록 해제 가동, 고압 누출" },
-        { step: "10", task: "작업 후 정리정돈 및 LOTO 해제", hazard: "잔류 공구 방치, 단락 사고" }
-    ];
+    // JSON 배열 데이터 로드
+    const stepSummary = t('steps', { returnObjects: true });
 
     return (
         <div style={styles.wrapper}>
-            {/* HEADER: Regulation 스타일로 변경 */}
+            {/* HEADER */}
             <header style={styles.header}>
                 <div style={styles.container}>
                     <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
                 </div>
             </header>
 
-            {/* 법적 고지를 mainLayout 밖으로 이동하여 좌우 전체 영역 점유 */}
-            <LegalDisclaimer />
+            {/* 법적 고지 */}
+            <LegalDisclaimer t={t} />
 
             <div style={styles.mainLayout}>
                 {/* 좌측 광고 */}
@@ -50,30 +42,30 @@ export default function CommonGuide() {
                 <div style={styles.centerContent}>
                     <section style={styles.section} className="max-lg:!py-16 max-lg:!px-6">
                         <div style={styles.headerBox}>
-                            <span style={styles.categoryTag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">COMMON SAFETY STANDARD</span>
+                            <span style={styles.categoryTag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.category')}</span>
                             <h2 style={{...styles.title, fontSize: undefined}} className="text-[24px] lg:text-[2.5rem] font-extrabold leading-tight mb-6">
-                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">현장 통합 안전 관리 및</span>
-                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">JSA 가이드</span>
+                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.mainTitle1')}</span>
+                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.mainTitle2')}</span>
                             </h2>
                             <p style={styles.description} className="text-[14px] lg:text-[1.1rem]">
-                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">현장 내 공통 적용되는 10대 공정 및 고위험 작업 전</span>
-                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">준비사항에 대한 표준 데이터입니다.</span>
+                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.description1')}</span>
+                                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.description2')}</span>
                             </p>
                         </div>
 
                         <div style={styles.card} className="max-lg:!p-6 max-lg:!rounded-2xl">
                             <div style={styles.cardHeader}>
-                                <span style={styles.jsaId}>COMMON-01</span>
+                                <span style={styles.jsaId}>{t('ui.jsaId')}</span>
                                 <h4 style={styles.jsaTitle} className="text-[18px] lg:text-[1.8rem]">
-                                    <span className="max-lg:block">현장 통합 안전 관리 및</span>
-                                    <span className="max-lg:block">고위험작업 작업 전 준비사항</span>
+                                    <span className="max-lg:block">{t('ui.jsaTitle1')}</span>
+                                    <span className="max-lg:block">{t('ui.jsaTitle2')}</span>
                                 </h4>
                             </div>
 
                             <div style={styles.summaryGrid} className="max-lg:!p-4">
-                                <div style={styles.summaryTitle} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">주요 공정 및 위험요인 요약</div>
+                                <div style={styles.summaryTitle} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.summaryTitle')}</div>
                                 <div style={styles.stepContainer} className="max-lg:!grid-cols-1 max-lg:!gap-6">
-                                    {stepSummary.map((item) => (
+                                    {Array.isArray(stepSummary) && stepSummary.map((item) => (
                                         <div key={item.step} style={styles.stepRow}>
                                             <span style={styles.stepNum}>{item.step}</span>
                                             <div style={styles.stepContent}>
@@ -86,7 +78,7 @@ export default function CommonGuide() {
                             </div>
 
                             <div style={styles.imageWrapper}>
-                                <p style={styles.previewLabel}>JSA 리포트 미리보기</p>
+                                <p style={styles.previewLabel}>{t('ui.previewLabel')}</p>
                                 {[1, 2].map((num) => (
                                     <img
                                         key={num}
@@ -100,7 +92,7 @@ export default function CommonGuide() {
 
                             <div style={styles.cardFooter}>
                                 <a href="/assets/pdf/COMMON-01.pdf" download style={styles.downloadBtn} className="max-lg:!w-full max-lg:!text-sm">
-                                    원본 PDF 다운로드
+                                    {t('ui.downloadBtn')}
                                 </a>
                             </div>
                         </div>
@@ -129,12 +121,9 @@ const styles = {
     disclaimerText: { color: '#d32f2f', fontWeight: '800', margin: 0, wordBreak: 'keep-all', lineHeight: '1.6' },
     header: { padding: '2.5rem 0', zIndex: 10, borderBottom: '1px solid #f0f0f0', backgroundColor: '#fff' },
     logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', color: '#111' },
-
-    /* 레이아웃 스타일 (Regulation 준수) */
     mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10 },
     sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '100px' },
     centerContent: { flex: 1, display: 'flex', flexDirection: 'column' },
-
     section: { padding: '60px 0', maxWidth: '1000px', margin: '0 auto' },
     headerBox: { textAlign: 'left', marginBottom: '60px' },
     categoryTag: { color: '#6200ee', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2.5px', display: 'block', marginBottom: '20px' },

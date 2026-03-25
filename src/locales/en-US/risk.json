@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "OSHA & ANSI STANDARD",
+    "mainTitle1": "Risk Classification &",
+    "mainTitle2": "Risk Matrix Guide",
+    "subTitle1": "Establish a scientific safety management system",
+    "subTitle2": "based on OSHA guidelines and Quantitative Risk Assessment.",
+    "section1": "1. Basic Definitions by Work Nature",
+    "section2": "2. Quantitative Criteria (Risk Matrix)",
+    "section3": "3. 9 Types of High-Risk Activities"
+  },
+  "def": {
+    "generalTitle": "General Work (Routine)",
+    "generalContent": "Tasks performed frequently where hazards are effectively mitigated through established Standard Operating Procedures (SOPs).",
+    "highTitle": "High-Risk Work (Non-Routine)",
+    "highContent": "Activities involving hazardous energy or complex environments where a single failure can result in a fatality or catastrophic incident."
+  },
+  "matrix": {
+    "title": "Risk Matrix (5 Frequency × 4 Severity)",
+    "axisX": "Severity",
+    "axisY": "Frequency",
+    "f5": "Frequent", "f4": "Probable", "f3": "Occasional", "f2": "Remote", "f1": "Improbable",
+    "s1": "Negligible", "s2": "Marginal", "s3": "Critical", "s4": "Catastrophic",
+    "l1": "Unacceptable", "l2": "High Risk", "l3": "Medium Risk", "l4": "Low Risk", "l5": "Minor Risk", "l6": "Negligible"
+  },
+  "tasks": [
+    { "t": "Work at Heights", "c": "Work at 4ft (General Industry) or 6ft (Construction) where fall protection is mandatory." },
+    { "t": "Confined Space Entry", "c": "Entry into areas with limited access and potential for toxic atmosphere or O2 deficiency." },
+    { "t": "Hot Work", "c": "Welding, cutting, or brazing activities that produce sparks or open flames." },
+    { "t": "Lifting Operations", "c": "Rigging and hoisting loads using cranes, derricks, or powered industrial trucks." },
+    { "t": "Electrical Work", "c": "Work on energized equipment or within limited approach boundaries (NFPA 70E)." },
+    { "t": "Trenching & Excavation", "c": "Ground disturbance where cave-ins or underground utility strikes are potential hazards." },
+    { "t": "Ionizing Radiation", "c": "Industrial radiography or NDT tasks involving exposure to radiation sources." },
+    { "t": "HazMat Handling", "c": "Transfer, charging, or processing of toxic, flammable, or reactive hazardous substances." },
+    { "t": "LOTO / Maintenance", "c": "Lockout/Tagout procedures during maintenance to control hazardous energy." }
+  ]
+}
