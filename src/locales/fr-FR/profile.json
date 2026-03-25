@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Gestion du compte & de l'activité de sécurité intelligente",
+    "statsLabel": "Statistiques de contribution & d'utilisation",
+    "myCount": "DUER créés",
+    "scraps": "Total des enregistrements",
+    "nickname": "Pseudonyme",
+    "sector": "Secteur d'activité principal",
+    "company": "Nom de l'entreprise (Optionnel)",
+    "bio": "Bio professionnelle & message de statut",
+    "bioPlaceholder": "Entrez votre domaine d'expertise ou votre philosophie de sécurité.",
+    "presetTitle": "Paramètres par défaut du rapport de travail",
+    "department": "Département par défaut",
+    "manager": "Vérificateur/Approbateur par défaut",
+    "autoPublicity": "Autoriser le partage automatique vers Explore",
+    "signatureLabel": "Signature électronique (Image)",
+    "noSignature": "Aucune signature enregistrée.",
+    "uploadSignature": "Télécharger l'image de la signature",
+    "securityLabel": "Sécurité & gestion des sessions",
+    "remoteLogout": "Déconnexion à distance de tous les appareils",
+    "openWithdraw": "Besoin de fermer votre compte ?",
+    "closeWithdraw": "Fermer le panneau de désinscription",
+    "withdrawWarning": "⚠️ Lors de la désinscription, toutes les données créées et les enregistrements seront immédiatement supprimés et ne pourront pas être récupérés.",
+    "withdrawPlaceholder": "Veuillez saisir le 'Texte de consentement'.",
+    "withdrawSubmit": "Traiter la suppression du compte",
+    "goMain": "Retour au menu principal",
+    "saveProfile": "Mettre à jour les informations du profil"
+  },
+  "sectors": {
+    "default": "Sélectionner un secteur d'activité",
+    "construction": "Construction / Génie Civil / Architecture",
+    "manufacturing": "Fabrication / Usine / Chimie",
+    "energy": "Énergie / Électricité / Gaz",
+    "logistics": "Transport / Logistique / Entrepôt",
+    "safety": "Gestion de la sécurité / Conseil",
+    "it": "IT / Systèmes / Ingénierie",
+    "public": "Org. publique / Éducation / Santé",
+    "etc": "Autres secteurs"
+  },
+  "messages": {
+    "updateSuccess": "Les informations du profil ont été mises à jour avec succès.",
+    "signatureSuccess": "La signature électronique a été enregistrée en toute sécurité.",
+    "confirmRemoteLogout": "Êtes-vous sûr de vouloir forcer la déconnexion de toutes les sessions sauf l'appareil actuel ?",
+    "confirmWithdrawal": "Êtes-vous sûr de vouloir vous désinscrire ? Cette action est irréversible.",
+    "withdrawConsentText": "Confirmer la suppression",
+    "withdrawMismatch": "Le texte de confirmation ne correspond pas.",
+    "confirmGoMain": "Les modifications peuvent ne pas être enregistrées. Aller à la page principale ?"
+  }
+}

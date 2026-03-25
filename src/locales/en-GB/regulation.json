@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "ADMINISTRATIVE SAFETY GUIDE",
+    "mainTitle": "Professional Guide to Establishing<br />Risk Assessment Guidelines & Legal Compliance",
+    "subTitle": "Detailed guidance on drafting 'Implementation Guidelines', the core of the safety management system, and administrative compliance under HSE standards."
+  },
+  "section1": {
+    "title": "1. What are Risk Assessment Guidelines?",
+    "para": "Risk Assessment Guidelines are <strong>internal standard operating procedures (SOPs)</strong> for employers to identify hazards, assess risks, and implement control measures. These are critical legal requirements under the Management of Health and Safety at Work Regulations.",
+    "infoTitle": "Purpose of Maintaining the Guidelines",
+    "infoList": {
+      "item1": "Clarify responsibilities and authority for establishing a safety management system.",
+      "item2": "Maintain an objective and consistent risk assessment process.",
+      "item3": "Discover practical workplace hazards and implement improvements through worker involvement.",
+      "item4": "Secure evidentiary documentation to respond to legal audits and HSE inspections."
+    }
+  },
+  "section2": {
+    "title": "2. Mandatory Items in the Guidelines",
+    "para": "According to HSE guidelines and industry best practices, internal guidelines must clearly specify the following 10 components:",
+    "items": {
+      "item1": { "title": "Purpose & Methodology", "content": "Goals of the risk assessment and selection of evaluation techniques (e.g. 5 steps to risk assessment)." },
+      "item2": { "title": "Organisation & Roles", "content": "Clear definition of roles and responsibilities (R&R) for duty holders, managers, and employees." },
+      "item3": { "title": "Assessment Scope", "content": "Inclusion of premises, machinery, equipment, and all routine/non-routine work activities." },
+      "item4": { "title": "Timing & Frequency", "content": "Specific triggers and schedules for initial, periodic, and reactive assessments." },
+      "item5": { "title": "Hazard Identification", "content": "Practical methods for deriving hazards, such as site walk-throughs and consulting staff." },
+      "item6": { "title": "Risk Evaluation", "content": "Establishment of objective criteria (e.g. likelihood and severity matrix) to determine risk levels." },
+      "item7": { "title": "Control Measures", "content": "Prioritising improvements following the hierarchy of control and establishing review procedures." },
+      "item8": { "title": "Worker Involvement", "content": "Systematic approaches to gathering employee feedback during hazard identification." },
+      "item9": { "title": "Recordkeeping", "content": "Standardised templates for assessment results and guidelines for record retention (significant findings)." },
+      "item10": { "title": "Training & Communication", "content": "Procedures for communicating assessment results to the workforce and conducting relevant training." }
+    }
+  },
+  "section3": {
+    "title": "3. Types and Timing of Risk Assessments",
+    "table": {
+      "header": {
+        "col1": "Assessment Type",
+        "col2": "Timing & Conditions",
+        "col3": "Key Notes"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Initial Assessment",
+          "col2": "Conducted before starting any new work activity or business operation.",
+          "col3": "Mandatory 'suitable and sufficient' assessment."
+        },
+        "row2": {
+          "col1": "Periodic Assessment",
+          "col2": "Conducted regularly (usually annually) to ensure the assessment remains valid.",
+          "col3": "Must be reviewed if there is reason to suspect it is no longer valid."
+        },
+        "row3": {
+          "col1": "Reactive (Special)",
+          "col2": "Following a significant change in equipment/processes, or after accidents/near-misses.",
+          "col3": "Required immediately to prevent recurrence."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Legal Liability and Penalties",
+    "para": "Failure to fulfill risk assessment duties can result in severe enforcement action and criminal prosecution by the HSE.",
+    "legalList": {
+      "item1": "<strong>Failure to Conduct Assessments:</strong> Can lead to Improvement or Prohibition Notices and unlimited fines under current sentencing guidelines.",
+      "item2": "<strong>Failure to Maintain Records:</strong> Administrative penalties and legal vulnerability during inspections if significant findings are not recorded.",
+      "item3": "<strong>In the Event of Major Incidents:</strong> If a lack of risk assessment is identified after a fatal accident, charges of Corporate Manslaughter may be brought against the company."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

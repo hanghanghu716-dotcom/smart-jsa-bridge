@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // 추가
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useTranslation } from 'react-i18next';
 import AdBanner from '../../AdBanner';
+import SEO from '../../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useLanguageNavigate } from '../../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 // 법적 고지 컴포넌트: 다국어 적용
 const LegalDisclaimer = ({ t }) => (
@@ -14,7 +16,7 @@ const LegalDisclaimer = ({ t }) => (
 );
 
 export default function CommonGuide() {
-    const navigate = useNavigate();
+    const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
     const { t } = useTranslation('common'); // common 네임스페이스 로드
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -23,6 +25,8 @@ export default function CommonGuide() {
 
     return (
         <div style={styles.wrapper}>
+            <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+
             {/* HEADER */}
             <header style={styles.header}>
                 <div style={styles.container}>
@@ -55,7 +59,7 @@ export default function CommonGuide() {
 
                         <div style={styles.card} className="max-lg:!p-6 max-lg:!rounded-2xl">
                             <div style={styles.cardHeader}>
-                                <span style={styles.jsaId}>{t('ui.jsaId')}</span>
+                                <span style={styles.jsaId}>{t('jsaId')}</span>
                                 <h4 style={styles.jsaTitle} className="text-[18px] lg:text-[1.8rem]">
                                     <span className="max-lg:block">{t('ui.jsaTitle1')}</span>
                                     <span className="max-lg:block">{t('ui.jsaTitle2')}</span>
@@ -114,6 +118,7 @@ export default function CommonGuide() {
     );
 }
 
+// 스타일 객체는 원본 데이터를 절대적으로 유지합니다.
 const styles = {
     wrapper: { backgroundColor: '#fcfcfc', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
     container: { maxWidth: '1000px', margin: '0 auto' },

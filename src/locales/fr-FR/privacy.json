@@ -1,0 +1,51 @@
+{
+  "pageTag": "POLITIQUE DE CONFIDENTIALITÉ",
+  "heading": {
+    "line1": "Politique de confidentialité",
+    "line2": "Guide d'information"
+  },
+  "section1": {
+    "title": "1. Finalité de la collecte et de l'utilisation",
+    "content": "Smart JSA Bridge collecte un minimum d'informations personnelles, qui sont utilisées exclusivement pour la <strong>fourniture de services, l'amélioration et la consultation des clients</strong>."
+  },
+  "section2": {
+    "title": "2. Éléments d'informations personnelles collectés",
+    "item1": {
+      "bold": "Éléments requis :",
+      "desc": "Adresse e-mail, enregistrements d'utilisation du service, journaux d'accès, cookies, informations sur l'IP d'accès"
+    },
+    "item2": {
+      "bold": "Éléments facultatifs :",
+      "desc": "Langue de préférence de l'utilisateur et informations régionales"
+    },
+    "item3": {
+      "bold": "Méthode de collecte :",
+      "desc": "Générés et collectés automatiquement lors du processus d'utilisation du service du site Web"
+    }
+  },
+  "section3": {
+    "title": "3. Période de conservation et d'utilisation",
+    "subtitle": "En principe, l'entreprise détruit les informations sans délai après que l'objectif de la collecte et de l'utilisation a été atteint.",
+    "step1": {
+      "bold": "Enregistrements de visite :",
+      "desc": "Détruits après stockage pendant une durée maximale de 3 mois"
+    },
+    "step2": {
+      "bold": "Détails de la consultation :",
+      "desc": "Stockés pendant 1 an après la fin de la consultation"
+    },
+    "step3": {
+      "bold": "Conformité :",
+      "desc": "Stockés pendant la période requise par les lois et réglementations applicables"
+    },
+    "step4": {
+      "bold": "Procédure de destruction :",
+      "desc": "Les informations au format de fichier électronique sont supprimées à l'aide de méthodes techniques qui ne permettent pas de reproduire l'enregistrement"
+    }
+  },
+  "section4": {
+    "title": "4. Fourniture à des tiers et sous-traitance",
+    "content": "Ce service inclut Google AdSense, et nous vous informons que des <strong>tiers tels que Google peuvent installer ou lire des cookies</strong> sur votre navigateur pour fournir des publicités personnalisées."
+  },
+  "imageCaption": "Smart JSA Bridge donne la priorité à la sécurité de vos données."
+}

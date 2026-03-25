@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // 다국어 훅 추가
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useTranslation } from 'react-i18next';
 import AdBanner from '../AdBanner';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+// ✅ [추가] 다국어 전용 라우팅 도구
+import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function RiskClassification() {
-  const navigate = useNavigate();
-  const { t } = useTranslation('risk'); // risk 네임스페이스 사용
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
+  const { t } = useTranslation('risk'); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // 고위험 작업 유형 데이터 (다국어 연동)
+  // 고위험 작업 유형 데이터 (다국어 연동)[cite: 17]
   const highRiskTasks = t('tasks', { returnObjects: true });
 
   const frequencyLabels = { 
@@ -29,11 +32,19 @@ export default function RiskClassification() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
 
       {/* HEADER */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+          {/* ✅ 햄버거 메뉴 트리거 (기능 보존) */}
+          <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
+             <div style={styles.hamburger}>
+               <div style={styles.bar}></div>
+               <div style={styles.bar}></div>
+             </div>
+          </div>
         </div>
       </header>
 
@@ -49,10 +60,11 @@ export default function RiskClassification() {
         </div>
         <nav style={styles.drawerNav}>
           <div style={styles.navCategory}>CONTENTS</div>
-          <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가 실시규정 가이드</Link>
-          <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>위험성평가(JRA/JSA) 실무 프로세스</Link>
-          <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>보호구에 관하여</Link>
-          <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>일반 작업/고위험 작업</Link>
+          {/* ✅ [변경] LanguageLink를 사용하여 다국어 경로 유지 */}
+          <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.regulation', '위험성평가 실시규정 가이드')}</LanguageLink>
+          <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.jrajsa', '위험성평가(JRA/JSA) 실무 프로세스')}</LanguageLink>
+          <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.ppe', '보호구에 관하여')}</LanguageLink>
+          <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.riskClass', '일반 작업/고위험 작업')}</LanguageLink>
         </nav>
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
@@ -190,6 +202,7 @@ export default function RiskClassification() {
   );
 }
 
+// 스타일 객체는 원본 데이터를 절대적으로 유지합니다[cite: 17].
 const styles = {
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden', fontFamily: 'Pretendard, sans-serif' },
   container: { maxWidth: '1200px', margin: '0 auto' },
@@ -240,5 +253,9 @@ const styles = {
   flowCard: { padding: '25px', backgroundColor: '#fff', borderRadius: '16px', borderTop: '4px solid #448AFF', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' },
   flowT: { fontSize: '1.15rem', fontWeight: '800', marginBottom: '10px' },
   flowC: { fontSize: '0.9rem', color: '#666', lineHeight: '1.6' },
-  finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff' }
+  finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff' },
+  // 햄버거 메뉴 스타일 추가[cite: 11]
+  menuTrigger: { display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer' },
+  hamburger: { display: 'flex', flexDirection: 'column', gap: '5px' },
+  bar: { width: '20px', height: '2px', backgroundColor: '#111' }
 };

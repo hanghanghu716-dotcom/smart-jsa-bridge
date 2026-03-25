@@ -1,0 +1,116 @@
+{
+  "default": {
+    "docTitle": "Document Unique d'Évaluation des Risques (DUER)",
+    "appr1": "Rédacteur",
+    "appr2": "Vérificateur",
+    "appr3": "Approbateur"
+  },
+  "alert": {
+    "needLogin": "Connexion requise pour utiliser ce service.",
+    "savePublic": "Publié en toute sécurité dans Explore.",
+    "savePrivate": "Enregistré en toute sécurité dans votre bibliothèque privée.",
+    "saveError": "Erreur lors de l'enregistrement du projet : ",
+    "pdfError": "Échec de la génération du PDF."
+  },
+  "header": {
+    "projectName": "Nom du projet",
+    "approval": "Approbation",
+    "workLocation": "Lieu de travail",
+    "department": "Département",
+    "workDate": "Date d'entrée en vigueur",
+    "ppe": "EPI requis",
+    "highRiskWork": "Dangers critiques"
+  },
+  "ppe": {
+    "helmet": "Casque de sécurité",
+    "shoes": "Chaussures de sécurité",
+    "glasses": "Lunettes de protection",
+    "safetyBelt": "Harnais anti-chute",
+    "mask": "Masque respiratoire",
+    "gloves": "Gants de protection",
+    "etc": "Divers"
+  },
+  "permit": {
+    "hotWork": "Travaux à chaud",
+    "confinedSpace": "Espace confiné",
+    "electrical": "Consignation (LOTO)",
+    "highElevation": "Travail en hauteur",
+    "heavyLifting": "Levage critique",
+    "excavation": "Excavation",
+    "etc": "Divers"
+  },
+  "signature": {
+    "participants": "Équipe de travail",
+    "sign": "(Signature)"
+  },
+  "groups": {
+    "hazard": "Identification des dangers",
+    "risk": "Évaluation des risques"
+  },
+  "tags": {
+    "DATA_STEP_NO": "N° d'étape",
+    "DATA_STEP_TITLE": "Étapes de la tâche",
+    "DATA_PHOTO": "Photo réf.",
+    "DATA_HAZARD": "Dangers potentiels",
+    "DATA_CURRENT_MEASURE": "Mesures actuelles",
+    "DATA_RECOMMEND_MEASURE": "Actions recommandées",
+    "DATA_FREQUENCY": "Probabilité",
+    "DATA_SEVERITY": "Gravité",
+    "DATA_RISK": "Niveau de risque",
+    "DATA_KRAS_STEP": "Description détaillée de la tâche",
+    "DATA_KRAS_HAZARD_CLASS": "Catégorie de danger",
+    "DATA_KRAS_HAZARD_DETAIL": "Scénario de danger & Conséquence",
+    "DATA_KRAS_BASIS": "Base légale/normative",
+    "DATA_KRAS_CURRENT": "Mesures de sécurité actuelles",
+    "DATA_KRAS_RECOMMEND": "Mesures de réduction des risques",
+    "DATA_KRAS_AFTER": "Risque résiduel",
+    "DATA_KRAS_SCHED": "Date cible",
+    "DATA_KRAS_COMP": "Date d'achèvement",
+    "DATA_KRAS_MANAGER": "Responsable"
+  },
+  "preview": {
+    "freqBreak": "Probabilité\n(Fréq)",
+    "sevBreak": "Gravité\n(Conséq)",
+    "afterBreak": "Risque\nrésiduel",
+    "schedBreak": "Date\ncible"
+  },
+  "table": {
+    "addPhoto": "Photo"
+  },
+  "ui": {
+    "processing": "Traitement des données..."
+  },
+  "step": {
+    "basicInfo": "Étape 1 : Infos générales",
+    "procedure": "Étape 2 : Séquence des tâches",
+    "riskAnalysis": "Étape 3 : Analyse des dangers",
+    "moduleConfig": "Étape 4 : Config du module",
+    "tableConfig": "Étape 5 : Mapping des données",
+    "finalOutput": "Étape 6 : Export final"
+  },
+  "title": {
+    "main": "| 06. Export final"
+  },
+  "btn": {
+    "prev": "Modifier la mise en page",
+    "cloudSave": "Sauvegarder (Choisir visibilité)",
+    "pdfSave": "Générer le rapport PDF"
+  },
+  "modal": {
+    "pdfTitle": "Générer le rapport PDF",
+    "pdfSub": "Convertit le rendu final en fichier PDF pour téléchargement.",
+    "pdfBtnLabel": "Lancer le téléchargement",
+    "pdfBtnDesc": "Génère un PDF haute résolution.<br/>Veuillez patienter.",
+    "close": "Fermer (Annuler)",
+    "pubTitle": "Paramètres de sauvegarde Cloud",
+    "pubWarning": "⚠️ Pour des raisons de sécurité, le département, le lieu,\nla date et les noms seront laissés vides.",
+    "pubSub": "Veuillez sélectionner la visibilité du projet.",
+    "pubBadgeLimited": "Public (Restreint)",
+    "pubPublicLabel": "Publier dans Explore",
+    "pubForkLimit": "Nécessite des étapes supplémentaires<br/>ou au moins 2 dangers de plus.",
+    "pubRiskLimit": "Veuillez documenter au moins 3 dangers<br/>pour le partage de connaissances.",
+    "pubPublicDesc": "Visible par tous les utilisateurs,<br/>contribue au partage de savoir-faire.",
+    "pubPrivateLabel": "Enregistrer en privé",
+    "pubPrivateDesc": "Visible uniquement par le créateur<br/>et géré comme un projet personnel."
+  }
+}

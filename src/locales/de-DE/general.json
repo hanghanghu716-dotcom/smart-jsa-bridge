@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Vorsicht] Dieses Muster dient nur als Referenz. Gefährdungsbeurteilungen müssen auf der Grundlage tatsächlicher Prüfungen vor Ort durchgeführt werden.",
+    "text2": "Smart JSA Bridge haftet nicht für rechtliche Folgen, die sich aus der Verwendung dieser Daten ergeben."
+  },
+  "ui": {
+    "category": "ALLGEMEINE- & ANLAGENSICHERHEIT",
+    "mainTitle1": "JSA für allgemeine Arbeiten & Anlagen",
+    "mainTitle2": "Musterleitfaden (10 Typen)",
+    "description1": "Risikoanalysedaten für das tägliche Facility Management, Logistik und",
+    "description2": "Gesundheitswesen. Bitte prüfen Sie die Detailbilder.",
+    "labelRed": "⚠ Hauptgefahren",
+    "labelBlue": "🛡 Minderungsmaßnahmen",
+    "previewLabel": "Vorschau des JSA-Berichts",
+    "downloadBtn": "Original-PDF-Muster herunterladen"
+  },
+  "list": [
+    { "id": "GEN-01", "title": "Palettenverladung und Transport mit Gabelstaplern im Logistiklager", "hazard": "Umkippen des Staplers bei scharfen Kurven, Kollision mit Fußgängern bei Sichtbehinderung", "measure": "Geschwindigkeitsbegrenzung von 10 km/h einhalten, Einweiser einsetzen und Mastneigung prüfen", "pages": 1 },
+    { "id": "GEN-02", "title": "Mobilitätshilfe für Patienten und Umgang mit medizinischen Abfällen", "hazard": "Stürze beim Patiententransfer, Infektionen durch Nadelstichverletzungen", "measure": "Radarretierungen an Rollstühlen/Betten prüfen, Re-Capping gebrauchter Nadeln strikt untersagen", "pages": 1 },
+    { "id": "GEN-03", "title": "Mäharbeiten und Baumpflege in Grünzonen", "hazard": "Aufprall durch umherfliegende Teile bei Messerbruch, Stromschlag durch Oberleitungen", "measure": "Gesichtsschutz tragen, 2 m Abstand zu elektrischen Anlagen halten und Zugang beschränken", "pages": 1 },
+    { "id": "GEN-04", "title": "Fußstreife in gefährdeten Bereichen und Verkehrsregelung", "hazard": "Kollision mit Fahrzeugen, tätliche Angriffe durch verdächtige Personen bei Nachtstreifen", "measure": "Hochsichtbare Warnwesten tragen, Doppelstreifen-Regel folgen und Schutzausrüstung mitführen", "pages": 1 },
+    { "id": "GEN-05", "title": "Laborreagenzienvorbereitung und Betrieb von Analysegeräten", "hazard": "Austritt giftiger Gase bei mangelhafter Abzugsleistung, Verätzungen durch Reagenzienspritzer", "measure": "Arbeiten unter dem Abzug ausführen, Sicherheitsdatenblatt-Schulung absolvieren und PSA tragen", "pages": 1 },
+    { "id": "GEN-06", "title": "Tiefgaragenreinigung und Hochdruckreinigung", "hazard": "Kollision mit Fahrzeugen, Stromschlag durch Elektrowerkzeuge in nassen Bereichen", "measure": "Verkehrsleitkegel aufstellen, Stromversorgung über FI-Schutzschalter (RCD) sicherstellen", "pages": 1 },
+    { "id": "GEN-07", "title": "Betrieb von Abfallzerkleinerern und Behebung von Verstopfungen", "hazard": "Erfassen von Körperteilen im Einlass, Quetschung durch unerwarteten Anlauf durch Dritte", "measure": "Hauptstrom abschalten und LOTO anwenden, Handwerkzeuge statt der Hände verwenden", "pages": 1 },
+    { "id": "GEN-08", "title": "Außen Glasreinigung und Einsatz von Bootsmannstühlen", "hazard": "Stürze durch Seilverschleiß, Verletzung von Fußgängern durch herabfallendes Werkzeug", "measure": "Separate vertikale Sicherungsseile installieren, Bodenpersonal zur Absperrung einsetzen", "pages": 1 },
+    { "id": "GEN-09", "title": "Lebensmittelvorbereitung und Kochen in Großküchen", "hazard": "Ausrutschen auf nassen Böden, Verbrennungen durch heißes Öl oder Dampf", "measure": "Zertifizierte rutschfeste Küchenschuhe tragen, K-Klasse Feuerlöscher bereitstellen", "pages": 1 },
+    { "id": "GEN-10", "title": "Serverrack-Installation und Kabeltrassenverlegung in Rechenzentren", "hazard": "Quetschung durch Rack-Inertie beim Bewegen, Stürze von Leitern bei Höhenarbeiten", "measure": "Arbeiten in 3er-Teams ausführen, Stehen auf der obersten Leitersprosse untersagen", "pages": 1 }
+  ]
+}

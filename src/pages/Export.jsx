@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf'; 
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
 import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; 
-import { useTranslation } from 'react-i18next'; // ✅ [추가] 다국어 훅 임포트
+import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
@@ -35,10 +37,10 @@ const COLUMN_GROUPS = [
 ];
 
 export default function Export() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
-  const { t, i18n } = useTranslation(['export']); // ✅ [추가] 다국어 객체 추출
-  const isEnglish = i18n.language?.startsWith('en'); // ✅ [추가] 영문 판별 플래그
+  const { t, i18n } = useTranslation(['export']); 
+  const isEnglish = i18n.language?.startsWith('en');
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [userProfile, setUserProfile] = useState(null); 
@@ -54,7 +56,6 @@ export default function Export() {
     savedActiveOrder = [],
     savedUserColumns = [],
     savedOrientation = 'landscape',
-    // ✅ [수정] 기본값 다국어 처리
     docTitle = t('default.docTitle', '위험성평가표 (JSA)'),
     appr1 = t('default.appr1', '작성'),
     appr2 = t('default.appr2', '검토'),
@@ -102,14 +103,14 @@ export default function Export() {
     }
   };
 
-  const handleLogoClick = () => { navigate('/'); };
+  const handleLogoClick = () => { navigate('/'); }; // ✅ 언어 경로 자동 유지
 
   const handleCloudAction = async (isPublic) => {
     setIsProcessing(true);
     setShowPublishModal(false);
     try {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return alert(t('alert.needLogin')); // ✅ [수정] 다국어 처리
+      if (!user) return alert(t('alert.needLogin'));
 
       const securedFormData = {
         ...formData,
@@ -143,8 +144,8 @@ export default function Export() {
 
       const { error } = await supabase.from('jsa_projects').upsert(projectData);
       if (error) throw error;
-      alert(isPublic ? t('alert.savePublic') : t('alert.savePrivate')); // ✅ [수정] 다국어 처리
-    } catch (err) { alert(t('alert.saveError') + err.message); } finally { setIsProcessing(false); } // ✅ [수정] 다국어 처리
+      alert(isPublic ? t('alert.savePublic') : t('alert.savePrivate'));
+    } catch (err) { alert(t('alert.saveError') + err.message); } finally { setIsProcessing(false); }
   };
 
   const generatePDF = async () => {
@@ -172,14 +173,14 @@ export default function Export() {
         leftHeightMm -= sliceHeightMm; positionMm += sliceHeightMm; if (leftHeightMm > 0.1) doc.addPage();
       }
       doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
-    } catch (error) { console.error(error); alert(t('alert.pdfError')); } finally { setIsProcessing(false); } // ✅ [수정] 다국어 처리
+    } catch (error) { console.error(error); alert(t('alert.pdfError')); } finally { setIsProcessing(false); }
   };
 
   const handlePdfDownload = async () => { setShowPdfAdModal(false); await generatePDF(); };
 
   const renderUnifiedHeader = () => {
-    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '10px' : '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' }; // ✅ [수정] 영문 스타일 (폰트, wordBreak)
-    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: isEnglish ? 'normal' : 'nowrap', lineHeight: '1.2' }; // ✅ [수정] 영문 줄바꿈 허용
+    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '10px' : '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
+    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: isEnglish ? 'normal' : 'nowrap', lineHeight: '1.2' };
     const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
     const ppeOthers = formData?.ppe?.filter(p => !['안전모','안전화','보안경','장갑','방진마스크'].includes(p)).join(', ');
     const permitOthers = formData?.permits?.filter(p => !['일반','화기','밀폐','정전','고소','중량물','굴착'].includes(p)).join(', ');
@@ -189,14 +190,13 @@ export default function Export() {
         <colgroup><col style={{ width: '10%' }} /><col style={{ width: '20%' }} /><col style={{ width: '10%' }} /><col style={{ width: '30%' }} /><col style={{ width: '10%' }} /><col style={{ width: '20%' }} /></colgroup>
         <tbody>
           <tr>
-            <td style={labelTdStyle}>{t('header.projectName')}</td> {/* ✅ [수정] */}
+            <td style={labelTdStyle}>{t('header.projectName')}</td>
             <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
             <td colSpan={2} style={{ ...commonTdStyle, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', verticalAlign: 'middle', padding: '0px 6px 14px 6px' }}>{docTitle}</td>
             <td colSpan={2} style={{ padding: 0, border: '1px solid #888' }}>
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    {/* ✅ [수정] 영문 시 세로쓰기 레이아웃 텍스트 변경 지원 */}
                     <td rowSpan={2} style={{ borderRight: '1px solid #888', width: isEnglish ? '55px' : '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0', writingMode: isEnglish ? 'horizontal-tb' : 'vertical-rl' }}>
                       {isEnglish ? <div style={{lineHeight:'1.1', fontSize:'9px', display:'flex', flexDirection:'column'}}><span>Compliance</span><span>Approval</span></div> : t('header.approval')}
                     </td>
@@ -210,35 +210,35 @@ export default function Export() {
             </td>
           </tr>
           <tr>
-            <td style={labelTdStyle}>{t('header.workLocation')}</td><td style={commonTdStyle}>{formData?.workLocation || ''}</td> {/* ✅ [수정] */}
-            <td style={labelTdStyle}>{t('header.department')}</td><td style={commonTdStyle}>{formData?.department || ''}</td> {/* ✅ [수정] */}
-            <td style={labelTdStyle}>{t('header.workDate')}</td><td style={commonTdStyle}>{formData?.workDate || ''}</td> {/* ✅ [수정] */}
+            <td style={labelTdStyle}>{t('header.workLocation')}</td><td style={commonTdStyle}>{formData?.workLocation || ''}</td>
+            <td style={labelTdStyle}>{t('header.department')}</td><td style={commonTdStyle}>{formData?.department || ''}</td>
+            <td style={labelTdStyle}>{t('header.workDate')}</td><td style={commonTdStyle}>{formData?.workDate || ''}</td>
           </tr>
           <tr>
-            <td style={labelTdStyle}>{t('header.ppe')}</td> {/* ✅ [수정] */}
+            <td style={labelTdStyle}>{t('header.ppe')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '2px 8px 10px 8px' }}>
               <div style={{ display: 'flex', width: '100%', alignItems: 'center', flexWrap: 'wrap', gap: isEnglish ? '4px' : '0' }}>
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} {t('ppe.helmet')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} {t('ppe.shoes')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('보안경') ? '☑' : '□'} {t('ppe.glasses')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>□ {t('ppe.safetyBelt')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} {t('ppe.mask')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} {t('ppe.gloves')}</span> {/* ✅ [수정] */}
-                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>{ppeOthers ? '☑' : '□'} {t('ppe.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)</span> {/* ✅ [수정] */}
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전모') ? '☑' : '□'} {t('ppe.helmet')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('안전화') ? '☑' : '□'} {t('ppe.shoes')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('보안경') ? '☑' : '□'} {t('ppe.glasses')}</span>
+                <span style={checkboxItemStyle}>□ {t('ppe.safetyBelt')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('방진마스크') ? '☑' : '□'} {t('ppe.mask')}</span>
+                <span style={checkboxItemStyle}>{formData?.ppe?.includes('장갑') ? '☑' : '□'} {t('ppe.gloves')}</span>
+                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>{ppeOthers ? '☑' : '□'} {t('ppe.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{ppeOthers}</span>)</span>
               </div>
             </td>
           </tr>
           <tr>
-            <td style={labelTdStyle}>{t('header.highRiskWork')}</td> {/* ✅ [수정] */}
+            <td style={labelTdStyle}>{t('header.highRiskWork')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '2px 8px 10px 8px' }}>
               <div style={{ display: 'flex', width: '100%', alignItems: 'center', flexWrap: 'wrap', gap: isEnglish ? '4px' : '0' }}>
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} {t('permit.hotWork')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} {t('permit.confinedSpace')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} {t('permit.electrical')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} {t('permit.highElevation')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} {t('permit.heavyLifting')}</span> {/* ✅ [수정] */}
-                <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} {t('permit.excavation')}</span> {/* ✅ [수정] */}
-                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>{permitOthers ? '☑' : '□'} {t('permit.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)</span> {/* ✅ [수정] */}
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} {t('permit.hotWork')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} {t('permit.confinedSpace')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} {t('permit.electrical')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('고소') ? '☑' : '□'} {t('permit.highElevation')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('중량물') ? '☑' : '□'} {t('permit.heavyLifting')}</span>
+                <span style={checkboxItemStyle}>{formData?.permits?.includes('굴착') ? '☑' : '□'} {t('permit.excavation')}</span>
+                <span style={{ display: 'flex', flex: 1, alignItems: 'center', whiteSpace: 'nowrap' }}>{permitOthers ? '☑' : '□'} {t('permit.etc')}(<span style={{ flex: 1, minWidth: '30px', color: '#000', padding: '0 4px', textAlign: 'left' }}>{permitOthers}</span>)</span>
               </div>
             </td>
           </tr>
@@ -249,20 +249,20 @@ export default function Export() {
 
   const renderSignatureTable = () => {
     const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
-    const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%', whiteSpace: isEnglish ? 'normal' : 'nowrap' }; // ✅ [수정] 영문 스타일
+    const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%', whiteSpace: isEnglish ? 'normal' : 'nowrap' };
     const sigRows = Array.from({ length: savedSignatureRows }, (_, i) => i);
     const cols = Array.from({ length: 8 }, (_, i) => i);
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #888', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>        
         <tbody>
           <tr>
-            <td rowSpan={savedSignatureRows} style={labelTdStyle}>{t('signature.participants')}</td> {/* ✅ [수정] */}
+            <td rowSpan={savedSignatureRows} style={labelTdStyle}>{t('signature.participants')}</td>
             {cols.map(c => {
               const pName = participants?.[c] || '';
               return (
                 <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
                   {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: '#888'}}>{t('signature.sign')}</span> {/* ✅ [수정] */}
+                  <span style={{color: '#888'}}>{t('signature.sign')}</span>
                 </td>
               );
             })}
@@ -275,7 +275,7 @@ export default function Export() {
                 return (
                   <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
                     {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: '#888'}}>{t('signature.sign')}</span> {/* ✅ [수정] */}
+                    <span style={{color: '#888'}}>{t('signature.sign')}</span>
                   </td>
                 );
               })}
@@ -287,7 +287,6 @@ export default function Export() {
   };
 
   const renderDataTable = () => {
-    // ✅ [수정] 영문 시 폰트 축소 및 줄바꿈 강제 (overflowWrap: 'anywhere')
     const commonTdStyle = { border: '1px solid #888', padding: '4px 4px 12px 4px', fontSize: isEnglish ? '9.5px' : '10.5px', verticalAlign: 'middle', lineHeight: '1.3', wordBreak: 'break-word', overflowWrap: 'anywhere' }; 
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
     const currentItems = savedActiveOrder.filter(key => TAG_META[key] || savedUserColumns.find(u => u.id === key));
@@ -317,13 +316,11 @@ export default function Export() {
         <thead>
           <tr>{groups.map((group, idx) => {
               if (group.isGroup) { 
-                // ✅ [수정] 그룹 다국어
                 const groupLabel = group.label === '유해 위험요인 파악' ? t('groups.hazard') : t('groups.risk');
                 return ( <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{groupLabel}</th> ); 
               } 
               else {
                 const key = group.keys[0]; const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); 
-                // ✅ [수정] 헤더 다국어
                 let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak'); 
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
@@ -347,8 +344,8 @@ export default function Export() {
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency || "-");
                 else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel || "-");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks[0]?.category || "";
-                if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); } // ✅ [수정] 사진 추가 다국어
-                return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> ); // wordBreak 등은 commonTdStyle에 이미 포함됨
+                if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
+                return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
               })}
             </tr>
           ))}
@@ -359,7 +356,8 @@ export default function Export() {
 
   return (
     <div style={styles.wrapper}>
-      {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>} {/* ✅ [수정] */}
+      <SEO /> {/* ✅ [추가] 기능 추가 */}
+      {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1></header>
@@ -368,7 +366,6 @@ export default function Export() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper} className="no-print">
-              {/* ✅ [수정] Stepper 다국어 */}
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.riskAnalysis')}</span></div><div style={styles.stepLineActive} />
@@ -376,7 +373,7 @@ export default function Export() {
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.tableConfig')}</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>6</div><span style={styles.stepTextActive}>{t('step.finalOutput')}</span></div>
             </nav>
-            <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div> {/* ✅ [수정] 메인 타이틀 */}
+            <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div>
             <div style={styles.previewArea}>
               <div className="reportPaper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
                 {renderUnifiedHeader()}
@@ -385,7 +382,6 @@ export default function Export() {
               </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              {/* ✅ [수정] 액션 버튼 다국어 */}
               <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>{t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
@@ -398,7 +394,7 @@ export default function Export() {
       {showPdfAdModal && (
         <div style={styles.modalOverlay} onClick={() => setShowPdfAdModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('modal.pdfTitle')}</h3> {/* ✅ [수정] PDF 모달 */}
+            <h3 style={styles.modalTitle}>{t('modal.pdfTitle')}</h3>
             <p style={styles.modalSub}>{t('modal.pdfSub')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
             <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handlePdfDownload}>
@@ -414,16 +410,8 @@ export default function Export() {
       {showPublishModal && (
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('modal.pubTitle')}</h3> {/* ✅ [수정] 클라우드 모달 */}
-              <p style={{
-                ...styles.modalSub, 
-                color: '#ff7675', 
-                fontWeight: 'bold', 
-                whiteSpace: 'pre-wrap', 
-                lineHeight: '1.6'       
-              }}>
-                {t('modal.pubWarning')}
-              </p>
+            <h3 style={styles.modalTitle}>{t('modal.pubTitle')}</h3>
+              <p style={{ ...styles.modalSub, color: '#ff7675', fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
             <p style={styles.modalSub}>{t('modal.pubSub')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
             <div style={styles.typeGrid}>
@@ -463,6 +451,7 @@ export default function Export() {
 }
 
 const styles = {
+  /* 원본 스타일 절대 유지 */
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent' },
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)', backgroundPosition: 'center' },

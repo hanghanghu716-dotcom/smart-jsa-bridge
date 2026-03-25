@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- 1. Home -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://easyjsa.cloud/ko/"/>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 2. Public Explore -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/explore</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/explore"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/explore"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3. About -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/about</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/about"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 4. Factor Dictionary -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/dictionary</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/dictionary"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/dictionary"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 5. Regulation Guide -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/regulation</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/regulation"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/regulation"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 6. JRA/JSA Process -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/jrajsa</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/jrajsa"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/jrajsa"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 7. PPE Guide -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/ppe</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/ppe"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/ppe"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 8. Risk Classification -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/riskclassification</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/riskclassification"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/riskclassification"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 9. Category Guides (Common, Chem, HighRisk, Manu, Const, General) -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/common</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/common"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/common"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/chem</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/chem"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/chem"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/highrisk</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/highrisk"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/highrisk"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/manu</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/manu"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/manu"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/const</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/const"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/const"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/general</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/general"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/general"/>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 10. Terms -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/terms"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/terms"/>
+    <priority>0.3</priority>
+  </url>
+
+</urlset><?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- 1. Home -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://easyjsa.cloud/ko/"/>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 2. Public Explore -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/explore</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/explore"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/explore"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3. About -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/about</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/about"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 4. Factor Dictionary -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/dictionary</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/dictionary"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/dictionary"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 5. Regulation Guide -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/regulation</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/regulation"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/regulation"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 6. JRA/JSA Process -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/jrajsa</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/jrajsa"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/jrajsa"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 7. PPE Guide -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/ppe</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/ppe"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/ppe"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 8. Risk Classification -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/riskclassification</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/riskclassification"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/riskclassification"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 9. Category Guides (Common, Chem, HighRisk, Manu, Const, General) -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/common</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/common"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/common"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/chem</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/chem"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/chem"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/highrisk</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/highrisk"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/highrisk"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/manu</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/manu"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/manu"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/const</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/const"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/const"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://easyjsa.cloud/ko/guide/general</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/guide/general"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/guide/general"/>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 10. Terms -->
+  <url>
+    <loc>https://easyjsa.cloud/ko/terms</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://easyjsa.cloud/ko/terms"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://easyjsa.cloud/en-US/terms"/>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

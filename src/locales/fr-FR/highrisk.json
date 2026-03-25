@@ -1,0 +1,26 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attention] Cet échantillon est fourni à titre de référence uniquement. L'évaluation des risques doit être menée sur la base de vérifications réelles sur site.",
+    "text2": "Smart JSA Bridge n'est pas responsable des conséquences juridiques découlant de l'utilisation de ce matériel."
+  },
+  "ui": {
+    "category": "SPÉCIALISTE HAUT RISQUE",
+    "mainTitle1": "JSA Travaux Spéciaux à Haut Risque",
+    "mainTitle2": "Guide d'échantillons (7 types)",
+    "description1": "Données d'analyse des risques standard pour la construction à haut risque mettant la vie en danger.",
+    "description2": "Vérifiez les images et téléchargez le PDF original.",
+    "labelRed": "⚠ Facteurs de danger critiques",
+    "labelBlue": "🛡 Mesures de sécurité essentielles",
+    "previewLabel": "Aperçu du rapport JSA",
+    "downloadBtn": "Télécharger le PDF original complet"
+  },
+  "list": [
+    { "id": "HR-01", "title": "Remplacement de tuyauterie vieillissante et réparation par soudage de bride", "hazard": "Explosion due au gaz inflammable résiduel, incendie par projections de soudure", "measure": "Vérifier 0% LEL, isoler les combustibles dans un rayon de 11m et affecter un surveillant incendie", "pages": 1 },
+    { "id": "HR-02", "title": "Inspection des appareillages haute tension et remplacement de câbles", "hazard": "Choc électrique par erreur de manipulation, arc électrique par charge résiduelle", "measure": "Mettre en œuvre la consignation (LOTO) individuelle, vérifier l'absence de tension et décharger la tige de terre", "pages": 1 },
+    { "id": "HR-03", "title": "Excavation et installation de blindage pour l'enfouissement de tuyauterie", "hazard": "Explosion due à l'endommagement de réseaux souterrains, ensevelissement dû à une rupture de pente", "measure": "Détection de réseaux et excavation manuelle, maintenir une pente de sécurité et surveiller les instruments", "pages": 1 },
+    { "id": "HR-04", "title": "Contrôle Radiographique (RT) pour l'inspection de soudure neuve", "hazard": "Exposition aux rayonnements, entrée non autorisée en zone contrôlée lors de travaux de nuit", "measure": "Calculer la distance de sécurité et installer un balisage, affecter un gardien dédié et porter un radiamètre", "pages": 1 },
+    { "id": "HR-05", "title": "Inspection interne de précision et nettoyage de réservoirs purgés à l'azote", "hazard": "Asphyxie due à l'azote résiduel, confinement dans des espaces clos", "measure": "Ventilation forcée avant/pendant l'entrée, monitorage de l'oxygène et surveillant extérieur obligatoire", "pages": 1 },
+    { "id": "HR-06", "title": "Levage et déplacement à la grue pour l'installation d'équipements lourds", "hazard": "Basculement de l'équipement par défaillance du sol, écrasement par chute de charge", "measure": "Renforcer les patins de stabilisateurs, suivre l'élingage à 2 brins et effectuer un levage d'essai de 10cm", "pages": 1 },
+    { "id": "HR-07", "title": "Réparation de panneaux de toiture d'usine et utilisation de PEMP (Location)", "hazard": "Chute à travers des panneaux corrodés, choc électrique par lignes haute tension", "measure": "Installer des échafaudages de répartition de charge, double amarre de harnais de sécurité et maintenir les distances de sécurité électriques", "pages": 1 }
+  ]
+}

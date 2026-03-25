@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Dieser Benutzername ist nicht zulässig.",
+    "nickNoSpecial": "Bitte verwenden Sie keine Sonderzeichen.",
+    "nickInUse": "Dieser Benutzername wird bereits verwendet.",
+    "nickAvailable": "✓ Benutzername verfügbar.",
+    "pwSafe": "✓ Sicheres Passwort",
+    "pwRule": "8+ Zeichen: Buchstaben, Zahlen, Symbole",
+    "pwMatch": "✓ Passwörter stimmen überein",
+    "pwMismatch": "Passwörter stimmen nicht überein"
+  },
+  "alert": {
+    "resetSent": "Ein Link zum Zurücksetzen des Passworts wurde gesendet.",
+    "checkInput": "Bitte überprüfen Sie Ihre Eingabedaten.",
+    "signupSuccess": "Bitte klicken Sie auf den Bestätigungslink in Ihrer E-Mail, um die Registrierung abzuschließen."
+  },
+  "ui": {
+    "titleSignup": "Registrierung des Benutzerkontos",
+    "titleReset": "Passwort zurücksetzen",
+    "titleLogin": "Authentifizierung des Systemzugriffs",
+    "guideSignup": "Bitte geben Sie die erforderlichen Informationen zur Wissenskapitalisierung ein.",
+    "guideReset": "Ein Link zum Zurücksetzen wird an Ihre E-Mail gesendet.",
+    "guideLogin": "Bitte melden Sie sich mit Ihrem registrierten Konto an, um den Dienst zu nutzen.",
+    "labelEmail": "E-Mail-Adresse",
+    "labelNickname": "Anzeigename",
+    "placeholderNickname": "Benutzername",
+    "labelSector": "Industriesektor",
+    "selectDefault": "Auswählen",
+    "labelPassword": "Passwort",
+    "placeholderPassword": "8+ Zeichen: Buchstaben, Zahlen, Symbole",
+    "labelPasswordConfirm": "Passwort bestätigen",
+    "placeholderPasswordConfirm": "Genauso erneut eingeben",
+    "placeholderPasswordLogin": "Passwort",
+    "btnForgotPw": "Passwort vergessen",
+    "btnProcessing": "Wird verarbeitet...",
+    "btnSubmitSignup": "Benutzerkonto erstellen",
+    "btnSubmitReset": "E-Mail zum Zurücksetzen senden",
+    "btnSubmitLogin": "Systemzugriff",
+    "dividerOr": "ODER",
+    "btnGoogleLogin": "Mit Google fortfahren",
+    "btnSwitchSignup": "Neuen Benutzer registrieren",
+    "btnSwitchLogin": "Mit vorhandenem Konto anmelden"
+  },
+  "sector": {
+    "construction": "Bauwesen / Tiefbau / Architektur",
+    "manufacturing": "Fertigung / Anlagenbau / Chemie",
+    "energy": "Energie / Elektrik / Gas",
+    "logistics": "Transport / Logistik / Lagerwesen",
+    "safety": "Sicherheitsmanagement / Beratung",
+    "it": "IT / Systeme / Engineering",
+    "public": "Öffentlicher Dienst / Bildung / Gesundheit",
+    "others": "Andere Branchen"
+  }
+}

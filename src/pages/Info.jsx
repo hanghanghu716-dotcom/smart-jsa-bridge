@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
-import { useTranslation } from 'react-i18next'; // ✅ [추가] 다국어 지원 훅 임포트
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -19,9 +21,9 @@ const DEFAULT_FORM_DATA = {
 };
 
 export default function Info() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용[cite: 11, 14]
   const location = useLocation();
-  const { t } = useTranslation(['info']); // ✅ [추가] info 네임스페이스 로드
+  const { t } = useTranslation(['info']); 
 
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(14).fill(''));
@@ -55,12 +57,9 @@ export default function Info() {
     } 
   }, [location.state]);
 
-
-
   const handleLogoClick = () => {
-    // ✅ [수정] 경고 메시지 다국어 처리
     if (window.confirm(t('alert.confirmMain'))) {
-      navigate('/');
+      navigate('/'); // ✅ 언어 경로 자동 유지
     }
   };
 
@@ -106,13 +105,13 @@ export default function Info() {
     });
   };
 
-const handleNext = () => {
+  const handleNext = () => {
     if (!formData.projectName.trim()) {
-      // ✅ [수정] 필수 입력 경고 다국어 처리
       alert(t('alert.projectNameRequired'));
       return;
     }
 
+    // ✅ 언어 경로를 유지하며 다음 단계로 이동[cite: 14]
     navigate('/procedure', {
       state: {
         formData,
@@ -126,12 +125,13 @@ const handleNext = () => {
     });
   };
 
-
   const ppeOptions = ['안전모', '안전화', '보안경', '장갑', '귀마개', '방진복', '방진마스크'];
   const permitOptions = ['일반', '화기', '밀폐', '정전', '굴착', '방사선', '고소', '중량물', '가연성가스'];
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+      
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
         <div style={styles.dimOverlay} />
@@ -150,33 +150,30 @@ const handleNext = () => {
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-          <nav style={styles.stepper}>
-            {/* ✅ [수정] 단계별 텍스트 다국어 처리 */}
-            <div style={styles.stepItemActive}>
-              <div style={styles.stepBadgeActive}>1</div>
-              <span style={styles.stepTextActive}>{t('step.basicInfo')}</span>
-            </div>
-            <div style={styles.stepLine} />
-
-            <div style={styles.stepItem}><div style={styles.stepBadge}>2</div><span style={styles.stepText}>{t('step.procedure')}</span></div>
-            <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
-            <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
-            <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
-            <div style={styles.stepLine} />
-            <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
-          </nav>
+            <nav style={styles.stepper}>
+              <div style={styles.stepItemActive}>
+                <div style={styles.stepBadgeActive}>1</div>
+                <span style={styles.stepTextActive}>{t('step.basicInfo')}</span>
+              </div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>2</div><span style={styles.stepText}>{t('step.procedure')}</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
+              <div style={styles.stepLine} />
+              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
+            </nav>
 
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>{t('form.title')}</h2> {/* ✅ [수정] 헤더 타이틀 다국어 처리 */}
+              <h2 style={styles.formTitle}>{t('form.title')}</h2>
             </div>
 
             <div style={styles.scrollArea}>
               <div style={styles.warningBox}>
                 <p style={styles.warningText}>
-                  {/* ✅ [수정] 안내 경고문 다국어 처리 */}
                   ⚠️ <strong>{t('warning.title')}</strong> {t('warning.text')}
                 </p>
               </div>
@@ -186,7 +183,6 @@ const handleNext = () => {
                   <div style={styles.row}>
                     <div style={{ ...styles.flexItem, flex: 2 }}>
                       <label style={styles.label}>
-                        {/* ✅ [수정] 라벨 다국어 처리 */}
                         {t('form.projectName')} <span style={{ color: '#ff4d4d' }}>{t('form.required')}</span>
                       </label>
                       <input
@@ -197,7 +193,7 @@ const handleNext = () => {
                       />
                     </div>
                     <div style={{ ...styles.flexItem, flex: 1.2 }}>
-                      <label style={styles.label}>{t('form.department')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                      <label style={styles.label}>{t('form.department')}</label>
                       <input
                         name="department"
                         value={formData.department}
@@ -208,7 +204,7 @@ const handleNext = () => {
                   </div>
 
                   <div style={styles.inputGroup}>
-                    <label style={styles.label}>{t('form.workLocation')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                    <label style={styles.label}>{t('form.workLocation')}</label>
                     <input
                       name="workLocation"
                       value={formData.workLocation}
@@ -219,7 +215,7 @@ const handleNext = () => {
 
                   <div style={styles.row}>
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>{t('form.workDate')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                      <label style={styles.label}>{t('form.workDate')}</label>
                       <input
                         type={formData.workDate ? "date" : "text"}
                         name="workDate"
@@ -235,7 +231,7 @@ const handleNext = () => {
                     </div>
 
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>{t('form.managerName')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                      <label style={styles.label}>{t('form.managerName')}</label>
                       <input
                         name="managerName"
                         value={formData.managerName}
@@ -247,14 +243,13 @@ const handleNext = () => {
 
                   <div style={{ ...styles.row, alignItems: 'flex-end' }}>
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>{t('form.weather')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                      <label style={styles.label}>{t('form.weather')}</label>
                       <select
                         name="weather"
                         value={formData.weather}
                         onChange={handleChange}
                         style={styles.selectInput}
                       >
-                        {/* ✅ [수정] 옵션 렌더링 텍스트 다국어 처리 (value는 기존 한국어 유지) */}
                         <option value="맑음">{t('weather.sunny')}</option>
                         <option value="흐림">{t('weather.cloudy')}</option>
                         <option value="비">{t('weather.rain')}</option>
@@ -279,7 +274,7 @@ const handleNext = () => {
                           transition: 'color 0.2s',
                           fontSize: '0.9rem'
                         }}>
-                          {t('form.hasNewWorker')} {/* ✅ [수정] 라벨 다국어 처리 */}
+                          {t('form.hasNewWorker')}
                         </span>
                       </label>
                     </div>
@@ -287,7 +282,7 @@ const handleNext = () => {
                 </section>
 
                 <section style={styles.rightSection}>
-                  <label style={styles.label}>{t('form.participants')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                  <label style={styles.label}>{t('form.participants')}</label>
                   <div style={styles.participantGrid}>
                     {participants.map((p, i) => (
                       <div key={i} style={styles.participantBox}>
@@ -307,7 +302,7 @@ const handleNext = () => {
 
               <div style={styles.safetyGrid}>
                 <section style={styles.safetySection}>
-                  <label style={styles.label}>{t('form.ppe')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                  <label style={styles.label}>{t('form.ppe')}</label>
                   <div style={styles.checkGrid}>
                     {ppeOptions.map((item) => (
                       <label key={item} style={styles.checkLabel}>
@@ -318,14 +313,14 @@ const handleNext = () => {
                           checked={formData.ppe.includes(item)}
                           onChange={handleChange}
                         />
-                        {t(`ppe.${item}`)} {/* ✅ [수정] 옵션 렌더링 텍스트 다국어 처리 */}
+                        {t(`ppe.${item}`)}
                       </label>
                     ))}
                   </div>
                 </section>
 
                 <section style={styles.safetySection}>
-                  <label style={styles.label}>{t('form.permits')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                  <label style={styles.label}>{t('form.permits')}</label>
                   <div style={styles.checkGrid}>
                     {permitOptions.map((item) => {
                       const isGeneralSelected = formData.permits.includes('일반');
@@ -346,7 +341,7 @@ const handleNext = () => {
                             onChange={handleChange}
                             disabled={isDisabled}
                           />
-                          {t(`permit.${item}`)} {/* ✅ [수정] 옵션 렌더링 텍스트 다국어 처리 */}
+                          {t(`permit.${item}`)}
                         </label>
                       );
                     })}
@@ -355,7 +350,7 @@ const handleNext = () => {
               </div>
 
               <div style={styles.inputGroupFull}>
-                <label style={styles.label}>{t('form.equipment')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                <label style={styles.label}>{t('form.equipment')}</label>
                 <input
                   name="equipment"
                   value={formData.equipment}
@@ -365,7 +360,7 @@ const handleNext = () => {
               </div>
 
               <div style={styles.inputGroupFull}>
-                <label style={styles.label}>{t('form.additionalItems')}</label> {/* ✅ [수정] 라벨 다국어 처리 */}
+                <label style={styles.label}>{t('form.additionalItems')}</label>
                 <textarea
                   name="additionalItems"
                   value={formData.additionalItems}
@@ -377,10 +372,10 @@ const handleNext = () => {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handleLogoClick}>
-                {t('btn.home')} {/* ✅ [수정] 버튼 텍스트 다국어 처리 */}
+                {t('btn.home')}
               </button>
               <button style={styles.nextBtn} onClick={handleNext}>
-                {t('btn.next')} {/* ✅ [수정] 버튼 텍스트 다국어 처리 */}
+                {t('btn.next')}
               </button>
             </div>
           </div>
@@ -400,6 +395,7 @@ const handleNext = () => {
   );
 }
 
+// 스타일 객체는 원본 그대로 유지합니다.[cite: 14]
 const styles = {
   wrapper: { position: 'relative', minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', overflowX: 'hidden' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },

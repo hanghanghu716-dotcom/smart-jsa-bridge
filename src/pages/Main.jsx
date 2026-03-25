@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // ✅ useLocation 추가
+import { useLocation } from 'react-router-dom'; 
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
+import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
 import { useTranslation } from 'react-i18next';
 // ✅ 커스텀 다국어 라우팅 도구 임포트
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function Main() {
-  const navigate = useLanguageNavigate(); // ✅ 기본 useNavigate 대신 커스텀 훅 사용
-  const location = useLocation(); // ✅ 현재 URL 경로 파악을 위해 사용
+  const navigate = useLanguageNavigate(); // ✅ 커스텀 네비게이트 훅 사용
+  const location = useLocation(); 
   const { t, i18n } = useTranslation('main'); 
   
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -17,6 +18,7 @@ export default function Main() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [user, setUser] = useState(null);
 
+  // ✅ 사용자 요청에 따른 6종 언어 구성[cite: 18]
   const languages = [
     { code: 'ko', label: ' 한국어' },
     { code: 'en-US', label: ' English (US)' },
@@ -26,14 +28,21 @@ export default function Main() {
     { code: 'fr-FR', label: ' Français' },
   ];
 
-  // ✅ 언어 변경 시 URL의 언어 세그먼트만 교체하여 이동
+  // ✅ 경로 중복 문제를 해결한 언어 변경 로직[cite: 18]
   const handleLanguageChange = (lngCode) => {
-    const segments = location.pathname.split('/');
-    segments[1] = lngCode; 
-    const newPath = segments.join('/');
+    const segments = location.pathname.split('/'); 
+    const supportedCodes = languages.map(l => l.code);
     
-    // 이미 언어 코드가 포함된 전체 경로이므로 훅이 그대로 처리함
-    navigate(newPath); 
+    // segments[1]이 이미 지원 언어 코드라면 교체, 아니면 삽입
+    if (supportedCodes.includes(segments[1])) {
+      segments[1] = lngCode;
+    } else {
+      segments.splice(1, 0, lngCode);
+    }
+    
+    const newPath = segments.join('/') || '/';
+    // URL 이동을 통해 전체 시스템 언어 환경을 갱신합니다.
+    window.location.href = newPath; 
     setIsLanguageOpen(false);
   };
 
@@ -75,7 +84,6 @@ export default function Main() {
       return;
     }
     if (user) {
-      // ✅ 훅이 자동으로 /:lng/info 로 변환함
       navigate('/info', { state: { isMember: true } });
     } else {
       setIsStartModalOpen(true);
@@ -84,6 +92,8 @@ export default function Main() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [수정] 복잡한 SEO 로직을 단 한 줄로 대체 완료[cite: 18] */}
+
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
@@ -93,7 +103,6 @@ export default function Main() {
               {t('modalSub2')}
             </p>
             <div style={styles.modalBtnGroup}>
-              {/* ✅ 경로 자동 최적화 적용 */}
               <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('loginBtn')}</button>
               <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>{t('guestBtn')}</button>
             </div>
@@ -112,12 +121,10 @@ export default function Main() {
 
         <header style={styles.header} className="max-lg:!px-6">
           <div className="flex justify-between items-center h-full">
-            {/* ✅ 메인 이동 경로 자동화 */}
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
             
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
-                {/* ✅ LanguageLink 사용으로 언어 코드 자동 삽입 */}
                 <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
                 <span 
                   style={{ ...styles.headerLink, cursor: 'pointer' }} 
@@ -186,7 +193,6 @@ export default function Main() {
                   </div>
                   <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>{t('logout')}</button>
                 </div>
-                {/* ✅ 내부 링크 자동화 적용 */}
                 <LanguageLink to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
                   {t('profileEdit')}
                 </LanguageLink>
@@ -315,6 +321,7 @@ export default function Main() {
   );
 }
 
+// 스타일 객체는 원본 데이터를 그대로 유지합니다.[cite: 18]
 const styles = {
   headerRight: { display: 'flex', alignItems: 'center' },
   headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },

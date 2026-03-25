@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
-import { useTranslation } from 'react-i18next'; // [추가]
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 /**
- * [Analysis 컴포넌트 - 6단계 개편 반영본]
- * 역할: Step 3. 유해·위험요인 분석 및 대책 수립 (1:M:N 체인 및 UI 교정)
- * 에디터 위치: src/pages/Analysis.jsx
+ * [Analysis 컴포넌트 - 글로벌 표준 마이그레이션 반영본]
  */
 
 export default function Analysis() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 사용
   const location = useLocation();
   const scrollRef = useRef(null);
   const { t, i18n } = useTranslation(['analysis', 'tags']);
@@ -335,6 +335,7 @@ export default function Analysis() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
       
       {isLibraryModalOpen && (
@@ -612,6 +613,7 @@ export default function Analysis() {
   );
 }
 
+// styles 객체는 원본 그대로 유지합니다.
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },

@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attention] Cet échantillon est fourni à titre de référence uniquement. Les évaluations des risques doivent être menées sur la base d'inspections réelles adaptées aux processus spécifiques.",
+    "text2": "Smart JSA Bridge n'est pas responsable des conséquences juridiques découlant de l'utilisation de ce matériel."
+  },
+  "ui": {
+    "category": "SÉCURITÉ CHIMIQUE ET DES GAZ",
+    "mainTitle1": "JSA Travaux Chimiques et Gaz",
+    "mainTitle2": "Guides d'échantillons (10 types)",
+    "description1": "Données d'analyse des risques standard pour les processus impliquant des gaz sous haute pression",
+    "description2": "et des produits chimiques toxiques. Veuillez vérifier les images détaillées.",
+    "labelRed": "⚠ Facteurs de danger critiques",
+    "labelBlue": "🛡 Mesures de sécurité essentielles",
+    "previewLabel": "Aperçu du rapport JSA",
+    "downloadBtn": "Télécharger le PDF original complet"
+  },
+  "list": [
+    { "id": "CHEM-01", "title": "Inspection de l'échangeur de chaleur à faisceau tubulaire et nettoyage par jet d'eau haute pression", "hazard": "Pénétration des tissus par l'eau sous pression, brûlures chimiques par fluides résiduels", "measure": "Porter des combinaisons de protection spécialisées, ouvrir complètement les vannes de vidange et suivre les procédures LOTO", "pages": 1 },
+    { "id": "CHEM-02", "title": "Remplacement de la garniture du compresseur d'hydrogène haute pression", "hazard": "Explosion due à une fuite d'hydrogène, asphyxie due à la purge à l'azote", "measure": "Vérifier 0% d'hydrogène avec des détecteurs de gaz portables, porter des vêtements antistatiques et utiliser des outils anti-étincelles", "pages": 1 },
+    { "id": "CHEM-03", "title": "Remplacement de vannes et de joints de tuyauterie de produits chimiques toxiques", "hazard": "Éclaboussures de liquides résiduels lors du démontage des brides, intoxication par gaz toxiques", "measure": "Porter des masques à gaz complets, desserrer les boulons séquentiellement à l'opposé du corps", "pages": 1 },
+    { "id": "CHEM-04", "title": "Remplacement de l'embout de la torche et maintenance du système d'allumage", "hazard": "Chutes dues aux vents forts, exposition au feu si le gaz résiduel s'enflamme", "measure": "Surveiller la vitesse du vent (interdit au-delà de 10m/s), utiliser des harnais de sécurité à double longe et vérifier l'isolation du DCS", "pages": 1 },
+    { "id": "CHEM-05", "title": "Vérification du fonctionnement des équipements de prévention des catastrophes d'urgence", "hazard": "Impact dû au détachement du tuyau lors de la décharge d'eau haute pression, inhalation de gaz", "measure": "Vérifier l'engagement de la goupille de sécurité du tuyau, travailler dos au vent et utiliser des bouchons dédiés", "pages": 1 },
+    { "id": "CHEM-06", "title": "Inspection de la vanne automatique inférieure de la tour d'adsorption PSA", "hazard": "Écrasement dû au fonctionnement inattendu de la vanne, problèmes respiratoires dus à la poussière d'adsorbant", "measure": "Éliminer la pression pneumatique résiduelle, mettre en œuvre le LOTO et porter des masques anti-poussière à haute efficacité", "pages": 1 },
+    { "id": "CHEM-07", "title": "Inspection visuelle interne et CND des réservoirs de stockage d'hydrogène haute pression", "hazard": "Asphyxie en espace confiné, explosion causée par une fuite d'éclairage", "measure": "Mesurer la concentration de gaz en haut/milieu/bas, utiliser une ventilation forcée et un éclairage antidéflagrant basse tension (moins de 24V)", "pages": 1 },
+    { "id": "CHEM-08", "title": "Déchargement d'un camion-citerne d'hydrogène haute pression et connexion à la baie de chargement", "hazard": "Écrasement dû au roulement du véhicule, explosion de gaz hydrogène due à une décharge statique", "measure": "Installer 2 cales de roue ou plus, connecter les pinces de mise à la terre en premier et vérifier la résistance", "pages": 1 },
+    { "id": "CHEM-09", "title": "Inspection des panneaux DCS/PLC et étalonnage des transmetteurs de terrain", "hazard": "Arrêt inattendu du processus dû à une défaillance de l'interverrouillage, choc électrique provenant de pièces sous tension", "measure": "Vérifier l'état du bypass DCS, vérifier l'utilisation de gants isolants et de vêtements antistatiques", "pages": 1 },
+    { "id": "CHEM-10", "title": "Réapprovisionnement chimique en biocide et inhibiteur de corrosion du système d'eau de refroidissement", "hazard": "Explosion de gaz si différents produits chimiques se mélangent, éruption chimique lors de l'ouverture des contenants", "measure": "Vérifier les étiquettes chimiques, stocker séparément et libérer la pression interne tout en portant une protection faciale", "pages": 1 }
+  ]
+}

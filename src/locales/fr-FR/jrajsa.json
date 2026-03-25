@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "regulation": "Directives d'évaluation des risques",
+    "jrajsa": "Processus pratique JRA/JSA",
+    "ppe": "À propos des équipements de protection individuelle (EPI)",
+    "riskClass": "Tâches générales / à haut risque"
+  },
+  "hero": {
+    "tag": "CONFORMITÉ SÉCURITÉ INTÉGRÉE",
+    "title1": "Processus pratique JRA/JSA",
+    "title2": "& Directives de conformité légale intégrées",
+    "subTitle1": "Fournir des méthodologies professionnelles pour se conformer aux normes en vigueur",
+    "subTitle2": "et atteindre zéro incident sur le lieu de travail."
+  },
+  "section3": {
+    "title": "3. Processus JSA standard en 9 étapes",
+    "process": {
+      "step1": { "idx": "01", "title": "Établir les procédures (SOP)", "desc": "Établir des directives opérationnelles JSA standard adaptées aux caractéristiques du site." },
+      "step2": { "idx": "02", "title": "Former l'équipe d'analyse", "desc": "Réunir les superviseurs, les experts en sécurité et les travailleurs de terrain qualifiés." },
+      "step3": { "idx": "03", "title": "Sélectionner les tâches cibles", "desc": "Prioriser les opérations à haut risque (JRA) et les opérations non routinières." },
+      "step4": { "idx": "04", "title": "Exécuter l'évaluation", "desc": "Décomposer les étapes, identifier les dangers et établir des mesures de sécurité." },
+      "step5": { "idx": "05", "title": "Réviser & Approuver", "desc": "Vérifier l'applicabilité des mesures sur le terrain et obtenir l'approbation finale." },
+      "step6": { "idx": "06", "title": "Actions de suivi", "desc": "Mettre en œuvre des mesures physiques comme la mise à niveau des équipements et la fourniture d'EPI." },
+      "step7": { "idx": "07", "title": "Enregistrer & Former", "desc": "Enregistrer les résultats de l'analyse dans la base de données et mener des formations pour les travailleurs." },
+      "step8": { "idx": "08", "title": "Application sur le terrain", "desc": "Déployer les procédures de travail sécurisées confirmées dans les opérations réelles." },
+      "step9": { "idx": "09", "title": "Évaluation de la performance", "desc": "Surveiller continuellement la mise en œuvre et valider l'efficacité des mesures." }
+    }
+  },
+  "section4": {
+    "title": "4. Éléments obligatoires pour les règles d'évaluation des risques",
+    "rules": {
+      "item1": { "title": "Objectif & Méthode", "desc": "Objectifs et sélection des techniques spécifiques au site." },
+      "item2": { "title": "Organisation & Rôles", "desc": "Rôles et responsabilités spécifiques pour la direction et les travailleurs de terrain." },
+      "item3": { "title": "Sélection des cibles", "desc": "Liste complète de toutes les tâches et de tous les équipements." },
+      "item4": { "title": "Moment & Fréquence", "desc": "Conditions pour les évaluations initiales, périodiques et spéciales." },
+      "item5": { "title": "Critères de risque", "desc": "Normes uniques pour le calcul des niveaux de risque." },
+      "item6": { "title": "Conservation des dossiers", "desc": "Standardisation des formulaires et directives de conservation (ex: 3 à 5 ans)." }
+    }
+  },
+  "section5": {
+    "title": "5. Comparaison JRA vs JSA",
+    "table": {
+      "header": {
+        "col1": "Catégorie",
+        "col2": "JRA (Job Risk Assessment)",
+        "col3": "JSA (Job Safety Analysis)"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Portée cible",
+          "col2": "Ensemble du processus et des installations",
+          "col3": "Comportements et étapes spécifiques des tâches"
+        },
+        "row2": {
+          "col1": "Participants clés",
+          "col2": "Responsables et experts en sécurité",
+          "col3": "Travailleurs de terrain essentiels"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. Checklist JSA obligatoire",
+    "checklist": {
+      "item1": "Absence ou manque de clarté des procédures opérationnelles standard (SOP) ?",
+      "item2": "S'agit-il d'une tâche où des incidents ou des presqu'accidents surviennent fréquemment ?",
+      "item3": "Les travailleurs manquent-ils d'expérience dans ce processus spécifique ?",
+      "item4": "La tâche nécessite-t-elle un haut niveau de compétence ou une formation spécialisée ?"
+    }
+  },
+  "section7": {
+    "title": "7. Logique quantitative de calcul du risque",
+    "math": {
+      "risk": "Risque",
+      "frequency": "Fréquence",
+      "severity": "Gravité",
+      "caption": "Risque = Probabilité (Fréquence) d'occurrence × Gravité de la conséquence"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Conçu par <strong>yizuno</strong>"
+}

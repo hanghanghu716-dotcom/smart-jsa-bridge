@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Leitfaden Gefährdungsbeurteilung",
+    "jrajsa": "Praxisablauf JRA/JSA",
+    "ppe": "Über persönliche Schutzausrüstung (PSA)",
+    "riskClass": "Allgemeine / Hochrisiko-Aufgaben"
+  },
+  "hero": {
+    "tag": "PERSÖNLICHE SCHUTZAUSRÜSTUNG",
+    "title1": "Industrielle PSA-Kategorien &",
+    "title2": "Compliance-Leitfaden nach EN/DIN",
+    "subTitle1": "Die Überprüfung von Sicherheitszertifizierungen ist der erste Schritt zur Arbeitssicherheit. Prüfen Sie",
+    "subTitle2": "die Merkmale jedes PSA-Typs und halten Sie sich strikt an die",
+    "subTitle3": "DGUV-Vorschriften und relevanten EN-Normen."
+  },
+  "section1": {
+    "title": "1. PSA-Kategorien und spezifische Typen",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Kopfschutz",
+        "desc": "Absorbiert Stöße von fallenden oder fliegenden Objekten und schützt vor elektrischen Schlägen.",
+        "tags": ["Schutzhelme (Typ I/II)", "Klasse G/E/C"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Augen- & Gesichtsschutz",
+        "desc": "Blockiert fliegende Partikel, schädliche Lichtstrahlung und Chemikalienspritzer.",
+        "tags": ["Schutzbrillen (EN 166)", "Korbbrillen", "Gesichtsschutzschirme"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Gehörschutz",
+        "desc": "Verhindert lärmbedingten Hörverlust in Umgebungen mit hohem Dezibelpegel.",
+        "tags": ["Gehörschutzstöpsel", "Kapselgehörschutz", "SNR-bewertet"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Atemschutz",
+        "desc": "Schützt vor Staub, schädlichen Gasen und sauerstoffarmen Atmosphären.",
+        "tags": ["Partikelfilter (FFP2/FFP3)", "Gasmasken", "Umluftunabhängige Atemschutzgeräte"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Handschutz",
+        "desc": "Schützt vor Schnitten, Verbrennungen, elektrischen Schlägen und chemischer Exposition.",
+        "tags": ["Schnittfest", "Spannungsgeprüft", "Chemikalienbeständig"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Fußschutz",
+        "desc": "Verhindert Verletzungen durch fallende/rollende Objekte und scharfe Durchstiche.",
+        "tags": ["Stahlkappenschuhe", "Antistatisch (S1-S5)"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Absturzsicherung",
+        "desc": "Fängt Stürze auf und absorbiert Stöße bei Arbeiten in der Höhe.",
+        "tags": ["Auffanggurte", "Verbindungsmittel", "Sicherungsseile"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Schutzkleidung",
+        "desc": "Schützt den gesamten Körper vor gefährlichen Chemikalien und extremer Hitze.",
+        "tags": ["Chemikalienschutzanzüge", "Flammhemmend (FR)", "Lichtbogenschutz"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Häufig gestellte Fragen zur PSA-Zertifizierung",
+    "faq": {
+      "item1": {
+        "q": "Was ist der Unterschied zwischen DGUV-Vorschriften und EN-Normen?",
+        "a": "DGUV-Vorschriften sind verbindliche rechtliche Anforderungen für den Arbeitsschutz in Deutschland, während EN-Normen die technischen Anforderungen und Prüfverfahren für PSA festlegen."
+      },
+      "item2": {
+        "q": "Kann ich in Deutschland PSA mit US-Zertifizierung (ANSI) verwenden?",
+        "a": "Nicht ohne Weiteres. PSA in der EU muss die CE-Kennzeichnung tragen und den entsprechenden EN-Normen entsprechen, unabhängig von ausländischen Zertifizierungen."
+      },
+      "item3": {
+        "q": "Hat die PSA-Zertifizierung ein Ablaufdatum?",
+        "a": "PSA selbst hat eine Lebensdauer (besonders Helme und Gurte). Arbeitgeber müssen sicherstellen, dass die PSA den aktuellen Normen entspricht, wenn sich die Vorschriften ändern."
+      },
+      "item4": {
+        "q": "Wie überprüfe ich zertifizierte PSA?",
+        "a": "Achten Sie auf das CE-Zeichen und die Angabe der spezifischen EN-Norm (z. B. EN 166 für Augenschutz), die direkt auf der Ausrüstung oder der Verpackung angebracht ist."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Entworfen von <strong>yizuno</strong>"
+}

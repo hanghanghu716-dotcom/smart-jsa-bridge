@@ -1,4 +1,9 @@
 {
+  "seo": {
+    "title": "Smart JSA Bridge | Intelligent Job Safety Analysis Platform",
+    "description": "The professional way to create standardized JSA/JRA reports. Data-driven risk assessment solutions for chemical, construction, and manufacturing industries.",
+    "ogTitle": "Smart JSA Bridge - Intelligent Safety Solutions"
+  },
   "mobileAlert": "This feature is optimized for PC. Please use the web version for detailed authoring.",
   "modalTitle": "Start Job Safety Analysis",
   "modalSub1": "Would you like to store field data in the cloud and share it with others?",

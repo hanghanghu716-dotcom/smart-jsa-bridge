@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Directives d'évaluation des risques",
+    "jrajsa": "Processus pratique JRA/JSA",
+    "ppe": "À propos des équipements de protection individuelle (EPI)",
+    "riskClass": "Tâches générales / à haut risque"
+  },
+  "hero": {
+    "tag": "ÉQUIPEMENT DE PROTECTION INDIVIDUELLE",
+    "title1": "Catégories d'EPI industriels &",
+    "title2": "Guide de conformité CE / NF",
+    "subTitle1": "Vérifier les certifications de sécurité est la première étape vers la sécurité au travail. Examinez",
+    "subTitle2": "les caractéristiques de chaque type d'EPI et respectez strictement",
+    "subTitle3": "les réglementations du Code du Travail et les normes EN / NF."
+  },
+  "section1": {
+    "title": "1. Catégories d'EPI et types spécifiques",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Protection de la tête",
+        "desc": "Absorbe les impacts d'objets tombants ou projetés et protège contre les chocs électriques.",
+        "tags": ["Casques de protection (EN 397)", "Classe G/E/C"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Protection des yeux et du visage",
+        "desc": "Bloque les particules projetées, les rayonnements lumineux nocifs et les éclaboussures chimiques.",
+        "tags": ["Lunettes de sécurité (EN 166)", "Lunettes-masques", "Écrans faciaux"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Protection auditive",
+        "desc": "Prévient la perte auditive due au bruit dans les environnements à haut niveau de décibels.",
+        "tags": ["Bouchons d'oreilles", "Serre-tête", "Indice SNR"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Protection respiratoire",
+        "desc": "Protège contre les poussières, les gaz nocifs et les atmosphères déficientes en oxygène.",
+        "tags": ["Particules (FFP2/FFP3)", "Masques à gaz", "Appareils isolants"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Protection des mains",
+        "desc": "Protège contre les coupures, les brûlures, les chocs électriques et l'exposition chimique.",
+        "tags": ["Anti-coupure", "Isolant électrique", "Résistant aux produits chimiques"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Protection des pieds",
+        "desc": "Prévient les blessures dues à la chute d'objets et aux perforations par des objets pointus.",
+        "tags": ["Chaussures de sécurité (EN ISO 20345)", "Antistatique"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Protection antichute",
+        "desc": "Arrête les chutes et absorbe les chocs lors de travaux en hauteur.",
+        "tags": ["Harnais complet", "Longes", "Lignes de vie"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Vêtements de protection",
+        "desc": "Protège l'ensemble du corps contre les produits chimiques dangereux et la chaleur extrême.",
+        "tags": ["Combinaisons Hazmat", "Ignifugé (FR)", "Arc électrique"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Questions fréquemment posées sur la certification des EPI",
+    "faq": {
+      "item1": {
+        "q": "Quelle est la différence entre le Code du Travail et les normes EN ?",
+        "a": "Le Code du Travail fixe les obligations légales de sécurité pour les employeurs en France, tandis que les normes EN définissent les critères techniques de performance et les tests pour les EPI."
+      },
+      "item2": {
+        "q": "Puis-je utiliser des EPI certifiés US (ANSI) dans les lieux de travail français ?",
+        "a": "Pas automatiquement. Les EPI utilisés en France doivent porter le marquage CE et répondre aux normes EN spécifiques requises par la réglementation européenne."
+      },
+      "item3": {
+        "q": "La certification d'un EPI a-t-elle une date d'expiration ?",
+        "a": "L'équipement lui-même a une durée de vie définie par le fabricant. L'employeur doit s'assurer que l'EPI est conforme aux normes en vigueur, surtout en cas de mise à jour réglementaire."
+      },
+      "item4": {
+        "q": "Comment vérifier un EPI certifié ?",
+        "a": "Recherchez le marquage CE et le numéro de la norme EN correspondante (ex: EN 166 pour les lunettes) gravés directement sur l'équipement ou son emballage."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Conçu par <strong>yizuno</strong>"
+}

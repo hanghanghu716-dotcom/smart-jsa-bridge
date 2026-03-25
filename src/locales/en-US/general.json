@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Caution] This sample is for reference only. Risk assessments must be conducted based on actual onsite checks.",
+    "text2": "Smart JSA Bridge is not liable for legal consequences arising from using this data."
+  },
+  "ui": {
+    "category": "GENERAL & FACILITY SAFETY",
+    "mainTitle1": "General & Facility Work JSA",
+    "mainTitle2": "Sample Guide (10 Types)",
+    "description1": "Risk analysis data for everyday facility management, logistics, and",
+    "description2": "healthcare environments. Please check the detailed images.",
+    "labelRed": "⚠ Core Hazards",
+    "labelBlue": "🛡 Mitigation Measures",
+    "previewLabel": "JSA Report Preview",
+    "downloadBtn": "Download Original PDF Sample"
+  },
+  "list": [
+    { "id": "GEN-01", "title": "Forklift Pallet Loading and Transport in Logistics Warehouse", "hazard": "Forklift tip-over during sharp turns, pedestrian collision due to obstructed view", "measure": "Observe 10km/h speed limit, assign spotters, and verify mast tilting for stability", "pages": 1 },
+    { "id": "GEN-02", "title": "Patient Mobility Assistance and Medical Waste Handling in Wards", "hazard": "Falls during patient transfer, infection from needlestick injuries", "measure": "Verify wheelchair/bed wheel locks, strictly prohibit re-capping used needles", "pages": 1 },
+    { "id": "GEN-03", "title": "Mowing and Tree Pruning in Green Zones", "hazard": "Impact from flying debris due to broken blades, shock from overhead power lines", "measure": "Wear mesh face shields, maintain 2m distance from electrical facilities, and restrict access", "pages": 1 },
+    { "id": "GEN-04", "title": "Foot Patrol in Vulnerable Areas and Traffic Marshaling", "hazard": "Collision with incoming vehicles, assault/injury from suspicious persons during night patrol", "measure": "Wear high-visibility reflective vests, follow 2-person patrol rule, and carry defensive gear", "pages": 1 },
+    { "id": "GEN-05", "title": "Laboratory Reagent Preparation and Analytical Equipment Operation", "hazard": "Toxic gas leakage due to poor hood performance, chemical burns from reagent splashing", "measure": "Perform work within Fume Hoods, complete MSDS training, and wear dedicated PPE", "pages": 1 },
+    { "id": "GEN-06", "title": "Underground Parking Lot Deep Cleaning and High-pressure Washing", "hazard": "Collision with uncontrolled vehicles, electric shock from power tools in wet areas", "measure": "Set up traffic cones, use power via GFCI, and wear insulated rubber boots", "pages": 1 },
+    { "id": "GEN-07", "title": "Waste Shredder Operation and Inlet Clog Removal", "hazard": "Body parts caught in shredder inlet, crushing due to unexpected startup by others", "measure": "Shut off main power and implement LOTO, use dedicated hand tools instead of hands", "pages": 1 },
+    { "id": "GEN-08", "title": "Exterior Glass Cleaning and Boatswain's Chair Operation", "hazard": "Falls due to rope wear or failure, impact on pedestrians from falling tools", "measure": "Install separate vertical lifelines, assign ground controllers, and set up boundaries", "pages": 1 },
+    { "id": "GEN-09", "title": "Food Pre-processing and Large Cauldron Cooking in Mass Catering", "hazard": "Slipping and falls due to wet floors, burns from hot oil or steam contact", "measure": "Wear certified non-slip kitchen shoes, equip Class K fire extinguishers, and remove moisture", "pages": 1 },
+    { "id": "GEN-10", "title": "Server Rack Installation and Tray Laying in Data Centers", "hazard": "Crushing from rack inertia during moving, falls from ladders during high work", "measure": "Perform work in teams of 3, prohibit standing on ladder top-cap, and assign ground support", "pages": 1 }
+  ]
+}

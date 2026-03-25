@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Ce pseudonyme ne peut pas être utilisé.",
+    "nickNoSpecial": "Veuillez exclure les caractères spéciaux.",
+    "nickInUse": "Ce pseudonyme est déjà utilisé.",
+    "nickAvailable": "✓ Pseudonyme disponible.",
+    "pwSafe": "✓ Mot de passe sécurisé",
+    "pwRule": "8+ caract. : lettres, chiffres, symboles",
+    "pwMatch": "✓ Les mots de passe correspondent",
+    "pwMismatch": "Les mots de passe ne correspondent pas"
+  },
+  "alert": {
+    "resetSent": "Un lien de réinitialisation a été envoyé par e-mail.",
+    "checkInput": "Veuillez vérifier les informations saisies.",
+    "signupSuccess": "Veuillez cliquer sur le lien de vérification envoyé par e-mail pour terminer l'inscription."
+  },
+  "ui": {
+    "titleSignup": "Création du compte utilisateur",
+    "titleReset": "Réinitialisation du mot de passe",
+    "titleLogin": "Authentification d'accès au système",
+    "guideSignup": "Veuillez saisir les informations requises pour la capitalisation des connaissances.",
+    "guideReset": "Un lien de réinitialisation sera envoyé à votre adresse e-mail.",
+    "guideLogin": "Veuillez vous connecter avec votre compte enregistré pour utiliser le service.",
+    "labelEmail": "Adresse e-mail",
+    "labelNickname": "Pseudonyme d'activité",
+    "placeholderNickname": "Pseudonyme",
+    "labelSector": "Secteur d'activité",
+    "selectDefault": "Sélectionner",
+    "labelPassword": "Mot de passe",
+    "placeholderPassword": "8+ caract. : lettres, chiffres, symboles",
+    "labelPasswordConfirm": "Confirmer le mot de passe",
+    "placeholderPasswordConfirm": "Saisir à nouveau exactement",
+    "placeholderPasswordLogin": "Mot de passe",
+    "btnForgotPw": "Mot de passe oublié",
+    "btnProcessing": "Traitement en cours...",
+    "btnSubmitSignup": "Créer le compte utilisateur",
+    "btnSubmitReset": "Envoyer l'e-mail de réinitialisation",
+    "btnSubmitLogin": "Accéder au système",
+    "dividerOr": "OU",
+    "btnGoogleLogin": "Continuer avec Google",
+    "btnSwitchSignup": "S'inscrire comme nouvel utilisateur",
+    "btnSwitchLogin": "Se connecter avec un compte existant"
+  },
+  "sector": {
+    "construction": "Construction / Génie Civil / Architecture",
+    "manufacturing": "Fabrication / Usine / Chimie",
+    "energy": "Énergie / Électricité / Gaz",
+    "logistics": "Transport / Logistique / Entrepôt",
+    "safety": "Gestion de la sécurité / Conseil",
+    "it": "IT / Systèmes / Ingénierie",
+    "public": "Secteur public / Éducation / Santé",
+    "others": "Autres industries"
+  }
+}

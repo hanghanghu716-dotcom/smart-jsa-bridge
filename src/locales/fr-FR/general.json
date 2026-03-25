@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attention] Cet échantillon est fourni à titre de référence uniquement. L'évaluation des risques doit être menée sur la base de vérifications réelles sur site.",
+    "text2": "Smart JSA Bridge n'est pas responsable des conséquences juridiques découlant de l'utilisation de ces données."
+  },
+  "ui": {
+    "category": "SÉCURITÉ GÉNÉRALE ET DES INSTALLATIONS",
+    "mainTitle1": "JSA Travaux Généraux et Installations",
+    "mainTitle2": "Guide d'échantillons (10 types)",
+    "description1": "Données d'analyse des risques pour la gestion quotidienne des installations, la logistique et",
+    "description2": "les environnements de santé. Veuillez vérifier les images détaillées.",
+    "labelRed": "⚠ Dangers essentiels",
+    "labelBlue": "🛡 Mesures de prévention",
+    "previewLabel": "Aperçu du rapport JSA",
+    "downloadBtn": "Télécharger l'échantillon PDF original"
+  },
+  "list": [
+    { "id": "GEN-01", "title": "Chargement et transport de palettes par chariot élévateur en entrepôt logistique", "hazard": "Basculement du chariot lors de virages serrés, collision avec des piétons due à une vue obstruée", "measure": "Respecter la limite de 10 km/h, affecter des signaleurs et vérifier l'inclinaison du mât", "pages": 1 },
+    { "id": "GEN-02", "title": "Assistance à la mobilité des patients et manipulation des déchets médicaux", "hazard": "Chutes lors du transfert de patients, infection par piqûre d'aiguille", "measure": "Vérifier le verrouillage des roues (fauteuil/lit), interdire strictement le recapuchonnage des aiguilles", "pages": 1 },
+    { "id": "GEN-03", "title": "Tonte et élagage des arbres dans les zones vertes", "hazard": "Impact de débris volants dus à des lames cassées, choc électrique via des lignes aériennes", "measure": "Porter des écrans faciaux en mesh, maintenir 2 m de distance des installations électriques", "pages": 1 },
+    { "id": "GEN-04", "title": "Patrouille à pied dans les zones vulnérables et régulation du trafic", "hazard": "Collision avec des véhicules, agression par des personnes suspectes lors de patrouilles de nuit", "measure": "Porter des gilets réfléchissants haute visibilité, règle de patrouille à deux personnes", "pages": 1 },
+    { "id": "GEN-05", "title": "Préparation de réactifs de laboratoire et utilisation d'équipements d'analyse", "hazard": "Fuite de gaz toxiques due à une mauvaise hotte, brûlures chimiques par projection", "measure": "Travailler sous sorbonne, formation FDS complétée et port des EPI dédiés", "pages": 1 },
+    { "id": "GEN-06", "title": "Nettoyage approfondi de parking souterrain et lavage haute pression", "hazard": "Collision avec des véhicules, choc électrique via des outils en zone humide", "measure": "Installer des cônes de signalisation, alimentation via disjoncteur différentiel (DDR)", "pages": 1 },
+    { "id": "GEN-07", "title": "Utilisation d'un broyeur de déchets et déblocage de l'entrée", "hazard": "Membres happés dans l'entrée du broyeur, écrasement par démarrage intempestif", "measure": "Couper l'alimentation principale et appliquer le LOTO, utiliser des outils à main dédiés", "pages": 1 },
+    { "id": "GEN-08", "title": "Nettoyage de vitres extérieures et utilisation de sellette", "hazard": "Chute due à l'usure de la corde, impact sur les piétons par chute d'outils", "measure": "Installer des lignes de vie verticales séparées, affecter des contrôleurs au sol", "pages": 1 },
+    { "id": "GEN-09", "title": "Préparation alimentaire et cuisson en grande marmite en restauration collective", "hazard": "Glissades et chutes sur sol mouillé, brûlures par huile chaude ou vapeur", "measure": "Porter des chaussures de cuisine antidérapantes certifiées, extincteurs de classe K", "pages": 1 },
+    { "id": "GEN-10", "title": "Installation de baies serveurs et pose de chemins de câbles en centre de données", "hazard": "Écrasement par inertie de la baie, chutes d'échelle lors de travaux en hauteur", "measure": "Travail en équipe de 3, interdiction de se tenir sur le dernier échelon de l'échelle", "pages": 1 }
+  ]
+}

@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
+/**
+ * [ResetPassword 컴포넌트]
+ * 역할: 사용자 비밀번호 재설정 및 보안 세션 관리 (글로벌 표준 마이그레이션 완료)
+ */
 export default function ResetPassword() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 다국어 네비게이트 사용
+  const { t } = useTranslation('login'); // login 네임스페이스 사용
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // 실시간 검증 피드백 상태 (Login.jsx와 동일한 규격 적용)
+  // 실시간 검증 피드백 상태 (다국어 컬러/메시지 동적 적용)
   const [val, setVal] = useState({
     pwComplexity: { msg: '', isOk: false, color: '#666' },
     pwMatch: { msg: '', isOk: false, color: '#666' }
@@ -17,15 +25,14 @@ export default function ResetPassword() {
   // [로직 1] 비정상 접근 차단 (세션 유효성 검사)
   useEffect(() => {
     const checkSession = async () => {
-      // 이메일 링크를 통해 부여된 일시적 복구 세션이 존재하는지 확인
       const { data: { session }, error } = await supabase.auth.getSession();
       if (error || !session) {
-        alert("유효하지 않거나 만료된 접근입니다. 비밀번호 재설정 링크를 다시 발급받아 주십시오.");
+        alert(t('reset.alertInvalidSession')); // ✅ [다국어화]
         navigate('/login');
       }
     };
     checkSession();
-  }, [navigate]);
+  }, [navigate, t]);
 
   // [로직 2] 비밀번호 복잡도 실시간 검증
   useEffect(() => {
@@ -40,11 +47,11 @@ export default function ResetPassword() {
     const isLengthOk = password.length >= 8;
 
     if (hasLetter && hasNumber && hasSpecial && isLengthOk) {
-      setVal(p => ({ ...p, pwComplexity: { msg: '✓ 사용 가능한 비밀번호입니다.', isOk: true, color: '#007bff' } }));
+      setVal(p => ({ ...p, pwComplexity: { msg: t('reset.complexityValid'), isOk: true, color: '#007bff' } })); // ✅ [다국어화]
     } else {
-      setVal(p => ({ ...p, pwComplexity: { msg: '영문, 숫자, 특수기호를 모두 포함해 8자 이상 입력해 주십시오.', isOk: false, color: '#ff4d4d' } }));
+      setVal(p => ({ ...p, pwComplexity: { msg: t('reset.complexityInvalid'), isOk: false, color: '#ff4d4d' } })); // ✅ [다국어화]
     }
-  }, [password]);
+  }, [password, t]);
 
   // [로직 3] 비밀번호 실시간 매칭
   useEffect(() => {
@@ -53,7 +60,7 @@ export default function ResetPassword() {
       setVal(p => ({
         ...p,
         pwMatch: { 
-          msg: isMatch ? '✓ 비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.', 
+          msg: isMatch ? t('reset.matchValid') : t('reset.matchInvalid'), // ✅ [다국어화]
           isOk: isMatch, 
           color: isMatch ? '#007bff' : '#ff4d4d' 
         }
@@ -61,29 +68,27 @@ export default function ResetPassword() {
     } else {
       setVal(p => ({ ...p, pwMatch: { msg: '', isOk: false, color: '#666' } }));
     }
-  }, [password, confirmPassword]);
+  }, [password, confirmPassword, t]);
 
   // [로직 4] 비밀번호 업데이트 제출 핸들러
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
 
     if (!val.pwComplexity.isOk || !val.pwMatch.isOk) {
-      return alert("입력 조건을 다시 확인해 주십시오.");
+      return alert(t('reset.alertCheckFields')); // ✅ [다국어화]
     }
 
     setLoading(true);
     try {
-      // 현재 세션의 사용자 비밀번호를 신규 비밀번호로 갱신
       const { error } = await supabase.auth.updateUser({ password: password });
       if (error) throw error;
 
-      alert("비밀번호가 성공적으로 변경되었습니다. 보안을 위해 새로운 비밀번호로 다시 로그인해 주십시오.");
+      alert(t('reset.alertSuccess')); // ✅ [다국어화]
       
-      // 보안 처리: 일시적 복구 세션 파기 후 로그인 화면으로 유도
       await supabase.auth.signOut();
       navigate('/login');
     } catch (err) {
-      alert(`비밀번호 변경 실패: ${err.message}`);
+      alert(`${t('reset.alertFail')} ${err.message}`); // ✅ [다국어화]
     } finally {
       setLoading(false);
     }
@@ -91,26 +96,28 @@ export default function ResetPassword() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
       <div style={styles.mainLayout}>
         <div style={styles.formCard}>
           <div style={styles.formHeader}>
-            <h2 style={styles.formTitle}>신규 비밀번호 설정</h2>
+            <h2 style={styles.formTitle}>{t('reset.title')}</h2>
           </div>
 
           <p style={styles.guideText}>
-            계정의 새로운 비밀번호를 입력해 주십시오.
+            {t('reset.guide')}
           </p>
 
           <form onSubmit={handleUpdatePassword} style={styles.form}>
             <div style={styles.inputGroup}>
-              <label style={styles.label}>새 비밀번호</label>
+              <label style={styles.label}>{t('reset.passwordLabel')}</label>
               <input 
                 type="password" 
                 style={styles.input} 
-                placeholder="영문+숫자+특수기호 8자 이상" 
+                placeholder={t('reset.passwordPlaceholder')} 
                 value={password} 
                 onChange={e => setPassword(e.target.value)} 
                 required 
@@ -119,11 +126,11 @@ export default function ResetPassword() {
             </div>
             
             <div style={styles.inputGroup}>
-              <label style={styles.label}>새 비밀번호 재확인</label>
+              <label style={styles.label}>{t('reset.confirmLabel')}</label>
               <input 
                 type="password" 
                 style={styles.input} 
-                placeholder="비밀번호 재입력" 
+                placeholder={t('reset.confirmPlaceholder')} 
                 value={confirmPassword} 
                 onChange={e => setConfirmPassword(e.target.value)} 
                 required 
@@ -136,13 +143,13 @@ export default function ResetPassword() {
               style={styles.primaryBtn} 
               disabled={loading || !val.pwComplexity.isOk || !val.pwMatch.isOk}
             >
-              {loading ? "처리 중..." : "비밀번호 변경 완료"}
+              {loading ? t('reset.processing') : t('reset.submit')}
             </button>
           </form>
 
           <div style={styles.switchModeArea}>
             <button type="button" style={styles.secondaryBtn} onClick={() => navigate('/login')}>
-              로그인 화면으로 돌아가기
+              {t('reset.backToLogin')}
             </button>
           </div>
         </div>
@@ -152,7 +159,7 @@ export default function ResetPassword() {
 }
 
 const styles = {
-  // Login.jsx와 동일한 디자인 규격 유지
+  // 기존 디자인 규격을 엄격히 보존합니다[cite: 6].
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' },

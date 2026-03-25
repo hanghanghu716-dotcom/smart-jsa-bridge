@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Vorsicht] Dieses Muster dient nur als Referenz. Gefährdungsbeurteilungen müssen auf der Grundlage tatsächlicher Prüfungen vor Ort durchgeführt werden.",
+    "text2": "Smart JSA Bridge haftet nicht für rechtliche Probleme, die sich aus der Verwendung dieser Daten ergeben."
+  },
+  "ui": {
+    "category": "JSA-MUSTER FÜR DIE FERTIGUNG",
+    "mainTitle1": "JSA für die Fertigung",
+    "mainTitle2": "Musterleitfaden (10 Typen)",
+    "description1": "Prüfen Sie Hauptgefährdungsfaktoren wie Einziehen in Maschinen,",
+    "description2": "Verbrennungen durch hohe Temperaturen und Exposition gegenüber Chemikalien.",
+    "labelRed": "⚠ Hauptgefahren",
+    "labelBlue": "🛡 Minderungsmaßnahmen",
+    "previewLabel": "Vorschau-Muster (Bild)",
+    "downloadBtn": "Original-PDF-Muster herunterladen"
+  },
+  "list": [
+    { "id": "MANUF-01", "title": "Chemikaliennachfüllung in Galvanikbecken und Metallbeizen", "hazard": "Ersticken durch Säuregas, Verätzungen durch Spritzer", "measure": "Betrieb der lokalen Absaugung prüfen, chemikalienbeständige Schutzanzüge und Handschuhe tragen", "pages": 1 },
+    { "id": "MANUF-02", "title": "Entstopfen von Spritzgussdüsen und Karbonreinigung", "hazard": "Verbrennungen durch heißen Harzausstoß, Quetschung bei Einheitenbewegung", "measure": "Hitzeschutzausrüstung tragen, LOTO implementieren und Spülen mit niedrigem Druck/Geschwindigkeit", "pages": 1 },
+    { "id": "MANUF-03", "title": "Holzzuschnitt und -verarbeitung mit Industrie-Kreissägen", "hazard": "Erfassen von Handschuhen in rotierenden Messern, Rückschlag von Holz", "measure": "Eng anliegende Arbeitskleidung tragen, obligatorische Schiebestöcke verwenden", "pages": 1 },
+    { "id": "MANUF-04", "title": "Wartung der Antriebseinheit von Förderbändern", "hazard": "Fingerquetschen zwischen Rollen, Quetschung durch unerwarteten Anlauf", "measure": "Individuelle LOTO-Vorrichtungen anbringen, Inspektion nur bei Gerätestillstand", "pages": 1 },
+    { "id": "MANUF-05", "title": "Schmelzofenbeschickung und Metallguss", "hazard": "Dampfexplosion bei Feuchtigkeitseintritt, Verbrennungen durch Strahlungshitze", "measure": "Vorwärmtrocknung durchführen, immer getönte Hitzeschutzvisiere tragen", "pages": 1 },
+    { "id": "MANUF-06", "title": "Wartung von Punktschweißrobotern und Spitzenwechsel", "hazard": "Kollisionen durch Roboterfehlfunktion, Verbrennungen an heißen Spitzen", "measure": "Zutritt zur Zelle beschränken und LOTO implementieren, Spezialwerkzeuge verwenden", "pages": 1 },
+    { "id": "MANUF-07", "title": "Werkzeugwechsel und Einrichtung an Pressen", "hazard": "Quetschen zwischen den Tischen beim Absenken, Kollision beim Heben", "measure": "Standard-Sicherheitsblöcke installieren, vertikales Heben und Führungsseile nutzen", "pages": 1 },
+    { "id": "MANUF-08", "title": "Betrieb von SMT-Linien und Reflow-Ofen-Wartung", "hazard": "Verbrennungen durch Heizelemente, Blei-/Fluxvergiftung im Lot", "measure": "Arbeiten erst nach Abkühlung, Gasmasken für organische Verbindungen tragen", "pages": 1 },
+    { "id": "MANUF-09", "title": "Präzisionsreinigung und Desinfektion großer Lebensmittelmixer", "hazard": "Sauerstoffmangel im Tank, Quetschung durch unerwartete Messerrotation", "measure": "Sauerstoffkonzentration überwachen, Sicherungsposten außen, Hauptstrom-LOTO", "pages": 1 },
+    { "id": "MANUF-10", "title": "Rolleninspektion und Lösungsmittelreinigung an Offsetdruckmaschinen", "hazard": "Fingerquetschen an Einzugstellen, Feuer durch Lösungsmitteldämpfe", "measure": "Modus 'Tippbetrieb' nutzen, Funktion der Antistatik-Vorrichtungen prüfen", "pages": 1 }
+  ]
+}

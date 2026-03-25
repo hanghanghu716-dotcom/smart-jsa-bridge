@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "ADMINISTRATIVE SAFETY GUIDE",
+    "mainTitle": "Professional Guide to Establishing<br />Risk Management Guidelines & Legal Compliance",
+    "subTitle": "Detailed guidance on drafting 'Implementation Guidelines', the core of the workplace health and safety (WHS) management system, and administrative compliance under WHS standards."
+  },
+  "section1": {
+    "title": "1. What are Risk Management Guidelines?",
+    "para": "Risk Management Guidelines are <strong>internal standard operating procedures (SOPs)</strong> for employers to identify hazards, assess risks, and implement control measures. These are critical legal requirements under WHS regulations and essential for a robust safety culture.",
+    "infoTitle": "Purpose of Maintaining the Guidelines",
+    "infoList": {
+      "item1": "Clarify responsibilities and authority for establishing a safety and health management system.",
+      "item2": "Maintain an objective and consistent risk management process.",
+      "item3": "Discover practical workplace hazards and implement improvements through worker consultation.",
+      "item4": "Secure evidentiary documentation to respond to legal audits and inspections by regulators (e.g., SafeWork)."
+    }
+  },
+  "section2": {
+    "title": "2. Mandatory Items in the Guidelines",
+    "para": "According to WHS guidelines and industry best practices, internal guidelines must clearly specify the following 10 components:",
+    "items": {
+      "item1": { "title": "Purpose & Methodology", "content": "Goals of the risk assessment and selection of evaluation techniques tailored to the specific site." },
+      "item2": { "title": "Organisation & Roles", "content": "Clear definition of roles and responsibilities (R&R) for officers, supervisors, and workers." },
+      "item3": { "title": "Assessment Scope", "content": "Inclusion of plant, machinery, equipment, and all routine/non-routine tasks." },
+      "item4": { "title": "Timing & Frequency", "content": "Specific triggers and schedules for initial, periodic, and incident-based assessments." },
+      "item5": { "title": "Hazard Identification", "content": "Practical methods for deriving hazards, such as site inspections and worker consultation." },
+      "item6": { "title": "Risk Evaluation", "content": "Establishment of objective criteria (e.g., likelihood and consequence matrix) to determine risk levels." },
+      "item7": { "title": "Control Measures", "content": "Prioritising improvements by risk level and establishing post-implementation verification procedures." },
+      "item8": { "title": "Worker Consultation", "content": "Systematic approaches to gathering worker feedback during hazard identification and control planning." },
+      "item9": { "title": "Recordkeeping", "content": "Standardised templates for assessment results and guidelines for preserving records (generally 3-5 years)." },
+      "item10": { "title": "Training & Induction", "content": "Procedures for communicating assessment results to field workers and conducting relevant inductions." }
+    }
+  },
+  "section3": {
+    "title": "3. Types and Timing of Risk Assessments",
+    "table": {
+      "header": {
+        "col1": "Assessment Type",
+        "col2": "Timing & Conditions",
+        "col3": "Key Notes"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Initial Assessment",
+          "col2": "Conducted before commencing workplace operations or tasks.",
+          "col3": "Mandatory baseline assessment."
+        },
+        "row2": {
+          "col1": "Periodic Assessment",
+          "col2": "Conducted regularly (usually annually) to ensure controls remain effective.",
+          "col3": "Must be repeated at least once a year."
+        },
+        "row3": {
+          "col1": "Incident-Based (Special)",
+          "col2": "Upon change in plant/processes, or after incidents/near-misses.",
+          "col3": "Required immediately upon trigger event."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Legal Liability and Penalties",
+    "para": "Failure to fulfill risk management duties can result in severe administrative and criminal liabilities under WHS laws.",
+    "legalList": {
+      "item1": "<strong>Failure to Manage Risks:</strong> Subject to notices and heavy fines; Category 1 offences involve reckless conduct and can lead to imprisonment.",
+      "item2": "<strong>Failure to Maintain Records:</strong> Administrative penalties for lacking required documentation during a compliance audit.",
+      "item3": "<strong>In the Event of Major Incidents:</strong> If failure to assess risks is confirmed following a fatal incident, industrial manslaughter laws may apply, significantly enhancing corporate liability."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

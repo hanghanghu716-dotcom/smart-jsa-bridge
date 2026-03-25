@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "Are you sure you want to go to the main screen? All unsaved data may be lost.",
+    "projectNameRequired": "Project name is required. Please enter the name of the task."
+  },
+  "step": {
+    "basicInfo": "Basic Info",
+    "procedure": "Work Procedure",
+    "riskAnalysis": "Risk Analysis",
+    "moduleConfig": "Module Config",
+    "tableConfig": "Table Config",
+    "finalOutput": "Final Output"
+  },
+  "form": {
+    "title": "01. Basic Task Information & Safety Requirements",
+    "projectName": "Project Name",
+    "required": "(Required)",
+    "department": "Department",
+    "workLocation": "Work Location",
+    "workDate": "Scheduled Date",
+    "managerName": "Site Manager",
+    "weather": "Site Weather",
+    "hasNewWorker": "Includes New/Unskilled Workers",
+    "participants": "Evaluation Participants",
+    "ppe": "Personal Protective Equipment (PPE)",
+    "permits": "Permit-Required Work",
+    "equipment": "Required Equipment",
+    "additionalItems": "Additional Requests"
+  },
+  "warning": {
+    "title": "Notice:",
+    "text": "The JSA results you create may be exposed to other users according to our data sharing policy. Please note that if inappropriate content such as inaccurate information, false facts, or obscenity is included, it may be deleted without notice, and warnings and restrictions on use may be taken against the account."
+  },
+  "weather": {
+    "sunny": "Sunny",
+    "cloudy": "Cloudy",
+    "rain": "Rain",
+    "snow": "Snow",
+    "wind": "Strong Wind",
+    "heatwave": "Heatwave / High Temp",
+    "coldwave": "Coldwave / Low Temp"
+  },
+  "ppe": {
+    "안전모": "Hard Hat",
+    "안전화": "Safety Shoes",
+    "보안경": "Safety Glasses",
+    "장갑": "Safety Gloves",
+    "귀마개": "Earplugs",
+    "방진복": "Dustproof Clothing",
+    "방진마스크": "Dust Mask"
+  },
+  "permit": {
+    "일반": "General",
+    "화기": "Hot Work",
+    "밀폐": "Confined Space",
+    "정전": "Electrical Outage",
+    "굴착": "Excavation",
+    "방사선": "Radiation",
+    "고소": "High Elevation",
+    "중량물": "Heavy Lifting",
+    "가연성가스": "Flammable Gas"
+  },
+  "btn": {
+    "home": "Back to Home",
+    "next": "Proceed to Define Procedure"
+  }
+}

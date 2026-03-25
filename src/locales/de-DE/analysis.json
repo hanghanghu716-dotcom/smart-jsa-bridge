@@ -1,0 +1,73 @@
+{
+  "alert": {
+    "selectItem": "Bitte wählen Sie Elemente zum Hinzufügen aus.",
+    "enterFactor": "Bitte geben Sie zuerst einen Gefährdungsfaktor ein.",
+    "selectCurrentMeasure": "Bitte wählen Sie zuerst eine aktuelle Sicherheitsmaßnahme aus.",
+    "manualFactor": "Dies ist eine manuell eingegebene Gefährdung. Bitte geben Sie die Maßnahme direkt ein.",
+    "needCurrentMeasure": "Bitte wählen Sie zuerst eine aktuelle Sicherheitsmaßnahme über das Empfehlungssystem aus.",
+    "noData": "Keine verknüpften Daten gefunden. Bitte direkt eingeben.",
+    "confirmMain": "Möchten Sie wirklich zum Hauptbildschirm zurückkehren? Alle ungespeicherten Daten gehen verloren.",
+    "loginRequired": "Anmeldung erforderlich."
+  },
+  "libModal": {
+    "title": "Aufgabenschritt-Bibliothek aufrufen",
+    "empty": "Keine gespeicherte Bibliothek gefunden.",
+    "unclassified": "Nicht klassifiziert",
+    "backBtn": "⬅️ Zurück zur Liste",
+    "step": "Schritt",
+    "riskCount": " Gefährdungen enthalten"
+  },
+  "recModal": {
+    "titleCurrent": "Aktuelle Sicherheitsmaßnahme",
+    "titleAdvanced": "Erweiterte Empfehlung",
+    "descCurrent": "Für diese Gefährdung registrierte Sicherheitsregeln.",
+    "descAdvanced": "Höherwertige Empfehlungen zur Ergänzung aktueller Maßnahmen.",
+    "selectBtn": "Auswählen"
+  },
+  "step": {
+    "basicInfo": "Basis-Info",
+    "procedure": "Arbeitsablauf",
+    "riskAnalysis": "Gefährdungsbeurteilung",
+    "moduleConfig": "Modul-Konfig",
+    "tableConfig": "Tabellen-Konfig",
+    "finalOutput": "Endergebnis"
+  },
+  "form": {
+    "title": "03. Gefährdungs- & Risikoanalyse",
+    "typeStandard": "(Standard)",
+    "typeAdvanced": "(Erweitert)",
+    "currentStep": "Aktueller Schritt"
+  },
+  "filter": {
+    "label": "⚠️ Hochrisiko-Filter",
+    "auto": "(Auto-Vorschlag)",
+    "loadLibBtn": "📂 Bibliotheksschritt laden"
+  },
+  "base": {
+    "label": "Sicherheits-Wissensdatenbank (Gefährdungsermittlung)",
+    "addEmptyBtn": "+ Leer hinzufügen",
+    "addBulkBtn": "✓ Ausgewählte Elemente hinzufügen",
+    "emptyRec": "Keine empfohlenen Gefährdungen gefunden.",
+    "etc": "Sonstiges"
+  },
+  "result": {
+    "label": "Bewertung & Maßnahmen",
+    "freq": "Häuf",
+    "sev": "Schw"
+  },
+  "table": {
+    "factor": "Gefährdungsfaktor",
+    "measure": "Minderungsmaßnahme",
+    "currentMeasure": "Akt. Maßnahme",
+    "advancedMeasure": "Erw. Empfehlung",
+    "delete": "Löschen",
+    "recMeasureBtn": "Empfehlen",
+    "recAdvancedBtn": "Erweitert"
+  },
+  "btn": {
+    "prevStep1": "Vorheriger Schritt (Ablauf)",
+    "prevStep2": "Vorheriger Aufgabenschritt",
+    "nextComplete": "Analyse abschließen & zur Modul-Konfig",
+    "nextStep": "Nächsten Aufgabenschritt analysieren"
+  }
+}

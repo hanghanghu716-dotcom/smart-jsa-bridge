@@ -1,0 +1,116 @@
+{
+  "default": {
+    "docTitle": "Risk Assessment & Method Statement (RAMS)",
+    "appr1": "Originator",
+    "appr2": "Reviewer",
+    "appr3": "Approver"
+  },
+  "alert": {
+    "needLogin": "Login is required to utilise this service.",
+    "savePublic": "Securely published to Explore.",
+    "savePrivate": "Securely saved to your private library.",
+    "saveError": "Error saving project: ",
+    "pdfError": "Failed to generate PDF."
+  },
+  "header": {
+    "projectName": "Project Name",
+    "approval": "Approval",
+    "workLocation": "Work Location",
+    "department": "Department",
+    "workDate": "Effective Date",
+    "ppe": "Required PPE",
+    "highRiskWork": "Critical Hazards"
+  },
+  "ppe": {
+    "helmet": "Hard Hat",
+    "shoes": "Safety Shoes",
+    "glasses": "Safety Glasses",
+    "safetyBelt": "Fall Protection",
+    "mask": "Respirator",
+    "gloves": "Safety Gloves",
+    "etc": "Other"
+  },
+  "permit": {
+    "hotWork": "Hot Work",
+    "confinedSpace": "Confined Space",
+    "electrical": "LOTO (Electrical)",
+    "highElevation": "Work at Height",
+    "heavyLifting": "Critical Lift",
+    "excavation": "Excavation",
+    "etc": "Other"
+  },
+  "signature": {
+    "participants": "Work Crew",
+    "sign": "(Sign)"
+  },
+  "groups": {
+    "hazard": "Hazard Identification",
+    "risk": "Risk Assessment"
+  },
+  "tags": {
+    "DATA_STEP_NO": "Step No.",
+    "DATA_STEP_TITLE": "Task Steps",
+    "DATA_PHOTO": "Ref Photo",
+    "DATA_HAZARD": "Potential Hazards",
+    "DATA_CURRENT_MEASURE": "Current Controls",
+    "DATA_RECOMMEND_MEASURE": "Recommended Actions",
+    "DATA_FREQUENCY": "Likelihood",
+    "DATA_SEVERITY": "Severity",
+    "DATA_RISK": "Risk Level",
+    "DATA_KRAS_STEP": "Detailed Task Description",
+    "DATA_KRAS_HAZARD_CLASS": "Hazard Category",
+    "DATA_KRAS_HAZARD_DETAIL": "Hazard Scenario & Consequence",
+    "DATA_KRAS_BASIS": "Legal/Standard Basis",
+    "DATA_KRAS_CURRENT": "Current Control Measures",
+    "DATA_KRAS_RECOMMEND": "Risk Reduction Measures",
+    "DATA_KRAS_AFTER": "Residual Risk",
+    "DATA_KRAS_SCHED": "Target Date",
+    "DATA_KRAS_COMP": "Completion Date",
+    "DATA_KRAS_MANAGER": "Person in Charge"
+  },
+  "preview": {
+    "freqBreak": "Likelihood\n(Freq)",
+    "sevBreak": "Severity\n(Consq)",
+    "afterBreak": "Residual\nRisk",
+    "schedBreak": "Target\nDate"
+  },
+  "table": {
+    "addPhoto": "Photo"
+  },
+  "ui": {
+    "processing": "Processing data..."
+  },
+  "step": {
+    "basicInfo": "Step 1: General Info",
+    "procedure": "Step 2: Task Sequence",
+    "riskAnalysis": "Step 3: Hazard Analysis",
+    "moduleConfig": "Step 4: Module Setup",
+    "tableConfig": "Step 5: Data Mapping",
+    "finalOutput": "Step 6: Final Export"
+  },
+  "title": {
+    "main": "| 06. Final Export"
+  },
+  "btn": {
+    "prev": "Edit Table Layout",
+    "cloudSave": "Save to Cloud (Select Visibility)",
+    "pdfSave": "Generate & Save PDF Report"
+  },
+  "modal": {
+    "pdfTitle": "Generate PDF Report",
+    "pdfSub": "Converts the final output into a PDF file for download.",
+    "pdfBtnLabel": "Start Report Download",
+    "pdfBtnDesc": "Generates a high-resolution PDF.<br/>Please wait a moment.",
+    "close": "Close (Cancel)",
+    "pubTitle": "Cloud Save Settings",
+    "pubWarning": "⚠️ For security reasons, the department, location,\ndate, and participant names will be saved as blank.",
+    "pubSub": "Please select the visibility scope for the saved project.",
+    "pubBadgeLimited": "Public (Restricted)",
+    "pubPublicLabel": "Publish to Explore",
+    "pubForkLimit": "Requires additional task steps<br/>or at least 2 more hazards<br/>compared to the original version.",
+    "pubRiskLimit": "Please document at least 3 hazards<br/>and control measures for knowledge sharing.",
+    "pubPublicDesc": "Visible to all users,<br/>contributing to safety knowledge sharing.",
+    "pubPrivateLabel": "Save to Private Library",
+    "pubPrivateDesc": "Visible only to the creator<br/>and managed as a personal project."
+  }
+}

@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner'; 
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+// ✅ [추가] 다국어 전용 라우팅 도구
+import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function ProtectiveEquipment() {
-  const navigate = useNavigate();
-  // 'ppe' 네임스페이스를 사용합니다. (추후 i18n.js에 등록 필요)
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
   const { t } = useTranslation('ppe');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+
       {/* HEADER */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
@@ -37,10 +41,11 @@ export default function ProtectiveEquipment() {
         </div>
         <nav style={styles.drawerNav}>
           <div style={styles.navCategory}>CONTENTS</div>
-          <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.regulation')}</Link>
-          <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.jrajsa')}</Link>
-          <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.ppe')}</Link>
-          <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.riskClass')}</Link>
+          {/* ✅ [변경] LanguageLink를 사용하여 다국어 경로 유지 */}
+          <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.regulation')}</LanguageLink>
+          <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.jrajsa')}</LanguageLink>
+          <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.ppe')}</LanguageLink>
+          <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('nav.riskClass')}</LanguageLink>
         </nav>
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
@@ -63,7 +68,6 @@ export default function ProtectiveEquipment() {
       </section>
 
       {/* [스티키 광고]: 스크롤 시 따라오는 Fixed 방식 적용 */}
-      {/* 좌측 광고 */}
       <aside className="hidden lg:block">
         <div style={styles.adPlaceholderFixedLeft}>
           <span style={styles.adLabelDark}>AD (LEFT)</span>
@@ -71,7 +75,6 @@ export default function ProtectiveEquipment() {
         </div>
       </aside>
 
-      {/* 우측 광고 */}
       <aside className="hidden lg:block">
         <div style={styles.adPlaceholderFixedRight}>
           <span style={styles.adLabelDark}>AD (RIGHT)</span>
@@ -132,8 +135,8 @@ export default function ProtectiveEquipment() {
   );
 }
 
+// 스타일 객체는 원본 데이터를 그대로 유지합니다.
 const styles = {
-  /* 원본 스타일 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden', position: 'relative' },
   container: { maxWidth: '1200px', margin: '0 auto' },
   header: { padding: '2.5rem 0', zIndex: 10, borderBottom: '1px solid #f0f0f0' },
@@ -153,11 +156,8 @@ const styles = {
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
   mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3' },
   subTitle: { opacity: 0.8, lineHeight: '1.8', wordBreak: 'keep-all' },
-
-  /* Jrajsa.jsx와 동일한 레이아웃 시스템 적용 */
   mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' },
   centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px', alignItems: 'center' },
-
   m3Section: { padding: '100px 0', width: '100%' },
   sectionTitle: { fontWeight: '800', marginBottom: '40px', letterSpacing: '-1px' },
   flowGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', width: '100%' },
@@ -172,13 +172,11 @@ const styles = {
   itemHeader: { fontSize: '1.1rem', fontWeight: '800', color: '#007bff', marginBottom: '12px' },
   itemContent: { fontSize: '0.95rem', color: '#555' },
   finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff' },
-
-  /* 스크롤 스티키 광고 스타일 */
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
   adPlaceholderFixedLeft: { 
     position: 'fixed',
     top: '50%',
-    left: 'calc(50% - 600px - 160px - 20px)', // (본문 절반 600px) + (광고폭 160px) + (간격 20px)
+    left: 'calc(50% - 600px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 
@@ -194,7 +192,7 @@ const styles = {
   adPlaceholderFixedRight: { 
     position: 'fixed',
     top: '50%',
-    right: 'calc(50% - 600px - 160px - 20px)', // (본문 절반 600px) + (광고폭 160px) + (간격 20px)
+    right: 'calc(50% - 600px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 

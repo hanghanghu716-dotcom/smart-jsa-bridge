@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 export default function Login() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
   const { t } = useTranslation('login');
 
-  // 애드센스 설정 정보
+  // 애드센스 설정 정보[cite: 15]
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
   const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
@@ -89,7 +91,7 @@ export default function Login() {
   useEffect(() => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) navigate('/');
+      if (session) navigate('/'); // ✅ 언어 경로 자동 유지[cite: 11]
     };
     checkSession();
   }, [navigate]);
@@ -130,17 +132,18 @@ export default function Login() {
       try {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate('/');
+        navigate('/'); // ✅ 언어 경로 자동 유지[cite: 11]
       } catch (err) { alert(err.message); } finally { setLoading(false); }
     }
   };
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
 
-      {/* [데스크탑 전용]: 왼쪽 사이드바 광고 추가 */}
       <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
         <div style={styles.adPlaceholderBox}>
           <span style={styles.adLabel}>AD (LEFT)</span>
@@ -153,7 +156,6 @@ export default function Login() {
         </div>
       </aside>
 
-      {/* [데스크탑 전용]: 오른쪽 사이드바 광고 추가 */}
       <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
         <div style={styles.adPlaceholderBox}>
           <span style={styles.adLabel}>AD (RIGHT)</span>
@@ -194,7 +196,6 @@ export default function Login() {
                   </div>
                   <div style={{...styles.flexItem, flex: 1}}>
                     <label style={styles.label}>{t('ui.labelSector')}</label>
-                    {/* ✅ 종사 분야 드롭다운 확장 및 정렬 교정 */}
                     <select style={styles.selectInput} value={sector} onChange={e => setSector(e.target.value)} required>
                       <option value="">{t('ui.selectDefault')}</option>
                       <option value="건설 / 토목 / 건축">{t('sector.construction')}</option>
@@ -239,7 +240,6 @@ export default function Login() {
           {mode === 'login' && (
             <>
               <div style={styles.dividerContainer}><div style={styles.line} /><span style={styles.dividerText}>{t('ui.dividerOr')}</span><div style={styles.line} /></div>
-              {/* ✅ 구글 로그인 이미지 에셋 복구 */}
               <button onClick={() => supabase.auth.signInWithOAuth({provider: 'google'})} style={styles.googleBtn}>
                 <img src="https://www.google.com/favicon.ico" alt="" style={{width:'18px'}} />
                 <span>{t('ui.btnGoogleLogin')}</span>
@@ -258,6 +258,7 @@ export default function Login() {
   );
 }
 
+// 스타일 객체는 원본 소스코드를 절대적으로 유지합니다[cite: 15].
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
@@ -275,7 +276,6 @@ const styles = {
   flexItem: { display: 'flex', flexDirection: 'column', gap: '8px' },
   label: { fontSize: '0.75rem', color: '#888', fontWeight: 'bold', paddingLeft: '2px' },
   input: { height: '48px', padding: '0 14px', backgroundColor: '#000', border: '1px solid #222', borderRadius: '6px', color: '#fff', outline: 'none', fontSize: '0.9rem', boxSizing: 'border-box', width: '100%' },
-  // ✅ 드롭다운 돌출 방지를 위한 boxSizing 명시 및 패딩 조정
   selectInput: { height: '48px', padding: '0 10px', backgroundColor: '#000', border: '1px solid #222', borderRadius: '6px', color: '#fff', outline: 'none', fontSize: '0.85rem', boxSizing: 'border-box', width: '100%', cursor: 'pointer' },
   valMsg: { fontSize: '0.7rem', marginTop: '4px', fontWeight: 'bold' },
   forgotPasswordArea: { textAlign: 'right', marginTop: '6px' },
@@ -288,11 +288,8 @@ const styles = {
   dividerText: { color: '#444', fontSize: '0.7rem', fontWeight: '900' },
   switchModeArea: { marginTop: '12px' },
   form: { display: 'flex', flexDirection: 'column' },
-  
-  // 기능 추가: 광고 플레이스홀더 및 레이아웃 스타일
   adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
   adLabel: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
-
   adSlotFixedLeft: { 
     position: 'fixed',
     top: '50%',

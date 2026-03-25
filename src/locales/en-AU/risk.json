@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "AS/NZS & WHS STANDARD",
+    "mainTitle1": "Risk Classification &",
+    "mainTitle2": "Risk Matrix Guide",
+    "subTitle1": "Establish a scientific safety management system",
+    "subTitle2": "based on WHS guidelines and Quantitative Risk Assessment.",
+    "section1": "1. Basic Definitions by Work Nature",
+    "section2": "2. Quantitative Criteria (Risk Matrix)",
+    "section3": "3. 9 Types of High-Risk Activities"
+  },
+  "def": {
+    "generalTitle": "General Work (Routine)",
+    "generalContent": "Tasks performed frequently where hazards are effectively mitigated through established Standard Operating Procedures (SOPs).",
+    "highTitle": "High-Risk Work (Non-Routine)",
+    "highContent": "Activities involving hazardous energy or complex environments where a single failure can result in a fatality or catastrophic incident."
+  },
+  "matrix": {
+    "title": "Risk Matrix (5 Likelihood × 4 Consequence)",
+    "axisX": "Consequence",
+    "axisY": "Likelihood",
+    "f5": "Almost Certain", "f4": "Likely", "f3": "Possible", "f2": "Unlikely", "f1": "Rare",
+    "s1": "Insignificant", "s2": "Minor", "s3": "Major", "s4": "Catastrophic",
+    "l1": "Unacceptable", "l2": "High Risk", "l3": "Medium Risk", "l4": "Low Risk", "l5": "Minor Risk", "l6": "Negligible"
+  },
+  "tasks": [
+    { "t": "Working at Heights", "c": "Any work where fall protection is mandatory to prevent injury from falling from one level to another." },
+    { "t": "Confined Space Entry", "c": "Entry into areas with limited access and potential for toxic atmosphere or O2 deficiency." },
+    { "t": "Hot Work", "c": "Welding, cutting, or grinding activities that produce sparks or open flames." },
+    { "t": "Lifting Operations", "c": "Rigging and hoisting loads using cranes, hoists, or powered industrial plant." },
+    { "t": "Electrical Work", "c": "Work on energised equipment or within limited approach boundaries (AS/NZS 3000)." },
+    { "t": "Trenching & Excavation", "c": "Ground disturbance where cave-ins or underground utility strikes are potential hazards." },
+    { "t": "Ionising Radiation", "c": "Industrial radiography or NDT tasks involving exposure to radiation sources." },
+    { "t": "HazMat Handling", "c": "Transfer, charging, or processing of toxic, flammable, or reactive hazardous substances." },
+    { "t": "LOTO / Maintenance", "c": "Lockout/Tagout procedures during maintenance to control hazardous energy." }
+  ]
+}

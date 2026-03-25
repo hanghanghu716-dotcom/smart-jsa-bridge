@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Caution] This sample is for reference only. Risk assessments must be conducted based on actual onsite checks.",
+    "text2": "Smart JSA Bridge is not responsible for legal consequences from using this material."
+  },
+  "ui": {
+    "category": "CONSTRUCTION JSA SAMPLES",
+    "mainTitle1": "Construction JSA",
+    "mainTitle2": "Sample Guide (10 Types)",
+    "description1": "Check core hazards and measures for each process. Review images",
+    "description2": "and download the original PDF via the button below.",
+    "labelRed": "⚠ Core Hazards",
+    "labelBlue": "🛡 Control Measures",
+    "previewLabel": "Preview Sample (Image)",
+    "downloadBtn": "Download Original PDF Sample"
+  },
+  "list": [
+    { "id": "CONST-01", "title": "Ceiling Frame Installation and Drywall Attachment", "hazard": "Fall from unlocked ladder hinges, nail gun accidents", "measure": "Visual check of lock engagement, wear cut-resistant gloves and safety glasses", "pages": 1 },
+    { "id": "CONST-02", "title": "Main Piping Welding and Pump Installation in Mechanical Room", "hazard": "Fire from welding spatter, burst during pressure testing", "measure": "Assign fire watch, incremental pressurisation within 1.1x design pressure", "pages": 1 },
+    { "id": "CONST-03", "title": "Excavation and Backfilling for Drainage Systems", "hazard": "Explosion from underground utility damage, burial due to slope failure", "measure": "Utility detection combined with manual digging, maintain safe slope", "pages": 1 },
+    { "id": "CONST-04", "title": "Roof Urethane Waterproofing and Exterior Water-based Painting", "hazard": "Fall from roof edges, asphyxiation from solvent vapours", "measure": "Secure lifeline to safety harness, implement forced ventilation via fans", "pages": 1 },
+    { "id": "CONST-05", "title": "Exterior Wall Maintenance and High-elevation Equipment Installation", "hazard": "Fall due to rope failure, crushing by MEWPs (Rental)", "measure": "Install separate vertical lifelines, inspect over-travel prevention devices", "pages": 1 },
+    { "id": "CONST-06", "title": "System Scaffolding Installation and Dismantling for Exterior Work", "hazard": "Entire structure collapse, impact from falling components", "measure": "Install wall ties according to standards, establish ground exclusion zones", "pages": 1 },
+    { "id": "CONST-07", "title": "Rebar Processing and Crane Lifting Work", "hazard": "Material fall due to hitching gear failure, processing machine entanglement", "measure": "Follow 2-line hitching rules, use dedicated push sticks during processing", "pages": 1 },
+    { "id": "CONST-08", "title": "Slab and Beam Concrete Pouring Work", "hazard": "Pump truck tip-over, impact from hose detachment and whipping", "measure": "Reinforce outrigger ground, inspect connection pins and rings", "pages": 1 },
+    { "id": "CONST-09", "title": "Demolition of Old Low-rise Structures and Waste Removal", "hazard": "Sudden collapse during demolition, risk of asbestos exposure", "measure": "Follow Top-down demolition principle, verify pre-demolition asbestos survey", "pages": 1 },
+    { "id": "CONST-10", "title": "Ceiling Electrical Wiring and Fire Safety Equipment Installation", "hazard": "Electric shock from live parts, fall due to body over-extension on ladders", "measure": "Implement panel LOTO, verify zero voltage with detector", "pages": 1 }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Risk Assessment Guidelines",
+    "jrajsa": "JRA/JSA Practical Process",
+    "ppe": "About Personal Protective Equipment (PPE)",
+    "riskClass": "General / High-Risk Tasks"
+  },
+  "hero": {
+    "tag": "PERSONAL PROTECTIVE EQUIPMENT",
+    "title1": "Industrial PPE Categories &",
+    "title2": "UKCA/CE Compliance Guide",
+    "subTitle1": "Verifying safety certifications is the first step to workplace safety. Review",
+    "subTitle2": "the characteristics of each PPE type and strictly comply with",
+    "subTitle3": "HSE regulations and EN standards."
+  },
+  "section1": {
+    "title": "1. PPE Categories and Specific Types",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Head Protection",
+        "desc": "Absorbs impact from falling or flying objects and protects against electrical shocks.",
+        "tags": ["Safety Helmets (EN 397)", "Class G/E/C"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Eye & Face Protection",
+        "desc": "Blocks flying particles, harmful light radiation, and chemical splashes.",
+        "tags": ["Safety Glasses (EN 166)", "Goggles", "Face Shields"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Hearing Protection",
+        "desc": "Prevents noise-induced hearing loss in high-decibel environments.",
+        "tags": ["Earplugs", "Earmuffs", "SNR Rated"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Respiratory Protection",
+        "desc": "Protects against dust, harmful gases, and oxygen-deficient atmospheres.",
+        "tags": ["Particulate (FFP2/FFP3)", "Gas Masks", "SCBA"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Hand Protection",
+        "desc": "Protects against cuts, burns, electrical shocks, and chemical exposure.",
+        "tags": ["Cut-Resistant", "Voltage Rated", "Chemical-Resistant"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Foot Protection",
+        "desc": "Prevents injuries from falling/rolling objects and sharp punctures.",
+        "tags": ["Safety Boots (EN ISO 20345)", "Anti-Static"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Fall Protection",
+        "desc": "Arrests falls and absorbs shock during elevated work.",
+        "tags": ["Full-Body Harness", "Lanyards", "Lifelines"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Protective Clothing",
+        "desc": "Shields the entire body from hazardous chemicals and extreme heat.",
+        "tags": ["Hazmat Suits", "Flame-Resistant (FR)", "Arc Flash"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Frequently Asked Questions on PPE Certification",
+    "faq": {
+      "item1": {
+        "q": "What is the difference between HSE regulations and EN standards?",
+        "a": "HSE regulations set the legal duties for employers in the UK, while EN standards provide the technical criteria that PPE must meet to be compliant."
+      },
+      "item2": {
+        "q": "Can I use US (ANSI) certified PPE in UK workplaces?",
+        "a": "Generally no. PPE in the UK must carry the UKCA or CE mark and meet the relevant EN standards required by the PPE at Work Regulations."
+      },
+      "item3": {
+        "q": "Does PPE certification expire?",
+        "a": "Equipment has a manufacturer-defined lifespan. Employers must carry out regular inspections and ensure PPE meets the current consensus standards."
+      },
+      "item4": {
+        "q": "How do I verify certified PPE?",
+        "a": "Check for the UKCA/CE mark and the relevant EN standard (e.g., EN 166 for eyewear) clearly marked on the product or its technical file."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

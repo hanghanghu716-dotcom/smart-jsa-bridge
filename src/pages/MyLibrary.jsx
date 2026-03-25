@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+// ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
+import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function MyLibrary() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
+  const location = useLocation();
   const { t } = useTranslation('library');
   const [categories, setCategories] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -148,6 +152,7 @@ export default function MyLibrary() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
         <div style={styles.dimOverlay} />
@@ -316,7 +321,9 @@ export default function MyLibrary() {
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
       </div>
       <footer style={styles.footerArea}><div style={styles.bottomAdWrapper}><AdBanner slot="1284119169" style={{ width: '728px', height: '90px' }} format="horizontal" /></div></footer>
     </div>
@@ -337,8 +344,8 @@ const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level =
   );
 };
 
+// 스타일 객체는 원본 소스코드를 절대적으로 유지합니다.[cite: 16]
 const styles = {
-  /* 기존 스타일 유지 (변경 없음) */
   wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: '#000', position: 'relative' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },

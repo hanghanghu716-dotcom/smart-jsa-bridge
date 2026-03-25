@@ -1,26 +1,31 @@
-import { useNavigate } from 'react-router-dom';
-import AdSenseUnit from '../components/AdSenseUnit';
 import { useTranslation } from 'react-i18next';
+import AdSenseUnit from '../components/AdSenseUnit';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
+// ✅ 커스텀 다국어 라우팅 훅 임포트[cite: 20]
+import { useLanguageNavigate } from '../hooks/useLanguage';
 
 export default function Terms() {
-  const navigate = useNavigate();
-  const { t } = useTranslation('terms');
+  const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하며 이동하는 네비게이트 훅 사용[cite: 20]
+  const { t } = useTranslation('terms'); // ✅ 'terms' 네임스페이스 로드[cite: 20]
 
-  const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
-  const SIDEBAR_SLOT_ID = '3978298367'; 
+  const PUBLISHER_ID = 'ca-pub-9791625990220699'; //[cite: 20]
+  const SIDEBAR_SLOT_ID = '3978298367'; //[cite: 20]
 
   return (
     <div style={styles.wrapper}>
-      {/* HEADER */}
+      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 글로벌 SEO 수행 */}
+
+      {/* HEADER[cite: 20] */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
+          {/* ✅ 로고 클릭 시 현재 선택된 언어의 메인 페이지로 이동 */}
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
         </div>
       </header>
       
       <section style={{...styles.contentSection, position: 'relative'}}>
         
-        {/* [좌측 광고]: Main.jsx의 Fixed 가동방식 적용 + 위치 조정 */}
+        {/* [좌측 광고]: Fixed 가동방식 적용[cite: 20] */}
         <aside className="hidden lg:block">
           <div style={styles.adPlaceholderFixedLeft}>
             <span style={styles.adLabelDark}>AD (LEFT)</span>
@@ -33,7 +38,7 @@ export default function Terms() {
           </div>
         </aside>
 
-        {/* [우측 광고]: Main.jsx의 Fixed 가동방식 적용 + 위치 조정 */}
+        {/* [우측 광고]: Fixed 가동방식 적용[cite: 20] */}
         <aside className="hidden lg:block">
           <div style={styles.adPlaceholderFixedRight}>
             <span style={styles.adLabelDark}>AD (RIGHT)</span>
@@ -46,7 +51,7 @@ export default function Terms() {
           </div>
         </aside>
 
-        {/* 원본 내용 절대 유지 시작 */}
+        {/* 이용약관 본문 영역[cite: 20] */}
         <div style={styles.container}>
           <span style={styles.tag}>{t('pageTag')}</span>
           <h2 style={styles.heading}>{t('heading')}</h2>
@@ -93,7 +98,6 @@ export default function Terms() {
             <p style={styles.articleP}>{t('section9.content')}</p>
           </div>
         </div>
-        {/* 원본 내용 유지 끝 */}
       </section>
 
       <footer style={styles.footer}><p>{t('footer')}</p></footer>
@@ -101,8 +105,8 @@ export default function Terms() {
   );
 }
 
+// 스타일 객체는 기존 소스코드의 레이아웃을 정확히 유지합니다[cite: 20].
 const styles = {
-  /* 원본 스타일 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
@@ -119,12 +123,11 @@ const styles = {
   listBullet: { position: 'absolute', left: 0, color: '#007bff', fontWeight: 'bold' },
   footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
 
-  /* 핵심 지침 이행: Main.jsx의 Fixed 방식 유지 + Privacy의 좁은 간격 적용 */
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
   adPlaceholderFixedLeft: { 
     position: 'fixed',
     top: '50%',
-    left: 'calc(50% - 375px - 160px - 20px)', // (본문 절반 375px) + (광고폭 160px) + (간격 20px)
+    left: 'calc(50% - 375px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 
@@ -140,7 +143,7 @@ const styles = {
   adPlaceholderFixedRight: { 
     position: 'fixed',
     top: '50%',
-    right: 'calc(50% - 375px - 160px - 20px)', // (본문 절반 375px) + (광고폭 160px) + (간격 20px)
+    right: 'calc(50% - 375px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 

@@ -1,0 +1,116 @@
+{
+  "default": {
+    "docTitle": "Gefährdungsbeurteilung (GBU)",
+    "appr1": "Ersteller",
+    "appr2": "Prüfer",
+    "appr3": "Genehmiger"
+  },
+  "alert": {
+    "needLogin": "Anmeldung erforderlich, um diesen Dienst zu nutzen.",
+    "savePublic": "Sicher in Explore veröffentlicht.",
+    "savePrivate": "Sicher in Ihrer privaten Bibliothek gespeichert.",
+    "saveError": "Fehler beim Speichern des Projekts: ",
+    "pdfError": "PDF-Erstellung fehlgeschlagen."
+  },
+  "header": {
+    "projectName": "Projektname",
+    "approval": "Genehmigung",
+    "workLocation": "Arbeitsort",
+    "department": "Abteilung",
+    "workDate": "Gültigkeitsdatum",
+    "ppe": "Erforderliche PSA",
+    "highRiskWork": "Kritische Gefährdungen"
+  },
+  "ppe": {
+    "helmet": "Schutzhelm",
+    "shoes": "Sicherheitsschuhe",
+    "glasses": "Schutzbrille",
+    "safetyBelt": "Absturzsicherung",
+    "mask": "Atemschutz",
+    "gloves": "Schutzhandschuhe",
+    "etc": "Sonstiges"
+  },
+  "permit": {
+    "hotWork": "Feuerarbeiten",
+    "confinedSpace": "Behälter/Enge Räume",
+    "electrical": "LOTO (Elektrik)",
+    "highElevation": "Arbeiten in der Höhe",
+    "heavyLifting": "Kritischer Hub",
+    "excavation": "Erdarbeiten",
+    "etc": "Sonstiges"
+  },
+  "signature": {
+    "participants": "Arbeitsgruppe",
+    "sign": "(Unterschrift)"
+  },
+  "groups": {
+    "hazard": "Gefährdungsermittlung",
+    "risk": "Risikobewertung"
+  },
+  "tags": {
+    "DATA_STEP_NO": "Schritt-Nr.",
+    "DATA_STEP_TITLE": "Arbeitsschritte",
+    "DATA_PHOTO": "Ref.-Foto",
+    "DATA_HAZARD": "Mögliche Gefährdungen",
+    "DATA_CURRENT_MEASURE": "Aktuelle Maßnahmen",
+    "DATA_RECOMMEND_MEASURE": "Empfohlene Maßnahmen",
+    "DATA_FREQUENCY": "Eintrittswahrscheinlichkeit",
+    "DATA_SEVERITY": "Schadensausmaß",
+    "DATA_RISK": "Risikostufe",
+    "DATA_KRAS_STEP": "Detaillierte Tätigkeitsbeschreibung",
+    "DATA_KRAS_HAZARD_CLASS": "Gefährdungskategorie",
+    "DATA_KRAS_HAZARD_DETAIL": "Gefahrenszenario & Folgen",
+    "DATA_KRAS_BASIS": "Rechtliche Grundlagen/Normen",
+    "DATA_KRAS_CURRENT": "Aktuelle Schutzmaßnahmen",
+    "DATA_KRAS_RECOMMEND": "Maßnahmen zur Risikominderung",
+    "DATA_KRAS_AFTER": "Restrisiko",
+    "DATA_KRAS_SCHED": "Zieldatum",
+    "DATA_KRAS_COMP": "Erledigungsdatum",
+    "DATA_KRAS_MANAGER": "Verantwortliche Person"
+  },
+  "preview": {
+    "freqBreak": "Wahrscheinl.\n(Häufg)",
+    "sevBreak": "Ausmaß\n(Folge)",
+    "afterBreak": "Rest-\nrisiko",
+    "schedBreak": "Ziel-\ndatum"
+  },
+  "table": {
+    "addPhoto": "Foto"
+  },
+  "ui": {
+    "processing": "Daten werden verarbeitet..."
+  },
+  "step": {
+    "basicInfo": "Schritt 1: Basis-Info",
+    "procedure": "Schritt 2: Arbeitsablauf",
+    "riskAnalysis": "Schritt 3: Gefährdungsbeurteilung",
+    "moduleConfig": "Schritt 4: Modul-Setup",
+    "tableConfig": "Schritt 5: Daten-Mapping",
+    "finalOutput": "Schritt 6: Finaler Export"
+  },
+  "title": {
+    "main": "| 06. Finaler Export"
+  },
+  "btn": {
+    "prev": "Tabellenlayout bearbeiten",
+    "cloudSave": "Cloud-Speicherung (Sichtbarkeit wählen)",
+    "pdfSave": "PDF-Bericht erstellen & speichern"
+  },
+  "modal": {
+    "pdfTitle": "PDF-Bericht erstellen",
+    "pdfSub": "Konvertiert das Endergebnis in eine PDF-Datei zum Download.",
+    "pdfBtnLabel": "Bericht-Download starten",
+    "pdfBtnDesc": "Erstellt ein hochauflösendes PDF.<br/>Bitte warten Sie einen Moment.",
+    "close": "Schließen (Abbrechen)",
+    "pubTitle": "Cloud-Speichereinstellungen",
+    "pubWarning": "⚠️ Aus Sicherheitsgründen werden Abteilung, Ort,\nDatum und Teilnehmernamen leer gelassen.",
+    "pubSub": "Bitte wählen Sie die Sichtbarkeit für das Projekt.",
+    "pubBadgeLimited": "Öffentlich (Eingeschränkt)",
+    "pubPublicLabel": "In Explore veröffentlichen",
+    "pubForkLimit": "Erfordert zusätzliche Arbeitsschritte<br/>oder mindestens 2 weitere Gefährdungen.",
+    "pubRiskLimit": "Bitte dokumentieren Sie mindestens 3 Gefährdungen<br/>für den Wissensaustausch.",
+    "pubPublicDesc": "Sichtbar für alle Benutzer,<br/>trägt zum Wissensaustausch bei.",
+    "pubPrivateLabel": "In privater Bibliothek speichern",
+    "pubPrivateDesc": "Nur für den Ersteller sichtbar<br/>und als persönliches Projekt verwaltet."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "Menu",
+    "close": "Fermer"
+  },
+  "drawer": {
+    "contents": "SOMMAIRE",
+    "regulation": "Réglementation du Code du Travail",
+    "jrajsa": "Analyse des Risques (JHA)",
+    "protectiveEquipment": "EPI",
+    "riskClassification": "Classification des Dangers",
+    "dictionary": "Dictionnaire des Dangers"
+  },
+  "hero": {
+    "tag": "BASE DE DONNÉES SÉCURITÉ ET SANTÉ",
+    "titleLine1": "Analyse Intelligente des Risques,",
+    "titleLine2": "Dictionnaire des Dangers Standard",
+    "seoText1": "Recherchez et identifiez les dangers potentiels sur le lieu de travail et les mesures de prévention correspondantes conformes aux normes en vigueur.",
+    "seoText2": "Établissez un environnement de travail plus sûr et prévenez les incidents graves grâce à notre approche systématique basée sur les données."
+  },
+  "filter": {
+    "allCategories": "Toutes les catégories",
+    "searchPlaceholder": "Rechercher des dangers ou mesures...",
+    "searchBtn": "Rechercher",
+    "resultPrefix": "Total de ",
+    "resultSuffix": " résultats"
+  },
+  "data": {
+    "loading": "Chargement des données...",
+    "empty": "Aucune donnée trouvée correspondant à vos critères.",
+    "riskFactorLabel": "Danger Identifié",
+    "currentMeasureLabel": "Mesures de Prévention Actuelles",
+    "advancedMeasureLabel": "Mesures de Prévention Additionnelles"
+  },
+  "pagination": {
+    "prev": "Précédent",
+    "next": "Suivant"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "DIN & DGUV STANDARD",
+    "mainTitle1": "Risikoklassifizierung &",
+    "mainTitle2": "Risikomatrix-Leitfaden",
+    "subTitle1": "Etablierung eines wissenschaftlichen Sicherheitsmanagementsystems",
+    "subTitle2": "basierend auf gesetzlichen Richtlinien und quantitativer Risikobewertung.",
+    "section1": "1. Basisdefinitionen nach Arbeitsart",
+    "section2": "2. Quantitative Kriterien (Risikomatrix)",
+    "section3": "3. 9 Arten von Hochrisiko-Tätigkeiten"
+  },
+  "def": {
+    "generalTitle": "Allgemeine Arbeiten (Routine)",
+    "generalContent": "Häufig durchgeführte Aufgaben, bei denen Gefährdungen durch etablierte Standard-Betriebsanweisungen (SOPs) effektiv gemindert werden.",
+    "highTitle": "Hochrisiko-Arbeiten (Nicht-Routine)",
+    "highContent": "Tätigkeiten mit gefährlicher Energie oder komplexen Umgebungen, bei denen ein einzelner Fehler zu tödlichen oder katastrophalen Vorfällen führen kann."
+  },
+  "matrix": {
+    "title": "Risikomatrix (5 Häufigkeit × 4 Schweregrad)",
+    "axisX": "Schweregrad",
+    "axisY": "Häufigkeit",
+    "f5": "Häufig", "f4": "Wahrscheinlich", "f3": "Gelegentlich", "f2": "Gering", "f1": "Unwahrscheinlich",
+    "s1": "Geringfügig", "s2": "Mäßig", "s3": "Kritisch", "s4": "Katastrophal",
+    "l1": "Unakzeptabel", "l2": "Hohes Risiko", "l3": "Mittleres Risiko", "l4": "Geringes Risiko", "l5": "Sehr geringes Risiko", "l6": "Vernachlässigbar"
+  },
+  "tasks": [
+    { "t": "Arbeiten in der Höhe", "c": "Arbeiten, bei denen eine Absturzsicherung gemäß den geltenden Arbeitsschutzvorschriften zwingend erforderlich ist." },
+    { "t": "Arbeiten in engen Räumen", "c": "Betreten von Bereichen mit begrenztem Zugang und Potenzial für toxische Atmosphären oder Sauerstoffmangel." },
+    { "t": "Feuerarbeiten", "c": "Schweiß-, Schneid- oder Lötarbeiten, bei denen Funken oder offene Flammen entstehen." },
+    { "t": "Hebevorgänge", "c": "Anschlagen und Heben von Lasten mit Kranen, Hebezeugen oder Flurförderzeugen." },
+    { "t": "Elektroarbeiten", "c": "Arbeiten an unter Spannung stehenden Geräten oder innerhalb definierter Annäherungsbereiche." },
+    { "t": "Ausschachtungen & Gräben", "c": "Bodenarbeiten, bei denen Einstürze oder das Treffen von Versorgungsleitungen potenzielle Gefahren darstellen." },
+    { "t": "Ionisierende Strahlung", "c": "Industrielle Durchstrahlungsprüfung oder ZfP-Aufgaben mit Exposition gegenüber Strahlungsquellen." },
+    { "t": "Umgang mit Gefahrstoffen", "c": "Umfüllen, Befüllen oder Verarbeiten von toxischen, brennbaren oder reaktiven Gefahrstoffen." },
+    { "t": "LOTO / Wartung", "c": "Lockout/Tagout-Verfahren während der Wartung zur Kontrolle gefährlicher Energien." }
+  ]
+}

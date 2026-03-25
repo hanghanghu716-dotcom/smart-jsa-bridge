@@ -1,0 +1,67 @@
+{
+  "default": {
+    "docTitle": "Risk Assessment & Method Statement (RAMS)",
+    "appr1": "Originator",
+    "appr2": "Reviewer",
+    "appr3": "Authorised Approver"
+  },
+  "table": {
+    "projectName": "Project/Contract Name",
+    "approval": "Compliance Approval",
+    "workLocation": "Specific Work Site",
+    "department": "Business Unit/Dept",
+    "workDate": "Effective Date",
+    "ppe": "Required PPE",
+    "highRiskWork": "Critical Hazards",
+    "participants": "Work Crew Members",
+    "signature": "(Signature)"
+  },
+  "ppe": {
+    "helmet": "Head Protection (Hard Hat)",
+    "shoes": "Protective Footwear",
+    "glasses": "Eye and Face Protection",
+    "safetyBelt": "Personal Fall Arrest System",
+    "mask": "Respiratory Protection",
+    "gloves": "Hand Protection (Gloves)",
+    "etc": "Specialised PPE"
+  },
+  "permit": {
+    "hotWork": "Hot Work Permit",
+    "confinedSpace": "Confined Space Entry Permit",
+    "electrical": "LOTO (Lockout/Tagout)",
+    "highElevation": "Work at Height Plan",
+    "heavyLifting": "Critical Lift Plan",
+    "excavation": "Excavation & Trenching",
+    "etc": "Other Special Permits"
+  },
+  "preview": {
+    "header": "RAMS Structure Preview (HSE Standard)",
+    "tableAreaTitle": "[Hazard Assessment Data Area]",
+    "tableAreaDesc": "Hazard Identification and Control Measures will be auto-populated here."
+  },
+  "step": {
+    "basicInfo": "Step 1: General Info",
+    "procedure": "Step 2: Task Sequence",
+    "riskAnalysis": "Step 3: Hazard Analysis",
+    "moduleConfig": "Step 4: Module Setup",
+    "tableConfig": "Step 5: Data Mapping",
+    "finalOutput": "Step 6: Compliance Export"
+  },
+  "header": {
+    "title": "| 04. Document Module Configuration",
+    "subtitle": "Configure RAMS headers and HSE-mandated Permit to Work (PTW) elements."
+  },
+  "toolbar": {
+    "headerTextSetting": "RAMS Header Configuration",
+    "docTitle": "Standard Document Title",
+    "appr1": "Originator Slot",
+    "appr2": "Reviewer Slot",
+    "appr3": "Approver Slot",
+    "signatureSetting": "Authorised Personnel Signatures",
+    "addSignatureRow": "Add Personnel Row (8 Seats per Row)"
+  },
+  "btn": {
+    "prev": "Return to Hazard Analysis",
+    "next": "Proceed to Table Config"
+  }
+}

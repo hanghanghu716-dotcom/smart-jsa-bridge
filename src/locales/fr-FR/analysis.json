@@ -1,0 +1,73 @@
+{
+  "alert": {
+    "selectItem": "Veuillez sélectionner les éléments à ajouter.",
+    "enterFactor": "Veuillez d'abord saisir un facteur de danger.",
+    "selectCurrentMeasure": "Veuillez d'abord sélectionner une mesure de sécurité actuelle.",
+    "manualFactor": "Il s'agit d'un danger saisi manuellement. Veuillez saisir la mesure directement.",
+    "needCurrentMeasure": "Veuillez d'abord sélectionner une mesure de sécurité actuelle via le système de recommandation.",
+    "noData": "Aucune donnée liée trouvée. Veuillez saisir directement.",
+    "confirmMain": "Êtes-vous sûr de vouloir revenir à l'écran principal ? Toutes les données non sauvegardées seront perdues.",
+    "loginRequired": "Connexion requise."
+  },
+  "libModal": {
+    "title": "Appeler la bibliothèque d'étapes de tâche",
+    "empty": "Aucune bibliothèque sauvegardée trouvée.",
+    "unclassified": "Non classé",
+    "backBtn": "⬅️ Retour à la liste",
+    "step": "Étape",
+    "riskCount": " Dangers inclus"
+  },
+  "recModal": {
+    "titleCurrent": "Mesure de sécurité actuelle",
+    "titleAdvanced": "Recommandation avancée",
+    "descCurrent": "Règles de sécurité enregistrées pour ce danger.",
+    "descAdvanced": "Recommandations de niveau supérieur pour compléter les mesures actuelles.",
+    "selectBtn": "Sélectionner"
+  },
+  "step": {
+    "basicInfo": "Infos de base",
+    "procedure": "Procédure de travail",
+    "riskAnalysis": "Analyse des risques",
+    "moduleConfig": "Configuration du module",
+    "tableConfig": "Configuration du tableau",
+    "finalOutput": "Rendu final"
+  },
+  "form": {
+    "title": "03. Analyse des dangers et des risques",
+    "typeStandard": "(Standard)",
+    "typeAdvanced": "(Avancé)",
+    "currentStep": "Étape actuelle"
+  },
+  "filter": {
+    "label": "⚠️ Filtre haut risque",
+    "auto": "(Suggestion auto)",
+    "loadLibBtn": "📂 Charger l'étape de bibliothèque"
+  },
+  "base": {
+    "label": "Base de connaissances sécurité (Extraction des dangers)",
+    "addEmptyBtn": "+ Ajouter vide",
+    "addBulkBtn": "✓ Ajouter les éléments sélectionnés",
+    "emptyRec": "Aucun danger recommandé trouvé.",
+    "etc": "Divers"
+  },
+  "result": {
+    "label": "Évaluation et mesures",
+    "freq": "Fréq",
+    "sev": "Grav"
+  },
+  "table": {
+    "factor": "Facteur de danger",
+    "measure": "Mesure de réduction",
+    "currentMeasure": "Mesure actuelle",
+    "advancedMeasure": "Rec. avancée",
+    "delete": "Supprimer",
+    "recMeasureBtn": "Recommander",
+    "recAdvancedBtn": "Avancé"
+  },
+  "btn": {
+    "prevStep1": "Étape préc. (Procédure)",
+    "prevStep2": "Étape de tâche préc.",
+    "nextComplete": "Terminer l'analyse et configurer le module",
+    "nextStep": "Analyser l'étape de tâche suivante"
+  }
+}

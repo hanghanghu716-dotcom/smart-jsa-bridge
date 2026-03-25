@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Vorsicht] Dieses Muster dient nur als Referenz. Gefährdungsbeurteilungen müssen auf der Grundlage tatsächlicher Prüfungen vor Ort durchgeführt werden.",
+    "text2": "Smart JSA Bridge haftet nicht für rechtliche Folgen, die sich aus der Verwendung dieses Materials ergeben."
+  },
+  "ui": {
+    "category": "JSA-MUSTER FÜR DEN BAU",
+    "mainTitle1": "JSA für Bauarbeiten",
+    "mainTitle2": "Musterleitfaden (10 Typen)",
+    "description1": "Prüfen Sie die wichtigsten Gefahren und Maßnahmen für jeden Prozess. Bilder ansehen",
+    "description2": "und das Original-PDF über die Schaltfläche unten herunterladen.",
+    "labelRed": "⚠ Hauptgefahren",
+    "labelBlue": "🛡 Minderungsmaßnahmen",
+    "previewLabel": "Vorschau-Muster (Bild)",
+    "downloadBtn": "Original-PDF-Muster herunterladen"
+  },
+  "list": [
+    { "id": "CONST-01", "title": "Deckenrahmenmontage und Trockenbauwandbefestigung", "hazard": "Sturz durch unverriegelte Leiterscharniere, Unfälle mit Nagelpistolen", "measure": "Sichtprüfung der Verriegelung, schnittfeste Handschuhe und Schutzbrille tragen", "pages": 1 },
+    { "id": "CONST-02", "title": "Hauptrohrleitungsschweißen und Pumpenmontage im Maschinenraum", "hazard": "Feuer durch Schweißspritzer, Platzen während der Druckprüfung", "measure": "Brandwache einteilen, schrittweise Druckbeaufschlagung innerhalb 1,1x Auslegungsdruck", "pages": 1 },
+    { "id": "CONST-03", "title": "Aushub und Verfüllung für Entwässerungssysteme", "hazard": "Explosion durch Beschädigung unterirdischer Versorgungsleitungen, Verschüttung durch Böschungsbruch", "measure": "Leitungssuche kombiniert mit manuellem Schachten, sichere Böschungsneigung einhalten", "pages": 1 },
+    { "id": "CONST-04", "title": "Urethan-Dachabdichtung und wasserbasierte Außenlackierung", "hazard": "Sturz von Dachkanten, Erstickung durch Lösungsmitteldämpfe", "measure": "Sicherungsseil am Auffanggurt befestigen, Zwangsbelüftung über Gebläse implementieren", "pages": 1 },
+    { "id": "CONST-05", "title": "Außenwandwartung und Montage von Geräten in großer Höhe", "hazard": "Sturz durch Seilbruch, Quetschung durch Hubarbeitsbühnen (Miete)", "measure": "Separate vertikale Sicherungsseile installieren, Überfahrtschutzeinrichtungen inspizieren", "pages": 1 },
+    { "id": "CONST-06", "title": "Systemgerüstmontage und -demontage für Außenarbeiten", "hazard": "Einsturz der gesamten Struktur, Aufprall durch herabfallende Bauteile", "measure": "Wandanker normgerecht installieren, Bodenausschlusszonen einrichten", "pages": 1 },
+    { "id": "CONST-07", "title": "Bewehrungsverarbeitung und Kranhebearbeiten", "hazard": "Materialsturz durch Versagen der Anschlagmittel, Verfangen in Verarbeitungsmaschinen", "measure": "2-Strang-Anschlagregeln befolgen, spezielle Schiebestöcke während der Verarbeitung verwenden", "pages": 1 },
+    { "id": "CONST-08", "title": "Betonierarbeiten für Platten und Balken", "hazard": "Umkippen des Pumpenwagens, Aufprall durch Schlauchablösung und Peitschen", "measure": "Untergrund der Abstützungen verstärken, Verbindungsklemmen 및 Ringe inspizieren", "pages": 1 },
+    { "id": "CONST-09", "title": "Abbruch alter Flachbauten und Abfallentsorgung", "hazard": "Plötzlicher Einsturz während des Abbruchs, Risiko einer Asbestexposition", "measure": "Top-Down-Abbruchprinzip folgen, Asbesterkundung vor dem Abbruch prüfen", "pages": 1 },
+    { "id": "CONST-10", "title": "Decken-Elektroverkabelung und Montage von Brandschutzeinrichtungen", "hazard": "Elektrischer Schlag an spannungsführenden Teilen, Sturz durch Übergreifen auf Leitern", "measure": "LOTO am Schaltschrank implementieren, Spannungsfreiheit mit Detektor prüfen", "pages": 1 }
+  ]
+}

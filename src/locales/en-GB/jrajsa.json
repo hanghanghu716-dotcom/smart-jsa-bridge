@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "regulation": "Risk Assessment Guidelines",
+    "jrajsa": "JRA/JSA Practical Process",
+    "ppe": "About Personal Protective Equipment",
+    "riskClass": "General / High-Risk Tasks"
+  },
+  "hero": {
+    "tag": "INTEGRATED SAFETY COMPLIANCE",
+    "title1": "Practical JRA/JSA Process",
+    "title2": "& Integrated Legal Compliance Guidelines",
+    "subTitle1": "Providing professional methodologies to comply with HSE standards",
+    "subTitle2": "and achieve zero incidents in the workplace."
+  },
+  "section3": {
+    "title": "3. Standard 9-Step JSA Process",
+    "process": {
+      "step1": { "idx": "01", "title": "Establish SOP", "desc": "Establish standard JSA operating guidelines tailored to the site characteristics." },
+      "step2": { "idx": "02", "title": "Form Analysis Team", "desc": "Match supervisors, safety experts, and skilled field workers." },
+      "step3": { "idx": "03", "title": "Select Target Tasks", "desc": "Prioritise high-risk (JRA) and non-routine operations." },
+      "step4": { "idx": "04", "title": "Execute Assessment", "desc": "Break down steps, identify hazards, and establish control measures." },
+      "step5": { "idx": "05", "title": "Review & Approve", "desc": "Review field applicability of measures and obtain final approval." },
+      "step6": { "idx": "06", "title": "Follow-up Actions", "desc": "Implement physical measures like equipment upgrades and PPE provisioning." },
+      "step7": { "idx": "07", "title": "Record & Train", "desc": "Database analysis results and conduct dissemination training for workers." },
+      "step8": { "idx": "08", "title": "Field Application", "desc": "Deploy the confirmed safe work procedures into actual operations." },
+      "step9": { "idx": "09", "title": "Performance Evaluation", "desc": "Continuously monitor implementation and validate the effectiveness of measures." }
+    }
+  },
+  "section4": {
+    "title": "4. Mandatory Items for Risk Assessment Rules",
+    "rules": {
+      "item1": { "title": "Purpose & Method", "desc": "Objectives and selection of site-specific techniques." },
+      "item2": { "title": "Organisation & Roles", "desc": "Specific R&R for management and field workers." },
+      "item3": { "title": "Target Selection", "desc": "Comprehensive listing of all tasks and equipment." },
+      "item4": { "title": "Timing & Frequency", "desc": "Conditions for initial, periodic, and special assessments." },
+      "item5": { "title": "Risk Criteria", "desc": "Unique standards for calculating risk levels." },
+      "item6": { "title": "Record Retention", "desc": "Standardisation of forms and retention guidelines (e.g., 3–5 years)." }
+    }
+  },
+  "section5": {
+    "title": "5. JRA vs JSA Comparison",
+    "table": {
+      "header": {
+        "col1": "Category",
+        "col2": "JRA (Job Risk Assessment)",
+        "col3": "JSA (Job Safety Analysis)"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Target Scope",
+          "col2": "Entire process and facilities",
+          "col3": "Specific task behaviours and steps"
+        },
+        "row2": {
+          "col1": "Key Participants",
+          "col2": "Managers and Safety Experts",
+          "col3": "Core Field Workers"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. Mandatory JSA Checklist",
+    "checklist": {
+      "item1": "Is there an absence of or unclear Standard Operating Procedure (SOP)?",
+      "item2": "Is it a task where undesired incidents or near-misses frequently occur?",
+      "item3": "Do the workers lack experience in this specific process?",
+      "item4": "Does the task require a high level of skill or specialised training?"
+    }
+  },
+  "section7": {
+    "title": "7. Quantitative Risk Calculation Logic",
+    "math": {
+      "risk": "Risk",
+      "frequency": "Frequency",
+      "severity": "Severity",
+      "caption": "Risk = Probability (Frequency) of occurrence × Severity of consequence"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

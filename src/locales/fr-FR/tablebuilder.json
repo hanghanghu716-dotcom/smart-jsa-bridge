@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Veuillez saisir un nom pour le modèle.",
+    "needLogin": "Connexion requise pour enregistrer.",
+    "saveError": "Une erreur s'est produite lors de l'enregistrement du modèle.",
+    "saveSuccess": "La configuration complète de la mise en page a été enregistrée avec succès.",
+    "exceedWidth": "La largeur totale des colonnes personnalisées ne peut pas dépasser la limite maximale."
+  },
+  "tags": {
+    "DATA_STEP_NO": "N° d'étape",
+    "DATA_STEP_TITLE": "Étapes de la tâche",
+    "DATA_PHOTO": "Photo de référence",
+    "DATA_HAZARD": "Dangers potentiels",
+    "DATA_CURRENT_MEASURE": "Mesures actuelles",
+    "DATA_RECOMMEND_MEASURE": "Actions recommandées",
+    "DATA_FREQUENCY": "Probabilité",
+    "DATA_SEVERITY": "Gravité",
+    "DATA_RISK": "Niveau de risque",
+    "DATA_KRAS_STEP": "Description détaillée de la tâche",
+    "DATA_KRAS_HAZARD_CLASS": "Catégorie de danger",
+    "DATA_KRAS_HAZARD_DETAIL": "Scénario de danger & Conséquence",
+    "DATA_KRAS_BASIS": "Base légale/normative",
+    "DATA_KRAS_CURRENT": "Mesures de sécurité actuelles",
+    "DATA_KRAS_RECOMMEND": "Mesures de réduction des risques",
+    "DATA_KRAS_AFTER": "Risque résiduel",
+    "DATA_KRAS_SCHED": "Date cible",
+    "DATA_KRAS_COMP": "Date d'achèvement",
+    "DATA_KRAS_MANAGER": "Responsable"
+  },
+  "groups": {
+    "hazard": "Identification des dangers",
+    "risk": "Évaluation des risques"
+  },
+  "preview": {
+    "freqBreak": "Probabilité\n(Fréq)",
+    "sevBreak": "Gravité\n(Conséq)",
+    "afterBreak": "Risque\nrésiduel",
+    "schedBreak": "Date\ncible",
+    "example": "(Données d'exemple)",
+    "dataArea": "... Zone de données réelle de l'évaluation des risques ...",
+    "docHeader": "[Zone d'en-tête du document]",
+    "signatureArea": "[Zone de signature des participants]"
+  },
+  "step": {
+    "basicInfo": "Étape 1 : Infos générales",
+    "procedure": "Étape 2 : Séquence des tâches",
+    "riskAnalysis": "Étape 3 : Analyse des dangers",
+    "moduleConfig": "Étape 4 : Configuration du module",
+    "tableConfig": "Étape 5 : Mapping des données",
+    "finalOutput": "Étape 6 : Export final"
+  },
+  "header": {
+    "title": "| 05. Configuration du tableau de données",
+    "subtitle": "Ajustez précisément l'ordre et la largeur des colonnes pour le tableau principal d'évaluation des dangers."
+  },
+  "toolbar": {
+    "saveTitle": "Enregistrer la mise en page intégrée",
+    "saveBtn": "Enregistrer la configuration actuelle complète",
+    "saveDesc": "* Enregistre les paramètres du module de l'étape 4 avec les paramètres actuels du tableau.",
+    "orientationTitle": "Orientation du tableau",
+    "landscape": "Paysage (Recommandé)",
+    "portrait": "Portrait",
+    "zoom": "Zoom aperçu",
+    "columnConfig": "Configuration des colonnes (Drag & Drop)",
+    "riskToggle": "Évaluation des risques (Combiné)",
+    "riskGroupLabel": "Évaluation des risques (Prob·Grav·Niveau)",
+    "newItem": "Nouvelle colonne",
+    "width": "Largeur",
+    "addCustom": "+ Ajouter une colonne personnalisée"
+  },
+  "btn": {
+    "prev": "Précédent : Config du module (Étape 4)",
+    "next": "Passer à l'export final (Étape 6)"
+  },
+  "modal": {
+    "title": "Enregistrer comme modèle personnalisé",
+    "desc": "Les paramètres du module de l'étape 4 et les configurations actuelles du tableau seront fusionnés et enregistrés.",
+    "placeholder": "Saisir le nom du modèle à enregistrer",
+    "cancel": "Annuler",
+    "save": "Enregistrer"
+  }
+}

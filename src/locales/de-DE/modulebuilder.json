@@ -1,0 +1,67 @@
+{
+  "default": {
+    "docTitle": "Gefährdungsbeurteilung (GBU)",
+    "appr1": "Ersteller",
+    "appr2": "Prüfer",
+    "appr3": "Bevollmächtigter Genehmiger"
+  },
+  "table": {
+    "projectName": "Projekt-/Vertragsname",
+    "approval": "Compliance-Genehmigung",
+    "workLocation": "Spezifischer Arbeitsort",
+    "department": "Geschäftseinheit/Abt.",
+    "workDate": "Gültigkeitsdatum",
+    "ppe": "Erforderliche PSA",
+    "highRiskWork": "Kritische Gefährdungen",
+    "participants": "Mitglieder der Arbeitsgruppe",
+    "signature": "(Unterschrift)"
+  },
+  "ppe": {
+    "helmet": "Kopfschutz (Schutzhelm)",
+    "shoes": "Schutzschuhe",
+    "glasses": "Augen- und Gesichtsschutz",
+    "safetyBelt": "Persönliche Absturzsicherung",
+    "mask": "Atemschutz",
+    "gloves": "Handschutz (Schutzhandschuhe)",
+    "etc": "Spezialisierte PSA"
+  },
+  "permit": {
+    "hotWork": "Erlaubnisschein für Feuerarbeiten",
+    "confinedSpace": "Genehmigung für enge Räume",
+    "electrical": "LOTO (Freischalten/Sichern)",
+    "highElevation": "Absturzsicherungsplan",
+    "heavyLifting": "Plan für kritische Hebevorgänge",
+    "excavation": "Ausschachtung & Gräben",
+    "etc": "Andere Sondergenehmigungen"
+  },
+  "preview": {
+    "header": "Vorschau der GBU-Struktur (DGUV Standard)",
+    "tableAreaTitle": "[Datenbereich Gefährdungsbeurteilung]",
+    "tableAreaDesc": "Gefährdungsermittlung und Minderungsmaßnahmen werden hier automatisch ausgefüllt."
+  },
+  "step": {
+    "basicInfo": "Schritt 1: Basis-Info",
+    "procedure": "Schritt 2: Arbeitsablauf",
+    "riskAnalysis": "Schritt 3: Gefährdungsanalyse",
+    "moduleConfig": "Schritt 4: Modul-Konfig",
+    "tableConfig": "Schritt 5: Daten-Mapping",
+    "finalOutput": "Schritt 6: Compliance-Export"
+  },
+  "header": {
+    "title": "| 04. Dokumentenmodul-Konfiguration",
+    "subtitle": "Konfigurieren Sie GBU-Header und gesetzlich vorgeschriebene PTW-Elemente."
+  },
+  "toolbar": {
+    "headerTextSetting": "Konfiguration des GBU-Headers",
+    "docTitle": "Standard-Dokumententitel",
+    "appr1": "Feld: Ersteller",
+    "appr2": "Feld: Prüfer",
+    "appr3": "Feld: Genehmiger",
+    "signatureSetting": "Unterschriften bevollmächtigter Personen",
+    "addSignatureRow": "Personalzeile hinzufügen (8 Plätze pro Zeile)"
+  },
+  "btn": {
+    "prev": "Zurück zur Gefährdungsanalyse",
+    "next": "Weiter zur Tabellen-Konfig"
+  }
+}

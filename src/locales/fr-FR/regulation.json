@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "GUIDE ADMINISTRATIF DE SÉCURITÉ",
+    "mainTitle": "Guide Professionnel pour l'Établissement des<br />Directives d'Évaluation des Risques & Conformité Légale",
+    "subTitle": "Directives détaillées sur la rédaction des protocoles de mise en œuvre, cœur du système de management de la santé et sécurité au travail (SST)."
+  },
+  "section1": {
+    "title": "1. Qu'est-ce que les directives d'évaluation des risques ?",
+    "para": "Les directives d'évaluation des risques sont les <strong>procédures opérationnelles standard (SOP)</strong> permettant à l'employeur d'identifier les dangers, d'évaluer les risques et de mettre en œuvre des mesures de prévention. Il s'agit d'une obligation légale majeure (DUERP).",
+    "infoTitle": "Objectif du maintien des directives",
+    "infoList": {
+      "item1": "Clarifier les responsabilités et l'autorité pour établir un système de management de la sécurité.",
+      "item2": "Maintenir un processus d'évaluation des risques objectif et cohérent.",
+      "item3": "Découvrir les dangers réels et mettre en œuvre des améliorations via la participation des salariés.",
+      "item4": "Sécuriser les preuves documentaires pour répondre aux audits légaux et aux inspections de l'Inspection du Travail."
+    }
+  },
+  "section2": {
+    "title": "2. Éléments obligatoires dans les directives",
+    "para": "Conformément au Code du Travail et aux bonnes pratiques, les directives internes doivent spécifier les 10 points suivants :",
+    "items": {
+      "item1": { "title": "Objectif & Méthodologie", "content": "Buts de l'évaluation et sélection des techniques adaptées à l'activité de l'entreprise." },
+      "item2": { "title": "Organisation & Rôles", "content": "Définition claire des rôles et responsabilités (R&R) de l'employeur, de l'encadrement et des salariés." },
+      "item3": { "title": "Champ d'Application", "content": "Inclusion des locaux, machines, équipements et de toutes les tâches (habituelles ou non)." },
+      "item4": { "title": "Calendrier & Fréquence", "content": "Déclencheurs spécifiques pour les évaluations initiales, annuelles et suite à des incidents." },
+      "item5": { "title": "Identification des Dangers", "content": "Méthodes pratiques (visites de site, entretiens avec les salariés) pour déceler les risques." },
+      "item6": { "title": "Évaluation du Risque", "content": "Établissement de critères objectifs (matrice probabilité/gravité) pour hiérarchiser les risques." },
+      "item7": { "title": "Mesures de Prévention", "content": "Priorisation des actions selon la hiérarchie des mesures et vérification de leur efficacité." },
+      "item8": { "title": "Participation des Salariés", "content": "Approches pour recueillir les avis des travailleurs lors de l'identification des dangers." },
+      "item9": { "title": "Conservation des Dossiers", "content": "Modèles standardisés pour le DUERP et durée de conservation (minimum 40 ans pour les versions successives)." },
+      "item10": { "title": "Formation & Communication", "content": "Procédures pour communiquer les résultats aux travailleurs et organiser les formations nécessaires." }
+    }
+  },
+  "section3": {
+    "title": "3. Types et calendrier des évaluations",
+    "table": {
+      "header": {
+        "col1": "Type d'évaluation",
+        "col2": "Moment & Conditions",
+        "col3": "Notes clés"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Évaluation Initiale",
+          "col2": "Dès l'embauche du premier salarié ou la création de l'entreprise.",
+          "col3": "Obligation légale de base (DUERP)."
+        },
+        "row2": {
+          "col1": "Mise à jour annuelle",
+          "col2": "Effectuée au moins une fois par an (pour les entreprises de plus de 11 salariés).",
+          "col3": "Révision périodique obligatoire."
+        },
+        "row3": {
+          "col1": "Mise à jour ponctuelle",
+          "col2": "Lors de toute décision d'aménagement important ou après un accident.",
+          "col3": "Requise immédiatement en cas de changement de situation."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Responsabilité juridique et sanctions",
+    "para": "Le non-respect des obligations d'évaluation des risques peut entraîner de lourdes sanctions pénales et civiles.",
+    "legalList": {
+      "item1": "<strong>Absence de DUERP :</strong> Amende prévue pour les contraventions de 5ème classe (1 500 €, 3 000 € en cas de récidive).",
+      "item2": "<strong>Défaut de mise à disposition :</strong> Sanctions pénales pour délit d'entrave si le document n'est pas accessible aux instances représentatives du personnel.",
+      "item3": "<strong>En cas d'accident grave :</strong> L'absence d'évaluation peut caractériser une faute inexcusable de l'employeur, augmentant drastisch la responsabilité civile de l'entreprise."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Conçu par <strong>yizuno</strong>"
+}

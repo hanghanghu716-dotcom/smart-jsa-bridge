@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Caution] This sample is for reference only. Risk assessments must be conducted based on actual inspections tailored to specific processes.",
+    "text2": "Smart JSA Bridge is not responsible for any legal consequences arising from the use of this material."
+  },
+  "ui": {
+    "category": "CHEMICAL & GAS SAFETY",
+    "mainTitle1": "Chemical & Gas Work JSA",
+    "mainTitle2": "Sample Guides (10 Types)",
+    "description1": "Standard risk analysis data for processes involving high-pressure gas",
+    "description2": "and toxic chemicals. Please check the detailed images.",
+    "labelRed": "⚠ Critical Hazard Factors",
+    "labelBlue": "🛡 Essential Safety Measures",
+    "previewLabel": "JSA Report Preview",
+    "downloadBtn": "Download Full Original PDF"
+  },
+  "list": [
+    { "id": "CHEM-01", "title": "Shell & Tube Heat Exchanger Inspection & High-Pressure Water Jet Cleaning", "hazard": "Tissue penetration by high-pressure water, chemical burns from residual fluids", "measure": "Wear specialized protective suits, fully open drain valves, and follow LOTO procedures", "pages": 1 },
+    { "id": "CHEM-02", "title": "High-Pressure Hydrogen Compressor Packing Replacement", "hazard": "Explosion due to hydrogen leakage, asphyxiation due to nitrogen purging", "measure": "Verify 0% hydrogen with portable gas detectors, wear anti-static clothing, and use non-sparking tools", "pages": 1 },
+    { "id": "CHEM-03", "title": "Toxic Chemical Piping Valve & Gasket Replacement", "hazard": "Splashing of residual liquids during flange disassembly, toxic gas poisoning", "measure": "Wear full-face gas masks, loosen bolts sequentially away from the body", "pages": 1 },
+    { "id": "CHEM-04", "title": "Flare Stack Tip Replacement & Ignition System Maintenance", "hazard": "Falls due to high winds, fire exposure if residual gas ignites", "measure": "Monitor wind speed (prohibited above 10m/s), use double-lanyard safety harnesses, and verify DCS isolation", "pages": 1 },
+    { "id": "CHEM-05", "title": "Function Check of Emergency Disaster Prevention Equipment", "hazard": "Impact from hose detachment during high-pressure water discharge, gas inhalation", "measure": "Verify hose safety pin engagement, work with back to the wind, and use dedicated caps", "pages": 1 },
+    { "id": "CHEM-06", "title": "PSA Adsorption Tower Lower Automatic Valve Inspection", "hazard": "Crushing due to unexpected valve operation, respiratory issues from adsorbent dust", "measure": "Remove residual pneumatic pressure, implement LOTO, and wear high-efficiency dust masks", "pages": 1 },
+    { "id": "CHEM-07", "title": "Internal Visual Inspection & NDT of High-Pressure Hydrogen Storage Tanks", "hazard": "Asphyxiation in confined space, explosion caused by lighting leakage", "measure": "Measure gas concentration at top/middle/bottom, use forced ventilation and explosion-proof low-voltage (under 24V) lighting", "pages": 1 },
+    { "id": "CHEM-08", "title": "High-Pressure Hydrogen Tanker Unloading & Charging Bay Connection", "hazard": "Crushing due to vehicle rolling, hydrogen gas explosion due to static discharge", "measure": "Install 2 or more wheel chocks, connect grounding clamps first, and verify resistance", "pages": 1 },
+    { "id": "CHEM-09", "title": "DCS/PLC Panel Inspection & Field Transmitter Calibration", "hazard": "Unexpected process shutdown due to interlock failure, electric shock from live parts", "measure": "Double-check DCS bypass status, verify use of insulated gloves and anti-static clothing", "pages": 1 },
+    { "id": "CHEM-10", "title": "Cooling Water System Biocide & Corrosion Inhibitor Chemical Replenishment", "hazard": "Gas explosion if different chemicals mix, chemical eruption when opening containers", "measure": "Double-check chemical labels, store separately, and relieve internal pressure while wearing face protection", "pages": 1 }
+  ]
+}

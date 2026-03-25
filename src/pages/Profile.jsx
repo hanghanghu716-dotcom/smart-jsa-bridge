@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 export default function Profile() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 다국어 네비게이트 사용
+  const { t } = useTranslation('profile'); // profile 네임스페이스 사용
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     username: '', company_name: '', bio: '', sector: '',
@@ -49,7 +53,7 @@ export default function Profile() {
   const handleUpdate = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     const { error } = await supabase.from('profiles').update(profile).eq('id', user.id);
-    if (!error) alert("설정이 안전하게 저장되었습니다.");
+    if (!error) alert(t('messages.updateSuccess')); // ✅ [다국어화]
   };
 
   const handleSignatureUpload = async (e) => {
@@ -62,31 +66,34 @@ export default function Profile() {
       const { data: { publicUrl } } = supabase.storage.from('user_assets').getPublicUrl(filePath);
       setProfile(prev => ({ ...prev, signature_url: publicUrl }));
       await supabase.from('profiles').update({ signature_url: publicUrl }).eq('id', user.id);
-      alert("디지털 서명이 등록되었습니다.");
+      alert(t('messages.signatureSuccess')); // ✅ [다국어화]
     }
   };
 
   const handleGlobalSignOut = async () => {
-    if (window.confirm("모든 기기에서 원격 로그아웃 하시겠습니까?")) {
+    if (window.confirm(t('messages.confirmRemoteLogout'))) { // ✅ [다국어화]
       await supabase.auth.signOut({ scope: 'global' }); navigate('/login');
     }
   };
 
   const handleWithdrawal = async () => {
-    if (withdrawalConfirmText !== "계정 삭제에 동의합니다.") {
-      alert("동의 문구를 정확히 입력하십시오."); return;
+    if (withdrawalConfirmText !== t('messages.withdrawConsentText')) { // ✅ [다국어화]
+      alert(t('messages.withdrawMismatch')); // ✅ [다국어화]
+      return;
     }
-    if (window.confirm("정말 탈퇴하시겠습니까?")) {
+    if (window.confirm(t('messages.confirmWithdrawal'))) { // ✅ [다국어화]
       await supabase.auth.signOut(); navigate('/login');
     }
   };
 
   const handleLogoClick = () => {
-    if (window.confirm("메인 화면으로 이동하시겠습니까?")) navigate('/');
+    if (window.confirm(t('messages.confirmGoMain'))) navigate('/'); // ✅ [다국어화]
   };
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
         <div style={styles.dimOverlay} />
@@ -104,28 +111,28 @@ export default function Profile() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>계정 정보 관리 및 활동 인사이트</h2>
+              <h2 style={styles.formTitle}>{t('ui.title')}</h2>
             </div>
 
             <div style={styles.scrollArea}>
               <div style={styles.formGrid}>
                 {/* 왼쪽 섹션: 통계 및 기본 프로필 */}
                 <section style={styles.leftSection}>
-                  <label style={styles.label}>지식 활동 통계</label>
+                  <label style={styles.label}>{t('ui.statsLabel')}</label>
                   <div style={styles.statsRow}>
                     <div style={styles.statCard}>
-                      <span style={styles.statTitle}>내 문서</span>
+                      <span style={styles.statTitle}>{t('ui.myDocs')}</span>
                       <strong style={styles.statValue}>{stats.myCount}</strong>
                     </div>
                     <div style={styles.statCard}>
-                      <span style={styles.statTitle}>스크랩 수</span>
+                      <span style={styles.statTitle}>{t('ui.scraps')}</span>
                       <strong style={{...styles.statValue, color: '#00ff88'}}>{stats.scrapCount}</strong>
                     </div>
                   </div>
 
                   <div style={styles.row}>
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>활동 닉네임</label>
+                      <label style={styles.label}>{t('ui.nickname')}</label>
                       <input 
                         style={styles.input} 
                         value={profile.username} 
@@ -133,27 +140,27 @@ export default function Profile() {
                       />
                     </div>
                     <div style={styles.flexItem}>
-                      <label style={styles.label}>종사 산업 분야</label>
+                      <label style={styles.label}>{t('ui.sector')}</label>
                       <select 
                         style={styles.selectInput} 
                         value={profile.sector || ''} 
                         onChange={e => setProfile({...profile, sector: e.target.value})}
                       >
-                        <option value="">분야 선택</option>
-                        <option value="건설 / 토목 / 건축">건설 / 토목 / 건축</option>
-                        <option value="제조 / 플랜트 / 화학">제조 / 플랜트 / 화학</option>
-                        <option value="에너지 / 전기 / 가스">에너지 / 전기 / 가스</option>
-                        <option value="운송 / 물류 / 창고">운송 / 물류 / 창고</option>
-                        <option value="안전관리 / 전문 컨설팅">안전관리 / 전문 컨설팅</option>
-                        <option value="IT / 시스템 / 엔지니어링">IT / 시스템 / 엔지니어링</option>
-                        <option value="공공기관 / 교육 / 보건">공공기관 / 교육 / 보건</option>
-                        <option value="기타 산업군">기타 산업군</option>
+                        <option value="">{t('sectors.default')}</option>
+                        <option value="건설 / 토목 / 건축">{t('sectors.construction')}</option>
+                        <option value="제조 / 플랜트 / 화학">{t('sectors.manufacturing')}</option>
+                        <option value="에너지 / 전기 / 가스">{t('sectors.energy')}</option>
+                        <option value="운송 / 물류 / 창고">{t('sectors.logistics')}</option>
+                        <option value="안전관리 / 전문 컨설팅">{t('sectors.safety')}</option>
+                        <option value="IT / 시스템 / 엔지니어링">{t('sectors.it')}</option>
+                        <option value="공공기관 / 교육 / 보건">{t('sectors.public')}</option>
+                        <option value="기타 산업군">{t('sectors.etc')}</option>
                       </select>
                     </div>
                   </div>
 
                   <div style={styles.inputGroup}>
-                    <label style={styles.label}>소속 조직 (회사명)</label>
+                    <label style={styles.label}>{t('ui.company')}</label>
                     <input 
                       style={styles.input} 
                       value={profile.company_name} 
@@ -162,23 +169,23 @@ export default function Profile() {
                   </div>
 
                   <div style={styles.inputGroup}>
-                    <label style={styles.label}>전문 분야 소개 (BIO)</label>
+                    <label style={styles.label}>{t('ui.bio')}</label>
                     <textarea 
                       style={styles.textarea} 
                       value={profile.bio} 
                       onChange={e => setProfile({...profile, bio: e.target.value})} 
-                      placeholder="본인의 전문 지식과 경력을 짧게 소개해 주세요."
+                      placeholder={t('ui.bioPlaceholder')}
                     />
                   </div>
                 </section>
 
                 {/* 오른쪽 섹션: 업무 환경 설정 및 서명 */}
                 <section style={styles.rightSection}>
-                  <label style={styles.label}>작업 환경 프리셋</label>
+                  <label style={styles.label}>{t('ui.presetTitle')}</label>
                   <div style={styles.presetBox}>
                     <div style={styles.row}>
                       <div style={styles.flexItem}>
-                        <label style={styles.subLabel}>기본 수행 부서</label>
+                        <label style={styles.subLabel}>{t('ui.department')}</label>
                         <input 
                           style={styles.inputSmall} 
                           value={profile.default_department} 
@@ -186,7 +193,7 @@ export default function Profile() {
                         />
                       </div>
                       <div style={styles.flexItem}>
-                        <label style={styles.subLabel}>기본 책임자</label>
+                        <label style={styles.subLabel}>{t('ui.manager')}</label>
                         <input 
                           style={styles.inputSmall} 
                           value={profile.default_manager} 
@@ -202,29 +209,29 @@ export default function Profile() {
                         style={styles.checkboxSmall}
                       />
                       <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: profile.default_publicity ? '#007bff' : '#888' }}>
-                        작성 시 자동 '공개' 상태 유지
+                        {t('ui.autoPublicity')}
                       </span>
                     </label>
                   </div>
 
-                  <label style={{...styles.label, marginTop: '1rem'}}>디지털 서명 데이터</label>
+                  <label style={{...styles.label, marginTop: '1rem'}}>{t('ui.signatureLabel')}</label>
                   <div style={styles.signCard}>
                     {profile.signature_url ? (
                       <img src={profile.signature_url} alt="Signature" style={styles.signImg} />
                     ) : (
-                      <div style={styles.noSign}>등록된 서명이 없습니다.</div>
+                      <div style={styles.noSign}>{t('ui.noSignature')}</div>
                     )}
                     <label style={styles.uploadBtn}>
-                      서명 파일 업로드 (PNG)
+                      {t('ui.uploadSignature')}
                       <input type="file" hidden accept="image/*" onChange={handleSignatureUpload} />
                     </label>
                   </div>
 
-                  <label style={{...styles.label, marginTop: '1rem'}}>보안 및 세션</label>
+                  <label style={{...styles.label, marginTop: '1rem'}}>{t('ui.securityLabel')}</label>
                   <div style={styles.sessionBox}>
                     <span style={styles.sessionEmail}>{sessionInfo?.user?.email}</span>
                     <button style={styles.globalLogoutBtn} onClick={handleGlobalSignOut}>
-                      원격 로그아웃
+                      {t('ui.remoteLogout')}
                     </button>
                   </div>
                 </section>
@@ -236,25 +243,25 @@ export default function Profile() {
                   style={styles.withdrawToggle} 
                   onClick={() => setIsWithdrawVisible(!isWithdrawVisible)}
                 >
-                  {isWithdrawVisible ? "▼ 탈퇴 창 닫기" : "계정 삭제를 원하시나요?"}
+                  {isWithdrawVisible ? t('ui.closeWithdraw') : t('ui.openWithdraw')}
                 </div>
                 {isWithdrawVisible && (
                   <div style={styles.withdrawForm}>
                     <div style={styles.withdrawInfo}>
-                      탈퇴 시 모든 데이터는 즉시 파기되며 복구할 수 없습니다.
+                      {t('ui.withdrawWarning')}
                     </div>
                     <input 
                       style={styles.input} 
-                      placeholder="'계정 삭제에 동의합니다.'를 입력하세요"
+                      placeholder={t('ui.withdrawPlaceholder')}
                       value={withdrawalConfirmText}
                       onChange={e => setWithdrawalConfirmText(e.target.value)}
                     />
                     <button 
-                      style={{...styles.withdrawBtn, opacity: withdrawalConfirmText === "계정 삭제에 동의합니다." ? 1 : 0.5}}
+                      style={{...styles.withdrawBtn, opacity: withdrawalConfirmText === t('messages.withdrawConsentText') ? 1 : 0.5}}
                       onClick={handleWithdrawal}
-                      disabled={withdrawalConfirmText !== "계정 삭제에 동의합니다."}
+                      disabled={withdrawalConfirmText !== t('messages.withdrawConsentText')}
                     >
-                      데이터 영구 파기 및 탈퇴
+                      {t('ui.withdrawSubmit')}
                     </button>
                   </div>
                 )}
@@ -262,8 +269,8 @@ export default function Profile() {
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={() => navigate('/')}>메인 화면으로</button>
-              <button style={styles.nextBtn} onClick={handleUpdate}>업데이트 정보 저장하기</button>
+              <button style={styles.prevBtn} onClick={() => navigate('/')}>{t('ui.goMain')}</button>
+              <button style={styles.nextBtn} onClick={handleUpdate}>{t('ui.saveProfile')}</button>
             </div>
           </div>
         </main>
@@ -277,7 +284,7 @@ export default function Profile() {
 }
 
 const styles = {
-  // Info.jsx 디자인 시스템 계승
+  // 원본 디자인 시스템 스타일을 100% 보존합니다[cite: 9].
   wrapper: { position: 'relative', minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', overflowX: 'hidden' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.2)' },
@@ -291,8 +298,6 @@ const styles = {
   formHeader: { marginBottom: '1.8rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
   formTitle: { fontSize: '1.5rem', fontWeight: '800', color: '#fff' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
-  
-  // 레이아웃 및 폼 요소
   formGrid: { display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '3rem', marginBottom: '1rem' },
   leftSection: { display: 'flex', flexDirection: 'column', gap: '1.2rem' },
   rightSection: { display: 'flex', flexDirection: 'column', gap: '1.2rem' },
@@ -305,36 +310,25 @@ const styles = {
   row: { display: 'flex', gap: '1rem' },
   flexItem: { display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-
-  // 활동 통계 카드
   statsRow: { display: 'flex', gap: '1rem' },
   statCard: { flex: 1, backgroundColor: '#161616', border: '1px solid #222', borderRadius: '8px', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '0.5rem' },
   statTitle: { fontSize: '0.7rem', color: '#666', fontWeight: '800', textTransform: 'uppercase' },
   statValue: { fontSize: '2.2rem', color: '#007bff', fontWeight: '900' },
-
-  // 프리셋 및 세션 영역
   presetBox: { backgroundColor: '#161616', padding: '1.2rem', borderRadius: '8px', border: '1px solid #222', display: 'flex', flexDirection: 'column', gap: '1rem' },
   checkLabelHighlight: { display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', backgroundColor: '#1d1d1d', padding: '0.8rem', borderRadius: '6px', border: '1px solid #333' },
   checkboxSmall: { width: '1rem', height: '1rem' },
-  
   sessionBox: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#161616', padding: '1rem', borderRadius: '8px', border: '1px solid #222' },
   sessionEmail: { fontSize: '0.85rem', color: '#aaa', fontWeight: '500' },
   globalLogoutBtn: { padding: '6px 12px', backgroundColor: '#222', color: '#ff4d4d', border: '1px solid #333', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: '700' },
-
-  // 서명 영역
   signCard: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', backgroundColor: '#161616', padding: '1.5rem', borderRadius: '8px', border: '1px dashed #333' },
   signImg: { width: '180px', height: '80px', objectFit: 'contain', backgroundColor: '#fff', borderRadius: '4px', padding: '5px' },
   noSign: { fontSize: '0.8rem', color: '#444', fontStyle: 'italic' },
   uploadBtn: { fontSize: '0.8rem', color: '#007bff', fontWeight: '700', cursor: 'pointer', textDecoration: 'underline' },
-
-  // 위험 영역 (탈퇴)
   dangerZone: { marginTop: '4rem', padding: '2rem 0', borderTop: '1px solid #222' },
   withdrawToggle: { fontSize: '0.8rem', color: '#444', cursor: 'pointer', transition: 'color 0.2s', ':hover': { color: '#ff4d4d' } },
   withdrawForm: { marginTop: '1.5rem', backgroundColor: 'rgba(255, 77, 77, 0.05)', border: '1px solid rgba(255, 77, 77, 0.2)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '1rem' },
   withdrawInfo: { fontSize: '0.85rem', color: '#ff7675', fontWeight: '600' },
   withdrawBtn: { padding: '1rem', backgroundColor: '#ff4d4d', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '800', cursor: 'pointer' },
-
-  // 하단 버튼 Area
   btnArea: { marginTop: '2rem', display: 'flex', gap: '1.2rem' },
   prevBtn: { flex: 1, padding: '1.1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   nextBtn: { flex: 2, padding: '1.1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '900', fontSize: '1.1rem' },

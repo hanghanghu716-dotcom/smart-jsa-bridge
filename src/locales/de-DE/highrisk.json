@@ -1,0 +1,26 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Vorsicht] Dieses Muster dient nur als Referenz. Gefährdungsbeurteilungen müssen auf der Grundlage tatsächlicher Besichtigungen vor Ort durchgeführt werden.",
+    "text2": "Smart JSA Bridge haftet nicht für rechtliche Folgen, die sich aus der Verwendung dieses Materials ergeben."
+  },
+  "ui": {
+    "category": "SPEZIALIST FÜR HOCHRISIKOAURGABEN",
+    "mainTitle1": "JSA für Hochrisiko-Spezialarbeiten",
+    "mainTitle2": "Musterleitfaden (7 Typen)",
+    "description1": "Standard-Risikoanalysedaten für lebensbedrohliche Hochrisiko-Bauarbeiten.",
+    "description2": "Prüfen Sie die Bilder und laden Sie das Original-PDF herunter.",
+    "labelRed": "⚠ Kritische Gefährdungsfaktoren",
+    "labelBlue": "🛡 Wesentliche Sicherheitsmaßnahmen",
+    "previewLabel": "Vorschau des JSA-Berichts",
+    "downloadBtn": "Vollständiges Original-PDF herunterladen"
+  },
+  "list": [
+    { "id": "HR-01", "title": "Austausch alter Rohre und Flanschschweißreparaturen", "hazard": "Explosion durch brennbares Restgas, Feuer durch Schweißspritzer", "measure": "0% LEL verifizieren, brennbare Stoffe im Umkreis von 11m isolieren und Brandwache einteilen", "pages": 1 },
+    { "id": "HR-02", "title": "Inspektion von Hochspannungsschaltanlagen und Kabelaustausch", "hazard": "Stromschlag durch Fehlbedienung, Lichtbogen durch Restladung", "measure": "Individuelles LOTO implementieren, Spannungsfreiheit mit Detektor prüfen und Erdungsstange entladen", "pages": 1 },
+    { "id": "HR-03", "title": "Aushub und Verbaueinbau für Rohrleitungsverlegung", "hazard": "Explosion durch Beschädigung von Versorgungsleitungen, Verschüttung durch Böschungsbruch", "measure": "Leitungssuche und manuelles Schachten durchführen, sichere Böschungsneigung einhalten", "pages": 1 },
+    { "id": "HR-04", "title": "Durchstrahlungsprüfung (RT) zur Schweißnahtqualitätskontrolle", "hazard": "Strahlenexposition, unbefugter Zutritt zu Kontrollbereichen bei Nachtarbeit", "measure": "Sicherheitsabstand berechnen und Absperrung installieren, Wachpersonal einteilen und Dosisleistungsmessgerät mitführen", "pages": 1 },
+    { "id": "HR-05", "title": "Präzisionsinspektion und Rückstandsentfernung in stickstoffgespülten Tanks", "hazard": "Ersticken durch Reststickstoff, Isolation in engen Räumen", "measure": "Zwangslüftung vor/während des Betretens, Sauerstoffüberwachung und obligatorischer Sicherungsposten außen", "pages": 1 },
+    { "id": "HR-06", "title": "Kranheben und Transport für die Installation von Schwerlastgeräten", "hazard": "Umkippen des Geräts durch Bodenversagen, Quetschung durch herabfallende Last", "measure": "Abstützplatten verstärken, 2-Strang-Anschlagregeln folgen und 10-cm-Test-Hub durchführen", "pages": 1 },
+    { "id": "HR-07", "title": "Reparatur von Fabrikdachpaneelen und Einsatz von Hubarbeitsbühnen (Miete)", "hazard": "Sturz durch beschädigte korrodierte Dachpaneele, Stromschlag durch Hochspannungsleitungen", "measure": "Lastverteilende Gerüste installieren, Auffanggurte doppelt sichern und elektrischen Sicherheitsabstand einhalten", "pages": 1 }
+  ]
+}

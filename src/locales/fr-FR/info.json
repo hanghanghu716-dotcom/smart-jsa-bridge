@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "Êtes-vous sûr de vouloir revenir à l'écran principal ? Toutes les données non sauvegardées seront perdues.",
+    "projectNameRequired": "Le nombre du projet est obligatoire. Veuillez saisir le nom de la tâche."
+  },
+  "step": {
+    "basicInfo": "Infos de base",
+    "procedure": "Procédure de travail",
+    "riskAnalysis": "Analyse des risques",
+    "moduleConfig": "Configuration du module",
+    "tableConfig": "Configuration du tableau",
+    "finalOutput": "Rendu final"
+  },
+  "form": {
+    "title": "01. Informations de base et exigences de sécurité",
+    "projectName": "Nom du projet",
+    "required": "(Obligatoire)",
+    "department": "Département",
+    "workLocation": "Lieu de travail",
+    "workDate": "Date prévue",
+    "managerName": "Responsable de site",
+    "weather": "Météo sur site",
+    "hasNewWorker": "Inclut des travailleurs nouveaux/non qualifiés",
+    "participants": "Participants à l'évaluation",
+    "ppe": "Équipement de Protection Individuelle (EPI)",
+    "permits": "Travaux soumis à permis",
+    "equipment": "Équipement requis",
+    "additionalItems": "Demandes additionnelles"
+  },
+  "warning": {
+    "title": "Avis :",
+    "text": "Les résultats JSA que vous créez peuvent être exposés à d'autres utilisateurs conformément à notre politique de partage de données. Veuillez noter que si un contenu inapproprié tel que des informations inexactes, des faits faux ou de l'obscénité est inclus, il peut être supprimé sans préavis, et des avertissements et des restrictions d'utilisation peuvent être pris contre le compte."
+  },
+  "weather": {
+    "sunny": "Ensoleillé",
+    "cloudy": "Nuageux",
+    "rain": "Pluie",
+    "snow": "Neige",
+    "wind": "Vent fort",
+    "heatwave": "Canicule / Temp. élevée",
+    "coldwave": "Vague de froid / Temp. basse"
+  },
+  "ppe": {
+    "안전모": "Casque de sécurité",
+    "안전화": "Chaussures de sécurité",
+    "보안경": "Lunettes de protection",
+    "장갑": "Gants de protection",
+    "귀마개": "Bouchons d'oreilles",
+    "방진복": "Vêtements anti-poussière",
+    "방진마스크": "Masque anti-poussière"
+  },
+  "permit": {
+    "일반": "Général",
+    "화기": "Travaux à chaud",
+    "밀폐": "Espace confiné",
+    "정전": "Coupure électrique",
+    "굴착": "Excavation",
+    "방사선": "Radiation",
+    "고소": "Travail en hauteur",
+    "중량물": "Levage de charges lourdes",
+    "가연성가스": "Gaz inflammable"
+  },
+  "btn": {
+    "home": "Retour à l'accueil",
+    "next": "Définir la procédure"
+  }
+}

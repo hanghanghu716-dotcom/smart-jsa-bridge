@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate, Link 대신 커스텀 도구 사용
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner'; 
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+// ✅ [추가] 다국어 라우팅 훅 및 링크 컴포넌트
+import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function FactorDictionary() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
   const { t, i18n } = useTranslation('dictionary'); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
@@ -28,7 +31,6 @@ export default function FactorDictionary() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      // 카테고리 목록도 새로운 뷰에서 가져옵니다.
       const { data, error } = await supabase
         .from('v_factor_dictionary_detail') 
         .select('category')
@@ -45,7 +47,6 @@ export default function FactorDictionary() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      // ✅ SQL Editor에서 만든 새로운 통합 뷰 단일 호출
       let query = supabase
         .from('v_factor_dictionary_detail')
         .select('*', { count: 'exact' })
@@ -56,7 +57,6 @@ export default function FactorDictionary() {
       }
 
       if (searchTerm) {
-        // 평탄화된 컬럼명에 맞춰 검색 조건 단순화
         query = query.or(`hazard_name.ilike.%${searchTerm}%,measure_text.ilike.%${searchTerm}%,solution_text.ilike.%${searchTerm}%`);
       }
 
@@ -109,6 +109,8 @@ export default function FactorDictionary() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
@@ -133,11 +135,12 @@ export default function FactorDictionary() {
         </div>
         <nav style={styles.drawerNav}>
           <div style={styles.navCategory}>{t('drawer.contents')}</div>
-          <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.regulation')}</Link>
-          <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.jrajsa')}</Link>
-          <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.protectiveEquipment')}</Link>
-          <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.riskClassification')}</Link>
-          <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.dictionary')}</Link>
+          {/* ✅ [변경] LanguageLink를 사용하여 다국어 경로 유지 */}
+          <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.regulation')}</LanguageLink>
+          <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.jrajsa')}</LanguageLink>
+          <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.protectiveEquipment')}</LanguageLink>
+          <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.riskClassification')}</LanguageLink>
+          <LanguageLink to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.dictionary')}</LanguageLink>
         </nav>
       </div>
       {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
@@ -203,19 +206,16 @@ export default function FactorDictionary() {
                   <div key={`${item.id}-${index}`} style={styles.dataCard}>
                     <div style={styles.cardCategory}>{item.category}</div>
                     
-                    {/* ✅ 유해위험요인 (뷰의 hazard_name 컬럼) */}
                     <div style={styles.factorBox}>
                       <strong style={styles.boxLabelRed}>{t('data.riskFactorLabel')}</strong>
                       <p style={styles.boxContent}>{item.hazard_name || t('data.empty')}</p>
                     </div>
                     
-                    {/* ✅ 현재 안전대책 (뷰의 measure_text 컬럼) */}
                     <div style={styles.measureBox}>
                       <strong style={styles.boxLabelBlue}>{t('data.currentMeasureLabel')}</strong>
                       <p style={styles.boxContent}>{item.measure_text || t('data.empty')}</p>
                     </div>
 
-                    {/* ✅ 추가 안전대책 (뷰의 solution_text 컬럼) */}
                     <div style={styles.advancedMeasureBox}>
                       <strong style={styles.boxLabelGreen}>{t('data.advancedMeasureLabel')}</strong>
                       <p style={styles.boxContent}>{item.solution_text || t('data.empty')}</p>

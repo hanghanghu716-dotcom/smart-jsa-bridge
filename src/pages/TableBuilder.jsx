@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
 import { supabase } from '../supabaseClient';
-import { useTranslation } from 'react-i18next'; // ✅ [추가]
+import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO'; // ✅ [추가] 시킨 기능만 추가
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 시킨 기능만 추가
 
 /**
  * [TableBuilder 컴포넌트]
@@ -65,10 +67,10 @@ const getNormalizedOrder = (order) => {
 };
 
 export default function TableBuilder() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [수정] 기능 추가
   const location = useLocation();
-  const { t, i18n } = useTranslation(['tablebuilder']); // ✅ [추가]
-  const isEnglish = i18n.language?.startsWith('en'); // 영문 판별 변수 선언
+  const { t, i18n } = useTranslation(['tablebuilder']);
+  const isEnglish = i18n.language?.startsWith('en'); 
   
   const { 
     existingId, analysisData = [], formData = {}, participants = [], procedures = [], 
@@ -101,7 +103,6 @@ export default function TableBuilder() {
     }
   }, [activeOrder]);
 
-  // --- 레이아웃 및 그룹 계산 (사이드바와 테이블에서 공통 사용) ---
   const currentItems = activeOrder.filter(key => TAG_META[key] || userColumns.find(u => u.id === key));
   const fixedWidthTotal = currentItems.reduce((sum, key) => {
     const meta = TAG_META[key] || userColumns.find(u => u.id === key);
@@ -132,16 +133,15 @@ export default function TableBuilder() {
   const hasGroups = layoutGroups.some(g => g.isGroup);
 
   const handleSaveLayout = async () => {
-    if (!saveName.trim()) return alert(t('alert.enterName')); // ✅ [수정] 다국어 처리
+    if (!saveName.trim()) return alert(t('alert.enterName'));
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert(t('alert.needLogin')); // ✅ [수정] 다국어 처리
+    if (!user) return alert(t('alert.needLogin'));
     const layoutData = { docTitle, appr1, appr2, appr3, signatureRows: savedSignatureRows, orientation, activeOrder, userColumns };
     const { error } = await supabase.from('user_layouts').insert({ user_id: user.id, name: saveName, layout_data: layoutData });
-    if (error) { console.error(error); alert(t('alert.saveError')); }  // ✅ [수정] 다국어 처리
-    else { alert(t('alert.saveSuccess')); setShowSaveModal(false); setSaveName(''); } // ✅ [수정] 다국어 처리
+    if (error) { console.error(error); alert(t('alert.saveError')); }
+    else { alert(t('alert.saveSuccess')); setShowSaveModal(false); setSaveName(''); }
   };
 
-  // 그룹 단위 드래그 앤 드롭 핸들러
   const handleDragOver = (e, targetGroupIdx) => {
     e.preventDefault();
     if (draggedIdx === null || draggedIdx === targetGroupIdx) return;
@@ -150,14 +150,12 @@ export default function TableBuilder() {
     const movedGroup = newGroups.splice(draggedIdx, 1)[0];
     newGroups.splice(targetGroupIdx, 0, movedGroup);
     
-    // 다시 평탄화하여 activeOrder 업데이트
     const newOrder = newGroups.flatMap(g => g.keys);
     setActiveOrder(newOrder);
     setDraggedIdx(targetGroupIdx);
   };
 
   const toggleTag = (key) => {
-    // 위험성 그룹 (빈도, 강도, 위험성) 통합 처리
     const riskGroupKeys = ['DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK'];
     if (riskGroupKeys.includes(key)) {
       const isAnyActive = riskGroupKeys.some(k => activeOrder.includes(k));
@@ -174,9 +172,9 @@ export default function TableBuilder() {
 
   const addUserColumn = () => {
     const currentSum = userColumns.reduce((sum, c) => sum + (parseInt(c.width) || 0), 0);
-    if (currentSum + 5 > 40) { alert(t('alert.exceedWidth')); return; } // ✅ [수정] 다국어 처리
+    if (currentSum + 5 > 40) { alert(t('alert.exceedWidth')); return; }
     const id = `USER_${Date.now()}`;
-    setUserColumns([...userColumns, { id, label: t('toolbar.newItem'), width: 5, isFlex: false }]); // ✅ [수정] 다국어 처리
+    setUserColumns([...userColumns, { id, label: t('toolbar.newItem'), width: 5, isFlex: false }]);
     setActiveOrder([...activeOrder, id]);
   };
 
@@ -203,12 +201,9 @@ const renderDataTablePreview = () => {
         </colgroup>
         <thead>
           <tr>
-
-
             {layoutGroups.map((group, idx) => {
               if (group.isGroup) {
                 const groupLabel = group.label === '유해 위험요인 파악' ? t('groups.hazard') : t('groups.risk');
-                // 폰트 크기 동적 조절, 줄간격 및 강제 줄바꿈(wordBreak, overflowWrap) 속성 추가
                 return <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '10px' : '11px', lineHeight: '1.2', wordBreak: 'break-word', overflowWrap: 'break-word', textAlign: 'center', color: '#000' }}>{groupLabel}</th>;
               } else {
                 const key = group.keys[0];
@@ -216,7 +211,6 @@ const renderDataTablePreview = () => {
                 let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
-                // 폰트 크기 동적 조절, 줄간격 및 강제 줄바꿈(wordBreak, overflowWrap) 속성 추가
                 return <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
               }
             })}
@@ -229,7 +223,6 @@ const renderDataTablePreview = () => {
                   let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
                   if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
                   if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
-                  // 폰트 크기 동적 조절, 줄간격 및 강제 줄바꿈(wordBreak, overflowWrap) 속성 추가
                   return <th key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
                 })
               )}
@@ -241,17 +234,15 @@ const renderDataTablePreview = () => {
             {currentItems.map((key, i) => {
               const meta = TAG_META[key] || userColumns.find(u => u.id === key);
               return (
-                // 폰트 크기 동적 조절, 줄간격 추가 및 기존 break-all을 유연한 break-word/anywhere로 교체
                 <td key={`dummy-${key}`} style={{ border: '1px solid #000', padding: '10px 4px', fontSize: isEnglish ? '10px' : '11px', lineHeight: '1.3', color: '#000', textAlign: meta.align || 'center', verticalAlign: 'middle', wordBreak: 'break-word', overflowWrap: 'anywhere' }}>
                   {t('preview.example')}
                 </td>
               );
             })}
-
           </tr>
           <tr>
              <td colSpan={currentItems.length} style={{ border: '1px solid #000', padding: '20px', textAlign: 'center', color: '#000', fontSize: '12px', backgroundColor: '#fafafa' }}>
-               {t('preview.dataArea')} {/* ✅ [수정] 다국어 처리 */}
+               {t('preview.dataArea')}
              </td>
           </tr>
         </tbody>
@@ -266,8 +257,8 @@ const renderDataTablePreview = () => {
       savedOrientation: orientation, 
       savedUserColumns: userColumns,
       isFork: location.state?.isFork,
-      parentId: location.state?.parentId, // ✅ [추가] 이전 단계로 돌아갈 때 원본 출처 ID 릴레이 유지
-      originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이 유지
+      parentId: location.state?.parentId, 
+      originalAnalysisData: location.state?.originalAnalysisData 
     } 
   });
   
@@ -278,13 +269,14 @@ const renderDataTablePreview = () => {
       savedOrientation: orientation, 
       savedUserColumns: userColumns,
       isFork: location.state?.isFork,
-      parentId: location.state?.parentId, // ✅ [추가] 최종 단계(Export)로 원본 출처 ID 릴레이
-      originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 최종 단계(Export)로 변경률 검증용 원본 데이터 릴레이
+      parentId: location.state?.parentId, 
+      originalAnalysisData: location.state?.originalAnalysisData 
     } 
   });
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 기능만 추가 */}
       <style>{`
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .canvas-container { 
@@ -296,11 +288,12 @@ const renderDataTablePreview = () => {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}>
+          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+        </aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
-              {/* ✅ [수정] 스텝 다국어 처리 */}
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div><div style={styles.stepLineActive} />
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.riskAnalysis')}</span></div><div style={styles.stepLineActive} />
@@ -309,8 +302,8 @@ const renderDataTablePreview = () => {
               <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
             </nav>
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>{t('header.title')}</h2> {/* ✅ [수정] 헤더 타이틀 다국어 처리 */}
-              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p> {/* ✅ [수정] 서브타이틀 다국어 처리 */}
+              <h2 style={styles.formTitle}>{t('header.title')}</h2>
+              <p style={{color: '#aaa', marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p>
             </div>
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
@@ -318,14 +311,11 @@ const renderDataTablePreview = () => {
                 <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>{t('toolbar.orientationTitle')}</h3><div style={styles.buttonGroupSmall}><button style={{...styles.miniBtn, backgroundColor: orientation === 'landscape' ? '#444' : '#222'}} onClick={() => setOrientation('landscape')}>{t('toolbar.landscape')}</button><button style={{...styles.miniBtn, backgroundColor: orientation === 'portrait' ? '#444' : '#222'}} onClick={() => setOrientation('portrait')}>{t('toolbar.portrait')}</button></div><div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>{t('toolbar.zoom')}</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div></div>
                 <div style={styles.toolSectionCompact}>
                   <h3 style={styles.toolTitleMini}>{t('toolbar.columnConfig')}</h3>
-                  
-                  {/* 통합 토글 영역: 위험성(3개 항목)은 하나로 표시 */}
                   <div style={styles.tagToggleContainerCompact}>
                     {Object.keys(TAG_META)
-                      .filter(key => !['DATA_FREQUENCY', 'DATA_SEVERITY'].includes(key)) // 개별 버튼 제외
+                      .filter(key => !['DATA_FREQUENCY', 'DATA_SEVERITY'].includes(key)) 
                       .map(key => {
                         const isActive = activeOrder.includes(key);
-                        // ✅ [수정] 토글 버튼 다국어 처리
                         const label = key === 'DATA_RISK' ? t('toolbar.riskToggle') : t(`tags.${key}`, TAG_META[key].label);
                         return (
                           <button 
@@ -338,14 +328,12 @@ const renderDataTablePreview = () => {
                         );
                     })}
                   </div>
-
-                  {/* 드래그 앤 드롭 영역: layoutGroups를 순회하여 위험성을 한 묶음으로 취급 */}
                   <div style={styles.dragScrollArea}>
                     {layoutGroups.map((group, idx) => {
                       const isRiskGroup = group.isGroup && group.label === '위험성';
                       const key = group.keys[0];
                       const meta = isRiskGroup 
-                        ? { label: t('toolbar.riskGroupLabel'), color: TAG_META['DATA_RISK'].color } // ✅ [수정] 그룹 라벨 다국어 처리
+                        ? { label: t('toolbar.riskGroupLabel'), color: TAG_META['DATA_RISK'].color } 
                         : (TAG_META[key] || userColumns.find(u => u.id === key));
                       
                       if (!meta) return null;
@@ -368,38 +356,30 @@ const renderDataTablePreview = () => {
                               <button onClick={() => { setActiveOrder(prev => prev.filter(k=>k!==key)); setUserColumns(prev => prev.filter(u=>u.id!==key)); }} style={styles.miniDelBtnActive}>×</button>
                             </div>
                           ) : (
-                            // ✅ [수정] 태그 리스트 항목 라벨 다국어 처리
                             <span style={{flex:1, fontSize:'0.75rem', color:'#eee'}}>{isRiskGroup ? t('toolbar.riskGroupLabel') : t(`tags.${key}`, meta.label)}</span>
                           )}
                         </div>
                       );
                     })}
                   </div>
-                  
-                  <button style={styles.addBtnMini} onClick={addUserColumn}>{t('toolbar.addCustom')}</button> {/* ✅ [수정] 버튼 텍스트 다국어 처리 */}
+                  <button style={styles.addBtnMini} onClick={addUserColumn}>{t('toolbar.addCustom')}</button>
                 </div>
               </aside>
               <section style={styles.gridCanvasWrapper}>
                 <div style={styles.canvasScrollArea}>
                   <div className="canvas-container" style={{ transform: `scale(${zoom})`, width: PAPER_WIDTH }}>
-                    
-                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginBottom: '20px', fontSize: '13px' }}>{t('preview.docHeader')}</div> {/* ✅ [수정] 다국어 처리 */}
-                    
+                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginBottom: '20px', fontSize: '13px' }}>{t('preview.docHeader')}</div>
                     {renderDataTablePreview()}
-                    
-                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginTop: '20px', fontSize: '13px' }}>{t('preview.signatureArea')}</div> {/* ✅ [수정] 다국어 처리 */}
-                  
+                    <div style={{ padding: '20px', backgroundColor: '#f1f3f5', border: '1px dashed #adb5bd', textAlign: 'center', color: '#6c757d', marginTop: '20px', fontSize: '13px' }}>{t('preview.signatureArea')}</div>
                   </div>
                 </div>
               </section>
             </div>
-            {/* ✅ [수정] 이전/다음 버튼 다국어 처리 */}
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToModuleBuilder}>{t('btn.prev')}</button><button style={styles.nextBtnLight} onClick={goToExport}>{t('btn.next')}</button></div>
           </div>
         </main>
         <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
-      {/* ✅ [수정] 모달창 다국어 처리 */}
       {showSaveModal && ( <div style={styles.modalOverlay}><div style={styles.modalContent}><h3 style={styles.modalTitle}>{t('modal.title')}</h3><p style={{ color: '#aaa', fontSize: '0.8rem', marginTop: '-10px', textAlign: 'center' }}>{t('modal.desc')}</p><input style={styles.modalInput} placeholder={t('modal.placeholder')} value={saveName} onChange={(e) => setSaveName(e.target.value)} /><div style={styles.modalBtnGroup}><button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>{t('modal.cancel')}</button><button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>{t('modal.save')}</button></div></div></div> )}
     </div>
   );
@@ -445,7 +425,7 @@ const styles = {
   numInputPure: { width: '30px', background: 'none', border: 'none', color: '#007bff', fontSize: '0.85rem', textAlign: 'center', outline: 'none', fontWeight: 'bold' },
   miniDelBtnActive: { background: 'transparent', color: '#ff4d4d', border: 'none', borderRadius: '4px', width: '22px', height: '22px', fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: 'auto', fontWeight: 'bold' },
   addBtnMini: { width: '100%', padding: '12px', background: 'rgba(255,255,255,0.05)', border: '1px dashed #444', color: '#aaa', fontSize: '0.8rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' },
-  gridCanvasWrapper: { flex: 1, backgroundColor: 'rgba(20, 20, 20, 0.8)', borderRadius: '10px', padding: '1.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)' },
+  gridCanvasWrapper: { flex: 1, backgroundColor: 'rgba(20, 20, 20, 0.8)', borderRadius: '10px', padding: '1.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.05)' },
   canvasScrollArea: { flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', padding: '30px' },
   btnAreaLayout: { marginTop: '1.5rem', display: 'flex', gap: '1rem' },
   prevBtnDark: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },

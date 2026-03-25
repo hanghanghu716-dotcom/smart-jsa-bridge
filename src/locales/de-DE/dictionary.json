@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENÜ",
+    "close": "✕ SCHLIESSEN"
+  },
+  "drawer": {
+    "contents": "INHALTE",
+    "regulation": "Leitfaden Gefährdungsbeurteilung",
+    "jrajsa": "Praxisablauf JRA/JSA",
+    "protectiveEquipment": "Über Schutzausrüstung (PSA)",
+    "riskClassification": "Allgemeine / Hochrisiko-Arbeiten",
+    "dictionary": "Datenbank für Gefahren & Maßnahmen"
+  },
+  "hero": {
+    "tag": "INTELLIGENTE RISIKODATENBANK",
+    "titleLine1": "Integriertes Wörterbuch für Standardgefahren",
+    "titleLine2": "und Minderungsmaßnahmen",
+    "seoText1": "Diese Datenbank bietet Abgleichdaten für über 1,000 Standardgefährdungen basierend auf OSHA-Richtlinien und internationalen Sicherheitsstandards. Sicherheitsbeauftragte und Arbeiter können dieses Wörterbuch nutzen, um Risiken proaktiv zu identifizieren und effektive Sicherheitsmaßnahmen festzulegen.",
+    "seoText2": "Die bereitgestellten Daten dienen als grundlegende Referenz für die Unfallprävention. Bitte passen Sie diese an Ihre spezifische Baustelle an, unter Berücksichtigung der tatsächlichen Arbeitsumgebung, der Ausrüstungsmerkmale und der Kompetenz der Mitarbeiter. Eine präzise Gefährdungsbeurteilung ist der Weg zu einem unfallfreien Arbeitsplatz."
+  },
+  "filter": {
+    "allCategories": "Alle Kategorien",
+    "searchPlaceholder": "Suche nach Gefährdungsfaktoren oder Maßnahmen...",
+    "searchBtn": "Suchen",
+    "resultPrefix": "Insgesamt ",
+    "resultSuffix": " Datensätze gefunden."
+  },
+  "data": {
+    "loading": "Daten werden geladen...",
+    "empty": "Keine Suchergebnisse. Bitte versuchen Sie es mit einem anderen Schlagwort.",
+    "riskFactorLabel": "Gefährdungsfaktor",
+    "currentMeasureLabel": "Aktuelle Maßnahme",
+    "advancedMeasureLabel": "Erweiterte Maßnahme"
+  },
+  "pagination": {
+    "prev": "Zurück",
+    "next": "Weiter"
+  }
+}

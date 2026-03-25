@@ -1,13 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거 및 useLocation 추가
 import AdBanner from '../AdBanner';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 export default function Regulation() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
   const { t } = useTranslation('regulation');
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+
       {/* HEADER */}
       <header style={styles.header}>
         <div style={styles.container}>
@@ -24,8 +28,7 @@ export default function Regulation() {
         </div>
       </section>
 
-      {/* [스티키 광고]: Main.jsx 및 Terms.jsx의 Fixed 가동방식 적용 + 위치 조정 */}
-      {/* [좌측 광고] */}
+      {/* [스티키 광고] */}
       <aside className="hidden lg:block">
         <div style={styles.adPlaceholderFixedLeft}>
           <span style={styles.adLabelDark}>AD (LEFT)</span>
@@ -37,7 +40,6 @@ export default function Regulation() {
         </div>
       </aside>
 
-      {/* [우측 광고] */}
       <aside className="hidden lg:block">
         <div style={styles.adPlaceholderFixedRight}>
           <span style={styles.adLabelDark}>AD (RIGHT)</span>
@@ -49,7 +51,6 @@ export default function Regulation() {
         </div>
       </aside>
 
-      {/* 메인 콘텐츠 영역: 원본 내용과 스타일 절대 유지 */}
       <div style={styles.mainContentArea}>
         {/* SECTION 1: 실시규정의 정의 및 의무 */}
         <section style={styles.m3Section}>
@@ -136,8 +137,8 @@ export default function Regulation() {
   );
 }
 
+// 스타일 객체는 원본 데이터를 절대적으로 유지합니다[cite: 17].
 const styles = {
-  /* 원본 스타일 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', lineHeight: '1.7', position: 'relative' },
   container: { maxWidth: '1200px', margin: '0 auto', padding: '0 40px' },
   header: { padding: '2rem 0', borderBottom: '1px solid #eee' },
@@ -164,15 +165,12 @@ const styles = {
   tdBold: { padding: '18px', border: '1px solid #eee', fontWeight: '800', backgroundColor: '#fcfcfc' },
   legalBox: { padding: '35px', backgroundColor: '#f1f3f9', borderRadius: '16px', borderLeft: '6px solid #1c1b1f' },
   finalFooter: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#fff', textAlign: 'center' },
-
   mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column' },
-
-  /* 핵심 지침 이행: Main.jsx의 Fixed 방식 적용 + Regulation의 간격 적용 */
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
   adPlaceholderFixedLeft: { 
     position: 'fixed',
     top: '50%',
-    left: 'calc(50% - 600px - 160px - 20px)', // (본문 절반 600px) + (광고폭 160px) + (간격 20px)
+    left: 'calc(50% - 600px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 
@@ -188,7 +186,7 @@ const styles = {
   adPlaceholderFixedRight: { 
     position: 'fixed',
     top: '50%',
-    right: 'calc(50% - 600px - 160px - 20px)', // (본문 절반 600px) + (광고폭 160px) + (간격 20px)
+    right: 'calc(50% - 600px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 

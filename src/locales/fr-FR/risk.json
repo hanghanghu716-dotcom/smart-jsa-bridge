@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "NORME NF & INRS",
+    "mainTitle1": "Classification des Risques &",
+    "mainTitle2": "Guide de la Matrice des Risques",
+    "subTitle1": "Établir un système de gestion de la sécurité scientifique",
+    "subTitle2": "basé sur les directives du Code du Travail et l'Évaluation Quantitative des Risques.",
+    "section1": "1. Définitions de base par nature de travail",
+    "section2": "2. Critères Quantitatifs (Matrice des Risques)",
+    "section3": "3. 9 types d'activités à haut risque"
+  },
+  "def": {
+    "generalTitle": "Travail Général (Routine)",
+    "generalContent": "Tâches effectuées fréquemment où les dangers sont atténués par des procédures opérationnelles standard (SOP) établies.",
+    "highTitle": "Travail à Haut Risque (Hors Routine)",
+    "highContent": "Activités impliquant des énergies dangereuses ou des environnements complexes où une seule défaillance peut entraîner un accident mortel ou catastrophique."
+  },
+  "matrix": {
+    "title": "Matrice des Risques (5 Probabilité × 4 Gravité)",
+    "axisX": "Gravité",
+    "axisY": "Probabilité",
+    "f5": "Fréquent", "f4": "Probable", "f3": "Occasionnel", "f2": "Rare", "f1": "Improbable",
+    "s1": "Négligeable", "s2": "Marginal", "s3": "Critique", "s4": "Catastrophique",
+    "l1": "Inacceptable", "l2": "Risque Élevé", "l3": "Risque Modéré", "l4": "Risque Faible", "l5": "Risque Mineur", "l6": "Négligeable"
+  },
+  "tasks": [
+    { "t": "Travail en Hauteur", "c": "Tout travail exposé à un risque de chute de hauteur où des mesures de protection collective ou individuelle sont obligatoires." },
+    { "t": "Entrée en Espace Confiné", "c": "Entrée dans des zones à accès limité présentant un potentiel d'atmosphère toxique ou de carence en oxygène." },
+    { "t": "Travaux à Chaud", "c": "Activités de soudage, découpage ou brasage produisant des étincelles ou des flammes nues." },
+    { "t": "Opérations de Levage", "c": "Élingage et levage de charges à l'aide de grues, de ponts roulants ou d'engins de manutention motorisés." },
+    { "t": "Travaux Électriques", "c": "Travaux sur des équipements sous tension ou à proximité de limites d'approche définies." },
+    { "t": "Excavation & Tranchée", "c": "Travaux de terrassement où les éboulements ou les heurts de réseaux souterrains sont des dangers potentiels." },
+    { "t": "Rayonnements Ionisants", "c": "Radiographie industrielle ou tâches de CND impliquant une exposition à des sources de rayonnement." },
+    { "t": "Manipulation de Matières Dangereuses", "c": "Transfert, chargement ou traitement de substances toxiques, inflammables ou réactives." },
+    { "t": "Consignation (LOTO)", "c": "Procédures de mise hors tension et de condamnation pour contrôler les énergies dangereuses pendant la maintenance." }
+  ]
+}

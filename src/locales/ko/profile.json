@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "계정 정보 및 지능형 안전 활동 관리",
+    "statsLabel": "지식 기여 및 활용 통계",
+    "myDocs": "작성한 JSA",
+    "scraps": "전체 스크랩 수",
+    "nickname": "사용자 닉네임",
+    "sector": "주요 활동 산업 분야",
+    "company": "소속 회사명 (선택)",
+    "bio": "전문성 소개 및 상태 메시지",
+    "bioPlaceholder": "자신의 전문 분야나 안전 철학을 입력해 주세요.",
+    "presetTitle": "작업 리포트 기본 프리셋 설정",
+    "department": "기본 부서명",
+    "manager": "기본 검토자/승인자명",
+    "autoPublicity": "작성 시 지식베이스(Explore)에 자동 공유 허용",
+    "signatureLabel": "전자 서명 (이미지)",
+    "noSignature": "등록된 서명이 없습니다.",
+    "uploadSignature": "서명 이미지 업로드",
+    "securityLabel": "보안 및 세션 관리",
+    "remoteLogout": "모든 기기에서 원격 로그아웃",
+    "openWithdraw": "계정 탈퇴가 필요하신가요?",
+    "closeWithdraw": "탈퇴창 닫기",
+    "withdrawWarning": "⚠️ 탈퇴 시 모든 작성 데이터와 스크랩 기록이 즉시 삭제되며 복구할 수 없습니다.",
+    "withdrawPlaceholder": "'탈퇴 확약' 문구를 입력해 주세요.",
+    "withdrawSubmit": "회원 탈퇴 처리",
+    "goMain": "메인으로 돌아가기",
+    "saveProfile": "프로필 정보 업데이트"
+  },
+  "sectors": {
+    "default": "산업 분야를 선택하세요",
+    "construction": "건설 / 토목 / 건축",
+    "manufacturing": "제조 / 플랜트 / 화학",
+    "energy": "에너지 / 전기 / 가스",
+    "logistics": "운송 / 물류 / 창고",
+    "safety": "안전관리 / 전문 컨설팅",
+    "it": "IT / 시스템 / 엔지니어링",
+    "public": "공공기관 / 교육 / 보건",
+    "etc": "기타 산업군"
+  },
+  "messages": {
+    "updateSuccess": "프로필 정보가 성공적으로 업데이트되었습니다.",
+    "signatureSuccess": "전자 서명이 안전하게 등록되었습니다.",
+    "confirmRemoteLogout": "현재 기기를 제외한 모든 접속 세션을 강제로 종료하시겠습니까?",
+    "confirmWithdrawal": "정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "withdrawConsentText": "탈퇴 확약",
+    "withdrawMismatch": "확인 문구가 일치하지 않습니다.",
+    "confirmGoMain": "변경사항이 저장되지 않을 수 있습니다. 메인으로 이동하시겠습니까?"
+  }
+}

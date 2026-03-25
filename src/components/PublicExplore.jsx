@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 import { DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 const allTags = Object.keys(DIMENSIONAL_KEYWORD_MAP);
 
 export default function PublicExplore() {
-  const navigate = useNavigate();
-  // [수정] 네임스페이스를 명시적으로 배열 형태로 주입합니다. 첫 번째 요소인 'explore'가 기본값이 됩니다.
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
+  const location = useLocation();
   const { t, i18n } = useTranslation(['explore', 'tags']);
   
   const [projects, setProjects] = useState([]);
@@ -24,7 +26,6 @@ export default function PublicExplore() {
   const [isBlockUser, setIsBlockUser] = useState(false);
   const [isHideProject, setIsHideProject] = useState(true);
 
-  // [수정] 'explore.' 접두사를 제거하고 직접 키를 호출합니다.
   const FILTER_CATEGORIES = [
     { id: 'industry', name: t('categoryIndustry'), tags: allTags.filter(t => !t.startsWith('설비(') && !t.startsWith('사고(') && !/^(관리|준비|보호구|절차|마무리|기타)\(/.test(t)) },
     { id: 'safety', name: t('categorySafety'), tags: allTags.filter(t => /^(관리|준비|보호구|절차|마무리|기타)\(/.test(t)) },
@@ -49,7 +50,8 @@ export default function PublicExplore() {
     const closeMenu = () => setActiveMenuId(null);
     window.addEventListener('click', closeMenu);
     return () => window.removeEventListener('click', closeMenu);
-  }, [sortBy, navigate, t]);
+    // ✅ [수정] navigate를 의존성 배열에서 제거하여 무한 루프(깜빡임) 방지
+  }, [sortBy, t]); 
 
   const fetchPublicProjects = async () => {
     setIsLoading(true);
@@ -142,6 +144,8 @@ export default function PublicExplore() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+
       {reportTarget && (
         <div style={styles.modalOverlay} onClick={() => setReportTarget(null)}>
           <div style={styles.reportModal} onClick={e => e.stopPropagation()}>
@@ -192,7 +196,6 @@ export default function PublicExplore() {
                     setSearchTerm(""); 
                   }}
                 >
-                  {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
                   #{t(tag, { ns: 'tags' })}
                 </div>
               ))}
@@ -229,7 +232,6 @@ export default function PublicExplore() {
                       style={selectedTags.includes(tag) ? styles.tagItemActive : styles.tagItem}
                       onClick={() => setSelectedTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag])}
                     >
-                      {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
                       {t(tag, { ns: 'tags' })}
                     </button>
                   ))}
@@ -247,7 +249,6 @@ export default function PublicExplore() {
             <div style={styles.selectedTagsContainer}>
               {selectedTags.map(tag => (
                 <span key={tag} style={styles.selectedTagBadge}>
-                  {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
                   {t(tag, { ns: 'tags' })}
                   <span 
                     style={styles.tagRemoveBtn} 
@@ -307,7 +308,6 @@ export default function PublicExplore() {
                   <div style={styles.dateLabel}>{formatDate(p.created_at)}</div>
 
                   <div style={styles.cardTags}>
-                    {/* [수정] tags 네임스페이스를 명시적으로 타겟팅합니다. */}
                     {p.tags?.slice(0, 3).map(tag => <span key={tag} style={styles.miniTag}>#{t(tag, { ns: 'tags' })}</span>)}
                   </div>
 
@@ -330,6 +330,7 @@ export default function PublicExplore() {
   );
 }
 
+// 스타일 객체는 원본 소스코드를 100% 보존합니다.
 const styles = {
   wrapper: { minHeight: '100vh', backgroundColor: '#000', color: '#fff' },
   header: { padding: '1rem 3rem', borderBottom: '1px solid #111', display: 'flex', alignItems: 'center', gap: '2rem' },

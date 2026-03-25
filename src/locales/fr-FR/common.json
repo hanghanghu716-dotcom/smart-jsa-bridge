@@ -1,0 +1,31 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [AVIS] Cet échantillon est fourni à titre de référence uniquement. Les évaluations des risques doivent être menées sur la base d'inspections réelles du site et de facteurs environnementaux spécifiques.",
+    "text2": "Smart JSA Bridge n'assume aucune responsabilité juridique pour les résultats découlant de l'utilisation de ce matériel."
+  },
+  "ui": {
+    "category": "NORME DE SÉCURITÉ COMMUNE",
+    "mainTitle1": "Gestion intégrée de la sécurité du site",
+    "mainTitle2": "et guide JSA",
+    "description1": "Données standardisées pour les 10 processus communs les plus fréquents",
+    "description2": "et exigences de préparation avant travaux à haut risque.",
+    "jsaId": "COMMON-01",
+    "jsaTitle1": "Gestion de la sécurité à l'échelle du site et",
+    "jsaTitle2": "Exigences avant les tâches à haut risque",
+    "summaryTitle": "Processus clés et résumé des dangers",
+    "previewLabel": "Aperçu du rapport JSA",
+    "downloadBtn": "Télécharger le PDF original"
+  },
+  "steps": [
+    { "step": "01", "task": "TBT avant tâche et inspection des EPI", "hazard": "Étendue du travail peu claire, utilisation incorrecte des EPI" },
+    { "step": "02", "task": "Systèmes de protection contre les chutes", "hazard": "Défaillance du point d'ancrage, glissades dues aux intempéries" },
+    { "step": "03", "task": "Isolation des combustibles et surveillance incendie", "hazard": "Étincelles de travaux à chaud, explosion de gaz résiduel" },
+    { "step": "04", "task": "Installation de gréage et de levage", "hazard": "Mauvaise stabilité du sol, défaillance d'élingue/câble" },
+    { "step": "05", "task": "Tests atmosphériques et ventilation", "hazard": "Déficience en oxygène, inhalation de gaz toxiques" },
+    { "step": "06", "task": "Sécurité des excavations et des tranchées", "hazard": "Contact avec des réseaux souterrains, effondrement de tranchées" },
+    { "step": "07", "task": "LOTO et vérification d'absence d'énergie", "hazard": "Remise sous tension accidentelle, choc résiduel" },
+    { "step": "08", "task": "Balisage et radioprotection", "hazard": "Entrée non autorisée, exposition aux rayonnements ionisants" },
+    { "step": "09", "task": "Mise en service et tests de boucle", "hazard": "Interverrouillages shuntés, fuites haute pression" },
+    { "step": "10", "task": "Nettoyage et retrait du LOTO après travail", "hazard": "Outils/débris laissés sur place, risques de court-circuit" }
+  ]
+}

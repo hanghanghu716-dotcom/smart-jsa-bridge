@@ -1,0 +1,63 @@
+{
+  "pageTag": "TERMS OF SERVICE (GLOBAL REPOSITORY)",
+  "heading": "Terms of Service",
+  "subHeading": "Smart JSA Bridge is a collaborative platform where safety managers worldwide share and develop practical knowledge.",
+  "effectiveDate": "Effective Date: 19 March 2026",
+  "section1": {
+    "title": "01. Acceptance of Terms",
+    "content": "By creating a Smart JSA Bridge account, you are deemed to have agreed to these Terms and the Community Guidelines. This service aims to facilitate the sharing of safety knowledge and foster mutual development."
+  },
+  "section2": {
+    "title": "02. Service Description",
+    "content": "This service provides a <strong>Safety Knowledge Repository</strong> where industrial safety managers can store, share, modify, and utilise Job Safety Analysis (JSA) templates."
+  },
+  "section3": {
+    "title": "03. User Responsibility",
+    "item1": {
+      "bold": "Account Security:",
+      "desc": "Users are responsible for the security of their account information managed through Supabase."
+    },
+    "item2": {
+      "bold": "Data Cleansing:",
+      "desc": "When sharing a JSA to the Public library, users must remove any identifiable security information, including specific site names, equipment names, and personal names."
+    }
+  },
+  "section4": {
+    "title": "04. Content Accuracy Disclaimer",
+    "content": "All JSA templates registered in the library are information voluntarily contributed by users.",
+    "item1": {
+      "desc": "The platform does not guarantee the absolute accuracy or site-suitability of the shared content."
+    },
+    "item2": {
+      "desc": "When utilising another user's template, you must review and finalise it to fit your specific site conditions. The platform is not liable for any accidents resulting from negligence in this regard."
+    }
+  },
+  "section5": {
+    "title": "05. Licence & Intellectual Property",
+    "item1": {
+      "bold": "Platform Rights:",
+      "desc": "Rights to the service's architecture, UI, and logic database are vested in the company."
+    },
+    "item2": {
+      "bold": "Shared Content:",
+      "desc": "By contributing content set to 'Public', it is considered that you grant other users a non-exclusive licence to copy, modify, and utilise that content."
+    }
+  },
+  "section6": {
+    "title": "06. Prohibited Use",
+    "content": "Mass crawling of other users' knowledge contributions to build a separate paid service or exploiting them for non-safety purposes is strictly prohibited."
+  },
+  "section7": {
+    "title": "07. Global Compliance",
+    "content": "As this platform is accessed globally, we align our service principles with internationally recognised standards, specifically the Occupational Safety and Health Administration (OSHA) guidelines. Users are expected to comply with these globally accepted safety standards, as well as their respective local regulations, when contributing content."
+  },
+  "section8": {
+    "title": "08. Termination of Access",
+    "content": "In the event of inappropriate data posting or a violation of community rules, the platform reserves the right to delete the relevant content or restrict account access without prior notice."
+  },
+  "section9": {
+    "title": "09. Governing Law",
+    "content": "These terms are governed by the laws of the Republic of Korea and comply with international dispute resolution procedures."
+  },
+  "footer": "© 2026 Smart JSA Bridge. All rights reserved."
+}

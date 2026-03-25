@@ -1,24 +1,28 @@
-import { useNavigate } from 'react-router-dom';
-import AdSenseUnit from '../components/AdSenseUnit';
 import { useTranslation } from 'react-i18next';
+import AdSenseUnit from '../components/AdSenseUnit';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ 커스텀 다국어 라우팅 훅[cite: 19]
 
 export default function About() {
-  const navigate = useNavigate();
-  const { t } = useTranslation('about');
+  const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 19]
+  const { t } = useTranslation('about'); // ✅ 'about' 네임스페이스 로드[cite: 19]
 
-  // 애드센스 설정 정보
+  // 애드센스 설정 정보[cite: 19]
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
   const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
   
-  // [기능 추가]: 모바일 전용 광고 슬롯 ID
+  // 모바일 전용 광고 슬롯 ID[cite: 19]
   const MOBILE_IN_FEED_SLOT_ID = '이곳에_모바일_중간_광고_슬롯ID_입력';
 
   return (
     <div style={styles.wrapper}>
-      {/* HEADER */}
+      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 수행 */}
+
+      {/* HEADER[cite: 19] */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
+          {/* ✅ 로고 클릭 시 현재 선택된 언어의 메인 페이지로 이동 */}
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
         </div>
       </header>
@@ -26,7 +30,7 @@ export default function About() {
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
           
-          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Main.jsx Fixed 방식 + Privacy 위치 20px) */}
+          {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 19] */}
           <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
               <span style={styles.adLabel}>AD (LEFT)</span>
@@ -39,7 +43,7 @@ export default function About() {
             </div>
           </aside>
 
-          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Main.jsx Fixed 방식 + Privacy 위치 20px) */}
+          {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 19] */}
           <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
               <span style={styles.adLabel}>AD (RIGHT)</span>
@@ -52,9 +56,11 @@ export default function About() {
             </div>
           </aside>
 
-          {/* 다국어 처리 반영 시작 */}
+          {/* 다국어 처리 반영 영역[cite: 19] */}
           <span style={styles.tag}>{t('pageTag')}</span>
-          <h2 style={styles.heading} className="max-lg:!text-[2rem]">{t('mainHeading.line1')}<br />{t('mainHeading.line2')}</h2>
+          <h2 style={styles.heading} className="max-lg:!text-[2rem]">
+            {t('mainHeading.line1')}<br />{t('mainHeading.line2')}
+          </h2>
           
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
@@ -76,7 +82,7 @@ export default function About() {
               </li>
             </ul>
 
-            {/* [기능 유지]: 모바일 전용 중간 광고 영역 */}
+            {/* 모바일 전용 중간 광고 영역[cite: 19] */}
             <div className="lg:hidden" style={styles.mobileAdWrapper}>
                <div style={styles.mobileAdPlaceholder}>
                   <span style={styles.adLabel}>MOBILE AD (IN-FEED)</span>
@@ -108,7 +114,6 @@ export default function About() {
                {t('imageCaption')}
              </p>
           </div>
-          {/* 다국어 처리 반영 끝 */}
         </div>
       </section>
 
@@ -117,6 +122,7 @@ export default function About() {
   );
 }
 
+// 스타일 객체는 기존 소스코드와 동일하게 유지합니다.[cite: 19]
 const styles = {
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },

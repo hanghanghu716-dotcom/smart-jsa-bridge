@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Risk Assessment Guidelines",
+    "jrajsa": "JRA/JSA Practical Process",
+    "ppe": "About Personal Protective Equipment (PPE)",
+    "riskClass": "General / High-Risk Tasks"
+  },
+  "hero": {
+    "tag": "PERSONAL PROTECTIVE EQUIPMENT",
+    "title1": "Industrial PPE Categories &",
+    "title2": "AS/NZS Compliance Guide",
+    "subTitle1": "Verifying safety certifications is the first step to workplace safety. Review",
+    "subTitle2": "the characteristics of each PPE type and strictly comply with",
+    "subTitle3": "WHS regulations and AS/NZS standards."
+  },
+  "section1": {
+    "title": "1. PPE Categories and Specific Types",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Head Protection",
+        "desc": "Absorbs impact from falling or flying objects and protects against electrical shocks.",
+        "tags": ["Safety Helmets (AS/NZS 1801)", "Type 1/2"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Eye & Face Protection",
+        "desc": "Blocks flying particles, harmful light radiation, and chemical splashes.",
+        "tags": ["Safety Glasses (AS/NZS 1337.1)", "Goggles", "Face Shields"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Hearing Protection",
+        "desc": "Prevents noise-induced hearing loss in high-decibel environments.",
+        "tags": ["Earplugs", "Earmuffs", "Class Rated"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Respiratory Protection",
+        "desc": "Protects against dust, harmful gases, and oxygen-deficient atmospheres.",
+        "tags": ["Particulate (P1/P2/P3)", "Gas Masks", "SCBA"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Hand Protection",
+        "desc": "Protects against cuts, burns, electrical shocks, and chemical exposure.",
+        "tags": ["Cut-Resistant", "Voltage Rated", "Chemical-Resistant"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Foot Protection",
+        "desc": "Prevents injuries from falling/rolling objects and sharp punctures.",
+        "tags": ["Steel-Toe Boots (AS/NZS 2210.3)", "Anti-Static"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Fall Protection",
+        "desc": "Arrests falls and absorbs shock during elevated work.",
+        "tags": ["Full-Body Harness", "Lanyards", "Lifelines"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Protective Clothing",
+        "desc": "Shields the entire body from hazardous chemicals and extreme heat.",
+        "tags": ["Hazmat Suits", "Flame-Resistant (FR)", "Arc Flash"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Frequently Asked Questions on PPE Certification",
+    "faq": {
+      "item1": {
+        "q": "What is the difference between WHS regulations and AS/NZS standards?",
+        "a": "WHS regulations set the mandatory legal safety requirements in Australia, while AS/NZS standards provide technical specifications and testing methods for PPE."
+      },
+      "item2": {
+        "q": "Can I utilise US (ANSI) or European (CE) certified PPE in Australian workplaces?",
+        "a": "Not automatically. PPE used in Australia must meet the specific AS/NZS standards required by WHS laws, although some international standards are recognised as equivalent."
+      },
+      "item3": {
+        "q": "Does PPE certification expire?",
+        "a": "While the equipment has a manufacturer's lifespan, employers must ensure PPE remains compliant with the current AS/NZS version if standards are updated."
+      },
+      "item4": {
+        "q": "How do I verify certified PPE?",
+        "a": "Look for the specific AS/NZS standard marking or the 'Five Ticks' Standards Mark stamped directly on the equipment or its packaging."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

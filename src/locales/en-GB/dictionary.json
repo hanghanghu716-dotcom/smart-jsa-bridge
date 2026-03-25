@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ CLOSE"
+  },
+  "drawer": {
+    "contents": "CONTENTS",
+    "regulation": "Risk Assessment Regulation Guide",
+    "jrajsa": "JRA/JSA Practical Process",
+    "protectiveEquipment": "About Protective Equipment",
+    "riskClassification": "General / High-Risk Work",
+    "dictionary": "Risk Factor & Control DB"
+  },
+  "hero": {
+    "tag": "INTELLIGENT RISK DATABASE",
+    "titleLine1": "Standard Hazard & Risk Factor and",
+    "titleLine2": "Reduction Measure Integrated Dictionary",
+    "seoText1": "This database provides matching data for over 1,000 standard hazards and corresponding reduction measures based on OSHA (Occupational Safety and Health Administration) guidelines and international safety standards. Field safety managers and workers can utilise this dictionary to proactively identify potential risks and establish effective control measures.",
+    "seoText2": "The provided data serves as a fundamental reference for accident prevention. Please edit and apply it to your specific site, taking into account the actual working environment, equipment characteristics, and worker proficiency. Precise risk assessment is the firmest bridge to achieving a zero-accident workplace."
+  },
+  "filter": {
+    "allCategories": "All Categories",
+    "searchPlaceholder": "Search for risk factors or controls...",
+    "searchBtn": "Search",
+    "resultPrefix": "Total ",
+    "resultSuffix": " records found."
+  },
+  "data": {
+    "loading": "Loading data...",
+    "empty": "No search results. Please try another keyword.",
+    "riskFactorLabel": "Hazard / Risk Factor",
+    "currentMeasureLabel": "Current Control",
+    "advancedMeasureLabel": "Advanced Control"
+  },
+  "pagination": {
+    "prev": "Prev",
+    "next": "Next"
+  }
+}

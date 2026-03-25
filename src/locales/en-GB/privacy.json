@@ -1,0 +1,51 @@
+{
+  "pageTag": "PRIVACY POLICY",
+  "heading": {
+    "line1": "Privacy Policy",
+    "line2": "Information Guide"
+  },
+  "section1": {
+    "title": "1. Purpose of Collection and Use",
+    "content": "Smart JSA Bridge collects minimal personal information, which is utilised solely for <strong>service provision, improvement, and customer consultation</strong>."
+  },
+  "section2": {
+    "title": "2. Personal Information Items Collected",
+    "item1": {
+      "bold": "Required Items:",
+      "desc": "Email address, service usage records, access logs, cookies, access IP information"
+    },
+    "item2": {
+      "bold": "Optional Items:",
+      "desc": "User preference language and regional information"
+    },
+    "item3": {
+      "bold": "Collection Method:",
+      "desc": "Automatically generated and collected during the website service usage process"
+    }
+  },
+  "section3": {
+    "title": "3. Retention and Usage Period",
+    "subtitle": "In principle, the company destroys the information without delay after the purpose of collection and use is achieved.",
+    "step1": {
+      "bold": "Visit Records:",
+      "desc": "Destroyed after storage for up to 3 months"
+    },
+    "step2": {
+      "bold": "Consultation Details:",
+      "desc": "Stored for 1 year after consultation ends"
+    },
+    "step3": {
+      "bold": "Compliance:",
+      "desc": "Stored for the period required by relevant laws and regulations"
+    },
+    "step4": {
+      "bold": "Destruction Procedure:",
+      "desc": "Information in electronic file format is deleted using technical methods that cannot reproduce the record"
+    }
+  },
+  "section4": {
+    "title": "4. Third-Party Provision and Entrustment",
+    "content": "This service includes Google AdSense, and we inform you that <strong>third parties such as Google may install or read cookies</strong> on your browser to provide customised advertisements."
+  },
+  "imageCaption": "Smart JSA Bridge prioritises the safety of your data."
+}

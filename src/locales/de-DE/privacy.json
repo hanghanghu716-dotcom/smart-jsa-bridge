@@ -1,0 +1,51 @@
+{
+  "pageTag": "DATENSCHUTZERKLÄRUNG",
+  "heading": {
+    "line1": "Datenschutzerklärung",
+    "line2": "Informationsleitfaden"
+  },
+  "section1": {
+    "title": "1. Zweck der Erhebung und Verwendung",
+    "content": "Smart JSA Bridge erhebt minimale personenbezogene Daten, die ausschließlich für die <strong>Bereitstellung, Verbesserung und Kundenberatung des Dienstes</strong> verwendet werden."
+  },
+  "section2": {
+    "title": "2. Erhobene personenbezogene Daten",
+    "item1": {
+      "bold": "Erforderliche Daten:",
+      "desc": "E-Mail-Adresse, Nutzungsdatensätze des Dienstes, Zugriffsprotokolle, Cookies, Zugriffs-IP-Informationen"
+    },
+    "item2": {
+      "bold": "Optionale Daten:",
+      "desc": "Bevorzugte Sprache des Benutzers und regionale Informationen"
+    },
+    "item3": {
+      "bold": "Erhebungsmethode:",
+      "desc": "Automatisch generiert und erhoben während des Nutzungsprozesses des Website-Dienstes"
+    }
+  },
+  "section3": {
+    "title": "3. Aufbewahrungs- und Nutzungsdauer",
+    "subtitle": "Grundsätzlich vernichtet das Unternehmen die Informationen unverzüglich, nachdem der Zweck der Erhebung und Verwendung erreicht wurde.",
+    "step1": {
+      "bold": "Besuchsaufzeichnungen:",
+      "desc": "Vernichtung nach einer Speicherung von bis zu 3 Monaten"
+    },
+    "step2": {
+      "bold": "Beratungsdetails:",
+      "desc": "Speicherung für 1 Jahr nach Ende der Beratung"
+    },
+    "step3": {
+      "bold": "Compliance:",
+      "desc": "Speicherung für den Zeitraum, der durch einschlägige Gesetze und Vorschriften vorgeschrieben ist"
+    },
+    "step4": {
+      "bold": "Vernichtungsverfahren:",
+      "desc": "Informationen im elektronischen Dateiformat werden mit technischen Methoden gelöscht, die eine Wiederherstellung des Datensatzes unmöglich machen"
+    }
+  },
+  "section4": {
+    "title": "4. Bereitstellung an Dritte und Beauftragung",
+    "content": "Dieser Dienst umfasst Google AdSense. Wir informieren Sie darüber, dass <strong>Dritte wie Google Cookies in Ihrem Browser installieren oder lesen können</strong>, um personalisierte Werbung bereitzustellen."
+  },
+  "imageCaption": "Smart JSA Bridge legt höchsten Wert auf die Sicherheit Ihrer Daten."
+}

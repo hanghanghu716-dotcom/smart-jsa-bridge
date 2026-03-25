@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "ADMINISTRATIVER SICHERHEITSLEITFADEN",
+    "mainTitle": "Professioneller Leitfaden zur Erstellung von<br />Gefährdungsbeurteilungsrichtlinien & Rechtskonformität",
+    "subTitle": "Detaillierte Anleitung zur Erstellung von „Umsetzungsrichtlinien“, dem Kern des betrieblichen Arbeitsschutzmanagementsystems, und zur administrativen Compliance nach gesetzlichen Standards."
+  },
+  "section1": {
+    "title": "1. Was sind Gefährdungsbeurteilungsrichtlinien?",
+    "para": "Gefährdungsbeurteilungsrichtlinien sind <strong>interne Standard-Betriebsanweisungen (SOPs)</strong> für Arbeitgeber, um Gefährdungen zu identifizieren, Risiken zu bewerten und Minderungsmaßnahmen umzusetzen. Diese sind keine bloßen Empfehlungen, sondern entscheidende rechtliche Anforderungen gemäß ArbSchG.",
+    "infoTitle": "Zweck der Aufrechterhaltung der Richtlinien",
+    "infoList": {
+      "item1": "Klärung von Verantwortlichkeiten und Befugnissen für den Aufbau eines Arbeitsschutzmanagementsystems.",
+      "item2": "Aufrechterhaltung eines objektiven und konsistenten Prozesses der Gefährdungsbeurteilung.",
+      "item3": "Entdeckung praktischer Gefahren am Arbeitsplatz und Umsetzung von Verbesserungen durch Mitarbeiterbeteiligung.",
+      "item4": "Sicherung von Beweisdokumenten für rechtliche Audits und Inspektionen durch Aufsichtsbehörden."
+    }
+  },
+  "section2": {
+    "title": "2. Pflichtinhalte der Richtlinien",
+    "para": "Gemäß den gesetzlichen Richtlinien und bewährten Branchenpraktiken müssen interne Richtlinien die folgenden 10 Komponenten klar spezifizieren:",
+    "items": {
+      "item1": { "title": "Zweck & Methodik", "content": "Ziele der Gefährdungsbeurteilung und Auswahl von Bewertungstechniken, die auf den spezifischen Arbeitsplatz zugeschnitten sind." },
+      "item2": { "title": "Organisation & Rollen", "content": "Klare Definition der Rollen und Verantwortlichkeiten (R&R) für Arbeitgeber, Führungskräfte und Mitarbeiter." },
+      "item3": { "title": "Beurteilungsumfang", "content": "Einbeziehung von Gebäuden, Maschinen, Anlagen sowie aller routinemäßigen und nicht routinemäßigen Aufgaben." },
+      "item4": { "title": "Zeitpunkt & Häufigkeit", "content": "Spezifische Auslöser und Zeitpläne für Erst-, regelmäßige und ereignisbezogene Beurteilungen." },
+      "item5": { "title": "Gefährdungsermittlung", "content": "Praktische Methoden zur Ableitung von Gefahren, wie Begehungen vor Ort und Mitarbeitergespräche." },
+      "item6": { "title": "Risikobewertung", "content": "Festlegung objektiver Kriterien (z. B. Wahrscheinlichkeits- und Schweregradmatrix) zur Bestimmung der Risikostufen." },
+      "item7": { "title": "Schutzmaßnahmen", "content": "Priorisierung von Verbesserungen nach Risikostufe und Festlegung von Verfahren zur Überprüfung nach der Umsetzung." },
+      "item8": { "title": "Mitarbeiterbeteiligung", "content": "Systematische Ansätze zur Einholung von Mitarbeiterfeedback bei der Gefahrenidentifizierung und Maßnahmenplanung." },
+      "item9": { "title": "Dokumentation", "content": "Standardisierte Vorlagen für Beurteilungsergebnisse und Richtlinien zur Aufbewahrung von Aufzeichnungen (i. d. R. 3-5 Jahre)." },
+      "item10": { "title": "Unterweisung & Kommunikation", "content": "Verfahren zur Kommunikation der Beurteilungsergebnisse an die Mitarbeiter vor Ort und Durchführung relevanter Schulungen." }
+    }
+  },
+  "section3": {
+    "title": "3. Arten und Zeitpunkt von Gefährdungsbeurteilungen",
+    "table": {
+      "header": {
+        "col1": "Art der Beurteilung",
+        "col2": "Zeitpunkt & Bedingungen",
+        "col3": "Wichtige Hinweise"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Erstbeurteilung",
+          "col2": "Innerhalb eines festgelegten Zeitraums nach Aufnahme der Betriebstätigkeit.",
+          "col3": "Verpflichtende Basiserhebung."
+        },
+        "row2": {
+          "col1": "Regelmäßige Beurteilung",
+          "col2": "Regelmäßig (meist jährlich) nach der Erstbeurteilung durchgeführt.",
+          "col3": "Muss mindestens einmal pro Jahr wiederholt werden."
+        },
+        "row3": {
+          "col1": "Anlassbezogen (Spezial)",
+          "col2": "Bei Einführung neuer Geräte, Prozessänderungen oder nach schweren Unfällen/Beinaheunfällen.",
+          "col3": "Erforderlich unmittelbar nach dem auslösenden Ereignis."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Rechtliche Haftung und Sanktionen",
+    "para": "Die Nichterfüllung der Pflichten zur Gefährdungsbeurteilung kann zu schweren administrativen und strafrechtlichen Konsequenzen führen.",
+    "legalList": {
+      "item1": "<strong>Nichtdurchführung von Beurteilungen:</strong> Kann mit Bußgeldern geahndet werden, insbesondere bei schwerwiegenden Verstößen.",
+      "item2": "<strong>Fehlende Dokumentation:</strong> Verwaltungssanktionen bei Fehlen erforderlicher Unterlagen und Sicherheitsaufzeichnungen während einer Inspektion.",
+      "item3": "<strong>Bei schweren Vorfällen:</strong> Bestätigt sich das Fehlen einer Beurteilung nach einem tödlichen Unfall, erhöht sich die Haftung des Unternehmens und der Geschäftsführung erheblich."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Entworfen von <strong>yizuno</strong>"
+}

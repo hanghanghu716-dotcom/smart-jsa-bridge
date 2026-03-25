@@ -1,36 +1,35 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
-import { useTranslation } from 'react-i18next'; // ✅ [추가] 다국어 지원 훅 임포트
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
   .map(() => ({ stepTitle: '', stepDetail: '' }));
 
 export default function Procedure() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
-  const { t } = useTranslation(['procedure']); // ✅ [추가] procedure 네임스페이스 로드
+  const { t } = useTranslation(['procedure']); 
 
   const [procedures, setProcedures] = useState(DEFAULT_PROCEDURES);
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
 
   const formData = location.state?.formData;
   const participants = location.state?.participants;
-  // 분석 데이터 보존을 위한 상태 참조
   const analysisData = location.state?.analysisData;
 
   useEffect(() => {
-    // 이전 페이지나 다음 페이지에서 돌아왔을 때 기존 절차 데이터가 있다면 복구
     if (location.state?.procedures && location.state.procedures.length > 0) {
       setProcedures(location.state.procedures);
     }
   }, [location.state?.procedures]);
 
-  // ✅ [수정] 홈 버튼 클릭 시 데이터 삭제 경고 로직 다국어 처리
   const handleLogoClick = () => {
     if (window.confirm(t('alert.confirmMain'))) {
-      navigate('/');
+      navigate('/'); // ✅ 언어 경로 자동 유지
     }
   };
 
@@ -54,7 +53,6 @@ export default function Procedure() {
     );
 
     if (validProcs.length < 3) {
-      // ✅ [수정] 필수 절차 단계 알림 다국어 처리
       alert(t('alert.minSteps'));
       return;
     }
@@ -66,6 +64,7 @@ export default function Procedure() {
       p => p.stepTitle.trim() && p.stepDetail.trim()
     );
 
+    // ✅ 다음 단계 이동 시 현재 언어 및 데이터 상태 유지[cite: 14]
     navigate('/analysis', {
       state: {
         procedures: validProcs,
@@ -73,13 +72,14 @@ export default function Procedure() {
         participants,
         analysisData: analysisData,
         isFork: location.state?.isFork,
-        parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이
-        originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이
+        parentId: location.state?.parentId, 
+        originalAnalysisData: location.state?.originalAnalysisData 
       },
     });
   };
   
   const handlePrev = () => {
+      // ✅ 이전 단계 이동 시 현재 언어 유지[cite: 14]
       navigate('/info', {
         state: {
           formData,
@@ -87,18 +87,19 @@ export default function Procedure() {
           procedures, 
           analysisData: analysisData,
           isFork: location.state?.isFork,
-          parentId: location.state?.parentId, // ✅ [추가] 원본 출처 ID 릴레이 유지
-          originalAnalysisData: location.state?.originalAnalysisData // ✅ [추가] 변경률 검증용 원본 데이터 릴레이 유지
+          parentId: location.state?.parentId,
+          originalAnalysisData: location.state?.originalAnalysisData 
         },
       });
     };
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+
       {isTypeModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsTypeModalOpen(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            {/* ✅ [수정] 모달 내 텍스트 다국어 처리 */}
             <h3 style={styles.modalTitle}>{t('modal.title')}</h3>
             <p style={styles.modalSub}>{t('modal.sub')}</p>
             
@@ -142,22 +143,18 @@ export default function Procedure() {
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
-              {/* ✅ [수정] Stepper 텍스트 다국어 처리 */}
-              {/* 1단계: 완료 */}
               <div style={styles.stepItemDone}>
                 <div style={styles.stepBadgeDone}>✓</div>
                 <span style={styles.stepTextDone}>{t('step.basicInfo')}</span>
               </div>
               <div style={styles.stepLineActive} />
 
-              {/* 2단계: 활성 */}
               <div style={styles.stepItemActive}>
                 <div style={styles.stepBadgeActive}>2</div>
                 <span style={styles.stepTextActive}>{t('step.procedure')}</span>
               </div>
               <div style={styles.stepLine} />
 
-              {/* 3~6단계: 대기 */}
               <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
               <div style={styles.stepLine} />
               <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
@@ -168,14 +165,14 @@ export default function Procedure() {
             </nav>
 
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>{t('form.title')}</h2> {/* ✅ [수정] 폼 타이틀 다국어 처리 */}
+              <h2 style={styles.formTitle}>{t('form.title')}</h2>
             </div>
 
             <div style={styles.scrollArea}>
               <div style={styles.procedureContainer}>
                 <div style={styles.gridHeader}>
-                  <span style={styles.headerLabelShort}>{t('form.stepLabel')}</span> {/* ✅ [수정] 라벨 다국어 처리 */}
-                  <span style={styles.headerLabelLong}>{t('form.detailLabel')}</span> {/* ✅ [수정] 라벨 다국어 처리 */}
+                  <span style={styles.headerLabelShort}>{t('form.stepLabel')}</span>
+                  <span style={styles.headerLabelLong}>{t('form.detailLabel')}</span>
                 </div>
 
                 {procedures.map((proc, idx) => (
@@ -200,14 +197,14 @@ export default function Procedure() {
                 ))}
 
                 <button style={styles.addBtn} onClick={addStep}>
-                  {t('btn.addStep')} {/* ✅ [수정] 추가 버튼 다국어 처리 */}
+                  {t('btn.addStep')}
                 </button>
               </div>
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={handlePrev}>{t('btn.prev')}</button> {/* ✅ [수정] 버튼 다국어 처리 */}
-              <button style={styles.nextBtn} onClick={handleOpenModal}>{t('btn.next')}</button> {/* ✅ [수정] 버튼 다국어 처리 */}
+              <button style={styles.prevBtn} onClick={handlePrev}>{t('btn.prev')}</button>
+              <button style={styles.nextBtn} onClick={handleOpenModal}>{t('btn.next')}</button>
             </div>
           </div>
         </main>
@@ -226,6 +223,7 @@ export default function Procedure() {
   );
 }
 
+// 스타일 객체는 원본 그대로 유지합니다[cite: 14].
 const styles = {
   wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: '#000' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
@@ -280,14 +278,14 @@ const styles = {
   typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
   modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline' },
   modalAdWrapper: {
-  width: '100%',
-  marginBottom: '1.5rem',
-  display: 'flex',
-  justifyContent: 'center',
-  overflow: 'hidden',
-  borderRadius: '8px',
-  backgroundColor: 'rgba(255,255,255,0.03)'
-},
+    width: '100%',
+    marginBottom: '1.5rem',
+    display: 'flex',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderRadius: '8px',
+    backgroundColor: 'rgba(255,255,255,0.03)'
+  },
 };
 
 if (typeof document !== 'undefined') {

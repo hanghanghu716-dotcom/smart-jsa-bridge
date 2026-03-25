@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
+import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
+import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 /**
- * [ModuleBuilder 컴포넌트 - 결재 라벨 레이아웃 최적화본]
- * 역할: Step 4. 문서 모듈 구성 (OSHA 영문 결재란 침범 문제 해결)
- * 에디터 위치: src/pages/ModuleBuilder.jsx
+ * [ModuleBuilder 컴포넌트 - 글로벌 표준 및 레이아웃 최적화 반영본]
+ * 역할: Step 4. 문서 모듈 구성 (SEO 및 다국어 라우팅 통합)
  */
 
 export default function ModuleBuilder() {
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
   const { t, i18n } = useTranslation(['modulebuilder']);
   
@@ -37,6 +38,7 @@ export default function ModuleBuilder() {
   const [appr3, setAppr3] = useState(savedAppr3 || t('default.appr3', '승인'));
 
   const goBackToAnalysis = () => {
+    // ✅ 언어 경로를 유지하며 이전 단계로 이동[cite: 15]
     navigate('/analysis', { 
       state: { 
         ...location.state,
@@ -48,6 +50,7 @@ export default function ModuleBuilder() {
   };
 
   const goToTableBuilder = () => {
+    // ✅ 언어 경로를 유지하며 다음 단계로 이동[cite: 15]
     navigate('/layout-table', { 
       state: { 
         ...location.state, 
@@ -110,7 +113,6 @@ export default function ModuleBuilder() {
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    {/* [기능 추가]: 영문 시 스택 구조 레이아웃 적용으로 텍스트 침범 해결 */}
                     <td rowSpan={2} style={{ 
                       borderRight: '1px solid #000', 
                       width: isEnglish ? '60px' : '20px', 
@@ -240,6 +242,7 @@ export default function ModuleBuilder() {
 
   return (
     <div style={styles.wrapper}>
+      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 및 최적화 수행 */}
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
@@ -302,8 +305,9 @@ export default function ModuleBuilder() {
   );
 }
 
+// 스타일 객체는 원본 그대로 유지합니다[cite: 15].
 const styles = {
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent' },
+  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },

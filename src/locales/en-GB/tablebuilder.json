@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Please enter a template name.",
+    "needLogin": "Login is required to save.",
+    "saveError": "An error occurred while saving the template.",
+    "saveSuccess": "The entire layout configuration has been successfully saved.",
+    "exceedWidth": "The total width of custom columns cannot exceed the maximum limit."
+  },
+  "tags": {
+    "DATA_STEP_NO": "Step No.",
+    "DATA_STEP_TITLE": "Task Steps",
+    "DATA_PHOTO": "Reference Photo",
+    "DATA_HAZARD": "Potential Hazards",
+    "DATA_CURRENT_MEASURE": "Current Controls",
+    "DATA_RECOMMEND_MEASURE": "Recommended Actions",
+    "DATA_FREQUENCY": "Likelihood",
+    "DATA_SEVERITY": "Severity",
+    "DATA_RISK": "Risk Level",
+    "DATA_KRAS_STEP": "Detailed Task Description",
+    "DATA_KRAS_HAZARD_CLASS": "Hazard Category",
+    "DATA_KRAS_HAZARD_DETAIL": "Hazard Scenario & Consequence",
+    "DATA_KRAS_BASIS": "Legal/Standard Basis",
+    "DATA_KRAS_CURRENT": "Current Control Measures",
+    "DATA_KRAS_RECOMMEND": "Risk Reduction Measures",
+    "DATA_KRAS_AFTER": "Residual Risk",
+    "DATA_KRAS_SCHED": "Target Date",
+    "DATA_KRAS_COMP": "Completion Date",
+    "DATA_KRAS_MANAGER": "Person in Charge"
+  },
+  "groups": {
+    "hazard": "Hazard Identification",
+    "risk": "Risk Assessment"
+  },
+  "preview": {
+    "freqBreak": "Likelihood\n(Freq)",
+    "sevBreak": "Severity\n(Consq)",
+    "afterBreak": "Residual\nRisk",
+    "schedBreak": "Target\nDate",
+    "example": "(Example Data)",
+    "dataArea": "... Actual Hazard Assessment Data Area ...",
+    "docHeader": "[Document Header Area]",
+    "signatureArea": "[Participant Signature Area]"
+  },
+  "step": {
+    "basicInfo": "Step 1: General Info",
+    "procedure": "Step 2: Task Sequence",
+    "riskAnalysis": "Step 3: Hazard Analysis",
+    "moduleConfig": "Step 4: Module Setup",
+    "tableConfig": "Step 5: Data Mapping",
+    "finalOutput": "Step 6: Final Export"
+  },
+  "header": {
+    "title": "| 05. Data Table Configuration",
+    "subtitle": "Precisely adjust the column order and width for the main hazard assessment table."
+  },
+  "toolbar": {
+    "saveTitle": "Save Integrated Layout",
+    "saveBtn": "Save Current Full Configuration",
+    "saveDesc": "* Saves Step 4 module settings together with current table settings.",
+    "orientationTitle": "Table Orientation",
+    "landscape": "Landscape (Recommended)",
+    "portrait": "Portrait",
+    "zoom": "Preview Zoom",
+    "columnConfig": "Column Configuration (Drag & Drop)",
+    "riskToggle": "Risk Assessment (Combined)",
+    "riskGroupLabel": "Risk Assessment (Like·Sev·Level)",
+    "newItem": "New Column",
+    "width": "Width",
+    "addCustom": "+ Add Custom Column"
+  },
+  "btn": {
+    "prev": "Previous: Module Setup (Step 4)",
+    "next": "Proceed to Final Export (Step 6)"
+  },
+  "modal": {
+    "title": "Save as Custom Template",
+    "desc": "Step 4 module settings and current table configurations will be merged and saved.",
+    "placeholder": "Enter template name to save",
+    "cancel": "Cancel",
+    "save": "Save"
+  }
+}

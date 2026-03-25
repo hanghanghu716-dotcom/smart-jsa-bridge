@@ -1,0 +1,39 @@
+{
+  "pageTag": "DAS SICHERHEITS-REPOSITORY",
+  "mainHeading": {
+    "line1": "Fragmentiertes Sicherheitswissen vernetzen",
+    "line2": "Zu einer umfassenden Bibliothek"
+  },
+  "section1": {
+    "title": "Die Bibliothek für Sicherheitsbeauftragte",
+    "content": "Smart JSA Bridge bringt reale JSA-Vorlagen, die bisher auf einzelnen PCs verstreut waren, ans Licht. Es ist ein <strong>Repository im Open-Source-Stil, in dem Sicherheitsmanager ihr kollektives Know-how archivieren und teilen können</strong>.<br />Über die bloße Bürokratie hinaus wollen wir eine technische Brücke sein, die es jedem ermöglicht, die besten, landesweit in Industriebetrieben verifizierten Sicherheitslogiken zu nutzen und zu verbessern."
+  },
+  "section2": {
+    "title": "Kernwerte",
+    "item1": {
+      "bold": "Basierend auf verifizierten Praxisdaten:",
+      "desc": "Wir setzen auf praxisnahe JSA-Vorlagen, die direkt von Experten vor Ort erstellt und verwendet wurden, statt auf abstrakte Richtlinien."
+    },
+    "item2": {
+      "bold": "Wissenskreislauf (Fork & Contribute):",
+      "desc": "Anwender können exzellente JSA-Vorlagen übernehmen, sie für ihre spezifischen Standorte anpassen und diese Verbesserungen dann wieder der Bibliothek zur Verfügung stellen, um den allgemeinen Sicherheitsstandard der Branche zu erhöhen."
+    },
+    "item3": {
+      "bold": "Spezialisierte Hochrisiko-Bibliothek:",
+      "desc": "Wir bauen ein nach Branchen und Ausrüstungen segmentiertes Szenarien-Repository auf, das die 9 wichtigsten Hochrisiko-Betriebskategorien umfasst."
+    }
+  },
+  "section3": {
+    "title": "So funktioniert es",
+    "subtitle": "Smart JSA Bridge schützt die Sicherheit durch die Kraft der Gemeinschaft.",
+    "step1": { "bold": "Bibliothek durchsuchen:", "desc": "Durchsuchen Sie das umfangreiche Repository nach einer JSA-Vorlage, die Ihrem aktuellen Aufgabentyp entspricht." },
+    "step2": { "bold": "Übernehmen & Anpassen:", "desc": "Wählen Sie eine passende Vorlage aus und passen Sie die detaillierten Parameter an Ihre Arbeitsumgebung 명." },
+    "step3": { "bold": "Exportieren & Teilen:", "desc": "Drucken Sie die fertige JSA für den Einsatz vor Ort aus und teilen Sie die verbesserte Logik wieder mit der Community." },
+    "step4": { "bold": "Standardisierung:", "desc": "Vorlagen, die zahlreiche Feedback-Zyklen durchlaufen, werden zum 'Golden Standard' für ihre jeweiligen Branchen." }
+  },
+  "section4": {
+    "title": "Philosophie der Datensicherheit",
+    "content": "Der Wert des Teilens kann nur auf der Grundlage einer sicheren Privatsphäre bestehen. <br />Gemäß dem <strong>'Prinzip der Nicht-Speicherung sensibler Informationen'</strong> sammelt Smart JSA Bridge keine identifizierbaren Daten wie Projekttitel, Klarnamen oder spezifische Geräte-IDs. Wir archivieren nur die reine technische Logik: 'Aufgabe-Gefahr-Maßnahme'."
+  },
+  "imageCaption": "Smart JSA Bridge: Ihr Partner für unfallfreie Standorte, angetrieben durch kollektive Intelligenz"
+}

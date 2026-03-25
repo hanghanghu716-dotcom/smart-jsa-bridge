@@ -1,31 +1,37 @@
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import AdSenseUnit from '../components/AdSenseUnit';
+import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
+// ✅ 커스텀 다국어 라우팅 훅 임포트[cite: 12]
+import { useLanguageNavigate } from '../hooks/useLanguage';
 
-export default function About() {
-  const navigate = useNavigate();
+export default function Privacy() {
+  const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 12]
+  const { t } = useTranslation('privacy'); // ✅ 'privacy' 네임스페이스 로드[cite: 12]
 
-  // 애드센스 설정 정보
+  // 애드센스 설정 정보[cite: 12]
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
   const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
   
-  // 모바일 전용 광고 슬롯 ID (디스플레이 광고 - 사각형 권장)
+  // 모바일 전용 광고 슬롯 ID[cite: 12]
   const MOBILE_IN_FEED_SLOT_ID = '이곳에_모바일_중간_광고_슬롯ID_입력';
 
   return (
     <div style={styles.wrapper}>
-      {/* HEADER */}
+      <SEO /> {/* ✅ 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 수행 */}
+
+      {/* HEADER[cite: 12] */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
+          {/* ✅ 로고 클릭 시 현재 선택된 언어의 메인 페이지로 이동[cite: 12] */}
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
         </div>
       </header>
       
       <section style={styles.contentSection} className="max-lg:!py-10">
-        {/* [수정] 광고 가동방식 변경을 위해 최상위 section에 relative 속성 부여 */}
         <div style={{ ...styles.container, position: 'relative' }}>
           
-          {/* [데스크탑 전용]: 왼쪽 사이드바 광고 (Main.jsx Fixed 가동방식 적용 + 20px 간격 유지) */}
+          {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 12] */}
           <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
               <span style={styles.adLabel}>AD (LEFT)</span>
@@ -38,7 +44,7 @@ export default function About() {
             </div>
           </aside>
 
-          {/* [데스크탑 전용]: 오른쪽 사이드바 광고 (Main.jsx Fixed 가동방식 적용 + 20px 간격 유지) */}
+          {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 12] */}
           <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
               <span style={styles.adLabel}>AD (RIGHT)</span>
@@ -51,34 +57,33 @@ export default function About() {
             </div>
           </aside>
 
-          {/* 원본 내용 절대 유지 시작 */}
-          <span style={styles.tag}>THE SAFETY REPOSITORY</span>
-          <h2 style={styles.heading} className="max-lg:!text-[2rem]">파편화된 안전 지식을<br />라이브러리로 연결하다</h2>
+          {/* 다국어 처리 반영 영역[cite: 12] */}
+          <span style={styles.tag}>{t('pageTag')}</span>
+          <h2 style={styles.heading} className="max-lg:!text-[2rem]">
+            {t('heading.line1')}<br />{t('heading.line2')}
+          </h2>
           
           <div style={styles.articleSection}>
-            <h3 style={styles.articleH3}>The Library for Safety Managers</h3>
-            <p style={styles.articleP}>
-              Smart JSA Bridge는 개별 PC 속에 잠들어 있던 실제 JSA 양식들을 양지로 끌어올려, <strong>안전 관리자들이 서로의 노하우를 라이브러리화하고 공유하는 오픈 소스형 저장소</strong>입니다.
-              단순한 서류 작성을 넘어, 전국의 산업 현장에서 검증된 최적의 안전 로직을 누구나 활용하고 개선할 수 있는 기술적 교량이 되고자 합니다.
-            </p>
+            <h3 style={styles.articleH3}>{t('section1.title')}</h3>
+            <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section1.content') }} />
 
-            <h3 style={styles.articleH3}>Core Values / 핵심 가치</h3>
+            <h3 style={styles.articleH3}>{t('section2.title')}</h3>
             <ul style={styles.listWrapper}>
               <li style={styles.listItem}>
                 <span style={styles.listBullet}>•</span> 
-                <strong>검증된 실무 데이터 기반:</strong> 추상적인 가이드가 아닌, 현장 전문가들이 직접 작성하고 사용한 실질적인 JSA 템플릿을 기반으로 합니다.
+                <strong>{t('section2.item1.bold')}</strong> {t('section2.item1.desc')}
               </li>
               <li style={styles.listItem}>
                 <span style={styles.listBullet}>•</span> 
-                <strong>지식의 선순환(Fork & Contribute):</strong> 우수한 JSA 양식을 자신의 현장에 맞춰 수정하여 활용하고, 이를 다시 라이브러리에 기여함으로써 전체 산업 안전 수준을 상향 평준화합니다.
+                <strong>{t('section2.item2.bold')}</strong> {t('section2.item2.desc')}
               </li>
               <li style={styles.listItem}>
                 <span style={styles.listBullet}>•</span> 
-                <strong>고위험군 특화 라이브러리:</strong> 9대 고위험 작업군을 포함하여 업종별, 설비별로 세분화된 분석 시나리오 저장소를 구축합니다.
+                <strong>{t('section2.item3.bold')}</strong> {t('section2.item3.desc')}
               </li>
             </ul>
 
-            {/* [기능 유지]: 모바일 전용 중간 광고 영역 (데스크탑에서는 숨김) */}
+            {/* 모바일 전용 중간 광고 영역[cite: 12] */}
             <div className="lg:hidden" style={styles.mobileAdWrapper}>
                <div style={styles.mobileAdPlaceholder}>
                   <span style={styles.adLabel}>MOBILE AD (IN-FEED)</span>
@@ -91,29 +96,25 @@ export default function About() {
                </div>
             </div>
 
-            <h3 style={styles.articleH3}>How It Works / 서비스 흐름</h3>
-            <p style={styles.articleP}>Smart JSA Bridge는 커뮤니티의 힘으로 안전을 지킵니다.</p>
+            <h3 style={styles.articleH3}>{t('section3.title')}</h3>
+            <p style={styles.articleP}>{t('section3.subtitle')}</p>
             <ul style={styles.listWrapper}>
-              <li style={styles.listItem}><span style={styles.listBullet}>1.</span> <strong>Browse Library:</strong> 방대한 저장소에서 현재 필요한 작업 종류에 맞는 JSA 양식을 검색합니다.</li>
-              <li style={styles.listItem}><span style={styles.listBullet}>2.</span> <strong>Adopt & Customize:</strong> 적합한 양식을 선택하여 내 작업 환경의 특성에 맞게 세부 수치를 조정합니다.</li>
-              <li style={styles.listItem}><span style={styles.listBullet}>3.</span> <strong>Export & Share:</strong> 완성된 JSA를 출력하여 현장에 적용하고, 개선된 로직은 다시 커뮤니티에 공유할 수 있습니다.</li>
-              <li style={styles.listItem}><span style={styles.listBullet}>4.</span> <strong>Standardization:</strong> 수많은 피드백을 거친 양식은 해당 업종의 '골든 스탠다드'로 자리 잡습니다.</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>1.</span> <strong>{t('section3.step1.bold')}</strong> {t('section3.step1.desc')}</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>2.</span> <strong>{t('section3.step2.bold')}</strong> {t('section3.step2.desc')}</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>3.</span> <strong>{t('section3.step3.bold')}</strong> {t('section3.step3.desc')}</li>
+              <li style={styles.listItem}><span style={styles.listBullet}>4.</span> <strong>{t('section3.step4.bold')}</strong> {t('section3.step4.desc')}</li>
             </ul>
 
-            <h3 style={styles.articleH3}>Data Security Philosophy</h3>
-            <p style={styles.articleP}>
-              공유의 가치는 안전한 보안 위에서만 존재할 수 있습니다. 
-              Smart JSA Bridge는 <strong>'민감 정보 비저장 원칙'</strong>에 따라 프로젝트명, 실제 성명, 설비 상세 명칭 등 식별 가능한 데이터는 수집하지 않으며, 오직 '작업-위험-대책'으로 이어지는 순수한 기술적 로직만을 라이브러리화합니다.
-            </p>
+            <h3 style={styles.articleH3}>{t('section4.title')}</h3>
+            <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section4.content') }} />
           </div>
 
           <div style={styles.imgContainer}>
              <div style={{...styles.heroImg, backgroundImage: 'url(/images/image6.jpg)'}} />
              <p style={{...styles.articleP, fontSize: '0.85rem', color: '#888', textAlign: 'center', marginTop: '12px'}}>
-               Smart JSA Bridge: 집단 지성으로 완성하는 무재해 현장의 파트너
+               {t('imageCaption')}
              </p>
           </div>
-          {/* 원본 내용 절대 유지 끝 */}
         </div>
       </section>
 
@@ -122,8 +123,8 @@ export default function About() {
   );
 }
 
+// 스타일 객체는 기존 소스코드의 레이아웃을 정확히 유지합니다[cite: 12].
 const styles = {
-  /* 원본 스타일 절대 유지 */
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
   header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
   logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
@@ -148,21 +149,18 @@ const styles = {
   mobileAdWrapper: { margin: '40px 0', width: '100%' },
   mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' },
 
-  /* [핵심 수정]: Main.jsx 가동방식(Fixed) + Privacy 위치(본문 옆 20px) 조합 */
   adSlotFixedLeft: { 
     position: 'fixed',
     top: '50%',
-    // 계산식: (화면 중앙 50%) - (본문 반폭 375px) - (광고폭 160px) - (간격 20px)
     left: 'calc(50% - 375px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 
     minHeight: '600px', 
-    zIndex: 100 // 다른 콘텐츠보다 위에 오도록 설정
+    zIndex: 100 
   },
   adSlotFixedRight: { 
     position: 'fixed',
     top: '50%',
-    // 계산식: (화면 중앙 50%) - (본문 반폭 375px) - (광고폭 160px) - (간격 20px)
     right: 'calc(50% - 375px - 160px - 20px)', 
     transform: 'translateY(-50%)',
     width: '160px', 

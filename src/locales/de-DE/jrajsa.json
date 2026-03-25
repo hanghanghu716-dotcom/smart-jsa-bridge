@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "regulation": "Leitfaden Gefährdungsbeurteilung",
+    "jrajsa": "Praxisablauf JRA/JSA",
+    "ppe": "Über persönliche Schutzausrüstung",
+    "riskClass": "Allgemeine / Hochrisiko-Aufgaben"
+  },
+  "hero": {
+    "tag": "INTEGRIERTE SICHERHEITS-COMPLIANCE",
+    "title1": "Praxisnaher JRA/JSA-Prozess",
+    "title2": "& Integrierte Richtlinien zur Rechtskonformität",
+    "subTitle1": "Bereitstellung professioneller Methoden zur Einhaltung von Sicherheitsstandards",
+    "subTitle2": "und zur Erreichung von Null Unfällen am Arbeitsplatz."
+  },
+  "section3": {
+    "title": "3. Standardisierter 9-stufiger JSA-Prozess",
+    "process": {
+      "step1": { "idx": "01", "title": "SOP festlegen", "desc": "Erstellung von Standard-Betriebsanweisungen (JSA), die auf die Standortmerkmale zugeschnitten sind." },
+      "step2": { "idx": "02", "title": "Analyseteam bilden", "desc": "Zusammenführung von Vorgesetzten, Sicherheitsfachkräften und erfahrenen Außendienstmitarbeitern." },
+      "step3": { "idx": "03", "title": "Zielaufgaben auswählen", "desc": "Priorisierung von Hochrisikoarbeiten (JRA) und nicht routinemäßigen Abläufen." },
+      "step4": { "idx": "04", "title": "Bewertung durchführen", "desc": "Schritte zerlegen, Gefährdungen identifizieren und Schutzmaßnahmen festlegen." },
+      "step5": { "idx": "05", "title": "Prüfung & Freigabe", "desc": "Überprüfung der Anwendbarkeit von Maßnahmen vor Ort und Einholung der finalen Genehmigung." },
+      "step6": { "idx": "06", "title": "Folgemaßnahmen", "desc": "Umsetzung technischer Maßnahmen wie Anlagen-Upgrades und Bereitstellung von PSA." },
+      "step7": { "idx": "07", "title": "Dokumentation & Schulung", "desc": "Analyseergebnisse datenbankgestützt erfassen und Unterweisungen für Mitarbeiter durchführen." },
+      "step8": { "idx": "08", "title": "Anwendung vor Ort", "desc": "Einführung der bestätigten sicheren Arbeitsverfahren in den tatsächlichen Betrieb." },
+      "step9": { "idx": "09", "title": "Leistungsbewertung", "desc": "Kontinuierliche Überwachung der Umsetzung und Validierung der Wirksamkeit von Maßnahmen." }
+    }
+  },
+  "section4": {
+    "title": "4. Pflichtpunkte für Risikobewertungsregeln",
+    "rules": {
+      "item1": { "title": "Zweck & Methode", "desc": "Ziele und Auswahl standortspezifischer Techniken." },
+      "item2": { "title": "Organisation & Rollen", "desc": "Spezifische R&R für Management und Außendienstmitarbeiter." },
+      "item3": { "title": "Zielauswahl", "desc": "Umfassende Auflistung aller Aufgaben und Geräte." },
+      "item4": { "title": "Zeitpunkt & Häufigkeit", "desc": "Bedingungen für Erst-, periodische und Sonderbewertungen." },
+      "item5": { "title": "Risikokriterien", "desc": "Eigene Standards zur Berechnung der Risikostufen." },
+      "item6": { "title": "Aufbewahrung von Unterlagen", "desc": "Standardisierung von Formularen und Aufbewahrungsrichtlinien (z. B. 3–5 Jahre)." }
+    }
+  },
+  "section5": {
+    "title": "5. Vergleich JRA vs. JSA",
+    "table": {
+      "header": {
+        "col1": "Kategorie",
+        "col2": "JRA (Job Risk Assessment)",
+        "col3": "JSA (Job Safety Analysis)"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Zielumfang",
+          "col2": "Gesamter Prozess und Anlagen",
+          "col3": "Spezifische Aufgabenverhaltensweisen und Schritte"
+        },
+        "row2": {
+          "col1": "Hauptteilnehmer",
+          "col2": "Manager und Sicherheitsfachkräfte",
+          "col3": "Kernmitarbeiter vor Ort"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. Obligatorische JSA-Checkliste",
+    "checklist": {
+      "item1": "Fehlen oder Unklarheit von Standard-Betriebsanweisungen (SOP)?",
+      "item2": "Handelt es sich um eine Aufgabe, bei der häufig Vorfälle oder Beinaheunfälle auftreten?",
+      "item3": "Fehlt den Mitarbeitern die Erfahrung in diesem spezifischen Prozess?",
+      "item4": "Erfordert die Aufgabe ein hohes Maß an Geschicklichkeit oder spezialisierte Ausbildung?"
+    }
+  },
+  "section7": {
+    "title": "7. Quantitative Logik zur Risikoberechnung",
+    "math": {
+      "risk": "Risiko",
+      "frequency": "Häufigkeit",
+      "severity": "Schweregrad",
+      "caption": "Risiko = Eintrittswahrscheinlichkeit (Häufigkeit) × Schweregrad der Folgen"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Entworfen von <strong>yizuno</strong>"
+}

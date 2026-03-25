@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Bitte geben Sie einen Vorlagennamen ein.",
+    "needLogin": "Anmeldung zum Speichern erforderlich.",
+    "saveError": "Beim Speichern der Vorlage ist ein Fehler aufgetreten.",
+    "saveSuccess": "Die gesamte Layout-Konfiguration wurde erfolgreich gespeichert.",
+    "exceedWidth": "Die Gesamtbreite der benutzerdefinierten Spalten darf das Maximum nicht überschreiten."
+  },
+  "tags": {
+    "DATA_STEP_NO": "Schritt-Nr.",
+    "DATA_STEP_TITLE": "Arbeitsschritte",
+    "DATA_PHOTO": "Referenzfoto",
+    "DATA_HAZARD": "Mögliche Gefährdungen",
+    "DATA_CURRENT_MEASURE": "Aktuelle Maßnahmen",
+    "DATA_RECOMMEND_MEASURE": "Empfohlene Maßnahmen",
+    "DATA_FREQUENCY": "Eintrittswahrscheinlichkeit",
+    "DATA_SEVERITY": "Schadensausmaß",
+    "DATA_RISK": "Risikostufe",
+    "DATA_KRAS_STEP": "Detaillierte Tätigkeitsbeschreibung",
+    "DATA_KRAS_HAZARD_CLASS": "Gefährdungskategorie",
+    "DATA_KRAS_HAZARD_DETAIL": "Gefahrenszenario & Folgen",
+    "DATA_KRAS_BASIS": "Rechtsgrundlage/Norm",
+    "DATA_KRAS_CURRENT": "Aktuelle Schutzmaßnahmen",
+    "DATA_KRAS_RECOMMEND": "Maßnahmen zur Risikominderung",
+    "DATA_KRAS_AFTER": "Restrisiko",
+    "DATA_KRAS_SCHED": "Zieldatum",
+    "DATA_KRAS_COMP": "Erledigungsdatum",
+    "DATA_KRAS_MANAGER": "Verantwortliche Person"
+  },
+  "groups": {
+    "hazard": "Gefährdungsermittlung",
+    "risk": "Risikobewertung"
+  },
+  "preview": {
+    "freqBreak": "Wahrscheinl.\n(Häufg)",
+    "sevBreak": "Ausmaß\n(Folge)",
+    "afterBreak": "Rest-\nrisiko",
+    "schedBreak": "Ziel-\ndatum",
+    "example": "(Beispieldaten)",
+    "dataArea": "... Tatsächlicher Datenbereich der Gefährdungsbeurteilung ...",
+    "docHeader": "[Bereich Dokumenten-Header]",
+    "signatureArea": "[Bereich Teilnehmerunterschriften]"
+  },
+  "step": {
+    "basicInfo": "Schritt 1: Basis-Info",
+    "procedure": "Schritt 2: Arbeitsablauf",
+    "riskAnalysis": "Schritt 3: Gefährdungsbeurteilung",
+    "moduleConfig": "Schritt 4: Modul-Setup",
+    "tableConfig": "Schritt 5: Tabellen-Konfig",
+    "finalOutput": "Schritt 6: Finaler Export"
+  },
+  "header": {
+    "title": "| 05. Datentabellen-Konfiguration",
+    "subtitle": "Präzises Anpassen der Spaltenreihenfolge und -breite für die Haupttabelle der Gefährdungsbeurteilung."
+  },
+  "toolbar": {
+    "saveTitle": "Integriertes Layout speichern",
+    "saveBtn": "Aktuelle Gesamtkonfiguration speichern",
+    "saveDesc": "* Speichert Modul-Einstellungen aus Schritt 4 zusammen mit den aktuellen Tabelleneinstellungen.",
+    "orientationTitle": "Tabellenausrichtung",
+    "landscape": "Querformat (Empfohlen)",
+    "portrait": "Hochformat",
+    "zoom": "Vorschau-Zoom",
+    "columnConfig": "Spaltenkonfiguration (Drag & Drop)",
+    "riskToggle": "Risikobewertung (Kombiniert)",
+    "riskGroupLabel": "Risikobewertung (Wahrsch·Schwere·Stufe)",
+    "newItem": "Neue Spalte",
+    "width": "Breite",
+    "addCustom": "+ Benutzerdefinierte Spalte hinzufügen"
+  },
+  "btn": {
+    "prev": "Zurück: Modul-Setup (Schritt 4)",
+    "next": "Weiter zum finalen Export (Schritt 6)"
+  },
+  "modal": {
+    "title": "Als benutzerdefinierte Vorlage speichern",
+    "desc": "Modul-Einstellungen aus Schritt 4 und aktuelle Tabellenkonfigurationen werden zusammengeführt und gespeichert.",
+    "placeholder": "Name der zu speichernden Vorlage eingeben",
+    "cancel": "Abbrechen",
+    "save": "Speichern"
+  }
+}

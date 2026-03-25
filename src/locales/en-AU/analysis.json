@@ -1,0 +1,73 @@
+{
+  "alert": {
+    "selectItem": "Please select items to add.",
+    "enterFactor": "Please enter a hazard factor first.",
+    "selectCurrentMeasure": "Please select a current safety control first.",
+    "manualFactor": "This is a manually entered hazard. Please enter the control directly.",
+    "needCurrentMeasure": "Please select a current safety control via the recommendation system first.",
+    "noData": "No linked data found. Please enter directly.",
+    "confirmMain": "Are you sure you want to go to the main screen? All unsaved data may be lost.",
+    "loginRequired": "Login is required."
+  },
+  "libModal": {
+    "title": "Call Task Step Library",
+    "empty": "No saved library found.",
+    "unclassified": "Unclassified",
+    "backBtn": "⬅️ Back to List",
+    "step": "Step",
+    "riskCount": " Hazards Included"
+  },
+  "recModal": {
+    "titleCurrent": "Current Safety Control",
+    "titleAdvanced": "Advanced Recommendation",
+    "descCurrent": "Safety rules registered for this hazard.",
+    "descAdvanced": "Higher-level recommendations to supplement current controls.",
+    "selectBtn": "Select"
+  },
+  "step": {
+    "basicInfo": "Basic Info",
+    "procedure": "Work Procedure",
+    "riskAnalysis": "Risk Analysis",
+    "moduleConfig": "Module Config",
+    "tableConfig": "Table Config",
+    "finalOutput": "Final Output"
+  },
+  "form": {
+    "title": "03. Hazard & Risk Analysis",
+    "typeStandard": "(Standard)",
+    "typeAdvanced": "(Advanced)",
+    "currentStep": "Current Step"
+  },
+  "filter": {
+    "label": "⚠️ High-Risk Filter",
+    "auto": "(Auto Suggestion)",
+    "loadLibBtn": "📂 Call Library Step"
+  },
+  "base": {
+    "label": "Safety Knowledge Base (Hazard Extraction)",
+    "addEmptyBtn": "+ Add Blank",
+    "addBulkBtn": "✓ Add Selected Items",
+    "emptyRec": "No recommended hazards found.",
+    "etc": "Misc"
+  },
+  "result": {
+    "label": "Evaluation & Controls",
+    "freq": "Freq",
+    "sev": "Sev"
+  },
+  "table": {
+    "factor": "Hazard Factor",
+    "measure": "Mitigation Measure",
+    "currentMeasure": "Current Control",
+    "advancedMeasure": "Advanced Rec.",
+    "delete": "Delete",
+    "recMeasureBtn": "Recommend",
+    "recAdvancedBtn": "Advanced"
+  },
+  "btn": {
+    "prevStep1": "Prev Step (Procedure)",
+    "prevStep2": "Prev Task Step",
+    "nextComplete": "Complete Analysis & Go to Module Config",
+    "nextStep": "Analyse Next Task Step"
+  }
+}

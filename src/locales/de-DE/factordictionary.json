@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "Menü",
+    "close": "Schließen"
+  },
+  "drawer": {
+    "contents": "INHALTE",
+    "regulation": "Vorschriften der DGUV/ArbSchG",
+    "jrajsa": "Gefährdungsbeurteilung (GBU)",
+    "protectiveEquipment": "PSA (Persönliche Schutzausrüstung)",
+    "riskClassification": "Gefährdungsklassifizierung",
+    "dictionary": "Gefährdungskatalog"
+  },
+  "hero": {
+    "tag": "DATENBANK FÜR ARBEITSSCHUTZ",
+    "titleLine1": "Intelligente Gefährdungsbeurteilung,",
+    "titleLine2": "Standard-Gefährdungskatalog",
+    "seoText1": "Suchen und identifizieren Sie potenzielle Gefahren am Arbeitsplatz und entsprechende Schutzmaßnahmen gemäß den geltenden Sicherheitsstandards.",
+    "seoText2": "Schaffen Sie ein sichereres Arbeitsumfeld und verhindern Sie schwere Unfälle durch unseren systematischen, datengesteuerten Ansatz."
+  },
+  "filter": {
+    "allCategories": "Alle Kategorien",
+    "searchPlaceholder": "Suche nach Gefährdungen oder Maßnahmen...",
+    "searchBtn": "Suchen",
+    "resultPrefix": "Insgesamt ",
+    "resultSuffix": " Ergebnisse"
+  },
+  "data": {
+    "loading": "Daten werden geladen...",
+    "empty": "Keine Daten gefunden, die Ihren Kriterien entsprechen.",
+    "riskFactorLabel": "Identifizierter Gefährdungsfaktor",
+    "currentMeasureLabel": "Aktuelle Schutzmaßnahmen",
+    "advancedMeasureLabel": "Zusätzliche Schutzmaßnahmen"
+  },
+  "pagination": {
+    "prev": "Zurück",
+    "next": "Weiter"
+  }
+}

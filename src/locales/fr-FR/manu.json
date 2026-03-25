@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attention] Cet échantillon est fourni à titre de référence uniquement. L'évaluation des risques doit être menée sur la base de vérifications réelles sur site.",
+    "text2": "Smart JSA Bridge n'est pas responsable des conséquences juridiques découlant de l'utilisation de ces données."
+  },
+  "ui": {
+    "category": "ÉCHANTILLONS JSA FABRICATION",
+    "mainTitle1": "JSA Fabrication",
+    "mainTitle2": "Guide d'échantillons (10 types)",
+    "description1": "Vérifiez les facteurs de danger essentiels tels que le happement par les machines,",
+    "description2": "les brûlures thermiques et l'exposition chimique. Voir les images détaillées.",
+    "labelRed": "⚠ Dangers essentiels",
+    "labelBlue": "🛡 Mesures de prévention",
+    "previewLabel": "Aperçu de l'échantillon (Image)",
+    "downloadBtn": "Télécharger l'échantillon PDF original"
+  },
+  "list": [
+    { "id": "MANUF-01", "title": "Réapprovisionnement chimique de bac de placage et décapage de surface métallique", "hazard": "Asphyxie par gaz acide, brûlures chimiques par projection", "measure": "Vérifier l'aspiration locale, porter des combinaisons et gants imperméables", "pages": 1 },
+    { "id": "MANUF-02", "title": "Débouchage de buse d'injection et nettoyage du carbone", "hazard": "Brûlures par éjection de résine chaude, écrasement lors du mouvement de l'unité", "measure": "Porter des équipements ignifugés, appliquer la consignation (LOTO), purge à basse pression", "pages": 1 },
+    { "id": "MANUF-03", "title": "Coupe et façonnage de grumes avec scies circulaires industrielles", "hazard": "Gants happés par les lames rotatives, impact par rebond du bois", "measure": "Porter des vêtements de travail ajustés, utiliser les poussoirs obligatoires", "pages": 1 },
+    { "id": "MANUF-04", "title": "Maintenance régulière de l'unité d'entraînement du convoyeur", "hazard": "Doigt pincé entre les rouleaux, écrasement par démarrage intempestif", "measure": "Appliquer des dispositifs LOTO individuels, inspection uniquement à l'arrêt", "pages": 1 },
+    { "id": "MANUF-05", "title": "Chargement du four de fusion et coulée de métal fondu", "hazard": "Explosion de vapeur par humidité, brûlures par chaleur radiante", "measure": "Effectuer un séchage par préchauffage, porter des écrans faciaux teintés ignifugés", "pages": 1 },
+    { "id": "MANUF-06", "title": "Maintenance de robot de soudage par points et changement de pointe", "hazard": "Collisions par dysfonctionnement du robot, brûlures par contact avec la pointe chaude", "measure": "Restreindre l'accès à la cellule et appliquer le LOTO, outils d'extraction dédiés", "pages": 1 },
+    { "id": "MANUF-07", "title": "Changement de moule de presse et réglage", "hazard": "Écrasement entre les plateaux lors de la descente, collision lors du levage", "measure": "Installer des blocs de sécurité standard, levage vertical et cordes de guidage", "pages": 1 },
+    { "id": "MANUF-08", "title": "Utilisation de ligne SMT et maintenance du four de refusion", "hazard": "Brûlures par contact avec les éléments chauffants, intoxication au plomb/flux", "measure": "Travailler après refroidissement, porter des masques pour composés organiques", "pages": 1 },
+    { "id": "MANUF-09", "title": "Nettoyage interne de précision et désinfection de grands mélangeurs", "hazard": "Manque d'oxygène dans la cuve, écrasement par rotation inattendue des lames", "measure": "Surveiller l'oxygène, surveillant extérieur, consignation (LOTO) de l'alimentation", "pages": 1 },
+    { "id": "MANUF-10", "title": "Inspection des rouleaux d'imprimante offset et nettoyage au solvant", "hazard": "Écrasement des doigts aux points de pincement, incendie par vapeurs de solvant", "measure": "Utiliser le mode 'Pas à pas', vérifier les dispositifs antistatiques", "pages": 1 }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Achtung] Dieses Muster dient nur als Referenz. Gefährdungsbeurteilungen müssen auf der Grundlage tatsächlicher Inspektionen durchgeführt werden, die auf spezifische Prozesse zugeschnitten sind.",
+    "text2": "Smart JSA Bridge haftet nicht für rechtliche Folgen, die sich aus der Verwendung dieses Materials ergeben."
+  },
+  "ui": {
+    "category": "CHEMIE- & GASSICHERHEIT",
+    "mainTitle1": "JSA für Chemie- & Gasarbeiten",
+    "mainTitle2": "Musterleitfäden (10 Typen)",
+    "description1": "Standard-Risikoanalysedaten für Prozesse mit Hochdruckgas",
+    "description2": "und giftigen Chemikalien. Bitte prüfen Sie die Detailbilder.",
+    "labelRed": "⚠ Kritische Gefährdungsfaktoren",
+    "labelBlue": "🛡 Wesentliche Sicherheitsmaßnahmen",
+    "previewLabel": "Vorschau des JSA-Berichts",
+    "downloadBtn": "Vollständiges Original-PDF herunterladen"
+  },
+  "list": [
+    { "id": "CHEM-01", "title": "Inspektion von Rohrbündelwärmetauschern & Hochdruckwasserstrahlreinigung", "hazard": "Gewebeperforation durch Hochdruckwasser, Verätzungen durch Restflüssigkeiten", "measure": "Spezialschutzanzüge tragen, Entleerventile vollständig öffnen 및 LOTO-Verfahren befolgen", "pages": 1 },
+    { "id": "CHEM-02", "title": "Austausch der Packung von Hochdruck-Wasserstoffkompressoren", "hazard": "Explosion durch Wasserstoffleckage, Erstickung durch Stickstoffspülung", "measure": "0% Wasserstoff mit tragbaren Gaswarngeräten prüfen, antistatische Kleidung tragen und funkenfreies Werkzeug verwenden", "pages": 1 },
+    { "id": "CHEM-03", "title": "Austausch von Ventilen & Dichtungen an Giftgasleitungen", "hazard": "Verspritzen von Restflüssigkeiten bei Flanschdemontage, Vergiftung durch giftige Gase", "measure": "Vollmasken tragen, Schrauben nacheinander vom Körper weg lösen", "pages": 1 },
+    { "id": "CHEM-04", "title": "Austausch der Fackelspitze & Wartung des Zündsystems", "hazard": "Absturz durch starken Wind, Feuereinwirkung bei Entzündung von Restgas", "measure": "Windgeschwindigkeit überwachen (verboten über 10m/s), Auffanggurt mit Falldämpfer verwenden und DCS-Isolierung prüfen", "pages": 1 },
+    { "id": "CHEM-05", "title": "Funktionsprüfung der Notfall-Katastrophenschutz-Ausrüstung", "hazard": "Stoß durch Schlauchablösung bei Hochdruckwasserentladung, Gasinhalation", "measure": "Sicherung der Schlauchstifte prüfen, mit dem Rücken zum Wind arbeiten und Schutzkappen verwenden", "pages": 1 },
+    { "id": "CHEM-06", "title": "Inspektion des unteren Automatikventils am PSA-Adsorptionsturm", "hazard": "Quetschung durch unerwarteten Ventilbetrieb, Atemwegsprobleme durch Adsorptionsstaub", "measure": "Restpneumatikdruck ablassen, LOTO durchführen und Hochleistungs-Staubmasken tragen", "pages": 1 },
+    { "id": "CHEM-07", "title": "Interne Sichtprüfung & ZfP von Hochdruck-Wasserstoffspeichertanks", "hazard": "Erstickungsgefahr in engen Räumen, Explosion durch undichte Beleuchtung", "measure": "Gaskonzentration oben/mitte/unten messen, Zwangslüftung und explosionsgeschützte Niederspannungsbeleuchtung (unter 24V) verwenden", "pages": 1 },
+    { "id": "CHEM-08", "title": "Entladen von Hochdruck-Wasserstoff-Tankwagen & Anschluss der Ladestation", "hazard": "Quetschen durch wegrollendes Fahrzeug, Wasserstoffexplosion durch statische Entladung", "measure": "Mindestens 2 Unterlegkeile anbringen, Erdungsklemmen zuerst anschließen und Widerstand prüfen", "pages": 1 },
+    { "id": "CHEM-09", "title": "DCS/PLC-Panel-Inspektion & Feldtransmitter-Kalibrierung", "hazard": "Unerwarteter Prozessstopp durch Interlock-Fehler, elektrischer Schlag an spannungsführenden Teilen", "measure": "DCS-Bypass-Status doppelt prüfen, Verwendung von isolierten Handschuhen und antistatischer Kleidung sicherstellen", "pages": 1 },
+    { "id": "CHEM-10", "title": "Nachfüllen von Bioziden & Korrosionsschutzmitteln im Kühlwassersystem", "hazard": "Gasexplosion bei Mischung verschiedener Chemikalien, Chemikalienerruption beim Öffnen von Behältern", "measure": "Chemikalienetiketten prüfen, getrennt lagern und Innendruck unter Gesichtsschutz ablassen", "pages": 1 }
+  ]
+}

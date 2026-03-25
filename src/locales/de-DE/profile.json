@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Konto- & intelligentes Sicherheitsmanagement",
+    "statsLabel": "Beiträge & Nutzungsstatistiken",
+    "myCount": "Erstellte GBUs",
+    "scraps": "Gespeicherte Vorlagen",
+    "nickname": "Anzeigename",
+    "sector": "Hauptindustriesektor",
+    "company": "Firmenname (Optional)",
+    "bio": "Berufliches Profil & Statusnachricht",
+    "bioPlaceholder": "Geben Sie Ihren Fachbereich oder Ihre Sicherheitsphilosophie ein.",
+    "presetTitle": "Standard-Voreinstellungen für Arbeitsberichte",
+    "department": "Standard-Abteilung",
+    "manager": "Standard-Prüfer/Genehmiger",
+    "autoPublicity": "Automatische Freigabe für die Wissensdatenbank (Explore) erlauben",
+    "signatureLabel": "Elektronische Signatur (Bild)",
+    "noSignature": "Keine Signatur registriert.",
+    "uploadSignature": "Signaturbild hochladen",
+    "securityLabel": "Sicherheit & Sitzungsverwaltung",
+    "remoteLogout": "Fernabmeldung von allen Geräten",
+    "openWithdraw": "Möchten Sie Ihr Konto schließen?",
+    "closeWithdraw": "Abmeldungspanel schließen",
+    "withdrawWarning": "⚠️ Bei der Abmeldung werden alle erstellten Daten und gespeicherten Datensätze sofort gelöscht und können nicht wiederhergestellt werden.",
+    "withdrawPlaceholder": "Bitte geben Sie den 'Zustimmungstext' ein.",
+    "withdrawSubmit": "Kontolöschung bearbeiten",
+    "goMain": "Zurück zum Hauptmenü",
+    "saveProfile": "Profilinformationen aktualisieren"
+  },
+  "sectors": {
+    "default": "Wählen Sie einen Industriesektor aus",
+    "construction": "Bauwesen / Tiefbau / Architektur",
+    "manufacturing": "Fertigung / Anlagenbau / Chemie",
+    "energy": "Energie / Elektrik / Gas",
+    "logistics": "Transport / Logistik / Lagerwesen",
+    "safety": "Sicherheitsmanagement / Beratung",
+    "it": "IT / Systeme / Engineering",
+    "public": "Öffentlicher Dienst / Bildung / Gesundheit",
+    "etc": "Andere Sektoren"
+  },
+  "messages": {
+    "updateSuccess": "Profilinformationen wurden erfolgreich aktualisiert.",
+    "signatureSuccess": "Elektronische Signatur wurde sicher registriert.",
+    "confirmRemoteLogout": "Sind Sie sicher, dass Sie die Abmeldung von allen Sitzungen außer dem aktuellen Gerät erzwingen möchten?",
+    "confirmWithdrawal": "Sind Sie sicher, dass Sie das Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "withdrawConsentText": "Löschung bestätigen",
+    "withdrawMismatch": "Der Bestätigungstext stimmt nicht überein.",
+    "confirmGoMain": "Änderungen werden möglicherweise nicht gespeichert. Zur Hauptseite wechseln?"
+  }
+}

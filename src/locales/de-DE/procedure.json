@@ -1,0 +1,37 @@
+{
+  "alert": {
+    "confirmMain": "Möchten Sie wirklich zum Hauptbildschirm zurückkehren? Alle ungespeicherten Daten gehen verloren.",
+    "minSteps": "Bitte geben Sie mindestens 3 Schritte für den Ablauf ein."
+  },
+  "modal": {
+    "title": "Analyseformat auswählen",
+    "sub": "Bitte wählen Sie die Präzisionsstufe für die JSA-Analyse.",
+    "standardLabel": "Basis-Analyse (2-stufig)",
+    "standardDesc1": "Gefährdungsfaktor ➔ Minderungsmaßnahme",
+    "standardDesc2": "(Für allgemeine Feldarbeiten)",
+    "advancedLabel": "Erweiterte Analyse (3-stufig)",
+    "advancedDesc1": "Gefährdungsfaktor ➔ Aktuelle Schutzmaßnahme ➔ Zusätzliche Minderungsmaßnahme",
+    "advancedDesc2": "(Für Hochrisikoprozesse und präzise Analysen)",
+    "closeBtn": "Schließen"
+  },
+  "step": {
+    "basicInfo": "Basis-Info",
+    "procedure": "Arbeitsablauf",
+    "riskAnalysis": "Gefährdungsbeurteilung",
+    "moduleConfig": "Modul-Konfig",
+    "tableConfig": "Tabellen-Konfig",
+    "finalOutput": "Endergebnis"
+  },
+  "form": {
+    "title": "02. Definition des detaillierten Arbeitsablaufs",
+    "stepLabel": "Arbeitsschritt",
+    "detailLabel": "Detaillierte Tätigkeitsbeschreibung",
+    "placeholderTitle": "Name des Schritts",
+    "placeholderDetail": "Details"
+  },
+  "btn": {
+    "addStep": "+ Arbeitsablauf hinzufügen (Bis zu 20 Schritte)",
+    "prev": "Zurück",
+    "next": "Intelligente Gefahrenanalyse starten"
+  }
+}

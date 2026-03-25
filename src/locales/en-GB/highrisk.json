@@ -1,0 +1,26 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Caution] This sample is for reference only. Risk assessments must be based on actual onsite inspections.",
+    "text2": "Smart JSA Bridge is not liable for legal consequences arising from the use of this material."
+  },
+  "ui": {
+    "category": "HIGH RISK SPECIALIST",
+    "mainTitle1": "High-Risk Special Work JSA",
+    "mainTitle2": "Sample Guide (7 Types)",
+    "description1": "Standard risk analysis data for life-threatening high-risk construction.",
+    "description2": "Check images and download the original PDF.",
+    "labelRed": "⚠ Critical Hazard Factors",
+    "labelBlue": "🛡 Essential Control Measures",
+    "previewLabel": "JSA Report Preview",
+    "downloadBtn": "Download Full Original PDF"
+  },
+  "list": [
+    { "id": "HR-01", "title": "Aging Pipe Replacement and Flange Welding Repair", "hazard": "Residual flammable gas explosion, fire from welding sparks", "measure": "Verify 0% LEL, isolate combustibles within 11m, and assign fire watch", "pages": 1 },
+    { "id": "HR-02", "title": "Substation High-Voltage Switchgear Inspection and Cable Replacement", "hazard": "Electric shock from switch misoperation, arc flash from residual charge", "measure": "Implement individual LOTO, verify zero voltage with detector, and discharge grounding rod", "pages": 1 },
+    { "id": "HR-03", "title": "Excavation and Shoring Installation for Piping Burial", "hazard": "Explosion from underground utility damage, burial due to slope failure", "measure": "Perform utility detection and manual excavation, maintain safe slope, and monitor instruments", "pages": 1 },
+    { "id": "HR-04", "title": "Radiographic Testing (RT) for New Pipe Weld Quality Inspection", "hazard": "Radiation exposure, unauthorised entry into controlled areas during night work", "measure": "Calculate safe distance and install boundary rope, assign authorised guard, and carry survey meter", "pages": 1 },
+    { "id": "HR-05", "title": "Internal Precision Inspection and Residue Removal of Nitrogen-Purged Tanks", "hazard": "Asphyxiation due to residual nitrogen, isolation in confined spaces", "measure": "Forced ventilation before/during entry, oxygen monitoring, and mandatory external watchman", "pages": 1 },
+    { "id": "HR-06", "title": "Crane Lifting and Moving for Heavy Equipment Installation", "hazard": "Equipment tip-over due to ground bearing failure, crushing by falling cargo", "measure": "Reinforce outrigger pads, follow 2-line hitching, and perform 10cm test lift", "pages": 1 },
+    { "id": "HR-07", "title": "Factory Roof Panel Repair and MEWP (Rental) Operation", "hazard": "Fall from damaged corroded roof panels, electric shock from high-voltage lines", "measure": "Install load-distributing scaffolds, double-tie safety harnesses, and maintain electrical clearance", "pages": 1 }
+  ]
+}

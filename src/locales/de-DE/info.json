@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "Möchten Sie wirklich zum Hauptbildschirm zurückkehren? Alle ungespeicherten Daten gehen verloren.",
+    "projectNameRequired": "Projektname ist erforderlich. Bitte geben Sie den Namen der Aufgabe ein."
+  },
+  "step": {
+    "basicInfo": "Basis-Info",
+    "procedure": "Arbeitsablauf",
+    "riskAnalysis": "Gefährdungsbeurteilung",
+    "moduleConfig": "Modul-Konfig",
+    "tableConfig": "Tabellen-Konfig",
+    "finalOutput": "Endergebnis"
+  },
+  "form": {
+    "title": "01. Grundlegende Aufgabeninformationen & Sicherheitsanforderungen",
+    "projectName": "Projektname",
+    "required": "(Erforderlich)",
+    "department": "Abteilung",
+    "workLocation": "Arbeitsort",
+    "workDate": "Geplantes Datum",
+    "managerName": "Bauleiter / Manager",
+    "weather": "Wetter vor Ort",
+    "hasNewWorker": "Einschließlich neuer/ungelernter Mitarbeiter",
+    "participants": "Teilnehmer der Bewertung",
+    "ppe": "Persönliche Schutzausrüstung (PSA)",
+    "permits": "Genehmigungspflichtige Arbeiten",
+    "equipment": "Erforderliche Ausrüstung",
+    "additionalItems": "Zusätzliche Anforderungen"
+  },
+  "warning": {
+    "title": "Hinweis:",
+    "text": "Die von Ihnen erstellten JSA-Ergebnisse können gemäß unserer Richtlinie zum Datenaustausch anderen Benutzern zugänglich gemacht werden. Bitte beachten Sie, dass unangemessene Inhalte wie ungenaue Informationen, falsche Tatsachen oder Obszönitäten ohne Vorankündigung gelöscht werden können und Warnungen oder Nutzungsbeschränkungen gegen das Konto verhängt werden können."
+  },
+  "weather": {
+    "sunny": "Sonnig",
+    "cloudy": "Bewölkt",
+    "rain": "Regen",
+    "snow": "Schnee",
+    "wind": "Starker Wind",
+    "heatwave": "Hitzewelle / Hohe Temp.",
+    "coldwave": "Kältewelle / Niedrige Temp."
+  },
+  "ppe": {
+    "안전모": "Schutzhelm",
+    "안전화": "Sicherheitsschuhe",
+    "보안경": "Schutzbrille",
+    "장갑": "Schutzhandschuhe",
+    "귀마개": "Gehörschutzstöpsel",
+    "방진복": "Staubschutzkleidung",
+    "방진마스크": "Staubschutzmaske"
+  },
+  "permit": {
+    "일반": "Allgemein",
+    "화기": "Feuerarbeiten",
+    "밀폐": "Enge Räume",
+    "정전": "Elektrische Abschaltung",
+    "굴착": "Ausschachtung",
+    "방사선": "Strahlung",
+    "고소": "Arbeiten in der Höhe",
+    "중량물": "Schwere Lasten",
+    "가연성가스": "Brennbares Gas"
+  },
+  "btn": {
+    "home": "Zurück zur Startseite",
+    "next": "Weiter zur Ablaufdefinition"
+  }
+}

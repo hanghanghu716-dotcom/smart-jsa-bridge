@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ FERMER"
+  },
+  "drawer": {
+    "contents": "SOMMAIRE",
+    "regulation": "Guide Réglementaire d'Évaluation des Risques",
+    "jrajsa": "Processus Pratique JRA/JSA",
+    "protectiveEquipment": "À propos des Équipements de Protection",
+    "riskClassification": "Travaux Généraux / À Haut Risque",
+    "dictionary": "Base de Données Facteurs de Risque et Mesures"
+  },
+  "hero": {
+    "tag": "BASE DE DONNÉES INTELLIGENTE DES RISQUES",
+    "titleLine1": "Dictionnaire Intégré des Dangers Standard,",
+    "titleLine2": "Facteurs de Risque et Mesures de Réduction",
+    "seoText1": "Cette base de données fournit des données de correspondance pour plus de 1 000 dangers standard et les mesures de réduction correspondantes, basées sur les directives de l'OSHA et les normes de sécurité internationales. Les responsables sécurité et les travailleurs peuvent utiliser ce dictionnaire pour identifier proactivement les risques potentiels.",
+    "seoText2": "Les données fournies servent de référence fondamentale pour la prévention des accidents. Veuillez les adapter à votre site spécifique, en tenant compte de l'environnement de travail réel, des caractéristiques des équipements et de la compétence des travailleurs. Une évaluation précise des risques est le pont le plus solide vers un lieu de travail sans accident."
+  },
+  "filter": {
+    "allCategories": "Toutes les catégories",
+    "searchPlaceholder": "Rechercher des facteurs de risque ou des mesures...",
+    "searchBtn": "Rechercher",
+    "resultPrefix": "Total de ",
+    "resultSuffix": " enregistrements trouvés."
+  },
+  "data": {
+    "loading": "Chargement des données...",
+    "empty": "Aucun résultat de recherche. Veuillez essayer un autre mot-clé.",
+    "riskFactorLabel": "Facteur de Danger / Risque",
+    "currentMeasureLabel": "Mesure Actuelle",
+    "advancedMeasureLabel": "Mesure Avancée"
+  },
+  "pagination": {
+    "prev": "Précédent",
+    "next": "Suivant"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attention] Cet échantillon est fourni à titre de référence uniquement. Les évaluations des risques doivent être menées sur la base de vérifications réelles sur site.",
+    "text2": "Smart JSA Bridge n'est pas responsable des conséquences juridiques découlant de l'utilisation de ce matériel."
+  },
+  "ui": {
+    "category": "ÉCHANTILLONS JSA CONSTRUCTION",
+    "mainTitle1": "JSA Construction",
+    "mainTitle2": "Guide d'échantillons (10 types)",
+    "description1": "Vérifiez les dangers et mesures essentiels pour chaque processus. Examinez les images",
+    "description2": "et téléchargez le PDF original via le bouton ci-dessous.",
+    "labelRed": "⚠ Dangers essentiels",
+    "labelBlue": "🛡 Mesures d'atténuation",
+    "previewLabel": "Aperçu de l'échantillon (Image)",
+    "downloadBtn": "Télécharger l'échantillon PDF original"
+  },
+  "list": [
+    { "id": "CONST-01", "title": "Installation de l'ossature de plafond et fixation de cloisons sèches", "hazard": "Chute due à des charnières d'échelle non verrouillées, accidents de cloueuse", "measure": "Vérification visuelle de l'engagement du verrou, port de gants anticoupure et de lunettes de sécurité", "pages": 1 },
+    { "id": "CONST-02", "title": "Soudage de tuyauterie principale et installation de pompes en salle des machines", "hazard": "Incendie dû aux projections de soudure, éclatement lors de l'essai de pression", "measure": "Affecter un surveillant incendie, mise sous pression progressive dans la limite de 1,1x la pression de calcul", "pages": 1 },
+    { "id": "CONST-03", "title": "Excavation et remblayage pour systèmes de drainage", "hazard": "Explosion due à l'endommagement de réseaux souterrains, ensevelissement dû à une rupture de pente", "measure": "Détection de réseaux combinée à un creusement manuel, maintenir une pente de sécurité", "pages": 1 },
+    { "id": "CONST-04", "title": "Étanchéité de toiture en uréthane et peinture extérieure à l'eau", "hazard": "Chute depuis les bords de toiture, asphyxie par les vapeurs de solvants", "measure": "Fixer la ligne de vie au harnais de sécurité, mettre en œuvre une ventilation forcée via des ventilateurs", "pages": 1 },
+    { "id": "CONST-05", "title": "Entretien des murs extérieurs et installation d'équipements en hauteur", "hazard": "Chute due à une rupture de corde, écrasement par PEMP (Location)", "measure": "Installer des lignes de vie verticales séparées, inspecter les dispositifs de prévention de surcourse", "pages": 1 },
+    { "id": "CONST-06", "title": "Montage et démontage d'échafaudages de système pour travaux extérieurs", "hazard": "Effondrement de toute la structure, impact par chute de composants", "measure": "Installer des attaches murales selon les normes, établir des zones d'exclusion au sol", "pages": 1 },
+    { "id": "CONST-07", "title": "Façonnage d'armatures et travaux de levage à la grue", "hazard": "Chute de matériel due à une défaillance de l'élingage, happement par les machines de façonnage", "measure": "Suivre les règles d'élingage à 2 brins, utiliser des poussoirs dédiés pendant le façonnage", "pages": 1 },
+    { "id": "CONST-08", "title": "Coulage de béton pour dalles et poutres", "hazard": "Basculement du camion-pompe, impact dû au détachement du tuyau et au coup de fouet", "measure": "Renforcer le sol des stabilisateurs, inspecter les goupilles et bagues de connexion", "pages": 1 },
+    { "id": "CONST-09", "title": "Démolition de structures anciennes de faible hauteur et enlèvement des déchets", "hazard": "Effondrement soudain pendant la démolition, risque d'exposition à l'amiante", "measure": "Suivre le principe de démolition Top-down, vérifier le diagnostic amiante avant démolition", "pages": 1 },
+    { "id": "CONST-10", "title": "Câblage électrique au plafond et installation d'équipements de sécurité incendie", "hazard": "Choc électrique provenant de pièces sous tension, chute due à une extension excessive du corps sur les échelles", "measure": "Mettre en œuvre le LOTO sur panneau, vérifier l'absence de tension avec un détecteur", "pages": 1 }
+  ]
+}

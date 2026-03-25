@@ -1,0 +1,31 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [HINWEIS] Dieses Muster dient nur als Referenz. Gefährdungsbeurteilungen müssen auf der Grundlage tatsächlicher Besichtigungen vor Ort und spezifischer Umgebungsfaktoren durchgeführt werden.",
+    "text2": "Smart JSA Bridge übernimmt keine rechtliche Haftung für Ergebnisse, die aus der Verwendung dieses Materials resultieren."
+  },
+  "ui": {
+    "category": "GEMEINSAMER SICHERHEITSSTANDARD",
+    "mainTitle1": "Integriertes Baustellensicherheitsmanagement",
+    "mainTitle2": "und JSA-Leitfaden",
+    "description1": "Standardisierte Daten für die Top 10 der gängigen Prozesse",
+    "description2": "und Anforderungen für die Vorbereitung von Hochrisikoarbeiten.",
+    "jsaId": "COMMON-01",
+    "jsaTitle1": "Standortweites Sicherheitsmanagement und",
+    "jsaTitle2": "Anforderungen vor Hochrisikoaufgaben",
+    "summaryTitle": "Wichtigste Prozesse & Gefährdungsübersicht",
+    "previewLabel": "Vorschau des JSA-Berichts",
+    "downloadBtn": "Original-PDF herunterladen"
+  },
+  "steps": [
+    { "step": "01", "task": "TBT vor der Aufgabe & PSA-Inspektion", "hazard": "Unklarer Arbeitsumfang, unsachgemäßer Gebrauch der PSA" },
+    { "step": "02", "task": "Absturzsicherungssysteme", "hazard": "Versagen der Anschlagpunkte, Ausrutschen wetterbedingt" },
+    { "step": "03", "task": "Isolierung brennbarer Stoffe & Brandwache", "hazard": "Funken bei Heißarbeiten, Restgasexplosion" },
+    { "step": "04", "task": "Einrichtung von Rigging & Hebezeugen", "hazard": "Mangelnde Bodenstabilität, Versagen von Anschlagmitteln/Seilen" },
+    { "step": "05", "task": "Atmosphärische Prüfung & Belüftung", "hazard": "Sauerstoffmangel, Inhalation giftiger Gase" },
+    { "step": "06", "task": "Sicherheit bei Ausgrabungen & Gräben", "hazard": "Treffen von Versorgungsleitungen, Einsturz von Gräben" },
+    { "step": "07", "task": "LOTO & Überprüfung der Energiefreiheit", "hazard": "Versehentliche Wiedereinschaltung, Reststromschlag" },
+    { "step": "08", "task": "Absperrung & Strahlenschutz", "hazard": "Unbefugter Zutritt, Exposition gegenüber ionisierender Strahlung" },
+    { "step": "09", "task": "Inbetriebnahme & Loop-Tests", "hazard": "Überbrückte Verriegelungen, Hochdruckleckagen" },
+    { "step": "10", "task": "Reinigung & LOTO-Entfernung nach dem Job", "hazard": "Hinterlassene Werkzeuge/Trümmer, Kurzschlussgefahren" }
+  ]
+}

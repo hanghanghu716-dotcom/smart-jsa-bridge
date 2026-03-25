@@ -1,0 +1,67 @@
+{
+  "default": {
+    "docTitle": "Document Unique d'Évaluation des Risques (DUER)",
+    "appr1": "Rédacteur",
+    "appr2": "Vérificateur",
+    "appr3": "Approbateur Autorisé"
+  },
+  "table": {
+    "projectName": "Nom du Projet/Contrat",
+    "approval": "Approbation de Conformité",
+    "workLocation": "Site de Travail Spécifique",
+    "department": "Unité d'Affaires/Dépt",
+    "workDate": "Date d'Effet",
+    "ppe": "EPI Requis",
+    "highRiskWork": "Dangers Critiques",
+    "participants": "Membres de l'Équipe de Travail",
+    "signature": "(Signature)"
+  },
+  "ppe": {
+    "helmet": "Protection de la Tête (Casque)",
+    "shoes": "Chaussures de Protection",
+    "glasses": "Protection des Yeux et du Visage",
+    "safetyBelt": "Système d'Arrêt des Chutes Personnel",
+    "mask": "Protection Respiratoire",
+    "gloves": "Protection des Mains (Gants)",
+    "etc": "EPI Spécialisé"
+  },
+  "permit": {
+    "hotWork": "Permis de Travail à Chaud",
+    "confinedSpace": "Espace Confiné soumis à Permis",
+    "electrical": "Consignation (Lockout/Tagout)",
+    "highElevation": "Plan de Protection contre les Chutes",
+    "heavyLifting": "Plan de Levage Critique",
+    "excavation": "Excavation et Tranchée",
+    "etc": "Autres Permis Spéciaux"
+  },
+  "preview": {
+    "header": "Aperçu de la Structure DUER (Norme Française)",
+    "tableAreaTitle": "[Zone de Données d'Évaluation des Dangers]",
+    "tableAreaDesc": "L'identification des dangers et les mesures de prévention seront remplies automatiquement ici."
+  },
+  "step": {
+    "basicInfo": "Étape 1 : Infos Générales",
+    "procedure": "Étape 2 : Séquence des Tâches",
+    "riskAnalysis": "Étape 3 : Analyse des Dangers",
+    "moduleConfig": "Étape 4 : Configuration du Module",
+    "tableConfig": "Étape 5 : Mapping des Données",
+    "finalOutput": "Étape 6 : Export de Conformité"
+  },
+  "header": {
+    "title": "| 04. Configuration du Module de Document",
+    "subtitle": "Configurer les en-têtes DUER et les éléments de Permis de Travail (PTW) réglementaires."
+  },
+  "toolbar": {
+    "headerTextSetting": "Configuration de l'En-tête DUER",
+    "docTitle": "Titre du Document Standard",
+    "appr1": "Champ : Rédacteur",
+    "appr2": "Champ : Vérificateur",
+    "appr3": "Champ : Approbateur",
+    "signatureSetting": "Signatures du Personnel Autorisé",
+    "addSignatureRow": "Ajouter une ligne (8 places par ligne)"
+  },
+  "btn": {
+    "prev": "Retour à l'Analyse des Dangers",
+    "next": "Passer à la Config du Tableau"
+  }
+}
