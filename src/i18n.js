@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector'; // ✅ 언어 감지 모듈 추가
 
 // 1. 한국어(KO) 리소스 임포트
 import koMain from './locales/ko/main.json';
@@ -20,7 +21,7 @@ import koRegulation from './locales/ko/regulation.json';
 import koJrajsa from './locales/ko/jrajsa.json';
 import koPpe from './locales/ko/ppe.json';
 import koRisk from './locales/ko/risk.json';
-import koCommon from './locales/ko/common.json'; // ✅ 추가됨
+import koCommon from './locales/ko/common.json';
 
 // 2. 영어(US) 리소스 임포트
 import enUSMain from './locales/en-US/main.json';
@@ -41,7 +42,7 @@ import enUSRegulation from './locales/en-US/regulation.json';
 import enUSJrajsa from './locales/en-US/jrajsa.json';
 import enUSPpe from './locales/en-US/ppe.json';
 import enUSRisk from './locales/en-US/risk.json';
-import enUSCommon from './locales/en-US/common.json'; // ✅ 추가됨
+import enUSCommon from './locales/en-US/common.json';
 
 const resources = {
   'ko': {
@@ -63,7 +64,7 @@ const resources = {
     jrajsa: koJrajsa,
     ppe: koPpe,
     risk: koRisk,
-    common: koCommon, // ✅ 추가됨
+    common: koCommon,
   },
   'en-US': {
     main: enUSMain,
@@ -84,7 +85,7 @@ const resources = {
     jrajsa: enUSJrajsa,
     ppe: enUSPpe,
     risk: enUSRisk,
-    common: enUSCommon, // ✅ 추가됨
+    common: enUSCommon,
   },
   'en-GB': {
     main: enUSMain,
@@ -105,7 +106,7 @@ const resources = {
     jrajsa: enUSJrajsa,
     ppe: enUSPpe,
     risk: enUSRisk,
-    common: enUSCommon, // ✅ 추가됨
+    common: enUSCommon,
   },
   'en-AU': {
     main: enUSMain,
@@ -126,22 +127,34 @@ const resources = {
     jrajsa: enUSJrajsa,
     ppe: enUSPpe,
     risk: enUSRisk,
-    common: enUSCommon, // ✅ 추가됨
+    common: enUSCommon,
   }
 };
 
 i18n
+  .use(LanguageDetector) // ✅ 언어 감지기 활성화
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'ko',
+    // lng: 'ko', // ✅ 자동 감지를 위해 고정 언어 설정 제거
     fallbackLng: 'en-US',
-    // ✅ 'common' 네임스페이스를 목록에 추가하였습니다.
     ns: ['common', 'risk', 'ppe', 'jrajsa', 'regulation', 'library', 'terms', 'dictionary', 'main', 'explore', 'tags', 'about', 'analysis', 'info', 'procedure', 'modulebuilder', 'tablebuilder', 'export', 'login'],
     defaultNS: 'main',
+    // ✅ URL 경로에서 언어를 우선적으로 찾도록 설정
+    detection: {
+      order: ['path', 'cookie', 'localStorage', 'navigator'],
+      lookupFromPathIndex: 0,
+      caches: ['localStorage', 'cookie'],
+    },
     interpolation: {
       escapeValue: false
     }
   });
+
+// ✅ 언어 변경 시 애드센스 및 SEO를 위해 HTML lang 속성을 동적으로 업데이트
+i18n.on('languageChanged', (lng) => {
+  const rootLang = lng.split('-')[0]; 
+  document.documentElement.lang = rootLang;
+});
 
 export default i18n;

@@ -1,13 +1,14 @@
-
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // ✅ useLocation 추가
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
 import { useTranslation } from 'react-i18next';
+// ✅ 커스텀 다국어 라우팅 도구 임포트
+import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function Main() {
-  const navigate = useNavigate();
-  // 'main' 네임스페이스만 로드하여 300여 개의 태그 로딩 부하를 방지합니다.
+  const navigate = useLanguageNavigate(); // ✅ 기본 useNavigate 대신 커스텀 훅 사용
+  const location = useLocation(); // ✅ 현재 URL 경로 파악을 위해 사용
   const { t, i18n } = useTranslation('main'); 
   
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,8 +26,14 @@ export default function Main() {
     { code: 'fr-FR', label: ' Français' },
   ];
 
+  // ✅ 언어 변경 시 URL의 언어 세그먼트만 교체하여 이동
   const handleLanguageChange = (lngCode) => {
-    i18n.changeLanguage(lngCode);
+    const segments = location.pathname.split('/');
+    segments[1] = lngCode; 
+    const newPath = segments.join('/');
+    
+    // 이미 언어 코드가 포함된 전체 경로이므로 훅이 그대로 처리함
+    navigate(newPath); 
     setIsLanguageOpen(false);
   };
 
@@ -68,6 +75,7 @@ export default function Main() {
       return;
     }
     if (user) {
+      // ✅ 훅이 자동으로 /:lng/info 로 변환함
       navigate('/info', { state: { isMember: true } });
     } else {
       setIsStartModalOpen(true);
@@ -85,6 +93,7 @@ export default function Main() {
               {t('modalSub2')}
             </p>
             <div style={styles.modalBtnGroup}>
+              {/* ✅ 경로 자동 최적화 적용 */}
               <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('loginBtn')}</button>
               <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>{t('guestBtn')}</button>
             </div>
@@ -103,11 +112,13 @@ export default function Main() {
 
         <header style={styles.header} className="max-lg:!px-6">
           <div className="flex justify-between items-center h-full">
+            {/* ✅ 메인 이동 경로 자동화 */}
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
             
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
-                <Link to="/explore" style={styles.headerLink}>{t('navExplore')}</Link>
+                {/* ✅ LanguageLink 사용으로 언어 코드 자동 삽입 */}
+                <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
                 <span 
                   style={{ ...styles.headerLink, cursor: 'pointer' }} 
                   onClick={() => {
@@ -125,7 +136,6 @@ export default function Main() {
                   style={styles.activeLanguageDisplay} 
                   onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 >
-                  {/* 현재 i18n 언어 설정과 매칭되는 라벨을 표시합니다. */}
                   {languages.find(lng => lng.code === i18n.language)?.label || 'Language'} 
                   <span style={{...styles.dropdownArrow, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)'}}>▼</span>
                 </div>
@@ -156,7 +166,6 @@ export default function Main() {
           </div>
         </header>
 
-        {/* Side Drawer 부분 */}
         <div style={{
           ...styles.sideDrawer,
           transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
@@ -177,28 +186,29 @@ export default function Main() {
                   </div>
                   <button onClick={() => supabase.auth.signOut()} style={styles.logoutLink}>{t('logout')}</button>
                 </div>
-                <Link to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
+                {/* ✅ 내부 링크 자동화 적용 */}
+                <LanguageLink to="/profile" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
                   {t('profileEdit')}
-                </Link>
+                </LanguageLink>
               </>
             ) : (
-              <Link to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</Link>
+              <LanguageLink to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</LanguageLink>
             )}
 
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
-            <Link to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</Link>
-            <Link to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navProcess')}</Link>
-            <Link to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navPPE')}</Link>
-            <Link to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRiskClass')}</Link>
-            <Link to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navDB')}</Link>
+            <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</LanguageLink>
+            <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navProcess')}</LanguageLink>
+            <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navPPE')}</LanguageLink>
+            <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRiskClass')}</LanguageLink>
+            <LanguageLink to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navDB')}</LanguageLink>
             
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
-            <Link to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</Link>
-            <Link to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</Link>
-            <Link to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideHighRisk')}</Link>
-            <Link to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideManufacturing')}</Link>
-            <Link to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideChemical')}</Link>
-            <Link to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideGeneral')}</Link>
+            <LanguageLink to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</LanguageLink>
+            <LanguageLink to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</LanguageLink>
+            <LanguageLink to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideHighRisk')}</LanguageLink>
+            <LanguageLink to="/guideline/manufacturing" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideManufacturing')}</LanguageLink>
+            <LanguageLink to="/guideline/chemical" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideChemical')}</LanguageLink>
+            <LanguageLink to="/guideline/general" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideGeneral')}</LanguageLink>
           </nav>
         </div>
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
@@ -235,7 +245,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* 모바일 광고 섹션 */}
       <div className="lg:hidden" style={styles.mobileAdSector}>
         <div style={styles.mobileAdBox}>
            <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
@@ -243,7 +252,6 @@ export default function Main() {
         </div>
       </div>
 
-      {/* CORE VALUE 섹션 */}
       <section style={styles.m3Section} className="max-lg:!py-20">
         <div style={styles.container}>
           <div className="flex flex-col lg:flex-row lg:gap-[100px] items-center">
@@ -266,7 +274,6 @@ export default function Main() {
         </div>
       </section>
 
-      {/* ANALYSIS GUIDES 섹션 */}
       <section style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }} className="max-lg:!py-20">
         <div style={styles.container}>
           <div style={styles.m3Header} className="px-6 lg:px-0">
@@ -297,9 +304,9 @@ export default function Main() {
           <div style={styles.footerFlex}>
             <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
-              <Link to="/privacy" style={styles.fLink}>{t('footerPrivacy')}</Link>
-              <Link to="/terms" style={styles.fLink}>{t('footerTerms')}</Link>
-              <Link to="/about" style={styles.fLink}>{t('footerAbout')}</Link>
+              <LanguageLink to="/privacy" style={styles.fLink}>{t('footerPrivacy')}</LanguageLink>
+              <LanguageLink to="/terms" style={styles.fLink}>{t('footerTerms')}</LanguageLink>
+              <LanguageLink to="/about" style={styles.fLink}>{t('footerAbout')}</LanguageLink>
             </div>
           </div>
         </div>
@@ -307,7 +314,6 @@ export default function Main() {
     </div>
   );
 }
-
 
 const styles = {
   headerRight: { display: 'flex', alignItems: 'center' },
