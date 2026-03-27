@@ -37,7 +37,7 @@ import TableBuilder from './pages/TableBuilder';
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
 /**
- * ✅ [수정] 언어 감지 및 리다이렉션을 실행하는 전 전용 컴포넌트
+ * ✅ [수정] 언어 감지 및 리다이렉션을 실행하는 전용 컴포넌트
  * <Router>의 자식으로 배치하여 useNavigate 에러를 해결합니다.
  */
 function LanguageInit() {
@@ -78,11 +78,14 @@ export default function App() {
           <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />
           <Route path="/:lng/riskclassification" element={<LanguageWrapper><RiskClassification /></LanguageWrapper>} />
           <Route path="/:lng/protectiveequipment" element={<LanguageWrapper><ProtectiveEquipment /></LanguageWrapper>} /> 
-         <Route path="/:lng/guideline/common" element={<LanguageWrapper><CommonGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/const" element={<LanguageWrapper><ConstructionGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/manu" element={<LanguageWrapper><ManufacturingGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/chem" element={<LanguageWrapper><ChemicalGasGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/highrisk" element={<LanguageWrapper><HighRiskGuide /></LanguageWrapper>} />
+          <Route path="/:lng/guideline/common" element={<LanguageWrapper><CommonGuide /></LanguageWrapper>} />
+          
+          {/* ✅ 경로명 매칭 수정 (축약형 -> 전체 단어) */}
+          <Route path="/:lng/guideline/construction" element={<LanguageWrapper><ConstructionGuide /></LanguageWrapper>} />
+          <Route path="/:lng/guideline/manufacturing" element={<LanguageWrapper><ManufacturingGuide /></LanguageWrapper>} />
+          <Route path="/:lng/guideline/chemical" element={<LanguageWrapper><ChemicalGasGuide /></LanguageWrapper>} />
+          
+          <Route path="/:lng/guideline/high-risk" element={<LanguageWrapper><HighRiskGuide /></LanguageWrapper>} />
           <Route path="/:lng/guideline/general" element={<LanguageWrapper><GeneralGuide /></LanguageWrapper>} />
           <Route path="/:lng/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
           <Route path="/:lng/reset-password" element={<LanguageWrapper><ResetPassword /></LanguageWrapper>} />

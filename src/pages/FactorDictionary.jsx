@@ -24,7 +24,11 @@ export default function FactorDictionary() {
 
   const getDbLocale = (lang) => {
     if (lang?.includes('ko')) return 'ko-KR';
-    if (lang?.includes('en')) return 'en-US';
+    if (lang?.includes('en-US')) return 'en-US';
+    if (lang?.includes('en-AU')) return 'en-AU';
+    if (lang?.includes('en-GB')) return 'en-GB';
+    if (lang?.includes('fr-FR')) return 'fr-FR';
+    if (lang?.includes('de-DE')) return 'de-DE';
     return 'ko-KR'; 
   };
   const currentLocale = getDbLocale(i18n.language);
