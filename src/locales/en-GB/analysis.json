@@ -41,7 +41,8 @@
   "filter": {
     "label": "⚠️ High-Risk Filter",
     "auto": "(Auto Suggestion)",
-    "loadLibBtn": "📂 Call Library Step"
+    "loadLibBtn": "📂 Call Library Step",
+    "searchPlaceholder": "Search hazards..."
   },
   "base": {
     "label": "Safety Knowledge Base (Hazard Extraction)",

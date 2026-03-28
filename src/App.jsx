@@ -1,6 +1,35 @@
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, createContext, useState } from 'react'; // ✅ [추가] createContext, useState
 import { useTranslation } from 'react-i18next';
+import { supabase } from './supabaseClient'; // ✅ [추가] supabase 클라이언트 임포트
+
+// ✅ [추가] 전역 인증 상태(Context) 선언
+export const AuthContext = createContext();
+
+// ✅ [추가] 인증 상태를 하위 컴포넌트에 공급하는 Provider 컴포넌트
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // 초기 세션 확인
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // 세션 변경 감지 리스너
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
 
 // 페이지 및 컴포넌트 임포트
 import Main from './pages/Main';
@@ -63,46 +92,48 @@ function LanguageWrapper({ children }) {
 
 export default function App() {
   return (
-    <Router>
-      <LanguageInit /> 
-      
-      <MobileGuard>
-        <Routes>
-          <Route path="/" element={<div style={{ backgroundColor: '#000', minHeight: '100vh' }} />} />
+    <AuthProvider> {/* ✅ [추가] 라우터 전체를 AuthProvider로 래핑하여 전역 상태 공급 */}
+      <Router>
+        <LanguageInit /> 
+        
+        <MobileGuard>
+          <Routes>
+            <Route path="/" element={<div style={{ backgroundColor: '#000', minHeight: '100vh' }} />} />
 
-          <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
-          <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
-          <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
-          <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />
-          <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
-          <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />
-          <Route path="/:lng/riskclassification" element={<LanguageWrapper><RiskClassification /></LanguageWrapper>} />
-          <Route path="/:lng/protectiveequipment" element={<LanguageWrapper><ProtectiveEquipment /></LanguageWrapper>} /> 
-          <Route path="/:lng/guideline/common" element={<LanguageWrapper><CommonGuide /></LanguageWrapper>} />
-          
-          {/* ✅ 경로명 매칭 수정 (축약형 -> 전체 단어) */}
-          <Route path="/:lng/guideline/construction" element={<LanguageWrapper><ConstructionGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/manufacturing" element={<LanguageWrapper><ManufacturingGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/chemical" element={<LanguageWrapper><ChemicalGasGuide /></LanguageWrapper>} />
-          
-          <Route path="/:lng/guideline/high-risk" element={<LanguageWrapper><HighRiskGuide /></LanguageWrapper>} />
-          <Route path="/:lng/guideline/general" element={<LanguageWrapper><GeneralGuide /></LanguageWrapper>} />
-          <Route path="/:lng/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
-          <Route path="/:lng/reset-password" element={<LanguageWrapper><ResetPassword /></LanguageWrapper>} />
-          <Route path="/:lng/profile" element={<LanguageWrapper><Profile /></LanguageWrapper>} /> 
-          <Route path="/:lng/library" element={<LanguageWrapper><MyLibrary /></LanguageWrapper>} />
-          <Route path="/:lng/info" element={<LanguageWrapper><Info /></LanguageWrapper>} />
-          <Route path="/:lng/analysis" element={<LanguageWrapper><Analysis /></LanguageWrapper>} />
-          <Route path="/:lng/procedure" element={<LanguageWrapper><Procedure /></LanguageWrapper>} />
-          <Route path="/:lng/export" element={<LanguageWrapper><Export /></LanguageWrapper>} />
-          <Route path="/:lng/jsa-preview" element={<LanguageWrapper><JsaSamplePreview /></LanguageWrapper>} />
-          <Route path="/:lng/layoutbuilder" element={<LanguageWrapper><LayoutBuilder /></LanguageWrapper>} />
-          <Route path="/:lng/layout-module" element={<LanguageWrapper><ModuleBuilder /></LanguageWrapper>} />
-          <Route path="/:lng/layout-table" element={<LanguageWrapper><TableBuilder /></LanguageWrapper>} />
-          <Route path="/:lng/terms" element={<LanguageWrapper><Terms /></LanguageWrapper>} />
-          <Route path="/:lng/privacy" element={<LanguageWrapper><Privacy /></LanguageWrapper>} />
-        </Routes>
-      </MobileGuard>
-    </Router>
+            <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
+            <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
+            <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
+            <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />
+            <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
+            <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />
+            <Route path="/:lng/riskclassification" element={<LanguageWrapper><RiskClassification /></LanguageWrapper>} />
+            <Route path="/:lng/protectiveequipment" element={<LanguageWrapper><ProtectiveEquipment /></LanguageWrapper>} /> 
+            <Route path="/:lng/guideline/common" element={<LanguageWrapper><CommonGuide /></LanguageWrapper>} />
+            
+            {/* ✅ 경로명 매칭 수정 (축약형 -> 전체 단어) */}
+            <Route path="/:lng/guideline/construction" element={<LanguageWrapper><ConstructionGuide /></LanguageWrapper>} />
+            <Route path="/:lng/guideline/manufacturing" element={<LanguageWrapper><ManufacturingGuide /></LanguageWrapper>} />
+            <Route path="/:lng/guideline/chemical" element={<LanguageWrapper><ChemicalGasGuide /></LanguageWrapper>} />
+            
+            <Route path="/:lng/guideline/high-risk" element={<LanguageWrapper><HighRiskGuide /></LanguageWrapper>} />
+            <Route path="/:lng/guideline/general" element={<LanguageWrapper><GeneralGuide /></LanguageWrapper>} />
+            <Route path="/:lng/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
+            <Route path="/:lng/reset-password" element={<LanguageWrapper><ResetPassword /></LanguageWrapper>} />
+            <Route path="/:lng/profile" element={<LanguageWrapper><Profile /></LanguageWrapper>} /> 
+            <Route path="/:lng/library" element={<LanguageWrapper><MyLibrary /></LanguageWrapper>} />
+            <Route path="/:lng/info" element={<LanguageWrapper><Info /></LanguageWrapper>} />
+            <Route path="/:lng/analysis" element={<LanguageWrapper><Analysis /></LanguageWrapper>} />
+            <Route path="/:lng/procedure" element={<LanguageWrapper><Procedure /></LanguageWrapper>} />
+            <Route path="/:lng/export" element={<LanguageWrapper><Export /></LanguageWrapper>} />
+            <Route path="/:lng/jsa-preview" element={<LanguageWrapper><JsaSamplePreview /></LanguageWrapper>} />
+            <Route path="/:lng/layoutbuilder" element={<LanguageWrapper><LayoutBuilder /></LanguageWrapper>} />
+            <Route path="/:lng/layout-module" element={<LanguageWrapper><ModuleBuilder /></LanguageWrapper>} />
+            <Route path="/:lng/layout-table" element={<LanguageWrapper><TableBuilder /></LanguageWrapper>} />
+            <Route path="/:lng/terms" element={<LanguageWrapper><Terms /></LanguageWrapper>} />
+            <Route path="/:lng/privacy" element={<LanguageWrapper><Privacy /></LanguageWrapper>} />
+          </Routes>
+        </MobileGuard>
+      </Router>
+    </AuthProvider>
   );
 }

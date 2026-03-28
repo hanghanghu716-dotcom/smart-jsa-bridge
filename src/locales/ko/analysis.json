@@ -41,7 +41,8 @@
   "filter": {
     "label": "⚠️ 고위험 필터",
     "auto": "(자동 제안)",
-    "loadLibBtn": "📂 라이브러리 스텝 호출"
+    "loadLibBtn": "📂 라이브러리 스텝 호출",
+    "searchPlaceholder": "위험요소 직접 검색..."
   },
   "base": {
     "label": "안전 지식 베이스 (위험요소 추출)",

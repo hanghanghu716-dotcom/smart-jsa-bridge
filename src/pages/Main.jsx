@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
@@ -6,6 +6,7 @@ import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
 import { useTranslation } from 'react-i18next';
 // ✅ 커스텀 다국어 라우팅 도구 임포트
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
+import { AuthContext } from '../App'; // ✅ [추가] App.jsx에서 생성한 AuthContext 임포트
 
 export default function Main() {
   const navigate = useLanguageNavigate(); // ✅ 커스텀 네비게이트 훅 사용
@@ -16,9 +17,11 @@ export default function Main() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  
+  // ✅ [수정] 로컬 상태(useState) 대신 AuthContext를 통해 전역 user 상태를 공급받습니다.
+  const { user } = useContext(AuthContext);
 
-  // ✅ 사용자 요청에 따른 6종 언어 구성[cite: 18]
+  // ✅ 사용자 요청에 따른 6종 언어 구성
   const languages = [
     { code: 'ko', label: ' 한국어' },
     { code: 'en-US', label: ' English (US)' },
@@ -28,7 +31,7 @@ export default function Main() {
     { code: 'fr-FR', label: ' Français' },
   ];
 
-  // ✅ 경로 중복 문제를 해결한 언어 변경 로직[cite: 18]
+  // ✅ 경로 중복 문제를 해결한 언어 변경 로직
   const handleLanguageChange = (lngCode) => {
     const segments = location.pathname.split('/'); 
     const supportedCodes = languages.map(l => l.code);
@@ -60,13 +63,7 @@ export default function Main() {
   const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
+    // ✅ [제거] 로컬 세션 검증 및 리스너 등록 코드는 App.jsx로 이관되었으므로 삭제됨.
 
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -74,7 +71,6 @@ export default function Main() {
 
     return () => {
       clearInterval(timer);
-      subscription.unsubscribe();
     };
   }, [slides.length]);
 
@@ -92,7 +88,7 @@ export default function Main() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [수정] 복잡한 SEO 로직을 단 한 줄로 대체 완료[cite: 18] */}
+      <SEO /> {/* ✅ [수정] 복잡한 SEO 로직을 단 한 줄로 대체 완료 */}
 
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
@@ -321,7 +317,7 @@ export default function Main() {
   );
 }
 
-// 스타일 객체는 원본 데이터를 그대로 유지합니다.[cite: 18]
+// 스타일 객체는 원본 데이터를 그대로 유지합니다.
 const styles = {
   headerRight: { display: 'flex', alignItems: 'center' },
   headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },

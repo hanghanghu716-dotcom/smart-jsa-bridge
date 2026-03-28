@@ -41,7 +41,8 @@
   "filter": {
     "label": "⚠️ Filtre haut risque",
     "auto": "(Suggestion auto)",
-    "loadLibBtn": "📂 Charger l'étape de bibliothèque"
+    "loadLibBtn": "📂 Charger l'étape de bibliothèque",
+    "searchPlaceholder": "Rechercher des dangers..."
   },
   "base": {
     "label": "Base de connaissances sécurité (Extraction des dangers)",

@@ -41,7 +41,8 @@
   "filter": {
     "label": "⚠️ Hochrisiko-Filter",
     "auto": "(Auto-Vorschlag)",
-    "loadLibBtn": "📂 Bibliotheksschritt laden"
+    "loadLibBtn": "📂 Bibliotheksschritt laden",
+    "searchPlaceholder": "Gefährdungen suchen..."
   },
   "base": {
     "label": "Sicherheits-Wissensdatenbank (Gefährdungsermittlung)",

@@ -1,17 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useLocation } from 'react-router-dom'; 
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
-import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import SEO from '../components/SEO'; 
 import { useTranslation } from 'react-i18next';
-import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
-
-/**
- * [Analysis 컴포넌트 - 글로벌 표준 마이그레이션 반영본]
- */
+import { useLanguageNavigate } from '../hooks/useLanguage';
 
 export default function Analysis() {
-  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 사용
+  const navigate = useLanguageNavigate(); 
   const location = useLocation();
   const scrollRef = useRef(null);
   const { t, i18n } = useTranslation(['analysis', 'tags']);
@@ -33,6 +29,7 @@ export default function Analysis() {
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedHighRisk, setSelectedHighRisk] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState(""); // ✅ [추가] 검색어 상태
 
   const [checkedRisks, setCheckedRisks] = useState(new Set());
   const autoFilledRef = useRef(new Set());
@@ -80,7 +77,12 @@ export default function Analysis() {
 
     setIsLoading(true);
     let scored = [];
-    const dbLocale = i18n.language === 'ko' ? 'ko-KR' : 'en-US';
+    
+    const localeMap = {
+      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
+      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE'
+    };
+    const dbLocale = localeMap[i18n.language] || 'en-US';
 
     if (type === 'current') {
       if (!risk.db_id) {
@@ -161,8 +163,11 @@ export default function Analysis() {
   useEffect(() => {
     const fetchHazards = async () => {
       setIsLoading(true);
-      const dbLocale = i18n.language === 'ko' ? 'ko-KR' : 'en-US';
-
+      const localeMap = {
+        'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
+        'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE'
+      };
+      const dbLocale = localeMap[i18n.language] || 'en-US';
       setSelectedHighRisk("");
 
       const [ { data: origHazards, error: origErr }, { data: transHazards, error: transErr } ] = await Promise.all([
@@ -191,9 +196,7 @@ export default function Analysis() {
   }, [i18n.language]);
 
   const handleLogoClick = () => {
-    if (window.confirm(t('alert.confirmMain'))) {
-      navigate('/');
-    }
+    if (window.confirm(t('alert.confirmMain'))) navigate('/');
   };
 
   const fetchMyLibrary = async () => {
@@ -209,19 +212,14 @@ export default function Analysis() {
     const mappedRisks = stepData.risks.map(r => ({
       id: `lib-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       factor: r.factor || r.risk_factor,
-      measure: "",
-      current_measure: "",
-      recommend_measure: "",
+      measure: "", current_measure: "", recommend_measure: "",
       category: r.category || t('base.etc'),
       source: '공유'
     }));
     
     setAnalysisData(prev => {
       const newData = [...prev];
-      newData[activeIdx] = {
-        ...newData[activeIdx],
-        risks: [...newData[activeIdx].risks, ...mappedRisks]
-      };
+      newData[activeIdx] = { ...newData[activeIdx], risks: [...newData[activeIdx].risks, ...mappedRisks] };
       return newData;
     });
     setIsLibraryModalOpen(false);
@@ -255,13 +253,23 @@ export default function Analysis() {
 
   const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
 
+  // ✅ [수정] 검색어, 카테고리, 자동 추천 로직 통합
   useEffect(() => {
     const updateRecommendations = async () => {
       let matched = [];
-      if (selectedHighRisk) {
+      if (searchTerm) {
+        // 검색어가 있을 경우: 전체 DB에서 검색
+        const filtered = dbRisks.filter(r => 
+          r.risk_factor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          r.category?.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
+      } else if (selectedHighRisk) {
+        // 카테고리가 선택되었을 경우
         const filtered = dbRisks.filter(r => r.category === selectedHighRisk);
         matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
       } else {
+        // 기본 상태: 자동 추천 (토큰 기반)
         const rawMatched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
         matched = Array.from(new Map(rawMatched.map(item => [item.risk_factor, item])).values());
       }
@@ -269,7 +277,7 @@ export default function Analysis() {
       setCheckedRisks(new Set()); 
     };
     updateRecommendations();
-  }, [activeIdx, currentStep.proc, selectedHighRisk, dbRisks]);
+  }, [activeIdx, currentStep.proc, selectedHighRisk, searchTerm, dbRisks]); // ✅ searchTerm 의존성 추가
 
   const addRisk = (rec) => {
     setAnalysisData(prev => {
@@ -280,9 +288,7 @@ export default function Analysis() {
           id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, 
           db_id: rec.id, 
           factor: rec.risk_factor || rec.factor || "",
-          measure: "", 
-          current_measure: "", 
-          recommend_measure: "", 
+          measure: "", current_measure: "", recommend_measure: "", 
           category: rec.category || t('base.etc') 
         }]
       };
@@ -295,9 +301,7 @@ export default function Analysis() {
       const newData = [...prev];
       newData[activeIdx] = {
         ...newData[activeIdx],
-        risks: newData[activeIdx].risks.map(r => 
-          r.id === riskId ? { ...r, [field]: value } : r
-        )
+        risks: newData[activeIdx].risks.map(r => r.id === riskId ? { ...r, [field]: value } : r)
       };
       return newData;
     });
@@ -319,23 +323,16 @@ export default function Analysis() {
 
   const handlePrev = () => {
     if (activeIdx === 0) navigate('/procedure', { 
-      state: { 
-        id: existingId, 
-        formData, 
-        participants, 
-        procedures, 
-        analysisData,
-        isFork: location.state?.isFork,
-        parentId: location.state?.parentId, 
-        originalAnalysisData: location.state?.originalAnalysisData 
-      } 
+      state: { id: existingId, formData, participants, procedures, analysisData,
+        isFork: location.state?.isFork, parentId: location.state?.parentId, 
+        originalAnalysisData: location.state?.originalAnalysisData } 
     });
     else setActiveIdx(activeIdx - 1);
   };
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
       
       {isLibraryModalOpen && (
@@ -441,9 +438,16 @@ export default function Analysis() {
             <div style={styles.scrollArea}>
               <div style={styles.analysisGrid}>
                 <section style={styles.leftPanel}>
+                  {/* ✅ [수정] 검색창 추가 및 필터 레이아웃 조정 */}
                   <div style={styles.filterArea}>
-                    <label style={styles.label}>{t('filter.label')}</label>
-                    <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => setSelectedHighRisk(e.target.value)}>
+                    <input 
+                      type="text" 
+                      placeholder={t('filter.searchPlaceholder') || "위험요소 검색..."}
+                      style={styles.searchInput}
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => {setSelectedHighRisk(e.target.value); setSearchTerm("");}}>
                       <option value="">{t('filter.auto')}</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
@@ -464,11 +468,7 @@ export default function Analysis() {
                     ) : (
                       recommendations.map((rec, i) => (
                         <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#161616', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
-                          <input 
-                            type="checkbox" 
-                            checked={checkedRisks.has(rec)}
-                            onChange={() => toggleCheck(rec)}
-                          />
+                          <input type="checkbox" checked={checkedRisks.has(rec)} onChange={() => toggleCheck(rec)} />
                           <div style={{ flex: 1 }}>
                             <div style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 'bold' }}>{rec.risk_factor || rec.factor}</div>
                           </div>
@@ -518,10 +518,7 @@ export default function Analysis() {
                                 <div style={{ position: 'relative', width: '100%' }}>
                                   <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
                                   {!r.measure?.trim() && (
-                                    <button 
-                                      style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
-                                      onClick={() => handleOpenRecommendation(r, 'current')}
-                                    >
+                                    <button style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
                                       {t('table.recMeasureBtn')}
                                     </button>
                                   )}
@@ -533,10 +530,7 @@ export default function Analysis() {
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
                                     {!r.current_measure?.trim() && (
-                                      <button 
-                                        style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
-                                        onClick={() => handleOpenRecommendation(r, 'current')}
-                                      >
+                                      <button style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
                                         {t('table.recMeasureBtn')}
                                       </button>
                                     )}
@@ -546,10 +540,7 @@ export default function Analysis() {
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
                                     {!r.recommend_measure?.trim() && (
-                                      <button 
-                                        style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }}
-                                        onClick={() => handleOpenRecommendation(r, 'advanced')}
-                                      >
+                                      <button style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
                                         {t('table.recAdvancedBtn')}
                                       </button>
                                     )}
@@ -561,10 +552,7 @@ export default function Analysis() {
                               <button style={styles.smallDeleteBtn} onClick={() => { 
                                 setAnalysisData(prev => { 
                                   const newData = [...prev]; 
-                                  newData[activeIdx] = { 
-                                    ...newData[activeIdx], 
-                                    risks: newData[activeIdx].risks.filter(risk => risk.id !== r.id) 
-                                  }; 
+                                  newData[activeIdx] = { ...newData[activeIdx], risks: newData[activeIdx].risks.filter(risk => risk.id !== r.id) }; 
                                   return newData; 
                                 }); 
                               }}>×</button>
@@ -581,21 +569,12 @@ export default function Analysis() {
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? t('btn.prevStep1') : t('btn.prevStep2')}</button>
               <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { 
-                state: { 
-                  existingId, 
-                  analysisData, 
-                  formData, 
-                  participants, 
-                  procedures,
-                  isFork: location.state?.isFork,
-                  parentId: location.state?.parentId, 
-                  originalAnalysisData: location.state?.originalAnalysisData 
-                } 
+                state: { existingId, analysisData, formData, participants, procedures,
+                  isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData } 
               })}>
                 {activeIdx === analysisData.length - 1 ? t('btn.nextComplete') : t('btn.nextStep')}
               </button>
             </div>
-
           </div>
         </main>
 
@@ -613,8 +592,9 @@ export default function Analysis() {
   );
 }
 
-// styles 객체는 원본 그대로 유지합니다.
 const styles = {
+  // ✅ [추가] 검색창 전용 스타일
+  searchInput: { flex: 1.2, backgroundColor: '#1a1a1a', border: '1px solid #333', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', fontSize: '0.85rem', outline: 'none' },
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },

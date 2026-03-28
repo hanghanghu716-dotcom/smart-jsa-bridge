@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom'; 
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
-import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
-import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import { useLanguageNavigate } from '../hooks/useLanguage';
+import { AuthContext } from '../App';
 
 export default function Login() {
-  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
-  const { t } = useTranslation('login');
+  const navigate = useLanguageNavigate();
+  const { t, i18n } = useTranslation('login'); // ✅ i18n 객체 추가 추출
 
-  // 애드센스 설정 정보[cite: 15]
+  // 애드센스 설정 정보
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
   const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
@@ -23,6 +24,8 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const [sector, setSector] = useState('');
+
+  const { user } = useContext(AuthContext);
 
   const [val, setVal] = useState({
     nick: { msg: '', isOk: false, color: '#666' },
@@ -89,12 +92,10 @@ export default function Login() {
   }, [password, confirmPassword, t]);
 
   useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) navigate('/'); // ✅ 언어 경로 자동 유지[cite: 11]
-    };
-    checkSession();
-  }, [navigate]);
+    if (user) {
+      navigate('/'); 
+    }
+  }, [user, navigate]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -102,7 +103,10 @@ export default function Login() {
       if (!email) return;
       setLoading(true);
       try {
-        await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
+        // ✅ [수정] 리다이렉트 경로에 언어 코드 추가
+        await supabase.auth.resetPasswordForEmail(email, { 
+          redirectTo: `${window.location.origin}/${i18n.language}/reset-password` 
+        });
         alert(t('alert.resetSent'));
         setMode('login');
       } catch (err) { alert(err.message); } finally { setLoading(false); }
@@ -117,7 +121,8 @@ export default function Login() {
           email, password,
           options: {
             data: { username: nickname, display_name: nickname, company_name: sector, default_publicity: true },
-            emailRedirectTo: window.location.origin
+            // ✅ [수정] 이메일 확인 리다이렉트 경로에 언어 코드 추가
+            emailRedirectTo: `${window.location.origin}/${i18n.language}`
           }
         });
         if (error) throw error;
@@ -132,14 +137,14 @@ export default function Login() {
       try {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate('/'); // ✅ 언어 경로 자동 유지[cite: 11]
+        navigate('/'); 
       } catch (err) { alert(err.message); } finally { setLoading(false); }
     }
   };
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO />
       
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
@@ -147,24 +152,14 @@ export default function Login() {
       <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
         <div style={styles.adPlaceholderBox}>
           <span style={styles.adLabel}>AD (LEFT)</span>
-          <AdSenseUnit 
-            client={PUBLISHER_ID} 
-            slot={LEFT_SIDEBAR_SLOT_ID} 
-            format="vertical" 
-            style={{ width: '160px', height: '600px' }} 
-          />
+          <AdSenseUnit client={PUBLISHER_ID} slot={LEFT_SIDEBAR_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
         </div>
       </aside>
 
       <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
         <div style={styles.adPlaceholderBox}>
           <span style={styles.adLabel}>AD (RIGHT)</span>
-          <AdSenseUnit 
-            client={PUBLISHER_ID} 
-            slot={RIGHT_SIDEBAR_SLOT_ID} 
-            format="vertical" 
-            style={{ width: '160px', height: '600px' }} 
-          />
+          <AdSenseUnit client={PUBLISHER_ID} slot={RIGHT_SIDEBAR_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
         </div>
       </aside>
 
@@ -240,7 +235,14 @@ export default function Login() {
           {mode === 'login' && (
             <>
               <div style={styles.dividerContainer}><div style={styles.line} /><span style={styles.dividerText}>{t('ui.dividerOr')}</span><div style={styles.line} /></div>
-              <button onClick={() => supabase.auth.signInWithOAuth({provider: 'google'})} style={styles.googleBtn}>
+              {/* ✅ [수정] 구글 로그인 시 리다이렉트 경로 명시 */}
+              <button 
+                onClick={() => supabase.auth.signInWithOAuth({
+                  provider: 'google',
+                  options: { redirectTo: `${window.location.origin}/${i18n.language}` }
+                })} 
+                style={styles.googleBtn}
+              >
                 <img src="https://www.google.com/favicon.ico" alt="" style={{width:'18px'}} />
                 <span>{t('ui.btnGoogleLogin')}</span>
               </button>
@@ -258,7 +260,6 @@ export default function Login() {
   );
 }
 
-// 스타일 객체는 원본 소스코드를 절대적으로 유지합니다[cite: 15].
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
@@ -290,22 +291,6 @@ const styles = {
   form: { display: 'flex', flexDirection: 'column' },
   adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
   adLabel: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
-  adSlotFixedLeft: { 
-    position: 'fixed',
-    top: '50%',
-    left: 'calc(50% - 220px - 160px - 20px)', 
-    transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    zIndex: 100
-  },
-  adSlotFixedRight: { 
-    position: 'fixed',
-    top: '50%',
-    right: 'calc(50% - 220px - 160px - 20px)', 
-    transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    zIndex: 100
-  }
+  adSlotFixedLeft: { position: 'fixed', top: '50%', left: 'calc(50% - 220px - 160px - 20px)', transform: 'translateY(-50%)', width: '160px', minHeight: '600px', zIndex: 100 },
+  adSlotFixedRight: { position: 'fixed', top: '50%', right: 'calc(50% - 220px - 160px - 20px)', transform: 'translateY(-50%)', width: '160px', minHeight: '600px', zIndex: 100 }
 };
