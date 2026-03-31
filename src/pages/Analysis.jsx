@@ -29,8 +29,15 @@ export default function Analysis() {
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedHighRisk, setSelectedHighRisk] = useState(""); 
-  const [searchTerm, setSearchTerm] = useState(""); // ✅ [추가] 검색어 상태
-
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [measureSearchModal, setMeasureSearchModal] = useState({ 
+    isOpen: false, 
+    data: [], 
+    targetRiskId: null, 
+    type: 'current' 
+  });
+  const [measureSearchTerm, setMeasureSearchTerm] = useState("");
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [checkedRisks, setCheckedRisks] = useState(new Set());
   const autoFilledRef = useRef(new Set());
 
@@ -144,7 +151,7 @@ export default function Analysis() {
     setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
 
-  const applyRecommendedMeasure = (item) => {
+const applyRecommendedMeasure = (item) => {
     if (jsaType === '2-step') {
       updateRiskField(recModal.targetRiskId, 'measure', item.display);
     } else if (recModal.type === 'current') {
@@ -156,7 +163,67 @@ export default function Analysis() {
     setRecModal({ isOpen: false, data: [], targetRiskId: null, type: 'advanced' });
   };
 
+// 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수
+  const openMeasureSearch = (risk, type) => {
+    setMeasureSearchModal({ isOpen: true, data: [], targetRiskId: risk.id, type });
+    setMeasureSearchTerm("");
+  };
+
+  const executeMeasureSearch = async (term) => {
+    if (!term.trim()) {
+      setMeasureSearchModal(prev => ({ ...prev, data: [] }));
+      return;
+    }
+    setIsSearchLoading(true); // ✅ 해결: 모달 내부 전용 로딩 상태로 변경
+
+    const localeMap = {
+      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
+      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE'
+    };
+    const dbLocale = localeMap[i18n.language] || 'en-US';
+
+    let results = [];
+    if (measureSearchModal.type === 'current') {
+      const { data, error } = await supabase
+        .from('Current_Measures_Translations')
+        .select('measure_id, measure_text')
+        .eq('locale', dbLocale)
+        .ilike('measure_text', `%${term}%`)
+        .limit(30);
+      if (!error && data) {
+        results = data.map(d => ({ display: d.measure_text, db_id: d.measure_id }));
+      }
+    } else {
+      const { data, error } = await supabase
+        .from('Advanced_Measures_Translations')
+        .select('advanced_measure_id, solution_text')
+        .eq('locale', dbLocale)
+        .ilike('solution_text', `%${term}%`)
+        .limit(30);
+      if (!error && data) {
+        results = data.map(d => ({ display: d.solution_text, db_id: d.advanced_measure_id }));
+      }
+    }
+
+      setIsSearchLoading(false);
+    setMeasureSearchModal(prev => ({ ...prev, data: results }));
+  };
+
+
+  // ✅ 실시간 타이핑 감지 및 디바운스(0.3초 대기 후 검색 실행) 로직
+  useEffect(() => {
+    if (!measureSearchModal.isOpen) return;
+    
+    const delayDebounceFn = setTimeout(() => {
+      executeMeasureSearch(measureSearchTerm);
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [measureSearchTerm, measureSearchModal.isOpen, i18n.language]);
+
   const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
+
+
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
 
@@ -338,6 +405,7 @@ export default function Analysis() {
       {isLibraryModalOpen && (
         <div style={styles.dialogOverlay} onClick={() => setIsLibraryModalOpen(false)}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
+
             <div style={styles.modalHeader}>
               <h3 style={{ margin: 0 }}>{t('libModal.title')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setIsLibraryModalOpen(false)}>✕</button>
@@ -396,8 +464,56 @@ export default function Analysis() {
           </div>
         </div>
       )}
+{/* 👇 [기능 추가] 대책 DB 직접 검색 모달 (실시간 렌더링 방식) */}
+      {measureSearchModal.isOpen && (
+        <div style={styles.dialogOverlay} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>
+          <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
+
+
+            <div style={styles.modalHeader}>
+              {/* 계층 구조 키값으로 통일하여 호출 */}
+              <h3 style={{ margin: 0 }}>{t('searchModal.title')}</h3>
+              <button style={styles.closeBtnSmall} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>✕</button>
+            </div>
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+              <input
+                type="text"
+                style={styles.searchInput}
+                placeholder={t('searchModal.placeholder')}
+                value={measureSearchTerm}
+                onChange={(e) => setMeasureSearchTerm(e.target.value)}
+              />
+            </div>
+
+            
+
+        {/* 리스트 컨테이너 높이를 400px로 고정하여 모달 크기가 요동치는 현상 방지 */}
+            <div style={{ ...styles.libList, height: '400px' }}>
+              {isSearchLoading ? (
+                 // 👇 [기능 추가] 타이핑 후 DB를 읽어오는 동안 표시될 로컬 로딩 텍스트
+                 <p style={styles.emptyText}>{t('base.searching', '검색 중...')}</p>
+              ) : measureSearchTerm && measureSearchModal.data.length === 0 ? (
+                 <p style={styles.emptyText}>{t('base.emptyRec')}</p>
+              ) : (
+                measureSearchModal.data.map((item, idx) => (
+                  <div key={idx} style={styles.libItem} onClick={() => applySearchedMeasure(item)}>                  
+                    <div style={{ ...styles.libInfo, flex: 1 }}>
+                      <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
+                    </div>
+                    <span style={{ marginLeft: '10px', color: '#007bff' }}>{t('recModal.selectBtn')}</span>
+                  </div>
+                ))
+              )}
+            </div>
+
+            
+          </div>
+        </div>
+      )}
+      {/* 👆 [기능 추가 끝] */}
 
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
+
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
       </header>
@@ -485,6 +601,8 @@ export default function Analysis() {
                     <div style={styles.riskScoreContainer}>
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
+
+              
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
                       <div style={{...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}>{currentStep.riskLevel}</div>
@@ -513,41 +631,59 @@ export default function Analysis() {
                             <td style={styles.td}>
                               <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
                             </td>
-                            {jsaType === '2-step' ? (
-                              <td style={styles.td}>
-                                <div style={{ position: 'relative', width: '100%' }}>
-                                  <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
-                                  {!r.measure?.trim() && (
-                                    <button style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
+
+                        {jsaType === '2-step' ? (
+                            <td style={styles.td}>
+                              <div style={{ position: 'relative', width: '100%' }}>
+                                <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
+                              {!r.measure?.trim() && (
+                                  <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
+                                    <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
+                                      {t('table.searchBtn')}
+                                    </button>
+                                    <button style={{ backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
                                       {t('table.recMeasureBtn')}
                                     </button>
+                                  </div>
+                                )}
+                              </div>
+                            </td>
+                          ) : (
+                            <>
+                              <td style={styles.td}>
+                                <div style={{ position: 'relative', width: '100%' }}>
+                                  <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
+                                  {!r.current_measure?.trim() && (
+                                    <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
+                                      <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
+                                        {t('table.searchBtn')}
+                                      </button>
+                                      <button style={{ backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                        {t('table.recMeasureBtn')}
+                                      </button>
+                                    </div>
                                   )}
                                 </div>
                               </td>
-                            ) : (
-                              <>
-                                <td style={styles.td}>
-                                  <div style={{ position: 'relative', width: '100%' }}>
-                                    <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
-                                    {!r.current_measure?.trim() && (
-                                      <button style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
-                                        {t('table.recMeasureBtn')}
+                              <td style={styles.td}>
+                                <div style={{ position: 'relative', width: '100%' }}>
+                                  <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
+                                  {!r.recommend_measure?.trim() && (
+                                    <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
+                                      <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'advanced')}>
+                                        {t('table.searchBtn')}
                                       </button>
-                                    )}
-                                  </div>
-                                </td>
-                                <td style={styles.td}>
-                                  <div style={{ position: 'relative', width: '100%' }}>
-                                    <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
-                                    {!r.recommend_measure?.trim() && (
-                                      <button style={{ position: 'absolute', bottom: '10px', right: '10px', backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
+                                      <button style={{ backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
                                         {t('table.recAdvancedBtn')}
                                       </button>
-                                    )}
-                                  </div>
-                                </td>
-                              </>
-                            )}
+                                    </div>
+                                  )}
+                                </div>
+                              </td>
+                            </>
+                          )}
+
+
                             <td style={{ textAlign: 'center' }}>
                               <button style={styles.smallDeleteBtn} onClick={() => { 
                                 setAnalysisData(prev => { 
@@ -632,8 +768,7 @@ const styles = {
   rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
   filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
   highRiskSelect: { flex: 1, backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' },
-  libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold' },
-  recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
+libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 },  recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
   riskScoreContainer: { display: 'flex', gap: '1rem', alignItems: 'center' },
   riskInputSet: { display: 'flex', flexDirection: 'column', alignItems: 'center' },

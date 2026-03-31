@@ -41,7 +41,7 @@
   "filter": {
     "label": "⚠️ High-Risk Filter",
     "auto": "(Auto Suggestion)",
-    "loadLibBtn": "📂 Call Library Step"
+    "loadLibBtn": "📂"
   },
   "base": {
     "label": "Safety Knowledge Base (Hazard Extraction)",
@@ -62,12 +62,17 @@
     "advancedMeasure": "Advanced Rec.",
     "delete": "Delete",
     "recMeasureBtn": "Recommend",
-    "recAdvancedBtn": "Advanced"
+    "recAdvancedBtn": "Advanced",
+    "searchBtn": "Search"
   },
   "btn": {
     "prevStep1": "Prev Step (Procedure)",
     "prevStep2": "Prev Task Step",
     "nextComplete": "Complete Analysis & Go to Module Config",
     "nextStep": "Analyse Next Task Step"
+  },
+  "searchModal": {
+    "title": "Measure DB Search",
+    "placeholder": "Enter search terms..."
   }
 }

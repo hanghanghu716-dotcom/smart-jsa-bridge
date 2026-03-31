@@ -41,7 +41,7 @@
   "filter": {
     "label": "⚠️ Filtre haut risque",
     "auto": "(Suggestion auto)",
-    "loadLibBtn": "📂 Charger l'étape de bibliothèque",
+    "loadLibBtn": "📂",
     "searchPlaceholder": "Rechercher des dangers..."
   },
   "base": {
@@ -63,12 +63,17 @@
     "advancedMeasure": "Rec. avancée",
     "delete": "Supprimer",
     "recMeasureBtn": "Recommander",
-    "recAdvancedBtn": "Avancé"
+    "recAdvancedBtn": "Avancé",
+    "searchBtn": "Rechercher"
   },
   "btn": {
     "prevStep1": "Étape préc. (Procédure)",
     "prevStep2": "Étape de tâche préc.",
     "nextComplete": "Terminer l'analyse et configurer le module",
     "nextStep": "Analyser l'étape de tâche suivante"
+  },
+  "searchModal": {
+    "title": "Recherche dans la base de données",
+    "placeholder": "Entrez les termes de recherche..."
   }
 }

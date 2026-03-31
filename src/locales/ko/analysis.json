@@ -41,7 +41,7 @@
   "filter": {
     "label": "⚠️ 고위험 필터",
     "auto": "(자동 제안)",
-    "loadLibBtn": "📂 라이브러리 스텝 호출",
+    "loadLibBtn": "📂",
     "searchPlaceholder": "위험요소 직접 검색..."
   },
   "base": {
@@ -63,12 +63,17 @@
     "advancedMeasure": "개선권고사항",
     "delete": "삭제",
     "recMeasureBtn": "대책 추천",
-    "recAdvancedBtn": "권고 추천"
+    "recAdvancedBtn": "권고 추천",
+    "searchBtn": "검색"
   },
   "btn": {
     "prevStep1": "이전 단계(작업 절차)",
     "prevStep2": "이전 작업 단계",
     "nextComplete": "분석 완료 및 모듈 설정으로 이동",
     "nextStep": "다음 작업 단계 분석"
+  },
+  "searchModal": {
+    "title": "대책 DB 검색",
+    "placeholder": "검색어를 입력하세요..."
   }
 }

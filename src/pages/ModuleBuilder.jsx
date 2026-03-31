@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
-import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
-import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import { useLanguageNavigate } from '../hooks/useLanguage';
 
 /**
- * [ModuleBuilder 컴포넌트 - 글로벌 표준 및 레이아웃 최적화 반영본]
- * 역할: Step 4. 문서 모듈 구성 (SEO 및 다국어 라우팅 통합)
+ * [ModuleBuilder 컴포넌트]
+ * 역할: Step 4. 문서 모듈 구성
+ * 추가 기능: 각 기업 템플릿 활용을 위한 '모듈 설정 생략' 기능 도입
  */
 
 export default function ModuleBuilder() {
-  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
+  const navigate = useLanguageNavigate();
   const location = useLocation();
   const { t, i18n } = useTranslation(['modulebuilder']);
   
@@ -38,7 +39,6 @@ export default function ModuleBuilder() {
   const [appr3, setAppr3] = useState(savedAppr3 || t('default.appr3', '승인'));
 
   const goBackToAnalysis = () => {
-    // ✅ 언어 경로를 유지하며 이전 단계로 이동[cite: 15]
     navigate('/analysis', { 
       state: { 
         ...location.state,
@@ -50,7 +50,6 @@ export default function ModuleBuilder() {
   };
 
   const goToTableBuilder = () => {
-    // ✅ 언어 경로를 유지하며 다음 단계로 이동[cite: 15]
     navigate('/layout-table', { 
       state: { 
         ...location.state, 
@@ -66,9 +65,26 @@ export default function ModuleBuilder() {
     });
   };
 
+  // ✅ [추가] 모듈 생성을 건너뛰고 기본 레이아웃으로 즉시 이동하는 기능
+  const skipModuleConfig = () => {
+    navigate('/layout-table', { 
+      state: { 
+        ...location.state,
+        savedSignatureRows: 1,
+        docTitle: t('default.docTitle', '위험성평가표 (JSA)'),
+        appr1: t('default.appr1', '작성'),
+        appr2: t('default.appr2', '검토'),
+        appr3: t('default.appr3', '승인'),
+        isModuleSkipped: true,
+        isFork: location.state?.isFork,
+        parentId: location.state?.parentId,
+        originalAnalysisData: location.state?.originalAnalysisData
+      } 
+    });
+  };
+
   const renderUnifiedHeader = () => {
     const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '11px', textAlign: 'center', color: '#000' };
-    
     const labelTdStyle = { 
       ...commonTdStyle, 
       backgroundColor: '#f2f2f2', 
@@ -79,7 +95,6 @@ export default function ModuleBuilder() {
     };
 
     const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap', fontSize: isEnglish ? '10px' : '11px' };
-
     const ppeOthers = formData?.ppe?.filter(p => !['안전모','안전화','보안경','장갑','방진마스크'].includes(p)).join(', ');
     const permitOthers = formData?.permits?.filter(p => !['일반','화기','밀폐','정전','고소','중량물','굴착'].includes(p)).join(', ');
 
@@ -139,7 +154,6 @@ export default function ModuleBuilder() {
               </table>
             </td>
           </tr>
-          
           <tr>
             <td style={labelTdStyle}>{t('table.workLocation')}</td>
             <td style={{...commonTdStyle, wordBreak: 'break-all'}}>{formData?.workLocation || ''}</td>
@@ -148,7 +162,6 @@ export default function ModuleBuilder() {
             <td style={labelTdStyle}>{t('table.workDate')}</td>
             <td style={commonTdStyle}>{formData?.workDate || ''}</td>
           </tr>
-
           <tr>
             <td style={labelTdStyle}>{t('table.ppe')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '8px' }}>
@@ -165,7 +178,6 @@ export default function ModuleBuilder() {
               </div>
             </td>
           </tr>
-
           <tr>
             <td style={labelTdStyle}>{t('table.highRiskWork')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '8px' }}>
@@ -242,7 +254,7 @@ export default function ModuleBuilder() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 및 최적화 수행 */}
+      <SEO />
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
@@ -295,6 +307,8 @@ export default function ModuleBuilder() {
             </div>
             <div style={styles.btnAreaLayout}>
               <button style={styles.prevBtnDark} onClick={goBackToAnalysis}>{t('btn.prev')}</button>
+              {/* ✅ [추가] 모듈 설정을 원치 않는 사용자를 위한 건너뛰기 버튼 */}
+              <button style={styles.skipBtn} onClick={skipModuleConfig}>{t('btn.skipModule', '설정 생략하고 다음')}</button>
               <button style={styles.nextBtnLight} onClick={goToTableBuilder}>{t('btn.next')}</button>
             </div>
           </div>
@@ -305,7 +319,6 @@ export default function ModuleBuilder() {
   );
 }
 
-// 스타일 객체는 원본 그대로 유지합니다[cite: 15].
 const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
@@ -347,5 +360,7 @@ const styles = {
   previewBlock: { width: '100%', backgroundColor: 'transparent', border: 'none' },
   btnAreaLayout: { marginTop: '1.5rem', display: 'flex', gap: '1rem' },
   prevBtnDark: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  // ✅ [스타일 추가] 건너뛰기 버튼용 스타일
+  skipBtn: { flex: 1, padding: '1rem', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#aaa', border: '1px dashed #555', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '0.9rem', transition: '0.2s' },
   nextBtnLight: { flex: 2, padding: '1rem', backgroundColor: '#007bff', color: '#fff', fontWeight: '800', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' }
 };

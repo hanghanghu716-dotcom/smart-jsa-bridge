@@ -41,7 +41,7 @@
   "filter": {
     "label": "⚠️ Hochrisiko-Filter",
     "auto": "(Auto-Vorschlag)",
-    "loadLibBtn": "📂 Bibliotheksschritt laden",
+    "loadLibBtn": "📂",
     "searchPlaceholder": "Gefährdungen suchen..."
   },
   "base": {
@@ -63,7 +63,8 @@
     "advancedMeasure": "Erw. Empfehlung",
     "delete": "Löschen",
     "recMeasureBtn": "Empfehlen",
-    "recAdvancedBtn": "Erweitert"
+    "recAdvancedBtn": "Erweitert",
+    "searchBtn": "Suchen"
   },
   "btn": {
     "prevStep1": "Vorheriger Schritt (Ablauf)",
