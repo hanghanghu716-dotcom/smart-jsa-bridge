@@ -571,8 +571,11 @@ const applyRecommendedMeasure = (item) => {
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-                    <span style={styles.label}>{t('base.label')}</span>
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                  {/* white-space: pre-line 속성을 부여하여 JSON 내 \n 이 실제 줄바꿈으로 작동하게 처리 */}
+                  <span style={{ ...styles.label, whiteSpace: 'pre-line', lineHeight: '1.4' }}>
+                    {t('base.label')}
+                  </span>           
+                   <div style={{ display: 'flex', gap: '8px' }}>
                       <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
                       <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>

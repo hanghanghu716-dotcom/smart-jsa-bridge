@@ -62,6 +62,8 @@
   },
   "btn": {
     "prev": "Retour à l'Analyse des Dangers",
-    "next": "Passer à la Config du Tableau"
+    "next": "Passer à la Config du Tableau",
+    "skipModule": "Passer la configuration du module"
+
   }
 }

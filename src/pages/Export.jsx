@@ -56,6 +56,7 @@ export default function Export() {
     savedActiveOrder = [],
     savedUserColumns = [],
     savedOrientation = 'landscape',
+    isModuleSkipped, // ✅ 모듈 설정 건너뛰기 여부 플래그 추가
     docTitle = t('default.docTitle', '위험성평가표 (JSA)'),
     appr1 = t('default.appr1', '작성'),
     appr2 = t('default.appr2', '검토'),
@@ -375,11 +376,15 @@ export default function Export() {
             </nav>
             <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div>
             <div style={styles.previewArea}>
-              <div className="reportPaper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
-                {renderUnifiedHeader()}
-                {renderSignatureTable()}
-                {renderDataTable()}
-              </div>
+            {/* 가상의 A4 용지 영역 */}
+        <div className="reportPaper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
+          {/* ✅ isModuleSkipped가 false(혹은 undefined)일 때만 모듈 관련 섹션 출력 */}
+          {!isModuleSkipped && renderUnifiedHeader()}    
+          {!isModuleSkipped && renderSignatureTable()}   
+          
+          {/* 위험성 평가 본문은 항상 출력 */}
+          {renderDataTable()}        
+        </div>
             </div>
             <div style={styles.btnArea} className="no-print">
               <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>{t('btn.prev')}</button>

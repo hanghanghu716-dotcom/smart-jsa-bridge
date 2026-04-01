@@ -32,6 +32,7 @@
   "btn": {
     "addStep": "+ Arbeitsablauf hinzufügen (Bis zu 20 Schritte)",
     "prev": "Zurück",
-    "next": "Intelligente Gefahrenanalyse starten"
+    "next": "Intelligente Gefahrenanalyse starten",
+    "skipModule": "Skip Module Configuration"
   }
 }

@@ -84,26 +84,63 @@ export default function ModuleBuilder() {
   };
 
   const renderUnifiedHeader = () => {
-    const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '11px', textAlign: 'center', color: '#000' };
+    const commonTdStyle = { 
+      border: '1px solid #000', 
+      padding: '6px', 
+      fontSize: '10px', 
+      textAlign: 'center', 
+      color: '#000',
+      hyphens: 'auto',
+      WebkitHyphens: 'auto'
+    };
+
+    
     const labelTdStyle = { 
       ...commonTdStyle, 
       backgroundColor: '#f2f2f2', 
       fontWeight: 'bold', 
-      whiteSpace: isEnglish ? 'normal' : 'nowrap',
-      fontSize: isEnglish ? '10px' : '11px',
-      lineHeight: '1.2'
+      whiteSpace: 'normal',
+      wordBreak: 'keep-all', // 단어 파손 방지
+      overflowWrap: 'anywhere',
+      hyphens: 'auto', // 언어별 적절한 하이픈 연결
+      fontSize: (i18n.language?.startsWith('fr') || i18n.language?.startsWith('de')) ? '9px' : '10px',
+      lineHeight: '1.2',
+      padding: '4px 6px'
     };
 
-    const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap', fontSize: isEnglish ? '10px' : '11px' };
+    const labelContainerWidth = (i18n.language?.startsWith('fr') || i18n.language?.startsWith('de')) ? '180px' : '140px';
+
+    // render 부분 수정 예시
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <div style={{ width: labelContainerWidth, flexShrink: 0, ...labelTdStyle }}>
+        {t('analysis.knowledgeBaseLabel')}
+      </div>
+      <div style={{ flexGrow: 1 }}>
+        {/* 검색창 등 인접 요소 */}
+      </div>
+    </div>
+
+
+    const checkboxItemStyle = { 
+      display: 'inline-block', 
+      marginRight: '16px', 
+      marginBottom: '6px', 
+      whiteSpace: 'normal', 
+      wordBreak: 'keep-all', 
+      overflowWrap: 'break-word', 
+      verticalAlign: 'top', 
+      lineHeight: '1.4', 
+      fontSize: isEnglish ? '10px' : '11px' 
+    };
     const ppeOthers = formData?.ppe?.filter(p => !['안전모','안전화','보안경','장갑','방진마스크'].includes(p)).join(', ');
     const permitOthers = formData?.permits?.filter(p => !['일반','화기','밀폐','정전','고소','중량물','굴착'].includes(p)).join(', ');
 
     const adaptiveContainerStyle = {
-      display: isEnglish ? 'grid' : 'flex',
-      gridTemplateColumns: isEnglish ? 'repeat(3, 1fr)' : 'none',
-      gap: isEnglish ? '4px' : '0',
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '4px',
       width: '100%',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       textAlign: 'left'
     };
 
@@ -181,7 +218,7 @@ export default function ModuleBuilder() {
           <tr>
             <td style={labelTdStyle}>{t('table.highRiskWork')}</td>
             <td colSpan={5} style={{ ...commonTdStyle, padding: '8px' }}>
-              <div style={{...adaptiveContainerStyle, gridTemplateColumns: isEnglish ? 'repeat(4, 1fr)' : 'none'}}>
+                <div style={adaptiveContainerStyle}>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('화기') ? '☑' : '□'} {t('permit.hotWork')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('밀폐') ? '☑' : '□'} {t('permit.confinedSpace')}</span>
                 <span style={checkboxItemStyle}>{formData?.permits?.includes('정전') ? '☑' : '□'} {t('permit.electrical')}</span>
@@ -199,9 +236,24 @@ export default function ModuleBuilder() {
     );
   };
 
-  const renderModulePreview = () => {
-    const commonTdStyle = { border: '1px solid #000', padding: '6px', fontSize: '10px', textAlign: 'center', color: '#000' };
-    const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%' };
+const renderModulePreview = () => {
+    const commonTdStyle = { 
+      border: '1px solid #000', 
+      padding: '6px', 
+      fontSize: '10px', 
+      textAlign: 'center', 
+      color: '#000',
+      hyphens: 'auto',
+      WebkitHyphens: 'auto'
+    };    const labelTdStyle = { 
+      ...commonTdStyle, 
+      backgroundColor: '#f2f2f2', 
+      fontWeight: 'bold', 
+      width: '10%',
+      whiteSpace: 'normal',
+      wordBreak: 'break-word',
+      overflowWrap: 'break-word'
+    };
     const sigRows = Array.from({ length: signatureRows }, (_, i) => i);
     const cols = Array.from({ length: 8 }, (_, i) => i);
     
@@ -209,7 +261,7 @@ export default function ModuleBuilder() {
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', borderTop: 'none', tableLayout: 'fixed' }}>
         <tbody>
           <tr>
-            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none', whiteSpace: isEnglish ? 'normal' : 'nowrap'}}>{t('table.participants')}</td>
+            <td rowSpan={signatureRows} style={{...labelTdStyle, borderTop: 'none'}}>{t('table.participants')}</td>
             {cols.map(c => {
               const pName = participants?.[c] || '';
               return (
@@ -308,7 +360,7 @@ export default function ModuleBuilder() {
             <div style={styles.btnAreaLayout}>
               <button style={styles.prevBtnDark} onClick={goBackToAnalysis}>{t('btn.prev')}</button>
               {/* ✅ [추가] 모듈 설정을 원치 않는 사용자를 위한 건너뛰기 버튼 */}
-              <button style={styles.skipBtn} onClick={skipModuleConfig}>{t('btn.skipModule', '설정 생략하고 다음')}</button>
+              <button style={styles.skipBtn} onClick={skipModuleConfig}>{t('btn.skipModule', '모듈 설정 건너뛰기')}</button>
               <button style={styles.nextBtnLight} onClick={goToTableBuilder}>{t('btn.next')}</button>
             </div>
           </div>

@@ -62,6 +62,8 @@
   },
   "btn": {
     "prev": "Return to Hazard Analysis",
-    "next": "Proceed to Table Config"
+    "next": "Proceed to Table Config",
+    "skipModule": "Skip Module Configuration"
+
   }
 }

@@ -45,7 +45,7 @@
     "searchPlaceholder": "Rechercher des dangers..."
   },
   "base": {
-    "label": "Base de connaissances sécurité (Extraction des dangers)",
+    "label": "Base de connaissances sécurité\n(Extraction des dangers)",
     "addEmptyBtn": "+ Ajouter vide",
     "addBulkBtn": "✓ Ajouter les éléments sélectionnés",
     "emptyRec": "Aucun danger recommandé trouvé.",

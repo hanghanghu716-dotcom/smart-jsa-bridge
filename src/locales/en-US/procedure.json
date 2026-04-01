@@ -32,6 +32,7 @@
   "btn": {
     "addStep": "+ Add Work Procedure (Up to 20 steps)",
     "prev": "Previous",
-    "next": "Start Intelligent Risk Analysis"
+    "next": "Start Intelligent Risk Analysis",
+    "skipModule": "Skip Module Configuration"
   }
 }

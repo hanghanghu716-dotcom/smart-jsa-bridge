@@ -7,10 +7,10 @@
     "title": "Select Analysis Format",
     "sub": "Please select the precision level for the JSA analysis.",
     "standardLabel": "Basic 2-Step Analysis",
-    "standardDesc1": "Hazard Factor ➔ Reduction Measure",
+    "standardDesc1": "Hazard Factor ➔ Control Measure",
     "standardDesc2": "(For general field operations)",
     "advancedLabel": "Advanced 3-Step Analysis",
-    "advancedDesc1": "Hazard Factor ➔ Current Safety Measure ➔ Additional Reduction Measure",
+    "advancedDesc1": "Hazard Factor ➔ Current Control Measure ➔ Additional Reduction Measure",
     "advancedDesc2": "(For high-risk processes and precise analysis)",
     "closeBtn": "Close"
   },
@@ -32,6 +32,7 @@
   "btn": {
     "addStep": "+ Add Work Procedure (Up to 20 steps)",
     "prev": "Previous",
-    "next": "Start Intelligent Risk Analysis"
+    "next": "Start Intelligent Risk Analysis",
+    "skipModule": "Skip Module Configuration"
   }
 }

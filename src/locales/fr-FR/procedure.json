@@ -1,37 +1,38 @@
 {
   "alert": {
-    "confirmMain": "Are you sure you want to go to the main screen? All unsaved data may be lost.",
-    "minSteps": "Please enter at least 3 steps for the procedure."
+    "confirmMain": "Êtes-vous sûr de vouloir revenir à l'écran principal ? Toutes les données non sauvegardées seront perdues.",
+    "minSteps": "Veuillez saisir au moins 3 étapes pour la procédure."
   },
   "modal": {
-    "title": "Select Analysis Format",
-    "sub": "Please select the precision level for the JSA analysis.",
-    "standardLabel": "Basic 2-Step Analysis",
-    "standardDesc1": "Hazard Factor ➔ Reduction Measure",
-    "standardDesc2": "(For general field operations)",
-    "advancedLabel": "Advanced 3-Step Analysis",
-    "advancedDesc1": "Hazard Factor ➔ Current Safety Measure ➔ Additional Reduction Measure",
-    "advancedDesc2": "(For high-risk processes and precise analysis)",
-    "closeBtn": "Close"
+    "title": "Sélectionner le format d'analyse",
+    "sub": "Veuillez sélectionner le niveau de précision pour l'analyse JSA.",
+    "standardLabel": "Analyse de base (2 étapes)",
+    "standardDesc1": "Facteur de danger ➔ Mesure de prévention",
+    "standardDesc2": "(Pour les opérations de terrain générales)",
+    "advancedLabel": "Analyse avancée (3 étapes)",
+    "advancedDesc1": "Facteur de danger ➔ Mesure de sécurité actuelle ➔ Mesure de prévention additionnelle",
+    "advancedDesc2": "(Pour les processus à haut risque et les analyses précises)",
+    "closeBtn": "Fermer"
   },
   "step": {
-    "basicInfo": "Basic Info",
-    "procedure": "Work Procedure",
-    "riskAnalysis": "Risk Analysis",
-    "moduleConfig": "Module Config",
-    "tableConfig": "Table Config",
-    "finalOutput": "Final Output"
+    "basicInfo": "Infos de base",
+    "procedure": "Procédure de travail",
+    "riskAnalysis": "Analyse des risques",
+    "moduleConfig": "Configuration du module",
+    "tableConfig": "Configuration du tableau",
+    "finalOutput": "Rendu final"
   },
   "form": {
-    "title": "02. Detailed Work Procedure Definition",
-    "stepLabel": "Task Step",
-    "detailLabel": "Detailed Task Description",
-    "placeholderTitle": "Step Name",
-    "placeholderDetail": "Details"
+    "title": "02. Définition détaillée de la procédure de travail",
+    "stepLabel": "Étape de la tâche",
+    "detailLabel": "Description détaillée de la tâche",
+    "placeholderTitle": "Nom de l'étape",
+    "placeholderDetail": "Détails"
   },
   "btn": {
-    "addStep": "+ Add Work Procedure (Up to 20 steps)",
-    "prev": "Previous",
-    "next": "Start Intelligent Risk Analysis"
+    "addStep": "+ Ajouter une procédure (Jusqu'à 20 étapes)",
+    "prev": "Précédent",
+    "next": "Lancer l'analyse intelligente des risques",
+    "skipModule": "Passer la configuration du module"
   }
 }
