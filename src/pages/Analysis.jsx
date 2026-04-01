@@ -205,10 +205,25 @@ const applyRecommendedMeasure = (item) => {
       }
     }
 
-      setIsSearchLoading(false);
+  setIsSearchLoading(false);
     setMeasureSearchModal(prev => ({ ...prev, data: results }));
   };
 
+  // 👇 [기능 추가] 검색된 대책 클릭 시 해당 Risk 필드에 값 입력 및 모달 종료
+  const applySearchedMeasure = (item) => {
+    if (jsaType === '2-step') {
+      updateRiskField(measureSearchModal.targetRiskId, 'measure', item.display);
+    } else if (measureSearchModal.type === 'current') {
+      updateRiskField(measureSearchModal.targetRiskId, 'current_measure', item.display);
+      updateRiskField(measureSearchModal.targetRiskId, 'current_measure_db_id', item.db_id);
+    } else {
+      updateRiskField(measureSearchModal.targetRiskId, 'recommend_measure', item.display);
+    }
+    
+    // 모달 상태 및 검색어 초기화
+    setMeasureSearchModal({ isOpen: false, data: [], targetRiskId: null, type: 'current' });
+    setMeasureSearchTerm("");
+  };
 
   // ✅ 실시간 타이핑 감지 및 디바운스(0.3초 대기 후 검색 실행) 로직
   useEffect(() => {
