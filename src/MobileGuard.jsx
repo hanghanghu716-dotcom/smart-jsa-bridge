@@ -14,6 +14,8 @@ const MobileGuard = ({ children }) => {
     '/regulation',
     '/riskclassification',
     '/protectiveequipment',
+    'main',
+    '',
     '/guideline', // 모든 하위 가이드 경로 포함
   ];
 
