@@ -75,10 +75,7 @@ export default function Main() {
   }, [slides.length]);
 
   const handleStartClick = () => {
-    if (window.innerWidth < 1024) {
-      alert(t('mobileAlert'));
-      return;
-    }
+    // [제거] window.innerWidth < 1024 조건부 alert 및 return 로직 삭제
     if (user) {
       navigate('/info', { state: { isMember: true } });
     } else {
