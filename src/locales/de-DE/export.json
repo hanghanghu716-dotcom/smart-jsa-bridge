@@ -94,7 +94,12 @@
   "btn": {
     "prev": "Tabellenlayout bearbeiten",
     "cloudSave": "Cloud-Speicherung (Sichtbarkeit wählen)",
-    "pdfSave": "PDF-Bericht erstellen & speichern"
+    "pdfSave": "PDF-Bericht erstellen & speichern",
+    "copyTable": "In Word/Dokument kopieren"
+  },
+  "alert": {
+    "copySuccess": "Die Tabelle wurde in die Zwischenablage kopiert. Bitte drücken Sie [Ctrl+V], um sie in Ihr Dokument einzufügen.",
+    "copyError": "Fehler beim Kopieren in die Zwischenablage. Bitte überprüfen Sie die Browser-Berechtigungen."
   },
   "modal": {
     "pdfTitle": "PDF-Bericht erstellen",
@@ -102,6 +107,10 @@
     "pdfBtnLabel": "Bericht-Download starten",
     "pdfBtnDesc": "Erstellt ein hochauflösendes PDF.<br/>Bitte warten Sie einen Moment.",
     "close": "Schließen (Abbrechen)",
+    "copyTitle": "In Zwischenablage kopieren (Word/Dok)",
+    "copySub": "Kopiert die Tabellenstruktur in die Zwischenablage zur Verwendung in Word.",
+    "copyBtnLabel": "Kopieren starten",
+    "copyBtnDesc": "Optimierung der Tabellenstruktur für Dokumente.",
     "pubTitle": "Cloud-Speichereinstellungen",
     "pubWarning": "⚠️ Aus Sicherheitsgründen werden Abteilung, Ort,\nDatum und Teilnehmernamen leer gelassen.",
     "pubSub": "Bitte wählen Sie die Sichtbarkeit für das Projekt.",

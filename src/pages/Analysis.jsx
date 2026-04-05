@@ -308,24 +308,39 @@ const applyRecommendedMeasure = (item) => {
     };
     const dbLocale = localeMap[i18n.language] || 'en-US';
 
-    let results = [];
+let results = [];
+    // 입력값을 공백 기준으로 토큰화 (빈 문자열 제거)
+    const tokens = term.trim().split(/\s+/).filter(t => t.length > 0);
+
     if (measureSearchModal.type === 'current') {
-      const { data, error } = await supabase
+      // Query Builder 초기화
+      let query = supabase
         .from('Current_Measures_Translations')
         .select('measure_id, measure_text')
-        .eq('locale', dbLocale)
-        .ilike('measure_text', `%${term}%`)
-        .limit(30);
+        .eq('locale', dbLocale);
+      
+      // 토큰 수만큼 AND ILIKE 체이닝 적용
+      tokens.forEach(token => {
+        query = query.ilike('measure_text', `%${token}%`);
+      });
+
+      const { data, error } = await query.limit(30);
       if (!error && data) {
         results = data.map(d => ({ display: d.measure_text, db_id: d.measure_id }));
       }
     } else {
-      const { data, error } = await supabase
+      // Query Builder 초기화
+      let query = supabase
         .from('Advanced_Measures_Translations')
         .select('advanced_measure_id, solution_text')
-        .eq('locale', dbLocale)
-        .ilike('solution_text', `%${term}%`)
-        .limit(30);
+        .eq('locale', dbLocale);
+      
+      // 토큰 수만큼 AND ILIKE 체이닝 적용
+      tokens.forEach(token => {
+        query = query.ilike('solution_text', `%${token}%`);
+      });
+
+      const { data, error } = await query.limit(30);
       if (!error && data) {
         results = data.map(d => ({ display: d.solution_text, db_id: d.advanced_measure_id }));
       }

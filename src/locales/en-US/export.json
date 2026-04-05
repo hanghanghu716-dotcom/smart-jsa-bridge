@@ -94,7 +94,12 @@
   "btn": {
     "prev": "Edit Table Layout",
     "cloudSave": "Save to Cloud (Select Visibility)",
-    "pdfSave": "Generate & Save PDF Report"
+    "pdfSave": "Generate & Save PDF Report",
+    "copyTable": "Copy to Word/Doc"
+  },
+  "alert": {
+    "copySuccess": "The table has been copied to the clipboard. Please press [Ctrl+V] to paste it into your document.",
+    "copyError": "An error occurred while copying to the clipboard. Please check your browser permissions."
   },
   "modal": {
     "pdfTitle": "Generate PDF Report",
@@ -107,6 +112,10 @@
     "pubSub": "Please select the visibility scope for the saved project.",
     "pubBadgeLimited": "Public (Restricted)",
     "pubPublicLabel": "Publish to Explore",
+    "copyTitle": "Copy to Clipboard (Word/Doc)",
+    "copySub": "Copies the table structure to the clipboard for use in Word or other document editors.",
+    "copyBtnLabel": "Start Copying",
+    "copyBtnDesc": "Optimizing table structure for documents.<br/>Press [Ctrl+V] in your editor after copying.",
     "pubForkLimit": "Requires additional task steps<br/>or at least 2 more hazards<br/>compared to the original version.",
     "pubRiskLimit": "Please document at least 3 hazards<br/>and safety measures for knowledge sharing.",
     "pubPublicDesc": "Visible to all users,<br/>contributing to safety knowledge sharing.",
