@@ -78,7 +78,7 @@ export default function Analysis() {
     setCheckedRisks(new Set()); 
   };
 
-  const handleOpenRecommendation = async (risk, type = 'advanced') => {
+const handleOpenRecommendation = async (risk, type = 'advanced') => {
     if (type === 'current' && !risk.factor) return alert(t('alert.enterFactor'));
     if (type === 'advanced' && !risk.current_measure) return alert(t('alert.selectCurrentMeasure'));
 
@@ -91,65 +91,191 @@ export default function Analysis() {
     };
     const dbLocale = localeMap[i18n.language] || 'en-US';
 
-    if (type === 'current') {
-      if (!risk.db_id) {
-          setIsLoading(false);
-          return alert(t('alert.manualFactor'));
-      }
-      
-      const { data: origData, error: origError } = await supabase
-        .from('Current_Measures')
-        .select('id, priority_score')
-        .eq('hazard_id', risk.db_id)
-        .order('priority_score', { ascending: false });
+    console.log(`\n========== [매핑 추적 시작 (다중 식별자 스캔): ${type.toUpperCase()}] ==========`);
+    console.log("[0. Input Risk 데이터]:", risk);
 
-      if (!origError && origData && origData.length > 0) {
-        const measureIds = origData.map(m => m.id);
-        const { data: transData, error: transError } = await supabase
-          .from('Current_Measures_Translations')
-          .select('measure_id, measure_text')
-          .in('measure_id', measureIds)
-          .eq('locale', dbLocale);
-
-        if (!transError && transData) {
-          scored = origData.map(orig => {
-            const trans = transData.find(t => t.measure_id === orig.id);
-            return trans ? { display: trans.measure_text, measure_db_id: orig.id } : null;
-          }).filter(Boolean);
+    try {
+      if (type === 'current') {
+        if (!risk.db_id) {
+            setIsLoading(false);
+            return alert(t('alert.manualFactor'));
         }
-      }
-    } else {
-      if (!risk.current_measure_db_id) {
-          setIsLoading(false);
-          return alert(t('alert.needCurrentMeasure'));
-      }
-
-      const { data: origData, error: origError } = await supabase
-        .from('Advanced_Measures')
-        .select('id')
-        .eq('measure_id', risk.current_measure_db_id);
         
-      if (!origError && origData && origData.length > 0) {
-        const advIds = origData.map(m => m.id);
-        const { data: transData, error: transError } = await supabase
-          .from('Advanced_Measures_Translations')
-          .select('advanced_measure_id, solution_text')
-          .in('advanced_measure_id', advIds)
-          .eq('locale', dbLocale);
+        console.log(`[1. Hazards_Translations 조회] 마스터 hazard_id: ${risk.db_id}`);
+        const { data: hazardTrans, error: err1 } = await supabase
+          .from('Hazards_Translations')
+          .select('id')
+          .eq('hazard_id', risk.db_id);
+          
+        if (err1) console.error("[1번 쿼리 에러]:", err1);
 
-        if (!transError && transData) {
-          scored = origData.map(orig => {
-            const trans = transData.find(t => t.advanced_measure_id === orig.id);
-            return trans ? { display: trans.solution_text, advanced_db_id: orig.id } : null;
-          }).filter(Boolean);
+        let hazardSearchIds = [risk.db_id];
+        if (hazardTrans) {
+            hazardSearchIds.push(...hazardTrans.map(t => t.id));
+        }
+        console.log(`[1. 결과] 확보된 탐색 대상 ID 배열:`, hazardSearchIds);
+
+        console.log(`[2. hazard_measure_mappings 조회] 매핑 데이터 무차별 스캔 시작`);
+        const { data: mapData, error: err2 } = await supabase
+          .from('hazard_measure_mappings')
+          .select('measure_translation_id, similarity_score')
+          .in('hazard_translation_id', hazardSearchIds)
+          .order('similarity_score', { ascending: false });
+
+        if (err2) console.error("[2번 쿼리 에러 (RLS 의심)]:", err2);
+        console.log(`[2. 결과] 추출된 매핑 데이터 (${mapData?.length || 0}건):`, mapData);
+
+        if (mapData && mapData.length > 0) {
+          const mappedIds = [...new Set(mapData.map(m => m.measure_translation_id))];
+          console.log(`[3. 양방향 식별자 검증] 대상 ID:`, mappedIds);
+          
+          const { data: transById, error: err3a } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('id', mappedIds);
+          const { data: transByMaster, error: err3b } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('measure_id', mappedIds);
+          
+          if (err3a || err3b) console.error("[3번 쿼리 에러]:", err3a || err3b);
+
+          const masterIdScoreMap = {};
+          let masterIds = [];
+
+          for (const m of mapData) {
+            const mId = m.measure_translation_id;
+            const score = m.similarity_score;
+            
+            const foundById = transById?.find(t => t.id === mId);
+            if (foundById) {
+              masterIds.push(foundById.measure_id);
+              if (!masterIdScoreMap[foundById.measure_id]) masterIdScoreMap[foundById.measure_id] = score;
+            } else {
+              const foundByMaster = transByMaster?.find(t => t.measure_id === mId);
+              if (foundByMaster) {
+                masterIds.push(foundByMaster.measure_id);
+                if (!masterIdScoreMap[foundByMaster.measure_id]) masterIdScoreMap[foundByMaster.measure_id] = score;
+              }
+            }
+          }
+          
+          masterIds = [...new Set(masterIds)];
+          console.log(`[3. 결과] 도출된 최종 마스터 ID(measure_id):`, masterIds);
+
+          if (masterIds.length > 0) {
+            console.log(`[4. 최종 번역본 조회] 대상 언어: ${dbLocale}`);
+            const { data: finalMeasures, error: err4 } = await supabase
+              .from('Current_Measures_Translations')
+              .select('*')
+              .in('measure_id', masterIds)
+              .eq('locale', dbLocale);
+
+            if (err4) console.error("[4번 쿼리 에러]:", err4);
+            console.log(`[4. 결과] 최종 렌더링 데이터:`, finalMeasures);
+
+            if (finalMeasures) {
+              scored = finalMeasures.map(trans => ({
+                display: trans.measure_text,
+                measure_db_id: trans.measure_id,
+                similarity_score: masterIdScoreMap[trans.measure_id] || 0
+              })).sort((a, b) => b.similarity_score - a.similarity_score);
+            }
+          }
+        } else {
+             console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${hazardSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
+        }
+      } else {
+        // Advanced 처리 로직
+        if (!risk.current_measure_db_id) {
+            setIsLoading(false);
+            return alert(t('alert.needCurrentMeasure'));
+        }
+
+        console.log(`[1. Current_Measures_Translations 조회] 마스터 measure_id: ${risk.current_measure_db_id}`);
+        const { data: currTrans, error: err1 } = await supabase
+          .from('Current_Measures_Translations')
+          .select('id')
+          .eq('measure_id', risk.current_measure_db_id);
+          
+        if (err1) console.error("[1번 쿼리 에러]:", err1);
+
+        let currSearchIds = [risk.current_measure_db_id];
+        if (currTrans) {
+            currSearchIds.push(...currTrans.map(t => t.id));
+        }
+        console.log(`[1. 결과] 확보된 탐색 대상 ID 배열:`, currSearchIds);
+
+        console.log(`[2. current_advanced_measure_mappings 조회] 매핑 데이터 무차별 스캔 시작`);
+        const { data: mapData, error: err2 } = await supabase
+          .from('current_advanced_measure_mappings')
+          .select('advanced_measure_translation_id, similarity_score')
+          .in('current_measure_translation_id', currSearchIds)
+          .order('similarity_score', { ascending: false });
+
+        if (err2) console.error("[2번 쿼리 에러 (RLS 의심)]:", err2);
+        console.log(`[2. 결과] 추출된 매핑 데이터 (${mapData?.length || 0}건):`, mapData);
+
+        if (mapData && mapData.length > 0) {
+          const mappedIds = [...new Set(mapData.map(m => m.advanced_measure_translation_id))];
+          console.log(`[3. 양방향 식별자 검증] 대상 ID:`, mappedIds);
+          
+          const { data: transById, error: err3a } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('id', mappedIds);
+          const { data: transByMaster, error: err3b } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('advanced_measure_id', mappedIds);
+          
+          if (err3a || err3b) console.error("[3번 쿼리 에러]:", err3a || err3b);
+
+          const masterIdScoreMap = {};
+          let masterIds = [];
+
+          for (const m of mapData) {
+            const mId = m.advanced_measure_translation_id;
+            const score = m.similarity_score;
+            
+            const foundById = transById?.find(t => t.id === mId);
+            if (foundById) {
+              masterIds.push(foundById.advanced_measure_id);
+              if (!masterIdScoreMap[foundById.advanced_measure_id]) masterIdScoreMap[foundById.advanced_measure_id] = score;
+            } else {
+              const foundByMaster = transByMaster?.find(t => t.advanced_measure_id === mId);
+              if (foundByMaster) {
+                masterIds.push(foundByMaster.advanced_measure_id);
+                if (!masterIdScoreMap[foundByMaster.advanced_measure_id]) masterIdScoreMap[foundByMaster.advanced_measure_id] = score;
+              }
+            }
+          }
+          
+          masterIds = [...new Set(masterIds)];
+          console.log(`[3. 결과] 도출된 최종 마스터 ID(advanced_measure_id):`, masterIds);
+
+          if (masterIds.length > 0) {
+            console.log(`[4. 최종 번역본 조회] 대상 언어: ${dbLocale}`);
+            const { data: finalAdvMeasures, error: err4 } = await supabase
+              .from('Advanced_Measures_Translations')
+              .select('*')
+              .in('advanced_measure_id', masterIds)
+              .eq('locale', dbLocale);
+
+            if (err4) console.error("[4번 쿼리 에러]:", err4);
+            console.log(`[4. 결과] 최종 렌더링 데이터:`, finalAdvMeasures);
+
+            if (finalAdvMeasures) {
+              scored = finalAdvMeasures.map(trans => ({
+                display: trans.solution_text,
+                advanced_db_id: trans.advanced_measure_id,
+                similarity_score: masterIdScoreMap[trans.advanced_measure_id] || 0
+              })).sort((a, b) => b.similarity_score - a.similarity_score).slice(0, 3);
+            }
+          }
+        } else {
+             console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${currSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
         }
       }
+    } catch (err) {
+      console.error("Critical Error in handleOpenRecommendation:", err);
+    } finally {
+      console.log("[5. 최종 Scored 데이터]:", scored);
+      console.log("========== [매핑 추적 종료] ==========\n");
+      setIsLoading(false);
+      if (scored.length === 0) return alert(t('alert.noData'));
+      setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
     }
-
-    setIsLoading(false);
-    if (scored.length === 0) return alert(t('alert.noData'));
-    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
+
 
 const applyRecommendedMeasure = (item) => {
     if (jsaType === '2-step') {
@@ -470,7 +596,14 @@ const applyRecommendedMeasure = (item) => {
               {recModal.data.map((item, idx) => (
                 <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>                  
                   <div style={{ ...styles.libInfo, flex: 1 }}>
-                    <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
+                    <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>
+                      {item.similarity_score && (
+                        <span style={{ color: '#007bff', marginRight: '8px', fontWeight: 'bold' }}>
+                          [{parseFloat(item.similarity_score * 100).toFixed(1)}%]
+                        </span>
+                      )}
+                      {item.display}
+                    </div>
                   </div>
                   <span style={{ marginLeft: '10px', color: '#007bff' }}>{t('recModal.selectBtn')}</span>
                 </div>
@@ -479,7 +612,7 @@ const applyRecommendedMeasure = (item) => {
           </div>
         </div>
       )}
-{/* 👇 [기능 추가] 대책 DB 직접 검색 모달 (실시간 렌더링 방식) */}
+{/* 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수 */}
       {measureSearchModal.isOpen && (
         <div style={styles.dialogOverlay} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
