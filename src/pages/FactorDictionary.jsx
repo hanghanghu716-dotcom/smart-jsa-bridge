@@ -23,17 +23,18 @@ export default function FactorDictionary() {
   const [categories, setCategories] = useState([]);
 
   const getDbLocale = (lang) => {
-    if (lang?.includes('ko')) return 'ko-KR';
-    if (lang?.includes('en-US')) return 'en-US';
-    if (lang?.includes('en-AU')) return 'en-AU';
-    if (lang?.includes('en-GB')) return 'en-GB';
-    if (lang?.includes('fr-FR')) return 'fr-FR';
-    if (lang?.includes('de-DE')) return 'de-DE';
+    if (!lang) return 'ko-KR';
+    if (lang.includes('ko')) return 'ko-KR';
+    if (lang.includes('en-AU')) return 'en-AU';
+    if (lang.includes('en-GB')) return 'en-GB';
+    if (lang.includes('en')) return 'en-US'; // 'en' 단일 코드 및 기타 영어권 기본값
+    if (lang.includes('fr')) return 'fr-FR';
+    if (lang.includes('de')) return 'de-DE';
     return 'ko-KR'; 
   };
   const currentLocale = getDbLocale(i18n.language);
 
-  useEffect(() => {
+useEffect(() => {
     const fetchCategories = async () => {
       const { data, error } = await supabase
         .from('v_factor_dictionary_detail') 
@@ -43,10 +44,12 @@ export default function FactorDictionary() {
       if (!error && data) {
         const uniqueCategories = [...new Set(data.map(item => item.category))].filter(Boolean);
         setCategories(uniqueCategories);
+        setCategoryFilter(''); // 언어 변경 시 카테고리 필터 초기화
+        setCurrentPage(1);     // 언어 변경 시 1페이지로 리셋
       }
     };
     fetchCategories();
-  }, [currentLocale]); 
+  }, [currentLocale]);
 
   const fetchData = async () => {
     setLoading(true);

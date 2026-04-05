@@ -46,6 +46,7 @@ export default function Export() {
   const [userProfile, setUserProfile] = useState(null); 
   const [showPublishModal, setShowPublishModal] = useState(false);
   const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
+  const [showCopyAdModal, setShowCopyAdModal] = useState(false); // 👇 [기능 추가] 복사 전 광고 모달 상태
 
   const { 
     existingId = null, 
@@ -179,6 +180,24 @@ export default function Export() {
 
   const handlePdfDownload = async () => { setShowPdfAdModal(false); await generatePDF(); };
 
+  const handleCopyToClipboard = async () => {
+     setShowCopyAdModal(false); // 👇 [수정] 모달 닫기
+      const paper = document.querySelector('.reportPaper');
+      if (!paper) return;
+      try {
+        const htmlData = paper.outerHTML;
+        const textData = paper.innerText;
+        const clipboardItem = new ClipboardItem({
+          'text/html': new Blob([htmlData], { type: 'text/html' }),
+          'text/plain': new Blob([textData], { type: 'text/plain' })
+        });
+        await navigator.clipboard.write([clipboardItem]);
+        alert(t('alert.copySuccess'));
+      } catch (error) {
+        console.error('Clipboard injection failed:', error);
+        alert(t('alert.copyError'));      }
+    };
+
   const renderUnifiedHeader = () => {
     const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '10px' : '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
     const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: isEnglish ? 'normal' : 'nowrap', lineHeight: '1.2' };
@@ -191,10 +210,10 @@ export default function Export() {
         <colgroup><col style={{ width: '10%' }} /><col style={{ width: '20%' }} /><col style={{ width: '10%' }} /><col style={{ width: '30%' }} /><col style={{ width: '10%' }} /><col style={{ width: '20%' }} /></colgroup>
         <tbody>
           <tr>
-            <td style={labelTdStyle}>{t('header.projectName')}</td>
-            <td style={{...commonTdStyle, fontWeight: 'bold'}}>{formData?.projectName || ''}</td>
-            <td colSpan={2} style={{ ...commonTdStyle, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', verticalAlign: 'middle', padding: '0px 6px 14px 6px' }}>{docTitle}</td>
-            <td colSpan={2} style={{ padding: 0, border: '1px solid #888' }}>
+            <td style={{...labelTdStyle, width: '10%'}}>{t('header.projectName')}</td>
+            <td style={{...commonTdStyle, fontWeight: 'bold', width: '20%'}}>{formData?.projectName || ''}</td>
+            <td colSpan={2} style={{ ...commonTdStyle, width: '40%', fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', verticalAlign: 'middle', padding: '0px 6px 14px 6px' }}>{docTitle}</td>
+            <td colSpan={2} style={{ padding: 0, border: '1px solid #888', width: '30%' }}>
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
@@ -288,7 +307,20 @@ export default function Export() {
   };
 
   const renderDataTable = () => {
-    const commonTdStyle = { border: '1px solid #888', padding: '4px 4px 12px 4px', fontSize: isEnglish ? '9.5px' : '10.5px', verticalAlign: 'middle', lineHeight: '1.3', wordBreak: 'break-word', overflowWrap: 'anywhere' }; 
+      const isEuroLang = ['en', 'fr', 'de'].some(lang => i18n.language?.startsWith(lang));
+
+      const commonTdStyle = { 
+        border: '1px solid #888', 
+        padding: '4px 4px 12px 4px', 
+        // 👇 [수정] 유럽권 언어일 경우 폰트 크기를 9px로 일괄 축소하여 공간 확보
+        fontSize: isEuroLang ? '9px' : '10.5px', 
+        verticalAlign: 'middle', 
+        lineHeight: '1.2', 
+        wordBreak: 'keep-all',
+        overflowWrap: 'anywhere',
+        // 👇 [기능 추가] 긴 단어 자동 하이픈 처리 (브라우저 지원 시)
+        hyphens: 'auto'
+      };
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
     const currentItems = savedActiveOrder.filter(key => TAG_META[key] || savedUserColumns.find(u => u.id === key));
     const fixedWidth = currentItems.reduce((sum, key) => {
@@ -330,12 +362,47 @@ export default function Export() {
                 return ( <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>{label}</th> );
               }
             })}</tr>
+          {hasGroups && (
+            <tr>
+              {groups.filter(g => g.isGroup).flatMap(group =>
+                group.keys.map(key => {
+                  const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+                  let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                  if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
+                  if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
+                  if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
+                  if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
+                return (
+                    <th key={`th-sub-${key}`} style={{ 
+                      ...commonTdStyle, 
+                      backgroundColor: '#f9f9f9', 
+                      textAlign: 'center', 
+                      fontWeight: 'bold', 
+                      whiteSpace: 'pre-wrap',
+                      wordBreak: 'keep-all',
+                      fontSize: isEuroLang ? '8px' : '10.5px'                    }}>
+                      {label}
+                    </th>
+                  );
+                })
+              )}
+            </tr>
+          )}
         </thead>
         <tbody>
+        <tr style={{ height: 0, visibility: 'hidden', border: 'none' }}>
+            {currentItems.map(key => {
+              const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+              let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
+              return <td key={`ghost-${key}`} style={{ width: `${pct}%`, height: 0, padding: 0, margin: 0, border: 'none' }}></td>;
+            })}
+          </tr>
+
           {analysisData.map((stepData, stepIdx) => (
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
                 const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); let content = "";
+                let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = stepData.risks.map(r => `• ${r.factor}`).join('\n');
@@ -390,6 +457,25 @@ export default function Export() {
               <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>{t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
+              {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
+              <button style={{...styles.pdfBtn, backgroundColor: '#28a745', color: '#fff'}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
+
+              {/* 👇 [기능 추가] 복사 전용 광고 모달 (PDF 모달 구조 재사용) */}
+              {showCopyAdModal && (
+                <div style={styles.modalOverlay} onClick={() => setShowCopyAdModal(false)}>
+                  <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
+                    <h3 style={styles.modalTitle}>{t('modal.copyTitle')}</h3>
+                    <p style={styles.modalSub}>{t('modal.copySub')}</p>
+                    <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
+                    <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handleCopyToClipboard}>
+                      <div style={styles.typeBadgeActive}>Copy to Clipboard</div>
+                      <h4 style={styles.typeLabel}>{t('modal.copyBtnLabel')}</h4>
+                      <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.copyBtnDesc') }}></p>
+                    </div>
+                    <button style={styles.modalCloseBtn} onClick={() => setShowCopyAdModal(false)}>{t('modal.close')}</button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </main>
