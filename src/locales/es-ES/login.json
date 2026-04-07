@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Este apodo no está permitido.",
+    "nickNoSpecial": "Por favor, no utilice caracteres especiales.",
+    "nickInUse": "Este apodo ya está en uso.",
+    "nickAvailable": "✓ Apodo disponible.",
+    "pwSafe": "✓ Contraseña segura",
+    "pwRule": "Mínimo 8 caracteres (letras+números+símbolos)",
+    "pwMatch": "✓ Las contraseñas coinciden",
+    "pwMismatch": "Las contraseñas no coinciden"
+  },
+  "alert": {
+    "resetSent": "Se ha enviado el enlace de restablecimiento de contraseña.",
+    "checkInput": "Verifique la información introducida.",
+    "signupSuccess": "Haga clic en el enlace de verificación enviado a su correo para completar el registro."
+  },
+  "ui": {
+    "titleSignup": "Registro de Cuenta de Usuario",
+    "titleReset": "Restablecer Contraseña",
+    "titleLogin": "Autenticación de Acceso al Sistema",
+    "guideSignup": "Introduzca la información necesaria para la gestión del conocimiento.",
+    "guideReset": "Le enviaremos un enlace de restablecimiento por correo.",
+    "guideLogin": "Inicie sesión con su cuenta registrada para utilizar el servicio.",
+    "labelEmail": "Dirección de Correo Electrónico",
+    "labelNickname": "Apodo de Actividad",
+    "placeholderNickname": "Nombre de usuario",
+    "labelSector": "Sector Industrial",
+    "selectDefault": "Seleccionar",
+    "labelPassword": "Contraseña",
+    "placeholderPassword": "Mínimo 8 caracteres (letras+números+símbolos)",
+    "labelPasswordConfirm": "Confirmar Contraseña",
+    "placeholderPasswordConfirm": "Ingrese de nuevo la misma contraseña",
+    "placeholderPasswordLogin": "Contraseña",
+    "btnForgotPw": "¿Olvidó su contraseña?",
+    "btnProcessing": "Procesando...",
+    "btnSubmitSignup": "Crear Cuenta de Usuario",
+    "btnSubmitReset": "Enviar Correo de Restablecimiento",
+    "btnSubmitLogin": "Acceder al Sistema",
+    "dividerOr": "o",
+    "btnGoogleLogin": "Continuar con Google",
+    "btnSwitchSignup": "Registro de Nuevo Usuario",
+    "btnSwitchLogin": "Iniciar sesión con cuenta existente"
+  },
+  "sector": {
+    "construction": "Construcción / Civil / Arquitectura",
+    "manufacturing": "Manufactura / Planta / Química",
+    "energy": "Energía / Electricidad / Gas",
+    "logistics": "Transporte / Logística / Almacén",
+    "safety": "Gestión de Seguridad / Consultoría",
+    "it": "IT / Sistemas / Ingeniería",
+    "public": "Institución Pública / Educación / Salud",
+    "others": "Otros Sectores"
+  }
+}

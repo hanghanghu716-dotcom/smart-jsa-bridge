@@ -1,0 +1,125 @@
+{
+  "default": {
+    "docTitle": "Hoja de Evaluación de Riesgos (JSA)",
+    "appr1": "Elaboración",
+    "appr2": "Revisión",
+    "appr3": "Aprobación"
+  },
+  "alert": {
+    "needLogin": "Este servicio requiere inicio de sesión.",
+    "savePublic": "Guardado de forma segura en Explore.",
+    "savePrivate": "Guardado de forma segura en su archivo personal.",
+    "saveError": "Error durante el guardado: ",
+    "pdfError": "Error al generar el PDF"
+  },
+  "header": {
+    "projectName": "Nombre del Trabajo",
+    "approval": "Apro-\nbación",
+    "workLocation": "Área de Trabajo",
+    "department": "Departamento",
+    "workDate": "Fecha de Ejecución",
+    "ppe": "EPP (Protección)",
+    "highRiskWork": "Trabajo de Alto Riesgo"
+  },
+  "ppe": {
+    "helmet": "Casco",
+    "shoes": "Calzado de seguridad",
+    "glasses": "Gafas de seguridad",
+    "safetyBelt": "Arnés/Cinturón",
+    "mask": "Máscara (Polvo/Gas)",
+    "gloves": "Guantes de seguridad",
+    "etc": "Otros"
+  },
+  "permit": {
+    "hotWork": "Fuego/Calor",
+    "confinedSpace": "Espacio Confinado",
+    "electrical": "Eléctrico (LOTO)",
+    "highElevation": "Alturas",
+    "heavyLifting": "Cargas Críticas",
+    "excavation": "Excavación",
+    "etc": "Otros"
+  },
+  "signature": {
+    "participants": "Participantes",
+    "sign": "(Firma)"
+  },
+  "groups": {
+    "hazard": "Identificación de Peligros",
+    "risk": "Riesgo"
+  },
+  "tags": {
+    "DATA_STEP_NO": "Nº Paso",
+    "DATA_STEP_TITLE": "Etapa de Trabajo",
+    "DATA_PHOTO": "Foto Relacionada",
+    "DATA_HAZARD": "Peligros / Factores de Riesgo",
+    "DATA_CURRENT_MEASURE": "Medidas de Seguridad Actuales",
+    "DATA_RECOMMEND_MEASURE": "Medidas de Mitigación Recomendadas",
+    "DATA_FREQUENCY": "Probabilidad (F)",
+    "DATA_SEVERITY": "Severidad (S)",
+    "DATA_RISK": "Nivel de Riesgo",
+    "DATA_KRAS_STEP": "Detalle de la Tarea",
+    "DATA_KRAS_HAZARD_CLASS": "Clasificación de Peligros",
+    "DATA_KRAS_HAZARD_DETAIL": "Situación y Consecuencias",
+    "DATA_KRAS_BASIS": "Base Legal / Normativa",
+    "DATA_KRAS_CURRENT": "Medidas Preventivas Actuales",
+    "DATA_KRAS_RECOMMEND": "Medidas de Reducción de Riesgo",
+    "DATA_KRAS_AFTER": "Riesgo Residual",
+    "DATA_KRAS_SCHED": "Fecha de Mejora",
+    "DATA_KRAS_COMP": "Fecha de Cierre",
+    "DATA_KRAS_MANAGER": "Responsable"
+  },
+  "preview": {
+    "freqBreak": "Proba-\nbilidad",
+    "sevBreak": "Seve-\nridad",
+    "afterBreak": "Riesgo\nResidual",
+    "schedBreak": "Fecha\nLímite"
+  },
+  "table": {
+    "addPhoto": "Foto"
+  },
+  "ui": {
+    "processing": "Procesando datos..."
+  },
+  "step": {
+    "basicInfo": "Info Básica",
+    "procedure": "Procedimiento",
+    "riskAnalysis": "Análisis",
+    "moduleConfig": "Módulos",
+    "tableConfig": "Tablas",
+    "finalOutput": "Salida"
+  },
+  "title": {
+    "main": "| 06. Salida Final"
+  },
+  "btn": {
+    "prev": "Modificar configuración de tabla",
+    "cloudSave": "Guardar en la Nube (Seleccionar Privacidad)",
+    "pdfSave": "Generar y guardar archivo PDF",
+    "copyTable": "Copiar para Word/HWP"
+  },
+  "alert": {
+    "copySuccess": "La tabla se ha copiado al portapapeles. Péguela en Word o HWP con [Ctrl+V].",
+    "copyError": "Error al copiar al portapapeles. Verifique los permisos del navegador."
+  },
+  "modal": {
+    "pdfTitle": "Generación de Reporte PDF",
+    "pdfSub": "Convertir y descargar los resultados finales en formato PDF.",
+    "pdfBtnLabel": "Iniciar descarga del reporte",
+    "pdfBtnDesc": "Generando PDF de alta resolución.<br/>Por favor, espere un momento.",
+    "close": "Cerrar (Cancelar)",
+    "pubTitle": "Configuración de Guardado en la Nube",
+    "pubWarning": "⚠️ Por seguridad, los campos de departamento, lugar, fecha y lista de participantes se guardarán en blanco.",
+    "pubSub": "Seleccione el alcance de visibilidad para este trabajo.",
+    "pubBadgeLimited": "Público (Limitado)",
+    "pubPublicLabel": "Publicar en Explore",
+    "pubForkLimit": "Para contribuir, debe añadir pasos de trabajo <br/> o incluir al menos <br/> 2 nuevos factores de riesgo <br/> respecto al original.",
+    "pubRiskLimit": "Para compartir conocimiento, redacte al menos 3 <br/> factores de riesgo y sus medidas.",
+    "pubPublicDesc": "Cualquier usuario puede consultarlo, <br/> contribuyendo al intercambio de conocimiento preventivo.",
+    "pubPrivateLabel": "Guardar en Archivo Personal",
+    "pubPrivateDesc": "Solo el autor puede consultarlo, <br/> gestionado como proyecto privado.",
+    "copyTitle": "Copiar al Portapapeles (Word/HWP)",
+    "copySub": "Puede copiar la tabla completa en formato HTML para pegarla en documentos de Word o HWP.",
+    "copyBtnLabel": "Iniciar Copiado",
+    "copyBtnDesc": "Optimizando la estructura de la tabla según el formato del documento.<br/>Presione [Ctrl+V] tras copiar."
+  }
+}

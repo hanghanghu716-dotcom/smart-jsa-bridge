@@ -1,0 +1,68 @@
+{
+  "default": {
+    "docTitle": "Hoja de Evaluación de Riesgos (JSA)",
+    "appr1": "Elaboración",
+    "appr2": "Revisión",
+    "appr3": "Aprobación"
+  },
+  "table": {
+    "projectName": "Nombre del Trabajo",
+    "approval": "Aprobación",
+    "workLocation": "Área de Trabajo",
+    "department": "Departamento",
+    "workDate": "Fecha de Ejecución",
+    "ppe": "EPP (Protección)",
+    "highRiskWork": "Trabajo de Alto Riesgo",
+    "participants": "Participantes",
+    "signature": "(Firma)"
+  },
+  "ppe": {
+    "helmet": "Casco de seguridad",
+    "shoes": "Calzado de seguridad",
+    "glasses": "Gafas de seguridad",
+    "safetyBelt": "Arnés/Cinturón",
+    "mask": "Máscara (Polvo/Gas)",
+    "gloves": "Guantes de protección",
+    "etc": "Otros"
+  },
+  "permit": {
+    "hotWork": "Fuego/Calor",
+    "confinedSpace": "Espacio Confinado",
+    "electrical": "Eléctrico (LOTO)",
+    "highElevation": "Alturas",
+    "heavyLifting": "Cargas Críticas",
+    "excavation": "Excavación",
+    "etc": "Otros"
+  },
+  "preview": {
+    "header": "Vista Previa de Estructura (Esquema)",
+    "tableAreaTitle": "[Zona de Tabla de Datos de Riesgos]",
+    "tableAreaDesc": "Los datos de las columnas configurados en el Paso 5 se insertarán automáticamente aquí."
+  },
+  "step": {
+    "basicInfo": "Información Básica",
+    "procedure": "Procedimiento",
+    "riskAnalysis": "Análisis de Riesgos",
+    "moduleConfig": "Configuración de Módulo",
+    "tableConfig": "Configuración de Tabla",
+    "finalOutput": "Salida Final"
+  },
+  "header": {
+    "title": "| 04. Configuración del Módulo del Documento",
+    "subtitle": "Configure la cabecera del JSA y elementos adicionales del Permiso de Trabajo Seguro (PTW)."
+  },
+  "toolbar": {
+    "headerTextSetting": "Configuración de Texto de Cabecera",
+    "docTitle": "Título del Documento",
+    "appr1": "Campo de Firma 1",
+    "appr2": "Campo de Firma 2",
+    "appr3": "Campo de Firma 3",
+    "signatureSetting": "Configuración de Firmas",
+    "addSignatureRow": "Añadir fila de firmas (1 fila = 8 personas)"
+  },
+  "btn": {
+    "prev": "Paso Anterior (Análisis)",
+    "next": "Siguiente: Configuración de Tabla (Paso 5)",
+    "skipModule": "Omitir Configuración de Módulo"
+  }
+}

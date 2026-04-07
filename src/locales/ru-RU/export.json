@@ -1,0 +1,121 @@
+{
+  "default": {
+    "docTitle": "Лист анализа безопасности (JSA)",
+    "appr1": "Разработал",
+    "appr2": "Проверил",
+    "appr3": "Утвердил"
+  },
+  "alert": {
+    "needLogin": "Требуется вход в систему.",
+    "savePublic": "Безопасно опубликовано в Explore.",
+    "savePrivate": "Безопасно сохранено в ваш архив.",
+    "saveError": "Ошибка сохранения: ",
+    "pdfError": "Сбой генерации PDF"
+  },
+  "header": {
+    "projectName": "Работа",
+    "approval": "Утв.",
+    "workLocation": "Место",
+    "department": "Отдел",
+    "workDate": "Дата",
+    "ppe": "СИЗ (Защита)",
+    "highRiskWork": "Опасные работы"
+  },
+  "ppe": {
+    "helmet": "Каска",
+    "shoes": "Спецобувь",
+    "glasses": "Очки",
+    "safetyBelt": "Страховка",
+    "mask": "Маска/Респиратор",
+    "gloves": "Перчатки",
+    "etc": "Прочее"
+  },
+  "permit": {
+    "hotWork": "Огневые",
+    "confinedSpace": "Замкн. пр-во",
+    "electrical": "Электрич. (LOTO)",
+    "highElevation": "Высотные",
+    "heavyLifting": "Грузоподъемные",
+    "excavation": "Земляные",
+    "etc": "Прочее"
+  },
+  "signature": {
+    "participants": "Участники",
+    "sign": "(Подпись)"
+  },
+  "groups": {
+    "hazard": "Идентификация опасностей",
+    "risk": "Риск"
+  },
+  "tags": {
+    "DATA_STEP_NO": "№",
+    "DATA_STEP_TITLE": "Этап работы",
+    "DATA_PHOTO": "Фото",
+    "DATA_HAZARD": "Опасные факторы",
+    "DATA_CURRENT_MEASURE": "Текущие меры",
+    "DATA_RECOMMEND_MEASURE": "Рекомендованные меры",
+    "DATA_FREQUENCY": "Вероятность (F)",
+    "DATA_SEVERITY": "Тяжесть (S)",
+    "DATA_RISK": "Риск",
+    "DATA_KRAS_STEP": "Детали задачи",
+    "DATA_KRAS_HAZARD_CLASS": "Класс опасности",
+    "DATA_KRAS_HAZARD_DETAIL": "Ситуация и последствия",
+    "DATA_KRAS_BASIS": "Нормативная база",
+    "DATA_KRAS_CURRENT": "Текущие меры защиты",
+    "DATA_KRAS_RECOMMEND": "Меры по снижению риска",
+    "DATA_KRAS_AFTER": "Остаточный риск",
+    "DATA_KRAS_SCHED": "Срок выполнения",
+    "DATA_KRAS_COMP": "Дата завершения",
+    "DATA_KRAS_MANAGER": "Ответственный"
+  },
+  "preview": {
+    "freqBreak": "Вероят-\nность",
+    "sevBreak": "Тяжесть\n(Сила)",
+    "afterBreak": "Остат.\nриск",
+    "schedBreak": "Срок\nулучш."
+  },
+  "table": {
+    "addPhoto": "Фото"
+  },
+  "ui": {
+    "processing": "Обработка данных..."
+  },
+  "step": {
+    "basicInfo": "Инфо",
+    "procedure": "Процедуры",
+    "riskAnalysis": "Анализ",
+    "moduleConfig": "Модули",
+    "tableConfig": "Таблицы",
+    "finalOutput": "Итог"
+  },
+  "title": {
+    "main": "| 06. Итоговый вывод"
+  },
+  "btn": {
+    "prev": "Изменить таблицу",
+    "cloudSave": "Облачное сохранение",
+    "pdfSave": "Создать и скачать PDF",
+    "copyTable": "Копировать для Word/HWP"
+  },
+  "modal": {
+    "pdfTitle": "Создание PDF отчета",
+    "pdfSub": "Конвертация и загрузка итогов в формате PDF.",
+    "pdfBtnLabel": "Начать загрузку",
+    "pdfBtnDesc": "Генерация PDF в высоком разрешении.<br/>Пожалуйста, подождите.",
+    "close": "Закрыть (Отмена)",
+    "pubTitle": "Настройка облачного сохранения",
+    "pubWarning": "⚠️ В целях безопасности поля «отдел», «место», «дата» и «список участников» будут сохранены пустыми.",
+    "pubSub": "Выберите уровень доступа для этой работы.",
+    "pubBadgeLimited": "Public (Ограничено)",
+    "pubPublicLabel": "Опубликовать в Explore",
+    "pubForkLimit": "Для публикации нужно <br/> добавить этапы <br/> или минимум 2 <br/> новых фактора риска <br/> по сравнению с оригиналом.",
+    "pubRiskLimit": "Для обмена опытом напишите <br/> минимум 3 фактора и меры.",
+    "pubPublicDesc": "Доступно всем пользователям,<br/>вносит вклад в общую безопасность.",
+    "pubPrivateLabel": "Сохранить в личный архив",
+    "pubPrivateDesc": "Доступно только автору,<br/>управляется как частный проект.",
+    "copyTitle": "Копирование (Word/HWP)",
+    "copySub": "Вы можете скопировать таблицу в формате HTML для вставки в Word.",
+    "copyBtnLabel": "Начать копирование",
+    "copyBtnDesc": "Оптимизация структуры таблицы под формат документа.<br/>После копирования нажмите [Ctrl+V]."
+  }
+}

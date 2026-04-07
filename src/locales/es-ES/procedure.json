@@ -1,0 +1,38 @@
+{
+  "alert": {
+    "confirmMain": "¿Desea ir a la pantalla principal? Los datos en proceso podrían eliminarse por completo.",
+    "minSteps": "Por favor, introduzca un procedimiento de al menos 3 pasos."
+  },
+  "modal": {
+    "title": "Selección de Formato de Análisis",
+    "sub": "Seleccione la precisión del análisis JSA que desea realizar.",
+    "standardLabel": "Análisis Básico de 2 Pasos",
+    "standardDesc1": "Peligro ➔ Medida de Mitigación",
+    "standardDesc2": "(Para trabajos generales en el sitio)",
+    "advancedLabel": "Análisis Avanzado de 3 Pasos",
+    "advancedDesc1": "Peligro ➔ Medida Actual ➔ Medida Adicional",
+    "advancedDesc2": "(Para procesos de alto riesgo y análisis de precisión)",
+    "closeBtn": "Cerrar"
+  },
+  "step": {
+    "basicInfo": "Información Básica",
+    "procedure": "Procedimiento de Trabajo",
+    "riskAnalysis": "Análisis de Riesgos",
+    "moduleConfig": "Configuración de Módulo",
+    "tableConfig": "Configuración de Tabla",
+    "finalOutput": "Salida Final"
+  },
+  "form": {
+    "title": "02. Definición Detallada del Procedimiento de Trabajo",
+    "stepLabel": "Paso de Trabajo",
+    "detailLabel": "Detalle de la Tarea",
+    "placeholderTitle": "Nombre del paso",
+    "placeholderDetail": "Contenido detallado"
+  },
+  "btn": {
+    "addStep": "+ Añadir Paso de Trabajo (Máx. 20 pasos)",
+    "prev": "Anterior",
+    "next": "Iniciar Análisis de Riesgo Inteligente",
+    "skipModule": "Omitir Configuración de Módulo"
+  }
+}

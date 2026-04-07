@@ -1,0 +1,26 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atención] Este ejemplar es material de referencia. La evaluación de riesgos debe realizarse basándose en inspecciones reales según las características del proceso y el entorno de cada centro de trabajo.",
+    "text2": "Smart JSA Bridge no asume responsabilidad por las consecuencias legales derivadas del uso de este material."
+  },
+  "ui": {
+    "category": "HIGH RISK SPECIALIST",
+    "mainTitle1": "JSA para Trabajos Especiales de Alto Riesgo",
+    "mainTitle2": "Guía de Ejemplos (7 tipos)",
+    "description1": "Datos de análisis de riesgos estándar para procesos críticos con peligro de muerte.",
+    "description2": "Consulte las imágenes y descargue el PDF original.",
+    "labelRed": "⚠ Factores de Riesgo Críticos",
+    "labelBlue": "🛡 Medidas de Seguridad Obligatorias",
+    "previewLabel": "Vista Previa del Informe JSA",
+    "downloadBtn": "Descargar PDF Original Completo"
+  },
+  "list": [
+    { "id": "HR-01", "title": "Reemplazo de tramos de tubería envejecida y reparación de bridas mediante soldadura", "hazard": "Explosión por gas inflamable residual, incendio por proyecciones de soldadura", "measure": "Trabajo tras verificar 0% LEL, aislamiento de materiales combustibles a 11m y asignación de vigía de incendios", "pages": 1 },
+    { "id": "HR-02", "title": "Inspección periódica de tableros de alta tensión y cambio de cableado en subestación", "hazard": "Choque eléctrico por error en maniobra de disyuntores, arco eléctrico por carga residual", "measure": "Ejecución de LOTO individual, verificación de ausencia de tensión con detector y descarga mediante pértiga de puesta a tierra", "pages": 1 },
+    { "id": "HR-03", "title": "Excavación de zanjas e instalación de entibaciones para tendido de tuberías", "hazard": "Explosión por rotura de servicios subterráneos existentes, sepultamiento por colapso de taludes", "measure": "Detección de interferencias y excavación manual combinada, respeto de ángulo de reposo y monitoreo con instrumentación", "pages": 1 },
+    { "id": "HR-04", "title": "Ensayos no destructivos por radiografía (RT) para control de calidad en soldaduras de tubería nueva", "hazard": "Exposición a radiaciones ionizantes, intrusión no autorizada en zona controlada durante trabajos nocturnos", "measure": "Cálculo de distancia de seguridad y delimitación con cuerdas, vigilancia exclusiva y porte de monitor de radiación (survey meter)", "pages": 1 },
+    { "id": "HR-05", "title": "Inspección detallada interna y limpieza de residuos en tanques purgados con nitrógeno", "hazard": "Asfixia por deficiencia de oxígeno debida a nitrógeno residual, atrapamiento en espacio confinado", "measure": "Ventilación forzada y medición de O2 antes y durante el ingreso, presencia obligatoria de vigía externo", "pages": 1 },
+    { "id": "HR-06", "title": "Maniobras de izaje y traslado con grúa para instalación de equipos de gran tonelaje", "hazard": "Volcamiento de equipo por baja capacidad portante del suelo, atrapamiento por caída de carga", "measure": "Refuerzo de placas de apoyo de estabilizadores, izaje con 2 puntos de anclaje y realización de prueba de izaje a 10cm", "pages": 1 },
+    { "id": "HR-07", "title": "Reparación de paneles de techumbre industrial y operación de plataforma elevadora (manlift)", "hazard": "Caída por rotura de paneles corroídos, choque eléctrico por contacto con líneas de alta tensión", "measure": "Instalación de pasarelas para distribución de carga, doble anclaje de arnés y mantenimiento de distancia de seguridad a líneas eléctricas", "pages": 1 }
+  ]
+}

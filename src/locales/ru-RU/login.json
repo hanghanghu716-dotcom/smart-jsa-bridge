@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Недопустимый никнейм.",
+    "nickNoSpecial": "Без спецсимволов.",
+    "nickInUse": "Уже используется.",
+    "nickAvailable": "✓ Доступно.",
+    "pwSafe": "✓ Безопасно",
+    "pwRule": "8+ символов (буквы+цифры+знаки)",
+    "pwMatch": "✓ Совпадают",
+    "pwMismatch": "Не совпадают"
+  },
+  "alert": {
+    "resetSent": "Ссылка для сброса отправлена.",
+    "checkInput": "Проверьте данные.",
+    "signupSuccess": "Подтвердите e-mail по ссылке из письма."
+  },
+  "ui": {
+    "titleSignup": "Регистрация аккаунта",
+    "titleReset": "Сброс пароля",
+    "titleLogin": "Вход в систему",
+    "guideSignup": "Введите данные для управления знаниями.",
+    "guideReset": "Отправим ссылку на почту.",
+    "guideLogin": "Войдите под своей учетной записью.",
+    "labelEmail": "E-mail",
+    "labelNickname": "Никнейм",
+    "placeholderNickname": "Имя пользователя",
+    "labelSector": "Отрасль",
+    "selectDefault": "Выбрать",
+    "labelPassword": "Пароль",
+    "placeholderPassword": "8+ символов",
+    "labelPasswordConfirm": "Подтверждение пароля",
+    "placeholderPasswordConfirm": "Повторите ввод",
+    "placeholderPasswordLogin": "Пароль",
+    "btnForgotPw": "Забыли пароль?",
+    "btnProcessing": "Обработка...",
+    "btnSubmitSignup": "Создать аккаунт",
+    "btnSubmitReset": "Отправить ссылку",
+    "btnSubmitLogin": "Войти",
+    "dividerOr": "или",
+    "btnGoogleLogin": "Продолжить с Google",
+    "btnSwitchSignup": "Новый пользователь",
+    "btnSwitchLogin": "Уже есть аккаунт"
+  },
+  "sector": {
+    "construction": "Строительство",
+    "manufacturing": "Производство/Химия",
+    "energy": "Энергетика/Газ",
+    "logistics": "Транспорт/Склад",
+    "safety": "Безопасность/Консалтинг",
+    "it": "IT/Инженерия",
+    "public": "Гос. сектор/Здравоохранение",
+    "others": "Прочее"
+  }
+}

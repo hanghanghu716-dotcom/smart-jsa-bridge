@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "Menú",
+    "close": "Cerrar"
+  },
+  "drawer": {
+    "contents": "Contenidos",
+    "regulation": "Normativa de Seguridad",
+    "jrajsa": "Evaluación de Riesgos (JRA/JSA)",
+    "protectiveEquipment": "Protección Personal (EPP)",
+    "riskClassification": "Clasificación de Riesgos",
+    "dictionary": "Diccionario de Peligros"
+  },
+  "hero": {
+    "tag": "BASE DE DATOS DE SEGURIDAD",
+    "titleLine1": "Análisis de Seguridad Inteligente,",
+    "titleLine2": "Diccionario Estándar de Peligros",
+    "seoText1": "Busque y verifique los factores de riesgo y las medidas de seguridad correspondientes a diversos sectores industriales.",
+    "seoText2": "Prevenga accidentes graves y construya un entorno laboral seguro mediante nuestra base de datos sistemática."
+  },
+  "filter": {
+    "allCategories": "Todas las categorías",
+    "searchPlaceholder": "Buscar peligros o medidas preventivas...",
+    "searchBtn": "Buscar",
+    "resultPrefix": "Total de ",
+    "resultSuffix": " resultados encontrados"
+  },
+  "data": {
+    "loading": "Cargando datos...",
+    "empty": "No se encontraron datos que coincidan con la búsqueda.",
+    "riskFactorLabel": "Peligro / Factor de Riesgo",
+    "currentMeasureLabel": "Medida de Seguridad Actual",
+    "advancedMeasureLabel": "Medida de Seguridad Adicional"
+  },
+  "pagination": {
+    "prev": "Anterior",
+    "next": "Siguiente"
+  }
+}

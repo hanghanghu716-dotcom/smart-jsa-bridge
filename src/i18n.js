@@ -170,6 +170,62 @@ import frFRGeneral from './locales/fr-FR/general.json';
 import frFRProfile from './locales/fr-FR/profile.json';
 import frFRPrivacy from './locales/fr-FR/privacy.json';
 
+// 7. 스페인어(es-ES) 리소스 임포트
+import esESMain from './locales/es-ES/main.json';
+import esESExplore from './locales/es-ES/explore.json';
+import esESTags from './locales/es-ES/tags.json';
+import esESAbout from './locales/es-ES/about.json';
+import esESAnalysis from './locales/es-ES/analysis.json';
+import esESInfo from './locales/es-ES/info.json';
+import esESProcedure from './locales/es-ES/procedure.json';
+import esESModulebuilder from './locales/es-ES/modulebuilder.json';
+import esESTablebuilder from './locales/es-ES/tablebuilder.json';
+import esESExport from './locales/es-ES/export.json';
+import esESLogin from './locales/es-ES/login.json';
+import esESDictionary from './locales/es-ES/dictionary.json';
+import esESTerms from './locales/es-ES/terms.json';
+import esESMyLibrary from './locales/es-ES/mylibrary.json';
+import esESRegulation from './locales/es-ES/regulation.json';
+import esESJrajsa from './locales/es-ES/jrajsa.json';
+import esESPpe from './locales/es-ES/ppe.json';
+import esESRisk from './locales/es-ES/risk.json';
+import esESCommon from './locales/es-ES/common.json';
+import esESChem from './locales/es-ES/chem.json';
+import esESHighrisk from './locales/es-ES/highrisk.json';
+import esESManu from './locales/es-ES/manu.json';
+import esESConst from './locales/es-ES/const.json';
+import esESGeneral from './locales/es-ES/general.json';
+import esESProfile from './locales/es-ES/profile.json';
+import esESPrivacy from './locales/es-ES/privacy.json';
+
+// 8. 러시아어(ru-RU) 리소스 임포트
+import ruRUMain from './locales/ru-RU/main.json';
+import ruRUExplore from './locales/ru-RU/explore.json';
+import ruRUTags from './locales/ru-RU/tags.json';
+import ruRUAbout from './locales/ru-RU/about.json';
+import ruRUAnalysis from './locales/ru-RU/analysis.json';
+import ruRUInfo from './locales/ru-RU/info.json';
+import ruRUProcedure from './locales/ru-RU/procedure.json';
+import ruRUModulebuilder from './locales/ru-RU/modulebuilder.json';
+import ruRUTablebuilder from './locales/ru-RU/tablebuilder.json';
+import ruRUExport from './locales/ru-RU/export.json';
+import ruRULogin from './locales/ru-RU/login.json';
+import ruRUDictionary from './locales/ru-RU/dictionary.json';
+import ruRUTerms from './locales/ru-RU/terms.json';
+import ruRUMyLibrary from './locales/ru-RU/mylibrary.json';
+import ruRURegulation from './locales/ru-RU/regulation.json';
+import ruRUJrajsa from './locales/ru-RU/jrajsa.json';
+import ruRUPpe from './locales/ru-RU/ppe.json';
+import ruRURisk from './locales/ru-RU/risk.json';
+import ruRUCommon from './locales/ru-RU/common.json';
+import ruRUChem from './locales/ru-RU/chem.json';
+import ruRUHighrisk from './locales/ru-RU/highrisk.json';
+import ruRUManu from './locales/ru-RU/manu.json';
+import ruRUConst from './locales/ru-RU/const.json';
+import ruRUGeneral from './locales/ru-RU/general.json';
+import ruRUProfile from './locales/ru-RU/profile.json';
+import ruRUPrivacy from './locales/ru-RU/privacy.json';
+
 
 const resources = {
   'ko': {
@@ -339,6 +395,62 @@ const resources = {
     general: frFRGeneral,
     profile: frFRProfile,
     privacy: frFRPrivacy,
+  },
+  'es-ES': {
+    main: esESMain,
+    explore: esESExplore,
+    tags: esESTags,
+    about: esESAbout,
+    analysis: esESAnalysis,
+    info: esESInfo,
+    procedure: esESProcedure,
+    modulebuilder: esESModulebuilder,
+    tablebuilder: esESTablebuilder,
+    export: esESExport,
+    login: esESLogin,
+    dictionary: esESDictionary,
+    terms: esESTerms,
+    library: esESMyLibrary,
+    regulation: esESRegulation,
+    jrajsa: esESJrajsa,
+    ppe: esESPpe,
+    risk: esESRisk,
+    common: esESCommon,
+    chem: esESChem,
+    highrisk: esESHighrisk,
+    manu: esESManu,
+    const: esESConst,
+    general: esESGeneral,
+    profile: esESProfile,
+    privacy: esESPrivacy,
+  },
+  'ru-RU': {
+    main: ruRUMain,
+    explore: ruRUExplore,
+    tags: ruRUTags,
+    about: ruRUAbout,
+    analysis: ruRUAnalysis,
+    info: ruRUInfo,
+    procedure: ruRUProcedure,
+    modulebuilder: ruRUModulebuilder,
+    tablebuilder: ruRUTablebuilder,
+    export: ruRUExport,
+    login: ruRULogin,
+    dictionary: ruRUDictionary,
+    terms: ruRUTerms,
+    library: ruRUMyLibrary,
+    regulation: ruRURegulation,
+    jrajsa: ruRUJrajsa,
+    ppe: ruRUPpe,
+    risk: ruRURisk,
+    common: ruRUCommon,
+    chem: ruRUChem,
+    highrisk: ruRUHighrisk,
+    manu: ruRUManu,
+    const: ruRUConst,
+    general: ruRUGeneral,
+    profile: ruRUProfile,
+    privacy: ruRUPrivacy,
   }
 };
 
@@ -348,7 +460,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'en-US',
-    supportedLngs: ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR'],
+    supportedLngs: ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'],
     ns: [
       'privacy', 'profile', 'highrisk', 'manu', 'const', 'general', 'chem', 'common', 
       'risk', 'ppe', 'jrajsa', 'regulation', 'library', 'terms', 

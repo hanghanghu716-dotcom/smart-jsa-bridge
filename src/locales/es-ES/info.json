@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "¿Desea ir a la pantalla principal? Los datos en proceso podrían eliminarse por completo.",
+    "projectNameRequired": "El nombre del proyecto es obligatorio. Por favor, introduzca la denominación del trabajo."
+  },
+  "step": {
+    "basicInfo": "Información Básica",
+    "procedure": "Procedimiento de Trabajo",
+    "riskAnalysis": "Análisis de Riesgos",
+    "moduleConfig": "Configuración de Módulo",
+    "tableConfig": "Configuración de Tabla",
+    "finalOutput": "Salida Final"
+  },
+  "form": {
+    "title": "01. Información Básica de Trabajo y Requisitos de Seguridad",
+    "projectName": "Nombre del Proyecto",
+    "required": "(Obligatorio)",
+    "department": "Departamento Ejecutor",
+    "workLocation": "Ubicación del Trabajo",
+    "workDate": "Fecha Prevista",
+    "managerName": "Responsable del Sitio",
+    "weather": "Condiciones Climáticas",
+    "hasNewWorker": "Incluye personal nuevo o sin experiencia",
+    "participants": "Lista de Participantes en la Evaluación",
+    "ppe": "Equipo de Protección Personal (EPP)",
+    "permits": "Trabajos sujetos a Permiso (PT)",
+    "equipment": "Equipos Requeridos",
+    "additionalItems": "Requerimientos Adicionales"
+  },
+  "warning": {
+    "title": "Aviso de Uso:",
+    "text": "Los resultados de JSA generados pueden ser visibles para otros usuarios según la política de intercambio de datos. El contenido inapropiado, información falsa o inexacta podrá ser eliminado sin previo aviso, pudiendo resultar en advertencias o restricciones de uso para la cuenta responsable."
+  },
+  "weather": {
+    "sunny": "Despejado",
+    "cloudy": "Nublado",
+    "rain": "Lluvia",
+    "snow": "Nieve",
+    "wind": "Viento fuerte",
+    "heatwave": "Ola de calor / Alta temperatura",
+    "coldwave": "Ola de frío / Baja temperatura"
+  },
+  "ppe": {
+    "안전모": "Casco de seguridad",
+    "안전화": "Calzado de seguridad",
+    "보안경": "Gafas de seguridad",
+    "장갑": "Guantes de protección",
+    "귀마개": "Protectores auditivos",
+    "방진복": "Traje de protección / Overol",
+    "방진마스크": "Máscara de protección (Polvo/Gas)"
+  },
+  "permit": {
+    "일반": "General",
+    "화기": "Fuego / Caliente",
+    "밀폐": "Espacio Confinado",
+    "정전": "Eléctrico / Desenergizado",
+    "굴착": "Excavación",
+    "방사선": "Radiaciones",
+    "고소": "Trabajo en Altura",
+    "중량물": "Cargas Críticas",
+    "가연성가스": "Gases Inflamables"
+  },
+  "btn": {
+    "home": "Inicio",
+    "next": "Ir a Definición de Procedimiento"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "ESTÁNDAR KOSHA & MOEL",
+    "mainTitle1": "Clasificación de Riesgos y",
+    "mainTitle2": "Guía de Matriz de Riesgo",
+    "subTitle1": "Establezca un sistema de gestión de seguridad científico y objetivo",
+    "subTitle2": "mediante la combinación de frecuencia y severidad según las directrices del Ministerio de Empleo y Trabajo.",
+    "section1": "1. Definiciones Básicas según la Naturaleza del Trabajo",
+    "section2": "2. Criterios de Clasificación Cuantitativa (Matriz de Riesgo)",
+    "section3": "3. Tipos de los 9 Trabajos de Alto Riesgo en el Sitio"
+  },
+  "def": {
+    "generalTitle": "Trabajo General (General Work)",
+    "generalContent": "Se refiere a tareas repetitivas que ocurren regularmente, donde los factores de riesgo están suficientemente controlados dentro de los Procedimientos Operativos Estándar (SOP) existentes.",
+    "highTitle": "Trabajo de Alto Riesgo (High-Risk Work)",
+    "highContent": "Se refiere a tareas de alta dificultad que manejan energías donde un solo error puede derivar directamente en un accidente grave, o tareas que se realizan de manera no rutinaria."
+  },
+  "matrix": {
+    "title": "Matriz de Riesgo (5 niveles de Frecuencia × 4 niveles de Severidad)",
+    "axisX": "Severidad (S)",
+    "axisY": "Frecuencia (F)",
+    "f5": "Frecuente", "f4": "Alta", "f3": "Existente", "f2": "Baja", "f1": "Casi nula",
+    "s1": "Sin impacto", "s2": "Incapacidad temporal leve", "s3": "Incapacidad temporal", "s4": "Accidente grave/Fatal",
+    "l1": "Inaceptable", "l2": "Riesgo Grave", "l3": "Riesgo Considerables", "l4": "Riesgo Leve", "l5": "Riesgo Mínimo", "l6": "Despreciable"
+  },
+  "tasks": [
+    { "t": "Trabajo en Altura", "c": "Trabajo en lugares elevados a más de 2m con riesgo de caída" },
+    { "t": "Espacios Confinados", "c": "Espacios con riesgo de deficiencia de oxígeno o acumulación de gases nocivos" },
+    { "t": "Trabajo en Caliente", "c": "Trabajos que generan chispas o calor, como soldadura o corte térmico" },
+    { "t": "Manejo de Cargas", "c": "Izaje de carga mediante grúas, montacargas, etc." },
+    { "t": "Trabajo Eléctrico", "c": "Trabajos cerca de líneas de alta/baja tensión o con tensión activa" },
+    { "t": "Excavación", "c": "Trabajos con riesgo de colapso del suelo o daños a servicios subterráneos" },
+    { "t": "Radiaciones", "c": "Trabajos con riesgo de exposición a radiación, como Ensayos No Destructivos (END)" },
+    { "t": "Sustancias Químicas", "c": "Carga y transferencia de sustancias tóxicas o inflamables" },
+    { "t": "Mantenimiento", "c": "Inspección interna y reparación tras la parada del equipo" }
+  ]
+}

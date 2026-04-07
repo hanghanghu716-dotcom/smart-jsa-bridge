@@ -1,0 +1,51 @@
+{
+  "pageTag": "PRIVACY POLICY",
+  "heading": {
+    "line1": "Política de Privacidad",
+    "line2": "Le informamos de los detalles."
+  },
+  "section1": {
+    "title": "1. Propósito de la Recopilación y Uso de Datos Personales",
+    "content": "Smart JSA Bridge recopila la información personal mínima del usuario. La información recopilada se utiliza exclusivamente para <strong>la prestación y mejora del servicio, y consultoría al cliente</strong>."
+  },
+  "section2": {
+    "title": "2. Elementos de Información Personal Recopilados",
+    "item1": {
+      "bold": "Elementos Obligatorios:",
+      "desc": "Dirección de correo electrónico, registros de uso del servicio, logs de acceso, cookies, información de IP de conexión."
+    },
+    "item2": {
+      "bold": "Elementos Opcionales:",
+      "desc": "Configuración de idioma del usuario e información regional."
+    },
+    "item3": {
+      "bold": "Método de Recopilación:",
+      "desc": "Generación y recopilación automática durante el proceso de uso del servicio del sitio web."
+    }
+  },
+  "section3": {
+    "title": "3. Periodo de Conservación y Uso de Datos Personales",
+    "subtitle": "En principio, la empresa destruye la información sin demora una vez alcanzado el propósito de su recopilación y uso.",
+    "step1": {
+      "bold": "Registros de Visita:",
+      "desc": "Conservación hasta un máximo de 3 meses y posterior destrucción."
+    },
+    "step2": {
+      "bold": "Historial de Consultas:",
+      "desc": "Conservación por 1 año tras la finalización de la consulta."
+    },
+    "step3": {
+      "bold": "Cumplimiento Legal:",
+      "desc": "En caso de necesidad de conservación según las disposiciones de las leyes relacionadas, se conservará por dicho periodo."
+    },
+    "step4": {
+      "bold": "Procedimiento de Destrucción:",
+      "desc": "La información en formato de archivo electrónico se elimina mediante métodos técnicos que impiden la reproducción de los registros."
+    }
+  },
+  "section4": {
+    "title": "4. Provisión a Terceros y Subcontratación",
+    "content": "Este servicio incluye Google AdSense. Le informamos que <strong>terceros como Google pueden instalar o leer cookies en el navegador del usuario</strong> para proporcionar anuncios personalizados."
+  },
+  "imageCaption": "Smart JSA Bridge considera la seguridad de los datos del usuario como su máxima prioridad."
+}

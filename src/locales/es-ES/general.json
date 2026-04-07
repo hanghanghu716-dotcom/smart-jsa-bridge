@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atención] Este ejemplar es material de referencia. La evaluación de riesgos debe realizarse basándose en inspecciones reales según las características del proceso y el entorno de cada centro de trabajo.",
+    "text2": "Smart JSA Bridge no asume responsabilidad por las consecuencias legales derivadas del uso de este material."
+  },
+  "ui": {
+    "category": "GENERAL & FACILITY SAFETY",
+    "mainTitle1": "JSA para Trabajos Generales e Instalaciones",
+    "mainTitle2": "Guía de Ejemplos (10 tipos)",
+    "description1": "Análisis de peligros potenciales en mantenimiento de instalaciones,",
+    "description2": "logística y salud diaria. Consulte las imágenes detalladas.",
+    "labelRed": "⚠ Peligro Crítico",
+    "labelBlue": "🛡 Medida de Mitigación",
+    "previewLabel": "Vista Previa del Informe JSA",
+    "downloadBtn": "Descargar PDF Original"
+  },
+  "list": [
+    { "id": "GEN-01", "title": "Carga y traslado de mercancías en palés mediante montacargas en almacén", "hazard": "Vuelco del montacargas en giros bruscos, atropello por falta de visibilidad frontal", "measure": "Respeto de velocidad límite (10km/h), asignación de señalero y verificación de inclinación de mástil" },
+    { "id": "GEN-02", "title": "Asistencia en movilidad de pacientes y manejo de residuos hospitalarios", "hazard": "Caídas durante el traslado de pacientes, pinchazos con agujas e infecciones derivadas", "measure": "Verificación de bloqueo de frenos en sillas/camas, prohibición absoluta de re-encapuchado de agujas usadas" },
+    { "id": "GEN-03", "title": "Desbroce de áreas verdes y poda de mantenimiento de árboles", "hazard": "Impacto por fragmentos proyectados por rotura de cuchilla, choque eléctrico por contacto con líneas aéreas", "measure": "Uso de protector facial de malla, mantenimiento de distancia (2m) a instalaciones eléctricas y control de acceso" },
+    { "id": "GEN-04", "title": "Patrullaje a pie en zonas críticas y control de acceso vehicular", "hazard": "Atropello por vehículos en acceso, agresión física durante patrullaje nocturno", "measure": "Uso de chaleco reflectante de alta visibilidad, patrullaje en parejas y porte de equipo de autoprotección" },
+    { "id": "GEN-05", "title": "Preparación de reactivos químicos peligrosos y operación de equipos de análisis", "hazard": "Fuga de gases tóxicos por baja eficiencia de extracción, quemaduras químicas por salpicaduras", "measure": "Trabajo estricto dentro de campana de extracción (Fume Hood), capacitación en MSDS y uso de EPP específico" },
+    { "id": "GEN-06", "title": "Limpieza profunda de suelos y lavado a alta presión en estacionamientos subterráneos", "hazard": "Atropello por vehículos en circulación no controlada, choque eléctrico en lugares húmedos", "measure": "Instalación de conos en el área, uso de interruptores diferenciales y botas aislantes" },
+    { "id": "GEN-07", "title": "Operación de trituradora de residuos y retiro de objetos extraños en tolva", "hazard": "Atrapamiento de extremidades en la apertura, arranque inesperado durante el mantenimiento", "measure": "Bloqueo LOTO de fuente principal, uso de herramientas manuales específicas en lugar de las manos" },
+    { "id": "GEN-08", "title": "Limpieza de vidrios exteriores y operación de andamio colgante (sillín)", "hazard": "Caída por desgaste o rotura de cuerda, impacto a peatones por caída de herramientas", "measure": "Instalación de línea de vida vertical independiente, presencia de controlador en nivel inferior y delimitación" },
+    { "id": "GEN-09", "title": "Pre-procesamiento de alimentos y cocina en grandes ollas industriales", "hazard": "Resbalones por humedad en suelo, quemaduras por contacto con aceite o vapor a alta temperatura", "measure": "Calzado de cocina certificado antideslizante, disponibilidad de extintor clase K y eliminación de humedad" },
+    { "id": "GEN-10", "title": "Instalación de nuevos racks de servidores y tendido de bandejas en centro de datos", "hazard": "Atrapamiento por inercia durante el movimiento de racks pesados, caída desde escalera", "measure": "Trabajo en grupos de 3 personas, prohibición de uso del peldaño superior y presencia de ayudante en la base" }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atención] Este ejemplar es material de referencia. La evaluación de riesgos debe realizarse basándose en inspecciones reales según las características del proceso y el entorno de cada centro de trabajo.",
+    "text2": "Smart JSA Bridge no asume responsabilidad por las consecuencias legales derivadas del uso de este material."
+  },
+  "ui": {
+    "category": "ESTÁNDAR DE SEGURIDAD COMÚN",
+    "mainTitle1": "Gestión Integrada de Seguridad en Sitio y",
+    "mainTitle2": "Guía JSA",
+    "description1": "Datos estándar para los 10 procesos comunes y preparativos",
+    "description2": "previos a trabajos de alto riesgo en el sitio de trabajo.",
+    "jsaId": "COMMON-01",
+    "jsaTitle1": "Gestión de Seguridad Integrada y",
+    "jsaTitle2": "Preparativos antes de Trabajos de Alto Riesgo",
+    "summaryTitle": "Resumen de Procesos Críticos y Peligros",
+    "previewLabel": "Vista Previa de Reporte JSA",
+    "downloadBtn": "Descargar PDF Original"
+  },
+  "steps": [
+    { "step": "01", "task": "Inspección de TBM (Charla) y EPP", "hazard": "Desconocimiento del alcance del trabajo, uso incorrecto de protección" },
+    { "step": "02", "task": "Inspección de sistemas de protección contra caídas", "hazard": "Puntos de anclaje dañados, resbalones por clima adverso" },
+    { "step": "03", "task": "Aislamiento de materiales combustibles y prevención de incendios", "hazard": "Proyección de chispas de soldadura, explosión por gas residual" },
+    { "step": "04", "task": "Configuración de equipos de izaje y aparejos", "hazard": "Capacidad de carga del suelo insuficiente, rotura de eslingas" },
+    { "step": "05", "task": "Medición de gases y ventilación", "hazard": "Deficiencia de oxígeno, asfixia por acumulación de gases tóxicos" },
+    { "step": "06", "task": "Detección de servicios subterráneos y prevención de derrumbes", "hazard": "Rotura de tuberías/explosión, sepultamiento por colapso de taludes" },
+    { "step": "07", "task": "Bloqueo LOTO y verificación de ausencia de tensión", "hazard": "Energización accidental/choque eléctrico, descarga por energía residual" },
+    { "step": "08", "task": "Delimitación de áreas y prevención de exposición", "hazard": "Ingreso no autorizado de terceros, exposición a radiación" },
+    { "step": "09", "task": "Puesta en marcha y pruebas de lazo (Loop Test)", "hazard": "Operación con enclavamientos anulados, fugas a alta presión" },
+    { "step": "10", "task": "Orden, limpieza tras el trabajo y retiro de LOTO", "hazard": "Herramientas olvidadas, accidentes por cortocircuito" }
+  ]
+}
