@@ -67,7 +67,9 @@ def run_semantic_matching():
             query = (
                 f"INSERT INTO hazard_measure_mappings "
                 f"(hazard_translation_id, measure_translation_id, similarity_score) "
-                f"VALUES ({h_pk_id}, {m_pk_id}, {score});"
+                f"VALUES ({h_pk_id}, {m_pk_id}, {score}) "
+                f"ON CONFLICT (hazard_translation_id, measure_translation_id) "
+                f"DO UPDATE SET similarity_score = EXCLUDED.similarity_score;"
             )
             insert_queries.append(query)
 

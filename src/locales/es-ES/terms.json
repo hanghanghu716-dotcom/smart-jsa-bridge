@@ -1,0 +1,63 @@
+{
+  "pageTag": "TERMS OF SERVICE (GLOBAL REPOSITORY)",
+  "heading": "Términos de Servicio",
+  "subHeading": "Smart JSA Bridge es una plataforma colaborativa donde gestores de seguridad de todo el mundo comparten y desarrollan conocimiento práctico.",
+  "effectiveDate": "Fecha de vigencia: 19 de marzo de 2026",
+  "section1": {
+    "title": "01. Aceptación de los Términos",
+    "content": "Al crear una cuenta en Smart JSA Bridge, se considera que el usuario acepta estos Términos y las Directrices de la Comunidad. Este servicio tiene como objetivo el intercambio y el desarrollo mutuo del conocimiento sobre seguridad."
+  },
+  "section2": {
+    "title": "02. Definición del Servicio",
+    "content": "Este servicio proporciona un <strong>Repositorio de Conocimiento de Seguridad</strong> donde los gestores de seguridad industrial pueden almacenar, compartir, modificar y utilizar plantillas de JSA (Análisis de Seguridad en el Trabajo)."
+  },
+  "section3": {
+    "title": "03. Obligaciones del Usuario",
+    "item1": {
+      "bold": "Seguridad de la Cuenta:",
+      "desc": "La responsabilidad de la seguridad de la información de la cuenta gestionada a través de Supabase recae en el usuario."
+    },
+    "item2": {
+      "bold": "Limpieza de Datos:",
+      "desc": "Al compartir un JSA en la biblioteca (Público), se deben eliminar obligatoriamente los datos de identificación de seguridad, como nombres específicos de sitios, equipos o nombres reales de personas."
+    }
+  },
+  "section4": {
+    "title": "04. Descargo de Responsabilidad sobre la Exactitud del Contenido",
+    "content": "Todas las plantillas de JSA registradas en la biblioteca son información aportada voluntariamente por los usuarios.",
+    "item1": {
+      "desc": "La plataforma no garantiza la exactitud absoluta ni la adecuación al sitio del contenido compartido."
+    },
+    "item2": {
+      "desc": "Al utilizar plantillas de terceros, el usuario debe realizar obligatoriamente una revisión y edición final adaptada a las condiciones de su propio sitio de trabajo. La plataforma no asume responsabilidad por accidentes ocurridos debido a la negligencia en este proceso."
+    }
+  },
+  "section5": {
+    "title": "05. Licencia y Propiedad Intelectual",
+    "item1": {
+      "bold": "Derechos de la Plataforma:",
+      "desc": "Los derechos sobre la arquitectura del servicio, la interfaz de usuario (UI) y las bases de datos lógicas pertenecen a la empresa."
+    },
+    "item2": {
+      "bold": "Contenido Compartido:",
+      "desc": "Para el contenido aportado por el usuario como 'Público', se considera que este otorga a otros usuarios una licencia no exclusiva para reproducir, modificar y utilizar dicho contenido."
+    }
+  },
+  "section6": {
+    "title": "06. Usos Prohibidos",
+    "content": "Queda estrictamente prohibido rastrear masivamente las contribuciones de conocimiento de terceros para construir servicios de pago independientes o hacer un uso indebido de los mismos para fines ajenos a la seguridad."
+  },
+  "section7": {
+    "title": "07. Cumplimiento Global",
+    "content": "Dado que en este servicio participan usuarios de diversos países, se respetan las normativas de seguridad y salud industrial de cada nación. Los usuarios no deben publicar contenido que contravenga las leyes de su propio país."
+  },
+  "section8": {
+    "title": "08. Restricción de Acceso",
+    "content": "En caso de publicación de datos inapropiados o violación de las normas de la comunidad, la plataforma puede eliminar dicho contenido o restringir el uso de la cuenta sin previo aviso."
+  },
+  "section9": {
+    "title": "09. Ley Aplicable",
+    "content": "Estos términos se rigen por las leyes de la República de Corea y cumplen con los procedimientos de resolución de disputas según las prácticas internacionales."
+  },
+  "footer": "© 2026 Smart JSA Bridge. Todos los derechos reservados."
+}

@@ -3,7 +3,7 @@ import { useNavigate, Link as ReactRouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // 지원하는 언어 목록 (App.jsx와 동일하게 유지)
-const SUPPORTED_LANGS = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR'];
+const SUPPORTED_LANGS = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
 
 const hasLangPrefix = (path) => {
   return SUPPORTED_LANGS.some(lang => path.startsWith(`/${lang}`));

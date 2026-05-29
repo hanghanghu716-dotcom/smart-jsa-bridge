@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atención] Este ejemplar es material de referencia. La evaluación de riesgos debe realizarse basándose en inspecciones reales según las características del proceso y el entorno de cada centro de trabajo.",
+    "text2": "Smart JSA Bridge no asume responsabilidad por las consecuencias legales derivadas del uso de este material."
+  },
+  "ui": {
+    "category": "EJEMPLOS JSA MANUFACTURA",
+    "mainTitle1": "JSA en Manufactura",
+    "mainTitle2": "Guía de Ejemplos (10 tipos)",
+    "description1": "Identifique los peligros clave de manufactura como atrapamientos,",
+    "description2": "quemaduras térmicas y exposición química. Consulte las imágenes.",
+    "labelRed": "⚠ Peligro Crítico",
+    "labelBlue": "🛡 Medida de Mitigación",
+    "previewLabel": "Muestra de Vista Previa (Imagen)",
+    "downloadBtn": "Descargar PDF Original"
+  },
+  "list": [
+    { "id": "MANUF-01", "title": "Reposición de químicos nocivos en cubas de galvanoplastia y decapado de metales", "hazard": "Asfixia por acumulación de gases ácidos, quemaduras químicas por salpicaduras", "measure": "Verificación de extractores locales, uso de traje y guantes de protección química impermeables" },
+    { "id": "MANUF-02", "title": "Desobstrucción de boquillas y limpieza de carbonilla en máquinas de inyección", "hazard": "Quemaduras por eyección de resina a alta temperatura, atrapamiento durante el movimiento", "measure": "Uso de EPP resistente al calor, aplicación de LOTO y purga a baja velocidad/presión" },
+    { "id": "MANUF-03", "title": "Corte y procesamiento de madera con sierra circular industrial", "hazard": "Atrapamiento de guantes en el disco, impacto por retroceso (kickback) de la madera", "measure": "Uso de ropa de trabajo ajustada, uso obligatorio de empujadores (Push Stick)" },
+    { "id": "MANUF-04", "title": "Inspección y mantenimiento de sistemas de transmisión de cintas transportadoras", "hazard": "Atrapamiento de dedos entre rodillos, activación accidental durante la inspección", "measure": "Colocación de candados personales (LOTO), inspección solo con el equipo detenido" },
+    { "id": "MANUF-05", "title": "Carga de materia prima metálica en hornos de fundición y colada", "hazard": "Explosión por vapor (Splash) si ingresa humedad, quemaduras por calor radiante", "measure": "Precalentamiento y secado de materia prima, uso constante de protector facial anticalórico" },
+    { "id": "MANUF-06", "title": "Mantenimiento de robots de soldadura por puntos y cambio de puntas (Tips)", "hazard": "Colisión por mal funcionamiento del robot, quemaduras por contacto con puntas calientes", "measure": "Control de acceso a la celda y ejecución de LOTO, uso de extractor de puntas específico" },
+    { "id": "MANUF-07", "title": "Cambio y ajuste de matrices en prensas de manufactura", "hazard": "Atrapamiento entre la bancada y matriz al descender, colisión durante el izaje de carga", "measure": "Instalación de bloques de seguridad certificados, izaje vertical y uso de cuerdas guía" },
+    { "id": "MANUF-08", "title": "Operación y mantenimiento de hornos de reflujo (Reflow) en líneas SMT", "hazard": "Quemaduras por contacto con calentadores, intoxicación por plomo/flux en la soldadura", "measure": "Trabajo tras el enfriamiento del equipo, uso de máscara para vapores orgánicos" },
+    { "id": "MANUF-09", "title": "Limpieza interna detallada y desinfección de mezcladoras de alimentos", "hazard": "Asfixia por deficiencia de oxígeno en el tanque, atrapamiento por rotación inesperada", "measure": "Medición de oxígeno y vigía externo, bloqueo LOTO de la fuente de energía principal" },
+    { "id": "MANUF-10", "title": "Inspección de rodillos y limpieza con solventes en máquinas de impresión offset", "hazard": "Atrapamiento de dedos en puntos de contacto (Nip Point), incendio por vapores de solventes", "measure": "Uso de modo de avance lento (Inching), verificación del sistema de eliminación de estática" }
+  ]
+}

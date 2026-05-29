@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom'; 
+import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
@@ -10,14 +10,14 @@ import { AuthContext } from '../App'; // ✅ [추가] App.jsx에서 생성한 Au
 
 export default function Main() {
   const navigate = useLanguageNavigate(); // ✅ 커스텀 네비게이트 훅 사용
-  const location = useLocation(); 
-  const { t, i18n } = useTranslation('main'); 
-  
+  const location = useLocation();
+  const { t, i18n } = useTranslation('main');
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  
+
   // ✅ [수정] 로컬 상태(useState) 대신 AuthContext를 통해 전역 user 상태를 공급받습니다.
   const { user } = useContext(AuthContext);
 
@@ -29,23 +29,25 @@ export default function Main() {
     { code: 'en-AU', label: ' English (AU)' },
     { code: 'de-DE', label: ' Deutsch' },
     { code: 'fr-FR', label: ' Français' },
+    { code: 'es-ES', label: ' Español' },
+    { code: 'ru-RU', label: ' Русский' },
   ];
 
   // ✅ 경로 중복 문제를 해결한 언어 변경 로직
   const handleLanguageChange = (lngCode) => {
-    const segments = location.pathname.split('/'); 
+    const segments = location.pathname.split('/');
     const supportedCodes = languages.map(l => l.code);
-    
+
     // segments[1]이 이미 지원 언어 코드라면 교체, 아니면 삽입
     if (supportedCodes.includes(segments[1])) {
       segments[1] = lngCode;
     } else {
       segments.splice(1, 0, lngCode);
     }
-    
+
     const newPath = segments.join('/') || '/';
     // URL 이동을 통해 전체 시스템 언어 환경을 갱신합니다.
-    window.location.href = newPath; 
+    window.location.href = newPath;
     setIsLanguageOpen(false);
   };
 
@@ -115,14 +117,14 @@ export default function Main() {
         <header style={styles.header} className="max-lg:!px-6">
           <div className="flex justify-between items-center h-full">
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-            
+
             <div style={styles.headerRight}>
               <div className="hidden lg:flex items-center">
                 <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
-                <span 
-                  style={{ ...styles.headerLink, cursor: 'pointer' }} 
+                <span
+                  style={{ ...styles.headerLink, cursor: 'pointer' }}
                   onClick={() => {
-                    if (user) { navigate('/library'); } 
+                    if (user) { navigate('/library'); }
                     else { setIsStartModalOpen(true); }
                   }}
                 >
@@ -130,21 +132,21 @@ export default function Main() {
                 </span>
               </div>
               <span style={styles.separator}>|</span>
-              
+
               <div style={styles.languageSelectorWrapper}>
-                <div 
-                  style={styles.activeLanguageDisplay} 
+                <div
+                  style={styles.activeLanguageDisplay}
                   onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 >
-                  {languages.find(lng => lng.code === i18n.language)?.label || 'Language'} 
-                  <span style={{...styles.dropdownArrow, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)'}}>▼</span>
+                  {languages.find(lng => lng.code === i18n.language)?.label || 'Language'}
+                  <span style={{ ...styles.dropdownArrow, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)' }}>▼</span>
                 </div>
                 {isLanguageOpen && (
                   <div style={styles.dropdownMenu}>
                     {languages.map(lng => (
-                      <div 
-                        key={lng.code} 
-                        style={styles.dropdownItem} 
+                      <div
+                        key={lng.code}
+                        style={styles.dropdownItem}
                         onClick={() => handleLanguageChange(lng.code)}
                       >
                         {lng.label}
@@ -200,7 +202,7 @@ export default function Main() {
             <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navPPE')}</LanguageLink>
             <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRiskClass')}</LanguageLink>
             <LanguageLink to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navDB')}</LanguageLink>
-            
+
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
             <LanguageLink to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</LanguageLink>
             <LanguageLink to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</LanguageLink>
@@ -218,7 +220,7 @@ export default function Main() {
               <span style={styles.adLabel}>AD (LEFT)</span>
               <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
             </div>
-          </aside> 
+          </aside>
 
           <main style={styles.centerContent} className="max-lg:!pl-0">
             <div style={styles.heroContent}>
@@ -246,8 +248,8 @@ export default function Main() {
 
       <div className="lg:hidden" style={styles.mobileAdSector}>
         <div style={styles.mobileAdBox}>
-           <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
-           <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_MOBILE_BRIDGE_SLOT_ID} format="horizontal" style={{ display: 'block' }} />
+          <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
+          <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_MOBILE_BRIDGE_SLOT_ID} format="horizontal" style={{ display: 'block' }} />
         </div>
       </div>
 
@@ -325,7 +327,7 @@ const styles = {
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'opacity 2s ease-in-out' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%)', zIndex: 1 },
-  header: { padding: '2.5rem 5rem', zIndex: 1000, position: 'relative' }, 
+  header: { padding: '2.5rem 5rem', zIndex: 1000, position: 'relative' },
   logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10 },
   sideAd: { width: '160px', flexShrink: 0 },
@@ -373,35 +375,35 @@ const styles = {
   adLabelDark: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', marginBottom: '8px' },
   mobileAdSector: { width: '100%', padding: '20px 24px', backgroundColor: '#fff' },
   mobileAdBox: { width: '100%', minHeight: '100px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0' },
-  adPlaceholderFixedLeft: { 
+  adPlaceholderFixedLeft: {
     position: 'fixed',
     top: '50%',
     left: '20px',
     transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    backgroundColor: 'rgba(255,255,255,0.05)', 
-    border: '1px dashed rgba(255,255,255,0.2)', 
-    borderRadius: '8px', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
+    width: '160px',
+    minHeight: '600px',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    border: '1px dashed rgba(255,255,255,0.2)',
+    borderRadius: '8px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     padding: '10px 0',
     zIndex: 100
   },
-  adPlaceholderFixedRight: { 
+  adPlaceholderFixedRight: {
     position: 'fixed',
     top: '50%',
     right: '20px',
     transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    backgroundColor: 'rgba(255,255,255,0.05)', 
-    border: '1px dashed rgba(255,255,255,0.2)', 
-    borderRadius: '8px', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
+    width: '160px',
+    minHeight: '600px',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    border: '1px dashed rgba(255,255,255,0.2)',
+    borderRadius: '8px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     padding: '10px 0',
     zIndex: 100
   },
@@ -435,7 +437,7 @@ const styles = {
     boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
     width: '120px',
     overflow: 'hidden',
-    zIndex: 2000, 
+    zIndex: 2000,
   },
   dropdownItem: {
     color: '#111111',

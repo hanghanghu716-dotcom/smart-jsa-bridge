@@ -1,21 +1,25 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate, Link 대신 커스텀 도구 사용
+import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner'; 
-import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
-// ✅ [추가] 다국어 라우팅 훅 및 링크 컴포넌트
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function FactorDictionary() {
-  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
+  const navigate = useLanguageNavigate();
   const { t, i18n } = useTranslation('dictionary'); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
+  // [수정] 전체 전개된 데이터를 담을 배열과 현재 페이지 출력용 배열 분리
+  const [allData, setAllData] = useState([]);
   const [data, setData] = useState([]);
+  
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // [수정] 클라이언트 렌더링으로 전환되었으므로 20개로 원복
   const ITEMS_PER_PAGE = 20;
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,57 +31,171 @@ export default function FactorDictionary() {
     if (lang.includes('ko')) return 'ko-KR';
     if (lang.includes('en-AU')) return 'en-AU';
     if (lang.includes('en-GB')) return 'en-GB';
-    if (lang.includes('en')) return 'en-US'; // 'en' 단일 코드 및 기타 영어권 기본값
+    if (lang.includes('en')) return 'en-US'; 
     if (lang.includes('fr')) return 'fr-FR';
     if (lang.includes('de')) return 'de-DE';
+    if (lang.includes('es')) return 'es-ES';
+    if (lang.includes('ru')) return 'ru-RU';
+
     return 'ko-KR'; 
   };
   const currentLocale = getDbLocale(i18n.language);
 
-useEffect(() => {
+  useEffect(() => {
     const fetchCategories = async () => {
       const { data, error } = await supabase
-        .from('v_factor_dictionary_detail') 
+        .from('Hazards_Translations') 
         .select('category')
         .eq('locale', currentLocale); 
       
       if (!error && data) {
         const uniqueCategories = [...new Set(data.map(item => item.category))].filter(Boolean);
         setCategories(uniqueCategories);
-        setCategoryFilter(''); // 언어 변경 시 카테고리 필터 초기화
-        setCurrentPage(1);     // 언어 변경 시 1페이지로 리셋
+        setCategoryFilter(''); 
+        setCurrentPage(1);     
       }
     };
     fetchCategories();
   }, [currentLocale]);
 
+  // [수정] DB 페이징(.range)을 제거하고 전체 데이터를 매핑 및 조립
   const fetchData = async () => {
     setLoading(true);
     try {
-      let query = supabase
-        .from('v_factor_dictionary_detail')
-        .select('*', { count: 'exact' })
+      let hazardQuery = supabase
+        .from('Hazards_Translations')
+        .select('id, hazard_id, hazard_name, category, keywords') // count: 'exact' 제거
         .eq('locale', currentLocale);
 
       if (categoryFilter) {
-        query = query.eq('category', categoryFilter);
+        hazardQuery = hazardQuery.eq('category', categoryFilter);
       }
 
       if (searchTerm) {
-        query = query.or(`hazard_name.ilike.%${searchTerm}%,measure_text.ilike.%${searchTerm}%,solution_text.ilike.%${searchTerm}%`);
+        hazardQuery = hazardQuery.or(`hazard_name.ilike.%${searchTerm}%,keywords.ilike.%${searchTerm}%`);
       }
 
-      const from = (currentPage - 1) * ITEMS_PER_PAGE;
-      const to = from + ITEMS_PER_PAGE - 1;
+      // 정렬만 유지하고 일괄 Fetch
+      hazardQuery = hazardQuery.order('hazard_id', { ascending: true });
+
+      const { data: hazards, error: hErr } = await hazardQuery;
+
+      if (hErr) throw hErr;
       
-      query = query.order('id', { ascending: true }).range(from, to);
+      if (!hazards || hazards.length === 0) {
+        setAllData([]);
+        setTotalCount(0);
+        setCurrentPage(1);
+        return;
+      }
 
-      const { data: resultData, count, error } = await query;
+      const hazardTransIds = hazards.map(h => h.id);
+      const hazardMasterIds = hazards.map(h => h.hazard_id);
+      const allSearchIds = [...new Set([...hazardTransIds, ...hazardMasterIds])];
 
-      if (error) throw error;
+      const SIMILARITY_THRESHOLD = 0.3;
 
-      setData(resultData || []);
-      setTotalCount(count || 0);
+      const { data: hMapData, error: mErr1 } = await supabase
+        .from('hazard_measure_mappings')
+        .select('hazard_translation_id, measure_translation_id, similarity_score')
+        .in('hazard_translation_id', allSearchIds)
+        .gte('similarity_score', SIMILARITY_THRESHOLD)
+        .order('similarity_score', { ascending: false });
+
+      if (mErr1) console.error("Mapping Error 1:", mErr1);
+
+      const currentTransIds = [...new Set(hMapData?.map(m => m.measure_translation_id) || [])];
+      
+      let currentMeasures = [];
+      let advMapData = [];
+      let advancedMeasures = [];
+
+      if (currentTransIds.length > 0) {
+        const { data: cData } = await supabase
+          .from('Current_Measures_Translations')
+          .select('id, measure_id, measure_text, locale')
+          .in('id', currentTransIds)
+          .eq('locale', currentLocale);
+        currentMeasures = cData || [];
+
+        const currentMasterIds = currentMeasures.map(c => c.measure_id).filter(Boolean);
+        const allCurrentSearchIds = [...new Set([...currentTransIds, ...currentMasterIds])];
+
+        const { data: aMapData } = await supabase
+          .from('current_advanced_measure_mappings')
+          .select('current_measure_translation_id, advanced_measure_translation_id, similarity_score')
+          .in('current_measure_translation_id', allCurrentSearchIds)
+          .gte('similarity_score', SIMILARITY_THRESHOLD)
+          .order('similarity_score', { ascending: false });
+        advMapData = aMapData || [];
+
+        const advTransIds = [...new Set(advMapData.map(a => a.advanced_measure_translation_id))];
+        if (advTransIds.length > 0) {
+          const { data: aData } = await supabase
+            .from('Advanced_Measures_Translations')
+            .select('id, advanced_measure_id, solution_text')
+            .in('id', advTransIds)
+            .eq('locale', currentLocale);
+          advancedMeasures = aData || [];
+        }
+      }
+
+      let assembledData = [];
+
+      hazards.forEach(hazard => {
+        const targetIds = [hazard.id, hazard.hazard_id];
+        const hMaps = hMapData?.filter(m => targetIds.includes(m.hazard_translation_id)) || [];
+
+        if (hMaps.length === 0) {
+          assembledData.push({
+            id: `${hazard.id}-none`,
+            category: hazard.category,
+            hazard_name: hazard.hazard_name,
+            measure_text: null,
+            solution_text: null,
+            keywords: hazard.keywords
+          });
+          return;
+        }
+
+        hMaps.forEach(hMap => {
+          const currentM = currentMeasures.find(c => c.id === hMap.measure_translation_id || c.measure_id === hMap.measure_translation_id);
+          
+          if (!currentM) return;
+
+          const cTargetIds = [currentM.id, currentM.measure_id];
+          const advMaps = advMapData.filter(a => cTargetIds.includes(a.current_measure_translation_id));
+
+          if (advMaps.length === 0) {
+            assembledData.push({
+              id: `${hazard.id}-${currentM.id}-none`,
+              category: hazard.category,
+              hazard_name: hazard.hazard_name,
+              measure_text: currentM.measure_text,
+              solution_text: null,
+              keywords: hazard.keywords
+            });
+            return;
+          }
+
+          advMaps.forEach(aMap => {
+            const advM = advancedMeasures.find(adv => adv.id === aMap.advanced_measure_translation_id || adv.advanced_measure_id === aMap.advanced_measure_translation_id);
+            assembledData.push({
+              id: `${hazard.id}-${currentM.id}-${advM?.id || Math.random().toString(36).substr(2, 9)}`,
+              category: hazard.category,
+              hazard_name: hazard.hazard_name,
+              measure_text: currentM.measure_text,
+              solution_text: advM?.solution_text || null,
+              keywords: hazard.keywords
+            });
+          });
+        });
+      });
+
+      // [수정] 조립이 완료된 전체 객체 배열을 상태에 저장하고, 정확한 요소 수를 할당
+      setAllData(assembledData);
+      setTotalCount(assembledData.length);
+      setCurrentPage(1);
     } catch (error) {
       console.error('데이터를 불러오는 중 오류 발생:', error.message);
     } finally {
@@ -85,13 +203,20 @@ useEffect(() => {
     }
   };
 
+  // [수정] 검색 필터가 바뀔 때만 DB Fetch 수행 (currentPage 분리)
   useEffect(() => {
     fetchData();
-  }, [currentPage, categoryFilter, currentLocale]);
+  }, [categoryFilter, currentLocale]);
+
+  // [추가] currentPage가 변경될 때 allData에서 slice 처리하여 렌더링 최적화
+  useEffect(() => {
+    const from = (currentPage - 1) * ITEMS_PER_PAGE;
+    const to = from + ITEMS_PER_PAGE;
+    setData(allData.slice(from, to));
+  }, [allData, currentPage]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setCurrentPage(1); 
     fetchData();
   };
 
@@ -116,7 +241,7 @@ useEffect(() => {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO /> 
       
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
@@ -142,7 +267,6 @@ useEffect(() => {
         </div>
         <nav style={styles.drawerNav}>
           <div style={styles.navCategory}>{t('drawer.contents')}</div>
-          {/* ✅ [변경] LanguageLink를 사용하여 다국어 경로 유지 */}
           <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.regulation')}</LanguageLink>
           <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.jrajsa')}</LanguageLink>
           <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('drawer.protectiveEquipment')}</LanguageLink>
@@ -171,7 +295,7 @@ useEffect(() => {
           <form onSubmit={handleSearch} style={styles.searchForm} className="flex-col lg:flex-row gap-4">
             <select 
               value={categoryFilter} 
-              onChange={(e) => { setCategoryFilter(e.target.value); setCurrentPage(1); }}
+              onChange={(e) => { setCategoryFilter(e.target.value); }}
               style={styles.selectBox}
               className="w-full lg:w-[200px]"
             >
@@ -209,8 +333,8 @@ useEffect(() => {
               <div style={styles.emptyState}>{t('data.empty')}</div>
             ) : (
               <div style={styles.dataGrid}>
-                {data.map((item, index) => (
-                  <div key={`${item.id}-${index}`} style={styles.dataCard}>
+                {data.map((item) => (
+                  <div key={item.id} style={styles.dataCard}>
                     <div style={styles.cardCategory}>{item.category}</div>
                     
                     <div style={styles.factorBox}>
@@ -244,7 +368,7 @@ useEffect(() => {
               <div style={styles.pagination}>
                 <button 
                   disabled={currentPage === 1} 
-                  onClick={() => setCurrentPage(prev => prev - 1)}
+                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); setCurrentPage(prev => prev - 1); }}
                   style={{ ...styles.pageBtn, opacity: currentPage === 1 ? 0.5 : 1 }}
                 >
                   {t('pagination.prev')}
@@ -252,7 +376,7 @@ useEffect(() => {
                 <span style={styles.pageInfo}>{currentPage} / {totalPages}</span>
                 <button 
                   disabled={currentPage === totalPages} 
-                  onClick={() => setCurrentPage(prev => prev + 1)}
+                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); setCurrentPage(prev => prev + 1); }}
                   style={{ ...styles.pageBtn, opacity: currentPage === totalPages ? 0.5 : 1 }}
                 >
                   {t('pagination.next')}

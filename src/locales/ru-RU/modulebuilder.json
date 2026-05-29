@@ -1,0 +1,68 @@
+{
+  "default": {
+    "docTitle": "Лист анализа безопасности (JSA)",
+    "appr1": "Разработал",
+    "appr2": "Проверил",
+    "appr3": "Утвердил"
+  },
+  "table": {
+    "projectName": "Работа",
+    "approval": "Утв.",
+    "workLocation": "Место",
+    "department": "Отдел",
+    "workDate": "Дата",
+    "ppe": "СИЗ (Защита)",
+    "highRiskWork": "Опасные работы",
+    "participants": "Участники",
+    "signature": "(Подп.)"
+  },
+  "ppe": {
+    "helmet": "Каска",
+    "shoes": "Спецобувь",
+    "glasses": "Очки",
+    "safetyBelt": "Страховка",
+    "mask": "Маска/Респиратор",
+    "gloves": "Перчатки",
+    "etc": "Прочее"
+  },
+  "permit": {
+    "hotWork": "Огневые",
+    "confinedSpace": "Замкн. пр-во",
+    "electrical": "Электрич.",
+    "highElevation": "Высотные",
+    "heavyLifting": "Грузоподъемные",
+    "excavation": "Земляные",
+    "etc": "Прочее"
+  },
+  "preview": {
+    "header": "Структура документа (Схема)",
+    "tableAreaTitle": "[Зона таблицы анализа рисков]",
+    "tableAreaDesc": "Данные столбцов из Шага 5 будут автоматически вставлены в это место."
+  },
+  "step": {
+    "basicInfo": "Инфо",
+    "procedure": "Процедуры",
+    "riskAnalysis": "Анализ",
+    "moduleConfig": "Модули",
+    "tableConfig": "Таблицы",
+    "finalOutput": "Итог"
+  },
+  "header": {
+    "title": "| 04. Конфигурация модулей документа",
+    "subtitle": "Настройте заголовки JSA и дополнительные элементы разрешения на работу (PTW)."
+  },
+  "toolbar": {
+    "headerTextSetting": "Настройка текста заголовка",
+    "docTitle": "Заголовок документа",
+    "appr1": "Поле подписи 1",
+    "appr2": "Поле подписи 2",
+    "appr3": "Поле подписи 3",
+    "signatureSetting": "Настройка блока подписей",
+    "addSignatureRow": "Добавить строку подписей (1 стр = 8 чел)"
+  },
+  "btn": {
+    "prev": "Назад (Анализ)",
+    "next": "Далее: Таблицы (Шаг 5)",
+    "skipModule": "Пропустить настройку модулей"
+  }
+}

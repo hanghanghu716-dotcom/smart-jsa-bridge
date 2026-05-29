@@ -1,0 +1,89 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atención] Este ejemplar es material de referencia. La evaluación de riesgos debe realizarse basándose en inspecciones reales según las características del proceso y el entorno de cada centro de trabajo.",
+    "text2": "Smart JSA Bridge no asume responsabilidad por las consecuencias legales derivadas del uso de este material."
+  },
+  "ui": {
+    "category": "SEGURIDAD QUÍMICA Y DE GAS",
+    "mainTitle1": "JSA para Trabajos Químicos y de Gas",
+    "mainTitle2": "Guía de Ejemplos (10 tipos)",
+    "description1": "Datos de análisis de riesgos estándar para procesos de",
+    "description2": "manejo de gases a alta presión y sustancias químicas tóxicas en plantas.",
+    "labelRed": "⚠ Factores de Riesgo Críticos",
+    "labelBlue": "🛡 Medidas de Seguridad Obligatorias",
+    "previewLabel": "Vista Previa del Informe JSA",
+    "downloadBtn": "Descargar PDF Original Completo"
+  },
+  "list": [
+    {
+      "id": "CHEM-01",
+      "title": "Inspección de apertura y limpieza con chorro de agua a alta presión (Waterjet) de intercambiador de calor de carcasa y tubos",
+      "hazard": "Penetración de tejidos por chorro a alta presión, quemaduras químicas por exposición a fluidos residuales",
+      "measure": "Uso de ropa de protección especial para waterjet, apertura total de válvulas de drenaje y cumplimiento de LOTO",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-02",
+      "title": "Reemplazo de empaquetaduras del compresor de hidrógeno a alta presión en instalaciones de producción de hidrógeno",
+      "hazard": "Explosión por fuga de hidrógeno residual, asfixia por deficiencia de oxígeno tras purga con nitrógeno",
+      "measure": "Verificación de 0% de hidrógeno con medidor portátil, uso de ropa antiestática y herramientas antispark",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-03",
+      "title": "Reemplazo de válvulas y juntas envejecidas en tuberías de transporte de sustancias químicas tóxicas",
+      "hazard": "Salpicaduras de líquido residual al desmontar bridas, intoxicación por inhalación de gases tóxicos",
+      "measure": "Uso de máscara antigás de cara completa, aflojamiento secuencial de pernos en dirección opuesta al cuerpo",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-04",
+      "title": "Reemplazo de la punta superior de la antorcha (Flare Stack) y mantenimiento regular del sistema de encendido",
+      "hazard": "Caídas por vientos fuertes, exposición a llamas por ignición de gas residual en la parte superior",
+      "measure": "Monitoreo de velocidad del viento (prohibido si supera 10m/s), doble anclaje de arnés y confirmación de bloqueo en DCS",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-05",
+      "title": "Inspección funcional de equipos de emergencia y prevención de desastres en plantas químicas",
+      "hazard": "Golpes por desprendimiento de mangueras al descargar agua contra incendios a alta presión, intoxicación por gas de prueba",
+      "measure": "Verificación del pasador de seguridad de la manguera, trabajar a favor del viento y uso de tapas específicas",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-06",
+      "title": "Inspección de válvulas automáticas inferiores y comprobación de fugas en torres de adsorción (PSA)",
+      "hazard": "Atrapamiento por funcionamiento inesperado de la válvula automática, enfermedades respiratorias por inhalación de polvo de adsorbente",
+      "measure": "Eliminación de presión neumática residual y ejecución de LOTO, uso obligatorio de máscara de protección contra polvo de alta eficiencia",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-07",
+      "title": "Inspección visual interna y Ensayos No Destructivos (END/NDT) en tanques de almacenamiento de hidrógeno a alta presión",
+      "hazard": "Asfixia por deficiencia de oxígeno dentro del tanque, explosión por cortocircuito en iluminación interna",
+      "measure": "Medición de concentración en niveles superior/medio/inferior y ventilación forzada, uso de iluminación de bajo voltaje (<24V) a prueba de explosiones",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-08",
+      "title": "Operaciones de descarga de camiones cisterna de hidrógeno y conexión en la bahía de carga",
+      "hazard": "Atrapamiento por desplazamiento del vehículo, explosión de gas hidrógeno por descarga electrostática",
+      "measure": "Instalación de al menos 2 calzos, conexión prioritaria de pinza de toma de tierra y verificación de resistencia",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-09",
+      "title": "Inspección de paneles del sistema de control (DCS/PLC) y calibración de transmisores de campo",
+      "hazard": "Parada inesperada del proceso por no liberar enclavamientos (interlocks), descarga eléctrica por contacto con partes energizadas",
+      "measure": "Doble verificación del estado de bypass en DCS, uso de guantes aislantes y ropa antiestática",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-10",
+      "title": "Reposición de productos químicos (desinfectantes e inhibidores de corrosión) en sistemas de agua de enfriamiento",
+      "hazard": "Explosión de gas al mezclar productos incompatibles, eyección de químicos al abrir recipientes",
+      "measure": "Doble verificación de etiquetas y almacenamiento segregado, uso de protección facial y liberación de presión interna previa",
+      "pages": 1
+    }
+  ]
+}

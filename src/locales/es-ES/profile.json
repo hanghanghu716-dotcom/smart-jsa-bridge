@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Información de Cuenta y Gestión de Actividad de Seguridad Inteligente",
+    "statsLabel": "Estadísticas de Contribución y Uso de Conocimiento",
+    "myDocs": "JSA Redactados",
+    "scraps": "Total de Scraps/Favoritos",
+    "nickname": "Apodo del Usuario",
+    "sector": "Sector Industrial de Actividad Principal",
+    "company": "Nombre de la Empresa (Opcional)",
+    "bio": "Presentación de Profesionalidad y Mensaje de Estado",
+    "bioPlaceholder": "Por favor, introduzca su área de especialidad o filosofía de seguridad.",
+    "presetTitle": "Configuración de Ajustes Preestablecidos de Reportes",
+    "department": "Departamento por Defecto",
+    "manager": "Nombre del Revisor/Aprobador por Defecto",
+    "autoPublicity": "Permitir el intercambio automático en Explore al redactar",
+    "signatureLabel": "Firma Electrónica (Imagen)",
+    "noSignature": "No hay firma registrada.",
+    "uploadSignature": "Subir imagen de firma",
+    "securityLabel": "Seguridad y Gestión de Sesiones",
+    "remoteLogout": "Cerrar sesión de forma remota en todos los dispositivos",
+    "openWithdraw": "¿Necesita dar de baja su cuenta?",
+    "closeWithdraw": "Cerrar ventana de baja",
+    "withdrawWarning": "⚠️ Al darse de baja, todos los datos redactados y registros de scraps se eliminarán inmediatamente y no se podrán recuperar.",
+    "withdrawPlaceholder": "Introduzca la frase 'Compromiso de Baja'.",
+    "withdrawSubmit": "Procesar Baja de Miembro",
+    "goMain": "Volver al Inicio",
+    "saveProfile": "Actualizar Información de Perfil"
+  },
+  "sectors": {
+    "default": "Seleccione un sector industrial",
+    "construction": "Construcción / Civil / Arquitectura",
+    "manufacturing": "Manufactura / Planta / Química",
+    "energy": "Energía / Electricidad / Gas",
+    "logistics": "Transporte / Logística / Almacén",
+    "safety": "Gestión de Seguridad / Consultoría",
+    "it": "IT / Sistemas / Ingeniería",
+    "public": "Institución Pública / Educación / Salud",
+    "etc": "Otros Sectores"
+  },
+  "messages": {
+    "updateSuccess": "La información del perfil se ha actualizado correctamente.",
+    "signatureSuccess": "La firma electrónica se ha registrado de forma segura.",
+    "confirmRemoteLogout": "¿Desea forzar el cierre de todas las sesiones activas excepto el dispositivo actual?",
+    "confirmWithdrawal": "¿Está seguro de que desea darse de baja? Esta acción es irreversible.",
+    "withdrawConsentText": "Compromiso de Baja",
+    "withdrawMismatch": "La frase de confirmación no coincide.",
+    "confirmGoMain": "Es posible que los cambios no se guarden. ¿Desea ir al inicio?"
+  }
+}

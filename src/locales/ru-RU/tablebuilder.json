@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Введите название шаблона.",
+    "needLogin": "Требуется вход в систему.",
+    "saveError": "Ошибка при сохранении шаблона.",
+    "saveSuccess": "Все настройки шаблона успешно сохранены.",
+    "exceedWidth": "Суммарная ширина столбцов не может превышать лимит."
+  },
+  "tags": {
+    "DATA_STEP_NO": "№ этапа",
+    "DATA_STEP_TITLE": "Этап работы",
+    "DATA_PHOTO": "Фото",
+    "DATA_HAZARD": "Опасный фактор",
+    "DATA_CURRENT_MEASURE": "Текущие меры",
+    "DATA_RECOMMEND_MEASURE": "Доп. меры",
+    "DATA_FREQUENCY": "Вероятность (F)",
+    "DATA_SEVERITY": "Тяжесть (S)",
+    "DATA_RISK": "Уровень риска",
+    "DATA_KRAS_STEP": "Детали шага",
+    "DATA_KRAS_HAZARD_CLASS": "Класс опасности",
+    "DATA_KRAS_HAZARD_DETAIL": "Ситуация и итог",
+    "DATA_KRAS_BASIS": "Нормативная база",
+    "DATA_KRAS_CURRENT": "Текущая защита",
+    "DATA_KRAS_RECOMMEND": "Меры снижения",
+    "DATA_KRAS_AFTER": "Остаточный риск",
+    "DATA_KRAS_SCHED": "Срок",
+    "DATA_KRAS_COMP": "Дата завершения",
+    "DATA_KRAS_MANAGER": "Ответственный"
+  },
+  "groups": {
+    "hazard": "Идентификация опасностей",
+    "risk": "Оценка рисков"
+  },
+  "preview": {
+    "freqBreak": "Вероят-\nность",
+    "sevBreak": "Тяжесть\n(Сила)",
+    "afterBreak": "Остат.\nриск",
+    "schedBreak": "Срок\nиспр.",
+    "example": "(Пример заполнения)",
+    "dataArea": "... Зона вывода данных реальной оценки ...",
+    "docHeader": "[Зона заголовка документа]",
+    "signatureArea": "[Зона подписей участников]"
+  },
+  "step": {
+    "basicInfo": "Инфо",
+    "procedure": "Процедуры",
+    "riskAnalysis": "Анализ",
+    "moduleConfig": "Модули",
+    "tableConfig": "Таблицы",
+    "finalOutput": "Итог"
+  },
+  "header": {
+    "title": "| 05. Конфигурация таблицы данных",
+    "subtitle": "Настройте порядок и ширину столбцов таблицы анализа безопасности."
+  },
+  "toolbar": {
+    "saveTitle": "Полное сохранение",
+    "saveBtn": "Сохранить текущие настройки",
+    "saveDesc": "* Настройки модулей (Шаг 4) и таблицы будут сохранены вместе.",
+    "orientationTitle": "Ориентация страницы",
+    "landscape": "Альбомная (Реком.)",
+    "portrait": "Книжная",
+    "zoom": "Масштаб превью",
+    "columnConfig": "Состав столбцов (Drag & Drop)",
+    "riskToggle": "Риск (Интегрирован)",
+    "riskGroupLabel": "Риск (P/S/C)",
+    "newItem": "Новый пункт",
+    "width": "Ширина",
+    "addCustom": "+ Добавить свой столбец"
+  },
+  "btn": {
+    "prev": "Назад: Модули (Шаг 4)",
+    "next": "К итоговому выводу (Шаг 6)"
+  },
+  "modal": {
+    "title": "Добавить в мои шаблоны",
+    "desc": "Конфигурация документа и таблицы будут объединены.",
+    "placeholder": "Введите название шаблона",
+    "cancel": "Отмена",
+    "save": "Сохранить"
+  }
+}

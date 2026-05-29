@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "GUÍA DE SEGURIDAD ADMINISTRATIVA",
+    "mainTitle": "Establecimiento de Normas de Evaluación y<br />Guía Técnica de Gestión Legal",
+    "subTitle": "Le guiamos detalladamente en la redacción de las 'Normas de Ejecución', núcleo del sistema de gestión de seguridad, y en el cumplimiento administrativo según la Ley de Seguridad y Salud Industrial."
+  },
+  "section1": {
+    "title": "1. ¿Qué son las Normas de Ejecución de la Evaluación de Riesgos?",
+    "para": "Las Normas de Ejecución son las <strong>directrices estándar internas</strong> mediante las cuales el empleador identifica los peligros, determina los riesgos y establece e implementa medidas de mitigación en el centro de trabajo. No es una simple recomendación, sino un requisito legal obligatorio bajo la Ley de Seguridad y Salud Industrial.",
+    "infoTitle": "Objetivo de disponer de las Normas de Ejecución",
+    "infoList": {
+      "item1": "Clarificación de responsabilidades y autoridades para el sistema de gestión de seguridad",
+      "item2": "Mantenimiento y gestión de un proceso de evaluación de riesgos consistente",
+      "item3": "Identificación y mejora de riesgos reales mediante la participación del trabajador",
+      "item4": "Aseguramiento de evidencia documental para inspecciones legales y auditorías"
+    }
+  },
+  "section2": {
+    "title": "2. Elementos Obligatorios en las Normas de Ejecución",
+    "para": "Según las notificaciones del Ministerio de Empleo y Trabajo, las normas internas deben especificar claramente los siguientes 10 puntos:",
+    "items": {
+      "item1": { "title": "Objetivo y Método de la Evaluación", "content": "Metas de la evaluación y selección de técnicas especializadas para el sitio" },
+      "item2": { "title": "Organización y Roles", "content": "Definición de roles y responsabilidades (R&R) del empleador, supervisores y trabajadores" },
+      "item3": { "title": "Selección del Objeto de Evaluación", "content": "Alcance que incluye edificios, maquinaria, equipos y todas las tareas rutinarias y no rutinarias" },
+      "item4": { "title": "Determinación del Momento de Ejecución", "content": "Condiciones y periodicidad de las evaluaciones iniciales, periódicas y extraordinarias" },
+      "item5": { "title": "Identificación de Peligros", "content": "Métodos prácticos como inspecciones de ronda y entrevistas a trabajadores" },
+      "item6": { "title": "Estimación y Determinación del Riesgo", "content": "Establecimiento de criterios objetivos (ej. método F×S) para determinar el nivel de riesgo" },
+      "item7": { "title": "Establecimiento/Ejecución de Medidas", "content": "Priorización de mejoras por nivel de riesgo y procedimiento de verificación posterior" },
+      "item8": { "title": "Forma de Participación del Trabajador", "content": "Sistema para recoger opiniones de los trabajadores en la identificación de riesgos y medidas" },
+      "item9": { "title": "Conservación y Gestión de Registros", "content": "Formatos de redacción y directrices de conservación por un mínimo de 3 años" },
+      "item10": { "title": "Procedimiento de Capacitación y Difusión", "content": "Procedimiento para informar los resultados y capacitar a los trabajadores de campo" }
+    }
+  },
+  "section3": {
+    "title": "3. Tipos de Evaluación de Riesgos y Momento de Ejecución",
+    "table": {
+      "header": {
+        "col1": "Tipo de Evaluación",
+        "col2": "Momento y Condiciones",
+        "col3": "Notas Clave"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Evaluación Inicial",
+          "col2": "Para todos los procesos dentro de 1 mes tras el inicio del negocio",
+          "col3": "Evaluación total legal obligatoria"
+        },
+        "row2": {
+          "col1": "Evaluación Periódica",
+          "col2": "Realizada anualmente tras la evaluación inicial",
+          "col3": "Repetición mínima de 1 vez al año"
+        },
+        "row3": {
+          "col1": "Evaluación Extraordinaria",
+          "col2": "Al introducir equipos, cambiar procesos o ante accidentes graves",
+          "col3": "Inmediatamente tras el suceso"
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Responsabilidad Legal y Sanciones",
+    "para": "La violación de la obligación de evaluar riesgos puede derivar en responsabilidades administrativas y penales según la Ley de Seguridad y Salud Industrial.",
+    "legalList": {
+      "item1": "<strong>No realizar la evaluación</strong>: Orden de corrección y multa de hasta 5 millones de KRW según la gravedad",
+      "item2": "<strong>No conservar registros (3 años)</strong>: Sanción administrativa por falta de documentación probatoria",
+      "item3": "<strong>Ante accidentes graves</strong>: Agravamiento de penas si se confirma la falta de evaluación (vínculo con la Ley de Castigo de Accidentes Graves)"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

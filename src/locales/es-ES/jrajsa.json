@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "regulation": "Guía de Normas de Evaluación",
+    "jrajsa": "Proceso Práctico de Evaluación (JRA/JSA)",
+    "ppe": "Sobre los Equipos de Protección (EPP)",
+    "riskClass": "Trabajo General vs Alto Riesgo"
+  },
+  "hero": {
+    "tag": "INTEGRATED SAFETY COMPLIANCE",
+    "title1": "Proceso Práctico de Evaluación de Riesgos (JRA/JSA)",
+    "title2": "Directrices Técnicas de Cumplimiento Legal",
+    "subTitle1": "Proporcionamos metodologías especializadas para cumplir con el Artículo 36",
+    "subTitle2": "de la Ley de Seguridad y Salud Industrial y lograr cero accidentes."
+  },
+  "section3": {
+    "title": "3. Proceso Estándar de Ejecución JSA en 9 Pasos",
+    "process": {
+      "step1": { "idx": "01", "title": "Redacción de Procedimiento", "desc": "Establecimiento de directrices operativas JSA según el sitio" },
+      "step2": { "idx": "02", "title": "Conformación del Equipo", "desc": "Designación de supervisores, expertos y personal operativo experto" },
+      "step3": { "idx": "03", "title": "Selección de Tareas", "desc": "Priorización de tareas JRA de alto riesgo y trabajos no rutinarios" },
+      "step4": { "idx": "04", "title": "Ejecución de Evaluación", "desc": "División de pasos, identificación de peligros y medidas preventivas" },
+      "step5": { "idx": "05", "title": "Revisión y Aprobación", "desc": "Validación de la aplicabilidad de medidas y aprobación final" },
+      "step6": { "idx": "06", "title": "Acciones de Seguimiento", "desc": "Implementación de mejoras físicas en equipos y suministros de seguridad" },
+      "step7": { "idx": "07", "title": "Registro y Capacitación", "desc": "Digitalización de resultados y difusión técnica al personal de campo" },
+      "step8": { "idx": "08", "title": "Aplicación en Campo", "desc": "Puesta en marcha de los procedimientos de trabajo seguro validados" },
+      "step9": { "idx": "09", "title": "Evaluación de Cumplimiento", "desc": "Monitoreo constante de la ejecución de medidas y verificación de eficacia" }
+    }
+  },
+  "section4": {
+    "title": "4. Requisitos Obligatorios de las Normas de Evaluación",
+    "rules": {
+      "item1": { "title": "Objetivo y Metodología", "desc": "Metas estratégicas y selección de técnicas específicas por sitio" },
+      "item2": { "title": "Organización y Roles", "desc": "Responsabilidades y funciones (R&R) de gestores y trabajadores" },
+      "item3": { "title": "Alcance de la Evaluación", "desc": "Listado completo de todas las tareas y equipos del centro" },
+      "item4": { "title": "Periodicidad", "desc": "Especificación de evaluaciones iniciales, periódicas y extraordinarias" },
+      "item5": { "title": "Criterios de Riesgo", "desc": "Criterios de juicio propios para determinar los niveles de riesgo" },
+      "item6": { "title": "Gestión de Registros", "desc": "Obligación de conservación por 3 años y estandarización de formatos" }
+    }
+  },
+  "section5": {
+    "title": "5. Análisis Comparativo: JRA vs JSA",
+    "table": {
+      "header": {
+        "col1": "Clasificación",
+        "col2": "JRA",
+        "col3": "JSA"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Objeto de Evaluación",
+          "col2": "Totalidad de procesos y equipos",
+          "col3": "Acciones y pasos detallados"
+        },
+        "row2": {
+          "col1": "Participantes",
+          "col2": "Gestores y especialistas",
+          "col3": "Personal operativo (clave)"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. Lista de Verificación Obligatoria JSA",
+    "checklist": {
+      "item1": "¿El procedimiento estándar (SOP) es inexistente o poco claro?",
+      "item2": "¿Es una tarea donde ocurren accidentes no deseados con frecuencia?",
+      "item3": "¿El trabajador carece de experiencia suficiente en dicho proceso?",
+      "item4": "¿La tarea requiere alta pericia o capacitación especial?"
+    }
+  },
+  "section7": {
+    "title": "7. Lógica de Cálculo de Riesgo Cuantitativo",
+    "math": {
+      "risk": "Riesgo",
+      "frequency": "Frecuencia",
+      "severity": "Severidad",
+      "caption": "Riesgo = Frecuencia de ocurrencia (Probabilidad) × Gravedad de las consecuencias (Severidad)"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

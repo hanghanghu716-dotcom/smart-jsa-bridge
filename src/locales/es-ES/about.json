@@ -1,0 +1,51 @@
+{
+  "pageTag": "EL REPOSITORIO DE SEGURIDAD",
+  "mainHeading": {
+    "line1": "Conectando el conocimiento fragmentado",
+    "line2": "en una biblioteca de seguridad"
+  },
+  "section1": {
+    "title": "La Biblioteca para Gestores de Seguridad",
+    "content": "Smart JSA Bridge es un repositorio de código abierto donde los <strong>gestores de seguridad pueden convertir sus conocimientos en una biblioteca compartida</strong>, sacando a la luz los formatos de JSA reales que antes estaban aislados en ordenadores individuales.<br />Más allá de la simple redacción de documentos, aspiramos a ser un puente tecnológico que permita a cualquier persona utilizar y mejorar la lógica de seguridad óptima y verificada en centros industriales de todo el país."
+  },
+  "section2": {
+    "title": "Valores Fundamentales / Core Values",
+    "item1": {
+      "bold": "Basado en datos técnicos verificados:",
+      "desc": "Se fundamenta en plantillas de JSA prácticas, redactadas y utilizadas directamente por expertos de campo, en lugar de guías abstractas."
+    },
+    "item2": {
+      "bold": "Ciclo virtuoso del conocimiento (Fork & Contribute):",
+      "desc": "Al adaptar formatos de JSA de excelencia a su propio sitio de trabajo y contribuir de nuevo a la biblioteca, se estandariza al alza el nivel de seguridad industrial global."
+    },
+    "item3": {
+      "bold": "Biblioteca especializada en alto riesgo:",
+      "desc": "Construimos un repositorio de escenarios de análisis detallados por industria y equipo, incluyendo los 9 grupos de trabajo de alto riesgo."
+    }
+  },
+  "section3": {
+    "title": "Cómo Funciona / How It Works",
+    "subtitle": "Smart JSA Bridge protege la seguridad mediante el poder de la comunidad.",
+    "step1": {
+      "bold": "Explorar Biblioteca:",
+      "desc": "Busque el formato de JSA adecuado para el tipo de tarea necesaria en el extenso repositorio."
+    },
+    "step2": {
+      "bold": "Adoptar y Personalizar:",
+      "desc": "Seleccione el formato adecuado y ajuste los valores detallados según las características de su entorno de trabajo."
+    },
+    "step3": {
+      "bold": "Exportar y Compartir:",
+      "desc": "Imprima el JSA finalizado para aplicarlo en el campo y comparta la lógica mejorada nuevamente con la comunidad."
+    },
+    "step4": {
+      "bold": "Estandarización:",
+      "desc": "Los formatos que pasan por numerosos procesos de retroalimentación se establecen como el 'Estándar de Oro' de la industria correspondiente."
+    }
+  },
+  "section4": {
+    "title": "Filosofía de Seguridad de Datos",
+    "content": "El valor de compartir solo puede existir sobre una base de seguridad sólida. <br />Smart JSA Bridge sigue el <strong>'Principio de no almacenamiento de información sensible'</strong>, por lo que no recopila datos identificables como nombres de proyectos, nombres reales o denominaciones detalladas de equipos; solo se convierte en biblioteca la lógica técnica pura que conecta 'Tarea-Riesgo-Medida'."
+  },
+  "imageCaption": "Smart JSA Bridge: Su socio para un entorno sin accidentes mediante la inteligencia colectiva"
+}

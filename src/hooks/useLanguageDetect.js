@@ -5,7 +5,7 @@ import i18n from 'i18next';
 /**
  * ✅ 지원하는 글로벌 언어 규격 정의
  */
-const SUPPORTED_LANGS = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR'];
+const SUPPORTED_LANGS = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
 const DEFAULT_LANG = 'ko';
 
 /**

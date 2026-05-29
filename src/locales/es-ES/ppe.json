@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Guía de Normas de Evaluación",
+    "jrajsa": "Proceso Práctico de JRA/JSA",
+    "ppe": "Sobre los EPP",
+    "riskClass": "Trabajo General/Alto Riesgo"
+  },
+  "hero": {
+    "tag": "EQUIPAMIENTO DE PROTECCIÓN PERSONAL",
+    "title1": "Tipos de EPP Industriales y",
+    "title2": "Guía Técnica Integrada de Certificación de Seguridad (KC)",
+    "subTitle1": "La verificación de la certificación es el inicio de la seguridad en el sitio.",
+    "subTitle2": "Consulte de un vistazo las características de los EPP por zona del cuerpo",
+    "subTitle3": "y las normativas según los estándares de certificación de KOSHA."
+  },
+  "section1": {
+    "title": "1. Clasificación de EPP por Zona del Cuerpo y Tipos Detallados",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Protección Craneal",
+        "desc": "Absorción de impactos por caída de objetos, proyecciones o caídas de altura",
+        "tags": ["Casco de seguridad (A/AB/ABE)"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Ocular y Facial",
+        "desc": "Bloqueo de partículas proyectadas, radiaciones nocivas y sustancias químicas",
+        "tags": ["Gafas de seguridad", "Goggles", "Pantalla de soldadura"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Protección Auditiva",
+        "desc": "Prevención de la hipoacusia inducida por ruido en entornos ruidosos",
+        "tags": ["Tapones", "Orejeras"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Respiratoria",
+        "desc": "Prevención de inhalación de polvo, gases nocivos y deficiencia de oxígeno",
+        "tags": ["Mascarilla antipolvo", "Mascarilla antigás", "Suministro de aire"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Protección de Manos",
+        "desc": "Protección contra cortes, quemaduras, choque eléctrico y químicos",
+        "tags": ["Anticorte", "Aislante", "Antiquímico"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Protección de Pies",
+        "desc": "Prevención de aplastamiento por caída de objetos y pinchazos",
+        "tags": ["Calzado de seguridad", "Calzado antiestático"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Arnés de Seguridad",
+        "desc": "Prevención de impactos por caída en trabajos de altura",
+        "tags": ["Tipo paracaidista", "Línea de vida", "Dispositivo anticaídas"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Ropa de Protección",
+        "desc": "Bloqueo de exposición a sustancias nocivas y calor extremo en todo el cuerpo",
+        "tags": ["Traje antiquímico", "Traje aluminizado", "Traje antiestático"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Preguntas Frecuentes sobre Certificación de Seguridad de EPP",
+    "faq": {
+      "item1": {
+        "q": "Diferencia entre Certificación de Seguridad y Confirmación de Seguridad Autónoma",
+        "a": "La Certificación de Seguridad implica pruebas de rendimiento directas por la autoridad (Alto Riesgo), mientras que la Confirmación Autónoma es un sistema donde el fabricante verifica y declara el cumplimiento."
+      },
+      "item2": {
+        "q": "Posibilidad de uso de productos con certificación extranjera",
+        "a": "La certificación extranjera por sí sola es insuficiente; se debe obtener obligatoriamente la certificación de seguridad KOSHA (marca KC) según las leyes nacionales."
+      },
+      "item3": {
+        "q": "Periodo de validez de la certificación de seguridad de EPP",
+        "a": "No existe un periodo de validez específico, pero para mantener la calidad, se deben pasar auditorías periódicas de producto y de sitio para conservar la certificación."
+      },
+      "item4": {
+        "q": "Cómo verificar productos certificados",
+        "a": "Lo más preciso es verificar la marca KC y el número de certificación en el EPP, y buscar el nombre del modelo en el portal del sistema de seguridad y salud industrial."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

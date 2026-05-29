@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Por favor, introduzca el nombre de la plantilla.",
+    "needLogin": "Es necesario iniciar sesión.",
+    "saveError": "Error al guardar la plantilla.",
+    "saveSuccess": "La configuración completa de la plantilla se ha guardado correctamente.",
+    "exceedWidth": "La suma total del ancho de los elementos de usuario no puede exceder el límite."
+  },
+  "tags": {
+    "DATA_STEP_NO": "Nº Paso",
+    "DATA_STEP_TITLE": "Etapa de Trabajo",
+    "DATA_PHOTO": "Foto Relacionada",
+    "DATA_HAZARD": "Peligro / Factor de Riesgo",
+    "DATA_CURRENT_MEASURE": "Medida de Seguridad Actual",
+    "DATA_RECOMMEND_MEASURE": "Medida de Mitigación Recomendada",
+    "DATA_FREQUENCY": "Probabilidad (F)",
+    "DATA_SEVERITY": "Severidad (S)",
+    "DATA_RISK": "Riesgo",
+    "DATA_KRAS_STEP": "Detalle de la Tarea",
+    "DATA_KRAS_HAZARD_CLASS": "Clasificación de Peligros",
+    "DATA_KRAS_HAZARD_DETAIL": "Situación y Consecuencia",
+    "DATA_KRAS_BASIS": "Base Legal / Normativa",
+    "DATA_KRAS_CURRENT": "Medida Preventiva Actual",
+    "DATA_KRAS_RECOMMEND": "Medida de Reducción de Riesgo",
+    "DATA_KRAS_AFTER": "Riesgo Residual",
+    "DATA_KRAS_SCHED": "Fecha de Mejora",
+    "DATA_KRAS_COMP": "Fecha de Cierre",
+    "DATA_KRAS_MANAGER": "Responsable"
+  },
+  "groups": {
+    "hazard": "Identificación de Peligros",
+    "risk": "Riesgo"
+  },
+  "preview": {
+    "freqBreak": "Proba-\nbilidad",
+    "sevBreak": "Seve-\nridad",
+    "afterBreak": "Riesgo\nResidual",
+    "schedBreak": "Fecha\nLímite",
+    "example": "(Ejemplo de redacción)",
+    "dataArea": "... Área de despliegue de datos de evaluación de riesgos reales ...",
+    "docHeader": "[Área de cabecera integrada del documento]",
+    "signatureArea": "[Área de firmas de participantes]"
+  },
+  "step": {
+    "basicInfo": "Información Básica",
+    "procedure": "Procedimiento",
+    "riskAnalysis": "Análisis de Riesgos",
+    "moduleConfig": "Configuración de Módulo",
+    "tableConfig": "Configuración de Tabla",
+    "finalOutput": "Salida Final"
+  },
+  "header": {
+    "title": "| 05. Configuración de Tabla de Datos",
+    "subtitle": "Ajuste con precisión el orden y el ancho de las columnas de la tabla donde se desarrollará la evaluación de riesgos."
+  },
+  "toolbar": {
+    "saveTitle": "Guardado Integrado Total",
+    "saveBtn": "Guardar todas las configuraciones actuales",
+    "saveDesc": "* Se guardarán conjuntamente la configuración del módulo del Paso 4 y la configuración de tabla actual.",
+    "orientationTitle": "Orientación de la Tabla",
+    "landscape": "Horizontal (Recomendado)",
+    "portrait": "Vertical",
+    "zoom": "Zoom de Vista Previa",
+    "columnConfig": "Configuración de Columnas (Drag & Drop)",
+    "riskToggle": "Riesgo (Integrado)",
+    "riskGroupLabel": "Riesgo (Probabilidad·Severidad·Cálculo)",
+    "newItem": "Nuevo elemento",
+    "width": "Ancho",
+    "addCustom": "+ Añadir elemento personalizado"
+  },
+  "btn": {
+    "prev": "Anterior: Configuración de Módulo (Paso 4)",
+    "next": "Ir a la Etapa de Salida Final (Paso 6)"
+  },
+  "modal": {
+    "title": "Añadir a Plantillas Guardadas",
+    "desc": "El módulo del Paso 4 y la configuración de tabla actual se fusionarán y guardarán.",
+    "placeholder": "Introduzca el nombre para guardar",
+    "cancel": "Cancelar",
+    "save": "Guardar"
+  }
+}

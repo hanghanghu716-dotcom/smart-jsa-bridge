@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atención] Este ejemplar es material de referencia. La evaluación de riesgos debe realizarse basándose en inspecciones reales según las características del proceso y el entorno de cada centro de trabajo.",
+    "text2": "Smart JSA Bridge no asume responsabilidad por las consecuencias legales derivadas del uso de este material."
+  },
+  "ui": {
+    "category": "EJEMPLOS JSA CONSTRUCCIÓN",
+    "mainTitle1": "JSA en Construcción",
+    "mainTitle2": "Guía de Ejemplos (10 tipos)",
+    "description1": "Identifique los peligros críticos y medidas por proceso.",
+    "description2": "Consulte las imágenes y descargue el PDF mediante el botón inferior.",
+    "labelRed": "⚠ Peligro Crítico",
+    "labelBlue": "🛡 Medida de Mitigación",
+    "previewLabel": "Muestra de Vista Previa (Imagen)",
+    "downloadBtn": "Descargar PDF Original"
+  },
+  "list": [
+    { "id": "CONST-01", "title": "Instalación de marcos de techo y placas de yeso (drywall)", "hazard": "Caída por bisagra de escalera sin bloquear, disparo accidental de clavadora", "measure": "Verificación visual de bloqueos, uso de guantes anticorte y gafas" },
+    { "id": "CONST-02", "title": "Soldadura de tubería principal e instalación de bombas en cuarto de máquinas", "hazard": "Incendio por proyecciones de soldadura, rotura en prueba de presión", "measure": "Asignación de vigía de incendios, presurización gradual (≤1.1 veces la de diseño)" },
+    { "id": "CONST-03", "title": "Excavación de zanjas y tendido de tuberías de drenaje", "hazard": "Rotura de servicios subterráneos, sepultamiento por colapso de zanja", "measure": "Detección previa y excavación manual combinada, respeto de ángulo de reposo" },
+    { "id": "CONST-04", "title": "Impermeabilización con uretano en azoteas y pintura de muros externos", "hazard": "Caída al vacío desde bordes, asfixia por vapores de solventes orgánicos", "measure": "Anclaje a línea de vida, ventilación forzada mediante sopladores" },
+    { "id": "CONST-05", "title": "Mantenimiento de fachadas e instalación de equipos en altura", "hazard": "Caída por rotura de cuerda, atrapamiento en plataforma elevadora (manlift)", "measure": "Instalación de línea de vida vertical independiente, inspección de dispositivos anticolisión" },
+    { "id": "CONST-06", "title": "Montaje y desmontaje de andamios de sistema para trabajos externos", "hazard": "Colapso estructural del andamio, caída de componentes sobre personas", "measure": "Instalación siguiendo especificaciones de anclajes, delimitación de zona inferior" },
+    { "id": "CONST-07", "title": "Corte de varillas y maniobras de izaje con grúa", "hazard": "Caída de materiales por rotura de aparejos, atrapamiento en cizalla", "measure": "Uso estricto de izaje de 2 puntos, uso de empujadores para corte" },
+    { "id": "CONST-08", "title": "Vaciado de concreto en losas y vigas", "hazard": "Volcamiento de camión bomba, latigazo por desprendimiento de manguera", "measure": "Refuerzo del suelo para estabilizadores, inspección de pines y acoples" },
+    { "id": "CONST-09", "title": "Demolición estructural de edificios antiguos y retiro de escombros", "hazard": "Derrumbe repentino durante demolición, riesgo de exposición a amianto", "measure": "Principio de demolición de arriba hacia abajo, inspección previa de asbesto" },
+    { "id": "CONST-10", "title": "Cableado eléctrico y sistemas contra incendios en edificios comerciales", "hazard": "Contacto eléctrico con líneas activas, caída desde escalera por sobreextensión", "measure": "Aplicación de LOTO en tablero, verificación de ausencia de tensión" }
+  ]
+}

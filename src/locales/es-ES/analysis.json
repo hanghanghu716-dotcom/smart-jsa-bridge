@@ -1,0 +1,79 @@
+{
+  "alert": {
+    "selectItem": "Por favor, seleccione un elemento para añadir.",
+    "enterFactor": "Por favor, introduzca primero el factor de riesgo.",
+    "selectCurrentMeasure": "Por favor, seleccione primero la medida de seguridad actual.",
+    "manualFactor": "Este es un factor de riesgo introducido manualmente. Por favor, introduzca la medida directamente.",
+    "needCurrentMeasure": "Por favor, seleccione primero la medida de seguridad actual a través del sistema de recomendación.",
+    "noData": "No hay datos vinculados. Por favor, introdúzcalos manualmente.",
+    "confirmMain": "¿Desea ir a la pantalla principal? Los datos en los que está trabajando podrían eliminarse.",
+    "loginRequired": "Es necesario iniciar sesión."
+  },
+  "libModal": {
+    "title": "Llamada a la biblioteca de pasos de trabajo",
+    "empty": "No hay bibliotecas guardadas.",
+    "unclassified": "Sin clasificar",
+    "backBtn": "⬅️ Volver a la lista",
+    "step": "Paso",
+    "riskCount": "Factores de riesgo incluidos"
+  },
+  "recModal": {
+    "titleCurrent": "Medida de Seguridad Actual",
+    "titleAdvanced": "Recomendaciones de Mejora",
+    "descCurrent": "Reglas de seguridad registradas para este factor de riesgo.",
+    "descAdvanced": "Propuestas de mejora de nivel superior que complementan las medidas actuales.",
+    "selectBtn": "Seleccionar"
+  },
+  "step": {
+    "basicInfo": "Información Básica",
+    "procedure": "Procedimiento de Trabajo",
+    "riskAnalysis": "Análisis de Riesgos",
+    "moduleConfig": "Configuración del Módulo",
+    "tableConfig": "Configuración de Tabla de Datos",
+    "finalOutput": "Salida Final"
+  },
+  "form": {
+    "title": "03. Análisis de Peligros y Riesgos",
+    "typeStandard": "(Estándar)",
+    "typeAdvanced": "(Avanzado)",
+    "currentStep": "Etapa Actual"
+  },
+  "filter": {
+    "label": "⚠️ Filtro de Alto Riesgo",
+    "auto": "(Sugerencia automática)",
+    "loadLibBtn": "📂",
+    "searchPlaceholder": "Buscar factores de riesgo directamente..."
+  },
+  "base": {
+    "label": "Base de Conocimientos de Seguridad (Extracción de Riesgos)",
+    "addEmptyBtn": "+ Añadir espacio en blanco",
+    "addBulkBtn": "✓ Añadir selección en bloque",
+    "emptyRec": "No hay factores de riesgo recomendados.",
+    "etc": "Otros"
+  },
+  "result": {
+    "label": "Resultado de Evaluación y Medidas",
+    "freq": "Frecuencia",
+    "sev": "Severidad"
+  },
+  "table": {
+    "factor": "Peligro / Factor de Riesgo",
+    "measure": "Medida de Mitigación",
+    "currentMeasure": "Medida de Seguridad Actual",
+    "advancedMeasure": "Recomendaciones de Mejora",
+    "delete": "Eliminar",
+    "recMeasureBtn": "Recomendar Medida",
+    "recAdvancedBtn": "Recomendar Mejora",
+    "searchBtn": "Buscar"
+  },
+  "btn": {
+    "prevStep1": "Paso Anterior (Procedimiento)",
+    "prevStep2": "Paso de Trabajo Anterior",
+    "nextComplete": "Finalizar Análisis e ir a Configuración",
+    "nextStep": "Analizar Siguiente Paso de Trabajo"
+  },
+  "searchModal": {
+    "title": "Búsqueda en DB de Medidas",
+    "placeholder": "Introduzca el término de búsqueda..."
+  }
+}

@@ -1,51 +1,51 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; 
-import { supabase } from '../supabaseClient'; 
+import { useLocation } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
-import SEO from '../components/SEO'; 
+import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
 
 export default function Analysis() {
-  const navigate = useLanguageNavigate(); 
+  const navigate = useLanguageNavigate();
   const location = useLocation();
   const scrollRef = useRef(null);
   const { t, i18n } = useTranslation(['analysis', 'tags']);
 
-  const { 
-    id: existingId = null, 
-    procedures = [], 
-    formData = {}, 
-    participants = [], 
-    analysisData: incomingAnalysisData 
+  const {
+    id: existingId = null,
+    procedures = [],
+    formData = {},
+    participants = [],
+    analysisData: incomingAnalysisData
   } = location.state || {};
-  
+
   const jsaType = formData.jsaType || '2-step';
 
-  const [dbRisks, setDbRisks] = useState([]); 
-  const [categories, setCategories] = useState([]); 
+  const [dbRisks, setDbRisks] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedHighRisk, setSelectedHighRisk] = useState(""); 
-  const [searchTerm, setSearchTerm] = useState(""); 
-  const [measureSearchModal, setMeasureSearchModal] = useState({ 
-    isOpen: false, 
-    data: [], 
-    targetRiskId: null, 
-    type: 'current' 
+  const [selectedHighRisk, setSelectedHighRisk] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [measureSearchModal, setMeasureSearchModal] = useState({
+    isOpen: false,
+    data: [],
+    targetRiskId: null,
+    type: 'current'
   });
   const [measureSearchTerm, setMeasureSearchTerm] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [checkedRisks, setCheckedRisks] = useState(new Set());
   const autoFilledRef = useRef(new Set());
 
-  const [recModal, setRecModal] = useState({ 
-    isOpen: false, 
-    data: [], 
-    targetRiskId: null, 
-    type: 'advanced' 
+  const [recModal, setRecModal] = useState({
+    isOpen: false,
+    data: [],
+    targetRiskId: null,
+    type: 'advanced'
   });
 
   const toggleCheck = (rec) => {
@@ -57,7 +57,7 @@ export default function Analysis() {
 
   const handleBulkAdd = () => {
     if (checkedRisks.size === 0) return alert(t('alert.selectItem'));
-      const newRisks = Array.from(checkedRisks).map((rec) => ({
+    const newRisks = Array.from(checkedRisks).map((rec) => ({
       id: `risk-bulk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       db_id: rec.id,
       factor: rec.risk_factor || rec.factor || "",
@@ -66,28 +66,29 @@ export default function Analysis() {
       recommend_measure: "",
       category: rec.category || t('base.etc')
     }));
-    
+
     setAnalysisData(prev => {
       const newData = [...prev];
-      newData[activeIdx] = { 
-        ...newData[activeIdx], 
-        risks: [...newData[activeIdx].risks, ...newRisks] 
+      newData[activeIdx] = {
+        ...newData[activeIdx],
+        risks: [...newData[activeIdx].risks, ...newRisks]
       };
       return newData;
     });
-    setCheckedRisks(new Set()); 
+    setCheckedRisks(new Set());
   };
 
-const handleOpenRecommendation = async (risk, type = 'advanced') => {
+  const handleOpenRecommendation = async (risk, type = 'advanced') => {
     if (type === 'current' && !risk.factor) return alert(t('alert.enterFactor'));
     if (type === 'advanced' && !risk.current_measure) return alert(t('alert.selectCurrentMeasure'));
 
     setIsLoading(true);
     let scored = [];
-    
+
     const localeMap = {
       'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
-      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE'
+      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE',
+      'es-ES': 'es-ES', 'ru-RU': 'ru-RU', 'es': 'es-ES', 'ru': 'ru-RU'
     };
     const dbLocale = localeMap[i18n.language] || 'en-US';
 
@@ -97,21 +98,21 @@ const handleOpenRecommendation = async (risk, type = 'advanced') => {
     try {
       if (type === 'current') {
         if (!risk.db_id) {
-            setIsLoading(false);
-            return alert(t('alert.manualFactor'));
+          setIsLoading(false);
+          return alert(t('alert.manualFactor'));
         }
-        
+
         console.log(`[1. Hazards_Translations 조회] 마스터 hazard_id: ${risk.db_id}`);
         const { data: hazardTrans, error: err1 } = await supabase
           .from('Hazards_Translations')
           .select('id')
           .eq('hazard_id', risk.db_id);
-          
+
         if (err1) console.error("[1번 쿼리 에러]:", err1);
 
         let hazardSearchIds = [risk.db_id];
         if (hazardTrans) {
-            hazardSearchIds.push(...hazardTrans.map(t => t.id));
+          hazardSearchIds.push(...hazardTrans.map(t => t.id));
         }
         console.log(`[1. 결과] 확보된 탐색 대상 ID 배열:`, hazardSearchIds);
 
@@ -128,62 +129,88 @@ const handleOpenRecommendation = async (risk, type = 'advanced') => {
         if (mapData && mapData.length > 0) {
           const mappedIds = [...new Set(mapData.map(m => m.measure_translation_id))];
           console.log(`[3. 양방향 식별자 검증] 대상 ID:`, mappedIds);
-          
+
           const { data: transById, error: err3a } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('id', mappedIds);
           const { data: transByMaster, error: err3b } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('measure_id', mappedIds);
-          
+
           if (err3a || err3b) console.error("[3번 쿼리 에러]:", err3a || err3b);
 
           const masterIdScoreMap = {};
           let masterIds = [];
+          let directTransIds = [];
 
           for (const m of mapData) {
             const mId = m.measure_translation_id;
             const score = m.similarity_score;
-            
+
             const foundById = transById?.find(t => t.id === mId);
             if (foundById) {
-              masterIds.push(foundById.measure_id);
-              if (!masterIdScoreMap[foundById.measure_id]) masterIdScoreMap[foundById.measure_id] = score;
+              if (foundById.measure_id) {
+                masterIds.push(foundById.measure_id);
+                if (!masterIdScoreMap[foundById.measure_id] || masterIdScoreMap[foundById.measure_id] < score) masterIdScoreMap[foundById.measure_id] = score;
+              } else {
+                directTransIds.push(mId);
+                if (!masterIdScoreMap[mId] || masterIdScoreMap[mId] < score) masterIdScoreMap[mId] = score;
+              }
             } else {
               const foundByMaster = transByMaster?.find(t => t.measure_id === mId);
-              if (foundByMaster) {
+              if (foundByMaster && foundByMaster.measure_id) {
                 masterIds.push(foundByMaster.measure_id);
-                if (!masterIdScoreMap[foundByMaster.measure_id]) masterIdScoreMap[foundByMaster.measure_id] = score;
+                if (!masterIdScoreMap[foundByMaster.measure_id] || masterIdScoreMap[foundByMaster.measure_id] < score) masterIdScoreMap[foundByMaster.measure_id] = score;
               }
             }
           }
-          
-          masterIds = [...new Set(masterIds)];
-          console.log(`[3. 결과] 도출된 최종 마스터 ID(measure_id):`, masterIds);
+
+          masterIds = [...new Set(masterIds)].filter(Boolean);
+          directTransIds = [...new Set(directTransIds)].filter(Boolean);
+          console.log(`[3. 결과] 도출된 최종 마스터 ID:`, masterIds, `Direct IDs:`, directTransIds);
+
+          let finalMeasures = [];
 
           if (masterIds.length > 0) {
-            console.log(`[4. 최종 번역본 조회] 대상 언어: ${dbLocale}`);
-            const { data: finalMeasures, error: err4 } = await supabase
+            const { data: masterMeasures, error: err4a } = await supabase
               .from('Current_Measures_Translations')
               .select('*')
               .in('measure_id', masterIds)
               .eq('locale', dbLocale);
 
-            if (err4) console.error("[4번 쿼리 에러]:", err4);
-            console.log(`[4. 결과] 최종 렌더링 데이터:`, finalMeasures);
+            if (err4a) console.error("[4-a번 쿼리 에러]:", err4a);
+            if (masterMeasures) finalMeasures.push(...masterMeasures);
+          }
 
-            if (finalMeasures) {
-              scored = finalMeasures.map(trans => ({
-                display: trans.measure_text,
-                measure_db_id: trans.measure_id,
-                similarity_score: masterIdScoreMap[trans.measure_id] || 0
-              })).sort((a, b) => b.similarity_score - a.similarity_score);
-            }
+          if (directTransIds.length > 0) {
+            const { data: directMeasures, error: err4b } = await supabase
+              .from('Current_Measures_Translations')
+              .select('*')
+              .in('id', directTransIds)
+              .eq('locale', dbLocale);
+
+            if (err4b) console.error("[4-b번 쿼리 에러]:", err4b);
+            if (directMeasures) finalMeasures.push(...directMeasures);
+          }
+
+          if (finalMeasures.length > 0) {
+            const uniqueMeasuresMap = new Map();
+            finalMeasures.forEach(trans => {
+              const mapId = trans.measure_id || trans.id;
+              if (!uniqueMeasuresMap.has(trans.id)) {
+                uniqueMeasuresMap.set(trans.id, {
+                  display: trans.measure_text,
+                  measure_db_id: mapId,
+                  similarity_score: masterIdScoreMap[mapId] || 0
+                });
+              }
+            });
+            scored = Array.from(uniqueMeasuresMap.values()).sort((a, b) => b.similarity_score - a.similarity_score);
           }
         } else {
-             console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${hazardSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
+          console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${hazardSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
         }
       } else {
         // Advanced 처리 로직
         if (!risk.current_measure_db_id) {
-            setIsLoading(false);
-            return alert(t('alert.needCurrentMeasure'));
+          setIsLoading(false);
+          return alert(t('alert.needCurrentMeasure'));
         }
 
         console.log(`[1. Current_Measures_Translations 조회] 마스터 measure_id: ${risk.current_measure_db_id}`);
@@ -191,12 +218,12 @@ const handleOpenRecommendation = async (risk, type = 'advanced') => {
           .from('Current_Measures_Translations')
           .select('id')
           .eq('measure_id', risk.current_measure_db_id);
-          
+
         if (err1) console.error("[1번 쿼리 에러]:", err1);
 
         let currSearchIds = [risk.current_measure_db_id];
         if (currTrans) {
-            currSearchIds.push(...currTrans.map(t => t.id));
+          currSearchIds.push(...currTrans.map(t => t.id));
         }
         console.log(`[1. 결과] 확보된 탐색 대상 ID 배열:`, currSearchIds);
 
@@ -213,56 +240,82 @@ const handleOpenRecommendation = async (risk, type = 'advanced') => {
         if (mapData && mapData.length > 0) {
           const mappedIds = [...new Set(mapData.map(m => m.advanced_measure_translation_id))];
           console.log(`[3. 양방향 식별자 검증] 대상 ID:`, mappedIds);
-          
+
           const { data: transById, error: err3a } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('id', mappedIds);
           const { data: transByMaster, error: err3b } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('advanced_measure_id', mappedIds);
-          
+
           if (err3a || err3b) console.error("[3번 쿼리 에러]:", err3a || err3b);
 
           const masterIdScoreMap = {};
           let masterIds = [];
+          let directTransIds = [];
 
           for (const m of mapData) {
             const mId = m.advanced_measure_translation_id;
             const score = m.similarity_score;
-            
+
             const foundById = transById?.find(t => t.id === mId);
             if (foundById) {
-              masterIds.push(foundById.advanced_measure_id);
-              if (!masterIdScoreMap[foundById.advanced_measure_id]) masterIdScoreMap[foundById.advanced_measure_id] = score;
+              if (foundById.advanced_measure_id) {
+                masterIds.push(foundById.advanced_measure_id);
+                if (!masterIdScoreMap[foundById.advanced_measure_id] || masterIdScoreMap[foundById.advanced_measure_id] < score) masterIdScoreMap[foundById.advanced_measure_id] = score;
+              } else {
+                directTransIds.push(mId);
+                if (!masterIdScoreMap[mId] || masterIdScoreMap[mId] < score) masterIdScoreMap[mId] = score;
+              }
             } else {
               const foundByMaster = transByMaster?.find(t => t.advanced_measure_id === mId);
-              if (foundByMaster) {
+              if (foundByMaster && foundByMaster.advanced_measure_id) {
                 masterIds.push(foundByMaster.advanced_measure_id);
-                if (!masterIdScoreMap[foundByMaster.advanced_measure_id]) masterIdScoreMap[foundByMaster.advanced_measure_id] = score;
+                if (!masterIdScoreMap[foundByMaster.advanced_measure_id] || masterIdScoreMap[foundByMaster.advanced_measure_id] < score) masterIdScoreMap[foundByMaster.advanced_measure_id] = score;
               }
             }
           }
-          
-          masterIds = [...new Set(masterIds)];
-          console.log(`[3. 결과] 도출된 최종 마스터 ID(advanced_measure_id):`, masterIds);
+
+          masterIds = [...new Set(masterIds)].filter(Boolean);
+          directTransIds = [...new Set(directTransIds)].filter(Boolean);
+          console.log(`[3. 결과] 도출된 최종 마스터 ID:`, masterIds, `Direct IDs:`, directTransIds);
+
+          let finalAdvMeasures = [];
 
           if (masterIds.length > 0) {
-            console.log(`[4. 최종 번역본 조회] 대상 언어: ${dbLocale}`);
-            const { data: finalAdvMeasures, error: err4 } = await supabase
+            const { data: masterMeasures, error: err4a } = await supabase
               .from('Advanced_Measures_Translations')
               .select('*')
               .in('advanced_measure_id', masterIds)
               .eq('locale', dbLocale);
 
-            if (err4) console.error("[4번 쿼리 에러]:", err4);
-            console.log(`[4. 결과] 최종 렌더링 데이터:`, finalAdvMeasures);
+            if (err4a) console.error("[4-a번 쿼리 에러]:", err4a);
+            if (masterMeasures) finalAdvMeasures.push(...masterMeasures);
+          }
 
-            if (finalAdvMeasures) {
-              scored = finalAdvMeasures.map(trans => ({
-                display: trans.solution_text,
-                advanced_db_id: trans.advanced_measure_id,
-                similarity_score: masterIdScoreMap[trans.advanced_measure_id] || 0
-              })).sort((a, b) => b.similarity_score - a.similarity_score).slice(0, 3);
-            }
+          if (directTransIds.length > 0) {
+            const { data: directMeasures, error: err4b } = await supabase
+              .from('Advanced_Measures_Translations')
+              .select('*')
+              .in('id', directTransIds)
+              .eq('locale', dbLocale);
+
+            if (err4b) console.error("[4-b번 쿼리 에러]:", err4b);
+            if (directMeasures) finalAdvMeasures.push(...directMeasures);
+          }
+
+          if (finalAdvMeasures.length > 0) {
+            const uniqueAdvMap = new Map();
+            finalAdvMeasures.forEach(trans => {
+              const mapId = trans.advanced_measure_id || trans.id;
+              if (!uniqueAdvMap.has(trans.id)) {
+                uniqueAdvMap.set(trans.id, {
+                  display: trans.solution_text,
+                  advanced_db_id: mapId,
+                  similarity_score: masterIdScoreMap[mapId] || 0
+                });
+              }
+            });
+            scored = Array.from(uniqueAdvMap.values()).sort((a, b) => b.similarity_score - a.similarity_score).slice(0, 3);
           }
         } else {
-             console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${currSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
+          console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${currSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
         }
       }
     } catch (err) {
@@ -277,7 +330,7 @@ const handleOpenRecommendation = async (risk, type = 'advanced') => {
   };
 
 
-const applyRecommendedMeasure = (item) => {
+  const applyRecommendedMeasure = (item) => {
     if (jsaType === '2-step') {
       updateRiskField(recModal.targetRiskId, 'measure', item.display);
     } else if (recModal.type === 'current') {
@@ -289,7 +342,7 @@ const applyRecommendedMeasure = (item) => {
     setRecModal({ isOpen: false, data: [], targetRiskId: null, type: 'advanced' });
   };
 
-// 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수
+  // 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수
   const openMeasureSearch = (risk, type) => {
     setMeasureSearchModal({ isOpen: true, data: [], targetRiskId: risk.id, type });
     setMeasureSearchTerm("");
@@ -300,53 +353,49 @@ const applyRecommendedMeasure = (item) => {
       setMeasureSearchModal(prev => ({ ...prev, data: [] }));
       return;
     }
-    setIsSearchLoading(true); // ✅ 해결: 모달 내부 전용 로딩 상태로 변경
+    setIsSearchLoading(true);
 
     const localeMap = {
       'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
-      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE'
+      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE',
+      'es-ES': 'es-ES', 'ru-RU': 'ru-RU', 'es': 'es-ES', 'ru': 'ru-RU'
     };
     const dbLocale = localeMap[i18n.language] || 'en-US';
 
-let results = [];
-    // 입력값을 공백 기준으로 토큰화 (빈 문자열 제거)
+    let results = [];
     const tokens = term.trim().split(/\s+/).filter(t => t.length > 0);
 
     if (measureSearchModal.type === 'current') {
-      // Query Builder 초기화
       let query = supabase
         .from('Current_Measures_Translations')
-        .select('measure_id, measure_text')
+        .select('id, measure_id, measure_text')
         .eq('locale', dbLocale);
-      
-      // 토큰 수만큼 AND ILIKE 체이닝 적용
+
       tokens.forEach(token => {
         query = query.ilike('measure_text', `%${token}%`);
       });
 
       const { data, error } = await query.limit(30);
       if (!error && data) {
-        results = data.map(d => ({ display: d.measure_text, db_id: d.measure_id }));
+        results = data.map(d => ({ display: d.measure_text, db_id: d.measure_id || d.id }));
       }
     } else {
-      // Query Builder 초기화
       let query = supabase
         .from('Advanced_Measures_Translations')
-        .select('advanced_measure_id, solution_text')
+        .select('id, advanced_measure_id, solution_text')
         .eq('locale', dbLocale);
-      
-      // 토큰 수만큼 AND ILIKE 체이닝 적용
+
       tokens.forEach(token => {
         query = query.ilike('solution_text', `%${token}%`);
       });
 
       const { data, error } = await query.limit(30);
       if (!error && data) {
-        results = data.map(d => ({ display: d.solution_text, db_id: d.advanced_measure_id }));
+        results = data.map(d => ({ display: d.solution_text, db_id: d.advanced_measure_id || d.id }));
       }
     }
 
-  setIsSearchLoading(false);
+    setIsSearchLoading(false);
     setMeasureSearchModal(prev => ({ ...prev, data: results }));
   };
 
@@ -360,7 +409,7 @@ let results = [];
     } else {
       updateRiskField(measureSearchModal.targetRiskId, 'recommend_measure', item.display);
     }
-    
+
     // 모달 상태 및 검색어 초기화
     setMeasureSearchModal({ isOpen: false, data: [], targetRiskId: null, type: 'current' });
     setMeasureSearchTerm("");
@@ -369,7 +418,7 @@ let results = [];
   // ✅ 실시간 타이핑 감지 및 디바운스(0.3초 대기 후 검색 실행) 로직
   useEffect(() => {
     if (!measureSearchModal.isOpen) return;
-    
+
     const delayDebounceFn = setTimeout(() => {
       executeMeasureSearch(measureSearchTerm);
     }, 300);
@@ -388,12 +437,13 @@ let results = [];
       setIsLoading(true);
       const localeMap = {
         'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
-        'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE'
+        'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE',
+        'es-ES': 'es-ES', 'ru-RU': 'ru-RU', 'es': 'es-ES', 'ru': 'ru-RU'
       };
       const dbLocale = localeMap[i18n.language] || 'en-US';
       setSelectedHighRisk("");
 
-      const [ { data: origHazards, error: origErr }, { data: transHazards, error: transErr } ] = await Promise.all([
+      const [{ data: origHazards, error: origErr }, { data: transHazards, error: transErr }] = await Promise.all([
         supabase.from('Hazards').select('*'),
         supabase.from('Hazards_Translations').select('*').eq('locale', dbLocale)
       ]);
@@ -402,8 +452,8 @@ let results = [];
         const mappedData = transHazards.map(trans => {
           const orig = origHazards.find(o => o.id === trans.hazard_id) || {};
           return {
-            ...orig, 
-            id: trans.hazard_id, 
+            ...orig,
+            id: trans.hazard_id || trans.id,
             risk_factor: trans.hazard_name,
             category: trans.category || orig.category,
             source: 'master'
@@ -439,7 +489,7 @@ let results = [];
       category: r.category || t('base.etc'),
       source: '공유'
     }));
-    
+
     setAnalysisData(prev => {
       const newData = [...prev];
       newData[activeIdx] = { ...newData[activeIdx], risks: [...newData[activeIdx].risks, ...mappedRisks] };
@@ -454,7 +504,7 @@ let results = [];
     const tokens = combinedText.split(/[\s,./]+/).filter(t => t.trim().length >= 2);
     const uniqueTokens = [...new Set(tokens.map(t => t.toLowerCase()))];
     let matchedRisks = [];
-    const seenFactors = new Set(); 
+    const seenFactors = new Set();
     dbRisks.forEach(item => {
       const isMatched = item.keywords?.some(kw => uniqueTokens.some(token => token.includes(kw.toLowerCase())));
       if (isMatched && !seenFactors.has(item.risk_factor)) {
@@ -482,7 +532,7 @@ let results = [];
       let matched = [];
       if (searchTerm) {
         // 검색어가 있을 경우: 전체 DB에서 검색
-        const filtered = dbRisks.filter(r => 
+        const filtered = dbRisks.filter(r =>
           r.risk_factor.toLowerCase().includes(searchTerm.toLowerCase()) ||
           r.category?.toLowerCase().includes(searchTerm.toLowerCase())
         );
@@ -497,7 +547,7 @@ let results = [];
         matched = Array.from(new Map(rawMatched.map(item => [item.risk_factor, item])).values());
       }
       setRecommendations(matched);
-      setCheckedRisks(new Set()); 
+      setCheckedRisks(new Set());
     };
     updateRecommendations();
   }, [activeIdx, currentStep.proc, selectedHighRisk, searchTerm, dbRisks]); // ✅ searchTerm 의존성 추가
@@ -507,12 +557,12 @@ let results = [];
       const newData = [...prev];
       newData[activeIdx] = {
         ...newData[activeIdx],
-        risks: [...newData[activeIdx].risks, { 
-          id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, 
-          db_id: rec.id, 
+        risks: [...newData[activeIdx].risks, {
+          id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          db_id: rec.id,
           factor: rec.risk_factor || rec.factor || "",
-          measure: "", current_measure: "", recommend_measure: "", 
-          category: rec.category || t('base.etc') 
+          measure: "", current_measure: "", recommend_measure: "",
+          category: rec.category || t('base.etc')
         }]
       };
       return newData;
@@ -545,10 +595,12 @@ let results = [];
   };
 
   const handlePrev = () => {
-    if (activeIdx === 0) navigate('/procedure', { 
-      state: { id: existingId, formData, participants, procedures, analysisData,
-        isFork: location.state?.isFork, parentId: location.state?.parentId, 
-        originalAnalysisData: location.state?.originalAnalysisData } 
+    if (activeIdx === 0) navigate('/procedure', {
+      state: {
+        id: existingId, formData, participants, procedures, analysisData,
+        isFork: location.state?.isFork, parentId: location.state?.parentId,
+        originalAnalysisData: location.state?.originalAnalysisData
+      }
     });
     else setActiveIdx(activeIdx - 1);
   };
@@ -557,7 +609,7 @@ let results = [];
     <div style={styles.wrapper}>
       <SEO />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
-      
+
       {isLibraryModalOpen && (
         <div style={styles.dialogOverlay} onClick={() => setIsLibraryModalOpen(false)}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
@@ -569,15 +621,15 @@ let results = [];
             <div style={styles.libList}>
               {!selectedLibProject ? (
                 myLibraryItems.length === 0 ? <p style={styles.emptyText}>{t('libModal.empty')}</p> :
-                myLibraryItems.map(item => (
-                  <div key={item.id} style={styles.libItem} onClick={() => setSelectedLibProject(item.jsa_projects)}>
-                    <div style={styles.libInfo}>
-                      <span style={styles.libCategory}>{item.jsa_projects.tags?.[0] || t('libModal.unclassified')}</span>
-                      <span style={styles.libTitleText}>{item.jsa_projects.title}</span>
+                  myLibraryItems.map(item => (
+                    <div key={item.id} style={styles.libItem} onClick={() => setSelectedLibProject(item.jsa_projects)}>
+                      <div style={styles.libInfo}>
+                        <span style={styles.libCategory}>{item.jsa_projects.tags?.[0] || t('libModal.unclassified')}</span>
+                        <span style={styles.libTitleText}>{item.jsa_projects.title}</span>
+                      </div>
+                      <span>➡️</span>
                     </div>
-                    <span>➡️</span>
-                  </div>
-                ))
+                  ))
               ) : (
                 <>
                   <button style={styles.backBtn} onClick={() => setSelectedLibProject(null)}>{t('libModal.backBtn')}</button>
@@ -609,7 +661,7 @@ let results = [];
                 {recModal.type === 'current' ? t('recModal.descCurrent') : t('recModal.descAdvanced')}
               </p>
               {recModal.data.map((item, idx) => (
-                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>                  
+                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>
                   <div style={{ ...styles.libInfo, flex: 1 }}>
                     <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>
                       {item.similarity_score && (
@@ -627,7 +679,7 @@ let results = [];
           </div>
         </div>
       )}
-{/* 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수 */}
+      {/* 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수 */}
       {measureSearchModal.isOpen && (
         <div style={styles.dialogOverlay} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
@@ -648,18 +700,18 @@ let results = [];
               />
             </div>
 
-            
 
-        {/* 리스트 컨테이너 높이를 400px로 고정하여 모달 크기가 요동치는 현상 방지 */}
+
+            {/* 리스트 컨테이너 높이를 400px로 고정하여 모달 크기가 요동치는 현상 방지 */}
             <div style={{ ...styles.libList, height: '400px' }}>
               {isSearchLoading ? (
-                 // 👇 [기능 추가] 타이핑 후 DB를 읽어오는 동안 표시될 로컬 로딩 텍스트
-                 <p style={styles.emptyText}>{t('base.searching', '검색 중...')}</p>
+                // 👇 [기능 추가] 타이핑 후 DB를 읽어오는 동안 표시될 로컬 로딩 텍스트
+                <p style={styles.emptyText}>{t('base.searching', '검색 중...')}</p>
               ) : measureSearchTerm && measureSearchModal.data.length === 0 ? (
-                 <p style={styles.emptyText}>{t('base.emptyRec')}</p>
+                <p style={styles.emptyText}>{t('base.emptyRec')}</p>
               ) : (
                 measureSearchModal.data.map((item, idx) => (
-                  <div key={idx} style={styles.libItem} onClick={() => applySearchedMeasure(item)}>                  
+                  <div key={idx} style={styles.libItem} onClick={() => applySearchedMeasure(item)}>
                     <div style={{ ...styles.libInfo, flex: 1 }}>
                       <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
                     </div>
@@ -669,7 +721,7 @@ let results = [];
               )}
             </div>
 
-            
+
           </div>
         </div>
       )}
@@ -688,7 +740,7 @@ let results = [];
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            
+
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div>
               <div style={styles.stepLineActive} />
@@ -719,14 +771,14 @@ let results = [];
                 <section style={styles.leftPanel}>
                   {/* ✅ [수정] 검색창 추가 및 필터 레이아웃 조정 */}
                   <div style={styles.filterArea}>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder={t('filter.searchPlaceholder') || "위험요소 검색..."}
                       style={styles.searchInput}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => {setSelectedHighRisk(e.target.value); setSearchTerm("");}}>
+                    <select style={styles.highRiskSelect} value={selectedHighRisk} onChange={(e) => { setSelectedHighRisk(e.target.value); setSearchTerm(""); }}>
                       <option value="">{t('filter.auto')}</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
@@ -734,11 +786,11 @@ let results = [];
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-                  {/* white-space: pre-line 속성을 부여하여 JSON 내 \n 이 실제 줄바꿈으로 작동하게 처리 */}
-                  <span style={{ ...styles.label, whiteSpace: 'pre-line', lineHeight: '1.4' }}>
-                    {t('base.label')}
-                  </span>           
-                   <div style={{ display: 'flex', gap: '8px' }}>
+                    {/* white-space: pre-line 속성을 부여하여 JSON 내 \n 이 실제 줄바꿈으로 작동하게 처리 */}
+                    <span style={{ ...styles.label, whiteSpace: 'pre-line', lineHeight: '1.4' }}>
+                      {t('base.label')}
+                    </span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
                       <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
                       <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>
@@ -768,13 +820,13 @@ let results = [];
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
 
-              
+
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
-                      <div style={{...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff'}}>{currentStep.riskLevel}</div>
+                      <div style={{ ...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff' }}>{currentStep.riskLevel}</div>
                     </div>
                   </div>
-                  
+
                   <div style={styles.selectedListScroll}>
                     <table style={styles.table}>
                       <thead>
@@ -798,28 +850,11 @@ let results = [];
                               <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
                             </td>
 
-                        {jsaType === '2-step' ? (
-                            <td style={styles.td}>
-                              <div style={{ position: 'relative', width: '100%' }}>
-                                <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
-                              {!r.measure?.trim() && (
-                                  <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                    <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
-                                      {t('table.searchBtn')}
-                                    </button>
-                                    <button style={{ backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
-                                      {t('table.recMeasureBtn')}
-                                    </button>
-                                  </div>
-                                )}
-                              </div>
-                            </td>
-                          ) : (
-                            <>
+                            {jsaType === '2-step' ? (
                               <td style={styles.td}>
                                 <div style={{ position: 'relative', width: '100%' }}>
-                                  <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
-                                  {!r.current_measure?.trim() && (
+                                  <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
+                                  {!r.measure?.trim() && (
                                     <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
                                       <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
                                         {t('table.searchBtn')}
@@ -831,34 +866,51 @@ let results = [];
                                   )}
                                 </div>
                               </td>
-                              <td style={styles.td}>
-                                <div style={{ position: 'relative', width: '100%' }}>
-                                  <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
-                                  {!r.recommend_measure?.trim() && (
-                                    <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                      <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'advanced')}>
-                                        {t('table.searchBtn')}
-                                      </button>
-                                      <button style={{ backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
-                                        {t('table.recAdvancedBtn')}
-                                      </button>
-                                    </div>
-                                  )}
-                                </div>
-                              </td>
-                            </>
-                          )}
+                            ) : (
+                              <>
+                                <td style={styles.td}>
+                                  <div style={{ position: 'relative', width: '100%' }}>
+                                    <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
+                                    {!r.current_measure?.trim() && (
+                                      <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
+                                        <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
+                                          {t('table.searchBtn')}
+                                        </button>
+                                        <button style={{ backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                          {t('table.recMeasureBtn')}
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
+                                </td>
+                                <td style={styles.td}>
+                                  <div style={{ position: 'relative', width: '100%' }}>
+                                    <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
+                                    {!r.recommend_measure?.trim() && (
+                                      <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
+                                        <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'advanced')}>
+                                          {t('table.searchBtn')}
+                                        </button>
+                                        <button style={{ backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
+                                          {t('table.recAdvancedBtn')}
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
+                                </td>
+                              </>
+                            )}
 
 
                             <td style={{ textAlign: 'center' }}>
-                              <button style={styles.smallDeleteBtn} onClick={() => { 
-                                setAnalysisData(prev => { 
-                                  const newData = [...prev]; 
-                                  newData[activeIdx] = { ...newData[activeIdx], risks: newData[activeIdx].risks.filter(risk => risk.id !== r.id) }; 
-                                  return newData; 
-                                }); 
+                              <button style={styles.smallDeleteBtn} onClick={() => {
+                                setAnalysisData(prev => {
+                                  const newData = [...prev];
+                                  newData[activeIdx] = { ...newData[activeIdx], risks: newData[activeIdx].risks.filter(risk => risk.id !== r.id) };
+                                  return newData;
+                                });
                               }}>×</button>
-                            </td>                          
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -870,9 +922,11 @@ let results = [];
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? t('btn.prevStep1') : t('btn.prevStep2')}</button>
-              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', { 
-                state: { existingId, analysisData, formData, participants, procedures,
-                  isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData } 
+              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', {
+                state: {
+                  existingId, analysisData, formData, participants, procedures,
+                  isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData
+                }
               })}>
                 {activeIdx === analysisData.length - 1 ? t('btn.nextComplete') : t('btn.nextStep')}
               </button>
@@ -896,8 +950,7 @@ let results = [];
 
 const styles = {
   // ✅ [추가] 검색창 전용 스타일
-  searchInput: { flex: 1.2, backgroundColor: '#1a1a1a', border: '1px solid #333', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', fontSize: '0.85rem', outline: 'none' },
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
+  searchInput: { flex: 1.2, minWidth: 0, backgroundColor: '#1a1a1a', border: '1px solid #333', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', fontSize: '0.85rem', outline: 'none' }, wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
@@ -933,8 +986,7 @@ const styles = {
   leftPanel: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
   filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
-  highRiskSelect: { flex: 1, backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' },
-libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 },  recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
+  highRiskSelect: { flex: 1, minWidth: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }, libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 }, recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
   riskScoreContainer: { display: 'flex', gap: '1rem', alignItems: 'center' },
   riskInputSet: { display: 'flex', flexDirection: 'column', alignItems: 'center' },

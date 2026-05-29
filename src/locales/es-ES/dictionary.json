@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENÚ",
+    "close": "✕ CERRAR"
+  },
+  "drawer": {
+    "contents": "CONTENIDOS",
+    "regulation": "Guía de Normas de Ejecución de Evaluación de Riesgos",
+    "jrajsa": "Proceso Práctico de Evaluación (JRA/JSA)",
+    "protectiveEquipment": "Sobre los Equipos de Protección (EPP)",
+    "riskClassification": "Trabajo General / Alto Riesgo",
+    "dictionary": "DB de Peligros y Medidas"
+  },
+  "hero": {
+    "tag": "INTELLIGENT RISK DATABASE",
+    "titleLine1": "Diccionario Integrado de Peligros",
+    "titleLine2": "Estándar y Medidas de Mitigación",
+    "seoText1": "Esta base de datos ofrece el emparejamiento de más de 1,000 peligros estándar y sus medidas correspondientes, basados en las guías de KOSHA y la Ley de Seguridad y Salud Industrial. Los gestores y trabajadores pueden identificar riesgos potenciales por proceso y establecer medidas efectivas.",
+    "seoText2": "Los datos proporcionados son referenciales para la prevención de accidentes. Deben editarse y aplicarse según el entorno real, equipos y experiencia del trabajador. Una evaluación de riesgos precisa es el puente más sólido hacia un entorno sin accidentes."
+  },
+  "filter": {
+    "allCategories": "Todos los Procesos (All)",
+    "searchPlaceholder": "Buscar palabras clave de peligros o medidas...",
+    "searchBtn": "Buscar",
+    "resultPrefix": "Se han encontrado",
+    "resultSuffix": "registros de datos."
+  },
+  "data": {
+    "loading": "Cargando datos...",
+    "empty": "No hay resultados. Intente con otras palabras clave.",
+    "riskFactorLabel": "Peligro / Factor de Riesgo (Hazard)",
+    "currentMeasureLabel": "Medida de Seguridad Actual (Current)",
+    "advancedMeasureLabel": "Medida de Seguridad Adicional (Advanced)"
+  },
+  "pagination": {
+    "prev": "Anterior",
+    "next": "Siguiente"
+  }
+}

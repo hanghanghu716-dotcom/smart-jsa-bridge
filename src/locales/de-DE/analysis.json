@@ -71,5 +71,9 @@
     "prevStep2": "Vorheriger Aufgabenschritt",
     "nextComplete": "Analyse abschließen & zur Modul-Konfig",
     "nextStep": "Nächsten Aufgabenschritt analysieren"
+  },
+  "searchModal": {
+    "title": "Maßnahmen-DB-Suche",
+    "placeholder": "Suchbegriffe eingeben..."
   }
 }
