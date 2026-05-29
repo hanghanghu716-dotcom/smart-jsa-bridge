@@ -4,7 +4,16 @@ import { useLocation, Link } from 'react-router-dom';
 const MobileGuard = ({ children }) => {
   const location = useLocation();
 
-  // 1. 모바일에서 허용할 상세 경로 목록 (사용자 요청 반영)
+  // 지원하는 언어 코드 목록 (App.jsx 또는 SEO.jsx와 동일하게 유지)
+  const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR'];
+  const segments = location.pathname.split('/');
+
+  // URL에 언어 코드가 포함되어 있다면 제거한 '순수 경로'를 추출
+  const purePath = supportedLangs.includes(segments[1]) 
+    ? '/' + segments.slice(2).join('/') 
+    : location.pathname;
+
+  // 1. 모바일에서 허용할 상세 경로 목록 (언어 코드를 제외한 순수 경로 기준)
   const allowedPaths = [
     '/jrajsa',
     '/about',
@@ -14,16 +23,15 @@ const MobileGuard = ({ children }) => {
     '/regulation',
     '/riskclassification',
     '/protectiveequipment',
-    'main',
-    '',
     '/guideline', // 모든 하위 가이드 경로 포함
   ];
 
   // 2. 경로 일치 여부 판별 로직
-  // - 메인 페이지('/')이거나, 허용 목록에 포함된 경로로 시작하는지 확인
+  // 메인 페이지( '/' 또는 '' )이거나 허용 목록의 경로로 시작하는지 검증
   const isAllowedPath = 
-    location.pathname === '/' || 
-    allowedPaths.some(path => location.pathname.startsWith(path));
+    purePath === '/' || 
+    purePath === '' || 
+    allowedPaths.some(path => purePath.startsWith(path));
 
   return (
     <>

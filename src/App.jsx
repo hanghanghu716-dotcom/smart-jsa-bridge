@@ -98,8 +98,7 @@ export default function App() {
         
         <MobileGuard>
           <Routes>
-            <Route path="/" element={<div style={{ backgroundColor: '#000', minHeight: '100vh' }} />} />
-
+            <Route path="/" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />

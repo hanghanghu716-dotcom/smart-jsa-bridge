@@ -1,19 +1,23 @@
-// src/components/AdSenseUnit.jsx
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const AdSenseUnit = ({ client, slot, format = 'auto', responsive = 'true', style = {} }) => {
+  const adRef = useRef(null);
+
   useEffect(() => {
     try {
-      // 컴포넌트가 렌더링된 후 애드센스 스크립트를 한 번만 실행합니다.
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      // React Strict Mode 및 SPA 라우팅 시 광고 중복 호출 방지
+      if (adRef.current && !adRef.current.getAttribute('data-adsbygoogle-status')) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
     } catch (e) {
       console.error('AdSense error:', e);
     }
-  }, []); // 빈 배열은 마운트 시 한 번만 실행됨을 의미합니다.
+  }, [client, slot]); 
 
   return (
     <div className="adsense-wrapper" style={{ overflow: 'hidden', ...style }}>
       <ins
+        ref={adRef}
         className="adsbygoogle"
         style={{ display: 'block', ...style }}
         data-ad-client={client}
