@@ -58,162 +58,52 @@ export default function FactorDictionary() {
     fetchCategories();
   }, [currentLocale]);
 
-  // [수정] DB 페이징(.range)을 제거하고 전체 데이터를 매핑 및 조립
+// 데이터 조회 함수 (서버 사이드 페이징 적용)
   const fetchData = async () => {
     setLoading(true);
     try {
-      let hazardQuery = supabase
-        .from('Hazards_Translations')
-        .select('id, hazard_id, hazard_name, category, keywords') // count: 'exact' 제거
+      // 1. 현재 페이지에 맞는 DB 조회 범위(Range) 계산
+      const from = (currentPage - 1) * ITEMS_PER_PAGE;
+      const to = from + ITEMS_PER_PAGE - 1;
+
+      // 2. 단일 View 에서 조립된 데이터를 요청 (페이지네이션 및 총 개수 동시 반환)
+      let query = supabase
+        .from('factor_dictionary_view')
+        .select('*', { count: 'exact' }) // 전체 아이템 개수를 헤더로 반환
         .eq('locale', currentLocale);
 
       if (categoryFilter) {
-        hazardQuery = hazardQuery.eq('category', categoryFilter);
+        query = query.eq('category', categoryFilter);
       }
 
       if (searchTerm) {
-        hazardQuery = hazardQuery.or(`hazard_name.ilike.%${searchTerm}%,keywords.ilike.%${searchTerm}%`);
+        query = query.or(`hazard_name.ilike.%${searchTerm}%,keywords.ilike.%${searchTerm}%`);
       }
 
-      // 정렬만 유지하고 일괄 Fetch
-      hazardQuery = hazardQuery.order('hazard_id', { ascending: true });
+      // 3. 20개만 잘라서 가져오기
+      const { data: resultData, count, error } = await query
+        .order('hazard_id', { ascending: true })
+        .range(from, to);
 
-      const { data: hazards, error: hErr } = await hazardQuery;
+      if (error) throw error;
 
-      if (hErr) throw hErr;
-      
-      if (!hazards || hazards.length === 0) {
-        setAllData([]);
-        setTotalCount(0);
-        setCurrentPage(1);
-        return;
-      }
+      // 4. 상태 업데이트 (전체 데이터를 저장하지 않고 현재 화면 데이터만 저장)
+      setData(resultData || []);
+      setTotalCount(count || 0);
 
-      const hazardTransIds = hazards.map(h => h.id);
-      const hazardMasterIds = hazards.map(h => h.hazard_id);
-      const allSearchIds = [...new Set([...hazardTransIds, ...hazardMasterIds])];
-
-      const SIMILARITY_THRESHOLD = 0.3;
-
-      const { data: hMapData, error: mErr1 } = await supabase
-        .from('hazard_measure_mappings')
-        .select('hazard_translation_id, measure_translation_id, similarity_score')
-        .in('hazard_translation_id', allSearchIds)
-        .gte('similarity_score', SIMILARITY_THRESHOLD)
-        .order('similarity_score', { ascending: false });
-
-      if (mErr1) console.error("Mapping Error 1:", mErr1);
-
-      const currentTransIds = [...new Set(hMapData?.map(m => m.measure_translation_id) || [])];
-      
-      let currentMeasures = [];
-      let advMapData = [];
-      let advancedMeasures = [];
-
-      if (currentTransIds.length > 0) {
-        const { data: cData } = await supabase
-          .from('Current_Measures_Translations')
-          .select('id, measure_id, measure_text, locale')
-          .in('id', currentTransIds)
-          .eq('locale', currentLocale);
-        currentMeasures = cData || [];
-
-        const currentMasterIds = currentMeasures.map(c => c.measure_id).filter(Boolean);
-        const allCurrentSearchIds = [...new Set([...currentTransIds, ...currentMasterIds])];
-
-        const { data: aMapData } = await supabase
-          .from('current_advanced_measure_mappings')
-          .select('current_measure_translation_id, advanced_measure_translation_id, similarity_score')
-          .in('current_measure_translation_id', allCurrentSearchIds)
-          .gte('similarity_score', SIMILARITY_THRESHOLD)
-          .order('similarity_score', { ascending: false });
-        advMapData = aMapData || [];
-
-        const advTransIds = [...new Set(advMapData.map(a => a.advanced_measure_translation_id))];
-        if (advTransIds.length > 0) {
-          const { data: aData } = await supabase
-            .from('Advanced_Measures_Translations')
-            .select('id, advanced_measure_id, solution_text')
-            .in('id', advTransIds)
-            .eq('locale', currentLocale);
-          advancedMeasures = aData || [];
-        }
-      }
-
-      let assembledData = [];
-
-      hazards.forEach(hazard => {
-        const targetIds = [hazard.id, hazard.hazard_id];
-        const hMaps = hMapData?.filter(m => targetIds.includes(m.hazard_translation_id)) || [];
-
-        if (hMaps.length === 0) {
-          assembledData.push({
-            id: `${hazard.id}-none`,
-            category: hazard.category,
-            hazard_name: hazard.hazard_name,
-            measure_text: null,
-            solution_text: null,
-            keywords: hazard.keywords
-          });
-          return;
-        }
-
-        hMaps.forEach(hMap => {
-          const currentM = currentMeasures.find(c => c.id === hMap.measure_translation_id || c.measure_id === hMap.measure_translation_id);
-          
-          if (!currentM) return;
-
-          const cTargetIds = [currentM.id, currentM.measure_id];
-          const advMaps = advMapData.filter(a => cTargetIds.includes(a.current_measure_translation_id));
-
-          if (advMaps.length === 0) {
-            assembledData.push({
-              id: `${hazard.id}-${currentM.id}-none`,
-              category: hazard.category,
-              hazard_name: hazard.hazard_name,
-              measure_text: currentM.measure_text,
-              solution_text: null,
-              keywords: hazard.keywords
-            });
-            return;
-          }
-
-          advMaps.forEach(aMap => {
-            const advM = advancedMeasures.find(adv => adv.id === aMap.advanced_measure_translation_id || adv.advanced_measure_id === aMap.advanced_measure_translation_id);
-            assembledData.push({
-              id: `${hazard.id}-${currentM.id}-${advM?.id || Math.random().toString(36).substr(2, 9)}`,
-              category: hazard.category,
-              hazard_name: hazard.hazard_name,
-              measure_text: currentM.measure_text,
-              solution_text: advM?.solution_text || null,
-              keywords: hazard.keywords
-            });
-          });
-        });
-      });
-
-      // [수정] 조립이 완료된 전체 객체 배열을 상태에 저장하고, 정확한 요소 수를 할당
-      setAllData(assembledData);
-      setTotalCount(assembledData.length);
-      setCurrentPage(1);
     } catch (error) {
-      console.error('데이터를 불러오는 중 오류 발생:', error.message);
+      console.error('데이터 조회 오류:', error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  // [수정] 검색 필터가 바뀔 때만 DB Fetch 수행 (currentPage 분리)
+  // [수정] 검색 필터뿐만 아니라 '페이지 번호(currentPage)'가 바뀔 때도 DB를 다시 호출하도록 의존성 배열 수정
   useEffect(() => {
     fetchData();
-  }, [categoryFilter, currentLocale]);
+  }, [categoryFilter, currentLocale, currentPage]); 
 
-  // [추가] currentPage가 변경될 때 allData에서 slice 처리하여 렌더링 최적화
-  useEffect(() => {
-    const from = (currentPage - 1) * ITEMS_PER_PAGE;
-    const to = from + ITEMS_PER_PAGE;
-    setData(allData.slice(from, to));
-  }, [allData, currentPage]);
+  // [제거] 기존에 존재하던 useEffect (allData.slice 처리 부분)는 완전히 삭제합니다.
 
   const handleSearch = (e) => {
     e.preventDefault();

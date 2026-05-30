@@ -117,20 +117,23 @@ export default function Main() {
         <header style={styles.header} className="max-lg:!px-6">
           <div className="flex justify-between items-center h-full">
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-
-            <div style={styles.headerRight}>
-              <div className="hidden lg:flex items-center">
-                <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
-                <span
-                  style={{ ...styles.headerLink, cursor: 'pointer' }}
-                  onClick={() => {
-                    if (user) { navigate('/library'); }
-                    else { setIsStartModalOpen(true); }
-                  }}
-                >
-                  {t('navLibrary')}
-                </span>
-              </div>
+              <div style={styles.headerRight}>
+                <div className="hidden lg:flex items-center">
+                  {/* 크롤러 탐색 보장을 위해 핵심 정보성 가이드 링크 상시 노출 추가 */}
+                  <LanguageLink to="/regulation" style={styles.headerLink}>{t('navRegulation')}</LanguageLink>
+                  <LanguageLink to="/jrajsa" style={styles.headerLink}>{t('navProcess')}</LanguageLink>
+                  <LanguageLink to="/dictionary" style={styles.headerLink}>{t('navDB')}</LanguageLink>
+                  <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
+                  <span
+                    style={{ ...styles.headerLink, cursor: 'pointer' }}
+                    onClick={() => {
+                      if (user) { navigate('/library'); }
+                      else { setIsStartModalOpen(true); }
+                    }}
+                  >
+                    {t('navLibrary')}
+                  </span>
+                </div>
               <span style={styles.separator}>|</span>
 
               <div style={styles.languageSelectorWrapper}>
@@ -281,21 +284,39 @@ export default function Main() {
             <span style={styles.m3Tag} className="block mb-4">ANALYSIS GUIDES</span>
             <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>{t('analysisGuideTitle')}</h3>
           </div>
-          <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0">
-            {['01', '02', '03', '04', '05', '06', '07', '08', '09'].map(id => (
-              <div key={id} style={styles.jsaCard}>
-                <span style={styles.jsaBadge}>{id}</span>
-                <h5 style={styles.jsaCardTitle}>{t(`jsaCard.${id}.title`)}</h5>
-                <div style={styles.jsaFactorBox}>
-                  <strong>{t('hazardFactor')}</strong>
-                  <p className="text-sm mt-1">{t(`jsaCard.${id}.f`)}</p>
-                </div>
-                <div style={styles.jsaMeasureBox}>
-                  <strong>{t('reductionMeasure')}</strong>
-                  <p className="text-sm mt-1">{t(`jsaCard.${id}.m`)}</p>
-                </div>
-              </div>
-            ))}
+            <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0">
+            {['01', '02', '03', '04', '05', '06', '07', '08', '09'].map(id => {
+              // 크롤러의 데이터 스크랩 유도를 위해 ID별 실제 정적 라우터 경로 할당
+              const guidePaths = {
+                '01': '/guideline/common',
+                '02': '/guideline/construction',
+                '03': '/guideline/manufacturing',
+                '04': '/guideline/chemical',
+                '05': '/guideline/high-risk',
+                '06': '/guideline/general',
+                '07': '/guideline/common',
+                '08': '/guideline/construction',
+                '09': '/guideline/manufacturing'
+              };
+              const targetPath = guidePaths[id] || '/guideline/common';
+
+              return (
+                <LanguageLink key={id} to={targetPath} style={{ textDecoration: 'none', display: 'block' }}>
+                  <div style={{ ...styles.jsaCard, cursor: 'pointer' }}>
+                    <span style={styles.jsaBadge}>{id}</span>
+                    <h5 style={styles.jsaCardTitle}>{t(`jsaCard.${id}.title`)}</h5>
+                    <div style={styles.jsaFactorBox}>
+                      <strong>{t('hazardFactor')}</strong>
+                      <p className="text-sm mt-1">{t(`jsaCard.${id}.f`)}</p>
+                    </div>
+                    <div style={styles.jsaMeasureBox}>
+                      <strong>{t('reductionMeasure')}</strong>
+                      <p className="text-sm mt-1">{t(`jsaCard.${id}.m`)}</p>
+                    </div>
+                  </div>
+                </LanguageLink>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -305,6 +326,11 @@ export default function Main() {
           <div style={styles.footerFlex}>
             <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
+              {/* 푸터 영역 내 정보성 백링크 구조 배치 추가 */}
+              <LanguageLink to="/regulation" style={styles.fLink}>{t('navRegulation')}</LanguageLink>
+              <LanguageLink to="/jrajsa" style={styles.fLink}>{t('navProcess')}</LanguageLink>
+              <LanguageLink to="/dictionary" style={styles.fLink}>{t('navDB')}</LanguageLink>
+              <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.95rem' }}>|</span>
               <LanguageLink to="/privacy" style={styles.fLink}>{t('footerPrivacy')}</LanguageLink>
               <LanguageLink to="/terms" style={styles.fLink}>{t('footerTerms')}</LanguageLink>
               <LanguageLink to="/about" style={styles.fLink}>{t('footerAbout')}</LanguageLink>

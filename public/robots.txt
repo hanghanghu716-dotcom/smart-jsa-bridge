@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# [정보성 페이지 허용] (기본적으로 모두 허용되나 명시적 선언)
+Allow: /*/regulation
+Allow: /*/jrajsa
+Allow: /*/dictionary
+Allow: /*/guideline/*
+Allow: /*/riskclassification
+Allow: /*/protectiveequipment
+
+# [도구형 및 빈 화면 페이지 크롤링 차단 - 애드센스 품질 방어]
+Disallow: /*/info
+Disallow: /*/analysis
+Disallow: /*/procedure
+Disallow: /*/export
+Disallow: /*/jsa-preview
+Disallow: /*/layoutbuilder
+Disallow: /*/layout-module
+Disallow: /*/layout-table
+
+# [개인정보 및 인증 관련 페이지 차단]
+Disallow: /*/login
+Disallow: /*/reset-password
+Disallow: /*/profile
+Disallow: /*/library
