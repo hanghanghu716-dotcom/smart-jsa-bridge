@@ -9,7 +9,7 @@ const SEO = () => {
   const location = useLocation();
   const { t, i18n } = useTranslation('main');
 
-  const baseUrl = "https://easyjsa.cloud";
+  const baseUrl = "https://smartjsabridge.com";
   const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
 
   useEffect(() => {

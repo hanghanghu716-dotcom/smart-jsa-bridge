@@ -24,3 +24,6 @@ Disallow: /*/login
 Disallow: /*/reset-password
 Disallow: /*/profile
 Disallow: /*/library
+
+# [사이트맵 위치 명시]
+Sitemap: https://smartjsabridge.com/sitemap.xml
