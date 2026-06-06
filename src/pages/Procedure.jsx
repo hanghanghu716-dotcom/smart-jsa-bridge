@@ -59,27 +59,31 @@ export default function Procedure() {
     setIsTypeModalOpen(true);
   };
 
-  const startAnalysis = (jsaType) => {
+const startAnalysis = (jsaType) => {
     const validProcs = procedures.filter(
       p => p.stepTitle.trim() && p.stepDetail.trim()
     );
 
-    // ✅ 다음 단계 이동 시 현재 언어 및 데이터 상태 유지[cite: 14]
     navigate('/analysis', {
       state: {
+        ...location.state, // [핵심] 이전 페이지에서 넘어온 모든 state를 보존
         procedures: validProcs,
         formData: { ...formData, jsaType },
         participants,
         analysisData: analysisData,
-        isFork: location.state?.isFork,
-        parentId: location.state?.parentId, 
-        originalAnalysisData: location.state?.originalAnalysisData 
+        isFastTrack: location.state?.isFastTrack ?? false // 명시적 전달
       },
     });
   };
-  
+
+
   const handlePrev = () => {
-      // ✅ 이전 단계 이동 시 현재 언어 유지[cite: 14]
+      // [기능 추가] 초고속 모드일 경우 Info 단계를 역으로 패스하고 바로 메인 화면으로 복귀
+      if (isFastTrack) {
+        navigate('/');
+        return;
+      }
+
       navigate('/info', {
         state: {
           formData,

@@ -234,9 +234,63 @@ export default function Main() {
                 {t('heroSub1')}<br />
                 {t('heroSub2')}
               </p>
-              <button onClick={handleStartClick} style={styles.primaryBtn}>
-                {t('heroBtn')}
-              </button>
+
+              
+            <div style={styles.heroBtnGroup}>
+                <button 
+                  onClick={() => navigate('/procedure', { 
+                    state: { 
+                      isMember: !!user, 
+                      isFastTrack: true,
+                      formData: {
+                        // 다국어 번역 파일 내 기본 제목 리소스 키값 연동
+                        projectName: t('fastTrackDefaultTitle', { defaultValue: '초고속 자동 위험성평가 작업' }),
+                        department: '',
+                        workLocation: '',
+                        workDate: new Date().toISOString().split('T')[0],
+                        managerName: '',
+                        workType: '정기작업',
+                        weather: '맑음',
+                        hasNewWorker: false,
+                        ppe: [],
+                        permits: [],
+                        equipment: '',
+                        additionalItems: '',
+                        jsaType: '2-step'
+                      },
+                      participants: Array(14).fill('')
+                    } 
+                  })} 
+                  style={styles.fastTrackBtn}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#0056b3';
+                    e.currentTarget.style.borderColor = '#0056b3';
+                    e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 123, 255, 0.6)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#007bff';
+                    e.currentTarget.style.borderColor = '#007bff';
+                    e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 123, 255, 0.3)';
+                  }}
+                >
+                  {t('heroFastTrackBtn')}
+                </button>
+
+                <button 
+                  onClick={handleStartClick} 
+                  style={styles.primaryBtn}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                    e.currentTarget.style.borderColor = '#ffffff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(24, 24, 24, 0.6)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  }}
+                >
+                  {t('heroBtn')}
+                </button>
+              </div>
             </div>
           </main>
 
@@ -361,7 +415,42 @@ const styles = {
   heroContent: { maxWidth: '750px' },
   mainTitle: { fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem' },
   subTitle: { lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem' },
-  primaryBtn: { display: 'inline-block', padding: '1.2rem 4.5rem', backgroundColor: '#fff', color: '#000', borderRadius: '4rem', fontSize: '1.1rem', fontWeight: 'bold', border: 'none', cursor: 'pointer' },
+  primaryBtn: { 
+    display: 'inline-block', 
+    padding: '1.2rem 4.5rem', 
+    backgroundColor: 'rgba(24, 24, 24, 0.6)', 
+    color: '#ffffff', 
+    borderRadius: '4rem', 
+    fontSize: '1.1rem', 
+    fontWeight: 'bold', 
+    border: '1px solid rgba(255, 255, 255, 0.2)', 
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+    whiteSpace: 'nowrap'
+  },
+  
+  // [초고속 모드 버튼] 지배적인 명도와 아우라 광채로 첫 진입 시 시선을 압도하는 메인 디자인
+  fastTrackBtn: {
+    display: 'inline-block',
+    padding: '1.2rem 4.5rem',
+    backgroundColor: '#007bff',
+    color: '#ffffff',
+    borderRadius: '4rem',
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    border: '1px solid #007bff',
+    cursor: 'pointer',
+    transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+    whiteSpace: 'nowrap',
+    boxShadow: '0 0 15px rgba(0, 123, 255, 0.3)'
+  },
+  
+  heroBtnGroup: {
+    display: 'flex',
+    gap: '20px',
+    flexWrap: 'wrap',
+    marginTop: '1rem'
+  },
   modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 3000, display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(8px)' },
   modalContent: { backgroundColor: '#111', padding: '3.5rem', borderRadius: '24px', textAlign: 'center', width: '90%', maxWidth: '480px', border: '1px solid #333' },
   modalTitle: { color: '#fff', fontSize: '1.6rem', fontWeight: '800', marginBottom: '1.2rem' },

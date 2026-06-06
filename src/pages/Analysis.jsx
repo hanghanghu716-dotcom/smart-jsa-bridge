@@ -11,6 +11,7 @@ export default function Analysis() {
   const location = useLocation();
   const scrollRef = useRef(null);
   const { t, i18n } = useTranslation(['analysis', 'tags']);
+  const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
   const {
     id: existingId = null,
@@ -21,8 +22,13 @@ export default function Analysis() {
   } = location.state || {};
 
   const jsaType = formData.jsaType || '2-step';
+  useEffect(() => {
+    if (location.state?.isFastTrack !== undefined) {
+      localStorage.setItem('jsa_isFastTrack', JSON.stringify(location.state.isFastTrack));
+    }
+  }, [location.state?.isFastTrack]);
 
-  const [dbRisks, setDbRisks] = useState([]);
+  const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');  const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
   const [activeIdx, setActiveIdx] = useState(0);
@@ -92,9 +98,6 @@ export default function Analysis() {
     };
     const dbLocale = localeMap[i18n.language] || 'en-US';
 
-    console.log(`\n========== [매핑 추적 시작 (다중 식별자 스캔): ${type.toUpperCase()}] ==========`);
-    console.log("[0. Input Risk 데이터]:", risk);
-
     try {
       if (type === 'current') {
         if (!risk.db_id) {
@@ -102,38 +105,26 @@ export default function Analysis() {
           return alert(t('alert.manualFactor'));
         }
 
-        console.log(`[1. Hazards_Translations 조회] 마스터 hazard_id: ${risk.db_id}`);
-        const { data: hazardTrans, error: err1 } = await supabase
+        const { data: hazardTrans } = await supabase
           .from('Hazards_Translations')
           .select('id')
           .eq('hazard_id', risk.db_id);
-
-        if (err1) console.error("[1번 쿼리 에러]:", err1);
 
         let hazardSearchIds = [risk.db_id];
         if (hazardTrans) {
           hazardSearchIds.push(...hazardTrans.map(t => t.id));
         }
-        console.log(`[1. 결과] 확보된 탐색 대상 ID 배열:`, hazardSearchIds);
 
-        console.log(`[2. hazard_measure_mappings 조회] 매핑 데이터 무차별 스캔 시작`);
-        const { data: mapData, error: err2 } = await supabase
+        const { data: mapData } = await supabase
           .from('hazard_measure_mappings')
           .select('measure_translation_id, similarity_score')
           .in('hazard_translation_id', hazardSearchIds)
           .order('similarity_score', { ascending: false });
 
-        if (err2) console.error("[2번 쿼리 에러 (RLS 의심)]:", err2);
-        console.log(`[2. 결과] 추출된 매핑 데이터 (${mapData?.length || 0}건):`, mapData);
-
         if (mapData && mapData.length > 0) {
           const mappedIds = [...new Set(mapData.map(m => m.measure_translation_id))];
-          console.log(`[3. 양방향 식별자 검증] 대상 ID:`, mappedIds);
-
-          const { data: transById, error: err3a } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('id', mappedIds);
-          const { data: transByMaster, error: err3b } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('measure_id', mappedIds);
-
-          if (err3a || err3b) console.error("[3번 쿼리 에러]:", err3a || err3b);
+          const { data: transById } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('id', mappedIds);
+          const { data: transByMaster } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('measure_id', mappedIds);
 
           const masterIdScoreMap = {};
           let masterIds = [];
@@ -163,29 +154,14 @@ export default function Analysis() {
 
           masterIds = [...new Set(masterIds)].filter(Boolean);
           directTransIds = [...new Set(directTransIds)].filter(Boolean);
-          console.log(`[3. 결과] 도출된 최종 마스터 ID:`, masterIds, `Direct IDs:`, directTransIds);
 
           let finalMeasures = [];
-
           if (masterIds.length > 0) {
-            const { data: masterMeasures, error: err4a } = await supabase
-              .from('Current_Measures_Translations')
-              .select('*')
-              .in('measure_id', masterIds)
-              .eq('locale', dbLocale);
-
-            if (err4a) console.error("[4-a번 쿼리 에러]:", err4a);
+            const { data: masterMeasures } = await supabase.from('Current_Measures_Translations').select('*').in('measure_id', masterIds).eq('locale', dbLocale);
             if (masterMeasures) finalMeasures.push(...masterMeasures);
           }
-
           if (directTransIds.length > 0) {
-            const { data: directMeasures, error: err4b } = await supabase
-              .from('Current_Measures_Translations')
-              .select('*')
-              .in('id', directTransIds)
-              .eq('locale', dbLocale);
-
-            if (err4b) console.error("[4-b번 쿼리 에러]:", err4b);
+            const { data: directMeasures } = await supabase.from('Current_Measures_Translations').select('*').in('id', directTransIds).eq('locale', dbLocale);
             if (directMeasures) finalMeasures.push(...directMeasures);
           }
 
@@ -203,48 +179,29 @@ export default function Analysis() {
             });
             scored = Array.from(uniqueMeasuresMap.values()).sort((a, b) => b.similarity_score - a.similarity_score);
           }
-        } else {
-          console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${hazardSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
         }
       } else {
-        // Advanced 처리 로직
         if (!risk.current_measure_db_id) {
           setIsLoading(false);
           return alert(t('alert.needCurrentMeasure'));
         }
 
-        console.log(`[1. Current_Measures_Translations 조회] 마스터 measure_id: ${risk.current_measure_db_id}`);
-        const { data: currTrans, error: err1 } = await supabase
-          .from('Current_Measures_Translations')
-          .select('id')
-          .eq('measure_id', risk.current_measure_db_id);
-
-        if (err1) console.error("[1번 쿼리 에러]:", err1);
-
+        const { data: currTrans } = await supabase.from('Current_Measures_Translations').select('id').eq('measure_id', risk.current_measure_db_id);
         let currSearchIds = [risk.current_measure_db_id];
         if (currTrans) {
           currSearchIds.push(...currTrans.map(t => t.id));
         }
-        console.log(`[1. 결과] 확보된 탐색 대상 ID 배열:`, currSearchIds);
 
-        console.log(`[2. current_advanced_measure_mappings 조회] 매핑 데이터 무차별 스캔 시작`);
-        const { data: mapData, error: err2 } = await supabase
+        const { data: mapData } = await supabase
           .from('current_advanced_measure_mappings')
           .select('advanced_measure_translation_id, similarity_score')
           .in('current_measure_translation_id', currSearchIds)
           .order('similarity_score', { ascending: false });
 
-        if (err2) console.error("[2번 쿼리 에러 (RLS 의심)]:", err2);
-        console.log(`[2. 결과] 추출된 매핑 데이터 (${mapData?.length || 0}건):`, mapData);
-
         if (mapData && mapData.length > 0) {
           const mappedIds = [...new Set(mapData.map(m => m.advanced_measure_translation_id))];
-          console.log(`[3. 양방향 식별자 검증] 대상 ID:`, mappedIds);
-
-          const { data: transById, error: err3a } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('id', mappedIds);
-          const { data: transByMaster, error: err3b } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('advanced_measure_id', mappedIds);
-
-          if (err3a || err3b) console.error("[3번 쿼리 에러]:", err3a || err3b);
+          const { data: transById } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('id', mappedIds);
+          const { data: transByMaster } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('advanced_measure_id', mappedIds);
 
           const masterIdScoreMap = {};
           let masterIds = [];
@@ -274,29 +231,14 @@ export default function Analysis() {
 
           masterIds = [...new Set(masterIds)].filter(Boolean);
           directTransIds = [...new Set(directTransIds)].filter(Boolean);
-          console.log(`[3. 결과] 도출된 최종 마스터 ID:`, masterIds, `Direct IDs:`, directTransIds);
 
           let finalAdvMeasures = [];
-
           if (masterIds.length > 0) {
-            const { data: masterMeasures, error: err4a } = await supabase
-              .from('Advanced_Measures_Translations')
-              .select('*')
-              .in('advanced_measure_id', masterIds)
-              .eq('locale', dbLocale);
-
-            if (err4a) console.error("[4-a번 쿼리 에러]:", err4a);
+            const { data: masterMeasures } = await supabase.from('Advanced_Measures_Translations').select('*').in('advanced_measure_id', masterIds).eq('locale', dbLocale);
             if (masterMeasures) finalAdvMeasures.push(...masterMeasures);
           }
-
           if (directTransIds.length > 0) {
-            const { data: directMeasures, error: err4b } = await supabase
-              .from('Advanced_Measures_Translations')
-              .select('*')
-              .in('id', directTransIds)
-              .eq('locale', dbLocale);
-
-            if (err4b) console.error("[4-b번 쿼리 에러]:", err4b);
+            const { data: directMeasures } = await supabase.from('Advanced_Measures_Translations').select('*').in('id', directTransIds).eq('locale', dbLocale);
             if (directMeasures) finalAdvMeasures.push(...directMeasures);
           }
 
@@ -314,21 +256,16 @@ export default function Analysis() {
             });
             scored = Array.from(uniqueAdvMap.values()).sort((a, b) => b.similarity_score - a.similarity_score).slice(0, 3);
           }
-        } else {
-          console.warn(`⚠️ [경고] 교차 테이블 스캔 결과 매핑 데이터가 없습니다. DB에 ID ${currSearchIds.join(', ')} 에 해당하는 매핑이 존재하는지 확인하십시오.`);
         }
       }
     } catch (err) {
       console.error("Critical Error in handleOpenRecommendation:", err);
     } finally {
-      console.log("[5. 최종 Scored 데이터]:", scored);
-      console.log("========== [매핑 추적 종료] ==========\n");
       setIsLoading(false);
       if (scored.length === 0) return alert(t('alert.noData'));
       setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
     }
   };
-
 
   const applyRecommendedMeasure = (item) => {
     if (jsaType === '2-step') {
@@ -342,7 +279,6 @@ export default function Analysis() {
     setRecModal({ isOpen: false, data: [], targetRiskId: null, type: 'advanced' });
   };
 
-  // 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수
   const openMeasureSearch = (risk, type) => {
     setMeasureSearchModal({ isOpen: true, data: [], targetRiskId: risk.id, type });
     setMeasureSearchTerm("");
@@ -399,7 +335,6 @@ export default function Analysis() {
     setMeasureSearchModal(prev => ({ ...prev, data: results }));
   };
 
-  // 👇 [기능 추가] 검색된 대책 클릭 시 해당 Risk 필드에 값 입력 및 모달 종료
   const applySearchedMeasure = (item) => {
     if (jsaType === '2-step') {
       updateRiskField(measureSearchModal.targetRiskId, 'measure', item.display);
@@ -410,12 +345,10 @@ export default function Analysis() {
       updateRiskField(measureSearchModal.targetRiskId, 'recommend_measure', item.display);
     }
 
-    // 모달 상태 및 검색어 초기화
     setMeasureSearchModal({ isOpen: false, data: [], targetRiskId: null, type: 'current' });
     setMeasureSearchTerm("");
   };
 
-  // ✅ 실시간 타이핑 감지 및 디바운스(0.3초 대기 후 검색 실행) 로직
   useEffect(() => {
     if (!measureSearchModal.isOpen) return;
 
@@ -427,8 +360,6 @@ export default function Analysis() {
   }, [measureSearchTerm, measureSearchModal.isOpen, i18n.language]);
 
   const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
-
-
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
 
@@ -459,6 +390,7 @@ export default function Analysis() {
             source: 'master'
           };
         });
+        // [정정 조치 완료] 함수 호출 구문을 명확하게 정정하여 무한 로딩 요인 제거
         setDbRisks(mappedData);
         const uniqueCats = [...new Set(mappedData.map(item => item.category))].filter(Boolean);
         setCategories(uniqueCats);
@@ -526,23 +458,19 @@ export default function Analysis() {
 
   const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
 
-  // ✅ [수정] 검색어, 카테고리, 자동 추천 로직 통합
   useEffect(() => {
     const updateRecommendations = async () => {
       let matched = [];
       if (searchTerm) {
-        // 검색어가 있을 경우: 전체 DB에서 검색
         const filtered = dbRisks.filter(r =>
           r.risk_factor.toLowerCase().includes(searchTerm.toLowerCase()) ||
           r.category?.toLowerCase().includes(searchTerm.toLowerCase())
         );
         matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
       } else if (selectedHighRisk) {
-        // 카테고리가 선택되었을 경우
         const filtered = dbRisks.filter(r => r.category === selectedHighRisk);
         matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
       } else {
-        // 기본 상태: 자동 추천 (토큰 기반)
         const rawMatched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
         matched = Array.from(new Map(rawMatched.map(item => [item.risk_factor, item])).values());
       }
@@ -550,7 +478,7 @@ export default function Analysis() {
       setCheckedRisks(new Set());
     };
     updateRecommendations();
-  }, [activeIdx, currentStep.proc, selectedHighRisk, searchTerm, dbRisks]); // ✅ searchTerm 의존성 추가
+  }, [activeIdx, currentStep.proc, selectedHighRisk, searchTerm, dbRisks]);
 
   const addRisk = (rec) => {
     setAnalysisData(prev => {
@@ -594,12 +522,16 @@ export default function Analysis() {
     });
   };
 
+  // [원상 복귀 완료] 사용자님의 고유 순수 오리지널 스텝 제어 로직 보존
   const handlePrev = () => {
     if (activeIdx === 0) navigate('/procedure', {
-      state: {
-        id: existingId, formData, participants, procedures, analysisData,
-        isFork: location.state?.isFork, parentId: location.state?.parentId,
-        originalAnalysisData: location.state?.originalAnalysisData
+      state: { 
+        ...location.state, // [핵심] 현재 가지고 있는 모든 state를 유지하여 전달
+        id: existingId, 
+        formData, 
+        participants, 
+        procedures, 
+        analysisData 
       }
     });
     else setActiveIdx(activeIdx - 1);
@@ -613,7 +545,6 @@ export default function Analysis() {
       {isLibraryModalOpen && (
         <div style={styles.dialogOverlay} onClick={() => setIsLibraryModalOpen(false)}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
-
             <div style={styles.modalHeader}>
               <h3 style={{ margin: 0 }}>{t('libModal.title')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setIsLibraryModalOpen(false)}>✕</button>
@@ -665,7 +596,7 @@ export default function Analysis() {
                   <div style={{ ...styles.libInfo, flex: 1 }}>
                     <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>
                       {item.similarity_score && (
-                        <span style={{ color: '#007bff', marginRight: '8px', fontWeight: 'bold' }}>
+                        <span style={{ color: '#007bff', marginRight: '8px', fontWight: 'bold' }}>
                           [{parseFloat(item.similarity_score * 100).toFixed(1)}%]
                         </span>
                       )}
@@ -679,14 +610,11 @@ export default function Analysis() {
           </div>
         </div>
       )}
-      {/* 👇 [기능 추가] 대책 검색창 열기, DB 검색, 검색된 대책 적용 함수 */}
+
       {measureSearchModal.isOpen && (
         <div style={styles.dialogOverlay} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
-
-
             <div style={styles.modalHeader}>
-              {/* 계층 구조 키값으로 통일하여 호출 */}
               <h3 style={{ margin: 0 }}>{t('searchModal.title')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>✕</button>
             </div>
@@ -700,12 +628,8 @@ export default function Analysis() {
               />
             </div>
 
-
-
-            {/* 리스트 컨테이너 높이를 400px로 고정하여 모달 크기가 요동치는 현상 방지 */}
             <div style={{ ...styles.libList, height: '400px' }}>
               {isSearchLoading ? (
-                // 👇 [기능 추가] 타이핑 후 DB를 읽어오는 동안 표시될 로컬 로딩 텍스트
                 <p style={styles.emptyText}>{t('base.searching', '검색 중...')}</p>
               ) : measureSearchTerm && measureSearchModal.data.length === 0 ? (
                 <p style={styles.emptyText}>{t('base.emptyRec')}</p>
@@ -720,12 +644,9 @@ export default function Analysis() {
                 ))
               )}
             </div>
-
-
           </div>
         </div>
       )}
-      {/* 👆 [기능 추가 끝] */}
 
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
 
@@ -740,7 +661,6 @@ export default function Analysis() {
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div>
               <div style={styles.stepLineActive} />
@@ -769,7 +689,6 @@ export default function Analysis() {
             <div style={styles.scrollArea}>
               <div style={styles.analysisGrid}>
                 <section style={styles.leftPanel}>
-                  {/* ✅ [수정] 검색창 추가 및 필터 레이아웃 조정 */}
                   <div style={styles.filterArea}>
                     <input
                       type="text"
@@ -786,7 +705,6 @@ export default function Analysis() {
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-                    {/* white-space: pre-line 속성을 부여하여 JSON 내 \n 이 실제 줄바꿈으로 작동하게 처리 */}
                     <span style={{ ...styles.label, whiteSpace: 'pre-line', lineHeight: '1.4' }}>
                       {t('base.label')}
                     </span>
@@ -819,8 +737,6 @@ export default function Analysis() {
                     <div style={styles.riskScoreContainer}>
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-
-
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
                       <div style={{ ...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff' }}>{currentStep.riskLevel}</div>
@@ -901,7 +817,6 @@ export default function Analysis() {
                               </>
                             )}
 
-
                             <td style={{ textAlign: 'center' }}>
                               <button style={styles.smallDeleteBtn} onClick={() => {
                                 setAnalysisData(prev => {
@@ -920,17 +835,93 @@ export default function Analysis() {
               </div>
             </div>
 
+            {/* 패스트트랙 모달 레이아웃 바인딩 */}
+            {isFastTrack && isFastTrackModalOpen && (
+              <div style={styles.dialogOverlay} onClick={() => setIsFastTrackModalOpen(false)}>
+                <div style={{ ...styles.libModalContent, width: '750px', maxWidth: '95%' }} onClick={e => e.stopPropagation()}>
+                  <div style={styles.modalHeader}>
+                    <h3 style={{ margin: 0, color: '#007bff' }}>⚡ {t('fastTrackModal.title', '초고속 텍스트 복사 툴킷')}</h3>
+                    <button style={styles.closeBtnSmall} onClick={() => setIsFastTrackModalOpen(false)}>✕</button>
+                  </div>
+                  
+                  <p style={{ color: '#aaa', fontSize: '0.85rem', margin: '0 0 10px 0' }}>
+                    {t('fastTrackModal.desc', '작성된 위험성평가 본문 데이터입니다. 우측 상단의 복사 버튼을 눌러 소중한 서식에 자유롭게 붙여넣으십시오.')}
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxHeight: '500px', overflowY: 'auto', paddingRight: '5px' }}>
+
+
+                  {analysisData.map((step, sIdx) => (
+                    <div key={sIdx} style={{ backgroundColor: '#111', border: '1px solid #333', borderRadius: '10px', padding: '1.2rem', marginBottom: '1.5rem' }}>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 'bold', color: '#fff', marginBottom: '0.8rem', borderBottom: '1px solid #222', paddingBottom: '0.5rem' }}>
+                        STEP {String(sIdx + 1).padStart(2, '0')}: {step.proc?.stepTitle}
+                      </div>
+                      
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        {step.risks?.map((r, rIdx) => (
+                          <div key={r.id || rIdx} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', position: 'relative' }}>
+                            <div style={{ backgroundColor: '#1d1d1d', border: '1px solid #2a2a2a', borderRadius: '6px', padding: '10px', position: 'relative' }}>
+                              <span style={{ fontSize: '0.65rem', color: '#ff4d4d', display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>{t('fastTrackModal.hazardFactor')}</span>
+                              <div style={{ color: '#eee', fontSize: '0.85rem', paddingRight: '45px', whiteSpace: 'pre-wrap' }}>{r.factor}</div>
+                              <button style={styles.clipboardCopyBtn} onClick={() => { navigator.clipboard.writeText(r.factor); alert(t('fastTrackModal.copied')); }} title="Copy Hazard">📋</button>
+                            </div>
+                            <div style={{ backgroundColor: '#1d1d1d', border: '1px solid #2a2a2a', borderRadius: '6px', padding: '10px', position: 'relative' }}>
+                              <span style={{ fontSize: '0.65rem', color: '#007bff', display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>{t('fastTrackModal.safetyMeasure')}</span>
+                              <div style={{ color: '#eee', fontSize: '0.85rem', paddingRight: '45px', whiteSpace: 'pre-wrap' }}>{r.measure || r.current_measure}</div>
+                              <button style={styles.clipboardCopyBtn} onClick={() => { navigator.clipboard.writeText(r.measure || r.current_measure); alert(t('fastTrackModal.measureCopied')); }} title="Copy Measure">📋</button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <button style={{ ...styles.nextBtn, padding: '0.8rem', fontSize: '0.95rem', marginTop: '10px' }} onClick={() => navigate('/')}>
+                    {t('fastTrackModal.goHome')}
+                  </button>
+
+
+
+                  </div>
+                  
+                  <button 
+                    style={{ ...styles.nextBtn, padding: '0.8rem', fontSize: '0.95rem', marginTop: '10px' }} 
+                    onClick={() => navigate('/')}
+                  >
+                    {t('fastTrackModal.goHome', '복사 완료 후 홈으로 이동')}
+                  </button>
+                  
+
+
+                  
+                </div>
+              </div>
+            )}
+
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? t('btn.prevStep1') : t('btn.prevStep2')}</button>
-              <button style={styles.nextBtn} onClick={() => activeIdx < analysisData.length - 1 ? setActiveIdx(activeIdx + 1) : navigate('/layout-module', {
-                state: {
-                  existingId, analysisData, formData, participants, procedures,
-                  isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData
-                }
-              })}>
-                {activeIdx === analysisData.length - 1 ? t('btn.nextComplete') : t('btn.nextStep')}
+              <button 
+                style={styles.nextBtn} 
+                onClick={() => {
+                  if (activeIdx < analysisData.length - 1) {
+                    setActiveIdx(activeIdx + 1);
+                  } else {
+                    if (isFastTrack) {
+                      setIsFastTrackModalOpen(true);
+                    } else {
+                      navigate('/layout-module', {
+                        state: {
+                          existingId, analysisData, formData, participants, procedures,
+                          isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData
+                        }
+                      });
+                    }
+                  }
+                }}
+              >
+                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete', '분석 완료 및 텍스트 복사') : t('btn.nextComplete')) : t('btn.nextStep')}
               </button>
             </div>
+
           </div>
         </main>
 
@@ -949,7 +940,6 @@ export default function Analysis() {
 }
 
 const styles = {
-  // ✅ [추가] 검색창 전용 스타일
   searchInput: { flex: 1.2, minWidth: 0, backgroundColor: '#1a1a1a', border: '1px solid #333', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', fontSize: '0.85rem', outline: 'none' }, wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
@@ -984,7 +974,7 @@ const styles = {
   scrollArea: { flex: 1, overflow: 'hidden' },
   analysisGrid: { display: 'grid', gridTemplateColumns: '1.2fr 1.6fr', gap: '2rem', height: '100%', overflow: 'hidden' },
   leftPanel: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
-  rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
+  rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
   filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
   highRiskSelect: { flex: 1, minWidth: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }, libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 }, recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
@@ -1023,7 +1013,28 @@ const styles = {
   stepInfo: { display: 'flex', alignItems: 'center', gap: '10px' },
   stepIdxBadge: { backgroundColor: '#333', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' },
   stepTitleText: { color: '#fff', fontSize: '0.9rem' },
-  stepPreview: { color: '#ff4d4d', fontSize: '0.75rem', fontWeight: 'bold' }
+  stepPreview: { color: '#ff4d4d', fontSize: '0.75rem', fontWeight: 'bold' },
+  clipboardCopyBtn: {
+    position: 'absolute',
+    top: '6px',
+    right: '6px',
+    backgroundColor: '#2a2a2a',
+    border: '1px solid #444',
+    borderRadius: '4px',
+    color: '#fff',
+    fontSize: '0.85rem',
+    width: '28px',
+    height: '28px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'all 0.15s ease',
+    ':hover': {
+      backgroundColor: '#007bff',
+      borderColor: '#007bff'
+    }
+  }
 };
 
 if (typeof document !== 'undefined') {

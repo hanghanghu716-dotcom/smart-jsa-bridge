@@ -35,7 +35,8 @@
   "heroSub1": "현장의 육안 점검과 지능형 분석 데이터를 결합하여,",
   "heroSub2": "놓치기 쉬운 잠재 위험 요인을 정밀하게 도출합니다.",
   "heroBtn": "위험성 평가 작성하기",
-  "coreValueTitle1": "실질적 위험 발굴을 돕는",
+  "heroFastTrackBtn": "초고속 위험성평가",
+  "fastTrackDefaultTitle": "초고속 자동 위험성평가 작업",  "coreValueTitle1": "실질적 위험 발굴을 돕는",
   "coreValueTitle2": "지능형 안전 분석 파트너",
   "coreValueSubtitle": "체계적인 데이터 매칭",
   "coreValueDesc": "수많은 작업 시나리오 분석을 통해 구축된 데이터베이스를 기반으로 제안합니다.",
@@ -45,6 +46,7 @@
   "footerPrivacy": "개인정보처리방침",
   "footerTerms": "이용약관",
   "footerAbout": "서비스 소개",
+  
   "jsaCard": {
     "01": { "title": "일반 및 공통안전", "f": "작업자 건강상태 및 심리적 불안정 미확인", "m": "TBM 활용 혈압 측정 및 음주 여부 확인 실시" },
     "02": { "title": "고소 작업", "f": "작업 발판 단부 및 개구부에서의 작업자 추락", "m": "그네식 안전대 착용 및 생명줄(Life-line) 체결 철저" },
