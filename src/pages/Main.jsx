@@ -6,7 +6,7 @@ import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
 import { useTranslation } from 'react-i18next';
 // ✅ 커스텀 다국어 라우팅 도구 임포트
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
-import { AuthContext } from '../App'; // ✅ [추가] App.jsx에서 생성한 AuthContext 임포트
+import { AuthContext } from '../contexts/AuthContext'; // ✅ 분리된 독립 컨텍스트 파일 경로로 수정
 
 export default function Main() {
   const navigate = useLanguageNavigate(); // ✅ 커스텀 네비게이트 훅 사용
@@ -17,6 +17,8 @@ export default function Main() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+
+  const [caseStudies, setCaseStudies] = useState([]);
 
   // ✅ [수정] 로컬 상태(useState) 대신 AuthContext를 통해 전역 user 상태를 공급받습니다.
   const { user } = useContext(AuthContext);
@@ -64,8 +66,31 @@ export default function Main() {
   const MAIN_SIDE_SLOT_ID = '3978298367';
   const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
 
-  useEffect(() => {
-    // ✅ [제거] 로컬 세션 검증 및 리스너 등록 코드는 App.jsx로 이관되었으므로 삭제됨.
+useEffect(() => {
+    // ✅ 언어 환경에 맞는 최신 사례 연구 3건 호출 로직 추가
+      const fetchRecentCases = async () => {
+      // 1. URL 경로에서 직접 언어 코드를 추출하여 i18n 초기화 지연으로 인한 불일치 방지
+      const pathLang = window.location.pathname.split('/')[1];
+      const supportedCodes = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
+      const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');
+
+      // 2. 정확히 일치하는 언어 코드의 데이터만 호출
+      const { data, error } = await supabase
+        .from('case_studies')
+        .select('post_group_id, title, meta_description, created_at')
+        .eq('language_code', currentLang)
+        .order('created_at', { ascending: false })
+        .limit(3);
+
+      if (error) {
+        console.error('Case studies fetch error:', error);
+      } else {
+        // 3. 한국어(ko) 데이터 강제 호출(Fallback) 로직 제거
+        // 해당 언어의 데이터가 없으면 빈 배열을 세팅하여 타 언어 섹션에 한국어가 노출되는 현상 차단
+        setCaseStudies(data || []);
+      }
+    };
+    fetchRecentCases();
 
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -74,7 +99,7 @@ export default function Main() {
     return () => {
       clearInterval(timer);
     };
-  }, [slides.length]);
+  }, [slides.length, i18n.language]); // ✅ i18n.language 변경 시 데이터를 재호출하도록 의존성 추가
 
   const handleStartClick = () => {
     // [제거] window.innerWidth < 1024 조건부 alert 및 return 로직 삭제
@@ -124,6 +149,10 @@ export default function Main() {
                   <LanguageLink to="/jrajsa" style={styles.headerLink}>{t('navProcess')}</LanguageLink>
                   <LanguageLink to="/dictionary" style={styles.headerLink}>{t('navDB')}</LanguageLink>
                   <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
+                  {/* ✅ 사례 연구 섹션으로 이동하는 앵커 링크 추가 */}
+                  <a href="#case-studies" style={{ ...styles.headerLink, cursor: 'pointer' }}>
+                    {t('navCaseStudy', { defaultValue: 'Case Studies' })}
+                  </a>
                   <span
                     style={{ ...styles.headerLink, cursor: 'pointer' }}
                     onClick={() => {
@@ -205,7 +234,10 @@ export default function Main() {
             <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navPPE')}</LanguageLink>
             <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRiskClass')}</LanguageLink>
             <LanguageLink to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navDB')}</LanguageLink>
-
+            {/* ✅ 모바일 메뉴용 사례 연구 앵커 링크 추가 */}
+            <a href="#case-studies" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
+              {t('navCaseStudy', { defaultValue: 'Case Studies' })}
+            </a>
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
             <LanguageLink to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</LanguageLink>
             <LanguageLink to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</LanguageLink>
@@ -374,6 +406,40 @@ export default function Main() {
           </div>
         </div>
       </section>
+      
+
+      {/* ✅ 최신 사례 연구 렌더링 섹션 신규 추가 (기존 코드 수정 없이 하단에 삽입) */}
+      {caseStudies.length > 0 && (
+        <section id="case-studies" style={{ ...styles.m3Section, backgroundColor: '#ffffff' }} className="max-lg:!py-20">
+          <div style={styles.container}>
+            <div style={styles.m3Header} className="px-6 lg:px-0">
+              <span style={styles.m3Tag} className="block mb-4">{t('caseStudySectionTag', { defaultValue: 'LATEST CASE STUDIES' })}</span>
+              <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>
+                {t('caseStudySectionTitle', { defaultValue: '현장 사례 연구' })}
+              </h3>
+            </div>
+            <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 px-6 lg:px-0">
+              {caseStudies.map((caseItem) => (
+                <LanguageLink 
+                  key={caseItem.post_group_id} 
+                  to={`/case-study/${caseItem.post_group_id}`} 
+                  style={{ textDecoration: 'none', display: 'block' }}
+                >
+                  <div style={{ ...styles.jsaCard, cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <h5 style={{ ...styles.jsaCardTitle, fontSize: '1.4rem', marginBottom: '16px' }}>{caseItem.title}</h5>
+                    <p style={{ color: '#555', fontSize: '1rem', lineHeight: '1.6', flex: 1, marginBottom: '24px' }}>
+                      {caseItem.meta_description}
+                    </p>
+                    <span style={{ fontSize: '0.9rem', color: '#888', fontWeight: 'bold' }}>
+                      {new Date(caseItem.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                </LanguageLink>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <footer style={styles.finalFooter}>
         <div style={styles.container}>

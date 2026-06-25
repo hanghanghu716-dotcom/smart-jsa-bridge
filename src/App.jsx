@@ -1,37 +1,8 @@
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
-import { useEffect, createContext, useState } from 'react'; // ✅ [추가] createContext, useState
 import { useTranslation } from 'react-i18next';
-import { supabase } from './supabaseClient'; // ✅ [추가] supabase 클라이언트 임포트
+import { AuthProvider } from './contexts/AuthContext';
 
-// ✅ [추가] 전역 인증 상태(Context) 선언
-export const AuthContext = createContext();
-
-// ✅ [추가] 인증 상태를 하위 컴포넌트에 공급하는 Provider 컴포넌트
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // 초기 세션 확인
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-
-    // 세션 변경 감지 리스너
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
-
-// 페이지 및 컴포넌트 임포트
 import Main from './pages/Main';
 import Info from './pages/Info';
 import Analysis from './pages/Analysis';
@@ -61,22 +32,57 @@ import LayoutBuilder from './pages/LayoutBuilder';
 import FactorDictionary from './pages/FactorDictionary';
 import ModuleBuilder from './pages/ModuleBuilder';
 import TableBuilder from './pages/TableBuilder';
+import CaseStudyDetail from './pages/CaseStudyDetail';
+import AdminPostUpload from './pages/AdminPostUpload';
 
-// 글로벌 커스텀 훅 임포트
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
 /**
- * ✅ [수정] 언어 감지 및 리다이렉션을 실행하는 전용 컴포넌트
- * <Router>의 자식으로 배치하여 useNavigate 에러를 해결합니다.
+ * ✅ 비밀코드 인증을 통한 관리자 라우트 컴포넌트
  */
+function AdminRoute({ children }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passcode, setPasscode] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (passcode === 'cnshcnsh2@') {
+      setIsAuthenticated(true);
+    } else {
+      alert('비밀코드가 일치하지 않습니다.');
+      setPasscode('');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div style={{ padding: '200px 24px', textAlign: 'center', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
+        <h2 style={{ marginBottom: '20px', color: '#111', fontSize: '1.5rem', fontWeight: 'bold' }}>관리자 접근</h2>
+        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+        <input
+            type="password"
+            value={passcode}
+            onChange={(e) => setPasscode(e.target.value)}
+            placeholder="비밀코드를 입력하세요"
+            style={{ padding: '12px', width: '280px', border: '1px solid #ccc', borderRadius: '6px', fontSize: '1rem', outline: 'none', color: '#111', backgroundColor: '#fff' }}
+            autoFocus
+          />
+          <button type="submit" style={{ padding: '12px 24px', width: '280px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>
+            인증 및 접속
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  return children;
+}
+
 function LanguageInit() {
   useLanguageDetect();
   return null;
 }
 
-/**
- * ✅ 언어 파라미터를 감지하여 i18n 상태를 동기화하는 래퍼
- */
 function LanguageWrapper({ children }) {
   const { lng } = useParams();
   const { i18n } = useTranslation();
@@ -92,7 +98,7 @@ function LanguageWrapper({ children }) {
 
 export default function App() {
   return (
-    <AuthProvider> {/* ✅ [추가] 라우터 전체를 AuthProvider로 래핑하여 전역 상태 공급 */}
+    <AuthProvider>
       <Router>
         <LanguageInit /> 
         
@@ -108,12 +114,9 @@ export default function App() {
             <Route path="/:lng/riskclassification" element={<LanguageWrapper><RiskClassification /></LanguageWrapper>} />
             <Route path="/:lng/protectiveequipment" element={<LanguageWrapper><ProtectiveEquipment /></LanguageWrapper>} /> 
             <Route path="/:lng/guideline/common" element={<LanguageWrapper><CommonGuide /></LanguageWrapper>} />
-            
-            {/* ✅ 경로명 매칭 수정 (축약형 -> 전체 단어) */}
             <Route path="/:lng/guideline/construction" element={<LanguageWrapper><ConstructionGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/manufacturing" element={<LanguageWrapper><ManufacturingGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/chemical" element={<LanguageWrapper><ChemicalGasGuide /></LanguageWrapper>} />
-            
             <Route path="/:lng/guideline/high-risk" element={<LanguageWrapper><HighRiskGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/general" element={<LanguageWrapper><GeneralGuide /></LanguageWrapper>} />
             <Route path="/:lng/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
@@ -130,6 +133,8 @@ export default function App() {
             <Route path="/:lng/layout-table" element={<LanguageWrapper><TableBuilder /></LanguageWrapper>} />
             <Route path="/:lng/terms" element={<LanguageWrapper><Terms /></LanguageWrapper>} />
             <Route path="/:lng/privacy" element={<LanguageWrapper><Privacy /></LanguageWrapper>} />
+            <Route path="/:lng/case-study/:id" element={<LanguageWrapper><CaseStudyDetail /></LanguageWrapper>} />
+            <Route path="/:lng/admin/upload" element={<LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper>} />
           </Routes>
         </MobileGuard>
       </Router>

@@ -5,7 +5,7 @@ import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
-import { AuthContext } from '../App';
+import { AuthContext } from '../contexts/AuthContext'; // ✅ 신규 생성된 독립 컨텍스트 파일 경로로 수정
 
 export default function Login() {
   const navigate = useLanguageNavigate();

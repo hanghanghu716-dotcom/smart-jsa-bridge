@@ -45,6 +45,9 @@
   "footerPrivacy": "Politique de Confidentialité",
   "footerTerms": "Conditions d'Utilisation",
   "footerAbout": "À propos du Service",
+  "navCaseStudy": "Études de Cas",
+  "caseStudySectionTag": "DERNIÈRES ÉTUDES DE CAS",
+  "caseStudySectionTitle": "Études de Cas sur le Terrain",
   "jsaCard": {
     "01": { "title": "Sécurité Générale et Commune", "f": "Santé non confirmée ou instabilité psychologique du travailleur", "m": "Vérifier la pression artérielle et la consommation d'alcool via TBM" },
     "02": { "title": "Travail en Hauteur", "f": "Chute du travailleur depuis des bords de plateforme ou des ouvertures", "m": "Appliquer strictement l'utilisation du harnais complet et de la ligne de vie" },

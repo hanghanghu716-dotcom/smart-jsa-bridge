@@ -45,6 +45,9 @@
   "footerPrivacy": "Datenschutzerklärung",
   "footerTerms": "Nutzungsbedingungen",
   "footerAbout": "Über den Dienst",
+  "navCaseStudy": "Fallstudien",
+  "caseStudySectionTag": "AKTUELLE FALLSTUDIEN",
+  "caseStudySectionTitle": "Fallstudien aus der Praxis",
   "jsaCard": {
     "01": { "title": "Allgemeine Sicherheit", "f": "Unbestätigter Gesundheitszustand oder psychologische Instabilität", "m": "Blutdruck- und Alkoholkontrolle mittels TBM" },
     "02": { "title": "Arbeiten in der Höhe", "f": "Absturz von Plattformkanten oder Öffnungen", "m": "Strikte Durchsetzung der Verwendung von Auffanggurten und Sicherungsseilen" },

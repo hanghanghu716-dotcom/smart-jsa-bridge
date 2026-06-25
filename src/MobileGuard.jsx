@@ -13,8 +13,7 @@ const MobileGuard = ({ children }) => {
     ? '/' + segments.slice(2).join('/') 
     : location.pathname;
 
-  // 1. 모바일에서 허용할 상세 경로 목록 (언어 코드를 제외한 순수 경로 기준)
-  const allowedPaths = [
+const allowedPaths = [
     '/jrajsa',
     '/about',
     '/terms',
@@ -24,6 +23,8 @@ const MobileGuard = ({ children }) => {
     '/riskclassification',
     '/protectiveequipment',
     '/guideline', // 모든 하위 가이드 경로 포함
+    '/admin/upload', // ✅ 관리자 콘텐츠 업로드 페이지 접근 허용
+    '/case-study',   // ✅ 사례 연구 상세 조회 페이지 모바일 열람 허용
   ];
 
   // 2. 경로 일치 여부 판별 로직

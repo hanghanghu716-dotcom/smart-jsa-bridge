@@ -45,6 +45,9 @@
   "footerPrivacy": "Privacy Policy",
   "footerTerms": "Terms of Service",
   "footerAbout": "About the Service",
+  "navCaseStudy": "Case Studies",
+  "caseStudySectionTag": "LATEST CASE STUDIES",
+  "caseStudySectionTitle": "Field Case Studies",
   "jsaCard": {
     "01": { "title": "General & Common Safety", "f": "Unconfirmed worker health or psychological instability", "m": "Check blood pressure and alcohol consumption via TBM" },
     "02": { "title": "Working at Heights", "f": "Worker falling from platform edges or openings", "m": "Strictly enforce full-body harness and lifeline usage" },
