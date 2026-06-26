@@ -1,13 +1,16 @@
 User-agent: *
 Allow: /
 
-# [정보성 페이지 허용] (기본적으로 모두 허용되나 명시적 선언)
-Allow: /*/regulation
-Allow: /*/jrajsa
+# [정보성 및 다국어 케이스 스터디 크롤링 완벽 허용]
+Allow: /*/about
+Allow: /*/explore
 Allow: /*/dictionary
-Allow: /*/guideline/*
+Allow: /*/jrajsa
+Allow: /*/regulation
 Allow: /*/riskclassification
 Allow: /*/protectiveequipment
+Allow: /*/guideline/*
+Allow: /*/case-study/*
 
 # [도구형 및 빈 화면 페이지 크롤링 차단 - 애드센스 품질 방어]
 Disallow: /*/info
@@ -19,11 +22,12 @@ Disallow: /*/layoutbuilder
 Disallow: /*/layout-module
 Disallow: /*/layout-table
 
-# [개인정보 및 인증 관련 페이지 차단]
+# [개인정보, 인증 및 관리자 페이지 차단]
 Disallow: /*/login
 Disallow: /*/reset-password
 Disallow: /*/profile
 Disallow: /*/library
+Disallow: /*/admin/*
 
 # [사이트맵 위치 명시]
 Sitemap: https://smartjsabridge.com/sitemap.xml
