@@ -2,14 +2,13 @@ import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
-import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
+import SEO from '../components/SEO'; 
 import { useTranslation } from 'react-i18next';
-// ✅ 커스텀 다국어 라우팅 도구 임포트
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
-import { AuthContext } from '../contexts/AuthContext'; // ✅ 분리된 독립 컨텍스트 파일 경로로 수정
+import { AuthContext } from '../contexts/AuthContext'; 
 
 export default function Main() {
-  const navigate = useLanguageNavigate(); // ✅ 커스텀 네비게이트 훅 사용
+  const navigate = useLanguageNavigate(); 
   const location = useLocation();
   const { t, i18n } = useTranslation('main');
 
@@ -19,11 +18,13 @@ export default function Main() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
   const [caseStudies, setCaseStudies] = useState([]);
+  // 검색 및 페이지네이션을 위한 새로운 상태 변수 선언
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
 
-  // ✅ [수정] 로컬 상태(useState) 대신 AuthContext를 통해 전역 user 상태를 공급받습니다.
   const { user } = useContext(AuthContext);
 
-  // ✅ 사용자 요청에 따른 6종 언어 구성
   const languages = [
     { code: 'ko', label: ' 한국어' },
     { code: 'en-US', label: ' English (US)' },
@@ -35,12 +36,10 @@ export default function Main() {
     { code: 'ru-RU', label: ' Русский' },
   ];
 
-  // ✅ 경로 중복 문제를 해결한 언어 변경 로직
   const handleLanguageChange = (lngCode) => {
     const segments = location.pathname.split('/');
     const supportedCodes = languages.map(l => l.code);
 
-    // segments[1]이 이미 지원 언어 코드라면 교체, 아니면 삽입
     if (supportedCodes.includes(segments[1])) {
       segments[1] = lngCode;
     } else {
@@ -48,7 +47,6 @@ export default function Main() {
     }
 
     const newPath = segments.join('/') || '/';
-    // URL 이동을 통해 전체 시스템 언어 환경을 갱신합니다.
     window.location.href = newPath;
     setIsLanguageOpen(false);
   };
@@ -66,27 +64,21 @@ export default function Main() {
   const MAIN_SIDE_SLOT_ID = '3978298367';
   const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
 
-useEffect(() => {
-    // ✅ 언어 환경에 맞는 최신 사례 연구 3건 호출 로직 추가
-      const fetchRecentCases = async () => {
-      // 1. URL 경로에서 직접 언어 코드를 추출하여 i18n 초기화 지연으로 인한 불일치 방지
+  useEffect(() => {
+    const fetchRecentCases = async () => {
       const pathLang = window.location.pathname.split('/')[1];
       const supportedCodes = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
       const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');
 
-      // 2. 정확히 일치하는 언어 코드의 데이터만 호출
       const { data, error } = await supabase
         .from('case_studies')
         .select('post_group_id, title, meta_description, created_at')
         .eq('language_code', currentLang)
-        .order('created_at', { ascending: false })
-        .limit(3);
+        .order('created_at', { ascending: false }); // 구글 봇 탐색 권장 조건에 맞춰 제한 없이 전량 확보
 
       if (error) {
         console.error('Case studies fetch error:', error);
       } else {
-        // 3. 한국어(ko) 데이터 강제 호출(Fallback) 로직 제거
-        // 해당 언어의 데이터가 없으면 빈 배열을 세팅하여 타 언어 섹션에 한국어가 노출되는 현상 차단
         setCaseStudies(data || []);
       }
     };
@@ -99,10 +91,9 @@ useEffect(() => {
     return () => {
       clearInterval(timer);
     };
-  }, [slides.length, i18n.language]); // ✅ i18n.language 변경 시 데이터를 재호출하도록 의존성 추가
+  }, [slides.length, i18n.language]);
 
   const handleStartClick = () => {
-    // [제거] window.innerWidth < 1024 조건부 alert 및 return 로직 삭제
     if (user) {
       navigate('/info', { state: { isMember: true } });
     } else {
@@ -110,9 +101,32 @@ useEffect(() => {
     }
   };
 
+  // 실시간 검색어 기반 데이터 필터링 정의
+  const filteredCaseStudies = caseStudies.filter(caseItem => {
+    const query = searchQuery.toLowerCase();
+    return (
+      caseItem.title?.toLowerCase().includes(query) ||
+      caseItem.meta_description?.toLowerCase().includes(query)
+    );
+  });
+
+  // 필터링된 결과 데이터를 기준으로 페이지네이션 계산 처리
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentItems = filteredCaseStudies.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredCaseStudies.length / ITEMS_PER_PAGE);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    const element = document.getElementById('case-studies');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [수정] 복잡한 SEO 로직을 단 한 줄로 대체 완료 */}
+      <SEO />
 
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
@@ -144,12 +158,10 @@ useEffect(() => {
             <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
               <div style={styles.headerRight}>
                 <div className="hidden lg:flex items-center">
-                  {/* 크롤러 탐색 보장을 위해 핵심 정보성 가이드 링크 상시 노출 추가 */}
                   <LanguageLink to="/regulation" style={styles.headerLink}>{t('navRegulation')}</LanguageLink>
                   <LanguageLink to="/jrajsa" style={styles.headerLink}>{t('navProcess')}</LanguageLink>
                   <LanguageLink to="/dictionary" style={styles.headerLink}>{t('navDB')}</LanguageLink>
                   <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
-                  {/* ✅ 사례 연구 섹션으로 이동하는 앵커 링크 추가 */}
                   <a href="#case-studies" style={{ ...styles.headerLink, cursor: 'pointer' }}>
                     {t('navCaseStudy', { defaultValue: 'Case Studies' })}
                   </a>
@@ -234,7 +246,6 @@ useEffect(() => {
             <LanguageLink to="/protectiveequipment" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navPPE')}</LanguageLink>
             <LanguageLink to="/riskclassification" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRiskClass')}</LanguageLink>
             <LanguageLink to="/dictionary" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navDB')}</LanguageLink>
-            {/* ✅ 모바일 메뉴용 사례 연구 앵커 링크 추가 */}
             <a href="#case-studies" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
               {t('navCaseStudy', { defaultValue: 'Case Studies' })}
             </a>
@@ -267,7 +278,6 @@ useEffect(() => {
                 {t('heroSub2')}
               </p>
 
-              
             <div style={styles.heroBtnGroup}>
                 <button 
                   onClick={() => navigate('/procedure', { 
@@ -275,7 +285,6 @@ useEffect(() => {
                       isMember: !!user, 
                       isFastTrack: true,
                       formData: {
-                        // 다국어 번역 파일 내 기본 제목 리소스 키값 연동
                         projectName: t('fastTrackDefaultTitle', { defaultValue: '초고속 자동 위험성평가 작업' }),
                         department: '',
                         workLocation: '',
@@ -372,7 +381,6 @@ useEffect(() => {
           </div>
             <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0">
             {['01', '02', '03', '04', '05', '06', '07', '08', '09'].map(id => {
-              // 크롤러의 데이터 스크랩 유도를 위해 ID별 실제 정적 라우터 경로 할당
               const guidePaths = {
                 '01': '/guideline/common',
                 '02': '/guideline/construction',
@@ -407,46 +415,99 @@ useEffect(() => {
         </div>
       </section>
       
-
-      {/* ✅ 최신 사례 연구 렌더링 섹션 신규 추가 (기존 코드 수정 없이 하단에 삽입) */}
-      {caseStudies.length > 0 && (
-        <section id="case-studies" style={{ ...styles.m3Section, backgroundColor: '#ffffff' }} className="max-lg:!py-20">
-          <div style={styles.container}>
-            <div style={styles.m3Header} className="px-6 lg:px-0">
+      {/* 구글 애드센스 대응 및 통합 탐색 Case Studies 섹션 */}
+      <section id="case-studies" style={{ ...styles.m3Section, backgroundColor: '#ffffff' }} className="max-lg:!py-20">
+        <div style={styles.container}>
+          <div style={styles.m3Header} className="px-6 lg:px-0 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
+            <div>
               <span style={styles.m3Tag} className="block mb-4">{t('caseStudySectionTag', { defaultValue: 'LATEST CASE STUDIES' })}</span>
               <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>
                 {t('caseStudySectionTitle', { defaultValue: '현장 사례 연구' })}
               </h3>
             </div>
-            <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 px-6 lg:px-0">
-              {caseStudies.map((caseItem) => (
-                <LanguageLink 
-                  key={caseItem.post_group_id} 
-                  to={`/case-study/${caseItem.post_group_id}`} 
-                  style={{ textDecoration: 'none', display: 'block' }}
-                >
-                  <div style={{ ...styles.jsaCard, cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                    <h5 style={{ ...styles.jsaCardTitle, fontSize: '1.4rem', marginBottom: '16px' }}>{caseItem.title}</h5>
-                    <p style={{ color: '#555', fontSize: '1rem', lineHeight: '1.6', flex: 1, marginBottom: '24px' }}>
-                      {caseItem.meta_description}
-                    </p>
-                    <span style={{ fontSize: '0.9rem', color: '#888', fontWeight: 'bold' }}>
-                      {new Date(caseItem.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                </LanguageLink>
-              ))}
+          {/* 동적 검색 인프라 구조 배치 */}
+            <div style={styles.searchContainer}>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                style={styles.searchIcon}
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input 
+                type="text" 
+                placeholder="사례 제목 또는 내용 검색..." 
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setCurrentPage(1); 
+                }}
+                style={styles.searchInput}
+              />
             </div>
           </div>
-        </section>
-      )}
+
+          {currentItems.length > 0 ? (
+            <>
+              <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 px-6 lg:px-0">
+                {currentItems.map((caseItem) => (
+                  <LanguageLink 
+                    key={caseItem.post_group_id} 
+                    to={`/case-study/${caseItem.post_group_id}`} 
+                    style={{ textDecoration: 'none', display: 'block' }}
+                  >
+                    <div style={{ ...styles.jsaCard, cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                      <h5 style={{ ...styles.jsaCardTitle, fontSize: '1.4rem', marginBottom: '16px' }}>{caseItem.title}</h5>
+                      <p style={{ color: '#555', fontSize: '1rem', lineHeight: '1.6', flex: 1, marginBottom: '24px' }}>
+                        {caseItem.meta_description}
+                      </p>
+                      <span style={{ fontSize: '0.9rem', color: '#888', fontWeight: 'bold' }}>
+                        {new Date(caseItem.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </LanguageLink>
+                ))}
+              </div>
+
+              {/* 페이지네이션 인터페이스 제어 요소 */}
+              {totalPages > 1 && (
+                <div style={styles.paginationContainer}>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                    <button
+                      key={pageNumber}
+                      onClick={() => handlePageChange(pageNumber)}
+                      style={{
+                        ...styles.paginationButton,
+                        backgroundColor: currentPage === pageNumber ? '#007bff' : '#ffffff',
+                        color: currentPage === pageNumber ? '#ffffff' : '#111111',
+                        borderColor: currentPage === pageNumber ? '#007bff' : '#eee'
+                      }}
+                    >
+                      {pageNumber}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div style={styles.noResultBox}>
+              검색 조건과 일치하는 현장 사례 연구 내역이 존재하지 않습니다.
+            </div>
+          )}
+        </div>
+      </section>
 
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <div style={styles.footerFlex}>
             <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
-              {/* 푸터 영역 내 정보성 백링크 구조 배치 추가 */}
               <LanguageLink to="/regulation" style={styles.fLink}>{t('navRegulation')}</LanguageLink>
               <LanguageLink to="/jrajsa" style={styles.fLink}>{t('navProcess')}</LanguageLink>
               <LanguageLink to="/dictionary" style={styles.fLink}>{t('navDB')}</LanguageLink>
@@ -462,7 +523,6 @@ useEffect(() => {
   );
 }
 
-// 스타일 객체는 원본 데이터를 그대로 유지합니다.
 const styles = {
   headerRight: { display: 'flex', alignItems: 'center' },
   headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },
@@ -494,8 +554,6 @@ const styles = {
     transition: 'all 0.2s ease',
     whiteSpace: 'nowrap'
   },
-  
-  // [초고속 모드 버튼] 지배적인 명도와 아우라 광채로 첫 진입 시 시선을 압도하는 메인 디자인
   fastTrackBtn: {
     display: 'inline-block',
     padding: '1.2rem 4.5rem',
@@ -510,7 +568,6 @@ const styles = {
     whiteSpace: 'nowrap',
     boxShadow: '0 0 15px rgba(0, 123, 255, 0.3)'
   },
-  
   heroBtnGroup: {
     display: 'flex',
     gap: '20px',
@@ -557,75 +614,59 @@ const styles = {
   mobileAdSector: { width: '100%', padding: '20px 24px', backgroundColor: '#fff' },
   mobileAdBox: { width: '100%', minHeight: '100px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px 0' },
   adPlaceholderFixedLeft: {
-    position: 'fixed',
-    top: '50%',
-    left: '20px',
-    transform: 'translateY(-50%)',
-    width: '160px',
-    minHeight: '600px',
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    border: '1px dashed rgba(255,255,255,0.2)',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '10px 0',
-    zIndex: 100
+    position: 'fixed', top: '50%', left: '20px', transform: 'translateY(-50%)',
+    width: '160px', minHeight: '600px', backgroundColor: 'rgba(255,255,255,0.05)',
+    border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '8px',
+    display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0', zIndex: 100
   },
   adPlaceholderFixedRight: {
-    position: 'fixed',
-    top: '50%',
-    right: '20px',
-    transform: 'translateY(-50%)',
-    width: '160px',
-    minHeight: '600px',
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    border: '1px dashed rgba(255,255,255,0.2)',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '10px 0',
-    zIndex: 100
+    position: 'fixed', top: '50%', right: '20px', transform: 'translateY(-50%)',
+    width: '160px', minHeight: '600px', backgroundColor: 'rgba(255,255,255,0.05)',
+    border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '8px',
+    display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0', zIndex: 100
   },
-  languageSelectorWrapper: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-  },
+  languageSelectorWrapper: { position: 'relative', display: 'flex', alignItems: 'center' },
   activeLanguageDisplay: {
-    display: 'flex',
-    alignItems: 'center',
-    color: '#ffffff',
-    fontSize: '0.9rem',
-    fontWeight: '700',
-    cursor: 'pointer',
-    padding: '5px 10px',
-    opacity: 0.85,
-    userSelect: 'none'
+    display: 'flex', alignItems: 'center', color: '#ffffff', fontSize: '0.9rem',
+    fontWeight: '700', cursor: 'pointer', padding: '5px 10px', opacity: 0.85, userSelect: 'none'
   },
-  dropdownArrow: {
-    fontSize: '10px',
-    marginLeft: '6px',
-    transition: 'transform 0.2s',
-  },
+  dropdownArrow: { fontSize: '10px', marginLeft: '6px', transition: 'transform 0.2s' },
   dropdownMenu: {
-    position: 'absolute',
-    top: '120%',
-    right: 0,
-    backgroundColor: '#ffffff',
-    borderRadius: '8px',
-    boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-    width: '120px',
-    overflow: 'hidden',
-    zIndex: 2000,
+    position: 'absolute', top: '120%', right: 0, backgroundColor: '#ffffff',
+    borderRadius: '8px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)', width: '120px', overflow: 'hidden', zIndex: 2000
   },
-  dropdownItem: {
-    color: '#111111',
-    padding: '12px 15px',
-    fontSize: '14px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    transition: 'background 0.2s',
-  }
+  dropdownItem: { color: '#111111', padding: '12px 15px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'background 0.2s' },
+  
+  searchContainer: { 
+    minWidth: '280px', 
+    position: 'relative', 
+    marginBottom: '20px' // 리스트와의 이격 확보를 위한 하단 여백 추가
+  },
+  searchInput: {
+    width: '100%', 
+    padding: '12px 20px 12px 44px', // 좌측 아이콘이 위치할 패딩 공간 확보
+    fontSize: '0.95rem', 
+    color: '#111',
+    border: '1px solid #e0e0e0', 
+    borderRadius: '30px', 
+    outline: 'none', 
+    backgroundColor: '#f4f5f7', // 시각적 구분을 위한 미세한 음영(밝은 회색) 적용
+    transition: 'all 0.2s ease-in-out'
+  },
+  searchIcon: {
+    position: 'absolute',
+    left: '16px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '18px',
+    height: '18px',
+    color: '#888',
+    pointerEvents: 'none' // 아이콘 클릭 시에도 인풋 창에 포커스가 가도록 설정
+  },
+  paginationContainer: { display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '50px', width: '100%' },
+  paginationButton: {
+    padding: '10px 18px', fontSize: '0.9rem', fontWeight: 'bold', border: '1px solid',
+    borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s ease-in-out'
+  },
+  noResultBox: { width: '100%', textAlign: 'center', padding: '80px 0', color: '#666', fontSize: '1.1rem' }
 };
