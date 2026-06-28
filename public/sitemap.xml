@@ -211,4 +211,56 @@
     <priority>0.3</priority>
   </url>
 
+  <url>
+    <loc>https://smartjsabridge.com/ko/case-study/jsa-tank-cleaning</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-tank-cleaning"/>
+    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-tank-cleaning"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://smartjsabridge.com/ko/case-study/jsa-aerial-lift</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-aerial-lift"/>
+    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-aerial-lift"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://smartjsabridge.com/ko/case-study/jsa-stepladder-work</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-stepladder-work"/>
+    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-stepladder-work"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://smartjsabridge.com/ko/case-study/jsa-crane-operation</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-crane-operation"/>
+    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-crane-operation"/>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

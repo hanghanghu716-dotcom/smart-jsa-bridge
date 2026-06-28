@@ -53,20 +53,19 @@ async function generateSitemap() {
     xml += `  </url>\n\n`;
   });
 
-  // [2. DB 연동을 통한 동적 케이스 스터디 매핑 생성]
+// [2. DB 연동을 통한 동적 케이스 스터디 매핑 생성]
   try {
-    // ⚠️ 테이블 내 고유 Slug 문자열이 저장된 칼럼명을 정확히 일치시켜야 합니다. (예: clean_slug)
     const { data: caseStudies, error } = await supabase
       .from('case_studies')
-      .select('clean_slug')
-      .eq('language_code', 'ko'); // 중복 처리를 위해 기준 언어 row만 1차 추출
+      .select('post_group_id') // ✅ 실제 존재하는 칼럼명으로 수정
+      .eq('language_code', 'ko'); 
 
     if (error) throw error;
 
     if (caseStudies && caseStudies.length > 0) {
       caseStudies.forEach(post => {
-        const slug = post.clean_slug;
-        if (!slug) return; // 슬러그 값이 비어있는 예외 데이터 처리
+        const slug = post.post_group_id; // ✅ 실제 존재하는 칼럼명 호출로 수정
+        if (!slug) return;
 
         xml += `  <url>\n`;
         xml += `    <loc>https://smartjsabridge.com/ko/case-study/${slug}</loc>\n`;
