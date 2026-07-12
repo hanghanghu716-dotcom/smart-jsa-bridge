@@ -3,81 +3,52 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://smartjsabridge.com/ko</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US/"/>
+    <loc>https://smartjsabridge.com/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/ko/"/>
     <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/about</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/about"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/about"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/about"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/about"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/about"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/about"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/about"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/about"/>
-    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://smartjsabridge.com/ko/explore</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/explore"/>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/explore"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/explore"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/explore"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/explore"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/explore"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/explore"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/explore"/>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://smartjsabridge.com/ko/about</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/about"/>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://smartjsabridge.com/ko/dictionary</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/dictionary"/>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/dictionary"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/dictionary"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/dictionary"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/dictionary"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/dictionary"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/dictionary"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/dictionary"/>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/jrajsa</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/jrajsa"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/jrajsa"/>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://smartjsabridge.com/ko/regulation</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/regulation"/>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/regulation"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/regulation"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/regulation"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/regulation"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/regulation"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/regulation"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/regulation"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://smartjsabridge.com/ko/jrajsa</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/jrajsa"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/jrajsa"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://smartjsabridge.com/ko/ppe</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/ppe"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/ppe"/>
     <priority>0.7</priority>
   </url>
 
@@ -85,103 +56,43 @@
     <loc>https://smartjsabridge.com/ko/riskclassification</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/riskclassification"/>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/riskclassification"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/riskclassification"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/riskclassification"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/riskclassification"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/riskclassification"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/riskclassification"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/riskclassification"/>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://smartjsabridge.com/ko/protectiveequipment</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/protectiveequipment"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/protectiveequipment"/>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/guideline/common</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/guideline/common"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/guideline/common"/>
+    <loc>https://smartjsabridge.com/ko/guide/common</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guide/common"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guide/common"/>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://smartjsabridge.com/ko/guideline/construction</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/guideline/construction"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/guideline/construction"/>
+    <loc>https://smartjsabridge.com/ko/guide/chem</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guide/chem"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guide/chem"/>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://smartjsabridge.com/ko/guideline/manufacturing</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/guideline/manufacturing"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/guideline/manufacturing"/>
+    <loc>https://smartjsabridge.com/ko/guide/highrisk</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guide/highrisk"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guide/highrisk"/>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://smartjsabridge.com/ko/guideline/chemical</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/guideline/chemical"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/guideline/chemical"/>
+    <loc>https://smartjsabridge.com/ko/guide/manu</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guide/manu"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guide/manu"/>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://smartjsabridge.com/ko/guideline/high-risk</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/guideline/high-risk"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/guideline/high-risk"/>
+    <loc>https://smartjsabridge.com/ko/guide/const</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guide/const"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guide/const"/>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://smartjsabridge.com/ko/guideline/general</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/guideline/general"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/guideline/general"/>
+    <loc>https://smartjsabridge.com/ko/guide/general</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/guide/general"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/guide/general"/>
     <priority>0.6</priority>
   </url>
 
@@ -189,78 +100,9 @@
     <loc>https://smartjsabridge.com/ko/terms</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/terms"/>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/terms"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/terms"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/terms"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/terms"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/terms"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/terms"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/terms"/>
     <priority>0.3</priority>
   </url>
 
-  <url>
-    <loc>https://smartjsabridge.com/ko/privacy</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/privacy"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/privacy"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/privacy"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/privacy"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/privacy"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/privacy"/>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/case-study/jsa-tank-cleaning</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-tank-cleaning"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-tank-cleaning"/>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/case-study/jsa-aerial-lift</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-aerial-lift"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-aerial-lift"/>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/case-study/jsa-stepladder-work</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-stepladder-work"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-stepladder-work"/>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://smartjsabridge.com/ko/case-study/jsa-crane-operation</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://smartjsabridge.com/ko/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://smartjsabridge.com/en-US/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://smartjsabridge.com/en-GB/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="en-AU" href="https://smartjsabridge.com/en-AU/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://smartjsabridge.com/es-ES/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://smartjsabridge.com/de-DE/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://smartjsabridge.com/fr-FR/case-study/jsa-crane-operation"/>
-    <xhtml:link rel="alternate" hreflang="ru-RU" href="https://smartjsabridge.com/ru-RU/case-study/jsa-crane-operation"/>
-    <priority>0.7</priority>
-  </url>
+  
 
 </urlset>

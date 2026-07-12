@@ -46,6 +46,9 @@
   "footerPrivacy": "개인정보처리방침",
   "footerTerms": "이용약관",
   "footerAbout": "서비스 소개",
+  "navCaseStudy": "현장 사례 연구",
+  "caseStudySectionTag": "LATEST CASE STUDIES",
+  "caseStudySectionTitle": "현장 사례 연구",
   
   "jsaCard": {
     "01": { "title": "일반 및 공통안전", "f": "작업자 건강상태 및 심리적 불안정 미확인", "m": "TBM 활용 혈압 측정 및 음주 여부 확인 실시" },
