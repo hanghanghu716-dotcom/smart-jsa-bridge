@@ -63,7 +63,7 @@ export default function AdminPostUpload() {
       // 폼 및 에디터 초기화
       setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_description: '', content_md: '' });
       editorRef.current.getInstance().setMarkdown('');
-}
+    }
     setIsSubmitting(false);
   };
 

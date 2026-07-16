@@ -14,9 +14,9 @@ export default function CaseStudyDetail() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
-const PUBLISHER_ID = 'ca-pub-9791625990220699';
-      const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
-      const SIDE_SLOT_ID = '3978298367'; // ✅ 사이드 광고 슬롯 ID 추가
+  const PUBLISHER_ID = 'ca-pub-9791625990220699';
+  const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
+  const SIDE_SLOT_ID = '3978298367'; // ✅ 사이드 광고 슬롯 ID 추가
 
   useEffect(() => {
     const fetchLocalizedPost = async () => {
@@ -48,56 +48,57 @@ const PUBLISHER_ID = 'ca-pub-9791625990220699';
     fetchLocalizedPost();
   }, [id, i18n.language]); 
 
-    if (loading) return <div style={styles.loading}>Loading...</div>;
-      if (!post) return <div style={styles.error}>Content not found.</div>;
+  if (loading) return <div style={styles.loading}>Loading...</div>;
+  if (!post) return <div style={styles.error}>Content not found.</div>;
 
-      return (
-        <div style={styles.wrapper}>
-          <SEO title={post.title} description={post.meta_description} />
-          
-          {/* ✅ 1. Jrajsa 스타일의 다크 테마 헤더 (Hero Section) 적용 */}
-          <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
-            <div style={styles.container}>
-              <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">CASE STUDY</span>
-              <h1 style={styles.mainTitle} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
-                {post.title}
-              </h1>
-              <p style={styles.date}>
-                {new Date(post.created_at).toLocaleDateString()}
-              </p>
-            </div>
-          </section>
+  return (
+    <div style={styles.wrapper}>
+      {/* ✅ 수정: SEO 컴포넌트에 전달하는 Props 명칭 및 구조 변경 */}
+      <SEO pageTitle={`${post.title} | Smart JSA Bridge`} pageDescription={post.meta_description} />
+      
+      {/* ✅ 1. Jrajsa 스타일의 다크 테마 헤더 (Hero Section) 적용 */}
+      <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
+        <div style={styles.container}>
+          <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">CASE STUDY</span>
+          <h1 style={styles.mainTitle} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
+            {post.title}
+          </h1>
+          <p style={styles.date}>
+            {new Date(post.created_at).toLocaleDateString()}
+          </p>
+        </div>
+      </section>
 
-          {/* ✅ 2. 좌우 고정형 사이드 광고 슬롯 추가 */}
-          <aside className="hidden lg:block">
-            <div style={styles.adPlaceholderFixedLeft}>
-              <span style={styles.adLabelDark}>AD (LEFT)</span>
-              <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
-            </div>
-          </aside>
-          <aside className="hidden lg:block">
-            <div style={styles.adPlaceholderFixedRight}>
-              <span style={styles.adLabelDark}>AD (RIGHT)</span>
-              <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
-            </div>
-          </aside>
+      {/* ✅ 2. 좌우 고정형 사이드 광고 슬롯 추가 */}
+      <aside className="hidden lg:block">
+        <div style={styles.adPlaceholderFixedLeft}>
+          <span style={styles.adLabelDark}>AD (LEFT)</span>
+          <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
+        </div>
+      </aside>
+      <aside className="hidden lg:block">
+        <div style={styles.adPlaceholderFixedRight}>
+          <span style={styles.adLabelDark}>AD (RIGHT)</span>
+          <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
+        </div>
+      </aside>
 
-          {/* ✅ 3. 중앙 정렬된 넓은 콘텐츠 영역 (Max-width 1200px) 적용 */}
-          <div style={styles.mainContentArea}>
-            <div style={styles.centerContent}>
-              <div style={styles.markdownContent}>
-                <Viewer initialValue={post.content_md} />
-              </div>
+      {/* ✅ 3. 중앙 정렬된 넓은 콘텐츠 영역 (Max-width 1200px) 적용 */}
+      <div style={styles.mainContentArea}>
+        <div style={styles.centerContent}>
+          <div style={styles.markdownContent}>
+            <Viewer initialValue={post.content_md} />
+          </div>
 
-              <div style={styles.adSection}>
-                <span style={styles.adLabel}>ADVERTISEMENT</span>
-                <AdSenseUnit client={PUBLISHER_ID} slot={ARTICLE_BOTTOM_SLOT_ID} format="auto" />
-              </div>
-            </div>
+          <div style={styles.adSection}>
+            <span style={styles.adLabel}>ADVERTISEMENT</span>
+            <AdSenseUnit client={PUBLISHER_ID} slot={ARTICLE_BOTTOM_SLOT_ID} format="auto" />
           </div>
         </div>
-      );
-    }
+      </div>
+    </div>
+  );
+}
 
 const styles = {
   wrapper: { width: '100%', backgroundColor: '#fff', color: '#1c1b1f', position: 'relative', overflowX: 'hidden' },
