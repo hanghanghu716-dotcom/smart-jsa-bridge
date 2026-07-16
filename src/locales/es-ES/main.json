@@ -45,6 +45,9 @@
   "footerPrivacy": "Política de Privacidad",
   "footerTerms": "Términos de Uso",
   "footerAbout": "Introducción al Servicio",
+  "navCaseStudy": "Estudios de Caso",
+  "caseStudySectionTag": "ÚLTIMOS ESTUDIOS DE CASO",
+  "caseStudySectionTitle": "Estudios de Caso en Terreno",
   "jsaCard": {
     "01": { "title": "Seguridad General y Común", "f": "No verificación del estado de salud o inestabilidad psicológica del trabajador", "m": "Medición de presión arterial mediante TBM y verificación de consumo de alcohol" },
     "02": { "title": "Trabajo en Altura", "f": "Caída del trabajador desde bordes de plataformas o aberturas", "m": "Uso estricto de arnés de seguridad tipo paracaidista y anclaje a línea de vida" },
