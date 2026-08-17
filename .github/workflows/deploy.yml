@@ -1,0 +1,35 @@
+name: Vercel Production Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. 저장소 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: 2. Node.js 환경 세팅 (v20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 3. 의존성 패키지 설치
+        run: npm install
+
+      - name: 4. 정적 자산 빌드 및 하드코딩 렌더링 (react-snap)
+        run: |
+          npm run build
+          npm run snap
+
+      - name: 5. Vercel 배포를 위한 dist 폴더 추적 허용
+        run: sed -i '/dist/d' .gitignore || true
+
+      - name: 6. Vercel 프로덕션 직접 배포
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
