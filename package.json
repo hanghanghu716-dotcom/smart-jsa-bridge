@@ -77,7 +77,6 @@
       "--disable-web-security",
       "--allow-file-access-from-files"
     ],
-    "puppeteerExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     "concurrency": 1,
     "cacheAjaxRequests": true,
     "puppeteerIgnoreHTTPSErrors": true
