@@ -31,22 +31,27 @@ export default function CaseStudyDetail() {
         .maybeSingle(); 
 
       if (data) {
-        setPost(data);
-      } else {
-        const { data: defaultData } = await supabase
-          .from('case_studies')
-          .select('*')
-          .eq('post_group_id', id)
-          .eq('language_code', 'ko')
-          .maybeSingle();
-        
-        setPost(defaultData);
-      }
-      setLoading(false);
-    };
+              setPost(data);
+            } else {
+              const { data: defaultData } = await supabase
+                .from('case_studies')
+                .select('*')
+                .eq('post_group_id', id)
+                .eq('language_code', 'ko')
+                .maybeSingle();
+              
+              setPost(defaultData);
+            }
+            setLoading(false);
+            
+            // 봇에게 스냅샷 캡처 지시 (약간의 렌더링 딜레이를 확보)
+            setTimeout(() => {
+              if (window.snapSaveState) window.snapSaveState();
+            }, 500);
+          };
 
-    fetchLocalizedPost();
-  }, [id, i18n.language]); 
+          fetchLocalizedPost();
+        }, [id, i18n.language]);
 
   if (loading) return <div style={styles.loading}>Loading...</div>;
   if (!post) return <div style={styles.error}>Content not found.</div>;

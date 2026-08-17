@@ -515,7 +515,7 @@ export default function Main() {
               <LanguageLink to="/privacy" style={styles.fLink}>{t('footerPrivacy')}</LanguageLink>
               <LanguageLink to="/terms" style={styles.fLink}>{t('footerTerms')}</LanguageLink>
               <LanguageLink to="/about" style={styles.fLink}>{t('footerAbout')}</LanguageLink>
-            </div>
+              <LanguageLink to="/archive" style={styles.fLink}>{t('footerArchive', { defaultValue: 'Archive' })}</LanguageLink>            </div>
           </div>
         </div>
       </footer>

@@ -34,6 +34,7 @@ import ModuleBuilder from './pages/ModuleBuilder';
 import TableBuilder from './pages/TableBuilder';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import AdminPostUpload from './pages/AdminPostUpload';
+import Archive from './pages/Archive';
 
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
@@ -96,6 +97,15 @@ function LanguageWrapper({ children }) {
   return children;
 }
 
+// ✅ [기능 추가] 크롤러 진입 시 타임아웃을 유발하는 동적 페이지 렌더링을 원천 차단
+function CrawlerBlocker({ children }) {
+  const isCrawler = typeof window !== 'undefined' && navigator.userAgent.includes('ReactSnap');
+  if (isCrawler) {
+    return <div style={{ display: 'none' }}>Crawler Blocked</div>;
+  }
+  return children;
+}
+
 export default function App() {
   return (
     <AuthProvider>
@@ -107,7 +117,7 @@ export default function App() {
             <Route path="/" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
-            <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
+<Route path="/:lng/explore" element={<CrawlerBlocker><LanguageWrapper><PublicExplore /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />
             <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
             <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />
@@ -119,22 +129,23 @@ export default function App() {
             <Route path="/:lng/guideline/chemical" element={<LanguageWrapper><ChemicalGasGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/high-risk" element={<LanguageWrapper><HighRiskGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/general" element={<LanguageWrapper><GeneralGuide /></LanguageWrapper>} />
-            <Route path="/:lng/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
-            <Route path="/:lng/reset-password" element={<LanguageWrapper><ResetPassword /></LanguageWrapper>} />
-            <Route path="/:lng/profile" element={<LanguageWrapper><Profile /></LanguageWrapper>} /> 
-            <Route path="/:lng/library" element={<LanguageWrapper><MyLibrary /></LanguageWrapper>} />
-            <Route path="/:lng/info" element={<LanguageWrapper><Info /></LanguageWrapper>} />
-            <Route path="/:lng/analysis" element={<LanguageWrapper><Analysis /></LanguageWrapper>} />
-            <Route path="/:lng/procedure" element={<LanguageWrapper><Procedure /></LanguageWrapper>} />
-            <Route path="/:lng/export" element={<LanguageWrapper><Export /></LanguageWrapper>} />
-            <Route path="/:lng/jsa-preview" element={<LanguageWrapper><JsaSamplePreview /></LanguageWrapper>} />
-            <Route path="/:lng/layoutbuilder" element={<LanguageWrapper><LayoutBuilder /></LanguageWrapper>} />
-            <Route path="/:lng/layout-module" element={<LanguageWrapper><ModuleBuilder /></LanguageWrapper>} />
-            <Route path="/:lng/layout-table" element={<LanguageWrapper><TableBuilder /></LanguageWrapper>} />
+            <Route path="/:lng/login" element={<CrawlerBlocker><LanguageWrapper><Login /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/reset-password" element={<CrawlerBlocker><LanguageWrapper><ResetPassword /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/profile" element={<CrawlerBlocker><LanguageWrapper><Profile /></LanguageWrapper></CrawlerBlocker>} /> 
+            <Route path="/:lng/library" element={<CrawlerBlocker><LanguageWrapper><MyLibrary /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/info" element={<CrawlerBlocker><LanguageWrapper><Info /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/analysis" element={<CrawlerBlocker><LanguageWrapper><Analysis /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/procedure" element={<CrawlerBlocker><LanguageWrapper><Procedure /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/export" element={<CrawlerBlocker><LanguageWrapper><Export /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/jsa-preview" element={<CrawlerBlocker><LanguageWrapper><JsaSamplePreview /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/layoutbuilder" element={<CrawlerBlocker><LanguageWrapper><LayoutBuilder /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/layout-module" element={<CrawlerBlocker><LanguageWrapper><ModuleBuilder /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/layout-table" element={<CrawlerBlocker><LanguageWrapper><TableBuilder /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/terms" element={<LanguageWrapper><Terms /></LanguageWrapper>} />
             <Route path="/:lng/privacy" element={<LanguageWrapper><Privacy /></LanguageWrapper>} />
             <Route path="/:lng/case-study/:id" element={<LanguageWrapper><CaseStudyDetail /></LanguageWrapper>} />
-            <Route path="/:lng/admin/upload" element={<LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper>} />
+            <Route path="/:lng/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/archive" element={<LanguageWrapper><Archive /></LanguageWrapper>} />
           </Routes>
         </MobileGuard>
       </Router>
