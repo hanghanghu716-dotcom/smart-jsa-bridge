@@ -12,10 +12,10 @@ jobs:
       - name: 1. 저장소 코드 체크아웃
         uses: actions/checkout@v4
 
-      - name: 2. Node.js 환경 세팅 (v20)
+      - name: 2. Node.js 환경 세팅 (v22)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: 3. 의존성 패키지 설치
         run: npm install
