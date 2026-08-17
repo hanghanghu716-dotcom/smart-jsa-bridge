@@ -77,10 +77,6 @@
       "--disable-web-security",
       "--allow-file-access-from-files"
     ],
-    "puppeteerArgs": [
-        "--no-sandbox",
-        "--disable-setuid-sandbox"
-      ],
       "concurrency": 1,
     "cacheAjaxRequests": true,
     "puppeteerIgnoreHTTPSErrors": true
