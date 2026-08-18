@@ -79,7 +79,7 @@
       "--disable-web-security",
       "--allow-file-access-from-files"
     ],
-    "concurrency": 1,
+    "concurrency": 4,
     "cacheAjaxRequests": true,
     "puppeteerIgnoreHTTPSErrors": true
   }
