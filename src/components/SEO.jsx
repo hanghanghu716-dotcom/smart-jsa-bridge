@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 /**
- * ✅ 모든 페이지에 공통으로 적용될 글로벌 SEO 컴포넌트
- * 개별 페이지에서 pageTitle과 pageDescription을 Props로 전달받아 동적 할당 지원
+ * ✅ react-helmet-async를 적용한 글로벌 SEO 컴포넌트
+ * 구글 크롤러가 인식할 수 있도록 선언적으로 메타 태그를 렌더링합니다.
  */
 const SEO = ({ pageTitle, pageDescription }) => {
   const location = useLocation();
@@ -12,72 +12,53 @@ const SEO = ({ pageTitle, pageDescription }) => {
 
   const baseUrl = "https://smartjsabridge.com";
   const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
+  const currentLang = i18n.language;
+  
+  // URL 끝의 불필요한 슬래시 정규화
+  const cleanPathname = location.pathname.replace(/\/$/, '');
+  
+  // 순수 경로 추출
+  const segments = cleanPathname.split('/');
+  const purePath = supportedLangs.includes(segments[1]) 
+    ? segments.slice(2).join('/') 
+    : segments.slice(1).join('/');
 
-  useEffect(() => {
-    const currentLang = i18n.language;
-    
-    // 1. 순수 경로 추출
-    const segments = location.pathname.split('/');
-    const purePath = supportedLangs.includes(segments[1]) 
-      ? segments.slice(2).join('/') 
-      : segments.slice(1).join('/');
+  // 제목 및 설명 업데이트
+  const finalTitle = pageTitle || t('seo.title', 'Smart JSA Bridge | Intelligent Risk Assessment');
+  const finalDescription = pageDescription || t('seo.description', 'Intelligent and Data-driven Risk Assessment Platform');
+  const pathSuffix = purePath ? `/${purePath}` : '';
 
-    // 2. 제목 업데이트 (Props 우선 적용, 없을 시 Fallback 사용)
-    const finalTitle = pageTitle || t('seo.title', 'Smart JSA Bridge | Intelligent Risk Assessment');
-    const finalDescription = pageDescription || t('seo.description', 'Intelligent and Data-driven Risk Assessment Platform');
+  return (
+    <Helmet htmlAttributes={{ lang: currentLang.split('-')[0] }}>
+      <title>{finalTitle}</title>
+      <meta name="description" content={finalDescription} />
+      
+      {/* Open Graph Tags */}
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDescription} />
+      <meta property="og:url" content={`${baseUrl}${cleanPathname}`} />
+      
+      {/* Twitter Tags */}
+      <meta name="twitter:title" content={finalTitle} />
+      <meta name="twitter:description" content={finalDescription} />
 
-    document.title = finalTitle;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', finalDescription);
-    }
-
-    // 3. 메타 태그 업데이트 함수
-    const updateMeta = (property, content) => {
-      const el = document.querySelector(`meta[property="${property}"]`) || document.querySelector(`meta[name="${property}"]`);
-      if (el) el.setAttribute('content', content);
-    };
-
-    updateMeta('og:title', finalTitle);
-    updateMeta('og:description', finalDescription);
-    updateMeta('og:url', `${baseUrl}${location.pathname}`);
-    updateMeta('twitter:title', finalTitle);
-    updateMeta('twitter:description', finalDescription);
-
-    // 4. 기존 태그 제거 (중복 방지)
-    const existingAlternates = document.querySelectorAll('link[rel="alternate"], link[rel="canonical"]');
-    existingAlternates.forEach(tag => tag.remove());
-
-    // 5. hreflang 삽입 (경로 슬래시 중복 방지)
-    const pathSuffix = purePath ? `/${purePath}` : '';
-    supportedLangs.forEach(lang => {
-      const link = document.createElement('link');
-      link.rel = 'alternate';
-      link.hreflang = lang;
-      link.href = `${baseUrl}/${lang}${pathSuffix}`;
-      document.head.appendChild(link);
-    });
-
-    // 6. x-default 설정 (한국어 기준)
-    const defaultLink = document.createElement('link');
-    defaultLink.rel = 'alternate';
-    defaultLink.hreflang = 'x-default';
-    defaultLink.href = `${baseUrl}/ko${pathSuffix}`;
-    document.head.appendChild(defaultLink);
-
-    // 7. Canonical 설정
-    const canonicalLink = document.createElement('link');
-    canonicalLink.rel = 'canonical';
-    canonicalLink.href = `${baseUrl}${location.pathname}`;
-    document.head.appendChild(canonicalLink);
-
-    // 8. HTML lang 속성 동기화
-    document.documentElement.lang = currentLang.split('-')[0];
-
-  }, [location.pathname, i18n.language, t, pageTitle, pageDescription]);
-
-  return null;
+      {/* Canonical URL */}
+      <link rel="canonical" href={`${baseUrl}${cleanPathname}`} />
+      
+      {/* x-default 설정 (한국어 기준) */}
+      <link rel="alternate" hreflang="x-default" href={`${baseUrl}/ko${pathSuffix}`} />
+      
+      {/* 다국어 hreflang 지원 */}
+      {supportedLangs.map((lang) => (
+        <link 
+          key={lang} 
+          rel="alternate" 
+          hreflang={lang} 
+          href={`${baseUrl}/${lang}${pathSuffix}`} 
+        />
+      ))}
+    </Helmet>
+  );
 };
 
 export default SEO;

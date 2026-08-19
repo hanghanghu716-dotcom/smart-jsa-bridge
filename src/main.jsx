@@ -1,19 +1,29 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client' // hydrateRoot 추가
+import { HelmetProvider } from 'react-helmet-async';
 import './index.css'
 import App from './App.jsx'
 import './i18n';
 
 const rootElement = document.getElementById('root');
 
-// 사전 렌더링된 DOM과 현재 라우트의 상태 불일치(Hydration Mismatch)로 인한 
-// react-snap 크래시(Error #418)를 원천 방지하기 위해 렌더링 전 컨테이너를 강제 초기화합니다.
+// react-snap에 의해 사전 생성된 정적 HTML이 존재하는 경우 (운영 환경)
 if (rootElement.hasChildNodes()) {
-  rootElement.innerHTML = '';
+  hydrateRoot(
+    rootElement,
+    <StrictMode>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </StrictMode>
+  );
+} else {
+  // 정적 HTML이 없는 경우 (로컬 개발 환경 등)
+  createRoot(rootElement).render(
+    <StrictMode>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </StrictMode>
+  );
 }
-
-createRoot(rootElement).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);

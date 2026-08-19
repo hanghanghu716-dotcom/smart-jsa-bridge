@@ -46,7 +46,7 @@ async function generateSitemap() {
     
     // 루트 메인 페이지일 경우 글로벌 x-default 주소 추가 정의
     if (!page.path) {
-      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US/"/>\n`;
+      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/ko/"/>\n`;
     }
     
     xml += `    <priority>${page.priority}</priority>\n`;
