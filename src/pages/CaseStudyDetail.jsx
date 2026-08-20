@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next'; 
 // ✅ 불일치를 유발하던 기존 마크다운 엔진을 모두 제거하고 TOAST UI Viewer로 통일
@@ -10,6 +10,7 @@ import SEO from '../components/SEO';
 
 export default function CaseStudyDetail() {
   const { id } = useParams(); 
+  const navigate = useNavigate();
   const { i18n } = useTranslation(); 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,27 +32,27 @@ export default function CaseStudyDetail() {
         .maybeSingle(); 
 
       if (data) {
-              setPost(data);
-            } else {
-              const { data: defaultData } = await supabase
-                .from('case_studies')
-                .select('*')
-                .eq('post_group_id', id)
-                .eq('language_code', 'ko')
-                .maybeSingle();
-              
-              setPost(defaultData);
-            }
-            setLoading(false);
-            
-            // 봇에게 스냅샷 캡처 지시 (약간의 렌더링 딜레이를 확보)
-            setTimeout(() => {
-              if (window.snapSaveState) window.snapSaveState();
-            }, 500);
-          };
+        setPost(data);
+      } else {
+        const { data: defaultData } = await supabase
+          .from('case_studies')
+          .select('*')
+          .eq('post_group_id', id)
+          .eq('language_code', 'ko')
+          .maybeSingle();
+        
+        setPost(defaultData);
+      }
+      setLoading(false);
+      
+      // 봇에게 스냅샷 캡처 지시 (약간의 렌더링 딜레이를 확보)
+      setTimeout(() => {
+        if (window.snapSaveState) window.snapSaveState();
+      }, 500);
+    };
 
-          fetchLocalizedPost();
-        }, [id, i18n.language]);
+    fetchLocalizedPost();
+  }, [id, i18n.language]);
 
   if (loading) return <div style={styles.loading}>Loading...</div>;
   if (!post) return <div style={styles.error}>Content not found.</div>;
@@ -61,6 +62,13 @@ export default function CaseStudyDetail() {
       {/* ✅ 수정: SEO 컴포넌트에 전달하는 Props 명칭 및 구조 변경 */}
       <SEO pageTitle={`${post.title} | Smart JSA Bridge`} pageDescription={post.meta_description} />
       
+      {/* ✅ 추가: SEO를 통해 직접 유입된 사용자를 위한 상단 네비게이션 헤더 */}
+      <header style={styles.header}>
+        <div style={styles.container}>
+          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+        </div>
+      </header>
+
       {/* ✅ 1. Jrajsa 스타일의 다크 테마 헤더 (Hero Section) 적용 */}
       <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
@@ -101,6 +109,21 @@ export default function CaseStudyDetail() {
           </div>
         </div>
       </div>
+
+      {/* ✅ 추가: 애드센스 정책 준수 및 부가 정보 제공을 위한 하단 푸터 */}
+      <footer style={styles.finalFooter}>
+        <div style={styles.container}>
+          <div style={styles.footerFlex}>
+            <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
+            <div style={styles.footerLinks}>
+              <Link to="/" style={styles.fLink}>Home</Link>
+              <Link to="/privacy" style={styles.fLink}>Privacy Policy</Link>
+              <Link to="/terms" style={styles.fLink}>Terms of Service</Link>
+              <Link to="/about" style={styles.fLink}>About Us</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -129,5 +152,12 @@ const styles = {
     position: 'fixed', top: '50%', right: 'calc(50% - 600px - 160px - 20px)', transform: 'translateY(-50%)',
     width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', 
     borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0', zIndex: 100
-  }
+  },
+  header: { padding: '20px 24px', backgroundColor: '#1c1b1f', borderBottom: '1px solid rgba(255,255,255,0.1)', position: 'relative', zIndex: 20 },
+  logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer', margin: 0 },
+  finalFooter: { padding: '60px 24px', backgroundColor: '#1c1b1f', color: '#fff', width: '100%', marginTop: 'auto' },
+  footerFlex: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' },
+  copyright: { margin: 0, fontSize: '0.9rem', opacity: 0.6 },
+  footerLinks: { display: 'flex', gap: '24px', flexWrap: 'wrap' },
+  fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' }
 };
