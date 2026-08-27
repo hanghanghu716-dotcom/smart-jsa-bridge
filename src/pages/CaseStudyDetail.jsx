@@ -22,14 +22,18 @@ export default function CaseStudyDetail() {
   useEffect(() => {
     const fetchLocalizedPost = async () => {
       setLoading(true);
-      const currentLang = i18n.language || 'ko';
+      const pathSegments = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+      const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
+      const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
+
+      const targetLang = urlLang || i18n.language || 'ko';
 
       const { data, error } = await supabase
         .from('case_studies')
         .select('*')
         .eq('post_group_id', id) 
-        .eq('language_code', currentLang)
-        .maybeSingle(); 
+        .eq('language_code', targetLang)
+        .maybeSingle();
 
       if (data) {
         setPost(data);
