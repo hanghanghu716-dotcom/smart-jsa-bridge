@@ -69,7 +69,12 @@ const SEO = ({ pageTitle, pageDescription }) => {
     // 7. Canonical 설정
     const canonicalLink = document.createElement('link');
     canonicalLink.rel = 'canonical';
-    canonicalLink.href = `${baseUrl}${location.pathname}`;
+    
+    // 다국어 페이지 점수 병합: 모든 경로가 대표 언어(en-US)의 동일 페이지를 표준으로 가리키도록 강제
+    const targetCanonicalLang = 'en-US'; // 글로벌 타겟 기준 (필요 시 'ko'로 변경)
+    const canonicalPath = purePath ? `/${targetCanonicalLang}/${purePath}` : `/${targetCanonicalLang}/`;
+    
+    canonicalLink.href = `${baseUrl}${canonicalPath}`;
     document.head.appendChild(canonicalLink);
 
     // 8. HTML lang 속성 동기화
