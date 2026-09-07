@@ -12,7 +12,7 @@ const SEO = ({ pageTitle, pageDescription }) => {
   // 언어 감지 폴백 (기본값 설정)
   const currentLang = i18n.language || 'ko';
 
-  // 1. 순수 경로 추출 (언어 코드 제거)
+  // 1. 순수 경로 추출 (언어 코드 제거) ,
   const segments = location.pathname.split('/');
   const purePath = supportedLangs.includes(segments[1]) 
     ? segments.slice(2).join('/') 
