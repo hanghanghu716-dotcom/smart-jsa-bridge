@@ -49,6 +49,7 @@
   },
   "reactSnap": {
     "source": "dist",
+    "puppeteerExecutable": "/usr/bin/google-chrome",
     "include": [
       "/ko/",
       "/en-US/",
