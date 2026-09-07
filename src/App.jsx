@@ -35,6 +35,7 @@ import TableBuilder from './pages/TableBuilder';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import AdminPostUpload from './pages/AdminPostUpload';
 import Archive from './pages/Archive';
+import SEO from './SEO';
 
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
@@ -111,6 +112,7 @@ export default function App() {
     <AuthProvider>
       <Router>
         <LanguageInit /> 
+        <SEO />
         
         <MobileGuard>
           <Routes>
