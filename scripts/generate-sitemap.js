@@ -38,16 +38,14 @@ async function generateSitemap() {
   staticPages.forEach(page => {
     const basePath = page.path ? `/${page.path}` : '';
     xml += `  <url>\n`;
-    xml += `    <loc>https://smartjsabridge.com/ko${basePath}</loc>\n`;
+    xml += `    <loc>https://smartjsabridge.com/en-US${basePath}</loc>\n`;
     
     LANGUAGES.forEach(lng => {
       xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${lng}${basePath}"/>\n`;
     });
     
-    // 루트 메인 페이지일 경우 글로벌 x-default 주소 추가 정의
-    if (!page.path) {
-      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/ko/"/>\n`;
-    }
+    // 모든 페이지에 대하여 글로벌 x-default 주소를 en-US로 일괄 적용
+    xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US${basePath}"/>\n`;
     
     xml += `    <priority>${page.priority}</priority>\n`;
     xml += `  </url>\n\n`;
@@ -68,11 +66,14 @@ async function generateSitemap() {
         if (!slug) return;
 
         xml += `  <url>\n`;
-        xml += `    <loc>https://smartjsabridge.com/ko/case-study/${slug}</loc>\n`;
+        xml += `    <loc>https://smartjsabridge.com/en-US/case-study/${slug}</loc>\n`;
         
         LANGUAGES.forEach(lng => {
           xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${lng}/case-study/${slug}"/>\n`;
         });
+        
+        // 동적 페이지에 대하여 글로벌 x-default 주소를 en-US로 일괄 적용
+        xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US/case-study/${slug}"/>\n`;
         
         xml += `    <priority>0.7</priority>\n`;
         xml += `  </url>\n\n`;

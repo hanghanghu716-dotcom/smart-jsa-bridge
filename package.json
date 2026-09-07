@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-sitemap.js",
-    "build": "if [ \"$VERCEL\" = \"1\" ]; then vite build; else vite build && react-snap; fi",
+    "build": "vite build && react-snap",
     "lint": "eslint .",
     "preview": "vite preview"
   },

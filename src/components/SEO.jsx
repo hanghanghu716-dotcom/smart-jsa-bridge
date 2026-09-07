@@ -58,8 +58,7 @@ const SEO = ({ pageTitle, pageDescription }) => {
         />
       ))}
       {/* 기본 언어 폴백 (x-default) */}
-      <link rel="alternate" hreflang="x-default" href={`${baseUrl}/ko${pathSuffix}`} />
-    </Helmet>
+      <link rel="alternate" hreflang="x-default" href={`${baseUrl}/en-US${pathSuffix}`} />    </Helmet>
   );
 };
 
