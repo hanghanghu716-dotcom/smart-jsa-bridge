@@ -51,7 +51,7 @@ async function generateSitemap() {
     xml += `  </url>\n\n`;
   });
 
-// [2. DB 연동을 통한 동적 케이스 스터디 매핑 생성]
+// [2. DB 연동을 통한 동적 케이스 스터디 매핑 생성] /
   try {
     const { data: caseStudies, error } = await supabase
       .from('case_studies')
