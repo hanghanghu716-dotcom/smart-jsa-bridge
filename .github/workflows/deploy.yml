@@ -24,8 +24,7 @@ jobs:
           npm install
 
       - name: 3-1. Puppeteer 시스템 의존성 설치
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2
-
+        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64
       - name: 4. 정적 자산 빌드 및 하드코딩 렌더링 (react-snap)
         run: npm run build
 
