@@ -15,7 +15,7 @@ const AdBanner = ({ slot, style, format = 'auto', responsive = 'true' }) => {
       console.error("AdSense error:", e);
     }
   }, [location.pathname]); // ✅ 경로(pathname)가 바뀔 때마다 실행
-
+//
   return (
     <div style={{ 
       ...style, 
