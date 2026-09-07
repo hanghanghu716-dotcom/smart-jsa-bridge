@@ -17,9 +17,16 @@
 
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9791625990220699"
-     crossorigin="anonymous"></script>
-     
+    <script>
+      if (!navigator.userAgent.includes('ReactSnap')) {
+        var adsScript = document.createElement('script');
+        adsScript.async = true;
+        adsScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9791625990220699";
+        adsScript.crossOrigin = "anonymous";
+        document.head.appendChild(adsScript);
+      }
+    </script>     crossorigin="anonymous"></script>
+        
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
