@@ -49,6 +49,14 @@
   },
   "reactSnap": {
     "source": "dist",
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-web-security",
+      "--allow-file-access-from-files",
+      "--js-flags=--max-old-space-size=4096"
+    ],
+    "ignoreJSErrors": true,
     "include": [
       "/ko/",
       "/en-US/",
