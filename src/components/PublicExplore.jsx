@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { useLocation } from 'react-router-dom'; 
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 import { DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary';
-import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import SEO from '../components/SEO'; 
 import { useTranslation } from 'react-i18next';
-import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import { useLanguageNavigate } from '../hooks/useLanguage'; 
 
 const allTags = Object.keys(DIMENSIONAL_KEYWORD_MAP);
 
 export default function PublicExplore() {
-  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
+  const navigate = useLanguageNavigate(); 
   const location = useLocation();
   const { t, i18n } = useTranslation(['explore', 'tags']);
+  
+  // ✅ [추가] ReactSnap(렌더링 봇) 환경 감지 변수
+  const isSnap = typeof window !== 'undefined' && navigator.userAgent.includes('ReactSnap');
   
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,6 +39,12 @@ export default function PublicExplore() {
   const [expandedGroups, setExpandedGroups] = useState({ industry: true });
 
   useEffect(() => {
+    // ✅ [추가] 빌드 봇 접근 시 alert 경고창 발생 및 무한 대기 타임아웃 원천 차단
+    if (isSnap) {
+      setIsLoading(false);
+      return;
+    }
+
     const checkUserAndFetch = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
@@ -50,8 +59,7 @@ export default function PublicExplore() {
     const closeMenu = () => setActiveMenuId(null);
     window.addEventListener('click', closeMenu);
     return () => window.removeEventListener('click', closeMenu);
-    // ✅ [수정] navigate를 의존성 배열에서 제거하여 무한 루프(깜빡임) 방지
-  }, [sortBy, t]); 
+  }, [sortBy, t, isSnap, navigate]); 
 
   const fetchPublicProjects = async () => {
     setIsLoading(true);
@@ -144,7 +152,7 @@ export default function PublicExplore() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO />
 
       {reportTarget && (
         <div style={styles.modalOverlay} onClick={() => setReportTarget(null)}>
@@ -263,9 +271,15 @@ export default function PublicExplore() {
             <span>{t('totalLabel')}<strong>{filteredProjects.length}</strong>{t('assetCountLabel')}</span>
           </div>
 
-          {isLoading ? (
+          {isSnap ? (
+            /* ✅ [추가] 크롤러에게 제공할 SEO 최적화 정적 텍스트 렌더링 */
+            <div aria-hidden="true" style={{ padding: '2rem 0', color: '#ccc', lineHeight: '1.6' }}>
+              <h2 style={{ fontSize: '1.2rem', color: '#fff', marginBottom: '1rem' }}>글로벌 산업 안전 위험성평가(JSA) 데이터베이스</h2>
+              <p>건설, 제조, 화학 플랜트 등 다양한 산업군의 JSA 사례와 공학적 안전 통제(Engineering Controls) 데이터를 탐색할 수 있습니다. OSHA 규정에 기반한 실무 작업 절차와 통제 수단을 확인하십시오.</p>
+            </div>
+          ) : isLoading ? (
             <div style={styles.loader}>{t('loadingLabel')}</div>
-              ) : (
+          ) : (
             <div style={styles.grid}>
               {filteredProjects.map((p, index) => (
                 <React.Fragment key={p.id}>
@@ -330,7 +344,6 @@ export default function PublicExplore() {
   );
 }
 
-// 스타일 객체는 원본 소스코드를 100% 보존합니다.
 const styles = {
   wrapper: { minHeight: '100vh', backgroundColor: '#000', color: '#fff' },
   header: { padding: '1rem 3rem', borderBottom: '1px solid #111', display: 'flex', alignItems: 'center', gap: '2rem' },
