@@ -25,6 +25,9 @@ const allowedPaths = [
     '/guideline', // 모든 하위 가이드 경로 포함
     '/admin/upload', // ✅ 관리자 콘텐츠 업로드 페이지 접근 허용
     '/case-study',   // ✅ 사례 연구 상세 조회 페이지 모바일 열람 허용
+    '/explore',      // ✅ SEO 목적 퍼블릭 탐색 페이지 허용 추가
+    '/dictionary',   // ✅ SEO 목적 요인 사전 페이지 허용 추가
+    '/info',         // ✅ SEO 목적 서비스 안내 페이지 허용 추가
   ];
 
   // 2. 경로 일치 여부 판별 로직

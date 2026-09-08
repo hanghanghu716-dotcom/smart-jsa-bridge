@@ -494,6 +494,18 @@ export default function Main() {
                   ))}
                 </div>
               )}
+
+              {/* 검색엔진 크롤러 전용 전체 게시물 링크 트리 (UI 화면에는 미노출) */}
+              <div style={{ display: 'none' }} aria-hidden="true">
+                {caseStudies.map((caseItem) => (
+                  <LanguageLink 
+                    key={`crawler-${caseItem.post_group_id}`} 
+                    to={`/case-study/${caseItem.post_group_id}`}
+                  >
+                    {caseItem.title}
+                  </LanguageLink>
+                ))}
+              </div>
             </>
           ) : (
             <div style={styles.noResultBox}>
