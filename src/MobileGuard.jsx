@@ -30,7 +30,7 @@ const allowedPaths = [
     '/info',         // ✅ SEO 목적 서비스 안내 페이지 허용 추가
   ];
 
-  // 2. 경로 일치 여부 판별 로직
+  // 2. 경로 일치 여부 판별 로직 //
   // 메인 페이지( '/' 또는 '' )이거나 허용 목록의 경로로 시작하는지 검증
   const isAllowedPath = 
     purePath === '/' || 
