@@ -146,9 +146,9 @@ export default function AdminPostUpload() {
           value={formData.title} onChange={handleChange} style={inputStyle} required 
         />
         
-        <input 
-          type="text" name="meta_description" placeholder="SEO 메타 요약 (150자 이내)" 
-          value={formData.meta_description} onChange={handleChange} style={inputStyle} required 
+        <textarea 
+          name="meta_description" placeholder="SEO 메타 요약 (150자 이내, 줄바꿈 가능)" 
+          value={formData.meta_description} onChange={handleChange} style={{ ...inputStyle, resize: 'vertical', minHeight: '80px' }} required 
         />
 
         {/* ✅ [수정] textarea를 TOAST UI Editor로 전면 교체 */}
