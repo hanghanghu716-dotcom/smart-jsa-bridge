@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ 閉じる"
+  },
+  "drawer": {
+    "contents": "コンテンツ",
+    "regulation": "労働安全衛生法 / 関連基準",
+    "jrajsa": "JHA / JSA（作業安全分析）",
+    "protectiveEquipment": "個人用保護具（PPE）",
+    "riskClassification": "危険・有害要因の分類",
+    "dictionary": "危険要因データベース"
+  },
+  "hero": {
+    "tag": "OCCUPATIONAL SAFETY & HEALTH DATABASE",
+    "titleLine1": "スマート作業安全分析（JSA）、",
+    "titleLine2": "標準危険要因辞書"
+  },
+  "seoText1": "厚生労働省のガイドラインおよび労働安全衛生法に準拠した、職場に潜む潜在的な危険要因とそれに対応する管理・低減対策を検索および特定します。",
+  "seoText2": "体系的かつデータ主導のアプローチにより、より安全な作業環境を構築し、重大な労働災害を未然に防止します。",
+  "filter": {
+    "allCategories": "すべてのカテゴリ",
+    "searchPlaceholder": "危険要因または安全対策を検索...",
+    "searchBtn": "検索",
+    "resultPrefix": "合計 ",
+    "resultSuffix": " 件"
+  },
+  "data": {
+    "loading": "データを読み込んでいます...",
+    "empty": "条件に一致するデータが見つかりません。",
+    "riskFactorLabel": "特定された危険要因",
+    "currentMeasureLabel": "現在の安全対策（管理策）",
+    "advancedMeasureLabel": "追加の安全対策（推奨）"
+  },
+  "pagination": {
+    "prev": "前へ",
+    "next": "次へ"
+  }
+}

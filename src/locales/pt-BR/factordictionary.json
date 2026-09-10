@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "Menu",
+    "close": "Fechar"
+  },
+  "drawer": {
+    "contents": "CONTEÚDO",
+    "regulation": "Normas Regulamentadoras (NRs - MTE)",
+    "jrajsa": "APR / JSA",
+    "protectiveEquipment": "EPIs (Equipamentos de Proteção)",
+    "riskClassification": "Classificação de Riscos (GRO)",
+    "dictionary": "Dicionário de Perigos e Riscos"
+  },
+  "hero": {
+    "tag": "BANCO DE DADOS DE SEGURANÇA E SAÚDE OCUPACIONAL",
+    "titleLine1": "Análise Preliminar de Risco Inteligente,",
+    "titleLine2": "Dicionário Padrão de Perigos",
+    "seoText1": "Pesquise e identifique perigos potenciais no local de trabalho e medidas de controle correspondentes em conformidade com as Normas Regulamentadoras (MTE/Fundacentro).",
+    "seoText2": "Estabeleça um ambiente de trabalho mais seguro e previna acidentes de trabalho graves por meio da nossa abordagem sistemática baseada em dados reais do setor."
+  },
+  "filter": {
+    "allCategories": "Todas as Categorias",
+    "searchPlaceholder": "Pesquisar perigos ou medidas de controle...",
+    "searchBtn": "Pesquisar",
+    "resultPrefix": "Total de ",
+    "resultSuffix": " resultados"
+  },
+  "data": {
+    "loading": "Carregando dados...",
+    "empty": "Nenhum dado encontrado correspondente aos seus critérios.",
+    "riskFactorLabel": "Perigo Identificado",
+    "currentMeasureLabel": "Controles de Risco Atuais",
+    "advancedMeasureLabel": "Controles de Risco Adicionais"
+  },
+  "pagination": {
+    "prev": "Anterior",
+    "next": "Próximo"
+  }
+}

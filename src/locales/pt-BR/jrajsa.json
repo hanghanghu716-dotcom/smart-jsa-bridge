@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "regulation": "Diretrizes de Avaliação de Risco (PGR)",
+    "jrajsa": "Processo Prático APR/JSA",
+    "ppe": "Sobre Equipamentos de Proteção (EPI)",
+    "riskClass": "Tarefas Gerais / Alto Risco"
+  },
+  "hero": {
+    "tag": "CONFORMIDADE INTEGRADA DE SEGURANÇA",
+    "title1": "Processo Prático de Análise de Risco (APR/PGR)",
+    "title2": "& Diretrizes Integradas de Conformidade Legal (NRs)",
+    "subTitle1": "Fornecendo metodologias profissionais para cumprir as Normas Regulamentadoras (MTE)",
+    "subTitle2": "e alcançar zero acidentes no ambiente de trabalho."
+  },
+  "section3": {
+    "title": "3. Processo Padrão de APR em 9 Etapas",
+    "process": {
+      "step1": { "idx": "01", "title": "Estabelecer POP (SOP)", "desc": "Estabelecer Procedimentos Operacionais Padrão de segurança adequados às características do local." },
+      "step2": { "idx": "02", "title": "Formar Equipe de Análise", "desc": "Reunir supervisores, profissionais do SESMT e trabalhadores de campo qualificados." },
+      "step3": { "idx": "03", "title": "Selecionar Tarefas Alvo", "desc": "Priorizar operações de alto risco e tarefas não rotineiras." },
+      "step4": { "idx": "04", "title": "Executar a Avaliação", "desc": "Dividir em etapas, identificar os perigos (GRO) e estabelecer medidas de controle." },
+      "step5": { "idx": "05", "title": "Revisar e Aprovar", "desc": "Analisar a viabilidade das medidas no campo e obter a aprovação final (Emissão de PT)." },
+      "step6": { "idx": "06", "title": "Ações Corretivas/Preventivas", "desc": "Implementar medidas físicas de engenharia e fornecimento de EPIs adequados." },
+      "step7": { "idx": "07", "title": "Registrar e Treinar", "desc": "Arquivar a APR e realizar o treinamento/DDS (Diálogo Diário de Segurança) com os trabalhadores." },
+      "step8": { "idx": "08", "title": "Aplicação em Campo", "desc": "Implantar os procedimentos de trabalho seguro confirmados durante as operações reais." },
+      "step9": { "idx": "09", "title": "Avaliação de Desempenho", "desc": "Monitorar continuamente a implementação e validar a eficácia das medidas (Melhoria Contínua)." }
+    }
+  },
+  "section4": {
+    "title": "4. Itens Obrigatórios para o Programa de Gerenciamento de Riscos (NR-01 / GRO)",
+    "rules": {
+      "item1": { "title": "Objetivo e Método", "desc": "Objetivos e seleção das metodologias de avaliação de risco adequadas." },
+      "item2": { "title": "Organização e Papéis", "desc": "Responsabilidades claras para a liderança, SESMT, CIPA e trabalhadores de campo." },
+      "item3": { "title": "Inventário de Riscos", "desc": "Listagem abrangente de todos os perigos e riscos ocupacionais." },
+      "item4": { "title": "Cronograma e Frequência", "desc": "Prazos para revisões periódicas do PGR (mínimo a cada 2 anos) ou avaliações especiais." },
+      "item5": { "title": "Critérios de Risco", "desc": "Matriz de risco clara (ex: HRN, BS 8800) para calcular os níveis de risco." },
+      "item6": { "title": "Retenção de Registros", "desc": "Padronização de formulários e manutenção dos registros pelo tempo exigido (geralmente 20 anos para históricos)." }
+    }
+  },
+  "section5": {
+    "title": "5. Comparação: PGR/GRO x APR",
+    "table": {
+      "header": {
+        "col1": "Categoria",
+        "col2": "PGR / GRO (Gestão Global)",
+        "col3": "APR / JSA (Análise Específica de Tarefa)"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Escopo de Aplicação",
+          "col2": "Mapeamento macro de toda a empresa, processos e instalações.",
+          "col3": "Passo a passo micro detalhado de uma tarefa, manutenção ou serviço específico."
+        },
+        "row2": {
+          "col1": "Participantes Chave",
+          "col2": "Empregador, SESMT, Consultorias Externas",
+          "col3": "Encarregados, Técnicos de Segurança, Trabalhadores Executantes"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. Checklist Obrigatório para Exigência de APR",
+    "checklist": {
+      "item1": "A tarefa não possui um Procedimento Operacional Padrão (POP) claro?",
+      "item2": "É uma atividade com histórico frequente de incidentes, acidentes ou quase acidentes (near-misses)?",
+      "item3": "Os executantes não têm experiência na realização deste processo específico?",
+      "item4": "A tarefa exige Permissão de Trabalho (PT), como espaço confinado, trabalho a quente ou altura?"
+    }
+  },
+  "section7": {
+    "title": "7. Lógica de Cálculo de Risco Quantitativo",
+    "math": {
+      "risk": "Nível de Risco",
+      "frequency": "Probabilidade",
+      "severity": "Severidade (Dano)",
+      "caption": "Risco = Probabilidade de ocorrência × Severidade da consequência (Dano)"
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Projetado por <strong>yizuno</strong>"
+}

@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Este apelido (nickname) não pode ser usado.",
+    "nickNoSpecial": "Por favor, não utilize caracteres especiais.",
+    "nickInUse": "Este apelido já está em uso.",
+    "nickAvailable": "✓ Apelido disponível.",
+    "pwSafe": "✓ Senha segura",
+    "pwRule": "Mín. 8 caracteres: letras, números e símbolos",
+    "pwMatch": "✓ As senhas coincidem",
+    "pwMismatch": "As senhas não coincidem"
+  },
+  "alert": {
+    "resetSent": "Um link de redefinição de senha foi enviado para o seu e-mail.",
+    "checkInput": "Por favor, verifique as informações inseridas.",
+    "signupSuccess": "Por favor, clique no link de verificação enviado para o seu e-mail para concluir o cadastro."
+  },
+  "ui": {
+    "titleSignup": "Cadastro de Usuário",
+    "titleReset": "Redefinição de Senha",
+    "titleLogin": "Autenticação no Sistema (Login)",
+    "guideSignup": "Insira as informações necessárias para participar do banco de conhecimento da comunidade SESMT.",
+    "guideReset": "Um link seguro de redefinição será enviado ao seu e-mail.",
+    "guideLogin": "Faça login com sua conta registrada para utilizar os recursos completos da plataforma.",
+    "labelEmail": "Endereço de E-mail",
+    "labelNickname": "Nome de Usuário (Público)",
+    "placeholderNickname": "Apelido / Nickname",
+    "labelSector": "Setor Industrial (CNAE Principal)",
+    "selectDefault": "Selecione o Setor",
+    "labelPassword": "Senha de Acesso",
+    "placeholderPassword": "Mín. 8 caracteres: letras, números, símbolos",
+    "labelPasswordConfirm": "Confirmar Senha",
+    "placeholderPasswordConfirm": "Digite a senha novamente com precisão",
+    "placeholderPasswordLogin": "Senha",
+    "btnForgotPw": "Esqueci minha senha",
+    "btnProcessing": "Processando...",
+    "btnSubmitSignup": "Criar Conta de Usuário",
+    "btnSubmitReset": "Enviar E-mail de Redefinição",
+    "btnSubmitLogin": "Acessar o Sistema",
+    "dividerOr": "OU",
+    "btnGoogleLogin": "Continuar com o Google (SSO)",
+    "btnSwitchSignup": "Não tem uma conta? Cadastre-se",
+    "btnSwitchLogin": "Já possui uma conta? Faça Login"
+  },
+  "sector": {
+    "construction": "Construção Civil / Engenharia / Infraestrutura",
+    "manufacturing": "Manufatura / Usinagem / Química",
+    "energy": "Energia Elétrica / Petróleo e Gás / Mineração",
+    "logistics": "Transporte / Logística / Armazéns",
+    "safety": "Consultoria em Segurança do Trabalho (SESMT)",
+    "it": "TI / Sistemas / Automação",
+    "public": "Órgãos Públicos / Educação / Saúde",
+    "others": "Outros Setores"
+  }
+}

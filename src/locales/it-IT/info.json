@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "Sei sicuro di voler tornare alla Home? Tutti i dati inseriti non salvati andranno definitivamente persi.",
+    "projectNameRequired": "Il Nome del Progetto è obbligatorio. Inserire il titolo dell'attività da valutare."
+  },
+  "step": {
+    "basicInfo": "Info Generali",
+    "procedure": "Ciclo Operativo",
+    "riskAnalysis": "Valutazione Rischi",
+    "moduleConfig": "Config. Moduli",
+    "tableConfig": "Layout Tabella",
+    "finalOutput": "Esportazione"
+  },
+  "form": {
+    "title": "01. Dati Anagrafici dell'Attività & Requisiti di Prevenzione",
+    "projectName": "Nome Progetto/Intervento",
+    "required": "(Obbligatorio)",
+    "department": "Reparto / Azienda Appaltatrice",
+    "workLocation": "Specifica Area di Cantiere",
+    "workDate": "Data Programmata",
+    "managerName": "Preposto / Dirigente di Riferimento",
+    "weather": "Condizioni Meteo Previste",
+    "hasNewWorker": "Presenza di Lavoratori Neoassunti o Inesperti",
+    "participants": "Partecipanti alla Valutazione (RSPP, RLS, Preposti)",
+    "ppe": "Dispositivi di Protezione Individuale (DPI) Obbligatori",
+    "permits": "Lavori Soggetti a Permesso (PdL Specifico)",
+    "equipment": "Attrezzature e Macchine Necessarie",
+    "additionalItems": "Prescrizioni o Richieste Integrative"
+  },
+  "warning": {
+    "title": "Avvertenza sulla Privacy (GDPR):",
+    "text": "I risultati JSA creati in modalità Pubblica saranno condivisi con la community per promuovere la cultura della sicurezza. Si prega di rimuovere dati sensibili o aziendali reali. Qualora venissero inseriti contenuti impropri, informazioni errate volontarie o volgarità, il documento verrà rimosso senza preavviso con possibili sanzioni sull'account."
+  },
+  "weather": {
+    "sunny": "Sereno",
+    "cloudy": "Nuvoloso",
+    "rain": "Pioggia",
+    "snow": "Neve/Ghiaccio",
+    "wind": "Vento Forte (> 10m/s)",
+    "heatwave": "Ondata di Calore / Rischio Microclima",
+    "coldwave": "Gelo / Freddo Estremo"
+  },
+  "ppe": {
+    "안전모": "Elmetto di Protezione (EN 397)",
+    "안전화": "Calzature Antinfortunistiche",
+    "보안경": "Occhiali di Protezione",
+    "장갑": "Guanti di Sicurezza",
+    "귀마개": "Otoprotettori (Cuffie/Inserti)",
+    "방진복": "Tuta Protettiva Monouso",
+    "방진마스크": "Facciale Filtrante Antipolvere (FFP2/3)"
+  },
+  "permit": {
+    "일반": "Lavoro Ordinario",
+    "화기": "Lavori a Caldo",
+    "밀폐": "Spazi Confinati (D.P.R. 177)",
+    "정전": "Lavori Elettrici fuori tensione (LOTO)",
+    "굴착": "Scavi e Trincee",
+    "방사선": "Rischio Radiologico",
+    "고소": "Lavori in Quota (> 2m)",
+    "중량물": "Sollevamento Carichi Critici",
+    "가연성가스": "Ambienti ATEX / Gas Infiammabili"
+  },
+  "btn": {
+    "home": "Torna alla Home",
+    "next": "Procedi alla Definizione delle Fasi"
+  }
+}

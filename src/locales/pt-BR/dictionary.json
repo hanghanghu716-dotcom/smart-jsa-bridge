@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ FECHAR"
+  },
+  "drawer": {
+    "contents": "CONTEÚDO",
+    "regulation": "Guia de Regulamentação de Avaliação de Risco (PGR)",
+    "jrajsa": "Processo Prático APR/JSA",
+    "protectiveEquipment": "Sobre Equipamentos de Proteção (EPI - NR-06)",
+    "riskClassification": "Trabalho Geral / Alto Risco",
+    "dictionary": "BD de Fatores de Risco & Medidas"
+  },
+  "hero": {
+    "tag": "BANCO DE DADOS INTELIGENTE DE RISCOS",
+    "titleLine1": "Dicionário Integrado de Perigos, Fatores de Risco",
+    "titleLine2": "e Medidas de Mitigação Padrão",
+    "seoText1": "Este banco de dados fornece dados combinados para mais de 1.000 perigos padrão e medidas de mitigação correspondentes com base nas Normas Regulamentadoras (NRs) do Ministério do Trabalho e Emprego (MTE) e em padrões internacionais de segurança. Engenheiros de segurança do trabalho (SESMT) e trabalhadores podem utilizar este dicionário para identificar proativamente riscos potenciais e estabelecer medidas de controle eficazes.",
+    "seoText2": "Os dados fornecidos servem como referência fundamental para a prevenção de acidentes. Por favor, edite e aplique ao seu local específico, levando em consideração o ambiente de trabalho real, as características dos equipamentos e a proficiência dos trabalhadores. Uma avaliação de risco precisa (GRO) é a ponte mais firme para alcançar um local de trabalho com zero acidentes."
+  },
+  "filter": {
+    "allCategories": "Todas as Categorias",
+    "searchPlaceholder": "Pesquisar fatores de risco ou medidas de controle...",
+    "searchBtn": "Pesquisar",
+    "resultPrefix": "Total de ",
+    "resultSuffix": " registros encontrados."
+  },
+  "data": {
+    "loading": "Carregando dados...",
+    "empty": "Nenhum resultado de pesquisa. Por favor, tente outra palavra-chave.",
+    "riskFactorLabel": "Perigo / Fator de Risco",
+    "currentMeasureLabel": "Medida de Controle Atual",
+    "advancedMeasureLabel": "Medida Avançada"
+  },
+  "pagination": {
+    "prev": "Ant",
+    "next": "Próx"
+  }
+}

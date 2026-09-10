@@ -131,14 +131,19 @@ export default function AdminPostUpload() {
         />
 
         <select name="language_code" value={formData.language_code} onChange={handleChange} style={inputStyle}>
-          <option value="ko">한국어 (ko)</option>
           <option value="en-US">English (en-US)</option>
-          <option value="en-GB">English (en-GB)</option>
+          <option value="en-CA">English (en-CA)</option>
           <option value="en-AU">English (en-AU)</option>
+          <option value="en-GB">English (en-GB)</option>
           <option value="de-DE">Deutsch (de-DE)</option>
+          <option value="ja-JP">日本語 (ja-JP)</option>
           <option value="fr-FR">Français (fr-FR)</option>
+          <option value="it-IT">Italiano (it-IT)</option>
           <option value="es-ES">Español (es-ES)</option>
+          <option value="ar-SA">العربية (ar-SA)</option>
+          <option value="pt-BR">Português (pt-BR)</option>
           <option value="ru-RU">Русский (ru-RU)</option>
+          <option value="ko">한국어 (ko)</option>
         </select>
 
         <input 

@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Linee Guida Valutazione Rischi",
+    "jrajsa": "Processo Pratico JRA/JSA",
+    "ppe": "Informazioni sui DPI",
+    "riskClass": "Lavori Generali / Alto Rischio"
+  },
+  "hero": {
+    "tag": "DISPOSITIVI DI PROTEZIONE INDIVIDUALE (DPI)",
+    "title1": "Categorie di DPI Industriali &",
+    "title2": "Guida alla Conformità (D.Lgs. 81/08 e UNI/EN)",
+    "subTitle1": "La verifica delle certificazioni (Marcatura CE) è il primo passo per la sicurezza. Rivedi",
+    "subTitle2": "le caratteristiche di ogni DPI e rispetta rigorosamente",
+    "subTitle3": "le disposizioni del D.Lgs. 81/08 (Titolo III) e le norme tecniche europee (UNI/EN)."
+  },
+  "section1": {
+    "title": "1. Categorie di DPI e Tipologie Specifiche",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Protezione del Capo",
+        "desc": "Assorbe gli urti da caduta o proiezione di oggetti e protegge dai contatti elettrici.",
+        "tags": ["Elmetti di Protezione (EN 397)", "Elmetti Dielettrici (EN 50365)"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Protezione Occhi e Viso",
+        "desc": "Scherma da particelle volanti, radiazioni ottiche nocive e spruzzi chimici.",
+        "tags": ["Occhiali di Sicurezza (EN 166)", "Occhiali a Mascherina", "Visiere"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Protezione dell'Udito (Otoprotettori)",
+        "desc": "Previene l'ipoacusia da trauma acustico in ambienti ad alti decibel (esposti a LEX,8h > 85 dB(A)).",
+        "tags": ["Inserti Auricolari (EN 352-2)", "Cuffie (EN 352-1)", "Valore SNR"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Protezione delle Vie Respiratorie (APV)",
+        "desc": "Protegge da polveri sottili, gas nocivi e atmosfere carenti di ossigeno.",
+        "tags": ["Facciali Filtranti (FFP2/FFP3 - EN 149)", "Maschere per Gas", "Autorespiratori (SCBA - EN 137)"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Protezione delle Mani",
+        "desc": "Protegge da tagli, ustioni, scosse elettriche ed esposizione ad agenti chimici.",
+        "tags": ["Antitaglio (EN 388)", "Dielettrici (EN 60903)", "Rischio Chimico (EN 374)"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Protezione dei Piedi",
+        "desc": "Previene lesioni da schiacciamento da caduta carichi e perforazione accidentale.",
+        "tags": ["Calzature di Sicurezza (EN ISO 20345)", "Calzature Antistatiche (ESD)"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Sistemi Anticaduta (Lavori in Quota)",
+        "desc": "Arresta la caduta e assorbe l'energia cinetica durante i lavori oltre i 2 metri.",
+        "tags": ["Imbracatura Completa (EN 361)", "Cordini con Assorbitore (EN 355)", "Linee Vita (EN 795)"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Indumenti di Protezione",
+        "desc": "Isola l'intero corpo da prodotti chimici pericolosi, calore estremo o arco elettrico.",
+        "tags": ["Tute Rischio Chimico (Tipo 1-6)", "Indumenti Ignifughi (EN ISO 11612)", "Protezione Arco Elettrico"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Domande Frequenti sulla Certificazione dei DPI (FAQ)",
+    "faq": {
+      "item1": {
+        "q": "Qual è la differenza tra i requisiti del D.Lgs. 81/08 e le norme tecniche UNI/EN?",
+        "a": "Il D.Lgs. 81/08 stabilisce gli obblighi di legge in materia di fornitura, utilizzo e addestramento all'uso dei DPI per i datori di lavoro. Le norme tecniche UNI/EN definiscono invece i requisiti prestazionali, i metodi di prova e i criteri di fabbricazione affinché il DPI possa ottenere la marcatura CE."
+      },
+      "item2": {
+        "q": "Tutti i DPI utilizzati nei luoghi di lavoro europei devono avere la marcatura CE?",
+        "a": "Sì, assolutamente. Ai sensi del Regolamento (UE) 2016/425, tutti i dispositivi di protezione individuale commercializzati e utilizzati nell'Unione Europea devono recare la marcatura CE, accompagnata dalla dichiarazione di conformità del fabbricante."
+      },
+      "item3": {
+        "q": "I DPI hanno una data di scadenza?",
+        "a": "Molti DPI in materiale polimerico o tessile (es. elmetti in policarbonato, imbracature anticaduta, filtri respiratori) hanno una durata massima di vita indicata nel manuale del fabbricante (generalmente dai 3 ai 10 anni). Il datore di lavoro deve garantire la sostituzione alla scadenza o in caso di usura/danneggiamento."
+      },
+      "item4": {
+        "q": "Come verifico che un DPI di III Categoria (rischi mortali) sia a norma?",
+        "a": "Oltre alla marcatura CE, i DPI di III Categoria (es. sistemi anticaduta, autorespiratori) devono riportare accanto al marchio CE un numero di 4 cifre, che identifica l'Organismo Notificato responsabile del controllo della produzione."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

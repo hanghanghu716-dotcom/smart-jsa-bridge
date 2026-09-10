@@ -1,0 +1,123 @@
+{
+  "default": {
+    "docTitle": "作業安全分析（JSA）",
+    "appr1": "作成",
+    "appr2": "照査",
+    "appr3": "承認"
+  },
+  "alert": {
+    "needLogin": "このサービスを利用するにはログインが必要です。",
+    "savePublic": "Explore（公開ライブラリ）に安全に公開されました。",
+    "savePrivate": "プライベートライブラリに安全に保存されました。",
+    "saveError": "プロジェクトの保存中にエラーが発生しました: ",
+    "pdfError": "PDFの生成に失敗しました。",
+    "copySuccess": "表がクリップボードにコピーされました。[Ctrl+V]を押してドキュメントに貼り付けてください。",
+    "copyError": "クリップボードへのコピー中にエラーが発生しました。ブラウザの権限設定を確認してください。"
+  },
+  "header": {
+    "projectName": "作業（プロジェクト）名",
+    "approval": "決裁",
+    "workLocation": "作業場所",
+    "department": "実施部署",
+    "workDate": "実施日",
+    "ppe": "必要保護具",
+    "highRiskWork": "高リスク作業（許可対象）"
+  },
+  "ppe": {
+    "helmet": "保護帽（ヘルメット）",
+    "shoes": "安全靴",
+    "glasses": "保護メガネ",
+    "safetyBelt": "墜落制止用器具（安全帯）",
+    "mask": "防じん/防毒マスク",
+    "gloves": "安全手袋",
+    "etc": "その他"
+  },
+  "permit": {
+    "hotWork": "火気作業",
+    "confinedSpace": "密閉空間（酸欠危険）作業",
+    "electrical": "停電・活線（LOTO）作業",
+    "highElevation": "高所作業",
+    "heavyLifting": "重量物揚重作業",
+    "excavation": "掘削作業",
+    "etc": "その他"
+  },
+  "signature": {
+    "participants": "作業参加者",
+    "sign": "（印/署名）"
+  },
+  "groups": {
+    "hazard": "危険・有害要因の特定",
+    "risk": "リスクアセスメント"
+  },
+  "tags": {
+    "DATA_STEP_NO": "作業\n番号",
+    "DATA_STEP_TITLE": "作業ステップ",
+    "DATA_PHOTO": "関連写真",
+    "DATA_HAZARD": "危険・有害要因",
+    "DATA_CURRENT_MEASURE": "現在の安全対策",
+    "DATA_RECOMMEND_MEASURE": "低減（推奨）対策",
+    "DATA_FREQUENCY": "可能性（頻度）",
+    "DATA_SEVERITY": "重大性（強度）",
+    "DATA_RISK": "リスクレベル",
+    "DATA_KRAS_STEP": "詳細作業内容",
+    "DATA_KRAS_HAZARD_CLASS": "危険分類",
+    "DATA_KRAS_HAZARD_DETAIL": "危険発生状況および結果",
+    "DATA_KRAS_BASIS": "関連根拠（法的基準）",
+    "DATA_KRAS_CURRENT": "現在の安全衛生措置",
+    "DATA_KRAS_RECOMMEND": "リスク低減対策",
+    "DATA_KRAS_AFTER": "改善後のリスク",
+    "DATA_KRAS_SCHED": "改善予定日",
+    "DATA_KRAS_COMP": "完了日",
+    "DATA_KRAS_MANAGER": "担当者"
+  },
+  "preview": {
+    "freqBreak": "可能性\n（頻度）",
+    "sevBreak": "重大性\n（強度）",
+    "afterBreak": "改善後\nリスク",
+    "schedBreak": "改善\n予定日"
+  },
+  "table": {
+    "addPhoto": "写真追加"
+  },
+  "ui": {
+    "processing": "データを処理しています..."
+  },
+  "step": {
+    "basicInfo": "基本情報",
+    "procedure": "作業手順",
+    "riskAnalysis": "リスクアセスメント",
+    "moduleConfig": "モジュール設定",
+    "tableConfig": "テーブル設定",
+    "finalOutput": "最終出力"
+  },
+  "title": {
+    "main": "| 06. 最終出力"
+  },
+  "btn": {
+    "prev": "テーブルレイアウト編集（前へ）",
+    "cloudSave": "クラウド保存（公開範囲選択）",
+    "pdfSave": "PDFレポートの生成と保存",
+    "copyTable": "Word/文書にコピー"
+  },
+  "modal": {
+    "pdfTitle": "PDFレポートの生成",
+    "pdfSub": "最終出力をPDFファイルに変換してダウンロードします。",
+    "pdfBtnLabel": "レポートのダウンロードを開始",
+    "pdfBtnDesc": "高解像度PDFを生成します。<br/>しばらくお待ちください。",
+    "close": "閉じる（キャンセル）",
+    "pubTitle": "クラウド保存設定",
+    "pubWarning": "⚠️ セキュリティ上の理由から、部署、場所、\n日付、参加者名は空白として保存されます。",
+    "pubSub": "保存するプロジェクトの公開範囲を選択してください。",
+    "pubBadgeLimited": "公開（制限あり）",
+    "pubPublicLabel": "Exploreに公開する",
+    "copyTitle": "クリップボードにコピー（Word/文書）",
+    "copySub": "表の構造をクリップボードにコピーし、Wordなどの文書エディタで使用できるようにします。",
+    "copyBtnLabel": "コピーを開始",
+    "copyBtnDesc": "文書向けに表の構造を最適化しています。<br/>コピー後、エディタで[Ctrl+V]を押してください。",
+    "pubForkLimit": "元のバージョンと比較して、<br/>追加の作業ステップ、または2つ以上の<br/>危険要因の追加が必要です。",
+    "pubRiskLimit": "知識共有のため、少なくとも3つの<br/>危険要因と安全対策を記述してください。",
+    "pubPublicDesc": "すべてのユーザーに公開され、<br/>安全知識の共有に貢献します。",
+    "pubPrivateLabel": "プライベートライブラリに保存",
+    "pubPrivateDesc": "作成者のみが閲覧でき、<br/>個人プロジェクトとして管理されます。"
+  }
+}

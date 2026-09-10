@@ -1,0 +1,38 @@
+{
+  "alert": {
+    "confirmMain": "Tornare alla schermata principale? Tutti i dati operativi non salvati andranno persi.",
+    "minSteps": "Inserire almeno 3 fasi di lavoro per definire la procedura in modo corretto."
+  },
+  "modal": {
+    "title": "Selezione Formato Analisi Rischi",
+    "sub": "Selezionare il livello di precisione per la redazione del JSA/POS.",
+    "standardLabel": "Analisi Base (2 Step)",
+    "standardDesc1": "Fattore di Rischio ➔ Misura di Prevenzione",
+    "standardDesc2": "(Ideale per attività generiche a basso rischio)",
+    "advancedLabel": "Analisi Avanzata (3 Step)",
+    "advancedDesc1": "Fattore di Rischio ➔ Misura di Sicurezza Attuale ➔ Misura di Miglioramento (Raccomandata)",
+    "advancedDesc2": "(Richiesto per lavorazioni ad alto rischio, Spazi Confinati, ATEX e analisi puntuali)",
+    "closeBtn": "Chiudi"
+  },
+  "step": {
+    "basicInfo": "Info Generali",
+    "procedure": "Ciclo Operativo",
+    "riskAnalysis": "Valutazione Rischi",
+    "moduleConfig": "Config. Modulo",
+    "tableConfig": "Layout Tabella",
+    "finalOutput": "Esportazione Documento"
+  },
+  "form": {
+    "title": "02. Definizione Dettagliata del Ciclo Operativo",
+    "stepLabel": "Fase di Lavoro",
+    "detailLabel": "Descrizione Dettagliata dell'Operazione",
+    "placeholderTitle": "Titolo Fase",
+    "placeholderDetail": "Descrizione delle azioni, macchinari utilizzati e contesto"
+  },
+  "btn": {
+    "addStep": "+ Aggiungi Fase Lavorativa (Fino a 20 step)",
+    "prev": "Indietro",
+    "next": "Avvia Analisi Intelligente dei Rischi",
+    "skipModule": "Salta la Configurazione Moduli"
+  }
+}

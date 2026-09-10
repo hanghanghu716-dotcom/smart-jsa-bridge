@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "テンプレート名を入力してください。",
+    "needLogin": "保存するにはログインが必要です。",
+    "saveError": "テンプレートの保存中にエラーが発生しました。",
+    "saveSuccess": "全体のレイアウト構成が正常に保存されました。",
+    "exceedWidth": "カスタム列の合計幅が最大制限を超えることはできません。"
+  },
+  "tags": {
+    "DATA_STEP_NO": "作業\n番号",
+    "DATA_STEP_TITLE": "作業ステップ",
+    "DATA_PHOTO": "参考写真",
+    "DATA_HAZARD": "潜在的な危険要因",
+    "DATA_CURRENT_MEASURE": "現在の安全対策",
+    "DATA_RECOMMEND_MEASURE": "推奨（低減）対策",
+    "DATA_FREQUENCY": "可能性（頻度）",
+    "DATA_SEVERITY": "重大性（強度）",
+    "DATA_RISK": "リスクレベル",
+    "DATA_KRAS_STEP": "詳細作業内容",
+    "DATA_KRAS_HAZARD_CLASS": "危険分類",
+    "DATA_KRAS_HAZARD_DETAIL": "危険発生状況と結果",
+    "DATA_KRAS_BASIS": "関連根拠（法的基準）",
+    "DATA_KRAS_CURRENT": "現在の安全衛生措置",
+    "DATA_KRAS_RECOMMEND": "リスク低減対策",
+    "DATA_KRAS_AFTER": "改善後のリスク",
+    "DATA_KRAS_SCHED": "改善予定日",
+    "DATA_KRAS_COMP": "完了日",
+    "DATA_KRAS_MANAGER": "担当者"
+  },
+  "groups": {
+    "hazard": "危険・有害要因の特定",
+    "risk": "リスクアセスメント"
+  },
+  "preview": {
+    "freqBreak": "可能性\n(頻度)",
+    "sevBreak": "重大性\n(強度)",
+    "afterBreak": "改善後\nリスク",
+    "schedBreak": "改善\n予定日",
+    "example": "(サンプルデータ)",
+    "dataArea": "... 実際のリスクアセスメントデータ出力領域 ...",
+    "docHeader": "[ドキュメントヘッダー領域]",
+    "signatureArea": "[参加者署名領域]"
+  },
+  "step": {
+    "basicInfo": "Step 1: 基本情報",
+    "procedure": "Step 2: 作業手順",
+    "riskAnalysis": "Step 3: 危険要因分析",
+    "moduleConfig": "Step 4: モジュール設定",
+    "tableConfig": "Step 5: データマッピング",
+    "finalOutput": "Step 6: 最終出力"
+  },
+  "header": {
+    "title": "| 05. データテーブル構成",
+    "subtitle": "主要なリスクアセスメント表の列の順序と幅を正確に調整します。"
+  },
+  "toolbar": {
+    "saveTitle": "統合レイアウトとして保存",
+    "saveBtn": "現在の全体構成を保存する",
+    "saveDesc": "* Step 4のモジュール設定と現在のテーブル設定を結合して保存します。",
+    "orientationTitle": "テーブルの向き",
+    "landscape": "横向き（推奨）",
+    "portrait": "縦向き",
+    "zoom": "プレビューのズーム",
+    "columnConfig": "列の構成（ドラッグ＆ドロップ）",
+    "riskToggle": "リスクアセスメント（結合表示）",
+    "riskGroupLabel": "リスクアセスメント (頻度・強度・レベル)",
+    "newItem": "新規列",
+    "width": "幅",
+    "addCustom": "+ カスタム列を追加"
+  },
+  "btn": {
+    "prev": "前へ: モジュール設定 (Step 4)",
+    "next": "最終出力へ進む (Step 6)"
+  },
+  "modal": {
+    "title": "カスタムテンプレートとして保存",
+    "desc": "Step 4のモジュール設定と現在のテーブル構成がマージされて保存されます。",
+    "placeholder": "保存するテンプレート名を入力",
+    "cancel": "キャンセル",
+    "save": "保存"
+  }
+}

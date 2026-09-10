@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Inserire il nome del modello.",
+    "needLogin": "È richiesto il login per salvare.",
+    "saveError": "Si è verificato un errore durante il salvataggio del modello.",
+    "saveSuccess": "L'intera configurazione del layout è stata salvata con successo.",
+    "exceedWidth": "La larghezza totale delle colonne personalizzate non può superare il limite massimo consentito."
+  },
+  "tags": {
+    "DATA_STEP_NO": "N°\nFase",
+    "DATA_STEP_TITLE": "Fasi di Lavoro",
+    "DATA_PHOTO": "Foto Rif.",
+    "DATA_HAZARD": "Pericoli Potenziali",
+    "DATA_CURRENT_MEASURE": "Misure di Prevenzione Attuali",
+    "DATA_RECOMMEND_MEASURE": "Azioni di Miglioramento (Raccomandate)",
+    "DATA_FREQUENCY": "Probabilità (P)",
+    "DATA_SEVERITY": "Magnitudo/Danno (D)",
+    "DATA_RISK": "Livello Rischio (R)",
+    "DATA_KRAS_STEP": "Descrizione Dettagliata Operazione",
+    "DATA_KRAS_HAZARD_CLASS": "Categoria Rischio",
+    "DATA_KRAS_HAZARD_DETAIL": "Scenario Infortunistico e Conseguenze",
+    "DATA_KRAS_BASIS": "Riferimento Normativo (D.Lgs. 81/08)",
+    "DATA_KRAS_CURRENT": "Misure di Prevenzione in Essere",
+    "DATA_KRAS_RECOMMEND": "Misure di Riduzione del Rischio",
+    "DATA_KRAS_AFTER": "Rischio Residuo",
+    "DATA_KRAS_SCHED": "Data Scadenza Azione",
+    "DATA_KRAS_COMP": "Data Completamento",
+    "DATA_KRAS_MANAGER": "Preposto/Dirigente Incaricato"
+  },
+  "groups": {
+    "hazard": "Identificazione dei Pericoli",
+    "risk": "Valutazione dei Rischi (DVR)"
+  },
+  "preview": {
+    "freqBreak": "Probabilità\n(P)",
+    "sevBreak": "Danno\n(D)",
+    "afterBreak": "Rischio\nResiduo",
+    "schedBreak": "Data\nScadenza",
+    "example": "(Dati di Esempio)",
+    "dataArea": "... Area Dati Effettiva della Valutazione dei Rischi ...",
+    "docHeader": "[Area Intestazione Documento]",
+    "signatureArea": "[Area Firme Partecipanti]"
+  },
+  "step": {
+    "basicInfo": "Step 1: Info Generali",
+    "procedure": "Step 2: Fasi Operative",
+    "riskAnalysis": "Step 3: Analisi Rischi",
+    "moduleConfig": "Step 4: Config. Modulo",
+    "tableConfig": "Step 5: Mappatura Dati",
+    "finalOutput": "Step 6: Esportazione Finale"
+  },
+  "header": {
+    "title": "| 05. Configurazione Tabella Dati",
+    "subtitle": "Regola con precisione l'ordine delle colonne e la larghezza per la tabella principale di valutazione dei rischi (JSA/POS)."
+  },
+  "toolbar": {
+    "saveTitle": "Salva Layout Integrato",
+    "saveBtn": "Salva Configurazione Completa Attuale",
+    "saveDesc": "* Salva le impostazioni del modulo (Step 4) insieme alle attuali impostazioni della tabella.",
+    "orientationTitle": "Orientamento Tabella",
+    "landscape": "Orizzontale (Raccomandato)",
+    "portrait": "Verticale",
+    "zoom": "Zoom Anteprima",
+    "columnConfig": "Configurazione Colonne (Drag & Drop)",
+    "riskToggle": "Valutazione Rischi (Combinata)",
+    "riskGroupLabel": "Valutazione Rischi (Prob·Danno·Livello)",
+    "newItem": "Nuova Colonna",
+    "width": "Larghezza",
+    "addCustom": "+ Aggiungi Colonna Personalizzata"
+  },
+  "btn": {
+    "prev": "Precedente: Config. Moduli (Step 4)",
+    "next": "Procedi all'Esportazione Finale (Step 6)"
+  },
+  "modal": {
+    "title": "Salva come Modello Personalizzato",
+    "desc": "Le impostazioni del modulo (Step 4) e l'attuale configurazione della tabella verranno unite e salvate.",
+    "placeholder": "Inserisci il nome del modello da salvare",
+    "cancel": "Annulla",
+    "save": "Salva"
+  }
+}

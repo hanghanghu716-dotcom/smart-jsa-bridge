@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Caution] This sample is for reference only. Risk assessments must be conducted based on actual onsite checks.",
+    "text2": "Smart JSA Bridge is not responsible for legal issues arising from the use of this data."
+  },
+  "ui": {
+    "category": "MANUFACTURING JSA SAMPLES",
+    "mainTitle1": "Manufacturing JSA",
+    "mainTitle2": "Sample Guide (10 Types)",
+    "description1": "Check core manufacturing hazard factors such as machine entanglement,",
+    "description2": "high-temp burns, and chemical exposure. View detailed images.",
+    "labelRed": "⚠ Core Hazards",
+    "labelBlue": "🛡 Mitigation Measures",
+    "previewLabel": "Preview Sample (Image)",
+    "downloadBtn": "Download Original PDF Sample"
+  },
+  "list": [
+    { "id": "MANUF-01", "title": "Plating Tank Chemical Replenishment and Metal Surface Pickling", "hazard": "Asphyxiation from acid gas, chemical burns from splashing", "measure": "Verify local exhaust operation, wear impermeable chemical suits and gloves", "pages": 1 },
+    { "id": "MANUF-02", "title": "Injection Molding Nozzle De-clogging and Carbon Cleaning", "hazard": "Burns from hot resin ejection, body crushing during unit movement", "measure": "Wear heat-resistant gear, implement LOTO, and perform low-speed/low-pressure purging", "pages": 1 },
+    { "id": "MANUF-03", "title": "Logs Cutting and Processing Using Industrial Circular Saws", "hazard": "Gloves caught in rotating blades, timber kickback impact", "measure": "Wear snug-fitting workwear, use mandatory push sticks", "pages": 1 },
+    { "id": "MANUF-04", "title": "Production Line Conveyor Belt Drive Unit Regular Maintenance", "hazard": "Finger caught between rollers, crushing due to unexpected startup", "measure": "Attach individual LOTO devices, inspect only while equipment is stopped", "pages": 1 },
+    { "id": "MANUF-05", "title": "Melting Furnace Raw Material Charging and Molten Metal Casting", "hazard": "Steam explosion (splash) on moisture entry, radiant heat burns", "measure": "Perform pre-heat drying, wear shaded heat-resistant face shields always", "pages": 1 },
+    { "id": "MANUF-06", "title": "Spot Welding Robot Maintenance and Tip Replacement", "hazard": "Collisions from robot malfunction, burns from hot tip contact", "measure": "Restrict cell entry and implement LOTO, use dedicated tip removal tools", "pages": 1 },
+    { "id": "MANUF-07", "title": "Press Die Change and Setup in Manufacturing Process", "hazard": "Crushing between beds during die descent, collision during lifting", "measure": "Install standard safety blocks, perform vertical lifting and use guide ropes", "pages": 1 },
+    { "id": "MANUF-08", "title": "SMT Production Line Operation and Reflow Oven Maintenance", "hazard": "Burns from hot heater contact, lead/flux poisoning in solder", "measure": "Work only after equipment cooling, wear gas masks for organic compounds", "pages": 1 },
+    { "id": "MANUF-09", "title": "Internal Precision Cleaning and Disinfection of Large Food Mixers", "hazard": "Oxygen deficiency in tanks, crushing from unexpected blade rotation", "measure": "Monitor oxygen concentration, assign external watchman, implement main power LOTO", "pages": 1 },
+    { "id": "MANUF-10", "title": "Large Offset Printer Roller Inspection and Solvent Cleaning", "hazard": "Finger crushing at nip points, fire from solvent vapors", "measure": "Use 'Inch' mode, verify operation of static elimination devices", "pages": 1 }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Account & Intelligent Safety Activity Management",
+    "statsLabel": "Knowledge Contribution & Usage Statistics",
+    "myCount": "Created JSAs",
+    "scraps": "Total Scraps",
+    "nickname": "Nickname",
+    "sector": "Primary Industry Sector",
+    "company": "Company Name (Optional)",
+    "bio": "Professional Bio & Status Message",
+    "bioPlaceholder": "Enter your area of expertise or safety philosophy.",
+    "presetTitle": "Work Report Default Preset Settings",
+    "department": "Default Department",
+    "manager": "Default Reviewer/Approver",
+    "autoPublicity": "Allow auto-sharing to Knowledge Base (Explore)",
+    "signatureLabel": "Electronic Signature (Image)",
+    "noSignature": "No signature registered.",
+    "uploadSignature": "Upload Signature Image",
+    "securityLabel": "Security & Session Management",
+    "remoteLogout": "Remote Logout from All Devices",
+    "openWithdraw": "Need to close your account?",
+    "closeWithdraw": "Close Withdrawal Panel",
+    "withdrawWarning": "⚠️ Upon withdrawal, all created data and scrap records will be immediately deleted and cannot be recovered.",
+    "withdrawPlaceholder": "Please enter the 'Consent Text'.",
+    "withdrawSubmit": "Process Account Withdrawal",
+    "goMain": "Back to Main",
+    "saveProfile": "Update Profile Information"
+  },
+  "sectors": {
+    "default": "Select an Industry Sector",
+    "construction": "Construction / Civil / Architecture",
+    "manufacturing": "Manufacturing / Plant / Chemical",
+    "energy": "Energy / Electric / Gas",
+    "logistics": "Transport / Logistics / Warehouse",
+    "safety": "Safety Management / Consulting",
+    "it": "IT / Systems / Engineering",
+    "public": "Public Org / Education / Health",
+    "etc": "Other Sectors"
+  },
+  "messages": {
+    "updateSuccess": "Profile information has been successfully updated.",
+    "signatureSuccess": "Electronic signature has been securely registered.",
+    "confirmRemoteLogout": "Are you sure you want to force sign out from all sessions except the current device?",
+    "confirmWithdrawal": "Are you sure you want to withdraw? This action cannot be undone.",
+    "withdrawConsentText": "Confirm Withdrawal",
+    "withdrawMismatch": "The confirmation text does not match.",
+    "confirmGoMain": "Changes may not be saved. Move to main page?"
+  }
+}

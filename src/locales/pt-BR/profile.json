@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Gestão de Conta e Atividades de Segurança Inteligente",
+    "statsLabel": "Estatísticas de Contribuição e Uso de Conhecimento",
+    "myCount": "APRs Criadas",
+    "scraps": "Projetos Salvos/Favoritos",
+    "nickname": "Nome de Usuário (Público)",
+    "sector": "Setor Industrial Principal (CNAE)",
+    "company": "Nome da Empresa (Opcional)",
+    "bio": "Biografia Profissional e Mensagem de Status",
+    "bioPlaceholder": "Insira sua área de atuação (ex: TST, Engenheiro) ou filosofia de segurança.",
+    "presetTitle": "Configurações Predefinidas Padrão para Relatórios",
+    "department": "Departamento Padrão (Setor)",
+    "manager": "Revisor/Aprovador Padrão (Responsável Técnico)",
+    "autoPublicity": "Permitir compartilhamento automático na Base de Conhecimento (Explorar)",
+    "signatureLabel": "Assinatura Eletrônica (Imagem para rubrica em PDFs)",
+    "noSignature": "Nenhuma assinatura registrada no sistema.",
+    "uploadSignature": "Fazer Upload de Imagem de Assinatura (.png/.jpg)",
+    "securityLabel": "Segurança e Gerenciamento de Sessões",
+    "remoteLogout": "Sair Remotamente de Todos os Dispositivos",
+    "openWithdraw": "Precisa excluir permanentemente sua conta?",
+    "closeWithdraw": "Fechar Painel de Exclusão",
+    "withdrawWarning": "⚠️ ATENÇÃO: Ao excluir a conta (direito ao esquecimento - LGPD), todos os dados criados e registros salvos serão imediatamente e permanentemente excluídos de nossos servidores e não poderão ser recuperados.",
+    "withdrawPlaceholder": "Por favor, digite o 'Texto de Confirmação'.",
+    "withdrawSubmit": "Processar Exclusão de Conta Definitiva",
+    "goMain": "Voltar para o Início",
+    "saveProfile": "Atualizar Informações do Perfil"
+  },
+  "sectors": {
+    "default": "Selecione o Setor Industrial",
+    "construction": "Construção Civil / Engenharia / Arquitetura",
+    "manufacturing": "Manufatura / Usinagem / Indústria Química",
+    "energy": "Geração de Energia / Setor Elétrico / Óleo e Gás",
+    "logistics": "Logística / Transporte / Armazenagem",
+    "safety": "Gestão de Segurança (SESMT) / Consultorias",
+    "it": "Tecnologia da Informação / Sistemas / Automação",
+    "public": "Órgãos Públicos / Educação / Saúde (EBSERH)",
+    "etc": "Outros Setores"
+  },
+  "messages": {
+    "updateSuccess": "As informações do perfil foram atualizadas com sucesso.",
+    "signatureSuccess": "Sua assinatura eletrônica foi registrada com segurança.",
+    "confirmRemoteLogout": "Tem certeza de que deseja forçar o logout de todas as sessões ativas, exceto do dispositivo atual?",
+    "confirmWithdrawal": "Tem certeza de que deseja excluir permanentemente sua conta? Esta ação é destrutiva e não pode ser desfeita.",
+    "withdrawConsentText": "Confirmar Exclusão",
+    "withdrawMismatch": "O texto de confirmação não corresponde. Tente novamente.",
+    "confirmGoMain": "As alterações não salvas podem ser perdidas. Deseja ir para a página principal?"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atenção] Esta amostra é apenas para referência. As avaliações de risco devem ser conduzidas com base em verificações reais no local, de acordo com a NR-18 (Condições e Meio Ambiente de Trabalho na Indústria da Construção).",
+    "text2": "O Smart JSA Bridge não é responsável por consequências legais decorrentes do uso deste material."
+  },
+  "ui": {
+    "category": "AMOSTRAS DE APR PARA CONSTRUÇÃO",
+    "mainTitle1": "APR para Construção Civil",
+    "mainTitle2": "Guia de Amostra (10 Tipos)",
+    "description1": "Verifique os principais perigos e medidas para cada processo. Revise as imagens",
+    "description2": "e baixe o PDF original através do botão abaixo.",
+    "labelRed": "⚠ Fatores de Risco Críticos",
+    "labelBlue": "🛡 Medidas de Prevenção",
+    "previewLabel": "Amostra de Pré-visualização (Imagem)",
+    "downloadBtn": "Baixar Amostra Original em PDF"
+  },
+  "list": [
+    { "id": "CONST-01", "title": "Instalação de Estrutura de Teto e Fixação de Drywall", "hazard": "Queda de escadas devido a dobradiças destravadas, acidentes com pistola de pregos (pinador)", "measure": "Verificação visual do travamento, uso de luvas anticorte e óculos de segurança (EPI)", "pages": 1 },
+    { "id": "CONST-02", "title": "Soldagem de Tubulação Principal e Instalação de Bomba na Casa de Máquinas", "hazard": "Incêndio devido a respingos (fagulhas) de solda, ruptura durante o teste de pressão hidrostática", "measure": "Designar observador de fogo (Fire Watch), pressurização incremental até 1.1x a pressão de projeto", "pages": 1 },
+    { "id": "CONST-03", "title": "Escavação e Reaterro para Sistemas de Drenagem", "hazard": "Explosão devido a danos em utilidades subterrâneas, soterramento devido ao colapso do talude", "measure": "Detecção de utilidades combinada com escavação manual inicial, manter inclinação (talude) segura conforme NR-18", "pages": 1 },
+    { "id": "CONST-04", "title": "Impermeabilização de Cobertura com Poliuretano e Pintura Externa", "hazard": "Queda das bordas do telhado, asfixia/intoxicação por vapores de solventes", "measure": "Prender o cinto de segurança à linha de vida (NR-35), implementar ventilação forçada via exaustores", "pages": 1 },
+    { "id": "CONST-05", "title": "Manutenção de Fachada e Instalação de Equipamentos em Elevação", "hazard": "Queda devido à ruptura da corda, esmagamento por PTA (Plataforma de Trabalho Aéreo)", "measure": "Instalar linhas de vida verticais independentes, inspecionar dispositivos de prevenção de excesso de deslocamento (fim de curso)", "pages": 1 },
+    { "id": "CONST-06", "title": "Montagem e Desmontagem de Andaime Fachadeiro", "hazard": "Colapso de toda a estrutura, impacto de componentes em queda (acidente com terceiros)", "measure": "Instalar amarrações de parede (estroncamento) conforme projeto, estabelecer zonas de isolamento (isolamento e sinalização) no solo", "pages": 1 },
+    { "id": "CONST-07", "title": "Armação de Ferragens e Içamento com Guindaste", "hazard": "Queda de material devido a falha no equipamento de amarração (cintas/eslingas), aprisionamento na máquina de corte e dobra", "measure": "Seguir regras de içamento com no mínimo 2 pernas, uso de cabos guia (taglines)", "pages": 1 },
+    { "id": "CONST-08", "title": "Concretagem de Lajes e Vigas com Bomba-Lança", "hazard": "Tombamento do caminhão-bomba, impacto devido a desprendimento e ricochete do mangote", "measure": "Reforçar o solo de apoio dos estabilizadores (patolas), inspecionar pinos de conexão e anéis", "pages": 1 },
+    { "id": "CONST-09", "title": "Demolição de Estruturas Antigas Baixas e Remoção de Entulho", "hazard": "Colapso repentino durante a demolição, risco de exposição ao amianto (asbesto)", "measure": "Seguir o princípio de demolição Top-Down (de cima para baixo), verificar a pesquisa (laudo) de amianto pré-demolição", "pages": 1 },
+    { "id": "CONST-10", "title": "Instalação Elétrica em Forros e Montagem de Equipamentos de Prevenção a Incêndio", "hazard": "Choque elétrico por contato com partes vivas (NR-10), queda devido à extensão excessiva do corpo em escadas", "measure": "Implementar LOTO no painel, verificar tensão zero (desenergização) com detector e testador", "pages": 1 }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Questo nickname contiene termini non consentiti.",
+    "nickNoSpecial": "Si prega di utilizzare solo caratteri alfanumerici (nessun carattere speciale).",
+    "nickInUse": "Questo nickname è già registrato a sistema.",
+    "nickAvailable": "✓ Nickname disponibile.",
+    "pwSafe": "✓ La password rispetta i criteri di sicurezza",
+    "pwRule": "Minimo 8 caratteri: lettere, numeri, e simboli",
+    "pwMatch": "✓ Le password coincidono",
+    "pwMismatch": "Le password digitate non corrispondono"
+  },
+  "alert": {
+    "resetSent": "Ti abbiamo inviato un'e-mail con il link per reimpostare la password.",
+    "checkInput": "Verifica di aver compilato correttamente tutti i campi.",
+    "signupSuccess": "Registrazione quasi completata. Clicca sul link di attivazione inviato alla tua e-mail per confermare."
+  },
+  "ui": {
+    "titleSignup": "Registrazione Profilo Utente",
+    "titleReset": "Recupero Credenziali",
+    "titleLogin": "Autenticazione Piattaforma JSA",
+    "guideSignup": "Inserisci le informazioni necessarie per contribuire al database della sicurezza.",
+    "guideReset": "Un link di ripristino sicuro verrà inviato al tuo indirizzo e-mail.",
+    "guideLogin": "Accedi con le tue credenziali aziendali per gestire i Piani di Sicurezza.",
+    "labelEmail": "Indirizzo E-mail Aziendale o Privato",
+    "labelNickname": "Nome Utente (Pubblico)",
+    "placeholderNickname": "Scegli un Nickname",
+    "labelSector": "Codice Settore (ATECO indicativo)",
+    "selectDefault": "Seleziona Settore...",
+    "labelPassword": "Password di Sicurezza",
+    "placeholderPassword": "Almeno 8 caratteri con simboli/numeri",
+    "labelPasswordConfirm": "Conferma la Password",
+    "placeholderPasswordConfirm": "Ridigita esattamente la password",
+    "placeholderPasswordLogin": "Password",
+    "btnForgotPw": "Hai dimenticato la Password?",
+    "btnProcessing": "Elaborazione dati...",
+    "btnSubmitSignup": "Registra Nuovo Account",
+    "btnSubmitReset": "Richiedi Reset Password",
+    "btnSubmitLogin": "Accedi al Portale",
+    "dividerOr": "OPPURE",
+    "btnGoogleLogin": "Accesso Rapido con Google (SSO)",
+    "btnSwitchSignup": "Non hai un account? Registrati",
+    "btnSwitchLogin": "Hai già un account? Accedi"
+  },
+  "sector": {
+    "construction": "Edilizia / Costruzioni / Ingegneria Civile",
+    "manufacturing": "Manifatturiero / Impianti di Processo",
+    "energy": "Energia Elettrica / Reti Gas e Acqua",
+    "logistics": "Trasporti / Logistica / Gestione Magazzini",
+    "safety": "Servizi HSE / Consulenza Sicurezza (RSPP)",
+    "it": "IT / Automazione Industriale / TLC",
+    "public": "Pubblica Amministrazione / Sanità / Istruzione",
+    "others": "Altri Settori / Servizi"
+  }
+}

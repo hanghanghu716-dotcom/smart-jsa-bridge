@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atenção] Esta amostra é apenas para referência. As avaliações de risco devem ser realizadas com base em inspeções reais (NR-20, NR-33) adaptadas a processos específicos.",
+    "text2": "O Smart JSA Bridge não é responsável por quaisquer consequências legais decorrentes do uso deste material."
+  },
+  "ui": {
+    "category": "SEGURANÇA QUÍMICA E DE GÁS",
+    "mainTitle1": "APR para Trabalhos com Químicos e Gases",
+    "mainTitle2": "Guias de Amostra (10 Tipos)",
+    "description1": "Dados de análise de risco padrão para processos que envolvem gás de alta pressão",
+    "description2": "e produtos químicos tóxicos. Por favor, verifique as imagens detalhadas.",
+    "labelRed": "⚠ Fatores de Risco Críticos",
+    "labelBlue": "🛡 Medidas de Segurança Essenciais",
+    "previewLabel": "Pré-visualização do Relatório APR",
+    "downloadBtn": "Baixar PDF Original Completo"
+  },
+  "list": [
+    { "id": "CHEM-01", "title": "Inspeção de Trocador de Calor Casco e Tubo e Limpeza por Hidrojateamento de Alta Pressão", "hazard": "Injeção de água de alta pressão nos tecidos, queimaduras químicas por fluidos residuais", "measure": "Usar vestimentas de proteção especializadas impermeáveis, abrir totalmente as válvulas de drenagem e seguir procedimentos de LOTO (Bloqueio e Etiquetagem)", "pages": 1 },
+    { "id": "CHEM-02", "title": "Substituição da Gaxeta do Compressor de Hidrogênio de Alta Pressão", "hazard": "Explosão (Atmosfera Explosiva) devido a vazamento de hidrogênio, asfixia devido à purga com nitrogênio", "measure": "Verificar 0% de hidrogênio (LEL) com detectores de gás portáteis, usar roupas antiestáticas e utilizar ferramentas antifaiscantes", "pages": 1 },
+    { "id": "CHEM-03", "title": "Substituição de Válvula e Junta em Tubulação de Produto Químico Tóxico", "hazard": "Respingos de líquidos residuais durante a desmontagem do flange, intoxicação por gás tóxico", "measure": "Usar máscara respiratória facial inteira (EPI), soltar os parafusos sequencialmente no sentido oposto ao corpo", "pages": 1 },
+    { "id": "CHEM-04", "title": "Substituição da Ponta da Tocha (Flare) e Manutenção do Sistema de Ignição", "hazard": "Quedas devido a ventos fortes, exposição ao fogo se o gás residual inflamar", "measure": "Monitorar a velocidade do vento (proibido acima de 36 km/h), usar cinto de segurança tipo paraquedista com talabarte duplo (NR-35) e verificar isolamento do DCS", "pages": 1 },
+    { "id": "CHEM-05", "title": "Teste Funcional de Equipamentos de Prevenção e Combate a Incêndios", "hazard": "Impacto pelo desprendimento da mangueira durante a descarga de água em alta pressão, inalação de gás", "measure": "Verificar o engate do pino de segurança da mangueira, trabalhar de costas para o vento e usar tampões dedicados", "pages": 1 },
+    { "id": "CHEM-06", "title": "Inspeção da Válvula Automática Inferior da Torre de Adsorção PSA", "hazard": "Esmagamento devido a operação inesperada da válvula, problemas respiratórios causados pelo pó do adsorvente", "measure": "Remover a pressão pneumática residual, implementar LOTO e usar máscaras respiratórias de alta eficiência (PFF2/PFF3)", "pages": 1 },
+    { "id": "CHEM-07", "title": "Inspeção Visual Interna e END de Tanques de Armazenamento de Hidrogênio de Alta Pressão", "hazard": "Asfixia em espaço confinado (NR-33), explosão causada por falha elétrica na iluminação", "measure": "Medir a concentração de gás no topo/meio/fundo, usar ventilação forçada e iluminação à prova de explosão (Ex) de extra baixa tensão (inferior a 24V)", "pages": 1 },
+    { "id": "CHEM-08", "title": "Descarga de Caminhão-Tanque de Hidrogênio de Alta Pressão e Conexão na Baia", "hazard": "Esmagamento devido à movimentação do veículo, explosão de gás hidrogênio devido a descarga de eletricidade estática", "measure": "Instalar 2 ou mais calços nas rodas, conectar garras de aterramento primeiro e verificar a resistência elétrica", "pages": 1 },
+    { "id": "CHEM-09", "title": "Inspeção do Painel DCS/PLC e Calibração de Transmissores de Campo", "hazard": "Parada inesperada do processo devido à falha de intertravamento, choque elétrico (NR-10) por partes vivas", "measure": "Verificar duplamente o status de bypass do DCS, confirmar o uso de luvas isolantes (Classe 0) e roupas antiestáticas", "pages": 1 },
+    { "id": "CHEM-10", "title": "Reabastecimento Químico de Biocida e Inibidor de Corrosão no Sistema de Água de Resfriamento", "hazard": "Explosão de gás se produtos químicos diferentes se misturarem, erupção química ao abrir recipientes", "measure": "Verificar rigorosamente os rótulos químicos (FISPQ), armazenar separadamente e aliviar a pressão interna usando proteção facial (Protetor Facial)", "pages": 1 }
+  ]
+}

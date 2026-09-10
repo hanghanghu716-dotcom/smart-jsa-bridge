@@ -1,0 +1,125 @@
+{
+  "default": {
+    "docTitle": "Análise Preliminar de Risco (APR / JSA)",
+    "appr1": "Elaborador",
+    "appr2": "Revisor (SESMT)",
+    "appr3": "Aprovador"
+  },
+  "alert": {
+    "needLogin": "O login é obrigatório para usar este serviço.",
+    "savePublic": "Publicado com segurança no Explorar.",
+    "savePrivate": "Salvo com segurança em sua biblioteca privada.",
+    "saveError": "Erro ao salvar o projeto: ",
+    "pdfError": "Falha ao gerar o PDF."
+  },
+  "header": {
+    "projectName": "Nome do Projeto/Serviço",
+    "approval": "Aprovação",
+    "workLocation": "Local de Trabalho",
+    "department": "Setor / Contratada",
+    "workDate": "Data de Execução",
+    "ppe": "EPI Obrigatório (NR-06)",
+    "highRiskWork": "Riscos Críticos (Requer PT - Permissão de Trabalho)"
+  },
+  "ppe": {
+    "helmet": "Capacete de Segurança",
+    "shoes": "Calçado de Segurança",
+    "glasses": "Óculos de Proteção",
+    "safetyBelt": "Cinto de Segurança (Trava-quedas)",
+    "mask": "Respirador (PFF2/Facial)",
+    "gloves": "Luvas de Segurança",
+    "etc": "Outros EPIs"
+  },
+  "permit": {
+    "hotWork": "Trabalho a Quente",
+    "confinedSpace": "Espaço Confinado (NR-33)",
+    "electrical": "Risco Elétrico / LOTO (NR-10)",
+    "highElevation": "Trabalho em Altura (NR-35)",
+    "heavyLifting": "Içamento Crítico de Cargas (Plano de Rigging)",
+    "excavation": "Escavação e Valas (NR-18)",
+    "etc": "Outras PTs"
+  },
+  "signature": {
+    "participants": "Equipe de Trabalho (Ciência)",
+    "sign": "(Assinatura)"
+  },
+  "groups": {
+    "hazard": "Identificação de Perigos",
+    "risk": "Avaliação de Risco"
+  },
+  "tags": {
+    "DATA_STEP_NO": "Nº Etapa",
+    "DATA_STEP_TITLE": "Etapas da Tarefa",
+    "DATA_PHOTO": "Foto de Ref.",
+    "DATA_HAZARD": "Perigos Potenciais",
+    "DATA_CURRENT_MEASURE": "Controles Atuais",
+    "DATA_RECOMMEND_MEASURE": "Ações Recomendadas",
+    "DATA_FREQUENCY": "Probabilidade",
+    "DATA_SEVERITY": "Severidade",
+    "DATA_RISK": "Nível de Risco",
+    "DATA_KRAS_STEP": "Descrição Detalhada da Tarefa",
+    "DATA_KRAS_HAZARD_CLASS": "Categoria do Perigo",
+    "DATA_KRAS_HAZARD_DETAIL": "Cenário de Risco e Consequência",
+    "DATA_KRAS_BASIS": "Base Legal/Normativa (NR)",
+    "DATA_KRAS_CURRENT": "Medidas de Segurança Atuais",
+    "DATA_KRAS_RECOMMEND": "Medidas de Mitigação de Risco",
+    "DATA_KRAS_AFTER": "Risco Residual",
+    "DATA_KRAS_SCHED": "Data Limite (Prazo)",
+    "DATA_KRAS_COMP": "Data de Conclusão",
+    "DATA_KRAS_MANAGER": "Pessoa Responsável (Preposto)"
+  },
+  "preview": {
+    "freqBreak": "Probab.\n(Freq)",
+    "sevBreak": "Severid.\n(Dano)",
+    "afterBreak": "Risco\nResidual",
+    "schedBreak": "Data\nLimite"
+  },
+  "table": {
+    "addPhoto": "Foto"
+  },
+  "ui": {
+    "processing": "Processando dados..."
+  },
+  "step": {
+    "basicInfo": "Passo 1: Info Básica",
+    "procedure": "Passo 2: Sequência",
+    "riskAnalysis": "Passo 3: Análise Riscos",
+    "moduleConfig": "Passo 4: Config. Módulo",
+    "tableConfig": "Passo 5: Layout da Tabela",
+    "finalOutput": "Passo 6: Exportação Final"
+  },
+  "title": {
+    "main": "| 06. Exportação Final do Documento"
+  },
+  "btn": {
+    "prev": "Editar Layout da Tabela",
+    "cloudSave": "Salvar na Nuvem (Selecionar Visibilidade)",
+    "pdfSave": "Gerar e Salvar Relatório em PDF",
+    "copyTable": "Copiar para Word/Excel"
+  },
+  "alert": {
+    "copySuccess": "A tabela foi copiada para a área de transferência. Pressione [Ctrl+V] para colá-la em seu documento.",
+    "copyError": "Ocorreu um erro ao copiar para a área de transferência. Verifique as permissões do seu navegador."
+  },
+  "modal": {
+    "pdfTitle": "Gerar Relatório em PDF",
+    "pdfSub": "Converte a saída final em um arquivo PDF para download.",
+    "pdfBtnLabel": "Iniciar Download do Relatório",
+    "pdfBtnDesc": "Gera um PDF de alta resolução.<br/>Aguarde um momento.",
+    "close": "Fechar (Cancelar)",
+    "pubTitle": "Configurações de Salvamento em Nuvem",
+    "pubWarning": "⚠️ Por motivos de segurança e LGPD, o departamento, local,\ndata e os nomes dos participantes serão salvos em branco.",
+    "pubSub": "Selecione o escopo de visibilidade do projeto a ser salvo.",
+    "pubBadgeLimited": "Público (Restrito)",
+    "pubPublicLabel": "Publicar no Explorar (Knowledge Base)",
+    "copyTitle": "Copiar para Área de Transferência",
+    "copySub": "Copia a estrutura da tabela em formato tabular para uso no Word ou Excel.",
+    "copyBtnLabel": "Iniciar Cópia",
+    "copyBtnDesc": "Otimizando a estrutura da tabela para documentos.<br/>Pressione [Ctrl+V] em seu editor após a cópia.",
+    "pubForkLimit": "Requer a adição de novas etapas de tarefa<br/>ou pelo menos mais 2 perigos documentados<br/>em relação à versão original.",
+    "pubRiskLimit": "Por favor, documente pelo menos 3 perigos<br/>e medidas preventivas para fins de compartilhamento de conhecimento.",
+    "pubPublicDesc": "Visível para todos os usuários,<br/>contribuindo para o compartilhamento de conhecimento de segurança.",
+    "pubPrivateLabel": "Salvar na Biblioteca Privada",
+    "pubPrivateDesc": "Visível apenas para o criador<br/>e gerenciado como um projeto pessoal."
+  }
+}

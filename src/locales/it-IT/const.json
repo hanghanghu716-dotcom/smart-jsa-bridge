@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Avviso] Questo campione è solo di riferimento. Le valutazioni dei rischi devono essere redatte sulla base di ispezioni effettive in cantiere ai sensi del D.Lgs. 81/08 Titolo IV.",
+    "text2": "Smart JSA Bridge non è responsabile per conseguenze legali derivanti dall'uso di questo materiale."
+  },
+  "ui": {
+    "category": "CAMPIONI JSA EDILIZIA (D.Lgs. 81/08 Titolo IV)",
+    "mainTitle1": "JSA per Cantieri Edili",
+    "mainTitle2": "Guida ai Campioni (10 Tipi)",
+    "description1": "Verifica i pericoli principali e le misure di sicurezza per ogni processo. Consulta le immagini",
+    "description2": "e scarica il Piano Operativo di Sicurezza (POS) / JSA originale in formato PDF.",
+    "labelRed": "⚠ Fattori di Rischio Critici",
+    "labelBlue": "🛡 Misure di Prevenzione e Protezione",
+    "previewLabel": "Anteprima Documento (Immagine)",
+    "downloadBtn": "Scarica il PDF Originale"
+  },
+  "list": [
+    { "id": "CONST-01", "title": "Installazione controsoffitti e fissaggio lastre in cartongesso", "hazard": "Caduta da scale portatili non bloccate, incidenti con sparachiodi pneumatica", "measure": "Controllo visivo dei dispositivi di blocco, uso di guanti anti-taglio e occhiali di protezione (DPI III Categoria)", "pages": 1 },
+    { "id": "CONST-02", "title": "Saldatura di tubazioni principali e installazione pompe nel locale tecnico", "hazard": "Incendio da proiezioni incandescenti (scintille), scoppio durante le prove di tenuta a pressione", "measure": "Nomina di un addetto antincendio (Fire Watch), pressurizzazione graduale entro il limite di 1,1x la pressione di progetto", "pages": 1 },
+    { "id": "CONST-03", "title": "Scavo e rinterro per posa di impianti di drenaggio", "hazard": "Esplosione per danneggiamento di sottoservizi, seppellimento per cedimento delle pareti dello scavo", "measure": "Rilevamento strumentale dei sottoservizi e scavo manuale, mantenimento dell'angolo di naturale declivio o uso di blindaggi", "pages": 1 },
+    { "id": "CONST-04", "title": "Impermeabilizzazione poliuretanica della copertura e tinteggiatura esterna", "hazard": "Caduta dall'alto oltre il bordo del tetto, intossicazione da vapori di solventi", "measure": "Ancoraggio dell'imbracatura (EN 361) alla linea vita (EN 795), ventilazione forzata con estrattori", "pages": 1 },
+    { "id": "CONST-05", "title": "Manutenzione facciate e installazione impianti in quota", "hazard": "Caduta per cedimento del sistema di sospensione, cesoiamento o schiacciamento da PLE (Piattaforme di Lavoro Elevabili)", "measure": "Utilizzo di doppia fune (sospensione e sicurezza) ancorate separatamente, controllo dei finecorsa della PLE", "pages": 1 },
+    { "id": "CONST-06", "title": "Montaggio e smontaggio di ponteggi metallici fissi (Pi.M.U.S.)", "hazard": "Collasso strutturale del ponteggio, impatto da componenti caduti dall'alto", "measure": "Installazione degli ancoraggi a parete secondo schema Pi.M.U.S., delimitazione al suolo dell'area di interdizione", "pages": 1 },
+    { "id": "CONST-07", "title": "Lavorazione armature e movimentazione con apparecchi di sollevamento (Gru)", "hazard": "Caduta del carico per guasto agli accessori di imbracatura, impigliamento nelle macchine piegaferro", "measure": "Rispetto della regola di imbracatura a minimo 2 bracci, uso di dispositivi spingipezzo dedicati", "pages": 1 },
+    { "id": "CONST-08", "title": "Getto di calcestruzzo per solai e travi con autopompa", "hazard": "Ribaltamento dell'autopompa per cedimento del terreno, colpi di frusta da sgancio della tubazione", "measure": "Verifica della portanza del terreno e uso di piastre ripartitrici per gli stabilizzatori, ispezione dei giunti di sicurezza", "pages": 1 },
+    { "id": "CONST-09", "title": "Demolizione di vecchi fabbricati bassi e smaltimento macerie", "hazard": "Crollo incontrollato della struttura, rischio di esposizione a fibre di amianto", "measure": "Applicazione rigorosa del metodo di demolizione dall'alto verso il basso (top-down), verifica del Piano di Lavoro Amianto", "pages": 1 },
+    { "id": "CONST-10", "title": "Posa di cavi elettrici a soffitto e installazione di sistemi antincendio", "hazard": "Folgorazione da parti attive in tensione, caduta per eccessivo sbilanciamento del baricentro su scale", "measure": "Applicazione della procedura LOTO sui quadri elettrici, verifica di assenza di tensione con tester certificato", "pages": 1 }
+  ]
+}

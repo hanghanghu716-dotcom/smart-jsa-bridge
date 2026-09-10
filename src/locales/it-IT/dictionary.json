@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ CHIUDI"
+  },
+  "drawer": {
+    "contents": "CONTENUTI",
+    "regulation": "Guida alle Normative D.Lgs. 81/08",
+    "jrajsa": "Processo Pratico JRA/JSA",
+    "protectiveEquipment": "DPI (Dispositivi di Protezione Individuale)",
+    "riskClassification": "Classificazione Lavori Generali / Alto Rischio",
+    "dictionary": "DB Fattori di Rischio e Misure"
+  },
+  "hero": {
+    "tag": "DATABASE INTELLIGENTE DEI RISCHI (D.Lgs. 81/08)",
+    "titleLine1": "Dizionario Integrato dei Fattori di Rischio Standard",
+    "titleLine2": "e delle Misure di Prevenzione e Protezione",
+    "seoText1": "Questo database fornisce dati di corrispondenza per oltre 1.000 fattori di rischio standard e relative misure di mitigazione basate sulle linee guida del D.Lgs. 81/08, dell'INAIL e delle norme tecniche UNI/EN. I Responsabili del Servizio di Prevenzione e Protezione (RSPP) e i lavoratori possono utilizzare questo dizionario per identificare proattivamente i rischi potenziali e stabilire misure di sicurezza efficaci.",
+    "seoText2": "I dati forniti costituiscono un riferimento fondamentale per la prevenzione degli infortuni. Si prega di adattarli e applicarli alla propria specifica realtà aziendale (DVR), tenendo conto dell'effettivo ambiente di lavoro, delle macchine e della formazione dei lavoratori. Una precisa valutazione dei rischi è il pilastro per ottenere un cantiere a zero infortuni."
+  },
+  "filter": {
+    "allCategories": "Tutte le Categorie",
+    "searchPlaceholder": "Cerca fattori di rischio o misure di prevenzione...",
+    "searchBtn": "Cerca",
+    "resultPrefix": "Trovati in totale ",
+    "resultSuffix": " record."
+  },
+  "data": {
+    "loading": "Caricamento dati in corso...",
+    "empty": "Nessun risultato trovato. Riprovare con un'altra parola chiave.",
+    "riskFactorLabel": "Fattore di Rischio Identificato",
+    "currentMeasureLabel": "Misura di Sicurezza Attuale",
+    "advancedMeasureLabel": "Misura di Prevenzione Avanzata"
+  },
+  "pagination": {
+    "prev": "Prec",
+    "next": "Succ"
+  }
+}

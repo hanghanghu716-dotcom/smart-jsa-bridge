@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "STANDARD D.LGS. 81/08 E UNI ISO 45001",
+    "mainTitle1": "Classificazione dei Rischi e",
+    "mainTitle2": "Guida alla Matrice di Rischio",
+    "subTitle1": "Fondamenti per implementare un SGSL scientifico",
+    "subTitle2": "basato sulla Valutazione Quantitativa del Rischio (Matrice R=P×D).",
+    "section1": "1. Definizioni di Base per Tipologia di Lavoro",
+    "section2": "2. Criteri Quantitativi (Matrice di Rischio)",
+    "section3": "3. Le 9 Categorie di Lavorazioni ad Alto Rischio"
+  },
+  "def": {
+    "generalTitle": "Lavori Generali (Routine / Ordinari)",
+    "generalContent": "Attività ripetitive e frequenti in cui i fattori di rischio sono governati efficacemente mediante Procedure Operative Standard (POS/SOP) consolidate e formazione di base.",
+    "highTitle": "Lavori ad Alto Rischio (Non-Routine / Speciali)",
+    "highContent": "Interventi anomali o manutenzioni che implicano energie pericolose e ambienti complessi, in cui una singola deviazione dalle procedure (singolo guasto) può generare eventi catastrofici o letali."
+  },
+  "matrix": {
+    "title": "Matrice di Rischio (5 Probabilità × 4 Danno)",
+    "axisX": "Danno / Magnitudo (D)",
+    "axisY": "Probabilità di Accadimento (P)",
+    "f5": "Altamente Probabile", "f4": "Probabile", "f3": "Possibile", "f2": "Improbabile", "f1": "Raramente Improbabile",
+    "s1": "Lieve (Senza Inabilità)", "s2": "Modesto (Infortunio Temporaneo)", "s3": "Grave (Invalidità Permanente)", "s4": "Catastrofico (Morte/Lesioni Multiple)",
+    "l1": "Rischio Inaccettabile (Stop Lavori)", "l2": "Rischio Alto (Intervento Urgente)", "l3": "Rischio Medio (Programmare Intervento)", "l4": "Rischio Basso (Mantenere Misure)", "l5": "Rischio Lieve (Gestione Ordinaria)", "l6": "Rischio Trascurabile"
+  },
+  "tasks": [
+    { "t": "Lavori in Quota (Titolo IV)", "c": "Lavori eseguiti ad altezze superiori a 2 metri rispetto a un piano stabile, ove è obbligatoria l'imbracatura anticaduta." },
+    { "t": "Spazi Confinati (D.P.R. 177/2011)", "c": "Accesso in ambienti circoscritti, scarsamente ventilati, con potenziale rischio di anossia o intossicazione acuta." },
+    { "t": "Lavori a Caldo (Hot Work)", "c": "Attività di saldatura, ossitaglio, smerigliatura o brasatura che generano inneschi o fiamme libere in aree non dedicate." },
+    { "t": "Sollevamento Carichi Critici", "c": "Movimentazione e imbracatura di apparecchiature fuori standard tramite autogrù, carriponte o mezzi speciali." },
+    { "t": "Rischio Elettrico (CEI 11-27)", "c": "Lavori eseguiti sotto tensione (PES/PAV) o in prossimità di parti attive entro le distanze di sicurezza normate." },
+    { "t": "Scavi e Trincee", "c": "Interventi nel sottosuolo con rischio di seppellimento per cedimento delle pareti (assenza di blindaggi) o urto di sottoservizi." },
+    { "t": "Radiazioni Ionizzanti (D.Lgs. 101)", "c": "Operazioni di radiografia industriale (RT) o controlli CND che comportano l'esposizione controllata a sorgenti radiogene." },
+    { "t": "Manipolazione ATEX e Rischio Chimico", "c": "Trasferimento, miscelazione o travaso di sostanze tossiche (CLP) o in atmosfere potenzialmente esplosive (Direttiva ATEX)." },
+    { "t": "Manutenzione e LOTO", "c": "Manutenzioni straordinarie che impongono procedure rigorose di Lockout/Tagout (sezionamento a lucchetto) per isolare l'energia pericolosa." }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "alert": {
+    "selectItem": "Selezionare gli elementi da aggiungere.",
+    "enterFactor": "Inserire prima il fattore di rischio.",
+    "selectCurrentMeasure": "Selezionare prima una misura di prevenzione attuale.",
+    "manualFactor": "Questo è un fattore inserito manualmente. Digitare direttamente la misura corrispondente.",
+    "needCurrentMeasure": "Selezionare prima una misura di prevenzione tramite il sistema di raccomandazione.",
+    "noData": "Nessun dato di riferimento trovato. Procedere con l'inserimento manuale.",
+    "confirmMain": "Tornare alla schermata principale? I dati non salvati andranno definitivamente persi.",
+    "loginRequired": "Autenticazione richiesta."
+  },
+  "libModal": {
+    "title": "Carica Libreria Fasi Lavorative",
+    "empty": "Nessun archivio personale trovato.",
+    "unclassified": "Non classificato",
+    "backBtn": "⬅️ Torna all'Elenco",
+    "step": "Fase",
+    "riskCount": " Fattori Rilevati"
+  },
+  "recModal": {
+    "titleCurrent": "Misure di Sicurezza Attuali",
+    "titleAdvanced": "Raccomandazioni Avanzate (Best Practice)",
+    "descCurrent": "Procedure di sicurezza standard registrate per questo rischio.",
+    "descAdvanced": "Misure ingegneristiche e organizzative di livello superiore per mitigare il rischio residuo.",
+    "selectBtn": "Applica"
+  },
+  "step": {
+    "basicInfo": "Info Generali",
+    "procedure": "Ciclo Produttivo",
+    "riskAnalysis": "Valutazione Rischi",
+    "moduleConfig": "Configurazione Moduli",
+    "tableConfig": "Impostazione Tabella",
+    "finalOutput": "Esportazione"
+  },
+  "form": {
+    "title": "03. Identificazione e Valutazione dei Rischi",
+    "typeStandard": "(Metodo Standard)",
+    "typeAdvanced": "(Metodo Avanzato)",
+    "currentStep": "Fase Operativa Attuale"
+  },
+  "filter": {
+    "label": "⚠️ Filtro Attività ad Alto Rischio",
+    "auto": "(Suggerimento Automatico da DB)",
+    "loadLibBtn": "📂",
+    "searchPlaceholder": "Ricerca fattori di rischio..."
+  },
+  "base": {
+    "label": "Knowledge Base Sicurezza (Estrazione Rischi)",
+    "addEmptyBtn": "+ Aggiungi Riga Vuota",
+    "addBulkBtn": "✓ Inserisci Voci Selezionate",
+    "emptyRec": "Nessun pericolo standard suggerito per questa fase.",
+    "etc": "Altro / Varie"
+  },
+  "result": {
+    "label": "Matrice di Valutazione e Misure",
+    "freq": "Prob",
+    "sev": "Danno"
+  },
+  "table": {
+    "factor": "Fattore di Rischio",
+    "measure": "Misura di Prevenzione e Protezione",
+    "currentMeasure": "Misura Attuale in Essere",
+    "advancedMeasure": "Interventi di Miglioramento (Raccomandati)",
+    "delete": "Elimina",
+    "recMeasureBtn": "Suggerimenti",
+    "recAdvancedBtn": "Soluzioni Avanzate",
+    "searchBtn": "Ricerca DB"
+  },
+  "btn": {
+    "prevStep1": "Indietro (Fasi Operative)",
+    "prevStep2": "Fase Lavorativa Precedente",
+    "nextComplete": "Concludi Valutazione e Vai a Moduli",
+    "nextStep": "Analizza Fase Lavorativa Successiva"
+  },
+  "searchModal": {
+    "title": "Ricerca nel Database delle Misure di Prevenzione",
+    "placeholder": "Inserisci parola chiave (es. LOTO, DPI, ponteggio)..."
+  }
+}

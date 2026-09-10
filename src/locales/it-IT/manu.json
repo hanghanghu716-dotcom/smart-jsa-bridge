@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attenzione] Questo campione è un modello di riferimento. La Valutazione dei Rischi Chimici e ATEX deve essere validata da tecnici competenti in base al reale layout impiantistico.",
+    "text2": "Smart JSA Bridge declina ogni responsabilità legale derivante dall'applicazione inappropriata di questi dati tecnici."
+  },
+  "ui": {
+    "category": "SICUREZZA IMPIANTI CHIMICI E GAS",
+    "mainTitle1": "JSA per Manutenzioni Chimiche e Gas",
+    "mainTitle2": "Guida ai Campioni (10 Tipi)",
+    "description1": "Schede standard di analisi dei rischi per interventi su gas ad alta pressione",
+    "description2": "e agenti chimici pericolosi (CLP). Esamina la documentazione tecnica.",
+    "labelRed": "⚠ Fattori di Rischio Critici (Hazards)",
+    "labelBlue": "🛡 Misure di Sicurezza Essenziali (Mitigation)",
+    "previewLabel": "Anteprima Rapporto JSA",
+    "downloadBtn": "Scarica il PDF Originale Completo"
+  },
+  "list": [
+    { "id": "CHEM-01", "title": "Ispezione scambiatore di calore a fascio tubiero e lavaggio idrodinamico ad alta pressione", "hazard": "Iniezione ad alta pressione di fluido nei tessuti corporei, ustioni chimiche gravi da reflui acidi/caustici", "measure": "Indossare tute protettive impermeabili antiacido, aprire completamente le valvole di spurgo (drain) e applicare Procedura LOTO totale", "pages": 1 },
+    { "id": "CHEM-02", "title": "Sostituzione delle tenute (packing) del compressore di idrogeno ad alta pressione", "hazard": "Esplosione atmosferica (ATEX) per perdita di idrogeno, asfissia acuta causata da inertizzazione con azoto", "measure": "Verifica gas-free (0% LEL) con esplosimetro portatile, uso di indumenti in cotone antistatico e attrezzature in lega antiscintilla", "pages": 1 },
+    { "id": "CHEM-03", "title": "Sostituzione di valvole e guarnizioni su linee di processo di sostanze chimiche tossiche", "hazard": "Proiezione di liquidi residui in pressione durante l'apertura delle flange, intossicazione inalatoria severa", "measure": "Adozione di maschere pieno facciale con filtro combinato (APV), allentamento dei tiranti flangiati in sequenza incrociata lato opposto operatore", "pages": 1 },
+    { "id": "CHEM-04", "title": "Sostituzione della punta della Torcia (Flare Stack) e manutenzione dei piloti di accensione", "hazard": "Precipitazione per raffiche di vento in quota, ustioni fatali per riaccensione imprevista dei gas residui di spurgo", "measure": "Sospensione immediata dei lavori con vento > 10 m/s, uso di imbracatura con doppio cordino di sicurezza (Y-lanyard), isolamento garantito tramite sala quadri (DCS)", "pages": 1 },
+    { "id": "CHEM-05", "title": "Test funzionale degli erogatori dei sistemi di monitoraggio e spegnimento incendi (Deluge System)", "hazard": "Trauma da impatto per sfilamento violento delle manichette in pressione, inalazione di gas estinguenti", "measure": "Verifica del blocco di sicurezza (spina) del raccordo rapido, posizionamento dell'operatore sopravvento, utilizzo di tappi ciechi collaudati", "pages": 1 },
+    { "id": "CHEM-06", "title": "Ispezione dei gruppi valvole automatiche inferiori della torre di adsorbimento (Impianto PSA)", "hazard": "Schiacciamento degli arti per scatto imprevisto dell'attuatore pneumatico, patologie respiratorie da inalazione polveri di setacci molecolari", "measure": "De-pressurizzazione dell'aria strumentale di comando, isolamento LOTO pneumatico, uso di facciali filtranti FFP3 ad alta efficienza", "pages": 1 },
+    { "id": "CHEM-07", "title": "Ispezione visiva interna e Controlli Non Distruttivi (CND) in serbatoi di stoccaggio idrogeno", "hazard": "Sindrome da asfissia in Spazio Confinato (D.P.R. 177/2011), innesco di miscela esplosiva per difetto di isolamento dell'illuminazione", "measure": "Rilevazione multigas a stratificazione (alto/centro/basso), ventilazione forzata continua, impiego esclusivo di lampade ATEX a Bassissima Tensione (<24V)", "pages": 1 },
+    { "id": "CHEM-08", "title": "Scarico da autocisterna di idrogeno compresso e collegamento al manifold della baia di carico", "hazard": "Schiacciamento per arretramento accidentale del mezzo pesante, esplosione innescata da scarica elettrostatica (ESD)", "measure": "Blocco tassativo del veicolo con minimo 2 cunei fermaruota, connessione prioritaria delle pinze di equipotenzialità e verifica strumentale della resistenza di terra", "pages": 1 },
+    { "id": "CHEM-09", "title": "Ispezione dei quadri di automazione (DCS/PLC) e taratura in campo dei trasmettitori (Transmitter)", "hazard": "Arresto catastrofico del processo per blocco accidentale delle logiche (Interlock), folgorazione per contatto diretto con sbarre in tensione", "measure": "Tripla verifica di attivazione dei selettori di Bypass sul DCS, obbligo di DPI dielettrici (guanti isolanti classe 0) e vestiario antistatico", "pages": 1 },
+    { "id": "CHEM-10", "title": "Rabbocco manuale di biocidi e inibitori di corrosione nelle vasche del circuito acqua di raffreddamento", "hazard": "Reazione esotermica ed esplosione per miscelazione accidentale di incompatibili chimici, ebollizione e geyser chimico all'apertura dei fusti", "measure": "Verifica incrociata delle etichette di pericolo (CLP), stoccaggio in bacini di contenimento separati, depressurizzazione lenta del fusto indossando visiera paraschizzi integrale", "pages": 1 }
+  ]
+}

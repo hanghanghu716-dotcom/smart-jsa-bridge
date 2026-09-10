@@ -1,0 +1,68 @@
+{
+  "default": {
+    "docTitle": "Analisi per la Sicurezza sul Lavoro (JSA/POS)",
+    "appr1": "Redattore (Preposto/RSPP)",
+    "appr2": "Verificatore",
+    "appr3": "Approvatore (Datore di Lavoro)"
+  },
+  "table": {
+    "projectName": "Nome Progetto/Appalto",
+    "approval": "Approvazione Sicurezza",
+    "workLocation": "Specifica Area di Lavoro",
+    "department": "Reparto / Ditta Esecutrice",
+    "workDate": "Data di Esecuzione",
+    "ppe": "DPI Obbligatori",
+    "highRiskWork": "Lavori Soggetti a Permesso",
+    "participants": "Lavoratori Incaricati",
+    "signature": "(Firma per Presa Visione)"
+  },
+  "ppe": {
+    "helmet": "Protezione Capo (EN 397)",
+    "shoes": "Calzature di Sicurezza (EN ISO 20345)",
+    "glasses": "Protezione Occhi/Viso (EN 166)",
+    "safetyBelt": "DPI Anticaduta / Imbracatura (EN 361)",
+    "mask": "Protezione Vie Respiratorie (APV)",
+    "gloves": "Protezione Mani (EN 388/EN 374)",
+    "etc": "DPI Specifici"
+  },
+  "permit": {
+    "hotWork": "Permesso Lavori a Caldo",
+    "confinedSpace": "Spazi Confinati (D.P.R. 177/2011)",
+    "electrical": "Rischio Elettrico / LOTO (CEI 11-27)",
+    "highElevation": "Lavori in Quota (Titolo IV D.Lgs. 81/08)",
+    "heavyLifting": "Piano di Sollevamento Critico",
+    "excavation": "Scavi e Trincee",
+    "etc": "Altri Permessi Speciali"
+  },
+  "preview": {
+    "header": "Anteprima Struttura JSA (Conforme al D.Lgs. 81/08)",
+    "tableAreaTitle": "[Area Dati Valutazione dei Rischi]",
+    "tableAreaDesc": "L'identificazione dei pericoli e le misure di prevenzione verranno compilate automaticamente qui."
+  },
+  "step": {
+    "basicInfo": "Step 1: Info Generali",
+    "procedure": "Step 2: Fasi Operative",
+    "riskAnalysis": "Step 3: Valutazione Rischi",
+    "moduleConfig": "Step 4: Config. Modulo",
+    "tableConfig": "Step 5: Mappatura Dati",
+    "finalOutput": "Step 6: Esportazione"
+  },
+  "header": {
+    "title": "| 04. Configurazione Modulo Documentale",
+    "subtitle": "Configura le intestazioni del JSA e gli elementi per i Permessi di Lavoro (PdL) normativi."
+  },
+  "toolbar": {
+    "headerTextSetting": "Impostazione Intestazione JSA",
+    "docTitle": "Titolo Standard Documento",
+    "appr1": "Casella Redattore",
+    "appr2": "Casella Verificatore",
+    "appr3": "Casella Approvatore",
+    "signatureSetting": "Firme del Personale Autorizzato",
+    "addSignatureRow": "Aggiungi Riga Personale (8 Spazi per Riga)"
+  },
+  "btn": {
+    "prev": "Torna a Valutazione Rischi",
+    "next": "Procedi a Config. Tabella",
+    "skipModule": "Salta Configurazione Modulo"
+  }
+}

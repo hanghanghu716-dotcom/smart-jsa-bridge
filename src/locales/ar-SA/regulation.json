@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "ADMINISTRATIVE SAFETY GUIDE",
+    "mainTitle": "Professional Guide to Establishing<br />Risk Assessment Guidelines & Legal Compliance",
+    "subTitle": "Detailed guidance on drafting 'Implementation Guidelines', the core of the workplace safety and health management system, and administrative compliance under OSHA standards."
+  },
+  "section1": {
+    "title": "1. What are Risk Assessment Guidelines?",
+    "para": "Risk Assessment Guidelines are <strong>internal standard operating procedures (SOPs)</strong> for employers to identify hazards, evaluate risks, and implement reduction measures. These are not merely recommendations, but critical legal requirements under OSHA regulations and essential for a robust safety culture.",
+    "infoTitle": "Purpose of Maintaining the Guidelines",
+    "infoList": {
+      "item1": "Clarify responsibilities and authority for establishing a safety and health management system.",
+      "item2": "Maintain an objective and consistent risk assessment process.",
+      "item3": "Discover practical workplace hazards and implement improvements through worker participation.",
+      "item4": "Secure evidentiary documentation to respond to legal audits and OSHA inspections."
+    }
+  },
+  "section2": {
+    "title": "2. Mandatory Items in the Guidelines",
+    "para": "According to OSHA guidelines and industry best practices, internal guidelines must clearly specify the following 10 components:",
+    "items": {
+      "item1": { "title": "Purpose & Methodology", "content": "Goals of the risk assessment and selection of evaluation techniques tailored to the specific workplace." },
+      "item2": { "title": "Organization & Roles", "content": "Clear definition of roles and responsibilities (R&R) for employers, supervisors, and workers." },
+      "item3": { "title": "Assessment Scope", "content": "Inclusion of buildings, machinery, equipment, and all routine/non-routine tasks." },
+      "item4": { "title": "Timing & Frequency", "content": "Specific triggers and schedules for initial, periodic, and incident-based assessments." },
+      "item5": { "title": "Hazard Identification", "content": "Practical methods for deriving hazards, such as site inspections and worker interviews." },
+      "item6": { "title": "Risk Evaluation", "content": "Establishment of objective criteria (e.g., probability and severity matrix) to determine risk levels." },
+      "item7": { "title": "Control Measures", "content": "Prioritizing improvements by risk level and establishing post-implementation verification procedures." },
+      "item8": { "title": "Worker Participation", "content": "Systematic approaches to gathering worker feedback during hazard identification and mitigation planning." },
+      "item9": { "title": "Recordkeeping", "content": "Standardized templates for assessment results and guidelines for preserving records (generally 3-5 years)." },
+      "item10": { "title": "Training & Communication", "content": "Procedures for communicating assessment results to field workers and conducting relevant training." }
+    }
+  },
+  "section3": {
+    "title": "3. Types and Timing of Risk Assessments",
+    "table": {
+      "header": {
+        "col1": "Assessment Type",
+        "col2": "Timing & Conditions",
+        "col3": "Key Notes"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Initial Assessment",
+          "col2": "Within a specified period (e.g., 30 days) of commencing workplace operations.",
+          "col3": "Mandatory baseline assessment."
+        },
+        "row2": {
+          "col1": "Periodic Assessment",
+          "col2": "Conducted regularly (usually annually) after the initial assessment.",
+          "col3": "Must be repeated at least once a year."
+        },
+        "row3": {
+          "col1": "Incident-Based (Special)",
+          "col2": "Upon introduction of new equipment, process changes, or after severe incidents/near-misses.",
+          "col3": "Required immediately upon trigger event."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Legal Liability and Penalties",
+    "para": "Failure to fulfill risk assessment duties can result in severe administrative and criminal liabilities under OSHA regulations and associated laws.",
+    "legalList": {
+      "item1": "<strong>Failure to Conduct Assessments:</strong> Subject to citations and substantial fines, especially classified under Serious or Willful violations (OSHA penalties can exceed $160,000 per willful violation).",
+      "item2": "<strong>Failure to Maintain Records:</strong> Administrative penalties for lacking required documentation and safety records during an inspection.",
+      "item3": "<strong>In the Event of Major Incidents:</strong> If failure to assess risks is confirmed following a fatal or catastrophic incident, corporate liability is significantly enhanced, potentially leading to criminal charges against the employer."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

@@ -147,7 +147,7 @@ export default function MyLibrary() {
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
     const date = new Date(dateStr);
-    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    return date.toLocaleDateString(i18n.language, { year: 'numeric', month: '2-digit', day: '2-digit' });
   };
 
   return (

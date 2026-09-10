@@ -36,6 +36,12 @@ export default function FactorDictionary() {
     if (lang.includes('de')) return 'de-DE';
     if (lang.includes('es')) return 'es-ES';
     if (lang.includes('ru')) return 'ru-RU';
+    if (lang.includes('ja')) return 'ja-JP';
+    if (lang.includes('pt')) return 'pt-BR';
+    if (lang.includes('ar')) return 'ar-SA';
+    if (lang.includes('it')) return 'it-IT';
+    if (lang.includes('zh-TW')) return 'zh-TW';
+    if (lang.includes('zh')) return 'zh-CN';
 
     return 'ko-KR'; 
   };

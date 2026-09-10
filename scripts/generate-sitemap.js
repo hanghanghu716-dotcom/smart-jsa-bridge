@@ -6,9 +6,11 @@ const SUPABASE_URL = 'https://aajvezmhyrdawxxbulqz.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// 지원 대상 8개 다국어 코드 정의
-const LANGUAGES = ['ko', 'en-US', 'en-GB', 'en-AU', 'es-ES', 'de-DE', 'fr-FR', 'ru-RU'];
-
+// 지원 대상 다국어 코드 정의 (신규 언어 추가)
+const LANGUAGES = [
+  'ko', 'en-US', 'en-GB', 'en-AU', 'es-ES', 'de-DE', 'fr-FR', 'ru-RU',
+  'ja-JP', 'pt-BR', 'ar-SA', 'it-IT', 'zh-TW', 'zh-CN'
+];
 // 정적 정보성 라우트 정의
 const staticPages = [
   { path: '', priority: '1.0' },

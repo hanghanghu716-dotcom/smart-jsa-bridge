@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atenção] Esta amostra é apenas para referência. As avaliações de risco (PGR/APR) devem ser conduzidas com base em verificações reais no local.",
+    "text2": "O Smart JSA Bridge não se responsabiliza por consequências legais decorrentes do uso destes dados."
+  },
+  "ui": {
+    "category": "SEGURANÇA GERAL E DE FACILIDADES (MANUTENÇÃO PREDIAL)",
+    "mainTitle1": "APR para Trabalhos Gerais e Manutenção",
+    "mainTitle2": "Guia de Amostra (10 Tipos)",
+    "description1": "Dados de análise de risco para gerenciamento diário de instalações, logística",
+    "description2": "e ambientes de saúde (Hospitais/Clínicas). Confira as imagens detalhadas.",
+    "labelRed": "⚠ Fatores de Risco Críticos",
+    "labelBlue": "🛡 Medidas de Mitigação",
+    "previewLabel": "Pré-visualização do Relatório APR",
+    "downloadBtn": "Baixar Amostra Original em PDF"
+  },
+  "list": [
+    { "id": "GEN-01", "title": "Carregamento e Transporte de Paletes com Empilhadeira em Galpão Logístico", "hazard": "Tombamento da empilhadeira durante curvas fechadas, colisão ou atropelamento de pedestre devido à visão obstruída", "measure": "Observar o limite de velocidade (ex: 10km/h), designar sinaleiro/orientador e garantir que a torre esteja inclinada para trás com a carga baixa", "pages": 1 },
+    { "id": "GEN-02", "title": "Auxílio na Mobilidade de Pacientes e Manuseio de Resíduos Infectantes (RSS) em Enfermarias", "hazard": "Quedas durante a transferência do paciente, infecção (risco biológico) por ferimento com agulhas/perfurocortantes", "measure": "Verificar se as travas (freios) das rodas da cadeira/cama estão acionadas, proibir rigorosamente o reencape de agulhas usadas (NR-32)", "pages": 1 },
+    { "id": "GEN-03", "title": "Roçada de Grama e Poda de Árvores em Áreas Verdes", "hazard": "Impacto de detritos projetados (pedras/arame) devido à quebra de lâminas, choque elétrico em redes de distribuição aéreas", "measure": "Usar protetor facial de tela, manter distância de segurança (ZLR/ZCS) de instalações elétricas (NR-10) e isolar a área", "pages": 1 },
+    { "id": "GEN-04", "title": "Patrulha a Pé em Áreas Vulneráveis e Controle de Trânsito", "hazard": "Atropelamento por veículos em movimento, agressão física por pessoas suspeitas durante ronda noturna", "measure": "Usar colete refletivo de alta visibilidade, seguir regra de patrulhamento em dupla e portar equipamento de comunicação e defesa adequado", "pages": 1 },
+    { "id": "GEN-05", "title": "Preparação de Reagentes em Laboratório e Operação de Equipamentos Analíticos", "hazard": "Vazamento de gás tóxico devido à exaustão deficiente da capela, queimaduras químicas por respingos de reagentes", "measure": "Realizar o trabalho obrigatoriamente dentro de Capelas de Exaustão (Fume Hoods), treinamento em FISPQ e uso de EPI dedicado (NR-32)", "pages": 1 },
+    { "id": "GEN-06", "title": "Limpeza Profunda de Estacionamento Subterrâneo e Lavagem com Hidrojateadora", "hazard": "Atropelamento por veículos não controlados em manobra, choque elétrico de ferramentas elétricas em áreas molhadas", "measure": "Isolar a área com cones de trânsito, utilizar energia protegida por disjuntor DR (GFCI) e usar botas de borracha isolantes (NR-10)", "pages": 1 },
+    { "id": "GEN-07", "title": "Operação de Triturador de Resíduos e Desobstrução da Bica de Entrada", "hazard": "Amputação (aprisionamento) de membros na entrada do triturador, esmagamento por partida acidental por terceiros", "measure": "Desligar a energia principal e aplicar o bloqueio elétrico LOTO, usar ferramentas manuais dedicadas em vez das mãos (NR-12)", "pages": 1 },
+    { "id": "GEN-08", "title": "Limpeza de Fachada Envidraçada e Operação com Cadeira Suspensa (Balancim Individual)", "hazard": "Queda fatal devido ao desgaste ou falha da corda, impacto em pedestres por queda de ferramentas ou baldes", "measure": "Instalar cinto tipo paraquedista em trava-quedas ligado a linha de vida vertical independente (NR-35), designar ajudante no solo e isolar a área", "pages": 1 },
+    { "id": "GEN-09", "title": "Pré-processamento de Alimentos e Cozimento em Caldeirões Industriais em Cozinhas", "hazard": "Escorregões e quedas de mesmo nível devido a piso molhado/engordurado, queimaduras severas por contato com óleo quente ou vapor", "measure": "Usar sapato de segurança antiderrapante certificado (CA), manter extintores de Classe K (gordura) próximos e remover umidade imediatamente", "pages": 1 },
+    { "id": "GEN-10", "title": "Instalação de Rack de Servidores e Passagem de Cabeamento em Data Centers", "hazard": "Esmagamento ou contusões pela inércia/tombamento do rack durante a movimentação, quedas de escadas portáteis durante trabalho em altura", "measure": "Realizar o trabalho com equipe mínima de 3 pessoas, proibição de usar o último degrau (topo) da escada, e designar apoio no piso", "pages": 1 }
+  ]
+}

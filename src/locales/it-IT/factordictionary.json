@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ CHIUDI"
+  },
+  "drawer": {
+    "contents": "CONTENUTI",
+    "regulation": "Normativa D.Lgs. 81/08 / INAIL",
+    "jrajsa": "JHA / JSA (Analisi Sicurezza)",
+    "protectiveEquipment": "DPI (Dispositivi Individuali)",
+    "riskClassification": "Classificazione Rischi",
+    "dictionary": "Dizionario dei Pericoli"
+  },
+  "hero": {
+    "tag": "DATABASE DI SALUTE E SICUREZZA SUL LAVORO",
+    "titleLine1": "Analisi Intelligente dei Pericoli,",
+    "titleLine2": "Dizionario Standard dei Rischi"
+  },
+  "seoText1": "Cerca e identifica i potenziali pericoli sul posto di lavoro e le relative misure di controllo, rigorosamente conformi al D.Lgs. 81/08 e alle Linee Guida INAIL.",
+  "seoText2": "Stabilisci un ambiente di lavoro più sicuro e previeni incidenti gravi attraverso un approccio sistematico e basato su dati oggettivi di prevenzione.",
+  "filter": {
+    "allCategories": "Tutte le Categorie",
+    "searchPlaceholder": "Cerca fattori di rischio o misure di prevenzione...",
+    "searchBtn": "Cerca",
+    "resultPrefix": "Totale ",
+    "resultSuffix": " risultati trovati"
+  },
+  "data": {
+    "loading": "Caricamento dati in corso...",
+    "empty": "Nessun dato trovato corrispondente ai criteri inseriti.",
+    "riskFactorLabel": "Fattore di Rischio Identificato",
+    "currentMeasureLabel": "Controlli Attuali del Rischio",
+    "advancedMeasureLabel": "Controlli Aggiuntivi di Mitigazione"
+  },
+  "pagination": {
+    "prev": "Precedente",
+    "next": "Successivo"
+  }
+}

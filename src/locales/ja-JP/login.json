@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "このニックネームは使用できません。",
+    "nickNoSpecial": "特殊文字は使用しないでください。",
+    "nickInUse": "このニックネームはすでに使用されています。",
+    "nickAvailable": "✓ 使用可能なニックネームです。",
+    "pwSafe": "✓ 安全なパスワード",
+    "pwRule": "8文字以上：英字、数字、記号を含むこと",
+    "pwMatch": "✓ パスワードが一致しました",
+    "pwMismatch": "パスワードが一致しません"
+  },
+  "alert": {
+    "resetSent": "パスワードリセットのリンクを送信しました。",
+    "checkInput": "入力情報に誤りがないか確認してください。",
+    "signupSuccess": "登録を完了するには、メールに記載された認証リンクをクリックしてください。"
+  },
+  "ui": {
+    "titleSignup": "ユーザーアカウント登録",
+    "titleReset": "パスワードリセット",
+    "titleLogin": "システムアクセス認証",
+    "guideSignup": "ナレッジの蓄積のため、必要な情報を入力してください。",
+    "guideReset": "登録されたメールアドレスにリセットリンクを送信します。",
+    "guideLogin": "サービスを利用するには、登録済みのアカウントでログインしてください。",
+    "labelEmail": "メールアドレス",
+    "labelNickname": "活動ニックネーム",
+    "placeholderNickname": "ニックネーム",
+    "labelSector": "産業分野（セクター）",
+    "selectDefault": "選択してください",
+    "labelPassword": "パスワード",
+    "placeholderPassword": "8文字以上：英字、数字、記号を含むこと",
+    "labelPasswordConfirm": "パスワード（確認用）",
+    "placeholderPasswordConfirm": "パスワードを再入力してください",
+    "placeholderPasswordLogin": "パスワード",
+    "btnForgotPw": "パスワードを忘れた場合",
+    "btnProcessing": "処理中...",
+    "btnSubmitSignup": "アカウントを作成する",
+    "btnSubmitReset": "リセットメールを送信",
+    "btnSubmitLogin": "システムにログイン",
+    "dividerOr": "または",
+    "btnGoogleLogin": "Googleでログイン",
+    "btnSwitchSignup": "新規ユーザー登録",
+    "btnSwitchLogin": "既存のアカウントでログイン"
+  },
+  "sector": {
+    "construction": "建設 / 土木 / 建築",
+    "manufacturing": "製造 / プラント / 化学",
+    "energy": "エネルギー / 電気 / ガス",
+    "logistics": "運送 / 物流 / 倉庫",
+    "safety": "安全管理 / 専門コンサルティング",
+    "it": "IT / システム / エンジニアリング",
+    "public": "公共機関 / 教育 / 医療",
+    "others": "その他の産業分野"
+  }
+}

@@ -91,10 +91,13 @@ export default function Analysis() {
     setIsLoading(true);
     let scored = [];
 
-    const localeMap = {
-      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
-      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE',
-      'es-ES': 'es-ES', 'ru-RU': 'ru-RU', 'es': 'es-ES', 'ru': 'ru-RU'
+  const localeMap = {
+      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 
+      'en-US': 'en-US', 'en-CA': 'en-CA', 'en-AU': 'en-AU', 'en-GB': 'en-GB', 
+      'de': 'de-DE', 'de-DE': 'de-DE', 'ja': 'ja-JP', 'ja-JP': 'ja-JP', 
+      'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'it': 'it-IT', 'it-IT': 'it-IT',
+      'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
+      'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
     };
     const dbLocale = localeMap[i18n.language] || 'en-US';
 

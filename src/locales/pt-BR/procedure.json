@@ -1,0 +1,38 @@
+{
+  "alert": {
+    "confirmMain": "Tem certeza de que deseja ir para a tela principal? Todos os dados operacionais não salvos poderão ser perdidos.",
+    "minSteps": "Por favor, insira pelo menos 3 etapas para o procedimento a fim de definir a sequência corretamente."
+  },
+  "modal": {
+    "title": "Selecionar Formato da Análise",
+    "sub": "Por favor, selecione o nível de precisão para a avaliação de riscos da APR.",
+    "standardLabel": "Análise Básica de 2 Etapas",
+    "standardDesc1": "Fator de Risco ➔ Medida Preventiva/Mitigação",
+    "standardDesc2": "(Recomendado para operações gerais e tarefas rotineiras de baixo risco)",
+    "advancedLabel": "Análise Avançada de 3 Etapas",
+    "advancedDesc1": "Fator de Risco ➔ Medida de Segurança Atual ➔ Medida Preventiva Adicional (Ação Recomendada)",
+    "advancedDesc2": "(Exigido para processos de alto risco, Permissão de Trabalho (PT) e análises precisas)",
+    "closeBtn": "Fechar"
+  },
+  "step": {
+    "basicInfo": "Info Básica",
+    "procedure": "Procedimento de Trabalho",
+    "riskAnalysis": "Análise de Riscos",
+    "moduleConfig": "Configuração do Módulo",
+    "tableConfig": "Layout da Tabela",
+    "finalOutput": "Exportação Final"
+  },
+  "form": {
+    "title": "02. Definição Detalhada do Procedimento Operacional",
+    "stepLabel": "Etapa da Tarefa",
+    "detailLabel": "Descrição Detalhada da Operação (Passo a passo)",
+    "placeholderTitle": "Nome da Etapa",
+    "placeholderDetail": "Detalhes (Equipamentos, contexto físico e postura)"
+  },
+  "btn": {
+    "addStep": "+ Adicionar Etapa do Procedimento (Até 20 etapas)",
+    "prev": "Anterior",
+    "next": "Iniciar Análise Inteligente de Risco (APR)",
+    "skipModule": "Pular Configuração do Módulo"
+  }
+}

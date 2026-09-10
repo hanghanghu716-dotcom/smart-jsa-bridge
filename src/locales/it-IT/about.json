@@ -1,0 +1,39 @@
+{
+  "pageTag": "IL REPOSITORY DELLA SICUREZZA",
+  "mainHeading": {
+    "line1": "Connettere la Conoscenza Frammentata",
+    "line2": "in un'unica Libreria Organizzata"
+  },
+  "section1": {
+    "title": "La Libreria di Riferimento per gli RSPP e i Manager HSE",
+    "content": "Smart JSA Bridge porta alla luce i modelli JSA (Job Safety Analysis) reali, precedentemente sparsi nei dispositivi locali. È un <strong>repository in stile open-source in cui i professionisti della sicurezza possono archiviare e condividere il loro know-how collettivo</strong>.<br />Andando oltre la semplice burocrazia (compliance documentale), puntiamo a creare un ponte tecnologico che permetta a chiunque di applicare le migliori pratiche di prevenzione verificate nei cantieri e negli impianti italiani."
+  },
+  "section2": {
+    "title": "I Nostri Valori Fondamentali",
+    "item1": {
+      "bold": "Basato su Dati Operativi Verificati:",
+      "desc": "Ci basiamo su schemi JSA pratici redatti e validati direttamente dai preposti e dai tecnici sul campo, non su linee guida astratte."
+    },
+    "item2": {
+      "bold": "Circolo Virtuoso (Fork & Contribute):",
+      "desc": "Gli utenti possono adottare modelli eccellenti, personalizzandoli per i propri Piani Operativi di Sicurezza (POS), e restituire alla community le versioni migliorate."
+    },
+    "item3": {
+      "bold": "Libreria Specializzata nei Lavori ad Alto Rischio:",
+      "desc": "Abbiamo strutturato un archivio di scenari infortunistici classificati per settore industriale e tipologia di macchina."
+    }
+  },
+  "section3": {
+    "title": "Come Funziona",
+    "subtitle": "Smart JSA Bridge protegge i lavoratori attraverso la forza della community.",
+    "step1": { "bold": "Ricerca nel Database:", "desc": "Cerca nel vasto archivio il modello di valutazione rischi più pertinente alla tua specifica fase lavorativa." },
+    "step2": { "bold": "Integrazione e Personalizzazione:", "desc": "Seleziona il modello e adatta le misure di prevenzione allo specifico contesto del tuo cantiere o stabilimento." },
+    "step3": { "bold": "Esportazione e Condivisione:", "desc": "Esporta il documento JSA completato in PDF per allegarlo al POS o al DVR, condividendo poi la logica migliorata sulla piattaforma." },
+    "step4": { "bold": "Standardizzazione (Best Practice):", "desc": "I documenti che ricevono maggiori revisioni e approvazioni diventano lo standard di riferimento per la sicurezza industriale." }
+  },
+  "section4": {
+    "title": "Filosofia di Gestione e Sicurezza dei Dati (Compliance GDPR)",
+    "content": "Il vero valore della condivisione si fonda su una rigorosa tutela della privacy. <br />In conformità al <strong>'Principio di Minimizzazione dei Dati' (GDPR)</strong>, Smart JSA Bridge non archivia in chiaro dati identificativi sensibili quali nomi di aziende, cantieri, matricole di macchinari o nomi dei lavoratori. Il sistema processa e memorizza esclusivamente la pura logica di ingegneria della sicurezza: 'Fase - Rischio - Misura di Prevenzione'."
+  },
+  "imageCaption": "Smart JSA Bridge: L'intelligenza collettiva al servizio dell'Obiettivo Zero Infortuni."
+}

@@ -1,0 +1,38 @@
+{
+  "alert": {
+    "confirmMain": "メイン画面へ移動しますか？保存されていないデータは失われる可能性があります。",
+    "minSteps": "作業手順は少なくとも3ステップ以上入力してください。"
+  },
+  "modal": {
+    "title": "アセスメント形式の選択",
+    "sub": "JSA分析の精度レベルを選択してください。",
+    "standardLabel": "標準 2ステップ分析",
+    "standardDesc1": "危険要因 ➔ 低減対策",
+    "standardDesc2": "（一般的な現場作業向け）",
+    "advancedLabel": "高度 3ステップ分析",
+    "advancedDesc1": "危険要因 ➔ 現在の安全対策 ➔ 追加の低減対策",
+    "advancedDesc2": "（高リスク作業および精密分析向け）",
+    "closeBtn": "閉じる"
+  },
+  "step": {
+    "basicInfo": "基本情報",
+    "procedure": "作業手順",
+    "riskAnalysis": "リスクアセスメント",
+    "moduleConfig": "モジュール設定",
+    "tableConfig": "テーブル設定",
+    "finalOutput": "最終出力"
+  },
+  "form": {
+    "title": "02. 詳細作業手順の定義",
+    "stepLabel": "作業ステップ",
+    "detailLabel": "詳細作業内容",
+    "placeholderTitle": "ステップ名",
+    "placeholderDetail": "詳細内容"
+  },
+  "btn": {
+    "addStep": "+ 作業手順を追加（最大20ステップ）",
+    "prev": "前へ",
+    "next": "インテリジェント・リスク分析を開始",
+    "skipModule": "モジュール設定をスキップ"
+  }
+}

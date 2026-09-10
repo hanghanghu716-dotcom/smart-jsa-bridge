@@ -1,0 +1,31 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTICE] This sample is for reference only. Risk assessments must be conducted based on actual site inspections and specific environmental factors.",
+    "text2": "Smart JSA Bridge assumes no legal liability for any outcomes resulting from the use of this material."
+  },
+  "ui": {
+    "category": "COMMON SAFETY STANDARD",
+    "mainTitle1": "Integrated Site Safety Management",
+    "mainTitle2": "and JSA Guide",
+    "description1": "Standardised data for the Top 10 common processes",
+    "description2": "and high-risk pre-work preparation requirements.",
+    "jsaId": "COMMON-01",
+    "jsaTitle1": "Site-wide Safety Management and",
+    "jsaTitle2": "High-Risk Pre-task Requirements",
+    "summaryTitle": "Key Processes & Hazard Summary",
+    "previewLabel": "JSA Report Preview",
+    "downloadBtn": "Download Original PDF"
+  },
+  "steps": [
+    { "step": "01", "task": "Pre-task TBT & PPE Inspection", "hazard": "Unclear scope of work, improper PPE use" },
+    { "step": "02", "task": "Fall Protection Systems", "hazard": "Anchor point failure, slips due to weather" },
+    { "step": "03", "task": "Combustible Isolation & Fire Watch", "hazard": "Hot work sparks, residual gas explosion" },
+    { "step": "04", "task": "Rigging & Hoisting Setup", "hazard": "Poor ground stability, sling/cable failure" },
+    { "step": "05", "task": "Atmospheric Testing & Ventilation", "hazard": "Oxygen deficiency, toxic gas inhalation" },
+    { "step": "06", "task": "Excavation & Trenching Safety", "hazard": "Utility strikes, trench cave-ins/collapse" },
+    { "step": "07", "task": "LOTO & Zero Energy Verification", "hazard": "Accidental re-energisation, residual shock" },
+    { "step": "08", "task": "Barricading & Radiation Protection", "hazard": "Unauthorised entry, ionising radiation exposure" },
+    { "step": "09", "task": "Commissioning & Loop Testing", "hazard": "Bypassed interlocks, high-pressure leaks" },
+    { "step": "10", "task": "Housekeeping & Post-Job LOTO Removal", "hazard": "Leftover tools/debris, short-circuit hazards" }
+  ]
+}

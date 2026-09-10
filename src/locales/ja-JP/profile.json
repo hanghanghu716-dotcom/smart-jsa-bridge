@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "アカウントおよびインテリジェント安全活動管理",
+    "statsLabel": "ナレッジ貢献および利用統計",
+    "myCount": "作成したJSA",
+    "scraps": "総スクラップ数",
+    "nickname": "ニックネーム",
+    "sector": "主要産業分野",
+    "company": "会社名（任意）",
+    "bio": "専門性の紹介およびステータスメッセージ",
+    "bioPlaceholder": "専門分野や安全理念を入力してください。",
+    "presetTitle": "作業報告書のデフォルトプリセット設定",
+    "department": "デフォルト部署",
+    "manager": "デフォルトの照査・承認者",
+    "autoPublicity": "ナレッジベース (Explore) への自動共有を許可する",
+    "signatureLabel": "電子署名（画像）",
+    "noSignature": "登録された署名がありません。",
+    "uploadSignature": "署名画像をアップロード",
+    "securityLabel": "セキュリティおよびセッション管理",
+    "remoteLogout": "すべてのデバイスからリモートログアウト",
+    "openWithdraw": "アカウントの退会が必要ですか？",
+    "closeWithdraw": "退会パネルを閉じる",
+    "withdrawWarning": "⚠️ 退会すると、作成したすべてのデータとスクラップ記録が直ちに削除され、復元することはできません。",
+    "withdrawPlaceholder": "「同意テキスト」を入力してください。",
+    "withdrawSubmit": "アカウントの退会処理を実行",
+    "goMain": "メインに戻る",
+    "saveProfile": "プロフィール情報を更新する"
+  },
+  "sectors": {
+    "default": "産業分野を選択してください",
+    "construction": "建設 / 土木 / 建築",
+    "manufacturing": "製造 / プラント / 化学",
+    "energy": "エネルギー / 電気 / ガス",
+    "logistics": "運送 / 物流 / 倉庫",
+    "safety": "安全管理 / 専門コンサルティング",
+    "it": "IT / システム / エンジニアリング",
+    "public": "公共機関 / 教育 / 医療",
+    "etc": "その他の産業分野"
+  },
+  "messages": {
+    "updateSuccess": "プロフィール情報が正常に更新されました。",
+    "signatureSuccess": "電子署名が安全に登録されました。",
+    "confirmRemoteLogout": "現在のデバイスを除くすべてのセッションから強制ログアウトしてもよろしいですか？",
+    "confirmWithdrawal": "本当に退会しますか？この操作は元に戻せません。",
+    "withdrawConsentText": "退会を確認",
+    "withdrawMismatch": "確認用テキストが一致しません。",
+    "confirmGoMain": "変更内容が保存されない場合があります。メインページへ移動しますか？"
+  }
+}

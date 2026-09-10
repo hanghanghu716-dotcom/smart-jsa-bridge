@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Gestione Account e Attività Sicurezza Intelligente",
+    "statsLabel": "Statistiche di Contributo e Utilizzo Piattaforma",
+    "myCount": "Documenti JSA/POS Creati",
+    "scraps": "Modelli Salvati (Preferiti)",
+    "nickname": "Nome Utente (Pubblico)",
+    "sector": "Settore Industriale Principale (ATECO)",
+    "company": "Ragione Sociale Azienda (Facoltativo)",
+    "bio": "Profilo Professionale e Qualifica (es. RSPP, CSE)",
+    "bioPlaceholder": "Inserisci le tue specializzazioni (es. Formatore Sicurezza, Tecnico ATEX).",
+    "presetTitle": "Impostazioni Predefinite per Intestazione Documenti",
+    "department": "Reparto / Ditta di Default",
+    "manager": "Revisore/Datore di Lavoro di Default",
+    "autoPublicity": "Consenti condivisione automatica nella Banca Dati Condivisa (Explore)",
+    "signatureLabel": "Firma Elettronica (Immagine per approvazione)",
+    "noSignature": "Nessuna firma registrata a sistema.",
+    "uploadSignature": "Carica Immagine Firma (.png / .jpg)",
+    "securityLabel": "Sicurezza Account e Gestione Sessioni",
+    "remoteLogout": "Disconnessione Remota da Tutti i Dispositivi",
+    "openWithdraw": "Necessiti di eliminare permanentemente l'account?",
+    "closeWithdraw": "Chiudi Pannello di Cancellazione",
+    "withdrawWarning": "⚠️ Procedendo con la cancellazione (Diritto all'Oblio), tutti i dati generati e i documenti salvati verranno eliminati irreversibilmente dai server.",
+    "withdrawPlaceholder": "Digita il 'Testo di Conferma' richiesto.",
+    "withdrawSubmit": "Esegui Cancellazione Definitiva Account",
+    "goMain": "Torna alla Home",
+    "saveProfile": "Aggiorna Dati Profilo"
+  },
+  "sectors": {
+    "default": "Seleziona Settore ATECO Riferimento",
+    "construction": "Costruzioni / Ingegneria Civile / Cantieristica",
+    "manufacturing": "Manifatturiero / Impiantistica / Chimico",
+    "energy": "Energia / Elettrico / Distribuzione Gas",
+    "logistics": "Logistica / Magazzinaggio / Trasporti",
+    "safety": "Consulenza HSE / Sicurezza sul Lavoro",
+    "it": "IT / Automazione Industriale / TLC",
+    "public": "Pubblica Amministrazione / Sanità / Scuole",
+    "etc": "Altri Settori Produttivi"
+  },
+  "messages": {
+    "updateSuccess": "Le informazioni del profilo sono state aggiornate con successo.",
+    "signatureSuccess": "La firma elettronica è stata archiviata nei server in modalità crittografata.",
+    "confirmRemoteLogout": "Vuoi forzare la disconnessione (Log-out) da tutte le sessioni attive, eccetto il dispositivo corrente?",
+    "confirmWithdrawal": "Sei sicuro di voler eliminare l'account? Questa operazione è distruttiva e non può essere annullata.",
+    "withdrawConsentText": "Confermo la Cancellazione",
+    "withdrawMismatch": "Il testo di conferma non corrisponde. Riprovare.",
+    "confirmGoMain": "Le modifiche non salvate andranno perse. Proseguire verso la pagina principale?"
+  }
+}

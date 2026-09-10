@@ -1,0 +1,125 @@
+{
+  "default": {
+    "docTitle": "Analisi per la Sicurezza sul Lavoro (JSA)",
+    "appr1": "Redattore (RSPP/Preposto)",
+    "appr2": "Verificatore",
+    "appr3": "Approvatore (Datore di Lavoro)"
+  },
+  "alert": {
+    "needLogin": "È richiesto il login per utilizzare questo servizio.",
+    "savePublic": "Pubblicato in sicurezza su Explore.",
+    "savePrivate": "Salvato in sicurezza nella libreria privata.",
+    "saveError": "Errore durante il salvataggio del progetto: ",
+    "pdfError": "Generazione del report PDF fallita."
+  },
+  "header": {
+    "projectName": "Nome Progetto/Attività",
+    "approval": "Approvazione",
+    "workLocation": "Luogo di Lavoro (Cantiere/Reparto)",
+    "department": "Reparto o Azienda Appaltatrice",
+    "workDate": "Data di Esecuzione",
+    "ppe": "DPI Obbligatori (Dispositivi di Protezione Individuale)",
+    "highRiskWork": "Lavori ad Alto Rischio (Soggetti a Permesso)"
+  },
+  "ppe": {
+    "helmet": "Elmetto di Protezione (EN 397)",
+    "shoes": "Calzature di Sicurezza (EN ISO 20345)",
+    "glasses": "Occhiali di Protezione (EN 166)",
+    "safetyBelt": "DPI Anticaduta / Imbracatura (EN 361)",
+    "mask": "DPI delle Vie Respiratorie (APV)",
+    "gloves": "Guanti di Protezione (EN 388/EN 374)",
+    "etc": "Altro DPI"
+  },
+  "permit": {
+    "hotWork": "Permesso Lavori a Caldo",
+    "confinedSpace": "Spazi Confinati (D.P.R. 177/2011)",
+    "electrical": "Lavori Elettrici / Procedura LOTO",
+    "highElevation": "Lavori in Quota (> 2 metri)",
+    "heavyLifting": "Sollevamento Critico Carichi",
+    "excavation": "Scavi e Trincee",
+    "etc": "Altro Permesso"
+  },
+  "signature": {
+    "participants": "Firme Lavoratori (Presa Visione)",
+    "sign": "(Firma)"
+  },
+  "groups": {
+    "hazard": "Identificazione dei Pericoli",
+    "risk": "Valutazione dei Rischi (Matrice PxD)"
+  },
+  "tags": {
+    "DATA_STEP_NO": "N°\nFase",
+    "DATA_STEP_TITLE": "Fasi di Lavoro",
+    "DATA_PHOTO": "Foto Rif.",
+    "DATA_HAZARD": "Fattori di Rischio",
+    "DATA_CURRENT_MEASURE": "Misure Attuali",
+    "DATA_RECOMMEND_MEASURE": "Misure di Prevenzione (Raccomandate)",
+    "DATA_FREQUENCY": "Probabilità (P)",
+    "DATA_SEVERITY": "Magnitudo/Danno (D)",
+    "DATA_RISK": "Livello di Rischio (R)",
+    "DATA_KRAS_STEP": "Descrizione Dettagliata Operazione",
+    "DATA_KRAS_HAZARD_CLASS": "Categoria Rischio",
+    "DATA_KRAS_HAZARD_DETAIL": "Scenario Infortunistico e Conseguenze",
+    "DATA_KRAS_BASIS": "Riferimento Normativo (D.Lgs. 81/08)",
+    "DATA_KRAS_CURRENT": "Misure di Prevenzione in Essere",
+    "DATA_KRAS_RECOMMEND": "Misure di Riduzione del Rischio",
+    "DATA_KRAS_AFTER": "Rischio Residuo",
+    "DATA_KRAS_SCHED": "Data Scadenza Azione",
+    "DATA_KRAS_COMP": "Data Completamento",
+    "DATA_KRAS_MANAGER": "Preposto/Dirigente"
+  },
+  "preview": {
+    "freqBreak": "Probabilità\n(P)",
+    "sevBreak": "Danno\n(D)",
+    "afterBreak": "Rischio\nResiduo",
+    "schedBreak": "Data\nScadenza"
+  },
+  "table": {
+    "addPhoto": "Aggiungi Foto"
+  },
+  "ui": {
+    "processing": "Elaborazione dati in corso..."
+  },
+  "step": {
+    "basicInfo": "Step 1: Info Base",
+    "procedure": "Step 2: Procedure",
+    "riskAnalysis": "Step 3: Analisi Rischi",
+    "moduleConfig": "Step 4: Config. Moduli",
+    "tableConfig": "Step 5: Tabella Dati",
+    "finalOutput": "Step 6: Output Finale"
+  },
+  "title": {
+    "main": "| 06. Output Finale (Documento JSA)"
+  },
+  "btn": {
+    "prev": "Modifica Layout Tabella",
+    "cloudSave": "Salva sul Cloud (Seleziona Visibilità)",
+    "pdfSave": "Genera e Scarica Report PDF",
+    "copyTable": "Copia Tabella per Word/Excel"
+  },
+  "alert": {
+    "copySuccess": "La tabella è stata copiata negli appunti. Premi [Ctrl+V] per incollarla nel tuo documento aziendale.",
+    "copyError": "Si è verificato un errore durante la copia negli appunti. Verifica i permessi del browser."
+  },
+  "modal": {
+    "pdfTitle": "Generazione Report PDF",
+    "pdfSub": "Converte l'output finale in un file PDF ad alta risoluzione pronto per la stampa.",
+    "pdfBtnLabel": "Scarica il Documento PDF",
+    "pdfBtnDesc": "Creazione in corso del documento formale.<br/>Attendere prego.",
+    "close": "Chiudi",
+    "pubTitle": "Impostazioni di Salvataggio Cloud",
+    "pubWarning": "⚠️ Per conformità al GDPR (Principio di minimizzazione), i dati anagrafici, i luoghi\ne le date sensibili verranno rimossi prima della pubblicazione.",
+    "pubSub": "Seleziona il livello di visibilità per il repository.",
+    "pubBadgeLimited": "Pubblico (Accesso Limitato)",
+    "pubPublicLabel": "Pubblica nella libreria Explore",
+    "copyTitle": "Copia Appunti (Integrazione Documentale)",
+    "copySub": "Copia l'intera struttura in formato tabella per integrarla nel POS o nel DVR aziendale.",
+    "copyBtnLabel": "Inizia la Copia",
+    "copyBtnDesc": "Ottimizzazione dei formati di cella per Word/Excel.<br/>Usa [Ctrl+V] per incollare.",
+    "pubForkLimit": "È richiesto l'inserimento di ulteriori fasi operative<br/>o di almeno 2 nuovi fattori di rischio<br/>rispetto alla versione originale.",
+    "pubRiskLimit": "Per contribuire alla conoscenza collettiva, inserire<br/>almeno 3 pericoli e relative misure.",
+    "pubPublicDesc": "Il documento sarà visibile alla community,<br/>contribuendo al miglioramento della sicurezza.",
+    "pubPrivateLabel": "Salva in Archivio Privato",
+    "pubPrivateDesc": "Il documento rimarrà strettamente riservato<br/>e accessibile solo al tuo account."
+  }
+}

@@ -23,8 +23,7 @@ export default function CaseStudyDetail() {
     const fetchLocalizedPost = async () => {
       setLoading(true);
       const pathSegments = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
-      const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
-      const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
+      const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];      const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
 
       const targetLang = urlLang || i18n.language || 'ko';
 

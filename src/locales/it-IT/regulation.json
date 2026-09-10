@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "GUIDA NORMATIVA E AMMINISTRATIVA",
+    "mainTitle": "Guida Professionale per la Stesura del DVR<br />e la Conformità al D.Lgs. 81/08",
+    "subTitle": "Linee guida dettagliate per la redazione del Documento di Valutazione dei Rischi (DVR), fulcro del Sistema di Gestione per la Salute e Sicurezza sul Lavoro (SGSL), e per la conformità agli obblighi ispettivi di ASL e INL."
+  },
+  "section1": {
+    "title": "1. Cos'è la Valutazione dei Rischi (DVR)?",
+    "para": "La Valutazione dei Rischi è un processo documentato e <strong>obbligatorio per il Datore di Lavoro</strong> finalizzato all'identificazione dei pericoli, alla quantificazione del rischio e all'implementazione delle misure di prevenzione. Non si tratta di una semplice formalità, ma di un obbligo penale sancito dal D.Lgs. 81/08 (Art. 28) fondamentale per tutelare l'integrità dei lavoratori.",
+    "infoTitle": "Finalità e Obblighi Normativi",
+    "infoList": {
+      "item1": "Definire con chiarezza l'organigramma della sicurezza (Datore, RSPP, MC, RLS, Preposti).",
+      "item2": "Applicare un metodo di valutazione oggettivo, tracciabile e ripetibile nel tempo.",
+      "item3": "Mappare le reali interferenze e i pericoli del ciclo produttivo, promuovendo il coinvolgimento proattivo dei lavoratori.",
+      "item4": "Produrre un documento avente data certa, indispensabile per rispondere a ispezioni degli organi di vigilanza (ASL, INL, SPISAL) e a procedimenti penali."
+    }
+  },
+  "section2": {
+    "title": "2. Elementi Obbligatori del DVR (Art. 28 D.Lgs. 81/08)",
+    "para": "Secondo la legislazione italiana e le buone prassi INAIL, il Documento di Valutazione dei Rischi deve contenere in modo chiaro le seguenti sezioni:",
+    "items": {
+      "item1": { "title": "Metodologia di Valutazione", "content": "Descrizione dei criteri adottati per la valutazione (es. Matrice PxD) in relazione alla specificità aziendale." },
+      "item2": { "title": "Organigramma e Nomine", "content": "Definizione scritta dei ruoli e delle responsabilità (Datore di Lavoro, Dirigenti, Preposti, RSPP, Medico Competente, RLS/RLST)." },
+      "item3": { "title": "Ambito di Valutazione (Scopo)", "content": "Relazione su tutti i rischi per la sicurezza e la salute connessi ai luoghi di lavoro, impianti, attrezzature e mansioni (ordinarie e straordinarie)." },
+      "item4": { "title": "Tempistiche di Aggiornamento", "content": "Termini rigorosi per la rielaborazione del documento in caso di modifiche produttive, infortuni o evoluzione normativa." },
+      "item5": { "title": "Identificazione dei Pericoli", "content": "Sopralluoghi, analisi del ciclo lavorativo e consultazione preventiva del RLS per l'estrazione dei fattori di rischio." },
+      "item6": { "title": "Stima del Livello di Rischio", "content": "Classificazione tecnica e oggettiva del rischio (Basso, Medio, Alto) tramite l'incrocio di Probabilità e Magnitudo (Danno)." },
+      "item7": { "title": "Misure di Prevenzione (Programma)", "content": "Individuazione delle misure tecniche, organizzative e procedurali, con un cronoprogramma per la loro attuazione (chi fa cosa ed entro quando)." },
+      "item8": { "title": "Dispositivi di Protezione (DPI)", "content": "Identificazione rigorosa dei Dispositivi di Protezione Individuale forniti, ove i rischi non possano essere evitati con mezzi di protezione collettiva." },
+      "item9": { "title": "Mantenimento dei Registri", "content": "Modalità di conservazione del DVR munito di data certa e delle relative firme di validazione previste per legge." },
+      "item10": { "title": "Informazione e Formazione", "content": "Elenco delle procedure per informare e formare (Art. 36 e 37) il personale operativo in merito ai rischi residui individuati." }
+    }
+  },
+  "section3": {
+    "title": "3. Tempistiche e Obblighi di Redazione / Aggiornamento",
+    "table": {
+      "header": {
+        "col1": "Tipologia di Attività",
+        "col2": "Tempistiche (Art. 29 D.Lgs. 81/08)",
+        "col3": "Note Normative"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Apertura Nuova Attività",
+          "col2": "Entro 90 giorni dall'inizio della nuova attività d'impresa.",
+          "col3": "Durante i 90 giorni è obbligatoria l'immediata evidenza delle misure di prevenzione provvisorie."
+        },
+        "row2": {
+          "col1": "Modifiche Significative",
+          "col2": "Entro 30 giorni dalla modifica al processo o dall'inserimento di nuove macchine.",
+          "col3": "Applica anche in caso di variazioni dell'organizzazione del lavoro (es. turni notturni)."
+        },
+        "row3": {
+          "col1": "Post-Infortunio o Sorveglianza",
+          "col2": "Immediatamente, a seguito di infortuni significativi o su richiesta del Medico Competente.",
+          "col3": "Fondamentale per rivalutare l'efficacia delle misure preesistenti."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Responsabilità Penali, Amministrative e Sanzioni",
+    "para": "La mancata, incompleta o tardiva elaborazione della valutazione dei rischi espone il Datore di Lavoro a gravissime conseguenze di natura penale e amministrativa ai sensi del Titolo I del D.Lgs. 81/08.",
+    "legalList": {
+      "item1": "<strong>Omessa Valutazione dei Rischi:</strong> Costituisce un reato contravvenzionale punito con l'arresto da 3 a 6 mesi o con l'ammenda da 3.000 a oltre 8.000 euro. Sanzioni che si inaspriscono in aziende a rischio di incidente rilevante.",
+      "item2": "<strong>Carenze Documentali (DVR Incompleto):</strong> L'assenza delle firme, del cronoprogramma di miglioramento o della data certa comporta prescrizioni immediate da parte degli ispettori ASL e sanzioni pecuniarie per ciascun obbligo non assolto.",
+      "item3": "<strong>In caso di Infortunio Grave o Mortale (D.Lgs. 231/01):</strong> Se l'infortunio è ricondotto all'omessa valutazione dei rischi, il Datore di Lavoro risponde per lesioni colpose o omicidio colposo. Inoltre, scatta la responsabilità amministrativa dell'Ente (Azienda) con sanzioni interdittive (es. revoca licenze, blocco appalti) e sanzioni pecuniarie elevatissime (fino a centinaia di migliaia di euro)."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+}

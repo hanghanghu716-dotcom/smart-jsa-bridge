@@ -7,9 +7,8 @@ const SEO = ({ pageTitle, pageDescription }) => {
   const { t, i18n } = useTranslation('main');
 
   const baseUrl = "https://smartjsabridge.com";
-  const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
-  
-  // 언어 감지 폴백 (기본값 설정)
+// 수익화 우선순위에 맞춘 13개 로케일 적용
+  const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];  // 언어 감지 폴백 (기본값 설정)
   const currentLang = i18n.language || 'ko';
 
   // 1. 순수 경로 추출 (언어 코드 제거) ,
@@ -53,12 +52,12 @@ const SEO = ({ pageTitle, pageDescription }) => {
         <link 
           key={lang} 
           rel="alternate" 
-          hreflang={lang} 
+          hrefLang={lang} 
           href={`${baseUrl}/${lang}${pathSuffix}`} 
         />
       ))}
       {/* 기본 언어 폴백 (x-default) */}
-      <link rel="alternate" hreflang="x-default" href={`${baseUrl}/en-US${pathSuffix}`} />    </Helmet>
+      <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/en-US${pathSuffix}`} />    </Helmet>
   );
 };
 

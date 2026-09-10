@@ -1,0 +1,79 @@
+{
+  "alert": {
+    "selectItem": "Por favor, selecione os itens para adicionar.",
+    "enterFactor": "Por favor, insira um fator de risco primeiro.",
+    "selectCurrentMeasure": "Por favor, selecione uma medida de controle atual primeiro.",
+    "manualFactor": "Este é um perigo inserido manualmente. Insira a medida preventiva diretamente.",
+    "needCurrentMeasure": "Por favor, selecione primeiro uma medida de segurança atual através do sistema de recomendação.",
+    "noData": "Nenhum dado vinculado encontrado. Por favor, insira diretamente.",
+    "confirmMain": "Tem certeza de que deseja ir para a tela principal? Todos os dados não salvos poderão ser perdidos.",
+    "loginRequired": "O login é obrigatório."
+  },
+  "libModal": {
+    "title": "Chamar Biblioteca de Etapas de Tarefas",
+    "empty": "Nenhuma biblioteca salva encontrada.",
+    "unclassified": "Não classificado",
+    "backBtn": "⬅️ Voltar para a Lista",
+    "step": "Etapa",
+    "riskCount": " Perigos Incluídos"
+  },
+  "recModal": {
+    "titleCurrent": "Medida de Controle Atual",
+    "titleAdvanced": "Recomendação Avançada",
+    "descCurrent": "Regras de segurança registradas para este perigo.",
+    "descAdvanced": "Recomendações de nível superior para complementar as medidas atuais.",
+    "selectBtn": "Selecionar"
+  },
+  "step": {
+    "basicInfo": "Informações Básicas",
+    "procedure": "Procedimento de Trabalho",
+    "riskAnalysis": "Análise de Risco (APR)",
+    "moduleConfig": "Configuração do Módulo",
+    "tableConfig": "Configuração da Tabela",
+    "finalOutput": "Exportação Final"
+  },
+  "form": {
+    "title": "03. Identificação de Perigos e Avaliação de Riscos (GRO)",
+    "typeStandard": "(Padrão)",
+    "typeAdvanced": "(Avançado)",
+    "currentStep": "Etapa Atual"
+  },
+  "filter": {
+    "label": "⚠️ Filtro de Alto Risco",
+    "auto": "(Sugestão Automática)",
+    "loadLibBtn": "📂",
+    "searchPlaceholder": "Pesquisar perigos..."
+  },
+  "base": {
+    "label": "Base de Conhecimento de Segurança (Extração de Perigos)",
+    "addEmptyBtn": "+ Adicionar em Branco",
+    "addBulkBtn": "✓ Adicionar Itens Selecionados",
+    "emptyRec": "Nenhum perigo recomendado encontrado.",
+    "etc": "Outros"
+  },
+  "result": {
+    "label": "Avaliação e Medidas",
+    "freq": "Prob",
+    "sev": "Sev"
+  },
+  "table": {
+    "factor": "Fator de Risco",
+    "measure": "Medida de Mitigação",
+    "currentMeasure": "Medida Atual",
+    "advancedMeasure": "Recomendação Avançada",
+    "delete": "Excluir",
+    "recMeasureBtn": "Recomendar",
+    "recAdvancedBtn": "Avançado",
+    "searchBtn": "Pesquisar"
+  },
+  "btn": {
+    "prevStep1": "Etapa Anterior (Procedimento)",
+    "prevStep2": "Etapa de Tarefa Anterior",
+    "nextComplete": "Concluir Análise e Ir para Configuração do Módulo",
+    "nextStep": "Analisar a Próxima Etapa da Tarefa"
+  },
+  "searchModal": {
+    "title": "Pesquisa no BD de Medidas",
+    "placeholder": "Insira os termos de pesquisa..."
+  }
+}

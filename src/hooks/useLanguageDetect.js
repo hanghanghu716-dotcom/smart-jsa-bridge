@@ -5,8 +5,8 @@ import i18n from 'i18next';
 /**
  * ✅ 지원하는 글로벌 언어 규격 정의
  */
-const SUPPORTED_LANGS = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
-const DEFAULT_LANG = 'ko';
+const SUPPORTED_LANGS = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
+const DEFAULT_LANG = 'en-US'; // 한국어 대신 가장 수익성/범용성이 높은 en-US를 기본값으로 변경 권장
 
 /**
  * ✅ useLanguageDetect Hook

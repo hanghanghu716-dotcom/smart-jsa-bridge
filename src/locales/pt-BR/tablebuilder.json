@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "Por favor, insira o nome do modelo.",
+    "needLogin": "É necessário fazer login para salvar.",
+    "saveError": "Ocorreu um erro ao salvar o modelo.",
+    "saveSuccess": "A configuração completa do layout foi salva com sucesso.",
+    "exceedWidth": "A largura total das colunas personalizadas não pode exceder o limite máximo."
+  },
+  "tags": {
+    "DATA_STEP_NO": "Nº da\nEtapa",
+    "DATA_STEP_TITLE": "Etapas da Tarefa",
+    "DATA_PHOTO": "Foto de Ref.",
+    "DATA_HAZARD": "Perigos Potenciais",
+    "DATA_CURRENT_MEASURE": "Controles Atuais",
+    "DATA_RECOMMEND_MEASURE": "Ações de Melhoria (Recomendadas)",
+    "DATA_FREQUENCY": "Probabilidade (P)",
+    "DATA_SEVERITY": "Severidade (S)",
+    "DATA_RISK": "Nível de Risco",
+    "DATA_KRAS_STEP": "Descrição Detalhada da Tarefa",
+    "DATA_KRAS_HAZARD_CLASS": "Categoria do Risco",
+    "DATA_KRAS_HAZARD_DETAIL": "Cenário de Risco e Consequência",
+    "DATA_KRAS_BASIS": "Base Legal/Normativa (NRs)",
+    "DATA_KRAS_CURRENT": "Medidas de Segurança Existentes",
+    "DATA_KRAS_RECOMMEND": "Medidas de Mitigação de Risco",
+    "DATA_KRAS_AFTER": "Risco Residual",
+    "DATA_KRAS_SCHED": "Data Limite (Prazo)",
+    "DATA_KRAS_COMP": "Data de Conclusão",
+    "DATA_KRAS_MANAGER": "Pessoa Responsável (Preposto)"
+  },
+  "groups": {
+    "hazard": "Identificação de Perigos (GRO)",
+    "risk": "Avaliação de Risco"
+  },
+  "preview": {
+    "freqBreak": "Probab.\n(P)",
+    "sevBreak": "Severid.\n(S)",
+    "afterBreak": "Risco\nResidual",
+    "schedBreak": "Data\nLimite",
+    "example": "(Dados de Exemplo)",
+    "dataArea": "... Área Real de Dados de Avaliação de Risco ...",
+    "docHeader": "[Área do Cabeçalho do Documento]",
+    "signatureArea": "[Área de Assinatura dos Participantes]"
+  },
+  "step": {
+    "basicInfo": "Passo 1: Info Básica",
+    "procedure": "Passo 2: Sequência",
+    "riskAnalysis": "Passo 3: Análise Riscos",
+    "moduleConfig": "Passo 4: Config. Módulo",
+    "tableConfig": "Passo 5: Layout da Tabela",
+    "finalOutput": "Passo 6: Exportação Final"
+  },
+  "header": {
+    "title": "| 05. Configuração da Tabela de Dados",
+    "subtitle": "Ajuste com precisão a ordem e a largura das colunas para a tabela principal de avaliação de riscos (APR/PGR)."
+  },
+  "toolbar": {
+    "saveTitle": "Salvar Layout Integrado",
+    "saveBtn": "Salvar Configuração Completa Atual",
+    "saveDesc": "* Salva as configurações do módulo (Passo 4) junto com as configurações atuais da tabela.",
+    "orientationTitle": "Orientação da Página",
+    "landscape": "Paisagem (Recomendado)",
+    "portrait": "Retrato",
+    "zoom": "Zoom da Prévia",
+    "columnConfig": "Configuração de Colunas (Arraste e Solte)",
+    "riskToggle": "Avaliação de Risco (Combinada)",
+    "riskGroupLabel": "Avaliação de Risco (Prob·Sev·Nível)",
+    "newItem": "Nova Coluna",
+    "width": "Largura",
+    "addCustom": "+ Adicionar Coluna Personalizada"
+  },
+  "btn": {
+    "prev": "Anterior: Configuração de Módulos (Passo 4)",
+    "next": "Prosseguir para Exportação Final (Passo 6)"
+  },
+  "modal": {
+    "title": "Salvar como Modelo Personalizado",
+    "desc": "As configurações do módulo do Passo 4 e do layout da tabela atual serão mescladas e salvas.",
+    "placeholder": "Digite o nome do modelo para salvar",
+    "cancel": "Cancelar",
+    "save": "Salvar"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "Tem certeza de que deseja ir para a tela principal? Todos os dados não salvos poderão ser perdidos.",
+    "projectNameRequired": "O nome do projeto é obrigatório. Por favor, insira o nome da tarefa/atividade."
+  },
+  "step": {
+    "basicInfo": "Informações Básicas",
+    "procedure": "Procedimento de Trabalho",
+    "riskAnalysis": "Análise de Risco (APR)",
+    "moduleConfig": "Configuração do Módulo",
+    "tableConfig": "Layout da Tabela",
+    "finalOutput": "Exportação Final"
+  },
+  "form": {
+    "title": "01. Informações Básicas da Tarefa e Requisitos de Segurança",
+    "projectName": "Nome do Projeto / Ordem de Serviço",
+    "required": "(Obrigatório)",
+    "department": "Setor / Área de Trabalho",
+    "workLocation": "Local Específico de Trabalho",
+    "workDate": "Data Programada",
+    "managerName": "Responsável pela Tarefa (Preposto/SESMT)",
+    "weather": "Condições Climáticas no Local",
+    "hasNewWorker": "Inclui Trabalhadores Novos / Não Qualificados?",
+    "participants": "Participantes da Avaliação (Equipe)",
+    "ppe": "Equipamentos de Proteção Individual (EPI - NR-06)",
+    "permits": "Trabalhos que Exigem Permissão (PT - Permissão de Trabalho)",
+    "equipment": "Equipamentos / Ferramentas Necessários",
+    "additionalItems": "Solicitações ou Observações Adicionais"
+  },
+  "warning": {
+    "title": "Aviso sobre Dados (LGPD):",
+    "text": "Os resultados da APR que você criar poderão ser expostos a outros usuários de acordo com nossa política de compartilhamento de conhecimento. Por favor, evite inserir dados sensíveis, reais ou identificáveis de sua empresa. Conteúdos inadequados, imprecisos ou com linguagem inapropriada poderão ser excluídos sem aviso prévio."
+  },
+  "weather": {
+    "sunny": "Ensolarado",
+    "cloudy": "Nublado",
+    "rain": "Chuva",
+    "snow": "Neve / Geada",
+    "wind": "Ventos Fortes (>36 km/h)",
+    "heatwave": "Onda de Calor / Alta Temp. (Sobrecarga Térmica)",
+    "coldwave": "Onda de Frio / Baixa Temp."
+  },
+  "ppe": {
+    "안전모": "Capacete de Segurança (com jugular)",
+    "안전화": "Calçado de Segurança (Botina)",
+    "보안경": "Óculos de Proteção",
+    "장갑": "Luvas de Segurança (CA ativo)",
+    "귀마개": "Protetor Auditivo (Plug/Concha)",
+    "방진복": "Vestimenta Impermeável / Tyvek",
+    "방진마스크": "Respirador (PFF2 / Poeiras)"
+  },
+  "permit": {
+    "일반": "Trabalho Geral (Rotina)",
+    "화기": "Trabalho a Quente (Solda/Corte)",
+    "밀폐": "Espaço Confinado (NR-33)",
+    "정전": "Desenergização / Elétrico (NR-10)",
+    "굴착": "Escavação e Valas (NR-18)",
+    "방사선": "Risco Radiológico (Raio-X)",
+    "고소": "Trabalho em Altura (NR-35)",
+    "중량물": "Içamento Crítico de Cargas (Plano de Rigging)",
+    "가연성가스": "Gás Inflamável (Área Classificada)"
+  },
+  "btn": {
+    "home": "Voltar para o Início",
+    "next": "Avançar para Definir Procedimento"
+  }
+}

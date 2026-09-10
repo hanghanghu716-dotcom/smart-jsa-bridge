@@ -1,0 +1,63 @@
+{
+  "pageTag": "CONDIZIONI DEL SERVIZIO (REPOSITORY GLOBALE)",
+  "heading": "Termini e Condizioni di Utilizzo",
+  "subHeading": "Smart JSA Bridge è una piattaforma collaborativa in cui i responsabili della sicurezza (RSPP/HSE) condividono e sviluppano pratiche operative.",
+  "effectiveDate": "Data di Entrata in Vigore: 19 Marzo 2026",
+  "section1": {
+    "title": "01. Accettazione dei Termini",
+    "content": "Creando un account su Smart JSA Bridge, l'utente accetta i presenti Termini e le Linee Guida della Community. Il servizio mira a facilitare la condivisione della cultura della sicurezza e lo sviluppo reciproco."
+  },
+  "section2": {
+    "title": "02. Descrizione del Servizio",
+    "content": "Il servizio fornisce un <strong>Repository di Conoscenze sulla Sicurezza</strong> in cui i professionisti possono archiviare, condividere, modificare e utilizzare modelli di Analisi per la Sicurezza sul Lavoro (JSA / POS)."
+  },
+  "section3": {
+    "title": "03. Responsabilità dell'Utente",
+    "item1": {
+      "bold": "Sicurezza dell'Account:",
+      "desc": "Gli utenti sono responsabili della custodia delle proprie credenziali gestite tramite l'infrastruttura Supabase."
+    },
+    "item2": {
+      "bold": "Anonimizzazione dei Dati (GDPR):",
+      "desc": "Prima di condividere un documento nella libreria Pubblica, l'utente è obbligato a rimuovere qualsiasi informazione sensibile o dato personale, inclusi nomi specifici di cantieri, matricole di macchine e nominativi di aziende o dipendenti."
+    }
+  },
+  "section4": {
+    "title": "04. Esclusione di Responsabilità sull'Accuratezza",
+    "content": "Tutti i modelli JSA presenti nella libreria sono contributi informativi volontari degli utenti.",
+    "item1": {
+      "desc": "La piattaforma non garantisce in alcun modo l'accuratezza assoluta o la conformità legislativa (es. D.Lgs. 81/08) dei contenuti condivisi rispetto al singolo contesto aziendale."
+    },
+    "item2": {
+      "desc": "Nell'utilizzare il modello di un altro utente, è obbligatorio sottoporlo a revisione e validazione tecnica in base alle specifiche condizioni del proprio cantiere/impianto. La piattaforma non è responsabile civilmente o penalmente per eventuali infortuni o sanzioni derivanti dall'applicazione di tali documenti."
+    }
+  },
+  "section5": {
+    "title": "05. Licenza e Proprietà Intellettuale",
+    "item1": {
+      "bold": "Diritti della Piattaforma:",
+      "desc": "I diritti sull'architettura del software, sull'interfaccia utente (UI) e sul database logico sono di proprietà esclusiva dell'azienda fornitrice."
+    },
+    "item2": {
+      "bold": "Contenuti Condivisi:",
+      "desc": "Pubblicando un contenuto con visibilità 'Pubblica', l'utente concede tacitamente agli altri membri una licenza non esclusiva per copiare, modificare e utilizzare tale contenuto per scopi di prevenzione."
+    }
+  },
+  "section6": {
+    "title": "06. Usi Vietati",
+    "content": "Il web scraping massivo (crawling) dei contributi della community al fine di costruire database terzi a pagamento, o lo sfruttamento dei dati per finalità estranee alla sicurezza sul lavoro, è severamente proibito."
+  },
+  "section7": {
+    "title": "07. Conformità Normativa e Standard Globali",
+    "content": "Poiché la piattaforma opera a livello globale, i principi di base sono allineati alle direttive internazionali (es. linee guida OSHA e Direttive Europee). Tuttavia, gli utenti sono tenuti ad applicare e rispettare in via prioritaria le normative cogenti locali (es. D.Lgs. 81/08 in Italia) durante la redazione e l'implementazione dei documenti."
+  },
+  "section8": {
+    "title": "08. Sospensione e Risoluzione",
+    "content": "In caso di pubblicazione di dati in violazione del GDPR, violazione delle regole comunitarie o caricamento di contenuti illeciti, la piattaforma si riserva il diritto inappellabile di cancellare i contenuti e sospendere l'account senza preavviso."
+  },
+  "section9": {
+    "title": "09. Legge Applicabile e Foro Competente",
+    "content": "I presenti Termini sono disciplinati dalle leggi della Repubblica di Corea, conformemente alle procedure internazionali di risoluzione delle controversie informatiche."
+  },
+  "footer": "© 2026 Smart JSA Bridge. Tutti i diritti riservati."
+}

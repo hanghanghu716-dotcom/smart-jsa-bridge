@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENU",
+    "close": "✕ 閉じる"
+  },
+  "drawer": {
+    "contents": "コンテンツ",
+    "regulation": "リスクアセスメント実施規程ガイド",
+    "jrajsa": "リスクアセスメント(JRA/JSA) 実務プロセス",
+    "protectiveEquipment": "保護具について",
+    "riskClassification": "一般作業 / 高リスク作業",
+    "dictionary": "危険要因＆対策データベース"
+  },
+  "hero": {
+    "tag": "INTELLIGENT RISK DATABASE",
+    "titleLine1": "標準危険要因および",
+    "titleLine2": "低減対策 統合辞書",
+    "seoText1": "本データベースは、厚生労働省のガイドラインおよび労働安全衛生法等の基準に基づき、1,000件以上の標準的な危険要因とそれに対応する低減対策のマッチングデータを提供します。現場の安全管理者や作業者は、この辞書を活用して潜在的なリスクを事前に特定し、効果的な安全対策を確立することができます。",
+    "seoText2": "提供されるデータは、事故予防のための基本的な参考資料として機能します。実際の作業環境、設備の特性、および作業者の習熟度を考慮し、特定の現場に合わせて編集・適用してください。正確なリスクアセスメントは、無災害職場を実現するための最も確固たる架け橋となります。"
+  },
+  "filter": {
+    "allCategories": "すべてのカテゴリ",
+    "searchPlaceholder": "危険要因または対策を検索...",
+    "searchBtn": "検索",
+    "resultPrefix": "合計 ",
+    "resultSuffix": " 件見つかりました。"
+  },
+  "data": {
+    "loading": "データを読み込んでいます...",
+    "empty": "検索結果がありません。別のキーワードをお試しください。",
+    "riskFactorLabel": "危険要因 / リスク要因",
+    "currentMeasureLabel": "現在の対策",
+    "advancedMeasureLabel": "高度な推奨対策"
+  },
+  "pagination": {
+    "prev": "前へ",
+    "next": "次へ"
+  }
+}

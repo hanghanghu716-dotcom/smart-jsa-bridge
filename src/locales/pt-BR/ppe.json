@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "regulation": "Diretrizes de Avaliação de Risco (PGR)",
+    "jrajsa": "Processo Prático APR/JSA",
+    "ppe": "Sobre Equipamentos de Proteção Individual (EPI)",
+    "riskClass": "Tarefas Gerais / Alto Risco"
+  },
+  "hero": {
+    "tag": "EQUIPAMENTO DE PROTEÇÃO INDIVIDUAL (EPI)",
+    "title1": "Categorias de EPIs Industriais e",
+    "title2": "Guia de Conformidade com a NR-06",
+    "subTitle1": "A verificação das certificações de segurança (Certificado de Aprovação - CA) é o primeiro passo para a segurança no trabalho.",
+    "subTitle2": "Revise as características de cada tipo de EPI e cumpra rigorosamente",
+    "subTitle3": "a Norma Regulamentadora NR-06 do MTE."
+  },
+  "section1": {
+    "title": "1. Categorias de EPIs e Tipos Específicos",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Proteção da Cabeça",
+        "desc": "Absorve o impacto de objetos em queda ou projetados e protege contra choques elétricos.",
+        "tags": ["Capacetes de Segurança (Classe A/B)"]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Proteção dos Olhos e Face",
+        "desc": "Bloqueia partículas volantes, radiação luminosa prejudicial e respingos químicos.",
+        "tags": ["Óculos de Segurança", "Ampla-visão", "Protetores Faciais"]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Proteção Auditiva",
+        "desc": "Previne a perda auditiva induzida por ruído (PAIR) em ambientes com altos decibéis.",
+        "tags": ["Protetores de Inserção (Plug)", "Abafadores (Concha)", "Atenuação NRRsf"]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Proteção Respiratória",
+        "desc": "Protege contra poeiras, névoas, gases nocivos e atmosferas deficientes em oxigênio.",
+        "tags": ["Peça Semifacial (PFF1/PFF2/PFF3)", "Máscaras de Gás", "Equipamento Autônomo (EPR)"]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Proteção das Mãos e Braços",
+        "desc": "Protege contra cortes, queimaduras, choques elétricos e exposição química.",
+        "tags": ["Luvas Anticorte", "Isolantes (NR-10)", "Resistentes a Químicos"]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Proteção de Pés e Pernas",
+        "desc": "Evita lesões por queda/rolamento de objetos pesados e perfurações pontiagudas.",
+        "tags": ["Botas com Biqueira de Aço/Composite", "Dissipativas Estáticas"]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Proteção Contra Quedas (NR-35)",
+        "desc": "Retém quedas e absorve o impacto durante trabalhos em altura (acima de 2m).",
+        "tags": ["Cinturão de Segurança (Tipo Paraquedista)", "Talabartes com Absorvedor", "Linhas de Vida"]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Vestimentas de Proteção do Corpo",
+        "desc": "Protege todo o corpo contra produtos químicos perigosos, chamas e calor extremo.",
+        "tags": ["Roupas de Proteção Química (Tyvek/Tychem)", "Vestimentas Antichama (NR-10/Arco Elétrico)"]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Perguntas Frequentes sobre Certificação de EPI",
+    "faq": {
+      "item1": {
+        "q": "O que é o CA (Certificado de Aprovação) exigido pela NR-06?",
+        "a": "Todo EPI, seja de fabricação nacional ou importado, só pode ser comercializado ou utilizado no Brasil se possuir o Certificado de Aprovação (CA) expedido pelo órgão nacional competente em matéria de segurança e saúde no trabalho (MTE)."
+      },
+      "item2": {
+        "q": "Posso usar EPIs com certificação europeia (CE) ou americana (ANSI/OSHA) em locais de trabalho no Brasil?",
+        "a": "Não automaticamente. Embora os EPIs possam ter certificações internacionais de alta qualidade, para serem usados legalmente no Brasil como Equipamento de Proteção Individual, eles DEVEM possuir o CA válido registrado no MTE."
+      },
+      "item3": {
+        "q": "A certificação do EPI expira?",
+        "a": "Sim. O CA tem um prazo de validade (geralmente 5 anos). Além disso, o próprio EPI tem a validade do fabricante (vida útil do material, especialmente para capacetes e cinturões). O empregador deve garantir que o EPI fornecido tenha CA válido no ato do fornecimento e esteja dentro da vida útil."
+      },
+      "item4": {
+        "q": "Como faço para verificar um EPI certificado?",
+        "a": "Procure a marcação do número do CA estampada ou gravada diretamente no equipamento ou, se não for possível, em sua embalagem. Você pode consultar a validade do CA em sistemas oficiais do governo (ex: CAEPI)."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Projetado por <strong>yizuno</strong>"
+}

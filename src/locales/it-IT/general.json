@@ -1,0 +1,29 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Attenzione] Questo campione è solo di riferimento. Le valutazioni dei rischi (DVR) devono essere redatte sulla base di verifiche effettive in loco.",
+    "text2": "Smart JSA Bridge non è responsabile per le conseguenze legali derivanti dall'uso di questi dati."
+  },
+  "ui": {
+    "category": "SICUREZZA GENERALE E DELLE STRUTTURE (Facility)",
+    "mainTitle1": "JSA per Servizi Generali e Manutenzione",
+    "mainTitle2": "Guida ai Campioni (10 Tipi)",
+    "description1": "Dati di analisi dei rischi per la gestione ordinaria delle strutture, logistica di magazzino",
+    "description2": "e ambienti sanitari. Si prega di verificare le immagini dettagliate.",
+    "labelRed": "⚠ Fattori di Rischio Critici",
+    "labelBlue": "🛡 Misure di Prevenzione e Protezione",
+    "previewLabel": "Anteprima Rapporto JSA",
+    "downloadBtn": "Scarica il PDF Originale"
+  },
+  "list": [
+    { "id": "GEN-01", "title": "Carico e movimentazione di pallet con carrello elevatore in magazzino logistico", "hazard": "Ribaltamento del muletto per curve strette a pieno carico, investimento di pedoni per visuale ostruita", "measure": "Rispetto rigoroso del limite di 10 km/h, assegnazione di segnalatori (spotter) a terra, verifica inclinazione del montante", "pages": 1 },
+    { "id": "GEN-02", "title": "Assistenza alla mobilità dei pazienti e gestione rifiuti a rischio infettivo (ROT)", "hazard": "Cadute accidentali durante il trasferimento del paziente, infezioni biologiche da puntura d'ago accidentale", "measure": "Verifica blocco meccanico ruote letto/carrozzina, divieto assoluto della pratica di re-capping degli aghi", "pages": 1 },
+    { "id": "GEN-03", "title": "Taglio dell'erba e potatura alberi in aree verdi condominiali/pubbliche", "hazard": "Lesioni da detriti volanti per rottura delle lame, folgorazione per contatto con linee elettriche aeree", "measure": "Uso obbligatorio di visiere a rete e schermi facciali, mantenimento della distanza di sicurezza (D.Lgs. 81/08 All. IX) da impianti elettrici", "pages": 1 },
+    { "id": "GEN-04", "title": "Pattugliamento a piedi in aree perimetrali e controllo dei varchi", "hazard": "Investimento da parte di veicoli in transito, aggressione fisica da parte di intrusi durante turni notturni", "measure": "Uso di indumenti ad alta visibilità (DPI Classe 2/3), protocollo di pattugliamento in coppia (2 addetti), dotazione di sistemi uomo a terra", "pages": 1 },
+    { "id": "GEN-05", "title": "Preparazione reagenti chimici in laboratorio e utilizzo di analizzatori", "hazard": "Fuga di gas tossici per anomalia della cappa aspirante, ustioni chimiche da spruzzi accidentali", "measure": "Operare esclusivamente sotto Cappe Chimiche validate, formazione specifica su Schede di Dati di Sicurezza (SDS/CLP), uso di occhiali a mascherina", "pages": 1 },
+    { "id": "GEN-06", "title": "Lavaggio intensivo di parcheggi interrati con idropulitrici ad alta pressione", "hazard": "Impatto con veicoli in manovra non controllati, folgorazione da elettroutensili operanti in ambienti bagnati", "measure": "Transennamento dell'area di lavaggio, alimentazione derivata tramite interruttore differenziale (Salvavita) portatile, uso di stivali dielettrici in gomma", "pages": 1 },
+    { "id": "GEN-07", "title": "Esercizio di trituratori per rifiuti industriali e disostruzione della tramoggia", "hazard": "Amputazione di arti per trascinamento nella bocca di carico, schiacciamento mortale per avvio inatteso", "measure": "Sezionamento dell'energia (Procedura LOTO) obbligatorio prima dell'intervento, uso di utensili prolungati (spingipezzo) anziché mani", "pages": 1 },
+    { "id": "GEN-08", "title": "Pulizia facciate vetrate esterne mediante sistemi di accesso in sospensione (Funi)", "hazard": "Precipitazione per cedimento della fune di lavoro, lesioni ai pedoni sottostanti per caduta di attrezzature", "measure": "Installazione di sistemi anticaduta su fune di sicurezza indipendente (EN 12841), transennamento fisico a terra e sorveglianza", "pages": 1 },
+    { "id": "GEN-09", "title": "Cottura di cibi in grandi marmitte ribaltabili in cucine industriali", "hazard": "Scivolamento e caduta in piano su pavimenti unti, ustioni termiche da contatto con oli o vapori bollenti", "measure": "Adozione di calzature di sicurezza SRC antiscivolo, presenza di estintori classe F (olii combustibili), asciugatura immediata dei pavimenti", "pages": 1 },
+    { "id": "GEN-10", "title": "Installazione di rack per server e cablaggio strutturato nei Data Center", "hazard": "Schiacciamento per ribaltamento del rack durante la movimentazione, caduta dall'alto da scale a pioli", "measure": "Movimentazione in squadra (minimo 3 operatori), divieto di sostare sull'ultimo gradino della scala, stabilizzazione dei piedini del rack", "pages": 1 }
+  ]
+}

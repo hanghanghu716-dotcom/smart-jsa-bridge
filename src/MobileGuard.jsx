@@ -3,11 +3,10 @@ import { useLocation, Link } from 'react-router-dom';
 
 const MobileGuard = ({ children }) => {
   const location = useLocation();
+  const segments = location.pathname.split('/'); // ✅ 누락된 변수 선언 추가
 
   // 지원하는 언어 코드 목록 (App.jsx 또는 SEO.jsx와 동일하게 유지)
-  const supportedLangs = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR'];
-  const segments = location.pathname.split('/');
-
+  const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
   // URL에 언어 코드가 포함되어 있다면 제거한 '순수 경로'를 추출
   const purePath = supportedLangs.includes(segments[1]) 
     ? '/' + segments.slice(2).join('/') 

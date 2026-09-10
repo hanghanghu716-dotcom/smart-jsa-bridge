@@ -1,0 +1,51 @@
+{
+  "pageTag": "POLÍTICA DE PRIVACIDADE",
+  "heading": {
+    "line1": "Política de Privacidade",
+    "line2": "Guia de Informações (Conforme LGPD)"
+  },
+  "section1": {
+    "title": "1. Finalidade da Coleta e Uso",
+    "content": "O Smart JSA Bridge coleta o mínimo de informações pessoais, que são usadas exclusivamente para <strong>prestação do serviço, melhorias e atendimento ao cliente</strong>, em total conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)."
+  },
+  "section2": {
+    "title": "2. Itens de Informações Pessoais Coletados",
+    "item1": {
+      "bold": "Itens Obrigatórios:",
+      "desc": "Endereço de e-mail, registros de uso do serviço, logs de acesso, cookies, informações de IP de acesso."
+    },
+    "item2": {
+      "bold": "Itens Opcionais:",
+      "desc": "Preferência de idioma do usuário e informações regionais."
+    },
+    "item3": {
+      "bold": "Método de Coleta:",
+      "desc": "Gerados e coletados automaticamente durante o processo de uso do serviço do site."
+    }
+  },
+  "section3": {
+    "title": "3. Período de Retenção e Uso",
+    "subtitle": "Por princípio, a empresa descarta as informações sem demora após a finalidade da coleta e uso ser alcançada.",
+    "step1": {
+      "bold": "Registros de Visita (Logs de Acesso):",
+      "desc": "Destruídos após armazenamento por até 6 meses (conforme Marco Civil da Internet)."
+    },
+    "step2": {
+      "bold": "Detalhes do Atendimento:",
+      "desc": "Armazenados por 1 ano após o encerramento do atendimento."
+    },
+    "step3": {
+      "bold": "Conformidade Legal:",
+      "desc": "Armazenados pelo período exigido pelas leis e regulamentos relevantes no Brasil."
+    },
+    "step4": {
+      "bold": "Procedimento de Descarte:",
+      "desc": "As informações em formato de arquivo eletrônico são excluídas usando métodos técnicos que impedem a reprodução ou recuperação dos registros."
+    }
+  },
+  "section4": {
+    "title": "4. Fornecimento a Terceiros e Compartilhamento",
+    "content": "Este serviço inclui o Google AdSense, e informamos que <strong>terceiros, como o Google, podem instalar ou ler cookies</strong> em seu navegador para fornecer anúncios personalizados, de acordo com o seu consentimento de cookies."
+  },
+  "imageCaption": "O Smart JSA Bridge prioriza a segurança dos seus dados."
+}

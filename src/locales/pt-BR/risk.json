@@ -1,0 +1,37 @@
+{
+  "ui": {
+    "heroTag": "PADRÃO NR-01 (GRO) E FUNDACENTRO",
+    "mainTitle1": "Classificação de Riscos e",
+    "mainTitle2": "Guia da Matriz de Risco Ocupacional",
+    "subTitle1": "Estabeleça um sistema de gestão de segurança científico e defensável",
+    "subTitle2": "com base nas diretrizes do MTE/Fundacentro e na Avaliação Quantitativa (APR).",
+    "section1": "1. Definições Básicas pela Natureza do Trabalho",
+    "section2": "2. Critérios da Matriz de Riscos (GRO)",
+    "section3": "3. 9 Categorias de Atividades de Alto Risco"
+  },
+  "def": {
+    "generalTitle": "Trabalho Geral (Rotina / Ordens de Serviço Padrão)",
+    "generalContent": "Tarefas executadas com frequência onde os perigos estão efetivamente mapeados e mitigados através de Procedimentos Operacionais Padrão (POP) e do ambiente controlado da empresa.",
+    "highTitle": "Trabalho de Alto Risco (Não Rotineiro / Crítico)",
+    "highContent": "Atividades críticas ou de manutenção envolvendo energias perigosas ou ambientes dinâmicos e hostis onde uma única falha de controle pode resultar em um evento catastrófico ou fatal."
+  },
+  "matrix": {
+    "title": "Matriz de Avaliação de Riscos (Probabilidade 5 × Severidade 4)",
+    "axisX": "Severidade (Impacto da Lesão)",
+    "axisY": "Probabilidade (Frequência)",
+    "f5": "Frequente (Quase Certa)", "f4": "Provável", "f3": "Possível (Ocasional)", "f2": "Remota", "f1": "Improvável",
+    "s1": "Insignificante (Primeiros Socorros)", "s2": "Marginal (Lesão Leve c/ Afastamento)", "s3": "Crítica (Lesão Grave / Incapacitante)", "s4": "Catastrófica (Fatalidade / Acidente Ampliado)",
+    "l1": "Inaceitável (Paralisação)", "l2": "Risco Alto (Ação Imediata)", "l3": "Risco Médio (Ação Programada)", "l4": "Risco Baixo (Monitorar)", "l5": "Risco Trivial", "l6": "Insignificante"
+  },
+  "tasks": [
+    { "t": "Trabalho em Altura (NR-35)", "c": "Toda atividade executada acima de 2,00 m (dois metros) do nível inferior onde há risco de queda, exigindo Análise de Risco, Permissão de Trabalho (PT) e sistema de retenção (cinturão/talabarte)." },
+    { "t": "Entrada em Espaço Confinado (NR-33)", "c": "Ingresso em áreas não projetadas para ocupação contínua humana, com ventilação deficiente e potencial para atmosfera asfixiante, tóxica ou explosiva." },
+    { "t": "Trabalhos a Quente (Solda/Corte)", "c": "Atividades que envolvam soldagem, oxicorte, brasagem ou esmerilhamento em áreas que produzem centelhas, fagulhas ou chamas abertas (requer liberação de serviço)." },
+    { "t": "Içamento de Cargas (Plano de Rigging)", "c": "Amarração (eslingagem) e movimentação de grandes volumes e pesos utilizando guindastes, pontes rolantes ou caminhões munck." },
+    { "t": "Trabalho com Eletricidade (NR-10)", "c": "Intervenções em instalações elétricas energizadas ou desenergizadas dentro da zona de risco ou aproximação, exigindo pessoal autorizado e bloqueio." },
+    { "t": "Escavação e Movimento de Terra (NR-18)", "c": "Abertura de valas ou fundações onde desmoronamentos de taludes e soterramentos, ou rompimento de tubulações subterrâneas, são riscos críticos." },
+    { "t": "Radiação Ionizante", "c": "Radiografia industrial, ensaios não destrutivos (END) ou atividades hospitalares que envolvam exposição do corpo a fontes de radiação ou raios-x." },
+    { "t": "Manuseio de Produtos Perigosos (NR-20)", "c": "Transferência, envase ou processamento de substâncias químicas inflamáveis, tóxicas ou reativas (líquidos combustíveis ou gases)." },
+    { "t": "Manutenção (LOTO / Bloqueio)", "c": "Procedimentos de Desenergização, Bloqueio e Etiquetagem (Lockout/Tagout) durante manutenções mecânicas para evitar liberação de energias perigosas ou partes móveis (NR-12)." }
+  ]
+}

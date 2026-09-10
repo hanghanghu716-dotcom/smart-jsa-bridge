@@ -1,0 +1,31 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [AVISO] Esta amostra é apenas para referência. As avaliações de risco (APR/PGR) devem ser conduzidas com base em inspeções reais no local e em fatores ambientais e legais específicos (Normas Regulamentadoras - NR).",
+    "text2": "O Smart JSA Bridge não assume nenhuma responsabilidade legal por quaisquer resultados decorrentes do uso deste material."
+  },
+  "ui": {
+    "category": "PADRÃO DE SEGURANÇA COMUM",
+    "mainTitle1": "Gestão Integrada de Segurança no Local",
+    "mainTitle2": "e Guia de APR",
+    "description1": "Dados padronizados para os 10 principais processos comuns",
+    "description2": "e requisitos de preparação para trabalhos de alto risco.",
+    "jsaId": "COMMON-01",
+    "jsaTitle1": "Gestão de Segurança e Requisitos Preliminares",
+    "jsaTitle2": "para Tarefas de Alto Risco",
+    "summaryTitle": "Resumo de Processos Principais e Perigos",
+    "previewLabel": "Pré-visualização do Relatório APR",
+    "downloadBtn": "Baixar PDF Original"
+  },
+  "steps": [
+    { "step": "01", "task": "DDS (Diálogo Diário de Segurança) e Inspeção de EPI (NR-06)", "hazard": "Escopo de trabalho não claro, uso inadequado de Equipamento de Proteção Individual (EPI)" },
+    { "step": "02", "task": "Sistemas de Proteção contra Quedas (NR-35)", "hazard": "Falha no ponto de ancoragem, escorregões devido a intempéries" },
+    { "step": "03", "task": "Isolamento de Combustíveis e Observador de Fogo", "hazard": "Fagulhas de trabalho a quente, explosão de gás residual" },
+    { "step": "04", "task": "Configuração de Amarração e Içamento (Rigging - NR-11)", "hazard": "Má estabilidade do solo, falha de cinta (sling)/cabo de aço" },
+    { "step": "05", "task": "Teste Atmosférico e Ventilação (Espaço Confinado - NR-33)", "hazard": "Deficiência de oxigênio (Asfixia), inalação de gás tóxico" },
+    { "step": "06", "task": "Segurança em Escavações e Valas (NR-18)", "hazard": "Ruptura de utilidades subterrâneas, soterramento por colapso da vala" },
+    { "step": "07", "task": "LOTO (Bloqueio e Etiquetagem) e Verificação de Energia Zero (NR-10)", "hazard": "Reenergização acidental, choque por tensão residual" },
+    { "step": "08", "task": "Isolamento de Área e Radioproteção", "hazard": "Acesso não autorizado, exposição a radiação ionizante" },
+    { "step": "09", "task": "Comissionamento e Teste de Malha (Loop Test)", "hazard": "Intertravamentos burlados (bypassed), vazamentos de alta pressão" },
+    { "step": "10", "task": "Housekeeping (Limpeza) e Remoção de LOTO Pós-Tarefa", "hazard": "Ferramentas/detritos esquecidos, perigos de curto-circuito" }
+  ]
+}

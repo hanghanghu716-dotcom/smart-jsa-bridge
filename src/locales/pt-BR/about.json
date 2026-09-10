@@ -1,0 +1,39 @@
+{
+  "pageTag": "O REPOSITÓRIO DE SEGURANÇA",
+  "mainHeading": {
+    "line1": "Conectando Conhecimento de Segurança Fragmentado",
+    "line2": "em uma Biblioteca Abrangente"
+  },
+  "section1": {
+    "title": "A Biblioteca para Engenheiros e Técnicos de Segurança (SESMT)",
+    "content": "O Smart JSA Bridge traz à luz os modelos reais de Análise Preliminar de Risco (APR / JSA), anteriormente espalhados em PCs individuais. É um <strong>repositório no estilo código aberto onde os profissionais do SESMT podem arquivar e compartilhar seu know-how coletivo</strong>.<br />Indo além da mera burocracia, pretendemos ser uma ponte técnica que permita a qualquer pessoa utilizar e melhorar a melhor lógica de segurança (PGR) verificada em locais industriais em todo o país."
+  },
+  "section2": {
+    "title": "Valores Fundamentais",
+    "item1": {
+      "bold": "Baseado em Dados Práticos Verificados:",
+      "desc": "Confiamos em modelos práticos de APR escritos e usados diretamente por especialistas em campo, e não em diretrizes abstratas."
+    },
+    "item2": {
+      "bold": "Ciclo Virtuoso de Conhecimento (Fork & Contribute):",
+      "desc": "Os usuários podem adotar excelentes modelos de APR personalizando-os para seus locais específicos e, em seguida, contribuir com essas melhorias de volta para a biblioteca, elevando o padrão geral de segurança da indústria."
+    },
+    "item3": {
+      "bold": "Biblioteca Especializada em Alto Risco:",
+      "desc": "Estamos construindo um repositório de cenários de análise segmentado por setor e equipamento, incluindo as 9 principais categorias de operações de alto risco."
+    }
+  },
+  "section3": {
+    "title": "Como Funciona",
+    "subtitle": "O Smart JSA Bridge protege a segurança por meio do poder da comunidade.",
+    "step1": { "bold": "Navegar na Biblioteca:", "desc": "Pesquise no vasto repositório um modelo de APR que corresponda ao seu tipo de tarefa atual." },
+    "step2": { "bold": "Adotar e Personalizar:", "desc": "Selecione um modelo adequado e ajuste os parâmetros detalhados para se adequar ao seu ambiente de trabalho e aos requisitos das Normas Regulamentadoras (NR)." },
+    "step3": { "bold": "Exportar e Compartilhar:", "desc": "Imprima a APR concluída para aplicação em campo (Liberação de Serviço - PT) e compartilhe a lógica aprimorada de volta com a comunidade." },
+    "step4": { "bold": "Padronização:", "desc": "Os modelos que passam por vários ciclos de feedback tornam-se o 'Padrão Ouro' para suas respectivas indústrias." }
+  },
+  "section4": {
+    "title": "Filosofia de Segurança de Dados (LGPD)",
+    "content": "O valor do compartilhamento só pode existir sobre uma base de privacidade segura. <br />De acordo com o <strong>'Princípio de Não Armazenamento de Informações Sensíveis' e a LGPD</strong>, o Smart JSA Bridge não coleta dados identificáveis, como títulos de projetos, nomes reais ou IDs de equipamentos específicos. Arquivamos apenas a pura lógica técnica: 'Tarefa-Perigo-Medida'."
+  },
+  "imageCaption": "Smart JSA Bridge: Seu parceiro para locais sem acidentes, impulsionado pela Inteligência Coletiva"
+}

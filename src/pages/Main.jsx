@@ -25,15 +25,21 @@ export default function Main() {
 
   const { user } = useContext(AuthContext);
 
+// 13개 다국어 우선순위 배열 적용
   const languages = [
-    { code: 'ko', label: ' 한국어' },
-    { code: 'en-US', label: ' English (US)' },
-    { code: 'en-GB', label: ' English (UK)' },
-    { code: 'en-AU', label: ' English (AU)' },
-    { code: 'de-DE', label: ' Deutsch' },
-    { code: 'fr-FR', label: ' Français' },
-    { code: 'es-ES', label: ' Español' },
-    { code: 'ru-RU', label: ' Русский' },
+    { code: 'en-US', label: 'English (US)' },
+    { code: 'en-CA', label: 'English (Canada)' },
+    { code: 'en-AU', label: 'English (Australia)' },
+    { code: 'en-GB', label: 'English (UK)' },
+    { code: 'de-DE', label: 'Deutsch' },
+    { code: 'ja-JP', label: '日本語' },
+    { code: 'fr-FR', label: 'Français' },
+    { code: 'it-IT', label: 'Italiano' },
+    { code: 'es-ES', label: 'Español' },
+    { code: 'ar-SA', label: 'العربية' },
+    { code: 'pt-BR', label: 'Português (BR)' },
+    { code: 'ru-RU', label: 'Русский' },
+    { code: 'ko', label: '한국어' }
   ];
 
   const handleLanguageChange = (lngCode) => {
@@ -67,8 +73,7 @@ export default function Main() {
   useEffect(() => {
     const fetchRecentCases = async () => {
       const pathLang = window.location.pathname.split('/')[1];
-      const supportedCodes = ['ko', 'en-US', 'en-GB', 'en-AU', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU'];
-      const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');
+      const supportedCodes = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];      const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');
 
       const { data, error } = await supabase
         .from('case_studies')
@@ -352,7 +357,7 @@ export default function Main() {
       </div>
 
       <section style={styles.m3Section} className="max-lg:!py-20">
-        <div style={styles.container}>
+        <div style={styles.container} className="max-lg:!px-6">
           <div className="flex flex-col lg:flex-row lg:gap-[100px] items-center">
             <div style={styles.valueTextSide} className="w-full lg:flex-[1.2]">
               <span style={styles.m3Tag} className="block mb-4">CORE VALUE</span>
@@ -374,8 +379,8 @@ export default function Main() {
       </section>
 
       <section style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }} className="max-lg:!py-20">
-        <div style={styles.container}>
-          <div style={styles.m3Header} className="px-6 lg:px-0">
+        <div style={styles.container} className="max-lg:!px-6">
+          <div style={styles.m3Header} className="lg:px-0">
             <span style={styles.m3Tag} className="block mb-4">ANALYSIS GUIDES</span>
             <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>{t('analysisGuideTitle')}</h3>
           </div>
@@ -417,8 +422,8 @@ export default function Main() {
       
       {/* 구글 애드센스 대응 및 통합 탐색 Case Studies 섹션 */}
       <section id="case-studies" style={{ ...styles.m3Section, backgroundColor: '#ffffff' }} className="max-lg:!py-20">
-        <div style={styles.container}>
-          <div style={styles.m3Header} className="px-6 lg:px-0 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
+        <div style={styles.container} className="max-lg:!px-6">
+          <div style={styles.m3Header} className="lg:px-0 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
             <div>
               <span style={styles.m3Tag} className="block mb-4">{t('caseStudySectionTag', { defaultValue: 'LATEST CASE STUDIES' })}</span>
               <h3 className="text-[24px] lg:text-[3.5rem] font-black text-[#111]" style={styles.m3Title}>
@@ -455,7 +460,7 @@ export default function Main() {
 
           {currentItems.length > 0 ? (
             <>
-              <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 px-6 lg:px-0">
+              <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 lg:px-0">
                 {currentItems.map((caseItem) => (
                   <LanguageLink 
                     key={caseItem.post_group_id} 
@@ -515,15 +520,15 @@ export default function Main() {
         </div>
       </section>
 
-      <footer style={styles.finalFooter}>
-        <div style={styles.container}>
-          <div style={styles.footerFlex}>
+      <footer style={styles.finalFooter} className="max-lg:!py-12">
+        <div style={styles.container} className="max-lg:!px-6">
+          <div style={styles.footerFlex} className="max-lg:!flex-col max-lg:!items-start max-lg:!gap-6">
             <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
-            <div style={styles.footerLinks}>
+            <div style={styles.footerLinks} className="max-lg:!flex-wrap max-lg:gap-y-4">
               <LanguageLink to="/regulation" style={styles.fLink}>{t('navRegulation')}</LanguageLink>
               <LanguageLink to="/jrajsa" style={styles.fLink}>{t('navProcess')}</LanguageLink>
               <LanguageLink to="/dictionary" style={styles.fLink}>{t('navDB')}</LanguageLink>
-              <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.95rem' }}>|</span>
+              <span className="max-lg:hidden" style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.95rem' }}>|</span>
               <LanguageLink to="/privacy" style={styles.fLink}>{t('footerPrivacy')}</LanguageLink>
               <LanguageLink to="/terms" style={styles.fLink}>{t('footerTerms')}</LanguageLink>
               <LanguageLink to="/about" style={styles.fLink}>{t('footerAbout')}</LanguageLink>
@@ -609,7 +614,7 @@ const styles = {
   menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999 },
   m3Section: { padding: '160px 0' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px' },
-  m3Title: { fontSize: '3.5rem', fontWeight: '900', color: '#111' },
+  m3Title: { fontWeight: '900', color: '#111' },
   jsaCardGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' },
   jsaCard: { padding: '48px', backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '16px', position: 'relative' },
   jsaBadge: { position: 'absolute', top: '32px', right: '32px', fontSize: '1.2rem', fontWeight: '900', color: '#f0f0f0' },

@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "tag": "GUIA ADMINISTRATIVO DE SEGURANÇA (PGR/GRO)",
+    "mainTitle": "Guia Profissional para Estabelecer as<br />Diretrizes de Avaliação de Risco e Conformidade Legal (NR-01)",
+    "subTitle": "Orientação detalhada sobre a elaboração de 'Diretrizes de Implementação do GRO', que formam o núcleo do sistema de gestão de saúde e segurança ocupacional, em total conformidade com a NR-01 do Ministério do Trabalho e Emprego (MTE)."
+  },
+  "section1": {
+    "title": "1. O que são as Diretrizes de Avaliação de Risco (Inventário de Riscos)?",
+    "para": "As Diretrizes de Avaliação de Risco são <strong>procedimentos operacionais padrão internos (POPs)</strong> adotados pelos empregadores para identificar perigos, avaliar o nível de risco e implementar medidas de mitigação. Não são meras recomendações, mas sim requisitos legais compulsórios exigidos pela NR-01 (Programa de Gerenciamento de Riscos - PGR) essenciais para uma cultura de segurança forte e defesa em caso de auditorias trabalhistas.",
+    "infoTitle": "Propósito de Manter as Diretrizes do PGR Atualizadas",
+    "infoList": {
+      "item1": "Esclarecer responsabilidades e autoridades para o estabelecimento de um sistema eficaz de Gerenciamento de Riscos Ocupacionais (GRO).",
+      "item2": "Manter um processo de avaliação de risco (graduação de severidade e probabilidade) objetivo e consistente.",
+      "item3": "Descobrir perigos práticos em campo, ouvir queixas e promover melhorias através da participação da CIPA e dos trabalhadores.",
+      "item4": "Garantir a documentação comprobatória (Plano de Ação) necessária para responder a auditorias legais e inspeções dos auditores fiscais do trabalho (AFT)."
+    }
+  },
+  "section2": {
+    "title": "2. Elementos Obrigatórios nas Diretrizes (De acordo com o MTE/NR-01)",
+    "para": "De acordo com os regulamentos trabalhistas brasileiros e melhores práticas (como a ISO 45001), o PGR de cada unidade operacional deve especificar claramente os seguintes componentes:",
+    "items": {
+      "item1": { "title": "Propósito e Metodologia", "content": "Definição do escopo do Inventário de Riscos e adoção de metodologias (ex: Matriz AIHA, HRN, BS 8800) adaptadas à realidade da empresa." },
+      "item2": { "title": "Organização e Atribuições", "content": "Definição clara do papel do empregador, equipe SESMT, prepostos, CIPAS e trabalhadores terceirizados." },
+      "item3": { "title": "Abrangência da Avaliação", "content": "Levantamento estruturado cobrindo instalações físicas, máquinas (NR-12), equipamentos e todas as tarefas rotineiras ou eventuais." },
+      "item4": { "title": "Periodicidade e Frequência", "content": "Cronogramas para revisão do PGR (geralmente a cada 2 anos, ou anualmente se a empresa não possuir certificação) e reavaliações após acidentes." },
+      "item5": { "title": "Identificação de Perigos", "content": "Métodos práticos como Análise Ergonômica (AET), Análise Preliminar de Risco (APR), PPRA (histórico) e entrevistas de campo." },
+      "item6": { "title": "Classificação de Risco", "content": "Estabelecimento de matriz combinada (probabilidade vs. gravidade das lesões) para determinar categoricamente os níveis de risco." },
+      "item7": { "title": "Plano de Ação (Medidas de Controle)", "content": "Priorizar melhorias pelo grau do risco seguindo a hierarquia (eliminação, substituição, eng., ADM, EPI) e definir prazos." },
+      "item8": { "title": "Participação dos Trabalhadores", "content": "Sistemas para consultar os trabalhadores e a representação sindical/CIPA quanto à percepção de riscos nas atividades diárias." },
+      "item9": { "title": "Retenção de Registros (Guarda)", "content": "Padronização do PGR/APR, laudos de insalubridade e guarda dos documentos do histórico ocupacional por no mínimo 20 anos." },
+      "item10": { "title": "Treinamento e Comunicação (OS)", "content": "Procedimentos obrigatórios para comunicar os riscos aos trabalhadores via Ordens de Serviço (OS) e Integrações (DDS)." }
+    }
+  },
+  "section3": {
+    "title": "3. Tipos e Momento das Avaliações de Risco",
+    "table": {
+      "header": {
+        "col1": "Tipo de Avaliação",
+        "col2": "Condições e Frequência",
+        "col3": "Observações (Conforme NR-01)"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Avaliação Inicial (Inventário Base)",
+          "col2": "Deve ser elaborado antes ou no início das operações do estabelecimento ou canteiro de obras.",
+          "col3": "Gera a linha de base para todos os controles de engenharia e emissão de atestados (ASO)."
+        },
+        "row2": {
+          "col1": "Reavaliação Periódica",
+          "col2": "Conduzida regularmente (a cada 2 anos, ou 3 anos se houver sistema de gestão de SST certificado).",
+          "col3": "Acompanhamento compulsório para medir a evolução do Plano de Ação."
+        },
+        "row3": {
+          "col1": "Avaliação Extraordinária (Eventos)",
+          "col2": "Sempre que ocorrerem inovações, novas máquinas, mudanças no processo, ou após acidentes e doenças ocupacionais confirmadas.",
+          "col3": "Exige revisão imediata das matrizes e controles após o evento deflagrador."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Responsabilidade Legal e Penalidades no Brasil",
+    "para": "A falha em cumprir as obrigações do PGR e das Avaliações de Risco (APR) pode resultar em severas sanções administrativas, trabalhistas, civis e criminais aos empregadores.",
+    "legalList": {
+      "item1": "<strong>Não Realizar ou Ocultar Avaliações:</strong> Sujeito a embargos/interdições e autuações severas pelo MTE. As multas (previstas na NR-28) são multiplicadas por número de infrações e número de funcionários expostos.",
+      "item2": "<strong>Falha na Manutenção de Registros (Documentação):</strong> Além das multas fiscais, a ausência de documentação do PGR, PPP e LTCAT impede a defesa jurídica do empregador em processos de insalubridade ou periculosidade e pode gerar cobranças retroativas do INSS.",
+      "item3": "<strong>Em Caso de Acidentes Fatais ou Graves:</strong> Se for confirmado que houve omissão na análise do risco ou negligência no Plano de Ação após uma fatalidade, a empresa sofre ação regressiva da Previdência Social, e os diretores/engenheiros podem responder criminalmente (homicídio culposo ou lesão corporal culposa)."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Projetado por <strong>yizuno</strong>"
+}

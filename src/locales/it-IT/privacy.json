@@ -1,0 +1,51 @@
+{
+  "pageTag": "PRIVACY POLICY",
+  "heading": {
+    "line1": "Informativa sul Trattamento dei Dati Personali",
+    "line2": "(Conformità GDPR UE 2016/679)"
+  },
+  "section1": {
+    "title": "1. Finalità della Raccolta e del Trattamento",
+    "content": "Smart JSA Bridge raccoglie il minimo indispensabile di dati personali, trattandoli esclusivamente per <strong>fornire il servizio, migliorarne le funzionalità e gestire l'assistenza tecnica</strong>, nel rispetto del principio di minimizzazione dei dati (Art. 5 GDPR)."
+  },
+  "section2": {
+    "title": "2. Categorie di Dati Personali Trattati",
+    "item1": {
+      "bold": "Dati Obbligatori:",
+      "desc": "Indirizzo e-mail, log di utilizzo del servizio, cookie tecnici necessari, indirizzo IP"
+    },
+    "item2": {
+      "bold": "Dati Facoltativi:",
+      "desc": "Preferenze di lingua e impostazioni regionali dell'utente"
+    },
+    "item3": {
+      "bold": "Base Giuridica:",
+      "desc": "I dati sono raccolti automaticamente durante la navigazione (legittimo interesse) o forniti volontariamente per l'esecuzione del contratto di servizio."
+    }
+  },
+  "section3": {
+    "title": "3. Periodo di Conservazione dei Dati",
+    "subtitle": "In linea di principio, l'Azienda cancella i dati senza ingiustificato ritardo al raggiungimento della finalità per cui sono stati raccolti.",
+    "step1": {
+      "bold": "Log di Accesso:",
+      "desc": "Cancellati automaticamente dopo un periodo massimo di 3 mesi."
+    },
+    "step2": {
+      "bold": "Dati di Assistenza (Ticket):",
+      "desc": "Conservati per 1 anno dalla chiusura della segnalazione."
+    },
+    "step3": {
+      "bold": "Obblighi di Legge:",
+      "desc": "Conservati per il periodo strettamente richiesto da normative fiscali o penali applicabili."
+    },
+    "step4": {
+      "bold": "Procedura di Cancellazione:",
+      "desc": "I file elettronici vengono sovrascritti/eliminati mediante procedure tecniche irreversibili."
+    }
+  },
+  "section4": {
+    "title": "4. Trasferimento a Terzi e Responsabili del Trattamento",
+    "content": "Il servizio integra Google AdSense. Ti informiamo che, previo tuo consenso tramite cookie banner, <strong>terze parti come Google potrebbero installare o leggere cookie di profilazione</strong> sul tuo browser per l'erogazione di annunci personalizzati, in conformità alla Direttiva ePrivacy."
+  },
+  "imageCaption": "Smart JSA Bridge garantisce la sicurezza e la riservatezza delle tue informazioni aziendali."
+}

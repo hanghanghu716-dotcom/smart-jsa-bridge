@@ -1,0 +1,68 @@
+{
+  "default": {
+    "docTitle": "Análise Preliminar de Risco (APR / JSA)",
+    "appr1": "Elaborador (SESMT)",
+    "appr2": "Revisor",
+    "appr3": "Aprovador Autorizado"
+  },
+  "table": {
+    "projectName": "Nome do Projeto/Contrato",
+    "approval": "Aprovação de Segurança",
+    "workLocation": "Local Específico de Trabalho",
+    "department": "Unidade de Negócio/Setor",
+    "workDate": "Data de Execução",
+    "ppe": "EPI Obrigatório (NR-06)",
+    "highRiskWork": "Riscos Críticos (Requer PT)",
+    "participants": "Membros da Equipe de Trabalho",
+    "signature": "(Assinatura)"
+  },
+  "ppe": {
+    "helmet": "Proteção da Cabeça (Capacete)",
+    "shoes": "Calçado de Proteção",
+    "glasses": "Proteção para Olhos e Face",
+    "safetyBelt": "Sistema Pessoal de Proteção Contra Quedas (Cinturão)",
+    "mask": "Proteção Respiratória (PFF/Filtro)",
+    "gloves": "Proteção das Mãos (Luvas)",
+    "etc": "EPI Especializado"
+  },
+  "permit": {
+    "hotWork": "Permissão de Trabalho a Quente",
+    "confinedSpace": "Espaço Confinado (NR-33)",
+    "electrical": "LOTO (NR-10 / Bloqueio de Energia)",
+    "highElevation": "Trabalho em Altura (NR-35)",
+    "heavyLifting": "Plano de Içamento Crítico (Rigging)",
+    "excavation": "Escavação e Valas (NR-18)",
+    "etc": "Outras Permissões Especiais (PT)"
+  },
+  "preview": {
+    "header": "Pré-visualização da Estrutura da APR (Padrão NR-01/PGR)",
+    "tableAreaTitle": "[Área de Dados de Avaliação de Risco]",
+    "tableAreaDesc": "A identificação de perigos e as medidas de mitigação serão preenchidas automaticamente aqui."
+  },
+  "step": {
+    "basicInfo": "Passo 1: Info Básica",
+    "procedure": "Passo 2: Sequência de Tarefas",
+    "riskAnalysis": "Passo 3: Análise de Riscos",
+    "moduleConfig": "Passo 4: Configuração do Módulo",
+    "tableConfig": "Passo 5: Mapeamento de Dados",
+    "finalOutput": "Passo 6: Exportação de Conformidade"
+  },
+  "header": {
+    "title": "| 04. Configuração do Módulo de Documento",
+    "subtitle": "Configure os cabeçalhos da APR e os elementos de Permissão de Trabalho (PT) exigidos pelas NRs."
+  },
+  "toolbar": {
+    "headerTextSetting": "Configuração do Cabeçalho da APR",
+    "docTitle": "Título Padrão do Documento",
+    "appr1": "Campo do Elaborador",
+    "appr2": "Campo do Revisor",
+    "appr3": "Campo do Aprovador",
+    "signatureSetting": "Assinaturas do Pessoal Autorizado",
+    "addSignatureRow": "Adicionar Linha de Pessoal (8 Vagas por Linha)"
+  },
+  "btn": {
+    "prev": "Retornar para a Análise de Riscos",
+    "next": "Prosseguir para Configuração da Tabela",
+    "skipModule": "Pular Configuração do Módulo"
+  }
+}

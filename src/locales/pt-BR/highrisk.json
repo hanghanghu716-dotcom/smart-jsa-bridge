@@ -1,0 +1,26 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [Atenção] Esta amostra é apenas para referência. As avaliações de risco (APR/PT) devem ser baseadas em inspeções reais no local e normativas vigentes (NRs).",
+    "text2": "O Smart JSA Bridge não é responsável por consequências legais decorrentes do uso deste material."
+  },
+  "ui": {
+    "category": "ESPECIALISTA EM ALTO RISCO",
+    "mainTitle1": "APR para Trabalhos Especiais de Alto Risco",
+    "mainTitle2": "Guia de Amostra (7 Tipos)",
+    "description1": "Dados de análise de risco padrão para operações industriais e construção com risco de vida (trabalhos críticos).",
+    "description2": "Verifique as imagens e baixe o PDF original da APR.",
+    "labelRed": "⚠ Fatores de Risco Críticos",
+    "labelBlue": "🛡 Medidas de Segurança Essenciais",
+    "previewLabel": "Pré-visualização do Relatório APR",
+    "downloadBtn": "Baixar PDF Original Completo"
+  },
+  "list": [
+    { "id": "HR-01", "title": "Substituição de Tubulação Antiga e Reparo de Soldagem em Flange", "hazard": "Explosão de gás inflamável residual, incêndio por fagulhas de solda", "measure": "Verificar atmosfera (0% LEL) com explosímetro, isolar combustíveis em um raio de 11m e designar Observador de Fogo (Fire Watch)", "pages": 1 },
+    { "id": "HR-02", "title": "Inspeção de Painéis (Cubículos) de Alta Tensão em Subestação e Substituição de Cabos", "hazard": "Choque elétrico (folgoramento) por manobra errada da chave, arco elétrico (arc flash) por carga residual", "measure": "Implementar LOTO individual (NR-10), verificar ausência de tensão com detector (testador) certificado, e aterrar (descarregar) a linha", "pages": 1 },
+    { "id": "HR-03", "title": "Escavação e Instalação de Escoramento para Enterramento de Tubulação", "hazard": "Explosão por danos em utilidades subterrâneas, soterramento por ruptura/colapso do talude", "measure": "Realizar detecção de utilidades (cadastro) e escavação manual inicial, manter talude seguro (NR-18) e usar sistema de escoramento (blindagem)", "pages": 1 },
+    { "id": "HR-04", "title": "Ensaios Não Destrutivos (Radiografia - RT) para Inspeção de Qualidade de Solda em Tubulações", "hazard": "Exposição à radiação ionizante (gama/raio-x), entrada não autorizada em áreas controladas durante trabalho noturno", "measure": "Calcular distância de segurança e instalar cordão de isolamento, designar supervisor (vigia) dedicado, e portar dosímetro e monitor de área (Survey Meter)", "pages": 1 },
+    { "id": "HR-05", "title": "Inspeção Interna de Precisão e Remoção de Resíduos de Tanques Purgados com Nitrogênio", "hazard": "Asfixia grave devido ao nitrogênio residual, isolamento/dificuldade de resgate em espaço confinado (NR-33)", "measure": "Ventilação mecânica forçada antes/durante a entrada, monitoramento contínuo de oxigênio (>19,5%), e Vigia de espaço confinado obrigatório na boca de visita", "pages": 1 },
+    { "id": "HR-06", "title": "Içamento e Movimentação com Guindaste para Instalação de Equipamentos Pesados", "hazard": "Tombamento do guindaste por falha na resistência do solo (patolamento), esmagamento por queda de carga suspensa", "measure": "Reforçar calços dos estabilizadores (patolas) usando chapas metálicas adequadas (NR-11), seguir o plano de rigging (içamento duplo/linhas guias), e realizar teste de içamento de 10cm", "pages": 1 },
+    { "id": "HR-07", "title": "Reparo de Telhas na Cobertura da Fábrica e Operação de Plataforma de Trabalho Aéreo (PTA)", "hazard": "Queda por ruptura de telhas danificadas/corroídas (ex: fibrocimento), choque elétrico por proximidade com redes aéreas de alta tensão", "measure": "Instalar pranchas (passarelas) de distribuição de carga, usar cinto de segurança duplo (talabarte em Y) 100% ancorado (NR-35), e manter zona de exclusão elétrica (NR-10)", "pages": 1 }
+  ]
+}

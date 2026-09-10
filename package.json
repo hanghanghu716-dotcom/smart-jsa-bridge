@@ -51,14 +51,19 @@
     "source": "dist",
     "puppeteerExecutable": "/usr/bin/google-chrome",
     "include": [
-      "/ko/",
       "/en-US/",
-      "/en-GB/",
+      "/en-CA/",
       "/en-AU/",
+      "/en-GB/",
       "/de-DE/",
+      "/ja-JP/",
       "/fr-FR/",
+      "/it-IT/",
       "/es-ES/",
-      "/ru-RU/"
+      "/ar-SA/",
+      "/pt-BR/",
+      "/ru-RU/",
+      "/ko/"
     ],
     "exclude": [
       "\\/explore",

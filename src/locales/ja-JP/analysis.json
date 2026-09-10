@@ -1,0 +1,79 @@
+{
+  "alert": {
+    "selectItem": "追加する項目を選択してください。",
+    "enterFactor": "先に危険要因を入力してください。",
+    "selectCurrentMeasure": "先に現在の安全対策を選択してください。",
+    "manualFactor": "直接入力された危険要因です。対策を直接入力してください。",
+    "needCurrentMeasure": "先に推奨システムを通じて現在の安全対策を選択してください。",
+    "noData": "関連データが見つかりません。直接入力してください。",
+    "confirmMain": "メイン画面へ移動しますか？保存されていないデータは失われる可能性があります。",
+    "loginRequired": "ログインが必要です。"
+  },
+  "libModal": {
+    "title": "作業ステップライブラリの呼び出し",
+    "empty": "保存されたライブラリがありません。",
+    "unclassified": "未分類",
+    "backBtn": "⬅️ リストに戻る",
+    "step": "ステップ",
+    "riskCount": " 件の危険要因"
+  },
+  "recModal": {
+    "titleCurrent": "現在の安全対策",
+    "titleAdvanced": "高度な推奨対策",
+    "descCurrent": "この危険要因に登録されている安全基準です。",
+    "descAdvanced": "現在の対策を補完する高度な推奨対策です。",
+    "selectBtn": "選択"
+  },
+  "step": {
+    "basicInfo": "基本情報",
+    "procedure": "作業手順",
+    "riskAnalysis": "リスクアセスメント",
+    "moduleConfig": "モジュール設定",
+    "tableConfig": "テーブル設定",
+    "finalOutput": "最終出力"
+  },
+  "form": {
+    "title": "03. 危険要因およびリスクアセスメント",
+    "typeStandard": "（標準）",
+    "typeAdvanced": "（高度）",
+    "currentStep": "現在のステップ"
+  },
+  "filter": {
+    "label": "⚠️ 高リスクフィルター",
+    "auto": "（自動提案）",
+    "loadLibBtn": "📂",
+    "searchPlaceholder": "危険要因を検索..."
+  },
+  "base": {
+    "label": "安全知識ベース（危険要因の抽出）",
+    "addEmptyBtn": "+ 空白追加",
+    "addBulkBtn": "✓ 選択項目を追加",
+    "emptyRec": "推奨される危険要因が見つかりません。",
+    "etc": "その他"
+  },
+  "result": {
+    "label": "評価と対策",
+    "freq": "可能性",
+    "sev": "重大性"
+  },
+  "table": {
+    "factor": "危険要因",
+    "measure": "低減対策",
+    "currentMeasure": "現在の対策",
+    "advancedMeasure": "高度な推奨対策",
+    "delete": "削除",
+    "recMeasureBtn": "推奨",
+    "recAdvancedBtn": "高度推奨",
+    "searchBtn": "検索"
+  },
+  "btn": {
+    "prevStep1": "前のステップ（作業手順）",
+    "prevStep2": "前の作業ステップ",
+    "nextComplete": "分析完了＆モジュール設定へ",
+    "nextStep": "次の作業ステップを分析"
+  },
+  "searchModal": {
+    "title": "対策データベース検索",
+    "placeholder": "検索語を入力してください..."
+  }
+}

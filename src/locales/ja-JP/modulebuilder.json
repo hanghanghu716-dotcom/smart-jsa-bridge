@@ -1,0 +1,68 @@
+{
+  "default": {
+    "docTitle": "作業安全分析（JSA）",
+    "appr1": "作成",
+    "appr2": "照査",
+    "appr3": "承認（決裁権者）"
+  },
+  "table": {
+    "projectName": "作業（プロジェクト）名",
+    "approval": "安全承認",
+    "workLocation": "具体的な作業場所",
+    "department": "事業部門 / 部署",
+    "workDate": "実施日",
+    "ppe": "必要保護具",
+    "highRiskWork": "高リスク作業（特定危険作業）",
+    "participants": "作業参加メンバー",
+    "signature": "（署名）"
+  },
+  "ppe": {
+    "helmet": "頭部保護（ヘルメット）",
+    "shoes": "保護靴（安全靴）",
+    "glasses": "目と顔の保護具",
+    "safetyBelt": "墜落制止用器具（安全帯）",
+    "mask": "呼吸用保護具",
+    "gloves": "手の保護具（安全手袋）",
+    "etc": "特殊保護具"
+  },
+  "permit": {
+    "hotWork": "火気作業許可",
+    "confinedSpace": "密閉空間作業許可（酸欠）",
+    "electrical": "停電・活線 LOTO",
+    "highElevation": "高所作業計画",
+    "heavyLifting": "重量物揚重計画",
+    "excavation": "掘削および土留め作業",
+    "etc": "その他の特別許可"
+  },
+  "preview": {
+    "header": "JSA 構造プレビュー（労働安全衛生基準）",
+    "tableAreaTitle": "［リスクアセスメント（危険性評価）データエリア］",
+    "tableAreaDesc": "危険要因の特定および低減対策がここに自動展開されます。"
+  },
+  "step": {
+    "basicInfo": "Step 1: 基本情報",
+    "procedure": "Step 2: 作業手順",
+    "riskAnalysis": "Step 3: 危険要因分析",
+    "moduleConfig": "Step 4: モジュール設定",
+    "tableConfig": "Step 5: データマッピング",
+    "finalOutput": "Step 6: 最終出力（法令遵守）"
+  },
+  "header": {
+    "title": "| 04. ドキュメントモジュール設定",
+    "subtitle": "JSAのヘッダーおよび法的要件となる作業許可（PTW）要素を設定します。"
+  },
+  "toolbar": {
+    "headerTextSetting": "JSA ヘッダー構成",
+    "docTitle": "標準ドキュメントタイトル",
+    "appr1": "作成者（起案者）枠",
+    "appr2": "照査者（確認者）枠",
+    "appr3": "承認者（決裁者）枠",
+    "signatureSetting": "認可された担当者の署名欄",
+    "addSignatureRow": "参加者行を追加（1行につき8名）"
+  },
+  "btn": {
+    "prev": "危険要因分析に戻る",
+    "next": "テーブル設定へ進む",
+    "skipModule": "モジュール設定をスキップ"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "pageTag": "TERMOS DE SERVIÇO (REPOSITÓRIO GLOBAL)",
+  "heading": "Termos de Serviço e Condições de Uso",
+  "subHeading": "O Smart JSA Bridge é uma plataforma colaborativa onde profissionais e engenheiros de segurança (SESMT) de todo o mundo compartilham e desenvolvem conhecimentos práticos.",
+  "effectiveDate": "Data de Vigência: 19 de março de 2026",
+  "section1": {
+    "title": "01. Aceitação dos Termos",
+    "content": "Ao criar uma conta no Smart JSA Bridge, considera-se que você concordou com estes Termos e com as Diretrizes da Comunidade. Este serviço visa facilitar o compartilhamento de conhecimentos de saúde e segurança do trabalho (SST) e fomentar o desenvolvimento mútuo."
+  },
+  "section2": {
+    "title": "02. Descrição do Serviço",
+    "content": "Este serviço fornece um <strong>Repositório de Conhecimento de Segurança</strong> onde gestores industriais e técnicos podem armazenar, compartilhar, modificar e utilizar modelos de Análise Preliminar de Risco (APR / JSA)."
+  },
+  "section3": {
+    "title": "03. Responsabilidade do Usuário e LGPD",
+    "item1": {
+      "bold": "Segurança da Conta:",
+      "desc": "Os usuários são responsáveis pela segurança de suas informações de login gerenciadas por meio do Supabase."
+    },
+    "item2": {
+      "bold": "Anonimização de Dados (Limpeza):",
+      "desc": "Ao compartilhar uma APR na biblioteca Pública, os usuários DEVEM remover quaisquer informações identificáveis de segurança e privacidade (de acordo com a LGPD), incluindo nomes de fábricas específicas, nomes de equipamentos corporativos, CPFs, matrículas e nomes pessoais de funcionários."
+    }
+  },
+  "section4": {
+    "title": "04. Isenção de Responsabilidade sobre a Precisão do Conteúdo",
+    "content": "Todos os modelos de APR/PGR registrados na biblioteca são informações contribuídas voluntariamente por outros usuários profissionais.",
+    "item1": {
+      "desc": "A plataforma não garante a precisão absoluta, conformidade legal estrita (NRs) ou adequação ao local exato do conteúdo compartilhado."
+    },
+    "item2": {
+      "desc": "Ao utilizar o modelo de outro usuário, você deve revisá-lo e finalizá-lo rigorosamente para se adequar às condições específicas do seu canteiro de obras ou fábrica, validando-o com os responsáveis locais. A plataforma não é responsável, civil ou criminalmente, por acidentes, multas ou infrações resultantes de negligência a esse respeito."
+    }
+  },
+  "section5": {
+    "title": "05. Licença e Propriedade Intelectual",
+    "item1": {
+      "bold": "Direitos da Plataforma:",
+      "desc": "Os direitos sobre a arquitetura do serviço, interface de usuário (UI) e banco de dados lógico são de propriedade exclusiva da empresa."
+    },
+    "item2": {
+      "bold": "Conteúdo Compartilhado (Open Source):",
+      "desc": "Ao contribuir com conteúdo configurado como 'Público', entende-se que você concede a outros usuários uma licença perpétua e não exclusiva para copiar, modificar e utilizar esse conteúdo livremente em prol da segurança do trabalho."
+    }
+  },
+  "section6": {
+    "title": "06. Uso Proibido",
+    "content": "O rastreamento em massa (mass crawling/scraping) das contribuições de conhecimento de outros usuários para construir um serviço pago separado, ou explorá-las para fins não relacionados à segurança e saúde no trabalho, é estritamente proibido e passível de ação judicial."
+  },
+  "section7": {
+    "title": "07. Conformidade Global e Local",
+    "content": "Como esta plataforma é acessada globalmente, alinhamos nossos princípios de serviço aos padrões reconhecidos internacionalmente (como OSHA e ISO 45001). No entanto, espera-se fortemente que os usuários no Brasil cumpram os padrões de segurança aceitos globalmente, em uníssono com as normas locais aplicáveis promulgadas pelo Ministério do Trabalho e Emprego (Normas Regulamentadoras - NRs e regras da Fundacentro), ao contribuir e aplicar o conteúdo."
+  },
+  "section8": {
+    "title": "08. Encerramento de Acesso",
+    "content": "No caso de postagem de dados inadequados (quebras de confidencialidade de empresas terceiras) ou violação das regras da comunidade, a plataforma reserva-se o direito de excluir o conteúdo relevante e restringir o acesso à conta infratora sem aviso prévio."
+  },
+  "section9": {
+    "title": "09. Foro e Lei Aplicável",
+    "content": "Estes termos são regidos pelas leis da República da Coreia (jurisdição operacional da plataforma), mas garantem integralmente o respeito às normativas de proteção de dados locais (como a Lei Geral de Proteção de Dados - LGPD no Brasil), em conformidade com procedimentos internacionais de resolução de disputas."
+  },
+  "footer": "© 2026 Smart JSA Bridge. Todos os direitos reservados."
+}
