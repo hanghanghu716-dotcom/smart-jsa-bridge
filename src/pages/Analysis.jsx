@@ -294,12 +294,15 @@ export default function Analysis() {
     }
     setIsSearchLoading(true);
 
-    const localeMap = {
-      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
-      'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE',
-      'es-ES': 'es-ES', 'ru-RU': 'ru-RU', 'es': 'es-ES', 'ru': 'ru-RU'
-    };
-    const dbLocale = localeMap[i18n.language] || 'en-US';
+  const localeMap = {
+        'ko': 'ko-KR', 'ko-KR': 'ko-KR', 
+        'en-US': 'en-US', 'en-CA': 'en-CA', 'en-AU': 'en-AU', 'en-GB': 'en-GB', 
+        'de': 'de-DE', 'de-DE': 'de-DE', 'ja': 'ja-JP', 'ja-JP': 'ja-JP', 
+        'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'it': 'it-IT', 'it-IT': 'it-IT',
+        'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
+        'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
+      };
+      const dbLocale = localeMap[i18n.language] || 'en-US';
 
     let results = [];
     const tokens = term.trim().split(/\s+/).filter(t => t.length > 0);
@@ -370,11 +373,14 @@ export default function Analysis() {
     const fetchHazards = async () => {
       setIsLoading(true);
       const localeMap = {
-        'ko': 'ko-KR', 'ko-KR': 'ko-KR', 'en-US': 'en-US', 'en-AU': 'en-AU',
-        'en-GB': 'en-GB', 'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'de': 'de-DE', 'de-DE': 'de-DE',
-        'es-ES': 'es-ES', 'ru-RU': 'ru-RU', 'es': 'es-ES', 'ru': 'ru-RU'
-      };
-      const dbLocale = localeMap[i18n.language] || 'en-US';
+      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 
+      'en-US': 'en-US', 'en-CA': 'en-CA', 'en-AU': 'en-AU', 'en-GB': 'en-GB', 
+      'de': 'de-DE', 'de-DE': 'de-DE', 'ja': 'ja-JP', 'ja-JP': 'ja-JP', 
+      'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'it': 'it-IT', 'it-IT': 'it-IT',
+      'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
+      'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
+    };
+    const dbLocale = localeMap[i18n.language] || 'en-US';
       setSelectedHighRisk("");
 
       const [{ data: origHazards, error: origErr }, { data: transHazards, error: transErr }] = await Promise.all([
