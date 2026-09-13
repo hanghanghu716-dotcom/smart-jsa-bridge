@@ -8,8 +8,8 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 지원 대상 다국어 코드 정의 (신규 언어 추가)
 const LANGUAGES = [
-  'ko', 'en-US', 'en-GB', 'en-AU', 'es-ES', 'de-DE', 'fr-FR', 'ru-RU',
-  'ja-JP', 'pt-BR', 'ar-SA', 'it-IT', 'zh-TW', 'zh-CN'
+  'en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 
+  'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'
 ];
 // 정적 정보성 라우트 정의
 const staticPages = [
@@ -36,23 +36,23 @@ async function generateSitemap() {
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n`;
   xml += `        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n\n`;
 
-  // [1. 정적 페이지 매핑 생성]
-  staticPages.forEach(page => {
+staticPages.forEach(page => {
     const basePath = page.path ? `/${page.path}` : '';
-    xml += `  <url>\n`;
-    xml += `    <loc>https://smartjsabridge.com/en-US${basePath}</loc>\n`;
     
-    LANGUAGES.forEach(lng => {
-      xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${lng}${basePath}"/>\n`;
+    LANGUAGES.forEach(currentLng => {
+      xml += `  <url>\n`;
+      // 현재 순회 중인 언어를 고유 loc로 지정
+      xml += `    <loc>https://smartjsabridge.com/${currentLng}${basePath}</loc>\n`;
+      
+      LANGUAGES.forEach(lng => {
+        xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${lng}${basePath}"/>\n`;
+      });
+      
+      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US${basePath}"/>\n`;
+      xml += `    <priority>${page.priority}</priority>\n`;
+      xml += `  </url>\n\n`;
     });
-    
-    // 모든 페이지에 대하여 글로벌 x-default 주소를 en-US로 일괄 적용
-    xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US${basePath}"/>\n`;
-    
-    xml += `    <priority>${page.priority}</priority>\n`;
-    xml += `  </url>\n\n`;
   });
-
 // [2. DB 연동을 통한 동적 케이스 스터디 매핑 생성] /
   try {
     const { data: caseStudies, error } = await supabase
