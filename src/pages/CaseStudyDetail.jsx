@@ -214,3 +214,5 @@ const styles = {
   footerLinks: { display: 'flex', gap: '24px', flexWrap: 'wrap' },
   fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' }
 };
+
+//
