@@ -19,11 +19,16 @@ export default function CaseStudyDetail() {
   const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
   const SIDE_SLOT_ID = '3978298367'; // ✅ 사이드 광고 슬롯 ID 추가
 
+  // ✅ 아랍어(ar-SA) 감지 및 RTL 여부 확인
+  const currentLang = post?.language_code || i18n.language || '';
+  const isRtl = currentLang.startsWith('ar');
+
   useEffect(() => {
     const fetchLocalizedPost = async () => {
       setLoading(true);
       const pathSegments = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
-      const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];      const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
+      const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
+      const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
 
       const targetLang = urlLang || i18n.language || 'ko';
 
@@ -62,6 +67,38 @@ export default function CaseStudyDetail() {
 
   return (
     <div style={styles.wrapper}>
+      {/* ✅ 아랍어일 경우 TOAST UI 내부 표와 리스트 정렬을 강제로 RTL로 전환하는 인라인 CSS 주입 */}
+      {isRtl && (
+        <style>{`
+          .rtl-viewer .toastui-editor-contents {
+            direction: rtl !important;
+            text-align: right !important;
+          }
+          .rtl-viewer .toastui-editor-contents table {
+            direction: rtl !important;
+          }
+          .rtl-viewer .toastui-editor-contents th,
+          .rtl-viewer .toastui-editor-contents td {
+            text-align: right !important;
+          }
+          .rtl-viewer .toastui-editor-contents th:last-child,
+          .rtl-viewer .toastui-editor-contents td:last-child,
+          .rtl-viewer .toastui-editor-contents th:nth-last-child(2),
+          .rtl-viewer .toastui-editor-contents td:nth-last-child(2),
+          .rtl-viewer .toastui-editor-contents th:nth-last-child(3),
+          .rtl-viewer .toastui-editor-contents td:nth-last-child(3),
+          .rtl-viewer .toastui-editor-contents th:nth-last-child(4),
+          .rtl-viewer .toastui-editor-contents td:nth-last-child(4) {
+            text-align: center !important;
+          }
+          .rtl-viewer .toastui-editor-contents ul,
+          .rtl-viewer .toastui-editor-contents ol {
+            padding-right: 2rem !important;
+            padding-left: 0 !important;
+          }
+        `}</style>
+      )}
+
       {/* ✅ 수정: SEO 컴포넌트에 전달하는 Props 명칭 및 구조 변경 */}
       <SEO pageTitle={`${post.title} | Smart JSA Bridge`} pageDescription={post.meta_description} />
       
@@ -72,8 +109,12 @@ export default function CaseStudyDetail() {
         </div>
       </header>
 
-      {/* ✅ 1. Jrajsa 스타일의 다크 테마 헤더 (Hero Section) 적용 */}
-      <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
+      {/* ✅ 1. Hero Section: RTL 환경일 때 우측 정렬 적용 */}
+      <section 
+        style={{ ...styles.heroSection, textAlign: isRtl ? 'right' : 'left' }} 
+        dir={isRtl ? 'rtl' : 'ltr'} 
+        className="max-lg:!py-20 max-lg:!px-6"
+      >
         <div style={styles.container}>
           <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">CASE STUDY</span>
           <h1 style={styles.mainTitle} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
@@ -102,8 +143,13 @@ export default function CaseStudyDetail() {
       {/* ✅ 3. 중앙 정렬된 넓은 콘텐츠 영역 (Max-width 1200px) 적용 */}
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
-          <div style={styles.markdownContent}>
-            <Viewer initialValue={post.content_md} />
+          <div 
+            style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
+            dir={isRtl ? 'rtl' : 'ltr'}
+            lang={isRtl ? 'ar' : currentLang}
+            className={isRtl ? 'rtl-viewer' : ''}
+          >
+            <Viewer initialValue={post.content_md} key={post.id || post.language_code} />
           </div>
 
           <div style={styles.adSection}>
@@ -141,6 +187,10 @@ const styles = {
   mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px 100px 24px' },
   centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px' },
   markdownContent: { width: '100%', fontSize: '1.1rem', lineHeight: '1.9', color: '#222', wordBreak: 'keep-all' },
+  rtlMarkdown: {
+    direction: 'rtl',
+    textAlign: 'right',
+  },
   adSection: { marginTop: '80px', paddingTop: '40px', borderTop: '1px solid #eee', textAlign: 'center', width: '100%' },
   adLabel: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', display: 'block', marginBottom: '15px' },
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
