@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next'; 
-// ✅ 불일치를 유발하던 기존 마크다운 엔진을 모두 제거하고 TOAST UI Viewer로 통일
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import AdSenseUnit from '../components/AdSenseUnit';
@@ -17,9 +16,8 @@ export default function CaseStudyDetail() {
 
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
   const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
-  const SIDE_SLOT_ID = '3978298367'; // ✅ 사이드 광고 슬롯 ID 추가
+  const SIDE_SLOT_ID = '3978298367';
 
-  // ✅ 아랍어(ar-SA) 감지 및 RTL 여부 확인
   const currentLang = post?.language_code || i18n.language || '';
   const isRtl = currentLang.startsWith('ar');
 
@@ -53,7 +51,6 @@ export default function CaseStudyDetail() {
       }
       setLoading(false);
       
-      // 봇에게 스냅샷 캡처 지시 (약간의 렌더링 딜레이를 확보)
       setTimeout(() => {
         if (window.snapSaveState) window.snapSaveState();
       }, 500);
@@ -67,9 +64,21 @@ export default function CaseStudyDetail() {
 
   return (
     <div style={styles.wrapper}>
-      {/* ✅ 아랍어일 경우 TOAST UI 내부 표와 리스트 정렬을 강제로 RTL로 전환하는 인라인 CSS 주입 */}
-      {isRtl && (
-        <style>{`
+      {/* 전 언어 공통: TOAST UI 테이블 가로 스크롤 허용 및 일본어 강제 줄바꿈 처리, RTL 조건부 적용 */}
+      <style>{`
+        .toastui-editor-contents table {
+          display: block !important;
+          overflow-x: auto !important;
+          width: 100% !important;
+          word-break: break-word !important;
+          -webkit-overflow-scrolling: touch;
+        }
+        .toastui-editor-contents th,
+        .toastui-editor-contents td {
+          white-space: normal !important; 
+        }
+
+        ${isRtl ? `
           .rtl-viewer .toastui-editor-contents {
             direction: rtl !important;
             text-align: right !important;
@@ -96,20 +105,17 @@ export default function CaseStudyDetail() {
             padding-right: 2rem !important;
             padding-left: 0 !important;
           }
-        `}</style>
-      )}
+        ` : ''}
+      `}</style>
 
-      {/* ✅ 수정: SEO 컴포넌트에 전달하는 Props 명칭 및 구조 변경 */}
       <SEO pageTitle={`${post.title} | Smart JSA Bridge`} pageDescription={post.meta_description} />
       
-      {/* ✅ 추가: SEO를 통해 직접 유입된 사용자를 위한 상단 네비게이션 헤더 */}
       <header style={styles.header}>
         <div style={styles.container}>
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
         </div>
       </header>
 
-      {/* ✅ 1. Hero Section: RTL 환경일 때 우측 정렬 적용 */}
       <section 
         style={{ ...styles.heroSection, textAlign: isRtl ? 'right' : 'left' }} 
         dir={isRtl ? 'rtl' : 'ltr'} 
@@ -126,7 +132,6 @@ export default function CaseStudyDetail() {
         </div>
       </section>
 
-      {/* ✅ 2. 좌우 고정형 사이드 광고 슬롯 추가 */}
       <aside className="hidden lg:block">
         <div style={styles.adPlaceholderFixedLeft}>
           <span style={styles.adLabelDark}>AD (LEFT)</span>
@@ -140,7 +145,6 @@ export default function CaseStudyDetail() {
         </div>
       </aside>
 
-      {/* ✅ 3. 중앙 정렬된 넓은 콘텐츠 영역 (Max-width 1200px) 적용 */}
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
           <div 
@@ -159,7 +163,6 @@ export default function CaseStudyDetail() {
         </div>
       </div>
 
-      {/* ✅ 추가: 애드센스 정책 준수 및 부가 정보 제공을 위한 하단 푸터 */}
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <div style={styles.footerFlex}>
@@ -186,7 +189,14 @@ const styles = {
   date: { color: '#bbb', fontSize: '1rem' },
   mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px 100px 24px' },
   centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px' },
-  markdownContent: { width: '100%', fontSize: '1.1rem', lineHeight: '1.9', color: '#222', wordBreak: 'keep-all' },
+  markdownContent: { 
+    width: '100%', 
+    fontSize: '1.1rem', 
+    lineHeight: '1.9', 
+    color: '#222', 
+    wordBreak: 'break-word', 
+    overflowX: 'hidden' 
+  },
   rtlMarkdown: {
     direction: 'rtl',
     textAlign: 'right',
@@ -214,5 +224,3 @@ const styles = {
   footerLinks: { display: 'flex', gap: '24px', flexWrap: 'wrap' },
   fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' }
 };
-
-//
