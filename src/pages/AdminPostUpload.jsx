@@ -45,13 +45,31 @@ export default function AdminPostUpload() {
     callback(publicUrl, blob.name); 
   };
 
+  const handlePdfUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsSubmitting(true);
+    const safeFileName = `pdfs/${Date.now()}_${Math.random().toString(36).substring(2)}.pdf`;
+    
+    const { error } = await supabase.storage.from('blog-images').upload(safeFileName, file);
+
+    if (error) {
+      alert('PDF 업로드 실패: ' + error.message);
+    } else {
+      const { data: { publicUrl } } = supabase.storage.from('blog-images').getPublicUrl(safeFileName);
+      setFormData(prev => ({ ...prev, pdf_download_url: publicUrl }));
+      alert('PDF가 성공적으로 업로드되었습니다.');
+    }
+    setIsSubmitting(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const finalContent = editorRef.current.getInstance().getMarkdown();
     
-    // JSON 문자열로 입력된 스키마 데이터를 JSON 객체로 파싱 시도
     let parsedSchema = null;
     if (formData.schema_markup) {
       try {
@@ -65,7 +83,7 @@ export default function AdminPostUpload() {
 
     const submitData = { 
       ...formData, 
-      schema_markup: parsedSchema, // 파싱된 JSON 객체로 저장
+      schema_markup: parsedSchema,
       content_md: finalContent 
     };
 
@@ -97,7 +115,6 @@ export default function AdminPostUpload() {
   const handleEditMode = (post) => {
     setEditId(post.id);
     
-    // DB에서 가져온 JSON 객체 스키마를 텍스트 영역에 맞게 문자열로 변환
     const schemaString = post.schema_markup ? JSON.stringify(post.schema_markup, null, 2) : '';
 
     setFormData({
@@ -205,8 +222,25 @@ export default function AdminPostUpload() {
         </div>
 
         <div style={fieldGroupStyle}>
-          <label style={labelStyle}>PDF 다운로드 URL (선택)</label>
-          <input type="url" name="pdf_download_url" placeholder="Supabase Storage PDF URL 입력" value={formData.pdf_download_url} onChange={handleChange} style={inputStyle} />
+          <label style={labelStyle}>PDF 파일 업로드 (선택)</label>
+          <input 
+            type="file" 
+            accept="application/pdf" 
+            onChange={handlePdfUpload} 
+            style={{ ...inputStyle, padding: '9px' }} 
+            disabled={isSubmitting}
+          />
+          {formData.pdf_download_url && (
+            <input 
+              type="url" 
+              name="pdf_download_url" 
+              value={formData.pdf_download_url} 
+              onChange={handleChange} 
+              style={{ ...inputStyle, marginTop: '5px', backgroundColor: '#e9ecef', color: '#6c757d' }} 
+              readOnly
+              placeholder="업로드 완료 시 URL이 자동 입력됩니다."
+            />
+          )}
         </div>
 
         <div style={fieldGroupStyle}>
