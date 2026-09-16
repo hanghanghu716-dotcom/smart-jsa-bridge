@@ -108,7 +108,18 @@ export default function CaseStudyDetail() {
         ` : ''}
       `}</style>
 
-      <SEO pageTitle={`${post.title} | Smart JSA Bridge`} pageDescription={post.meta_description} />
+      <SEO 
+        pageTitle={post.meta_title ? post.meta_title : `${post.title} | Smart JSA Bridge`} 
+        pageDescription={post.meta_description} 
+      />
+      
+      {/* Google SEO 구조화 데이터(JSON-LD) 주입 */}
+      {post.schema_markup && (
+        <script 
+          type="application/ld+json" 
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(post.schema_markup) }} 
+        />
+      )}
       
       <header style={styles.header}>
         <div style={styles.container}>
@@ -147,6 +158,48 @@ export default function CaseStudyDetail() {
 
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
+          
+          {post.pdf_download_url && (
+            <div style={{ 
+              marginBottom: '24px', 
+              padding: '16px 20px', 
+              backgroundColor: '#f8fafc', 
+              borderLeft: '4px solid #0284c7', 
+              borderRadius: '4px', 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '12px'
+            }}>
+              <div>
+                <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginBottom: '4px' }}>
+                  Standard JSA Template Available
+                </strong>
+                <span style={{ fontSize: '0.9rem', color: '#475569' }}>
+                  No paywall. Download the complete safety protocol in PDF format.
+                </span>
+              </div>
+              <a 
+                href={post.pdf_download_url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ 
+                  padding: '10px 20px', 
+                  backgroundColor: '#0284c7', 
+                  color: '#fff', 
+                  textDecoration: 'none', 
+                  fontWeight: 'bold', 
+                  borderRadius: '4px', 
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+              >
+                📥 Download Free PDF
+              </a>
+            </div>
+          )}
+
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
             dir={isRtl ? 'rtl' : 'ltr'}
@@ -160,6 +213,7 @@ export default function CaseStudyDetail() {
             <span style={styles.adLabel}>ADVERTISEMENT</span>
             <AdSenseUnit client={PUBLISHER_ID} slot={ARTICLE_BOTTOM_SLOT_ID} format="auto" />
           </div>
+          
         </div>
       </div>
 
