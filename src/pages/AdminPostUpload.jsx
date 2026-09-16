@@ -1,17 +1,21 @@
-import { useState, useRef, useEffect } from 'react'; // ✅ useEffect 추가
+import { useState, useRef, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-// ✅ 에디터 라이브러리 및 스타일 임포트 추가
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 export default function AdminPostUpload() {
-  const editorRef = useRef(); // ✅ 에디터 인스턴스 제어용 참조
+  const editorRef = useRef();
   const [formData, setFormData] = useState({
-    post_group_id: '', title: '', language_code: 'ko', meta_description: '', content_md: ''
+    post_group_id: '', 
+    title: '', 
+    language_code: 'ko', 
+    meta_title: '', 
+    meta_description: '', 
+    pdf_download_url: '', 
+    schema_markup: '',
+    content_md: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  // ✅ [기능 추가] 게시물 목록 및 수정 모드 식별 상태 추가
   const [posts, setPosts] = useState([]);
   const [editId, setEditId] = useState(null);
 
@@ -20,14 +24,11 @@ export default function AdminPostUpload() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-// ✅ [추가] 이미지 드래그 앤 드롭 / 붙여넣기 시 작동하는 업로드 핸들러
   const onUploadImage = async (blob, callback) => {
-    // 1. 고유 파일명 생성 및 한글/공백 오류 방지
-    const extension = blob.name.split('.').pop(); // 원본 파일에서 확장자만 추출
-    const safeFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${extension}`; // 영문+숫자 난수 조합
+    const extension = blob.name.split('.').pop();
+    const safeFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${extension}`;
     const fileName = `post-images/${safeFileName}`;
     
-    // 2. Supabase Storage 'blog-images' 버킷에 파일 업로드
     const { data, error } = await supabase.storage
       .from('blog-images')
       .upload(fileName, blob);
@@ -37,12 +38,10 @@ export default function AdminPostUpload() {
       return;
     }
 
-    // 3. 업로드된 이미지의 Public URL 획득
     const { data: { publicUrl } } = supabase.storage
       .from('blog-images')
       .getPublicUrl(fileName);
 
-    // 4. 에디터 본문에 마크다운 이미지 태그 자동 삽입
     callback(publicUrl, blob.name); 
   };
 
@@ -50,9 +49,25 @@ export default function AdminPostUpload() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // ✅ 제출 전 에디터의 최종 마크다운 텍스트를 추출하여 데이터에 병합
     const finalContent = editorRef.current.getInstance().getMarkdown();
-    const submitData = { ...formData, content_md: finalContent };
+    
+    // JSON 문자열로 입력된 스키마 데이터를 JSON 객체로 파싱 시도
+    let parsedSchema = null;
+    if (formData.schema_markup) {
+      try {
+        parsedSchema = JSON.parse(formData.schema_markup);
+      } catch (err) {
+        alert('Schema Markup이 유효한 JSON 형식이 아닙니다. 확인해주세요.');
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    const submitData = { 
+      ...formData, 
+      schema_markup: parsedSchema, // 파싱된 JSON 객체로 저장
+      content_md: finalContent 
+    };
 
     const { error } = await supabase.from('case_studies').insert([submitData]);
 
@@ -60,14 +75,16 @@ export default function AdminPostUpload() {
       alert('업로드 실패: ' + error.message);
     } else {
       alert('콘텐츠가 성공적으로 업로드되었습니다.');
-      // 폼 및 에디터 초기화
-      setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_description: '', content_md: '' });
+      setFormData({ 
+        post_group_id: '', title: '', language_code: 'ko', meta_title: '', 
+        meta_description: '', pdf_download_url: '', schema_markup: '', content_md: '' 
+      });
       editorRef.current.getInstance().setMarkdown('');
+      fetchPosts();
     }
     setIsSubmitting(false);
   };
 
-  // ✅ [기능 추가] 등록된 게시물 데이터 호출 로직
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -77,27 +94,48 @@ export default function AdminPostUpload() {
     if (data) setPosts(data);
   };
 
-  // ✅ [기능 추가] 수정 모드 진입 및 에디터 데이터 맵핑 로직
   const handleEditMode = (post) => {
     setEditId(post.id);
+    
+    // DB에서 가져온 JSON 객체 스키마를 텍스트 영역에 맞게 문자열로 변환
+    const schemaString = post.schema_markup ? JSON.stringify(post.schema_markup, null, 2) : '';
+
     setFormData({
-      post_group_id: post.post_group_id,
-      title: post.title,
-      language_code: post.language_code,
-      meta_description: post.meta_description,
-      content_md: post.content_md
+      post_group_id: post.post_group_id || '',
+      title: post.title || '',
+      language_code: post.language_code || 'ko',
+      meta_title: post.meta_title || '',
+      meta_description: post.meta_description || '',
+      pdf_download_url: post.pdf_download_url || '',
+      schema_markup: schemaString,
+      content_md: post.content_md || ''
     });
     if (editorRef.current) {
-      editorRef.current.getInstance().setMarkdown(post.content_md);
+      editorRef.current.getInstance().setMarkdown(post.content_md || '');
     }
-    window.scrollTo(0, 0); // 폼 상단으로 시점 이동
+    window.scrollTo(0, 0); 
   };
 
-  // ✅ [기능 추가] 수정 완료 데이터 서버 전송 로직
   const handleUpdate = async () => {
     setIsSubmitting(true);
     const finalContent = editorRef.current.getInstance().getMarkdown();
-    const submitData = { ...formData, content_md: finalContent };
+    
+    let parsedSchema = null;
+    if (formData.schema_markup) {
+      try {
+        parsedSchema = JSON.parse(formData.schema_markup);
+      } catch (err) {
+        alert('Schema Markup이 유효한 JSON 형식이 아닙니다. 확인해주세요.');
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    const submitData = { 
+      ...formData, 
+      schema_markup: parsedSchema,
+      content_md: finalContent 
+    };
 
     const { error } = await supabase.from('case_studies').update(submitData).eq('id', editId);
     if (error) {
@@ -105,14 +143,16 @@ export default function AdminPostUpload() {
     } else {
       alert('성공적으로 수정되었습니다.');
       setEditId(null);
-      setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_description: '', content_md: '' });
+      setFormData({ 
+        post_group_id: '', title: '', language_code: 'ko', meta_title: '', 
+        meta_description: '', pdf_download_url: '', schema_markup: '', content_md: '' 
+      });
       editorRef.current.getInstance().setMarkdown('');
       fetchPosts();
     }
     setIsSubmitting(false);
   };
 
-  // ✅ [기능 추가] 게시물 삭제 로직
   const handleDelete = async (id) => {
     if (!window.confirm('해당 사례 연구를 완전히 삭제하시겠습니까?')) return;
     const { error } = await supabase.from('case_studies').delete().eq('id', id);
@@ -123,63 +163,76 @@ export default function AdminPostUpload() {
   return (
     <div style={{ maxWidth: '800px', margin: '40px auto', padding: '20px' }}>
       <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>사례 연구(Case Study) 업로드</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         
-        <input 
-          type="text" name="post_group_id" placeholder="그룹 ID (다국어 공통 식별자, 예: jsa-tank-cleaning)" 
-          value={formData.post_group_id} onChange={handleChange} style={inputStyle} required 
-        />
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>그룹 ID (필수)</label>
+          <input type="text" name="post_group_id" placeholder="예: jsa-tank-cleaning" value={formData.post_group_id} onChange={handleChange} style={inputStyle} required />
+        </div>
 
-        <select name="language_code" value={formData.language_code} onChange={handleChange} style={inputStyle}>
-          <option value="en-US">English (en-US)</option>
-          <option value="en-CA">English (en-CA)</option>
-          <option value="en-AU">English (en-AU)</option>
-          <option value="en-GB">English (en-GB)</option>
-          <option value="de-DE">Deutsch (de-DE)</option>
-          <option value="ja-JP">日本語 (ja-JP)</option>
-          <option value="fr-FR">Français (fr-FR)</option>
-          <option value="it-IT">Italiano (it-IT)</option>
-          <option value="es-ES">Español (es-ES)</option>
-          <option value="ar-SA">العربية (ar-SA)</option>
-          <option value="pt-BR">Português (pt-BR)</option>
-          <option value="ru-RU">Русский (ru-RU)</option>
-          <option value="ko">한국어 (ko)</option>
-        </select>
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>언어 선택</label>
+          <select name="language_code" value={formData.language_code} onChange={handleChange} style={inputStyle}>
+            <option value="en-US">English (en-US)</option>
+            <option value="en-CA">English (en-CA)</option>
+            <option value="en-AU">English (en-AU)</option>
+            <option value="en-GB">English (en-GB)</option>
+            <option value="de-DE">Deutsch (de-DE)</option>
+            <option value="ja-JP">日本語 (ja-JP)</option>
+            <option value="fr-FR">Français (fr-FR)</option>
+            <option value="it-IT">Italiano (it-IT)</option>
+            <option value="es-ES">Español (es-ES)</option>
+            <option value="ar-SA">العربية (ar-SA)</option>
+            <option value="pt-BR">Português (pt-BR)</option>
+            <option value="ru-RU">Русский (ru-RU)</option>
+            <option value="ko">한국어 (ko)</option>
+          </select>
+        </div>
 
-        <input 
-          type="text" name="title" placeholder="게시물 제목" 
-          value={formData.title} onChange={handleChange} style={inputStyle} required 
-        />
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>본문 제목 (H1) (필수)</label>
+          <input type="text" name="title" placeholder="게시물 본문에 표시될 메인 제목" value={formData.title} onChange={handleChange} style={inputStyle} required />
+        </div>
+
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>SEO 메타 타이틀 (선택)</label>
+          <input type="text" name="meta_title" placeholder="검색엔진에 노출될 타이틀 (비워둘 경우 본문 제목 사용)" value={formData.meta_title} onChange={handleChange} style={inputStyle} />
+        </div>
         
-        <textarea 
-          name="meta_description" placeholder="SEO 메타 요약 (150자 이내, 줄바꿈 가능)" 
-          value={formData.meta_description} onChange={handleChange} style={{ ...inputStyle, resize: 'vertical', minHeight: '80px' }} required 
-        />
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>SEO 메타 요약 (필수)</label>
+          <textarea name="meta_description" placeholder="150자 이내 요약" value={formData.meta_description} onChange={handleChange} style={{ ...inputStyle, resize: 'vertical', minHeight: '80px' }} required />
+        </div>
 
-        {/* ✅ [수정] textarea를 TOAST UI Editor로 전면 교체 */}
-        <div style={{ backgroundColor: '#fff', color: '#000' }}>
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>PDF 다운로드 URL (선택)</label>
+          <input type="url" name="pdf_download_url" placeholder="Supabase Storage PDF URL 입력" value={formData.pdf_download_url} onChange={handleChange} style={inputStyle} />
+        </div>
+
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>구조화 데이터 JSON-LD (선택)</label>
+          <textarea name="schema_markup" placeholder='{ "@context": "https://schema.org", "@type": "HowTo", ... }' value={formData.schema_markup} onChange={handleChange} style={{ ...inputStyle, resize: 'vertical', minHeight: '120px', fontFamily: 'monospace', fontSize: '14px' }} />
+        </div>
+
+        <div style={{ backgroundColor: '#fff', color: '#000', marginTop: '10px' }}>
           <Editor
             ref={editorRef}
             initialValue={formData.content_md}
             placeholder="본문 내용을 입력하세요. 이미지를 드래그 앤 드롭하여 첨부할 수 있습니다."
-            previewStyle="vertical" // 좌측 작성, 우측 미리보기 분할 화면
+            previewStyle="vertical" 
             height="600px"
             initialEditType="markdown"
             useCommandShortcut={true}
-            hooks={{
-              addImageBlobHook: onUploadImage // 이미지 첨부 이벤트 연결
-            }}
+            hooks={{ addImageBlobHook: onUploadImage }}
           />
         </div>
 
-{/* 기존 업로드 버튼: 수정 모드가 아닐 때만 렌더링 (기존 로직 유지) */}
         {!editId && (
           <button type="submit" disabled={isSubmitting} style={buttonStyle}>
             {isSubmitting ? '업로드 중...' : '발행하기'}
           </button>
         )}
         
-        {/* ✅ [기능 추가] 수정 모드 시 나타나는 제어 버튼 분기 추가 */}
         {editId && (
           <div style={{ display: 'flex', gap: '10px' }}>
             <button type="button" onClick={handleUpdate} disabled={isSubmitting} style={{ ...buttonStyle, flex: 1, backgroundColor: '#28a745' }}>
@@ -187,7 +240,7 @@ export default function AdminPostUpload() {
             </button>
             <button type="button" onClick={() => {
               setEditId(null);
-              setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_description: '', content_md: '' });
+              setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_title: '', meta_description: '', pdf_download_url: '', schema_markup: '', content_md: '' });
               editorRef.current.getInstance().setMarkdown('');
             }} style={{ ...buttonStyle, flex: 1, backgroundColor: '#6c757d' }}>
               취소
@@ -196,7 +249,6 @@ export default function AdminPostUpload() {
         )}
       </form>
 
-      {/* ✅ [기능 추가] 하단 게시물 관리(목록/수정/삭제) UI 블록 추가 */}
       <div style={{ marginTop: '50px', borderTop: '2px solid #ccc', paddingTop: '30px' }}>
         <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '15px', color: '#111' }}>등록된 사례 연구 관리</h3>
         <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -218,5 +270,7 @@ export default function AdminPostUpload() {
   );
 }
 
-const inputStyle = { padding: '12px', border: '1px solid #ccc', borderRadius: '8px', fontSize: '16px', width: '100%', color: '#111', backgroundColor: '#fff' };
+const fieldGroupStyle = { display: 'flex', flexDirection: 'column', gap: '5px' };
+const labelStyle = { fontSize: '14px', fontWeight: 'bold', color: '#333' };
+const inputStyle = { padding: '12px', border: '1px solid #ccc', borderRadius: '8px', fontSize: '16px', width: '100%', color: '#111', backgroundColor: '#fff', boxSizing: 'border-box' };
 const buttonStyle = { padding: '15px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer' };
