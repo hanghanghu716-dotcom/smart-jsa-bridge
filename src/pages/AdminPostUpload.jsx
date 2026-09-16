@@ -12,6 +12,7 @@ export default function AdminPostUpload() {
     meta_title: '', 
     meta_description: '', 
     pdf_download_url: '', 
+    pdf_list: [],
     schema_markup: '',
     content_md: ''
   });
@@ -63,10 +64,21 @@ export default function AdminPostUpload() {
       alert('PDF 업로드 실패: ' + error.message);
     } else {
       const { data: { publicUrl } } = supabase.storage.from('blog-images').getPublicUrl(safeFileName);
-      setFormData(prev => ({ ...prev, pdf_download_url: publicUrl }));
-      alert('PDF가 성공적으로 업로드되었습니다.');
+      setFormData(prev => ({ 
+        ...prev, 
+        pdf_download_url: publicUrl, 
+        pdf_list: [...(prev.pdf_list || []), { name: file.name, url: publicUrl }]
+      }));
+      alert('PDF가 성공적으로 추가되었습니다.');
     }
     setIsSubmitting(false);
+  };
+
+  const handleRemovePdf = (indexToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      pdf_list: prev.pdf_list.filter((_, index) => index !== indexToRemove)
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -100,7 +112,7 @@ export default function AdminPostUpload() {
       alert('콘텐츠가 성공적으로 업로드되었습니다.');
       setFormData({ 
         post_group_id: '', title: '', language_code: 'ko', meta_title: '', 
-        meta_description: '', pdf_download_url: '', schema_markup: '', content_md: '' 
+        meta_description: '', pdf_download_url: '', pdf_list: [], schema_markup: '', content_md: '' 
       });
       editorRef.current.getInstance().setMarkdown('');
       fetchPosts();
@@ -129,6 +141,7 @@ export default function AdminPostUpload() {
       meta_title: post.meta_title || '',
       meta_description: post.meta_description || '',
       pdf_download_url: post.pdf_download_url || '',
+      pdf_list: post.pdf_list || [],
       schema_markup: schemaString,
       content_md: post.content_md || ''
     });
@@ -167,7 +180,7 @@ export default function AdminPostUpload() {
       setEditId(null);
       setFormData({ 
         post_group_id: '', title: '', language_code: 'ko', meta_title: '', 
-        meta_description: '', pdf_download_url: '', schema_markup: '', content_md: '' 
+        meta_description: '', pdf_download_url: '', pdf_list: [], schema_markup: '', content_md: '' 
       });
       editorRef.current.getInstance().setMarkdown('');
       fetchPosts();
@@ -200,6 +213,21 @@ export default function AdminPostUpload() {
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // 표시할 페이지 번호 그룹 연산 (최대 5개 표시)
+  const maxPageButtons = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
+  let endPage = startPage + maxPageButtons - 1;
+
+  if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = Math.max(1, endPage - maxPageButtons + 1);
+  }
+
+  const pageNumbers = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div style={{ maxWidth: '800px', margin: '40px auto', padding: '20px' }}>
@@ -246,7 +274,7 @@ export default function AdminPostUpload() {
         </div>
 
         <div style={fieldGroupStyle}>
-          <label style={labelStyle}>PDF 파일 업로드 (선택)</label>
+          <label style={labelStyle}>PDF 파일 업로드 (다중 버전 지원)</label>
           <input 
             type="file" 
             accept="application/pdf" 
@@ -254,16 +282,18 @@ export default function AdminPostUpload() {
             style={{ ...inputStyle, padding: '9px' }} 
             disabled={isSubmitting}
           />
-          {formData.pdf_download_url && (
-            <input 
-              type="url" 
-              name="pdf_download_url" 
-              value={formData.pdf_download_url} 
-              onChange={handleChange} 
-              style={{ ...inputStyle, marginTop: '5px', backgroundColor: '#e9ecef', color: '#6c757d' }} 
-              readOnly
-              placeholder="업로드 완료 시 URL이 자동 입력됩니다."
-            />
+          {/* 다중 파일 리스트 렌더링 */}
+          {formData.pdf_list && formData.pdf_list.length > 0 && (
+            <ul style={{ listStyle: 'none', padding: 0, marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {formData.pdf_list.map((pdf, index) => (
+                <li key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f8fafc', padding: '10px 15px', border: '1px solid #ddd', borderRadius: '4px' }}>
+                  <span style={{ fontSize: '14px', color: '#333', wordBreak: 'break-all', paddingRight: '10px' }}>{pdf.name}</span>
+                  <button type="button" onClick={() => handleRemovePdf(index)} style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px', padding: '6px 12px', cursor: 'pointer', flexShrink: 0 }}>
+                    삭제
+                  </button>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
 
@@ -298,7 +328,7 @@ export default function AdminPostUpload() {
             </button>
             <button type="button" onClick={() => {
               setEditId(null);
-              setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_title: '', meta_description: '', pdf_download_url: '', schema_markup: '', content_md: '' });
+              setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_title: '', meta_description: '', pdf_download_url: '', pdf_list: [], schema_markup: '', content_md: '' });
               editorRef.current.getInstance().setMarkdown('');
             }} style={{ ...buttonStyle, flex: 1, backgroundColor: '#6c757d' }}>
               취소
@@ -336,10 +366,27 @@ export default function AdminPostUpload() {
           ))}
         </ul>
 
-        {/* 페이지네이션 UI 추가 */}
+        {/* 페이지네이션 UI 수정 (최대 5개 표시 및 이전/다음 이동 버튼 추가) */}
         {totalPages > 1 && (
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '20px' }}>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '20px', flexWrap: 'wrap' }}>
+            <button 
+              type="button"
+              onClick={() => paginate(1)} 
+              disabled={currentPage === 1}
+              style={{ padding: '8px 12px', border: '1px solid #ccc', borderRadius: '6px', backgroundColor: '#fff', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', opacity: currentPage === 1 ? 0.5 : 1 }}
+            >
+              &laquo;
+            </button>
+            <button 
+              type="button"
+              onClick={() => paginate(currentPage - 1)} 
+              disabled={currentPage === 1}
+              style={{ padding: '8px 12px', border: '1px solid #ccc', borderRadius: '6px', backgroundColor: '#fff', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', opacity: currentPage === 1 ? 0.5 : 1 }}
+            >
+              &lt;
+            </button>
+
+            {pageNumbers.map(number => (
               <button 
                 key={number} 
                 type="button"
@@ -357,6 +404,23 @@ export default function AdminPostUpload() {
                 {number}
               </button>
             ))}
+
+            <button 
+              type="button"
+              onClick={() => paginate(currentPage + 1)} 
+              disabled={currentPage === totalPages}
+              style={{ padding: '8px 12px', border: '1px solid #ccc', borderRadius: '6px', backgroundColor: '#fff', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', opacity: currentPage === totalPages ? 0.5 : 1 }}
+            >
+              &gt;
+            </button>
+            <button 
+              type="button"
+              onClick={() => paginate(totalPages)} 
+              disabled={currentPage === totalPages}
+              style={{ padding: '8px 12px', border: '1px solid #ccc', borderRadius: '6px', backgroundColor: '#fff', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', opacity: currentPage === totalPages ? 0.5 : 1 }}
+            >
+              &raquo;
+            </button>
           </div>
         )}
       </div>

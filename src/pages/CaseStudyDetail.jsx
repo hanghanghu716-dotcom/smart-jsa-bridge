@@ -159,7 +159,7 @@ export default function CaseStudyDetail() {
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
           
-          {post.pdf_download_url && (
+          {((post.pdf_list && post.pdf_list.length > 0) || post.pdf_download_url) && (
             <div style={{ 
               marginBottom: '24px', 
               padding: '16px 20px', 
@@ -167,36 +167,42 @@ export default function CaseStudyDetail() {
               borderLeft: '4px solid #0284c7', 
               borderRadius: '4px', 
               display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '12px'
+              flexDirection: 'column', 
+              gap: '16px'
             }}>
               <div>
                 <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginBottom: '4px' }}>
-                  Standard JSA Template Available
+                  Standard JSA Templates Available
                 </strong>
                 <span style={{ fontSize: '0.9rem', color: '#475569' }}>
-                  No paywall. Download the complete safety protocol in PDF format.
+                  다양한 상황 및 감사 대비용 버전별 안전 프로토콜을 다운로드하세요.
                 </span>
               </div>
-              <a 
-                href={post.pdf_download_url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ 
-                  padding: '10px 20px', 
-                  backgroundColor: '#0284c7', 
-                  color: '#fff', 
-                  textDecoration: 'none', 
-                  fontWeight: 'bold', 
-                  borderRadius: '4px', 
-                  whiteSpace: 'nowrap',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                }}
-              >
-                📥 Download Free PDF
-              </a>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                {/* 기존 단일 파일 호환성 유지 */}
+                {post.pdf_download_url && (!post.pdf_list || post.pdf_list.length === 0) && (
+                  <a 
+                    href={post.pdf_download_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ padding: '10px 20px', backgroundColor: '#0284c7', color: '#fff', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
+                  >
+                    📥 Download Original PDF
+                  </a>
+                )}
+                {/* 다중 파일 리스트 렌더링 */}
+                {post.pdf_list && post.pdf_list.map((pdf, index) => (
+                  <a 
+                    key={index}
+                    href={pdf.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ padding: '10px 20px', backgroundColor: '#0284c7', color: '#fff', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
+                  >
+                    📥 Download {pdf.name}
+                  </a>
+                ))}
+              </div>
             </div>
           )}
 
