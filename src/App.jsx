@@ -145,7 +145,9 @@ export default function App() {
             <Route path="/:lng/layout-table" element={<CrawlerBlocker><LanguageWrapper><TableBuilder /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/terms" element={<LanguageWrapper><Terms /></LanguageWrapper>} />
             <Route path="/:lng/privacy" element={<LanguageWrapper><Privacy /></LanguageWrapper>} />
+            <Route path="/case-study/:id" element={<LanguageWrapper><CaseStudyDetail /></LanguageWrapper>} />
             <Route path="/:lng/case-study/:id" element={<LanguageWrapper><CaseStudyDetail /></LanguageWrapper>} />
+            <Route path="/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/archive" element={<LanguageWrapper><Archive /></LanguageWrapper>} />
           </Routes>

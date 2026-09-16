@@ -19,6 +19,11 @@ export default function AdminPostUpload() {
   const [posts, setPosts] = useState([]);
   const [editId, setEditId] = useState(null);
 
+  // 검색 및 페이지네이션 상태 추가
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -177,6 +182,25 @@ export default function AdminPostUpload() {
     else fetchPosts();
   };
 
+  // 검색 필터링 로직
+  const filteredPosts = posts.filter(post => 
+    (post.title && post.title.toLowerCase().includes(searchTerm.toLowerCase())) || 
+    (post.post_group_id && post.post_group_id.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
+  // 페이지네이션 로직
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1); // 검색 시 첫 페이지로 초기화
+  };
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div style={{ maxWidth: '800px', margin: '40px auto', padding: '20px' }}>
       <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>사례 연구(Case Study) 업로드</h2>
@@ -285,8 +309,20 @@ export default function AdminPostUpload() {
 
       <div style={{ marginTop: '50px', borderTop: '2px solid #ccc', paddingTop: '30px' }}>
         <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '15px', color: '#111' }}>등록된 사례 연구 관리</h3>
+        
+        {/* 검색창 UI 추가 */}
+        <div style={{ marginBottom: '20px' }}>
+          <input 
+            type="text" 
+            placeholder="제목 또는 그룹 ID로 검색..." 
+            value={searchTerm} 
+            onChange={handleSearchChange} 
+            style={{ ...inputStyle, width: '100%', marginBottom: '10px' }} 
+          />
+        </div>
+
         <ul style={{ listStyle: 'none', padding: 0 }}>
-          {posts.map(post => (
+          {currentPosts.map(post => (
             <li key={post.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '10px', backgroundColor: '#fff' }}>
               <div style={{ flex: 1 }}>
                 <strong style={{ color: '#111', fontSize: '1.1rem', display: 'block', marginBottom: '5px' }}>{post.title}</strong>
@@ -299,6 +335,30 @@ export default function AdminPostUpload() {
             </li>
           ))}
         </ul>
+
+        {/* 페이지네이션 UI 추가 */}
+        {totalPages > 1 && (
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '20px' }}>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+              <button 
+                key={number} 
+                type="button"
+                onClick={() => paginate(number)} 
+                style={{ 
+                  padding: '8px 14px', 
+                  border: '1px solid #ccc', 
+                  borderRadius: '6px', 
+                  backgroundColor: currentPage === number ? '#007bff' : '#fff', 
+                  color: currentPage === number ? '#fff' : '#333', 
+                  cursor: 'pointer',
+                  fontWeight: currentPage === number ? 'bold' : 'normal'
+                }}
+              >
+                {number}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

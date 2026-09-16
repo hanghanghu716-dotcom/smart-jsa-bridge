@@ -35,7 +35,7 @@ const SEO = ({ pageTitle, pageDescription }) => {
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:locale" content={currentLang.replace('-', '_')} />
+      <meta property="og:locale" content={currentLang === 'ko' ? 'ko_KR' : currentLang.replace('-', '_')} />
       <meta property="og:type" content="website" />
 
       {/* Twitter 카드 메타 태그 */}
