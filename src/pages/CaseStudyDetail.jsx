@@ -175,8 +175,7 @@ export default function CaseStudyDetail() {
                   Standard JSA Templates Available
                 </strong>
                 <span style={{ fontSize: '0.9rem', color: '#475569' }}>
-                  다양한 상황 및 감사 대비용 버전별 안전 프로토콜을 다운로드하세요.
-                </span>
+                 Download version-controlled safety protocols for diverse operational scenarios and audit readiness.                </span>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 {/* 기존 단일 파일 호환성 유지 */}
