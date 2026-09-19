@@ -1,12 +1,7 @@
+import { detectLanguage, SUPPORTED_LANGS, normalizeLocale } from '../locales/config.js';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import i18n from 'i18next';
-
-/**
- * ✅ 지원하는 글로벌 언어 규격 정의
- */
-const SUPPORTED_LANGS = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
-const DEFAULT_LANG = 'en-US'; // 한국어 대신 가장 수익성/범용성이 높은 en-US를 기본값으로 변경 권장
 
 /**
  * ✅ useLanguageDetect Hook
@@ -19,22 +14,14 @@ export const useLanguageDetect = () => {
   useEffect(() => {
     // 1. 오직 루트 경로('/')로 접속했을 때만 자동 감지 로직을 실행함
     if (location.pathname === '/' || location.pathname === '') {
-      const browserLang = navigator.language || navigator.userLanguage; 
-      
-      // 2. 브라우저 언어 코드와 지원 언어 목록 매칭
-      let targetLang = SUPPORTED_LANGS.find(lang => 
-        lang.toLowerCase() === browserLang.toLowerCase()
-      );
-
-      if (!targetLang) {
-        const langPrefix = browserLang.split('-')[0].toLowerCase();
-        targetLang = SUPPORTED_LANGS.find(lang => 
-          lang.toLowerCase().startsWith(langPrefix)
-        );
+      const browserLang = navigator.language || navigator.userLanguage || '';
+      let savedLanguage;
+      try {
+        savedLanguage = normalizeLocale(window.localStorage.getItem('i18nextLng'));
+      } catch {
+        // Browser privacy settings may disable storage.
       }
-
-      // 3. 지원하지 않는 언어권일 경우 기본값(한국어)으로 배정
-      if (!targetLang) targetLang = DEFAULT_LANG;
+      const targetLang = SUPPORTED_LANGS.includes(savedLanguage) ? savedLanguage : detectLanguage(browserLang);
 
       // 4. i18n 상태를 해당 언어로 동기화한 후 언어 경로로 즉시 리다이렉트
       if (i18n.language !== targetLang) {

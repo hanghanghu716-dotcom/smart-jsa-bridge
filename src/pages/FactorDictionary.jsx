@@ -1,3 +1,4 @@
+import { getDataLocale } from '../locales/config.js';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
@@ -29,6 +30,7 @@ export default function FactorDictionary() {
   const getDbLocale = (lang) => {
     if (!lang) return 'ko-KR';
     if (lang.includes('ko')) return 'ko-KR';
+    if (lang === 'en-CA') return 'en-CA';
     if (lang.includes('en-AU')) return 'en-AU';
     if (lang.includes('en-GB')) return 'en-GB';
     if (lang.includes('en')) return 'en-US'; 
@@ -45,7 +47,7 @@ export default function FactorDictionary() {
 
     return 'ko-KR'; 
   };
-  const currentLocale = getDbLocale(i18n.language);
+  const currentLocale = getDbLocale(getDataLocale(i18n.language));
 
   useEffect(() => {
     const fetchCategories = async () => {

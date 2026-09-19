@@ -1,0 +1,43 @@
+{
+  "main": {
+    "seo": {
+      "title": "Smart JSA Bridge | Analyse sécuritaire des tâches au Québec",
+      "description": "Préparez vos analyses sécuritaires des tâches (AST/JSA) et vos documents de travail en français pour le Québec."
+    }
+  },
+  "info": {
+    "permit": {
+      "밀폐": "Espace clos"
+    }
+  },
+  "modulebuilder": {
+    "default": {
+      "docTitle": "Analyse sécuritaire des tâches (AST / JSA)"
+    },
+    "table": {
+      "approval": "Approbation"
+    },
+    "permit": {
+      "confinedSpace": "Permis d’entrée en espace clos",
+      "electrical": "Cadenassage (LOTO)"
+    },
+    "preview": {
+      "header": "Aperçu de l’analyse sécuritaire des tâches (AST / JSA)"
+    },
+    "header": {
+      "subtitle": "Configurer les en-têtes de l’AST et les champs des permis de travail (PTW)."
+    },
+    "toolbar": {
+      "headerTextSetting": "Configuration de l’en-tête de l’AST"
+    }
+  },
+  "export": {
+    "default": {
+      "docTitle": "Analyse sécuritaire des tâches (AST / JSA)"
+    },
+    "permit": {
+      "confinedSpace": "Espace clos",
+      "electrical": "Cadenassage"
+    }
+  }
+}

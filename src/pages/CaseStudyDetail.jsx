@@ -1,3 +1,4 @@
+import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
@@ -25,7 +26,7 @@ export default function CaseStudyDetail() {
     const fetchLocalizedPost = async () => {
       setLoading(true);
       const pathSegments = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
-      const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
+      const supportedLangs = SUPPORTED_LANGS;
       const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
 
       const targetLang = urlLang || i18n.language || 'ko';
@@ -34,11 +35,12 @@ export default function CaseStudyDetail() {
         .from('case_studies')
         .select('*')
         .eq('post_group_id', id) 
-        .eq('language_code', targetLang)
-        .maybeSingle();
+        .in('language_code', getCaseLanguages(targetLang));
 
-      if (data) {
-        setPost(data);
+      if (!error && data?.length) {
+        setPost(selectLocalizedCases(data, targetLang)[0]);
+      } else if (targetLang === 'fr-CA-QC') {
+        setPost(null);
       } else {
         const { data: defaultData } = await supabase
           .from('case_studies')
@@ -60,7 +62,7 @@ export default function CaseStudyDetail() {
   }, [id, i18n.language]);
 
   if (loading) return <div style={styles.loading}>Loading...</div>;
-  if (!post) return <div style={styles.error}>Content not found.</div>;
+  if (!post) return <div style={styles.error}>{i18n.language === 'fr-CA-QC' ? 'Aucun contenu disponible en français pour le Québec.' : 'Content not found.'}</div>;
 
   return (
     <div style={styles.wrapper}>

@@ -1,12 +1,9 @@
+import { hasLanguagePrefix } from '../locales/config.js';
 import { useCallback } from 'react';
 import { useNavigate, Link as ReactRouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-// 지원하는 언어 목록 (App.jsx와 동일하게 유지)
-// 지원하는 언어 목록 (수익화 최적화 13개 로케일 적용)
-const SUPPORTED_LANGS = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];const hasLangPrefix = (path) => {
-  return SUPPORTED_LANGS.some(lang => path.startsWith(`/${lang}`));
-};
+const hasLangPrefix = hasLanguagePrefix;
 
 /**
  * ✅ 1. 현재 언어 코드를 포함하여 이동하는 커스텀 navigate 훅

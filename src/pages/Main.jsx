@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
+import { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
@@ -6,6 +7,54 @@ import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { AuthContext } from '../contexts/AuthContext'; 
+
+// Compact header copy is kept here so this file can be replaced independently.
+// Optional main:header.* translations take precedence over these defaults.
+const HEADER_COPY = {
+  ko: ['규정 가이드', 'JSA 절차', '위험요인 DB', '사례 탐색', '현장 사례', '내 보관함', '언어 및 지역', '전체 메뉴', '닫기'],
+  en: ['Regulations', 'JSA Process', 'Hazard DB', 'Explore', 'Case Studies', 'My Library', 'Language & region', 'Menu', 'Close'],
+  de: ['Vorschriften', 'JSA-Ablauf', 'Gefahren-DB', 'Entdecken', 'Fallstudien', 'Meine Bibliothek', 'Sprache & Region', 'Menü', 'Schließen'],
+  ja: ['規程ガイド', 'JSA手順', '危険要因DB', '事例検索', '現場事例', 'マイライブラリ', '言語・地域', 'メニュー', '閉じる'],
+  fr: ['Réglementation', 'Procédure JSA', 'Base de risques', 'Explorer', 'Études de cas', 'Ma bibliothèque', 'Langue et région', 'Menu', 'Fermer'],
+  it: ['Normative', 'Procedura JSA', 'DB rischi', 'Esplora', 'Casi studio', 'La mia raccolta', 'Lingua e regione', 'Menu', 'Chiudi'],
+  es: ['Normativa', 'Proceso JSA', 'BD de riesgos', 'Explorar', 'Casos prácticos', 'Mi biblioteca', 'Idioma y región', 'Menú', 'Cerrar'],
+  ar: ['اللوائح', 'إجراءات JSA', 'قاعدة المخاطر', 'استكشاف', 'دراسات حالة', 'مكتبتي', 'اللغة والمنطقة', 'القائمة', 'إغلاق'],
+  pt: ['Normas', 'Processo APR', 'BD de riscos', 'Explorar', 'Estudos de caso', 'Minha biblioteca', 'Idioma e região', 'Menu', 'Fechar'],
+  ru: ['Нормативы', 'Процесс JSA', 'База рисков', 'Поиск', 'Примеры', 'Моя библиотека', 'Язык и регион', 'Меню', 'Закрыть'],
+};
+const HEADER_KEYS = ['regulation', 'process', 'database', 'explore', 'cases', 'library', 'language', 'menu', 'close'];
+const HEADER_CSS = `
+  .main-header { padding: 28px clamp(16px, 3vw, 48px) !important; }
+  .main-header-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; position: relative; }
+  .main-brand { flex: 0 0 auto; white-space: nowrap; margin: 0; font-size: clamp(14px, 1.5vw, 22px); letter-spacing: 1px; font-weight: 900; color: white; }
+  .main-brand a { color: inherit; text-decoration: none; }
+  .main-header-nav { display: flex; align-items: center; gap: clamp(16px, 1.5vw, 24px); width: max-content; flex: 0 0 auto; }
+  .main-header-nav.is-collapsed { position: absolute; visibility: hidden; pointer-events: none; }
+  .main-header-link { appearance: none; background: none; border: 0; padding: 10px 0; font: inherit; font-size: .9rem; font-weight: 700; line-height: 1.4; color: white; text-decoration: none; white-space: nowrap; flex: 0 0 auto; cursor: pointer; opacity: .9; }
+  .main-header-actions { display: flex; align-items: center; gap: 16px; flex: 0 0 auto; }
+  .main-language-button, .main-menu-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; color: white; background: rgba(0,0,0,.18); font: inherit; font-size: .875rem; font-weight: 700; line-height: 1.4; white-space: nowrap; flex-shrink: 0; cursor: pointer; }
+  .main-menu-button { min-width: 44px; padding: 10px; }
+  .main-language-panel { position: absolute; top: calc(100% + 10px); inset-inline-end: 0; width: min(320px, calc(100vw - 32px)); max-height: min(65dvh, 480px); overflow-y: auto; overscroll-behavior: contain; background: white; color: #111; padding: 8px; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.22); z-index: 2000; }
+  .main-language-heading { padding: 8px 12px; font-size: .8rem; font-weight: 700; color: #606975; }
+  .main-language-option { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; min-height: 44px; text-align: start; border: 0; border-radius: 6px; background: white; color: #111; font: inherit; font-size: .875rem; line-height: 1.5; cursor: pointer; }
+  .main-language-option[aria-current="true"] { background: #edf5ff; color: #0759b6; font-weight: 700; }
+  .main-language-option:hover { background: #f1f5f9; }
+  .main-header-link:hover { opacity: 1; }
+  .main-header button:focus-visible, .main-header a:focus-visible { outline: 2px solid #60a5fa; outline-offset: 4px; }
+  .main-language-option:focus-visible { outline-offset: -2px !important; }
+  .main-side-drawer { width: min(400px, 100vw); }
+  .main-drawer-action { background: none; border: 0; text-align: start; font-family: inherit; cursor: pointer; }
+  @media (max-width: 639px) {
+    .main-header { padding: 16px 12px !important; }
+    .main-header-row { gap: 8px; }
+    .main-brand { font-size: 14px; letter-spacing: 0; }
+    .main-header-actions { gap: 6px; }
+    .main-language-button { padding: 8px; gap: 4px; font-size: .75rem; }
+    .main-language-globe, .main-menu-label { display: none; }
+    .main-language-panel { position: fixed; top: 72px; left: 12px; right: 12px; width: auto; }
+    .main-side-drawer { width: 100%; padding: 28px 24px !important; }
+  }
+`;
 
 export default function Main() {
   const navigate = useLanguageNavigate(); 
@@ -16,6 +65,16 @@ export default function Main() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [showHeaderNav, setShowHeaderNav] = useState(false);
+  const headerRowRef = useRef(null);
+  const brandRef = useRef(null);
+  const headerNavRef = useRef(null);
+  const headerActionsRef = useRef(null);
+  const languageWrapperRef = useRef(null);
+  const languageButtonRef = useRef(null);
+  const languagePanelRef = useRef(null);
+  const menuButtonRef = useRef(null);
+  const drawerRef = useRef(null);
 
   const [caseStudies, setCaseStudies] = useState([]);
   // 검색 및 페이지네이션을 위한 새로운 상태 변수 선언
@@ -25,26 +84,124 @@ export default function Main() {
 
   const { user } = useContext(AuthContext);
 
-// 13개 다국어 우선순위 배열 적용
-  const languages = [
-    { code: 'en-US', label: 'English (US)' },
-    { code: 'en-CA', label: 'English (Canada)' },
-    { code: 'en-AU', label: 'English (Australia)' },
-    { code: 'en-GB', label: 'English (UK)' },
-    { code: 'de-DE', label: 'Deutsch' },
-    { code: 'ja-JP', label: '日本語' },
-    { code: 'fr-FR', label: 'Français' },
-    { code: 'it-IT', label: 'Italiano' },
-    { code: 'es-ES', label: 'Español' },
-    { code: 'ar-SA', label: 'العربية' },
-    { code: 'pt-BR', label: 'Português (BR)' },
-    { code: 'ru-RU', label: 'Русский' },
-    { code: 'ko', label: '한국어' }
-  ];
+// 언어 및 캐나다 주 선택
+  const pathLanguage = location.pathname.split('/')[1];
+  const currentLanguage = SUPPORTED_LANGS.includes(pathLanguage)
+    ? pathLanguage : (i18n.language || 'ko');
+  const languages = currentLanguage === 'en-CA'
+    ? [{ code: 'en-CA', label: 'English (Canada)' }, ...LANGUAGE_OPTIONS]
+    : LANGUAGE_OPTIONS;
+  const baseLanguage = currentLanguage.split('-')[0];
+  const headerDefaults = HEADER_COPY[baseLanguage] || HEADER_COPY.en;
+  const headerLabels = Object.fromEntries(HEADER_KEYS.map((key, index) => [
+    key, t('header.' + key, { defaultValue: headerDefaults[index] }),
+  ]));
+  const activeLanguageLabel = languages.find(lng => lng.code === currentLanguage)?.label
+    || (currentLanguage === 'en-CA' ? 'English (Canada)' : currentLanguage);
+  const shortLanguageLabel = currentLanguage === 'ko' ? '한국어'
+    : currentLanguage === 'ja-JP' ? '日本語'
+    : currentLanguage.toUpperCase().replace('-', ' · ');
+
+  // Measure the actual translated labels, including after a font or viewport change.
+  useLayoutEffect(() => {
+    let disposed = false;
+    const measure = () => {
+      if (disposed) return;
+      const row = headerRowRef.current;
+      const brand = brandRef.current;
+      const nav = headerNavRef.current;
+      const actions = headerActionsRef.current;
+      if (!row || !brand || !nav || !actions) return;
+      const gap = parseFloat(window.getComputedStyle(row).columnGap) || 24;
+      const requiredWidth = brand.getBoundingClientRect().width
+        + nav.getBoundingClientRect().width + actions.getBoundingClientRect().width + gap * 2;
+      setShowHeaderNav(window.innerWidth >= 960 && requiredWidth + 8 <= row.clientWidth);
+    };
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null;
+    [headerRowRef, brandRef, headerNavRef, headerActionsRef].forEach(ref => {
+      if (ref.current) observer?.observe(ref.current);
+    });
+    window.addEventListener('resize', measure);
+    document.fonts?.ready.then(measure);
+    measure();
+    return () => {
+      disposed = true;
+      observer?.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [currentLanguage, t]);
+
+  useEffect(() => {
+    if (!isLanguageOpen) return;
+    const panel = languagePanelRef.current;
+    (panel?.querySelector('[aria-current="true"]') || panel?.querySelector('button'))?.focus();
+    const closeOutside = event => {
+      if (!languageWrapperRef.current?.contains(event.target)) setIsLanguageOpen(false);
+    };
+    const onKeyDown = event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsLanguageOpen(false);
+        languageButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isLanguageOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const drawer = drawerRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    drawer?.querySelector('button')?.focus();
+    const onKeyDown = event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsMenuOpen(false);
+      }
+      if (event.key !== 'Tab') return;
+      const controls = [...(drawer?.querySelectorAll('a[href], button:not([disabled])') || [])];
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!first) return;
+      if (event.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !drawer.contains(document.activeElement))) {
+        event.preventDefault(); first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+      menuButtonRef.current?.focus();
+    };
+  }, [isMenuOpen]);
+
+  const openLibrary = () => {
+    setIsMenuOpen(false);
+    if (user) navigate('/library');
+    else setIsStartModalOpen(true);
+  };
+
+  const handleLanguageKeyDown = event => {
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const options = [...languagePanelRef.current.querySelectorAll('button')];
+    const index = options.indexOf(document.activeElement);
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? options.length - 1
+      : (index + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
+    options[next]?.focus();
+  };
 
   const handleLanguageChange = (lngCode) => {
     const segments = location.pathname.split('/');
-    const supportedCodes = languages.map(l => l.code);
+    const supportedCodes = SUPPORTED_LANGS;
 
     if (supportedCodes.includes(segments[1])) {
       segments[1] = lngCode;
@@ -53,7 +210,7 @@ export default function Main() {
     }
 
     const newPath = segments.join('/') || '/';
-    window.location.href = newPath;
+    window.location.href = newPath + location.search + location.hash;
     setIsLanguageOpen(false);
   };
 
@@ -73,18 +230,19 @@ export default function Main() {
   useEffect(() => {
     const fetchRecentCases = async () => {
       const pathLang = window.location.pathname.split('/')[1];
-      const supportedCodes = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];      const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');
+      const supportedCodes = SUPPORTED_LANGS;
+      const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');
 
       const { data, error } = await supabase
         .from('case_studies')
-        .select('post_group_id, title, meta_description, created_at')
-        .eq('language_code', currentLang)
+        .select('post_group_id, title, meta_description, created_at, language_code')
+        .in('language_code', getCaseLanguages(currentLang))
         .order('created_at', { ascending: false }); // 구글 봇 탐색 권장 조건에 맞춰 제한 없이 전량 확보
 
       if (error) {
         console.error('Case studies fetch error:', error);
       } else {
-        setCaseStudies(data || []);
+        setCaseStudies(selectLocalizedCases(data || [], currentLang));
       }
     };
     fetchRecentCases();
@@ -132,6 +290,7 @@ export default function Main() {
   return (
     <div style={styles.wrapper}>
       <SEO />
+      <style>{HEADER_CSS}</style>
 
       {isStartModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsStartModalOpen(false)}>
@@ -158,73 +317,106 @@ export default function Main() {
           <div style={styles.dimOverlay} />
         </div>
 
-        <header style={styles.header} className="max-lg:!px-6">
-          <div className="flex justify-between items-center h-full">
-            <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-              <div style={styles.headerRight}>
-                <div className="hidden lg:flex items-center">
-                  <LanguageLink to="/regulation" style={styles.headerLink}>{t('navRegulation')}</LanguageLink>
-                  <LanguageLink to="/jrajsa" style={styles.headerLink}>{t('navProcess')}</LanguageLink>
-                  <LanguageLink to="/dictionary" style={styles.headerLink}>{t('navDB')}</LanguageLink>
-                  <LanguageLink to="/explore" style={styles.headerLink}>{t('navExplore')}</LanguageLink>
-                  <a href="#case-studies" style={{ ...styles.headerLink, cursor: 'pointer' }}>
-                    {t('navCaseStudy', { defaultValue: 'Case Studies' })}
-                  </a>
-                  <span
-                    style={{ ...styles.headerLink, cursor: 'pointer' }}
-                    onClick={() => {
-                      if (user) { navigate('/library'); }
-                      else { setIsStartModalOpen(true); }
-                    }}
-                  >
-                    {t('navLibrary')}
-                  </span>
-                </div>
-              <span style={styles.separator}>|</span>
-
-              <div style={styles.languageSelectorWrapper}>
-                <div
-                  style={styles.activeLanguageDisplay}
-                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+        <header style={styles.header} className="main-header">
+          <div ref={headerRowRef} className="main-header-row">
+            <h1 ref={brandRef} className="main-brand">
+              <LanguageLink to="/">Smart JSA Bridge</LanguageLink>
+            </h1>
+            <nav
+              ref={headerNavRef}
+              className={'main-header-nav' + (showHeaderNav ? '' : ' is-collapsed')}
+              aria-label={headerLabels.menu}
+              aria-hidden={!showHeaderNav}
+              inert={!showHeaderNav}
+            >
+              <LanguageLink to="/regulation" className="main-header-link">{headerLabels.regulation}</LanguageLink>
+              <LanguageLink to="/jrajsa" className="main-header-link">{headerLabels.process}</LanguageLink>
+              <LanguageLink to="/dictionary" className="main-header-link">{headerLabels.database}</LanguageLink>
+              <LanguageLink to="/explore" className="main-header-link">{headerLabels.explore}</LanguageLink>
+              <a href="#case-studies" className="main-header-link">{headerLabels.cases}</a>
+              <button type="button" className="main-header-link" onClick={openLibrary}>{headerLabels.library}</button>
+            </nav>
+            <div ref={headerActionsRef} className="main-header-actions">
+              <div
+                ref={languageWrapperRef}
+                style={styles.languageSelectorWrapper}
+                onBlur={event => {
+                  if (!event.currentTarget.contains(event.relatedTarget)) setIsLanguageOpen(false);
+                }}
+              >
+                <button
+                  ref={languageButtonRef}
+                  type="button"
+                  className="main-language-button"
+                  aria-label={headerLabels.language + ': ' + activeLanguageLabel}
+                  aria-expanded={isLanguageOpen}
+                  aria-controls="main-language-panel"
+                  title={activeLanguageLabel}
+                  onClick={() => setIsLanguageOpen(open => !open)}
+                  onKeyDown={event => {
+                    if (event.key === 'ArrowDown') {
+                      event.preventDefault();
+                      setIsLanguageOpen(true);
+                    }
+                  }}
                 >
-                  {languages.find(lng => lng.code === i18n.language)?.label || 'Language'}
-                  <span style={{ ...styles.dropdownArrow, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)' }}>▼</span>
-                </div>
+                  <svg className="main-language-globe" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                    <circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><path d="M3 12h18" />
+                  </svg>
+                  <bdi>{shortLanguageLabel}</bdi>
+                  <span aria-hidden="true" style={{ ...styles.dropdownArrow, marginLeft: 0, transform: isLanguageOpen ? 'rotate(180deg)' : 'rotate(0)' }}>▾</span>
+                </button>
                 {isLanguageOpen && (
-                  <div style={styles.dropdownMenu}>
+                  <div id="main-language-panel" ref={languagePanelRef} className="main-language-panel" onKeyDown={handleLanguageKeyDown}>
+                    <div className="main-language-heading">{headerLabels.language}</div>
                     {languages.map(lng => (
-                      <div
+                      <button
+                        type="button"
                         key={lng.code}
-                        style={styles.dropdownItem}
+                        className="main-language-option"
+                        aria-current={lng.code === currentLanguage ? 'true' : undefined}
                         onClick={() => handleLanguageChange(lng.code)}
                       >
-                        {lng.label}
-                      </div>
+                        <bdi>{lng.label}</bdi>
+                        <span aria-hidden="true">{lng.code === currentLanguage ? '✓' : ''}</span>
+                      </button>
                     ))}
                   </div>
                 )}
               </div>
-
-              <span style={styles.separator}>|</span>
-              <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
-                <span style={styles.menuText} className="max-lg:hidden">MENU</span>
-                <div style={styles.hamburger}>
-                  <div style={styles.bar}></div>
-                  <div style={styles.bar}></div>
-                </div>
-              </div>
+              <button
+                ref={menuButtonRef}
+                type="button"
+                className="main-menu-button"
+                aria-label={headerLabels.menu}
+                aria-expanded={isMenuOpen}
+                aria-controls="main-side-drawer"
+                onClick={() => { setIsLanguageOpen(false); setIsMenuOpen(true); }}
+              >
+                <span className="main-menu-label">{headerLabels.menu}</span>
+                <span style={styles.hamburger} aria-hidden="true"><span style={styles.bar} /><span style={styles.bar} /></span>
+              </button>
             </div>
           </div>
         </header>
 
-        <div style={{
-          ...styles.sideDrawer,
-          transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
-          visibility: isMenuOpen ? 'visible' : 'hidden',
-          width: window.innerWidth < 1024 ? '100%' : '400px'
-        }}>
+        <div
+          id="main-side-drawer"
+          ref={drawerRef}
+          className="main-side-drawer"
+          role="dialog"
+          aria-modal={isMenuOpen ? true : undefined}
+          aria-label={headerLabels.menu}
+          aria-hidden={!isMenuOpen}
+          inert={!isMenuOpen}
+          style={{
+            ...styles.sideDrawer,
+            transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
+            visibility: isMenuOpen ? 'visible' : 'hidden',
+          }}
+        >
           <div style={styles.drawerHeader}>
-            <div style={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>✕ CLOSE</div>
+            <button type="button" className="main-drawer-action" style={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>✕ {headerLabels.close}</button>
           </div>
           <nav style={styles.drawerNav}>
             <div style={styles.navCategory}>USER ACCOUNT</div>
@@ -254,6 +446,8 @@ export default function Main() {
             <a href="#case-studies" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>
               {t('navCaseStudy', { defaultValue: 'Case Studies' })}
             </a>
+            <LanguageLink to="/explore" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navExplore')}</LanguageLink>
+            <button type="button" className="main-drawer-action" style={styles.drawerLink} onClick={openLibrary}>{t('navLibrary')}</button>
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
             <LanguageLink to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</LanguageLink>
             <LanguageLink to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</LanguageLink>
@@ -541,9 +735,6 @@ export default function Main() {
 }
 
 const styles = {
-  headerRight: { display: 'flex', alignItems: 'center' },
-  headerLink: { color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '1px', marginLeft: '2.5rem', opacity: 0.85 },
-  separator: { color: 'rgba(255,255,255,0.3)', margin: '0 2.5rem', fontSize: '0.8rem', pointerEvents: 'none' },
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
   container: { maxWidth: '1440px', margin: '0 auto' },
   heroSection: { position: 'relative', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
@@ -551,7 +742,6 @@ const styles = {
   bgImage: { position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'opacity 2s ease-in-out' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%)', zIndex: 1 },
   header: { padding: '2.5rem 5rem', zIndex: 1000, position: 'relative' },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem', gap: '4rem', zIndex: 10 },
   sideAd: { width: '160px', flexShrink: 0 },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'flex-start', paddingLeft: '2rem', color: '#fff' },
@@ -599,11 +789,9 @@ const styles = {
   loginBtn: { padding: '1.2rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
   guestBtn: { padding: '1.2rem', backgroundColor: '#222', color: '#fff', border: '1px solid #444', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
   closeText: { marginTop: '1.5rem', background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.85rem', textDecoration: 'underline' },
-  menuTrigger: { display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer' },
-  menuText: { color: '#fff', fontSize: '0.9rem', fontWeight: '700', letterSpacing: '2px' },
   hamburger: { display: 'flex', flexDirection: 'column', gap: '6px' },
   bar: { width: '24px', height: '2px', backgroundColor: '#fff' },
-  sideDrawer: { position: 'fixed', top: 0, right: 0, height: '100vh', backgroundColor: '#fff', zIndex: 1000, transition: 'transform 0.4s ease', boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column', overflowY: 'auto' },
+  sideDrawer: { position: 'fixed', top: 0, right: 0, height: '100vh', backgroundColor: '#fff', zIndex: 2500, transition: 'transform 0.4s ease', boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column', overflowY: 'auto' },
   drawerHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '60px' },
   closeBtn: { cursor: 'pointer', fontSize: '0.9rem', fontWeight: '800', color: '#111' },
   drawerNav: { display: 'flex', flexDirection: 'column', gap: '10px' },
@@ -611,7 +799,7 @@ const styles = {
   drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f5f5f5' },
   userBadge: { backgroundColor: '#f8f9fa', padding: '1.5rem', borderRadius: '12px', marginBottom: '20px', fontSize: '0.9rem', color: '#111' },
   logoutLink: { display: 'block', marginTop: '10px', color: '#ff4d4d', border: 'none', background: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', fontSize: '0.8rem' },
-  menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 999 },
+  menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 2499 },
   m3Section: { padding: '160px 0' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px' },
   m3Title: { fontWeight: '900', color: '#111' },
@@ -643,16 +831,7 @@ const styles = {
     display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0', zIndex: 100
   },
   languageSelectorWrapper: { position: 'relative', display: 'flex', alignItems: 'center' },
-  activeLanguageDisplay: {
-    display: 'flex', alignItems: 'center', color: '#ffffff', fontSize: '0.9rem',
-    fontWeight: '700', cursor: 'pointer', padding: '5px 10px', opacity: 0.85, userSelect: 'none'
-  },
   dropdownArrow: { fontSize: '10px', marginLeft: '6px', transition: 'transform 0.2s' },
-  dropdownMenu: {
-    position: 'absolute', top: '120%', right: 0, backgroundColor: '#ffffff',
-    borderRadius: '8px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)', width: '120px', overflow: 'hidden', zIndex: 2000
-  },
-  dropdownItem: { color: '#111111', padding: '12px 15px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', transition: 'background 0.2s' },
   
   searchContainer: { 
     minWidth: '280px', 

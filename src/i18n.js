@@ -1,3 +1,8 @@
+import frCAQCOverrides from './locales/fr-CA-QC/overrides.json';
+import enCABCOverrides from './locales/en-CA-BC/overrides.json';
+import enCAONOverrides from './locales/en-CA-ON/overrides.json';
+import enCAABOverrides from './locales/en-CA-AB/overrides.json';
+import { SUPPORTED_LANGS, CANADIAN_PROVINCES, getLanguageTag, getTranslationFallbacks, normalizeLocale } from './locales/config.js';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -634,13 +639,18 @@ const resources = {
   }
 };
 
+const provinceOverrides = { 'en-CA-AB': enCAABOverrides, 'en-CA-ON': enCAONOverrides, 'en-CA-BC': enCABCOverrides, 'fr-CA-QC': frCAQCOverrides };
+for (const { code } of CANADIAN_PROVINCES) resources[code] = provinceOverrides[code];
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en-US',
-supportedLngs: ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'],        ns: [
+    fallbackLng: getTranslationFallbacks,
+    load: 'currentOnly',
+    supportedLngs: SUPPORTED_LANGS,
+    ns: [
       'privacy', 'profile', 'highrisk', 'manu', 'const', 'general', 'chem', 'common', 
       'risk', 'ppe', 'jrajsa', 'regulation', 'library', 'terms', 
       'dictionary', 'main', 'explore', 'tags', 'about', 'analysis', 
@@ -650,6 +660,7 @@ supportedLngs: ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', '
     detection: {
       order: ['path', 'cookie', 'localStorage', 'navigator'],
       lookupFromPathIndex: 0,
+      convertDetectedLanguage: normalizeLocale,
       caches: ['localStorage', 'cookie'],
     },
     interpolation: {
@@ -659,7 +670,7 @@ supportedLngs: ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', '
 
 // 언어 변경 시 HTML 태그의 lang 및 방향(dir) 속성을 동적으로 업데이트
 i18n.on('languageChanged', (lng) => {
-  const rootLang = lng.includes('-') ? lng.split('-')[0] : lng;
+  const rootLang = getLanguageTag(lng);
   document.documentElement.lang = rootLang;
   
   // 아랍어(ar-SA) 지원을 위한 RTL 레이아웃 동적 전환

@@ -41,6 +41,7 @@ export default function Export() {
   const location = useLocation();
   const { t, i18n } = useTranslation(['export']); 
   const isEnglish = i18n.language?.startsWith('en');
+  const isFrench = i18n.language?.startsWith('fr');
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [userProfile, setUserProfile] = useState(null); 
@@ -217,7 +218,7 @@ export default function Export() {
               <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', fontSize: '10px', tableLayout: 'fixed' }}>
                 <tbody>
                   <tr>
-                    <td rowSpan={2} style={{ borderRight: '1px solid #888', width: isEnglish ? '55px' : '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0', writingMode: isEnglish ? 'horizontal-tb' : 'vertical-rl' }}>
+                    <td rowSpan={2} style={{ borderRight: '1px solid #888', width: (isEnglish || isFrench) ? '55px' : '35px', textAlign: 'center', backgroundColor: '#f2f2f2', fontWeight: 'bold', color: '#000', borderTop: 'none', borderBottom: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0', writingMode: (isEnglish || isFrench) ? 'horizontal-tb' : 'vertical-rl' }}>
                       {isEnglish ? <div style={{lineHeight:'1.1', fontSize:'9px', display:'flex', flexDirection:'column'}}><span>Compliance</span><span>Approval</span></div> : t('header.approval')}
                     </td>
                     <td style={{ borderRight: '1px solid #888', borderBottom: '1px solid #888', height: '26px', textAlign: 'center', color: '#000', borderTop: 'none', verticalAlign: 'middle', padding: '2px 0 10px 0', wordBreak: 'break-word', fontSize: isEnglish ? '9px' : '10px', lineHeight: '1.1' }}>{appr1}</td>

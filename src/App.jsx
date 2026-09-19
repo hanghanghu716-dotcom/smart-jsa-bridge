@@ -1,5 +1,6 @@
+import { normalizeLocale } from './locales/config.js';
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -87,14 +88,21 @@ function LanguageInit() {
 
 function LanguageWrapper({ children }) {
   const { lng } = useParams();
+  const location = useLocation();
+  const canonicalLng = normalizeLocale(lng);
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    if (lng && i18n.language !== lng) {
-      i18n.changeLanguage(lng);
+    if (canonicalLng && i18n.language !== canonicalLng) {
+      i18n.changeLanguage(canonicalLng);
     }
-  }, [lng, i18n]);
+  }, [canonicalLng, i18n]);
 
+  if (canonicalLng !== lng) {
+    const segments = location.pathname.split('/');
+    segments[1] = canonicalLng;
+    return <Navigate replace to={segments.join('/') + location.search + location.hash} state={location.state} />;
+  }
   return children;
 }
 

@@ -1,3 +1,4 @@
+import { SUPPORTED_LANGS, SEO_LANGUAGES, getSeoLocale } from '../src/locales/config.js';
 import fs from 'fs';
 import { createClient } from '@supabase/supabase-js';
 
@@ -7,10 +8,7 @@ const SUPABASE_KEY = 'sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 지원 대상 다국어 코드 정의 (신규 언어 추가)
-const LANGUAGES = [
-  'en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 
-  'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'
-];
+const LANGUAGES = SUPPORTED_LANGS;
 // 정적 정보성 라우트 정의
 const staticPages = [
   { path: '', priority: '1.0' },
@@ -44,8 +42,8 @@ staticPages.forEach(page => {
       // 현재 순회 중인 언어를 고유 loc로 지정
       xml += `    <loc>https://smartjsabridge.com/${currentLng}${basePath}</loc>\n`;
       
-      LANGUAGES.forEach(lng => {
-        xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${lng}${basePath}"/>\n`;
+      SEO_LANGUAGES.forEach(lng => {
+        xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${getSeoLocale(lng)}${basePath}"/>\n`;
       });
       
       xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="https://smartjsabridge.com/en-US${basePath}"/>\n`;
@@ -70,8 +68,8 @@ staticPages.forEach(page => {
         xml += `  <url>\n`;
         xml += `    <loc>https://smartjsabridge.com/en-US/case-study/${slug}</loc>\n`;
         
-        LANGUAGES.forEach(lng => {
-          xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${lng}/case-study/${slug}"/>\n`;
+        SEO_LANGUAGES.forEach(lng => {
+          xml += `    <xhtml:link rel="alternate" hreflang="${lng}" href="https://smartjsabridge.com/${getSeoLocale(lng)}/case-study/${slug}"/>\n`;
         });
         
         // 동적 페이지에 대하여 글로벌 x-default 주소를 en-US로 일괄 적용

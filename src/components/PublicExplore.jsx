@@ -1,3 +1,4 @@
+import { getLanguageTag } from '../locales/config.js';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { supabase } from '../supabaseClient';
@@ -119,7 +120,7 @@ export default function PublicExplore() {
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
     const date = new Date(dateStr);
-    return date.toLocaleDateString(i18n.language, { year: 'numeric', month: '2-digit', day: '2-digit' });
+    return date.toLocaleDateString(getLanguageTag(i18n.language), { year: 'numeric', month: '2-digit', day: '2-digit' });
   };
 
   const handleLogoClick = () => { navigate('/'); };

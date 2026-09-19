@@ -1,3 +1,4 @@
+import { getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next';
@@ -13,11 +14,11 @@ export default function Archive() {
       const currentLang = i18n.language || 'ko';
       const { data, error } = await supabase
         .from('case_studies')
-        .select('post_group_id, title, meta_description, created_at')
-        .eq('language_code', currentLang)
+        .select('post_group_id, title, meta_description, created_at, language_code')
+        .in('language_code', getCaseLanguages(currentLang))
         .order('created_at', { ascending: false });
 
-      if (data) setCases(data);
+      if (data) setCases(selectLocalizedCases(data, currentLang));
     };
     fetchAllCases();
   }, [i18n.language]);

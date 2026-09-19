@@ -17,6 +17,7 @@ export default function ModuleBuilder() {
   const { t, i18n } = useTranslation(['modulebuilder']);
   
   const isEnglish = i18n.language?.startsWith('en');
+  const isFrench = i18n.language?.startsWith('fr');
 
   const { 
     existingId = null,
@@ -167,8 +168,8 @@ export default function ModuleBuilder() {
                   <tr>
                     <td rowSpan={2} style={{ 
                       borderRight: '1px solid #000', 
-                      width: isEnglish ? '60px' : '20px', 
-                      writingMode: isEnglish ? 'horizontal-tb' : 'vertical-rl', 
+                      width: (isEnglish || isFrench) ? '60px' : '20px',
+                      writingMode: (isEnglish || isFrench) ? 'horizontal-tb' : 'vertical-rl',
                       textAlign: 'center', 
                       backgroundColor: '#f2f2f2', 
                       fontWeight: 'bold', 

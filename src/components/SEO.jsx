@@ -1,3 +1,4 @@
+import { SUPPORTED_LANGS, SEO_LANGUAGES, getLanguageTag, getSeoLocale, normalizeLocale } from '../locales/config.js';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
@@ -7,9 +8,11 @@ const SEO = ({ pageTitle, pageDescription }) => {
   const { t, i18n } = useTranslation('main');
 
   const baseUrl = "https://smartjsabridge.com";
-// 수익화 우선순위에 맞춘 13개 로케일 적용
-  const supportedLangs = ['en-US', 'en-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];  // 언어 감지 폴백 (기본값 설정)
-  const currentLang = i18n.language || 'ko';
+// URL 코드와 검색엔진용 언어 태그를 구분
+  const supportedLangs = SUPPORTED_LANGS;
+  const pathLang = normalizeLocale(location.pathname.split('/')[1]);
+  const currentLang = SUPPORTED_LANGS.includes(pathLang) ? pathLang : (i18n.language || 'ko');
+  const languageTag = getLanguageTag(currentLang);
 
   // 1. 순수 경로 추출 (언어 코드 제거) ,
   const segments = location.pathname.split('/');
@@ -27,7 +30,7 @@ const SEO = ({ pageTitle, pageDescription }) => {
 
   return (
     <Helmet>
-      <html lang={currentLang} />
+      <html lang={languageTag} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
 
@@ -35,7 +38,7 @@ const SEO = ({ pageTitle, pageDescription }) => {
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:locale" content={currentLang === 'ko' ? 'ko_KR' : currentLang.replace('-', '_')} />
+      <meta property="og:locale" content={languageTag === 'ko' ? 'ko_KR' : languageTag.replace('-', '_')} />
       <meta property="og:type" content="website" />
 
       {/* Twitter 카드 메타 태그 */}
@@ -48,12 +51,12 @@ const SEO = ({ pageTitle, pageDescription }) => {
       <link rel="canonical" href={currentUrl} />
 
       {/* 다국어 Hreflang 태그 동적 생성 */}
-      {supportedLangs.map(lang => (
+      {SEO_LANGUAGES.map(lang => (
         <link 
           key={lang} 
           rel="alternate" 
           hrefLang={lang} 
-          href={`${baseUrl}/${lang}${pathSuffix}`} 
+          href={`${baseUrl}/${getSeoLocale(lang)}${pathSuffix}`}
         />
       ))}
       {/* 기본 언어 폴백 (x-default) */}

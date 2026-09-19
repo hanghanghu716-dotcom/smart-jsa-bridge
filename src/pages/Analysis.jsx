@@ -1,3 +1,4 @@
+import { getDataLocale } from '../locales/config.js';
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
@@ -99,7 +100,7 @@ export default function Analysis() {
       'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
       'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
     };
-    const dbLocale = localeMap[i18n.language] || 'en-US';
+    const dbLocale = localeMap[getDataLocale(i18n.language)] || 'en-US';
 
     try {
       if (type === 'current') {
@@ -302,7 +303,7 @@ export default function Analysis() {
         'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
         'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
       };
-      const dbLocale = localeMap[i18n.language] || 'en-US';
+      const dbLocale = localeMap[getDataLocale(i18n.language)] || 'en-US';
 
     let results = [];
     const tokens = term.trim().split(/\s+/).filter(t => t.length > 0);
@@ -380,7 +381,7 @@ export default function Analysis() {
       'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
       'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
     };
-    const dbLocale = localeMap[i18n.language] || 'en-US';
+    const dbLocale = localeMap[getDataLocale(i18n.language)] || 'en-US';
       setSelectedHighRisk("");
 
       const [{ data: origHazards, error: origErr }, { data: transHazards, error: transErr }] = await Promise.all([

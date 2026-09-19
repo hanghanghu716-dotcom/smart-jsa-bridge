@@ -8,6 +8,7 @@
     "prebuild": "node scripts/generate-sitemap.js",
     "build": "vite build && react-snap",
     "lint": "eslint .",
+    "test:locales": "node --test scripts/locales.test.js",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -53,6 +54,10 @@
     "include": [
       "/en-US/",
       "/en-CA/",
+      "/en-CA-AB/",
+      "/en-CA-ON/",
+      "/en-CA-BC/",
+      "/fr-CA-QC/",
       "/en-AU/",
       "/en-GB/",
       "/de-DE/",

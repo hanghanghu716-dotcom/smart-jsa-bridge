@@ -1,3 +1,4 @@
+import { CANADIAN_PROVINCES } from '../locales/config.js';
 import { useState, useRef, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { Editor } from '@toast-ui/react-editor';
@@ -243,7 +244,8 @@ export default function AdminPostUpload() {
           <label style={labelStyle}>언어 선택</label>
           <select name="language_code" value={formData.language_code} onChange={handleChange} style={inputStyle}>
             <option value="en-US">English (en-US)</option>
-            <option value="en-CA">English (en-CA)</option>
+            <option value="en-CA">English (Canada — shared)</option>
+            {CANADIAN_PROVINCES.map(({ code, label }) => <option key={code} value={code}>{label}</option>)}
             <option value="en-AU">English (en-AU)</option>
             <option value="en-GB">English (en-GB)</option>
             <option value="de-DE">Deutsch (de-DE)</option>
