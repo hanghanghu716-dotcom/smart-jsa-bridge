@@ -1,43 +1,41 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const AdSenseUnit = ({ client, slot, format = 'auto', responsive = 'true', style = {} }) => {
+function AdSlot({ client, slot, format, responsive, style }) {
   const adRef = useRef(null);
-  
-  // 1. 도메인 기반 로컬 환경 감지 (react-snap 캡처 서버 및 로컬 개발 환경 동시 차단)
-  const isLocalHost = typeof window !== 'undefined' && 
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  const requested = useRef(false);
+  const valid = /^ca-pub-\d{16}$/.test(client || '') && /^\d+$/.test(slot || '');
 
   useEffect(() => {
-    // 2. 로컬 환경(크롤링 중)에서는 애드센스 통신을 완전 봉쇄
-    if (isLocalHost) return;
+    if (!valid || ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname)
+      || navigator.userAgent.includes('ReactSnap')) return;
+    const element = adRef.current;
+    const request = () => {
+      if (!element?.isConnected || requested.current || element.getAttribute('data-adsbygoogle-status')) return;
+      if (element.getBoundingClientRect().width <= 0 || getComputedStyle(element).visibility === 'hidden') return;
+      requested.current = true;
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+      catch (error) { console.error('AdSense error:', error); }
+    };
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(request) : null;
+    if (element) observer?.observe(element);
+    window.addEventListener('resize', request);
+    request();
+    return () => { observer?.disconnect(); window.removeEventListener('resize', request); };
+  }, [client, slot, valid]);
 
-    try {
-      if (adRef.current && !adRef.current.getAttribute('data-adsbygoogle-status')) {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }
-    } catch (e) {
-      console.error('AdSense error:', e);
-    }
-  }, [client, slot, isLocalHost]); 
-
-  // 3. 로컬 환경일 경우 아예 <ins> 태그 자체를 생성하지 않고 빈 div만 반환합니다.
-  if (isLocalHost) {
-    return <div className="adsense-blocker" style={{ width: '100%', minHeight: '100px', display: 'none' }}></div>;
-  }
-
+  // Stable snapshot/browser markup; only effects request advertisements.
+  if (!valid) return null;
   return (
-    <div className="adsense-wrapper" style={{ overflow: 'hidden', ...style }}>
-      <ins
-        ref={adRef}
-        className="adsbygoogle"
-        style={{ display: 'block', ...style }}
-        data-ad-client={client}
-        data-ad-slot={slot}
-        data-ad-format={format}
-        data-full-width-responsive={responsive}
-      />
+    <div className="adsense-wrapper" style={{ width: '100%', overflow: 'hidden', ...style }}>
+      <ins ref={adRef} className="adsbygoogle" style={{ display: 'block', width: '100%', ...style }}
+        data-ad-client={client} data-ad-slot={slot} data-ad-format={format}
+        data-full-width-responsive={responsive} />
     </div>
   );
-};
+}
 
-export default AdSenseUnit;
+export default function AdSenseUnit({ client, slot, format = 'auto', responsive = 'true', style = {} }) {
+  const { pathname } = useLocation();
+  return <AdSlot key={pathname + ':' + client + ':' + slot} {...{ client, slot, format, responsive, style }} />;
+}

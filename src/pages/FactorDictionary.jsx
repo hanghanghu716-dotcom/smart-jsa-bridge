@@ -1,6 +1,7 @@
 import { getDataLocale } from '../locales/config.js';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { dictionarySearchFilter, parseKeywords } from '../utils/content.js';
+import { getSiteUi } from '../locales/siteUi.js';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner'; 
 import SEO from '../components/SEO';
@@ -12,20 +13,21 @@ export default function FactorDictionary() {
   const { t, i18n } = useTranslation('dictionary'); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  // [수정] 전체 전개된 데이터를 담을 배열과 현재 페이지 출력용 배열 분리
-  const [allData, setAllData] = useState([]);
+  // Keep only the current server-side page in memory.
   const [data, setData] = useState([]);
   
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [request, setRequest] = useState({ locale: null, page: 1, category: '', search: '' });
+  const [loadError, setLoadError] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const ui = getSiteUi(i18n.language);
   
-  // [수정] 클라이언트 렌더링으로 전환되었으므로 20개로 원복
+  // Fetch 20 rows per page.
   const ITEMS_PER_PAGE = 20;
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('');
-  const [categories, setCategories] = useState([]);
+  const [draftSearch, setDraftSearch] = useState({ locale: null, value: '' });
+  const [categoryData, setCategoryData] = useState({ locale: null, values: [] });
 
   const getDbLocale = (lang) => {
     if (!lang) return 'ko-KR';
@@ -48,94 +50,71 @@ export default function FactorDictionary() {
     return 'ko-KR'; 
   };
   const currentLocale = getDbLocale(getDataLocale(i18n.language));
+  const searchTerm = draftSearch.locale === currentLocale ? draftSearch.value : '';
+  const categories = categoryData.locale === currentLocale ? categoryData.values : [];
+  const sameLocale = request.locale === currentLocale;
+  const currentPage = sameLocale ? request.page : 1;
+  const categoryFilter = sameLocale ? request.category : '';
+  const submittedSearch = sameLocale ? request.search : '';
+  const updateRequest = (updates) => setRequest({ locale: currentLocale, page: currentPage, category: categoryFilter, search: submittedSearch, ...updates });
 
   useEffect(() => {
+    let active = true;
     const fetchCategories = async () => {
-      const { data, error } = await supabase
-        .from('Hazards_Translations') 
-        .select('category')
-        .eq('locale', currentLocale); 
-      
-      if (!error && data) {
-        const uniqueCategories = [...new Set(data.map(item => item.category))].filter(Boolean);
-        setCategories(uniqueCategories);
-        setCategoryFilter(''); 
-        setCurrentPage(1);     
+      const result = [];
+      const size = 1000;
+      for (let from = 0; active; from += size) {
+        const { data: rows, error } = await supabase.from('Hazards_Translations')
+          .select('category').eq('locale', currentLocale)
+          .order('category', { ascending: true }).range(from, from + size - 1);
+        if (error) { console.error('Category lookup failed:', error.message); return; }
+        result.push(...(rows || []));
+        if (!rows || rows.length < size) break;
       }
+      if (active) setCategoryData({ locale: currentLocale, values: [...new Set(result.map(item => item.category).filter(Boolean))] });
     };
     fetchCategories();
+    return () => { active = false; };
   }, [currentLocale]);
 
-// 데이터 조회 함수 (서버 사이드 페이징 적용)
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      // 1. 현재 페이지에 맞는 DB 조회 범위(Range) 계산
-      const from = (currentPage - 1) * ITEMS_PER_PAGE;
-      const to = from + ITEMS_PER_PAGE - 1;
-
-      // 2. 단일 View 에서 조립된 데이터를 요청 (페이지네이션 및 총 개수 동시 반환)
-      let query = supabase
-        .from('factor_dictionary_view')
-        .select('*', { count: 'exact' }) // 전체 아이템 개수를 헤더로 반환
-        .eq('locale', currentLocale);
-
-      if (categoryFilter) {
-        query = query.eq('category', categoryFilter);
-      }
-
-      if (searchTerm) {
-        query = query.or(`hazard_name.ilike.%${searchTerm}%,keywords.ilike.%${searchTerm}%`);
-      }
-
-      // 3. 20개만 잘라서 가져오기
-      const { data: resultData, count, error } = await query
-        .order('hazard_id', { ascending: true })
-        .range(from, to);
-
-      if (error) throw error;
-
-      // 4. 상태 업데이트 (전체 데이터를 저장하지 않고 현재 화면 데이터만 저장)
-      setData(resultData || []);
-      setTotalCount(count || 0);
-
-    } catch (error) {
-      console.error('데이터 조회 오류:', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // [수정] 검색 필터뿐만 아니라 '페이지 번호(currentPage)'가 바뀔 때도 DB를 다시 호출하도록 의존성 배열 수정
   useEffect(() => {
-    fetchData();
-  }, [categoryFilter, currentLocale, currentPage]); 
-
-  // [제거] 기존에 존재하던 useEffect (allData.slice 처리 부분)는 완전히 삭제합니다.
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetchData();
-  };
-
-  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
-
-  const getParsedKeywords = (keywords) => {
-    if (!keywords) return [];
-    if (Array.isArray(keywords)) return keywords;
-    if (typeof keywords === 'string') {
+    let active = true;
+    const fetchData = async () => {
+      setLoading(true);
+      setLoadError(false);
       try {
-        if (keywords.trim().startsWith('[')) {
-          return JSON.parse(keywords);
+        const from = (currentPage - 1) * ITEMS_PER_PAGE;
+        let query = supabase.from('factor_dictionary_view')
+          .select('*', { count: 'exact' }).eq('locale', currentLocale);
+        if (categoryFilter) query = query.eq('category', categoryFilter);
+        if (submittedSearch) query = query.or(dictionarySearchFilter(submittedSearch));
+        const { data: rows, count, error } = await query
+          .order('hazard_id', { ascending: true })
+          .order('measure_text', { ascending: true })
+          .order('solution_text', { ascending: true })
+          .range(from, from + ITEMS_PER_PAGE - 1);
+        if (error) throw error;
+        if (active) { setData(rows || []); setTotalCount(count || 0); }
+      } catch (error) {
+        if (active) {
+          console.error('Dictionary lookup failed:', error.message);
+          setData([]); setTotalCount(0); setLoadError(true);
         }
-        return keywords.split(',').map(k => k.trim());
-      } catch (e) {
-        console.error("키워드 파싱 오류:", e);
-        return [];
+      } finally {
+        if (active) setLoading(false);
       }
-    }
-    return [];
+    };
+    fetchData();
+    return () => { active = false; };
+  }, [categoryFilter, currentLocale, currentPage, submittedSearch, retry]);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    updateRequest({ page: 1, search: searchTerm.trim() });
+    setRetry(value => value + 1);
   };
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
+  const getParsedKeywords = parseKeywords;
 
   return (
     <div style={styles.wrapper}>
@@ -178,7 +157,7 @@ export default function FactorDictionary() {
         <div style={styles.container}>
           <span style={styles.m3Tag}>{t('hero.tag')}</span>
           <h2 style={styles.mainTitle} className="text-[28px] lg:text-[3rem] font-extrabold leading-tight mb-6">
-            {t('hero.titleLine1')}<br className="max-lg:hidden" />{t('hero.titleLine2')}
+            {t('hero.titleLine1')}{' '}<br className="max-lg:hidden" />{t('hero.titleLine2')}
           </h2>
           
           <div style={styles.seoContextBox}>
@@ -193,7 +172,7 @@ export default function FactorDictionary() {
           <form onSubmit={handleSearch} style={styles.searchForm} className="flex-col lg:flex-row gap-4">
             <select 
               value={categoryFilter} 
-              onChange={(e) => { setCategoryFilter(e.target.value); }}
+              onChange={(e) => updateRequest({ category: e.target.value, page: 1 })}
               style={styles.selectBox}
               className="w-full lg:w-[200px]"
             >
@@ -208,7 +187,7 @@ export default function FactorDictionary() {
                 type="text" 
                 placeholder={t('filter.searchPlaceholder')} 
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => setDraftSearch({ locale: currentLocale, value: e.target.value })}
                 style={styles.searchInput}
               />
               <button type="submit" style={styles.searchBtn}>{t('filter.searchBtn')}</button>
@@ -219,20 +198,22 @@ export default function FactorDictionary() {
       </section>
 
       <section style={styles.dataSection} className="max-lg:!px-6 max-lg:!py-10">
-        <div style={styles.mainLayout}>
-          <aside style={styles.sideAd}>
+        <div style={styles.mainLayout} className="max-lg:!px-0 max-lg:!gap-0">
+          <aside style={styles.sideAd} className="max-lg:!hidden">
             <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
           </aside>
 
           <div style={styles.centerContent}>
-            {loading ? (
+            {loadError ? (
+              <div role="alert" style={styles.emptyState}>{ui.loadError} <button type="button" onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>
+            ) : loading ? (
               <div style={styles.loadingState}>{t('data.loading')}</div>
             ) : data.length === 0 ? (
               <div style={styles.emptyState}>{t('data.empty')}</div>
             ) : (
               <div style={styles.dataGrid}>
-                {data.map((item) => (
-                  <div key={item.id} style={styles.dataCard}>
+                {data.map((item, index) => (
+                  <div key={JSON.stringify([item.hazard_id, item.measure_text, item.solution_text, index])} style={styles.dataCard}>
                     <div style={styles.cardCategory}>{item.category}</div>
                     
                     <div style={styles.factorBox}>
@@ -265,16 +246,16 @@ export default function FactorDictionary() {
             {totalPages > 1 && (
               <div style={styles.pagination}>
                 <button 
-                  disabled={currentPage === 1} 
-                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); setCurrentPage(prev => prev - 1); }}
+                  disabled={loading || currentPage === 1} 
+                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); updateRequest({ page: currentPage - 1 }); }}
                   style={{ ...styles.pageBtn, opacity: currentPage === 1 ? 0.5 : 1 }}
                 >
                   {t('pagination.prev')}
                 </button>
                 <span style={styles.pageInfo}>{currentPage} / {totalPages}</span>
                 <button 
-                  disabled={currentPage === totalPages} 
-                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); setCurrentPage(prev => prev + 1); }}
+                  disabled={loading || currentPage >= totalPages} 
+                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); updateRequest({ page: currentPage + 1 }); }}
                   style={{ ...styles.pageBtn, opacity: currentPage === totalPages ? 0.5 : 1 }}
                 >
                   {t('pagination.next')}
@@ -283,7 +264,7 @@ export default function FactorDictionary() {
             )}
           </div>
 
-          <aside style={styles.sideAd}>
+          <aside style={styles.sideAd} className="max-lg:!hidden">
             <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
           </aside>
         </div>
@@ -322,13 +303,13 @@ const styles = {
   filterSection: { padding: '40px 0 20px 0', borderBottom: '1px solid #eee', backgroundColor: '#fff' },
   searchForm: { display: 'flex', width: '100%', marginBottom: '16px' },
   selectBox: { padding: '14px 20px', borderRadius: '12px', border: '1px solid #ddd', fontSize: '0.95rem', backgroundColor: '#fafafa', outline: 'none' },
-  searchInput: { flex: 1, padding: '14px 20px', borderRadius: '12px', border: '1px solid #ddd', fontSize: '0.95rem', outline: 'none' },
+  searchInput: { flex: 1, minWidth: 0, padding: '14px 20px', borderRadius: '12px', border: '1px solid #ddd', fontSize: '0.95rem', outline: 'none' },
   searchBtn: { padding: '0 30px', backgroundColor: '#1c1b1f', color: '#fff', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', whiteSpace: 'nowrap' },
   resultCount: { fontSize: '0.9rem', color: '#666', textAlign: 'right' },
   dataSection: { padding: '60px 0 100px 0' },
   mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
   sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '40px' },
-  centerContent: { flex: 1, display: 'flex', flexDirection: 'column', maxWidth: '1000px', alignItems: 'center' },
+  centerContent: { flex: 1, minWidth: 0, width: '100%', display: 'flex', flexDirection: 'column', maxWidth: '1000px', alignItems: 'center' },
   dataGrid: { display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' },
   dataCard: { padding: '30px', backgroundColor: '#fff', borderRadius: '16px', border: '1px solid #eee', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' },
   cardCategory: { display: 'inline-block', padding: '6px 14px', backgroundColor: '#f1f3f9', color: '#555', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '800', marginBottom: '20px' },

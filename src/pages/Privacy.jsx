@@ -1,3 +1,4 @@
+import { getSiteUi } from '../locales/siteUi.js';
 import { useTranslation } from 'react-i18next';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
@@ -6,7 +7,8 @@ import { useLanguageNavigate } from '../hooks/useLanguage';
 
 export default function Privacy() {
   const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 12]
-  const { t } = useTranslation('privacy'); // ✅ 'privacy' 네임스페이스 로드[cite: 12]
+  const { t, i18n } = useTranslation('privacy');
+  const ui = getSiteUi(i18n.language); // ✅ 'privacy' 네임스페이스 로드[cite: 12]
 
   // 애드센스 설정 정보[cite: 12]
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
@@ -14,7 +16,6 @@ export default function Privacy() {
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
   
   // 모바일 전용 광고 슬롯 ID[cite: 12]
-  const MOBILE_IN_FEED_SLOT_ID = '이곳에_모바일_중간_광고_슬롯ID_입력';
 
   return (
     <div style={styles.wrapper}>
@@ -32,9 +33,8 @@ export default function Privacy() {
         <div style={{ ...styles.container, position: 'relative' }}>
           
           {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 12] */}
-          <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
+          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
-              <span style={styles.adLabel}>AD (LEFT)</span>
               <AdSenseUnit 
                 client={PUBLISHER_ID} 
                 slot={LEFT_SIDEBAR_SLOT_ID} 
@@ -45,9 +45,8 @@ export default function Privacy() {
           </aside>
 
           {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 12] */}
-          <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
+          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
-              <span style={styles.adLabel}>AD (RIGHT)</span>
               <AdSenseUnit 
                 client={PUBLISHER_ID} 
                 slot={RIGHT_SIDEBAR_SLOT_ID} 
@@ -83,19 +82,6 @@ export default function Privacy() {
               </li>
             </ul>
 
-            {/* 모바일 전용 중간 광고 영역[cite: 12] */}
-            <div className="lg:hidden" style={styles.mobileAdWrapper}>
-               <div style={styles.mobileAdPlaceholder}>
-                  <span style={styles.adLabel}>MOBILE AD (IN-FEED)</span>
-                  <AdSenseUnit 
-                    client={PUBLISHER_ID} 
-                    slot={MOBILE_IN_FEED_SLOT_ID} 
-                    format="fluid" 
-                    style={{ display: 'block' }} 
-                  />
-               </div>
-            </div>
-
             <h3 style={styles.articleH3}>{t('section3.title')}</h3>
             <p style={styles.articleP}>{t('section3.subtitle')}</p>
             <ul style={styles.listWrapper}>
@@ -107,6 +93,10 @@ export default function Privacy() {
 
             <h3 style={styles.articleH3}>{t('section4.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section4.content') }} />
+            <ul style={styles.listWrapper}>
+              <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">{ui.googlePrivacy}</a></li>
+              <li><a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">{ui.adSettings}</a></li>
+            </ul>
           </div>
 
           <div style={styles.imgContainer}>

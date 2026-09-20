@@ -26,9 +26,8 @@ export default function Terms() {
       <section style={{...styles.contentSection, position: 'relative'}}>
         
         {/* [좌측 광고]: Fixed 가동방식 적용[cite: 20] */}
-        <aside className="hidden lg:block">
+        <aside className="hidden min-[1140px]:block">
           <div style={styles.adPlaceholderFixedLeft}>
-            <span style={styles.adLabelDark}>AD (LEFT)</span>
             <AdSenseUnit 
               client={PUBLISHER_ID} 
               slot={SIDEBAR_SLOT_ID} 
@@ -39,9 +38,8 @@ export default function Terms() {
         </aside>
 
         {/* [우측 광고]: Fixed 가동방식 적용[cite: 20] */}
-        <aside className="hidden lg:block">
+        <aside className="hidden min-[1140px]:block">
           <div style={styles.adPlaceholderFixedRight}>
-            <span style={styles.adLabelDark}>AD (RIGHT)</span>
             <AdSenseUnit 
               client={PUBLISHER_ID} 
               slot={SIDEBAR_SLOT_ID} 

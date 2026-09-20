@@ -9,7 +9,8 @@
     "build": "vite build && react-snap",
     "lint": "eslint .",
     "test:locales": "node --test scripts/locales.test.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:site": "node --test scripts/site-quality.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -50,7 +51,6 @@
   },
   "reactSnap": {
     "source": "dist",
-    "puppeteerExecutable": "/usr/bin/google-chrome",
     "include": [
       "/en-US/",
       "/en-CA/",
@@ -96,6 +96,7 @@
     "concurrency": 1,
     "cacheAjaxRequests": true,
     "puppeteerIgnoreHTTPSErrors": true,
-    "ignoreJSErrors": true
+    "ignoreJSErrors": true,
+    "puppeteerExecutablePath": "/usr/bin/google-chrome"
   }
 }

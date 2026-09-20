@@ -151,14 +151,12 @@ export default function Login() {
 
       <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
         <div style={styles.adPlaceholderBox}>
-          <span style={styles.adLabel}>AD (LEFT)</span>
           <AdSenseUnit client={PUBLISHER_ID} slot={LEFT_SIDEBAR_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
         </div>
       </aside>
 
       <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
         <div style={styles.adPlaceholderBox}>
-          <span style={styles.adLabel}>AD (RIGHT)</span>
           <AdSenseUnit client={PUBLISHER_ID} slot={RIGHT_SIDEBAR_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
         </div>
       </aside>

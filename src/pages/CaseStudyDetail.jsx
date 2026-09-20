@@ -1,6 +1,9 @@
-import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
+import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
+import { cleanSummary, serializeStructuredData } from '../utils/content.js';
+import { getSiteUi } from '../locales/siteUi.js';
+import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases, getLanguageTag } from '../locales/config.js';
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next'; 
 import { Viewer } from '@toast-ui/react-editor';
@@ -10,10 +13,14 @@ import SEO from '../components/SEO';
 
 export default function CaseStudyDetail() {
   const { id } = useParams(); 
-  const navigate = useNavigate();
+  const navigate = useLanguageNavigate();
   const { i18n } = useTranslation(); 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [availableLocales, setAvailableLocales] = useState([]);
+  const [loadError, setLoadError] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const ui = getSiteUi(i18n.language);
 
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
   const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
@@ -23,46 +30,44 @@ export default function CaseStudyDetail() {
   const isRtl = currentLang.startsWith('ar');
 
   useEffect(() => {
+    let active = true;
     const fetchLocalizedPost = async () => {
       setLoading(true);
-      const pathSegments = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
-      const supportedLangs = SUPPORTED_LANGS;
-      const urlLang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : null;
-
-      const targetLang = urlLang || i18n.language || 'ko';
-
-      const { data, error } = await supabase
-        .from('case_studies')
-        .select('*')
-        .eq('post_group_id', id) 
-        .in('language_code', getCaseLanguages(targetLang));
-
-      if (!error && data?.length) {
-        setPost(selectLocalizedCases(data, targetLang)[0]);
-      } else if (targetLang === 'fr-CA-QC') {
-        setPost(null);
-      } else {
-        const { data: defaultData } = await supabase
-          .from('case_studies')
-          .select('*')
-          .eq('post_group_id', id)
-          .eq('language_code', 'ko')
-          .maybeSingle();
-        
-        setPost(defaultData);
+      setLoadError(false);
+      setPost(null);
+      setAvailableLocales([]);
+      const segment = window.location.pathname.split('/')[1];
+      const targetLang = SUPPORTED_LANGS.includes(segment) ? segment : (i18n.language || 'ko');
+      try {
+        const { data, error } = await supabase.from('case_studies').select('*')
+          .eq('post_group_id', id).in('language_code', getCaseLanguages(targetLang));
+        if (error) throw error;
+        let selected = selectLocalizedCases(data || [], targetLang)[0] || null;
+        if (!selected && targetLang !== 'fr-CA-QC') {
+          const fallback = await supabase.from('case_studies').select('*')
+            .eq('post_group_id', id).eq('language_code', 'ko').maybeSingle();
+          if (fallback.error) throw fallback.error;
+          selected = fallback.data;
+        }
+        if (!active) return;
+        setPost(selected);
+        const variants = await supabase.from('case_studies').select('language_code')
+          .eq('post_group_id', id);
+        if (active && !variants.error) setAvailableLocales((variants.data || []).map(row => row.language_code));
+      } catch (error) {
+        if (active) { console.error('Case study lookup failed:', error.message); setLoadError(true); }
+      } finally {
+        if (active) setLoading(false);
       }
-      setLoading(false);
-      
-      setTimeout(() => {
-        if (window.snapSaveState) window.snapSaveState();
-      }, 500);
     };
-
     fetchLocalizedPost();
-  }, [id, i18n.language]);
+    return () => { active = false; };
+  }, [id, i18n.language, retry]);
 
-  if (loading) return <div style={styles.loading}>Loading...</div>;
-  if (!post) return <div style={styles.error}>{i18n.language === 'fr-CA-QC' ? 'Aucun contenu disponible en français pour le Québec.' : 'Content not found.'}</div>;
+  if (loading) return <div style={styles.loading}><SEO />Loading...</div>;
+  if (loadError) return <div style={styles.error} role="alert"><SEO noIndex />{ui.loadError} <button onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>;
+  if (!post) return <div style={styles.error}><SEO noIndex />{ui.caseEmpty} <LanguageLink to="/archive">Archive</LanguageLink></div>;
+  const structuredData = serializeStructuredData(post.schema_markup);
 
   return (
     <div style={styles.wrapper}>
@@ -112,14 +117,16 @@ export default function CaseStudyDetail() {
 
       <SEO 
         pageTitle={post.meta_title ? post.meta_title : `${post.title} | Smart JSA Bridge`} 
-        pageDescription={post.meta_description} 
+        pageDescription={cleanSummary(post.meta_description)}
+        canonicalLocale={post.language_code}
+        availableLocales={availableLocales} 
       />
       
       {/* Google SEO 구조화 데이터(JSON-LD) 주입 */}
-      {post.schema_markup && (
+      {structuredData && (
         <script 
           type="application/ld+json" 
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(post.schema_markup) }} 
+          dangerouslySetInnerHTML={{ __html: structuredData }} 
         />
       )}
       
@@ -140,20 +147,18 @@ export default function CaseStudyDetail() {
             {post.title}
           </h1>
           <p style={styles.date}>
-            {new Date(post.created_at).toLocaleDateString()}
+            {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))}
           </p>
         </div>
       </section>
 
-      <aside className="hidden lg:block">
+      <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
-          <span style={styles.adLabelDark}>AD (LEFT)</span>
           <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
         </div>
       </aside>
-      <aside className="hidden lg:block">
+      <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
-          <span style={styles.adLabelDark}>AD (RIGHT)</span>
           <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
         </div>
       </aside>
@@ -229,10 +234,10 @@ export default function CaseStudyDetail() {
           <div style={styles.footerFlex}>
             <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
-              <Link to="/" style={styles.fLink}>Home</Link>
-              <Link to="/privacy" style={styles.fLink}>Privacy Policy</Link>
-              <Link to="/terms" style={styles.fLink}>Terms of Service</Link>
-              <Link to="/about" style={styles.fLink}>About Us</Link>
+              <LanguageLink to="/" style={styles.fLink}>Home</LanguageLink>
+              <LanguageLink to="/privacy" style={styles.fLink}>Privacy Policy</LanguageLink>
+              <LanguageLink to="/terms" style={styles.fLink}>Terms of Service</LanguageLink>
+              <LanguageLink to="/about" style={styles.fLink}>About Us</LanguageLink>
             </div>
           </div>
         </div>

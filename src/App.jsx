@@ -60,6 +60,7 @@ function AdminRoute({ children }) {
   if (!isAuthenticated) {
     return (
       <div style={{ padding: '200px 24px', textAlign: 'center', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
+        <SEO noIndex />
         <h2 style={{ marginBottom: '20px', color: '#111', fontSize: '1.5rem', fontWeight: 'bold' }}>관리자 접근</h2>
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
         <input
@@ -78,7 +79,7 @@ function AdminRoute({ children }) {
     );
   }
 
-  return children;
+  return <><SEO noIndex />{children}</>;
 }
 
 function LanguageInit() {
@@ -110,7 +111,7 @@ function LanguageWrapper({ children }) {
 function CrawlerBlocker({ children }) {
   const isCrawler = typeof window !== 'undefined' && navigator.userAgent.includes('ReactSnap');
   if (isCrawler) {
-    return <div style={{ display: 'none' }}>Crawler Blocked</div>;
+    return <><SEO noIndex /><div style={{ display: 'none' }}>Crawler Blocked</div></>;
   }
   return children;
 }
@@ -120,7 +121,6 @@ export default function App() {
     <AuthProvider>
       <Router>
         <LanguageInit /> 
-        <SEO />
         
         <MobileGuard>
           <Routes>

@@ -1,3 +1,4 @@
+import { cleanSummary } from '../utils/content.js';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
@@ -65,7 +66,7 @@ export default function Archive() {
                   {/* meta_description 텍스트 데이터 노출부 */}
                   <div style={styles.infoBox} className="max-lg:!p-4">
                     <strong style={styles.labelBlue}>Case Study Summary</strong>
-                    <p style={styles.infoText}>{item.meta_description}</p>
+                    <p style={styles.infoText}>{cleanSummary(item.meta_description)}</p>
                   </div>
 
                   <div style={styles.cardFooter} className="max-lg:flex-col max-lg:gap-4">

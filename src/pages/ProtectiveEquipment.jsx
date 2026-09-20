@@ -68,16 +68,14 @@ export default function ProtectiveEquipment() {
       </section>
 
       {/* [스티키 광고]: 스크롤 시 따라오는 Fixed 방식 적용 */}
-      <aside className="hidden lg:block">
+      <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
-          <span style={styles.adLabelDark}>AD (LEFT)</span>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
       </aside>
 
-      <aside className="hidden lg:block">
+      <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
-          <span style={styles.adLabelDark}>AD (RIGHT)</span>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
       </aside>

@@ -65,16 +65,14 @@ export default function JraJsa() {
         </div>
       </section>
 
-      <aside className="hidden lg:block">
+      <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
-          <span style={styles.adLabelDark}>AD (LEFT)</span>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
       </aside>
 
-      <aside className="hidden lg:block">
+      <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
-          <span style={styles.adLabelDark}>AD (RIGHT)</span>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
       </aside>

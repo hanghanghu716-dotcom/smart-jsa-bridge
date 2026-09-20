@@ -1,3 +1,5 @@
+import { cleanSummary } from '../utils/content.js';
+import { getSiteUi } from '../locales/siteUi.js';
 import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
 import { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -60,6 +62,7 @@ export default function Main() {
   const navigate = useLanguageNavigate(); 
   const location = useLocation();
   const { t, i18n } = useTranslation('main');
+  const ui = getSiteUi(i18n.language);
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -448,7 +451,7 @@ export default function Main() {
             </a>
             <LanguageLink to="/explore" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navExplore')}</LanguageLink>
             <button type="button" className="main-drawer-action" style={styles.drawerLink} onClick={openLibrary}>{t('navLibrary')}</button>
-            <div style={{ ...styles.navCategory, marginTop: '30px' }}>SECTOR GUIDES (50종)</div>
+            <div style={{ ...styles.navCategory, marginTop: '30px' }}>{ui.sectorGuides}</div>
             <LanguageLink to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</LanguageLink>
             <LanguageLink to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</LanguageLink>
             <LanguageLink to="/guideline/high-risk" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideHighRisk')}</LanguageLink>
@@ -462,7 +465,6 @@ export default function Main() {
         <div style={styles.mainLayout} className="max-lg:!px-6 max-lg:!flex-col">
           <aside className="hidden lg:block" style={styles.sideAd}>
             <div style={styles.adPlaceholderFixedLeft}>
-              <span style={styles.adLabel}>AD (LEFT)</span>
               <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
             </div>
           </aside>
@@ -536,7 +538,6 @@ export default function Main() {
 
           <aside className="hidden lg:block" style={styles.sideAd}>
             <div style={styles.adPlaceholderFixedRight}>
-              <span style={styles.adLabel}>AD (RIGHT)</span>
               <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
             </div>
           </aside>
@@ -545,7 +546,6 @@ export default function Main() {
 
       <div className="lg:hidden" style={styles.mobileAdSector}>
         <div style={styles.mobileAdBox}>
-          <span style={styles.adLabelDark}>MOBILE BRIDGE AD</span>
           <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_MOBILE_BRIDGE_SLOT_ID} format="horizontal" style={{ display: 'block' }} />
         </div>
       </div>
@@ -641,7 +641,8 @@ export default function Main() {
               </svg>
               <input 
                 type="text" 
-                placeholder="사례 제목 또는 내용 검색..." 
+                placeholder={ui.caseSearch}
+                aria-label={ui.caseSearch} 
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -664,7 +665,7 @@ export default function Main() {
                     <div style={{ ...styles.jsaCard, cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <h5 style={{ ...styles.jsaCardTitle, fontSize: '1.4rem', marginBottom: '16px' }}>{caseItem.title}</h5>
                       <p style={{ color: '#555', fontSize: '1rem', lineHeight: '1.6', flex: 1, marginBottom: '24px' }}>
-                        {caseItem.meta_description}
+                        {cleanSummary(caseItem.meta_description)}
                       </p>
                       <span style={{ fontSize: '0.9rem', color: '#888', fontWeight: 'bold' }}>
                         {new Date(caseItem.created_at).toLocaleDateString()}
@@ -694,21 +695,11 @@ export default function Main() {
                 </div>
               )}
 
-              {/* 검색엔진 크롤러 전용 전체 게시물 링크 트리 (UI 화면에는 미노출) */}
-              <div style={{ display: 'none' }} aria-hidden="true">
-                {caseStudies.map((caseItem) => (
-                  <LanguageLink 
-                    key={`crawler-${caseItem.post_group_id}`} 
-                    to={`/case-study/${caseItem.post_group_id}`}
-                  >
-                    {caseItem.title}
-                  </LanguageLink>
-                ))}
-              </div>
+              <p style={{ marginTop: '24px' }}><LanguageLink to="/archive">{t('footerArchive', { defaultValue: 'Archive' })}</LanguageLink></p>
             </>
           ) : (
             <div style={styles.noResultBox}>
-              검색 조건과 일치하는 현장 사례 연구 내역이 존재하지 않습니다.
+              {ui.caseEmpty}
             </div>
           )}
         </div>

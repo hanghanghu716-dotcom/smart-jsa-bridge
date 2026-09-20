@@ -13,7 +13,6 @@ export default function About() {
   const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
   
   // 모바일 전용 광고 슬롯 ID[cite: 19]
-  const MOBILE_IN_FEED_SLOT_ID = '이곳에_모바일_중간_광고_슬롯ID_입력';
 
   return (
     <div style={styles.wrapper}>
@@ -31,9 +30,8 @@ export default function About() {
         <div style={{ ...styles.container, position: 'relative' }}>
           
           {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 19] */}
-          <aside className="max-lg:hidden" style={styles.adSlotFixedLeft}>
+          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
-              <span style={styles.adLabel}>AD (LEFT)</span>
               <AdSenseUnit 
                 client={PUBLISHER_ID} 
                 slot={LEFT_SIDEBAR_SLOT_ID} 
@@ -44,9 +42,8 @@ export default function About() {
           </aside>
 
           {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 19] */}
-          <aside className="max-lg:hidden" style={styles.adSlotFixedRight}>
+          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
-              <span style={styles.adLabel}>AD (RIGHT)</span>
               <AdSenseUnit 
                 client={PUBLISHER_ID} 
                 slot={RIGHT_SIDEBAR_SLOT_ID} 
@@ -81,19 +78,6 @@ export default function About() {
                 <strong>{t('section2.item3.bold')}</strong> {t('section2.item3.desc')}
               </li>
             </ul>
-
-            {/* 모바일 전용 중간 광고 영역[cite: 19] */}
-            <div className="lg:hidden" style={styles.mobileAdWrapper}>
-               <div style={styles.mobileAdPlaceholder}>
-                  <span style={styles.adLabel}>MOBILE AD (IN-FEED)</span>
-                  <AdSenseUnit 
-                    client={PUBLISHER_ID} 
-                    slot={MOBILE_IN_FEED_SLOT_ID} 
-                    format="fluid" 
-                    style={{ display: 'block' }} 
-                  />
-               </div>
-            </div>
 
             <h3 style={styles.articleH3}>{t('section3.title')}</h3>
             <p style={styles.articleP}>{t('section3.subtitle')}</p>

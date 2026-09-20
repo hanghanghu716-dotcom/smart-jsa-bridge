@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { test } from 'node:test';
 import { createServer } from 'vite';
-import vm from 'node:vm';
+import { buildSitemap } from './sitemap-data.js';
 import {
   CANADIAN_PROVINCES, LANGUAGE_OPTIONS, SUPPORTED_LANGS, SEO_LANGUAGES,
   getLanguageTag, getDataLocale, detectLanguage, hasLanguagePrefix,
-  getCaseLanguages, selectLocalizedCases, normalizeLocale, getSeoLocale, getTranslationFallbacks,
+  getCaseLanguages, selectLocalizedCases, normalizeLocale, getTranslationFallbacks,
 } from '../src/locales/config.js';
 
 test('province routes, browser detection and standards-based formatting', () => {
@@ -49,24 +49,21 @@ test('case studies prefer provincial content and retain shared articles', () => 
   assert.deepEqual(getCaseLanguages('en-US'), ['en-US']);
 });
 
-test('sitemap includes provincial pages with valid shared language alternates', async () => {
-  let xml;
-  const script = fs.readFileSync(new URL('./generate-sitemap.js', import.meta.url), 'utf8').replace(/^import .*;\r?\n/gm, '');
-  await vm.runInNewContext(script, {
-    SUPPORTED_LANGS, SEO_LANGUAGES, getSeoLocale,
-    fs: { writeFileSync: (_path, content) => { xml = content; } },
-    console: { log() {}, error: error => { throw error; } },
-    createClient: () => ({ from: () => ({ select: () => ({ eq: async () => ({ data: [{ post_group_id: 'test-case' }], error: null }) }) }) }),
-  });
+test('sitemap includes provincial routes without inventing translated articles', () => {
+  const xml = buildSitemap([
+    { post_group_id: 'test-case', language_code: 'ko' },
+    { post_group_id: 'test-case', language_code: 'en-US' },
+    { post_group_id: 'quebec-only', language_code: 'fr-CA' },
+  ]);
   for (const { code } of CANADIAN_PROVINCES) {
-    assert.ok(xml.includes(`<loc>https://smartjsabridge.com/${code}</loc>`));
-    assert.ok(xml.includes(`<loc>https://smartjsabridge.com/${code}/about</loc>`));
-    assert.ok(!xml.includes(`hreflang="${code}"`));
+    assert.ok(xml.includes('<loc>https://smartjsabridge.com/' + code + '</loc>'));
+    assert.ok(!xml.includes('hreflang="' + code + '"'));
   }
   assert.ok(xml.includes('hreflang="en-CA"'));
-  assert.ok(xml.includes('hreflang="fr-CA" href="https://smartjsabridge.com/fr-CA-QC"'));
+  assert.ok(xml.includes('/fr-CA-QC/case-study/quebec-only'));
+  assert.ok(xml.includes('/ko/case-study/test-case'));
+  assert.ok(!xml.includes('/de-DE/case-study/test-case'));
   assert.ok(!xml.includes('/en-CA-QC'));
-  assert.ok(xml.includes('/case-study/test-case'));
 });
 
 test('actual i18n configuration retains province and falls back per translation key', async () => {
