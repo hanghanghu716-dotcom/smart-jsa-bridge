@@ -47,7 +47,13 @@ export function selectLocalizedCases(rows, code) {
   const selected = new Map();
   for (const row of rows) {
     const key = row.post_group_id || row.id;
-    if (!selected.has(key) || row.language_code === code) selected.set(key, row);
+    const previous = selected.get(key);
+    const preferred = row.language_code === code;
+    const previousPreferred = previous?.language_code === code;
+    const newer = previous && (new Date(row.created_at || 0) - new Date(previous.created_at || 0)
+      || String(row.id).localeCompare(String(previous.id))) > 0;
+    if (!previous || (preferred && !previousPreferred)
+      || (preferred === previousPreferred && newer)) selected.set(key, row);
   }
   return [...selected.values()].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 }

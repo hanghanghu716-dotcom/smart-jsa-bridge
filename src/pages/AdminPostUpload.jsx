@@ -3,197 +3,228 @@ import { useState, useRef, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import {
+  readAllCaseStudies, buildSubmitData, saveCaseStudy, removePdfFromForm,
+} from './caseStudyAdminTools.js';
+
+const emptyForm = () => ({
+  post_group_id: '', title: '', language_code: 'ko', meta_title: '',
+  meta_description: '', pdf_download_url: '', pdf_list: [],
+  schema_markup: '', content_md: '',
+});
 
 export default function AdminPostUpload() {
   const editorRef = useRef();
-  const [formData, setFormData] = useState({
-    post_group_id: '', 
-    title: '', 
-    language_code: 'ko', 
-    meta_title: '', 
-    meta_description: '', 
-    pdf_download_url: '', 
-    pdf_list: [],
-    schema_markup: '',
-    content_md: ''
-  });
+  const busyRef = useRef(false);
+  const [formData, setFormData] = useState(emptyForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [exportProgress, setExportProgress] = useState('');
+  const [notice, setNotice] = useState(null);
   const [posts, setPosts] = useState([]);
   const [editId, setEditId] = useState(null);
-
-  // 검색 및 페이지네이션 상태 추가
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
+
+  const showNotice = (type, text) => setNotice({ type, text });
+  const errorText = (error) => error?.message || '요청을 완료하지 못했습니다.';
+  const startOperation = () => {
+    if (busyRef.current) return false;
+    busyRef.current = true;
+    setIsSubmitting(true);
+    setNotice(null);
+    return true;
+  };
+  const finishOperation = () => {
+    busyRef.current = false;
+    setIsSubmitting(false);
+  };
+  const resetForm = () => {
+    setEditId(null);
+    setFormData(emptyForm());
+    editorRef.current?.getInstance().setMarkdown('');
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const onUploadImage = async (blob, callback) => {
-    const extension = blob.name.split('.').pop();
-    const safeFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${extension}`;
-    const fileName = `post-images/${safeFileName}`;
-    
-    const { data, error } = await supabase.storage
-      .from('blog-images')
-      .upload(fileName, blob);
+  const fetchPosts = async () => {
+    try {
+      // Load only list fields. Fetch the full body when opening one post.
+      const rows = await readAllCaseStudies(supabase, {
+        columns: 'id,post_group_id,title,language_code,created_at',
+      });
+      rows.sort((a, b) => String(b.created_at || '').localeCompare(String(a.created_at || ''))
+        || String(a.id).localeCompare(String(b.id)));
+      setPosts(rows);
+      return true;
+    } catch (error) {
+      showNotice('error', '목록 조회 실패: ' + errorText(error));
+      return false;
+    }
+  };
 
-    if (error) {
-      alert('이미지 업로드 실패: ' + error.message);
+  useEffect(() => { fetchPosts(); }, []);
+
+  const onUploadImage = async (blob, callback) => {
+    if (!startOperation()) {
+      showNotice('error', '현재 작업이 끝난 후 이미지를 다시 추가해주세요.');
       return;
     }
-
-    const { data: { publicUrl } } = supabase.storage
-      .from('blog-images')
-      .getPublicUrl(fileName);
-
-    callback(publicUrl, blob.name); 
+    try {
+      const extension = (blob.name || '').split('.').pop() || 'png';
+      const name = `post-images/${Date.now()}_${Math.random().toString(36).substring(2)}.${extension}`;
+      const { error } = await supabase.storage.from('blog-images').upload(name, blob);
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from('blog-images').getPublicUrl(name);
+      callback(publicUrl, blob.name || 'image');
+      showNotice('success', '이미지를 추가했습니다. 게시물을 저장하면 반영됩니다.');
+    } catch (error) {
+      showNotice('error', '이미지 업로드 실패: ' + errorText(error));
+    } finally {
+      finishOperation();
+    }
   };
 
   const handlePdfUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    setIsSubmitting(true);
-    const safeFileName = `pdfs/${Date.now()}_${Math.random().toString(36).substring(2)}.pdf`;
-    
-    const { error } = await supabase.storage.from('blog-images').upload(safeFileName, file);
-
-    if (error) {
-      alert('PDF 업로드 실패: ' + error.message);
-    } else {
-      const { data: { publicUrl } } = supabase.storage.from('blog-images').getPublicUrl(safeFileName);
-      setFormData(prev => ({ 
-        ...prev, 
-        pdf_download_url: publicUrl, 
-        pdf_list: [...(prev.pdf_list || []), { name: file.name, url: publicUrl }]
+    const input = e.target;
+    const file = input.files?.[0];
+    if (!file || !startOperation()) return;
+    try {
+      const name = `pdfs/${Date.now()}_${Math.random().toString(36).substring(2)}.pdf`;
+      const { error } = await supabase.storage.from('blog-images').upload(name, file);
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from('blog-images').getPublicUrl(name);
+      setFormData(prev => ({
+        ...prev, pdf_download_url: publicUrl,
+        pdf_list: [...(prev.pdf_list || []), { name: file.name, url: publicUrl }],
       }));
-      alert('PDF가 성공적으로 추가되었습니다.');
+      showNotice('success', 'PDF를 추가했습니다. 게시물을 저장하면 반영됩니다.');
+    } catch (error) {
+      showNotice('error', 'PDF 업로드 실패: ' + errorText(error));
+    } finally {
+      input.value = '';
+      finishOperation();
     }
-    setIsSubmitting(false);
   };
 
-  const handleRemovePdf = (indexToRemove) => {
-    setFormData(prev => ({
-      ...prev,
-      pdf_list: prev.pdf_list.filter((_, index) => index !== indexToRemove)
-    }));
+  const handleRemovePdf = (index) => {
+    if (busyRef.current) return;
+    setFormData(prev => removePdfFromForm(prev, index));
+  };
+
+  const persistPost = async (id) => {
+    if (!startOperation()) return;
+    let didSave = false;
+    try {
+      const editor = editorRef.current?.getInstance();
+      if (!editor) throw new Error('본문 편집기가 준비되지 않았습니다.');
+      const submitData = buildSubmitData(formData, editor.getMarkdown());
+      await saveCaseStudy(supabase, id, submitData);
+      didSave = true;
+      resetForm();
+      const refreshed = await fetchPosts();
+      showNotice(refreshed ? 'success' : 'warning', refreshed
+        ? '게시물을 저장했습니다.'
+        : '게시물은 저장됐지만 목록을 새로 읽지 못했습니다. 중복 저장하지 말고 목록을 새로고침해주세요.');
+    } catch (error) {
+      showNotice('error', (didSave ? '저장은 완료됐지만 화면 초기화에 실패했습니다: ' : '저장 확인 실패: ')
+        + errorText(error));
+    } finally {
+      finishOperation();
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    const finalContent = editorRef.current.getInstance().getMarkdown();
-    
-    let parsedSchema = null;
-    if (formData.schema_markup) {
-      try {
-        parsedSchema = JSON.parse(formData.schema_markup);
-      } catch (err) {
-        alert('Schema Markup이 유효한 JSON 형식이 아닙니다. 확인해주세요.');
-        setIsSubmitting(false);
-        return;
-      }
-    }
-
-    const submitData = { 
-      ...formData, 
-      schema_markup: parsedSchema,
-      content_md: finalContent 
-    };
-
-    const { error } = await supabase.from('case_studies').insert([submitData]);
-
-    if (error) {
-      alert('업로드 실패: ' + error.message);
-    } else {
-      alert('콘텐츠가 성공적으로 업로드되었습니다.');
-      setFormData({ 
-        post_group_id: '', title: '', language_code: 'ko', meta_title: '', 
-        meta_description: '', pdf_download_url: '', pdf_list: [], schema_markup: '', content_md: '' 
-      });
-      editorRef.current.getInstance().setMarkdown('');
-      fetchPosts();
-    }
-    setIsSubmitting(false);
+    // Enter in an edit form must update the same ID, never insert a duplicate.
+    await persistPost(editId);
   };
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
-    const { data } = await supabase.from('case_studies').select('*').order('created_at', { ascending: false });
-    if (data) setPosts(data);
-  };
-
-  const handleEditMode = (post) => {
-    setEditId(post.id);
-    
-    const schemaString = post.schema_markup ? JSON.stringify(post.schema_markup, null, 2) : '';
-
-    setFormData({
-      post_group_id: post.post_group_id || '',
-      title: post.title || '',
-      language_code: post.language_code || 'ko',
-      meta_title: post.meta_title || '',
-      meta_description: post.meta_description || '',
-      pdf_download_url: post.pdf_download_url || '',
-      pdf_list: post.pdf_list || [],
-      schema_markup: schemaString,
-      content_md: post.content_md || ''
-    });
-    if (editorRef.current) {
-      editorRef.current.getInstance().setMarkdown(post.content_md || '');
+  const handleEditMode = async (post) => {
+    if (!startOperation()) return;
+    try {
+      const { data, error } = await supabase.from('case_studies')
+        .select('*').eq('id', post.id).single();
+      if (error) throw error;
+      if (!data) throw new Error('게시물을 찾을 수 없습니다.');
+      const next = {
+        post_group_id: data.post_group_id || '', title: data.title || '',
+        language_code: data.language_code || 'ko', meta_title: data.meta_title || '',
+        meta_description: data.meta_description || '', pdf_download_url: data.pdf_download_url || '',
+        pdf_list: Array.isArray(data.pdf_list) ? data.pdf_list : [],
+        schema_markup: data.schema_markup ? JSON.stringify(data.schema_markup, null, 2) : '',
+        content_md: data.content_md || '',
+      };
+      const editor = editorRef.current?.getInstance();
+      if (!editor) throw new Error('본문 편집기가 준비되지 않았습니다.');
+      editor.setMarkdown(next.content_md);
+      setEditId(data.id);
+      setFormData(next);
+      window.scrollTo(0, 0);
+    } catch (error) {
+      showNotice('error', '게시물 열기 실패: ' + errorText(error));
+    } finally {
+      finishOperation();
     }
-    window.scrollTo(0, 0); 
-  };
-
-  const handleUpdate = async () => {
-    setIsSubmitting(true);
-    const finalContent = editorRef.current.getInstance().getMarkdown();
-    
-    let parsedSchema = null;
-    if (formData.schema_markup) {
-      try {
-        parsedSchema = JSON.parse(formData.schema_markup);
-      } catch (err) {
-        alert('Schema Markup이 유효한 JSON 형식이 아닙니다. 확인해주세요.');
-        setIsSubmitting(false);
-        return;
-      }
-    }
-
-    const submitData = { 
-      ...formData, 
-      schema_markup: parsedSchema,
-      content_md: finalContent 
-    };
-
-    const { error } = await supabase.from('case_studies').update(submitData).eq('id', editId);
-    if (error) {
-      alert('수정 실패: ' + error.message);
-    } else {
-      alert('성공적으로 수정되었습니다.');
-      setEditId(null);
-      setFormData({ 
-        post_group_id: '', title: '', language_code: 'ko', meta_title: '', 
-        meta_description: '', pdf_download_url: '', pdf_list: [], schema_markup: '', content_md: '' 
-      });
-      editorRef.current.getInstance().setMarkdown('');
-      fetchPosts();
-    }
-    setIsSubmitting(false);
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('해당 사례 연구를 완전히 삭제하시겠습니까?')) return;
-    const { error } = await supabase.from('case_studies').delete().eq('id', id);
-    if (error) alert('삭제 실패: ' + error.message);
-    else fetchPosts();
+    if (busyRef.current || !window.confirm('해당 사례 연구를 완전히 삭제하시겠습니까?')) return;
+    if (!startOperation()) return;
+    try {
+      const { data, error } = await supabase.from('case_studies').delete().eq('id', id).select('id');
+      if (error) throw error;
+      if (!data || data.length !== 1) throw new Error('삭제된 행을 확인하지 못했습니다.');
+      if (String(editId) === String(id)) resetForm();
+      const refreshed = await fetchPosts();
+      showNotice(refreshed ? 'success' : 'warning', refreshed
+        ? '게시물을 삭제했습니다.' : '삭제는 완료됐지만 목록 갱신에 실패했습니다.');
+    } catch (error) {
+      showNotice('error', '삭제 확인 실패: ' + errorText(error));
+    } finally {
+      finishOperation();
+    }
+  };
+
+  const handleExport = async () => {
+    if (busyRef.current) return;
+    busyRef.current = true;
+    setIsExporting(true);
+    setNotice(null);
+    try {
+      const rows = await readAllCaseStudies(supabase, {
+        onProgress: (loaded, total) => setExportProgress(`${loaded} / ${total}건`),
+      });
+      const exportedAt = new Date().toISOString();
+      const payload = {
+        format: 'smart-jsa-case-studies-v1', table: 'case_studies',
+        exported_at: exportedAt, access_scope: 'current-client-permissions',
+        row_count: rows.length, posts: rows,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `case_studies_${exportedAt.replace(/[:.]/g, '-')}.json`;
+      try {
+        document.body.appendChild(link);
+        link.click();
+      } finally {
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+      showNotice('success', `${rows.length}건 JSON 다운로드를 요청했습니다. 다운로드 파일과 SQL Editor의 전체 행 수를 대조해주세요.`);
+    } catch (error) {
+      showNotice('error', '내보내기 실패: ' + errorText(error));
+    } finally {
+      busyRef.current = false;
+      setIsExporting(false);
+      setExportProgress('');
+    }
   };
 
   // 검색 필터링 로직
@@ -230,9 +261,21 @@ export default function AdminPostUpload() {
     pageNumbers.push(i);
   }
 
+  useEffect(() => {
+    setCurrentPage(page => Math.min(page, Math.max(1, totalPages)));
+  }, [totalPages]);
+
   return (
     <div style={{ maxWidth: '800px', margin: '40px auto', padding: '20px' }}>
       <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>사례 연구(Case Study) 업로드</h2>
+      {notice && (
+        <div role={notice.type === 'error' ? 'alert' : 'status'} aria-live="polite"
+          style={{ padding: '12px 16px', marginBottom: '16px', borderRadius: '6px',
+            background: notice.type === 'error' ? '#fff1f2' : notice.type === 'warning' ? '#fff7ed' : '#ecfdf5',
+            color: '#172338', overflowWrap: 'anywhere' }}>
+          {notice.text}
+        </div>
+      )}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         
         <div style={fieldGroupStyle}>
@@ -282,7 +325,7 @@ export default function AdminPostUpload() {
             accept="application/pdf" 
             onChange={handlePdfUpload} 
             style={{ ...inputStyle, padding: '9px' }} 
-            disabled={isSubmitting}
+            disabled={isSubmitting || isExporting}
           />
           {/* 다중 파일 리스트 렌더링 */}
           {formData.pdf_list && formData.pdf_list.length > 0 && (
@@ -290,7 +333,7 @@ export default function AdminPostUpload() {
               {formData.pdf_list.map((pdf, index) => (
                 <li key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f8fafc', padding: '10px 15px', border: '1px solid #ddd', borderRadius: '4px' }}>
                   <span style={{ fontSize: '14px', color: '#333', wordBreak: 'break-all', paddingRight: '10px' }}>{pdf.name}</span>
-                  <button type="button" onClick={() => handleRemovePdf(index)} style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px', padding: '6px 12px', cursor: 'pointer', flexShrink: 0 }}>
+                  <button type="button" disabled={isSubmitting || isExporting} onClick={() => handleRemovePdf(index)} style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px', padding: '6px 12px', cursor: 'pointer', flexShrink: 0 }}>
                     삭제
                   </button>
                 </li>
@@ -317,22 +360,18 @@ export default function AdminPostUpload() {
           />
         </div>
 
-        {!editId && (
-          <button type="submit" disabled={isSubmitting} style={buttonStyle}>
+        {editId === null && (
+          <button type="submit" disabled={isSubmitting || isExporting} style={buttonStyle}>
             {isSubmitting ? '업로드 중...' : '발행하기'}
           </button>
         )}
         
-        {editId && (
+        {editId !== null && (
           <div style={{ display: 'flex', gap: '10px' }}>
-            <button type="button" onClick={handleUpdate} disabled={isSubmitting} style={{ ...buttonStyle, flex: 1, backgroundColor: '#28a745' }}>
+            <button type="submit" disabled={isSubmitting || isExporting} style={{ ...buttonStyle, flex: 1, backgroundColor: '#28a745' }}>
               {isSubmitting ? '수정 중...' : '수정 완료'}
             </button>
-            <button type="button" onClick={() => {
-              setEditId(null);
-              setFormData({ post_group_id: '', title: '', language_code: 'ko', meta_title: '', meta_description: '', pdf_download_url: '', pdf_list: [], schema_markup: '', content_md: '' });
-              editorRef.current.getInstance().setMarkdown('');
-            }} style={{ ...buttonStyle, flex: 1, backgroundColor: '#6c757d' }}>
+            <button type="button" disabled={isSubmitting || isExporting} onClick={resetForm} style={{ ...buttonStyle, flex: 1, backgroundColor: '#6c757d' }}>
               취소
             </button>
           </div>
@@ -342,6 +381,23 @@ export default function AdminPostUpload() {
       <div style={{ marginTop: '50px', borderTop: '2px solid #ccc', paddingTop: '30px' }}>
         <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '15px', color: '#111' }}>등록된 사례 연구 관리</h3>
         
+        <div style={{ marginBottom: '18px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          <button type="button" onClick={handleExport} disabled={isSubmitting || isExporting}
+            style={{ ...buttonStyle, padding: '10px 16px' }}>
+            {isExporting ? `내보내는 중 ${exportProgress}` : '게시물 JSON 내보내기 (모든 언어)'}
+          </button>
+          <button type="button" disabled={isSubmitting || isExporting}
+            onClick={async () => {
+              if (!startOperation()) return;
+              try { await fetchPosts(); } finally { finishOperation(); }
+            }} style={{ ...buttonStyle, padding: '10px 16px', backgroundColor: '#64748b' }}>
+            목록 다시 읽기
+          </button>
+        </div>
+        <p style={{ fontSize: '13px', color: '#475569', marginBottom: '16px' }}>
+          내보내기는 현재 검색 조건과 무관하게 조회 권한이 있는 모든 언어를 포함합니다.
+          내려받는 동안 다른 창에서 게시물을 변경하지 마세요.
+        </p>
         {/* 검색창 UI 추가 */}
         <div style={{ marginBottom: '20px' }}>
           <input 
@@ -361,8 +417,8 @@ export default function AdminPostUpload() {
                 <span style={{ color: '#666', fontSize: '0.85rem' }}>그룹 ID: {post.post_group_id} | 언어: {post.language_code}</span>
               </div>
               <div style={{ display: 'flex', gap: '10px' }}>
-                <button type="button" onClick={() => handleEditMode(post)} style={{ padding: '8px 16px', backgroundColor: '#ffc107', color: '#111', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>수정</button>
-                <button type="button" onClick={() => handleDelete(post.id)} style={{ padding: '8px 16px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>삭제</button>
+                <button type="button" disabled={isSubmitting || isExporting} onClick={() => handleEditMode(post)} style={{ padding: '8px 16px', backgroundColor: '#ffc107', color: '#111', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>수정</button>
+                <button type="button" disabled={isSubmitting || isExporting} onClick={() => handleDelete(post.id)} style={{ padding: '8px 16px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>삭제</button>
               </div>
             </li>
           ))}

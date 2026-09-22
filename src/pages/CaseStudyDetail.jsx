@@ -2,7 +2,7 @@ import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { cleanSummary, serializeStructuredData } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
 import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases, getLanguageTag } from '../locales/config.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next'; 
@@ -10,16 +10,19 @@ import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO';
+import { getCaseBootstrap } from '../utils/caseBootstrap.js';
 
 export default function CaseStudyDetail() {
   const { id } = useParams(); 
   const navigate = useLanguageNavigate();
   const { i18n } = useTranslation(); 
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [availableLocales, setAvailableLocales] = useState([]);
+  const [initialCase] = useState(() => getCaseBootstrap(window.location.pathname));
+  const [post, setPost] = useState(initialCase?.post || null);
+  const [loading, setLoading] = useState(!initialCase);
+  const [availableLocales, setAvailableLocales] = useState(initialCase?.availableLocales || []);
   const [loadError, setLoadError] = useState(false);
   const [retry, setRetry] = useState(0);
+  const viewerRef = useRef(null);
   const ui = getSiteUi(i18n.language);
 
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
@@ -32,10 +35,13 @@ export default function CaseStudyDetail() {
   useEffect(() => {
     let active = true;
     const fetchLocalizedPost = async () => {
-      setLoading(true);
+      const keepSnapshot = initialCase?.path === window.location.pathname;
+      setLoading(!keepSnapshot);
       setLoadError(false);
-      setPost(null);
-      setAvailableLocales([]);
+      if (!keepSnapshot) {
+        setPost(null);
+        setAvailableLocales([]);
+      }
       const segment = window.location.pathname.split('/')[1];
       const targetLang = SUPPORTED_LANGS.includes(segment) ? segment : (i18n.language || 'ko');
       try {
@@ -62,7 +68,13 @@ export default function CaseStudyDetail() {
     };
     fetchLocalizedPost();
     return () => { active = false; };
-  }, [id, i18n.language, retry]);
+  }, [id, i18n.language, retry, initialCase]);
+
+  // The Toast UI React wrapper only reads initialValue when it mounts.
+  // A fresher DB response for the same ID must replace the snapshot body too.
+  useEffect(() => {
+    viewerRef.current?.getInstance().setMarkdown(post?.content_md || '');
+  }, [post?.content_md]);
 
   if (loading) return <div style={styles.loading}><SEO />Loading...</div>;
   if (loadError) return <div style={styles.error} role="alert"><SEO noIndex />{ui.loadError} <button onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>;
@@ -70,7 +82,11 @@ export default function CaseStudyDetail() {
   const structuredData = serializeStructuredData(post.schema_markup);
 
   return (
-    <div style={styles.wrapper}>
+    <div style={styles.wrapper} data-case-study-id={post.id}>
+      <script id="jsa-case-bootstrap" type="application/json"
+        dangerouslySetInnerHTML={{ __html: serializeStructuredData({
+          path: window.location.pathname, post, availableLocales,
+        }) }} />
       {/* 전 언어 공통: TOAST UI 테이블 가로 스크롤 허용 및 일본어 강제 줄바꿈 처리, RTL 조건부 적용 */}
       <style>{`
         .toastui-editor-contents table {
@@ -218,7 +234,7 @@ export default function CaseStudyDetail() {
             lang={isRtl ? 'ar' : currentLang}
             className={isRtl ? 'rtl-viewer' : ''}
           >
-            <Viewer initialValue={post.content_md} key={post.id || post.language_code} />
+            <Viewer ref={viewerRef} initialValue={post.content_md} key={post.id || post.language_code} />
           </div>
 
           <div style={styles.adSection}>

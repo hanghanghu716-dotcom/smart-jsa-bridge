@@ -2,41 +2,42 @@ name: Vercel Production Deployment
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-    
+
+concurrency:
+  group: production-content-build
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+      JSA_PRERENDER_CONCURRENCY: 4
     steps:
-      - name: 1. 저장소 코드 체크아웃
-        uses: actions/checkout@v4
-
-      - name: 2. Node.js 환경 세팅 (v22)
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - name: 3. 의존성 패키지 설치
-        run: |
-          npm config set ignore-scripts false
-          npm install
-
-      - name: 3-1. Puppeteer 시스템 의존성 설치
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chrome system dependencies
         run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64
-
-      - name: 4. 정적 자산 빌드 및 하드코딩 렌더링 (react-snap)
-        env:
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
-        run: npm run build
-
-      - name: 5. Vercel 배포를 위한 dist 폴더 추적 허용
-        run: sed -i '/dist/d' .gitignore || true
-
-      - name: 6. Vercel 프로덕션 직접 배포
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Verify content and locale logic
+        run: npm run test:locales && npm run test:site && npm run test:content
+      - name: Load Vercel project configuration
+        run: npx --yes vercel@59.23.2 pull --yes --environment=production --token="$VERCEL_TOKEN"
+      - name: Build current database content and verify initial HTML
+        run: npx --yes vercel@59.23.2 build --prod --token="$VERCEL_TOKEN"
+      - name: Deploy the verified build without rebuilding
+        run: npx --yes vercel@59.23.2 deploy --prebuilt --prod --token="$VERCEL_TOKEN"

@@ -4,13 +4,19 @@ import { HelmetProvider } from 'react-helmet-async';
 import './index.css'
 import App from './App.jsx'
 import './i18n';
+import { captureCaseBootstrap, clearPrerenderedCaseMetadata } from './utils/caseBootstrap.js';
 
 const rootElement = document.getElementById('root');
 
 // 빌드 시점에 실행되는 react-snap 봇인지 여부 판별
 const isReactSnap = navigator.userAgent.includes('ReactSnap');
+const isCasePage = /^\/[^/]+\/case-study\/[^/]+\/?$/.test(window.location.pathname);
+if (!isReactSnap) {
+  if (isCasePage) captureCaseBootstrap(document, window.location.pathname);
+  clearPrerenderedCaseMetadata(document);
+}
 
-if (rootElement.hasChildNodes() && !isReactSnap) {
+if (rootElement.hasChildNodes() && !isReactSnap && !isCasePage) {
   // 1. 실제 운영 환경 (일반 유저 및 구글 검색 엔진 봇) -> Hydration 적용하여 SEO 및 성능 유지
   hydrateRoot(
     rootElement,
