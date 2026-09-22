@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-sitemap.js",
-    "build": "vite build && react-snap",
+    "build": "vite build && node scripts/prerender-cases.js",
     "lint": "eslint .",
     "test:locales": "node --test scripts/locales.test.js",
     "preview": "vite preview",
-    "test:site": "node --test scripts/site-quality.test.js"
+    "test:site": "node --test scripts/site-quality.test.js",
+    "test:content": "node --test scripts/content-publishing.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
