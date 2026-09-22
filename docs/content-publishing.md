@@ -10,6 +10,11 @@ title, description and canonical URL, and deploys `.vercel/output` with
 `vercel deploy --prebuilt`. A mismatch stops deployment. Avoid simultaneous
 article edits while a build is running; otherwise rerun after editing finishes.
 
+Prerendered pages contain settled effects and minified inline styles, so the
+browser mounts a fresh React tree instead of hydrating incompatible snapshots.
+Case-study snapshots provide the initial article data to that tree. Fresh
+database responses also update the Toast UI body for the same article ID.
+
 Vercel's separate Git-triggered deployment is disabled in `vercel.json` so it
 cannot publish a second build that bypasses these checks. CLI deployments from
 Actions remain enabled. This follows Vercel's [Git configuration](https://vercel.com/docs/project-configuration/git-configuration)
