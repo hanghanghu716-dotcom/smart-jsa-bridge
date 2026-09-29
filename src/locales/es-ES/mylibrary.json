@@ -59,5 +59,17 @@
     "module": "Configuración de módulo",
     "table": "Configuración de tabla",
     "export": "Salida final"
-  }
+  },
+  "searchWorkSteps": "Buscar pasos, peligros o controles",
+  "favoritesOnly": "Solo favoritos",
+  "addFavorite": "Añadir a favoritos",
+  "removeFavorite": "Quitar de favoritos",
+  "editWorkStep": "Editar",
+  "saveChanges": "Guardar",
+  "cancelEdit": "Cancelar",
+  "workStepUpdateError": "No se pudo actualizar el paso.",
+  "menuSaveWorkSteps": "Guardar todos los pasos en la biblioteca",
+  "bulkSavingSteps": "Guardando pasos...",
+  "bulkStepSaveSuccess": "Se guardaron {{count}} pasos.",
+  "bulkStepSaveError": "No se pudieron guardar los pasos."
 }
