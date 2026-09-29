@@ -150,5 +150,8 @@
   "menuSaveWorkSteps": "Salva tutte le fasi nella libreria",
   "bulkSavingSteps": "Salvataggio fasi...",
   "bulkStepSaveSuccess": "Salvate {{count}} fasi.",
-  "bulkStepSaveError": "Impossibile salvare le fasi."
+  "bulkStepSaveError": "Impossibile salvare le fasi.",
+  "archiveDraft": "Archivia",
+  "confirmArchiveDraft": "Archiviare questa bozza?",
+  "draftArchiveError": "Impossibile archiviare la bozza."
 }
