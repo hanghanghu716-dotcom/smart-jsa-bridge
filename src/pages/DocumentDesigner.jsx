@@ -47,7 +47,7 @@ const moveItem = (items, from, to) => {
 export default function DocumentDesigner() {
   const navigate = useLanguageNavigate();
   const location = useLocation();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'tablebuilder']);
 
   const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
@@ -171,7 +171,7 @@ export default function DocumentDesigner() {
                 style={activeOrder.includes(key) ? styles.toggleActive : styles.toggle}
                 onClick={() => toggleColumn(key)}
               >
-                {t('designer.columns.' + key, COLUMN_META[key].fallback)}
+                {t('tablebuilder:tags.' + key, COLUMN_META[key].fallback)}
               </button>
             ))}
           </div>
@@ -215,7 +215,7 @@ export default function DocumentDesigner() {
                     </>
                   ) : (
                     <span style={styles.columnLabel}>
-                      {t('designer.columns.' + key, COLUMN_META[key]?.fallback || key)}
+                      {t('tablebuilder:tags.' + key, COLUMN_META[key]?.fallback || key)}
                     </span>
                   )}
                 </div>
@@ -373,7 +373,7 @@ export default function DocumentDesigner() {
                     <div style={styles.columnPreview}>
                       {visibleColumns.map(key => {
                         const custom = userColumns.find(col => col.id === key);
-                        return <span key={key}>{custom?.label || t('designer.columns.' + key, COLUMN_META[key]?.fallback || key)}</span>;
+                        return <span key={key}>{custom?.label || t('tablebuilder:tags.' + key, COLUMN_META[key]?.fallback || key)}</span>;
                       })}
                     </div>
                   )}
