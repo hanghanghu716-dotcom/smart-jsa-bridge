@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Veuillez d'abord sélectionner une mesure de sécurité actuelle via le système de recommandation.",
     "noData": "Aucune donnée liée trouvée. Veuillez saisir directement.",
     "confirmMain": "Êtes-vous sûr de vouloir revenir à l'écran principal ? Toutes les données non sauvegardées seront perdues.",
-    "loginRequired": "Connexion requise."
+    "loginRequired": "Connexion requise.",
+    "stepSaved": "L’étape a été enregistrée dans votre bibliothèque.",
+    "stepSaveFailed": "Impossible d’enregistrer l’étape."
   },
   "libModal": {
     "title": "Appeler la bibliothèque d'étapes de tâche",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtre haut risque",
     "auto": "(Suggestion auto)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Rechercher des dangers..."
+    "searchPlaceholder": "Rechercher des dangers...",
+    "saveStepBtn": "Enregistrer l’étape",
+    "savingStepBtn": "Enregistrement..."
   },
   "base": {
     "label": "Base de connaissances sécurité\n(Extraction des dangers)",
