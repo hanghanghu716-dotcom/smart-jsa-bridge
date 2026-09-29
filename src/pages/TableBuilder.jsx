@@ -74,7 +74,7 @@ export default function TableBuilder() {
   const { t, i18n } = useTranslation(['tablebuilder']);
   const isEnglish = i18n.language?.startsWith('en'); 
   
-  const { draft: recoveredDraft, status: draftRecoveryStatus } = useJsaDraftRecovery(!location.state?.formData);
+  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
 
