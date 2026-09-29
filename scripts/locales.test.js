@@ -73,7 +73,8 @@ test('procedure step composer translations are complete for every base locale', 
     'open', 'unpin', 'noProject', 'loginRequired', 'loading', 'addSelected',
     'add', 'riskCount', 'today', 'todayHint', 'emptyToday', 'source',
     'remove', 'apply', 'cancel', 'maxReached', 'pinLimit', 'own', 'scrap',
-    'eyebrow', 'stepLabel', 'currentJsa',
+    'eyebrow', 'stepLabel', 'currentJsa', 'importMode', 'importFull',
+    'importProcedureOnly', 'alreadyAdded', 'added', 'selectedAlreadyAdded', 'recent',
   ];
 
   for (const locale of baseLocales) {
