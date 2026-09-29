@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "全ステップを作業ステップライブラリに保存",
   "bulkSavingSteps": "作業ステップを保存中...",
   "bulkStepSaveSuccess": "{{count}}件の作業ステップを保存しました。",
-  "bulkStepSaveError": "作業ステップを保存できませんでした。"
+  "bulkStepSaveError": "作業ステップを保存できませんでした。",
+  "archiveDraft": "アーカイブ",
+  "confirmArchiveDraft": "この下書きをアーカイブしますか？",
+  "draftArchiveError": "下書きをアーカイブできませんでした。"
 }
