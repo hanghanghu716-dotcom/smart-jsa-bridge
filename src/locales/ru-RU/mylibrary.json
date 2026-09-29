@@ -38,5 +38,26 @@
   "moveFolderSelect": "Переместить в папку",
   "btnReference": "На основе этого",
   "btnEdit": "Редактировать",
-  "folderLabel": "Папка"
+  "folderLabel": "Папка",
+  "menuDrafts": "Черновики",
+  "menuWorkSteps": "Библиотека этапов",
+  "draftListTitle": "Черновики JSA",
+  "noDrafts": "Сохранённых черновиков нет.",
+  "draftStage": "Текущий этап",
+  "resumeDraft": "Продолжить",
+  "workStepListTitle": "Мои этапы работ",
+  "noWorkSteps": "Сохранённых этапов нет.",
+  "hazardsCount": "Опасности",
+  "usedCount": "Использований",
+  "useWorkStep": "Использовать этап",
+  "confirmDeleteWorkStep": "Удалить этот этап работы?",
+  "workStepDeleteError": "Ошибка при удалении этапа.",
+  "draftStages": {
+    "info": "Основная информация",
+    "procedure": "Процедура",
+    "analysis": "Анализ рисков",
+    "module": "Модули",
+    "table": "Таблица",
+    "export": "Финальный вывод"
+  }
 }
