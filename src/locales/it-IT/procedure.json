@@ -63,6 +63,13 @@
     "scrap": "SALVATI",
     "eyebrow": "COMPOSITORE DELLE FASI",
     "stepLabel": "FASE {{number}}",
-    "currentJsa": "JSA corrente"
+    "currentJsa": "JSA corrente",
+    "importMode": "Ambito importazione",
+    "importFull": "Fase + analisi rischi",
+    "importProcedureOnly": "Solo fase",
+    "alreadyAdded": "Questa fase è già presente nel JSA di oggi.",
+    "added": "Aggiunta",
+    "selectedAlreadyAdded": "Tutte le fasi selezionate sono già state aggiunte.",
+    "recent": "Recenti"
   }
 }
