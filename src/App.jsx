@@ -8,6 +8,7 @@ import Main from './pages/Main';
 import Info from './pages/Info';
 import Analysis from './pages/Analysis';
 import Export from './pages/Export';
+import DocumentDesigner from './pages/DocumentDesigner';
 import Procedure from './pages/Procedure';
 import About from './pages/About';
 import Terms from './pages/Terms';
@@ -147,6 +148,7 @@ export default function App() {
             <Route path="/:lng/analysis" element={<CrawlerBlocker><LanguageWrapper><Analysis /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/procedure" element={<CrawlerBlocker><LanguageWrapper><Procedure /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/export" element={<CrawlerBlocker><LanguageWrapper><Export /></LanguageWrapper></CrawlerBlocker>} />
+          <Route path="/:lng/document-designer" element={<CrawlerBlocker><LanguageWrapper><DocumentDesigner /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/jsa-preview" element={<CrawlerBlocker><LanguageWrapper><JsaSamplePreview /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/layoutbuilder" element={<CrawlerBlocker><LanguageWrapper><LayoutBuilder /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/layout-module" element={<CrawlerBlocker><LanguageWrapper><ModuleBuilder /></LanguageWrapper></CrawlerBlocker>} />
