@@ -240,6 +240,7 @@ export default function WorkStepWorkbench({
       return;
     }
     setDraftSteps(prev => [...prev, buildDraftItem(project, step, stepIndex)]);
+    setSelectedStepKeys(prev => prev.filter(key => key !== sourceKey));
   };
 
   const addSelected = () => {
@@ -445,8 +446,10 @@ export default function WorkStepWorkbench({
                         return (
                           <article
                             key={key}
-                            draggable
-                            onDragStart={event => handleLibraryDragStart(event, project.id, stepIndex)}
+                            draggable={!alreadyAdded}
+                            onDragStart={event => {
+                              if (!alreadyAdded) handleLibraryDragStart(event, project.id, stepIndex);
+                            }}
                             style={alreadyAdded ? styles.stepCardAdded : (checked ? styles.stepCardSelected : styles.stepCard)}
                           >
                             <div style={styles.stepCardTop}>
