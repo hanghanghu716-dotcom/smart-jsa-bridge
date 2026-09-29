@@ -63,6 +63,13 @@
     "scrap": "СОХР.",
     "eyebrow": "КОМПОНОВКА ЭТАПОВ",
     "stepLabel": "ЭТАП {{number}}",
-    "currentJsa": "Текущая JSA"
+    "currentJsa": "Текущая JSA",
+    "importMode": "Объём импорта",
+    "importFull": "Этап + анализ рисков",
+    "importProcedureOnly": "Только этап",
+    "alreadyAdded": "Этот этап уже добавлен в сегодняшнюю JSA.",
+    "added": "Добавлено",
+    "selectedAlreadyAdded": "Все выбранные этапы уже добавлены.",
+    "recent": "Недавние"
   }
 }
