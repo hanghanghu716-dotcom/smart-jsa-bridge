@@ -8,6 +8,7 @@ export default function WorkStepWorkbench({
   isOpen,
   onClose,
   procedures = [],
+  analysisData = [],
   onApply,
   maxSteps = 20
 }) {
@@ -79,8 +80,19 @@ export default function WorkStepWorkbench({
     if (!isOpen) return;
 
     const initialDraft = procedures
-      .filter(p => p?.stepTitle?.trim() || p?.stepDetail?.trim())
-      .map(proc => ({ key: makeDraftKey(), proc: { ...proc } }));
+      .map((proc, index) => ({ proc, analysis: analysisData[index] }))
+      .filter(item => item.proc?.stepTitle?.trim() || item.proc?.stepDetail?.trim())
+      .map(item => ({
+        key: makeDraftKey(),
+        proc: { ...item.proc },
+        analysis: item.analysis ? {
+          ...item.analysis,
+          proc: { ...item.proc },
+          risks: Array.isArray(item.analysis.risks)
+            ? item.analysis.risks.map(risk => ({ ...risk }))
+            : []
+        } : null
+      }));
     setDraftSteps(initialDraft);
     setSelectedStepKeys([]);
     setSearchTerm('');
@@ -132,7 +144,7 @@ export default function WorkStepWorkbench({
     };
 
     fetchProjects();
-  }, [isOpen, procedures]);
+  }, [isOpen, procedures, analysisData]);
 
   const filteredProjects = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
@@ -195,9 +207,20 @@ export default function WorkStepWorkbench({
         alert(copy.maxReached);
         return prev;
       }
+      const proc = buildProcedure(project, step, stepIndex);
       return [...prev, {
         key: makeDraftKey(),
-        proc: buildProcedure(project, step, stepIndex)
+        proc,
+        analysis: {
+          ...step,
+          proc,
+          risks: Array.isArray(step?.risks)
+            ? step.risks.map(risk => ({
+                ...risk,
+                id: 'composer-risk-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9)
+              }))
+            : []
+        }
       }];
     });
   };
@@ -218,10 +241,23 @@ export default function WorkStepWorkbench({
 
     setDraftSteps(prev => [
       ...prev,
-      ...selected.slice(0, available).map(item => ({
-        key: makeDraftKey(),
-        proc: buildProcedure(item.project, item.step, item.stepIndex)
-      }))
+      ...selected.slice(0, available).map(item => {
+        const proc = buildProcedure(item.project, item.step, item.stepIndex);
+        return {
+          key: makeDraftKey(),
+          proc,
+          analysis: {
+            ...item.step,
+            proc,
+            risks: Array.isArray(item.step?.risks)
+              ? item.step.risks.map(risk => ({
+                  ...risk,
+                  id: 'composer-risk-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9)
+                }))
+              : []
+          }
+        };
+      })
     ]);
     setSelectedStepKeys([]);
   };
@@ -261,7 +297,20 @@ export default function WorkStepWorkbench({
   };
 
   const applyDraft = () => {
-    onApply?.(draftSteps.map(item => ({ ...item.proc })));
+    const nextProcedures = draftSteps.map(item => ({ ...item.proc }));
+    const nextAnalysisData = draftSteps.map((item, index) => {
+      const base = item.analysis || {};
+      return {
+        ...base,
+        id: index,
+        proc: { ...item.proc },
+        risks: Array.isArray(base.risks) ? base.risks.map(risk => ({ ...risk })) : [],
+        frequency: base.frequency ?? 1,
+        severity: base.severity ?? 1,
+        riskLevel: base.riskLevel ?? 1
+      };
+    });
+    onApply?.(nextProcedures, nextAnalysisData);
     onClose?.();
   };
 
