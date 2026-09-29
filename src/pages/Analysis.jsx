@@ -43,6 +43,7 @@ export default function Analysis() {
   }, [incomingAnalysisData, analysisData.length]);
 
   useJsaDraftAutosave({
+    enabled: Boolean(location.state?.formData || recoveredDraft || draftRecoveryStatus === 'empty'),
     stage: 'analysis',
     formData,
     participants,
