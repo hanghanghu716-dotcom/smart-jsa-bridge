@@ -99,7 +99,8 @@ test('phase 2 draft and work-step translations are complete', () => {
     'usedCount', 'useWorkStep', 'confirmDeleteWorkStep', 'workStepDeleteError',
     'searchWorkSteps', 'favoritesOnly', 'addFavorite', 'removeFavorite',
     'editWorkStep', 'saveChanges', 'cancelEdit', 'workStepUpdateError',
-    'menuSaveWorkSteps', 'bulkSavingSteps', 'bulkStepSaveSuccess', 'bulkStepSaveError'
+    'menuSaveWorkSteps', 'bulkSavingSteps', 'bulkStepSaveSuccess', 'bulkStepSaveError',
+    'archiveDraft', 'confirmArchiveDraft', 'draftArchiveError'
   ];
   const draftStageKeys = ['info', 'procedure', 'analysis', 'module', 'table', 'export'];
 
