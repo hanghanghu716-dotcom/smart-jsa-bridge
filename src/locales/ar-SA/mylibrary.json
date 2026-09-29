@@ -59,5 +59,17 @@
     "module": "إعداد النماذج",
     "table": "تخطيط الجدول",
     "export": "المخرجات النهائية"
-  }
+  },
+  "searchWorkSteps": "البحث في خطوات العمل أو المخاطر أو إجراءات التحكم",
+  "favoritesOnly": "المفضلة فقط",
+  "addFavorite": "إضافة إلى المفضلة",
+  "removeFavorite": "إزالة من المفضلة",
+  "editWorkStep": "تعديل",
+  "saveChanges": "حفظ",
+  "cancelEdit": "إلغاء",
+  "workStepUpdateError": "تعذر تحديث خطوة العمل.",
+  "menuSaveWorkSteps": "حفظ جميع الخطوات في مكتبة خطوات العمل",
+  "bulkSavingSteps": "جارٍ حفظ خطوات العمل...",
+  "bulkStepSaveSuccess": "تم حفظ {{count}} خطوة عمل.",
+  "bulkStepSaveError": "تعذر حفظ خطوات العمل."
 }
