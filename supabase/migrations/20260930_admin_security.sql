@@ -15,14 +15,14 @@ create policy "case_studies_admin_insert_guard"
 on public.case_studies
 as restrictive
 for insert
-to authenticated
+to public
 with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 create policy "case_studies_admin_update_guard"
 on public.case_studies
 as restrictive
 for update
-to authenticated
+to public
 using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
 with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
@@ -30,7 +30,7 @@ create policy "case_studies_admin_delete_guard"
 on public.case_studies
 as restrictive
 for delete
-to authenticated
+to public
 using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 -- These permissive policies guarantee that an admin has a positive write policy.
@@ -66,7 +66,7 @@ create policy "blog_images_admin_insert_guard"
 on storage.objects
 as restrictive
 for insert
-to authenticated
+to public
 with check (
   bucket_id <> 'blog-images'
   or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
@@ -76,7 +76,7 @@ create policy "blog_images_admin_update_guard"
 on storage.objects
 as restrictive
 for update
-to authenticated
+to public
 using (
   bucket_id <> 'blog-images'
   or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
@@ -90,7 +90,7 @@ create policy "blog_images_admin_delete_guard"
 on storage.objects
 as restrictive
 for delete
-to authenticated
+to public
 using (
   bucket_id <> 'blog-images'
   or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
