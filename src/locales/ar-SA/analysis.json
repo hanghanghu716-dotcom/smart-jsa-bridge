@@ -100,6 +100,7 @@
     "mergeFull": "دمج مع إجراءات التحكم",
     "emptyProjects": "لا توجد مشاريع محفوظة.",
     "steps": "خطوات",
-    "backProjects": "قائمة المشاريع"
+    "backProjects": "قائمة المشاريع",
+    "sourceCurrent": "JSA الحالي"
   }
 }
