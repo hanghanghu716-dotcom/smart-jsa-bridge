@@ -139,6 +139,16 @@ test('phase 3 analysis knowledge dock translations are complete', () => {
   }
 });
 
+test('draft save status translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    for (const key of ['pending', 'saved', 'error']) {
+      assert.ok(common.draftSave?.[key]?.trim(), `Missing common.draftSave.${key} for ${locale}`);
+    }
+  }
+});
+
 test('actual i18n configuration retains province and falls back per translation key', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousDocument = global.document;
