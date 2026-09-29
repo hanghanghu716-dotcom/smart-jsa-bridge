@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "Enregistrer toutes les étapes dans la bibliothèque",
   "bulkSavingSteps": "Enregistrement des étapes...",
   "bulkStepSaveSuccess": "{{count}} étapes ont été enregistrées.",
-  "bulkStepSaveError": "Impossible d’enregistrer les étapes."
+  "bulkStepSaveError": "Impossible d’enregistrer les étapes.",
+  "archiveDraft": "Archiver",
+  "confirmArchiveDraft": "Archiver ce brouillon ?",
+  "draftArchiveError": "Impossible d’archiver le brouillon."
 }
