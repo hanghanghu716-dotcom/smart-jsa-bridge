@@ -6,6 +6,7 @@ import AdBanner from '../AdBanner';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 
 export default function Analysis() {
   const navigate = useLanguageNavigate();
@@ -32,6 +33,15 @@ export default function Analysis() {
   const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');  const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
+
+  useJsaDraftAutosave({
+    stage: 'analysis',
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    sourceProjectId: location.state?.parentId || existingId || null,
+  });
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
