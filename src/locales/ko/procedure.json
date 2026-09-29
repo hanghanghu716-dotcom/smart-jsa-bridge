@@ -34,5 +34,32 @@
     "prev": "이전으로",
     "next": "지능형 위험 분석 시작",
     "skipModule": "모듈 설정 건너뛰기"
+  },
+  "workbench": {
+    "hint": "과거 프로젝트의 작업단계를 조합하거나 직접 입력할 수 있습니다.",
+    "openButton": "작업 라이브러리에서 조립",
+    "title": "오늘의 작업 조립",
+    "subtitle": "여러 과거 프로젝트의 작업단계를 한 화면에서 비교하고 오늘 수행할 단계만 조합합니다.",
+    "projectLibrary": "프로젝트",
+    "search": "프로젝트·작업단계 검색",
+    "open": "펼쳐보기",
+    "unpin": "접기",
+    "noProject": "불러올 프로젝트가 없습니다.",
+    "loginRequired": "로그인 후 내 프로젝트와 스크랩 프로젝트를 조립할 수 있습니다.",
+    "loading": "라이브러리를 불러오는 중...",
+    "addSelected": "선택 단계 추가",
+    "add": "추가",
+    "riskCount": "위험요인",
+    "today": "오늘의 JSA",
+    "todayHint": "왼쪽 작업단계의 + 버튼을 누르거나 이 영역으로 드래그하세요.",
+    "emptyToday": "아직 선택한 작업단계가 없습니다.",
+    "source": "출처",
+    "remove": "삭제",
+    "apply": "오늘 작업으로 적용",
+    "cancel": "닫기",
+    "maxReached": "작업단계는 최대 20개까지 구성할 수 있습니다.",
+    "pinLimit": "한 번에 최대 4개 프로젝트를 펼칠 수 있습니다.",
+    "own": "MY",
+    "scrap": "SCRAP"
   }
 }
