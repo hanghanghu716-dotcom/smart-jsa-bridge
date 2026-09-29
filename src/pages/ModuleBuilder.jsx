@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 
 /**
  * [ModuleBuilder 컴포넌트]
@@ -19,18 +21,20 @@ export default function ModuleBuilder() {
   const isEnglish = i18n.language?.startsWith('en');
   const isFrench = i18n.language?.startsWith('fr');
 
-  const { 
-    existingId = null,
-    analysisData = [],
-    procedures = [],
-    formData = {}, 
-    participants = [],
-    savedSignatureRows,
-    docTitle: savedDocTitle,
-    appr1: savedAppr1,
-    appr2: savedAppr2,
-    appr3: savedAppr3
-  } = location.state || {};
+  const { draft: recoveredDraft, status: draftRecoveryStatus } = useJsaDraftRecovery(!location.state?.formData);
+  const state = location.state || {};
+  const recoveredLayout = recoveredDraft?.layout_data || {};
+
+  const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
+  const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const formData = state.formData || recoveredDraft?.form_data || {};
+  const participants = state.participants || recoveredDraft?.participants || [];
+  const savedSignatureRows = state.savedSignatureRows ?? recoveredLayout.savedSignatureRows;
+  const savedDocTitle = state.docTitle ?? recoveredLayout.docTitle;
+  const savedAppr1 = state.appr1 ?? recoveredLayout.appr1;
+  const savedAppr2 = state.appr2 ?? recoveredLayout.appr2;
+  const savedAppr3 = state.appr3 ?? recoveredLayout.appr3;
 
   const [signatureRows, setSignatureRows] = useState(savedSignatureRows || 1);
 
@@ -38,6 +42,26 @@ export default function ModuleBuilder() {
   const [appr1, setAppr1] = useState(savedAppr1 || t('default.appr1', '작성'));
   const [appr2, setAppr2] = useState(savedAppr2 || t('default.appr2', '검토'));
   const [appr3, setAppr3] = useState(savedAppr3 || t('default.appr3', '승인'));
+
+  useEffect(() => {
+    if (!recoveredDraft || location.state?.formData) return;
+    setSignatureRows(recoveredLayout.savedSignatureRows || 1);
+    setDocTitle(recoveredLayout.docTitle || t('default.docTitle', '위험성평가표 (JSA)'));
+    setAppr1(recoveredLayout.appr1 || t('default.appr1', '작성'));
+    setAppr2(recoveredLayout.appr2 || t('default.appr2', '검토'));
+    setAppr3(recoveredLayout.appr3 || t('default.appr3', '승인'));
+  }, [recoveredDraft, recoveredLayout, location.state?.formData, t]);
+
+  useJsaDraftAutosave({
+    enabled: Boolean(location.state?.formData || recoveredDraft || draftRecoveryStatus === 'empty'),
+    stage: 'module',
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    layoutData: { savedSignatureRows: signatureRows, docTitle, appr1, appr2, appr3 },
+    sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
+  });
 
   const goBackToAnalysis = () => {
     navigate('/analysis', { 
