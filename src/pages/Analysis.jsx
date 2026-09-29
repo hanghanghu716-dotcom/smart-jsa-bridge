@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
-import { saveWorkStep } from '../services/workStepLibraryService';
+import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
 
 export default function Analysis() {
   const navigate = useLanguageNavigate();
@@ -91,7 +91,8 @@ export default function Analysis() {
       measure: "",
       current_measure: "",
       recommend_measure: "",
-      category: rec.category || t('base.etc')
+      category: rec.category || t('base.etc'),
+      source: rec.source || 'master'
     }));
 
     setAnalysisData(prev => {
@@ -386,7 +387,10 @@ export default function Analysis() {
     return () => clearTimeout(delayDebounceFn);
   }, [measureSearchTerm, measureSearchModal.isOpen, i18n.language]);
 
-  const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
+  const [isKnowledgeDockOpen, setIsKnowledgeDockOpen] = useState(false);
+  const [knowledgeTab, setKnowledgeTab] = useState('steps');
+  const [knowledgeSearch, setKnowledgeSearch] = useState('');
+  const [savedWorkSteps, setSavedWorkSteps] = useState([]);
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
 
@@ -434,31 +438,82 @@ export default function Analysis() {
     if (window.confirm(t('alert.confirmMain'))) navigate('/');
   };
 
-  const fetchMyLibrary = async () => {
+  const openKnowledgeDock = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return alert(t('alert.loginRequired'));
-    const { data } = await supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id);
-    setMyLibraryItems(data || []);
-    setSelectedLibProject(null);
-    setIsLibraryModalOpen(true);
+
+    setIsKnowledgeDockOpen(true);
+    try {
+      const [steps, favoritesRes] = await Promise.all([
+        listWorkSteps({ limit: 100 }),
+        supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id)
+      ]);
+      setSavedWorkSteps(steps || []);
+      setMyLibraryItems(favoritesRes.data || []);
+      setSelectedLibProject(null);
+    } catch (error) {
+      console.error('[Analysis Knowledge Dock] load failed:', error);
+    }
   };
 
-  const applyStepData = (stepData) => {
-    const mappedRisks = stepData.risks.map(r => ({
-      id: `lib-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      factor: r.factor || r.risk_factor,
-      measure: "", current_measure: "", recommend_measure: "",
-      category: r.category || t('base.etc'),
-      source: '공유'
-    }));
+  const mergeStepData = (stepData, mode = 'full', sourceMeta = {}) => {
+    const sourceRisks = Array.isArray(stepData?.risks) ? stepData.risks : [];
+    if (!sourceRisks.length) return;
 
     setAnalysisData(prev => {
       const newData = [...prev];
-      newData[activeIdx] = { ...newData[activeIdx], risks: [...newData[activeIdx].risks, ...mappedRisks] };
+      const target = newData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+      const existingFactors = new Set(
+        (target.risks || [])
+          .map(risk => (risk.factor || '').trim().toLowerCase())
+          .filter(Boolean)
+      );
+
+      const mappedRisks = sourceRisks
+        .filter(risk => {
+          const factor = (risk.factor || risk.risk_factor || '').trim().toLowerCase();
+          return factor && !existingFactors.has(factor);
+        })
+        .map(risk => ({
+          ...risk,
+          id: `knowledge-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          factor: risk.factor || risk.risk_factor || '',
+          measure: mode === 'full' ? (risk.measure || '') : '',
+          current_measure: mode === 'full' ? (risk.current_measure || '') : '',
+          recommend_measure: mode === 'full' ? (risk.recommend_measure || '') : '',
+          current_measure_db_id: mode === 'full' ? risk.current_measure_db_id : undefined,
+          category: risk.category || t('base.etc'),
+          source: sourceMeta.type || 'library',
+          sourceLabel: sourceMeta.label || '',
+          sourceWorkStepId: sourceMeta.workStepId || null
+        }));
+
+      newData[activeIdx] = {
+        ...target,
+        risks: [...(target.risks || []), ...mappedRisks]
+      };
       return newData;
     });
-    setIsLibraryModalOpen(false);
   };
+
+  const filteredSavedWorkSteps = savedWorkSteps.filter(step => {
+    const q = knowledgeSearch.trim().toLowerCase();
+    if (!q) return true;
+    const text = [
+      step.title,
+      step.detail,
+      step.source_project_title,
+      ...(step.tags || []),
+      ...(step.analysis_data?.risks || []).flatMap(risk => [
+        risk?.factor,
+        risk?.risk_factor,
+        risk?.measure,
+        risk?.current_measure,
+        risk?.recommend_measure
+      ])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return text.includes(q);
+  });
 
   const getRisksFromDBByTokens = async (title = "", detail = "") => {
     const combinedText = `${title} ${detail}`.trim();
@@ -555,7 +610,8 @@ export default function Analysis() {
           db_id: rec.id,
           factor: rec.risk_factor || rec.factor || "",
           measure: "", current_measure: "", recommend_measure: "",
-          category: rec.category || t('base.etc')
+          category: rec.category || t('base.etc'),
+          source: rec.source || (rec.factor || rec.risk_factor ? 'master' : 'manual')
         }]
       };
       return newData;
@@ -751,8 +807,23 @@ export default function Analysis() {
               </div>
             </div>
 
+            <div style={styles.quickStepNav}>
+              {analysisData.map((step, idx) => (
+                <button
+                  type="button"
+                  key={idx}
+                  style={idx === activeIdx ? styles.quickStepBtnActive : styles.quickStepBtn}
+                  onClick={() => setActiveIdx(idx)}
+                  title={step.proc?.stepTitle || ''}
+                >
+                  <span style={styles.quickStepNo}>{idx + 1}</span>
+                  <span style={styles.quickStepTitle}>{step.proc?.stepTitle || t('knowledgeDock.untitledStep')}</span>
+                </button>
+              ))}
+            </div>
+
             <div style={styles.scrollArea}>
-              <div style={styles.analysisGrid}>
+              <div style={{ ...styles.analysisGrid, ...(isKnowledgeDockOpen ? styles.analysisGridWithDock : {}) }}>
                 <section style={styles.leftPanel}>
                   <div style={styles.filterArea}>
                     <input
@@ -766,7 +837,9 @@ export default function Analysis() {
                       <option value="">{t('filter.auto')}</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
-                    <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>{t('filter.loadLibBtn')}</button>
+                    <button style={styles.libLoadBtn} onClick={openKnowledgeDock}>
+                      {isKnowledgeDockOpen ? t('knowledgeDock.opened') : t('knowledgeDock.openBtn')}
+                    </button>
                     <button
                       style={styles.saveStepBtn}
                       onClick={handleSaveCurrentWorkStep}
@@ -836,6 +909,16 @@ export default function Analysis() {
                           <tr key={r.id}>
                             <td style={styles.td}>
                               <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
+                              <div style={styles.riskSourceRow}>
+                                <span style={styles.riskSourceBadge}>
+                                  {r.source === 'manual'
+                                    ? t('knowledgeDock.sourceManual')
+                                    : r.source === 'master'
+                                      ? t('knowledgeDock.sourceDatabase')
+                                      : t('knowledgeDock.sourceLibrary')}
+                                </span>
+                                {r.sourceLabel && <span style={styles.riskSourceText}>{r.sourceLabel}</span>}
+                              </div>
                             </td>
 
                             {jsaType === '2-step' ? (
