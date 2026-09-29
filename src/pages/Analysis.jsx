@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 import { saveWorkStep } from '../services/workStepLibraryService';
 
 export default function Analysis() {
@@ -46,7 +47,7 @@ export default function Analysis() {
     }
   }, [incomingAnalysisData, analysisData.length]);
 
-  useJsaDraftAutosave({
+  const draftSave = useJsaDraftAutosave({
     enabled: recoverySettled && Boolean(
       formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
     ),
@@ -611,6 +612,7 @@ export default function Analysis() {
   return (
     <div style={styles.wrapper}>
       <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
 
       {isLibraryModalOpen && (
