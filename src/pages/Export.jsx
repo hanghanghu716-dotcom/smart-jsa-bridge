@@ -52,7 +52,7 @@ export default function Export() {
   const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
   const [showCopyAdModal, setShowCopyAdModal] = useState(false); // 👇 [기능 추가] 복사 전 광고 모달 상태
 
-  const { draft: recoveredDraft, status: draftRecoveryStatus } = useJsaDraftRecovery(!location.state?.formData);
+  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
 
