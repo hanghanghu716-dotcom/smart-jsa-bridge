@@ -1,128 +1,82 @@
 -- Smart JSA Bridge admin hardening
--- Apply with Supabase migrations/SQL editor after assigning at least one admin.
--- The restrictive policies below are intentionally ANDed with any existing permissive policies.
+-- Production policy model: public case-study reads, admin-only editorial writes.
 
 alter table public.case_studies enable row level security;
 
-drop policy if exists "case_studies_admin_insert_guard" on public.case_studies;
-drop policy if exists "case_studies_admin_update_guard" on public.case_studies;
-drop policy if exists "case_studies_admin_delete_guard" on public.case_studies;
-drop policy if exists "case_studies_admin_insert_grant" on public.case_studies;
-drop policy if exists "case_studies_admin_update_grant" on public.case_studies;
-drop policy if exists "case_studies_admin_delete_grant" on public.case_studies;
+drop policy if exists "Allow public inserts to case_studies" on public.case_studies;
+drop policy if exists "Allow public updates to case_studies" on public.case_studies;
+drop policy if exists "Allow public deletes to case_studies" on public.case_studies;
 
-create policy "case_studies_admin_insert_guard"
-on public.case_studies
-as restrictive
-for insert
-to public
-with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
+drop policy if exists "Admin inserts case_studies" on public.case_studies;
+drop policy if exists "Admin updates case_studies" on public.case_studies;
+drop policy if exists "Admin deletes case_studies" on public.case_studies;
 
-create policy "case_studies_admin_update_guard"
-on public.case_studies
-as restrictive
-for update
-to public
-using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
-with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
-
-create policy "case_studies_admin_delete_guard"
-on public.case_studies
-as restrictive
-for delete
-to public
-using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
-
--- These permissive policies guarantee that an admin has a positive write policy.
--- Restrictive guards above ensure other permissive policies cannot bypass the role check.
-create policy "case_studies_admin_insert_grant"
+create policy "Admin inserts case_studies"
 on public.case_studies
 for insert
 to authenticated
-with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
+with check ((select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
-create policy "case_studies_admin_update_grant"
+create policy "Admin updates case_studies"
 on public.case_studies
 for update
 to authenticated
-using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
-with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
+using ((select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
+with check ((select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
-create policy "case_studies_admin_delete_grant"
+create policy "Admin deletes case_studies"
 on public.case_studies
 for delete
 to authenticated
-using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
+using ((select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
--- Protect writes to the existing public editorial asset bucket without affecting other buckets.
-drop policy if exists "blog_images_admin_insert_guard" on storage.objects;
-drop policy if exists "blog_images_admin_update_guard" on storage.objects;
-drop policy if exists "blog_images_admin_delete_guard" on storage.objects;
-drop policy if exists "blog_images_admin_insert_grant" on storage.objects;
-drop policy if exists "blog_images_admin_update_grant" on storage.objects;
-drop policy if exists "blog_images_admin_delete_grant" on storage.objects;
+-- RLS blocks client DML, but TRUNCATE is not covered by RLS.
+revoke insert, update, delete, truncate on table public.case_studies from anon;
+revoke truncate on table public.case_studies from authenticated;
 
-create policy "blog_images_admin_insert_guard"
+drop policy if exists "Allow public uploads to blog-images" on storage.objects;
+drop policy if exists "Admin reads blog-images objects" on storage.objects;
+drop policy if exists "Admin uploads blog-images objects" on storage.objects;
+drop policy if exists "Admin updates blog-images objects" on storage.objects;
+drop policy if exists "Admin deletes blog-images objects" on storage.objects;
+
+-- Storage upload returns object metadata, so the administrator also needs SELECT.
+create policy "Admin reads blog-images objects"
 on storage.objects
-as restrictive
-for insert
-to public
-with check (
-  bucket_id <> 'blog-images'
-  or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
-);
-
-create policy "blog_images_admin_update_guard"
-on storage.objects
-as restrictive
-for update
-to public
+for select
+to authenticated
 using (
-  bucket_id <> 'blog-images'
-  or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
-)
-with check (
-  bucket_id <> 'blog-images'
-  or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  bucket_id = 'blog-images'
+  and (select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
 );
 
-create policy "blog_images_admin_delete_guard"
-on storage.objects
-as restrictive
-for delete
-to public
-using (
-  bucket_id <> 'blog-images'
-  or (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
-);
-
-create policy "blog_images_admin_insert_grant"
+create policy "Admin uploads blog-images objects"
 on storage.objects
 for insert
 to authenticated
 with check (
   bucket_id = 'blog-images'
-  and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  and (select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
 );
 
-create policy "blog_images_admin_update_grant"
+create policy "Admin updates blog-images objects"
 on storage.objects
 for update
 to authenticated
 using (
   bucket_id = 'blog-images'
-  and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  and (select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
 )
 with check (
   bucket_id = 'blog-images'
-  and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  and (select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
 );
 
-create policy "blog_images_admin_delete_grant"
+create policy "Admin deletes blog-images objects"
 on storage.objects
 for delete
 to authenticated
 using (
   bucket_id = 'blog-images'
-  and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  and (select auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
 );
