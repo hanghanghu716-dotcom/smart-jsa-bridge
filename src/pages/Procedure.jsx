@@ -17,6 +17,9 @@ export default function Procedure() {
 
   const [procedures, setProcedures] = useState(DEFAULT_PROCEDURES);
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
+  const [isWorkbenchOpen, setIsWorkbenchOpen] = useState(false);
+  const [composerTouched, setComposerTouched] = useState(false);
+  const [composedAnalysisData, setComposedAnalysisData] = useState(null);
 
   const formData = location.state?.formData;
   const participants = location.state?.participants;
@@ -72,8 +75,8 @@ const startAnalysis = (jsaType) => {
         procedures: validProcs,
         formData: { ...formData, jsaType },
         participants,
-        analysisData: analysisData,
-        isFastTrack: location.state?.isFastTrack ?? false // 명시적 전달
+        analysisData: composerTouched ? (composedAnalysisData || []) : analysisData,
+        isFastTrack // 명시적 전달
       },
     });
   };
@@ -102,6 +105,19 @@ const startAnalysis = (jsaType) => {
   return (
     <div style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+
+      <WorkStepWorkbench
+        isOpen={isWorkbenchOpen}
+        onClose={() => setIsWorkbenchOpen(false)}
+        procedures={procedures}
+        analysisData={analysisData || []}
+        maxSteps={20}
+        onApply={(nextProcedures, nextAnalysisData) => {
+          setProcedures(nextProcedures);
+          setComposedAnalysisData(nextAnalysisData);
+          setComposerTouched(true);
+        }}
+      />
 
       {isTypeModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsTypeModalOpen(false)}>
@@ -171,7 +187,13 @@ const startAnalysis = (jsaType) => {
             </nav>
 
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>{t('form.title')}</h2>
+              <div>
+                <h2 style={styles.formTitle}>{t('form.title')}</h2>
+                <div style={styles.formSubTitle}>{t('workbenchHint', { defaultValue: '과거 프로젝트의 작업단계를 조합하거나 직접 입력할 수 있습니다.' })}</div>
+              </div>
+              <button type="button" style={styles.workbenchBtn} onClick={() => setIsWorkbenchOpen(true)}>
+                {t('workbenchOpen', { defaultValue: '작업 라이브러리에서 조립' })}
+              </button>
             </div>
 
             <div style={styles.scrollArea}>
@@ -254,8 +276,10 @@ const styles = {
   stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
   stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
   stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
+  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff', margin: 0 },
+  formSubTitle: { marginTop: '4px', color: '#666', fontSize: '0.72rem' },
+  workbenchBtn: { padding: '0.7rem 1rem', backgroundColor: 'rgba(0,123,255,0.12)', color: '#64adff', border: '1px solid #007bff', borderRadius: '7px', cursor: 'pointer', fontWeight: '800', fontSize: '0.78rem', whiteSpace: 'nowrap' },
   procedureContainer: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   gridHeader: { display: 'flex', paddingLeft: '3.2rem', gap: '1rem', marginBottom: '0.5rem' },
   headerLabelShort: { width: '180px', fontSize: '0.85rem', color: '#007bff', fontWeight: 'bold' },
