@@ -71,6 +71,7 @@ export default function Export() {
   const appr2 = state.appr2 || recoveredLayout.appr2 || t('default.appr2', '검토');
   const appr3 = state.appr3 || recoveredLayout.appr3 || t('default.appr3', '승인');
   const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
+  const documentBlocks = state.documentBlocks || recoveredLayout.documentBlocks || [];
   const isFork = state.isFork || false;
   const parentId = state.parentId || recoveredDraft?.source_project_id || null;
   const originalAnalysisData = state.originalAnalysisData || null;
@@ -98,6 +99,7 @@ export default function Export() {
       savedActiveOrder,
       savedUserColumns,
       savedOrientation,
+      documentBlocks,
       isModuleSkipped
     },
     sourceProjectId: parentId || existingId || null,
@@ -167,7 +169,7 @@ export default function Export() {
         form_data: securedFormData, 
         analysis_data: analysisData, 
         participants: [], 
-        custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation }, 
+        custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation, documentBlocks }, 
         updated_at: new Date(),
         parent_id: parentId || null 
       };
@@ -484,7 +486,7 @@ export default function Export() {
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>{t('btn.prev')}</button>
+              <button style={styles.prevBtn} onClick={() => navigate(documentBlocks.length ? '/document-designer' : '/layout-table', { state: location.state })}>{t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
               {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
