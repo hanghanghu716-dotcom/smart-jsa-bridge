@@ -1454,23 +1454,24 @@ const styles = {
 
 if (typeof document !== 'undefined') {
   const styleId = "jsa-bridge-analysis-style";
-  if (!document.getElementById(styleId)) {
-    const styleTag = document.createElement("style");
+  let styleTag = document.getElementById(styleId);
+  if (!styleTag) {
+    styleTag = document.createElement("style");
     styleTag.id = styleId;
-    styleTag.innerHTML = `
-      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      @media (max-width: 1500px) {
-        .analysis-grid.has-knowledge-dock {
-          grid-template-columns: minmax(260px, .9fr) minmax(420px, 1.3fr) !important;
-          overflow-y: auto !important;
-        }
-        .analysis-grid.has-knowledge-dock .knowledge-dock {
-          grid-column: 1 / -1;
-          min-height: 220px;
-          max-height: 260px;
-        }
-      }
-    `;
     document.head.appendChild(styleTag);
   }
+  styleTag.innerHTML = `
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @media (max-width: 1500px) {
+      .analysis-grid.has-knowledge-dock {
+        grid-template-columns: minmax(260px, .9fr) minmax(420px, 1.3fr) !important;
+        overflow-y: auto !important;
+      }
+      .analysis-grid.has-knowledge-dock .knowledge-dock {
+        grid-column: 1 / -1;
+        min-height: 220px;
+        max-height: 260px;
+      }
+    }
+  `;
 }
