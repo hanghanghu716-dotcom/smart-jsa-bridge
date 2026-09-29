@@ -101,6 +101,8 @@
     "emptyProjects": "لا توجد مشاريع محفوظة.",
     "steps": "خطوات",
     "backProjects": "قائمة المشاريع",
-    "sourceCurrent": "JSA الحالي"
+    "sourceCurrent": "JSA الحالي",
+    "analysisIncluded": "يشمل التحليل",
+    "stepOnly": "الخطوة فقط"
   }
 }
