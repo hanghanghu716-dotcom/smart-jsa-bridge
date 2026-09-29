@@ -63,6 +63,13 @@
     "scrap": "保存済み",
     "eyebrow": "作業ステップ構成",
     "stepLabel": "ステップ {{number}}",
-    "currentJsa": "現在のJSA"
+    "currentJsa": "現在のJSA",
+    "importMode": "取り込み範囲",
+    "importFull": "作業 + リスク分析",
+    "importProcedureOnly": "作業ステップのみ",
+    "alreadyAdded": "この作業ステップはすでに本日のJSAに追加されています。",
+    "added": "追加済み",
+    "selectedAlreadyAdded": "選択した作業ステップはすべて追加済みです。",
+    "recent": "最近"
   }
 }
