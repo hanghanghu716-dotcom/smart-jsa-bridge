@@ -38,5 +38,26 @@
   "moveFolderSelect": "Ordner zum Verschieben auswählen",
   "btnReference": "Referenzieren & Erstellen",
   "btnEdit": "Bearbeiten & Ändern",
-  "folderLabel": "Ordner"
+  "folderLabel": "Ordner",
+  "menuDrafts": "Entwürfe",
+  "menuWorkSteps": "Arbeitsschritt-Bibliothek",
+  "draftListTitle": "JSA-Entwürfe",
+  "noDrafts": "Keine gespeicherten Entwürfe.",
+  "draftStage": "Aktuelle Phase",
+  "resumeDraft": "Fortsetzen",
+  "workStepListTitle": "Meine Arbeitsschritte",
+  "noWorkSteps": "Keine gespeicherten Arbeitsschritte.",
+  "hazardsCount": "Gefährdungen",
+  "usedCount": "Verwendungen",
+  "useWorkStep": "Diesen Schritt verwenden",
+  "confirmDeleteWorkStep": "Diesen Arbeitsschritt löschen?",
+  "workStepDeleteError": "Fehler beim Löschen des Arbeitsschritts.",
+  "draftStages": {
+    "info": "Basis-Info",
+    "procedure": "Arbeitsablauf",
+    "analysis": "Gefährdungsanalyse",
+    "module": "Modul-Konfig",
+    "table": "Tabellen-Konfig",
+    "export": "Endausgabe"
+  }
 }
