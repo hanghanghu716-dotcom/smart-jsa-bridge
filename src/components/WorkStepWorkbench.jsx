@@ -60,12 +60,12 @@ export default function WorkStepWorkbench({
         const [authoredRes, favoriteRes] = await Promise.all([
           supabase
             .from('jsa_projects')
-            .select('*')
+            .select('id, title, tags, analysis_data, updated_at')
             .eq('author_id', user.id)
             .order('updated_at', { ascending: false }),
           supabase
             .from('user_favorites')
-            .select('*, jsa_projects(*)')
+            .select('id, jsa_projects(id, title, tags, analysis_data, updated_at)')
             .eq('user_id', user.id)
         ]);
 
