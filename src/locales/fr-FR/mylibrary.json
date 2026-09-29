@@ -59,5 +59,17 @@
     "module": "Configuration module",
     "table": "Configuration tableau",
     "export": "Sortie finale"
-  }
+  },
+  "searchWorkSteps": "Rechercher des étapes, dangers ou mesures",
+  "favoritesOnly": "Favoris uniquement",
+  "addFavorite": "Ajouter aux favoris",
+  "removeFavorite": "Retirer des favoris",
+  "editWorkStep": "Modifier",
+  "saveChanges": "Enregistrer",
+  "cancelEdit": "Annuler",
+  "workStepUpdateError": "Impossible de modifier l’étape.",
+  "menuSaveWorkSteps": "Enregistrer toutes les étapes dans la bibliothèque",
+  "bulkSavingSteps": "Enregistrement des étapes...",
+  "bulkStepSaveSuccess": "{{count}} étapes ont été enregistrées.",
+  "bulkStepSaveError": "Impossible d’enregistrer les étapes."
 }
