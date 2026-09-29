@@ -50,9 +50,18 @@ export const saveWorkStep = async ({
     updated_at: new Date().toISOString(),
   };
 
-  const { data, error } = await supabase
-    .from('user_work_steps')
-    .insert(payload)
+  const writeQuery = sourceProjectId && Number.isInteger(sourceStepIndex)
+    ? supabase
+        .from('user_work_steps')
+        .upsert(payload, {
+          onConflict: 'user_id,source_project_id,source_step_index',
+          ignoreDuplicates: false
+        })
+    : supabase
+        .from('user_work_steps')
+        .insert(payload);
+
+  const { data, error } = await writeQuery
     .select()
     .single();
 
