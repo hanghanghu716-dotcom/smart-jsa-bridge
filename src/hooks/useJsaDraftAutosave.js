@@ -17,21 +17,22 @@ export default function useJsaDraftAutosave({
   const [lastSavedAt, setLastSavedAt] = useState(null);
   const saveSequence = useRef(0);
 
+  const snapshotJson = JSON.stringify({
+    draftId,
+    title: formData?.projectName,
+    currentStage: stage,
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    layoutData,
+    sourceProjectId,
+  });
+
   useEffect(() => {
     if (!enabled || !draftId) return;
 
-    const snapshot = {
-      draftId,
-      title: formData?.projectName,
-      currentStage: stage,
-      formData,
-      participants,
-      procedures,
-      analysisData,
-      layoutData,
-      sourceProjectId,
-    };
-
+    const snapshot = JSON.parse(snapshotJson);
     setStatus('pending');
     const sequence = ++saveSequence.current;
 
@@ -49,18 +50,7 @@ export default function useJsaDraftAutosave({
     }, delay);
 
     return () => window.clearTimeout(timer);
-  }, [
-    enabled,
-    delay,
-    draftId,
-    stage,
-    formData,
-    participants,
-    procedures,
-    analysisData,
-    layoutData,
-    sourceProjectId,
-  ]);
+  }, [enabled, delay, draftId, snapshotJson]);
 
   return { draftId, status, lastSavedAt };
 }
