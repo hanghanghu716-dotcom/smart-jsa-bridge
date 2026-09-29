@@ -99,6 +99,7 @@
     "mergeFull": "Merge with controls",
     "emptyProjects": "No saved projects.",
     "steps": "steps",
-    "backProjects": "Project list"
+    "backProjects": "Project list",
+    "sourceCurrent": "Current JSA"
   }
 }
