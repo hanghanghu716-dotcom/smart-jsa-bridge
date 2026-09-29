@@ -12,60 +12,8 @@ export default function WorkStepWorkbench({
   onApply,
   maxSteps = 20
 }) {
-  const { i18n } = useTranslation();
-  const isKo = i18n.language?.startsWith('ko');
-
-  const copy = isKo ? {
-    title: '오늘의 작업 조립',
-    subtitle: '여러 과거 프로젝트의 작업단계를 한 화면에서 비교하고 오늘 수행할 단계만 조합합니다.',
-    projectLibrary: '프로젝트',
-    search: '프로젝트·작업단계 검색',
-    pinned: '펼쳐보기',
-    unpin: '접기',
-    noProject: '불러올 프로젝트가 없습니다.',
-    loginRequired: '로그인 후 내 프로젝트와 스크랩 프로젝트를 조립할 수 있습니다.',
-    loading: '라이브러리를 불러오는 중...',
-    selected: '선택됨',
-    addSelected: '선택 단계 추가',
-    add: '추가',
-    riskCount: '위험요인',
-    today: '오늘의 JSA',
-    todayHint: '왼쪽 작업단계의 + 버튼을 누르거나 이 영역으로 드래그하세요.',
-    emptyToday: '아직 선택한 작업단계가 없습니다.',
-    source: '출처',
-    remove: '삭제',
-    apply: '오늘 작업으로 적용',
-    cancel: '닫기',
-    maxReached: '작업단계는 최대 20개까지 구성할 수 있습니다.',
-    pinLimit: '한 번에 최대 4개 프로젝트를 펼칠 수 있습니다.',
-    own: 'MY',
-    scrap: 'SCRAP'
-  } : {
-    title: 'Compose Today\'s Work',
-    subtitle: 'Compare steps from multiple previous projects and assemble only the work being performed today.',
-    projectLibrary: 'Projects',
-    search: 'Search projects or work steps',
-    pinned: 'Open',
-    unpin: 'Close',
-    noProject: 'No reusable projects found.',
-    loginRequired: 'Sign in to compose work from your own and saved projects.',
-    loading: 'Loading library...',
-    selected: 'selected',
-    addSelected: 'Add selected steps',
-    add: 'Add',
-    riskCount: 'hazards',
-    today: 'Today\'s JSA',
-    todayHint: 'Click + on a work step or drag it into this area.',
-    emptyToday: 'No work steps selected yet.',
-    source: 'Source',
-    remove: 'Remove',
-    apply: 'Apply to today\'s work',
-    cancel: 'Close',
-    maxReached: 'A JSA can contain up to 20 work steps.',
-    pinLimit: 'You can open up to four projects at once.',
-    own: 'MY',
-    scrap: 'SCRAP'
-  };
+  const { t, i18n } = useTranslation('procedure');
+  const isRtl = i18n.dir() === 'rtl';
 
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -178,7 +126,7 @@ export default function WorkStepWorkbench({
     setPinnedIds(prev => {
       if (prev.includes(projectId)) return prev.filter(id => id !== projectId);
       if (prev.length >= 4) {
-        alert(copy.pinLimit);
+        alert(t('workbench.pinLimit'));
         return prev;
       }
       return [...prev, projectId];
@@ -204,7 +152,7 @@ export default function WorkStepWorkbench({
   const addLibraryStep = (project, step, stepIndex) => {
     setDraftSteps(prev => {
       if (prev.length >= maxSteps) {
-        alert(copy.maxReached);
+        alert(t('workbench.maxReached'));
         return prev;
       }
       const proc = buildProcedure(project, step, stepIndex);
@@ -237,7 +185,7 @@ export default function WorkStepWorkbench({
 
     if (!selected.length) return;
     const available = Math.max(0, maxSteps - draftSteps.length);
-    if (selected.length > available) alert(copy.maxReached);
+    if (selected.length > available) alert(t('workbench.maxReached'));
 
     setDraftSteps(prev => [
       ...prev,
@@ -316,33 +264,33 @@ export default function WorkStepWorkbench({
 
   return (
     <div style={styles.overlay} onClick={onClose}>
-      <section style={styles.workspace} onClick={event => event.stopPropagation()}>
+      <section style={{ ...styles.workspace, direction: isRtl ? 'rtl' : 'ltr' }} onClick={event => event.stopPropagation()}>
         <header style={styles.header}>
           <div>
             <div style={styles.eyebrow}>STEP COMPOSER</div>
-            <h2 style={styles.title}>{copy.title}</h2>
-            <p style={styles.subtitle}>{copy.subtitle}</p>
+            <h2 style={styles.title}>{t('workbench.title')}</h2>
+            <p style={styles.subtitle}>{t('workbench.subtitle')}</p>
           </div>
           <button type="button" style={styles.closeBtn} onClick={onClose}>×</button>
         </header>
 
         {loading ? (
-          <div style={styles.centerMessage}>{copy.loading}</div>
+          <div style={styles.centerMessage}>{t('workbench.loading')}</div>
         ) : authRequired ? (
-          <div style={styles.centerMessage}>{copy.loginRequired}</div>
+          <div style={styles.centerMessage}>{t('workbench.loginRequired')}</div>
         ) : (
           <div style={styles.body}>
             <aside style={styles.projectRail}>
-              <div style={styles.panelTitle}>{copy.projectLibrary}</div>
+              <div style={styles.panelTitle}>{t('workbench.projectLibrary')}</div>
               <input
                 style={styles.searchInput}
                 value={searchTerm}
                 onChange={event => setSearchTerm(event.target.value)}
-                placeholder={copy.search}
+                placeholder={t('workbench.search')}
               />
               <div style={styles.projectList}>
                 {filteredProjects.length === 0 ? (
-                  <div style={styles.emptySmall}>{copy.noProject}</div>
+                  <div style={styles.emptySmall}>{t('workbench.noProject')}</div>
                 ) : filteredProjects.map(project => {
                   const isPinned = pinnedIds.includes(project.id);
                   return (
@@ -353,10 +301,10 @@ export default function WorkStepWorkbench({
                       onClick={() => togglePinned(project.id)}
                     >
                       <span style={styles.projectType}>
-                        {project.libraryType === 'MY' ? copy.own : copy.scrap}
+                        {project.libraryType === 'MY' ? t('workbench.own') : t('workbench.scrap')}
                       </span>
                       <span style={styles.projectName}>{project.title}</span>
-                      <span style={styles.pinLabel}>{isPinned ? copy.unpin : copy.pinned}</span>
+                      <span style={styles.pinLabel}>{isPinned ? t('workbench.unpin') : t('workbench.open')}</span>
                     </button>
                   );
                 })}
@@ -372,7 +320,7 @@ export default function WorkStepWorkbench({
                   disabled={selectedStepKeys.length === 0}
                   onClick={addSelected}
                 >
-                  {copy.addSelected} ({selectedStepKeys.length})
+                  {t('workbench.addSelected')} ({selectedStepKeys.length})
                 </button>
               </div>
 
@@ -382,7 +330,7 @@ export default function WorkStepWorkbench({
                     <div style={styles.projectColumnHeader}>
                       <div>
                         <div style={styles.projectColumnType}>
-                          {project.libraryType === 'MY' ? copy.own : copy.scrap}
+                          {project.libraryType === 'MY' ? t('workbench.own') : t('workbench.scrap')}
                         </div>
                         <h3 style={styles.projectColumnTitle}>{project.title}</h3>
                       </div>
@@ -420,13 +368,13 @@ export default function WorkStepWorkbench({
                                 style={styles.addStepBtn}
                                 onClick={() => addLibraryStep(project, step, stepIndex)}
                               >
-                                + {copy.add}
+                                + {t('workbench.add')}
                               </button>
                             </div>
                             <strong style={styles.stepTitle}>{step?.proc?.stepTitle || '-'}</strong>
                             <p style={styles.stepDetail}>{step?.proc?.stepDetail || '-'}</p>
                             <div style={styles.riskCount}>
-                              {copy.riskCount} {step?.risks?.length || 0}
+                              {t('workbench.riskCount')} {step?.risks?.length || 0}
                             </div>
                           </article>
                         );
@@ -444,15 +392,15 @@ export default function WorkStepWorkbench({
             >
               <div style={styles.todayHeader}>
                 <div>
-                  <div style={styles.panelTitle}>{copy.today}</div>
+                  <div style={styles.panelTitle}>{t('workbench.today')}</div>
                   <div style={styles.todayCount}>{draftSteps.length}/{maxSteps}</div>
                 </div>
               </div>
-              <div style={styles.todayHint}>{copy.todayHint}</div>
+              <div style={styles.todayHint}>{t('workbench.today')Hint}</div>
 
               <div style={styles.todayList}>
                 {draftSteps.length === 0 ? (
-                  <div style={styles.todayEmpty}>{copy.emptyToday}</div>
+                  <div style={styles.todayEmpty}>{t('workbench.emptyToday')}</div>
                 ) : draftSteps.map((item, index) => (
                   <div
                     key={item.key}
@@ -471,12 +419,12 @@ export default function WorkStepWorkbench({
                         {index + 1}. {item.proc.stepTitle || '-'}
                       </strong>
                       <div style={styles.todaySource}>
-                        {copy.source}: {item.proc.sourceProjectTitle || 'Current JSA'}
+                        {t('workbench.source')}: {item.proc.sourceProjectTitle || 'Current JSA'}
                       </div>
                     </div>
                     <button
                       type="button"
-                      title={copy.remove}
+                      title={t('workbench.remove')}
                       style={styles.removeBtn}
                       onClick={() => setDraftSteps(prev => prev.filter(row => row.key !== item.key))}
                     >
@@ -488,10 +436,10 @@ export default function WorkStepWorkbench({
 
               <div style={styles.actions}>
                 <button type="button" style={styles.cancelBtn} onClick={onClose}>
-                  {copy.cancel}
+                  {t('workbench.cancel')}
                 </button>
                 <button type="button" style={styles.applyBtn} onClick={applyDraft}>
-                  {copy.apply}
+                  {t('workbench.apply')}
                 </button>
               </div>
             </aside>
@@ -579,7 +527,7 @@ const styles = {
     color: '#aaa',
     cursor: 'pointer',
     display: 'grid',
-    gridTemplateColumns: 'auto 1fr',
+    gridTemplateColumns: 'auto minmax(0, 1fr)',
     gap: '4px 8px',
     alignItems: 'center'
   },
