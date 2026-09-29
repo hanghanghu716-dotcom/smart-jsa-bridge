@@ -63,6 +63,13 @@
     "scrap": "SCRAP",
     "eyebrow": "작업단계 조립",
     "stepLabel": "단계 {{number}}",
-    "currentJsa": "현재 JSA"
+    "currentJsa": "현재 JSA",
+    "importMode": "가져오기 범위",
+    "importFull": "작업 + 위험분석",
+    "importProcedureOnly": "작업단계만",
+    "alreadyAdded": "이미 오늘의 JSA에 추가된 작업단계입니다.",
+    "added": "추가됨",
+    "selectedAlreadyAdded": "선택한 작업단계가 모두 이미 추가되어 있습니다.",
+    "recent": "최근"
   }
 }
