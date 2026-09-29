@@ -812,6 +812,22 @@ export default function Analysis() {
               </div>
               <div style={styles.stepContext}>
                 <div style={styles.stepTitleRow}><span style={styles.stepLabel}>{t('form.currentStep')}</span><strong style={styles.stepValue}>{currentStep.proc?.stepTitle}</strong></div>
+                {(currentStep.proc?.sourceProjectTitle || currentStep.proc?.composerImportMode || currentStep.proc?.savedWorkStepId) && (
+                  <div style={styles.stepOriginRow}>
+                    {(currentStep.proc?.sourceProjectTitle || currentStep.proc?.savedWorkStepId) && (
+                      <span style={styles.stepOriginBadge}>
+                        {t('knowledgeDock.sourceLibrary')}
+                        {currentStep.proc?.sourceProjectTitle ? ` · ${currentStep.proc.sourceProjectTitle}` : ''}
+                      </span>
+                    )}
+                    {currentStep.proc?.composerImportMode === 'full' && (
+                      <span style={styles.stepImportFullBadge}>{t('knowledgeDock.analysisIncluded')}</span>
+                    )}
+                    {currentStep.proc?.composerImportMode === 'procedure' && (
+                      <span style={styles.stepImportOnlyBadge}>{t('knowledgeDock.stepOnly')}</span>
+                    )}
+                  </div>
+                )}
                 <p style={styles.stepDetailText}>{currentStep.proc?.stepDetail}</p>
               </div>
             </div>
@@ -827,6 +843,7 @@ export default function Analysis() {
                 >
                   <span style={styles.quickStepNo}>{idx + 1}</span>
                   <span style={styles.quickStepTitle}>{step.proc?.stepTitle || t('knowledgeDock.untitledStep')}</span>
+                  <span style={styles.quickStepRiskCount}>{step.risks?.length || 0}</span>
                 </button>
               ))}
             </div>
@@ -939,16 +956,14 @@ export default function Analysis() {
                               <td style={styles.td}>
                                 <div style={{ position: 'relative', width: '100%' }}>
                                   <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
-                                  {!r.measure?.trim() && (
-                                    <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                      <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
-                                        {t('table.searchBtn')}
-                                      </button>
-                                      <button style={{ backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
-                                        {t('table.recMeasureBtn')}
-                                      </button>
-                                    </div>
-                                  )}
+                                  <div style={styles.controlActionRow}>
+                                    <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
+                                      {t('table.searchBtn')}
+                                    </button>
+                                    <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                      {t('table.recMeasureBtn')}
+                                    </button>
+                                  </div>
                                 </div>
                               </td>
                             ) : (
@@ -956,31 +971,27 @@ export default function Analysis() {
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
-                                    {!r.current_measure?.trim() && (
-                                      <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                        <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
-                                          {t('table.searchBtn')}
-                                        </button>
-                                        <button style={{ backgroundColor: '#222', color: '#007bff', border: '1px solid #007bff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
-                                          {t('table.recMeasureBtn')}
-                                        </button>
-                                      </div>
-                                    )}
+                                    <div style={styles.controlActionRow}>
+                                      <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
+                                        {t('table.searchBtn')}
+                                      </button>
+                                      <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                        {t('table.recMeasureBtn')}
+                                      </button>
+                                    </div>
                                   </div>
                                 </td>
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
-                                    {!r.recommend_measure?.trim() && (
-                                      <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                        <button style={{ backgroundColor: '#222', color: '#ff9800', border: '1px solid #ff9800', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'advanced')}>
-                                          {t('table.searchBtn')}
-                                        </button>
-                                        <button style={{ backgroundColor: '#222', color: '#4caf50', border: '1px solid #4caf50', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
-                                          {t('table.recAdvancedBtn')}
-                                        </button>
-                                      </div>
-                                    )}
+                                    <div style={styles.controlActionRow}>
+                                      <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'advanced')}>
+                                        {t('table.searchBtn')}
+                                      </button>
+                                      <button style={styles.controlAdvancedBtn} onClick={() => handleOpenRecommendation(r, 'advanced')}>
+                                        {t('table.recAdvancedBtn')}
+                                      </button>
+                                    </div>
                                   </div>
                                 </td>
                               </>
@@ -1324,11 +1335,16 @@ const styles = {
   quickStepBtn: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: '1px solid #2b2b2b', borderRadius: '6px', background: '#111', color: '#666', cursor: 'pointer', fontSize: '0.65rem' },
   quickStepBtnActive: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: '1px solid #007bff', borderRadius: '6px', background: 'rgba(0,123,255,0.1)', color: '#fff', cursor: 'pointer', fontSize: '0.65rem' },
   quickStepNo: { width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: '#242424', color: '#aaa', flexShrink: 0, fontWeight: 900 },
-  quickStepTitle: { overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' },
+  quickStepTitle: { flex: 1, minWidth: 0, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', textAlign: 'left' },
+  quickStepRiskCount: { flexShrink: 0, minWidth: '18px', padding: '1px 4px', borderRadius: '8px', background: '#242424', color: '#888', fontSize: '0.55rem', textAlign: 'center' },
   headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
   formTitle: { fontSize: '1.4rem', color: '#fff', fontWeight: '800', margin: 0 },
   stepCountBadge: { backgroundColor: '#333', color: '#aaa', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
   stepContext: { backgroundColor: 'rgba(255,255,255,0.03)', padding: '0.8rem 1rem', borderRadius: '6px' },
+  stepOriginRow: { display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '5px' },
+  stepOriginBadge: { fontSize: '0.55rem', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', background: 'rgba(0,123,255,0.08)', padding: '2px 5px', borderRadius: '4px' },
+  stepImportFullBadge: { fontSize: '0.55rem', color: '#64adff', border: '1px solid rgba(0,123,255,0.45)', background: 'rgba(0,123,255,0.12)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
+  stepImportOnlyBadge: { fontSize: '0.55rem', color: '#e9bd45', border: '1px solid rgba(233,189,69,0.4)', background: 'rgba(233,189,69,0.08)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
   stepTitleRow: { display: 'flex', alignItems: 'center', gap: '0.8rem' },
   stepLabel: { fontSize: '0.75rem', color: '#007bff', fontWeight: 'bold' },
   stepValue: { fontSize: '1rem', color: '#fff' },
@@ -1353,6 +1369,10 @@ const styles = {
   th: { padding: '8px', borderBottom: '1px solid #333', fontSize: '0.75rem', color: '#888', textAlign: 'left' },
   td: { padding: '8px', borderBottom: '1px solid #1a1a1a' },
   inlineInput: { width: '100%', backgroundColor: '#111', color: '#ddd', border: '1px solid #222', padding: '0.5rem', borderRadius: '4px', resize: 'none', fontSize: '0.8rem' },
+  controlActionRow: { display: 'flex', justifyContent: 'flex-end', gap: '5px', marginTop: '5px' },
+  controlSearchBtn: { backgroundColor: '#191919', color: '#ffb04d', border: '1px solid rgba(255,152,0,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
+  controlRecommendBtn: { backgroundColor: '#191919', color: '#64adff', border: '1px solid rgba(0,123,255,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
+  controlAdvancedBtn: { backgroundColor: '#191919', color: '#65c96b', border: '1px solid rgba(76,175,80,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
   smallDeleteBtn: { backgroundColor: 'transparent', color: '#444', border: '1px solid #333', cursor: 'pointer', borderRadius: '4px' },
   riskSourceRow: { display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px', minWidth: 0 },
   riskSourceBadge: { flexShrink: 0, fontSize: '0.52rem', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', background: 'rgba(0,123,255,0.08)', borderRadius: '3px', padding: '1px 4px', fontWeight: 800 },
