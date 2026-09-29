@@ -79,5 +79,30 @@
   "searchModal": {
     "title": "Ricerca nel Database delle Misure di Prevenzione",
     "placeholder": "Inserisci parola chiave (es. LOTO, DPI, ponteggio)..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Dock conoscenze",
+    "opened": "Dock aperto",
+    "untitledStep": "Fase senza titolo",
+    "sourceManual": "Manuale",
+    "sourceDatabase": "DB pericoli",
+    "sourceLibrary": "Conoscenza precedente",
+    "eyebrow": "DOCK CONOSCENZE",
+    "title": "Conoscenza dei lavori precedenti",
+    "savedSteps": "Fasi salvate",
+    "projects": "Progetti",
+    "search": "Cerca lavoro, pericoli o misure",
+    "emptySteps": "Nessuna fase salvata.",
+    "independentStep": "Fase indipendente",
+    "hazards": "pericoli",
+    "noControl": "Nessuna misura",
+    "mergeHazards": "Solo pericoli",
+    "mergeFull": "Unisci con misure",
+    "emptyProjects": "Nessun progetto salvato.",
+    "steps": "fasi",
+    "backProjects": "Elenco progetti",
+    "sourceCurrent": "JSA corrente",
+    "analysisIncluded": "Analisi inclusa",
+    "stepOnly": "Solo fase"
   }
 }

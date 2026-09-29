@@ -79,5 +79,30 @@
   "searchModal": {
     "title": "Búsqueda en DB de Medidas",
     "placeholder": "Introduzca el término de búsqueda..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Dock de conocimiento",
+    "opened": "Dock abierto",
+    "untitledStep": "Paso sin título",
+    "sourceManual": "Manual",
+    "sourceDatabase": "BD de peligros",
+    "sourceLibrary": "Conocimiento previo",
+    "eyebrow": "DOCK DE CONOCIMIENTO",
+    "title": "Conocimiento de trabajos anteriores",
+    "savedSteps": "Pasos guardados",
+    "projects": "Proyectos",
+    "search": "Buscar trabajo, peligros o controles",
+    "emptySteps": "No hay pasos guardados.",
+    "independentStep": "Paso independiente",
+    "hazards": "peligros",
+    "noControl": "Sin control",
+    "mergeHazards": "Solo peligros",
+    "mergeFull": "Combinar con controles",
+    "emptyProjects": "No hay proyectos guardados.",
+    "steps": "pasos",
+    "backProjects": "Lista de proyectos",
+    "sourceCurrent": "JSA actual",
+    "analysisIncluded": "Análisis incluido",
+    "stepOnly": "Solo paso"
   }
 }

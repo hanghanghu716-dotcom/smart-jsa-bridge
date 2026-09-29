@@ -97,12 +97,12 @@ test('phase 2 draft and work-step translations are complete', () => {
     'menuDrafts', 'menuWorkSteps', 'draftListTitle', 'noDrafts', 'draftStage',
     'resumeDraft', 'workStepListTitle', 'noWorkSteps', 'hazardsCount',
     'usedCount', 'useWorkStep', 'confirmDeleteWorkStep', 'workStepDeleteError',
-    'confirmDeleteDraft', 'draftDeleteError', 'workStepTagsPlaceholder',
-    'cloneWorkStep', 'workStepCloneSuccess', 'workStepCloneError',
     'searchWorkSteps', 'favoritesOnly', 'addFavorite', 'removeFavorite',
     'editWorkStep', 'saveChanges', 'cancelEdit', 'workStepUpdateError',
     'menuSaveWorkSteps', 'bulkSavingSteps', 'bulkStepSaveSuccess', 'bulkStepSaveError',
-    'archiveDraft', 'confirmArchiveDraft', 'draftArchiveError'
+    'archiveDraft', 'confirmArchiveDraft', 'draftArchiveError',
+    'confirmDeleteDraft', 'draftDeleteError', 'workStepTagsPlaceholder',
+    'cloneWorkStep', 'workStepCloneSuccess', 'workStepCloneError'
   ];
   const draftStageKeys = ['info', 'procedure', 'analysis', 'module', 'table', 'export'];
 
@@ -120,6 +120,24 @@ test('phase 2 draft and work-step translations are complete', () => {
     assert.ok(analysis.filter?.savingStepBtn?.trim(), `Missing analysis.filter.savingStepBtn for ${locale}`);
     assert.ok(analysis.alert?.stepSaved?.trim(), `Missing analysis.alert.stepSaved for ${locale}`);
     assert.ok(analysis.alert?.stepSaveFailed?.trim(), `Missing analysis.alert.stepSaveFailed for ${locale}`);
+  }
+});
+
+test('phase 3 analysis knowledge dock translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const keys = [
+    'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
+    'sourceLibrary', 'sourceCurrent', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
+    'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
+    'mergeFull', 'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly'
+  ];
+
+  for (const locale of baseLocales) {
+    const analysis = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/analysis.json`, import.meta.url)));
+    assert.ok(analysis.knowledgeDock, `Missing analysis.knowledgeDock for ${locale}`);
+    for (const key of keys) {
+      assert.ok(analysis.knowledgeDock[key]?.trim(), `Missing analysis.knowledgeDock.${key} for ${locale}`);
+    }
   }
 });
 

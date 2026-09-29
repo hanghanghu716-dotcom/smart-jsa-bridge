@@ -79,5 +79,30 @@
   "searchModal": {
     "title": "대책 DB 검색",
     "placeholder": "검색어를 입력하세요..."
+  },
+  "knowledgeDock": {
+    "openBtn": "지식 Dock",
+    "opened": "Dock 열림",
+    "untitledStep": "이름 없는 단계",
+    "sourceManual": "직접 입력",
+    "sourceDatabase": "위험 DB",
+    "sourceLibrary": "과거 지식",
+    "eyebrow": "KNOWLEDGE DOCK",
+    "title": "과거 작업 지식",
+    "savedSteps": "저장 단계",
+    "projects": "프로젝트",
+    "search": "작업·위험요인·대책 검색",
+    "emptySteps": "저장된 작업단계가 없습니다.",
+    "independentStep": "독립 작업단계",
+    "hazards": "위험요인",
+    "noControl": "대책 없음",
+    "mergeHazards": "위험요인만",
+    "mergeFull": "대책까지 병합",
+    "emptyProjects": "스크랩한 프로젝트가 없습니다.",
+    "steps": "단계",
+    "backProjects": "프로젝트 목록",
+    "sourceCurrent": "현재 JSA",
+    "analysisIncluded": "분석 포함",
+    "stepOnly": "단계만"
   }
 }

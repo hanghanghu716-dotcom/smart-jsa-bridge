@@ -79,5 +79,30 @@
   "searchModal": {
     "title": "対策データベース検索",
     "placeholder": "検索語を入力してください..."
+  },
+  "knowledgeDock": {
+    "openBtn": "ナレッジDock",
+    "opened": "Dock表示中",
+    "untitledStep": "名称未設定",
+    "sourceManual": "直接入力",
+    "sourceDatabase": "危険DB",
+    "sourceLibrary": "過去の知識",
+    "eyebrow": "KNOWLEDGE DOCK",
+    "title": "過去の作業知識",
+    "savedSteps": "保存ステップ",
+    "projects": "プロジェクト",
+    "search": "作業・危険要因・対策を検索",
+    "emptySteps": "保存された作業ステップがありません。",
+    "independentStep": "独立作業ステップ",
+    "hazards": "危険要因",
+    "noControl": "対策なし",
+    "mergeHazards": "危険要因のみ",
+    "mergeFull": "対策まで統合",
+    "emptyProjects": "保存されたプロジェクトがありません。",
+    "steps": "ステップ",
+    "backProjects": "プロジェクト一覧",
+    "sourceCurrent": "現在のJSA",
+    "analysisIncluded": "分析含む",
+    "stepOnly": "ステップのみ"
   }
 }

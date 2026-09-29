@@ -79,5 +79,30 @@
   "searchModal": {
     "title": "Measure DB Search",
     "placeholder": "Enter search terms..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Knowledge Dock",
+    "opened": "Dock Open",
+    "untitledStep": "Untitled step",
+    "sourceManual": "Manual",
+    "sourceDatabase": "Hazard DB",
+    "sourceLibrary": "Past knowledge",
+    "eyebrow": "KNOWLEDGE DOCK",
+    "title": "Past Work Knowledge",
+    "savedSteps": "Saved Steps",
+    "projects": "Projects",
+    "search": "Search work, hazards or controls",
+    "emptySteps": "No saved work steps.",
+    "independentStep": "Independent work step",
+    "hazards": "hazards",
+    "noControl": "No control",
+    "mergeHazards": "Hazards only",
+    "mergeFull": "Merge with controls",
+    "emptyProjects": "No saved projects.",
+    "steps": "steps",
+    "backProjects": "Project list",
+    "sourceCurrent": "Current JSA",
+    "analysisIncluded": "Analysis included",
+    "stepOnly": "Step only"
   }
 }

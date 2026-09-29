@@ -79,5 +79,30 @@
   "searchModal": {
     "title": "Maßnahmen-DB-Suche",
     "placeholder": "Suchbegriffe eingeben..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Wissens-Dock",
+    "opened": "Dock offen",
+    "untitledStep": "Unbenannter Schritt",
+    "sourceManual": "Manuell",
+    "sourceDatabase": "Gefahren-DB",
+    "sourceLibrary": "Früheres Wissen",
+    "eyebrow": "WISSENS-DOCK",
+    "title": "Früheres Arbeitswissen",
+    "savedSteps": "Gespeicherte Schritte",
+    "projects": "Projekte",
+    "search": "Arbeit, Gefährdungen oder Maßnahmen suchen",
+    "emptySteps": "Keine gespeicherten Arbeitsschritte.",
+    "independentStep": "Unabhängiger Arbeitsschritt",
+    "hazards": "Gefährdungen",
+    "noControl": "Keine Maßnahme",
+    "mergeHazards": "Nur Gefährdungen",
+    "mergeFull": "Mit Maßnahmen übernehmen",
+    "emptyProjects": "Keine gespeicherten Projekte.",
+    "steps": "Schritte",
+    "backProjects": "Projektliste",
+    "sourceCurrent": "Aktuelle JSA",
+    "analysisIncluded": "Analyse enthalten",
+    "stepOnly": "Nur Schritt"
   }
 }
