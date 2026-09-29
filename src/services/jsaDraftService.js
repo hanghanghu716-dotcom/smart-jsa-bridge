@@ -12,9 +12,14 @@ const newUuid = () => {
   });
 };
 
+export const getExistingActiveDraftId = () => {
+  if (typeof window === 'undefined') return null;
+  return sessionStorage.getItem(ACTIVE_DRAFT_KEY);
+};
+
 export const getActiveDraftId = () => {
   if (typeof window === 'undefined') return null;
-  const existing = sessionStorage.getItem(ACTIVE_DRAFT_KEY);
+  const existing = getExistingActiveDraftId();
   if (existing) return existing;
   const id = newUuid();
   sessionStorage.setItem(ACTIVE_DRAFT_KEY, id);
@@ -78,6 +83,12 @@ export const saveDraftSnapshot = async ({
   return { draftId, storage: 'cloud' };
 };
 
+export const loadActiveDraft = async () => {
+  const draftId = getExistingActiveDraftId();
+  if (!draftId) return null;
+  return loadDraft(draftId);
+};
+
 export const loadDraft = async (draftId) => {
   if (!draftId) return null;
 
@@ -112,6 +123,13 @@ export const listRecentDrafts = async (limit = 10) => {
 
   if (error) throw error;
   return data || [];
+};
+
+export const archiveActiveDraft = async () => {
+  const draftId = getExistingActiveDraftId();
+  if (!draftId) return;
+  await archiveDraft(draftId);
+  sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
 };
 
 export const archiveDraft = async (draftId) => {
