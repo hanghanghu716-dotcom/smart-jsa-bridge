@@ -60,6 +60,9 @@
     "maxReached": "A JSA can contain up to 20 work steps.",
     "pinLimit": "You can open up to four projects at once.",
     "own": "MY",
-    "scrap": "SCRAP"
+    "scrap": "SCRAP",
+    "eyebrow": "STEP COMPOSER",
+    "stepLabel": "STEP {{number}}",
+    "currentJsa": "Current JSA"
   }
 }
