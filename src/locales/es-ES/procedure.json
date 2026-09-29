@@ -63,6 +63,13 @@
     "scrap": "GUARDADO",
     "eyebrow": "COMPOSITOR DE PASOS",
     "stepLabel": "PASO {{number}}",
-    "currentJsa": "JSA actual"
+    "currentJsa": "JSA actual",
+    "importMode": "Alcance de importación",
+    "importFull": "Paso + análisis de riesgos",
+    "importProcedureOnly": "Solo paso",
+    "alreadyAdded": "Este paso ya está incluido en la JSA de hoy.",
+    "added": "Añadido",
+    "selectedAlreadyAdded": "Todos los pasos seleccionados ya están añadidos.",
+    "recent": "Reciente"
   }
 }
