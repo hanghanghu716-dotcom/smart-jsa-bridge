@@ -144,3 +144,30 @@ export const archiveDraft = async (draftId) => {
 
   if (error) throw error;
 };
+
+
+export const deleteDraft = async (draftId) => {
+  if (!draftId) return;
+
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    localStorage.removeItem(GUEST_DRAFT_PREFIX + draftId);
+    if (getExistingActiveDraftId() === draftId) {
+      sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
+    }
+    return;
+  }
+
+  const { error } = await supabase
+    .from('user_jsa_drafts')
+    .delete()
+    .eq('id', draftId)
+    .eq('user_id', user.id);
+
+  if (error) throw error;
+
+  if (getExistingActiveDraftId() === draftId) {
+    sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
+  }
+};
