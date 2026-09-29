@@ -396,7 +396,7 @@ export default function WorkStepWorkbench({
                   <div style={styles.todayCount}>{draftSteps.length}/{maxSteps}</div>
                 </div>
               </div>
-              <div style={styles.todayHint}>{t('workbench.today')Hint}</div>
+              <div style={styles.todayHint}>{t('workbench.todayHint')}</div>
 
               <div style={styles.todayList}>
                 {draftSteps.length === 0 ? (
