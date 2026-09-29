@@ -38,5 +38,26 @@
   "moveFolderSelect": "حدد المجلد المطلوب النقل إليه",
   "btnReference": "المرجعية والإنشاء",
   "btnEdit": "تعديل وتحديث",
-  "folderLabel": "مجلد"
+  "folderLabel": "مجلد",
+  "menuDrafts": "المسودات",
+  "menuWorkSteps": "مكتبة خطوات العمل",
+  "draftListTitle": "مسودات JSA",
+  "noDrafts": "لا توجد مسودات محفوظة.",
+  "draftStage": "المرحلة الحالية",
+  "resumeDraft": "متابعة",
+  "workStepListTitle": "خطوات العمل الخاصة بي",
+  "noWorkSteps": "لا توجد خطوات عمل محفوظة.",
+  "hazardsCount": "المخاطر",
+  "usedCount": "مرات الاستخدام",
+  "useWorkStep": "استخدام هذه الخطوة",
+  "confirmDeleteWorkStep": "حذف خطوة العمل هذه؟",
+  "workStepDeleteError": "حدث خطأ أثناء حذف خطوة العمل.",
+  "draftStages": {
+    "info": "معلومات أساسية",
+    "procedure": "إجراء العمل",
+    "analysis": "تحليل المخاطر",
+    "module": "إعداد النماذج",
+    "table": "تخطيط الجدول",
+    "export": "المخرجات النهائية"
+  }
 }
