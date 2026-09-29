@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Please select a current safety measure via the recommendation system first.",
     "noData": "No linked data found. Please enter directly.",
     "confirmMain": "Are you sure you want to go to the main screen? All unsaved data may be lost.",
-    "loginRequired": "Login is required."
+    "loginRequired": "Login is required.",
+    "stepSaved": "Current work step saved to your library.",
+    "stepSaveFailed": "Failed to save the work step."
   },
   "libModal": {
     "title": "Call Task Step Library",
@@ -42,7 +44,9 @@
     "label": "⚠️ High-Risk Filter",
     "auto": "(Auto Suggestion)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Search hazards..."
+    "searchPlaceholder": "Search hazards...",
+    "saveStepBtn": "Save Step",
+    "savingStepBtn": "Saving..."
   },
   "base": {
     "label": "Safety Knowledge Base (Hazard Extraction)",
