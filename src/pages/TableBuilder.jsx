@@ -7,6 +7,7 @@ import SEO from '../components/SEO'; // ✅ [추가] 시킨 기능만 추가
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 시킨 기능만 추가
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 /**
  * [TableBuilder 컴포넌트]
@@ -121,7 +122,7 @@ export default function TableBuilder() {
     }
   }, [recoveredDraft, recoveredLayout, location.state?.formData]);
 
-  useJsaDraftAutosave({
+  const draftSave = useJsaDraftAutosave({
     enabled: Boolean(location.state?.formData || recoveredDraft),
     stage: 'table',
     formData,
@@ -321,7 +322,8 @@ const renderDataTablePreview = () => {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 기능만 추가 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 기능만 추가 */}
       <style>{`
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .canvas-container { 
