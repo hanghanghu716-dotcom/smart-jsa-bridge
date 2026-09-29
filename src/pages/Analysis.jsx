@@ -444,12 +444,29 @@ export default function Analysis() {
 
     setIsKnowledgeDockOpen(true);
     try {
-      const [steps, favoritesRes] = await Promise.all([
+      const [steps, favoritesRes, authoredRes] = await Promise.all([
         listWorkSteps({ limit: 100 }),
-        supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id)
+        supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
+        supabase
+          .from('jsa_projects')
+          .select('id, title, tags, analysis_data, form_data, updated_at')
+          .eq('author_id', user.id)
+          .order('updated_at', { ascending: false })
       ]);
+
+      const projectMap = new Map();
+      (authoredRes.data || []).forEach(project => {
+        projectMap.set(String(project.id), { id: `mine-${project.id}`, jsa_projects: project, libraryType: 'MY' });
+      });
+      (favoritesRes.data || []).forEach(item => {
+        const project = item?.jsa_projects;
+        if (project?.id && !projectMap.has(String(project.id))) {
+          projectMap.set(String(project.id), { ...item, libraryType: 'SCRAP' });
+        }
+      });
+
       setSavedWorkSteps(steps || []);
-      setMyLibraryItems(favoritesRes.data || []);
+      setMyLibraryItems(Array.from(projectMap.values()));
       setSelectedLibProject(null);
     } catch (error) {
       console.error('[Analysis Knowledge Dock] load failed:', error);
@@ -474,19 +491,26 @@ export default function Analysis() {
           const factor = (risk.factor || risk.risk_factor || '').trim().toLowerCase();
           return factor && !existingFactors.has(factor);
         })
-        .map(risk => ({
-          ...risk,
-          id: `knowledge-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-          factor: risk.factor || risk.risk_factor || '',
-          measure: mode === 'full' ? (risk.measure || '') : '',
-          current_measure: mode === 'full' ? (risk.current_measure || '') : '',
-          recommend_measure: mode === 'full' ? (risk.recommend_measure || '') : '',
-          current_measure_db_id: mode === 'full' ? risk.current_measure_db_id : undefined,
-          category: risk.category || t('base.etc'),
-          source: sourceMeta.type || 'library',
-          sourceLabel: sourceMeta.label || '',
-          sourceWorkStepId: sourceMeta.workStepId || null
-        }));
+        .map(risk => {
+          const isFull = mode === 'full';
+          const twoStepMeasure = risk.measure || risk.recommend_measure || risk.current_measure || '';
+          const threeStepCurrent = risk.current_measure || risk.measure || '';
+          const threeStepRecommended = risk.recommend_measure || '';
+
+          return {
+            ...risk,
+            id: `knowledge-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+            factor: risk.factor || risk.risk_factor || '',
+            measure: isFull && jsaType === '2-step' ? twoStepMeasure : '',
+            current_measure: isFull && jsaType === '3-step' ? threeStepCurrent : '',
+            recommend_measure: isFull && jsaType === '3-step' ? threeStepRecommended : '',
+            current_measure_db_id: isFull && jsaType === '3-step' ? risk.current_measure_db_id : undefined,
+            category: risk.category || t('base.etc'),
+            source: sourceMeta.type || 'library',
+            sourceLabel: sourceMeta.label || '',
+            sourceWorkStepId: sourceMeta.workStepId || null
+          };
+        });
 
       newData[activeIdx] = {
         ...target,
@@ -899,11 +923,13 @@ export default function Analysis() {
                               <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
                               <div style={styles.riskSourceRow}>
                                 <span style={styles.riskSourceBadge}>
-                                  {r.source === 'manual'
-                                    ? t('knowledgeDock.sourceManual')
-                                    : r.source === 'master'
-                                      ? t('knowledgeDock.sourceDatabase')
-                                      : t('knowledgeDock.sourceLibrary')}
+                                  {!r.source
+                                    ? t('knowledgeDock.sourceCurrent')
+                                    : r.source === 'manual'
+                                      ? t('knowledgeDock.sourceManual')
+                                      : r.source === 'master'
+                                        ? t('knowledgeDock.sourceDatabase')
+                                        : t('knowledgeDock.sourceLibrary')}
                                 </span>
                                 {r.sourceLabel && <span style={styles.riskSourceText}>{r.sourceLabel}</span>}
                               </div>
