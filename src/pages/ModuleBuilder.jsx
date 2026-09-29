@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 /**
  * [ModuleBuilder 컴포넌트]
@@ -52,7 +53,7 @@ export default function ModuleBuilder() {
     setAppr3(recoveredLayout.appr3 || t('default.appr3', '승인'));
   }, [recoveredDraft, recoveredLayout, location.state?.formData, t]);
 
-  useJsaDraftAutosave({
+  const draftSave = useJsaDraftAutosave({
     enabled: Boolean(location.state?.formData || recoveredDraft),
     stage: 'module',
     formData,
@@ -332,6 +333,7 @@ const renderModulePreview = () => {
   return (
     <div style={styles.wrapper}>
       <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
