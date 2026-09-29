@@ -101,6 +101,8 @@
     "emptyProjects": "Нет сохранённых проектов.",
     "steps": "этапов",
     "backProjects": "Список проектов",
-    "sourceCurrent": "Текущая JSA"
+    "sourceCurrent": "Текущая JSA",
+    "analysisIncluded": "С анализом",
+    "stepOnly": "Только этап"
   }
 }
