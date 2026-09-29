@@ -7,6 +7,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 import WorkStepWorkbench from '../components/WorkStepWorkbench';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
