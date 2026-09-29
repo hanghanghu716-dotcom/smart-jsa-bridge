@@ -60,6 +60,9 @@
     "maxReached": "JSAには最大20の作業ステップを設定できます。",
     "pinLimit": "同時に開けるプロジェクトは最大4件です。",
     "own": "自分",
-    "scrap": "保存済み"
+    "scrap": "保存済み",
+    "eyebrow": "作業ステップ構成",
+    "stepLabel": "ステップ {{number}}",
+    "currentJsa": "現在のJSA"
   }
 }
