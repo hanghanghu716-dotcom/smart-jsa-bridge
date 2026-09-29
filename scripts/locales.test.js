@@ -78,7 +78,7 @@ test('procedure step composer translations are complete for every base locale', 
     'filterAll', 'filterMy', 'filterScrap', 'filterRecent', 'stepSearch',
     'preview', 'closePreview', 'noSteps', 'previewHazards', 'noPreviewHazards',
     'hazard', 'currentControl', 'recommendedControl', 'riskLevel',
-    'badgeFull', 'badgeProcedureOnly',
+    'badgeFull', 'badgeProcedureOnly', 'workStepLibrary', 'filterSteps', 'stepLibraryBadge',
   ];
 
   for (const locale of baseLocales) {
