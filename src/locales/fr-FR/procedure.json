@@ -34,5 +34,32 @@
     "prev": "Précédent",
     "next": "Lancer l'analyse intelligente des risques",
     "skipModule": "Passer la configuration du module"
+  },
+  "workbench": {
+    "hint": "Assemblez des étapes de travail issues de projets antérieurs ou saisissez-les manuellement.",
+    "openButton": "Assembler depuis la bibliothèque",
+    "title": "Composer le travail du jour",
+    "subtitle": "Comparez les étapes de plusieurs projets antérieurs et assemblez uniquement celles qui seront réalisées aujourd'hui.",
+    "projectLibrary": "Projets",
+    "search": "Rechercher des projets ou des étapes",
+    "open": "Ouvrir",
+    "unpin": "Fermer",
+    "noProject": "Aucun projet réutilisable trouvé.",
+    "loginRequired": "Connectez-vous pour assembler des travaux à partir de vos projets et de vos éléments enregistrés.",
+    "loading": "Chargement de la bibliothèque...",
+    "addSelected": "Ajouter les étapes sélectionnées",
+    "add": "Ajouter",
+    "riskCount": "Dangers",
+    "today": "JSA du jour",
+    "todayHint": "Cliquez sur + pour une étape ou faites-la glisser dans cette zone.",
+    "emptyToday": "Aucune étape de travail sélectionnée.",
+    "source": "Source",
+    "remove": "Supprimer",
+    "apply": "Appliquer au travail du jour",
+    "cancel": "Fermer",
+    "maxReached": "Une JSA peut contenir jusqu'à 20 étapes de travail.",
+    "pinLimit": "Vous pouvez ouvrir jusqu'à quatre projets simultanément.",
+    "own": "MES",
+    "scrap": "ENREGISTRÉ"
   }
 }
