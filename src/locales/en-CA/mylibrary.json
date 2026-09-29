@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "Save all steps to Work Step Library",
   "bulkSavingSteps": "Saving work steps...",
   "bulkStepSaveSuccess": "Saved {{count}} work steps to your library.",
-  "bulkStepSaveError": "Failed to save work steps."
+  "bulkStepSaveError": "Failed to save work steps.",
+  "archiveDraft": "Archive",
+  "confirmArchiveDraft": "Archive this draft?",
+  "draftArchiveError": "Failed to archive the draft."
 }
