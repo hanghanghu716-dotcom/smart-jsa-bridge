@@ -34,5 +34,32 @@
     "prev": "Indietro",
     "next": "Avvia Analisi Intelligente dei Rischi",
     "skipModule": "Salta la Configurazione Moduli"
+  },
+  "workbench": {
+    "hint": "Combina fasi di lavoro da progetti precedenti oppure inseriscile manualmente.",
+    "openButton": "Componi dalla libreria lavori",
+    "title": "Componi il lavoro di oggi",
+    "subtitle": "Confronta le fasi di più progetti precedenti e assembla solo quelle che verranno eseguite oggi.",
+    "projectLibrary": "Progetti",
+    "search": "Cerca progetti o fasi di lavoro",
+    "open": "Apri",
+    "unpin": "Chiudi",
+    "noProject": "Nessun progetto riutilizzabile trovato.",
+    "loginRequired": "Accedi per comporre il lavoro dai tuoi progetti e da quelli salvati.",
+    "loading": "Caricamento libreria...",
+    "addSelected": "Aggiungi fasi selezionate",
+    "add": "Aggiungi",
+    "riskCount": "Pericoli",
+    "today": "JSA di oggi",
+    "todayHint": "Fai clic su + accanto a una fase oppure trascinala in quest'area.",
+    "emptyToday": "Nessuna fase di lavoro ancora selezionata.",
+    "source": "Origine",
+    "remove": "Rimuovi",
+    "apply": "Applica al lavoro di oggi",
+    "cancel": "Chiudi",
+    "maxReached": "Un JSA può contenere fino a 20 fasi di lavoro.",
+    "pinLimit": "Puoi aprire fino a quattro progetti contemporaneamente.",
+    "own": "MIEI",
+    "scrap": "SALVATI"
   }
 }
