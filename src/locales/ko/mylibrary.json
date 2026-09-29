@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "모든 Step을 작업단계로 저장",
   "bulkSavingSteps": "작업단계 저장 중...",
   "bulkStepSaveSuccess": "{{count}}개 작업단계를 라이브러리에 저장했습니다.",
-  "bulkStepSaveError": "작업단계 일괄 저장 중 오류가 발생했습니다."
+  "bulkStepSaveError": "작업단계 일괄 저장 중 오류가 발생했습니다.",
+  "archiveDraft": "보관",
+  "confirmArchiveDraft": "이 Draft를 보관 처리하시겠습니까?",
+  "draftArchiveError": "Draft 보관 중 오류가 발생했습니다."
 }
