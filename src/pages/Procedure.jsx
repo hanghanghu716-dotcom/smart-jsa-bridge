@@ -30,7 +30,7 @@ export default function Procedure() {
   const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : (analysisData || []);
 
   useJsaDraftAutosave({
-    enabled: Boolean(location.state?.formData || recoveredDraft || draftRecoveryStatus === 'empty'),
+    enabled: Boolean(location.state?.formData || recoveredDraft),
     stage: 'procedure',
     formData: formData || {},
     participants: participants || [],
