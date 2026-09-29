@@ -8,7 +8,8 @@ import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; 
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
-import { AuthContext } from '../contexts/AuthContext'; 
+import { AuthContext } from '../contexts/AuthContext';
+import { clearActiveDraft } from '../services/jsaDraftService'; 
 
 // Compact header copy is kept here so this file can be replaced independently.
 // Optional main:header.* translations take precedence over these defaults.
@@ -260,6 +261,7 @@ export default function Main() {
   }, [slides.length, i18n.language]);
 
   const handleStartClick = () => {
+    clearActiveDraft();
     if (user) {
       navigate('/info', { state: { isMember: true } });
     } else {
@@ -305,7 +307,7 @@ export default function Main() {
             </p>
             <div style={styles.modalBtnGroup}>
               <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('loginBtn')}</button>
-              <button style={styles.guestBtn} onClick={() => navigate('/info', { state: { isMember: false } })}>{t('guestBtn')}</button>
+              <button style={styles.guestBtn} onClick={() => { clearActiveDraft(); navigate('/info', { state: { isMember: false } }); }}>{t('guestBtn')}</button>
             </div>
             <button style={styles.closeText} onClick={() => setIsStartModalOpen(false)}>{t('cancelBtn')}</button>
           </div>
@@ -481,7 +483,7 @@ export default function Main() {
 
             <div style={styles.heroBtnGroup}>
                 <button 
-                  onClick={() => navigate('/procedure', { 
+                  onClick={() => { clearActiveDraft(); navigate('/procedure', { 
                     state: { 
                       isMember: !!user, 
                       isFastTrack: true,
