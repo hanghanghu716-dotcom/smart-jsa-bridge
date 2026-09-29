@@ -33,6 +33,7 @@ const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, no
     about: ['about', ['mainHeading.line1', 'mainHeading.line2'], ['section1.content']],
     privacy: ['privacy', ['heading.line1'], ['section1.content']],
     terms: ['terms', ['heading'], ['subHeading']],
+    'editorial-policy': null,
   }[purePath];
   const plainText = value => String(value).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const translate = (keys, ns) => keys.map(key => i18n.getFixedT(currentLang, ns)(key, { defaultValue: '' })).join(' ');
