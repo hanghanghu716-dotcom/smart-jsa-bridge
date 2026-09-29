@@ -59,5 +59,17 @@
     "module": "モジュール設定",
     "table": "テーブル設定",
     "export": "最終出力"
-  }
+  },
+  "searchWorkSteps": "作業ステップ・危険要因・対策を検索",
+  "favoritesOnly": "お気に入りのみ",
+  "addFavorite": "お気に入りに追加",
+  "removeFavorite": "お気に入り解除",
+  "editWorkStep": "編集",
+  "saveChanges": "保存",
+  "cancelEdit": "キャンセル",
+  "workStepUpdateError": "作業ステップを更新できませんでした。",
+  "menuSaveWorkSteps": "全ステップを作業ステップライブラリに保存",
+  "bulkSavingSteps": "作業ステップを保存中...",
+  "bulkStepSaveSuccess": "{{count}}件の作業ステップを保存しました。",
+  "bulkStepSaveError": "作業ステップを保存できませんでした。"
 }
