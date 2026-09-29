@@ -138,5 +138,17 @@
     "module": "Config. modulo",
     "table": "Layout tabella",
     "export": "Output finale"
-  }
+  },
+  "searchWorkSteps": "Cerca fasi, pericoli o misure",
+  "favoritesOnly": "Solo preferiti",
+  "addFavorite": "Aggiungi ai preferiti",
+  "removeFavorite": "Rimuovi dai preferiti",
+  "editWorkStep": "Modifica",
+  "saveChanges": "Salva",
+  "cancelEdit": "Annulla",
+  "workStepUpdateError": "Impossibile aggiornare la fase.",
+  "menuSaveWorkSteps": "Salva tutte le fasi nella libreria",
+  "bulkSavingSteps": "Salvataggio fasi...",
+  "bulkStepSaveSuccess": "Salvate {{count}} fasi.",
+  "bulkStepSaveError": "Impossibile salvare le fasi."
 }
