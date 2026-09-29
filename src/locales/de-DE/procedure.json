@@ -60,6 +60,9 @@
     "maxReached": "Eine JSA kann bis zu 20 Arbeitsschritte enthalten.",
     "pinLimit": "Sie können bis zu vier Projekte gleichzeitig öffnen.",
     "own": "MEIN",
-    "scrap": "GESPEICHERT"
+    "scrap": "GESPEICHERT",
+    "eyebrow": "ARBEITSSCHRITT-KOMPOSER",
+    "stepLabel": "SCHRITT {{number}}",
+    "currentJsa": "Aktuelle JSA"
   }
 }
