@@ -33,13 +33,13 @@ export default function Info() {
   const { draft: recoveredDraft } = useJsaDraftRecovery(shouldRecoverDraft);
 
   useJsaDraftAutosave({
-    enabled: Boolean(formData.projectName.trim() || location.state?.draftId),
+    enabled: Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
     stage: 'info',
     formData,
     participants,
-    procedures: location.state?.procedures || [],
-    analysisData: location.state?.analysisData || [],
-    sourceProjectId: location.state?.parentId || null,
+    procedures: location.state?.procedures || recoveredDraft?.procedures || [],
+    analysisData: location.state?.analysisData || recoveredDraft?.analysis_data || [],
+    sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
   useEffect(() => {
