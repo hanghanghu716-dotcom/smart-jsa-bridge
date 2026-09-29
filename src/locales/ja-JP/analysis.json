@@ -100,6 +100,7 @@
     "mergeFull": "対策まで統合",
     "emptyProjects": "保存されたプロジェクトがありません。",
     "steps": "ステップ",
-    "backProjects": "プロジェクト一覧"
+    "backProjects": "プロジェクト一覧",
+    "sourceCurrent": "現在のJSA"
   }
 }
