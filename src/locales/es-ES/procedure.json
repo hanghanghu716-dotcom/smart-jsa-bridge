@@ -60,6 +60,9 @@
     "maxReached": "Una JSA puede contener hasta 20 pasos de trabajo.",
     "pinLimit": "Puede abrir hasta cuatro proyectos al mismo tiempo.",
     "own": "MÍO",
-    "scrap": "GUARDADO"
+    "scrap": "GUARDADO",
+    "eyebrow": "COMPOSITOR DE PASOS",
+    "stepLabel": "PASO {{number}}",
+    "currentJsa": "JSA actual"
   }
 }
