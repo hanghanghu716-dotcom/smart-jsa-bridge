@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "Salvar todas as etapas na biblioteca",
   "bulkSavingSteps": "Salvando etapas...",
   "bulkStepSaveSuccess": "{{count}} etapas foram salvas.",
-  "bulkStepSaveError": "Não foi possível salvar as etapas."
+  "bulkStepSaveError": "Não foi possível salvar as etapas.",
+  "archiveDraft": "Arquivar",
+  "confirmArchiveDraft": "Arquivar este rascunho?",
+  "draftArchiveError": "Não foi possível arquivar o rascunho."
 }
