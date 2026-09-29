@@ -111,8 +111,9 @@ export default function WorkStepWorkbench({
           });
 
         const availableIds = new Set(combined.map(project => String(project.id)));
+        const hasStoredPins = localStorage.getItem(pinKey) !== null;
         const storedPins = safeReadIdList(pinKey).filter(id => availableIds.has(id)).slice(0, 4);
-        const initialPins = storedPins.length
+        const initialPins = hasStoredPins
           ? storedPins.map(id => combined.find(project => String(project.id) === id)?.id).filter(Boolean)
           : combined.slice(0, 3).map(project => project.id);
 
