@@ -228,6 +228,16 @@ export default function CaseStudyDetail() {
             </div>
           )}
 
+          <aside style={styles.editorialNotice}>
+            <strong style={styles.editorialNoticeTitle}>Editorial status</strong>
+            <p style={styles.editorialNoticeText}>
+              This material may use AI-assisted drafting, translation or formatting. Unless this page explicitly identifies
+              a reviewer and review record, no licensed or certified professional review is claimed. Verify current local
+              requirements and complete a site-specific risk assessment before use.
+            </p>
+            <LanguageLink to="/editorial-policy" style={styles.editorialNoticeLink}>Read our editorial policy</LanguageLink>
+          </aside>
+
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
             dir={isRtl ? 'rtl' : 'ltr'}
@@ -254,6 +264,7 @@ export default function CaseStudyDetail() {
               <LanguageLink to="/privacy" style={styles.fLink}>Privacy Policy</LanguageLink>
               <LanguageLink to="/terms" style={styles.fLink}>Terms of Service</LanguageLink>
               <LanguageLink to="/about" style={styles.fLink}>About Us</LanguageLink>
+              <LanguageLink to="/editorial-policy" style={styles.fLink}>Editorial Policy</LanguageLink>
             </div>
           </div>
         </div>
@@ -271,6 +282,10 @@ const styles = {
   date: { color: '#bbb', fontSize: '1rem' },
   mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px 100px 24px' },
   centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px' },
+  editorialNotice: { marginBottom: '28px', padding: '18px 20px', background: '#f8fafc', border: '1px solid #e2e8f0', borderLeft: '4px solid #0284c7', borderRadius: '6px' },
+  editorialNoticeTitle: { display: 'block', color: '#0f172a', marginBottom: '8px' },
+  editorialNoticeText: { margin: '0 0 8px', color: '#475569', lineHeight: 1.65, fontSize: '0.92rem' },
+  editorialNoticeLink: { color: '#0369a1', fontWeight: 700, fontSize: '0.9rem' },
   markdownContent: { 
     width: '100%', 
     fontSize: '1.1rem', 
