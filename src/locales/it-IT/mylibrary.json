@@ -153,5 +153,11 @@
   "bulkStepSaveError": "Impossibile salvare le fasi.",
   "archiveDraft": "Archivia",
   "confirmArchiveDraft": "Archiviare questa bozza?",
-  "draftArchiveError": "Impossibile archiviare la bozza."
+  "draftArchiveError": "Impossibile archiviare la bozza.",
+  "confirmDeleteDraft": "Eliminare definitivamente questa bozza?",
+  "draftDeleteError": "Errore durante l’eliminazione della bozza.",
+  "workStepTagsPlaceholder": "Inserisci tag separati da virgole",
+  "cloneWorkStep": "Duplica",
+  "workStepCloneSuccess": "Fase duplicata.",
+  "workStepCloneError": "Impossibile duplicare la fase."
 }

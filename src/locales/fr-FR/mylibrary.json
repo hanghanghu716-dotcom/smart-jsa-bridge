@@ -74,5 +74,11 @@
   "bulkStepSaveError": "Impossible d’enregistrer les étapes.",
   "archiveDraft": "Archiver",
   "confirmArchiveDraft": "Archiver ce brouillon ?",
-  "draftArchiveError": "Impossible d’archiver le brouillon."
+  "draftArchiveError": "Impossible d’archiver le brouillon.",
+  "confirmDeleteDraft": "Supprimer définitivement ce brouillon ?",
+  "draftDeleteError": "Erreur lors de la suppression du brouillon.",
+  "workStepTagsPlaceholder": "Saisir les tags séparés par des virgules",
+  "cloneWorkStep": "Dupliquer",
+  "workStepCloneSuccess": "Étape dupliquée.",
+  "workStepCloneError": "Impossible de dupliquer l’étape."
 }

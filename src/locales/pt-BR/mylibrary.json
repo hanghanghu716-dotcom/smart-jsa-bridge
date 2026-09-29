@@ -74,5 +74,11 @@
   "bulkStepSaveError": "Não foi possível salvar as etapas.",
   "archiveDraft": "Arquivar",
   "confirmArchiveDraft": "Arquivar este rascunho?",
-  "draftArchiveError": "Não foi possível arquivar o rascunho."
+  "draftArchiveError": "Não foi possível arquivar o rascunho.",
+  "confirmDeleteDraft": "Excluir este rascunho permanentemente?",
+  "draftDeleteError": "Ocorreu um erro ao excluir o rascunho.",
+  "workStepTagsPlaceholder": "Insira tags separadas por vírgulas",
+  "cloneWorkStep": "Duplicar",
+  "workStepCloneSuccess": "Etapa duplicada.",
+  "workStepCloneError": "Falha ao duplicar a etapa."
 }

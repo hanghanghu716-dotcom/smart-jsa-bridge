@@ -74,5 +74,11 @@
   "bulkStepSaveError": "تعذر حفظ خطوات العمل.",
   "archiveDraft": "أرشفة",
   "confirmArchiveDraft": "هل تريد أرشفة هذه المسودة؟",
-  "draftArchiveError": "تعذر أرشفة المسودة."
+  "draftArchiveError": "تعذر أرشفة المسودة.",
+  "confirmDeleteDraft": "هل تريد حذف هذه المسودة نهائيًا؟",
+  "draftDeleteError": "حدث خطأ أثناء حذف المسودة.",
+  "workStepTagsPlaceholder": "أدخل الوسوم مفصولة بفواصل",
+  "cloneWorkStep": "نسخ",
+  "workStepCloneSuccess": "تم نسخ خطوة العمل.",
+  "workStepCloneError": "تعذر نسخ خطوة العمل."
 }

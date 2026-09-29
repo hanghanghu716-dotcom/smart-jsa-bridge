@@ -97,6 +97,8 @@ test('phase 2 draft and work-step translations are complete', () => {
     'menuDrafts', 'menuWorkSteps', 'draftListTitle', 'noDrafts', 'draftStage',
     'resumeDraft', 'workStepListTitle', 'noWorkSteps', 'hazardsCount',
     'usedCount', 'useWorkStep', 'confirmDeleteWorkStep', 'workStepDeleteError',
+    'confirmDeleteDraft', 'draftDeleteError', 'workStepTagsPlaceholder',
+    'cloneWorkStep', 'workStepCloneSuccess', 'workStepCloneError',
     'searchWorkSteps', 'favoritesOnly', 'addFavorite', 'removeFavorite',
     'editWorkStep', 'saveChanges', 'cancelEdit', 'workStepUpdateError',
     'menuSaveWorkSteps', 'bulkSavingSteps', 'bulkStepSaveSuccess', 'bulkStepSaveError',
