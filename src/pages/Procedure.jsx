@@ -4,6 +4,7 @@ import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import WorkStepWorkbench from '../components/WorkStepWorkbench';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -20,6 +21,7 @@ export default function Procedure() {
   const formData = location.state?.formData;
   const participants = location.state?.participants;
   const analysisData = location.state?.analysisData;
+  const isFastTrack = location.state?.isFastTrack ?? false;
 
   useEffect(() => {
     if (location.state?.procedures && location.state.procedures.length > 0) {
