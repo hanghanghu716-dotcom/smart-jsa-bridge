@@ -66,6 +66,26 @@ test('sitemap includes provincial routes without inventing translated articles',
   assert.ok(!xml.includes('/en-CA-QC'));
 });
 
+test('procedure step composer translations are complete for every base locale', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const requiredKeys = [
+    'hint', 'openButton', 'title', 'subtitle', 'projectLibrary', 'search',
+    'open', 'unpin', 'noProject', 'loginRequired', 'loading', 'addSelected',
+    'add', 'riskCount', 'today', 'todayHint', 'emptyToday', 'source',
+    'remove', 'apply', 'cancel', 'maxReached', 'pinLimit', 'own', 'scrap',
+    'eyebrow', 'stepLabel', 'currentJsa',
+  ];
+
+  for (const locale of baseLocales) {
+    const procedure = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/procedure.json`, import.meta.url)));
+    assert.ok(procedure.workbench, `Missing workbench translations for ${locale}`);
+    for (const key of requiredKeys) {
+      assert.equal(typeof procedure.workbench[key], 'string', `Missing workbench.${key} for ${locale}`);
+      assert.ok(procedure.workbench[key].trim(), `Empty workbench.${key} for ${locale}`);
+    }
+  }
+});
+
 test('actual i18n configuration retains province and falls back per translation key', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousDocument = global.document;
