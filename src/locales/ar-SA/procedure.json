@@ -86,6 +86,9 @@
     "recommendedControl": "إجراء التحكم الإضافي / الموصى به",
     "riskLevel": "مستوى الخطر",
     "badgeFull": "يشمل التحليل",
-    "badgeProcedureOnly": "الخطوة فقط"
+    "badgeProcedureOnly": "الخطوة فقط",
+    "workStepLibrary": "خطوات العمل الخاصة بي",
+    "filterSteps": "خطوات العمل",
+    "stepLibraryBadge": "خطوة"
   }
 }
