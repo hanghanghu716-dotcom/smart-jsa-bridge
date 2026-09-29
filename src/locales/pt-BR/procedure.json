@@ -60,6 +60,9 @@
     "maxReached": "Uma JSA pode conter até 20 etapas de trabalho.",
     "pinLimit": "Você pode abrir até quatro projetos ao mesmo tempo.",
     "own": "MEUS",
-    "scrap": "SALVO"
+    "scrap": "SALVO",
+    "eyebrow": "COMPOSITOR DE ETAPAS",
+    "stepLabel": "ETAPA {{number}}",
+    "currentJsa": "JSA atual"
   }
 }
