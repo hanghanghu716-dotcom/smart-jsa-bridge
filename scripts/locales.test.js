@@ -127,7 +127,7 @@ test('phase 3 analysis knowledge dock translations are complete', () => {
     'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
     'sourceLibrary', 'sourceCurrent', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
     'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
-    'mergeFull', 'emptyProjects', 'steps', 'backProjects'
+    'mergeFull', 'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly'
   ];
 
   for (const locale of baseLocales) {
