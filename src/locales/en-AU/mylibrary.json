@@ -38,5 +38,26 @@
   "moveFolderSelect": "Select folder to move",
   "btnReference": "Reference & Create",
   "btnEdit": "Edit & Modify",
-  "folderLabel": "Folder"
+  "folderLabel": "Folder",
+  "menuDrafts": "Drafts",
+  "menuWorkSteps": "Work Step Library",
+  "draftListTitle": "JSA Drafts",
+  "noDrafts": "No saved drafts.",
+  "draftStage": "Current stage",
+  "resumeDraft": "Resume",
+  "workStepListTitle": "My Work Steps",
+  "noWorkSteps": "No saved work steps.",
+  "hazardsCount": "Hazards",
+  "usedCount": "Uses",
+  "useWorkStep": "Use this step",
+  "confirmDeleteWorkStep": "Delete this work step?",
+  "workStepDeleteError": "An error occurred while deleting the work step.",
+  "draftStages": {
+    "info": "Basic Info",
+    "procedure": "Procedure",
+    "analysis": "Risk Analysis",
+    "module": "Module Config",
+    "table": "Table Config",
+    "export": "Final Output"
+  }
 }
