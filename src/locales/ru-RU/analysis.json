@@ -79,5 +79,27 @@
   "searchModal": {
     "title": "Поиск в БД мер безопасности",
     "placeholder": "Введите поисковый запрос..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Док знаний",
+    "opened": "Док открыт",
+    "untitledStep": "Без названия",
+    "sourceManual": "Вручную",
+    "sourceDatabase": "База опасностей",
+    "sourceLibrary": "Прошлый опыт",
+    "eyebrow": "ДОК ЗНАНИЙ",
+    "title": "Опыт прошлых работ",
+    "savedSteps": "Сохранённые этапы",
+    "projects": "Проекты",
+    "search": "Поиск работ, опасностей или мер",
+    "emptySteps": "Нет сохранённых этапов.",
+    "independentStep": "Независимый этап",
+    "hazards": "опасности",
+    "noControl": "Нет меры",
+    "mergeHazards": "Только опасности",
+    "mergeFull": "Добавить с мерами",
+    "emptyProjects": "Нет сохранённых проектов.",
+    "steps": "этапов",
+    "backProjects": "Список проектов"
   }
 }
