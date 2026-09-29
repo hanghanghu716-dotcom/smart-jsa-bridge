@@ -34,5 +34,32 @@
     "prev": "Anterior",
     "next": "Iniciar Análisis de Riesgo Inteligente",
     "skipModule": "Omitir Configuración de Módulo"
+  },
+  "workbench": {
+    "hint": "Combine pasos de trabajo de proyectos anteriores o introdúzcalos manualmente.",
+    "openButton": "Componer desde la biblioteca",
+    "title": "Componer el trabajo de hoy",
+    "subtitle": "Compare pasos de varios proyectos anteriores y combine únicamente los que se realizarán hoy.",
+    "projectLibrary": "Proyectos",
+    "search": "Buscar proyectos o pasos de trabajo",
+    "open": "Abrir",
+    "unpin": "Cerrar",
+    "noProject": "No se encontraron proyectos reutilizables.",
+    "loginRequired": "Inicie sesión para componer el trabajo a partir de sus proyectos y elementos guardados.",
+    "loading": "Cargando biblioteca...",
+    "addSelected": "Añadir pasos seleccionados",
+    "add": "Añadir",
+    "riskCount": "Peligros",
+    "today": "JSA de hoy",
+    "todayHint": "Pulse + en un paso de trabajo o arrástrelo a esta zona.",
+    "emptyToday": "Aún no se han seleccionado pasos de trabajo.",
+    "source": "Origen",
+    "remove": "Eliminar",
+    "apply": "Aplicar al trabajo de hoy",
+    "cancel": "Cerrar",
+    "maxReached": "Una JSA puede contener hasta 20 pasos de trabajo.",
+    "pinLimit": "Puede abrir hasta cuatro proyectos al mismo tiempo.",
+    "own": "MÍO",
+    "scrap": "GUARDADO"
   }
 }
