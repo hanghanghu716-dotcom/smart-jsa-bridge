@@ -86,6 +86,9 @@
     "recommendedControl": "추가/권고 대책",
     "riskLevel": "위험도",
     "badgeFull": "분석 포함",
-    "badgeProcedureOnly": "단계만"
+    "badgeProcedureOnly": "단계만",
+    "workStepLibrary": "내 작업단계",
+    "filterSteps": "작업단계",
+    "stepLibraryBadge": "STEP"
   }
 }
