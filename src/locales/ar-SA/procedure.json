@@ -63,6 +63,13 @@
     "scrap": "محفوظ",
     "eyebrow": "مُنشئ خطوات العمل",
     "stepLabel": "الخطوة {{number}}",
-    "currentJsa": "JSA الحالي"
+    "currentJsa": "JSA الحالي",
+    "importMode": "نطاق الاستيراد",
+    "importFull": "الخطوة + تحليل المخاطر",
+    "importProcedureOnly": "الخطوة فقط",
+    "alreadyAdded": "تمت إضافة خطوة العمل هذه بالفعل إلى JSA لليوم.",
+    "added": "تمت الإضافة",
+    "selectedAlreadyAdded": "تمت إضافة جميع خطوات العمل المحددة بالفعل.",
+    "recent": "حديث"
   }
 }
