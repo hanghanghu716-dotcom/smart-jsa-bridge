@@ -38,5 +38,26 @@
   "moveFolderSelect": "Seleccionar Carpeta de Destino",
   "btnReference": "Redactar usando como referencia",
   "btnEdit": "Modificar y Editar",
-  "folderLabel": "Carpeta"
+  "folderLabel": "Carpeta",
+  "menuDrafts": "Borradores",
+  "menuWorkSteps": "Biblioteca de pasos",
+  "draftListTitle": "Borradores JSA",
+  "noDrafts": "No hay borradores guardados.",
+  "draftStage": "Etapa actual",
+  "resumeDraft": "Continuar",
+  "workStepListTitle": "Mis pasos de trabajo",
+  "noWorkSteps": "No hay pasos guardados.",
+  "hazardsCount": "Peligros",
+  "usedCount": "Usos",
+  "useWorkStep": "Usar este paso",
+  "confirmDeleteWorkStep": "¿Eliminar este paso de trabajo?",
+  "workStepDeleteError": "Se produjo un error al eliminar el paso.",
+  "draftStages": {
+    "info": "Información básica",
+    "procedure": "Procedimiento",
+    "analysis": "Análisis de riesgos",
+    "module": "Configuración de módulo",
+    "table": "Configuración de tabla",
+    "export": "Salida final"
+  }
 }
