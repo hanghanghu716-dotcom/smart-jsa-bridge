@@ -53,7 +53,7 @@ export default function ModuleBuilder() {
   }, [recoveredDraft, recoveredLayout, location.state?.formData, t]);
 
   useJsaDraftAutosave({
-    enabled: Boolean(location.state?.formData || recoveredDraft || draftRecoveryStatus === 'empty'),
+    enabled: Boolean(location.state?.formData || recoveredDraft),
     stage: 'module',
     formData,
     participants,
