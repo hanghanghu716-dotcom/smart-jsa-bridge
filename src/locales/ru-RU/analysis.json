@@ -100,6 +100,7 @@
     "mergeFull": "Добавить с мерами",
     "emptyProjects": "Нет сохранённых проектов.",
     "steps": "этапов",
-    "backProjects": "Список проектов"
+    "backProjects": "Список проектов",
+    "sourceCurrent": "Текущая JSA"
   }
 }
