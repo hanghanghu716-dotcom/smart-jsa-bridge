@@ -7,6 +7,8 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
+import { listRecentDrafts, setActiveDraftId } from '../services/jsaDraftService';
+import { listWorkSteps, deleteWorkStep } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -17,7 +19,9 @@ export default function MyLibrary() {
   const [reports, setReports] = useState([]); 
   const [blocks, setBlocks] = useState([]);   
   const [projectBlocks, setProjectBlocks] = useState([]); 
-  const [layouts, setLayouts] = useState([]); 
+  const [layouts, setLayouts] = useState([]);
+  const [drafts, setDrafts] = useState([]);
+  const [workSteps, setWorkSteps] = useState([]); 
   
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null); 
@@ -51,14 +55,16 @@ export default function MyLibrary() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const [cats, favs, authored, reps, blks, pBlks, userLayouts] = await Promise.all([
+    const [cats, favs, authored, reps, blks, pBlks, userLayouts, draftRows, stepRows] = await Promise.all([
       supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
       supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
       supabase.from('jsa_projects').select('*').eq('author_id', user.id).order('created_at', { ascending: false }),
       supabase.from('user_reports').select('*, jsa_projects(title)').eq('reporter_id', user.id),
       supabase.from('user_blocks').select('*, profiles:blocked_user_id(username)').eq('blocker_id', user.id),
       supabase.from('user_project_blocks').select('*, jsa_projects(title)').eq('user_id', user.id),
-      supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false })
+      supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
+      listRecentDrafts(20),
+      listWorkSteps({ limit: 100 })
     ]);
 
     setCategories(cats.data || []);
@@ -66,6 +72,8 @@ export default function MyLibrary() {
     setBlocks(blks.data || []);
     setProjectBlocks(pBlks.data || []);
     setLayouts(userLayouts.data || []);
+    setDrafts(draftRows || []);
+    setWorkSteps(stepRows || []);
 
     const combined = [
       ...(favs.data || []).map(item => ({ ...item, displayType: 'SCRAP', originData: item.jsa_projects })),
@@ -145,6 +153,71 @@ export default function MyLibrary() {
     fetchLibraryData();
   };
 
+  const resumeDraft = (draft) => {
+    if (!draft?.id) return;
+    setActiveDraftId(draft.id);
+
+    const routeMap = {
+      info: '/info',
+      procedure: '/procedure',
+      analysis: '/analysis',
+      module: '/analysis',
+      table: '/analysis',
+      export: '/analysis'
+    };
+
+    navigate(routeMap[draft.current_stage] || '/info', {
+      state: {
+        draftId: draft.id,
+        formData: draft.form_data || {},
+        participants: draft.participants || [],
+        procedures: draft.procedures || [],
+        analysisData: draft.analysis_data || [],
+        parentId: draft.source_project_id || null
+      }
+    });
+  };
+
+  const useSavedWorkStep = (step) => {
+    const proc = {
+      stepTitle: step.title || '',
+      stepDetail: step.detail || '',
+      savedWorkStepId: step.id,
+      sourceProjectId: step.source_project_id || null,
+      sourceProjectTitle: step.source_project_title || '',
+      sourceStepIndex: step.source_step_index
+    };
+
+    const analysis = {
+      ...(step.analysis_data || {}),
+      id: 0,
+      proc,
+      risks: Array.isArray(step.analysis_data?.risks)
+        ? step.analysis_data.risks.map(risk => ({ ...risk }))
+        : []
+    };
+
+    navigate('/procedure', {
+      state: {
+        formData: {},
+        participants: [],
+        procedures: [proc],
+        analysisData: [analysis]
+      }
+    });
+  };
+
+  const removeWorkStep = async (id) => {
+    if (!window.confirm(t('confirmDeleteWorkStep'))) return;
+    try {
+      await deleteWorkStep(id);
+      setWorkSteps(prev => prev.filter(step => step.id !== id));
+    } catch (error) {
+      console.error('[Work Step Library] delete failed:', error);
+      alert(t('workStepDeleteError'));
+    }
+  };
+
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
     const date = new Date(dateStr);
@@ -181,6 +254,8 @@ export default function MyLibrary() {
             <div style={styles.contentGrid}>
               <aside style={styles.catSidebar}>
                 <div style={selectedCatId === 'SYSTEM_FOLDER' ? styles.systemCatActive : styles.systemCat} onClick={() => setSelectedCatId('SYSTEM_FOLDER')}>{t('menuSystem')}</div>
+                <div style={selectedCatId === 'DRAFT_FOLDER' ? styles.draftCatActive : styles.draftCat} onClick={() => setSelectedCatId('DRAFT_FOLDER')}>{t('menuDrafts')} ({drafts.length})</div>
+                <div style={selectedCatId === 'WORK_STEP_FOLDER' ? styles.workStepCatActive : styles.workStepCat} onClick={() => setSelectedCatId('WORK_STEP_FOLDER')}>{t('menuWorkSteps')} ({workSteps.length})</div>
                 <div style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat} onClick={() => setSelectedCatId('LAYOUT_FOLDER')}>{t('menuLayout')} ({layouts.length})</div>
                 <div style={styles.catDivider} />
                 <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>{t('menuViewAll')} ({favorites.length})</div>
@@ -217,6 +292,51 @@ export default function MyLibrary() {
                         <div key={p.id} style={styles.mRow}>
                           <span>{t('projectHideLabel')}: {p.jsa_projects?.title}</span>
                           <button style={styles.mBtn} onClick={() => handleWithdraw('projectBlock', p.id)}>{t('releaseBtn')}</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : selectedCatId === 'DRAFT_FOLDER' ? (
+                  <div style={styles.managementView}>
+                    <div style={styles.mGroup}>
+                      <h4 style={styles.mTitle}>{t('draftListTitle')}</h4>
+                      {drafts.length === 0 && <div style={styles.emptyAsset}>{t('noDrafts')}</div>}
+                      {drafts.map(draft => (
+                        <div key={draft.id} style={styles.assetRow}>
+                          <div style={styles.assetInfo}>
+                            <strong style={styles.assetTitle}>{draft.title}</strong>
+                            <span style={styles.assetMeta}>
+                              {t('draftStage')}: {t(`draftStages.${draft.current_stage}`, draft.current_stage)} · {formatDate(draft.updated_at)}
+                            </span>
+                          </div>
+                          <button style={styles.assetPrimaryBtn} onClick={() => resumeDraft(draft)}>{t('resumeDraft')}</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : selectedCatId === 'WORK_STEP_FOLDER' ? (
+                  <div style={styles.managementView}>
+                    <div style={styles.mGroup}>
+                      <h4 style={styles.mTitle}>{t('workStepListTitle')}</h4>
+                      {workSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
+                      {workSteps.map(step => (
+                        <div key={step.id} style={styles.assetRow}>
+                          <div style={styles.assetInfo}>
+                            <div style={styles.assetTitleRow}>
+                              <strong style={styles.assetTitle}>{step.title}</strong>
+                              {step.is_favorite && <span style={styles.favoriteBadge}>★</span>}
+                            </div>
+                            <span style={styles.assetDescription}>{step.detail || '-'}</span>
+                            <span style={styles.assetMeta}>
+                              {t('hazardsCount')}: {step.analysis_data?.risks?.length || 0}
+                              {step.source_project_title ? ` · ${step.source_project_title}` : ''}
+                              {step.use_count ? ` · ${t('usedCount')}: ${step.use_count}` : ''}
+                            </span>
+                          </div>
+                          <div style={styles.assetActions}>
+                            <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
+                            <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -366,6 +486,10 @@ const styles = {
   catSidebar: { borderRight: '1px solid #222', paddingRight: '1rem', overflowY: 'auto' },
   systemCat: { padding: '1rem', color: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
   systemCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  draftCat: { padding: '1rem', color: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(233,189,69,0.25)', marginBottom: '10px' },
+  draftCatActive: { padding: '1rem', color: '#111', backgroundColor: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  workStepCat: { padding: '1rem', color: '#4caf50', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
+  workStepCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#4caf50', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   layoutCat: { padding: '1rem', color: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
   layoutCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   catDivider: { height: '1px', backgroundColor: '#222', margin: '10px 0' },
@@ -395,6 +519,17 @@ const styles = {
   mTitle: { fontSize: '0.95rem', color: '#fff', marginBottom: '1rem', borderBottom: '1px solid #333', paddingBottom: '5px', fontWeight: 'bold' },
   mRow: { display: 'flex', justifyContent: 'space-between', padding: '1rem', backgroundColor: '#111', borderRadius: '8px', marginBottom: '8px', fontSize: '0.85rem' },
   mBtn: { padding: '4px 10px', backgroundColor: '#222', color: '#ff4d4d', border: '1px solid #444', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem' },
+  emptyAsset: { padding: '1.5rem', color: '#666', fontSize: '0.82rem', textAlign: 'center', border: '1px dashed #2a2a2a', borderRadius: '8px' },
+  assetRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1rem', backgroundColor: '#101010', border: '1px solid #222', borderRadius: '8px', marginBottom: '8px' },
+  assetInfo: { minWidth: 0, flex: 1, display: 'flex', flexDirection: 'column', gap: '5px' },
+  assetTitleRow: { display: 'flex', alignItems: 'center', gap: '6px' },
+  assetTitle: { color: '#eee', fontSize: '0.88rem' },
+  assetDescription: { color: '#777', fontSize: '0.72rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  assetMeta: { color: '#555', fontSize: '0.65rem' },
+  favoriteBadge: { color: '#e9bd45', fontSize: '0.75rem' },
+  assetActions: { display: 'flex', gap: '6px', flexShrink: 0 },
+  assetPrimaryBtn: { padding: '7px 11px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
+  assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: '#ff5c5c', border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
   loader: { textAlign: 'center', padding: '5rem', color: '#444' },
   footerArea: { width: '100%', position: 'absolute', bottom: 0, padding: '1.5rem 5rem', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
