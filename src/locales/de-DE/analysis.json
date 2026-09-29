@@ -101,6 +101,8 @@
     "emptyProjects": "Keine gespeicherten Projekte.",
     "steps": "Schritte",
     "backProjects": "Projektliste",
-    "sourceCurrent": "Aktuelle JSA"
+    "sourceCurrent": "Aktuelle JSA",
+    "analysisIncluded": "Analyse enthalten",
+    "stepOnly": "Nur Schritt"
   }
 }
