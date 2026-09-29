@@ -267,7 +267,7 @@ export default function WorkStepWorkbench({
       <section style={{ ...styles.workspace, direction: isRtl ? 'rtl' : 'ltr' }} onClick={event => event.stopPropagation()}>
         <header style={styles.header}>
           <div>
-            <div style={styles.eyebrow}>STEP COMPOSER</div>
+            <div style={styles.eyebrow}>{t('workbench.eyebrow')}</div>
             <h2 style={styles.title}>{t('workbench.title')}</h2>
             <p style={styles.subtitle}>{t('workbench.subtitle')}</p>
           </div>
@@ -361,7 +361,7 @@ export default function WorkStepWorkbench({
                                   checked={checked}
                                   onChange={() => toggleSelected(project.id, stepIndex)}
                                 />
-                                <span>STEP {stepIndex + 1}</span>
+                                <span>{t('workbench.stepLabel', { number: stepIndex + 1 })}</span>
                               </label>
                               <button
                                 type="button"
@@ -419,7 +419,7 @@ export default function WorkStepWorkbench({
                         {index + 1}. {item.proc.stepTitle || '-'}
                       </strong>
                       <div style={styles.todaySource}>
-                        {t('workbench.source')}: {item.proc.sourceProjectTitle || 'Current JSA'}
+                        {t('workbench.source')}: {item.proc.sourceProjectTitle || t('workbench.currentJsa')}
                       </div>
                     </div>
                     <button
