@@ -7,8 +7,8 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
-import { listRecentDrafts, setActiveDraftId } from '../services/jsaDraftService';
-import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps } from '../services/workStepLibraryService';
+import { listRecentDrafts, setActiveDraftId, archiveDraft } from '../services/jsaDraftService';
+import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -166,9 +166,9 @@ export default function MyLibrary() {
       info: '/info',
       procedure: '/procedure',
       analysis: '/analysis',
-      module: '/analysis',
-      table: '/analysis',
-      export: '/analysis'
+      module: '/layout-module',
+      table: '/layout-table',
+      export: '/export'
     };
 
     navigate(routeMap[draft.current_stage] || '/info', {
@@ -178,12 +178,16 @@ export default function MyLibrary() {
         participants: draft.participants || [],
         procedures: draft.procedures || [],
         analysisData: draft.analysis_data || [],
-        parentId: draft.source_project_id || null
+        parentId: draft.source_project_id || null,
+        ...(draft.layout_data || {})
       }
     });
   };
 
   const useSavedWorkStep = (step) => {
+    markWorkStepUsed(step).catch(error =>
+      console.error('[Work Step Library] usage update failed:', error)
+    );
     const proc = {
       stepTitle: step.title || '',
       stepDetail: step.detail || '',
@@ -210,6 +214,17 @@ export default function MyLibrary() {
         analysisData: [analysis]
       }
     });
+  };
+
+  const handleArchiveDraft = async (draftId) => {
+    if (!window.confirm(t('confirmArchiveDraft'))) return;
+    try {
+      await archiveDraft(draftId);
+      setDrafts(prev => prev.filter(draft => draft.id !== draftId));
+    } catch (error) {
+      console.error('[JSA Draft] archive failed:', error);
+      alert(t('draftArchiveError'));
+    }
   };
 
   const beginEditWorkStep = (step) => {
@@ -383,7 +398,10 @@ export default function MyLibrary() {
                               {t('draftStage')}: {t(`draftStages.${draft.current_stage}`, draft.current_stage)} · {formatDate(draft.updated_at)}
                             </span>
                           </div>
-                          <button style={styles.assetPrimaryBtn} onClick={() => resumeDraft(draft)}>{t('resumeDraft')}</button>
+                          <div style={styles.assetActions}>
+                            <button style={styles.assetPrimaryBtn} onClick={() => resumeDraft(draft)}>{t('resumeDraft')}</button>
+                            <button style={styles.assetSecondaryBtn} onClick={() => handleArchiveDraft(draft.id)}>{t('archiveDraft')}</button>
+                          </div>
                         </div>
                       ))}
                     </div>
