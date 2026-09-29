@@ -11,7 +11,7 @@ import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
   const location = useLocation();
-  const { t } = useTranslation('library');
+  const { t, i18n } = useTranslation('library');
   const [categories, setCategories] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [reports, setReports] = useState([]); 
