@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "Сохранить все этапы в библиотеку",
   "bulkSavingSteps": "Сохранение этапов...",
   "bulkStepSaveSuccess": "Сохранено этапов: {{count}}.",
-  "bulkStepSaveError": "Не удалось сохранить этапы."
+  "bulkStepSaveError": "Не удалось сохранить этапы.",
+  "archiveDraft": "В архив",
+  "confirmArchiveDraft": "Архивировать этот черновик?",
+  "draftArchiveError": "Не удалось архивировать черновик."
 }
