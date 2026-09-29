@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { listRecentDrafts, setActiveDraftId } from '../services/jsaDraftService';
-import { listWorkSteps, deleteWorkStep } from '../services/workStepLibraryService';
+import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -26,7 +26,12 @@ export default function MyLibrary() {
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
-  const [activeMenuId, setActiveMenuId] = useState(null); 
+  const [activeMenuId, setActiveMenuId] = useState(null);
+  const [workStepSearch, setWorkStepSearch] = useState('');
+  const [workStepFavoritesOnly, setWorkStepFavoritesOnly] = useState(false);
+  const [editingWorkStepId, setEditingWorkStepId] = useState(null);
+  const [workStepEditForm, setWorkStepEditForm] = useState({ title: '', detail: '' });
+  const [bulkSavingProjectId, setBulkSavingProjectId] = useState(null); 
 
   const buildFolderTree = (items, parentId = null) => {
     return items
@@ -207,6 +212,55 @@ export default function MyLibrary() {
     });
   };
 
+  const beginEditWorkStep = (step) => {
+    setEditingWorkStepId(step.id);
+    setWorkStepEditForm({ title: step.title || '', detail: step.detail || '' });
+  };
+
+  const saveWorkStepEdits = async (id) => {
+    if (!workStepEditForm.title.trim()) return;
+    try {
+      const updated = await updateWorkStep(id, {
+        title: workStepEditForm.title.trim(),
+        detail: workStepEditForm.detail || ''
+      });
+      setWorkSteps(prev => prev.map(step => step.id === id ? updated : step));
+      setEditingWorkStepId(null);
+    } catch (error) {
+      console.error('[Work Step Library] update failed:', error);
+      alert(t('workStepUpdateError'));
+    }
+  };
+
+  const toggleWorkStepFavorite = async (step) => {
+    try {
+      const updated = await setWorkStepFavorite(step, !step.is_favorite);
+      setWorkSteps(prev => prev
+        .map(item => item.id === step.id ? updated : item)
+        .sort((a, b) => Number(b.is_favorite) - Number(a.is_favorite)
+          || new Date(b.last_used_at || b.updated_at || 0) - new Date(a.last_used_at || a.updated_at || 0)));
+    } catch (error) {
+      console.error('[Work Step Library] favorite update failed:', error);
+      alert(t('workStepUpdateError'));
+    }
+  };
+
+  const handleSaveProjectSteps = async (project) => {
+    if (!project?.id || !Array.isArray(project.analysis_data)) return;
+    setBulkSavingProjectId(project.id);
+    try {
+      const saved = await saveProjectWorkSteps(project);
+      await fetchLibraryData();
+      alert(t('bulkStepSaveSuccess', { count: saved.length }));
+      setActiveMenuId(null);
+    } catch (error) {
+      console.error('[Work Step Library] bulk save failed:', error);
+      alert(t('bulkStepSaveError'));
+    } finally {
+      setBulkSavingProjectId(null);
+    }
+  };
+
   const removeWorkStep = async (id) => {
     if (!window.confirm(t('confirmDeleteWorkStep'))) return;
     try {
@@ -217,6 +271,26 @@ export default function MyLibrary() {
       alert(t('workStepDeleteError'));
     }
   };
+
+  const visibleWorkSteps = workSteps.filter(step => {
+    if (workStepFavoritesOnly && !step.is_favorite) return false;
+    const q = workStepSearch.trim().toLowerCase();
+    if (!q) return true;
+    const haystack = [
+      step.title,
+      step.detail,
+      step.source_project_title,
+      ...(step.tags || []),
+      ...(step.analysis_data?.risks || []).flatMap(risk => [
+        risk?.factor,
+        risk?.risk_factor,
+        risk?.measure,
+        risk?.current_measure,
+        risk?.recommend_measure
+      ])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return haystack.includes(q);
+  });
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
@@ -317,16 +391,49 @@ export default function MyLibrary() {
                 ) : selectedCatId === 'WORK_STEP_FOLDER' ? (
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
-                      <h4 style={styles.mTitle}>{t('workStepListTitle')}</h4>
-                      {workSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
-                      {workSteps.map(step => (
+                      <div style={styles.workStepHeaderRow}>
+                        <h4 style={{ ...styles.mTitle, marginBottom: 0, flex: 1 }}>{t('workStepListTitle')}</h4>
+                        <label style={styles.favoriteFilterLabel}>
+                          <input
+                            type="checkbox"
+                            checked={workStepFavoritesOnly}
+                            onChange={(e) => setWorkStepFavoritesOnly(e.target.checked)}
+                          />
+                          {t('favoritesOnly')}
+                        </label>
+                      </div>
+                      <input
+                        style={styles.workStepSearchInput}
+                        value={workStepSearch}
+                        onChange={(e) => setWorkStepSearch(e.target.value)}
+                        placeholder={t('searchWorkSteps')}
+                      />
+                      {visibleWorkSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
+                      {visibleWorkSteps.map(step => (
                         <div key={step.id} style={styles.assetRow}>
                           <div style={styles.assetInfo}>
-                            <div style={styles.assetTitleRow}>
-                              <strong style={styles.assetTitle}>{step.title}</strong>
-                              {step.is_favorite && <span style={styles.favoriteBadge}>★</span>}
-                            </div>
-                            <span style={styles.assetDescription}>{step.detail || '-'}</span>
+                            {editingWorkStepId === step.id ? (
+                              <>
+                                <input
+                                  style={styles.inlineEditInput}
+                                  value={workStepEditForm.title}
+                                  onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, title: e.target.value }))}
+                                />
+                                <textarea
+                                  style={styles.inlineEditTextarea}
+                                  value={workStepEditForm.detail}
+                                  onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, detail: e.target.value }))}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <div style={styles.assetTitleRow}>
+                                  <strong style={styles.assetTitle}>{step.title}</strong>
+                                  {step.is_favorite && <span style={styles.favoriteBadge}>★</span>}
+                                </div>
+                                <span style={styles.assetDescription}>{step.detail || '-'}</span>
+                              </>
+                            )}
                             <span style={styles.assetMeta}>
                               {t('hazardsCount')}: {step.analysis_data?.risks?.length || 0}
                               {step.source_project_title ? ` · ${step.source_project_title}` : ''}
@@ -334,8 +441,23 @@ export default function MyLibrary() {
                             </span>
                           </div>
                           <div style={styles.assetActions}>
-                            <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
-                            <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
+                            <button
+                              style={step.is_favorite ? styles.favoriteBtnActive : styles.favoriteBtn}
+                              onClick={() => toggleWorkStepFavorite(step)}
+                              title={step.is_favorite ? t('removeFavorite') : t('addFavorite')}
+                            >★</button>
+                            {editingWorkStepId === step.id ? (
+                              <>
+                                <button style={styles.assetPrimaryBtn} onClick={() => saveWorkStepEdits(step.id)}>{t('saveChanges')}</button>
+                                <button style={styles.assetSecondaryBtn} onClick={() => setEditingWorkStepId(null)}>{t('cancelEdit')}</button>
+                              </>
+                            ) : (
+                              <>
+                                <button style={styles.assetSecondaryBtn} onClick={() => beginEditWorkStep(step)}>{t('editWorkStep')}</button>
+                                <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
+                                <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
+                              </>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -404,6 +526,14 @@ export default function MyLibrary() {
                                     <div style={styles.dropdownItem} onClick={() => navigate('/export', { state: { analysisData: f.originData.analysis_data, formData: f.originData.form_data, participants: f.originData.participants } })}>{t('menuViewReport')}</div>
                                     <div style={styles.dropdownItem} onClick={() => handleClone(f.originData)}>{t('menuClone')}</div>
                                   </>
+                                )}
+                                {f.originData?.analysis_data?.length > 0 && (
+                                  <div
+                                    style={{ ...styles.dropdownItem, color: '#4caf50', fontWeight: 'bold' }}
+                                    onClick={() => handleSaveProjectSteps(f.originData)}
+                                  >
+                                    {bulkSavingProjectId === f.originData?.id ? t('bulkSavingSteps') : t('menuSaveWorkSteps')}
+                                  </div>
                                 )}
                                 <div style={{...styles.dropdownItem, color: '#ff4d4d'}} onClick={async () => {
                                   if(window.confirm(t('confirmDeleteItem'))) {
@@ -530,6 +660,14 @@ const styles = {
   assetActions: { display: 'flex', gap: '6px', flexShrink: 0 },
   assetPrimaryBtn: { padding: '7px 11px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
   assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: '#ff5c5c', border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  assetSecondaryBtn: { padding: '7px 11px', backgroundColor: '#171717', color: '#aaa', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  favoriteBtn: { width: '32px', height: '32px', backgroundColor: 'transparent', color: '#555', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer' },
+  favoriteBtnActive: { width: '32px', height: '32px', backgroundColor: 'rgba(233,189,69,0.12)', color: '#e9bd45', border: '1px solid rgba(233,189,69,0.4)', borderRadius: '5px', cursor: 'pointer' },
+  workStepHeaderRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', borderBottom: '1px solid #333', paddingBottom: '6px' },
+  favoriteFilterLabel: { display: 'flex', alignItems: 'center', gap: '6px', color: '#888', fontSize: '0.7rem', cursor: 'pointer' },
+  workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: '#0a0a0a', color: '#fff', border: '1px solid #2d2d2d', borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
+  inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: '#080808', color: '#fff', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.8rem' },
+  inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: '#080808', color: '#ddd', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
   loader: { textAlign: 'center', padding: '5rem', color: '#444' },
   footerArea: { width: '100%', position: 'absolute', bottom: 0, padding: '1.5rem 5rem', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
