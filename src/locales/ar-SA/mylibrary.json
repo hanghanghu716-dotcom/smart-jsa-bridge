@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "حفظ جميع الخطوات في مكتبة خطوات العمل",
   "bulkSavingSteps": "جارٍ حفظ خطوات العمل...",
   "bulkStepSaveSuccess": "تم حفظ {{count}} خطوة عمل.",
-  "bulkStepSaveError": "تعذر حفظ خطوات العمل."
+  "bulkStepSaveError": "تعذر حفظ خطوات العمل.",
+  "archiveDraft": "أرشفة",
+  "confirmArchiveDraft": "هل تريد أرشفة هذه المسودة؟",
+  "draftArchiveError": "تعذر أرشفة المسودة."
 }
