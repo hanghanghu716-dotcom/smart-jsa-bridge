@@ -101,6 +101,8 @@
     "emptyProjects": "스크랩한 프로젝트가 없습니다.",
     "steps": "단계",
     "backProjects": "프로젝트 목록",
-    "sourceCurrent": "현재 JSA"
+    "sourceCurrent": "현재 JSA",
+    "analysisIncluded": "분석 포함",
+    "stepOnly": "단계만"
   }
 }
