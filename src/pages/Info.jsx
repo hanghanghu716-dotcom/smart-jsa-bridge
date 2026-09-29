@@ -30,6 +30,7 @@ export default function Info() {
   const [participants, setParticipants] = useState(Array(14).fill(''));
 
   useJsaDraftAutosave({
+    enabled: Boolean(formData.projectName.trim() || location.state?.draftId),
     stage: 'info',
     formData,
     participants,
