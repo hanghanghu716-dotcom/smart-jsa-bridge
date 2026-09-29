@@ -7,6 +7,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 import WorkStepWorkbench from '../components/WorkStepWorkbench';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -36,7 +37,7 @@ export default function Procedure() {
     proc => proc?.stepTitle?.trim() || proc?.stepDetail?.trim()
   );
 
-  useJsaDraftAutosave({
+  const draftSave = useJsaDraftAutosave({
     enabled: recoverySettled && Boolean(
       formData?.projectName?.trim() || hasMeaningfulProcedure || location.state?.draftId || recoveredDraft?.id
     ),
@@ -140,7 +141,8 @@ const startAnalysis = (jsaType) => {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
 
       <WorkStepWorkbench
         isOpen={isWorkbenchOpen}
