@@ -63,6 +63,13 @@
     "scrap": "GESPEICHERT",
     "eyebrow": "ARBEITSSCHRITT-KOMPOSER",
     "stepLabel": "SCHRITT {{number}}",
-    "currentJsa": "Aktuelle JSA"
+    "currentJsa": "Aktuelle JSA",
+    "importMode": "Importumfang",
+    "importFull": "Schritt + Gefährdungsanalyse",
+    "importProcedureOnly": "Nur Arbeitsschritt",
+    "alreadyAdded": "Dieser Arbeitsschritt ist bereits in der heutigen JSA enthalten.",
+    "added": "Hinzugefügt",
+    "selectedAlreadyAdded": "Alle ausgewählten Arbeitsschritte wurden bereits hinzugefügt.",
+    "recent": "Zuletzt"
   }
 }
