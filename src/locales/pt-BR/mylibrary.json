@@ -38,5 +38,26 @@
   "moveFolderSelect": "Selecione a pasta de destino",
   "btnReference": "Usar como Referência",
   "btnEdit": "Editar e Modificar",
-  "folderLabel": "Pasta"
+  "folderLabel": "Pasta",
+  "menuDrafts": "Rascunhos",
+  "menuWorkSteps": "Biblioteca de etapas",
+  "draftListTitle": "Rascunhos JSA",
+  "noDrafts": "Nenhum rascunho salvo.",
+  "draftStage": "Etapa atual",
+  "resumeDraft": "Continuar",
+  "workStepListTitle": "Minhas etapas",
+  "noWorkSteps": "Nenhuma etapa salva.",
+  "hazardsCount": "Perigos",
+  "usedCount": "Usos",
+  "useWorkStep": "Usar esta etapa",
+  "confirmDeleteWorkStep": "Excluir esta etapa de trabalho?",
+  "workStepDeleteError": "Ocorreu um erro ao excluir a etapa.",
+  "draftStages": {
+    "info": "Info básica",
+    "procedure": "Procedimento",
+    "analysis": "Análise de riscos",
+    "module": "Configuração do módulo",
+    "table": "Layout da tabela",
+    "export": "Saída final"
+  }
 }
