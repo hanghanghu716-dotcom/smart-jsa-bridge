@@ -86,6 +86,9 @@
     "recommendedControl": "Control adicional / recomendado",
     "riskLevel": "Riesgo",
     "badgeFull": "Análisis incluido",
-    "badgeProcedureOnly": "Solo paso"
+    "badgeProcedureOnly": "Solo paso",
+    "workStepLibrary": "Mis pasos de trabajo",
+    "filterSteps": "Pasos",
+    "stepLibraryBadge": "PASO"
   }
 }
