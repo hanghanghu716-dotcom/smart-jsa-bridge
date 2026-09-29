@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
-import { listWorkSteps } from '../services/workStepLibraryService';
+import { listWorkSteps, markWorkStepUsed } from '../services/workStepLibraryService';
 
 const makeDraftKey = () => 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
 const makeSourceStepKey = (projectId, stepIndex) => String(projectId) + ':' + stepIndex;
@@ -351,6 +351,11 @@ export default function WorkStepWorkbench({
     }
     setDraftSteps(prev => [...prev, buildDraftItem(project, step, stepIndex)]);
     setSelectedStepKeys(prev => prev.filter(key => key !== sourceKey));
+    if (project.libraryType === 'STEP_LIBRARY' && step?.__savedWorkStep) {
+      markWorkStepUsed(step.__savedWorkStep).catch(error =>
+        console.error('[Work Step Library] usage update failed:', error)
+      );
+    }
   };
 
   const addSelected = () => {
@@ -373,10 +378,18 @@ export default function WorkStepWorkbench({
     const available = Math.max(0, maxSteps - draftSteps.length);
     if (selected.length > available) alert(t('workbench.maxReached'));
 
+    const accepted = selected.slice(0, available);
     setDraftSteps(prev => [
       ...prev,
-      ...selected.slice(0, available).map(item => buildDraftItem(item.project, item.step, item.stepIndex))
+      ...accepted.map(item => buildDraftItem(item.project, item.step, item.stepIndex))
     ]);
+    accepted
+      .filter(item => item.project.libraryType === 'STEP_LIBRARY' && item.step?.__savedWorkStep)
+      .forEach(item => {
+        markWorkStepUsed(item.step.__savedWorkStep).catch(error =>
+          console.error('[Work Step Library] usage update failed:', error)
+        );
+      });
     setSelectedStepKeys([]);
   };
 
