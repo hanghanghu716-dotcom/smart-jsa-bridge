@@ -38,5 +38,26 @@
   "moveFolderSelect": "移動先フォルダを選択",
   "btnReference": "参照して作成",
   "btnEdit": "編集・修正",
-  "folderLabel": "フォルダ"
+  "folderLabel": "フォルダ",
+  "menuDrafts": "下書き",
+  "menuWorkSteps": "作業ステップライブラリ",
+  "draftListTitle": "JSA下書き",
+  "noDrafts": "保存された下書きはありません。",
+  "draftStage": "現在の段階",
+  "resumeDraft": "再開",
+  "workStepListTitle": "マイ作業ステップ",
+  "noWorkSteps": "保存された作業ステップはありません。",
+  "hazardsCount": "危険要因",
+  "usedCount": "使用回数",
+  "useWorkStep": "このステップを使用",
+  "confirmDeleteWorkStep": "この作業ステップを削除しますか？",
+  "workStepDeleteError": "作業ステップの削除中にエラーが発生しました。",
+  "draftStages": {
+    "info": "基本情報",
+    "procedure": "作業手順",
+    "analysis": "リスク分析",
+    "module": "モジュール設定",
+    "table": "テーブル設定",
+    "export": "最終出力"
+  }
 }
