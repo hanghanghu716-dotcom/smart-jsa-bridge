@@ -86,6 +86,9 @@
     "recommendedControl": "追加 / 推奨対策",
     "riskLevel": "リスク",
     "badgeFull": "分析含む",
-    "badgeProcedureOnly": "ステップのみ"
+    "badgeProcedureOnly": "ステップのみ",
+    "workStepLibrary": "マイ作業ステップ",
+    "filterSteps": "作業ステップ",
+    "stepLibraryBadge": "STEP"
   }
 }
