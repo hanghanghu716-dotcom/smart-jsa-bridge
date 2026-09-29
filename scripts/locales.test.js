@@ -121,6 +121,24 @@ test('phase 2 draft and work-step translations are complete', () => {
   }
 });
 
+test('phase 3 analysis knowledge dock translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const keys = [
+    'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
+    'sourceLibrary', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
+    'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
+    'mergeFull', 'emptyProjects', 'steps', 'backProjects'
+  ];
+
+  for (const locale of baseLocales) {
+    const analysis = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/analysis.json`, import.meta.url)));
+    assert.ok(analysis.knowledgeDock, `Missing analysis.knowledgeDock for ${locale}`);
+    for (const key of keys) {
+      assert.ok(analysis.knowledgeDock[key]?.trim(), `Missing analysis.knowledgeDock.${key} for ${locale}`);
+    }
+  }
+});
+
 test('actual i18n configuration retains province and falls back per translation key', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousDocument = global.document;
