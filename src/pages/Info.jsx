@@ -4,6 +4,7 @@ import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -27,6 +28,15 @@ export default function Info() {
 
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(14).fill(''));
+
+  useJsaDraftAutosave({
+    stage: 'info',
+    formData,
+    participants,
+    procedures: location.state?.procedures || [],
+    analysisData: location.state?.analysisData || [],
+    sourceProjectId: location.state?.parentId || null,
+  });
 
   useEffect(() => {
     const isFork = location.state?.isFork;
