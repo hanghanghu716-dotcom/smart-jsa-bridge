@@ -63,6 +63,13 @@
     "scrap": "SCRAP",
     "eyebrow": "STEP COMPOSER",
     "stepLabel": "STEP {{number}}",
-    "currentJsa": "Current JSA"
+    "currentJsa": "Current JSA",
+    "importMode": "Import scope",
+    "importFull": "Step + risk analysis",
+    "importProcedureOnly": "Step only",
+    "alreadyAdded": "This work step is already in today's JSA.",
+    "added": "Added",
+    "selectedAlreadyAdded": "All selected work steps are already added.",
+    "recent": "Recent"
   }
 }
