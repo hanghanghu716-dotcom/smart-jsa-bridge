@@ -59,5 +59,17 @@
     "module": "Module Config",
     "table": "Table Config",
     "export": "Final Output"
-  }
+  },
+  "searchWorkSteps": "Search work steps, hazards or controls",
+  "favoritesOnly": "Favourites only",
+  "addFavorite": "Add to favourites",
+  "removeFavorite": "Remove favourite",
+  "editWorkStep": "Edit",
+  "saveChanges": "Save",
+  "cancelEdit": "Cancel",
+  "workStepUpdateError": "Failed to update the work step.",
+  "menuSaveWorkSteps": "Save all steps to Work Step Library",
+  "bulkSavingSteps": "Saving work steps...",
+  "bulkStepSaveSuccess": "Saved {{count}} work steps to your library.",
+  "bulkStepSaveError": "Failed to save work steps."
 }
