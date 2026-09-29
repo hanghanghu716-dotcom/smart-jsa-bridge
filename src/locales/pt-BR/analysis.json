@@ -79,5 +79,27 @@
   "searchModal": {
     "title": "Pesquisa no BD de Medidas",
     "placeholder": "Insira os termos de pesquisa..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Dock de conhecimento",
+    "opened": "Dock aberto",
+    "untitledStep": "Etapa sem título",
+    "sourceManual": "Manual",
+    "sourceDatabase": "BD de perigos",
+    "sourceLibrary": "Conhecimento anterior",
+    "eyebrow": "DOCK DE CONHECIMENTO",
+    "title": "Conhecimento de trabalhos anteriores",
+    "savedSteps": "Etapas salvas",
+    "projects": "Projetos",
+    "search": "Pesquisar trabalho, perigos ou controles",
+    "emptySteps": "Nenhuma etapa salva.",
+    "independentStep": "Etapa independente",
+    "hazards": "perigos",
+    "noControl": "Sem controle",
+    "mergeHazards": "Somente perigos",
+    "mergeFull": "Mesclar com controles",
+    "emptyProjects": "Nenhum projeto salvo.",
+    "steps": "etapas",
+    "backProjects": "Lista de projetos"
   }
 }
