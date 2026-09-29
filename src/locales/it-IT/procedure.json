@@ -60,6 +60,9 @@
     "maxReached": "Un JSA può contenere fino a 20 fasi di lavoro.",
     "pinLimit": "Puoi aprire fino a quattro progetti contemporaneamente.",
     "own": "MIEI",
-    "scrap": "SALVATI"
+    "scrap": "SALVATI",
+    "eyebrow": "COMPOSITORE DELLE FASI",
+    "stepLabel": "FASE {{number}}",
+    "currentJsa": "JSA corrente"
   }
 }
