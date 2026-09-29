@@ -60,6 +60,56 @@ export const saveWorkStep = async ({
   return data;
 };
 
+export const saveProjectWorkSteps = async (project) => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('LOGIN_REQUIRED');
+  if (!project?.id || !Array.isArray(project.analysis_data)) return [];
+
+  const rows = project.analysis_data
+    .map((step, index) => {
+      const title = step?.proc?.stepTitle?.trim();
+      if (!title) return null;
+      return {
+        user_id: user.id,
+        title,
+        detail: step?.proc?.stepDetail || '',
+        analysis_data: {
+          ...step,
+          proc: {
+            stepTitle: title,
+            stepDetail: step?.proc?.stepDetail || ''
+          },
+          risks: Array.isArray(step?.risks) ? step.risks.map(risk => ({ ...risk })) : []
+        },
+        tags: Array.isArray(project.tags) ? project.tags : [],
+        locale: project.form_data?.locale || 'en-US',
+        source_project_id: project.id,
+        source_project_title: project.title || '',
+        source_step_index: index,
+        updated_at: new Date().toISOString()
+      };
+    })
+    .filter(Boolean);
+
+  if (!rows.length) return [];
+
+  const { data, error } = await supabase
+    .from('user_work_steps')
+    .upsert(rows, {
+      onConflict: 'user_id,source_project_id,source_step_index',
+      ignoreDuplicates: false
+    })
+    .select();
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const setWorkStepFavorite = async (step, isFavorite) => {
+  if (!step?.id) return null;
+  return updateWorkStep(step.id, { is_favorite: Boolean(isFavorite) });
+};
+
 export const updateWorkStep = async (id, patch) => {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error('LOGIN_REQUIRED');
