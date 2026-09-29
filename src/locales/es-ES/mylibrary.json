@@ -71,5 +71,8 @@
   "menuSaveWorkSteps": "Guardar todos los pasos en la biblioteca",
   "bulkSavingSteps": "Guardando pasos...",
   "bulkStepSaveSuccess": "Se guardaron {{count}} pasos.",
-  "bulkStepSaveError": "No se pudieron guardar los pasos."
+  "bulkStepSaveError": "No se pudieron guardar los pasos.",
+  "archiveDraft": "Archivar",
+  "confirmArchiveDraft": "¿Archivar este borrador?",
+  "draftArchiveError": "No se pudo archivar el borrador."
 }
