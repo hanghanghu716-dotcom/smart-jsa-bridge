@@ -63,6 +63,13 @@
     "scrap": "ENREGISTRÉ",
     "eyebrow": "COMPOSITION DES ÉTAPES",
     "stepLabel": "ÉTAPE {{number}}",
-    "currentJsa": "JSA actuelle"
+    "currentJsa": "JSA actuelle",
+    "importMode": "Portée de l’import",
+    "importFull": "Étape + analyse des risques",
+    "importProcedureOnly": "Étape uniquement",
+    "alreadyAdded": "Cette étape est déjà incluse dans la JSA du jour.",
+    "added": "Ajouté",
+    "selectedAlreadyAdded": "Toutes les étapes sélectionnées ont déjà été ajoutées.",
+    "recent": "Récent"
   }
 }
