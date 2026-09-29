@@ -82,7 +82,7 @@ export default function Export() {
   );
 
   useJsaDraftAutosave({
-    enabled: Boolean(location.state?.formData || recoveredDraft || draftRecoveryStatus === 'empty'),
+    enabled: Boolean(location.state?.formData || recoveredDraft),
     stage: 'export',
     formData,
     participants,
