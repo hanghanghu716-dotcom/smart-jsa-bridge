@@ -35,7 +35,7 @@ Apply:
 
 `supabase/migrations/20260930_admin_security.sql`
 
-This adds restrictive RLS guards for writes to `case_studies` and the `blog-images` storage bucket. The restrictive policies are designed to remain effective even if a broader permissive write policy already exists.
+This removes the previous public write policies and replaces them with authenticated administrator-only RLS policies for `case_studies` and the `blog-images` storage bucket. Anonymous INSERT/UPDATE/DELETE/TRUNCATE privileges on `case_studies` are also revoked; public SELECT remains available.
 
 The migration does not change public SELECT/read policies.
 
