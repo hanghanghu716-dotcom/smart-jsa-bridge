@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
+import { listWorkSteps } from '../services/workStepLibraryService';
 
 const makeDraftKey = () => 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
 const makeSourceStepKey = (projectId, stepIndex) => String(projectId) + ':' + stepIndex;
@@ -89,7 +90,7 @@ export default function WorkStepWorkbench({
 
         setActiveUserId(user.id);
 
-        const [authoredRes, favoriteRes] = await Promise.all([
+        const [authoredRes, favoriteRes, savedStepRows] = await Promise.all([
           supabase
             .from('jsa_projects')
             .select('id, title, tags, analysis_data, updated_at')
@@ -98,10 +99,36 @@ export default function WorkStepWorkbench({
           supabase
             .from('user_favorites')
             .select('id, jsa_projects(id, title, tags, analysis_data, updated_at)')
-            .eq('user_id', user.id)
+            .eq('user_id', user.id),
+          listWorkSteps({ limit: 100 })
         ]);
 
         const map = new Map();
+
+        if ((savedStepRows || []).length > 0) {
+          map.set('__WORK_STEP_LIBRARY__', {
+            id: '__WORK_STEP_LIBRARY__',
+            title: t('workbench.workStepLibrary'),
+            tags: [],
+            updated_at: savedStepRows[0]?.updated_at || null,
+            libraryType: 'STEP_LIBRARY',
+            analysis_data: savedStepRows.map(row => ({
+              ...(row.analysis_data || {}),
+              proc: {
+                stepTitle: row.title || '',
+                stepDetail: row.detail || '',
+                savedWorkStepId: row.id,
+                sourceProjectId: row.source_project_id || null,
+                sourceProjectTitle: row.source_project_title || '',
+                sourceStepIndex: row.source_step_index
+              },
+              risks: Array.isArray(row.analysis_data?.risks)
+                ? row.analysis_data.risks.map(risk => ({ ...risk }))
+                : [],
+              __savedWorkStep: row
+            }))
+          });
+        }
         (authoredRes.data || []).forEach(project => {
           if (project?.id) map.set(project.id, { ...project, libraryType: 'MY' });
         });
@@ -120,6 +147,8 @@ export default function WorkStepWorkbench({
         const combined = Array.from(map.values())
           .filter(project => Array.isArray(project.analysis_data) && project.analysis_data.length > 0)
           .sort((a, b) => {
+            if (a.libraryType === 'STEP_LIBRARY' && b.libraryType !== 'STEP_LIBRARY') return -1;
+            if (b.libraryType === 'STEP_LIBRARY' && a.libraryType !== 'STEP_LIBRARY') return 1;
             const aRank = recentRank.has(String(a.id)) ? recentRank.get(String(a.id)) : Number.MAX_SAFE_INTEGER;
             const bRank = recentRank.has(String(b.id)) ? recentRank.get(String(b.id)) : Number.MAX_SAFE_INTEGER;
             if (aRank !== bRank) return aRank - bRank;
@@ -150,6 +179,7 @@ export default function WorkStepWorkbench({
     return projects.filter(project => {
       if (projectFilter === 'my' && project.libraryType !== 'MY') return false;
       if (projectFilter === 'scrap' && project.libraryType !== 'SCRAP') return false;
+      if (projectFilter === 'steps' && project.libraryType !== 'STEP_LIBRARY') return false;
       if (projectFilter === 'recent' && !recentProjectIds.includes(String(project.id))) return false;
 
       if (!q) return true;
@@ -207,6 +237,7 @@ export default function WorkStepWorkbench({
   const draftSourceKeys = useMemo(() => new Set(
     draftSteps
       .map(item => {
+        if (item.proc?.savedWorkStepId) return 'saved:' + item.proc.savedWorkStepId;
         const projectId = item.proc?.sourceProjectId;
         const stepIndex = item.proc?.sourceStepIndex;
         return projectId !== undefined && projectId !== null && Number.isInteger(stepIndex)
@@ -242,8 +273,15 @@ export default function WorkStepWorkbench({
     });
   };
 
-  const toggleSelected = (projectId, stepIndex) => {
-    const key = makeSourceStepKey(projectId, stepIndex);
+  const getStepSourceKey = (project, step, stepIndex) => {
+    if (project.libraryType === 'STEP_LIBRARY' && step?.proc?.savedWorkStepId) {
+      return 'saved:' + step.proc.savedWorkStepId;
+    }
+    return makeSourceStepKey(project.id, stepIndex);
+  };
+
+  const toggleSelected = (project, step, stepIndex) => {
+    const key = getStepSourceKey(project, step, stepIndex);
     setSelectedStepKeys(prev =>
       prev.includes(key) ? prev.filter(item => item !== key) : [...prev, key]
     );
@@ -253,9 +291,20 @@ export default function WorkStepWorkbench({
     ...(step?.proc || {}),
     stepTitle: step?.proc?.stepTitle || '',
     stepDetail: step?.proc?.stepDetail || '',
-    sourceProjectId: project.id,
-    sourceProjectTitle: project.title || '',
-    sourceStepIndex: stepIndex,
+    ...(project.libraryType === 'STEP_LIBRARY'
+      ? {
+          savedWorkStepId: step?.proc?.savedWorkStepId || step?.__savedWorkStep?.id,
+          sourceProjectId: step?.__savedWorkStep?.source_project_id || step?.proc?.sourceProjectId || null,
+          sourceProjectTitle: step?.__savedWorkStep?.source_project_title || step?.proc?.sourceProjectTitle || t('workbench.workStepLibrary'),
+          sourceStepIndex: Number.isInteger(step?.__savedWorkStep?.source_step_index)
+            ? step.__savedWorkStep.source_step_index
+            : step?.proc?.sourceStepIndex
+        }
+      : {
+          sourceProjectId: project.id,
+          sourceProjectTitle: project.title || '',
+          sourceStepIndex: stepIndex
+        }),
     composerImportMode: importMode
   });
 
@@ -291,7 +340,7 @@ export default function WorkStepWorkbench({
   };
 
   const addLibraryStep = (project, step, stepIndex) => {
-    const sourceKey = makeSourceStepKey(project.id, stepIndex);
+    const sourceKey = getStepSourceKey(project, step, stepIndex);
     if (draftSourceKeys.has(sourceKey)) {
       alert(t('workbench.alreadyAdded'));
       return;
@@ -308,7 +357,7 @@ export default function WorkStepWorkbench({
     const selected = [];
     projects.forEach(project => {
       (project.analysis_data || []).forEach((step, stepIndex) => {
-        const sourceKey = makeSourceStepKey(project.id, stepIndex);
+        const sourceKey = getStepSourceKey(project, step, stepIndex);
         if (selectedStepKeys.includes(sourceKey) && !draftSourceKeys.has(sourceKey)) {
           selected.push({ project, step, stepIndex });
         }
@@ -428,6 +477,7 @@ export default function WorkStepWorkbench({
                   ['all', t('workbench.filterAll')],
                   ['my', t('workbench.filterMy')],
                   ['scrap', t('workbench.filterScrap')],
+                  ['steps', t('workbench.filterSteps')],
                   ['recent', t('workbench.filterRecent')]
                 ].map(([value, label]) => (
                   <button
@@ -453,7 +503,11 @@ export default function WorkStepWorkbench({
                       onClick={() => togglePinned(project.id)}
                     >
                       <span style={styles.projectType}>
-                        {project.libraryType === 'MY' ? t('workbench.own') : t('workbench.scrap')}
+                        {project.libraryType === 'MY'
+                          ? t('workbench.own')
+                          : project.libraryType === 'STEP_LIBRARY'
+                            ? t('workbench.stepLibraryBadge')
+                            : t('workbench.scrap')}
                       </span>
                       <span style={styles.projectName}>{project.title}</span>
                       <span style={styles.pinLabel}>
@@ -512,7 +566,11 @@ export default function WorkStepWorkbench({
                     <div style={styles.projectColumnHeader}>
                       <div>
                         <div style={styles.projectColumnType}>
-                          {project.libraryType === 'MY' ? t('workbench.own') : t('workbench.scrap')}
+                          {project.libraryType === 'MY'
+                            ? t('workbench.own')
+                            : project.libraryType === 'STEP_LIBRARY'
+                              ? t('workbench.stepLibraryBadge')
+                              : t('workbench.scrap')}
                         </div>
                         <h3 style={styles.projectColumnTitle}>{project.title}</h3>
                       </div>
@@ -529,7 +587,7 @@ export default function WorkStepWorkbench({
                       {getVisibleSteps(project).length === 0 ? (
                         <div style={styles.emptySteps}>{t('workbench.noSteps')}</div>
                       ) : getVisibleSteps(project).map(({ step, stepIndex }) => {
-                        const key = makeSourceStepKey(project.id, stepIndex);
+                        const key = getStepSourceKey(project, step, stepIndex);
                         const checked = selectedStepKeys.includes(key);
                         const alreadyAdded = draftSourceKeys.has(key);
                         return (
@@ -547,7 +605,7 @@ export default function WorkStepWorkbench({
                                   type="checkbox"
                                   checked={checked}
                                   disabled={alreadyAdded}
-                                  onChange={() => toggleSelected(project.id, stepIndex)}
+                                  onChange={() => toggleSelected(project, step, stepIndex)}
                                 />
                                 <span>{t('workbench.stepLabel', { number: stepIndex + 1 })}</span>
                               </label>
