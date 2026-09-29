@@ -1284,7 +1284,7 @@ export default function Analysis() {
                     if (isFastTrack) {
                       setIsFastTrackModalOpen(true);
                     } else {
-                      navigate('/layout-module', {
+                      navigate('/document-designer', {
                         state: {
                           existingId, analysisData, formData, participants, procedures,
                           isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData
