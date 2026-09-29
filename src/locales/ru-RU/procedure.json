@@ -84,6 +84,8 @@
     "hazard": "Опасность",
     "currentControl": "Текущая / базовая мера",
     "recommendedControl": "Дополнительная / рекомендуемая мера",
-    "riskLevel": "Риск"
+    "riskLevel": "Риск",
+    "badgeFull": "С анализом",
+    "badgeProcedureOnly": "Только этап"
   }
 }

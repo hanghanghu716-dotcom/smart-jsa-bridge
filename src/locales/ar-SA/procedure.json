@@ -84,6 +84,8 @@
     "hazard": "الخطر",
     "currentControl": "إجراء التحكم الحالي / الأساسي",
     "recommendedControl": "إجراء التحكم الإضافي / الموصى به",
-    "riskLevel": "مستوى الخطر"
+    "riskLevel": "مستوى الخطر",
+    "badgeFull": "يشمل التحليل",
+    "badgeProcedureOnly": "الخطوة فقط"
   }
 }

@@ -45,17 +45,27 @@ export default function WorkStepWorkbench({
     const initialDraft = procedures
       .map((proc, index) => ({ proc, analysis: analysisData[index] }))
       .filter(item => item.proc?.stepTitle?.trim() || item.proc?.stepDetail?.trim())
-      .map(item => ({
-        key: makeDraftKey(),
-        proc: { ...item.proc },
-        analysis: item.analysis ? {
-          ...item.analysis,
-          proc: { ...item.proc },
-          risks: Array.isArray(item.analysis.risks)
-            ? item.analysis.risks.map(risk => ({ ...risk }))
-            : []
-        } : null
-      }));
+      .map(item => {
+        const inferredImportMode = item.proc?.composerImportMode
+          || item.analysis?.composerImportMode
+          || (item.proc?.sourceProjectId != null
+            ? ((item.analysis?.risks?.length || 0) > 0 ? 'full' : 'procedure')
+            : null);
+
+        return {
+          key: makeDraftKey(),
+          proc: { ...item.proc, ...(inferredImportMode ? { composerImportMode: inferredImportMode } : {}) },
+          importMode: inferredImportMode,
+          analysis: item.analysis ? {
+            ...item.analysis,
+            ...(inferredImportMode ? { composerImportMode: inferredImportMode } : {}),
+            proc: { ...item.proc, ...(inferredImportMode ? { composerImportMode: inferredImportMode } : {}) },
+            risks: Array.isArray(item.analysis.risks)
+              ? item.analysis.risks.map(risk => ({ ...risk }))
+              : []
+          } : null
+        };
+      });
     setDraftSteps(initialDraft);
     setSelectedStepKeys([]);
     setSearchTerm('');
@@ -245,7 +255,8 @@ export default function WorkStepWorkbench({
     stepDetail: step?.proc?.stepDetail || '',
     sourceProjectId: project.id,
     sourceProjectTitle: project.title || '',
-    sourceStepIndex: stepIndex
+    sourceStepIndex: stepIndex,
+    composerImportMode: importMode
   });
 
   const buildDraftItem = (project, step, stepIndex) => {
@@ -270,7 +281,13 @@ export default function WorkStepWorkbench({
           riskLevel: 1
         };
 
-    return { key: makeDraftKey(), proc, analysis };
+    const taggedAnalysis = {
+      ...analysis,
+      composerImportMode: importMode,
+      proc
+    };
+
+    return { key: makeDraftKey(), proc, analysis: taggedAnalysis, importMode };
   };
 
   const addLibraryStep = (project, step, stepIndex) => {
@@ -368,7 +385,8 @@ export default function WorkStepWorkbench({
       return {
         ...base,
         id: index,
-        proc: { ...item.proc },
+        ...(item.importMode ? { composerImportMode: item.importMode } : {}),
+        proc: { ...item.proc, ...(item.importMode ? { composerImportMode: item.importMode } : {}) },
         risks: Array.isArray(base.risks) ? base.risks.map(risk => ({ ...risk })) : [],
         frequency: base.frequency ?? 1,
         severity: base.severity ?? 1,
@@ -638,18 +656,30 @@ export default function WorkStepWorkbench({
                       reorderDraft(index);
                     }}
                     onDragEnd={() => setDraggedDraftIdx(null)}
-                    style={styles.todayStep}
+                    style={{
+                      ...styles.todayStep,
+                      ...(item.importMode === 'full' ? styles.todayStepFull : {}),
+                      ...(item.importMode === 'procedure' ? styles.todayStepProcedure : {})
+                    }}
                   >
                     <div style={styles.dragHandle}>☰</div>
                     <div style={styles.todayStepBody}>
                       <strong style={styles.todayStepTitle}>
                         {index + 1}. {item.proc.stepTitle || '-'}
                       </strong>
-                      <div style={styles.todaySource}>
-                        {t('workbench.source')}: {item.proc.sourceProjectTitle || t('workbench.currentJsa')}
-                        {item.proc.sourceProjectTitle && Number.isInteger(item.proc.sourceStepIndex)
-                          ? ` · ${t('workbench.stepLabel', { number: item.proc.sourceStepIndex + 1 })}`
-                          : ''}
+                      <div style={styles.todayMetaRow}>
+                        {item.importMode === 'full' && (
+                          <span style={styles.importBadgeFull}>{t('workbench.badgeFull')}</span>
+                        )}
+                        {item.importMode === 'procedure' && (
+                          <span style={styles.importBadgeProcedure}>{t('workbench.badgeProcedureOnly')}</span>
+                        )}
+                        <span style={styles.todaySource}>
+                          {t('workbench.source')}: {item.proc.sourceProjectTitle || t('workbench.currentJsa')}
+                          {item.proc.sourceProjectTitle && Number.isInteger(item.proc.sourceStepIndex)
+                            ? ` · ${t('workbench.stepLabel', { number: item.proc.sourceStepIndex + 1 })}`
+                            : ''}
+                        </span>
                       </div>
                     </div>
                     <button
@@ -951,6 +981,14 @@ const styles = {
     borderRadius: '8px',
     cursor: 'grab'
   },
+  todayStepFull: {
+    borderColor: 'rgba(0,123,255,0.42)',
+    background: 'linear-gradient(90deg, rgba(0,123,255,0.07), #161616 34%)'
+  },
+  todayStepProcedure: {
+    borderColor: 'rgba(255,193,7,0.38)',
+    background: 'linear-gradient(90deg, rgba(255,193,7,0.06), #161616 34%)'
+  },
   dragHandle: { color: '#555', fontSize: '0.75rem' },
   todayStepBody: { flex: 1, minWidth: 0 },
   todayStepTitle: {
@@ -961,8 +999,11 @@ const styles = {
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
+  todayMetaRow: { marginTop: '5px', display: 'flex', alignItems: 'center', gap: '6px', minWidth: 0 },
+  importBadgeFull: { flexShrink: 0, padding: '2px 5px', borderRadius: '4px', border: '1px solid rgba(0,123,255,0.5)', background: 'rgba(0,123,255,0.12)', color: '#64adff', fontSize: '0.54rem', fontWeight: 900 },
+  importBadgeProcedure: { flexShrink: 0, padding: '2px 5px', borderRadius: '4px', border: '1px solid rgba(255,193,7,0.42)', background: 'rgba(255,193,7,0.1)', color: '#e9bd45', fontSize: '0.54rem', fontWeight: 900 },
   todaySource: {
-    marginTop: '4px',
+    minWidth: 0,
     color: '#555',
     fontSize: '0.6rem',
     whiteSpace: 'nowrap',

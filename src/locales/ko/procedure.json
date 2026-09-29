@@ -84,6 +84,8 @@
     "hazard": "위험요인",
     "currentControl": "현재/기본 대책",
     "recommendedControl": "추가/권고 대책",
-    "riskLevel": "위험도"
+    "riskLevel": "위험도",
+    "badgeFull": "분석 포함",
+    "badgeProcedureOnly": "단계만"
   }
 }

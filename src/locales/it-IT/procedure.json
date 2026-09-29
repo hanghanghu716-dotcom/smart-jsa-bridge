@@ -84,6 +84,8 @@
     "hazard": "Pericolo",
     "currentControl": "Misura attuale / di base",
     "recommendedControl": "Misura aggiuntiva / raccomandata",
-    "riskLevel": "Rischio"
+    "riskLevel": "Rischio",
+    "badgeFull": "Analisi inclusa",
+    "badgeProcedureOnly": "Solo fase"
   }
 }

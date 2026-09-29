@@ -84,6 +84,8 @@
     "hazard": "危険要因",
     "currentControl": "現在 / 基本対策",
     "recommendedControl": "追加 / 推奨対策",
-    "riskLevel": "リスク"
+    "riskLevel": "リスク",
+    "badgeFull": "分析含む",
+    "badgeProcedureOnly": "ステップのみ"
   }
 }

@@ -84,6 +84,8 @@
     "hazard": "Hazard",
     "currentControl": "Current / base control",
     "recommendedControl": "Additional / recommended control",
-    "riskLevel": "Risk"
+    "riskLevel": "Risk",
+    "badgeFull": "Analysis included",
+    "badgeProcedureOnly": "Step only"
   }
 }

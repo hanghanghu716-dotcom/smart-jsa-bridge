@@ -84,6 +84,8 @@
     "hazard": "Perigo",
     "currentControl": "Controle atual / básico",
     "recommendedControl": "Controle adicional / recomendado",
-    "riskLevel": "Risco"
+    "riskLevel": "Risco",
+    "badgeFull": "Análise incluída",
+    "badgeProcedureOnly": "Somente etapa"
   }
 }
