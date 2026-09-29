@@ -59,5 +59,17 @@
     "module": "Configuração do módulo",
     "table": "Layout da tabela",
     "export": "Saída final"
-  }
+  },
+  "searchWorkSteps": "Pesquisar etapas, perigos ou controles",
+  "favoritesOnly": "Somente favoritos",
+  "addFavorite": "Adicionar aos favoritos",
+  "removeFavorite": "Remover dos favoritos",
+  "editWorkStep": "Editar",
+  "saveChanges": "Salvar",
+  "cancelEdit": "Cancelar",
+  "workStepUpdateError": "Não foi possível atualizar a etapa.",
+  "menuSaveWorkSteps": "Salvar todas as etapas na biblioteca",
+  "bulkSavingSteps": "Salvando etapas...",
+  "bulkStepSaveSuccess": "{{count}} etapas foram salvas.",
+  "bulkStepSaveError": "Não foi possível salvar as etapas."
 }
