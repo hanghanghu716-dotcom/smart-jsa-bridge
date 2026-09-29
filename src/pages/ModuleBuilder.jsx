@@ -21,7 +21,7 @@ export default function ModuleBuilder() {
   const isEnglish = i18n.language?.startsWith('en');
   const isFrench = i18n.language?.startsWith('fr');
 
-  const { draft: recoveredDraft, status: draftRecoveryStatus } = useJsaDraftRecovery(!location.state?.formData);
+  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
 
