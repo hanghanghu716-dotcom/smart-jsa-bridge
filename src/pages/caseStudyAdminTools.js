@@ -2,7 +2,7 @@
 // Pagination does not provide a transaction snapshot: avoid concurrent edits
 // during export and compare its row count with the SQL Editor count.
 const REVIEW_CREDENTIALS = /(CMIOSH|IRATA|Chartered\s+(?:Engineer|Structural\s+Engineer)|Professional\s+Engineer|P\.E\.|CSP\b|기술사|전문가)/i;
-const REVIEW_ACTIONS = /(reviewed|verified|validated|approved|certified|co[- ]?authored|peer[- ]?reviewed|검토(?:했|되|받)|검증(?:했|되|받)|인증(?:했|되|받)|승인(?:했|되|받)|공동\s*집필)/i;
+const REVIEW_ACTIONS = /(reviewed|verified|validated|approved|certified|co[- ]?authored|peer[- ]?reviewed|검토(?:를|가)?\s*(?:했|되|받)|검증(?:을|이)?\s*(?:했|되|받)|인증(?:을|이)?\s*(?:했|되|받)|승인(?:을|이)?\s*(?:했|되|받)|공동\s*집필)/i;
 const NEGATED_REVIEW = /(not\s+(?:professionally\s+)?reviewed|no\s+(?:professional\s+)?review|without\s+(?:professional\s+)?review|전문가\s*검토(?:가)?\s*(?:없|아니)|검토받지\s*않|검증되지\s*않)/i;
 
 export function findUnsupportedProfessionalReviewClaims(content = '') {
