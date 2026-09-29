@@ -101,6 +101,8 @@
     "emptyProjects": "保存されたプロジェクトがありません。",
     "steps": "ステップ",
     "backProjects": "プロジェクト一覧",
-    "sourceCurrent": "現在のJSA"
+    "sourceCurrent": "現在のJSA",
+    "analysisIncluded": "分析含む",
+    "stepOnly": "ステップのみ"
   }
 }
