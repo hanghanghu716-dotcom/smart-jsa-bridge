@@ -65,9 +65,22 @@ export default function Procedure() {
   };
 
 const startAnalysis = (jsaType) => {
-    const validProcs = procedures.filter(
-      p => p.stepTitle.trim() && p.stepDetail.trim()
-    );
+    const validEntries = procedures
+      .map((proc, index) => ({ proc, analysis: composedAnalysisData?.[index] }))
+      .filter(({ proc }) => proc.stepTitle.trim() && proc.stepDetail.trim());
+
+    const validProcs = validEntries.map(({ proc }) => proc);
+    const nextAnalysisData = composerTouched
+      ? validEntries.map(({ proc, analysis }, index) => ({
+          ...(analysis || {}),
+          id: index,
+          proc,
+          risks: Array.isArray(analysis?.risks) ? analysis.risks : [],
+          frequency: analysis?.frequency ?? 1,
+          severity: analysis?.severity ?? 1,
+          riskLevel: analysis?.riskLevel ?? 1,
+        }))
+      : analysisData;
 
     navigate('/analysis', {
       state: {
@@ -75,7 +88,7 @@ const startAnalysis = (jsaType) => {
         procedures: validProcs,
         formData: { ...formData, jsaType },
         participants,
-        analysisData: composerTouched ? (composedAnalysisData || []) : analysisData,
+        analysisData: nextAnalysisData,
         isFastTrack // 명시적 전달
       },
     });
