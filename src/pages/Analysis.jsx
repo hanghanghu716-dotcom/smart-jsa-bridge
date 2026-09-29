@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
 
 export default function Analysis() {
@@ -17,22 +18,26 @@ export default function Analysis() {
   const { t, i18n } = useTranslation(['analysis', 'tags']);
   const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
-  const {
-    id: existingId = null,
-    procedures = [],
-    formData = {},
-    participants = [],
-    analysisData: incomingAnalysisData
-  } = location.state || {};
+  const state = location.state || {};
+  const shouldRecoverDraft = !state.formData && !state.analysisData;
+  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
+  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
+
+  const existingId = state.id ?? recoveredDraft?.source_project_id ?? null;
+  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const formData = state.formData || recoveredDraft?.form_data || {};
+  const participants = state.participants || recoveredDraft?.participants || [];
+  const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || [];
 
   const jsaType = formData.jsaType || '2-step';
   useEffect(() => {
-    if (location.state?.isFastTrack !== undefined) {
-      localStorage.setItem('jsa_isFastTrack', JSON.stringify(location.state.isFastTrack));
+    if (state.isFastTrack !== undefined) {
+      localStorage.setItem('jsa_isFastTrack', JSON.stringify(state.isFastTrack));
     }
-  }, [location.state?.isFastTrack]);
+  }, [state.isFastTrack]);
 
-  const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');  const [dbRisks, setDbRisks] = useState([]);
+  const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');
+  const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
 
@@ -42,14 +47,16 @@ export default function Analysis() {
     }
   }, [incomingAnalysisData, analysisData.length]);
 
-  useJsaDraftAutosave({
-    enabled: Boolean(location.state?.formData || recoveredDraft),
+  const draftSave = useJsaDraftAutosave({
+    enabled: recoverySettled && Boolean(
+      formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
+    ),
     stage: 'analysis',
     formData,
     participants,
     procedures,
     analysisData,
-    sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || existingId || null,
+    sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
   });
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
@@ -707,6 +714,7 @@ export default function Analysis() {
   return (
     <div style={styles.wrapper}>
       <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
 
 
