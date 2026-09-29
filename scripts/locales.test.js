@@ -91,6 +91,32 @@ test('procedure step composer translations are complete for every base locale', 
   }
 });
 
+test('phase 2 draft and work-step translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const libraryKeys = [
+    'menuDrafts', 'menuWorkSteps', 'draftListTitle', 'noDrafts', 'draftStage',
+    'resumeDraft', 'workStepListTitle', 'noWorkSteps', 'hazardsCount',
+    'usedCount', 'useWorkStep', 'confirmDeleteWorkStep', 'workStepDeleteError'
+  ];
+  const draftStageKeys = ['info', 'procedure', 'analysis', 'module', 'table', 'export'];
+
+  for (const locale of baseLocales) {
+    const library = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/mylibrary.json`, import.meta.url)));
+    const analysis = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/analysis.json`, import.meta.url)));
+
+    for (const key of libraryKeys) {
+      assert.ok(library[key]?.trim(), `Missing library.${key} for ${locale}`);
+    }
+    for (const key of draftStageKeys) {
+      assert.ok(library.draftStages?.[key]?.trim(), `Missing library.draftStages.${key} for ${locale}`);
+    }
+    assert.ok(analysis.filter?.saveStepBtn?.trim(), `Missing analysis.filter.saveStepBtn for ${locale}`);
+    assert.ok(analysis.filter?.savingStepBtn?.trim(), `Missing analysis.filter.savingStepBtn for ${locale}`);
+    assert.ok(analysis.alert?.stepSaved?.trim(), `Missing analysis.alert.stepSaved for ${locale}`);
+    assert.ok(analysis.alert?.stepSaveFailed?.trim(), `Missing analysis.alert.stepSaveFailed for ${locale}`);
+  }
+});
+
 test('actual i18n configuration retains province and falls back per translation key', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousDocument = global.document;
