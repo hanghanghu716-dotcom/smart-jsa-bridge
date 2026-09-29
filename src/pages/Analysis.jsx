@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import { saveWorkStep } from '../services/workStepLibraryService';
 
 export default function Analysis() {
@@ -35,13 +36,19 @@ export default function Analysis() {
   const [categories, setCategories] = useState([]);
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
 
+  useEffect(() => {
+    if (analysisData.length === 0 && incomingAnalysisData.length > 0) {
+      setAnalysisData(incomingAnalysisData);
+    }
+  }, [incomingAnalysisData, analysisData.length]);
+
   useJsaDraftAutosave({
     stage: 'analysis',
     formData,
     participants,
     procedures,
     analysisData,
-    sourceProjectId: location.state?.parentId || existingId || null,
+    sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || existingId || null,
   });
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
