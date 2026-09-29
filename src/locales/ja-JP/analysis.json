@@ -7,7 +7,9 @@
     "needCurrentMeasure": "先に推奨システムを通じて現在の安全対策を選択してください。",
     "noData": "関連データが見つかりません。直接入力してください。",
     "confirmMain": "メイン画面へ移動しますか？保存されていないデータは失われる可能性があります。",
-    "loginRequired": "ログインが必要です。"
+    "loginRequired": "ログインが必要です。",
+    "stepSaved": "現在の作業ステップをライブラリに保存しました。",
+    "stepSaveFailed": "作業ステップを保存できませんでした。"
   },
   "libModal": {
     "title": "作業ステップライブラリの呼び出し",
@@ -42,7 +44,9 @@
     "label": "⚠️ 高リスクフィルター",
     "auto": "（自動提案）",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "危険要因を検索..."
+    "searchPlaceholder": "危険要因を検索...",
+    "saveStepBtn": "ステップ保存",
+    "savingStepBtn": "保存中..."
   },
   "base": {
     "label": "安全知識ベース（危険要因の抽出）",
