@@ -1,6 +1,19 @@
 // Uses the existing Supabase client and its existing permissions.
 // Pagination does not provide a transaction snapshot: avoid concurrent edits
 // during export and compare its row count with the SQL Editor count.
+const REVIEW_CREDENTIALS = /(CMIOSH|IRATA|Chartered\s+(?:Engineer|Structural\s+Engineer)|Professional\s+Engineer|P\.E\.|CSP\b|기술사|전문가)/i;
+const REVIEW_ACTIONS = /(reviewed|verified|validated|approved|certified|co[- ]?authored|peer[- ]?reviewed|검토(?:했|되|받)|검증(?:했|되|받)|인증(?:했|되|받)|승인(?:했|되|받)|공동\s*집필)/i;
+const NEGATED_REVIEW = /(not\s+(?:professionally\s+)?reviewed|no\s+(?:professional\s+)?review|without\s+(?:professional\s+)?review|전문가\s*검토(?:가)?\s*(?:없|아니)|검토받지\s*않|검증되지\s*않)/i;
+
+export function findUnsupportedProfessionalReviewClaims(content = '') {
+  return String(content)
+    .split(/\n{2,}/)
+    .map(value => value.trim())
+    .filter(Boolean)
+    .filter(value => REVIEW_CREDENTIALS.test(value) && REVIEW_ACTIONS.test(value) && !NEGATED_REVIEW.test(value))
+    .slice(0, 5);
+}
+
 export async function readCaseStudyCount(client) {
   const { count, error } = await client
     .from('case_studies')
@@ -50,6 +63,10 @@ export async function readAllCaseStudies(client, {
 export function buildSubmitData(formData, content) {
   if (!formData.title?.trim() || !formData.post_group_id?.trim() || !formData.meta_description?.trim()) {
     throw new Error('그룹 ID, 제목, 메타 요약을 입력해주세요.');
+  }
+  const reviewClaims = findUnsupportedProfessionalReviewClaims(content);
+  if (reviewClaims.length) {
+    throw new Error('검증 기록 없이 전문가 검토·인증을 주장하는 표현이 감지되었습니다. 실제 검토 기록을 별도 시스템으로 확인하기 전에는 해당 표현을 삭제해주세요.');
   }
   let schema = null;
   if (formData.schema_markup?.trim()) {
