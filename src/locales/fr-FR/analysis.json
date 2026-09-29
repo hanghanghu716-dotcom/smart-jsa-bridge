@@ -100,6 +100,7 @@
     "mergeFull": "Fusionner avec mesures",
     "emptyProjects": "Aucun projet enregistré.",
     "steps": "étapes",
-    "backProjects": "Liste des projets"
+    "backProjects": "Liste des projets",
+    "sourceCurrent": "JSA actuelle"
   }
 }
