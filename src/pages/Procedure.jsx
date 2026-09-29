@@ -5,6 +5,7 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 import WorkStepWorkbench from '../components/WorkStepWorkbench';
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -25,6 +26,16 @@ export default function Procedure() {
   const participants = location.state?.participants;
   const analysisData = location.state?.analysisData;
   const isFastTrack = location.state?.isFastTrack ?? false;
+  const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : (analysisData || []);
+
+  useJsaDraftAutosave({
+    stage: 'procedure',
+    formData: formData || {},
+    participants: participants || [],
+    procedures,
+    analysisData: effectiveAnalysisData,
+    sourceProjectId: location.state?.parentId || null,
+  });
 
   useEffect(() => {
     if (location.state?.procedures && location.state.procedures.length > 0) {
@@ -123,7 +134,7 @@ const startAnalysis = (jsaType) => {
         isOpen={isWorkbenchOpen}
         onClose={() => setIsWorkbenchOpen(false)}
         procedures={procedures}
-        analysisData={composerTouched ? (composedAnalysisData || []) : (analysisData || [])}
+        analysisData={effectiveAnalysisData}
         maxSteps={20}
         onApply={(nextProcedures, nextAnalysisData) => {
           setProcedures(nextProcedures);
