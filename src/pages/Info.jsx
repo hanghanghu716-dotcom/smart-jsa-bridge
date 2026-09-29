@@ -30,10 +30,11 @@ export default function Info() {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(14).fill(''));
   const shouldRecoverDraft = !location.state?.formData && !location.state?.isFork;
-  const { draft: recoveredDraft } = useJsaDraftRecovery(shouldRecoverDraft);
+  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
+  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
 
   useJsaDraftAutosave({
-    enabled: Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
+    enabled: recoverySettled && Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
     stage: 'info',
     formData,
     participants,
@@ -41,6 +42,21 @@ export default function Info() {
     analysisData: location.state?.analysisData || recoveredDraft?.analysis_data || [],
     sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
+
+  useEffect(() => {
+    if (!shouldRecoverDraft || !recoveredDraft) return;
+
+    const loadedData = recoveredDraft.form_data || {};
+    setFormData(prev => ({
+      ...prev,
+      ...loadedData,
+      ppe: loadedData.ppe || [],
+      permits: loadedData.permits || []
+    }));
+
+    const loadedParticipants = recoveredDraft.participants || [];
+    setParticipants(Array(14).fill('').map((_, i) => loadedParticipants[i] || ''));
+  }, [shouldRecoverDraft, recoveredDraft]);
 
   useEffect(() => {
     const isFork = location.state?.isFork;
@@ -130,8 +146,8 @@ export default function Info() {
       state: {
         formData,
         participants,
-        procedures: location.state?.procedures,
-        analysisData: location.state?.analysisData,
+        procedures: location.state?.procedures || recoveredDraft?.procedures,
+        analysisData: location.state?.analysisData || recoveredDraft?.analysis_data,
         isFork: location.state?.isFork,
         parentId: location.state?.parentId, 
         originalAnalysisData: location.state?.originalAnalysisData 
