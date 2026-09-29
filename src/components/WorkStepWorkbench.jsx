@@ -420,6 +420,9 @@ export default function WorkStepWorkbench({
                       </strong>
                       <div style={styles.todaySource}>
                         {t('workbench.source')}: {item.proc.sourceProjectTitle || t('workbench.currentJsa')}
+                        {item.proc.sourceProjectTitle && Number.isInteger(item.proc.sourceStepIndex)
+                          ? ` · ${t('workbench.stepLabel', { number: item.proc.sourceStepIndex + 1 })}`
+                          : ''}
                       </div>
                     </div>
                     <button
