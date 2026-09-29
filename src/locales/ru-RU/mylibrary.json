@@ -59,5 +59,17 @@
     "module": "Модули",
     "table": "Таблица",
     "export": "Финальный вывод"
-  }
+  },
+  "searchWorkSteps": "Поиск этапов, опасностей или мер",
+  "favoritesOnly": "Только избранное",
+  "addFavorite": "Добавить в избранное",
+  "removeFavorite": "Убрать из избранного",
+  "editWorkStep": "Изменить",
+  "saveChanges": "Сохранить",
+  "cancelEdit": "Отмена",
+  "workStepUpdateError": "Не удалось обновить этап.",
+  "menuSaveWorkSteps": "Сохранить все этапы в библиотеку",
+  "bulkSavingSteps": "Сохранение этапов...",
+  "bulkStepSaveSuccess": "Сохранено этапов: {{count}}.",
+  "bulkStepSaveError": "Не удалось сохранить этапы."
 }
