@@ -63,6 +63,13 @@
     "scrap": "SALVO",
     "eyebrow": "COMPOSITOR DE ETAPAS",
     "stepLabel": "ETAPA {{number}}",
-    "currentJsa": "JSA atual"
+    "currentJsa": "JSA atual",
+    "importMode": "Escopo da importação",
+    "importFull": "Etapa + análise de riscos",
+    "importProcedureOnly": "Somente etapa",
+    "alreadyAdded": "Esta etapa já está incluída na JSA de hoje.",
+    "added": "Adicionada",
+    "selectedAlreadyAdded": "Todas as etapas selecionadas já foram adicionadas.",
+    "recent": "Recente"
   }
 }
