@@ -5,6 +5,7 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -28,6 +29,8 @@ export default function Info() {
 
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(14).fill(''));
+  const shouldRecoverDraft = !location.state?.formData && !location.state?.isFork;
+  const { draft: recoveredDraft } = useJsaDraftRecovery(shouldRecoverDraft);
 
   useJsaDraftAutosave({
     enabled: Boolean(formData.projectName.trim() || location.state?.draftId),
