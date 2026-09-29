@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -30,10 +31,11 @@ export default function Info() {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [participants, setParticipants] = useState(Array(14).fill(''));
   const shouldRecoverDraft = !location.state?.formData && !location.state?.isFork;
-  const { draft: recoveredDraft } = useJsaDraftRecovery(shouldRecoverDraft);
+  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
+  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
 
-  useJsaDraftAutosave({
-    enabled: Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
+  const draftSave = useJsaDraftAutosave({
+    enabled: recoverySettled && Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
     stage: 'info',
     formData,
     participants,
@@ -41,6 +43,21 @@ export default function Info() {
     analysisData: location.state?.analysisData || recoveredDraft?.analysis_data || [],
     sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
+
+  useEffect(() => {
+    if (!shouldRecoverDraft || !recoveredDraft) return;
+
+    const loadedData = recoveredDraft.form_data || {};
+    setFormData(prev => ({
+      ...prev,
+      ...loadedData,
+      ppe: loadedData.ppe || [],
+      permits: loadedData.permits || []
+    }));
+
+    const loadedParticipants = recoveredDraft.participants || [];
+    setParticipants(Array(14).fill('').map((_, i) => loadedParticipants[i] || ''));
+  }, [shouldRecoverDraft, recoveredDraft]);
 
   useEffect(() => {
     const isFork = location.state?.isFork;
@@ -130,8 +147,8 @@ export default function Info() {
       state: {
         formData,
         participants,
-        procedures: location.state?.procedures,
-        analysisData: location.state?.analysisData,
+        procedures: location.state?.procedures || recoveredDraft?.procedures,
+        analysisData: location.state?.analysisData || recoveredDraft?.analysis_data,
         isFork: location.state?.isFork,
         parentId: location.state?.parentId, 
         originalAnalysisData: location.state?.originalAnalysisData 
@@ -144,7 +161,8 @@ export default function Info() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
       
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />

@@ -10,6 +10,7 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 import { archiveActiveDraft } from '../services/jsaDraftService';
 
 const TAG_META = {
@@ -81,7 +82,7 @@ export default function Export() {
     (totalRisks >= originalTotalRisks + 2)
   );
 
-  useJsaDraftAutosave({
+  const draftSave = useJsaDraftAutosave({
     enabled: Boolean(location.state?.formData || recoveredDraft),
     stage: 'export',
     formData,
@@ -452,7 +453,8 @@ export default function Export() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 기능 추가 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 기능 추가 */}
       {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>

@@ -74,5 +74,11 @@
   "bulkStepSaveError": "作業ステップを保存できませんでした。",
   "archiveDraft": "アーカイブ",
   "confirmArchiveDraft": "この下書きをアーカイブしますか？",
-  "draftArchiveError": "下書きをアーカイブできませんでした。"
+  "draftArchiveError": "下書きをアーカイブできませんでした。",
+  "confirmDeleteDraft": "この下書きを完全に削除しますか？",
+  "draftDeleteError": "下書きの削除中にエラーが発生しました。",
+  "workStepTagsPlaceholder": "タグをカンマ区切りで入力",
+  "cloneWorkStep": "複製",
+  "workStepCloneSuccess": "作業ステップを複製しました。",
+  "workStepCloneError": "作業ステップを複製できませんでした。"
 }

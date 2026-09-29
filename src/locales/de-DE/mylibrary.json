@@ -74,5 +74,11 @@
   "bulkStepSaveError": "Arbeitsschritte konnten nicht gespeichert werden.",
   "archiveDraft": "Archivieren",
   "confirmArchiveDraft": "Diesen Entwurf archivieren?",
-  "draftArchiveError": "Entwurf konnte nicht archiviert werden."
+  "draftArchiveError": "Entwurf konnte nicht archiviert werden.",
+  "confirmDeleteDraft": "Diesen Entwurf dauerhaft löschen?",
+  "draftDeleteError": "Fehler beim Löschen des Entwurfs.",
+  "workStepTagsPlaceholder": "Tags durch Kommas trennen",
+  "cloneWorkStep": "Duplizieren",
+  "workStepCloneSuccess": "Arbeitsschritt wurde dupliziert.",
+  "workStepCloneError": "Arbeitsschritt konnte nicht dupliziert werden."
 }

@@ -74,5 +74,11 @@
   "bulkStepSaveError": "Failed to save work steps.",
   "archiveDraft": "Archive",
   "confirmArchiveDraft": "Archive this draft?",
-  "draftArchiveError": "Failed to archive the draft."
+  "draftArchiveError": "Failed to archive the draft.",
+  "confirmDeleteDraft": "Permanently delete this draft?",
+  "draftDeleteError": "An error occurred while deleting the draft.",
+  "workStepTagsPlaceholder": "Enter tags separated by commas",
+  "cloneWorkStep": "Clone",
+  "workStepCloneSuccess": "Work step cloned.",
+  "workStepCloneError": "Failed to clone the work step."
 }

@@ -74,5 +74,11 @@
   "bulkStepSaveError": "Не удалось сохранить этапы.",
   "archiveDraft": "В архив",
   "confirmArchiveDraft": "Архивировать этот черновик?",
-  "draftArchiveError": "Не удалось архивировать черновик."
+  "draftArchiveError": "Не удалось архивировать черновик.",
+  "confirmDeleteDraft": "Удалить этот черновик безвозвратно?",
+  "draftDeleteError": "Ошибка при удалении черновика.",
+  "workStepTagsPlaceholder": "Введите теги через запятую",
+  "cloneWorkStep": "Клонировать",
+  "workStepCloneSuccess": "Этап клонирован.",
+  "workStepCloneError": "Не удалось клонировать этап."
 }

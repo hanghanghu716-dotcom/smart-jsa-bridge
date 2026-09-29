@@ -7,6 +7,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 import WorkStepWorkbench from '../components/WorkStepWorkbench';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -23,27 +24,37 @@ export default function Procedure() {
   const [composerTouched, setComposerTouched] = useState(false);
   const [composedAnalysisData, setComposedAnalysisData] = useState(null);
 
-  const formData = location.state?.formData;
-  const participants = location.state?.participants;
-  const analysisData = location.state?.analysisData;
-  const isFastTrack = location.state?.isFastTrack ?? false;
-  const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : (analysisData || []);
+  const shouldRecoverDraft = !location.state?.formData && !location.state?.procedures;
+  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
+  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
 
-  useJsaDraftAutosave({
-    enabled: Boolean(location.state?.formData || recoveredDraft),
+  const formData = location.state?.formData || recoveredDraft?.form_data || {};
+  const participants = location.state?.participants || recoveredDraft?.participants || [];
+  const analysisData = location.state?.analysisData || recoveredDraft?.analysis_data || [];
+  const isFastTrack = location.state?.isFastTrack ?? false;
+  const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : analysisData;
+  const hasMeaningfulProcedure = procedures.some(
+    proc => proc?.stepTitle?.trim() || proc?.stepDetail?.trim()
+  );
+
+  const draftSave = useJsaDraftAutosave({
+    enabled: recoverySettled && Boolean(
+      formData?.projectName?.trim() || hasMeaningfulProcedure || location.state?.draftId || recoveredDraft?.id
+    ),
     stage: 'procedure',
-    formData: formData || {},
-    participants: participants || [],
+    formData,
+    participants,
     procedures,
     analysisData: effectiveAnalysisData,
     sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
   useEffect(() => {
-    if (location.state?.procedures && location.state.procedures.length > 0) {
-      setProcedures(location.state.procedures);
+    const restoredProcedures = location.state?.procedures || recoveredDraft?.procedures;
+    if (restoredProcedures && restoredProcedures.length > 0) {
+      setProcedures(restoredProcedures);
     }
-  }, [location.state?.procedures]);
+  }, [location.state?.procedures, recoveredDraft]);
 
   const handleLogoClick = () => {
     if (window.confirm(t('alert.confirmMain'))) {
@@ -130,7 +141,8 @@ const startAnalysis = (jsaType) => {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
 
       <WorkStepWorkbench
         isOpen={isWorkbenchOpen}

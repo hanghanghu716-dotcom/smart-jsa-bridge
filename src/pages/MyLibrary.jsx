@@ -7,8 +7,8 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
-import { listRecentDrafts, setActiveDraftId, archiveDraft } from '../services/jsaDraftService';
-import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed } from '../services/workStepLibraryService';
+import { listRecentDrafts, setActiveDraftId, archiveDraft, deleteDraft } from '../services/jsaDraftService';
+import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed, cloneWorkStep } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -30,7 +30,7 @@ export default function MyLibrary() {
   const [workStepSearch, setWorkStepSearch] = useState('');
   const [workStepFavoritesOnly, setWorkStepFavoritesOnly] = useState(false);
   const [editingWorkStepId, setEditingWorkStepId] = useState(null);
-  const [workStepEditForm, setWorkStepEditForm] = useState({ title: '', detail: '' });
+  const [workStepEditForm, setWorkStepEditForm] = useState({ title: '', detail: '', tags: '' });
   const [bulkSavingProjectId, setBulkSavingProjectId] = useState(null); 
 
   const buildFolderTree = (items, parentId = null) => {
@@ -230,9 +230,24 @@ export default function MyLibrary() {
     }
   };
 
+  const handleDeleteDraft = async (draftId) => {
+    if (!window.confirm(t('confirmDeleteDraft'))) return;
+    try {
+      await deleteDraft(draftId);
+      setDrafts(prev => prev.filter(draft => draft.id !== draftId));
+    } catch (error) {
+      console.error('[JSA Draft] delete failed:', error);
+      alert(t('draftDeleteError'));
+    }
+  };
+
   const beginEditWorkStep = (step) => {
     setEditingWorkStepId(step.id);
-    setWorkStepEditForm({ title: step.title || '', detail: step.detail || '' });
+    setWorkStepEditForm({
+      title: step.title || '',
+      detail: step.detail || '',
+      tags: (step.tags || []).join(', ')
+    });
   };
 
   const saveWorkStepEdits = async (id) => {
@@ -240,13 +255,30 @@ export default function MyLibrary() {
     try {
       const updated = await updateWorkStep(id, {
         title: workStepEditForm.title.trim(),
-        detail: workStepEditForm.detail || ''
+        detail: workStepEditForm.detail || '',
+        tags: workStepEditForm.tags
+          .split(',')
+          .map(tag => tag.trim())
+          .filter(Boolean)
       });
       setWorkSteps(prev => prev.map(step => step.id === id ? updated : step));
       setEditingWorkStepId(null);
     } catch (error) {
       console.error('[Work Step Library] update failed:', error);
       alert(t('workStepUpdateError'));
+    }
+  };
+
+  const handleCloneWorkStep = async (step) => {
+    try {
+      const cloned = await cloneWorkStep(step);
+      if (cloned) {
+        setWorkSteps(prev => [cloned, ...prev]);
+        alert(t('workStepCloneSuccess'));
+      }
+    } catch (error) {
+      console.error('[Work Step Library] clone failed:', error);
+      alert(t('workStepCloneError'));
     }
   };
 
@@ -404,6 +436,7 @@ export default function MyLibrary() {
                           <div style={styles.assetActions}>
                             <button style={styles.assetPrimaryBtn} onClick={() => resumeDraft(draft)}>{t('resumeDraft')}</button>
                             <button style={styles.assetSecondaryBtn} onClick={() => handleArchiveDraft(draft.id)}>{t('archiveDraft')}</button>
+                            <button style={styles.assetDeleteBtn} onClick={() => handleDeleteDraft(draft.id)}>{t('deleteBtn')}</button>
                           </div>
                         </div>
                       ))}
@@ -445,6 +478,12 @@ export default function MyLibrary() {
                                   value={workStepEditForm.detail}
                                   onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, detail: e.target.value }))}
                                 />
+                                <input
+                                  style={styles.inlineEditInput}
+                                  value={workStepEditForm.tags}
+                                  onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, tags: e.target.value }))}
+                                  placeholder={t('workStepTagsPlaceholder')}
+                                />
                               </>
                             ) : (
                               <>
@@ -475,6 +514,7 @@ export default function MyLibrary() {
                             ) : (
                               <>
                                 <button style={styles.assetSecondaryBtn} onClick={() => beginEditWorkStep(step)}>{t('editWorkStep')}</button>
+                                <button style={styles.assetSecondaryBtn} onClick={() => handleCloneWorkStep(step)}>{t('cloneWorkStep')}</button>
                                 <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
                                 <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
                               </>

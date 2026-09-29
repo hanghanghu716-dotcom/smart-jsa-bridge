@@ -114,6 +114,26 @@ export const saveProjectWorkSteps = async (project) => {
   return data || [];
 };
 
+export const cloneWorkStep = async (step) => {
+  if (!step) return null;
+
+  return saveWorkStep({
+    title: step.title ? `${step.title} (Copy)` : 'Untitled step (Copy)',
+    detail: step.detail || '',
+    analysisData: {
+      ...(step.analysis_data || {}),
+      risks: Array.isArray(step.analysis_data?.risks)
+        ? step.analysis_data.risks.map(risk => ({ ...risk }))
+        : []
+    },
+    tags: Array.isArray(step.tags) ? [...step.tags] : [],
+    locale: step.locale || 'en-US',
+    sourceProjectId: null,
+    sourceProjectTitle: step.source_project_title || '',
+    sourceStepIndex: null,
+  });
+};
+
 export const setWorkStepFavorite = async (step, isFavorite) => {
   if (!step?.id) return null;
   return updateWorkStep(step.id, { is_favorite: Boolean(isFavorite) });
