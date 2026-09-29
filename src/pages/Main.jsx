@@ -261,8 +261,8 @@ export default function Main() {
   }, [slides.length, i18n.language]);
 
   const handleStartClick = () => {
-    clearActiveDraft();
     if (user) {
+      clearActiveDraft();
       navigate('/info', { state: { isMember: true } });
     } else {
       setIsStartModalOpen(true);
@@ -504,7 +504,7 @@ export default function Main() {
                       },
                       participants: Array(14).fill('')
                     } 
-                  })} 
+                  }); }} 
                   style={styles.fastTrackBtn}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#0056b3';
