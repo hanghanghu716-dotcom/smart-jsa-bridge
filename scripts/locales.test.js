@@ -125,7 +125,7 @@ test('phase 3 analysis knowledge dock translations are complete', () => {
   const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
   const keys = [
     'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
-    'sourceLibrary', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
+    'sourceLibrary', 'sourceCurrent', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
     'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
     'mergeFull', 'emptyProjects', 'steps', 'backProjects'
   ];
