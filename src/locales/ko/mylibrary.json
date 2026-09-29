@@ -59,5 +59,17 @@
     "module": "모듈 구성",
     "table": "표 구성",
     "export": "최종 출력"
-  }
+  },
+  "searchWorkSteps": "작업단계·위험요인·대책 검색",
+  "favoritesOnly": "즐겨찾기만",
+  "addFavorite": "즐겨찾기 추가",
+  "removeFavorite": "즐겨찾기 해제",
+  "editWorkStep": "수정",
+  "saveChanges": "저장",
+  "cancelEdit": "취소",
+  "workStepUpdateError": "작업단계 수정 중 오류가 발생했습니다.",
+  "menuSaveWorkSteps": "모든 Step을 작업단계로 저장",
+  "bulkSavingSteps": "작업단계 저장 중...",
+  "bulkStepSaveSuccess": "{{count}}개 작업단계를 라이브러리에 저장했습니다.",
+  "bulkStepSaveError": "작업단계 일괄 저장 중 오류가 발생했습니다."
 }
