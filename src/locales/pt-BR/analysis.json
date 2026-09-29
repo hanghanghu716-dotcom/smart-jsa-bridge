@@ -100,6 +100,7 @@
     "mergeFull": "Mesclar com controles",
     "emptyProjects": "Nenhum projeto salvo.",
     "steps": "etapas",
-    "backProjects": "Lista de projetos"
+    "backProjects": "Lista de projetos",
+    "sourceCurrent": "JSA atual"
   }
 }
