@@ -79,5 +79,27 @@
   "searchModal": {
     "title": "البحث في قاعدة بيانات التدابير",
     "placeholder": "أدخل مصطلحات البحث..."
+  },
+  "knowledgeDock": {
+    "openBtn": "لوحة المعرفة",
+    "opened": "اللوحة مفتوحة",
+    "untitledStep": "خطوة بلا عنوان",
+    "sourceManual": "إدخال يدوي",
+    "sourceDatabase": "قاعدة المخاطر",
+    "sourceLibrary": "معرفة سابقة",
+    "eyebrow": "لوحة المعرفة",
+    "title": "معرفة الأعمال السابقة",
+    "savedSteps": "الخطوات المحفوظة",
+    "projects": "المشاريع",
+    "search": "البحث في العمل أو المخاطر أو الضوابط",
+    "emptySteps": "لا توجد خطوات عمل محفوظة.",
+    "independentStep": "خطوة عمل مستقلة",
+    "hazards": "مخاطر",
+    "noControl": "لا يوجد إجراء",
+    "mergeHazards": "المخاطر فقط",
+    "mergeFull": "دمج مع إجراءات التحكم",
+    "emptyProjects": "لا توجد مشاريع محفوظة.",
+    "steps": "خطوات",
+    "backProjects": "قائمة المشاريع"
   }
 }
