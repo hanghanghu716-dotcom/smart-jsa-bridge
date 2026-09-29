@@ -107,7 +107,7 @@ const startAnalysis = (jsaType) => {
           formData,
           participants,
           procedures, 
-          analysisData: analysisData,
+          analysisData: composerTouched ? (composedAnalysisData || []) : analysisData,
           isFork: location.state?.isFork,
           parentId: location.state?.parentId,
           originalAnalysisData: location.state?.originalAnalysisData 
