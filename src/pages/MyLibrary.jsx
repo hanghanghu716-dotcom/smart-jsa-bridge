@@ -134,7 +134,10 @@ export default function MyLibrary() {
     await supabase.from('user_jsa_categories').insert({ 
       user_id: user.id, 
       category_name: newCatName, 
-      parent_id: (selectedCatId && selectedCatId !== 'SYSTEM_FOLDER' && selectedCatId !== 'LAYOUT_FOLDER') ? selectedCatId : null 
+      parent_id: (
+        selectedCatId
+        && !['SYSTEM_FOLDER', 'LAYOUT_FOLDER', 'DRAFT_FOLDER', 'WORK_STEP_FOLDER'].includes(selectedCatId)
+      ) ? selectedCatId : null 
     });
     setNewCatName(""); fetchLibraryData();
   };
