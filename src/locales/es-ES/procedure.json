@@ -70,6 +70,20 @@
     "alreadyAdded": "Este paso ya está incluido en la JSA de hoy.",
     "added": "Añadido",
     "selectedAlreadyAdded": "Todos los pasos seleccionados ya están añadidos.",
-    "recent": "Reciente"
+    "recent": "Reciente",
+    "filterAll": "Todos",
+    "filterMy": "Mis JSA",
+    "filterScrap": "Guardados",
+    "filterRecent": "Recientes",
+    "stepSearch": "Buscar pasos en proyectos abiertos",
+    "preview": "Detalles",
+    "closePreview": "Cerrar detalles",
+    "noSteps": "No hay pasos que coincidan con la búsqueda.",
+    "previewHazards": "Vista previa de peligros y controles",
+    "noPreviewHazards": "No hay peligros registrados para este paso.",
+    "hazard": "Peligro",
+    "currentControl": "Control actual / base",
+    "recommendedControl": "Control adicional / recomendado",
+    "riskLevel": "Riesgo"
   }
 }

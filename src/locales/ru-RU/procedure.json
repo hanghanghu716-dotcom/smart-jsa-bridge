@@ -70,6 +70,20 @@
     "alreadyAdded": "Этот этап уже добавлен в сегодняшнюю JSA.",
     "added": "Добавлено",
     "selectedAlreadyAdded": "Все выбранные этапы уже добавлены.",
-    "recent": "Недавние"
+    "recent": "Недавние",
+    "filterAll": "Все",
+    "filterMy": "Мои JSA",
+    "filterScrap": "Сохранённые",
+    "filterRecent": "Недавние",
+    "stepSearch": "Поиск этапов в открытых проектах",
+    "preview": "Подробнее",
+    "closePreview": "Закрыть",
+    "noSteps": "Нет этапов, соответствующих поиску.",
+    "previewHazards": "Просмотр опасностей и мер",
+    "noPreviewHazards": "Для этого этапа опасности не зарегистрированы.",
+    "hazard": "Опасность",
+    "currentControl": "Текущая / базовая мера",
+    "recommendedControl": "Дополнительная / рекомендуемая мера",
+    "riskLevel": "Риск"
   }
 }

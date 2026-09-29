@@ -35,6 +35,9 @@ export default function WorkStepWorkbench({
   const [importMode, setImportMode] = useState('full');
   const [activeUserId, setActiveUserId] = useState(null);
   const [recentProjectIds, setRecentProjectIds] = useState([]);
+  const [projectFilter, setProjectFilter] = useState('all');
+  const [stepSearchTerm, setStepSearchTerm] = useState('');
+  const [previewStep, setPreviewStep] = useState(null);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -56,6 +59,9 @@ export default function WorkStepWorkbench({
     setDraftSteps(initialDraft);
     setSelectedStepKeys([]);
     setSearchTerm('');
+    setProjectFilter('all');
+    setStepSearchTerm('');
+    setPreviewStep(null);
 
     const fetchProjects = async () => {
       setLoading(true);
@@ -130,20 +136,31 @@ export default function WorkStepWorkbench({
 
   const filteredProjects = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
-    if (!q) return projects;
 
     return projects.filter(project => {
+      if (projectFilter === 'my' && project.libraryType !== 'MY') return false;
+      if (projectFilter === 'scrap' && project.libraryType !== 'SCRAP') return false;
+      if (projectFilter === 'recent' && !recentProjectIds.includes(String(project.id))) return false;
+
+      if (!q) return true;
       const projectText = [
         project.title,
         ...(project.tags || []),
         ...(project.analysis_data || []).flatMap(step => [
           step?.proc?.stepTitle,
-          step?.proc?.stepDetail
+          step?.proc?.stepDetail,
+          ...(step?.risks || []).flatMap(risk => [
+            risk?.factor,
+            risk?.risk_factor,
+            risk?.measure,
+            risk?.current_measure,
+            risk?.recommend_measure
+          ])
         ])
       ].filter(Boolean).join(' ').toLowerCase();
       return projectText.includes(q);
     });
-  }, [projects, searchTerm]);
+  }, [projects, searchTerm, projectFilter, recentProjectIds]);
 
   const pinnedProjects = useMemo(
     () => pinnedIds
@@ -151,6 +168,31 @@ export default function WorkStepWorkbench({
       .filter(Boolean),
     [pinnedIds, projects]
   );
+
+  const getVisibleSteps = (project) => {
+    const q = stepSearchTerm.trim().toLowerCase();
+    return (project.analysis_data || [])
+      .map((step, stepIndex) => ({ step, stepIndex }))
+      .filter(({ step }) => {
+        if (!q) return true;
+        const text = [
+          step?.proc?.stepTitle,
+          step?.proc?.stepDetail,
+          ...(step?.risks || []).flatMap(risk => [
+            risk?.factor,
+            risk?.risk_factor,
+            risk?.measure,
+            risk?.current_measure,
+            risk?.recommend_measure
+          ])
+        ].filter(Boolean).join(' ').toLowerCase();
+        return text.includes(q);
+      });
+  };
+
+  const openStepPreview = (project, step, stepIndex) => {
+    setPreviewStep({ project, step, stepIndex });
+  };
 
   const draftSourceKeys = useMemo(() => new Set(
     draftSteps
@@ -171,6 +213,7 @@ export default function WorkStepWorkbench({
       let next;
       if (prev.includes(projectId)) {
         next = prev.filter(id => id !== projectId);
+        if (String(previewStep?.project?.id) === String(projectId)) setPreviewStep(null);
       } else {
         if (prev.length >= 4) {
           alert(t('workbench.pinLimit'));
@@ -362,6 +405,23 @@ export default function WorkStepWorkbench({
                 onChange={event => setSearchTerm(event.target.value)}
                 placeholder={t('workbench.search')}
               />
+              <div style={styles.filterChips}>
+                {[
+                  ['all', t('workbench.filterAll')],
+                  ['my', t('workbench.filterMy')],
+                  ['scrap', t('workbench.filterScrap')],
+                  ['recent', t('workbench.filterRecent')]
+                ].map(([value, label]) => (
+                  <button
+                    type="button"
+                    key={value}
+                    style={projectFilter === value ? styles.filterChipActive : styles.filterChip}
+                    onClick={() => setProjectFilter(value)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
               <div style={styles.projectList}>
                 {filteredProjects.length === 0 ? (
                   <div style={styles.emptySmall}>{t('workbench.noProject')}</div>
@@ -390,7 +450,14 @@ export default function WorkStepWorkbench({
 
             <main style={styles.projectBoard}>
               <div style={styles.boardToolbar}>
-                <div style={styles.importModeGroup}>
+                <div style={styles.boardSearchAndMode}>
+                  <input
+                    style={styles.stepSearchInput}
+                    value={stepSearchTerm}
+                    onChange={event => setStepSearchTerm(event.target.value)}
+                    placeholder={t('workbench.stepSearch')}
+                  />
+                  <div style={styles.importModeGroup}>
                   <span style={styles.importModeLabel}>{t('workbench.importMode')}</span>
                   <button
                     type="button"
@@ -406,6 +473,7 @@ export default function WorkStepWorkbench({
                   >
                     {t('workbench.importProcedureOnly')}
                   </button>
+                  </div>
                 </div>
                 <div style={styles.boardActions}>
                   <span>{pinnedProjects.length}/4</span>
@@ -440,7 +508,9 @@ export default function WorkStepWorkbench({
                     </div>
 
                     <div style={styles.stepList}>
-                      {(project.analysis_data || []).map((step, stepIndex) => {
+                      {getVisibleSteps(project).length === 0 ? (
+                        <div style={styles.emptySteps}>{t('workbench.noSteps')}</div>
+                      ) : getVisibleSteps(project).map(({ step, stepIndex }) => {
                         const key = makeSourceStepKey(project.id, stepIndex);
                         const checked = selectedStepKeys.includes(key);
                         const alreadyAdded = draftSourceKeys.has(key);
@@ -463,14 +533,23 @@ export default function WorkStepWorkbench({
                                 />
                                 <span>{t('workbench.stepLabel', { number: stepIndex + 1 })}</span>
                               </label>
-                              <button
-                                type="button"
-                                style={alreadyAdded ? styles.addStepBtnDisabled : styles.addStepBtn}
-                                disabled={alreadyAdded}
-                                onClick={() => addLibraryStep(project, step, stepIndex)}
-                              >
-                                {alreadyAdded ? t('workbench.added') : '+ ' + t('workbench.add')}
-                              </button>
+                              <div style={styles.stepCardActions}>
+                                <button
+                                  type="button"
+                                  style={styles.previewBtn}
+                                  onClick={() => openStepPreview(project, step, stepIndex)}
+                                >
+                                  {t('workbench.preview')}
+                                </button>
+                                <button
+                                  type="button"
+                                  style={alreadyAdded ? styles.addStepBtnDisabled : styles.addStepBtn}
+                                  disabled={alreadyAdded}
+                                  onClick={() => addLibraryStep(project, step, stepIndex)}
+                                >
+                                  {alreadyAdded ? t('workbench.added') : '+ ' + t('workbench.add')}
+                                </button>
+                              </div>
                             </div>
                             <strong style={styles.stepTitle}>{step?.proc?.stepTitle || '-'}</strong>
                             <p style={styles.stepDetail}>{step?.proc?.stepDetail || '-'}</p>
@@ -484,6 +563,53 @@ export default function WorkStepWorkbench({
                   </section>
                 ))}
               </div>
+
+              {previewStep && (
+                <section style={styles.previewInspector}>
+                  <div style={styles.previewInspectorHeader}>
+                    <div style={styles.previewHeadingGroup}>
+                      <span style={styles.previewProjectName}>{previewStep.project.title}</span>
+                      <strong style={styles.previewStepName}>
+                        {t('workbench.stepLabel', { number: previewStep.stepIndex + 1 })} · {previewStep.step?.proc?.stepTitle || '-'}
+                      </strong>
+                    </div>
+                    <button type="button" style={styles.previewCloseBtn} onClick={() => setPreviewStep(null)}>
+                      {t('workbench.closePreview')}
+                    </button>
+                  </div>
+                  <div style={styles.previewDetailText}>{previewStep.step?.proc?.stepDetail || '-'}</div>
+                  <div style={styles.previewRiskHeader}>
+                    {t('workbench.previewHazards')} ({previewStep.step?.risks?.length || 0})
+                  </div>
+                  <div style={styles.previewRiskStrip}>
+                    {(previewStep.step?.risks || []).length === 0 ? (
+                      <div style={styles.previewNoRisk}>{t('workbench.noPreviewHazards')}</div>
+                    ) : (previewStep.step?.risks || []).map((risk, riskIndex) => (
+                      <div key={risk.id || riskIndex} style={styles.previewRiskCard}>
+                        <div style={styles.previewRiskFactor}>
+                          <span style={styles.previewFieldLabel}>{t('workbench.hazard')}</span>
+                          <span>{risk.factor || risk.risk_factor || '-'}</span>
+                        </div>
+                        <div style={styles.previewControlText}>
+                          <span style={styles.previewFieldLabel}>{t('workbench.currentControl')}</span>
+                          <span>{risk.current_measure || risk.measure || '-'}</span>
+                        </div>
+                        {risk.recommend_measure && (
+                          <div style={styles.previewControlText}>
+                            <span style={styles.previewFieldLabel}>{t('workbench.recommendedControl')}</span>
+                            <span>{risk.recommend_measure}</span>
+                          </div>
+                        )}
+                        {(risk.riskLevel ?? previewStep.step?.riskLevel) != null && (
+                          <div style={styles.previewRiskLevel}>
+                            {t('workbench.riskLevel')}: {risk.riskLevel ?? previewStep.step?.riskLevel}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
             </main>
 
             <aside
@@ -620,6 +746,9 @@ const styles = {
     color: '#fff',
     fontSize: '0.78rem'
   },
+  filterChips: { display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '5px' },
+  filterChip: { padding: '6px 7px', borderRadius: '5px', border: '1px solid #252525', background: '#101010', color: '#666', fontSize: '0.62rem', cursor: 'pointer' },
+  filterChipActive: { padding: '6px 7px', borderRadius: '5px', border: '1px solid #007bff', background: 'rgba(0,123,255,0.1)', color: '#64adff', fontSize: '0.62rem', cursor: 'pointer', fontWeight: 800 },
   projectList: { overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '7px' },
   projectBtn: {
     width: '100%',
@@ -670,6 +799,8 @@ const styles = {
     fontSize: '0.7rem',
     marginBottom: '10px'
   },
+  boardSearchAndMode: { display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, flex: 1 },
+  stepSearchInput: { width: '210px', minWidth: '150px', padding: '7px 9px', background: '#121212', border: '1px solid #303030', borderRadius: '6px', color: '#fff', fontSize: '0.68rem', outline: 'none' },
   importModeGroup: { display: 'flex', alignItems: 'center', gap: '6px', minWidth: 0 },
   importModeLabel: { color: '#777', fontSize: '0.68rem', marginRight: '2px', whiteSpace: 'nowrap' },
   modeBtn: { padding: '6px 9px', borderRadius: '6px', border: '1px solid #303030', background: '#151515', color: '#777', fontSize: '0.66rem', cursor: 'pointer', whiteSpace: 'nowrap' },
@@ -739,6 +870,8 @@ const styles = {
     opacity: 0.72
   },
   stepCardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' },
+  stepCardActions: { display: 'flex', alignItems: 'center', gap: '5px' },
+  previewBtn: { background: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '5px', padding: '4px 7px', fontSize: '0.62rem', cursor: 'pointer' },
   checkboxLabel: { display: 'flex', gap: '6px', alignItems: 'center', color: '#666', fontSize: '0.62rem', fontWeight: 800 },
   addStepBtn: {
     background: '#202020',
@@ -770,6 +903,22 @@ const styles = {
     overflow: 'hidden'
   },
   riskCount: { fontSize: '0.62rem', color: '#ff7675' },
+  emptySteps: { padding: '18px 8px', color: '#555', fontSize: '0.68rem', textAlign: 'center', lineHeight: 1.45 },
+  previewInspector: { flexShrink: 0, marginTop: '10px', height: '205px', border: '1px solid #2b2b2b', borderRadius: '10px', background: '#0f0f0f', padding: '12px', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  previewInspectorHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' },
+  previewHeadingGroup: { minWidth: 0, display: 'flex', flexDirection: 'column', gap: '2px' },
+  previewProjectName: { color: '#007bff', fontSize: '0.6rem', fontWeight: 900, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
+  previewStepName: { color: '#eee', fontSize: '0.82rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
+  previewCloseBtn: { background: 'transparent', border: '1px solid #303030', color: '#777', borderRadius: '5px', padding: '4px 7px', fontSize: '0.62rem', cursor: 'pointer', whiteSpace: 'nowrap' },
+  previewDetailText: { marginTop: '6px', color: '#777', fontSize: '0.68rem', lineHeight: 1.4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  previewRiskHeader: { marginTop: '8px', color: '#aaa', fontSize: '0.64rem', fontWeight: 900 },
+  previewRiskStrip: { flex: 1, minHeight: 0, marginTop: '6px', display: 'flex', gap: '8px', overflowX: 'auto', overflowY: 'hidden' },
+  previewRiskCard: { width: '245px', minWidth: '245px', border: '1px solid #292929', borderRadius: '7px', background: '#151515', padding: '8px', display: 'flex', flexDirection: 'column', gap: '5px', overflow: 'hidden' },
+  previewRiskFactor: { color: '#eee', fontSize: '0.66rem', lineHeight: 1.35 },
+  previewControlText: { color: '#999', fontSize: '0.62rem', lineHeight: 1.35, display: 'flex', flexDirection: 'column', gap: '2px' },
+  previewFieldLabel: { color: '#555', fontSize: '0.55rem', fontWeight: 900, textTransform: 'uppercase' },
+  previewRiskLevel: { marginTop: 'auto', color: '#ff7675', fontSize: '0.58rem', fontWeight: 800 },
+  previewNoRisk: { margin: 'auto', color: '#555', fontSize: '0.68rem' },
   todayPanel: {
     minWidth: 0,
     borderLeft: '1px solid #222',

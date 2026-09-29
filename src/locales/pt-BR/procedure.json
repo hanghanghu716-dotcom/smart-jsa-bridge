@@ -70,6 +70,20 @@
     "alreadyAdded": "Esta etapa já está incluída na JSA de hoje.",
     "added": "Adicionada",
     "selectedAlreadyAdded": "Todas as etapas selecionadas já foram adicionadas.",
-    "recent": "Recente"
+    "recent": "Recente",
+    "filterAll": "Todos",
+    "filterMy": "Meus JSA",
+    "filterScrap": "Salvos",
+    "filterRecent": "Recentes",
+    "stepSearch": "Pesquisar etapas nos projetos abertos",
+    "preview": "Detalhes",
+    "closePreview": "Fechar detalhes",
+    "noSteps": "Nenhuma etapa corresponde à pesquisa.",
+    "previewHazards": "Prévia de perigos e controles",
+    "noPreviewHazards": "Nenhum perigo está registrado para esta etapa.",
+    "hazard": "Perigo",
+    "currentControl": "Controle atual / básico",
+    "recommendedControl": "Controle adicional / recomendado",
+    "riskLevel": "Risco"
   }
 }

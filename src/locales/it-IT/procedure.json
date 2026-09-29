@@ -70,6 +70,20 @@
     "alreadyAdded": "Questa fase è già presente nel JSA di oggi.",
     "added": "Aggiunta",
     "selectedAlreadyAdded": "Tutte le fasi selezionate sono già state aggiunte.",
-    "recent": "Recenti"
+    "recent": "Recenti",
+    "filterAll": "Tutti",
+    "filterMy": "I miei JSA",
+    "filterScrap": "Salvati",
+    "filterRecent": "Recenti",
+    "stepSearch": "Cerca fasi nei progetti aperti",
+    "preview": "Dettagli",
+    "closePreview": "Chiudi dettagli",
+    "noSteps": "Nessuna fase corrisponde alla ricerca.",
+    "previewHazards": "Anteprima pericoli e misure",
+    "noPreviewHazards": "Nessun pericolo registrato per questa fase.",
+    "hazard": "Pericolo",
+    "currentControl": "Misura attuale / di base",
+    "recommendedControl": "Misura aggiuntiva / raccomandata",
+    "riskLevel": "Rischio"
   }
 }

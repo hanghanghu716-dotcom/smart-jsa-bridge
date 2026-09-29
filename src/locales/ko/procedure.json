@@ -70,6 +70,20 @@
     "alreadyAdded": "이미 오늘의 JSA에 추가된 작업단계입니다.",
     "added": "추가됨",
     "selectedAlreadyAdded": "선택한 작업단계가 모두 이미 추가되어 있습니다.",
-    "recent": "최근"
+    "recent": "최근",
+    "filterAll": "전체",
+    "filterMy": "내 JSA",
+    "filterScrap": "스크랩",
+    "filterRecent": "최근 사용",
+    "stepSearch": "열린 프로젝트의 작업단계 검색",
+    "preview": "상세",
+    "closePreview": "상세 닫기",
+    "noSteps": "검색 조건에 맞는 작업단계가 없습니다.",
+    "previewHazards": "위험요인·대책 미리보기",
+    "noPreviewHazards": "등록된 위험요인이 없습니다.",
+    "hazard": "위험요인",
+    "currentControl": "현재/기본 대책",
+    "recommendedControl": "추가/권고 대책",
+    "riskLevel": "위험도"
   }
 }

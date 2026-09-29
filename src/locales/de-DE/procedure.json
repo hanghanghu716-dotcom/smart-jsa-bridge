@@ -70,6 +70,20 @@
     "alreadyAdded": "Dieser Arbeitsschritt ist bereits in der heutigen JSA enthalten.",
     "added": "Hinzugefügt",
     "selectedAlreadyAdded": "Alle ausgewählten Arbeitsschritte wurden bereits hinzugefügt.",
-    "recent": "Zuletzt"
+    "recent": "Zuletzt",
+    "filterAll": "Alle",
+    "filterMy": "Meine JSA",
+    "filterScrap": "Gespeichert",
+    "filterRecent": "Zuletzt",
+    "stepSearch": "Arbeitsschritte in geöffneten Projekten suchen",
+    "preview": "Details",
+    "closePreview": "Details schließen",
+    "noSteps": "Keine passenden Arbeitsschritte gefunden.",
+    "previewHazards": "Vorschau Gefährdungen & Maßnahmen",
+    "noPreviewHazards": "Für diesen Schritt sind keine Gefährdungen hinterlegt.",
+    "hazard": "Gefährdung",
+    "currentControl": "Aktuelle / grundlegende Maßnahme",
+    "recommendedControl": "Zusätzliche / empfohlene Maßnahme",
+    "riskLevel": "Risiko"
   }
 }

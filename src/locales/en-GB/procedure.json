@@ -70,6 +70,20 @@
     "alreadyAdded": "This work step is already in today's JSA.",
     "added": "Added",
     "selectedAlreadyAdded": "All selected work steps are already added.",
-    "recent": "Recent"
+    "recent": "Recent",
+    "filterAll": "All",
+    "filterMy": "My JSA",
+    "filterScrap": "Saved",
+    "filterRecent": "Recent",
+    "stepSearch": "Search steps in open projects",
+    "preview": "Details",
+    "closePreview": "Close details",
+    "noSteps": "No work steps match this search.",
+    "previewHazards": "Hazard & control preview",
+    "noPreviewHazards": "No hazards are registered for this step.",
+    "hazard": "Hazard",
+    "currentControl": "Current / base control",
+    "recommendedControl": "Additional / recommended control",
+    "riskLevel": "Risk"
   }
 }

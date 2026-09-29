@@ -70,6 +70,20 @@
     "alreadyAdded": "この作業ステップはすでに本日のJSAに追加されています。",
     "added": "追加済み",
     "selectedAlreadyAdded": "選択した作業ステップはすべて追加済みです。",
-    "recent": "最近"
+    "recent": "最近",
+    "filterAll": "すべて",
+    "filterMy": "自分のJSA",
+    "filterScrap": "保存済み",
+    "filterRecent": "最近",
+    "stepSearch": "開いているプロジェクトの作業ステップを検索",
+    "preview": "詳細",
+    "closePreview": "詳細を閉じる",
+    "noSteps": "検索条件に一致する作業ステップがありません。",
+    "previewHazards": "危険要因・対策プレビュー",
+    "noPreviewHazards": "このステップには危険要因が登録されていません。",
+    "hazard": "危険要因",
+    "currentControl": "現在 / 基本対策",
+    "recommendedControl": "追加 / 推奨対策",
+    "riskLevel": "リスク"
   }
 }

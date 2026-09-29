@@ -70,6 +70,20 @@
     "alreadyAdded": "تمت إضافة خطوة العمل هذه بالفعل إلى JSA لليوم.",
     "added": "تمت الإضافة",
     "selectedAlreadyAdded": "تمت إضافة جميع خطوات العمل المحددة بالفعل.",
-    "recent": "حديث"
+    "recent": "حديث",
+    "filterAll": "الكل",
+    "filterMy": "مشاريعي",
+    "filterScrap": "محفوظ",
+    "filterRecent": "حديث",
+    "stepSearch": "البحث في خطوات المشاريع المفتوحة",
+    "preview": "التفاصيل",
+    "closePreview": "إغلاق التفاصيل",
+    "noSteps": "لا توجد خطوات عمل مطابقة للبحث.",
+    "previewHazards": "معاينة المخاطر وإجراءات التحكم",
+    "noPreviewHazards": "لا توجد مخاطر مسجلة لهذه الخطوة.",
+    "hazard": "الخطر",
+    "currentControl": "إجراء التحكم الحالي / الأساسي",
+    "recommendedControl": "إجراء التحكم الإضافي / الموصى به",
+    "riskLevel": "مستوى الخطر"
   }
 }
