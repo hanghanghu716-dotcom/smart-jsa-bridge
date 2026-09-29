@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 import WorkStepWorkbench from '../components/WorkStepWorkbench';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -34,7 +35,7 @@ export default function Procedure() {
     participants: participants || [],
     procedures,
     analysisData: effectiveAnalysisData,
-    sourceProjectId: location.state?.parentId || null,
+    sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
   useEffect(() => {
