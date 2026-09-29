@@ -3,6 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
 
 const makeDraftKey = () => 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+const makeSourceStepKey = (projectId, stepIndex) => String(projectId) + ':' + stepIndex;
+const safeReadIdList = (key) => {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) || '[]');
+    return Array.isArray(parsed) ? parsed.map(String) : [];
+  } catch {
+    return [];
+  }
+};
 
 export default function WorkStepWorkbench({
   isOpen,
@@ -23,6 +32,9 @@ export default function WorkStepWorkbench({
   const [selectedStepKeys, setSelectedStepKeys] = useState([]);
   const [draftSteps, setDraftSteps] = useState([]);
   const [draggedDraftIdx, setDraggedDraftIdx] = useState(null);
+  const [importMode, setImportMode] = useState('full');
+  const [activeUserId, setActiveUserId] = useState(null);
+  const [recentProjectIds, setRecentProjectIds] = useState([]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -53,9 +65,13 @@ export default function WorkStepWorkbench({
         if (!user) {
           setProjects([]);
           setPinnedIds([]);
+          setRecentProjectIds([]);
+          setActiveUserId(null);
           setAuthRequired(true);
           return;
         }
+
+        setActiveUserId(user.id);
 
         const [authoredRes, favoriteRes] = await Promise.all([
           supabase
@@ -80,12 +96,29 @@ export default function WorkStepWorkbench({
           }
         });
 
-        const combined = Array.from(map.values()).filter(project =>
-          Array.isArray(project.analysis_data) && project.analysis_data.length > 0
-        );
+        const recentKey = 'smartjsa_step_composer_recent:' + user.id;
+        const pinKey = 'smartjsa_step_composer_pins:' + user.id;
+        const storedRecent = safeReadIdList(recentKey);
+        const recentRank = new Map(storedRecent.map((id, index) => [id, index]));
+
+        const combined = Array.from(map.values())
+          .filter(project => Array.isArray(project.analysis_data) && project.analysis_data.length > 0)
+          .sort((a, b) => {
+            const aRank = recentRank.has(String(a.id)) ? recentRank.get(String(a.id)) : Number.MAX_SAFE_INTEGER;
+            const bRank = recentRank.has(String(b.id)) ? recentRank.get(String(b.id)) : Number.MAX_SAFE_INTEGER;
+            if (aRank !== bRank) return aRank - bRank;
+            return new Date(b.updated_at || 0) - new Date(a.updated_at || 0);
+          });
+
+        const availableIds = new Set(combined.map(project => String(project.id)));
+        const storedPins = safeReadIdList(pinKey).filter(id => availableIds.has(id)).slice(0, 4);
+        const initialPins = storedPins.length
+          ? storedPins.map(id => combined.find(project => String(project.id) === id)?.id).filter(Boolean)
+          : combined.slice(0, 3).map(project => project.id);
 
         setProjects(combined);
-        setPinnedIds(combined.slice(0, 3).map(project => project.id));
+        setRecentProjectIds(storedRecent.filter(id => availableIds.has(id)));
+        setPinnedIds(initialPins);
       } finally {
         setLoading(false);
       }
@@ -118,23 +151,45 @@ export default function WorkStepWorkbench({
     [pinnedIds, projects]
   );
 
-  if (!isOpen) return null;
+  const draftSourceKeys = useMemo(() => new Set(
+    draftSteps
+      .map(item => {
+        const projectId = item.proc?.sourceProjectId;
+        const stepIndex = item.proc?.sourceStepIndex;
+        return projectId !== undefined && projectId !== null && Number.isInteger(stepIndex)
+          ? makeSourceStepKey(projectId, stepIndex)
+          : null;
+      })
+      .filter(Boolean)
+  ), [draftSteps]);
 
-  const stepKey = (projectId, stepIndex) => String(projectId) + ':' + stepIndex;
+  if (!isOpen) return null;
 
   const togglePinned = (projectId) => {
     setPinnedIds(prev => {
-      if (prev.includes(projectId)) return prev.filter(id => id !== projectId);
-      if (prev.length >= 4) {
-        alert(t('workbench.pinLimit'));
-        return prev;
+      let next;
+      if (prev.includes(projectId)) {
+        next = prev.filter(id => id !== projectId);
+      } else {
+        if (prev.length >= 4) {
+          alert(t('workbench.pinLimit'));
+          return prev;
+        }
+        next = [...prev, projectId];
       }
-      return [...prev, projectId];
+
+      if (activeUserId) {
+        localStorage.setItem(
+          'smartjsa_step_composer_pins:' + activeUserId,
+          JSON.stringify(next.map(String))
+        );
+      }
+      return next;
     });
   };
 
   const toggleSelected = (projectId, stepIndex) => {
-    const key = stepKey(projectId, stepIndex);
+    const key = makeSourceStepKey(projectId, stepIndex);
     setSelectedStepKeys(prev =>
       prev.includes(key) ? prev.filter(item => item !== key) : [...prev, key]
     );
@@ -149,17 +204,10 @@ export default function WorkStepWorkbench({
     sourceStepIndex: stepIndex
   });
 
-  const addLibraryStep = (project, step, stepIndex) => {
-    setDraftSteps(prev => {
-      if (prev.length >= maxSteps) {
-        alert(t('workbench.maxReached'));
-        return prev;
-      }
-      const proc = buildProcedure(project, step, stepIndex);
-      return [...prev, {
-        key: makeDraftKey(),
-        proc,
-        analysis: {
+  const buildDraftItem = (project, step, stepIndex) => {
+    const proc = buildProcedure(project, step, stepIndex);
+    const analysis = importMode === 'full'
+      ? {
           ...step,
           proc,
           risks: Array.isArray(step?.risks)
@@ -169,43 +217,54 @@ export default function WorkStepWorkbench({
               }))
             : []
         }
-      }];
-    });
+      : {
+          id: null,
+          proc,
+          risks: [],
+          frequency: 1,
+          severity: 1,
+          riskLevel: 1
+        };
+
+    return { key: makeDraftKey(), proc, analysis };
+  };
+
+  const addLibraryStep = (project, step, stepIndex) => {
+    const sourceKey = makeSourceStepKey(project.id, stepIndex);
+    if (draftSourceKeys.has(sourceKey)) {
+      alert(t('workbench.alreadyAdded'));
+      return;
+    }
+    if (draftSteps.length >= maxSteps) {
+      alert(t('workbench.maxReached'));
+      return;
+    }
+    setDraftSteps(prev => [...prev, buildDraftItem(project, step, stepIndex)]);
   };
 
   const addSelected = () => {
     const selected = [];
     projects.forEach(project => {
       (project.analysis_data || []).forEach((step, stepIndex) => {
-        if (selectedStepKeys.includes(stepKey(project.id, stepIndex))) {
+        const sourceKey = makeSourceStepKey(project.id, stepIndex);
+        if (selectedStepKeys.includes(sourceKey) && !draftSourceKeys.has(sourceKey)) {
           selected.push({ project, step, stepIndex });
         }
       });
     });
 
-    if (!selected.length) return;
+    if (!selected.length) {
+      alert(t('workbench.selectedAlreadyAdded'));
+      setSelectedStepKeys([]);
+      return;
+    }
+
     const available = Math.max(0, maxSteps - draftSteps.length);
     if (selected.length > available) alert(t('workbench.maxReached'));
 
     setDraftSteps(prev => [
       ...prev,
-      ...selected.slice(0, available).map(item => {
-        const proc = buildProcedure(item.project, item.step, item.stepIndex);
-        return {
-          key: makeDraftKey(),
-          proc,
-          analysis: {
-            ...item.step,
-            proc,
-            risks: Array.isArray(item.step?.risks)
-              ? item.step.risks.map(risk => ({
-                  ...risk,
-                  id: 'composer-risk-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9)
-                }))
-              : []
-          }
-        };
-      })
+      ...selected.slice(0, available).map(item => buildDraftItem(item.project, item.step, item.stepIndex))
     ]);
     setSelectedStepKeys([]);
   };
@@ -245,6 +304,19 @@ export default function WorkStepWorkbench({
   };
 
   const applyDraft = () => {
+    if (activeUserId) {
+      const recentKey = 'smartjsa_step_composer_recent:' + activeUserId;
+      const usedProjectIds = [...new Set(
+        draftSteps.map(item => item.proc?.sourceProjectId).filter(id => id !== undefined && id !== null).map(String)
+      )];
+      if (usedProjectIds.length) {
+        const previous = safeReadIdList(recentKey);
+        const nextRecent = [...usedProjectIds, ...previous.filter(id => !usedProjectIds.includes(id))].slice(0, 12);
+        localStorage.setItem(recentKey, JSON.stringify(nextRecent));
+        setRecentProjectIds(nextRecent);
+      }
+    }
+
     const nextProcedures = draftSteps.map(item => ({ ...item.proc }));
     const nextAnalysisData = draftSteps.map((item, index) => {
       const base = item.analysis || {};
@@ -304,7 +376,10 @@ export default function WorkStepWorkbench({
                         {project.libraryType === 'MY' ? t('workbench.own') : t('workbench.scrap')}
                       </span>
                       <span style={styles.projectName}>{project.title}</span>
-                      <span style={styles.pinLabel}>{isPinned ? t('workbench.unpin') : t('workbench.open')}</span>
+                      <span style={styles.pinLabel}>
+                        {recentProjectIds.includes(String(project.id)) && <span style={styles.recentBadge}>{t('workbench.recent')}</span>}
+                        {isPinned ? t('workbench.unpin') : t('workbench.open')}
+                      </span>
                     </button>
                   );
                 })}
@@ -313,15 +388,34 @@ export default function WorkStepWorkbench({
 
             <main style={styles.projectBoard}>
               <div style={styles.boardToolbar}>
-                <span>{pinnedProjects.length}/4</span>
-                <button
-                  type="button"
-                  style={styles.bulkAddBtn}
-                  disabled={selectedStepKeys.length === 0}
-                  onClick={addSelected}
-                >
-                  {t('workbench.addSelected')} ({selectedStepKeys.length})
-                </button>
+                <div style={styles.importModeGroup}>
+                  <span style={styles.importModeLabel}>{t('workbench.importMode')}</span>
+                  <button
+                    type="button"
+                    style={importMode === 'full' ? styles.modeBtnActive : styles.modeBtn}
+                    onClick={() => setImportMode('full')}
+                  >
+                    {t('workbench.importFull')}
+                  </button>
+                  <button
+                    type="button"
+                    style={importMode === 'procedure' ? styles.modeBtnActive : styles.modeBtn}
+                    onClick={() => setImportMode('procedure')}
+                  >
+                    {t('workbench.importProcedureOnly')}
+                  </button>
+                </div>
+                <div style={styles.boardActions}>
+                  <span>{pinnedProjects.length}/4</span>
+                  <button
+                    type="button"
+                    style={styles.bulkAddBtn}
+                    disabled={selectedStepKeys.length === 0}
+                    onClick={addSelected}
+                  >
+                    {t('workbench.addSelected')} ({selectedStepKeys.length})
+                  </button>
+                </div>
               </div>
 
               <div style={styles.projectColumns}>
@@ -345,30 +439,33 @@ export default function WorkStepWorkbench({
 
                     <div style={styles.stepList}>
                       {(project.analysis_data || []).map((step, stepIndex) => {
-                        const key = stepKey(project.id, stepIndex);
+                        const key = makeSourceStepKey(project.id, stepIndex);
                         const checked = selectedStepKeys.includes(key);
+                        const alreadyAdded = draftSourceKeys.has(key);
                         return (
                           <article
                             key={key}
                             draggable
                             onDragStart={event => handleLibraryDragStart(event, project.id, stepIndex)}
-                            style={checked ? styles.stepCardSelected : styles.stepCard}
+                            style={alreadyAdded ? styles.stepCardAdded : (checked ? styles.stepCardSelected : styles.stepCard)}
                           >
                             <div style={styles.stepCardTop}>
                               <label style={styles.checkboxLabel}>
                                 <input
                                   type="checkbox"
                                   checked={checked}
+                                  disabled={alreadyAdded}
                                   onChange={() => toggleSelected(project.id, stepIndex)}
                                 />
                                 <span>{t('workbench.stepLabel', { number: stepIndex + 1 })}</span>
                               </label>
                               <button
                                 type="button"
-                                style={styles.addStepBtn}
+                                style={alreadyAdded ? styles.addStepBtnDisabled : styles.addStepBtn}
+                                disabled={alreadyAdded}
                                 onClick={() => addLibraryStep(project, step, stepIndex)}
                               >
-                                + {t('workbench.add')}
+                                {alreadyAdded ? t('workbench.added') : '+ ' + t('workbench.add')}
                               </button>
                             </div>
                             <strong style={styles.stepTitle}>{step?.proc?.stepTitle || '-'}</strong>
@@ -544,7 +641,7 @@ const styles = {
     color: '#fff',
     cursor: 'pointer',
     display: 'grid',
-    gridTemplateColumns: 'auto 1fr',
+    gridTemplateColumns: 'auto minmax(0, 1fr)',
     gap: '4px 8px',
     alignItems: 'center'
   },
@@ -556,17 +653,24 @@ const styles = {
     borderRadius: '3px'
   },
   projectName: { fontSize: '0.78rem', fontWeight: 750, overflow: 'hidden', textOverflow: 'ellipsis' },
-  pinLabel: { gridColumn: '2', fontSize: '0.62rem', color: '#555' },
+  pinLabel: { gridColumn: '2', fontSize: '0.62rem', color: '#555', display: 'flex', alignItems: 'center', gap: '5px' },
+  recentBadge: { color: '#4caf50', fontSize: '0.56rem', fontWeight: 900, border: '1px solid rgba(76,175,80,0.35)', padding: '1px 4px', borderRadius: '3px' },
   emptySmall: { padding: '20px 4px', color: '#666', fontSize: '0.75rem', lineHeight: 1.5 },
   projectBoard: { minWidth: 0, padding: '16px', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   boardToolbar: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: '12px',
     color: '#555',
     fontSize: '0.7rem',
     marginBottom: '10px'
   },
+  importModeGroup: { display: 'flex', alignItems: 'center', gap: '6px', minWidth: 0 },
+  importModeLabel: { color: '#777', fontSize: '0.68rem', marginRight: '2px', whiteSpace: 'nowrap' },
+  modeBtn: { padding: '6px 9px', borderRadius: '6px', border: '1px solid #303030', background: '#151515', color: '#777', fontSize: '0.66rem', cursor: 'pointer', whiteSpace: 'nowrap' },
+  modeBtnActive: { padding: '6px 9px', borderRadius: '6px', border: '1px solid #007bff', background: 'rgba(0,123,255,0.12)', color: '#64adff', fontSize: '0.66rem', cursor: 'pointer', fontWeight: 800, whiteSpace: 'nowrap' },
+  boardActions: { display: 'flex', alignItems: 'center', gap: '9px', whiteSpace: 'nowrap' },
   bulkAddBtn: {
     padding: '8px 12px',
     borderRadius: '6px',
@@ -622,6 +726,14 @@ const styles = {
     background: 'rgba(0,123,255,0.08)',
     cursor: 'grab'
   },
+  stepCardAdded: {
+    padding: '10px',
+    border: '1px solid rgba(76,175,80,0.38)',
+    borderRadius: '8px',
+    background: 'rgba(76,175,80,0.06)',
+    cursor: 'default',
+    opacity: 0.72
+  },
   stepCardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' },
   checkboxLabel: { display: 'flex', gap: '6px', alignItems: 'center', color: '#666', fontSize: '0.62rem', fontWeight: 800 },
   addStepBtn: {
@@ -632,6 +744,15 @@ const styles = {
     padding: '4px 7px',
     fontSize: '0.65rem',
     cursor: 'pointer'
+  },
+  addStepBtnDisabled: {
+    background: 'rgba(76,175,80,0.08)',
+    color: '#4caf50',
+    border: '1px solid rgba(76,175,80,0.25)',
+    borderRadius: '5px',
+    padding: '4px 7px',
+    fontSize: '0.65rem',
+    cursor: 'default'
   },
   stepTitle: { display: 'block', marginTop: '9px', fontSize: '0.82rem', color: '#eee' },
   stepDetail: {
