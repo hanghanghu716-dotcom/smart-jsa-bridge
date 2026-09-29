@@ -110,7 +110,7 @@ const startAnalysis = (jsaType) => {
         isOpen={isWorkbenchOpen}
         onClose={() => setIsWorkbenchOpen(false)}
         procedures={procedures}
-        analysisData={analysisData || []}
+        analysisData={composerTouched ? (composedAnalysisData || []) : (analysisData || [])}
         maxSteps={20}
         onApply={(nextProcedures, nextAnalysisData) => {
           setProcedures(nextProcedures);
@@ -189,10 +189,10 @@ const startAnalysis = (jsaType) => {
             <div style={styles.formHeader}>
               <div>
                 <h2 style={styles.formTitle}>{t('form.title')}</h2>
-                <div style={styles.formSubTitle}>{t('workbenchHint', { defaultValue: '과거 프로젝트의 작업단계를 조합하거나 직접 입력할 수 있습니다.' })}</div>
+                <div style={styles.formSubTitle}>{t('workbench.hint')}</div>
               </div>
               <button type="button" style={styles.workbenchBtn} onClick={() => setIsWorkbenchOpen(true)}>
-                {t('workbenchOpen', { defaultValue: '작업 라이브러리에서 조립' })}
+                {t('workbench.openButton')}
               </button>
             </div>
 
