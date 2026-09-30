@@ -80,5 +80,13 @@
   "workStepTagsPlaceholder": "Tags durch Kommas trennen",
   "cloneWorkStep": "Duplizieren",
   "workStepCloneSuccess": "Arbeitsschritt wurde dupliziert.",
-  "workStepCloneError": "Arbeitsschritt konnte nicht dupliziert werden."
+  "workStepCloneError": "Arbeitsschritt konnte nicht dupliziert werden.",
+  "workStepHistory": "Versionsverlauf",
+  "workStepHistoryTitle": "Versionsverlauf",
+  "workStepHistoryEmpty": "Keine früheren Versionen.",
+  "restoreVersion": "Wiederherstellen",
+  "confirmRestoreWorkStepVersion": "Version v{{version}} wiederherstellen? Der aktuelle Stand bleibt im Versionsverlauf erhalten.",
+  "workStepVersionRestored": "Die ausgewählte Version wurde wiederhergestellt.",
+  "workStepVersionRestoreError": "Die Version konnte nicht wiederhergestellt werden.",
+  "workStepHistoryError": "Der Versionsverlauf konnte nicht geladen werden."
 }

@@ -175,3 +175,38 @@ export const markWorkStepUsed = async (step) => {
     last_used_at: new Date().toISOString(),
   });
 };
+
+
+export const listWorkStepVersions = async (workStepId, limit = 20) => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user || !workStepId) return [];
+
+  const { data, error } = await supabase
+    .from('user_work_step_versions')
+    .select('*')
+    .eq('work_step_id', workStepId)
+    .eq('user_id', user.id)
+    .order('version', { ascending: false })
+    .limit(limit);
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const restoreWorkStepVersion = async (workStepId, versionRow) => {
+  if (!workStepId || !versionRow?.snapshot) return null;
+
+  const snapshot = versionRow.snapshot;
+  return updateWorkStep(workStepId, {
+    title: snapshot.title || 'Untitled step',
+    detail: snapshot.detail || '',
+    analysis_data: snapshot.analysis_data || {},
+    tags: Array.isArray(snapshot.tags) ? snapshot.tags : [],
+    locale: snapshot.locale || 'en-US',
+    source_project_id: snapshot.source_project_id || null,
+    source_step_index: Number.isInteger(snapshot.source_step_index)
+      ? snapshot.source_step_index
+      : null,
+    source_project_title: snapshot.source_project_title || null,
+  });
+};

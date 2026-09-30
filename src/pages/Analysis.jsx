@@ -1,5 +1,7 @@
+import { mergeKnowledgeRisks, matchingProjectSteps } from '../utils/analysisKnowledge';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getDataLocale } from '../locales/config.js';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
@@ -11,10 +13,11 @@ import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
 
+const EMPTY_LIST = [];
+
 export default function Analysis() {
   const navigate = useLanguageNavigate();
   const location = useLocation();
-  const scrollRef = useRef(null);
   const { t, i18n } = useTranslation(['analysis', 'tags']);
   const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
@@ -24,10 +27,10 @@ export default function Analysis() {
   const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
 
   const existingId = state.id ?? recoveredDraft?.source_project_id ?? null;
-  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const procedures = state.procedures || recoveredDraft?.procedures || EMPTY_LIST;
   const formData = state.formData || recoveredDraft?.form_data || {};
   const participants = state.participants || recoveredDraft?.participants || [];
-  const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || EMPTY_LIST;
 
   const jsaType = formData.jsaType || '2-step';
   useEffect(() => {
@@ -73,7 +76,6 @@ export default function Analysis() {
   const [measureSearchTerm, setMeasureSearchTerm] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [checkedRisks, setCheckedRisks] = useState(new Set());
-  const autoFilledRef = useRef(new Set());
 
   const [recModal, setRecModal] = useState({
     isOpen: false,
@@ -294,9 +296,9 @@ export default function Analysis() {
       console.error("Critical Error in handleOpenRecommendation:", err);
     } finally {
       setIsLoading(false);
-      if (scored.length === 0) return alert(t('alert.noData'));
-      setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
     }
+    if (scored.length === 0) return alert(t('alert.noData'));
+    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
 
   const applyRecommendedMeasure = (item) => {
@@ -401,6 +403,8 @@ export default function Analysis() {
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
   const [knowledgeNotice, setKnowledgeNotice] = useState('');
+  const [knowledgeLoading, setKnowledgeLoading] = useState(false);
+  const [knowledgeError, setKnowledgeError] = useState(false);
 
   useEffect(() => {
     const fetchHazards = async () => {
@@ -447,11 +451,15 @@ export default function Analysis() {
   };
 
   const openKnowledgeDock = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert(t('alert.loginRequired'));
-
+    if (knowledgeLoading) return;
     setIsKnowledgeDockOpen(true);
+    setKnowledgeLoading(true);
+    setKnowledgeError(false);
+    setKnowledgeNotice('');
     try {
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      if (authError) throw authError;
+      if (!user) { setIsKnowledgeDockOpen(false); alert(t('alert.loginRequired')); return; }
       const [steps, favoritesRes, authoredRes] = await Promise.all([
         listWorkSteps({ limit: 100 }),
         supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
@@ -462,6 +470,8 @@ export default function Analysis() {
           .order('updated_at', { ascending: false })
       ]);
 
+      if (favoritesRes.error) throw favoritesRes.error;
+      if (authoredRes.error) throw authoredRes.error;
       const projectMap = new Map();
       (authoredRes.data || []).forEach(project => {
         projectMap.set(String(project.id), { id: `mine-${project.id}`, jsa_projects: project, libraryType: 'MY' });
@@ -479,6 +489,11 @@ export default function Analysis() {
       setKnowledgeNotice('');
     } catch (error) {
       console.error('[Analysis Knowledge Dock] load failed:', error);
+      setKnowledgeError(true);
+      setSavedWorkSteps([]);
+      setMyLibraryItems([]);
+    } finally {
+      setKnowledgeLoading(false);
     }
   };
 
@@ -489,56 +504,11 @@ export default function Analysis() {
       return;
     }
 
-    setAnalysisData(prev => {
-      const newData = [...prev];
-      const target = newData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
-      const existingFactors = new Set(
-        (target.risks || [])
-          .map(risk => (risk.factor || '').trim().toLowerCase())
-          .filter(Boolean)
-      );
-      const seenSourceFactors = new Set();
-
-      const mappedRisks = sourceRisks
-        .filter(risk => {
-          const factor = (risk.factor || risk.risk_factor || '').trim().toLowerCase();
-          if (!factor || existingFactors.has(factor) || seenSourceFactors.has(factor)) return false;
-          seenSourceFactors.add(factor);
-          return true;
-        })
-        .map(risk => {
-          const isFull = mode === 'full';
-          const twoStepMeasure = risk.measure || risk.recommend_measure || risk.current_measure || '';
-          const threeStepCurrent = risk.current_measure || risk.measure || '';
-          const threeStepRecommended = risk.recommend_measure || '';
-
-          return {
-            ...risk,
-            id: `knowledge-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-            factor: risk.factor || risk.risk_factor || '',
-            measure: isFull && jsaType === '2-step' ? twoStepMeasure : '',
-            current_measure: isFull && jsaType === '3-step' ? threeStepCurrent : '',
-            recommend_measure: isFull && jsaType === '3-step' ? threeStepRecommended : '',
-            current_measure_db_id: isFull && jsaType === '3-step' ? risk.current_measure_db_id : undefined,
-            category: risk.category || t('base.etc'),
-            source: sourceMeta.type || 'library',
-            sourceLabel: sourceMeta.label || '',
-            sourceWorkStepId: sourceMeta.workStepId || null
-          };
-        });
-
-      newData[activeIdx] = {
-        ...target,
-        risks: [...(target.risks || []), ...mappedRisks]
-      };
-
-      const skipped = Math.max(0, sourceRisks.length - mappedRisks.length);
-      setKnowledgeNotice(t('knowledgeDock.mergeResult', {
-        added: mappedRisks.length,
-        skipped
-      }));
-      return newData;
+    const result = mergeKnowledgeRisks(analysisData[activeIdx], stepData, {
+      mode, jsaType, sourceMeta, category: t('base.etc')
     });
+    setAnalysisData(prev => prev.map((step, index) => index === activeIdx ? result.step : step));
+    setKnowledgeNotice(t('knowledgeDock.mergeResult', { added: result.added, skipped: result.skipped }));
   };
 
   const mergeSingleRisk = (risk, mode = 'full', sourceMeta = {}) => {
@@ -730,7 +700,7 @@ export default function Analysis() {
   };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace analysis-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
@@ -744,22 +714,22 @@ export default function Analysis() {
               <button style={styles.closeBtnSmall} onClick={() => setRecModal({ ...recModal, isOpen: false })}>✕</button>
             </div>
             <div style={styles.libList}>
-              <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '10px' }}>
+              <p style={{ color: "var(--text-muted)", fontSize: '0.85rem', marginBottom: '10px' }}>
                 {recModal.type === 'current' ? t('recModal.descCurrent') : t('recModal.descAdvanced')}
               </p>
               {recModal.data.map((item, idx) => (
                 <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>
                   <div style={{ ...styles.libInfo, flex: 1 }}>
-                    <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>
+                    <div style={{ color: "var(--text-primary)", fontSize: '0.9rem', lineHeight: '1.4' }}>
                       {item.similarity_score && (
-                        <span style={{ color: '#007bff', marginRight: '8px', fontWight: 'bold' }}>
+                        <span style={{ color: "var(--accent)", marginRight: '8px', fontWeight: 'bold' }}>
                           [{parseFloat(item.similarity_score * 100).toFixed(1)}%]
                         </span>
                       )}
                       {item.display}
                     </div>
                   </div>
-                  <span style={{ marginLeft: '10px', color: '#007bff' }}>{t('recModal.selectBtn')}</span>
+                  <span style={{ marginLeft: '10px', color: "var(--accent)" }}>{t('recModal.selectBtn')}</span>
                 </div>
               ))}
             </div>
@@ -793,9 +763,9 @@ export default function Analysis() {
                 measureSearchModal.data.map((item, idx) => (
                   <div key={idx} style={styles.libItem} onClick={() => applySearchedMeasure(item)}>
                     <div style={{ ...styles.libInfo, flex: 1 }}>
-                      <div style={{ color: '#fff', fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
+                      <div style={{ color: "var(--text-primary)", fontSize: '0.9rem', lineHeight: '1.4' }}>{item.display}</div>
                     </div>
-                    <span style={{ marginLeft: '10px', color: '#007bff' }}>{t('recModal.selectBtn')}</span>
+                    <span style={{ marginLeft: '10px', color: "var(--accent)" }}>{t('recModal.selectBtn')}</span>
                   </div>
                 ))
               )}
@@ -808,15 +778,16 @@ export default function Analysis() {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
+        <ThemeSwitcher compact />
       </header>
 
-      <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
+      <div className="analysis-main" style={styles.mainLayout}>
+        <aside className="analysis-ad" style={styles.sideAd}>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
-          <div style={styles.formCard}>
+          <div className="analysis-card" style={styles.formCard}>
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div>
               <div style={styles.stepLineActive} />
@@ -863,8 +834,9 @@ export default function Analysis() {
                 <button
                   type="button"
                   key={idx}
+                  aria-current={idx === activeIdx ? 'step' : undefined}
                   style={idx === activeIdx ? styles.quickStepBtnActive : styles.quickStepBtn}
-                  onClick={() => setActiveIdx(idx)}
+                  onClick={() => { setActiveIdx(idx); setKnowledgeNotice(''); }}
                   title={step.proc?.stepTitle || ''}
                 >
                   <span style={styles.quickStepNo}>{idx + 1}</span>
@@ -879,7 +851,7 @@ export default function Analysis() {
                 className={isKnowledgeDockOpen ? 'analysis-grid has-knowledge-dock' : 'analysis-grid'}
                 style={{ ...styles.analysisGrid, ...(isKnowledgeDockOpen ? styles.analysisGridWithDock : {}) }}
               >
-                <section style={styles.leftPanel}>
+                <section className="analysis-candidates" style={styles.leftPanel}>
                   <div style={styles.filterArea}>
                     <input
                       type="text"
@@ -892,7 +864,7 @@ export default function Analysis() {
                       <option value="">{t('filter.auto')}</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
-                    <button style={styles.libLoadBtn} onClick={openKnowledgeDock}>
+                    <button type="button" style={styles.libLoadBtn} aria-expanded={isKnowledgeDockOpen} aria-controls="analysis-knowledge-dock" disabled={knowledgeLoading} onClick={openKnowledgeDock}>
                       {isKnowledgeDockOpen ? t('knowledgeDock.opened') : t('knowledgeDock.openBtn')}
                     </button>
                     <button
@@ -909,20 +881,20 @@ export default function Analysis() {
                       {t('base.label')}
                     </span>
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <button style={{ backgroundColor: '#222', color: '#fff', border: '1px solid #444', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
-                      <button style={{ backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
+                      <button style={{ backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
+                      <button style={{ backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'auto', maxHeight: '400px', paddingRight: '5px' }}>
                     {recommendations.length === 0 ? (
-                      <p style={{ color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>{t('base.emptyRec')}</p>
+                      <p style={{ color: "var(--text-muted)", textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>{t('base.emptyRec')}</p>
                     ) : (
                       recommendations.map((rec, i) => (
-                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#161616', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
+                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: "var(--card-bg)", border: checkedRisks.has(rec) ? "1px solid var(--accent)" : "1px solid var(--border-default)", borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
                           <input type="checkbox" checked={checkedRisks.has(rec)} onChange={() => toggleCheck(rec)} />
                           <div style={{ flex: 1 }}>
-                            <div style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 'bold' }}>{rec.risk_factor || rec.factor}</div>
+                            <div style={{ color: "var(--text-primary)", fontSize: '0.85rem', fontWeight: 'bold' }}>{rec.risk_factor || rec.factor}</div>
                           </div>
                           <div style={styles.recBadge}>{rec.category || t('base.etc')}</div>
                         </label>
@@ -931,7 +903,7 @@ export default function Analysis() {
                   </div>
                 </section>
 
-                <section style={styles.rightPanel}>
+                <section className="analysis-selected" style={styles.rightPanel}>
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
@@ -939,7 +911,7 @@ export default function Analysis() {
                       <div style={styles.riskMultiply}>×</div>
                       <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
-                      <div style={{ ...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? '#ff4d4d' : '#007bff' }}>{currentStep.riskLevel}</div>
+                      <div style={{ ...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? "var(--danger-action)" : "var(--action-bg)" }}>{currentStep.riskLevel}</div>
                     </div>
                   </div>
 
@@ -1040,13 +1012,13 @@ export default function Analysis() {
                 </section>
 
                 {isKnowledgeDockOpen && (
-                  <aside className="knowledge-dock" style={styles.knowledgeDock}>
+                  <aside id="analysis-knowledge-dock" className="knowledge-dock" aria-label={t('knowledgeDock.title')} aria-busy={knowledgeLoading} style={styles.knowledgeDock}>
                     <div style={styles.knowledgeDockHeader}>
                       <div>
                         <div style={styles.knowledgeDockEyebrow}>{t('knowledgeDock.eyebrow')}</div>
                         <strong style={styles.knowledgeDockTitle}>{t('knowledgeDock.title')}</strong>
                       </div>
-                      <button type="button" style={styles.knowledgeCloseBtn} onClick={() => setIsKnowledgeDockOpen(false)}>×</button>
+                      <button type="button" aria-label={t('knowledgeDock.close')} style={styles.knowledgeCloseBtn} onClick={() => setIsKnowledgeDockOpen(false)}>×</button>
                     </div>
 
                     <div style={styles.knowledgeTabs}>
@@ -1067,20 +1039,24 @@ export default function Analysis() {
                     </div>
 
                     <input
-                      style={styles.knowledgeSearchInput}
+                      aria-label={t('knowledgeDock.search')} style={styles.knowledgeSearchInput}
                       value={knowledgeSearch}
                       onChange={(e) => setKnowledgeSearch(e.target.value)}
                       placeholder={t('knowledgeDock.search')}
                     />
 
                     {knowledgeNotice && (
-                      <div style={styles.knowledgeNotice}>{knowledgeNotice}</div>
+                      <div role="status" style={styles.knowledgeNotice}>{knowledgeNotice}</div>
                     )}
 
                     <div style={styles.knowledgeScroll}>
-                      {knowledgeTab === 'steps' ? (
+                      {knowledgeLoading ? <div role="status" style={styles.knowledgeEmpty}>{t('knowledgeDock.loading')}</div>
+                        : knowledgeError ? <div role="alert" style={styles.knowledgeEmpty}>
+                          <p>{t('knowledgeDock.loadError')}</p>
+                          <button type="button" style={styles.knowledgeSecondaryBtn} onClick={openKnowledgeDock}>{t('knowledgeDock.retry')}</button>
+                        </div> : knowledgeTab === 'steps' ? (
                         filteredSavedWorkSteps.length === 0 ? (
-                          <div style={styles.knowledgeEmpty}>{t('knowledgeDock.emptySteps')}</div>
+                          <div style={styles.knowledgeEmpty}>{t(knowledgeSearch.trim() ? 'knowledgeDock.noMatches' : 'knowledgeDock.emptySteps')}</div>
                         ) : filteredSavedWorkSteps.map(step => {
                           const stepData = step.analysis_data || {};
                           const risks = Array.isArray(stepData.risks) ? stepData.risks : [];
@@ -1102,7 +1078,7 @@ export default function Analysis() {
                                     <div style={styles.knowledgeRiskCopy}>
                                       <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
                                       <span style={styles.knowledgeControlText}>
-                                        {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
+                                        {risk.measure || [risk.current_measure, risk.recommend_measure].filter(Boolean).join('\n') || t('knowledgeDock.noControl')}
                                       </span>
                                     </div>
                                     <div style={styles.knowledgeRiskActions}>
@@ -1112,7 +1088,8 @@ export default function Analysis() {
                                         onClick={() => mergeSingleRisk(risk, 'hazards', {
                                           type: 'work-step',
                                           label: step.title,
-                                          workStepId: step.id
+                                          workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
                                         })}
                                       >
                                         {t('knowledgeDock.mergeOneHazard')}
@@ -1123,7 +1100,8 @@ export default function Analysis() {
                                         onClick={() => mergeSingleRisk(risk, 'full', {
                                           type: 'work-step',
                                           label: step.title,
-                                          workStepId: step.id
+                                          workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
                                         })}
                                       >
                                         {t('knowledgeDock.mergeOneFull')}
@@ -1139,7 +1117,8 @@ export default function Analysis() {
                                   onClick={() => mergeStepData(stepData, 'hazards', {
                                     type: 'work-step',
                                     label: step.title,
-                                    workStepId: step.id
+                                    workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
                                   })}
                                 >
                                   {t('knowledgeDock.mergeHazards')}
@@ -1150,7 +1129,8 @@ export default function Analysis() {
                                   onClick={() => mergeStepData(stepData, 'full', {
                                     type: 'work-step',
                                     label: step.title,
-                                    workStepId: step.id
+                                    workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
                                   })}
                                 >
                                   {t('knowledgeDock.mergeFull')}
@@ -1161,7 +1141,7 @@ export default function Analysis() {
                         })
                       ) : !selectedLibProject ? (
                         filteredLibraryProjects.length === 0 ? (
-                          <div style={styles.knowledgeEmpty}>{t('knowledgeDock.emptyProjects')}</div>
+                          <div style={styles.knowledgeEmpty}>{t(knowledgeSearch.trim() ? 'knowledgeDock.noMatches' : 'knowledgeDock.emptyProjects')}</div>
                         ) : filteredLibraryProjects.map(item => {
                           const project = item.jsa_projects;
                           return (
@@ -1188,23 +1168,7 @@ export default function Analysis() {
                             ← {t('knowledgeDock.backProjects')}
                           </button>
                           <div style={styles.knowledgeSelectedProject}>{selectedLibProject.title}</div>
-                          {(selectedLibProject.analysis_data || [])
-                            .filter(step => {
-                              const q = knowledgeSearch.trim().toLowerCase();
-                              if (!q) return true;
-                              return [
-                                step?.proc?.stepTitle,
-                                step?.proc?.stepDetail,
-                                ...(step?.risks || []).flatMap(risk => [
-                                  risk?.factor,
-                                  risk?.risk_factor,
-                                  risk?.measure,
-                                  risk?.current_measure,
-                                  risk?.recommend_measure
-                                ])
-                              ].filter(Boolean).join(' ').toLowerCase().includes(q);
-                            })
-                            .map((step, idx) => (
+                          {matchingProjectSteps(selectedLibProject, knowledgeSearch).map(({ step, index: idx }) => (
                               <article key={idx} style={styles.knowledgeCard}>
                                 <div style={styles.knowledgeCardHeader}>
                                   <div style={{ minWidth: 0 }}>
@@ -1232,7 +1196,8 @@ export default function Analysis() {
                                           style={styles.knowledgeMiniBtn}
                                           onClick={() => mergeSingleRisk(risk, 'hazards', {
                                             type: 'project',
-                                            label: selectedLibProject.title
+                                            label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
                                           })}
                                         >
                                           {t('knowledgeDock.mergeOneHazard')}
@@ -1242,7 +1207,8 @@ export default function Analysis() {
                                           style={styles.knowledgeMiniBtnActive}
                                           onClick={() => mergeSingleRisk(risk, 'full', {
                                             type: 'project',
-                                            label: selectedLibProject.title
+                                            label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
                                           })}
                                         >
                                           {t('knowledgeDock.mergeOneFull')}
@@ -1257,7 +1223,8 @@ export default function Analysis() {
                                     style={styles.knowledgeSecondaryBtn}
                                     onClick={() => mergeStepData(step, 'hazards', {
                                       type: 'project',
-                                      label: selectedLibProject.title
+                                      label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
                                     })}
                                   >
                                     {t('knowledgeDock.mergeHazards')}
@@ -1267,7 +1234,8 @@ export default function Analysis() {
                                     style={styles.knowledgePrimaryBtn}
                                     onClick={() => mergeStepData(step, 'full', {
                                       type: 'project',
-                                      label: selectedLibProject.title
+                                      label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
                                     })}
                                   >
                                     {t('knowledgeDock.mergeFull')}
@@ -1288,11 +1256,11 @@ export default function Analysis() {
               <div style={styles.dialogOverlay} onClick={() => setIsFastTrackModalOpen(false)}>
                 <div style={{ ...styles.libModalContent, width: '750px', maxWidth: '95%' }} onClick={e => e.stopPropagation()}>
                   <div style={styles.modalHeader}>
-                    <h3 style={{ margin: 0, color: '#007bff' }}>⚡ {t('fastTrackModal.title', '초고속 텍스트 복사 툴킷')}</h3>
+                    <h3 style={{ margin: 0, color: "var(--accent)" }}>⚡ {t('fastTrackModal.title', '초고속 텍스트 복사 툴킷')}</h3>
                     <button style={styles.closeBtnSmall} onClick={() => setIsFastTrackModalOpen(false)}>✕</button>
                   </div>
                   
-                  <p style={{ color: '#aaa', fontSize: '0.85rem', margin: '0 0 10px 0' }}>
+                  <p style={{ color: "var(--text-secondary)", fontSize: '0.85rem', margin: '0 0 10px 0' }}>
                     {t('fastTrackModal.desc', '작성된 위험성평가 본문 데이터입니다. 우측 상단의 복사 버튼을 눌러 소중한 서식에 자유롭게 붙여넣으십시오.')}
                   </p>
 
@@ -1300,22 +1268,22 @@ export default function Analysis() {
 
 
                   {analysisData.map((step, sIdx) => (
-                    <div key={sIdx} style={{ backgroundColor: '#111', border: '1px solid #333', borderRadius: '10px', padding: '1.2rem', marginBottom: '1.5rem' }}>
-                      <div style={{ fontSize: '0.9rem', fontWeight: 'bold', color: '#fff', marginBottom: '0.8rem', borderBottom: '1px solid #222', paddingBottom: '0.5rem' }}>
+                    <div key={sIdx} style={{ backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '1.2rem', marginBottom: '1.5rem' }}>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 'bold', color: "var(--text-primary)", marginBottom: '0.8rem', borderBottom: "1px solid var(--border-default)", paddingBottom: '0.5rem' }}>
                         STEP {String(sIdx + 1).padStart(2, '0')}: {step.proc?.stepTitle}
                       </div>
                       
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         {step.risks?.map((r, rIdx) => (
                           <div key={r.id || rIdx} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', position: 'relative' }}>
-                            <div style={{ backgroundColor: '#1d1d1d', border: '1px solid #2a2a2a', borderRadius: '6px', padding: '10px', position: 'relative' }}>
-                              <span style={{ fontSize: '0.65rem', color: '#ff4d4d', display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>{t('fastTrackModal.hazardFactor')}</span>
-                              <div style={{ color: '#eee', fontSize: '0.85rem', paddingRight: '45px', whiteSpace: 'pre-wrap' }}>{r.factor}</div>
+                            <div style={{ backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', padding: '10px', position: 'relative' }}>
+                              <span style={{ fontSize: '0.65rem', color: "var(--danger)", display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>{t('fastTrackModal.hazardFactor')}</span>
+                              <div style={{ color: "var(--text-primary)", fontSize: '0.85rem', paddingRight: '45px', whiteSpace: 'pre-wrap' }}>{r.factor}</div>
                               <button style={styles.clipboardCopyBtn} onClick={() => { navigator.clipboard.writeText(r.factor); alert(t('fastTrackModal.copied')); }} title="Copy Hazard">📋</button>
                             </div>
-                            <div style={{ backgroundColor: '#1d1d1d', border: '1px solid #2a2a2a', borderRadius: '6px', padding: '10px', position: 'relative' }}>
-                              <span style={{ fontSize: '0.65rem', color: '#007bff', display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>{t('fastTrackModal.safetyMeasure')}</span>
-                              <div style={{ color: '#eee', fontSize: '0.85rem', paddingRight: '45px', whiteSpace: 'pre-wrap' }}>{r.measure || r.current_measure}</div>
+                            <div style={{ backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', padding: '10px', position: 'relative' }}>
+                              <span style={{ fontSize: '0.65rem', color: "var(--accent)", display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>{t('fastTrackModal.safetyMeasure')}</span>
+                              <div style={{ color: "var(--text-primary)", fontSize: '0.85rem', paddingRight: '45px', whiteSpace: 'pre-wrap' }}>{r.measure || r.current_measure}</div>
                               <button style={styles.clipboardCopyBtn} onClick={() => { navigator.clipboard.writeText(r.measure || r.current_measure); alert(t('fastTrackModal.measureCopied')); }} title="Copy Measure">📋</button>
                             </div>
                           </div>
@@ -1388,136 +1356,140 @@ export default function Analysis() {
 }
 
 const styles = {
-  searchInput: { flex: 1.2, minWidth: 0, backgroundColor: '#1a1a1a', border: '1px solid #333', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', fontSize: '0.85rem', outline: 'none' }, wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#000' },
+  searchInput: { flex: 1.2, minWidth: 0, backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", color: "var(--text-primary)", padding: '0.6rem 1rem', borderRadius: '6px', fontSize: '0.85rem', outline: 'none' }, wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: "var(--app-bg)" },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { padding: '1.2rem 5rem', zIndex: 10, position: 'relative' },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
+  header: { padding: '1.2rem 5rem', zIndex: 10, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { flex: 1, display: 'flex', padding: '0 5rem 80px', zIndex: 10, overflow: 'hidden', gap: '3rem' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', height: '80vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', flexDirection: 'column', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', overflow: 'hidden' },
+  centerContent: { minWidth: 0, flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  formCard: { width: '100%', maxWidth: '1440px', height: '80vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', flexDirection: 'column', boxShadow: "var(--shadow-panel)", overflow: 'hidden' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.6rem' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
-  stepBadgeActive: { width: '20px', height: '20px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff' },
-  stepBadgeDone: { width: '20px', height: '20px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
-  stepTextActive: { fontSize: '0.8rem', color: '#fff', fontWeight: '700' },
-  stepTextDone: { fontSize: '0.8rem', color: '#4caf50', fontWeight: '700' },
-  stepLineActive: { width: '20px', height: '1.5px', backgroundColor: '#4caf50' },
-  stepLine: { width: '20px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 0.3 },
-  stepBadge: { width: '20px', height: '20px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: '0.75rem' },
-  stepText: { fontSize: '0.8rem', color: '#aaa' },
-  formHeader: { borderLeft: '5px solid #007bff', paddingLeft: '1rem', marginBottom: '0.8rem' },
+  stepBadgeActive: { width: '20px', height: '20px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--on-accent)" },
+  stepBadgeDone: { width: '20px', height: '20px', backgroundColor: "var(--success-action)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.7rem' },
+  stepTextActive: { fontSize: '0.8rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepTextDone: { fontSize: '0.8rem', color: "var(--success)", fontWeight: '700' },
+  stepLineActive: { width: '20px', height: '1.5px', backgroundColor: "var(--success-action)" },
+  stepLine: { width: '20px', height: '1px', backgroundColor: "var(--border-default)" },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 1 },
+  stepBadge: { width: '20px', height: '20px', backgroundColor: "var(--surface-hover)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--text-secondary)", fontSize: '0.75rem' },
+  stepText: { fontSize: '0.8rem', color: "var(--text-secondary)" },
+  formHeader: { borderLeft: "5px solid var(--accent)", paddingLeft: '1rem', marginBottom: '0.8rem' },
   quickStepNav: { display: 'flex', gap: '6px', overflowX: 'auto', padding: '0 0 0.8rem', marginBottom: '0.3rem', flexShrink: 0 },
-  quickStepBtn: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: '1px solid #2b2b2b', borderRadius: '6px', background: '#111', color: '#666', cursor: 'pointer', fontSize: '0.65rem' },
-  quickStepBtnActive: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: '1px solid #007bff', borderRadius: '6px', background: 'rgba(0,123,255,0.1)', color: '#fff', cursor: 'pointer', fontSize: '0.65rem' },
-  quickStepNo: { width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: '#242424', color: '#aaa', flexShrink: 0, fontWeight: 900 },
+  quickStepBtn: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: "1px solid var(--border-default)", borderRadius: '6px', background: "var(--card-bg)", color: "var(--text-muted)", cursor: 'pointer', fontSize: '0.65rem' },
+  quickStepBtnActive: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: "1px solid var(--accent)", borderRadius: '6px', background: 'var(--accent-soft)', color: "var(--text-primary)", cursor: 'pointer', fontSize: '0.65rem' },
+  quickStepNo: { width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: "var(--card-bg)", color: "var(--text-secondary)", flexShrink: 0, fontWeight: 900 },
   quickStepTitle: { flex: 1, minWidth: 0, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', textAlign: 'left' },
-  quickStepRiskCount: { flexShrink: 0, minWidth: '18px', padding: '1px 4px', borderRadius: '8px', background: '#242424', color: '#888', fontSize: '0.55rem', textAlign: 'center' },
+  quickStepRiskCount: { flexShrink: 0, minWidth: '18px', padding: '1px 4px', borderRadius: '8px', background: "var(--card-bg)", color: "var(--text-muted)", fontSize: '0.55rem', textAlign: 'center' },
   headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
-  formTitle: { fontSize: '1.4rem', color: '#fff', fontWeight: '800', margin: 0 },
-  stepCountBadge: { backgroundColor: '#333', color: '#aaa', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
-  stepContext: { backgroundColor: 'rgba(255,255,255,0.03)', padding: '0.8rem 1rem', borderRadius: '6px' },
+  formTitle: { fontSize: '1.4rem', color: "var(--text-primary)", fontWeight: '800', margin: 0 },
+  stepCountBadge: { backgroundColor: "var(--surface-hover)", color: "var(--text-secondary)", padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
+  stepContext: { backgroundColor: "var(--card-bg)", padding: '0.8rem 1rem', borderRadius: '6px' },
   stepOriginRow: { display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '5px' },
-  stepOriginBadge: { fontSize: '0.55rem', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', background: 'rgba(0,123,255,0.08)', padding: '2px 5px', borderRadius: '4px' },
-  stepImportFullBadge: { fontSize: '0.55rem', color: '#64adff', border: '1px solid rgba(0,123,255,0.45)', background: 'rgba(0,123,255,0.12)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
-  stepImportOnlyBadge: { fontSize: '0.55rem', color: '#e9bd45', border: '1px solid rgba(233,189,69,0.4)', background: 'rgba(233,189,69,0.08)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
+  stepOriginBadge: { fontSize: '0.55rem', color: "var(--accent)", border: '1px solid var(--accent)', background: 'var(--accent-soft)', padding: '2px 5px', borderRadius: '4px' },
+  stepImportFullBadge: { fontSize: '0.55rem', color: "var(--accent)", border: '1px solid var(--accent)', background: 'var(--accent-soft)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
+  stepImportOnlyBadge: { fontSize: '0.55rem', color: "var(--warning)", border: '1px solid rgba(233,189,69,0.4)', background: 'rgba(233,189,69,0.08)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
   stepTitleRow: { display: 'flex', alignItems: 'center', gap: '0.8rem' },
-  stepLabel: { fontSize: '0.75rem', color: '#007bff', fontWeight: 'bold' },
-  stepValue: { fontSize: '1rem', color: '#fff' },
-  stepDetailText: { color: '#888', fontSize: '0.85rem', marginTop: '0.3rem' },
-  scrollArea: { flex: 1, overflow: 'hidden' },
+  stepLabel: { fontSize: '0.75rem', color: "var(--accent)", fontWeight: 'bold' },
+  stepValue: { fontSize: '1rem', color: "var(--text-primary)" },
+  stepDetailText: { color: "var(--text-muted)", fontSize: '0.85rem', marginTop: '0.3rem' },
+  scrollArea: { minHeight: 0, flex: 1, overflow: 'hidden' },
   analysisGrid: { display: 'grid', gridTemplateColumns: '1.2fr 1.6fr', gap: '2rem', height: '100%', overflow: 'hidden' },
   analysisGridWithDock: { gridTemplateColumns: 'minmax(250px, 0.9fr) minmax(430px, 1.45fr) minmax(285px, 0.8fr)', gap: '1rem' },
-  leftPanel: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
-  rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
-  filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
-  highRiskSelect: { flex: 1, minWidth: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: '#1a1a1a', border: '1px solid #ff4d4d', color: '#ff4d4d', padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }, libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 }, recBadge: { fontSize: '0.6rem', color: '#4caf50', border: '1px solid #4caf50', padding: '1px 4px', borderRadius: '3px' },
+  leftPanel: { minHeight: 280, minWidth: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  rightPanel: { minHeight: 300, minWidth: 0, display: 'flex', flexDirection: 'column', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
+  filterArea: { display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', alignItems: 'center', gap: '.6rem', marginBottom: '1.2rem' },
+  highRiskSelect: { flex: 1, minWidth: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: "var(--input-bg)", border: "1px solid var(--danger)", color: "var(--danger)", padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }, libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 }, recBadge: { fontSize: '0.6rem', color: "var(--success)", border: "1px solid var(--success)", padding: '1px 4px', borderRadius: '3px' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
   riskScoreContainer: { display: 'flex', gap: '1rem', alignItems: 'center' },
   riskInputSet: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
-  miniLabel: { fontSize: '0.6rem', color: '#666' },
-  miniSelect: { backgroundColor: '#111', color: '#fff', border: '1px solid #444', padding: '2px 5px', borderRadius: '4px' },
-  riskResultSelect: { width: '40px', height: '30px', color: '#fff', border: 'none', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '30px' },
-  riskMultiply: { color: '#444' },
-  riskEqual: { color: '#444' },
+  miniLabel: { fontSize: '0.6rem', color: "var(--text-muted)" },
+  miniSelect: { backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '2px 5px', borderRadius: '4px' },
+  riskResultSelect: { width: '40px', height: '30px', color: "var(--on-accent)", border: 'none', borderRadius: '4px', fontSize: '0.9rem', fontWeight: 'bold', textAlign: 'center', lineHeight: '30px' },
+  riskMultiply: { color: "var(--text-muted)" },
+  riskEqual: { color: "var(--text-muted)" },
   selectedListScroll: { flex: 1, overflowY: 'auto' },
-  table: { width: '100%', borderCollapse: 'collapse', color: '#fff' },
-  th: { padding: '8px', borderBottom: '1px solid #333', fontSize: '0.75rem', color: '#888', textAlign: 'left' },
-  td: { padding: '8px', borderBottom: '1px solid #1a1a1a' },
-  inlineInput: { width: '100%', backgroundColor: '#111', color: '#ddd', border: '1px solid #222', padding: '0.5rem', borderRadius: '4px', resize: 'none', fontSize: '0.8rem' },
-  controlActionRow: { display: 'flex', justifyContent: 'flex-end', gap: '5px', marginTop: '5px' },
-  controlSearchBtn: { backgroundColor: '#191919', color: '#ffb04d', border: '1px solid rgba(255,152,0,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
-  controlRecommendBtn: { backgroundColor: '#191919', color: '#64adff', border: '1px solid rgba(0,123,255,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
-  controlAdvancedBtn: { backgroundColor: '#191919', color: '#65c96b', border: '1px solid rgba(76,175,80,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
-  smallDeleteBtn: { backgroundColor: 'transparent', color: '#444', border: '1px solid #333', cursor: 'pointer', borderRadius: '4px' },
+  table: { width: '100%', borderCollapse: 'collapse', color: "var(--text-primary)" },
+  th: { padding: '8px', borderBottom: "1px solid var(--border-default)", fontSize: '0.75rem', color: "var(--text-muted)", textAlign: 'left' },
+  td: { padding: '8px', borderBottom: "1px solid var(--border-default)" },
+  inlineInput: { width: '100%', backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '0.5rem', borderRadius: '4px', resize: 'none', fontSize: '0.8rem' },
+  controlActionRow: { flexWrap: 'wrap', display: 'flex', justifyContent: 'flex-end', gap: '5px', marginTop: '5px' },
+  controlSearchBtn: { backgroundColor: "var(--card-bg)", color: 'var(--warning)', border: '1px solid var(--warning)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.72rem', cursor: 'pointer' },
+  controlRecommendBtn: { backgroundColor: "var(--card-bg)", color: "var(--accent)", border: '1px solid var(--accent)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
+  controlAdvancedBtn: { backgroundColor: "var(--card-bg)", color: "var(--success)", border: '1px solid rgba(76,175,80,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
+  smallDeleteBtn: { backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", cursor: 'pointer', borderRadius: '4px' },
   riskSourceRow: { display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px', minWidth: 0 },
-  riskSourceBadge: { flexShrink: 0, fontSize: '0.52rem', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', background: 'rgba(0,123,255,0.08)', borderRadius: '3px', padding: '1px 4px', fontWeight: 800 },
-  riskSourceText: { color: '#555', fontSize: '0.55rem', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' },
-  knowledgeDock: { display: 'flex', flexDirection: 'column', minWidth: 0, background: '#0d0d0d', border: '1px solid #292929', borderRadius: '10px', padding: '10px', overflow: 'hidden' },
-  knowledgeDockHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', paddingBottom: '8px', borderBottom: '1px solid #242424' },
-  knowledgeDockEyebrow: { color: '#007bff', fontSize: '0.52rem', fontWeight: 900, letterSpacing: '0.8px' },
-  knowledgeDockTitle: { display: 'block', marginTop: '2px', color: '#eee', fontSize: '0.8rem' },
-  knowledgeCloseBtn: { width: '28px', height: '28px', background: '#151515', border: '1px solid #303030', borderRadius: '5px', color: '#777', cursor: 'pointer' },
+  riskSourceBadge: { flexShrink: 0, fontSize: '0.7rem', color: "var(--accent)", border: '1px solid var(--accent)', background: 'var(--accent-soft)', borderRadius: '3px', padding: '1px 4px', fontWeight: 800 },
+  riskSourceText: { color: "var(--text-muted)", fontSize: '0.7rem', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' },
+  knowledgeDock: { display: 'flex', flexDirection: 'column', minWidth: 0, background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '10px', overflow: 'hidden' },
+  knowledgeDockHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', paddingBottom: '8px', borderBottom: "1px solid var(--border-default)" },
+  knowledgeDockEyebrow: { color: "var(--accent)", fontSize: '0.78rem', fontWeight: 900, letterSpacing: '0.8px' },
+  knowledgeDockTitle: { display: 'block', marginTop: '2px', color: "var(--text-primary)", fontSize: '0.8rem' },
+  knowledgeCloseBtn: { width: '28px', height: '28px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '5px', color: "var(--text-muted)", cursor: 'pointer' },
   knowledgeTabs: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginTop: '8px' },
-  knowledgeTab: { padding: '6px', background: '#141414', color: '#666', border: '1px solid #292929', borderRadius: '5px', cursor: 'pointer', fontSize: '0.6rem' },
-  knowledgeTabActive: { padding: '6px', background: 'rgba(0,123,255,0.1)', color: '#64adff', border: '1px solid #007bff', borderRadius: '5px', cursor: 'pointer', fontSize: '0.6rem', fontWeight: 800 },
-  knowledgeNotice: { marginTop: '7px', padding: '6px 8px', borderRadius: '6px', background: 'rgba(0,123,255,0.08)', border: '1px solid rgba(0,123,255,0.22)', color: '#78b7ff', fontSize: '0.58rem', lineHeight: 1.35 },
-  knowledgeSearchInput: { width: '100%', boxSizing: 'border-box', marginTop: '8px', padding: '7px 8px', background: '#151515', border: '1px solid #2d2d2d', borderRadius: '5px', color: '#fff', fontSize: '0.65rem', outline: 'none' },
+  knowledgeTab: { padding: '6px', background: "var(--card-bg)", color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem' },
+  knowledgeTabActive: { padding: '6px', background: 'var(--accent-soft)', color: "var(--accent)", border: "1px solid var(--accent)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 800 },
+  knowledgeNotice: { marginTop: '7px', padding: '6px 8px', borderRadius: '6px', background: 'var(--accent-soft)', border: '1px solid var(--accent)', color: 'var(--accent)', fontSize: '0.78rem', lineHeight: 1.35 },
+  knowledgeSearchInput: { width: '100%', boxSizing: 'border-box', marginTop: '8px', padding: '7px 8px', background: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '5px', color: "var(--text-primary)", fontSize: '0.78rem', outline: 'none' },
   knowledgeScroll: { flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '7px', marginTop: '8px' },
-  knowledgeEmpty: { margin: 'auto', padding: '18px 8px', color: '#555', fontSize: '0.68rem', textAlign: 'center', lineHeight: 1.45 },
-  knowledgeCard: { padding: '9px', background: '#151515', border: '1px solid #292929', borderRadius: '7px' },
+  knowledgeEmpty: { margin: 'auto', padding: '18px 8px', color: "var(--text-muted)", fontSize: '0.78rem', textAlign: 'center', lineHeight: 1.45 },
+  knowledgeCard: { padding: '9px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '7px' },
   knowledgeCardHeader: { display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'flex-start' },
-  knowledgeCardTitle: { display: 'block', color: '#eee', fontSize: '0.7rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
-  knowledgeMeta: { marginTop: '3px', color: '#555', fontSize: '0.55rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
-  knowledgeFavorite: { color: '#e9bd45', flexShrink: 0 },
-  knowledgeDetail: { color: '#777', fontSize: '0.6rem', lineHeight: 1.35, margin: '6px 0', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' },
+  knowledgeCardTitle: { display: 'block', color: "var(--text-primary)", fontSize: '0.78rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  knowledgeMeta: { marginTop: '3px', color: "var(--text-muted)", fontSize: '0.78rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  knowledgeFavorite: { color: "var(--warning)", flexShrink: 0 },
+  knowledgeDetail: { color: "var(--text-muted)", fontSize: '0.78rem', lineHeight: 1.35, margin: '6px 0', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' },
   knowledgeRiskPreview: { display: 'flex', flexDirection: 'column', gap: '4px' },
-  knowledgeRiskLine: { display: 'grid', gridTemplateColumns: '0.8fr 1fr', gap: '5px', padding: '5px', background: '#101010', borderRadius: '4px' },
-  knowledgeHazardText: { color: '#ff8b8b', fontSize: '0.56rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
-  knowledgeControlText: { color: '#7fb5ff', fontSize: '0.56rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
+  knowledgeRiskLine: { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: '5px', padding: '5px', background: "var(--card-bg)", borderRadius: '4px' },
+  knowledgeHazardText: { color: 'var(--danger)', fontSize: '0.8rem', overflowWrap: 'anywhere' },
+  knowledgeControlText: { color: 'var(--text-secondary)', fontSize: '0.78rem', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' },
+  knowledgeRiskCopy: { display: 'flex', flexDirection: 'column', gap: '4px', minWidth: 0 },
+  knowledgeRiskActions: { display: 'flex', justifyContent: 'flex-end', gap: '6px' },
+  knowledgeMiniBtn: { padding: '5px 8px', color: 'var(--text-secondary)', background: 'var(--input-bg)', border: '1px solid var(--border-default)', borderRadius: '4px', cursor: 'pointer', fontSize: '.75rem' },
+  knowledgeMiniBtnActive: { padding: '5px 8px', color: 'var(--accent)', background: 'var(--accent-soft)', border: '1px solid var(--accent)', borderRadius: '4px', cursor: 'pointer', fontSize: '.75rem' },
   knowledgeActions: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginTop: '7px' },
-  knowledgeSecondaryBtn: { padding: '6px', background: '#171717', color: '#aaa', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer', fontSize: '0.58rem' },
-  knowledgePrimaryBtn: { padding: '6px', background: '#007bff', color: '#fff', border: '1px solid #007bff', borderRadius: '5px', cursor: 'pointer', fontSize: '0.58rem', fontWeight: 800 },
-  knowledgeProjectBtn: { width: '100%', padding: '9px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '3px', background: '#151515', border: '1px solid #292929', borderRadius: '7px', cursor: 'pointer', textAlign: 'left' },
-  knowledgeProjectTitle: { color: '#eee', fontSize: '0.7rem', fontWeight: 800, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' },
-  knowledgeProjectMeta: { color: '#555', fontSize: '0.56rem' },
-  knowledgeBackBtn: { background: 'transparent', color: '#64adff', border: 0, padding: '4px 0', cursor: 'pointer', fontSize: '0.62rem', textAlign: 'left' },
-  knowledgeSelectedProject: { color: '#aaa', fontSize: '0.65rem', fontWeight: 800, paddingBottom: '4px', borderBottom: '1px solid #252525' },
+  knowledgeSecondaryBtn: { padding: '6px', background: "var(--card-bg)", color: "var(--text-secondary)", border: "1px solid var(--border-default)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem' },
+  knowledgePrimaryBtn: { padding: '6px', background: "var(--action-bg)", color: "var(--on-accent)", border: "1px solid var(--accent)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 800 },
+  knowledgeProjectBtn: { width: '100%', padding: '9px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '3px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '7px', cursor: 'pointer', textAlign: 'left' },
+  knowledgeProjectTitle: { color: "var(--text-primary)", fontSize: '0.78rem', fontWeight: 800, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' },
+  knowledgeProjectMeta: { color: "var(--text-muted)", fontSize: '0.78rem' },
+  knowledgeBackBtn: { background: 'transparent', color: "var(--accent)", border: 0, padding: '4px 0', cursor: 'pointer', fontSize: '0.78rem', textAlign: 'left' },
+  knowledgeSelectedProject: { color: "var(--text-secondary)", fontSize: '0.78rem', fontWeight: 800, paddingBottom: '4px', borderBottom: "1px solid var(--border-default)" },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', fontWeight: '700', cursor: 'pointer' },
-  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', fontWeight: '800', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', fontWeight: '700', cursor: 'pointer' },
+  nextBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", fontWeight: '800', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' },
   footerArea: { width: '100%', padding: '1rem 5rem', zIndex: 10, position: 'absolute', bottom: 0, backgroundColor: 'transparent' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
-  dialogOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2000 },
-  spinner: { width: '40px', height: '40px', border: '4px solid #333', borderTop: '4px solid #007bff', borderRadius: '50%', animation: 'spin 1s linear infinite' },
-  libModalContent: { backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', padding: '2rem', width: '600px', maxWidth: '90%', display: 'flex', flexDirection: 'column', gap: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.9)' },
-  modalHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#fff', borderBottom: '1px solid #333', paddingBottom: '1rem' },
-  closeBtnSmall: { backgroundColor: 'transparent', color: '#aaa', border: 'none', fontSize: '1.2rem', cursor: 'pointer' },
+  label: { fontSize: '0.8rem', color: "var(--text-muted)", fontWeight: '700' },
+  dialogOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2000 },
+  spinner: { width: '40px', height: '40px', border: "4px solid var(--border-default)", borderTop: "4px solid var(--accent)", borderRadius: '50%', animation: 'spin 1s linear infinite' },
+  libModalContent: { backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2rem', width: '600px', maxWidth: '90%', display: 'flex', flexDirection: 'column', gap: '1rem', boxShadow: "var(--shadow-panel)" },
+  modalHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: "var(--text-primary)", borderBottom: "1px solid var(--border-default)", paddingBottom: '1rem' },
+  closeBtnSmall: { backgroundColor: 'transparent', color: "var(--text-secondary)", border: 'none', fontSize: '1.2rem', cursor: 'pointer' },
   libList: { display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '400px', overflowY: 'auto' },
-  libItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#222', padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: '1px solid #333' },
+  libItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "var(--card-bg)", padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: "1px solid var(--border-default)" },
   libInfo: { display: 'flex', flexDirection: 'column', gap: '4px' },
-  libCategory: { fontSize: '0.7rem', color: '#007bff', fontWeight: 'bold' },
-  libTitleText: { color: '#fff', fontSize: '0.9rem' },
-  emptyText: { color: '#888', textAlign: 'center', padding: '2rem 0', fontSize: '0.9rem' },
-  backBtn: { backgroundColor: 'transparent', color: '#aaa', border: 'none', textAlign: 'left', padding: '0.5rem 0', cursor: 'pointer', fontSize: '0.85rem' },
-  libStepItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#222', padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: '1px dashed #444' },
+  libCategory: { fontSize: '0.7rem', color: "var(--accent)", fontWeight: 'bold' },
+  libTitleText: { color: "var(--text-primary)", fontSize: '0.9rem' },
+  emptyText: { color: "var(--text-muted)", textAlign: 'center', padding: '2rem 0', fontSize: '0.9rem' },
+  backBtn: { backgroundColor: 'transparent', color: "var(--text-secondary)", border: 'none', textAlign: 'left', padding: '0.5rem 0', cursor: 'pointer', fontSize: '0.85rem' },
+  libStepItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "var(--card-bg)", padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: "1px dashed var(--border-default)" },
   stepInfo: { display: 'flex', alignItems: 'center', gap: '10px' },
-  stepIdxBadge: { backgroundColor: '#333', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' },
-  stepTitleText: { color: '#fff', fontSize: '0.9rem' },
-  stepPreview: { color: '#ff4d4d', fontSize: '0.75rem', fontWeight: 'bold' },
+  stepIdxBadge: { backgroundColor: "var(--surface-hover)", color: "var(--text-primary)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' },
+  stepTitleText: { color: "var(--text-primary)", fontSize: '0.9rem' },
+  stepPreview: { color: "var(--danger)", fontSize: '0.75rem', fontWeight: 'bold' },
   clipboardCopyBtn: {
     position: 'absolute',
     top: '6px',
     right: '6px',
-    backgroundColor: '#2a2a2a',
-    border: '1px solid #444',
+    backgroundColor: "var(--card-bg)",
+    border: "1px solid var(--border-default)",
     borderRadius: '4px',
-    color: '#fff',
+    color: "var(--text-primary)",
     fontSize: '0.85rem',
     width: '28px',
     height: '28px',
@@ -1527,8 +1499,8 @@ const styles = {
     justifyContent: 'center',
     transition: 'all 0.15s ease',
     ':hover': {
-      backgroundColor: '#007bff',
-      borderColor: '#007bff'
+      backgroundColor: "var(--action-bg)",
+      borderColor: "var(--accent)"
     }
   }
 };
@@ -1543,16 +1515,23 @@ if (typeof document !== 'undefined') {
   }
   styleTag.innerHTML = `
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @media (max-width: 1500px) {
+    @media (max-width: 1200px) {
       .analysis-grid.has-knowledge-dock {
         grid-template-columns: minmax(260px, .9fr) minmax(420px, 1.3fr) !important;
         overflow-y: auto !important;
       }
       .analysis-grid.has-knowledge-dock .knowledge-dock {
         grid-column: 1 / -1;
-        min-height: 220px;
-        max-height: 260px;
+        min-height: 320px;
+        max-height: 420px;
       }
+    }
+    @media (max-width: 1800px) {
+      .analysis-workspace .analysis-ad { display: none !important; }
+      .analysis-workspace .analysis-main { padding: 0 20px 80px !important; }
+    }
+    @media (max-height: 800px) {
+      .analysis-workspace .analysis-card { height: calc(100vh - 160px) !important; padding: 18px !important; }
     }
   `;
 }

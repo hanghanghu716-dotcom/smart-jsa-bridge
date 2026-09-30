@@ -71,6 +71,14 @@
   "draftSave": {
     "pending": "Enregistrement",
     "saved": "Enregistré",
-    "error": "Erreur d’enregistrement"
+    "error": "Erreur d’enregistrement",
+    "conflict": "Un brouillon plus récent a été enregistré dans un autre onglet · actualisation requise"
+  },
+  "appearance": {
+    "title": "Apparence",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre",
+    "active": "Actif"
   }
 }

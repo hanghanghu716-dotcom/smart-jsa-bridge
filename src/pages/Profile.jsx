@@ -1,3 +1,4 @@
+import ThemeSettings from '../components/ThemeSettings';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { useTranslation } from 'react-i18next';
@@ -91,7 +92,7 @@ export default function Profile() {
   };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       
       <div style={styles.bgWrapper}>
@@ -115,6 +116,7 @@ export default function Profile() {
             </div>
 
             <div style={styles.scrollArea}>
+              <ThemeSettings />
               <div style={styles.formGrid}>
                 {/* 왼쪽 섹션: 통계 및 기본 프로필 */}
                 <section style={styles.leftSection}>
@@ -126,7 +128,7 @@ export default function Profile() {
                     </div>
                     <div style={styles.statCard}>
                       <span style={styles.statTitle}>{t('ui.scraps')}</span>
-                      <strong style={{...styles.statValue, color: '#00ff88'}}>{stats.scrapCount}</strong>
+                      <strong style={{...styles.statValue, color: 'var(--success)'}}>{stats.scrapCount}</strong>
                     </div>
                   </div>
 
@@ -208,7 +210,7 @@ export default function Profile() {
                         onChange={e => setProfile({...profile, default_publicity: e.target.checked})} 
                         style={styles.checkboxSmall}
                       />
-                      <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: profile.default_publicity ? '#007bff' : '#888' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: profile.default_publicity ? "var(--accent)" : "var(--text-muted)" }}>
                         {t('ui.autoPublicity')}
                       </span>
                     </label>
@@ -288,48 +290,48 @@ const styles = {
   wrapper: { position: 'relative', minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', overflowX: 'hidden' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.2)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: "var(--text-primary)", cursor: 'pointer' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 100px', gap: '4rem', zIndex: 10, overflow: 'hidden' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', height: '80vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2.5rem 3rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
-  formHeader: { marginBottom: '1.8rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.5rem', fontWeight: '800', color: '#fff' },
+  formCard: { width: '100%', maxWidth: '1440px', height: '80vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2.5rem 3rem', boxShadow: "var(--shadow-panel)", display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  formHeader: { marginBottom: '1.8rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem' },
+  formTitle: { fontSize: '1.5rem', fontWeight: '800', color: "var(--text-primary)" },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
   formGrid: { display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '3rem', marginBottom: '1rem' },
   leftSection: { display: 'flex', flexDirection: 'column', gap: '1.2rem' },
   rightSection: { display: 'flex', flexDirection: 'column', gap: '1.2rem' },
-  label: { fontSize: '0.8rem', color: '#888', fontWeight: '700', marginBottom: '4px' },
-  subLabel: { fontSize: '0.75rem', color: '#666', fontWeight: '600' },
-  input: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
-  inputSmall: { height: '40px', padding: '0 1rem', backgroundColor: '#161616', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.9rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
-  selectInput: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box', cursor: 'pointer' },
-  textarea: { padding: '1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', minHeight: '100px', outline: 'none', resize: 'none' },
+  label: { fontSize: '0.8rem', color: "var(--text-muted)", fontWeight: '700', marginBottom: '4px' },
+  subLabel: { fontSize: '0.75rem', color: "var(--text-muted)", fontWeight: '600' },
+  input: { height: '45px', padding: '0 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
+  inputSmall: { height: '40px', padding: '0 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.9rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
+  selectInput: { height: '45px', padding: '0 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box', cursor: 'pointer' },
+  textarea: { padding: '1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', minHeight: '100px', outline: 'none', resize: 'none' },
   row: { display: 'flex', gap: '1rem' },
   flexItem: { display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.5rem' },
   statsRow: { display: 'flex', gap: '1rem' },
-  statCard: { flex: 1, backgroundColor: '#161616', border: '1px solid #222', borderRadius: '8px', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '0.5rem' },
-  statTitle: { fontSize: '0.7rem', color: '#666', fontWeight: '800', textTransform: 'uppercase' },
-  statValue: { fontSize: '2.2rem', color: '#007bff', fontWeight: '900' },
-  presetBox: { backgroundColor: '#161616', padding: '1.2rem', borderRadius: '8px', border: '1px solid #222', display: 'flex', flexDirection: 'column', gap: '1rem' },
-  checkLabelHighlight: { display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', backgroundColor: '#1d1d1d', padding: '0.8rem', borderRadius: '6px', border: '1px solid #333' },
+  statCard: { flex: 1, backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '8px', padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '0.5rem' },
+  statTitle: { fontSize: '0.7rem', color: "var(--text-muted)", fontWeight: '800', textTransform: 'uppercase' },
+  statValue: { fontSize: '2.2rem', color: "var(--accent)", fontWeight: '900' },
+  presetBox: { backgroundColor: "var(--card-bg)", padding: '1.2rem', borderRadius: '8px', border: "1px solid var(--border-default)", display: 'flex', flexDirection: 'column', gap: '1rem' },
+  checkLabelHighlight: { display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', backgroundColor: "var(--card-bg)", padding: '0.8rem', borderRadius: '6px', border: "1px solid var(--border-default)" },
   checkboxSmall: { width: '1rem', height: '1rem' },
-  sessionBox: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#161616', padding: '1rem', borderRadius: '8px', border: '1px solid #222' },
-  sessionEmail: { fontSize: '0.85rem', color: '#aaa', fontWeight: '500' },
-  globalLogoutBtn: { padding: '6px 12px', backgroundColor: '#222', color: '#ff4d4d', border: '1px solid #333', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: '700' },
-  signCard: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', backgroundColor: '#161616', padding: '1.5rem', borderRadius: '8px', border: '1px dashed #333' },
+  sessionBox: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "var(--card-bg)", padding: '1rem', borderRadius: '8px', border: "1px solid var(--border-default)" },
+  sessionEmail: { fontSize: '0.85rem', color: "var(--text-secondary)", fontWeight: '500' },
+  globalLogoutBtn: { padding: '6px 12px', backgroundColor: "var(--card-bg)", color: "var(--danger)", border: "1px solid var(--border-default)", borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', fontWeight: '700' },
+  signCard: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', backgroundColor: "var(--card-bg)", padding: '1.5rem', borderRadius: '8px', border: "1px dashed var(--border-default)" },
   signImg: { width: '180px', height: '80px', objectFit: 'contain', backgroundColor: '#fff', borderRadius: '4px', padding: '5px' },
-  noSign: { fontSize: '0.8rem', color: '#444', fontStyle: 'italic' },
-  uploadBtn: { fontSize: '0.8rem', color: '#007bff', fontWeight: '700', cursor: 'pointer', textDecoration: 'underline' },
-  dangerZone: { marginTop: '4rem', padding: '2rem 0', borderTop: '1px solid #222' },
-  withdrawToggle: { fontSize: '0.8rem', color: '#444', cursor: 'pointer', transition: 'color 0.2s', ':hover': { color: '#ff4d4d' } },
+  noSign: { fontSize: '0.8rem', color: "var(--text-muted)", fontStyle: 'italic' },
+  uploadBtn: { fontSize: '0.8rem', color: "var(--accent)", fontWeight: '700', cursor: 'pointer', textDecoration: 'underline' },
+  dangerZone: { marginTop: '4rem', padding: '2rem 0', borderTop: "1px solid var(--border-default)" },
+  withdrawToggle: { fontSize: '0.8rem', color: "var(--text-muted)", cursor: 'pointer', transition: 'color 0.2s', ':hover': { color: "var(--danger)" } },
   withdrawForm: { marginTop: '1.5rem', backgroundColor: 'rgba(255, 77, 77, 0.05)', border: '1px solid rgba(255, 77, 77, 0.2)', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '1rem' },
-  withdrawInfo: { fontSize: '0.85rem', color: '#ff7675', fontWeight: '600' },
-  withdrawBtn: { padding: '1rem', backgroundColor: '#ff4d4d', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: '800', cursor: 'pointer' },
+  withdrawInfo: { fontSize: '0.85rem', color: "var(--danger)", fontWeight: '600' },
+  withdrawBtn: { padding: '1rem', backgroundColor: "var(--danger-action)", color: "var(--on-accent)", border: 'none', borderRadius: '6px', fontWeight: '800', cursor: 'pointer' },
   btnArea: { marginTop: '2rem', display: 'flex', gap: '1.2rem' },
-  prevBtn: { flex: 1, padding: '1.1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  nextBtn: { flex: 2, padding: '1.1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '900', fontSize: '1.1rem' },
+  prevBtn: { flex: 1, padding: '1.1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  nextBtn: { flex: 2, padding: '1.1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '900', fontSize: '1.1rem' },
 };

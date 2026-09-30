@@ -97,7 +97,7 @@
     "noControl": "No control",
     "mergeHazards": "Hazards only",
     "mergeFull": "Merge with controls",
-    "emptyProjects": "No saved projects.",
+    "emptyProjects": "No saved or bookmarked projects.",
     "steps": "steps",
     "backProjects": "Project list",
     "sourceCurrent": "Current JSA",
@@ -106,6 +106,11 @@
     "mergeOneHazard": "+ Hazard",
     "mergeOneFull": "+ Full",
     "mergeResult": "{{added}} added · {{skipped}} duplicates skipped",
-    "noRisksToMerge": "No hazards to merge."
+    "noRisksToMerge": "No hazards to merge.",
+    "loading": "Loading library…",
+    "loadError": "Could not load the library. Please try again.",
+    "retry": "Retry",
+    "close": "Close library",
+    "noMatches": "No matching steps or projects."
   }
 }

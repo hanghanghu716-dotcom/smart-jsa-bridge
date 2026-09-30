@@ -71,6 +71,14 @@
   "draftSave": {
     "pending": "Salvataggio",
     "saved": "Salvato",
-    "error": "Errore di salvataggio"
+    "error": "Errore di salvataggio",
+    "conflict": "Una bozza più recente è stata salvata in un'altra scheda · aggiorna la pagina"
+  },
+  "appearance": {
+    "title": "Aspetto",
+    "system": "Sistema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "active": "Attivo"
   }
 }

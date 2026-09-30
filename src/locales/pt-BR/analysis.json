@@ -98,7 +98,7 @@
     "noControl": "Sem controle",
     "mergeHazards": "Somente perigos",
     "mergeFull": "Mesclar com controles",
-    "emptyProjects": "Nenhum projeto salvo.",
+    "emptyProjects": "Nenhum projeto salvo ou favorito.",
     "steps": "etapas",
     "backProjects": "Lista de projetos",
     "sourceCurrent": "JSA atual",
@@ -107,6 +107,11 @@
     "mergeOneHazard": "+ Perigo",
     "mergeOneFull": "+ Completo",
     "mergeResult": "{{added}} adicionados · {{skipped}} duplicados ignorados",
-    "noRisksToMerge": "Não há perigos para combinar."
+    "noRisksToMerge": "Não há perigos para combinar.",
+    "loading": "Carregando biblioteca…",
+    "loadError": "Não foi possível carregar a biblioteca. Tente novamente.",
+    "retry": "Tentar novamente",
+    "close": "Fechar biblioteca",
+    "noMatches": "Nenhuma etapa ou projeto correspondente."
   }
 }

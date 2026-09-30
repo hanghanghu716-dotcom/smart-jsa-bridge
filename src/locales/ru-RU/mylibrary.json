@@ -80,5 +80,13 @@
   "workStepTagsPlaceholder": "Введите теги через запятую",
   "cloneWorkStep": "Клонировать",
   "workStepCloneSuccess": "Этап клонирован.",
-  "workStepCloneError": "Не удалось клонировать этап."
+  "workStepCloneError": "Не удалось клонировать этап.",
+  "workStepHistory": "История",
+  "workStepHistoryTitle": "История версий",
+  "workStepHistoryEmpty": "Предыдущих версий нет.",
+  "restoreVersion": "Восстановить",
+  "confirmRestoreWorkStepVersion": "Восстановить версию v{{version}}? Текущее состояние останется в истории версий.",
+  "workStepVersionRestored": "Выбранная версия восстановлена.",
+  "workStepVersionRestoreError": "Не удалось восстановить эту версию.",
+  "workStepHistoryError": "Не удалось загрузить историю версий."
 }

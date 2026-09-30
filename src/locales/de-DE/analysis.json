@@ -98,7 +98,7 @@
     "noControl": "Keine Maßnahme",
     "mergeHazards": "Nur Gefährdungen",
     "mergeFull": "Mit Maßnahmen übernehmen",
-    "emptyProjects": "Keine gespeicherten Projekte.",
+    "emptyProjects": "Keine gespeicherten oder vorgemerkten Projekte.",
     "steps": "Schritte",
     "backProjects": "Projektliste",
     "sourceCurrent": "Aktuelle JSA",
@@ -107,6 +107,11 @@
     "mergeOneHazard": "+ Gefahr",
     "mergeOneFull": "+ Voll",
     "mergeResult": "{{added}} hinzugefügt · {{skipped}} Duplikate übersprungen",
-    "noRisksToMerge": "Keine Gefährdungen zum Zusammenführen."
+    "noRisksToMerge": "Keine Gefährdungen zum Zusammenführen.",
+    "loading": "Bibliothek wird geladen…",
+    "loadError": "Die Bibliothek konnte nicht geladen werden. Bitte erneut versuchen.",
+    "retry": "Erneut versuchen",
+    "close": "Bibliothek schließen",
+    "noMatches": "Keine passenden Schritte oder Projekte."
   }
 }

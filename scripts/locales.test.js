@@ -78,7 +78,6 @@ test('procedure step composer translations are complete for every base locale', 
     'filterAll', 'filterMy', 'filterScrap', 'filterRecent', 'stepSearch',
     'preview', 'closePreview', 'noSteps', 'previewHazards', 'noPreviewHazards',
     'hazard', 'currentControl', 'recommendedControl', 'riskLevel',
-    'mergeOneHazard', 'mergeOneFull', 'mergeResult', 'noRisksToMerge',
     'badgeFull', 'badgeProcedureOnly', 'workStepLibrary', 'filterSteps', 'stepLibraryBadge',
   ];
 
@@ -121,6 +120,9 @@ test('phase 2 draft and work-step translations are complete', () => {
     assert.ok(analysis.filter?.savingStepBtn?.trim(), `Missing analysis.filter.savingStepBtn for ${locale}`);
     assert.ok(analysis.alert?.stepSaved?.trim(), `Missing analysis.alert.stepSaved for ${locale}`);
     assert.ok(analysis.alert?.stepSaveFailed?.trim(), `Missing analysis.alert.stepSaveFailed for ${locale}`);
+
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    assert.ok(common.draftSave?.conflict?.trim(), `Missing common.draftSave.conflict for ${locale}`);
   }
 });
 
@@ -130,7 +132,9 @@ test('phase 3 analysis knowledge dock translations are complete', () => {
     'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
     'sourceLibrary', 'sourceCurrent', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
     'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
-    'mergeFull', 'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly'
+    'mergeFull', 'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly',
+    'mergeOneHazard', 'mergeOneFull', 'mergeResult', 'noRisksToMerge',
+    'loading', 'loadError', 'retry', 'close', 'noMatches'
   ];
 
   for (const locale of baseLocales) {
@@ -150,6 +154,30 @@ test('draft save status translations are complete', () => {
       assert.ok(common.draftSave?.[key]?.trim(), `Missing common.draftSave.${key} for ${locale}`);
     }
   }
+});
+
+test('theme foundation has complete appearance translations and semantic tokens', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const appearanceKeys = ['title', 'active', 'system', 'light', 'dark'];
+
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    for (const key of appearanceKeys) {
+      assert.ok(common.appearance?.[key]?.trim(), `Missing common.appearance.${key} for ${locale}`);
+    }
+  }
+
+  const css = fs.readFileSync(new URL('../src/index.css', import.meta.url), 'utf8')
+    + fs.readFileSync(new URL('../src/theme/theme.css', import.meta.url), 'utf8');
+  const requiredTokens = [
+    '--app-bg', '--surface-panel', '--surface', '--surface-2', '--surface-3',
+    '--input-bg', '--text-primary', '--text-secondary', '--text-muted',
+    '--border-default', '--accent', '--success', '--warning', '--danger',
+    '--paper-bg', '--paper-text'
+  ];
+  for (const token of requiredTokens) assert.ok(css.includes(token), `Missing theme token ${token}`);
+  assert.ok(css.includes('html[data-theme="light"]'));
+  assert.ok(css.indexOf('@import "tailwindcss";') < css.indexOf(':root'));
 });
 
 test('actual i18n configuration retains province and falls back per translation key', async () => {

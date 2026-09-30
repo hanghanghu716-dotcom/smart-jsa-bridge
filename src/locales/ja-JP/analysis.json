@@ -98,7 +98,7 @@
     "noControl": "対策なし",
     "mergeHazards": "危険要因のみ",
     "mergeFull": "対策まで統合",
-    "emptyProjects": "保存されたプロジェクトがありません。",
+    "emptyProjects": "保存またはブックマークしたプロジェクトはありません。",
     "steps": "ステップ",
     "backProjects": "プロジェクト一覧",
     "sourceCurrent": "現在のJSA",
@@ -107,6 +107,11 @@
     "mergeOneHazard": "+ 危険",
     "mergeOneFull": "+ 全体",
     "mergeResult": "{{added}}件追加 · 重複{{skipped}}件をスキップ",
-    "noRisksToMerge": "追加できる危険要因がありません。"
+    "noRisksToMerge": "追加できる危険要因がありません。",
+    "loading": "ライブラリを読み込み中…",
+    "loadError": "ライブラリを読み込めませんでした。再試行してください。",
+    "retry": "再試行",
+    "close": "ライブラリを閉じる",
+    "noMatches": "一致する作業やプロジェクトがありません。"
   }
 }

@@ -71,6 +71,14 @@
   "draftSave": {
     "pending": "Salvando",
     "saved": "Salvo",
-    "error": "Erro ao salvar"
+    "error": "Erro ao salvar",
+    "conflict": "Um rascunho mais recente foi salvo em outra aba · atualize a página"
+  },
+  "appearance": {
+    "title": "Aparência",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "active": "Ativo"
   }
 }
