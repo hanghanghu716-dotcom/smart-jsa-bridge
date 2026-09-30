@@ -133,6 +133,9 @@
     "savingTemplate": "جارٍ الحفظ...",
     "templateSaved": "تم حفظ قالب المستند.",
     "templateSaveError": "تعذر حفظ القالب.",
-    "loginRequired": "يلزم تسجيل الدخول."
+    "loginRequired": "يلزم تسجيل الدخول.",
+    "fieldValues": "القيم حسب خطوة العمل",
+    "noWorkSteps": "لا توجد خطوات عمل.",
+    "stepFallback": "خطوة العمل {{number}}"
   }
 }
