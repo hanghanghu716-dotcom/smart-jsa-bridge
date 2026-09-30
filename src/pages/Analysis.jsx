@@ -400,6 +400,7 @@ export default function Analysis() {
   const [savedWorkSteps, setSavedWorkSteps] = useState([]);
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
+  const [knowledgeNotice, setKnowledgeNotice] = useState('');
 
   useEffect(() => {
     const fetchHazards = async () => {
@@ -475,6 +476,7 @@ export default function Analysis() {
       setSavedWorkSteps(steps || []);
       setMyLibraryItems(Array.from(projectMap.values()));
       setSelectedLibProject(null);
+      setKnowledgeNotice('');
     } catch (error) {
       console.error('[Analysis Knowledge Dock] load failed:', error);
     }
@@ -482,7 +484,10 @@ export default function Analysis() {
 
   const mergeStepData = (stepData, mode = 'full', sourceMeta = {}) => {
     const sourceRisks = Array.isArray(stepData?.risks) ? stepData.risks : [];
-    if (!sourceRisks.length) return;
+    if (!sourceRisks.length) {
+      setKnowledgeNotice(t('knowledgeDock.noRisksToMerge'));
+      return;
+    }
 
     setAnalysisData(prev => {
       const newData = [...prev];
@@ -492,11 +497,14 @@ export default function Analysis() {
           .map(risk => (risk.factor || '').trim().toLowerCase())
           .filter(Boolean)
       );
+      const seenSourceFactors = new Set();
 
       const mappedRisks = sourceRisks
         .filter(risk => {
           const factor = (risk.factor || risk.risk_factor || '').trim().toLowerCase();
-          return factor && !existingFactors.has(factor);
+          if (!factor || existingFactors.has(factor) || seenSourceFactors.has(factor)) return false;
+          seenSourceFactors.add(factor);
+          return true;
         })
         .map(risk => {
           const isFull = mode === 'full';
@@ -523,6 +531,12 @@ export default function Analysis() {
         ...target,
         risks: [...(target.risks || []), ...mappedRisks]
       };
+
+      const skipped = Math.max(0, sourceRisks.length - mappedRisks.length);
+      setKnowledgeNotice(t('knowledgeDock.mergeResult', {
+        added: mappedRisks.length,
+        skipped
+      }));
       return newData;
     });
   };
@@ -1059,6 +1073,10 @@ export default function Analysis() {
                       placeholder={t('knowledgeDock.search')}
                     />
 
+                    {knowledgeNotice && (
+                      <div style={styles.knowledgeNotice}>{knowledgeNotice}</div>
+                    )}
+
                     <div style={styles.knowledgeScroll}>
                       {knowledgeTab === 'steps' ? (
                         filteredSavedWorkSteps.length === 0 ? (
@@ -1447,6 +1465,7 @@ const styles = {
   knowledgeTabs: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginTop: '8px' },
   knowledgeTab: { padding: '6px', background: '#141414', color: '#666', border: '1px solid #292929', borderRadius: '5px', cursor: 'pointer', fontSize: '0.6rem' },
   knowledgeTabActive: { padding: '6px', background: 'rgba(0,123,255,0.1)', color: '#64adff', border: '1px solid #007bff', borderRadius: '5px', cursor: 'pointer', fontSize: '0.6rem', fontWeight: 800 },
+  knowledgeNotice: { marginTop: '7px', padding: '6px 8px', borderRadius: '6px', background: 'rgba(0,123,255,0.08)', border: '1px solid rgba(0,123,255,0.22)', color: '#78b7ff', fontSize: '0.58rem', lineHeight: 1.35 },
   knowledgeSearchInput: { width: '100%', boxSizing: 'border-box', marginTop: '8px', padding: '7px 8px', background: '#151515', border: '1px solid #2d2d2d', borderRadius: '5px', color: '#fff', fontSize: '0.65rem', outline: 'none' },
   knowledgeScroll: { flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '7px', marginTop: '8px' },
   knowledgeEmpty: { margin: 'auto', padding: '18px 8px', color: '#555', fontSize: '0.68rem', textAlign: 'center', lineHeight: 1.45 },
