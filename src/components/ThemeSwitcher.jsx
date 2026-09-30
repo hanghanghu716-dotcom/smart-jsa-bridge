@@ -17,7 +17,7 @@ export default function ThemeSwitcher({ compact = false }) {
         <div style={styles.heading}>
           <span>{t('appearance.title', { defaultValue: 'Appearance' })}</span>
           <small style={styles.resolved}>
-            {t('appearance.active', { defaultValue: 'Active' })}: {resolvedTheme}
+            {t('appearance.active', { defaultValue: 'Active' })}: {t('appearance.' + resolvedTheme, { defaultValue: resolvedTheme })}
           </small>
         </div>
       )}
