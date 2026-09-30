@@ -12,6 +12,7 @@ import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import { archiveActiveDraft } from '../services/jsaDraftService';
+import { normalizeLocale } from '../locales/config.js';
 
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
@@ -151,6 +152,7 @@ export default function Export() {
 
       const securedFormData = {
         ...formData,
+        contentLocale: normalizeLocale(i18n.language || 'en-US'),
         department: "",
         workLocation: "",
         workDate: "",
