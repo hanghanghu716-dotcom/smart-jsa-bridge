@@ -125,6 +125,14 @@
     "projectFallback": "Projekt",
     "ppeLabel": "PSA:",
     "permitLabel": "Genehmigungen:",
-    "signatureRows": "{{count}} Unterschriftszeile(n)"
+    "signatureRows": "{{count}} Unterschriftszeile(n)",
+    "templates": "Dokumentvorlagen",
+    "chooseTemplate": "Gespeicherte Vorlage laden",
+    "templateName": "Vorlagenname",
+    "saveTemplate": "Speichern",
+    "savingTemplate": "Speichern...",
+    "templateSaved": "Dokumentvorlage gespeichert.",
+    "templateSaveError": "Vorlage konnte nicht gespeichert werden.",
+    "loginRequired": "Anmeldung erforderlich."
   }
 }
