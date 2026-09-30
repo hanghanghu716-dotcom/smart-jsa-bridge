@@ -68,7 +68,8 @@ export default function DocumentDesigner() {
   const recoveredLayout = recoveredDraft?.layout_data || {};
 
   const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
-  const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const initialAnalysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const [analysisData, setAnalysisData] = useState(initialAnalysisData);
   const procedures = state.procedures || recoveredDraft?.procedures || [];
   const formData = state.formData || recoveredDraft?.form_data || {};
   const participants = state.participants || recoveredDraft?.participants || [];
@@ -106,6 +107,12 @@ export default function DocumentDesigner() {
   const [savedLayouts, setSavedLayouts] = useState([]);
   const [templateName, setTemplateName] = useState('');
   const [isSavingTemplate, setIsSavingTemplate] = useState(false);
+
+  useEffect(() => {
+    if (!state.formData && recoveredDraft?.analysis_data) {
+      setAnalysisData(recoveredDraft.analysis_data);
+    }
+  }, [recoveredDraft, state.formData]);
 
   const layoutData = {
     documentBlocks: blocks,
@@ -252,6 +259,76 @@ export default function DocumentDesigner() {
     setUserColumns(prev => prev.filter(col => col.id !== id));
     setActiveOrder(prev => prev.filter(key => key !== id));
   };
+
+  const updateCustomFieldValue = (stepIndex, columnId, value) => {
+    setAnalysisData(prev => prev.map((step, index) => index === stepIndex
+      ? {
+          ...step,
+          customFields: {
+            ...(step.customFields || {}),
+            [columnId]: value
+          }
+        }
+      : step
+    ));
+  };
+
+  const renderCustomFieldEditor = custom => (
+    <div style={styles.customValues}>
+      <div style={styles.customValuesTitle}>{t('designer.fieldValues')}</div>
+      {analysisData.length === 0 ? (
+        <div style={styles.customValuesEmpty}>{t('designer.noWorkSteps')}</div>
+      ) : analysisData.map((step, stepIndex) => {
+        const value = step.customFields?.[custom.id];
+        const label = step.proc?.stepTitle || t('designer.stepFallback', { number: stepIndex + 1 });
+
+        if (custom.fieldType === 'checkbox') {
+          return (
+            <label key={stepIndex} style={styles.valueRow}>
+              <span style={styles.valueStep}>{label}</span>
+              <input
+                type="checkbox"
+                checked={Boolean(value)}
+                onChange={e => updateCustomFieldValue(stepIndex, custom.id, e.target.checked)}
+              />
+            </label>
+          );
+        }
+
+        if (custom.fieldType === 'dropdown') {
+          return (
+            <label key={stepIndex} style={styles.valueRow}>
+              <span style={styles.valueStep}>{label}</span>
+              <select
+                value={value ?? ''}
+                onChange={e => updateCustomFieldValue(stepIndex, custom.id, e.target.value)}
+                style={styles.valueInput}
+              >
+                <option value="">—</option>
+                {(custom.options || []).map(option => <option key={option} value={option}>{option}</option>)}
+              </select>
+            </label>
+          );
+        }
+
+        return (
+          <label key={stepIndex} style={styles.valueRow}>
+            <span style={styles.valueStep}>{label}</span>
+            <input
+              type={custom.fieldType === 'number' ? 'number' : custom.fieldType === 'date' ? 'date' : 'text'}
+              value={value ?? ''}
+              onChange={e => updateCustomFieldValue(
+                stepIndex,
+                custom.id,
+                custom.fieldType === 'number' && e.target.value !== '' ? Number(e.target.value) : e.target.value
+              )}
+              style={styles.valueInput}
+            />
+          </label>
+        );
+      })}
+    </div>
+  );
 
   const moveColumn = (from, to) => {
     setActiveOrder(prev => {
@@ -403,6 +480,7 @@ export default function DocumentDesigner() {
                       style={styles.input}
                     />
                   )}
+                  {renderCustomFieldEditor(custom)}
                 </>
               )}
             </div>
@@ -705,5 +783,11 @@ const styles = {
   widthInput: { width: '100%', boxSizing: 'border-box', background: '#0f0f0f', color: '#ddd', border: '1px solid #2d2d2d', borderRadius: '4px', padding: '6px', fontSize: '0.66rem', textAlign: 'center' },
   resetBtn: { border: 0, background: 'transparent', color: '#777', fontSize: '0.55rem', cursor: 'pointer' },
   removeBtn: { border: 0, background: 'transparent', color: '#ff6666', cursor: 'pointer' },
+  customValues: { marginTop: '8px', paddingTop: '7px', borderTop: '1px solid #242424', display: 'flex', flexDirection: 'column', gap: '5px' },
+  customValuesTitle: { color: '#777', fontSize: '0.58rem', fontWeight: 800, textTransform: 'uppercase' },
+  customValuesEmpty: { color: '#555', fontSize: '0.6rem', padding: '4px 0' },
+  valueRow: { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 110px', gap: '6px', alignItems: 'center' },
+  valueStep: { color: '#777', fontSize: '0.58rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  valueInput: { width: '100%', minWidth: 0, boxSizing: 'border-box', background: '#0f0f0f', color: '#ddd', border: '1px solid #2d2d2d', borderRadius: '4px', padding: '5px', fontSize: '0.6rem' },
   counter: { display: 'grid', gridTemplateColumns: '36px 1fr 36px', gap: '6px', alignItems: 'center', textAlign: 'center' }
 };
