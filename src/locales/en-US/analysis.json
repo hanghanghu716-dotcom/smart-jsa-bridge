@@ -105,6 +105,8 @@
     "analysisIncluded": "Analysis included",
     "stepOnly": "Step only",
     "mergeOneHazard": "+ Hazard",
-    "mergeOneFull": "+ Full"
+    "mergeOneFull": "+ Full",
+    "mergeResult": "{{added}} added · {{skipped}} duplicates skipped",
+    "noRisksToMerge": "No hazards to merge."
   }
 }
