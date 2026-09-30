@@ -125,6 +125,14 @@
     "projectFallback": "Progetto",
     "ppeLabel": "DPI:",
     "permitLabel": "Permessi:",
-    "signatureRows": "{{count}} riga/e firma"
+    "signatureRows": "{{count}} riga/e firma",
+    "templates": "Modelli documento",
+    "chooseTemplate": "Carica un modello salvato",
+    "templateName": "Nome modello",
+    "saveTemplate": "Salva",
+    "savingTemplate": "Salvataggio...",
+    "templateSaved": "Modello documento salvato.",
+    "templateSaveError": "Impossibile salvare il modello.",
+    "loginRequired": "Accesso richiesto."
   }
 }
