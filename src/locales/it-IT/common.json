@@ -133,6 +133,9 @@
     "savingTemplate": "Salvataggio...",
     "templateSaved": "Modello documento salvato.",
     "templateSaveError": "Impossibile salvare il modello.",
-    "loginRequired": "Accesso richiesto."
+    "loginRequired": "Accesso richiesto.",
+    "fieldValues": "Valori per fase",
+    "noWorkSteps": "Nessuna fase di lavoro.",
+    "stepFallback": "Fase {{number}}"
   }
 }
