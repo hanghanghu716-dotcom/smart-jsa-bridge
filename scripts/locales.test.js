@@ -162,7 +162,9 @@ test('document designer translations are complete for every base locale', () => 
     'columnLabel', 'columnWidth', 'dropdownOptions', 'participantSettings',
     'approvalSettings', 'notesSettings', 'notesPlaceholder', 'notesEmpty',
     'blockSettings', 'blockSettingsHint', 'projectFallback', 'ppeLabel',
-    'permitLabel', 'signatureRows'
+    'permitLabel', 'signatureRows', 'templates', 'chooseTemplate', 'templateName',
+    'saveTemplate', 'savingTemplate', 'templateSaved', 'templateSaveError',
+    'loginRequired'
   ];
   const blockKeys = ['PROJECT_INFO', 'SAFETY', 'JSA_TABLE', 'PARTICIPANTS', 'APPROVAL', 'NOTES'];
   const fieldTypes = ['text', 'number', 'date', 'checkbox', 'dropdown'];
