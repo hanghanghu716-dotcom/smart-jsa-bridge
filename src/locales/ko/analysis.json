@@ -105,6 +105,8 @@
     "analysisIncluded": "분석 포함",
     "stepOnly": "단계만",
     "mergeOneHazard": "+ 위험",
-    "mergeOneFull": "+ 전체"
+    "mergeOneFull": "+ 전체",
+    "mergeResult": "{{added}}개 추가 · 중복 {{skipped}}개 건너뜀",
+    "noRisksToMerge": "병합할 위험요인이 없습니다."
   }
 }
