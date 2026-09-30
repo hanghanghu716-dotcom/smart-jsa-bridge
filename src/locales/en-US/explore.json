@@ -26,5 +26,25 @@
   "cancelBtn": "Cancel",
   "alertReportLoginRequired": "Login is required to use the reporting feature.",
   "alertActionCompleted": "The action has been completed.",
-  "alertErrorOccurred": "An error occurred during processing."
+  "alertErrorOccurred": "An error occurred during processing.",
+  "viewDetails": "View details",
+  "publicJsa": {
+    "notFoundTitle": "Public JSA not found",
+    "notFoundDescription": "This JSA may have been removed or made private.",
+    "backExplore": "Back to Explore",
+    "eyebrow": "PUBLIC JSA",
+    "publicButNotIndexed": "This JSA is publicly readable but is excluded from search indexing because it does not meet the content quality threshold.",
+    "steps": "Work Steps",
+    "hazards": "Hazards",
+    "controls": "Controls",
+    "workSequence": "Work Steps & Risk Assessment",
+    "untitledStep": "Untitled work step",
+    "noHazards": "No hazards are registered for this step.",
+    "hazard": "Hazard",
+    "currentControl": "Current / Base Control",
+    "recommendedControl": "Additional / Recommended Control",
+    "riskLevel": "Risk",
+    "ctaTitle": "Create a site-ready JSA from this document?",
+    "ctaDescription": "Modify the work steps and hazards for your conditions, then save it as a new JSA."
+  }
 }
