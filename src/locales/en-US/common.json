@@ -125,6 +125,14 @@
     "projectFallback": "Project",
     "ppeLabel": "PPE:",
     "permitLabel": "Permits:",
-    "signatureRows": "{{count}} signature row(s)"
+    "signatureRows": "{{count}} signature row(s)",
+    "templates": "Document Templates",
+    "chooseTemplate": "Load a saved template",
+    "templateName": "Template name",
+    "saveTemplate": "Save",
+    "savingTemplate": "Saving...",
+    "templateSaved": "Document template saved.",
+    "templateSaveError": "Failed to save the template.",
+    "loginRequired": "Login is required."
   }
 }
