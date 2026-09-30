@@ -125,6 +125,14 @@
     "projectFallback": "Projet",
     "ppeLabel": "EPI :",
     "permitLabel": "Permis :",
-    "signatureRows": "{{count}} ligne(s) de signature"
+    "signatureRows": "{{count}} ligne(s) de signature",
+    "templates": "Modèles de document",
+    "chooseTemplate": "Charger un modèle enregistré",
+    "templateName": "Nom du modèle",
+    "saveTemplate": "Enregistrer",
+    "savingTemplate": "Enregistrement...",
+    "templateSaved": "Modèle de document enregistré.",
+    "templateSaveError": "Échec de l’enregistrement du modèle.",
+    "loginRequired": "Connexion requise."
   }
 }
