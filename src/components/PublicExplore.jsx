@@ -40,27 +40,17 @@ export default function PublicExplore() {
   const [expandedGroups, setExpandedGroups] = useState({ industry: true });
 
   useEffect(() => {
-    // ✅ [추가] 빌드 봇 접근 시 alert 경고창 발생 및 무한 대기 타임아웃 원천 차단
+    // Explore is public. Signed-in users additionally get their block/hide filters.
     if (isSnap) {
       setIsLoading(false);
       return;
     }
 
-    const checkUserAndFetch = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        alert(t('alertLoginRequired'));
-        navigate('/login'); 
-        return;
-      }
-      fetchPublicProjects();
-    };
-
-    checkUserAndFetch();
+    fetchPublicProjects();
     const closeMenu = () => setActiveMenuId(null);
     window.addEventListener('click', closeMenu);
     return () => window.removeEventListener('click', closeMenu);
-  }, [sortBy, t, isSnap, navigate]); 
+  }, [sortBy, isSnap]); 
 
   const fetchPublicProjects = async () => {
     setIsLoading(true);
@@ -137,7 +127,13 @@ export default function PublicExplore() {
     (selectedTags.length === 0 || selectedTags.every(tag => p.tags?.includes(tag)))
   );
 
-  const startWithProject = (p) => {
+  const startWithProject = async (p) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      alert(t('alertLoginRequired'));
+      navigate('/login');
+      return;
+    }
     navigate('/info', { 
       state: { 
         formData: p.form_data, 
@@ -149,6 +145,11 @@ export default function PublicExplore() {
         originalAnalysisData: p.analysis_data
       } 
     });
+  };
+
+  const openPublicDetail = (project) => {
+    const locale = project?.form_data?.contentLocale || i18n.language || 'en-US';
+    navigate(`/${locale}/jsa/${project.id}`);
   };
 
   return (
@@ -319,7 +320,9 @@ export default function PublicExplore() {
                     </div>
                   </div>
                   
-                  <h4 style={styles.cardTitle}>{p.title}</h4>
+                  <button type="button" style={styles.cardTitleButton} onClick={() => openPublicDetail(p)}>
+                    {p.title}
+                  </button>
                   <div style={styles.dateLabel}>{formatDate(p.created_at)}</div>
 
                   <div style={styles.cardTags}>
@@ -327,6 +330,9 @@ export default function PublicExplore() {
                   </div>
 
                   <div style={styles.cardFooter}>
+                    <button style={styles.detailBtn} onClick={() => openPublicDetail(p)}>
+                      {t('publicJsa.viewDetails')}
+                    </button>
                     <button style={styles.useBtn} onClick={() => startWithProject(p)}>
                       {t('startWithThis')}
                     </button>
@@ -378,10 +384,12 @@ const styles = {
   dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: '#888', cursor: 'pointer', borderRadius: '3px' },
   actionButton: { width: '100%', padding: '0.5rem 0.8rem', backgroundColor: 'transparent', border: 'none', textAlign: 'left', fontSize: '0.75rem', color: '#888', cursor: 'pointer', borderRadius: '3px' },
   cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: '#eee', lineHeight: '1.3' },
+  cardTitleButton: { display: 'block', width: '100%', padding: 0, margin: '0 0 0.3rem', border: 0, background: 'transparent', color: '#eee', fontSize: '1rem', fontWeight: 800, lineHeight: 1.3, textAlign: 'left', cursor: 'pointer' },
   dateLabel: { fontSize: '0.7rem', color: '#666', marginBottom: '1rem' }, 
   cardTags: { display: 'flex', gap: '6px', marginBottom: '1.8rem', flexWrap: 'wrap' },
   miniTag: { fontSize: '0.65rem', color: '#555' }, 
   cardFooter: { marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
+  detailBtn: { width: '100%', padding: '0.65rem', marginBottom: '7px', backgroundColor: '#111', color: '#aaa', border: '1px solid #292929', borderRadius: '6px', fontWeight: '800', cursor: 'pointer', fontSize: '0.75rem' },
   useBtn: { width: '100%', padding: '0.8rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '6px', fontWeight: '900', cursor: 'pointer', fontSize: '0.85rem' },
   scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: '#444', letterSpacing: '0.5px' }, 
   loader: { textAlign: 'center', padding: '6rem', color: '#333', fontSize: '0.8rem' },
