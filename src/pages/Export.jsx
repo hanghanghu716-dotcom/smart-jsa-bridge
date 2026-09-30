@@ -345,7 +345,9 @@ export default function Export() {
   const getColumnMeta = (key) => {
     const custom = savedUserColumns.find(u => u.id === key);
     if (custom) return custom;
-    return { ...(TAG_META[key] || {}), ...(savedColumnOverrides[key] || {}) };
+    const system = TAG_META[key];
+    if (!system) return null;
+    return { ...system, ...(savedColumnOverrides[key] || {}) };
   };
 
   const getColumnLabel = (key, meta) => {
