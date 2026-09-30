@@ -94,7 +94,7 @@
     "blocksTitle": "Blocchi documento",
     "blocksHint": "Trascina i blocchi per riordinarli e usa la casella per mostrarli o nasconderli.",
     "blocks": {
-      "PROJECT_INFO": "Informazioni progetto",
+      "PROJECT_INFO": "Intestazione del documento",
       "SAFETY": "DPI / Permessi",
       "JSA_TABLE": "Tabella JSA",
       "PARTICIPANTS": "Firme partecipanti",

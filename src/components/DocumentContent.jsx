@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { columnPercentages } from '../utils/documentLayout';
+import DocumentSignatures from './DocumentSignatures';
+import { columnPercentages, normalizeDocumentBlocks } from '../utils/documentLayout';
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
@@ -34,46 +35,6 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   const isEnglish = i18n.language?.startsWith('en');
   const jsaType = formData.jsaType || '2-step';
   const { documentBlocks = [], savedActiveOrder = [], savedUserColumns = [], savedColumnOverrides = {}, docTitle = '', appr1 = '', appr2 = '', appr3 = '', documentNotes = '' } = layout;
-  const savedSignatureRows = Math.max(Number(layout.savedSignatureRows) || 1, Math.ceil(participants.length / 8));
-  const renderSignatureTable = () => {
-    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
-    const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%', whiteSpace: isEnglish ? 'normal' : 'nowrap' };
-    const sigRows = Array.from({ length: savedSignatureRows }, (_, i) => i);
-    const cols = Array.from({ length: 8 }, (_, i) => i);
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #888', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>
-        <tbody>
-          <tr>
-            <td rowSpan={savedSignatureRows} style={labelTdStyle}>{t('signature.participants')}</td>
-            {cols.map(c => {
-              const pName = participants?.[c] || '';
-              return (
-                <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
-                  {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: '#888'}}>{t('signature.sign')}</span>
-                </td>
-              );
-            })}
-          </tr>
-          {sigRows.slice(1).map(r => (
-            <tr key={`sig-row-${r}`}>
-              {cols.map(c => {
-                const pIdx = r * 8 + c;
-                const pName = participants?.[pIdx] || '';
-                return (
-                  <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
-                    {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: '#888'}}>{t('signature.sign')}</span>
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
-
   const getColumnMeta = (key) => {
     const custom = savedUserColumns.find(u => u.id === key);
     if (custom) return custom;
@@ -89,25 +50,26 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   };
 
   const renderDesignerProjectInfo = () => {
-    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
-    const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', textAlign: 'center' };
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
-        <tbody>
-          <tr>
-            <td colSpan={4} style={{ ...td, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', textAlign: 'center' }}>{docTitle}</td>
-          </tr>
-          <tr>
-            <td style={label}>{t('header.projectName')}</td><td style={td}>{formData?.projectName || ''}</td>
-            <td style={label}>{t('header.workDate')}</td><td style={td}>{formData?.workDate || ''}</td>
-          </tr>
-          <tr>
-            <td style={label}>{t('header.workLocation')}</td><td style={td}>{formData?.workLocation || ''}</td>
-            <td style={label}>{t('header.department')}</td><td style={td}>{formData?.department || ''}</td>
-          </tr>
-        </tbody>
-      </table>
-    );
+    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: '10px', lineHeight: 1.35, verticalAlign: 'middle', whiteSpace: 'pre-wrap', wordBreak: 'normal', overflowWrap: 'anywhere' };
+    const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', textAlign: 'center', whiteSpace: 'normal' };
+    const direction = i18n.dir();
+    return <table data-document-header dir="ltr" style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+      <colgroup>{[16, 19, 16, 19, 10, 10, 10].map((width, index) => <col key={index} style={{ width: width + '%' }} />)}</colgroup>
+      <tbody>
+        <tr><td dir={direction} colSpan={7} style={{ ...td, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', textAlign: 'center' }}>{docTitle}</td></tr>
+        <tr>
+          <td dir={direction} rowSpan={2} style={label}>{t('header.projectName')}</td><td dir="auto" rowSpan={2} style={td}>{formData.projectName || ''}</td>
+          <td dir={direction} rowSpan={2} style={label}>{t('header.workDate')}</td><td dir="auto" rowSpan={2} style={td}>{formData.workDate || ''}</td>
+          <td dir={direction} colSpan={3} style={label}>{t('header.approval')}</td>
+        </tr>
+        <tr>{[appr1, appr2, appr3].map((value, index) => <td key={index} dir="auto" style={{ ...td, padding: '5px 4px', textAlign: 'center' }}>{value}</td>)}</tr>
+        <tr>
+          <td dir={direction} style={label}>{t('header.workLocation')}</td><td dir="auto" style={td}>{formData.workLocation || ''}</td>
+          <td dir={direction} style={label}>{t('header.department')}</td><td dir="auto" style={td}>{formData.department || ''}</td>
+          {[0, 1, 2].map(index => <td key={index} style={{ ...td, height: '42px' }} />)}
+        </tr>
+      </tbody>
+    </table>;
   };
 
   const translatePpe = value => ({
@@ -140,24 +102,6 @@ export default function DocumentContent({ formData = {}, participants = [], anal
           <tr>
             <td style={label}>{t('header.highRiskWork')}</td>
             <td style={td}>{(formData?.permits || []).map(translatePermit).join(' · ')}</td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  };
-
-  const renderDesignerApproval = () => {
-    const td = { border: '1px solid #888', padding: '5px', color: '#000', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center' };
-    return (
-      <table style={{ width: '360px', maxWidth: '100%', marginLeft: 'auto', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
-        <colgroup><col style={{ width: '42px' }} /><col /><col /><col /></colgroup>
-        <tbody>
-          <tr>
-            <td rowSpan={2} style={{ ...td, background: '#f2f2f2', fontWeight: 'bold', verticalAlign: 'middle' }}>{t('header.approval')}</td>
-            <td style={td}>{appr1}</td><td style={td}>{appr2}</td><td style={td}>{appr3}</td>
-          </tr>
-          <tr>
-            <td style={{ ...td, height: '42px' }}></td><td style={td}></td><td style={td}></td>
           </tr>
         </tbody>
       </table>
@@ -297,12 +241,11 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     if (id === 'PROJECT_INFO') return renderDesignerProjectInfo();
     if (id === 'SAFETY') return renderDesignerSafety();
     if (id === 'JSA_TABLE') return renderDataTable();
-    if (id === 'PARTICIPANTS') return renderSignatureTable();
-    if (id === 'APPROVAL') return renderDesignerApproval();
+    if (id === 'PARTICIPANTS') return <DocumentSignatures participants={participants} rows={layout.savedSignatureRows} orientation={layout.savedOrientation} />;
     if (id === 'NOTES') return renderDesignerNotes();
     return null;
   };
-  return <div className="document-content" style={{ color: '#111', background: '#fff' }}>
-    {documentBlocks.filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
+  return <div className="document-content" style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
+    {normalizeDocumentBlocks(documentBlocks).filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
   </div>;
 }

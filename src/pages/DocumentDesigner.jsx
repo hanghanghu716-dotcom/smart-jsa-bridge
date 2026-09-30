@@ -1,6 +1,6 @@
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import DocumentContent from '../components/DocumentContent';
-import { DEFAULT_BLOCKS, defaultColumns, moveItem, templateLayout } from '../utils/documentLayout';
+import { normalizeDocumentBlocks, defaultColumns, moveItem, templateLayout } from '../utils/documentLayout';
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -63,7 +63,7 @@ function DesignerEditor({ recoveredDraft }) {
   const participants = state.participants || recoveredDraft?.participants || [];
 
   const [blocks, setBlocks] = useState(
-    state.documentBlocks || recoveredLayout.documentBlocks || DEFAULT_BLOCKS
+    normalizeDocumentBlocks(state.documentBlocks || recoveredLayout.documentBlocks)
   );
   const [activeOrder, setActiveOrder] = useState(
     state.savedActiveOrder || recoveredLayout.savedActiveOrder || defaultColumns(formData.jsaType)
@@ -492,7 +492,7 @@ function DesignerEditor({ recoveredDraft }) {
       );
     }
 
-    if (selectedBlock === 'APPROVAL') {
+    if (selectedBlock === 'PROJECT_INFO') {
       return (
         <>
           <h3 style={styles.sideTitle}>{t('designer.approvalSettings')}</h3>

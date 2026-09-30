@@ -94,7 +94,7 @@
     "blocksTitle": "Document Blocks",
     "blocksHint": "Drag blocks to reorder them and use the checkbox to show or hide each block.",
     "blocks": {
-      "PROJECT_INFO": "Project Information",
+      "PROJECT_INFO": "Document header",
       "SAFETY": "PPE / Permits",
       "JSA_TABLE": "JSA Table",
       "PARTICIPANTS": "Participant Signatures",

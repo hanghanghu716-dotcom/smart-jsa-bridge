@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { columnPercentages, defaultColumns, moveItem, templateLayout, pickDocumentLayout } from '../src/utils/documentLayout.js';
+import { columnPercentages, defaultColumns, moveItem, templateLayout, pickDocumentLayout, normalizeDocumentBlocks } from '../src/utils/documentLayout.js';
 import { createServer } from 'vite';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -39,6 +39,20 @@ test('legacy templates reset newer overrides and notes instead of inheriting pre
 
 test('navigation preserves document settings and intentional empty values without nesting JSA data', () => {
   assert.deepEqual(pickDocumentLayout({documentNotes:'',formData:{private:'data'}},{documentNotes:'old',savedOrientation:'portrait'}),{documentNotes:'',savedOrientation:'portrait'});
+});
+
+test('legacy project/approval blocks migrate once without losing visibility, labels or other block order', () => {
+  const original = [{id:'NOTES',enabled:true},{id:'APPROVAL',enabled:true},{id:'SAFETY',enabled:false},{id:'PROJECT_INFO',enabled:false}];
+  const before = JSON.stringify(original);
+  const migrated = normalizeDocumentBlocks(original);
+  assert.deepEqual(migrated, [{id:'NOTES',enabled:true},{id:'PROJECT_INFO',enabled:true},{id:'SAFETY',enabled:false}]);
+  assert.deepEqual(normalizeDocumentBlocks(migrated), migrated);
+  assert.equal(JSON.stringify(original), before);
+  assert.deepEqual(normalizeDocumentBlocks([{id:'APPROVAL',enabled:false}]), [{id:'PROJECT_INFO',enabled:false}]);
+  assert.deepEqual(normalizeDocumentBlocks([]), []);
+  const template = templateLayout({documentBlocks:original,appr1:'Custom reviewer',appr2:'',docTitle:'Saved title'});
+  assert.deepEqual(template.documentBlocks,migrated);
+  assert.equal(template.appr1,'Custom reviewer'); assert.equal(template.appr2,''); assert.equal(template.docTitle,'Saved title');
 });
 
 test('shared document renders ordered enabled blocks, renamed grouped headers, values and all participants', async () => {

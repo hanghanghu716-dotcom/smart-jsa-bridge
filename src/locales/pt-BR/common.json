@@ -94,7 +94,7 @@
     "blocksTitle": "Blocos do documento",
     "blocksHint": "Arraste os blocos para reordenar e use a caixa de seleção para mostrar ou ocultar.",
     "blocks": {
-      "PROJECT_INFO": "Informações do projeto",
+      "PROJECT_INFO": "Cabeçalho do documento",
       "SAFETY": "EPI / Permissões",
       "JSA_TABLE": "Tabela JSA",
       "PARTICIPANTS": "Assinaturas",

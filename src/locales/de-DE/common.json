@@ -94,7 +94,7 @@
     "blocksTitle": "Dokumentblöcke",
     "blocksHint": "Blöcke per Drag & Drop anordnen und per Checkbox ein- oder ausblenden.",
     "blocks": {
-      "PROJECT_INFO": "Projektinformationen",
+      "PROJECT_INFO": "Dokumentkopf",
       "SAFETY": "PSA / Genehmigungen",
       "JSA_TABLE": "JSA-Tabelle",
       "PARTICIPANTS": "Teilnehmer-Unterschriften",

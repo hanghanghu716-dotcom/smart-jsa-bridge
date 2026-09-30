@@ -1,3 +1,5 @@
+import DocumentSignatures from '../components/DocumentSignatures';
+import { normalizeDocumentBlocks } from '../utils/documentLayout';
 import DocumentContent from '../components/DocumentContent';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
@@ -73,7 +75,7 @@ export default function Export() {
   const appr2 = state.appr2 ?? recoveredLayout.appr2 ?? t('default.appr2', '검토');
   const appr3 = state.appr3 ?? recoveredLayout.appr3 ?? t('default.appr3', '승인');
   const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
-  const documentBlocks = state.documentBlocks || recoveredLayout.documentBlocks || [];
+  const documentBlocks = normalizeDocumentBlocks(state.documentBlocks || recoveredLayout.documentBlocks || []);
   const savedColumnOverrides = state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {};
   const documentNotes = state.documentNotes ?? recoveredLayout.documentNotes ?? '';
   const hasDesignerLayout = Array.isArray(documentBlocks) && documentBlocks.length > 0;
@@ -305,44 +307,7 @@ export default function Export() {
     );
   };
 
-  const renderSignatureTable = () => {
-    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
-    const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%', whiteSpace: isEnglish ? 'normal' : 'nowrap' };
-    const sigRows = Array.from({ length: savedSignatureRows }, (_, i) => i);
-    const cols = Array.from({ length: 8 }, (_, i) => i);
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #888', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>        
-        <tbody>
-          <tr>
-            <td rowSpan={savedSignatureRows} style={labelTdStyle}>{t('signature.participants')}</td>
-            {cols.map(c => {
-              const pName = participants?.[c] || '';
-              return (
-                <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
-                  {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: '#888'}}>{t('signature.sign')}</span>
-                </td>
-              );
-            })}
-          </tr>
-          {sigRows.slice(1).map(r => (
-            <tr key={`sig-row-${r}`}>
-              {cols.map(c => {
-                const pIdx = r * 8 + c;
-                const pName = participants?.[pIdx] || '';
-                return (
-                  <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
-                    {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: '#888'}}>{t('signature.sign')}</span>
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
+  const renderSignatureTable = () => <DocumentSignatures participants={participants} rows={savedSignatureRows} orientation={savedOrientation} />;
 
   const getColumnMeta = (key) => {
     const custom = savedUserColumns.find(u => u.id === key);

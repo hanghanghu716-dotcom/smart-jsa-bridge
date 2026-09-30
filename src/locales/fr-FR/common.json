@@ -94,7 +94,7 @@
     "blocksTitle": "Blocs du document",
     "blocksHint": "Faites glisser les blocs pour les réordonner et cochez pour les afficher ou les masquer.",
     "blocks": {
-      "PROJECT_INFO": "Informations projet",
+      "PROJECT_INFO": "En-tête du document",
       "SAFETY": "EPI / Permis",
       "JSA_TABLE": "Tableau JSA",
       "PARTICIPANTS": "Signatures des participants",

@@ -1,4 +1,18 @@
-export const DEFAULT_BLOCKS = ['PROJECT_INFO', 'SAFETY', 'JSA_TABLE', 'PARTICIPANTS', 'APPROVAL', 'NOTES'].map(id => ({ id, enabled: id !== 'NOTES' }));
+export const DEFAULT_BLOCKS = ['PROJECT_INFO', 'SAFETY', 'JSA_TABLE', 'PARTICIPANTS', 'NOTES'].map(id => ({ id, enabled: id !== 'NOTES' }));
+
+// Keep the earliest former header position, and retain the header if either
+// legacy block was visible. Other blocks and the caller's data are unchanged.
+export function normalizeDocumentBlocks(blocks) {
+  if (!Array.isArray(blocks)) return DEFAULT_BLOCKS.map(block => ({ ...block }));
+  const headerBlocks = blocks.filter(block => ['PROJECT_INFO', 'APPROVAL'].includes(block.id));
+  let addedHeader = false;
+  return blocks.flatMap(block => {
+    if (!['PROJECT_INFO', 'APPROVAL'].includes(block.id)) return [{ ...block }];
+    if (addedHeader) return [];
+    addedHeader = true;
+    return [{ id: 'PROJECT_INFO', enabled: headerBlocks.some(item => item.enabled) }];
+  });
+}
 
 export function defaultColumns(jsaType) {
   return ['DATA_STEP_NO', 'DATA_STEP_TITLE', 'DATA_HAZARD',
@@ -24,7 +38,7 @@ export function columnPercentages(columns) {
 export function templateLayout(data = {}, defaults = {}) {
   return {
     ...defaults,
-    documentBlocks: Array.isArray(data.documentBlocks) ? data.documentBlocks : DEFAULT_BLOCKS,
+    documentBlocks: normalizeDocumentBlocks(data.documentBlocks),
     savedActiveOrder: data.savedActiveOrder ?? data.activeOrder ?? defaults.savedActiveOrder ?? defaultColumns(),
     savedUserColumns: data.savedUserColumns ?? data.userColumns ?? [],
     savedColumnOverrides: data.savedColumnOverrides ?? {},

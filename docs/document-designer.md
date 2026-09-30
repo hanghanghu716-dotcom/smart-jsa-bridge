@@ -7,8 +7,8 @@ routes and their existing Export rendering remain available.
 
 ## Editing and output
 
-- Six blocks: project information, PPE/permits, JSA table, participant
-  signatures, approval and notes. Blocks can be enabled/disabled and reordered
+- Five blocks: document header (project information plus approval), PPE/permits,
+  JSA table, participant signatures and notes. Blocks can be enabled/disabled and reordered
   with drag/drop or keyboard-accessible arrow buttons.
 - Columns can be enabled/disabled, reordered, renamed and resized. Widths are
   relative weights normalized to 100%, including formerly flexible columns.
@@ -45,7 +45,19 @@ cloud save policy clears department, location, date, manager, equipment,
 additional form items and the participant list. Draft recovery and a downloaded
 PDF are separate from that sanitized project save.
 
-Approval uses a compact, right-aligned 360px table with three signature cells.
+The header places project information on the left (70%) and three approval
+cells on the right (30%), below a shared full-width document title. Legacy
+PROJECT_INFO and APPROVAL blocks become one header at their earliest position;
+it remains visible if either old block was visible. Custom title/approval labels
+are retained. Both disabled blocks stay disabled. New templates, recovered
+drafts and direct Export entry all use this normalization.
+
+Long translated labels wrap within cells instead of overflowing. Signature
+cells use symmetric padding and vertically centered names/sign markers,
+without floats. Portrait sheets use four signature cells per row; landscape
+uses eight. Rows grow for long names and to include every participant. The
+same signature renderer is used by legacy Export documents.
+
 Empty PPE and high-risk-work values remain blank in 32px minimum-height rows
 for handwriting. PDF capture waits for loaded fonts and temporarily restores
 inline display only for html2canvas's hidden font-metric probes, preventing
@@ -53,7 +65,7 @@ Tailwind's image reset from shifting text down. The temporary rule is removed
 even when capture fails; document photo styles are unchanged.
 
 No schema, policy or live account data changes were required. This phase covers
-the six supported blocks; arbitrary custom blocks and company-logo editing are
+the five supported blocks; arbitrary custom blocks and company-logo editing are
 not included. Photo attachment continues through the existing Export control.
 
 ## Verification

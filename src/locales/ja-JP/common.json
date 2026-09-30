@@ -94,7 +94,7 @@
     "blocksTitle": "文書ブロック",
     "blocksHint": "ドラッグで順序を変更し、チェックボックスで表示・非表示を設定します。",
     "blocks": {
-      "PROJECT_INFO": "プロジェクト情報",
+      "PROJECT_INFO": "文書ヘッダー（基本情報・承認）",
       "SAFETY": "PPE / 作業許可",
       "JSA_TABLE": "JSAテーブル",
       "PARTICIPANTS": "作業者署名",
