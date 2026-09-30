@@ -103,6 +103,8 @@
     "backProjects": "프로젝트 목록",
     "sourceCurrent": "현재 JSA",
     "analysisIncluded": "분석 포함",
-    "stepOnly": "단계만"
+    "stepOnly": "단계만",
+    "mergeOneHazard": "+ 위험",
+    "mergeOneFull": "+ 전체"
   }
 }
