@@ -144,7 +144,11 @@ export default function PublicJsaDetail() {
         <button type="button" style={styles.backBtn} onClick={() => navigate('/explore')}>{t('publicJsa.backExplore')}</button>
       </header>
 
-      <main style={styles.main}>
+      <main
+        style={styles.main}
+        data-public-jsa-id={project.id}
+        data-public-jsa-updated-at={project.updated_at || project.created_at || ''}
+      >
         <section style={styles.hero}>
           <div style={styles.heroTop}>
             <div>
