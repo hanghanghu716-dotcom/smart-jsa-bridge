@@ -26,5 +26,25 @@
   "cancelBtn": "Отмена",
   "alertReportLoginRequired": "Для подачи жалобы требуется вход в систему.",
   "alertActionCompleted": "Действие выполнено.",
-  "alertErrorOccurred": "Произошла ошибка."
+  "alertErrorOccurred": "Произошла ошибка.",
+  "viewDetails": "Подробнее",
+  "publicJsa": {
+    "notFoundTitle": "Публичная JSA не найдена",
+    "notFoundDescription": "Эта JSA могла быть удалена или переведена в приватный режим.",
+    "backExplore": "Вернуться в Explore",
+    "eyebrow": "ПУБЛИЧНАЯ JSA",
+    "publicButNotIndexed": "Эта JSA доступна для просмотра, но исключена из поисковой индексации, поскольку не соответствует порогу качества контента.",
+    "steps": "Этапы работ",
+    "hazards": "Опасности",
+    "controls": "Меры",
+    "workSequence": "Этапы работ и анализ рисков",
+    "untitledStep": "Этап без названия",
+    "noHazards": "Для этого этапа опасности не зарегистрированы.",
+    "hazard": "Опасность",
+    "currentControl": "Текущая / базовая мера",
+    "recommendedControl": "Дополнительная / рекомендуемая мера",
+    "riskLevel": "Риск",
+    "ctaTitle": "Создать рабочую JSA на основе этого документа?",
+    "ctaDescription": "Измените этапы и опасности под свои условия и сохраните как новую JSA."
+  }
 }
