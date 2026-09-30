@@ -609,7 +609,7 @@ const styles = {
   typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
   typeCard: { flex: 1, padding: '1.5rem', backgroundColor: 'var(--surface-2)', border: '1px solid var(--border-default)', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
   typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: 'var(--surface-2)', border: '2px solid var(--accent)', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
-  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: 'var(--text-secondary)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: 'var(--surface-3)', color: 'var(--text-secondary)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
   typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
   typeLabel: { fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.8rem', fontWeight: 'bold' },
   typeDesc: { fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' },
