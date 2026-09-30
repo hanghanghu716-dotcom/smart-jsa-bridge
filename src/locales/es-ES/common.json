@@ -133,6 +133,9 @@
     "savingTemplate": "Guardando...",
     "templateSaved": "Plantilla de documento guardada.",
     "templateSaveError": "No se pudo guardar la plantilla.",
-    "loginRequired": "Es necesario iniciar sesión."
+    "loginRequired": "Es necesario iniciar sesión.",
+    "fieldValues": "Valores por paso",
+    "noWorkSteps": "No hay pasos de trabajo.",
+    "stepFallback": "Paso {{number}}"
   }
 }
