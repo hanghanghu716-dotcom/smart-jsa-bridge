@@ -622,9 +622,9 @@ export default function MyLibrary() {
                             {f.displayType === 'MY_JSA' && (
                               <span style={{
                                 ...styles.typeBadge, 
-                                backgroundColor: f.originData?.is_public ? 'rgba(0, 123, 255, 0.2)' : '#222',
+                                backgroundColor: f.originData?.is_public ? 'var(--accent-soft)' : 'var(--surface-3)',
                                 color: f.originData?.is_public ? '#007bff' : '#666',
-                                border: f.originData?.is_public ? '1px solid #007bff' : '1px solid #333'
+                                border: f.originData?.is_public ? '1px solid var(--accent)' : '1px solid var(--border-default)'
                               }}>
                                 {f.originData?.is_public ? 'Public' : 'Private'}
                               </span>
@@ -742,11 +742,11 @@ const styles = {
   catInput: { backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.85rem' },
   catAddBtn: { backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
   contentGrid: { display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2.5rem', flex: 1, overflow: 'hidden' },
-  catSidebar: { borderRight: '1px solid #222', paddingRight: '1rem', overflowY: 'auto' },
+  catSidebar: { borderRight: '1px solid var(--border-default)', paddingRight: '1rem', overflowY: 'auto' },
   systemCat: { padding: '1rem', color: 'var(--danger)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
   systemCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   draftCat: { padding: '1rem', color: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(233,189,69,0.25)', marginBottom: '10px' },
-  draftCatActive: { padding: '1rem', color: '#111', backgroundColor: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  draftCatActive: { padding: '1rem', color: 'var(--warning-contrast)', backgroundColor: 'var(--warning)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   workStepCat: { padding: '1rem', color: 'var(--success)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
   workStepCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: 'var(--success)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   layoutCat: { padding: '1rem', color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
@@ -758,11 +758,11 @@ const styles = {
   catScrollArea: { overflowY: 'auto' },
   listSection: { overflowY: 'auto', paddingRight: '10px' },
   jsaGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' },
-  jsaCard: { backgroundColor: 'var(--surface)', border: '1px solid #111', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.2s ease' },
+  jsaCard: { backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.2s ease' },
   cardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' },
   typeBadge: { fontSize: '0.55rem', fontWeight: 'bold', color: 'var(--text-primary)', padding: '1px 5px', borderRadius: '3px' },
   menuWrapper: { position: 'relative' },
-  menuBtn: { background: 'none', border: 'none', color: '#333', fontSize: '1.2rem', cursor: 'pointer' },
+  menuBtn: { background: 'none', border: 'none', color: 'var(--text-faint)', fontSize: '1.2rem', cursor: 'pointer' },
   dropdown: { position: 'absolute', top: '100%', right: 0, width: '150px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '6px', padding: '0.3rem', zIndex: 100 },
   dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: 'var(--text-muted)', cursor: 'pointer', borderRadius: '3px' },
   cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: 'var(--text-primary)', lineHeight: '1.3' },
