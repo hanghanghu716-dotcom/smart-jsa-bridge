@@ -125,6 +125,14 @@
     "projectFallback": "Проект",
     "ppeLabel": "СИЗ:",
     "permitLabel": "Разрешения:",
-    "signatureRows": "Строк подписей: {{count}}"
+    "signatureRows": "Строк подписей: {{count}}",
+    "templates": "Шаблоны документов",
+    "chooseTemplate": "Загрузить сохранённый шаблон",
+    "templateName": "Название шаблона",
+    "saveTemplate": "Сохранить",
+    "savingTemplate": "Сохранение...",
+    "templateSaved": "Шаблон документа сохранён.",
+    "templateSaveError": "Не удалось сохранить шаблон.",
+    "loginRequired": "Требуется вход."
   }
 }
