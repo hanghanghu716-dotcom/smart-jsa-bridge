@@ -105,6 +105,8 @@
     "analysisIncluded": "С анализом",
     "stepOnly": "Только этап",
     "mergeOneHazard": "+ Опасность",
-    "mergeOneFull": "+ Полностью"
+    "mergeOneFull": "+ Полностью",
+    "mergeResult": "Добавлено: {{added}} · пропущено дублей: {{skipped}}",
+    "noRisksToMerge": "Нет опасностей для добавления."
   }
 }
