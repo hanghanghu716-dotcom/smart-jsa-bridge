@@ -443,7 +443,7 @@ export default function Main() {
               <LanguageLink to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</LanguageLink>
             )}
 
-            <div style={{ ...styles.navCategory, marginTop: '30px' }}>APPEARANCE</div>
+            <div style={{ ...styles.navCategory, marginTop: '30px' }}>{t('appearance.title', { ns: 'common', defaultValue: 'Appearance' })}</div>
             <ThemeSwitcher />
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
             <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</LanguageLink>

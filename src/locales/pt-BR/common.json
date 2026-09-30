@@ -73,5 +73,12 @@
     "saved": "Salvo",
     "error": "Erro ao salvar",
     "conflict": "Um rascunho mais recente foi salvo em outra aba · atualize a página"
+  },
+  "appearance": {
+    "title": "Aparência",
+    "active": "Ativo",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro"
   }
 }

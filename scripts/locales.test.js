@@ -136,6 +136,29 @@ test('draft save status translations are complete', () => {
   }
 });
 
+test('theme foundation has complete appearance translations and semantic tokens', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const appearanceKeys = ['title', 'active', 'system', 'light', 'dark'];
+
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    for (const key of appearanceKeys) {
+      assert.ok(common.appearance?.[key]?.trim(), `Missing common.appearance.${key} for ${locale}`);
+    }
+  }
+
+  const css = fs.readFileSync(new URL('../src/index.css', import.meta.url), 'utf8');
+  const requiredTokens = [
+    '--app-bg', '--surface-panel', '--surface', '--surface-2', '--surface-3',
+    '--input-bg', '--text-primary', '--text-secondary', '--text-muted',
+    '--border-default', '--accent', '--success', '--warning', '--danger',
+    '--paper-bg', '--paper-text'
+  ];
+  for (const token of requiredTokens) assert.ok(css.includes(token), `Missing theme token ${token}`);
+  assert.ok(css.includes('html[data-theme="light"]'));
+  assert.ok(css.indexOf('@import "tailwindcss";') < css.indexOf(':root'));
+});
+
 test('actual i18n configuration retains province and falls back per translation key', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousDocument = global.document;

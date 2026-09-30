@@ -73,5 +73,12 @@
     "saved": "Saved",
     "error": "Save error",
     "conflict": "A newer draft was saved in another tab · refresh required"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "active": "Active",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
   }
 }

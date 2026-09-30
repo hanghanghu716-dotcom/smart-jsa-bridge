@@ -73,5 +73,12 @@
     "saved": "Enregistré",
     "error": "Erreur d’enregistrement",
     "conflict": "Un brouillon plus récent a été enregistré dans un autre onglet · actualisation requise"
+  },
+  "appearance": {
+    "title": "Apparence",
+    "active": "Actif",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre"
   }
 }
