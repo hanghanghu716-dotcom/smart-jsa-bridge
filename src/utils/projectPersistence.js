@@ -21,7 +21,7 @@ export function publicProjectSnapshot(snapshot) {
   const layoutData = { ...pickDocumentLayout(snapshot.layoutData), documentNotes: '' };
   delete layoutData.stepPhotos;
   delete layoutData.projectSaveContext;
-  const analysisData = (snapshot.analysisData || []).map(step => {
+  const analysisData = (snapshot.analysisData || []).filter(step => step && typeof step === 'object').map(step => {
     const clean = { ...step, customFields: {} };
     delete clean.sourceProjectId; delete clean.sourceProjectTitle; delete clean.sourceStepIndex;
     if (step.proc) {
@@ -39,6 +39,7 @@ export function projectPayload(snapshot, userId, isPublic, tags = [], parentId =
   return {
     author_id: userId, user_id: userId, title: data.formData.projectName,
     project_name: data.formData.projectName, is_public: isPublic,
+    ...(isPublic ? { public_locale: snapshot.locale || null } : {}),
     form_data: data.formData, participants: data.participants || [],
     analysis_data: data.analysisData || [], custom_layout: layout,
     tags, auto_tags: tags, parent_id: parentId,

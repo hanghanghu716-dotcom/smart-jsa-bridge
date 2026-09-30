@@ -3,6 +3,9 @@ import path from 'node:path';
 import reactSnap from 'react-snap';
 import { verifyBuiltCases } from './case-build-data.js';
 
+// Preserve the clean application shell for live public/private visibility checks.
+fs.copyFileSync('dist/index.html', 'dist/public-jsa-shell.html');
+
 const configuration = JSON.parse(fs.readFileSync('package.json', 'utf8')).reactSnap;
 const manifest = JSON.parse(fs.readFileSync('.cache/case-build-manifest.json', 'utf8'));
 const include = [...new Set([...(configuration.include || []), ...manifest.map(row => row.route)])];
