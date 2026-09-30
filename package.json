@@ -19,7 +19,8 @@
     "test:persistence:browser": "node scripts/project-persistence-browser.cjs",
     "test:public": "node --test scripts/public-jsa.test.js",
     "test:business": "node --test scripts/business.test.js",
-    "test:business:browser": "node scripts/business-browser.cjs"
+    "test:business:browser": "node scripts/business-browser.cjs",
+    "test:storage": "node --test scripts/project-storage.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

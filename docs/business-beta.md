@@ -4,6 +4,8 @@ This release provides a 30-day, one-time, opt-in free trial. It has no payment g
 
 ## User flow
 
+Free accounts have three saved private-document slots; the active trial removes that cap. Expiry keeps existing documents editable and exportable and blocks only additional private saves while full. See [storage enforcement and validation](free-storage-quota.md).
+
 1. Open **My Library → Business workspace** and start the free trial.
 2. Private project saves now retain revisions. Select a project in Personal revision history to preview a previous snapshot or restore it as another revision. History begins with trial saves; no historical states are invented.
 3. Create an organization (up to three per owner), create a one-use invitation, and copy/send the link yourself. Links last seven days. No invitations or emails are sent automatically.
@@ -28,6 +30,6 @@ Membership changes, invite redemption/revocation and document transitions serial
 - Run the reproducible browser flow with a local dev server on port 5173 and `npm run test:business:browser` (Chrome at the Windows path in that script). Screenshots are written under `.cache/business-qa`.
 - Browser tests exercise trial enrollment, organization/invitation creation, sharing, reviewer approval, viewer restrictions, personal restore, company template save/apply, expiry and mobile rendering using intercepted fixture data. No real invitations, memberships or trial enrollments are created during those tests.
 - New migrations are additive and applied to the linked database. Frontend work remains a draft PR, stacked on Phase 5. No merge or production frontend deployment was performed.
-- Security advisor results introduced no new findings. Pre-existing function search-path/execution warnings, public-schema extensions and disabled leaked-password protection remain outside these changes. See [Supabase advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0011_function_search_path_mutable).
+- The beta migration introduced no new advisor findings. The subsequent private-storage counter has one intentional default-deny INFO finding, documented in the storage notes. Pre-existing function search-path/execution warnings, public-schema extensions and disabled leaked-password protection remain outside these changes. See [Supabase advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0011_function_search_path_mutable).
 
 Paid subscriptions, tax/business registration, payment/refund policies, billing invoices and paid-plan provisioning remain intentionally pending a separately authorized commercial launch. Approval records are internal workflow records; exporting a private editable copy does not transfer its approved status.

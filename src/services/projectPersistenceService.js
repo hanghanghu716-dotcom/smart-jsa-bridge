@@ -1,3 +1,4 @@
+import { storageChanged } from './projectStorageService';
 import { supabase } from '../supabaseClient';
 import { projectPayload } from '../utils/projectPersistence';
 
@@ -16,5 +17,6 @@ export async function saveProject({ snapshot, mode, targetId, expectedUpdatedAt,
   const { data, error } = await query.select('id, updated_at, is_public').maybeSingle();
   if (error) throw error;
   if (!data) throw new Error('PROJECT_CHANGED');
+  storageChanged();
   return data;
 }

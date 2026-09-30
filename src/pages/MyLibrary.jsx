@@ -1,3 +1,6 @@
+import ProjectStorageUsage from '../components/ProjectStorageUsage';
+import { isStorageLimitError } from '../services/projectStorageService';
+import { getStorageUi } from '../locales/storageUi';
 import { projectEditorState } from '../utils/projectPersistence';
 import { saveProject } from '../services/projectPersistenceService';
 import { clearActiveDraft } from '../services/jsaDraftService';
@@ -105,7 +108,7 @@ export default function MyLibrary() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     const { error } = await supabase.from('jsa_projects').update({ is_public: false, updated_at: new Date().toISOString() }).eq('id', project.id).eq('author_id', user.id);
-    if (error) alert(t('errorStatusChange')); else fetchLibraryData();
+    if (error) alert(isStorageLimitError(error) ? getStorageUi(i18n.language).limitError : t('errorStatusChange')); else fetchLibraryData();
   };
 
   const handleClone = async (project) => {
@@ -114,7 +117,7 @@ export default function MyLibrary() {
       const data = projectEditorState(project);
       await saveProject({ mode: 'private', parentId: project.id, tags: project.tags || [], snapshot: { ...data, formData: { ...data.formData, projectName: '[' + t('clonedPrefix') + '] ' + project.title }, layoutData: data } });
       alert(t('cloneSuccess')); fetchLibraryData();
-    } catch { alert(t('common:saveFlow.failed')); }
+    } catch (error) { alert(isStorageLimitError(error) ? getStorageUi(i18n.language).limitError : t('common:saveFlow.failed')); }
   };
 
   const handleWithdraw = async (type, id) => {
@@ -397,6 +400,7 @@ export default function MyLibrary() {
         <LanguageLink to="/business" style={{ color: 'var(--accent)', fontSize: 14 }}>{getBusinessUi(i18n.language).title} →</LanguageLink><ThemeSwitcher compact />
       </header>
 
+      <div style={{position:'relative',zIndex:10,margin:'0 5%'}}><ProjectStorageUsage refreshKey={favorites} /></div>
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />

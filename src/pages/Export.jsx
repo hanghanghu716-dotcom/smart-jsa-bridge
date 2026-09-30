@@ -1,3 +1,6 @@
+import ProjectStorageUsage from '../components/ProjectStorageUsage';
+import { isStorageLimitError } from '../services/projectStorageService';
+import { getStorageUi } from '../locales/storageUi';
 import { saveProject } from '../services/projectPersistenceService';
 import DocumentSignatures from '../components/DocumentSignatures';
 import { normalizeDocumentBlocks } from '../utils/documentLayout';
@@ -95,6 +98,9 @@ function ExportEditor({ recoveredDraft }) {
   const [stepPhotos, setStepPhotos] = useState(state.stepPhotos || recoveredLayout.stepPhotos || {});
   const [projectTarget, setProjectTarget] = useState(state.projectSaveContext || recoveredLayout.projectSaveContext || null);
   const cloudBusy = useRef(false);
+  const [storageUsage,setStorageUsage]=useState(null);
+  const [storageRefresh,setStorageRefresh]=useState(0);
+  const [storageLimited,setStorageLimited]=useState(false);
   useEffect(() => {
     if (!existingId || projectTarget || isFork) return;
     let active = true;
@@ -179,7 +185,8 @@ function ExportEditor({ recoveredDraft }) {
       navigate('/library');
     } catch (error) {
       console.error('[Project save]', error);
-      alert(t(error.message === 'PROJECT_CHANGED' ? 'common:saveFlow.changed' : 'common:saveFlow.failed'));
+      if (isStorageLimitError(error)) { setStorageLimited(true); setStorageRefresh(n=>n+1); }
+      else alert(t(error.message === 'PROJECT_CHANGED' ? 'common:saveFlow.changed' : 'common:saveFlow.failed'));
     } finally {
       if (!savedProject) draftSave.resume();
       cloudBusy.current = false; setIsProcessing(false);
@@ -527,6 +534,8 @@ function ExportEditor({ recoveredDraft }) {
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h3 style={styles.modalTitle}>{t('common:saveFlow.saveDocument')}</h3>
+            <ProjectStorageUsage refreshKey={storageRefresh} onStatus={setStorageUsage} />
+            {storageLimited && !storageUsage?.can_create && <p role="alert" style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
               <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('common:saveFlow.privateHint')}</p>
             <p style={styles.modalSub}>{t('common:saveFlow.publicHint')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
@@ -552,7 +561,7 @@ function ExportEditor({ recoveredDraft }) {
                 </button>
               )}
               
-              <button type="button" disabled={isProcessing} data-save-mode="private" style={styles.typeCard} onClick={() => handleCloudAction('private')}>
+              <button type="button" disabled={isProcessing || storageUsage?.can_create === false} data-save-mode="private" style={styles.typeCard} onClick={() => handleCloudAction('private')}>
                 <div style={styles.typeBadge}>Private</div>
                 <h4 style={styles.typeLabel}>{t('common:saveFlow.newPrivate')}</h4>
                 <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.privateHint') }}></p>

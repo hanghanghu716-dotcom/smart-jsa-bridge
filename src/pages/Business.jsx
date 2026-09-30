@@ -1,3 +1,4 @@
+import ProjectStorageUsage from '../components/ProjectStorageUsage';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -72,6 +73,7 @@ export default function Business() {
    {!account && !error && <p role="status">{ui.loading}</p>}
    {account && !account.user && <LanguageLink className="jsa-primary" to={'/login?next='+encodeURIComponent(location.pathname+location.hash)}>{ui.login}</LanguageLink>}
    {account?.user && <>
+    <ProjectStorageUsage refreshKey={refresh} showTrialLink={false} />
     <section className="jsa-card"><p>{ui.trialIncludes}</p>{!account.beta?<button className="jsa-primary" disabled={busy} onClick={()=>run('start_beta',{payload:{plan:'business'}})}>{ui.start}</button>:<><p>{active?ui.active+': '+date(account.beta.expires_at):ui.expired}</p><p>{ui.interest}</p><div className="jsa-toolbar"><button disabled={busy} aria-pressed={account.beta.interest_plan==='pro'} onClick={()=>run('interest',{payload:{plan:'pro'}})}>{ui.interestedPro}</button><button disabled={busy} aria-pressed={account.beta.interest_plan==='business'} onClick={()=>run('interest',{payload:{plan:'business'}})}>{ui.interestedBusiness}</button></div></>}</section>
     {token && <section className="jsa-card"><h2>{ui.join}</h2><p>{ui.joinHint}</p><button disabled={busy} onClick={async()=>{const result=await run('join',{payload:{token}});if(result){setToken('');chooseOrganization(result.org_id);navigate('/business',{replace:true});}}}>{ui.join}</button></section>}
     <section className="jsa-card jsa-section"><h2>{ui.history}</h2><p>{ui.historyHint}</p><select aria-label={ui.history} value={personalId} onChange={e=>{setPersonalId(e.target.value);setPersonalHistory([]);setPreview(null);previewRequest.current++;}}><option value="">{ui.chooseSource}</option>{account.projects.map(p=><option value={p.id} key={p.id}>{p.title}</option>)}</select>
