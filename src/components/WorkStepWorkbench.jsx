@@ -830,7 +830,7 @@ const styles = {
   projectRail: {
     minWidth: 0,
     padding: '18px',
-    borderRight: '1px solid #222',
+    borderRight: '1px solid var(--border-default)',
     display: 'flex',
     flexDirection: 'column',
     gap: '12px',
@@ -881,7 +881,7 @@ const styles = {
   },
   projectType: {
     fontSize: '0.58rem',
-    background: '#242424',
+    background: 'var(--surface-3)',
     color: 'var(--text-secondary)',
     padding: '2px 5px',
     borderRadius: '3px'
@@ -1022,8 +1022,8 @@ const styles = {
   previewNoRisk: { margin: 'auto', color: 'var(--text-faint)', fontSize: '0.68rem' },
   todayPanel: {
     minWidth: 0,
-    borderLeft: '1px solid #222',
-    background: '#0e0e0e',
+    borderLeft: '1px solid var(--border-default)',
+    background: 'var(--surface)',
     padding: '18px',
     display: 'flex',
     flexDirection: 'column',
@@ -1034,7 +1034,7 @@ const styles = {
   todayHint: {
     margin: '12px 0',
     padding: '10px',
-    border: '1px dashed #303030',
+    border: '1px dashed var(--border-default)',
     borderRadius: '7px',
     color: 'var(--text-muted)',
     fontSize: '0.68rem',
@@ -1054,11 +1054,11 @@ const styles = {
   },
   todayStepFull: {
     borderColor: 'rgba(0,123,255,0.42)',
-    background: 'linear-gradient(90deg, rgba(0,123,255,0.07), #161616 34%)'
+    background: 'linear-gradient(90deg, var(--accent-soft), var(--surface-2) 34%)'
   },
   todayStepProcedure: {
     borderColor: 'rgba(255,193,7,0.38)',
-    background: 'linear-gradient(90deg, rgba(255,193,7,0.06), #161616 34%)'
+    background: 'linear-gradient(90deg, var(--warning-soft), var(--surface-2) 34%)'
   },
   dragHandle: { color: 'var(--text-faint)', fontSize: '0.75rem' },
   todayStepBody: { flex: 1, minWidth: 0 },
