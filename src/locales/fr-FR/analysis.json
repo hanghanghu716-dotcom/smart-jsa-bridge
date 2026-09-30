@@ -103,6 +103,8 @@
     "backProjects": "Liste des projets",
     "sourceCurrent": "JSA actuelle",
     "analysisIncluded": "Analyse incluse",
-    "stepOnly": "Étape seule"
+    "stepOnly": "Étape seule",
+    "mergeOneHazard": "+ Danger",
+    "mergeOneFull": "+ Complet"
   }
 }
