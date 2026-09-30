@@ -2,6 +2,7 @@ import { supabase } from '../supabaseClient';
 
 const GUEST_DRAFT_PREFIX = 'smartjsa_guest_draft:';
 const ACTIVE_DRAFT_KEY = 'smartjsa_active_draft_id';
+const ACTIVE_DRAFT_VERSION_KEY = 'smartjsa_active_draft_version';
 
 const newUuid = () => {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
@@ -26,15 +27,29 @@ export const getActiveDraftId = () => {
   return id;
 };
 
-export const setActiveDraftId = (draftId) => {
+export const getActiveDraftVersion = () => {
+  if (typeof window === 'undefined') return null;
+  const raw = sessionStorage.getItem(ACTIVE_DRAFT_VERSION_KEY);
+  if (raw == null) return null;
+  const parsed = Number(raw);
+  return Number.isInteger(parsed) && parsed >= 1 ? parsed : null;
+};
+
+export const setActiveDraftId = (draftId, version = null) => {
   if (typeof window === 'undefined' || !draftId) return;
   sessionStorage.setItem(ACTIVE_DRAFT_KEY, draftId);
+  if (Number.isInteger(version) && version >= 1) {
+    sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(version));
+  } else {
+    sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
+  }
 };
 
 export const clearActiveDraft = () => {
   if (typeof window === 'undefined') return;
   const draftId = sessionStorage.getItem(ACTIVE_DRAFT_KEY);
   sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
+  sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
   if (draftId) localStorage.removeItem(GUEST_DRAFT_PREFIX + draftId);
 };
 
@@ -75,12 +90,50 @@ export const saveDraftSnapshot = async ({
     return { draftId, storage: 'local' };
   }
 
-  const { error } = await supabase
-    .from('user_jsa_drafts')
-    .upsert({ ...payload, user_id: user.id }, { onConflict: 'id' });
+  let expectedVersion = getActiveDraftVersion();
 
-  if (error) throw error;
-  return { draftId, storage: 'cloud' };
+  if (expectedVersion == null) {
+    const { data: existing, error: existingError } = await supabase
+      .from('user_jsa_drafts')
+      .select('id, version')
+      .eq('id', draftId)
+      .maybeSingle();
+
+    if (existingError) throw existingError;
+    if (existing?.version) {
+      expectedVersion = existing.version;
+      sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(existing.version));
+    }
+  }
+
+  const { data, error } = await supabase.rpc('save_jsa_draft_snapshot', {
+    p_id: draftId,
+    p_expected_version: expectedVersion,
+    p_title: payload.title,
+    p_current_stage: payload.current_stage,
+    p_form_data: payload.form_data,
+    p_participants: payload.participants,
+    p_procedures: payload.procedures,
+    p_analysis_data: payload.analysis_data,
+    p_layout_data: payload.layout_data,
+    p_source_project_id: payload.source_project_id,
+  });
+
+  if (error) {
+    if (error.message?.includes('DRAFT_VERSION_CONFLICT')) {
+      const conflict = new Error('DRAFT_VERSION_CONFLICT');
+      conflict.code = 'DRAFT_VERSION_CONFLICT';
+      throw conflict;
+    }
+    throw error;
+  }
+
+  const saved = Array.isArray(data) ? data[0] : data;
+  if (saved?.version) {
+    sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(saved.version));
+  }
+
+  return { draftId, storage: 'cloud', version: saved?.version || 1 };
 };
 
 export const loadActiveDraft = async () => {
@@ -96,7 +149,11 @@ export const loadDraft = async (draftId) => {
 
   if (!user) {
     const raw = localStorage.getItem(GUEST_DRAFT_PREFIX + draftId);
-    return raw ? JSON.parse(raw) : null;
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (parsed?.version && getExistingActiveDraftId() === draftId) {
+      sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(parsed.version));
+    }
+    return parsed;
   }
 
   const { data, error } = await supabase
@@ -106,6 +163,9 @@ export const loadDraft = async (draftId) => {
     .maybeSingle();
 
   if (error) throw error;
+  if (data?.version && getExistingActiveDraftId() === draftId) {
+    sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(data.version));
+  }
   return data;
 };
 
@@ -169,5 +229,6 @@ export const deleteDraft = async (draftId) => {
 
   if (getExistingActiveDraftId() === draftId) {
     sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
+    sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
   }
 };
