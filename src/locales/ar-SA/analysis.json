@@ -105,6 +105,8 @@
     "analysisIncluded": "يشمل التحليل",
     "stepOnly": "الخطوة فقط",
     "mergeOneHazard": "+ خطر",
-    "mergeOneFull": "+ كامل"
+    "mergeOneFull": "+ كامل",
+    "mergeResult": "تمت إضافة {{added}} · تم تجاوز {{skipped}} مكرر",
+    "noRisksToMerge": "لا توجد مخاطر للدمج."
   }
 }
