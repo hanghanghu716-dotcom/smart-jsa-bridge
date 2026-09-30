@@ -125,6 +125,14 @@
     "projectFallback": "Proyecto",
     "ppeLabel": "EPP:",
     "permitLabel": "Permisos:",
-    "signatureRows": "{{count}} fila(s) de firma"
+    "signatureRows": "{{count}} fila(s) de firma",
+    "templates": "Plantillas de documento",
+    "chooseTemplate": "Cargar una plantilla guardada",
+    "templateName": "Nombre de plantilla",
+    "saveTemplate": "Guardar",
+    "savingTemplate": "Guardando...",
+    "templateSaved": "Plantilla de documento guardada.",
+    "templateSaveError": "No se pudo guardar la plantilla.",
+    "loginRequired": "Es necesario iniciar sesión."
   }
 }
