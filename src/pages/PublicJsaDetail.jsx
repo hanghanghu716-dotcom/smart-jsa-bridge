@@ -22,7 +22,7 @@ export default function PublicJsaDetail() {
       setNotFound(false);
       const { data, error } = await supabase
         .from('jsa_projects')
-        .select('id, author_id, title, tags, form_data, analysis_data, scrap_count, created_at, updated_at, parent_id, profiles(username, company_name)')
+        .select('id, author_id, title, is_public, tags, form_data, analysis_data, scrap_count, created_at, updated_at, parent_id, profiles(username, company_name)')
         .eq('id', id)
         .eq('is_public', true)
         .maybeSingle();
