@@ -1,10 +1,10 @@
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getLanguageTag } from '../locales/config.js';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
-import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
@@ -391,7 +391,7 @@ export default function MyLibrary() {
   };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
@@ -598,10 +598,10 @@ export default function MyLibrary() {
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
                       <h4 style={styles.mTitle}>{t('layoutListTitle')}</h4>
-                      {layouts.length === 0 && <div style={{color: 'var(--text-muted)', fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
+                      {layouts.length === 0 && <div style={{color: "var(--text-muted)", fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
                       {layouts.map(l => (
                         <div key={l.id} style={styles.mRow}>
-                          <span>[{t('layoutLabel')}] {l.name} <span style={{fontSize:'0.75rem', color:'#666', marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
+                          <span>[{t('layoutLabel')}] {l.name} <span style={{fontSize:'0.75rem', color:"var(--text-muted)", marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
                           <button style={styles.mBtn} onClick={async () => {
                             if(window.confirm(t('confirmDeleteLayout'))) {
                               await supabase.from('user_layouts').delete().eq('id', l.id); fetchLibraryData();
@@ -617,16 +617,16 @@ export default function MyLibrary() {
                       <div key={f.id} style={styles.jsaCard} className="card">
                         <div style={styles.cardTop}>
                           <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', flex: 1, alignItems: 'center' }}>
-                            <span style={{...styles.typeBadge, backgroundColor: f.displayType === 'MY_JSA' ? '#4caf50' : '#007bff'}}>
+                            <span style={{...styles.typeBadge, backgroundColor: f.displayType === 'MY_JSA' ? "var(--success-action)" : "var(--action-bg)"}}>
                               {f.displayType === 'MY_JSA' ? t('typeMyJsa') : t('typeScrap')}
                             </span>
                             
                             {f.displayType === 'MY_JSA' && (
                               <span style={{
                                 ...styles.typeBadge, 
-                                backgroundColor: f.originData?.is_public ? 'var(--accent-soft)' : 'var(--surface-3)',
-                                color: f.originData?.is_public ? '#007bff' : '#666',
-                                border: f.originData?.is_public ? '1px solid var(--accent)' : '1px solid var(--border-default)'
+                                backgroundColor: f.originData?.is_public ? 'rgba(0, 123, 255, 0.2)' : "var(--card-bg)",
+                                color: f.originData?.is_public ? "var(--accent)" : "var(--text-muted)",
+                                border: f.originData?.is_public ? "1px solid var(--accent)" : "1px solid var(--border-default)"
                               }}>
                                 {f.originData?.is_public ? 'Public' : 'Private'}
                               </span>
@@ -634,7 +634,8 @@ export default function MyLibrary() {
 
                             <span style={{
                               ...styles.typeBadge,
-                              backgroundColor: f.originData?.form_data?.jsaType === '3-step' ? '#ff4d4d' : '#444'
+                              color: f.originData?.form_data?.jsaType === '3-step' ? "var(--on-accent)" : "var(--text-primary)",
+                              backgroundColor: f.originData?.form_data?.jsaType === '3-step' ? "var(--danger-action)" : "var(--surface-hover)"
                             }}>
                               {f.originData?.form_data?.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}
                             </span>
@@ -648,7 +649,7 @@ export default function MyLibrary() {
                             {activeMenuId === f.id && (
                               <div style={styles.dropdown}>
                                 {f.displayType === 'MY_JSA' && (
-                                  <div style={{...styles.dropdownItem, color: 'var(--accent)', fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.id, f.originData?.is_public)}>
+                                  <div style={{...styles.dropdownItem, color: "var(--accent)", fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.id, f.originData?.is_public)}>
                                     {f.originData?.is_public ? t('menuToPrivate') : t('menuToPublic')}
                                   </div>
                                 )}
@@ -660,13 +661,13 @@ export default function MyLibrary() {
                                 )}
                                 {f.originData?.analysis_data?.length > 0 && (
                                   <div
-                                    style={{ ...styles.dropdownItem, color: 'var(--success)', fontWeight: 'bold' }}
+                                    style={{ ...styles.dropdownItem, color: "var(--success)", fontWeight: 'bold' }}
                                     onClick={() => handleSaveProjectSteps(f.originData)}
                                   >
                                     {bulkSavingProjectId === f.originData?.id ? t('bulkSavingSteps') : t('menuSaveWorkSteps')}
                                   </div>
                                 )}
-                                <div style={{...styles.dropdownItem, color: 'var(--danger)'}} onClick={async () => {
+                                <div style={{...styles.dropdownItem, color: "var(--danger)"}} onClick={async () => {
                                   if(window.confirm(t('confirmDeleteItem'))) {
                                     const table = f.displayType === 'MY_JSA' ? 'jsa_projects' : 'user_favorites';
                                     const id = f.displayType === 'MY_JSA' ? f.id.replace('mine-','') : f.id;
@@ -728,99 +729,84 @@ const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level =
 
 // 스타일 객체는 원본 소스코드를 절대적으로 유지합니다.[cite: 16]
 const styles = {
-  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: 'var(--app-bg)', position: 'relative' },
+  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: "var(--app-bg)", position: 'relative' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 120px', gap: '4rem', zIndex: 10 },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', backgroundColor: 'var(--surface-panel)', border: '1px solid var(--border-soft)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', height: '75vh', boxShadow: 'var(--shadow-xl)', overflow: 'hidden' },
-  libHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border-default)' },
-  title: { fontSize: '1.5rem', fontWeight: '800', color: 'var(--text-primary)' },
+  formCard: { width: '100%', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', height: '75vh', boxShadow: "var(--shadow-panel)", overflow: 'hidden' },
+  libHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: "1px solid var(--border-default)" },
+  title: { fontSize: '1.5rem', fontWeight: '800', color: "var(--text-primary)" },
   addCategoryBox: { display: 'flex', gap: '10px' },
-  catInput: { backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.85rem' },
-  catAddBtn: { backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
+  catInput: { backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", color: "var(--text-primary)", padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.85rem' },
+  catAddBtn: { backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
   contentGrid: { display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2.5rem', flex: 1, overflow: 'hidden' },
-  catSidebar: { borderRight: '1px solid var(--border-default)', paddingRight: '1rem', overflowY: 'auto' },
-  systemCat: { padding: '1rem', color: 'var(--danger)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
-  systemCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  draftCat: { padding: '1rem', color: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(233,189,69,0.25)', marginBottom: '10px' },
-  draftCatActive: { padding: '1rem', color: 'var(--warning-contrast)', backgroundColor: 'var(--warning)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  workStepCat: { padding: '1rem', color: 'var(--success)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
-  workStepCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: 'var(--success)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  layoutCat: { padding: '1rem', color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
-  layoutCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: 'var(--accent)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  catDivider: { height: '1px', backgroundColor: 'var(--surface-3)', margin: '10px 0' },
-  catItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.85rem' },
-  catItemActive: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: 'var(--text-primary)', backgroundColor: 'var(--surface-3)', borderRadius: '8px', fontSize: '0.85rem' },
-  catDelBtn: { background: 'none', border: 'none', color: 'var(--text-faint)', fontSize: '0.75rem', cursor: 'pointer' },
+  catSidebar: { borderRight: "1px solid var(--border-default)", paddingRight: '1rem', overflowY: 'auto' },
+  systemCat: { padding: '1rem', color: "var(--danger)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
+  systemCatActive: { padding: '1rem', color: "var(--on-accent)", backgroundColor: "var(--danger-action)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  draftCat: { padding: '1rem', color: "var(--warning)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(233,189,69,0.25)', marginBottom: '10px' },
+  draftCatActive: { padding: '1rem', color: "#18202a", backgroundColor: "var(--warning-soft)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  workStepCat: { padding: '1rem', color: "var(--success)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
+  workStepCatActive: { padding: '1rem', color: "var(--on-accent)", backgroundColor: "var(--success-action)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  layoutCat: { padding: '1rem', color: "var(--accent)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
+  layoutCatActive: { padding: '1rem', color: "var(--on-accent)", backgroundColor: "var(--action-bg)", fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  catDivider: { height: '1px', backgroundColor: "var(--border-default)", margin: '10px 0' },
+  catItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: "var(--text-muted)", cursor: 'pointer', fontSize: '0.85rem' },
+  catItemActive: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: "var(--text-primary)", backgroundColor: "var(--card-bg)", borderRadius: '8px', fontSize: '0.85rem' },
+  catDelBtn: { background: 'none', border: 'none', color: "var(--text-muted)", fontSize: '0.75rem', cursor: 'pointer' },
   catScrollArea: { overflowY: 'auto' },
   listSection: { overflowY: 'auto', paddingRight: '10px' },
   jsaGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' },
-  jsaCard: { backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.2s ease' },
+  jsaCard: { backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.2s ease' },
   cardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' },
-  typeBadge: { fontSize: '0.55rem', fontWeight: 'bold', color: 'var(--text-primary)', padding: '1px 5px', borderRadius: '3px' },
+  typeBadge: { fontSize: '0.55rem', fontWeight: 'bold', color: "var(--on-accent)", padding: '1px 5px', borderRadius: '3px' },
   menuWrapper: { position: 'relative' },
-  menuBtn: { background: 'none', border: 'none', color: 'var(--text-faint)', fontSize: '1.2rem', cursor: 'pointer' },
-  dropdown: { position: 'absolute', top: '100%', right: 0, width: '150px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '6px', padding: '0.3rem', zIndex: 100 },
-  dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: 'var(--text-muted)', cursor: 'pointer', borderRadius: '3px' },
-  cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: 'var(--text-primary)', lineHeight: '1.3' },
-  dateLabel: { fontSize: '0.7rem', color: 'var(--text-muted)', marginBottom: '1rem' }, 
+  menuBtn: { background: 'none', border: 'none', color: "var(--text-muted)", fontSize: '1.2rem', cursor: 'pointer' },
+  dropdown: { position: 'absolute', top: '100%', right: 0, width: '150px', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', padding: '0.3rem', zIndex: 100 },
+  dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: "var(--text-muted)", cursor: 'pointer', borderRadius: '3px' },
+  cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: "var(--text-primary)", lineHeight: '1.3' },
+  dateLabel: { fontSize: '0.7rem', color: "var(--text-muted)", marginBottom: '1rem' },
   cardTags: { display: 'flex', gap: '6px', marginBottom: '1.8rem', flexWrap: 'wrap' },
-  miniTag: { fontSize: '0.65rem', color: 'var(--text-faint)' },
+  miniTag: { fontSize: '0.65rem', color: "var(--text-muted)" },
   cardFooter: { marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', position: 'relative' },
-  moveSelect: { width: '100%', backgroundColor: 'var(--app-bg)', color: 'var(--text-faint)', border: '1px solid var(--border-default)', padding: '0.5rem', borderRadius: '4px', fontSize: '0.75rem', marginBottom: '10px' },
-  useBtn: { width: '100%', padding: '0.8rem', backgroundColor: 'var(--button-strong-bg)', color: 'var(--button-strong-text)', border: 'none', borderRadius: '6px', fontWeight: '900', cursor: 'pointer', fontSize: '0.85rem' },
-  scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: 'var(--text-faint)', letterSpacing: '0.5px' }, 
+  moveSelect: { width: '100%', backgroundColor: "var(--input-bg)", color: "var(--text-muted)", border: "1px solid var(--border-default)", padding: '0.5rem', borderRadius: '4px', fontSize: '0.75rem', marginBottom: '10px' },
+  useBtn: { width: '100%', padding: '0.8rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '6px', fontWeight: '900', cursor: 'pointer', fontSize: '0.85rem' },
+  scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: "var(--text-muted)", letterSpacing: '0.5px' },
   managementView: { padding: '1rem' },
   mGroup: { marginBottom: '2rem' },
-  mTitle: { fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '1rem', borderBottom: '1px solid var(--border-default)', paddingBottom: '5px', fontWeight: 'bold' },
-  mRow: { display: 'flex', justifyContent: 'space-between', padding: '1rem', backgroundColor: 'var(--surface)', borderRadius: '8px', marginBottom: '8px', fontSize: '0.85rem' },
-  mBtn: { padding: '4px 10px', backgroundColor: 'var(--surface-3)', color: 'var(--danger)', border: '1px solid var(--border-default)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem' },
-  emptyAsset: { padding: '1.5rem', color: 'var(--text-muted)', fontSize: '0.82rem', textAlign: 'center', border: '1px dashed #2a2a2a', borderRadius: '8px' },
-  assetRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1rem', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '8px', marginBottom: '8px' },
+  mTitle: { fontSize: '0.95rem', color: "var(--text-primary)", marginBottom: '1rem', borderBottom: "1px solid var(--border-default)", paddingBottom: '5px', fontWeight: 'bold' },
+  mRow: { display: 'flex', justifyContent: 'space-between', padding: '1rem', backgroundColor: "var(--card-bg)", borderRadius: '8px', marginBottom: '8px', fontSize: '0.85rem' },
+  mBtn: { padding: '4px 10px', backgroundColor: "var(--card-bg)", color: "var(--danger)", border: "1px solid var(--border-default)", borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem' },
+  emptyAsset: { padding: '1.5rem', color: "var(--text-muted)", fontSize: '0.82rem', textAlign: 'center', border: "1px dashed var(--border-default)", borderRadius: '8px' },
+  assetRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1rem', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '8px', marginBottom: '8px' },
   assetInfo: { minWidth: 0, flex: 1, display: 'flex', flexDirection: 'column', gap: '5px' },
   assetTitleRow: { display: 'flex', alignItems: 'center', gap: '6px' },
-  assetTitle: { color: 'var(--text-primary)', fontSize: '0.88rem' },
-  assetDescription: { color: 'var(--text-muted)', fontSize: '0.72rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
-  assetMeta: { color: 'var(--text-faint)', fontSize: '0.65rem' },
-  favoriteBadge: { color: '#e9bd45', fontSize: '0.75rem' },
+  assetTitle: { color: "var(--text-primary)", fontSize: '0.88rem' },
+  assetDescription: { color: "var(--text-muted)", fontSize: '0.72rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  assetMeta: { color: "var(--text-muted)", fontSize: '0.65rem' },
+  favoriteBadge: { color: "var(--warning)", fontSize: '0.75rem' },
   assetActions: { display: 'flex', gap: '6px', flexShrink: 0 },
-  assetPrimaryBtn: { padding: '7px 11px', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
-  assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: 'var(--danger)', border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
-  assetSecondaryBtn: { padding: '7px 11px', backgroundColor: 'var(--surface-2)', color: 'var(--text-secondary)', border: '1px solid var(--border-default)', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
-  favoriteBtn: { width: '32px', height: '32px', backgroundColor: 'transparent', color: 'var(--text-faint)', border: '1px solid var(--border-default)', borderRadius: '5px', cursor: 'pointer' },
-  favoriteBtnActive: { width: '32px', height: '32px', backgroundColor: 'rgba(233,189,69,0.12)', color: '#e9bd45', border: '1px solid rgba(233,189,69,0.4)', borderRadius: '5px', cursor: 'pointer' },
-  workStepHeaderRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', borderBottom: '1px solid var(--border-default)', paddingBottom: '6px' },
-  favoriteFilterLabel: { display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '0.7rem', cursor: 'pointer' },
-  workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid var(--border-default)', borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
-  inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.8rem' },
-  inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: 'var(--surface)', color: 'var(--text-secondary)', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
-  versionPanel: { marginTop: '8px', padding: '9px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '7px' },
-  versionPanelHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'var(--text-secondary)', fontSize: '0.66rem', marginBottom: '7px' },
-  versionEmpty: { color: 'var(--text-faint)', fontSize: '0.65rem', padding: '6px 0' },
-  versionRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', padding: '6px 0', borderTop: '1px solid var(--border-subtle)' },
-  versionInfo: { display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.62rem' },
-  versionRestoreBtn: { padding: '4px 8px', backgroundColor: 'rgba(0,123,255,0.1)', color: 'var(--accent-text)', border: '1px solid rgba(0,123,255,0.35)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.62rem' },
-  loader: { textAlign: 'center', padding: '5rem', color: 'var(--text-faint)' },
+  assetPrimaryBtn: { padding: '7px 11px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
+  assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: "var(--danger)", border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  assetSecondaryBtn: { padding: '7px 11px', backgroundColor: "var(--card-bg)", color: "var(--text-secondary)", border: "1px solid var(--border-default)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  favoriteBtn: { width: '32px', height: '32px', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '5px', cursor: 'pointer' },
+  favoriteBtnActive: { width: '32px', height: '32px', backgroundColor: 'rgba(233,189,69,0.12)', color: "var(--warning)", border: '1px solid rgba(233,189,69,0.4)', borderRadius: '5px', cursor: 'pointer' },
+  workStepHeaderRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', borderBottom: "1px solid var(--border-default)", paddingBottom: '6px' },
+  favoriteFilterLabel: { display: 'flex', alignItems: 'center', gap: '6px', color: "var(--text-muted)", fontSize: '0.7rem', cursor: 'pointer' },
+  workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
+  inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '5px', fontSize: '0.8rem' },
+  inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
+  versionPanel: { marginTop: '8px', padding: '9px', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '7px' },
+  versionPanelHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: "var(--text-secondary)", fontSize: '0.66rem', marginBottom: '7px' },
+  versionEmpty: { color: "var(--text-muted)", fontSize: '0.65rem', padding: '6px 0' },
+  versionRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', padding: '6px 0', borderTop: "1px solid var(--border-default)" },
+  versionInfo: { display: 'flex', alignItems: 'center', gap: '8px', color: "var(--text-muted)", fontSize: '0.62rem' },
+  versionRestoreBtn: { padding: '4px 8px', backgroundColor: 'rgba(0,123,255,0.1)', color: "var(--accent)", border: '1px solid rgba(0,123,255,0.35)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.62rem' },
+  loader: { textAlign: 'center', padding: '5rem', color: "var(--text-muted)" },
   footerArea: { width: '100%', position: 'absolute', bottom: 0, padding: '1.5rem 5rem', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
 };
-
-if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-lib-unified";
-  let styleTag = document.getElementById(styleId);
-  if (!styleTag) {
-    styleTag = document.createElement("style");
-    styleTag.id = styleId;
-    document.head.appendChild(styleTag);
-  }
-  styleTag.innerHTML = `
-    .card:hover { border-color: var(--border-default) !important; background-color: var(--surface-2) !important; transform: translateY(-3px); }
-    .dropdownItem:hover { background-color: var(--surface); color: var(--text-primary) !important; }
-    *::-webkit-scrollbar { display: none !important; }
-  `;
-}

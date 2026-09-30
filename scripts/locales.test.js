@@ -147,7 +147,8 @@ test('theme foundation has complete appearance translations and semantic tokens'
     }
   }
 
-  const css = fs.readFileSync(new URL('../src/index.css', import.meta.url), 'utf8');
+  const css = fs.readFileSync(new URL('../src/index.css', import.meta.url), 'utf8')
+    + fs.readFileSync(new URL('../src/theme/theme.css', import.meta.url), 'utf8');
   const requiredTokens = [
     '--app-bg', '--surface-panel', '--surface', '--surface-2', '--surface-3',
     '--input-bg', '--text-primary', '--text-secondary', '--text-muted',

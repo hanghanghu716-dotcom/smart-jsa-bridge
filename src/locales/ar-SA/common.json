@@ -76,9 +76,9 @@
   },
   "appearance": {
     "title": "المظهر",
-    "active": "النشط",
     "system": "النظام",
     "light": "فاتح",
-    "dark": "داكن"
+    "dark": "داكن",
+    "active": "النشط"
   }
 }

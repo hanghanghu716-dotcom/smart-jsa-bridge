@@ -18,8 +18,8 @@ export default function ResetPassword() {
 
   // 실시간 검증 피드백 상태 (다국어 컬러/메시지 동적 적용)
   const [val, setVal] = useState({
-    pwComplexity: { msg: '', isOk: false, color: '#666' },
-    pwMatch: { msg: '', isOk: false, color: '#666' }
+    pwComplexity: { msg: '', isOk: false, color: "var(--text-muted)" },
+    pwMatch: { msg: '', isOk: false, color: "var(--text-muted)" }
   });
 
   // [로직 1] 비정상 접근 차단 (세션 유효성 검사)
@@ -37,7 +37,7 @@ export default function ResetPassword() {
   // [로직 2] 비밀번호 복잡도 실시간 검증
   useEffect(() => {
     if (!password) {
-      setVal(p => ({ ...p, pwComplexity: { msg: '', isOk: false, color: '#666' } }));
+      setVal(p => ({ ...p, pwComplexity: { msg: '', isOk: false, color: "var(--text-muted)" } }));
       return;
     }
 
@@ -47,9 +47,9 @@ export default function ResetPassword() {
     const isLengthOk = password.length >= 8;
 
     if (hasLetter && hasNumber && hasSpecial && isLengthOk) {
-      setVal(p => ({ ...p, pwComplexity: { msg: t('reset.complexityValid'), isOk: true, color: '#007bff' } })); // ✅ [다국어화]
+      setVal(p => ({ ...p, pwComplexity: { msg: t('reset.complexityValid'), isOk: true, color: "var(--accent)" } })); // ✅ [다국어화]
     } else {
-      setVal(p => ({ ...p, pwComplexity: { msg: t('reset.complexityInvalid'), isOk: false, color: '#ff4d4d' } })); // ✅ [다국어화]
+      setVal(p => ({ ...p, pwComplexity: { msg: t('reset.complexityInvalid'), isOk: false, color: "var(--danger)" } })); // ✅ [다국어화]
     }
   }, [password, t]);
 
@@ -62,11 +62,11 @@ export default function ResetPassword() {
         pwMatch: { 
           msg: isMatch ? t('reset.matchValid') : t('reset.matchInvalid'), // ✅ [다국어화]
           isOk: isMatch, 
-          color: isMatch ? '#007bff' : '#ff4d4d' 
+          color: isMatch ? "var(--accent)" : "var(--danger)"
         }
       }));
     } else {
-      setVal(p => ({ ...p, pwMatch: { msg: '', isOk: false, color: '#666' } }));
+      setVal(p => ({ ...p, pwMatch: { msg: '', isOk: false, color: "var(--text-muted)" } }));
     }
   }, [password, confirmPassword, t]);
 
@@ -95,7 +95,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
@@ -163,20 +163,20 @@ const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
   header: { padding: '1.5rem 4rem', zIndex: 10 },
-  logo: { fontSize: '1.2rem', fontWeight: '900', color: '#fff', cursor: 'pointer' },
+  logo: { fontSize: '1.2rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10, padding: '20px' },
-  formCard: { width: '100%', maxWidth: '440px', backgroundColor: 'rgba(25, 25, 25, 0.9)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '16px', padding: '40px', boxShadow: '0 20px 50px rgba(0,0,0,0.4)' },
-  formHeader: { marginBottom: '12px', borderLeft: '4px solid #007bff', paddingLeft: '12px' },
-  formTitle: { fontSize: '1.5rem', fontWeight: '800', color: '#fff', margin: 0 },
-  guideText: { color: '#888', fontSize: '0.85rem', marginBottom: '32px' },
+  formCard: { width: '100%', maxWidth: '440px', backgroundColor: "var(--panel-bg)", backdropFilter: 'blur(10px)', border: "1px solid var(--border-default)", borderRadius: '16px', padding: '40px', boxShadow: "var(--shadow-panel)" },
+  formHeader: { marginBottom: '12px', borderLeft: "4px solid var(--accent)", paddingLeft: '12px' },
+  formTitle: { fontSize: '1.5rem', fontWeight: '800', color: "var(--text-primary)", margin: 0 },
+  guideText: { color: "var(--text-muted)", fontSize: '0.85rem', marginBottom: '32px' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' },
-  label: { fontSize: '0.8rem', color: '#aaa', fontWeight: '600', paddingLeft: '4px' },
-  input: { height: '52px', padding: '0 16px', backgroundColor: 'rgba(0, 0, 0, 0.3)', border: '1px solid #333', borderRadius: '8px', color: '#fff', outline: 'none' },
+  label: { fontSize: '0.8rem', color: "var(--text-secondary)", fontWeight: '600', paddingLeft: '4px' },
+  input: { height: '52px', padding: '0 16px', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '8px', color: "var(--text-primary)", outline: 'none' },
   valMsg: { fontSize: '0.75rem', marginTop: '4px', paddingLeft: '4px', fontWeight: '700' },
-  primaryBtn: { width: '100%', height: '52px', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1rem', marginTop: '10px' },
-  secondaryBtn: { width: '100%', height: '52px', backgroundColor: 'transparent', color: '#999', border: '1px solid #444', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' },
+  primaryBtn: { width: '100%', height: '52px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1rem', marginTop: '10px' },
+  secondaryBtn: { width: '100%', height: '52px', backgroundColor: 'transparent', color: "var(--text-secondary)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' },
   switchModeArea: { marginTop: '12px' },
   form: { display: 'flex', flexDirection: 'column' }
 };

@@ -76,9 +76,9 @@
   },
   "appearance": {
     "title": "Darstellung",
-    "active": "Aktiv",
     "system": "System",
     "light": "Hell",
-    "dark": "Dunkel"
+    "dark": "Dunkel",
+    "active": "Aktiv"
   }
 }

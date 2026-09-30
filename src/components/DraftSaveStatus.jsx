@@ -36,27 +36,27 @@ const styles = {
     fontSize: '0.68rem',
     fontWeight: 800,
     pointerEvents: 'none',
-    boxShadow: '0 6px 18px rgba(0,0,0,0.28)'
+    boxShadow: "var(--shadow-panel)"
   },
   symbol: { fontSize: '0.72rem', lineHeight: 1 },
   pending: {
-    color: '#e9bd45',
+    color: "var(--warning)",
     border: '1px solid rgba(233,189,69,0.38)',
-    background: 'rgba(35,30,13,0.88)'
+    background: 'var(--warning-soft)'
   },
   saved: {
-    color: '#65c96b',
+    color: "var(--success)",
     border: '1px solid rgba(76,175,80,0.36)',
-    background: 'rgba(15,34,17,0.88)'
+    background: 'var(--success-soft)'
   },
   conflict: {
-    color: '#ffb74d',
+    color: "var(--warning)",
     border: '1px solid rgba(255,183,77,0.42)',
-    background: 'rgba(44,28,10,0.92)'
+    background: 'var(--warning-soft)'
   },
   error: {
-    color: '#ff7675',
+    color: "var(--danger)",
     border: '1px solid rgba(255,92,92,0.4)',
-    background: 'rgba(40,14,14,0.9)'
+    background: 'var(--danger-soft)'
   }
 };

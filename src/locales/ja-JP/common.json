@@ -76,9 +76,9 @@
   },
   "appearance": {
     "title": "表示モード",
-    "active": "適用中",
-    "system": "システム",
+    "system": "システム設定",
     "light": "ライト",
-    "dark": "ダーク"
+    "dark": "ダーク",
+    "active": "適用中"
   }
 }

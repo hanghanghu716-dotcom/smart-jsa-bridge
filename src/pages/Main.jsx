@@ -1,3 +1,4 @@
+import ThemeSettings from '../components/ThemeSettings';
 import { cleanSummary } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
 import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
@@ -5,12 +6,11 @@ import { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react'
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
-import SEO from '../components/SEO'; 
+import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { AuthContext } from '../contexts/AuthContext';
 import { clearActiveDraft } from '../services/jsaDraftService';
-import ThemeSwitcher from '../components/ThemeSwitcher'; 
 
 // Compact header copy is kept here so this file can be replaced independently.
 // Optional main:header.* translations take precedence over these defaults.
@@ -61,7 +61,7 @@ const HEADER_CSS = `
 `;
 
 export default function Main() {
-  const navigate = useLanguageNavigate(); 
+  const navigate = useLanguageNavigate();
   const location = useLocation();
   const { t, i18n } = useTranslation('main');
   const ui = getSiteUi(i18n.language);
@@ -425,6 +425,7 @@ export default function Main() {
             <button type="button" className="main-drawer-action" style={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>✕ {headerLabels.close}</button>
           </div>
           <nav style={styles.drawerNav}>
+            <ThemeSettings />
             <div style={styles.navCategory}>USER ACCOUNT</div>
             {user ? (
               <>
@@ -443,8 +444,6 @@ export default function Main() {
               <LanguageLink to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</LanguageLink>
             )}
 
-            <div style={{ ...styles.navCategory, marginTop: '30px' }}>{t('appearance.title', { ns: 'common', defaultValue: 'Appearance' })}</div>
-            <ThemeSwitcher />
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
             <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</LanguageLink>
             <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navProcess')}</LanguageLink>
@@ -485,10 +484,10 @@ export default function Main() {
               </p>
 
             <div style={styles.heroBtnGroup}>
-                <button 
-                  onClick={() => { clearActiveDraft(); navigate('/procedure', { 
-                    state: { 
-                      isMember: !!user, 
+                <button
+                  onClick={() => { clearActiveDraft(); navigate('/procedure', {
+                    state: {
+                      isMember: !!user,
                       isFastTrack: true,
                       formData: {
                         projectName: t('fastTrackDefaultTitle', { defaultValue: '초고속 자동 위험성평가 작업' }),
@@ -506,8 +505,8 @@ export default function Main() {
                         jsaType: '2-step'
                       },
                       participants: Array(14).fill('')
-                    } 
-                  }); }} 
+                    }
+                  }); }}
                   style={styles.fastTrackBtn}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#0056b3';
@@ -523,8 +522,8 @@ export default function Main() {
                   {t('heroFastTrackBtn')}
                 </button>
 
-                <button 
-                  onClick={handleStartClick} 
+                <button
+                  onClick={handleStartClick}
                   style={styles.primaryBtn}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
@@ -618,7 +617,7 @@ export default function Main() {
           </div>
         </div>
       </section>
-      
+
       {/* 구글 애드센스 대응 및 통합 탐색 Case Studies 섹션 */}
       <section id="case-studies" style={{ ...styles.m3Section, backgroundColor: '#ffffff' }} className="max-lg:!py-20">
         <div style={styles.container} className="max-lg:!px-6">
@@ -631,27 +630,27 @@ export default function Main() {
             </div>
           {/* 동적 검색 인프라 구조 배치 */}
             <div style={styles.searchContainer}>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 style={styles.searchIcon}
               >
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder={ui.caseSearch}
-                aria-label={ui.caseSearch} 
+                aria-label={ui.caseSearch}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
-                  setCurrentPage(1); 
+                  setCurrentPage(1);
                 }}
                 style={styles.searchInput}
               />
@@ -662,9 +661,9 @@ export default function Main() {
             <>
               <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 lg:px-0">
                 {currentItems.map((caseItem) => (
-                  <LanguageLink 
-                    key={caseItem.post_group_id} 
-                    to={`/case-study/${caseItem.post_group_id}`} 
+                  <LanguageLink
+                    key={caseItem.post_group_id}
+                    to={`/case-study/${caseItem.post_group_id}`}
                     style={{ textDecoration: 'none', display: 'block' }}
                   >
                     <div style={{ ...styles.jsaCard, cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -744,15 +743,15 @@ const styles = {
   heroContent: { maxWidth: '750px' },
   mainTitle: { fontWeight: '800', lineHeight: '1.2', letterSpacing: '-1.5px', marginBottom: '2rem' },
   subTitle: { lineHeight: '1.8', opacity: 0.85, marginBottom: '4rem' },
-  primaryBtn: { 
-    display: 'inline-block', 
-    padding: '1.2rem 4.5rem', 
-    backgroundColor: 'rgba(24, 24, 24, 0.6)', 
-    color: '#ffffff', 
-    borderRadius: '4rem', 
-    fontSize: '1.1rem', 
-    fontWeight: 'bold', 
-    border: '1px solid rgba(255, 255, 255, 0.2)', 
+  primaryBtn: {
+    display: 'inline-block',
+    padding: '1.2rem 4.5rem',
+    backgroundColor: 'rgba(24, 24, 24, 0.6)',
+    color: '#ffffff',
+    borderRadius: '4rem',
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
     whiteSpace: 'nowrap'
@@ -777,25 +776,25 @@ const styles = {
     flexWrap: 'wrap',
     marginTop: '1rem'
   },
-  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 3000, display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(8px)' },
-  modalContent: { backgroundColor: '#111', padding: '3.5rem', borderRadius: '24px', textAlign: 'center', width: '90%', maxWidth: '480px', border: '1px solid #333' },
-  modalTitle: { color: '#fff', fontSize: '1.6rem', fontWeight: '800', marginBottom: '1.2rem' },
-  modalSub: { color: '#999', fontSize: '0.95rem', marginBottom: '2.5rem', lineHeight: '1.6' },
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", zIndex: 3000, display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(8px)' },
+  modalContent: { backgroundColor: "var(--panel-bg)", padding: '3.5rem', borderRadius: '24px', textAlign: 'center', width: '90%', maxWidth: '480px', border: "1px solid var(--border-default)" },
+  modalTitle: { color: "var(--text-primary)", fontSize: '1.6rem', fontWeight: '800', marginBottom: '1.2rem' },
+  modalSub: { color: "var(--text-secondary)", fontSize: '0.95rem', marginBottom: '2.5rem', lineHeight: '1.6' },
   modalBtnGroup: { display: 'flex', flexDirection: 'column', gap: '1rem' },
-  loginBtn: { padding: '1.2rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
-  guestBtn: { padding: '1.2rem', backgroundColor: '#222', color: '#fff', border: '1px solid #444', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
-  closeText: { marginTop: '1.5rem', background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.85rem', textDecoration: 'underline' },
+  loginBtn: { padding: '1.2rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
+  guestBtn: { padding: '1.2rem', backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' },
+  closeText: { marginTop: '1.5rem', background: 'none', border: 'none', color: "var(--text-muted)", cursor: 'pointer', fontSize: '0.85rem', textDecoration: 'underline' },
   hamburger: { display: 'flex', flexDirection: 'column', gap: '6px' },
   bar: { width: '24px', height: '2px', backgroundColor: '#fff' },
-  sideDrawer: { position: 'fixed', top: 0, right: 0, height: '100vh', backgroundColor: '#fff', zIndex: 2500, transition: 'transform 0.4s ease', boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', padding: '60px 40px', display: 'flex', flexDirection: 'column', overflowY: 'auto' },
+  sideDrawer: { position: 'fixed', top: 0, right: 0, height: '100vh', backgroundColor: "var(--panel-bg)", zIndex: 2500, transition: 'transform 0.4s ease', boxShadow: "var(--shadow-panel)", padding: '60px 40px', display: 'flex', flexDirection: 'column', overflowY: 'auto' },
   drawerHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '60px' },
-  closeBtn: { cursor: 'pointer', fontSize: '0.9rem', fontWeight: '800', color: '#111' },
+  closeBtn: { cursor: 'pointer', fontSize: '0.9rem', fontWeight: '800', color: "var(--text-primary)" },
   drawerNav: { display: 'flex', flexDirection: 'column', gap: '10px' },
-  navCategory: { fontSize: '0.75rem', fontWeight: '900', color: '#888', letterSpacing: '2px', marginBottom: '15px' },
-  drawerLink: { textDecoration: 'none', color: '#111', fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: '1px solid #f5f5f5' },
-  userBadge: { backgroundColor: '#f8f9fa', padding: '1.5rem', borderRadius: '12px', marginBottom: '20px', fontSize: '0.9rem', color: '#111' },
-  logoutLink: { display: 'block', marginTop: '10px', color: '#ff4d4d', border: 'none', background: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', fontSize: '0.8rem' },
-  menuOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 2499 },
+  navCategory: { fontSize: '0.75rem', fontWeight: '900', color: "var(--text-muted)", letterSpacing: '2px', marginBottom: '15px' },
+  drawerLink: { textDecoration: 'none', color: "var(--text-primary)", fontSize: '1.1rem', fontWeight: '700', padding: '15px 0', borderBottom: "1px solid var(--border-default)" },
+  userBadge: { backgroundColor: 'var(--card-bg)', padding: '1.5rem', borderRadius: '12px', marginBottom: '20px', fontSize: '0.9rem', color: "var(--text-primary)" },
+  logoutLink: { display: 'block', marginTop: '10px', color: "var(--danger)", border: 'none', background: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', fontSize: '0.8rem' },
+  menuOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", zIndex: 2499 },
   m3Section: { padding: '160px 0' },
   m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '3px' },
   m3Title: { fontWeight: '900', color: '#111' },
@@ -828,20 +827,20 @@ const styles = {
   },
   languageSelectorWrapper: { position: 'relative', display: 'flex', alignItems: 'center' },
   dropdownArrow: { fontSize: '10px', marginLeft: '6px', transition: 'transform 0.2s' },
-  
-  searchContainer: { 
-    minWidth: '280px', 
-    position: 'relative', 
+
+  searchContainer: {
+    minWidth: '280px',
+    position: 'relative',
     marginBottom: '20px' // 리스트와의 이격 확보를 위한 하단 여백 추가
   },
   searchInput: {
-    width: '100%', 
+    width: '100%',
     padding: '12px 20px 12px 44px', // 좌측 아이콘이 위치할 패딩 공간 확보
-    fontSize: '0.95rem', 
+    fontSize: '0.95rem',
     color: '#111',
-    border: '1px solid #e0e0e0', 
-    borderRadius: '30px', 
-    outline: 'none', 
+    border: '1px solid #e0e0e0',
+    borderRadius: '30px',
+    outline: 'none',
     backgroundColor: '#f4f5f7', // 시각적 구분을 위한 미세한 음영(밝은 회색) 적용
     transition: 'all 0.2s ease-in-out'
   },

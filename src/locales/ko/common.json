@@ -76,9 +76,9 @@
   },
   "appearance": {
     "title": "화면 모드",
-    "active": "적용 중",
-    "system": "시스템",
+    "system": "시스템 설정",
     "light": "라이트",
-    "dark": "다크"
+    "dark": "다크",
+    "active": "적용 중"
   }
 }

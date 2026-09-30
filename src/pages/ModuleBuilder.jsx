@@ -1,3 +1,4 @@
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AdBanner from '../AdBanner';
@@ -7,7 +8,6 @@ import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
-import ThemeSwitcher from '../components/ThemeSwitcher';
 
 /**
  * [ModuleBuilder 컴포넌트]
@@ -294,7 +294,7 @@ const renderModulePreview = () => {
               return (
                 <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'bottom', color: '#000', borderTop: 'none'}}>
                   {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: 'var(--text-muted)'}}>{t('table.signature')}</span>
+                  <span style={{color: '#888'}}>{t('table.signature')}</span>
                 </td>
               );
             })}
@@ -307,7 +307,7 @@ const renderModulePreview = () => {
                 return (
                   <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'bottom', color: '#000'}}>
                     {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: 'var(--text-muted)'}}>{t('table.signature')}</span>
+                    <span style={{color: '#888'}}>{t('table.signature')}</span>
                   </td>
                 );
               })}
@@ -332,7 +332,7 @@ const renderModulePreview = () => {
   };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
@@ -351,7 +351,7 @@ const renderModulePreview = () => {
             </nav>
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>{t('header.title')}</h2>
-              <p style={{color: 'var(--text-secondary)', marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p>
+              <p style={{color: "var(--text-secondary)", marginTop: '8px', fontSize: '0.9rem'}}>{t('header.subtitle')}</p>
             </div>
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
@@ -372,7 +372,7 @@ const renderModulePreview = () => {
                     <span style={styles.inputLabel}>{t('toolbar.addSignatureRow')}</span>
                     <div style={styles.buttonGroupSmall}>
                       <button onClick={() => setSignatureRows(Math.max(1, signatureRows - 1))} style={styles.miniBtnControl}>-</button>
-                      <span style={{ color: 'var(--accent)', fontSize: '1rem', width: '24px', textAlign: 'center', fontWeight: 'bold' }}>{signatureRows}</span>
+                      <span style={{ color: "var(--accent)", fontSize: '1rem', width: '24px', textAlign: 'center', fontWeight: 'bold' }}>{signatureRows}</span>
                       <button onClick={() => setSignatureRows(signatureRows + 1)} style={styles.miniBtnControl}>+</button>
                     </div>
                   </div>
@@ -381,7 +381,7 @@ const renderModulePreview = () => {
               <section style={styles.previewPanel}>
                 <div style={styles.previewHeader}>{t('preview.header')}</div>
                 <div style={styles.previewCanvas}>
-                  <div style={styles.documentSheet}>{renderUnifiedHeader()}<div style={{ width: '100%' }}>{renderDynamicLayout()}</div></div>
+                  <div className="theme-paper" style={styles.documentSheet}>{renderUnifiedHeader()}<div style={{ width: '100%' }}>{renderDynamicLayout()}</div></div>
                 </div>
               </section>
             </div>
@@ -400,47 +400,47 @@ const renderModulePreview = () => {
 }
 
 const styles = {
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--app-bg)' },
+  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: "var(--app-bg)" },
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', letterSpacing: '2px' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', letterSpacing: '2px' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 2rem 20px', zIndex: 10, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '160px' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 0 },
-  formCard: { width: '100%', maxWidth: '1550px', height: '85vh', backgroundColor: 'var(--surface-panel)', border: '1px solid var(--border-soft)', borderRadius: '12px', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.8)' },
+  formCard: { width: '100%', maxWidth: '1550px', height: '85vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: "var(--shadow-panel)" },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', gap: '0.5rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
-  stepBadgeDone: { width: '20px', height: '20px', backgroundColor: 'var(--success)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-on-accent)', fontSize: '0.7rem' },
-  stepTextDone: { fontSize: '0.8rem', color: 'var(--success)', fontWeight: '700' },
+  stepBadgeDone: { width: '20px', height: '20px', backgroundColor: "var(--success-action)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.7rem' },
+  stepTextDone: { fontSize: '0.8rem', color: "var(--success)", fontWeight: '700' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
-  stepBadgeActive: { width: '20px', height: '20px', backgroundColor: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-on-accent)', fontSize: '0.75rem', fontWeight: 'bold' },
-  stepTextActive: { fontSize: '0.8rem', color: 'var(--text-primary)', fontWeight: '700' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 0.3 },
-  stepBadge: { width: '20px', height: '20px', backgroundColor: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', fontSize: '0.75rem' },
-  stepText: { fontSize: '0.8rem', color: 'var(--text-secondary)' },
-  stepLine: { width: '20px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  stepLineActive: { width: '20px', height: '1px', backgroundColor: 'var(--success)' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary)' },
+  stepBadgeActive: { width: '20px', height: '20px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.75rem', fontWeight: 'bold' },
+  stepTextActive: { fontSize: '0.8rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 1 },
+  stepBadge: { width: '20px', height: '20px', backgroundColor: "var(--surface-hover)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--text-secondary)", fontSize: '0.75rem' },
+  stepText: { fontSize: '0.8rem', color: "var(--text-secondary)" },
+  stepLine: { width: '20px', height: '1px', backgroundColor: "var(--border-default)" },
+  stepLineActive: { width: '20px', height: '1px', backgroundColor: "var(--success-action)" },
+  formHeader: { marginBottom: '1.2rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)" },
   builderLayout: { display: 'flex', flex: 1, gap: '1.5rem', overflow: 'hidden' },
-  toolbarSliding: { width: '320px', backgroundColor: 'rgba(24, 24, 24, 0.95)', border: '1px solid var(--border-default)', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflow: 'auto' },
+  toolbarSliding: { width: '320px', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflow: 'auto' },
   toolSectionCompact: { display: 'flex', flexDirection: 'column', gap: '0.8rem' },
-  toolTitleMini: { color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: '900', borderLeft: '3px solid #007bff', paddingLeft: '8px', margin: 0 },
-  inputFieldCompact: { backgroundColor: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', border: '1px solid var(--border-default)', display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 },
-  inputLabel: { fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 'bold' },
-  panelInput: { width: '100%', padding: '6px', backgroundColor: 'var(--surface-3)', color: 'var(--text-primary)', border: '1px solid #555', borderRadius: '4px', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' },
+  toolTitleMini: { color: "var(--text-secondary)", fontSize: '0.85rem', fontWeight: '900', borderLeft: "3px solid var(--accent)", paddingLeft: '8px', margin: 0 },
+  inputFieldCompact: { backgroundColor: "var(--input-bg)", padding: '10px', borderRadius: '6px', border: "1px solid var(--border-default)", display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 },
+  inputLabel: { fontSize: '0.75rem', color: "var(--text-primary)", fontWeight: 'bold' },
+  panelInput: { width: '100%', padding: '6px', backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '4px', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' },
   buttonGroupSmall: { display: 'flex', gap: '6px', alignItems: 'center' },
-  miniBtnControl: { width: '28px', height: '28px', backgroundColor: 'var(--surface-3)', color: 'var(--text-primary)', border: '1px solid #555', borderRadius: '6px', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  previewPanel: { flex: 1, backgroundColor: 'rgba(20, 20, 20, 0.8)', borderRadius: '10px', border: '1px solid var(--border-default)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
-  previewHeader: { padding: '1rem', backgroundColor: 'var(--surface)', color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-default)', textAlign: 'center' },
-  previewCanvas: { flex: 1, overflow: 'auto', padding: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'var(--surface-3)' },
+  miniBtnControl: { width: '28px', height: '28px', backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '6px', fontSize: '1rem', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  previewPanel: { flex: 1, backgroundColor: "var(--panel-bg)", borderRadius: '10px', border: "1px solid var(--border-default)", display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  previewHeader: { padding: '1rem', backgroundColor: "var(--card-bg)", color: "var(--text-primary)", fontSize: '0.9rem', fontWeight: 'bold', borderBottom: "1px solid var(--border-default)", textAlign: 'center' },
+  previewCanvas: { flex: 1, overflow: 'auto', padding: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: "var(--surface-hover)" },
   documentSheet: { backgroundColor: '#fff', width: '1080px', minHeight: '750px', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
   previewBlock: { width: '100%', backgroundColor: 'transparent', border: 'none' },
   btnAreaLayout: { marginTop: '1.5rem', display: 'flex', gap: '1rem' },
-  prevBtnDark: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border-default)', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  prevBtnDark: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   // ✅ [스타일 추가] 건너뛰기 버튼용 스타일
-  skipBtn: { flex: 1, padding: '1rem', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: 'var(--text-secondary)', border: '1px dashed #555', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '0.9rem', transition: '0.2s' },
-  nextBtnLight: { flex: 2, padding: '1rem', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', fontWeight: '800', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' }
+  skipBtn: { flex: 1, padding: '1rem', backgroundColor: "var(--card-bg)", color: "var(--text-secondary)", border: "1px dashed var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '0.9rem', transition: '0.2s' },
+  nextBtnLight: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", fontWeight: '800', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' }
 };

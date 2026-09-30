@@ -76,9 +76,9 @@
   },
   "appearance": {
     "title": "Aspetto",
-    "active": "Attivo",
     "system": "Sistema",
     "light": "Chiaro",
-    "dark": "Scuro"
+    "dark": "Scuro",
+    "active": "Attivo"
   }
 }

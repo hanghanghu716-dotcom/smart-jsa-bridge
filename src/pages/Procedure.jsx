@@ -1,3 +1,4 @@
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
@@ -8,7 +9,6 @@ import WorkStepWorkbench from '../components/WorkStepWorkbench';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
-import ThemeSwitcher from '../components/ThemeSwitcher';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -141,7 +141,7 @@ const startAnalysis = (jsaType) => {
     };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
 
@@ -293,60 +293,60 @@ const startAnalysis = (jsaType) => {
 
 // 스타일 객체는 원본 그대로 유지합니다[cite: 14].
 const styles = {
-  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: 'var(--app-bg)' },
+  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: "var(--app-bg)" },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--hero-text)', cursor: 'pointer' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: "var(--text-primary)", cursor: 'pointer' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 100px', gap: '4rem', zIndex: 10, overflow: 'hidden' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', height: '75vh', backgroundColor: 'var(--surface-panel)', border: '1px solid var(--border-soft)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: 'var(--shadow-xl)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  formCard: { width: '100%', maxWidth: '1440px', height: '75vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: "var(--shadow-panel)", display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-secondary)' },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-on-accent)', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: 'var(--success)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-on-accent)', fontSize: '0.7rem' },
-  stepText: { fontSize: '0.85rem', color: 'var(--text-faint)' },
-  stepTextActive: { fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '700' },
-  stepTextDone: { fontSize: '0.85rem', color: 'var(--success)', fontWeight: '700' },
-  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: 'var(--success)' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 },
-  formSubTitle: { marginTop: '4px', color: 'var(--text-muted)', fontSize: '0.72rem' },
-  workbenchBtn: { padding: '0.7rem 1rem', backgroundColor: 'rgba(0,123,255,0.12)', color: 'var(--accent-text)', border: '1px solid var(--accent)', borderRadius: '7px', cursor: 'pointer', fontWeight: '800', fontSize: '0.78rem', whiteSpace: 'nowrap' },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: "var(--surface-hover)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--text-secondary)" },
+  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--on-accent)", boxShadow: "var(--shadow-panel)" },
+  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: "var(--success-action)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.7rem' },
+  stepText: { fontSize: '0.85rem', color: "var(--text-muted)" },
+  stepTextActive: { fontSize: '0.85rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepTextDone: { fontSize: '0.85rem', color: "var(--success)", fontWeight: '700' },
+  stepLine: { width: '30px', height: '1px', backgroundColor: "var(--border-default)" },
+  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: "var(--success-action)" },
+  formHeader: { marginBottom: '1.2rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)", margin: 0 },
+  formSubTitle: { marginTop: '4px', color: "var(--text-muted)", fontSize: '0.72rem' },
+  workbenchBtn: { padding: '0.7rem 1rem', backgroundColor: 'rgba(0,123,255,0.12)', color: "var(--accent)", border: "1px solid var(--accent)", borderRadius: '7px', cursor: 'pointer', fontWeight: '800', fontSize: '0.78rem', whiteSpace: 'nowrap' },
   procedureContainer: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   gridHeader: { display: 'flex', paddingLeft: '3.2rem', gap: '1rem', marginBottom: '0.5rem' },
-  headerLabelShort: { width: '180px', fontSize: '0.85rem', color: 'var(--accent)', fontWeight: 'bold' },
-  headerLabelLong: { flex: 1, fontSize: '0.85rem', color: 'var(--accent)', fontWeight: 'bold' },
+  headerLabelShort: { width: '180px', fontSize: '0.85rem', color: "var(--accent)", fontWeight: 'bold' },
+  headerLabelLong: { flex: 1, fontSize: '0.85rem', color: "var(--accent)", fontWeight: 'bold' },
   rowWrapper: { display: 'flex', alignItems: 'center', gap: '1rem' },
-  stepNumberBadge: { width: '2.2rem', fontSize: '0.9rem', color: 'var(--text-faint)', fontWeight: '900', textAlign: 'center' },
+  stepNumberBadge: { width: '2.2rem', fontSize: '0.9rem', color: "var(--text-muted)", fontWeight: '900', textAlign: 'center' },
   inputGroup: { flex: 1, display: 'flex', gap: '1rem' },
-  inputTitle: { width: '180px', padding: '0.75rem 1rem', backgroundColor: 'var(--input-bg)', border: '1px solid var(--border-default)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '0.95rem', outline: 'none' },
-  inputDetail: { flex: 1, padding: '0.75rem 1rem', backgroundColor: 'var(--input-bg)', border: '1px solid var(--border-default)', borderRadius: '6px', color: 'var(--text-primary)', fontSize: '0.95rem', outline: 'none' },
-  addBtn: { width: '100%', padding: '1.1rem', backgroundColor: 'transparent', color: 'var(--accent)', border: '1px dashed #007bff', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', marginTop: '1rem' },
+  inputTitle: { width: '180px', padding: '0.75rem 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none' },
+  inputDetail: { flex: 1, padding: '0.75rem 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none' },
+  addBtn: { width: '100%', padding: '1.1rem', backgroundColor: 'transparent', color: "var(--accent)", border: "1px dashed var(--accent)", borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', marginTop: '1rem' },
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border-default)', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  nextBtn: { flex: 2, padding: '1rem', backgroundColor: 'var(--button-strong-bg)', color: 'var(--button-strong-text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  nextBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   footerArea: { width: '100%', padding: '1.5rem 5rem', zIndex: 10, position: 'absolute', bottom: 0, backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  modalContent: { width: '500px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
-  modalTitle: { fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem' },
-  modalSub: { fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '2rem' },
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
+  modalContent: { width: '500px', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalTitle: { fontSize: '1.5rem', color: "var(--text-primary)", marginBottom: '0.5rem' },
+  modalSub: { fontSize: '0.9rem', color: "var(--text-muted)", marginBottom: '2rem' },
   typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
-  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: 'var(--surface-2)', border: '1px solid var(--border-default)', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
-  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: 'var(--surface-2)', border: '2px solid var(--accent)', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
-  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: 'var(--surface-3)', color: 'var(--text-secondary)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeLabel: { fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.8rem', fontWeight: 'bold' },
-  typeDesc: { fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' },
-  modalCloseBtn: { background: 'none', border: 'none', color: 'var(--text-faint)', cursor: 'pointer', textDecoration: 'underline' },
+  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
+  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "2px solid var(--accent)", borderRadius: '12px', cursor: 'pointer', boxShadow: "var(--shadow-panel)" },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--surface-hover)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeLabel: { fontSize: '1rem', color: "var(--text-primary)", marginBottom: '0.8rem', fontWeight: 'bold' },
+  typeDesc: { fontSize: '0.8rem', color: "var(--text-muted)", lineHeight: '1.5' },
+  modalCloseBtn: { background: 'none', border: 'none', color: "var(--text-muted)", cursor: 'pointer', textDecoration: 'underline' },
   modalAdWrapper: {
     width: '100%',
     marginBottom: '1.5rem',
@@ -354,21 +354,6 @@ const styles = {
     justifyContent: 'center',
     overflow: 'hidden',
     borderRadius: '8px',
-    backgroundColor: 'var(--border-subtle)'
+    backgroundColor: "var(--app-bg)"
   },
 };
-
-if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-global-style";
-  let styleTag = document.getElementById(styleId);
-  if (!styleTag) {
-    styleTag = document.createElement("style");
-    styleTag.id = styleId;
-    document.head.appendChild(styleTag);
-  }
-  styleTag.innerHTML = `
-    html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: var(--app-bg) !important; overflow-y: auto !important; }
-    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
-    *::-webkit-scrollbar { display: none !important; }
-  `;
-}

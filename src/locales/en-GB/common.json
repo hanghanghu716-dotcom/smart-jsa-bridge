@@ -76,9 +76,9 @@
   },
   "appearance": {
     "title": "Appearance",
-    "active": "Active",
     "system": "System",
     "light": "Light",
-    "dark": "Dark"
+    "dark": "Dark",
+    "active": "Active"
   }
 }

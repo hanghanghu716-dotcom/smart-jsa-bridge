@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 
 const OPTIONS = [
-  { value: 'auto', icon: '◐', key: 'system' },
+  { value: 'system', icon: '◐', key: 'system' },
   { value: 'light', icon: '☀', key: 'light' },
   { value: 'dark', icon: '☾', key: 'dark' },
 ];
 
 export default function ThemeSwitcher({ compact = false }) {
   const { t } = useTranslation('common');
-  const { preference, resolvedTheme, setTheme } = useTheme();
+  const { preference, resolvedTheme, setPreference } = useTheme();
 
   return (
     <div style={compact ? styles.compactWrap : styles.wrap}>
@@ -29,9 +29,10 @@ export default function ThemeSwitcher({ compact = false }) {
               type="button"
               key={option.value}
               aria-pressed={active}
+              aria-label={t('appearance.' + option.key)}
               title={t('appearance.' + option.key, { defaultValue: option.key })}
               style={active ? styles.optionActive : styles.option}
-              onClick={() => setTheme(option.value)}
+              onClick={() => setPreference(option.value)}
             >
               <span aria-hidden="true">{option.icon}</span>
               {!compact && <span>{t('appearance.' + option.key, { defaultValue: option.key })}</span>}
@@ -75,7 +76,8 @@ const styles = {
     gap: '5px',
   },
   option: {
-    minHeight: '34px',
+    minHeight: '44px',
+    minWidth: '44px',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -91,7 +93,8 @@ const styles = {
     fontWeight: 700,
   },
   optionActive: {
-    minHeight: '34px',
+    minHeight: '44px',
+    minWidth: '44px',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
