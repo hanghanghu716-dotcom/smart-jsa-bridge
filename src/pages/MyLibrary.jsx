@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { listRecentDrafts, setActiveDraftId, archiveDraft, deleteDraft } from '../services/jsaDraftService';
-import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed, cloneWorkStep } from '../services/workStepLibraryService';
+import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed, cloneWorkStep, listWorkStepVersions, restoreWorkStepVersion } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -31,6 +31,9 @@ export default function MyLibrary() {
   const [workStepFavoritesOnly, setWorkStepFavoritesOnly] = useState(false);
   const [editingWorkStepId, setEditingWorkStepId] = useState(null);
   const [workStepEditForm, setWorkStepEditForm] = useState({ title: '', detail: '', tags: '' });
+  const [historyWorkStepId, setHistoryWorkStepId] = useState(null);
+  const [workStepVersions, setWorkStepVersions] = useState([]);
+  const [isVersionHistoryLoading, setIsVersionHistoryLoading] = useState(false);
   const [bulkSavingProjectId, setBulkSavingProjectId] = useState(null); 
 
   const buildFolderTree = (items, parentId = null) => {
@@ -311,6 +314,44 @@ export default function MyLibrary() {
     }
   };
 
+  const toggleWorkStepHistory = async (step) => {
+    if (historyWorkStepId === step.id) {
+      setHistoryWorkStepId(null);
+      setWorkStepVersions([]);
+      return;
+    }
+
+    setHistoryWorkStepId(step.id);
+    setIsVersionHistoryLoading(true);
+    try {
+      const versions = await listWorkStepVersions(step.id, 20);
+      setWorkStepVersions(versions);
+    } catch (error) {
+      console.error('[Work Step Library] version history failed:', error);
+      alert(t('workStepHistoryError'));
+      setHistoryWorkStepId(null);
+    } finally {
+      setIsVersionHistoryLoading(false);
+    }
+  };
+
+  const handleRestoreWorkStepVersion = async (step, versionRow) => {
+    if (!window.confirm(t('confirmRestoreWorkStepVersion', { version: versionRow.version }))) return;
+
+    try {
+      const restored = await restoreWorkStepVersion(step.id, versionRow);
+      if (restored) {
+        setWorkSteps(prev => prev.map(item => item.id === step.id ? restored : item));
+        const versions = await listWorkStepVersions(step.id, 20);
+        setWorkStepVersions(versions);
+        alert(t('workStepVersionRestored'));
+      }
+    } catch (error) {
+      console.error('[Work Step Library] version restore failed:', error);
+      alert(t('workStepVersionRestoreError'));
+    }
+  };
+
   const removeWorkStep = async (id) => {
     if (!window.confirm(t('confirmDeleteWorkStep'))) return;
     try {
@@ -498,7 +539,33 @@ export default function MyLibrary() {
                               {t('hazardsCount')}: {step.analysis_data?.risks?.length || 0}
                               {step.source_project_title ? ` · ${step.source_project_title}` : ''}
                               {step.use_count ? ` · ${t('usedCount')}: ${step.use_count}` : ''}
+                              {step.version ? ` · v${step.version}` : ''}
                             </span>
+                            {historyWorkStepId === step.id && (
+                              <div style={styles.versionPanel}>
+                                <div style={styles.versionPanelHeader}>
+                                  <strong>{t('workStepHistoryTitle')}</strong>
+                                  {isVersionHistoryLoading && <span>{t('loading')}</span>}
+                                </div>
+                                {!isVersionHistoryLoading && workStepVersions.length === 0 && (
+                                  <div style={styles.versionEmpty}>{t('workStepHistoryEmpty')}</div>
+                                )}
+                                {!isVersionHistoryLoading && workStepVersions.map(versionRow => (
+                                  <div key={versionRow.id} style={styles.versionRow}>
+                                    <div style={styles.versionInfo}>
+                                      <strong>v{versionRow.version}</strong>
+                                      <span>{formatDate(versionRow.created_at)}</span>
+                                    </div>
+                                    <button
+                                      style={styles.versionRestoreBtn}
+                                      onClick={() => handleRestoreWorkStepVersion(step, versionRow)}
+                                    >
+                                      {t('restoreVersion')}
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                           <div style={styles.assetActions}>
                             <button
@@ -514,6 +581,7 @@ export default function MyLibrary() {
                             ) : (
                               <>
                                 <button style={styles.assetSecondaryBtn} onClick={() => beginEditWorkStep(step)}>{t('editWorkStep')}</button>
+                                <button style={styles.assetSecondaryBtn} onClick={() => toggleWorkStepHistory(step)}>{t('workStepHistory')}</button>
                                 <button style={styles.assetSecondaryBtn} onClick={() => handleCloneWorkStep(step)}>{t('cloneWorkStep')}</button>
                                 <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
                                 <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
@@ -729,6 +797,12 @@ const styles = {
   workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: '#0a0a0a', color: '#fff', border: '1px solid #2d2d2d', borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
   inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: '#080808', color: '#fff', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.8rem' },
   inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: '#080808', color: '#ddd', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
+  versionPanel: { marginTop: '8px', padding: '9px', backgroundColor: '#0a0a0a', border: '1px solid #292929', borderRadius: '7px' },
+  versionPanelHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#aaa', fontSize: '0.66rem', marginBottom: '7px' },
+  versionEmpty: { color: '#555', fontSize: '0.65rem', padding: '6px 0' },
+  versionRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', padding: '6px 0', borderTop: '1px solid #1f1f1f' },
+  versionInfo: { display: 'flex', alignItems: 'center', gap: '8px', color: '#777', fontSize: '0.62rem' },
+  versionRestoreBtn: { padding: '4px 8px', backgroundColor: 'rgba(0,123,255,0.1)', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.62rem' },
   loader: { textAlign: 'center', padding: '5rem', color: '#444' },
   footerArea: { width: '100%', position: 'absolute', bottom: 0, padding: '1.5rem 5rem', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
