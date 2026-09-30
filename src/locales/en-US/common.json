@@ -71,6 +71,7 @@
   "draftSave": {
     "pending": "Saving",
     "saved": "Saved",
-    "error": "Save error"
+    "error": "Save error",
+    "conflict": "A newer draft was saved in another tab · refresh required"
   }
 }
