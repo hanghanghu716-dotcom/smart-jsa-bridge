@@ -105,6 +105,8 @@
     "analysisIncluded": "分析含む",
     "stepOnly": "ステップのみ",
     "mergeOneHazard": "+ 危険",
-    "mergeOneFull": "+ 全体"
+    "mergeOneFull": "+ 全体",
+    "mergeResult": "{{added}}件追加 · 重複{{skipped}}件をスキップ",
+    "noRisksToMerge": "追加できる危険要因がありません。"
   }
 }
