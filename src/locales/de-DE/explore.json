@@ -26,5 +26,25 @@
   "cancelBtn": "Abbrechen",
   "alertReportLoginRequired": "Anmeldung erforderlich, um die Meldefunktion zu nutzen.",
   "alertActionCompleted": "Die Aktion wurde abgeschlossen.",
-  "alertErrorOccurred": "Während der Verarbeitung ist ein Fehler aufgetreten."
+  "alertErrorOccurred": "Während der Verarbeitung ist ein Fehler aufgetreten.",
+  "viewDetails": "Details anzeigen",
+  "publicJsa": {
+    "notFoundTitle": "Öffentliche JSA nicht gefunden",
+    "notFoundDescription": "Diese JSA wurde möglicherweise gelöscht oder auf privat gesetzt.",
+    "backExplore": "Zurück zu Explore",
+    "eyebrow": "ÖFFENTLICHE JSA",
+    "publicButNotIndexed": "Diese JSA ist öffentlich lesbar, wird aber wegen nicht erfüllter Qualitätskriterien nicht für die Suche indexiert.",
+    "steps": "Arbeitsschritte",
+    "hazards": "Gefährdungen",
+    "controls": "Maßnahmen",
+    "workSequence": "Arbeitsschritte & Gefährdungsbeurteilung",
+    "untitledStep": "Arbeitsschritt ohne Titel",
+    "noHazards": "Für diesen Schritt sind keine Gefährdungen hinterlegt.",
+    "hazard": "Gefährdung",
+    "currentControl": "Aktuelle / grundlegende Maßnahme",
+    "recommendedControl": "Zusätzliche / empfohlene Maßnahme",
+    "riskLevel": "Risiko",
+    "ctaTitle": "Aus dieser JSA ein einsatzbereites Dokument erstellen?",
+    "ctaDescription": "Passen Sie Arbeitsschritte und Gefährdungen an Ihre Bedingungen an und speichern Sie eine neue JSA."
+  }
 }
