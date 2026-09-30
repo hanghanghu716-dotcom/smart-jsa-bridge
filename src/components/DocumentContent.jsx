@@ -128,18 +128,18 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   }[value] || value);
 
   const renderDesignerSafety = () => {
-    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
+    const td = { border: '1px solid #888', padding: '5px 7px', height: '32px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
     const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', width: '15%' };
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
         <tbody>
           <tr>
             <td style={label}>{t('header.ppe')}</td>
-            <td style={td}>{(formData?.ppe || []).map(translatePpe).join(' · ') || '—'}</td>
+            <td style={td}>{(formData?.ppe || []).map(translatePpe).join(' · ')}</td>
           </tr>
           <tr>
             <td style={label}>{t('header.highRiskWork')}</td>
-            <td style={td}>{(formData?.permits || []).map(translatePermit).join(' · ') || '—'}</td>
+            <td style={td}>{(formData?.permits || []).map(translatePermit).join(' · ')}</td>
           </tr>
         </tbody>
       </table>
@@ -149,15 +149,15 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   const renderDesignerApproval = () => {
     const td = { border: '1px solid #888', padding: '5px', color: '#000', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center' };
     return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+      <table style={{ width: '360px', maxWidth: '100%', marginLeft: 'auto', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+        <colgroup><col style={{ width: '42px' }} /><col /><col /><col /></colgroup>
         <tbody>
           <tr>
-            <td style={{ ...td, background: '#f2f2f2', fontWeight: 'bold' }}>{t('header.approval')}</td>
+            <td rowSpan={2} style={{ ...td, background: '#f2f2f2', fontWeight: 'bold', verticalAlign: 'middle' }}>{t('header.approval')}</td>
             <td style={td}>{appr1}</td><td style={td}>{appr2}</td><td style={td}>{appr3}</td>
           </tr>
           <tr>
-            <td style={{ ...td, background: '#f2f2f2', fontWeight: 'bold' }}>{t('signature.sign')}</td>
-            <td style={{ ...td, height: '36px' }}></td><td style={td}></td><td style={td}></td>
+            <td style={{ ...td, height: '42px' }}></td><td style={td}></td><td style={td}></td>
           </tr>
         </tbody>
       </table>

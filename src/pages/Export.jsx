@@ -2,7 +2,7 @@ import DocumentContent from '../components/DocumentContent';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
-import html2canvas from 'html2canvas';
+import { captureReport } from '../utils/captureReport';
 import jsPDF from 'jspdf'; 
 import { supabase } from '../supabaseClient'; 
 import AdBanner from '../AdBanner';
@@ -191,7 +191,7 @@ export default function Export() {
   const generatePDF = async () => {
     setIsProcessing(true); const paper = document.querySelector('.reportPaper'); if (!paper) return setIsProcessing(false);
     try {
-      window.scrollTo(0, 0); const canvas = await html2canvas(paper, { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, imageTimeout: 0, scrollY: 0 });
+      window.scrollTo(0, 0); const canvas = await captureReport(paper);
       const imgWidthPx = canvas.width; const imgHeightPx = canvas.height; const doc = new jsPDF(savedOrientation === 'landscape' ? 'l' : 'p', 'mm', 'a4');
       const pageWidth = doc.internal.pageSize.getWidth(); const pageHeight = doc.internal.pageSize.getHeight(); const margin = 10; const contentWidth = pageWidth - (margin * 2); const pxToMm = contentWidth / imgWidthPx;
       const contentHeightMm = imgHeightPx * pxToMm; let leftHeightMm = contentHeightMm; let positionMm = 0; const paperRect = paper.getBoundingClientRect();

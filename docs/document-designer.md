@@ -38,6 +38,20 @@ templates are recognized; applying one resets newer overrides/notes rather than
 silently inheriting settings from the previously selected template. Existing
 cloud project output includes designer settings in `custom_layout`.
 
+Template saving is optional before export. The designer's Save action adds a
+reusable layout to the template picker. Export's cloud save stores an analyzed
+project with its layout; it does not add an entry to that picker. The existing
+cloud save policy clears department, location, date, manager, equipment,
+additional form items and the participant list. Draft recovery and a downloaded
+PDF are separate from that sanitized project save.
+
+Approval uses a compact, right-aligned 360px table with three signature cells.
+Empty PPE and high-risk-work values remain blank in 32px minimum-height rows
+for handwriting. PDF capture waits for loaded fonts and temporarily restores
+inline display only for html2canvas's hidden font-metric probes, preventing
+Tailwind's image reset from shifting text down. The temporary rule is removed
+even when capture fails; document photo styles are unchanged.
+
 No schema, policy or live account data changes were required. This phase covers
 the six supported blocks; arbitrary custom blocks and company-logo editing are
 not included. Photo attachment continues through the existing Export control.
