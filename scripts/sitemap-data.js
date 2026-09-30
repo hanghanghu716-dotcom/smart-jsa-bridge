@@ -1,4 +1,5 @@
 import { SUPPORTED_LANGS, SEO_LANGUAGES, getSeoLocale, normalizeLocale } from '../src/locales/config.js';
+import { assessPublicJsaQuality } from '../src/utils/publicJsaQuality.js';
 
 const baseUrl = 'https://smartjsabridge.com';
 const staticPages = ['', 'about', 'archive', 'explore', 'dictionary', 'jrajsa', 'regulation',
@@ -23,7 +24,7 @@ export async function loadCaseRows(client) {
   }
 }
 
-export function buildSitemap(rows) {
+export function buildSitemap(rows, publicJsaRows = []) {
   const entries = [];
   const addEntry = (locale, path, alternates) => {
     const url = code => escapeXml(baseUrl + '/' + code + path);
@@ -46,6 +47,13 @@ export function buildSitemap(rows) {
     const alternates = SEO_LANGUAGES.filter(locale => locales.has(getSeoLocale(locale)));
     for (const locale of locales) addEntry(locale, casePath(slug), alternates);
   }
+
+  for (const project of publicJsaRows || []) {
+    const quality = assessPublicJsaQuality(project);
+    if (!project?.id || !project?.is_public || !quality.indexable || !quality.locale) continue;
+    addEntry(quality.locale, '/jsa/' + encodeURIComponent(project.id), []);
+  }
+
   if (entries.length > 50000) throw new Error('Sitemap exceeds 50,000 URLs; split into a sitemap index before publishing.');
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
     + entries.join('\n') + '\n</urlset>\n';
