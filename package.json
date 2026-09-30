@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "test:site": "node --test scripts/site-quality.test.js",
     "test:content": "node --test scripts/content-publishing.test.js",
-    "test:theme": "node --test scripts/theme.test.js"
+    "test:theme": "node --test scripts/theme.test.js",
+    "test:analysis": "node --test scripts/analysis-knowledge.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

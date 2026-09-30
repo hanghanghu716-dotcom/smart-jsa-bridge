@@ -1,6 +1,7 @@
+import { mergeKnowledgeRisks, matchingProjectSteps } from '../utils/analysisKnowledge';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getDataLocale } from '../locales/config.js';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
@@ -10,12 +11,13 @@ import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
-import { saveWorkStep } from '../services/workStepLibraryService';
+import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
+
+const EMPTY_LIST = [];
 
 export default function Analysis() {
   const navigate = useLanguageNavigate();
   const location = useLocation();
-  const scrollRef = useRef(null);
   const { t, i18n } = useTranslation(['analysis', 'tags']);
   const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
@@ -25,10 +27,10 @@ export default function Analysis() {
   const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
 
   const existingId = state.id ?? recoveredDraft?.source_project_id ?? null;
-  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const procedures = state.procedures || recoveredDraft?.procedures || EMPTY_LIST;
   const formData = state.formData || recoveredDraft?.form_data || {};
   const participants = state.participants || recoveredDraft?.participants || [];
-  const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || EMPTY_LIST;
 
   const jsaType = formData.jsaType || '2-step';
   useEffect(() => {
@@ -74,7 +76,6 @@ export default function Analysis() {
   const [measureSearchTerm, setMeasureSearchTerm] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [checkedRisks, setCheckedRisks] = useState(new Set());
-  const autoFilledRef = useRef(new Set());
 
   const [recModal, setRecModal] = useState({
     isOpen: false,
@@ -99,7 +100,8 @@ export default function Analysis() {
       measure: "",
       current_measure: "",
       recommend_measure: "",
-      category: rec.category || t('base.etc')
+      category: rec.category || t('base.etc'),
+      source: rec.source || 'master'
     }));
 
     setAnalysisData(prev => {
@@ -294,9 +296,9 @@ export default function Analysis() {
       console.error("Critical Error in handleOpenRecommendation:", err);
     } finally {
       setIsLoading(false);
-      if (scored.length === 0) return alert(t('alert.noData'));
-      setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
     }
+    if (scored.length === 0) return alert(t('alert.noData'));
+    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
 
   const applyRecommendedMeasure = (item) => {
@@ -394,9 +396,15 @@ export default function Analysis() {
     return () => clearTimeout(delayDebounceFn);
   }, [measureSearchTerm, measureSearchModal.isOpen, i18n.language]);
 
-  const [isLibraryModalOpen, setIsLibraryModalOpen] = useState(false);
+  const [isKnowledgeDockOpen, setIsKnowledgeDockOpen] = useState(false);
+  const [knowledgeTab, setKnowledgeTab] = useState('steps');
+  const [knowledgeSearch, setKnowledgeSearch] = useState('');
+  const [savedWorkSteps, setSavedWorkSteps] = useState([]);
   const [myLibraryItems, setMyLibraryItems] = useState([]);
   const [selectedLibProject, setSelectedLibProject] = useState(null);
+  const [knowledgeNotice, setKnowledgeNotice] = useState('');
+  const [knowledgeLoading, setKnowledgeLoading] = useState(false);
+  const [knowledgeError, setKnowledgeError] = useState(false);
 
   useEffect(() => {
     const fetchHazards = async () => {
@@ -442,31 +450,111 @@ export default function Analysis() {
     if (window.confirm(t('alert.confirmMain'))) navigate('/');
   };
 
-  const fetchMyLibrary = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert(t('alert.loginRequired'));
-    const { data } = await supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id);
-    setMyLibraryItems(data || []);
-    setSelectedLibProject(null);
-    setIsLibraryModalOpen(true);
+  const openKnowledgeDock = async () => {
+    if (knowledgeLoading) return;
+    setIsKnowledgeDockOpen(true);
+    setKnowledgeLoading(true);
+    setKnowledgeError(false);
+    setKnowledgeNotice('');
+    try {
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      if (authError) throw authError;
+      if (!user) { setIsKnowledgeDockOpen(false); alert(t('alert.loginRequired')); return; }
+      const [steps, favoritesRes, authoredRes] = await Promise.all([
+        listWorkSteps({ limit: 100 }),
+        supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
+        supabase
+          .from('jsa_projects')
+          .select('id, title, tags, analysis_data, form_data, updated_at')
+          .eq('author_id', user.id)
+          .order('updated_at', { ascending: false })
+      ]);
+
+      if (favoritesRes.error) throw favoritesRes.error;
+      if (authoredRes.error) throw authoredRes.error;
+      const projectMap = new Map();
+      (authoredRes.data || []).forEach(project => {
+        projectMap.set(String(project.id), { id: `mine-${project.id}`, jsa_projects: project, libraryType: 'MY' });
+      });
+      (favoritesRes.data || []).forEach(item => {
+        const project = item?.jsa_projects;
+        if (project?.id && !projectMap.has(String(project.id))) {
+          projectMap.set(String(project.id), { ...item, libraryType: 'SCRAP' });
+        }
+      });
+
+      setSavedWorkSteps(steps || []);
+      setMyLibraryItems(Array.from(projectMap.values()));
+      setSelectedLibProject(null);
+      setKnowledgeNotice('');
+    } catch (error) {
+      console.error('[Analysis Knowledge Dock] load failed:', error);
+      setKnowledgeError(true);
+      setSavedWorkSteps([]);
+      setMyLibraryItems([]);
+    } finally {
+      setKnowledgeLoading(false);
+    }
   };
 
-  const applyStepData = (stepData) => {
-    const mappedRisks = stepData.risks.map(r => ({
-      id: `lib-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      factor: r.factor || r.risk_factor,
-      measure: "", current_measure: "", recommend_measure: "",
-      category: r.category || t('base.etc'),
-      source: '공유'
-    }));
+  const mergeStepData = (stepData, mode = 'full', sourceMeta = {}) => {
+    const sourceRisks = Array.isArray(stepData?.risks) ? stepData.risks : [];
+    if (!sourceRisks.length) {
+      setKnowledgeNotice(t('knowledgeDock.noRisksToMerge'));
+      return;
+    }
 
-    setAnalysisData(prev => {
-      const newData = [...prev];
-      newData[activeIdx] = { ...newData[activeIdx], risks: [...newData[activeIdx].risks, ...mappedRisks] };
-      return newData;
+    const result = mergeKnowledgeRisks(analysisData[activeIdx], stepData, {
+      mode, jsaType, sourceMeta, category: t('base.etc')
     });
-    setIsLibraryModalOpen(false);
+    setAnalysisData(prev => prev.map((step, index) => index === activeIdx ? result.step : step));
+    setKnowledgeNotice(t('knowledgeDock.mergeResult', { added: result.added, skipped: result.skipped }));
   };
+
+  const mergeSingleRisk = (risk, mode = 'full', sourceMeta = {}) => {
+    mergeStepData({ risks: [risk] }, mode, sourceMeta);
+  };
+
+  const filteredSavedWorkSteps = savedWorkSteps.filter(step => {
+    const q = knowledgeSearch.trim().toLowerCase();
+    if (!q) return true;
+    const text = [
+      step.title,
+      step.detail,
+      step.source_project_title,
+      ...(step.tags || []),
+      ...(step.analysis_data?.risks || []).flatMap(risk => [
+        risk?.factor,
+        risk?.risk_factor,
+        risk?.measure,
+        risk?.current_measure,
+        risk?.recommend_measure
+      ])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return text.includes(q);
+  });
+
+  const filteredLibraryProjects = myLibraryItems.filter(item => {
+    const project = item?.jsa_projects;
+    const q = knowledgeSearch.trim().toLowerCase();
+    if (!project || !q) return Boolean(project);
+    const text = [
+      project.title,
+      ...(project.tags || []),
+      ...(project.analysis_data || []).flatMap(step => [
+        step?.proc?.stepTitle,
+        step?.proc?.stepDetail,
+        ...(step?.risks || []).flatMap(risk => [
+          risk?.factor,
+          risk?.risk_factor,
+          risk?.measure,
+          risk?.current_measure,
+          risk?.recommend_measure
+        ])
+      ])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return text.includes(q);
+  });
 
   const getRisksFromDBByTokens = async (title = "", detail = "") => {
     const combinedText = `${title} ${detail}`.trim();
@@ -563,7 +651,8 @@ export default function Analysis() {
           db_id: rec.id,
           factor: rec.risk_factor || rec.factor || "",
           measure: "", current_measure: "", recommend_measure: "",
-          category: rec.category || t('base.etc')
+          category: rec.category || t('base.etc'),
+          source: rec.source || (rec.factor || rec.risk_factor ? 'master' : 'manual')
         }]
       };
       return newData;
@@ -611,48 +700,11 @@ export default function Analysis() {
   };
 
   return (
-    <div className="theme-workspace" style={styles.wrapper}>
+    <div className="theme-workspace analysis-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
 
-      {isLibraryModalOpen && (
-        <div style={styles.dialogOverlay} onClick={() => setIsLibraryModalOpen(false)}>
-          <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
-            <div style={styles.modalHeader}>
-              <h3 style={{ margin: 0 }}>{t('libModal.title')}</h3>
-              <button style={styles.closeBtnSmall} onClick={() => setIsLibraryModalOpen(false)}>✕</button>
-            </div>
-            <div style={styles.libList}>
-              {!selectedLibProject ? (
-                myLibraryItems.length === 0 ? <p style={styles.emptyText}>{t('libModal.empty')}</p> :
-                  myLibraryItems.map(item => (
-                    <div key={item.id} style={styles.libItem} onClick={() => setSelectedLibProject(item.jsa_projects)}>
-                      <div style={styles.libInfo}>
-                        <span style={styles.libCategory}>{item.jsa_projects.tags?.[0] || t('libModal.unclassified')}</span>
-                        <span style={styles.libTitleText}>{item.jsa_projects.title}</span>
-                      </div>
-                      <span>➡️</span>
-                    </div>
-                  ))
-              ) : (
-                <>
-                  <button style={styles.backBtn} onClick={() => setSelectedLibProject(null)}>{t('libModal.backBtn')}</button>
-                  {selectedLibProject.analysis_data.map((step, idx) => (
-                    <div key={idx} style={styles.libStepItem} onClick={() => applyStepData(step)}>
-                      <div style={styles.stepInfo}>
-                        <span style={styles.stepIdxBadge}>{t('libModal.step')} {idx + 1}</span>
-                        <strong style={styles.stepTitleText}>{step.proc.stepTitle}</strong>
-                      </div>
-                      <div style={styles.stepPreview}>{step.risks.length}{t('libModal.riskCount')}</div>
-                    </div>
-                  ))}
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
 
       {recModal.isOpen && (
         <div style={styles.dialogOverlay} onClick={() => setRecModal({ ...recModal, isOpen: false })}>
@@ -670,7 +722,7 @@ export default function Analysis() {
                   <div style={{ ...styles.libInfo, flex: 1 }}>
                     <div style={{ color: "var(--text-primary)", fontSize: '0.9rem', lineHeight: '1.4' }}>
                       {item.similarity_score && (
-                        <span style={{ color: "var(--accent)", marginRight: '8px', fontWight: 'bold' }}>
+                        <span style={{ color: "var(--accent)", marginRight: '8px', fontWeight: 'bold' }}>
                           [{parseFloat(item.similarity_score * 100).toFixed(1)}%]
                         </span>
                       )}
@@ -729,13 +781,13 @@ export default function Analysis() {
         <ThemeSwitcher compact />
       </header>
 
-      <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
+      <div className="analysis-main" style={styles.mainLayout}>
+        <aside className="analysis-ad" style={styles.sideAd}>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent}>
-          <div style={styles.formCard}>
+          <div className="analysis-card" style={styles.formCard}>
             <nav style={styles.stepper}>
               <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div>
               <div style={styles.stepLineActive} />
@@ -757,13 +809,49 @@ export default function Analysis() {
               </div>
               <div style={styles.stepContext}>
                 <div style={styles.stepTitleRow}><span style={styles.stepLabel}>{t('form.currentStep')}</span><strong style={styles.stepValue}>{currentStep.proc?.stepTitle}</strong></div>
+                {(currentStep.proc?.sourceProjectTitle || currentStep.proc?.composerImportMode || currentStep.proc?.savedWorkStepId) && (
+                  <div style={styles.stepOriginRow}>
+                    {(currentStep.proc?.sourceProjectTitle || currentStep.proc?.savedWorkStepId) && (
+                      <span style={styles.stepOriginBadge}>
+                        {t('knowledgeDock.sourceLibrary')}
+                        {currentStep.proc?.sourceProjectTitle ? ` · ${currentStep.proc.sourceProjectTitle}` : ''}
+                      </span>
+                    )}
+                    {currentStep.proc?.composerImportMode === 'full' && (
+                      <span style={styles.stepImportFullBadge}>{t('knowledgeDock.analysisIncluded')}</span>
+                    )}
+                    {currentStep.proc?.composerImportMode === 'procedure' && (
+                      <span style={styles.stepImportOnlyBadge}>{t('knowledgeDock.stepOnly')}</span>
+                    )}
+                  </div>
+                )}
                 <p style={styles.stepDetailText}>{currentStep.proc?.stepDetail}</p>
               </div>
             </div>
 
+            <div style={styles.quickStepNav}>
+              {analysisData.map((step, idx) => (
+                <button
+                  type="button"
+                  key={idx}
+                  aria-current={idx === activeIdx ? 'step' : undefined}
+                  style={idx === activeIdx ? styles.quickStepBtnActive : styles.quickStepBtn}
+                  onClick={() => { setActiveIdx(idx); setKnowledgeNotice(''); }}
+                  title={step.proc?.stepTitle || ''}
+                >
+                  <span style={styles.quickStepNo}>{idx + 1}</span>
+                  <span style={styles.quickStepTitle}>{step.proc?.stepTitle || t('knowledgeDock.untitledStep')}</span>
+                  <span style={styles.quickStepRiskCount}>{step.risks?.length || 0}</span>
+                </button>
+              ))}
+            </div>
+
             <div style={styles.scrollArea}>
-              <div style={styles.analysisGrid}>
-                <section style={styles.leftPanel}>
+              <div
+                className={isKnowledgeDockOpen ? 'analysis-grid has-knowledge-dock' : 'analysis-grid'}
+                style={{ ...styles.analysisGrid, ...(isKnowledgeDockOpen ? styles.analysisGridWithDock : {}) }}
+              >
+                <section className="analysis-candidates" style={styles.leftPanel}>
                   <div style={styles.filterArea}>
                     <input
                       type="text"
@@ -776,7 +864,9 @@ export default function Analysis() {
                       <option value="">{t('filter.auto')}</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
-                    <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>{t('filter.loadLibBtn')}</button>
+                    <button type="button" style={styles.libLoadBtn} aria-expanded={isKnowledgeDockOpen} aria-controls="analysis-knowledge-dock" disabled={knowledgeLoading} onClick={openKnowledgeDock}>
+                      {isKnowledgeDockOpen ? t('knowledgeDock.opened') : t('knowledgeDock.openBtn')}
+                    </button>
                     <button
                       style={styles.saveStepBtn}
                       onClick={handleSaveCurrentWorkStep}
@@ -813,7 +903,7 @@ export default function Analysis() {
                   </div>
                 </section>
 
-                <section style={styles.rightPanel}>
+                <section className="analysis-selected" style={styles.rightPanel}>
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
@@ -846,22 +936,32 @@ export default function Analysis() {
                           <tr key={r.id}>
                             <td style={styles.td}>
                               <textarea style={styles.inlineInput} value={r.factor} onChange={(e) => updateRiskField(r.id, 'factor', e.target.value)} rows={3} />
+                              <div style={styles.riskSourceRow}>
+                                <span style={styles.riskSourceBadge}>
+                                  {!r.source
+                                    ? t('knowledgeDock.sourceCurrent')
+                                    : r.source === 'manual'
+                                      ? t('knowledgeDock.sourceManual')
+                                      : r.source === 'master'
+                                        ? t('knowledgeDock.sourceDatabase')
+                                        : t('knowledgeDock.sourceLibrary')}
+                                </span>
+                                {r.sourceLabel && <span style={styles.riskSourceText}>{r.sourceLabel}</span>}
+                              </div>
                             </td>
 
                             {jsaType === '2-step' ? (
                               <td style={styles.td}>
                                 <div style={{ position: 'relative', width: '100%' }}>
                                   <textarea style={styles.inlineInput} value={r.measure} onChange={(e) => updateRiskField(r.id, 'measure', e.target.value)} rows={3} />
-                                  {!r.measure?.trim() && (
-                                    <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                      <button style={{ backgroundColor: "var(--card-bg)", color: "var(--warning)", border: "1px solid var(--warning)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
-                                        {t('table.searchBtn')}
-                                      </button>
-                                      <button style={{ backgroundColor: "var(--card-bg)", color: "var(--accent)", border: "1px solid var(--accent)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
-                                        {t('table.recMeasureBtn')}
-                                      </button>
-                                    </div>
-                                  )}
+                                  <div style={styles.controlActionRow}>
+                                    <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
+                                      {t('table.searchBtn')}
+                                    </button>
+                                    <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                      {t('table.recMeasureBtn')}
+                                    </button>
+                                  </div>
                                 </div>
                               </td>
                             ) : (
@@ -869,31 +969,27 @@ export default function Analysis() {
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
-                                    {!r.current_measure?.trim() && (
-                                      <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                        <button style={{ backgroundColor: "var(--card-bg)", color: "var(--warning)", border: "1px solid var(--warning)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'current')}>
-                                          {t('table.searchBtn')}
-                                        </button>
-                                        <button style={{ backgroundColor: "var(--card-bg)", color: "var(--accent)", border: "1px solid var(--accent)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'current')}>
-                                          {t('table.recMeasureBtn')}
-                                        </button>
-                                      </div>
-                                    )}
+                                    <div style={styles.controlActionRow}>
+                                      <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
+                                        {t('table.searchBtn')}
+                                      </button>
+                                      <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                        {t('table.recMeasureBtn')}
+                                      </button>
+                                    </div>
                                   </div>
                                 </td>
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.recommend_measure} onChange={(e) => updateRiskField(r.id, 'recommend_measure', e.target.value)} rows={3} />
-                                    {!r.recommend_measure?.trim() && (
-                                      <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '6px' }}>
-                                        <button style={{ backgroundColor: "var(--card-bg)", color: "var(--warning)", border: "1px solid var(--warning)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => openMeasureSearch(r, 'advanced')}>
-                                          {t('table.searchBtn')}
-                                        </button>
-                                        <button style={{ backgroundColor: "var(--card-bg)", color: "var(--success)", border: "1px solid var(--success)", padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', cursor: 'pointer' }} onClick={() => handleOpenRecommendation(r, 'advanced')}>
-                                          {t('table.recAdvancedBtn')}
-                                        </button>
-                                      </div>
-                                    )}
+                                    <div style={styles.controlActionRow}>
+                                      <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'advanced')}>
+                                        {t('table.searchBtn')}
+                                      </button>
+                                      <button style={styles.controlAdvancedBtn} onClick={() => handleOpenRecommendation(r, 'advanced')}>
+                                        {t('table.recAdvancedBtn')}
+                                      </button>
+                                    </div>
                                   </div>
                                 </td>
                               </>
@@ -914,6 +1010,244 @@ export default function Analysis() {
                     </table>
                   </div>
                 </section>
+
+                {isKnowledgeDockOpen && (
+                  <aside id="analysis-knowledge-dock" className="knowledge-dock" aria-label={t('knowledgeDock.title')} aria-busy={knowledgeLoading} style={styles.knowledgeDock}>
+                    <div style={styles.knowledgeDockHeader}>
+                      <div>
+                        <div style={styles.knowledgeDockEyebrow}>{t('knowledgeDock.eyebrow')}</div>
+                        <strong style={styles.knowledgeDockTitle}>{t('knowledgeDock.title')}</strong>
+                      </div>
+                      <button type="button" aria-label={t('knowledgeDock.close')} style={styles.knowledgeCloseBtn} onClick={() => setIsKnowledgeDockOpen(false)}>×</button>
+                    </div>
+
+                    <div style={styles.knowledgeTabs}>
+                      <button
+                        type="button"
+                        style={knowledgeTab === 'steps' ? styles.knowledgeTabActive : styles.knowledgeTab}
+                        onClick={() => { setKnowledgeTab('steps'); setSelectedLibProject(null); }}
+                      >
+                        {t('knowledgeDock.savedSteps')} ({savedWorkSteps.length})
+                      </button>
+                      <button
+                        type="button"
+                        style={knowledgeTab === 'projects' ? styles.knowledgeTabActive : styles.knowledgeTab}
+                        onClick={() => { setKnowledgeTab('projects'); setSelectedLibProject(null); }}
+                      >
+                        {t('knowledgeDock.projects')} ({myLibraryItems.length})
+                      </button>
+                    </div>
+
+                    <input
+                      aria-label={t('knowledgeDock.search')} style={styles.knowledgeSearchInput}
+                      value={knowledgeSearch}
+                      onChange={(e) => setKnowledgeSearch(e.target.value)}
+                      placeholder={t('knowledgeDock.search')}
+                    />
+
+                    {knowledgeNotice && (
+                      <div role="status" style={styles.knowledgeNotice}>{knowledgeNotice}</div>
+                    )}
+
+                    <div style={styles.knowledgeScroll}>
+                      {knowledgeLoading ? <div role="status" style={styles.knowledgeEmpty}>{t('knowledgeDock.loading')}</div>
+                        : knowledgeError ? <div role="alert" style={styles.knowledgeEmpty}>
+                          <p>{t('knowledgeDock.loadError')}</p>
+                          <button type="button" style={styles.knowledgeSecondaryBtn} onClick={openKnowledgeDock}>{t('knowledgeDock.retry')}</button>
+                        </div> : knowledgeTab === 'steps' ? (
+                        filteredSavedWorkSteps.length === 0 ? (
+                          <div style={styles.knowledgeEmpty}>{t(knowledgeSearch.trim() ? 'knowledgeDock.noMatches' : 'knowledgeDock.emptySteps')}</div>
+                        ) : filteredSavedWorkSteps.map(step => {
+                          const stepData = step.analysis_data || {};
+                          const risks = Array.isArray(stepData.risks) ? stepData.risks : [];
+                          return (
+                            <article key={step.id} style={styles.knowledgeCard}>
+                              <div style={styles.knowledgeCardHeader}>
+                                <div style={{ minWidth: 0 }}>
+                                  <strong style={styles.knowledgeCardTitle}>{step.title}</strong>
+                                  <div style={styles.knowledgeMeta}>
+                                    {step.source_project_title || t('knowledgeDock.independentStep')} · {risks.length} {t('knowledgeDock.hazards')}
+                                  </div>
+                                </div>
+                                {step.is_favorite && <span style={styles.knowledgeFavorite}>★</span>}
+                              </div>
+                              {step.detail && <p style={styles.knowledgeDetail}>{step.detail}</p>}
+                              <div style={styles.knowledgeRiskPreview}>
+                                {risks.map((risk, idx) => (
+                                  <div key={risk.id || idx} style={styles.knowledgeRiskLine}>
+                                    <div style={styles.knowledgeRiskCopy}>
+                                      <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
+                                      <span style={styles.knowledgeControlText}>
+                                        {risk.measure || [risk.current_measure, risk.recommend_measure].filter(Boolean).join('\n') || t('knowledgeDock.noControl')}
+                                      </span>
+                                    </div>
+                                    <div style={styles.knowledgeRiskActions}>
+                                      <button
+                                        type="button"
+                                        style={styles.knowledgeMiniBtn}
+                                        onClick={() => mergeSingleRisk(risk, 'hazards', {
+                                          type: 'work-step',
+                                          label: step.title,
+                                          workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
+                                        })}
+                                      >
+                                        {t('knowledgeDock.mergeOneHazard')}
+                                      </button>
+                                      <button
+                                        type="button"
+                                        style={styles.knowledgeMiniBtnActive}
+                                        onClick={() => mergeSingleRisk(risk, 'full', {
+                                          type: 'work-step',
+                                          label: step.title,
+                                          workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
+                                        })}
+                                      >
+                                        {t('knowledgeDock.mergeOneFull')}
+                                      </button>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                              <div style={styles.knowledgeActions}>
+                                <button
+                                  type="button"
+                                  style={styles.knowledgeSecondaryBtn}
+                                  onClick={() => mergeStepData(stepData, 'hazards', {
+                                    type: 'work-step',
+                                    label: step.title,
+                                    workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
+                                  })}
+                                >
+                                  {t('knowledgeDock.mergeHazards')}
+                                </button>
+                                <button
+                                  type="button"
+                                  style={styles.knowledgePrimaryBtn}
+                                  onClick={() => mergeStepData(stepData, 'full', {
+                                    type: 'work-step',
+                                    label: step.title,
+                                    workStepId: step.id,
+                                          projectId: step.source_project_id, stepIndex: step.source_step_index
+                                  })}
+                                >
+                                  {t('knowledgeDock.mergeFull')}
+                                </button>
+                              </div>
+                            </article>
+                          );
+                        })
+                      ) : !selectedLibProject ? (
+                        filteredLibraryProjects.length === 0 ? (
+                          <div style={styles.knowledgeEmpty}>{t(knowledgeSearch.trim() ? 'knowledgeDock.noMatches' : 'knowledgeDock.emptyProjects')}</div>
+                        ) : filteredLibraryProjects.map(item => {
+                          const project = item.jsa_projects;
+                          return (
+                            <button
+                              type="button"
+                              key={item.id}
+                              style={styles.knowledgeProjectBtn}
+                              onClick={() => setSelectedLibProject(project)}
+                            >
+                              <span style={styles.knowledgeProjectTitle}>{project.title}</span>
+                              <span style={styles.knowledgeProjectMeta}>
+                                {(project.analysis_data || []).length} {t('knowledgeDock.steps')}
+                              </span>
+                            </button>
+                          );
+                        })
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            style={styles.knowledgeBackBtn}
+                            onClick={() => setSelectedLibProject(null)}
+                          >
+                            ← {t('knowledgeDock.backProjects')}
+                          </button>
+                          <div style={styles.knowledgeSelectedProject}>{selectedLibProject.title}</div>
+                          {matchingProjectSteps(selectedLibProject, knowledgeSearch).map(({ step, index: idx }) => (
+                              <article key={idx} style={styles.knowledgeCard}>
+                                <div style={styles.knowledgeCardHeader}>
+                                  <div style={{ minWidth: 0 }}>
+                                    <strong style={styles.knowledgeCardTitle}>
+                                      {idx + 1}. {step.proc?.stepTitle || t('knowledgeDock.untitledStep')}
+                                    </strong>
+                                    <div style={styles.knowledgeMeta}>
+                                      {(step.risks || []).length} {t('knowledgeDock.hazards')}
+                                    </div>
+                                  </div>
+                                </div>
+                                <p style={styles.knowledgeDetail}>{step.proc?.stepDetail || '-'}</p>
+                                <div style={styles.knowledgeRiskPreview}>
+                                  {(step.risks || []).map((risk, riskIdx) => (
+                                    <div key={risk.id || riskIdx} style={styles.knowledgeRiskLine}>
+                                      <div style={styles.knowledgeRiskCopy}>
+                                        <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
+                                        <span style={styles.knowledgeControlText}>
+                                          {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
+                                        </span>
+                                      </div>
+                                      <div style={styles.knowledgeRiskActions}>
+                                        <button
+                                          type="button"
+                                          style={styles.knowledgeMiniBtn}
+                                          onClick={() => mergeSingleRisk(risk, 'hazards', {
+                                            type: 'project',
+                                            label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
+                                          })}
+                                        >
+                                          {t('knowledgeDock.mergeOneHazard')}
+                                        </button>
+                                        <button
+                                          type="button"
+                                          style={styles.knowledgeMiniBtnActive}
+                                          onClick={() => mergeSingleRisk(risk, 'full', {
+                                            type: 'project',
+                                            label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
+                                          })}
+                                        >
+                                          {t('knowledgeDock.mergeOneFull')}
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                                <div style={styles.knowledgeActions}>
+                                  <button
+                                    type="button"
+                                    style={styles.knowledgeSecondaryBtn}
+                                    onClick={() => mergeStepData(step, 'hazards', {
+                                      type: 'project',
+                                      label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
+                                    })}
+                                  >
+                                    {t('knowledgeDock.mergeHazards')}
+                                  </button>
+                                  <button
+                                    type="button"
+                                    style={styles.knowledgePrimaryBtn}
+                                    onClick={() => mergeStepData(step, 'full', {
+                                      type: 'project',
+                                      label: `${selectedLibProject.title} · ${idx + 1}`,
+                                            projectId: selectedLibProject.id, stepIndex: idx
+                                    })}
+                                  >
+                                    {t('knowledgeDock.mergeFull')}
+                                  </button>
+                                </div>
+                              </article>
+                            ))}
+                        </>
+                      )}
+                    </div>
+                  </aside>
+                )}
               </div>
             </div>
 
@@ -1030,7 +1364,7 @@ const styles = {
   logo: { fontSize: '1.4rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { flex: 1, display: 'flex', padding: '0 5rem 80px', zIndex: 10, overflow: 'hidden', gap: '3rem' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  centerContent: { minWidth: 0, flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   formCard: { width: '100%', maxWidth: '1440px', height: '80vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', flexDirection: 'column', boxShadow: "var(--shadow-panel)", overflow: 'hidden' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.6rem' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.4rem' },
@@ -1044,20 +1378,31 @@ const styles = {
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 1 },
   stepBadge: { width: '20px', height: '20px', backgroundColor: "var(--surface-hover)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--text-secondary)", fontSize: '0.75rem' },
   stepText: { fontSize: '0.8rem', color: "var(--text-secondary)" },
-  formHeader: { borderLeft: "5px solid var(--accent)", paddingLeft: '1rem', marginBottom: '1.2rem' },
+  formHeader: { borderLeft: "5px solid var(--accent)", paddingLeft: '1rem', marginBottom: '0.8rem' },
+  quickStepNav: { display: 'flex', gap: '6px', overflowX: 'auto', padding: '0 0 0.8rem', marginBottom: '0.3rem', flexShrink: 0 },
+  quickStepBtn: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: "1px solid var(--border-default)", borderRadius: '6px', background: "var(--card-bg)", color: "var(--text-muted)", cursor: 'pointer', fontSize: '0.65rem' },
+  quickStepBtnActive: { minWidth: '110px', maxWidth: '180px', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 8px', border: "1px solid var(--accent)", borderRadius: '6px', background: 'var(--accent-soft)', color: "var(--text-primary)", cursor: 'pointer', fontSize: '0.65rem' },
+  quickStepNo: { width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: "var(--card-bg)", color: "var(--text-secondary)", flexShrink: 0, fontWeight: 900 },
+  quickStepTitle: { flex: 1, minWidth: 0, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', textAlign: 'left' },
+  quickStepRiskCount: { flexShrink: 0, minWidth: '18px', padding: '1px 4px', borderRadius: '8px', background: "var(--card-bg)", color: "var(--text-muted)", fontSize: '0.55rem', textAlign: 'center' },
   headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
   formTitle: { fontSize: '1.4rem', color: "var(--text-primary)", fontWeight: '800', margin: 0 },
   stepCountBadge: { backgroundColor: "var(--surface-hover)", color: "var(--text-secondary)", padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
   stepContext: { backgroundColor: "var(--card-bg)", padding: '0.8rem 1rem', borderRadius: '6px' },
+  stepOriginRow: { display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '5px' },
+  stepOriginBadge: { fontSize: '0.55rem', color: "var(--accent)", border: '1px solid var(--accent)', background: 'var(--accent-soft)', padding: '2px 5px', borderRadius: '4px' },
+  stepImportFullBadge: { fontSize: '0.55rem', color: "var(--accent)", border: '1px solid var(--accent)', background: 'var(--accent-soft)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
+  stepImportOnlyBadge: { fontSize: '0.55rem', color: "var(--warning)", border: '1px solid rgba(233,189,69,0.4)', background: 'rgba(233,189,69,0.08)', padding: '2px 5px', borderRadius: '4px', fontWeight: 800 },
   stepTitleRow: { display: 'flex', alignItems: 'center', gap: '0.8rem' },
   stepLabel: { fontSize: '0.75rem', color: "var(--accent)", fontWeight: 'bold' },
   stepValue: { fontSize: '1rem', color: "var(--text-primary)" },
   stepDetailText: { color: "var(--text-muted)", fontSize: '0.85rem', marginTop: '0.3rem' },
-  scrollArea: { flex: 1, overflow: 'hidden' },
+  scrollArea: { minHeight: 0, flex: 1, overflow: 'hidden' },
   analysisGrid: { display: 'grid', gridTemplateColumns: '1.2fr 1.6fr', gap: '2rem', height: '100%', overflow: 'hidden' },
-  leftPanel: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
-  rightPanel: { display: 'flex', flexDirection: 'column', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
-  filterArea: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' },
+  analysisGridWithDock: { gridTemplateColumns: 'minmax(250px, 0.9fr) minmax(430px, 1.45fr) minmax(285px, 0.8fr)', gap: '1rem' },
+  leftPanel: { minHeight: 280, minWidth: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  rightPanel: { minHeight: 300, minWidth: 0, display: 'flex', flexDirection: 'column', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '1.2rem', overflow: 'hidden' },
+  filterArea: { display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', alignItems: 'center', gap: '.6rem', marginBottom: '1.2rem' },
   highRiskSelect: { flex: 1, minWidth: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: "var(--input-bg)", border: "1px solid var(--danger)", color: "var(--danger)", padding: '0.6rem', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }, libLoadBtn: { padding: '0.6rem 1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '6px', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap', flexShrink: 0 }, recBadge: { fontSize: '0.6rem', color: "var(--success)", border: "1px solid var(--success)", padding: '1px 4px', borderRadius: '3px' },
   rightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' },
   riskScoreContainer: { display: 'flex', gap: '1rem', alignItems: 'center' },
@@ -1072,7 +1417,48 @@ const styles = {
   th: { padding: '8px', borderBottom: "1px solid var(--border-default)", fontSize: '0.75rem', color: "var(--text-muted)", textAlign: 'left' },
   td: { padding: '8px', borderBottom: "1px solid var(--border-default)" },
   inlineInput: { width: '100%', backgroundColor: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '0.5rem', borderRadius: '4px', resize: 'none', fontSize: '0.8rem' },
+  controlActionRow: { flexWrap: 'wrap', display: 'flex', justifyContent: 'flex-end', gap: '5px', marginTop: '5px' },
+  controlSearchBtn: { backgroundColor: "var(--card-bg)", color: 'var(--warning)', border: '1px solid var(--warning)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.72rem', cursor: 'pointer' },
+  controlRecommendBtn: { backgroundColor: "var(--card-bg)", color: "var(--accent)", border: '1px solid var(--accent)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
+  controlAdvancedBtn: { backgroundColor: "var(--card-bg)", color: "var(--success)", border: '1px solid rgba(76,175,80,0.55)', padding: '3px 7px', borderRadius: '4px', fontSize: '0.58rem', cursor: 'pointer' },
   smallDeleteBtn: { backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", cursor: 'pointer', borderRadius: '4px' },
+  riskSourceRow: { display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px', minWidth: 0 },
+  riskSourceBadge: { flexShrink: 0, fontSize: '0.7rem', color: "var(--accent)", border: '1px solid var(--accent)', background: 'var(--accent-soft)', borderRadius: '3px', padding: '1px 4px', fontWeight: 800 },
+  riskSourceText: { color: "var(--text-muted)", fontSize: '0.7rem', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' },
+  knowledgeDock: { display: 'flex', flexDirection: 'column', minWidth: 0, background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '10px', padding: '10px', overflow: 'hidden' },
+  knowledgeDockHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', paddingBottom: '8px', borderBottom: "1px solid var(--border-default)" },
+  knowledgeDockEyebrow: { color: "var(--accent)", fontSize: '0.78rem', fontWeight: 900, letterSpacing: '0.8px' },
+  knowledgeDockTitle: { display: 'block', marginTop: '2px', color: "var(--text-primary)", fontSize: '0.8rem' },
+  knowledgeCloseBtn: { width: '28px', height: '28px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '5px', color: "var(--text-muted)", cursor: 'pointer' },
+  knowledgeTabs: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginTop: '8px' },
+  knowledgeTab: { padding: '6px', background: "var(--card-bg)", color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem' },
+  knowledgeTabActive: { padding: '6px', background: 'var(--accent-soft)', color: "var(--accent)", border: "1px solid var(--accent)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 800 },
+  knowledgeNotice: { marginTop: '7px', padding: '6px 8px', borderRadius: '6px', background: 'var(--accent-soft)', border: '1px solid var(--accent)', color: 'var(--accent)', fontSize: '0.78rem', lineHeight: 1.35 },
+  knowledgeSearchInput: { width: '100%', boxSizing: 'border-box', marginTop: '8px', padding: '7px 8px', background: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '5px', color: "var(--text-primary)", fontSize: '0.78rem', outline: 'none' },
+  knowledgeScroll: { flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '7px', marginTop: '8px' },
+  knowledgeEmpty: { margin: 'auto', padding: '18px 8px', color: "var(--text-muted)", fontSize: '0.78rem', textAlign: 'center', lineHeight: 1.45 },
+  knowledgeCard: { padding: '9px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '7px' },
+  knowledgeCardHeader: { display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'flex-start' },
+  knowledgeCardTitle: { display: 'block', color: "var(--text-primary)", fontSize: '0.78rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  knowledgeMeta: { marginTop: '3px', color: "var(--text-muted)", fontSize: '0.78rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  knowledgeFavorite: { color: "var(--warning)", flexShrink: 0 },
+  knowledgeDetail: { color: "var(--text-muted)", fontSize: '0.78rem', lineHeight: 1.35, margin: '6px 0', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' },
+  knowledgeRiskPreview: { display: 'flex', flexDirection: 'column', gap: '4px' },
+  knowledgeRiskLine: { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: '5px', padding: '5px', background: "var(--card-bg)", borderRadius: '4px' },
+  knowledgeHazardText: { color: 'var(--danger)', fontSize: '0.8rem', overflowWrap: 'anywhere' },
+  knowledgeControlText: { color: 'var(--text-secondary)', fontSize: '0.78rem', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' },
+  knowledgeRiskCopy: { display: 'flex', flexDirection: 'column', gap: '4px', minWidth: 0 },
+  knowledgeRiskActions: { display: 'flex', justifyContent: 'flex-end', gap: '6px' },
+  knowledgeMiniBtn: { padding: '5px 8px', color: 'var(--text-secondary)', background: 'var(--input-bg)', border: '1px solid var(--border-default)', borderRadius: '4px', cursor: 'pointer', fontSize: '.75rem' },
+  knowledgeMiniBtnActive: { padding: '5px 8px', color: 'var(--accent)', background: 'var(--accent-soft)', border: '1px solid var(--accent)', borderRadius: '4px', cursor: 'pointer', fontSize: '.75rem' },
+  knowledgeActions: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', marginTop: '7px' },
+  knowledgeSecondaryBtn: { padding: '6px', background: "var(--card-bg)", color: "var(--text-secondary)", border: "1px solid var(--border-default)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem' },
+  knowledgePrimaryBtn: { padding: '6px', background: "var(--action-bg)", color: "var(--on-accent)", border: "1px solid var(--accent)", borderRadius: '5px', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 800 },
+  knowledgeProjectBtn: { width: '100%', padding: '9px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '3px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '7px', cursor: 'pointer', textAlign: 'left' },
+  knowledgeProjectTitle: { color: "var(--text-primary)", fontSize: '0.78rem', fontWeight: 800, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' },
+  knowledgeProjectMeta: { color: "var(--text-muted)", fontSize: '0.78rem' },
+  knowledgeBackBtn: { background: 'transparent', color: "var(--accent)", border: 0, padding: '4px 0', cursor: 'pointer', fontSize: '0.78rem', textAlign: 'left' },
+  knowledgeSelectedProject: { color: "var(--text-secondary)", fontSize: '0.78rem', fontWeight: 800, paddingBottom: '4px', borderBottom: "1px solid var(--border-default)" },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', fontWeight: '700', cursor: 'pointer' },
   nextBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", fontWeight: '800', borderRadius: '8px', cursor: 'pointer', fontSize: '1.05rem' },
@@ -1121,10 +1507,31 @@ const styles = {
 
 if (typeof document !== 'undefined') {
   const styleId = "jsa-bridge-analysis-style";
-  if (!document.getElementById(styleId)) {
-    const styleTag = document.createElement("style");
+  let styleTag = document.getElementById(styleId);
+  if (!styleTag) {
+    styleTag = document.createElement("style");
     styleTag.id = styleId;
-    styleTag.innerHTML = ` @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } `;
     document.head.appendChild(styleTag);
   }
+  styleTag.innerHTML = `
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @media (max-width: 1200px) {
+      .analysis-grid.has-knowledge-dock {
+        grid-template-columns: minmax(260px, .9fr) minmax(420px, 1.3fr) !important;
+        overflow-y: auto !important;
+      }
+      .analysis-grid.has-knowledge-dock .knowledge-dock {
+        grid-column: 1 / -1;
+        min-height: 320px;
+        max-height: 420px;
+      }
+    }
+    @media (max-width: 1800px) {
+      .analysis-workspace .analysis-ad { display: none !important; }
+      .analysis-workspace .analysis-main { padding: 0 20px 80px !important; }
+    }
+    @media (max-height: 800px) {
+      .analysis-workspace .analysis-card { height: calc(100vh - 160px) !important; padding: 18px !important; }
+    }
+  `;
 }
