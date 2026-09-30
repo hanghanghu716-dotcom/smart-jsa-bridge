@@ -103,6 +103,8 @@
     "backProjects": "Список проектов",
     "sourceCurrent": "Текущая JSA",
     "analysisIncluded": "С анализом",
-    "stepOnly": "Только этап"
+    "stepOnly": "Только этап",
+    "mergeOneHazard": "+ Опасность",
+    "mergeOneFull": "+ Полностью"
   }
 }
