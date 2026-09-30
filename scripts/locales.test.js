@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import { test } from 'node:test';
 import { createServer } from 'vite';
 import { buildSitemap } from './sitemap-data.js';
+import { assessPublicJsaQuality } from '../src/utils/publicJsaQuality.js';
 import {
   CANADIAN_PROVINCES, LANGUAGE_OPTIONS, SUPPORTED_LANGS, SEO_LANGUAGES,
   getLanguageTag, getDataLocale, detectLanguage, hasLanguagePrefix,
@@ -180,6 +181,55 @@ test('document designer translations are complete for every base locale', () => 
     }
     for (const key of fieldTypes) {
       assert.ok(common.designer.fieldTypes?.[key]?.trim(), `Missing designer.fieldTypes.${key} for ${locale}`);
+    }
+  }
+});
+
+test('public JSA quality gate and sitemap include only indexable projects', () => {
+  const strongProject = {
+    id: '11111111-1111-4111-8111-111111111111',
+    title: 'Pipe welding and hot-work JSA',
+    is_public: true,
+    form_data: { contentLocale: 'en-US' },
+    analysis_data: [
+      { proc: { stepTitle: 'Prepare area', stepDetail: 'Establish the controlled hot-work area.' }, risks: [{ factor: 'Fire', measure: 'Remove combustibles' }] },
+      { proc: { stepTitle: 'Weld pipe', stepDetail: 'Perform welding with ventilation and fire watch.' }, risks: [{ factor: 'Fume exposure', measure: 'Provide local ventilation' }] },
+      { proc: { stepTitle: 'Close work', stepDetail: 'Inspect the area and complete fire watch.' }, risks: [{ factor: 'Residual ignition', measure: 'Maintain fire watch after work' }] }
+    ]
+  };
+  const weakProject = {
+    id: '22222222-2222-4222-8222-222222222222',
+    title: 'Test',
+    is_public: true,
+    form_data: {},
+    analysis_data: [{ proc: { stepTitle: 'A', stepDetail: 'B' }, risks: [] }]
+  };
+
+  assert.equal(assessPublicJsaQuality(strongProject).indexable, true);
+  assert.equal(assessPublicJsaQuality(weakProject).indexable, false);
+
+  const xml = buildSitemap([
+    { post_group_id: 'test-case', language_code: 'en-US' }
+  ], [strongProject, weakProject]);
+
+  assert.ok(xml.includes('/en-US/jsa/11111111-1111-4111-8111-111111111111'));
+  assert.ok(!xml.includes('/jsa/22222222-2222-4222-8222-222222222222'));
+});
+
+test('public JSA detail translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const keys = [
+    'notFoundTitle', 'notFoundDescription', 'backExplore', 'eyebrow',
+    'publicButNotIndexed', 'steps', 'hazards', 'controls', 'workSequence',
+    'untitledStep', 'noHazards', 'hazard', 'currentControl',
+    'recommendedControl', 'riskLevel', 'ctaTitle', 'ctaDescription'
+  ];
+
+  for (const locale of baseLocales) {
+    const explore = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/explore.json`, import.meta.url)));
+    assert.ok(explore.viewDetails?.trim(), `Missing explore.viewDetails for ${locale}`);
+    for (const key of keys) {
+      assert.ok(explore.publicJsa?.[key]?.trim(), `Missing explore.publicJsa.${key} for ${locale}`);
     }
   }
 });
