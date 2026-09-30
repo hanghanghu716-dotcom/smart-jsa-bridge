@@ -133,6 +133,9 @@
     "savingTemplate": "Speichern...",
     "templateSaved": "Dokumentvorlage gespeichert.",
     "templateSaveError": "Vorlage konnte nicht gespeichert werden.",
-    "loginRequired": "Anmeldung erforderlich."
+    "loginRequired": "Anmeldung erforderlich.",
+    "fieldValues": "Werte je Arbeitsschritt",
+    "noWorkSteps": "Keine Arbeitsschritte vorhanden.",
+    "stepFallback": "Arbeitsschritt {{number}}"
   }
 }
