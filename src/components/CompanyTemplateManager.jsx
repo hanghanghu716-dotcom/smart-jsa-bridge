@@ -23,11 +23,11 @@ export default function CompanyTemplateManager({ layout, onApply }) {
    setRefresh(n=>n+1);
   }catch(e){setError(e.message);}finally{pending.current=false;setBusy(false);}
  };
- const control={width:'100%',padding:'8px',margin:'5px 0',border:'1px solid var(--border-default)',borderRadius:6,background:'var(--input-bg)',color:'var(--text-primary)',fontSize:12};
+ const control={width:'100%',maxWidth:'100%',minWidth:0,boxSizing:'border-box',padding:'8px',margin:'5px 0',border:'1px solid var(--border-default)',borderRadius:6,background:'var(--input-bg)',color:'var(--text-primary)',fontSize:12,whiteSpace:'normal',overflowWrap:'anywhere'};
  const button={...control,width:'auto',cursor:'pointer'};
- return <section data-company-template-manager style={{borderTop:'1px solid var(--border-default)',marginTop:18,paddingTop:16}}>
+ return <section data-company-template-manager dir={i18n.dir()} style={{borderTop:'1px solid var(--border-default)',marginTop:18,paddingTop:16,textAlign:'start',minWidth:0,overflowWrap:'anywhere'}}>
   <h3>{ui.templates}</h3><p style={{fontSize:12,color:'var(--text-secondary)'}}>{ui.companyHint}</p>
-  {!organizations.length&&<p style={{fontSize:12}}>{ui.noOrg} <LanguageLink to="/business">{ui.title} →</LanguageLink></p>}
+  {!organizations.length&&<p style={{fontSize:12}}>{ui.noOrg} <LanguageLink to="/business">{ui.title} <span aria-hidden="true">{i18n.dir()==='rtl'?'←':'→'}</span></LanguageLink></p>}
   {error&&<p role="alert">{businessError({message:error},ui)} <button style={button} onClick={()=>{setError('');setRefresh(n=>n+1);}}>{ui.retry}</button></p>}
   <select style={control} aria-label={ui.organizations} value={orgId} disabled={busy} onChange={e=>{setOrgId(e.target.value);setOrg(null);setSelectedId('');setName('');}}><option value="">{ui.chooseOrg}</option>{organizations.map(item=><option key={item.id} value={item.id}>{item.name}</option>)}</select>
   {current&&<><select style={control} aria-label={ui.chooseTemplate} value={selectedId} disabled={busy} onChange={e=>{setSelectedId(e.target.value);setName(current.templates.find(item=>item.id===e.target.value)?.name || '');}}><option value="">{ui.chooseTemplate}</option>{current.templates.map(item=><option value={item.id} key={item.id}>{item.name} · {ui.revision} {item.version}</option>)}</select><button style={button} disabled={!selected||busy} onClick={()=>onApply(selected)}>{ui.apply}</button>

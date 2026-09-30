@@ -397,7 +397,7 @@ export default function MyLibrary() {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
-        <LanguageLink to="/business" style={{ color: 'var(--accent)', fontSize: 14 }}>{getBusinessUi(i18n.language).title} →</LanguageLink><ThemeSwitcher compact />
+        <LanguageLink to="/business" dir={i18n.dir()} style={{ color: 'var(--accent)', fontSize: 14 }}>{getBusinessUi(i18n.language).title} <span aria-hidden="true">{i18n.dir()==='rtl'?'←':'→'}</span></LanguageLink><ThemeSwitcher compact />
       </header>
 
       <div style={{position:'relative',zIndex:10,margin:'0 5%'}}><ProjectStorageUsage refreshKey={favorites} /></div>

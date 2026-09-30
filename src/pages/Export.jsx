@@ -535,7 +535,7 @@ function ExportEditor({ recoveredDraft }) {
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h3 style={styles.modalTitle}>{t('common:saveFlow.saveDocument')}</h3>
             <ProjectStorageUsage refreshKey={storageRefresh} onStatus={setStorageUsage} />
-            {storageLimited && !storageUsage?.can_create && <p role="alert" style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
+            {storageLimited && !storageUsage?.can_create && <p role="alert" dir={i18n.dir()} style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
               <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('common:saveFlow.privateHint')}</p>
             <p style={styles.modalSub}>{t('common:saveFlow.publicHint')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>

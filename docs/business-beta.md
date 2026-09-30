@@ -1,6 +1,6 @@
 # Phase 6 — free Pro / Business beta
 
-This release provides a 30-day, one-time, opt-in free trial. It has no payment gateway, card capture, paid subscription, checkout, invoice or automatic conversion. Free authoring, public reuse and export remain available. The Pro/Business preference is an expression of interest, not a purchase. New Business labels are Korean and English; other UI locales use the English fallback.
+This release provides a 30-day, one-time, opt-in free trial. It has no payment gateway, card capture, paid subscription, checkout, invoice or automatic conversion. Free authoring, public reuse and export remain available. The Pro/Business preference is an expression of interest, not a purchase. Business and storage messages support all ten base languages across the 17 supported routes. English regions share English; Québec uses French. Dates/counts follow the selected locale, and Arabic uses right-to-left panels.
 
 ## User flow
 
@@ -33,3 +33,5 @@ Membership changes, invite redemption/revocation and document transitions serial
 - The beta migration introduced no new advisor findings. The subsequent private-storage counter has one intentional default-deny INFO finding, documented in the storage notes. Pre-existing function search-path/execution warnings, public-schema extensions and disabled leaked-password protection remain outside these changes. See [Supabase advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0011_function_search_path_mutable).
 
 Paid subscriptions, tax/business registration, payment/refund policies, billing invoices and paid-plan provisioning remain intentionally pending a separately authorized commercial launch. Approval records are internal workflow records; exporting a private editable copy does not transfer its approved status.
+
+Localization validation: all 74 automated tests passed, including complete Business/storage messages and interpolation placeholders for every supported locale, Québec aliases and locale-specific formatting. The browser locale suite covers all 17 routes: Business desktop/mobile layout, approval controls, company templates, expired storage guidance in Export, and RTL direction. These checks use intercepted fixture requests and do not change live user data. Screenshots for German desktop and Arabic mobile were visually inspected.

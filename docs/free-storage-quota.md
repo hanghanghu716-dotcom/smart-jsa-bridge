@@ -14,7 +14,7 @@ The private counter deliberately has RLS enabled, no policies and no client gran
 
 ## Verification
 
-- `node --test scripts/*.test.js`: 72 automated tests, including caller-scoped usage, failures, quota error recognition and preserved-draft copy.
+- `node --test scripts/*.test.js`: 74 automated tests, including caller-scoped usage, failures, quota error recognition and preserved-draft copy.
 - `scripts/project-storage-rls.sql`: real-database transactional fixtures ending in ROLLBACK verify fourth-save rejection, ownership, counter tampering, public/private conversion, UPSERT, atomic bulk failure, deletion, trial expiry and existing-document edits. Existing user data is not retained from the test.
 - `scripts/quota-concurrency.cjs`: two independent PostgreSQL sessions contend for the third slot under Read Committed and Repeatable Read; exactly one may commit and the counter must equal three. Runs only against the disposable local `quota_test` database in the dedicated GitHub Actions workflow.
 - The Export, Library and Business screens display usage and free-trial guidance. A server rejection preserves the active draft; only successful private persistence archives it.
