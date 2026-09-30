@@ -527,6 +527,10 @@ export default function Analysis() {
     });
   };
 
+  const mergeSingleRisk = (risk, mode = 'full', sourceMeta = {}) => {
+    mergeStepData({ risks: [risk] }, mode, sourceMeta);
+  };
+
   const filteredSavedWorkSteps = savedWorkSteps.filter(step => {
     const q = knowledgeSearch.trim().toLowerCase();
     if (!q) return true;
@@ -1075,12 +1079,38 @@ export default function Analysis() {
                               </div>
                               {step.detail && <p style={styles.knowledgeDetail}>{step.detail}</p>}
                               <div style={styles.knowledgeRiskPreview}>
-                                {risks.slice(0, 2).map((risk, idx) => (
+                                {risks.map((risk, idx) => (
                                   <div key={risk.id || idx} style={styles.knowledgeRiskLine}>
-                                    <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
-                                    <span style={styles.knowledgeControlText}>
-                                      {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
-                                    </span>
+                                    <div style={styles.knowledgeRiskCopy}>
+                                      <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
+                                      <span style={styles.knowledgeControlText}>
+                                        {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
+                                      </span>
+                                    </div>
+                                    <div style={styles.knowledgeRiskActions}>
+                                      <button
+                                        type="button"
+                                        style={styles.knowledgeMiniBtn}
+                                        onClick={() => mergeSingleRisk(risk, 'hazards', {
+                                          type: 'work-step',
+                                          label: step.title,
+                                          workStepId: step.id
+                                        })}
+                                      >
+                                        {t('knowledgeDock.mergeOneHazard')}
+                                      </button>
+                                      <button
+                                        type="button"
+                                        style={styles.knowledgeMiniBtnActive}
+                                        onClick={() => mergeSingleRisk(risk, 'full', {
+                                          type: 'work-step',
+                                          label: step.title,
+                                          workStepId: step.id
+                                        })}
+                                      >
+                                        {t('knowledgeDock.mergeOneFull')}
+                                      </button>
+                                    </div>
                                   </div>
                                 ))}
                               </div>
@@ -1170,12 +1200,36 @@ export default function Analysis() {
                                 </div>
                                 <p style={styles.knowledgeDetail}>{step.proc?.stepDetail || '-'}</p>
                                 <div style={styles.knowledgeRiskPreview}>
-                                  {(step.risks || []).slice(0, 2).map((risk, riskIdx) => (
+                                  {(step.risks || []).map((risk, riskIdx) => (
                                     <div key={risk.id || riskIdx} style={styles.knowledgeRiskLine}>
-                                      <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
-                                      <span style={styles.knowledgeControlText}>
-                                        {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
-                                      </span>
+                                      <div style={styles.knowledgeRiskCopy}>
+                                        <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
+                                        <span style={styles.knowledgeControlText}>
+                                          {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
+                                        </span>
+                                      </div>
+                                      <div style={styles.knowledgeRiskActions}>
+                                        <button
+                                          type="button"
+                                          style={styles.knowledgeMiniBtn}
+                                          onClick={() => mergeSingleRisk(risk, 'hazards', {
+                                            type: 'project',
+                                            label: selectedLibProject.title
+                                          })}
+                                        >
+                                          {t('knowledgeDock.mergeOneHazard')}
+                                        </button>
+                                        <button
+                                          type="button"
+                                          style={styles.knowledgeMiniBtnActive}
+                                          onClick={() => mergeSingleRisk(risk, 'full', {
+                                            type: 'project',
+                                            label: selectedLibProject.title
+                                          })}
+                                        >
+                                          {t('knowledgeDock.mergeOneFull')}
+                                        </button>
+                                      </div>
                                     </div>
                                   ))}
                                 </div>
