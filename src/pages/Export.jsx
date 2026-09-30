@@ -71,6 +71,10 @@ export default function Export() {
   const appr2 = state.appr2 || recoveredLayout.appr2 || t('default.appr2', '검토');
   const appr3 = state.appr3 || recoveredLayout.appr3 || t('default.appr3', '승인');
   const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
+  const documentBlocks = state.documentBlocks || recoveredLayout.documentBlocks || [];
+  const savedColumnOverrides = state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {};
+  const documentNotes = state.documentNotes ?? recoveredLayout.documentNotes ?? '';
+  const hasDesignerLayout = Array.isArray(documentBlocks) && documentBlocks.length > 0;
   const isFork = state.isFork || false;
   const parentId = state.parentId || recoveredDraft?.source_project_id || null;
   const originalAnalysisData = state.originalAnalysisData || null;
@@ -97,7 +101,10 @@ export default function Export() {
       appr3,
       savedActiveOrder,
       savedUserColumns,
+      savedColumnOverrides,
       savedOrientation,
+      documentBlocks,
+      documentNotes,
       isModuleSkipped
     },
     sourceProjectId: parentId || existingId || null,
@@ -167,7 +174,7 @@ export default function Export() {
         form_data: securedFormData, 
         analysis_data: analysisData, 
         participants: [], 
-        custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation }, 
+        custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes }, 
         updated_at: new Date(),
         parent_id: parentId || null 
       };
@@ -335,6 +342,92 @@ export default function Export() {
     );
   };
 
+  const getColumnMeta = (key) => {
+    const custom = savedUserColumns.find(u => u.id === key);
+    if (custom) return custom;
+    return { ...(TAG_META[key] || {}), ...(savedColumnOverrides[key] || {}) };
+  };
+
+  const getColumnLabel = (key, meta) => {
+    if (key.startsWith('USER_')) return meta?.label || key;
+    if (savedColumnOverrides[key]?.label) return savedColumnOverrides[key].label;
+    return t(`tags.${key}`, meta?.label || key);
+  };
+
+  const renderDesignerProjectInfo = () => {
+    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
+    const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', textAlign: 'center' };
+    return (
+      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+        <tbody>
+          <tr>
+            <td colSpan={4} style={{ ...td, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', textAlign: 'center' }}>{docTitle}</td>
+          </tr>
+          <tr>
+            <td style={label}>{t('header.projectName')}</td><td style={td}>{formData?.projectName || ''}</td>
+            <td style={label}>{t('header.workDate')}</td><td style={td}>{formData?.workDate || ''}</td>
+          </tr>
+          <tr>
+            <td style={label}>{t('header.workLocation')}</td><td style={td}>{formData?.workLocation || ''}</td>
+            <td style={label}>{t('header.department')}</td><td style={td}>{formData?.department || ''}</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderDesignerSafety = () => {
+    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
+    const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', width: '15%' };
+    return (
+      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+        <tbody>
+          <tr>
+            <td style={label}>{t('header.ppe')}</td>
+            <td style={td}>{(formData?.ppe || []).join(' · ') || '—'}</td>
+          </tr>
+          <tr>
+            <td style={label}>{t('header.highRiskWork')}</td>
+            <td style={td}>{(formData?.permits || []).join(' · ') || '—'}</td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderDesignerApproval = () => {
+    const td = { border: '1px solid #888', padding: '5px', color: '#000', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center' };
+    return (
+      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+        <tbody>
+          <tr>
+            <td style={{ ...td, background: '#f2f2f2', fontWeight: 'bold' }}>{t('header.approval')}</td>
+            <td style={td}>{appr1}</td><td style={td}>{appr2}</td><td style={td}>{appr3}</td>
+          </tr>
+          <tr>
+            <td style={{ ...td, background: '#f2f2f2', fontWeight: 'bold' }}>{t('signature.sign')}</td>
+            <td style={{ ...td, height: '36px' }}></td><td style={td}></td><td style={td}></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderDesignerNotes = () => (
+    <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
+      <tbody>
+        <tr>
+          <td style={{ border: '1px solid #888', background: '#f2f2f2', fontWeight: 'bold', color: '#000', width: '15%', padding: '6px', fontSize: '10px' }}>
+            {t('table.notes', 'Notes')}
+          </td>
+          <td style={{ border: '1px solid #888', color: '#000', padding: '7px', whiteSpace: 'pre-wrap', fontSize: '10px', minHeight: '42px' }}>
+            {documentNotes || '—'}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  );
+
   const renderDataTable = () => {
       const isEuroLang = ['en', 'fr', 'de'].some(lang => i18n.language?.startsWith(lang));
 
@@ -351,9 +444,9 @@ export default function Export() {
         hyphens: 'auto'
       };
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
-    const currentItems = savedActiveOrder.filter(key => TAG_META[key] || savedUserColumns.find(u => u.id === key));
+    const currentItems = savedActiveOrder.filter(key => getColumnMeta(key));
     const fixedWidth = currentItems.reduce((sum, key) => {
-      const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+      const meta = getColumnMeta(key);
       return sum + (meta?.isFlex ? 0 : (parseInt(meta?.width) || 5));
     }, 0);
     const flexItems = currentItems.filter(key => (TAG_META[key]?.isFlex || savedUserColumns.find(u => u.id === key)?.isFlex));
@@ -371,7 +464,7 @@ export default function Export() {
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed' }}>
         <colgroup>{currentItems.map(key => {
-            const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+            const meta = getColumnMeta(key);
             let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
             return <col key={key} style={{ width: `${pct}%` }} />;
           })}</colgroup>
@@ -382,8 +475,8 @@ export default function Export() {
                 return ( <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{groupLabel}</th> ); 
               } 
               else {
-                const key = group.keys[0]; const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); 
-                let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                const key = group.keys[0]; const meta = getColumnMeta(key); 
+                let label = getColumnLabel(key, meta);
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak'); 
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                 if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
@@ -395,8 +488,8 @@ export default function Export() {
             <tr>
               {groups.filter(g => g.isGroup).flatMap(group =>
                 group.keys.map(key => {
-                  const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
-                  let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                  const meta = getColumnMeta(key);
+                  let label = getColumnLabel(key, meta);
                   if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                   if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                   if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
@@ -421,7 +514,7 @@ export default function Export() {
         <tbody>
         <tr style={{ height: 0, visibility: 'hidden', border: 'none' }}>
             {currentItems.map(key => {
-              const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+              const meta = getColumnMeta(key);
               let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
               return <td key={`ghost-${key}`} style={{ width: `${pct}%`, height: 0, padding: 0, margin: 0, border: 'none' }}></td>;
             })}
@@ -430,7 +523,7 @@ export default function Export() {
           {analysisData.map((stepData, stepIdx) => (
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
-                const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); let content = "";
+                const meta = getColumnMeta(key); let content = "";
                 let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
@@ -441,6 +534,12 @@ export default function Export() {
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency || "-");
                 else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel || "-");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks[0]?.category || "";
+                else if (key.startsWith('USER_')) {
+                  const raw = stepData.customFields?.[key];
+                  if (raw !== undefined && raw !== null) content = typeof raw === 'boolean' ? (raw ? '☑' : '☐') : String(raw);
+                  else if (meta.fieldType === 'checkbox') content = '☐';
+                  else content = '';
+                }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
                 return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
               })}
@@ -450,6 +549,22 @@ export default function Export() {
       </table>
     );
   };
+
+  const renderDesignerDocument = () => (
+    <>
+      {documentBlocks
+        .filter(block => block.enabled)
+        .map(block => {
+          if (block.id === 'PROJECT_INFO') return <React.Fragment key={block.id}>{renderDesignerProjectInfo()}</React.Fragment>;
+          if (block.id === 'SAFETY') return <React.Fragment key={block.id}>{renderDesignerSafety()}</React.Fragment>;
+          if (block.id === 'JSA_TABLE') return <React.Fragment key={block.id}>{renderDataTable()}</React.Fragment>;
+          if (block.id === 'PARTICIPANTS') return <React.Fragment key={block.id}>{renderSignatureTable()}</React.Fragment>;
+          if (block.id === 'APPROVAL') return <React.Fragment key={block.id}>{renderDesignerApproval()}</React.Fragment>;
+          if (block.id === 'NOTES') return <React.Fragment key={block.id}>{renderDesignerNotes()}</React.Fragment>;
+          return null;
+        })}
+    </>
+  );
 
   return (
     <div style={styles.wrapper}>
@@ -475,16 +590,20 @@ export default function Export() {
             <div style={styles.previewArea}>
             {/* 가상의 A4 용지 영역 */}
         <div className="reportPaper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
-          {/* ✅ isModuleSkipped가 false(혹은 undefined)일 때만 모듈 관련 섹션 출력 */}
-          {!isModuleSkipped && renderUnifiedHeader()}    
-          {!isModuleSkipped && renderSignatureTable()}   
-          
-          {/* 위험성 평가 본문은 항상 출력 */}
-          {renderDataTable()}        
+          {hasDesignerLayout ? (
+            renderDesignerDocument()
+          ) : (
+            <>
+              {/* Legacy ModuleBuilder/TableBuilder output remains unchanged. */}
+              {!isModuleSkipped && renderUnifiedHeader()}
+              {!isModuleSkipped && renderSignatureTable()}
+              {renderDataTable()}
+            </>
+          )}        
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>{t('btn.prev')}</button>
+              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: location.state })}>{t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
               {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
