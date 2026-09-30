@@ -26,5 +26,25 @@
   "cancelBtn": "Cancelar",
   "alertReportLoginRequired": "Debe iniciar sesión para utilizar la función de reporte.",
   "alertActionCompleted": "El proceso se ha completado.",
-  "alertErrorOccurred": "Ha ocurrido un error."
+  "alertErrorOccurred": "Ha ocurrido un error.",
+  "viewDetails": "Ver detalles",
+  "publicJsa": {
+    "notFoundTitle": "JSA pública no encontrada",
+    "notFoundDescription": "Esta JSA puede haber sido eliminada o marcada como privada.",
+    "backExplore": "Volver a Explore",
+    "eyebrow": "JSA PÚBLICA",
+    "publicButNotIndexed": "Esta JSA puede consultarse públicamente, pero no se indexa en buscadores porque no alcanza el umbral de calidad del contenido.",
+    "steps": "Pasos de trabajo",
+    "hazards": "Peligros",
+    "controls": "Controles",
+    "workSequence": "Pasos de trabajo y análisis de riesgos",
+    "untitledStep": "Paso sin título",
+    "noHazards": "No hay peligros registrados para este paso.",
+    "hazard": "Peligro",
+    "currentControl": "Control actual / base",
+    "recommendedControl": "Control adicional / recomendado",
+    "riskLevel": "Riesgo",
+    "ctaTitle": "¿Crear una JSA lista para campo a partir de este documento?",
+    "ctaDescription": "Adapte los pasos y peligros a sus condiciones y guárdelo como una nueva JSA."
+  }
 }
