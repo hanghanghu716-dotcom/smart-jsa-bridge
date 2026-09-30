@@ -45,7 +45,9 @@ export default function useJsaDraftAutosave({
         }
       } catch (error) {
         console.error('[JSA Draft] autosave failed:', error);
-        if (sequence === saveSequence.current) setStatus('error');
+        if (sequence === saveSequence.current) {
+          setStatus(error?.code === 'DRAFT_VERSION_CONFLICT' ? 'conflict' : 'error');
+        }
       }
     }, delay);
 
