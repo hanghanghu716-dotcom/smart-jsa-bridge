@@ -11,6 +11,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { archiveActiveDraft } from '../services/jsaDraftService';
 
 const TAG_META = {
@@ -458,7 +459,7 @@ export default function Export() {
       {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
-      <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1></header>
+      <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
@@ -577,7 +578,7 @@ const styles = {
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)', backgroundPosition: 'center' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },
-  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 5rem 60px', zIndex: 10, gap: '3rem', overflow: 'hidden', alignItems: 'center' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
