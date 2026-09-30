@@ -103,6 +103,8 @@
     "backProjects": "قائمة المشاريع",
     "sourceCurrent": "JSA الحالي",
     "analysisIncluded": "يشمل التحليل",
-    "stepOnly": "الخطوة فقط"
+    "stepOnly": "الخطوة فقط",
+    "mergeOneHazard": "+ خطر",
+    "mergeOneFull": "+ كامل"
   }
 }
