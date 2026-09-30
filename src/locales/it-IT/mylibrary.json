@@ -159,5 +159,13 @@
   "workStepTagsPlaceholder": "Inserisci tag separati da virgole",
   "cloneWorkStep": "Duplica",
   "workStepCloneSuccess": "Fase duplicata.",
-  "workStepCloneError": "Impossibile duplicare la fase."
+  "workStepCloneError": "Impossibile duplicare la fase.",
+  "workStepHistory": "Cronologia",
+  "workStepHistoryTitle": "Cronologia versioni",
+  "workStepHistoryEmpty": "Nessuna versione precedente.",
+  "restoreVersion": "Ripristina",
+  "confirmRestoreWorkStepVersion": "Ripristinare la versione v{{version}}? Lo stato attuale resterà nella cronologia.",
+  "workStepVersionRestored": "La versione selezionata è stata ripristinata.",
+  "workStepVersionRestoreError": "Impossibile ripristinare questa versione.",
+  "workStepHistoryError": "Impossibile caricare la cronologia delle versioni."
 }

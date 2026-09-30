@@ -7,9 +7,11 @@ export default function DraftSaveStatus({ status }) {
 
   const config = status === 'pending'
     ? { label: t('draftSave.pending'), symbol: '●', style: styles.pending }
-    : status === 'error'
-      ? { label: t('draftSave.error'), symbol: '!', style: styles.error }
-      : { label: t('draftSave.saved'), symbol: '✓', style: styles.saved };
+    : status === 'conflict'
+      ? { label: t('draftSave.conflict'), symbol: '↻', style: styles.conflict }
+      : status === 'error'
+        ? { label: t('draftSave.error'), symbol: '!', style: styles.error }
+        : { label: t('draftSave.saved'), symbol: '✓', style: styles.saved };
 
   return (
     <div style={{ ...styles.base, ...config.style }} role="status" aria-live="polite">
@@ -34,22 +36,27 @@ const styles = {
     fontSize: '0.68rem',
     fontWeight: 800,
     pointerEvents: 'none',
-    boxShadow: '0 6px 18px rgba(0,0,0,0.28)'
+    boxShadow: "var(--shadow-panel)"
   },
   symbol: { fontSize: '0.72rem', lineHeight: 1 },
   pending: {
-    color: '#e9bd45',
+    color: "var(--warning)",
     border: '1px solid rgba(233,189,69,0.38)',
-    background: 'rgba(35,30,13,0.88)'
+    background: 'var(--warning-soft)'
   },
   saved: {
-    color: '#65c96b',
+    color: "var(--success)",
     border: '1px solid rgba(76,175,80,0.36)',
-    background: 'rgba(15,34,17,0.88)'
+    background: 'var(--success-soft)'
+  },
+  conflict: {
+    color: "var(--warning)",
+    border: '1px solid rgba(255,183,77,0.42)',
+    background: 'var(--warning-soft)'
   },
   error: {
-    color: '#ff7675',
+    color: "var(--danger)",
     border: '1px solid rgba(255,92,92,0.4)',
-    background: 'rgba(40,14,14,0.9)'
+    background: 'var(--danger-soft)'
   }
 };

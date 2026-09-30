@@ -71,7 +71,15 @@
   "draftSave": {
     "pending": "Speichern",
     "saved": "Gespeichert",
-    "error": "Speicherfehler"
+    "error": "Speicherfehler",
+    "conflict": "Ein neuerer Entwurf wurde in einem anderen Tab gespeichert · bitte neu laden"
+  },
+  "appearance": {
+    "title": "Darstellung",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "active": "Aktiv"
   },
   "designer": {
     "defaultTitle": "Gefährdungsbeurteilung (JSA)",

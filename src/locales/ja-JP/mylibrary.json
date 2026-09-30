@@ -80,5 +80,13 @@
   "workStepTagsPlaceholder": "タグをカンマ区切りで入力",
   "cloneWorkStep": "複製",
   "workStepCloneSuccess": "作業ステップを複製しました。",
-  "workStepCloneError": "作業ステップを複製できませんでした。"
+  "workStepCloneError": "作業ステップを複製できませんでした。",
+  "workStepHistory": "履歴",
+  "workStepHistoryTitle": "バージョン履歴",
+  "workStepHistoryEmpty": "以前のバージョンはありません。",
+  "restoreVersion": "復元",
+  "confirmRestoreWorkStepVersion": "v{{version}} に復元しますか？現在の状態も履歴に保存されます。",
+  "workStepVersionRestored": "選択したバージョンに復元しました。",
+  "workStepVersionRestoreError": "このバージョンを復元できませんでした。",
+  "workStepHistoryError": "バージョン履歴を読み込めませんでした。"
 }

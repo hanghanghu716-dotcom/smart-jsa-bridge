@@ -1,4 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import ThemeSwitcher from '../components/ThemeSwitcher';
+import DocumentContent from '../components/DocumentContent';
+import { DEFAULT_BLOCKS, defaultColumns, moveItem, templateLayout } from '../utils/documentLayout';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
@@ -7,15 +10,6 @@ import DraftSaveStatus from '../components/DraftSaveStatus';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import { supabase } from '../supabaseClient';
-
-const DEFAULT_BLOCKS = [
-  { id: 'PROJECT_INFO', enabled: true },
-  { id: 'SAFETY', enabled: true },
-  { id: 'JSA_TABLE', enabled: true },
-  { id: 'PARTICIPANTS', enabled: true },
-  { id: 'APPROVAL', enabled: true },
-  { id: 'NOTES', enabled: false }
-];
 
 const SYSTEM_COLUMNS = {
   DATA_STEP_NO: { fallback: 'No.', width: 2, align: 'center' },
@@ -39,31 +33,25 @@ const SYSTEM_COLUMNS = {
   DATA_KRAS_MANAGER: { fallback: 'Owner', width: 3, align: 'center' }
 };
 
-const DEFAULT_COLUMNS = [
-  'DATA_STEP_NO',
-  'DATA_STEP_TITLE',
-  'DATA_HAZARD',
-  'DATA_RECOMMEND_MEASURE',
-  'DATA_FREQUENCY',
-  'DATA_SEVERITY',
-  'DATA_RISK'
-];
-
 const FIELD_TYPES = ['text', 'number', 'date', 'checkbox', 'dropdown'];
 
-const moveItem = (items, from, to) => {
-  const next = [...items];
-  const [moved] = next.splice(from, 1);
-  next.splice(to, 0, moved);
-  return next;
-};
-
 export default function DocumentDesigner() {
+  const location = useLocation();
+  const { t } = useTranslation('common');
+  const navigate = useLanguageNavigate();
+  const { draft, status } = useJsaDraftRecovery(!location.state?.formData);
+  if (!location.state?.formData && status !== 'ready') return <div className="theme-workspace" style={{ padding: 40, background: 'var(--app-bg)', minHeight: '100vh' }}>
+    <p role="status">{t(status === 'error' ? 'draftSave.error' : status === 'empty' ? 'designer.noWorkSteps' : 'draftSave.pending')}</p>
+    <button onClick={() => navigate('/analysis')}>{t('designer.back')}</button>
+  </div>;
+  return <DesignerEditor recoveredDraft={draft} />;
+}
+
+function DesignerEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate();
   const location = useLocation();
   const { t } = useTranslation(['common', 'tablebuilder']);
 
-  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
 
@@ -78,7 +66,7 @@ export default function DocumentDesigner() {
     state.documentBlocks || recoveredLayout.documentBlocks || DEFAULT_BLOCKS
   );
   const [activeOrder, setActiveOrder] = useState(
-    state.savedActiveOrder || recoveredLayout.savedActiveOrder || DEFAULT_COLUMNS
+    state.savedActiveOrder || recoveredLayout.savedActiveOrder || defaultColumns(formData.jsaType)
   );
   const [userColumns, setUserColumns] = useState(
     state.savedUserColumns || recoveredLayout.savedUserColumns || []
@@ -90,14 +78,14 @@ export default function DocumentDesigner() {
     state.savedOrientation || recoveredLayout.savedOrientation || 'landscape'
   );
   const [signatureRows, setSignatureRows] = useState(
-    state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1
+    state.savedSignatureRows || recoveredLayout.savedSignatureRows || Math.max(1, Math.ceil(participants.length / 8))
   );
   const [docTitle, setDocTitle] = useState(
-    state.docTitle || recoveredLayout.docTitle || t('designer.defaultTitle')
+    state.docTitle ?? recoveredLayout.docTitle ?? t('designer.defaultTitle')
   );
-  const [appr1, setAppr1] = useState(state.appr1 || recoveredLayout.appr1 || t('designer.appr1'));
-  const [appr2, setAppr2] = useState(state.appr2 || recoveredLayout.appr2 || t('designer.appr2'));
-  const [appr3, setAppr3] = useState(state.appr3 || recoveredLayout.appr3 || t('designer.appr3'));
+  const [appr1, setAppr1] = useState(state.appr1 ?? recoveredLayout.appr1 ?? t('designer.appr1'));
+  const [appr2, setAppr2] = useState(state.appr2 ?? recoveredLayout.appr2 ?? t('designer.appr2'));
+  const [appr3, setAppr3] = useState(state.appr3 ?? recoveredLayout.appr3 ?? t('designer.appr3'));
   const [notesText, setNotesText] = useState(
     state.documentNotes ?? recoveredLayout.documentNotes ?? formData.additionalItems ?? ''
   );
@@ -107,12 +95,14 @@ export default function DocumentDesigner() {
   const [savedLayouts, setSavedLayouts] = useState([]);
   const [templateName, setTemplateName] = useState('');
   const [isSavingTemplate, setIsSavingTemplate] = useState(false);
-
+  const canvasRef = useRef(null);
+  const [previewScale, setPreviewScale] = useState(1);
   useEffect(() => {
-    if (!state.formData && recoveredDraft?.analysis_data) {
-      setAnalysisData(recoveredDraft.analysis_data);
-    }
-  }, [recoveredDraft, state.formData]);
+    const canvas = canvasRef.current;
+    const observer = new ResizeObserver(() => setPreviewScale(Math.min(1, (canvas.clientWidth - 28) / (orientation === 'landscape' ? 1080 : 750))));
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, [orientation]);
 
   const layoutData = {
     documentBlocks: blocks,
@@ -145,22 +135,13 @@ export default function DocumentDesigner() {
   }, []);
 
   const applyTemplate = template => {
-    const data = template?.layout_data || {};
-    if (Array.isArray(data.documentBlocks)) setBlocks(data.documentBlocks);
-    const templateOrder = data.savedActiveOrder || data.activeOrder;
-    const templateUserColumns = data.savedUserColumns || data.userColumns;
-    const templateOrientation = data.savedOrientation || data.orientation;
-    const templateSignatureRows = data.savedSignatureRows || data.signatureRows;
-    if (Array.isArray(templateOrder)) setActiveOrder(templateOrder);
-    if (Array.isArray(templateUserColumns)) setUserColumns(templateUserColumns);
-    if (data.savedColumnOverrides && typeof data.savedColumnOverrides === 'object') setColumnOverrides(data.savedColumnOverrides);
-    if (templateOrientation) setOrientation(templateOrientation);
-    if (templateSignatureRows) setSignatureRows(templateSignatureRows);
-    if (data.docTitle) setDocTitle(data.docTitle);
-    if (data.appr1) setAppr1(data.appr1);
-    if (data.appr2) setAppr2(data.appr2);
-    if (data.appr3) setAppr3(data.appr3);
-    if (data.documentNotes !== undefined) setNotesText(data.documentNotes || '');
+    const data = templateLayout(template?.layout_data, {
+      docTitle: t('designer.defaultTitle'), appr1: t('designer.appr1'), appr2: t('designer.appr2'), appr3: t('designer.appr3'),
+      savedActiveOrder: defaultColumns(formData.jsaType), savedSignatureRows: Math.max(1, Math.ceil(participants.length / 8))
+    });
+    setBlocks(data.documentBlocks); setActiveOrder(data.savedActiveOrder); setUserColumns(data.savedUserColumns);
+    setColumnOverrides(data.savedColumnOverrides); setOrientation(data.savedOrientation); setSignatureRows(data.savedSignatureRows);
+    setDocTitle(data.docTitle); setAppr1(data.appr1); setAppr2(data.appr2); setAppr3(data.appr3); setNotesText(data.documentNotes);
   };
 
   const saveTemplate = async () => {
@@ -238,7 +219,7 @@ export default function DocumentDesigner() {
   };
 
   const addCustomColumn = () => {
-    const id = 'USER_' + Date.now();
+    const id = 'USER_' + crypto.randomUUID();
     const next = {
       id,
       label: t('designer.newColumn'),
@@ -359,14 +340,15 @@ export default function DocumentDesigner() {
       formData,
       participants,
       procedures,
-      analysisData
+      analysisData,
+      ...layoutData
     }
   });
 
   const renderGlobalSettings = () => (
     <div style={styles.globalSettings}>
       <label style={styles.label}>{t('designer.documentTitle')}</label>
-      <input value={docTitle} onChange={e => setDocTitle(e.target.value)} style={styles.input} />
+      <input aria-label={t('designer.documentTitle')} value={docTitle} onChange={e => setDocTitle(e.target.value)} style={styles.input} />
       <label style={styles.label}>{t('designer.orientation')}</label>
       <div style={styles.orientationGroup}>
         <button
@@ -409,6 +391,7 @@ export default function DocumentDesigner() {
           const meta = getColumnMeta(key);
           return (
             <div
+              data-column-editor={key}
               key={key}
               draggable
               onDragStart={() => setDraggedColumn(index)}
@@ -423,6 +406,8 @@ export default function DocumentDesigner() {
             >
               <div style={styles.columnEditorTop}>
                 <span style={styles.drag}>☰</span>
+                <button type="button" aria-label={getSystemLabel(key) + ' ↑'} disabled={index === 0} onClick={() => moveColumn(index, index - 1)}>↑</button>
+                <button type="button" aria-label={getSystemLabel(key) + ' ↓'} disabled={index === visibleColumns.length - 1} onClick={() => moveColumn(index, index + 1)}>↓</button>
                 <span style={styles.columnKey}>{custom ? t('designer.customColumn') : t('designer.systemColumn')}</span>
                 {!custom && Object.keys(columnOverrides[key] || {}).length > 0 && (
                   <button type="button" style={styles.resetBtn} onClick={() => resetSystemColumn(key)}>
@@ -462,7 +447,7 @@ export default function DocumentDesigner() {
               {custom && (
                 <>
                   <select
-                    value={custom.fieldType || 'text'}
+                    aria-label={t('designer.customColumn')} value={custom.fieldType || 'text'}
                     onChange={e => updateCustomColumn(custom.id, { fieldType: e.target.value })}
                     style={styles.select}
                   >
@@ -472,9 +457,10 @@ export default function DocumentDesigner() {
                   </select>
                   {custom.fieldType === 'dropdown' && (
                     <input
-                      value={(custom.options || []).join(', ')}
-                      onChange={e => updateCustomColumn(custom.id, {
-                        options: e.target.value.split(',').map(v => v.trim()).filter(Boolean)
+                      key={custom.id + (custom.options || []).join(',')}
+                      defaultValue={(custom.options || []).join(', ')}
+                      onBlur={e => updateCustomColumn(custom.id, {
+                        options: [...new Set(e.target.value.split(',').map(v => v.trim()).filter(Boolean))]
                       })}
                       placeholder={t('designer.dropdownOptions')}
                       style={styles.input}
@@ -527,7 +513,7 @@ export default function DocumentDesigner() {
         <>
           <h3 style={styles.sideTitle}>{t('designer.notesSettings')}</h3>
           <textarea
-            value={notesText}
+            aria-label={t('designer.notesSettings')} value={notesText}
             onChange={e => setNotesText(e.target.value)}
             style={styles.textarea}
             rows={8}
@@ -545,65 +531,14 @@ export default function DocumentDesigner() {
     );
   };
 
-  const renderBlockPreview = block => {
-    if (block.id === 'PROJECT_INFO') {
-      return (
-        <div style={styles.mockGrid}>
-          <span>{formData.projectName || t('designer.projectFallback')}</span>
-          <span>{formData.workLocation || '—'}</span>
-          <span>{formData.department || '—'}</span>
-          <span>{formData.workDate || '—'}</span>
-        </div>
-      );
-    }
-
-    if (block.id === 'SAFETY') {
-      return (
-        <div style={styles.mockText}>
-          <b>{t('designer.ppeLabel')}</b> {(formData.ppe || []).join(' · ') || '—'}
-          <br />
-          <b>{t('designer.permitLabel')}</b> {(formData.permits || []).join(' · ') || '—'}
-        </div>
-      );
-    }
-
-    if (block.id === 'JSA_TABLE') {
-      return (
-        <div style={styles.columnPreview}>
-          {visibleColumns.map(key => {
-            const custom = userColumns.find(col => col.id === key);
-            return (
-              <span key={key} style={styles.columnChip}>
-                {custom?.label || getSystemLabel(key)}
-              </span>
-            );
-          })}
-        </div>
-      );
-    }
-
-    if (block.id === 'PARTICIPANTS') {
-      return <div style={styles.mockText}>{t('designer.signatureRows', { count: signatureRows })}</div>;
-    }
-
-    if (block.id === 'APPROVAL') {
-      return <div style={styles.approvalPreview}><span>{appr1}</span><span>{appr2}</span><span>{appr3}</span></div>;
-    }
-
-    if (block.id === 'NOTES') {
-      return <div style={styles.mockText}>{notesText || t('designer.notesEmpty')}</div>;
-    }
-
-    return null;
-  };
-
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace designer-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+        <ThemeSwitcher compact />
       </header>
 
       <main style={styles.main}>
@@ -623,75 +558,44 @@ export default function DocumentDesigner() {
           </div>
         </section>
 
-        <div style={styles.workspace}>
-          <aside style={styles.leftPanel}>
+        <div className="designer-grid" style={styles.workspace}>
+          <aside className="designer-blocks" style={styles.leftPanel}>
             <h3 style={styles.sideTitle}>{t('designer.blocksTitle')}</h3>
             <p style={styles.sideHint}>{t('designer.blocksHint')}</p>
-            {blocks.map(block => (
-              <button
-                type="button"
-                key={block.id}
-                style={selectedBlock === block.id ? styles.blockSelectorActive : styles.blockSelector}
-                onClick={() => setSelectedBlock(block.id)}
-              >
-                <span>{t('designer.blocks.' + block.id)}</span>
-                <input
-                  type="checkbox"
-                  checked={block.enabled}
-                  onChange={() => toggleBlock(block.id)}
-                  onClick={event => event.stopPropagation()}
-                />
-              </button>
+            {blocks.map((block, index) => (
+              <div key={block.id} data-block-editor={block.id} draggable
+                onDragStart={() => setDraggedBlock(index)} onDragOver={event => event.preventDefault()}
+                onDrop={event => { event.preventDefault(); if (draggedBlock !== null) setBlocks(prev => moveItem(prev, draggedBlock, index)); setDraggedBlock(null); }}
+                onDragEnd={() => setDraggedBlock(null)}
+                style={selectedBlock === block.id ? styles.blockSelectorActive : styles.blockSelector}>
+                <button type="button" aria-pressed={selectedBlock === block.id} style={styles.blockName} onClick={() => setSelectedBlock(block.id)}>{t('designer.blocks.' + block.id)}</button>
+                <input type="checkbox" aria-label={t('designer.blocks.' + block.id)} checked={block.enabled} onChange={() => toggleBlock(block.id)} />
+                <button type="button" aria-label={t('designer.blocks.' + block.id) + ' ↑'} disabled={index === 0} onClick={() => setBlocks(prev => moveItem(prev, index, index - 1))}>↑</button>
+                <button type="button" aria-label={t('designer.blocks.' + block.id) + ' ↓'} disabled={index === blocks.length - 1} onClick={() => setBlocks(prev => moveItem(prev, index, index + 1))}>↓</button>
+              </div>
             ))}
           </aside>
 
-          <section style={styles.canvasPanel}>
+          <section ref={canvasRef} className="designer-canvas" style={styles.canvasPanel}>
             <div style={styles.canvasToolbar}>
               <span>{orientation === 'landscape' ? 'A4 ↔' : 'A4 ↕'}</span>
               <strong>{docTitle}</strong>
             </div>
 
-            <div style={{ ...styles.paper, maxWidth: orientation === 'landscape' ? '920px' : '650px' }}>
-              {blocks.map((block, index) => (
-                <article
-                  key={block.id}
-                  draggable
-                  onDragStart={() => setDraggedBlock(index)}
-                  onDragOver={event => {
-                    event.preventDefault();
-                    if (draggedBlock === null || draggedBlock === index) return;
-                    setBlocks(prev => moveItem(prev, draggedBlock, index));
-                    setDraggedBlock(index);
-                  }}
-                  onDragEnd={() => setDraggedBlock(null)}
-                  onClick={() => setSelectedBlock(block.id)}
-                  style={{
-                    ...styles.previewBlock,
-                    ...(selectedBlock === block.id ? styles.previewBlockSelected : {}),
-                    ...(block.enabled ? {} : styles.previewBlockDisabled)
-                  }}
-                >
-                  <div style={styles.previewBlockHeader}>
-                    <span style={styles.drag}>☰</span>
-                    <strong>{t('designer.blocks.' + block.id)}</strong>
-                    <span style={block.enabled ? styles.enabledBadge : styles.disabledBadge}>
-                      {block.enabled ? t('designer.enabled') : t('designer.disabled')}
-                    </span>
-                  </div>
-                  {renderBlockPreview(block)}
-                </article>
-              ))}
+            <div className="theme-paper designer-paper" style={{ ...styles.paper, width: orientation === 'landscape' ? '1080px' : '750px', zoom: previewScale }}
+              onClick={event => { const block = event.target.closest('[data-document-block]'); if (block) setSelectedBlock(block.dataset.documentBlock); }}>
+              <DocumentContent formData={formData} participants={participants} analysisData={analysisData} layout={layoutData} />
             </div>
           </section>
 
-          <aside style={styles.rightPanel}>
+          <aside className="designer-settings" style={styles.rightPanel}>
             <div style={styles.templatePanel}>
               <h3 style={styles.sideTitle}>{t('designer.templates')}</h3>
               <select
-                defaultValue=""
+                aria-label={t('designer.templates')} defaultValue=""
                 style={styles.select}
                 onChange={e => {
-                  const template = savedLayouts.find(item => item.id === e.target.value);
+                  const template = savedLayouts.find(item => String(item.id) === e.target.value);
                   if (template) applyTemplate(template);
                 }}
               >
@@ -727,67 +631,68 @@ export default function DocumentDesigner() {
 }
 
 const styles = {
-  wrapper: { minHeight: '100vh', background: '#070707', color: '#fff' },
-  header: { height: '62px', display: 'flex', alignItems: 'center', padding: '0 32px', borderBottom: '1px solid #1d1d1d' },
+  wrapper: { minHeight: '100vh', background: "var(--app-bg)", color: "var(--text-primary)" },
+  header: { justifyContent: 'space-between', gap: 16, height: '62px', display: 'flex', alignItems: 'center', padding: '0 32px', borderBottom: "1px solid var(--border-default)" },
   logo: { margin: 0, fontSize: '1rem', fontWeight: 900, letterSpacing: '1.5px', cursor: 'pointer' },
   main: { padding: '20px 24px 28px' },
   topbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '18px', marginBottom: '18px' },
-  eyebrow: { color: '#007bff', fontSize: '0.62rem', fontWeight: 900, letterSpacing: '1.4px' },
+  eyebrow: { color: "var(--accent)", fontSize: '0.75rem', fontWeight: 900, letterSpacing: '1.4px' },
   title: { margin: '5px 0', fontSize: '1.45rem' },
-  subtitle: { margin: 0, color: '#707070', fontSize: '0.76rem' },
+  subtitle: { margin: 0, color: "var(--text-muted)", fontSize: '0.76rem' },
   topActions: { display: 'flex', gap: '8px' },
-  primaryBtn: { background: '#007bff', color: '#fff', border: 0, borderRadius: '7px', padding: '10px 16px', fontWeight: 900, cursor: 'pointer' },
-  secondaryBtn: { background: '#151515', color: '#aaa', border: '1px solid #303030', borderRadius: '7px', padding: '10px 14px', cursor: 'pointer' },
-  workspace: { display: 'grid', gridTemplateColumns: '220px minmax(0,1fr) 320px', gap: '14px', height: 'calc(100vh - 156px)', minHeight: '590px' },
-  leftPanel: { border: '1px solid #222', background: '#0d0d0d', borderRadius: '10px', padding: '12px', overflowY: 'auto' },
-  rightPanel: { border: '1px solid #222', background: '#0d0d0d', borderRadius: '10px', padding: '14px', overflowY: 'auto' },
-  canvasPanel: { border: '1px solid #222', background: '#0b0b0b', borderRadius: '10px', padding: '12px', overflow: 'auto' },
+  primaryBtn: { background: "var(--action-bg)", color: "var(--on-accent)", border: 0, borderRadius: '7px', padding: '10px 16px', fontWeight: 900, cursor: 'pointer' },
+  secondaryBtn: { background: "var(--card-bg)", color: "var(--text-secondary)", border: "1px solid var(--border-default)", borderRadius: '7px', padding: '10px 14px', cursor: 'pointer' },
+  workspace: { display: 'grid', gridTemplateColumns: '240px minmax(0,1fr) 340px', gap: '14px', height: 'calc(100vh - 156px)', minHeight: '590px' },
+  leftPanel: { border: "1px solid var(--border-default)", background: "var(--panel-bg)", borderRadius: '10px', padding: '12px', overflowY: 'auto' },
+  rightPanel: { border: "1px solid var(--border-default)", background: "var(--panel-bg)", borderRadius: '10px', padding: '14px', overflowY: 'auto' },
+  canvasPanel: { border: "1px solid var(--border-default)", background: "var(--panel-bg)", borderRadius: '10px', padding: '12px', overflow: 'auto' },
   sideTitle: { margin: '0 0 10px', fontSize: '0.82rem' },
-  sideHint: { color: '#666', fontSize: '0.65rem', lineHeight: 1.45, marginBottom: '12px' },
+  sideHint: { color: "var(--text-muted)", fontSize: '0.75rem', lineHeight: 1.45, marginBottom: '12px' },
   templatePanel: { display: 'flex', flexDirection: 'column', gap: '6px' },
   templateSaveRow: { display: 'grid', gridTemplateColumns: '1fr auto', gap: '5px', alignItems: 'center' },
-  templateSaveBtn: { padding: '6px 8px', borderRadius: '5px', border: '1px solid #007bff', background: 'rgba(0,123,255,.12)', color: '#64adff', fontSize: '0.6rem', fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' },
+  templateSaveBtn: { padding: '6px 8px', borderRadius: '5px', border: "1px solid var(--accent)", background: 'var(--accent-soft)', color: "var(--accent)", fontSize: '0.75rem', fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' },
   globalSettings: { display: 'flex', flexDirection: 'column' },
-  divider: { height: '1px', background: '#242424', margin: '14px 0' },
-  blockSelector: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px', marginBottom: '6px', borderRadius: '7px', border: '1px solid #252525', background: '#121212', color: '#777', cursor: 'pointer', textAlign: 'left' },
-  blockSelectorActive: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px', marginBottom: '6px', borderRadius: '7px', border: '1px solid #007bff', background: 'rgba(0,123,255,.08)', color: '#fff', cursor: 'pointer', textAlign: 'left' },
-  canvasToolbar: { display: 'flex', justifyContent: 'space-between', color: '#666', fontSize: '0.66rem', marginBottom: '10px' },
-  paper: { margin: '0 auto', background: '#e9ecef', color: '#111', minHeight: '100%', borderRadius: '3px', padding: '18px' },
+  divider: { height: '1px', background: "var(--border-default)", margin: '14px 0' },
+  blockName: { flex: 1, textAlign: 'start', background: 'transparent', border: 0, color: 'inherit', cursor: 'pointer' },
+  blockSelector: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px', marginBottom: '6px', borderRadius: '7px', border: "1px solid var(--border-default)", background: "var(--input-bg)", color: "var(--text-muted)", cursor: 'pointer', textAlign: 'left' },
+  blockSelectorActive: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px', marginBottom: '6px', borderRadius: '7px', border: "1px solid var(--accent)", background: 'var(--accent-soft)', color: "var(--text-primary)", cursor: 'pointer', textAlign: 'left' },
+  canvasToolbar: { display: 'flex', justifyContent: 'space-between', color: "var(--text-muted)", fontSize: '0.75rem', marginBottom: '10px' },
+  paper: { margin: '0 auto', background: '#fff', color: '#111', minHeight: '600px', padding: '40px', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif' },
   previewBlock: { background: '#fff', border: '1px solid #cfd4da', borderRadius: '7px', marginBottom: '9px', padding: '10px', cursor: 'grab' },
   previewBlockSelected: { outline: '2px solid #007bff', outlineOffset: '1px' },
   previewBlockDisabled: { opacity: 0.36 },
   previewBlockHeader: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.72rem', marginBottom: '9px' },
-  drag: { color: '#777' },
-  enabledBadge: { marginLeft: 'auto', color: '#198754', fontSize: '0.56rem', fontWeight: 900 },
-  disabledBadge: { marginLeft: 'auto', color: '#888', fontSize: '0.56rem', fontWeight: 900 },
-  mockGrid: { display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '0.62rem' },
-  mockText: { fontSize: '0.62rem', color: '#555', lineHeight: 1.5 },
+  drag: { color: "var(--text-muted)" },
+  enabledBadge: { marginLeft: 'auto', color: '#198754', fontSize: '0.75rem', fontWeight: 900 },
+  disabledBadge: { marginLeft: 'auto', color: "var(--text-muted)", fontSize: '0.75rem', fontWeight: 900 },
+  mockGrid: { display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4px', fontSize: '0.75rem' },
+  mockText: { fontSize: '0.75rem', color: "var(--text-muted)", lineHeight: 1.5 },
   columnPreview: { display: 'flex', flexWrap: 'wrap', gap: '3px' },
-  columnChip: { padding: '3px 5px', background: '#f1f3f5', borderRadius: '3px', fontSize: '0.58rem' },
-  approvalPreview: { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '4px', fontSize: '0.62rem', textAlign: 'center' },
-  label: { display: 'block', margin: '10px 0 5px', color: '#777', fontSize: '0.65rem' },
-  input: { width: '100%', boxSizing: 'border-box', background: '#121212', color: '#fff', border: '1px solid #303030', borderRadius: '6px', padding: '8px', marginBottom: '7px' },
-  textarea: { width: '100%', boxSizing: 'border-box', resize: 'vertical', background: '#121212', color: '#fff', border: '1px solid #303030', borderRadius: '6px', padding: '8px' },
-  select: { width: '100%', boxSizing: 'border-box', background: '#121212', color: '#ddd', border: '1px solid #303030', borderRadius: '5px', padding: '6px', marginTop: '6px' },
+  columnChip: { padding: '3px 5px', background: '#f1f3f5', borderRadius: '3px', fontSize: '0.75rem' },
+  approvalPreview: { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '4px', fontSize: '0.75rem', textAlign: 'center' },
+  label: { display: 'block', margin: '10px 0 5px', color: "var(--text-muted)", fontSize: '0.75rem' },
+  input: { width: '100%', boxSizing: 'border-box', background: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '6px', padding: '8px', marginBottom: '7px' },
+  textarea: { width: '100%', boxSizing: 'border-box', resize: 'vertical', background: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '6px', padding: '8px' },
+  select: { width: '100%', boxSizing: 'border-box', background: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '5px', padding: '6px', marginTop: '6px' },
   orientationGroup: { display: 'flex', gap: '6px' },
-  toggle: { padding: '6px 8px', borderRadius: '5px', border: '1px solid #303030', background: '#151515', color: '#777', cursor: 'pointer', fontSize: '0.62rem' },
-  toggleActive: { padding: '6px 8px', borderRadius: '5px', border: '1px solid #007bff', background: 'rgba(0,123,255,.12)', color: '#64adff', cursor: 'pointer', fontSize: '0.62rem', fontWeight: 800 },
+  toggle: { padding: '6px 8px', borderRadius: '5px', border: "1px solid var(--border-default)", background: "var(--card-bg)", color: "var(--text-muted)", cursor: 'pointer', fontSize: '0.75rem' },
+  toggleActive: { padding: '6px 8px', borderRadius: '5px', border: "1px solid var(--accent)", background: 'rgba(0,123,255,.12)', color: "var(--accent)", cursor: 'pointer', fontSize: '0.75rem', fontWeight: 800 },
   columnToggleGrid: { display: 'flex', flexWrap: 'wrap', gap: '5px', marginBottom: '10px' },
-  addBtn: { width: '100%', padding: '8px', background: '#151515', color: '#aaa', border: '1px dashed #3a3a3a', borderRadius: '6px', cursor: 'pointer', marginBottom: '10px' },
+  addBtn: { width: '100%', padding: '8px', background: "var(--card-bg)", color: "var(--text-secondary)", border: "1px dashed var(--border-default)", borderRadius: '6px', cursor: 'pointer', marginBottom: '10px' },
   columnOrder: { display: 'flex', flexDirection: 'column', gap: '7px' },
-  columnEditor: { padding: '7px', background: '#131313', border: '1px solid #262626', borderRadius: '6px' },
+  columnEditor: { padding: '7px', background: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '6px' },
   columnEditorTop: { display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '5px' },
-  columnKey: { flex: 1, color: '#555', fontSize: '0.55rem', textTransform: 'uppercase' },
+  columnKey: { flex: 1, color: "var(--text-muted)", fontSize: '0.75rem', textTransform: 'uppercase' },
   twoCol: { display: 'grid', gridTemplateColumns: '1fr 58px', gap: '5px' },
-  inlineInput: { width: '100%', minWidth: 0, boxSizing: 'border-box', background: '#0f0f0f', color: '#ddd', border: '1px solid #2d2d2d', borderRadius: '4px', padding: '6px', fontSize: '0.66rem' },
-  widthInput: { width: '100%', boxSizing: 'border-box', background: '#0f0f0f', color: '#ddd', border: '1px solid #2d2d2d', borderRadius: '4px', padding: '6px', fontSize: '0.66rem', textAlign: 'center' },
-  resetBtn: { border: 0, background: 'transparent', color: '#777', fontSize: '0.55rem', cursor: 'pointer' },
-  removeBtn: { border: 0, background: 'transparent', color: '#ff6666', cursor: 'pointer' },
-  customValues: { marginTop: '8px', paddingTop: '7px', borderTop: '1px solid #242424', display: 'flex', flexDirection: 'column', gap: '5px' },
-  customValuesTitle: { color: '#777', fontSize: '0.58rem', fontWeight: 800, textTransform: 'uppercase' },
-  customValuesEmpty: { color: '#555', fontSize: '0.6rem', padding: '4px 0' },
+  inlineInput: { width: '100%', minWidth: 0, boxSizing: 'border-box', background: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '4px', padding: '6px', fontSize: '0.75rem' },
+  widthInput: { width: '100%', boxSizing: 'border-box', background: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '4px', padding: '6px', fontSize: '0.75rem', textAlign: 'center' },
+  resetBtn: { border: 0, background: 'transparent', color: "var(--text-muted)", fontSize: '0.75rem', cursor: 'pointer' },
+  removeBtn: { border: 0, background: 'transparent', color: 'var(--danger)', cursor: 'pointer' },
+  customValues: { marginTop: '8px', paddingTop: '7px', borderTop: "1px solid var(--border-default)", display: 'flex', flexDirection: 'column', gap: '5px' },
+  customValuesTitle: { color: "var(--text-muted)", fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase' },
+  customValuesEmpty: { color: "var(--text-muted)", fontSize: '0.75rem', padding: '4px 0' },
   valueRow: { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 110px', gap: '6px', alignItems: 'center' },
-  valueStep: { color: '#777', fontSize: '0.58rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
-  valueInput: { width: '100%', minWidth: 0, boxSizing: 'border-box', background: '#0f0f0f', color: '#ddd', border: '1px solid #2d2d2d', borderRadius: '4px', padding: '5px', fontSize: '0.6rem' },
+  valueStep: { color: "var(--text-muted)", fontSize: '0.75rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  valueInput: { width: '100%', minWidth: 0, boxSizing: 'border-box', background: "var(--input-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", borderRadius: '4px', padding: '5px', fontSize: '0.75rem' },
   counter: { display: 'grid', gridTemplateColumns: '36px 1fr 36px', gap: '6px', alignItems: 'center', textAlign: 'center' }
 };

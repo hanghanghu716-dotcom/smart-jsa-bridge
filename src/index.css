@@ -12,7 +12,7 @@
 :root {
   font-family: 'Pretendard', -apple-system, sans-serif;
   /* 배경색을 주석 처리하거나 제거하여 Tailwind의 bg-white가 작동하게 합니다 */
-  /* background-color: #000; */ 
+  /* background-color: #000; */
   color: #fff;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -25,10 +25,10 @@ body, #root {
 
 /* 3. 기존 반응형 쿼리 유지 */
 @media (max-width: 1024px) {
-  .mobile-block-view { 
-    display: flex !important; 
+  .mobile-block-view {
+    display: flex !important;
   }
-  .main-app-content { 
-    display: none !important; 
+  .main-app-content {
+    display: none !important;
   }
 }

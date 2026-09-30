@@ -80,5 +80,13 @@
   "workStepTagsPlaceholder": "Ingrese etiquetas separadas por comas",
   "cloneWorkStep": "Duplicar",
   "workStepCloneSuccess": "Paso duplicado.",
-  "workStepCloneError": "No se pudo duplicar el paso."
+  "workStepCloneError": "No se pudo duplicar el paso.",
+  "workStepHistory": "Historial",
+  "workStepHistoryTitle": "Historial de versiones",
+  "workStepHistoryEmpty": "No hay versiones anteriores.",
+  "restoreVersion": "Restaurar",
+  "confirmRestoreWorkStepVersion": "¿Restaurar la versión v{{version}}? El estado actual permanecerá en el historial.",
+  "workStepVersionRestored": "Se restauró la versión seleccionada.",
+  "workStepVersionRestoreError": "No se pudo restaurar esta versión.",
+  "workStepHistoryError": "No se pudo cargar el historial de versiones."
 }

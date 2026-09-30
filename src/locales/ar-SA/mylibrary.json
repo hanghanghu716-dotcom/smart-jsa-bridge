@@ -80,5 +80,13 @@
   "workStepTagsPlaceholder": "أدخل الوسوم مفصولة بفواصل",
   "cloneWorkStep": "نسخ",
   "workStepCloneSuccess": "تم نسخ خطوة العمل.",
-  "workStepCloneError": "تعذر نسخ خطوة العمل."
+  "workStepCloneError": "تعذر نسخ خطوة العمل.",
+  "workStepHistory": "السجل",
+  "workStepHistoryTitle": "سجل الإصدارات",
+  "workStepHistoryEmpty": "لا توجد إصدارات سابقة.",
+  "restoreVersion": "استعادة",
+  "confirmRestoreWorkStepVersion": "هل تريد استعادة الإصدار v{{version}}؟ ستبقى الحالة الحالية محفوظة في سجل الإصدارات.",
+  "workStepVersionRestored": "تمت استعادة الإصدار المحدد.",
+  "workStepVersionRestoreError": "تعذر استعادة هذا الإصدار.",
+  "workStepHistoryError": "تعذر تحميل سجل الإصدارات."
 }

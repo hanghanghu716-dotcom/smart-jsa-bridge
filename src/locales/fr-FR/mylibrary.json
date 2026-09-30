@@ -80,5 +80,13 @@
   "workStepTagsPlaceholder": "Saisir les tags séparés par des virgules",
   "cloneWorkStep": "Dupliquer",
   "workStepCloneSuccess": "Étape dupliquée.",
-  "workStepCloneError": "Impossible de dupliquer l’étape."
+  "workStepCloneError": "Impossible de dupliquer l’étape.",
+  "workStepHistory": "Historique",
+  "workStepHistoryTitle": "Historique des versions",
+  "workStepHistoryEmpty": "Aucune version précédente.",
+  "restoreVersion": "Restaurer",
+  "confirmRestoreWorkStepVersion": "Restaurer la version v{{version}} ? L’état actuel restera dans l’historique.",
+  "workStepVersionRestored": "La version sélectionnée a été restaurée.",
+  "workStepVersionRestoreError": "Impossible de restaurer cette version.",
+  "workStepHistoryError": "Impossible de charger l’historique des versions."
 }

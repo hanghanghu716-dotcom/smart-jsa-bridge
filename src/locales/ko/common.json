@@ -71,7 +71,15 @@
   "draftSave": {
     "pending": "저장 중",
     "saved": "저장됨",
-    "error": "저장 오류"
+    "error": "저장 오류",
+    "conflict": "다른 탭에서 최신 Draft가 저장됨 · 새로고침 필요"
+  },
+  "appearance": {
+    "title": "화면 모드",
+    "system": "시스템 설정",
+    "light": "라이트",
+    "dark": "다크",
+    "active": "적용 중"
   },
   "designer": {
     "defaultTitle": "위험성평가표 (JSA)",

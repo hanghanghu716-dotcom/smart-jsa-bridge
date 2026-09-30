@@ -71,7 +71,15 @@
   "draftSave": {
     "pending": "保存中",
     "saved": "保存済み",
-    "error": "保存エラー"
+    "error": "保存エラー",
+    "conflict": "別のタブで新しい下書きが保存されました · 再読み込みが必要です"
+  },
+  "appearance": {
+    "title": "表示モード",
+    "system": "システム設定",
+    "light": "ライト",
+    "dark": "ダーク",
+    "active": "適用中"
   },
   "designer": {
     "defaultTitle": "作業安全分析（JSA）",

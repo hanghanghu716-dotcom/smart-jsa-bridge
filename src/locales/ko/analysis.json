@@ -81,8 +81,8 @@
     "placeholder": "검색어를 입력하세요..."
   },
   "knowledgeDock": {
-    "openBtn": "지식 Dock",
-    "opened": "Dock 열림",
+    "openBtn": "지식 라이브러리",
+    "opened": "라이브러리 열림",
     "untitledStep": "이름 없는 단계",
     "sourceManual": "직접 입력",
     "sourceDatabase": "위험 DB",
@@ -98,7 +98,7 @@
     "noControl": "대책 없음",
     "mergeHazards": "위험요인만",
     "mergeFull": "대책까지 병합",
-    "emptyProjects": "스크랩한 프로젝트가 없습니다.",
+    "emptyProjects": "저장하거나 스크랩한 프로젝트가 없습니다.",
     "steps": "단계",
     "backProjects": "프로젝트 목록",
     "sourceCurrent": "현재 JSA",
@@ -107,6 +107,11 @@
     "mergeOneHazard": "+ 위험",
     "mergeOneFull": "+ 전체",
     "mergeResult": "{{added}}개 추가 · 중복 {{skipped}}개 건너뜀",
-    "noRisksToMerge": "병합할 위험요인이 없습니다."
+    "noRisksToMerge": "병합할 위험요인이 없습니다.",
+    "loading": "라이브러리를 불러오는 중…",
+    "loadError": "라이브러리를 불러오지 못했습니다. 다시 시도해 주세요.",
+    "retry": "다시 시도",
+    "close": "라이브러리 닫기",
+    "noMatches": "검색 결과가 없습니다."
   }
 }

@@ -1,3 +1,5 @@
+import DocumentContent from '../components/DocumentContent';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import html2canvas from 'html2canvas';
@@ -66,10 +68,10 @@ export default function Export() {
   const savedUserColumns = state.savedUserColumns || recoveredLayout.savedUserColumns || [];
   const savedOrientation = state.savedOrientation || recoveredLayout.savedOrientation || 'landscape';
   const isModuleSkipped = state.isModuleSkipped ?? recoveredLayout.isModuleSkipped;
-  const docTitle = state.docTitle || recoveredLayout.docTitle || t('default.docTitle', '위험성평가표 (JSA)');
-  const appr1 = state.appr1 || recoveredLayout.appr1 || t('default.appr1', '작성');
-  const appr2 = state.appr2 || recoveredLayout.appr2 || t('default.appr2', '검토');
-  const appr3 = state.appr3 || recoveredLayout.appr3 || t('default.appr3', '승인');
+  const docTitle = state.docTitle ?? recoveredLayout.docTitle ?? t('default.docTitle', '위험성평가표 (JSA)');
+  const appr1 = state.appr1 ?? recoveredLayout.appr1 ?? t('default.appr1', '작성');
+  const appr2 = state.appr2 ?? recoveredLayout.appr2 ?? t('default.appr2', '검토');
+  const appr3 = state.appr3 ?? recoveredLayout.appr3 ?? t('default.appr3', '승인');
   const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
   const documentBlocks = state.documentBlocks || recoveredLayout.documentBlocks || [];
   const savedColumnOverrides = state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {};
@@ -356,97 +358,6 @@ export default function Export() {
     return t(`tags.${key}`, meta?.label || key);
   };
 
-  const renderDesignerProjectInfo = () => {
-    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
-    const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', textAlign: 'center' };
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
-        <tbody>
-          <tr>
-            <td colSpan={4} style={{ ...td, fontSize: isEnglish ? '16px' : '18px', fontWeight: 'bold', textAlign: 'center' }}>{docTitle}</td>
-          </tr>
-          <tr>
-            <td style={label}>{t('header.projectName')}</td><td style={td}>{formData?.projectName || ''}</td>
-            <td style={label}>{t('header.workDate')}</td><td style={td}>{formData?.workDate || ''}</td>
-          </tr>
-          <tr>
-            <td style={label}>{t('header.workLocation')}</td><td style={td}>{formData?.workLocation || ''}</td>
-            <td style={label}>{t('header.department')}</td><td style={td}>{formData?.department || ''}</td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  };
-
-  const translatePpe = value => ({
-    '안전모': t('ppe.helmet'),
-    '안전화': t('ppe.shoes'),
-    '보안경': t('ppe.glasses'),
-    '장갑': t('ppe.gloves'),
-    '방진마스크': t('ppe.mask')
-  }[value] || value);
-
-  const translatePermit = value => ({
-    '화기': t('permit.hotWork'),
-    '밀폐': t('permit.confinedSpace'),
-    '정전': t('permit.electrical'),
-    '고소': t('permit.highElevation'),
-    '중량물': t('permit.heavyLifting'),
-    '굴착': t('permit.excavation')
-  }[value] || value);
-
-  const renderDesignerSafety = () => {
-    const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
-    const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', width: '15%' };
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
-        <tbody>
-          <tr>
-            <td style={label}>{t('header.ppe')}</td>
-            <td style={td}>{(formData?.ppe || []).map(translatePpe).join(' · ') || '—'}</td>
-          </tr>
-          <tr>
-            <td style={label}>{t('header.highRiskWork')}</td>
-            <td style={td}>{(formData?.permits || []).map(translatePermit).join(' · ') || '—'}</td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  };
-
-  const renderDesignerApproval = () => {
-    const td = { border: '1px solid #888', padding: '5px', color: '#000', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center' };
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
-        <tbody>
-          <tr>
-            <td style={{ ...td, background: '#f2f2f2', fontWeight: 'bold' }}>{t('header.approval')}</td>
-            <td style={td}>{appr1}</td><td style={td}>{appr2}</td><td style={td}>{appr3}</td>
-          </tr>
-          <tr>
-            <td style={{ ...td, background: '#f2f2f2', fontWeight: 'bold' }}>{t('signature.sign')}</td>
-            <td style={{ ...td, height: '36px' }}></td><td style={td}></td><td style={td}></td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  };
-
-  const renderDesignerNotes = () => (
-    <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
-      <tbody>
-        <tr>
-          <td style={{ border: '1px solid #888', background: '#f2f2f2', fontWeight: 'bold', color: '#000', width: '15%', padding: '6px', fontSize: '10px' }}>
-            {t('common:designer.blocks.NOTES', 'Notes')}
-          </td>
-          <td style={{ border: '1px solid #888', color: '#000', padding: '7px', whiteSpace: 'pre-wrap', fontSize: '10px', minHeight: '42px' }}>
-            {documentNotes || '—'}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  );
-
   const renderDataTable = () => {
       const isEuroLang = ['en', 'fr', 'de'].some(lang => i18n.language?.startsWith(lang));
 
@@ -569,30 +480,14 @@ export default function Export() {
     );
   };
 
-  const renderDesignerDocument = () => (
-    <>
-      {documentBlocks
-        .filter(block => block.enabled)
-        .map(block => {
-          if (block.id === 'PROJECT_INFO') return <React.Fragment key={block.id}>{renderDesignerProjectInfo()}</React.Fragment>;
-          if (block.id === 'SAFETY') return <React.Fragment key={block.id}>{renderDesignerSafety()}</React.Fragment>;
-          if (block.id === 'JSA_TABLE') return <React.Fragment key={block.id}>{renderDataTable()}</React.Fragment>;
-          if (block.id === 'PARTICIPANTS') return <React.Fragment key={block.id}>{renderSignatureTable()}</React.Fragment>;
-          if (block.id === 'APPROVAL') return <React.Fragment key={block.id}>{renderDesignerApproval()}</React.Fragment>;
-          if (block.id === 'NOTES') return <React.Fragment key={block.id}>{renderDesignerNotes()}</React.Fragment>;
-          return null;
-        })}
-    </>
-  );
-
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 기능 추가 */}
       {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
-      <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1></header>
+      <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
@@ -608,9 +503,11 @@ export default function Export() {
             <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div>
             <div style={styles.previewArea}>
             {/* 가상의 A4 용지 영역 */}
-        <div className="reportPaper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
+        <div className="reportPaper theme-paper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
           {hasDesignerLayout ? (
-            renderDesignerDocument()
+            <DocumentContent formData={formData} participants={participants} analysisData={analysisData}
+              layout={{ documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes }}
+              stepPhotos={stepPhotos} onPhotoClick={index => { setActivePhotoRow(index); fileInputRef.current.click(); }} />
           ) : (
             <>
               {/* Legacy ModuleBuilder/TableBuilder output remains unchanged. */}
@@ -622,11 +519,11 @@ export default function Export() {
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: location.state })}>{t('btn.prev')}</button>
+              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
               {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
-              <button style={{...styles.pdfBtn, backgroundColor: '#28a745', color: '#fff'}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
+              <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
 
               {/* 👇 [기능 추가] 복사 전용 광고 모달 (PDF 모달 구조 재사용) */}
               {showCopyAdModal && (
@@ -670,21 +567,21 @@ export default function Export() {
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h3 style={styles.modalTitle}>{t('modal.pubTitle')}</h3>
-              <p style={{ ...styles.modalSub, color: '#ff7675', fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
+              <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
             <p style={styles.modalSub}>{t('modal.pubSub')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
             <div style={styles.typeGrid}>
               {(isFork && !isValuableFork) ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
-                  <div style={{...styles.typeBadge, backgroundColor: '#444'}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: '#888'}}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
+                  <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('modal.pubPublicLabel')}</h4>
+                  <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
                 </div>
               ) : totalRisks < 3 ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
-                  <div style={{...styles.typeBadge, backgroundColor: '#444'}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: '#888'}}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
+                  <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('modal.pubPublicLabel')}</h4>
+                  <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
                 </div>
               ) : (
                 <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
@@ -714,49 +611,42 @@ const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent' },
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)', backgroundPosition: 'center' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },
-  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 5rem 60px', zIndex: 10, gap: '3rem', overflow: 'hidden', alignItems: 'center' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1550px', height: '82vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.9)' },
+  formCard: { width: '100%', maxWidth: '1550px', height: '82vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '1.5rem 2.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: "var(--shadow-panel)" },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', gap: '0.4rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.3rem' },
-  stepBadgeDone: { width: '18px', height: '18px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.65rem' },
-  stepTextDone: { fontSize: '0.75rem', color: '#4caf50', fontWeight: '700' },
+  stepBadgeDone: { width: '18px', height: '18px', backgroundColor: "var(--success-action)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.65rem' },
+  stepTextDone: { fontSize: '0.75rem', color: "var(--success)", fontWeight: '700' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.3rem' },
-  stepBadgeActive: { width: '18px', height: '18px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', fontWeight: 'bold' },
-  stepTextActive: { fontSize: '0.75rem', color: '#fff', fontWeight: '700' },
-  stepLineActive: { width: '20px', height: '1px', backgroundColor: '#4caf50' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
-  previewArea: { flex: 1, overflow: 'auto', backgroundColor: '#111', borderRadius: '10px', padding: '3rem', border: '1px solid #333' },
+  stepBadgeActive: { width: '18px', height: '18px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.7rem', fontWeight: 'bold' },
+  stepTextActive: { fontSize: '0.75rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepLineActive: { width: '20px', height: '1px', backgroundColor: "var(--success-action)" },
+  formHeader: { marginBottom: '1.2rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)" },
+  previewArea: { flex: 1, overflow: 'auto', backgroundColor: "var(--card-bg)", borderRadius: '10px', padding: '3rem', border: "1px solid var(--border-default)" },
   reportPaper: { color: '#000', backgroundColor: '#fff', height: 'auto', display: 'flex', flexDirection: 'column', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  processingOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
-  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' },
-  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  modalContent: { width: '500px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
-  modalTitle: { fontSize: '1.5rem', color: '#fff', marginBottom: '0.5rem', fontWeight: '800' },
-  modalSub: { fontSize: '0.9rem', color: '#888', marginBottom: '2rem' },
-  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.03)' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  processingOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
+  loaderText: { color: "var(--on-accent)", fontSize: '1.2rem', fontWeight: 'bold' },
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
+  modalContent: { width: '500px', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalTitle: { fontSize: '1.5rem', color: "var(--text-primary)", marginBottom: '0.5rem', fontWeight: '800' },
+  modalSub: { fontSize: '0.9rem', color: "var(--text-muted)", marginBottom: '2rem' },
+  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: "var(--app-bg)" },
   typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
-  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
-  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '2px solid #007bff', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
-  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: '#aaa', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
-  typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
-  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
+  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
+  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "2px solid var(--accent)", borderRadius: '12px', cursor: 'pointer', boxShadow: "var(--shadow-panel)" },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--surface-hover)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeLabel: { fontSize: '1rem', color: "var(--text-primary)", marginBottom: '0.8rem', fontWeight: 'bold' },
+  typeDesc: { fontSize: '0.8rem', color: "var(--text-muted)", lineHeight: '1.5' },
+  modalCloseBtn: { background: 'none', border: 'none', color: "var(--text-muted)", cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
 };
-
-if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-export-style-v2";
-  let styleTag = document.getElementById(styleId);
-  if (!styleTag) { styleTag = document.createElement("style"); styleTag.id = styleId; document.head.appendChild(styleTag); }
-  styleTag.innerHTML = `html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; } * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; } *::-webkit-scrollbar { display: none !important; }`;
-}

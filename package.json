@@ -11,7 +11,10 @@
     "test:locales": "node --test scripts/locales.test.js",
     "preview": "vite preview",
     "test:site": "node --test scripts/site-quality.test.js",
-    "test:content": "node --test scripts/content-publishing.test.js"
+    "test:content": "node --test scripts/content-publishing.test.js",
+    "test:theme": "node --test scripts/theme.test.js",
+    "test:analysis": "node --test scripts/analysis-knowledge.test.js",
+    "test:document": "node --test scripts/document-layout.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
