@@ -133,6 +133,9 @@
     "savingTemplate": "저장 중...",
     "templateSaved": "문서 템플릿을 저장했습니다.",
     "templateSaveError": "템플릿 저장 중 오류가 발생했습니다.",
-    "loginRequired": "로그인이 필요합니다."
+    "loginRequired": "로그인이 필요합니다.",
+    "fieldValues": "작업단계별 값",
+    "noWorkSteps": "작업단계가 없습니다.",
+    "stepFallback": "작업단계 {{number}}"
   }
 }
