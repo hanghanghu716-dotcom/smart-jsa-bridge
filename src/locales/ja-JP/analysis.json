@@ -103,6 +103,8 @@
     "backProjects": "プロジェクト一覧",
     "sourceCurrent": "現在のJSA",
     "analysisIncluded": "分析含む",
-    "stepOnly": "ステップのみ"
+    "stepOnly": "ステップのみ",
+    "mergeOneHazard": "+ 危険",
+    "mergeOneFull": "+ 全体"
   }
 }
