@@ -133,6 +133,9 @@
     "savingTemplate": "Saving...",
     "templateSaved": "Document template saved.",
     "templateSaveError": "Failed to save the template.",
-    "loginRequired": "Login is required."
+    "loginRequired": "Login is required.",
+    "fieldValues": "Values by Work Step",
+    "noWorkSteps": "No work steps available.",
+    "stepFallback": "Work Step {{number}}"
   }
 }
