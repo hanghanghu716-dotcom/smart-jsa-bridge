@@ -133,6 +133,9 @@
     "savingTemplate": "Enregistrement...",
     "templateSaved": "Modèle de document enregistré.",
     "templateSaveError": "Échec de l’enregistrement du modèle.",
-    "loginRequired": "Connexion requise."
+    "loginRequired": "Connexion requise.",
+    "fieldValues": "Valeurs par étape",
+    "noWorkSteps": "Aucune étape de travail.",
+    "stepFallback": "Étape {{number}}"
   }
 }
