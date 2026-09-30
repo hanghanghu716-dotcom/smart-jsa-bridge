@@ -799,7 +799,7 @@ export default function Analysis() {
                       <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '2rem 0', fontSize: '0.8rem' }}>{t('base.emptyRec')}</p>
                     ) : (
                       recommendations.map((rec, i) => (
-                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'var(--surface-2)', border: checkedRisks.has(rec) ? '1px solid #007bff' : '1px solid #333', borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
+                        <label key={`rec-${i}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'var(--surface-2)', border: checkedRisks.has(rec) ? '1px solid var(--accent)' : '1px solid var(--border-default)', borderRadius: '6px', padding: '12px', cursor: 'pointer' }}>
                           <input type="checkbox" checked={checkedRisks.has(rec)} onChange={() => toggleCheck(rec)} />
                           <div style={{ flex: 1 }}>
                             <div style={{ color: 'var(--text-primary)', fontSize: '0.85rem', fontWeight: 'bold' }}>{rec.risk_factor || rec.factor}</div>
@@ -1040,12 +1040,12 @@ const styles = {
   stepLineActive: { width: '20px', height: '1.5px', backgroundColor: 'var(--success)' },
   stepLine: { width: '20px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 0.3 },
-  stepBadge: { width: '20px', height: '20px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', fontSize: '0.75rem' },
+  stepBadge: { width: '20px', height: '20px', backgroundColor: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', fontSize: '0.75rem' },
   stepText: { fontSize: '0.8rem', color: 'var(--text-secondary)' },
   formHeader: { borderLeft: '5px solid #007bff', paddingLeft: '1rem', marginBottom: '1.2rem' },
   headerTitleGroup: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' },
   formTitle: { fontSize: '1.4rem', color: 'var(--text-primary)', fontWeight: '800', margin: 0 },
-  stepCountBadge: { backgroundColor: '#333', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
+  stepCountBadge: { backgroundColor: 'var(--surface-3)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' },
   stepContext: { backgroundColor: 'var(--border-subtle)', padding: '0.8rem 1rem', borderRadius: '6px' },
   stepTitleRow: { display: 'flex', alignItems: 'center', gap: '0.8rem' },
   stepLabel: { fontSize: '0.75rem', color: 'var(--accent)', fontWeight: 'bold' },
@@ -1068,7 +1068,7 @@ const styles = {
   selectedListScroll: { flex: 1, overflowY: 'auto' },
   table: { width: '100%', borderCollapse: 'collapse', color: 'var(--text-primary)' },
   th: { padding: '8px', borderBottom: '1px solid var(--border-default)', fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'left' },
-  td: { padding: '8px', borderBottom: '1px solid #1a1a1a' },
+  td: { padding: '8px', borderBottom: '1px solid var(--border-subtle)' },
   inlineInput: { width: '100%', backgroundColor: 'var(--surface)', color: 'var(--text-secondary)', border: '1px solid var(--border-default)', padding: '0.5rem', borderRadius: '4px', resize: 'none', fontSize: '0.8rem' },
   smallDeleteBtn: { backgroundColor: 'transparent', color: 'var(--text-faint)', border: '1px solid var(--border-default)', cursor: 'pointer', borderRadius: '4px' },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
@@ -1078,7 +1078,7 @@ const styles = {
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   label: { fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700' },
   dialogOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2000 },
-  spinner: { width: '40px', height: '40px', border: '4px solid #333', borderTop: '4px solid #007bff', borderRadius: '50%', animation: 'spin 1s linear infinite' },
+  spinner: { width: '40px', height: '40px', border: '4px solid var(--border-default)', borderTop: '4px solid var(--accent)', borderRadius: '50%', animation: 'spin 1s linear infinite' },
   libModalContent: { backgroundColor: 'var(--surface-2)', border: '1px solid var(--border-default)', borderRadius: '12px', padding: '2rem', width: '600px', maxWidth: '90%', display: 'flex', flexDirection: 'column', gap: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.9)' },
   modalHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-default)', paddingBottom: '1rem' },
   closeBtnSmall: { backgroundColor: 'transparent', color: 'var(--text-secondary)', border: 'none', fontSize: '1.2rem', cursor: 'pointer' },
@@ -1091,7 +1091,7 @@ const styles = {
   backBtn: { backgroundColor: 'transparent', color: 'var(--text-secondary)', border: 'none', textAlign: 'left', padding: '0.5rem 0', cursor: 'pointer', fontSize: '0.85rem' },
   libStepItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--surface-3)', padding: '1rem', borderRadius: '8px', cursor: 'pointer', border: '1px dashed #444' },
   stepInfo: { display: 'flex', alignItems: 'center', gap: '10px' },
-  stepIdxBadge: { backgroundColor: '#333', color: 'var(--text-primary)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' },
+  stepIdxBadge: { backgroundColor: 'var(--surface-3)', color: 'var(--text-primary)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' },
   stepTitleText: { color: 'var(--text-primary)', fontSize: '0.9rem' },
   stepPreview: { color: 'var(--danger)', fontSize: '0.75rem', fontWeight: 'bold' },
   clipboardCopyBtn: {
