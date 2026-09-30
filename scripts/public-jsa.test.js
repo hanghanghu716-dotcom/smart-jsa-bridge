@@ -4,6 +4,8 @@ import { createPublicHandler, renderPublicHtml } from '../api/public-jsa.js';
 import { publicJsaView, publicJsaQuality, publicForkState, safeReturnPath } from '../src/utils/publicJsa.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
+import { staticRoutes } from './static-routes.js';
+import fs from 'node:fs';
 const id = '10000000-0000-4000-8000-000000000001';
 const row = { id, author_id: 'author', is_public: true, public_locale: 'ko', title: 'Installation inspection',
   form_data: { projectName: 'Installation inspection', workDate: 'private', workLocation: 'private', ppe: [] }, participants: ['private'],
@@ -43,4 +45,11 @@ test('return paths reject external redirects and all supported locales have comp
   for(const value of ['https://evil.test','//evil.test','/\\evil.test','/\n/evil.test',null]) assert.equal(safeReturnPath(value),'/');
   assert.equal(safeReturnPath('/ko/public-jsa/'+id),'/ko/public-jsa/'+id);
   for(const locale of SUPPORTED_LANGS) for(const value of Object.values(getPublicUi(locale))) assert.ok(typeof value==='string' && value.length);
+});
+test('static publishing never snapshots user-owned routes, even when they are linked publicly',()=>{
+  const routes=staticRoutes([{route:'/ko/case-study/example'},{route:'/ko/public-jsa/'+id},{route:'/ko/business'}]);
+  assert.ok(routes.includes('/ko/case-study/example'));
+  assert.ok(routes.includes('/en-CA-AB/guideline/common'));
+  assert.ok(routes.every(route=>!/(?:explore|public-jsa|business|library|login|export|profile)/.test(route)));
+  assert.match(fs.readFileSync(new URL('./prerender-cases.js',import.meta.url),'utf8'),/crawl: false/);
 });
