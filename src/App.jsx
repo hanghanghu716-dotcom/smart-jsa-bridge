@@ -33,6 +33,7 @@ import LayoutBuilder from './pages/LayoutBuilder';
 import FactorDictionary from './pages/FactorDictionary';
 import ModuleBuilder from './pages/ModuleBuilder';
 import TableBuilder from './pages/TableBuilder';
+import DocumentDesigner from './pages/DocumentDesigner';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import AdminPostUpload from './pages/AdminPostUpload';
 import Archive from './pages/Archive';
@@ -147,6 +148,7 @@ export default function App() {
             <Route path="/:lng/analysis" element={<CrawlerBlocker><LanguageWrapper><Analysis /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/procedure" element={<CrawlerBlocker><LanguageWrapper><Procedure /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/export" element={<CrawlerBlocker><LanguageWrapper><Export /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/document-designer" element={<CrawlerBlocker><LanguageWrapper><DocumentDesigner /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/jsa-preview" element={<CrawlerBlocker><LanguageWrapper><JsaSamplePreview /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/layoutbuilder" element={<CrawlerBlocker><LanguageWrapper><LayoutBuilder /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/layout-module" element={<CrawlerBlocker><LanguageWrapper><ModuleBuilder /></LanguageWrapper></CrawlerBlocker>} />

@@ -1,3 +1,4 @@
+import { pickDocumentLayout } from '../utils/documentLayout';
 import { mergeKnowledgeRisks, matchingProjectSteps } from '../utils/analysisKnowledge';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getDataLocale } from '../locales/config.js';
@@ -55,6 +56,7 @@ export default function Analysis() {
       formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
     ),
     stage: 'analysis',
+    layoutData: pickDocumentLayout(state, recoveredDraft?.layout_data),
     formData,
     participants,
     procedures,
@@ -1324,9 +1326,9 @@ export default function Analysis() {
                     if (isFastTrack) {
                       setIsFastTrackModalOpen(true);
                     } else {
-                      navigate('/layout-module', {
+                      navigate('/document-designer', {
                         state: {
-                          existingId, analysisData, formData, participants, procedures,
+                          ...recoveredDraft?.layout_data, ...state, existingId, analysisData, formData, participants, procedures,
                           isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData
                         }
                       });
@@ -1334,7 +1336,7 @@ export default function Analysis() {
                   }
                 }}
               >
-                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete', '분석 완료 및 텍스트 복사') : t('btn.nextComplete')) : t('btn.nextStep')}
+                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete', '분석 완료 및 텍스트 복사') : t('common:designer.title')) : t('btn.nextStep')}
               </button>
             </div>
 

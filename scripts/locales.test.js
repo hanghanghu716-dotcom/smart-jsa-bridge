@@ -180,6 +180,38 @@ test('theme foundation has complete appearance translations and semantic tokens'
   assert.ok(css.indexOf('@import "tailwindcss";') < css.indexOf(':root'));
 });
 
+test('document designer translations are complete for every base locale', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const designerKeys = [
+    'defaultTitle', 'appr1', 'appr2', 'appr3', 'eyebrow', 'title', 'subtitle',
+    'back', 'next', 'blocksTitle', 'blocksHint', 'enabled', 'disabled',
+    'documentTitle', 'orientation', 'landscape', 'portrait', 'tableSettings',
+    'addColumn', 'newColumn', 'customColumn', 'systemColumn', 'reset',
+    'columnLabel', 'columnWidth', 'dropdownOptions', 'participantSettings',
+    'approvalSettings', 'notesSettings', 'notesPlaceholder', 'notesEmpty',
+    'blockSettings', 'blockSettingsHint', 'projectFallback', 'ppeLabel',
+    'permitLabel', 'signatureRows', 'templates', 'chooseTemplate', 'templateName',
+    'saveTemplate', 'savingTemplate', 'templateSaved', 'templateSaveError',
+    'loginRequired', 'fieldValues', 'noWorkSteps', 'stepFallback'
+  ];
+  const blockKeys = ['PROJECT_INFO', 'SAFETY', 'JSA_TABLE', 'PARTICIPANTS', 'APPROVAL', 'NOTES'];
+  const fieldTypes = ['text', 'number', 'date', 'checkbox', 'dropdown'];
+
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    assert.ok(common.designer, `Missing common.designer for ${locale}`);
+    for (const key of designerKeys) {
+      assert.ok(common.designer[key]?.trim(), `Missing common.designer.${key} for ${locale}`);
+    }
+    for (const key of blockKeys) {
+      assert.ok(common.designer.blocks?.[key]?.trim(), `Missing designer.blocks.${key} for ${locale}`);
+    }
+    for (const key of fieldTypes) {
+      assert.ok(common.designer.fieldTypes?.[key]?.trim(), `Missing designer.fieldTypes.${key} for ${locale}`);
+    }
+  }
+});
+
 test('actual i18n configuration retains province and falls back per translation key', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousDocument = global.document;

@@ -178,7 +178,7 @@ export default function MyLibrary() {
       export: '/export'
     };
 
-    navigate(routeMap[draft.current_stage] || '/info', {
+    navigate(draft.layout_data?.documentBlocks && ['module', 'table'].includes(draft.current_stage) ? '/document-designer' : routeMap[draft.current_stage] || '/info', {
       state: {
         draftId: draft.id,
         formData: draft.form_data || {},
