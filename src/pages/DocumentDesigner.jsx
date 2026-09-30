@@ -140,11 +140,15 @@ export default function DocumentDesigner() {
   const applyTemplate = template => {
     const data = template?.layout_data || {};
     if (Array.isArray(data.documentBlocks)) setBlocks(data.documentBlocks);
-    if (Array.isArray(data.savedActiveOrder)) setActiveOrder(data.savedActiveOrder);
-    if (Array.isArray(data.savedUserColumns)) setUserColumns(data.savedUserColumns);
+    const templateOrder = data.savedActiveOrder || data.activeOrder;
+    const templateUserColumns = data.savedUserColumns || data.userColumns;
+    const templateOrientation = data.savedOrientation || data.orientation;
+    const templateSignatureRows = data.savedSignatureRows || data.signatureRows;
+    if (Array.isArray(templateOrder)) setActiveOrder(templateOrder);
+    if (Array.isArray(templateUserColumns)) setUserColumns(templateUserColumns);
     if (data.savedColumnOverrides && typeof data.savedColumnOverrides === 'object') setColumnOverrides(data.savedColumnOverrides);
-    if (data.savedOrientation) setOrientation(data.savedOrientation);
-    if (data.savedSignatureRows) setSignatureRows(data.savedSignatureRows);
+    if (templateOrientation) setOrientation(templateOrientation);
+    if (templateSignatureRows) setSignatureRows(templateSignatureRows);
     if (data.docTitle) setDocTitle(data.docTitle);
     if (data.appr1) setAppr1(data.appr1);
     if (data.appr2) setAppr2(data.appr2);
