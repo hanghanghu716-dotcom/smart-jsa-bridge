@@ -145,5 +145,29 @@
     "fieldValues": "Valori per fase",
     "noWorkSteps": "Nessuna fase di lavoro.",
     "stepFallback": "Fase {{number}}"
+  },
+  "saveFlow": {
+    "library": "La mia raccolta",
+    "saveDocument": "Salva documento",
+    "privateHint": "Le copie private conservano tutti i dati, i partecipanti e le foto.",
+    "publicHint": "Le copie pubbliche escludono date, luogo, reparto, responsabile, attrezzature, partecipanti, note, foto e valori personalizzati. Controlla titolo e analisi.",
+    "publicConfirm": "Creare una copia pubblica? Verifica che titolo e analisi non contengano dati personali o riservati. L’originale rimane privato.",
+    "archiveWarning": "Documento salvato, ma non è stato possibile archiviare la bozza. Rimane disponibile.",
+    "changed": "Il documento è cambiato o non può essere aggiornato. Riaprilo o salva una nuova copia privata.",
+    "failed": "Salvataggio non riuscito. La bozza è conservata. Riprova.",
+    "publicCopy": "Crea copia pubblica",
+    "newPrivate": "Salva nuova copia privata",
+    "updatePrivate": "Aggiorna documento privato",
+    "templatesHint": "I modelli salvano impaginazioni riutilizzabili. I documenti si salvano separatamente.",
+    "templateError": "Impossibile caricare o salvare i modelli. Verifica accesso e connessione, poi ricarica.",
+    "confirmUpdate": "Sostituire questo modello con l’impaginazione attuale?",
+    "confirmDelete": "Eliminare questo modello? I documenti esistenti non cambieranno.",
+    "newTemplate": "Salva nuovo modello",
+    "rename": "Rinomina",
+    "updateTemplate": "Aggiorna con il layout attuale",
+    "clearDefault": "Rimuovi predefinito",
+    "makeDefault": "Imposta come predefinito",
+    "deleteTemplate": "Elimina modello",
+    "defaultHint": "Il modello predefinito si applica solo ai nuovi documenti e non sostituisce i layout esistenti."
   }
 }

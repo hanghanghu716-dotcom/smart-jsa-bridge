@@ -145,5 +145,29 @@
     "fieldValues": "Valores por etapa",
     "noWorkSteps": "Não há etapas de trabalho.",
     "stepFallback": "Etapa {{number}}"
+  },
+  "saveFlow": {
+    "library": "Minha biblioteca",
+    "saveDocument": "Salvar documento",
+    "privateHint": "As cópias privadas preservam todos os dados, participantes e fotos.",
+    "publicHint": "As cópias públicas omitem datas, local, departamento, responsável, equipamentos, participantes, notas, fotos e valores personalizados. Revise o título e a análise.",
+    "publicConfirm": "Criar uma cópia pública? Verifique se o título e a análise não contêm dados pessoais ou confidenciais. O original permanece privado.",
+    "archiveWarning": "Documento salvo, mas não foi possível arquivar o rascunho. Ele continua disponível.",
+    "changed": "O documento mudou ou não pode ser atualizado. Abra-o novamente ou salve uma nova cópia privada.",
+    "failed": "Falha ao salvar. O rascunho foi mantido. Tente novamente.",
+    "publicCopy": "Criar cópia pública",
+    "newPrivate": "Salvar nova cópia privada",
+    "updatePrivate": "Atualizar documento privado",
+    "templatesHint": "Os modelos guardam layouts reutilizáveis. Os documentos são salvos separadamente.",
+    "templateError": "Não foi possível carregar ou salvar os modelos. Verifique a sessão e a conexão e recarregue.",
+    "confirmUpdate": "Substituir este modelo pelo layout atual?",
+    "confirmDelete": "Excluir este modelo? Os documentos existentes não serão alterados.",
+    "newTemplate": "Salvar novo modelo",
+    "rename": "Renomear",
+    "updateTemplate": "Atualizar com o layout atual",
+    "clearDefault": "Remover padrão",
+    "makeDefault": "Definir como padrão",
+    "deleteTemplate": "Excluir modelo",
+    "defaultHint": "O modelo padrão só se aplica a novos documentos e não substitui layouts existentes."
   }
 }

@@ -1,3 +1,4 @@
+import DocumentTemplateManager from '../components/DocumentTemplateManager';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import DocumentContent from '../components/DocumentContent';
 import { normalizeDocumentBlocks, defaultColumns, moveItem, templateLayout } from '../utils/documentLayout';
@@ -9,7 +10,6 @@ import SEO from '../components/SEO';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
-import { supabase } from '../supabaseClient';
 
 const SYSTEM_COLUMNS = {
   DATA_STEP_NO: { fallback: 'No.', width: 2, align: 'center' },
@@ -89,12 +89,10 @@ function DesignerEditor({ recoveredDraft }) {
   const [notesText, setNotesText] = useState(
     state.documentNotes ?? recoveredLayout.documentNotes ?? formData.additionalItems ?? ''
   );
+  const userEdited = useRef(false);
   const [selectedBlock, setSelectedBlock] = useState('JSA_TABLE');
   const [draggedBlock, setDraggedBlock] = useState(null);
   const [draggedColumn, setDraggedColumn] = useState(null);
-  const [savedLayouts, setSavedLayouts] = useState([]);
-  const [templateName, setTemplateName] = useState('');
-  const [isSavingTemplate, setIsSavingTemplate] = useState(false);
   const canvasRef = useRef(null);
   const [previewScale, setPreviewScale] = useState(1);
   useEffect(() => {
@@ -115,24 +113,10 @@ function DesignerEditor({ recoveredDraft }) {
     appr1,
     appr2,
     appr3,
-    documentNotes: notesText
+    documentNotes: notesText,
+    stepPhotos: state.stepPhotos || recoveredLayout.stepPhotos || {},
+    projectSaveContext: state.projectSaveContext || recoveredLayout.projectSaveContext
   };
-
-  useEffect(() => {
-    let mounted = true;
-    const loadLayouts = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-      const { data, error } = await supabase
-        .from('user_layouts')
-        .select('id, name, layout_data, created_at')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
-      if (!error && mounted) setSavedLayouts(data || []);
-    };
-    loadLayouts();
-    return () => { mounted = false; };
-  }, []);
 
   const applyTemplate = template => {
     const data = templateLayout(template?.layout_data, {
@@ -142,29 +126,6 @@ function DesignerEditor({ recoveredDraft }) {
     setBlocks(data.documentBlocks); setActiveOrder(data.savedActiveOrder); setUserColumns(data.savedUserColumns);
     setColumnOverrides(data.savedColumnOverrides); setOrientation(data.savedOrientation); setSignatureRows(data.savedSignatureRows);
     setDocTitle(data.docTitle); setAppr1(data.appr1); setAppr2(data.appr2); setAppr3(data.appr3); setNotesText(data.documentNotes);
-  };
-
-  const saveTemplate = async () => {
-    if (!templateName.trim()) return;
-    setIsSavingTemplate(true);
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return alert(t('designer.loginRequired'));
-      const { data, error } = await supabase
-        .from('user_layouts')
-        .insert({ user_id: user.id, name: templateName.trim(), layout_data: layoutData })
-        .select('id, name, layout_data, created_at')
-        .single();
-      if (error) throw error;
-      setSavedLayouts(prev => [data, ...prev]);
-      setTemplateName('');
-      alert(t('designer.templateSaved'));
-    } catch (error) {
-      console.error('[Document Designer] template save failed:', error);
-      alert(t('designer.templateSaveError'));
-    } finally {
-      setIsSavingTemplate(false);
-    }
   };
 
   const draftSave = useJsaDraftAutosave({
@@ -541,7 +502,7 @@ function DesignerEditor({ recoveredDraft }) {
         <ThemeSwitcher compact />
       </header>
 
-      <main style={styles.main}>
+      <main style={styles.main} onChangeCapture={() => { userEdited.current = true; }} onClickCapture={() => { userEdited.current = true; }}>
         <section style={styles.topbar}>
           <div>
             <div style={styles.eyebrow}>{t('designer.eyebrow')}</div>
@@ -584,41 +545,12 @@ function DesignerEditor({ recoveredDraft }) {
 
             <div className="theme-paper designer-paper" style={{ ...styles.paper, width: orientation === 'landscape' ? '1080px' : '750px', zoom: previewScale }}
               onClick={event => { const block = event.target.closest('[data-document-block]'); if (block) setSelectedBlock(block.dataset.documentBlock); }}>
-              <DocumentContent formData={formData} participants={participants} analysisData={analysisData} layout={layoutData} />
+              <DocumentContent formData={formData} participants={participants} analysisData={analysisData} layout={layoutData} stepPhotos={layoutData.stepPhotos} />
             </div>
           </section>
 
           <aside className="designer-settings" style={styles.rightPanel}>
-            <div style={styles.templatePanel}>
-              <h3 style={styles.sideTitle}>{t('designer.templates')}</h3>
-              <select
-                aria-label={t('designer.templates')} defaultValue=""
-                style={styles.select}
-                onChange={e => {
-                  const template = savedLayouts.find(item => String(item.id) === e.target.value);
-                  if (template) applyTemplate(template);
-                }}
-              >
-                <option value="">{t('designer.chooseTemplate')}</option>
-                {savedLayouts.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
-              </select>
-              <div style={styles.templateSaveRow}>
-                <input
-                  value={templateName}
-                  onChange={e => setTemplateName(e.target.value)}
-                  placeholder={t('designer.templateName')}
-                  style={styles.inlineInput}
-                />
-                <button
-                  type="button"
-                  style={styles.templateSaveBtn}
-                  disabled={isSavingTemplate || !templateName.trim()}
-                  onClick={saveTemplate}
-                >
-                  {isSavingTemplate ? t('designer.savingTemplate') : t('designer.saveTemplate')}
-                </button>
-              </div>
-            </div>
+            <DocumentTemplateManager layout={layoutData} onApply={applyTemplate} allowDefault={() => !userEdited.current && !existingId && !layoutData.projectSaveContext && !state.docTitle && !recoveredLayout.docTitle && !state.savedActiveOrder && !recoveredLayout.savedActiveOrder && !state.documentBlocks && !recoveredLayout.documentBlocks} />
             <div style={styles.divider} />
             {renderGlobalSettings()}
             <div style={styles.divider} />

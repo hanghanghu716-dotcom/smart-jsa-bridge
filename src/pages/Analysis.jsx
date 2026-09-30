@@ -27,7 +27,7 @@ export default function Analysis() {
   const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
   const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
 
-  const existingId = state.id ?? recoveredDraft?.source_project_id ?? null;
+  const existingId = state.existingId ?? state.id ?? recoveredDraft?.source_project_id ?? null;
   const procedures = state.procedures || recoveredDraft?.procedures || EMPTY_LIST;
   const formData = state.formData || recoveredDraft?.form_data || {};
   const participants = state.participants || recoveredDraft?.participants || [];
@@ -690,7 +690,7 @@ export default function Analysis() {
   const handlePrev = () => {
     if (activeIdx === 0) navigate('/procedure', {
       state: { 
-        ...location.state, // [핵심] 현재 가지고 있는 모든 state를 유지하여 전달
+        ...recoveredDraft?.layout_data, ...location.state, // [핵심] 현재 가지고 있는 모든 state를 유지하여 전달
         id: existingId, 
         formData, 
         participants, 

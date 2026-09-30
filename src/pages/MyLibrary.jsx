@@ -1,7 +1,9 @@
+import { projectEditorState } from '../utils/projectPersistence';
+import { saveProject } from '../services/projectPersistenceService';
+import { clearActiveDraft } from '../services/jsaDraftService';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getLanguageTag } from '../locales/config.js';
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
@@ -13,8 +15,7 @@ import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, sav
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
-  const location = useLocation();
-  const { t, i18n } = useTranslation('library');
+  const { t, i18n } = useTranslation(['library', 'common']);
   const [categories, setCategories] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [reports, setReports] = useState([]); 
@@ -59,7 +60,7 @@ export default function MyLibrary() {
     return () => window.removeEventListener('click', closeMenu);
   }, [navigate]);
 
-  const fetchLibraryData = async () => {
+  async function fetchLibraryData() {
     setIsLoading(true);
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
@@ -93,34 +94,26 @@ export default function MyLibrary() {
     setIsLoading(false);
   };
 
-  const handleTogglePublic = async (projectId, currentStatus) => {
-    const realId = projectId.replace('mine-', '');
-    const { error } = await supabase
-      .from('jsa_projects')
-      .update({ is_public: !currentStatus })
-      .eq('id', realId);
+  const openProject = (project, own, route = '/analysis', openSaveDialog = false) => {
+    clearActiveDraft();
+    navigate(route, { state: { ...projectEditorState(project, own), openSaveDialog } });
+  };
 
-    if (error) {
-      alert(t('errorStatusChange'));
-    } else {
-      fetchLibraryData();
-    }
+  const handleTogglePublic = async (project) => {
+    if (!project.is_public) { openProject(project, true, '/export', true); return; }
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase.from('jsa_projects').update({ is_public: false, updated_at: new Date().toISOString() }).eq('id', project.id).eq('author_id', user.id);
+    if (error) alert(t('errorStatusChange')); else fetchLibraryData();
   };
 
   const handleClone = async (project) => {
     if (!window.confirm(t('confirmClone'))) return;
-    const { data: { user } } = await supabase.auth.getUser();
-    const cloneData = {
-      author_id: user.id,
-      title: `[${t('clonedPrefix')}] ${project.title}`,
-      form_data: project.form_data,
-      participants: project.participants,
-      analysis_data: project.analysis_data,
-      tags: project.tags,
-      is_public: false,
-    };
-    const { error } = await supabase.from('jsa_projects').insert(cloneData);
-    if (!error) { alert(t('cloneSuccess')); fetchLibraryData(); }
+    try {
+      const data = projectEditorState(project);
+      await saveProject({ mode: 'private', parentId: project.id, tags: project.tags || [], snapshot: { ...data, formData: { ...data.formData, projectName: '[' + t('clonedPrefix') + '] ' + project.title }, layoutData: data } });
+      alert(t('cloneSuccess')); fetchLibraryData();
+    } catch { alert(t('common:saveFlow.failed')); }
   };
 
   const handleWithdraw = async (type, id) => {
@@ -191,7 +184,7 @@ export default function MyLibrary() {
     });
   };
 
-  const useSavedWorkStep = (step) => {
+  const handleUseSavedWorkStep = (step) => {
     markWorkStepUsed(step).catch(error =>
       console.error('[Work Step Library] usage update failed:', error)
     );
@@ -585,7 +578,7 @@ export default function MyLibrary() {
                                 <button style={styles.assetSecondaryBtn} onClick={() => beginEditWorkStep(step)}>{t('editWorkStep')}</button>
                                 <button style={styles.assetSecondaryBtn} onClick={() => toggleWorkStepHistory(step)}>{t('workStepHistory')}</button>
                                 <button style={styles.assetSecondaryBtn} onClick={() => handleCloneWorkStep(step)}>{t('cloneWorkStep')}</button>
-                                <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
+                                <button style={styles.assetPrimaryBtn} onClick={() => handleUseSavedWorkStep(step)}>{t('useWorkStep')}</button>
                                 <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
                               </>
                             )}
@@ -649,13 +642,13 @@ export default function MyLibrary() {
                             {activeMenuId === f.id && (
                               <div style={styles.dropdown}>
                                 {f.displayType === 'MY_JSA' && (
-                                  <div style={{...styles.dropdownItem, color: "var(--accent)", fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.id, f.originData?.is_public)}>
-                                    {f.originData?.is_public ? t('menuToPrivate') : t('menuToPublic')}
+                                  <div style={{...styles.dropdownItem, color: "var(--accent)", fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.originData)}>
+                                    {f.originData?.is_public ? t('menuToPrivate') : t('common:saveFlow.publicCopy')}
                                   </div>
                                 )}
+                                <div style={styles.dropdownItem} onClick={() => openProject(f.originData, f.displayType === 'MY_JSA', '/export')}>{t('menuViewReport')}</div>
                                 {f.displayType === 'SCRAP' && (
                                   <>
-                                    <div style={styles.dropdownItem} onClick={() => navigate('/export', { state: { analysisData: f.originData.analysis_data, formData: f.originData.form_data, participants: f.originData.participants } })}>{t('menuViewReport')}</div>
                                     <div style={styles.dropdownItem} onClick={() => handleClone(f.originData)}>{t('menuClone')}</div>
                                   </>
                                 )}
@@ -689,8 +682,7 @@ export default function MyLibrary() {
                             {categories.map(c => <option key={c.id} value={c.id}>{c.category_name}</option>)}
                           </select>
                           <button style={styles.useBtn} onClick={() => {
-                            const targetId = f.displayType === 'MY_JSA' ? f.id.replace('mine-','') : null;
-                            navigate('/analysis', { state: { id: targetId, formData: f.originData?.form_data || {}, participants: f.originData?.participants || [], analysisData: f.originData?.analysis_data || [], procedures: (f.originData?.analysis_data || []).map(d => d.proc).filter(Boolean), isFork: f.displayType === 'SCRAP' } });
+                            openProject(f.originData, f.displayType === 'MY_JSA');
                           }}>
                             {f.displayType === 'SCRAP' ? t('btnReference') : t('btnEdit')}
                           </button>

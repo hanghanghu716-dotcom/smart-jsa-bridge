@@ -14,7 +14,9 @@
     "test:content": "node --test scripts/content-publishing.test.js",
     "test:theme": "node --test scripts/theme.test.js",
     "test:analysis": "node --test scripts/analysis-knowledge.test.js",
-    "test:document": "node --test scripts/document-layout.test.js"
+    "test:document": "node --test scripts/document-layout.test.js",
+    "test:persistence": "node --test scripts/project-persistence.test.js",
+    "test:persistence:browser": "node scripts/project-persistence-browser.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

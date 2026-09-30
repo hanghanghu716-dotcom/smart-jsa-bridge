@@ -91,11 +91,11 @@ const performDraftSnapshotSave = async ({
       GUEST_DRAFT_PREFIX + draftId,
       JSON.stringify({ ...payload, guest: true, version })
     );
-    sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(version));
+    if (getExistingActiveDraftId() === draftId) sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(version));
     return { draftId, storage: 'local', version };
   }
 
-  let expectedVersion = getActiveDraftVersion();
+  let expectedVersion = getExistingActiveDraftId() === draftId ? getActiveDraftVersion() : null;
 
   if (expectedVersion == null) {
     const { data: existing, error: existingError } = await supabase
@@ -107,7 +107,7 @@ const performDraftSnapshotSave = async ({
     if (existingError) throw existingError;
     if (existing?.version) {
       expectedVersion = existing.version;
-      sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(existing.version));
+      if (getExistingActiveDraftId() === draftId) sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(existing.version));
     }
   }
 
@@ -134,7 +134,7 @@ const performDraftSnapshotSave = async ({
   }
 
   const saved = Array.isArray(data) ? data[0] : data;
-  if (saved?.version) {
+  if (saved?.version && getExistingActiveDraftId() === draftId) {
     sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(saved.version));
   }
 
@@ -208,25 +208,27 @@ export const listRecentDrafts = async (limit = 10) => {
   return data || [];
 };
 
-export const archiveActiveDraft = async () => {
+export const archiveActiveDraft = async (expectedVersion = null) => {
   const draftId = getExistingActiveDraftId();
   if (!draftId) return;
-  await archiveDraft(draftId);
+  await archiveDraft(draftId, expectedVersion);
   sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
   sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
 };
 
-export const archiveDraft = async (draftId) => {
+export const archiveDraft = async (draftId, expectedVersion = null) => {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user || !draftId) return;
 
-  const { error } = await supabase
+  let query = supabase
     .from('user_jsa_drafts')
     .update({ is_archived: true, updated_at: new Date().toISOString() })
     .eq('id', draftId)
     .eq('user_id', user.id);
-
+  if (expectedVersion !== null) query = query.eq('version', expectedVersion);
+  const { data, error } = await query.select('id').maybeSingle();
   if (error) throw error;
+  if (!data) throw new Error('DRAFT_VERSION_CONFLICT');
 };
 
 

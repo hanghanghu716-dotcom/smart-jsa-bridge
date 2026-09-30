@@ -145,5 +145,29 @@
     "fieldValues": "Valeurs par étape",
     "noWorkSteps": "Aucune étape de travail.",
     "stepFallback": "Étape {{number}}"
+  },
+  "saveFlow": {
+    "library": "Ma bibliothèque",
+    "saveDocument": "Enregistrer le document",
+    "privateHint": "Les copies privées conservent toutes les informations, les participants et les photos.",
+    "publicHint": "Les copies publiques excluent dates, lieu, service, responsable, équipement, participants, notes, photos et valeurs personnalisées. Vérifiez le titre et le texte de l’analyse.",
+    "publicConfirm": "Créer une copie publique ? Vérifiez que le titre et l’analyse ne contiennent aucune information personnelle ou confidentielle. L’original reste privé.",
+    "archiveWarning": "Document enregistré, mais le brouillon n’a pas pu être archivé. Il reste disponible.",
+    "changed": "Ce document a changé ou ne peut pas être mis à jour. Rouvrez-le ou enregistrez une nouvelle copie privée.",
+    "failed": "Échec de l’enregistrement. Le brouillon est conservé. Réessayez.",
+    "publicCopy": "Créer une copie publique",
+    "newPrivate": "Enregistrer une nouvelle copie privée",
+    "updatePrivate": "Mettre à jour le document privé",
+    "templatesHint": "Les modèles conservent une mise en page réutilisable. Les documents sont enregistrés séparément.",
+    "templateError": "Impossible de charger ou d’enregistrer les modèles. Vérifiez votre connexion puis actualisez.",
+    "confirmUpdate": "Remplacer ce modèle par la mise en page actuelle ?",
+    "confirmDelete": "Supprimer ce modèle ? Les documents existants ne changeront pas.",
+    "newTemplate": "Enregistrer un nouveau modèle",
+    "rename": "Renommer",
+    "updateTemplate": "Utiliser la mise en page actuelle",
+    "clearDefault": "Retirer le modèle par défaut",
+    "makeDefault": "Définir par défaut",
+    "deleteTemplate": "Supprimer le modèle",
+    "defaultHint": "Le modèle par défaut s’applique uniquement aux nouveaux documents, sans remplacer les mises en page existantes."
   }
 }

@@ -1,3 +1,4 @@
+import { saveProject } from '../services/projectPersistenceService';
 import DocumentSignatures from '../components/DocumentSignatures';
 import { normalizeDocumentBlocks } from '../utils/documentLayout';
 import DocumentContent from '../components/DocumentContent';
@@ -45,6 +46,15 @@ const COLUMN_GROUPS = [
 ];
 
 export default function Export() {
+  const location = useLocation();
+  const { draft, status } = useJsaDraftRecovery(!location.state?.formData);
+  const { t } = useTranslation('common');
+  const navigate = useLanguageNavigate();
+  if (!location.state?.formData && status !== 'ready') return <div className="theme-workspace" style={{ padding: 40, minHeight: '100vh', background: 'var(--app-bg)' }}><p role="status">{t(status === 'error' ? 'draftSave.error' : status === 'empty' ? 'designer.noWorkSteps' : 'draftSave.pending')}</p><button onClick={() => navigate('/library')}>{t('saveFlow.library')}</button></div>;
+  return <ExportEditor recoveredDraft={draft} />;
+}
+
+function ExportEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
   const { t, i18n } = useTranslation(['export', 'common']); 
@@ -52,12 +62,10 @@ export default function Export() {
   const isFrench = i18n.language?.startsWith('fr');
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [userProfile, setUserProfile] = useState(null); 
-  const [showPublishModal, setShowPublishModal] = useState(false);
+  const [showPublishModal, setShowPublishModal] = useState(Boolean(location.state?.openSaveDialog));
   const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
   const [showCopyAdModal, setShowCopyAdModal] = useState(false); // 👇 [기능 추가] 복사 전 광고 모달 상태
 
-  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
 
@@ -79,9 +87,25 @@ export default function Export() {
   const savedColumnOverrides = state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {};
   const documentNotes = state.documentNotes ?? recoveredLayout.documentNotes ?? '';
   const hasDesignerLayout = Array.isArray(documentBlocks) && documentBlocks.length > 0;
-  const isFork = state.isFork || false;
-  const parentId = state.parentId || recoveredDraft?.source_project_id || null;
-  const originalAnalysisData = state.originalAnalysisData || null;
+  const savedContext = state.projectSaveContext || recoveredLayout.projectSaveContext;
+  const isFork = state.isFork ?? (savedContext ? !savedContext.own : false);
+  const parentId = savedContext ? (savedContext.own ? savedContext.parentId || null : savedContext.id) : state.parentId || recoveredDraft?.source_project_id || null;
+  const originalAnalysisData = state.originalAnalysisData || savedContext?.originalAnalysisData || null;
+
+  const [stepPhotos, setStepPhotos] = useState(state.stepPhotos || recoveredLayout.stepPhotos || {});
+  const [projectTarget, setProjectTarget] = useState(state.projectSaveContext || recoveredLayout.projectSaveContext || null);
+  const cloudBusy = useRef(false);
+  useEffect(() => {
+    if (!existingId || projectTarget || isFork) return;
+    let active = true;
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      const { data } = await supabase.from('jsa_projects').select('id,updated_at,is_public').eq('id', existingId).eq('author_id', user.id).maybeSingle();
+      if (active && data) setProjectTarget({ id: data.id, updatedAt: data.updated_at, isPublic: data.is_public, own: true });
+    });
+    return () => { active = false; };
+  }, [existingId, projectTarget, isFork]);
+  const canUpdate = projectTarget?.own && !projectTarget.isPublic && !isFork;
 
   const totalRisks = analysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0);
   const originalTotalRisks = originalAnalysisData ? originalAnalysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0) : 0;
@@ -109,7 +133,7 @@ export default function Export() {
       savedOrientation,
       documentBlocks,
       documentNotes,
-      isModuleSkipped
+      isModuleSkipped, stepPhotos, projectSaveContext: projectTarget
     },
     sourceProjectId: parentId || existingId || null,
   });
@@ -118,20 +142,7 @@ export default function Export() {
   const COLS = savedOrientation === 'landscape' ? 56 : 40; 
   const PAPER_WIDTH = savedOrientation === 'landscape' ? '1080px' : '750px';
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          const { data } = await supabase.from('profiles').select('username, signature_url').eq('id', user.id).single();
-          setUserProfile(data);
-        }
-      } catch (err) { console.error("Profile fetch error:", err); }
-    };
-    fetchProfile();
-  }, []);
 
-  const [stepPhotos, setStepPhotos] = useState({});
   const [activePhotoRow, setActivePhotoRow] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -146,48 +157,33 @@ export default function Export() {
 
   const handleLogoClick = () => { navigate('/'); }; // ✅ 언어 경로 자동 유지
 
-  const handleCloudAction = async (isPublic) => {
-    setIsProcessing(true);
-    setShowPublishModal(false);
+  const handleCloudAction = async (mode) => {
+    if (cloudBusy.current) return;
+    if (mode === 'public' && !window.confirm(t('common:saveFlow.publicConfirm'))) return;
+    cloudBusy.current = true; setIsProcessing(true);
+    let savedProject = null;
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return alert(t('alert.needLogin'));
-
-      const securedFormData = {
-        ...formData,
-        department: "",
-        workLocation: "",
-        workDate: "",
-        managerName: "",
-        equipment: "",
-        additionalItems: ""
-      };
-
-      const rawAutoTags = extractAutoTagsFromJSA(formData.projectName || "", analysisData);
-      const validTagKeys = Object.keys(DIMENSIONAL_KEYWORD_MAP);
-      const standardizedTags = rawAutoTags.filter(tag => validTagKeys.includes(tag));
-
-      const projectData = { 
-        user_id: user.id, 
-        author_id: user.id, 
-        title: formData.projectName, 
-        tags: standardizedTags, 
-        is_public: isPublic, 
-        project_name: formData.projectName, 
-        auto_tags: standardizedTags, 
-        form_data: securedFormData, 
-        analysis_data: analysisData, 
-        participants: [], 
-        custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes }, 
-        updated_at: new Date(),
-        parent_id: parentId || null 
-      };
-
-      const { error } = await supabase.from('jsa_projects').upsert(projectData);
-      if (error) throw error;
-      await archiveActiveDraft();
-      alert(isPublic ? t('alert.savePublic') : t('alert.savePrivate'));
-    } catch (err) { alert(t('alert.saveError') + err.message); } finally { setIsProcessing(false); }
+      const draftResult = await draftSave.flushAndPause();
+      const rawTags = extractAutoTagsFromJSA(formData.projectName || '', analysisData);
+      const tags = rawTags.filter(tag => Object.keys(DIMENSIONAL_KEYWORD_MAP).includes(tag));
+      savedProject = await saveProject({
+        mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,
+        parentId: mode === 'public' ? (projectTarget?.id || parentId) : parentId,
+        snapshot: { formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
+      });
+      if (mode !== 'public') {
+        try { await archiveActiveDraft(draftResult.version); }
+        catch { alert(t('common:saveFlow.archiveWarning')); }
+      }
+      setShowPublishModal(false);
+      navigate('/library');
+    } catch (error) {
+      console.error('[Project save]', error);
+      alert(t(error.message === 'PROJECT_CHANGED' ? 'common:saveFlow.changed' : 'common:saveFlow.failed'));
+    } finally {
+      if (!savedProject) draftSave.resume();
+      cloudBusy.current = false; setIsProcessing(false);
+    }
   };
 
   const generatePDF = async () => {
@@ -419,7 +415,6 @@ export default function Export() {
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
                 const meta = getColumnMeta(key); let content = "";
-                let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = stepData.risks.map(r => `• ${r.factor}`).join('\n');
@@ -484,8 +479,8 @@ export default function Export() {
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
-              <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
+              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
+              <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('common:saveFlow.saveDocument')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
               {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
               <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
@@ -531,15 +526,16 @@ export default function Export() {
       {showPublishModal && (
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('modal.pubTitle')}</h3>
-              <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
-            <p style={styles.modalSub}>{t('modal.pubSub')}</p>
+            <h3 style={styles.modalTitle}>{t('common:saveFlow.saveDocument')}</h3>
+              <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('common:saveFlow.privateHint')}</p>
+            <p style={styles.modalSub}>{t('common:saveFlow.publicHint')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
-            <div style={styles.typeGrid}>
+            <div style={{ ...styles.typeGrid, pointerEvents: isProcessing ? 'none' : 'auto', opacity: isProcessing ? 0.6 : 1 }}>
+              {canUpdate && <button type="button" data-save-mode="update" style={styles.typeCard} disabled={isProcessing} onClick={() => handleCloudAction('update')}><h4 style={styles.typeLabel}>{t('common:saveFlow.updatePrivate')}</h4><p style={styles.typeDesc}>{formData.projectName}</p></button>}
               {(isFork && !isValuableFork) ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
                   <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('modal.pubPublicLabel')}</h4>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('common:saveFlow.publicCopy')}</h4>
                   <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
                 </div>
               ) : totalRisks < 3 ? (
@@ -549,18 +545,18 @@ export default function Export() {
                   <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
                 </div>
               ) : (
-                <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
+                <button type="button" disabled={isProcessing} data-save-mode="public" style={styles.typeCardHighlight} onClick={() => handleCloudAction('public')}>
                   <div style={styles.typeBadgeActive}>Public</div>
-                  <h4 style={styles.typeLabel}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.pubPublicDesc') }}></p>
-                </div>
+                  <h4 style={styles.typeLabel}>{t('common:saveFlow.publicCopy')}</h4>
+                  <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.publicHint') }}></p>
+                </button>
               )}
               
-              <div style={styles.typeCard} onClick={() => handleCloudAction(false)}>
+              <button type="button" disabled={isProcessing} data-save-mode="private" style={styles.typeCard} onClick={() => handleCloudAction('private')}>
                 <div style={styles.typeBadge}>Private</div>
-                <h4 style={styles.typeLabel}>{t('modal.pubPrivateLabel')}</h4>
-                <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.pubPrivateDesc') }}></p>
-              </div>
+                <h4 style={styles.typeLabel}>{t('common:saveFlow.newPrivate')}</h4>
+                <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.privateHint') }}></p>
+              </button>
             </div>
 
             <button style={styles.modalCloseBtn} onClick={() => setShowPublishModal(false)}>{t('modal.close')}</button>
@@ -602,11 +598,11 @@ const styles = {
   processingOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
   loaderText: { color: "var(--on-accent)", fontSize: '1.2rem', fontWeight: 'bold' },
   modalOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  modalContent: { width: '500px', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalContent: { width: 'min(900px, calc(100vw - 32px))', maxHeight: '90vh', overflowY: 'auto', boxSizing: 'border-box', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '16px', padding: '2rem', textAlign: 'center' },
   modalTitle: { fontSize: '1.5rem', color: "var(--text-primary)", marginBottom: '0.5rem', fontWeight: '800' },
   modalSub: { fontSize: '0.9rem', color: "var(--text-muted)", marginBottom: '2rem' },
   modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: "var(--app-bg)" },
-  typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
+  typeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))', gap: '1.2rem', marginBottom: '2rem' },
   typeCard: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
   typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "2px solid var(--accent)", borderRadius: '12px', cursor: 'pointer', boxShadow: "var(--shadow-panel)" },
   typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--surface-hover)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },

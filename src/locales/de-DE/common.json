@@ -145,5 +145,29 @@
     "fieldValues": "Werte je Arbeitsschritt",
     "noWorkSteps": "Keine Arbeitsschritte vorhanden.",
     "stepFallback": "Arbeitsschritt {{number}}"
+  },
+  "saveFlow": {
+    "library": "Meine Ablage",
+    "saveDocument": "Dokument speichern",
+    "privateHint": "Private Kopien behalten alle Angaben, Teilnehmer und Fotos.",
+    "publicHint": "Öffentliche Kopien enthalten keine Datums-, Orts-, Abteilungs-, Kontakt- oder Ausrüstungsangaben, Teilnehmer, Notizen, Fotos oder eigenen Feldwerte. Titel und Analysetext bitte prüfen.",
+    "publicConfirm": "Öffentliche Kopie erstellen? Prüfen Sie Titel und Analyse auf persönliche oder vertrauliche Angaben. Das private Original bleibt privat.",
+    "archiveWarning": "Dokument gespeichert; der Entwurf konnte nicht archiviert werden und bleibt erhalten.",
+    "changed": "Das Dokument wurde geändert oder kann nicht aktualisiert werden. Erneut öffnen oder eine neue private Kopie speichern.",
+    "failed": "Speichern fehlgeschlagen. Der Entwurf bleibt erhalten. Bitte erneut versuchen.",
+    "publicCopy": "Öffentliche Kopie erstellen",
+    "newPrivate": "Neue private Kopie speichern",
+    "updatePrivate": "Privates Dokument aktualisieren",
+    "templatesHint": "Vorlagen speichern wiederverwendbare Layouts. Dokumente werden separat gespeichert.",
+    "templateError": "Vorlagen konnten nicht geladen oder gespeichert werden. Anmeldung und Verbindung prüfen und neu laden.",
+    "confirmUpdate": "Diese Vorlage durch das aktuelle Layout ersetzen?",
+    "confirmDelete": "Vorlage löschen? Bestehende Dokumente bleiben unverändert.",
+    "newTemplate": "Als neue Vorlage speichern",
+    "rename": "Umbenennen",
+    "updateTemplate": "Aktuelles Layout übernehmen",
+    "clearDefault": "Standard aufheben",
+    "makeDefault": "Als Standard festlegen",
+    "deleteTemplate": "Vorlage löschen",
+    "defaultHint": "Die Standardvorlage gilt nur für neue Dokumente und ersetzt keine vorhandenen Layouts."
   }
 }

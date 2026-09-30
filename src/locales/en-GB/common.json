@@ -145,5 +145,29 @@
     "fieldValues": "Values by Work Step",
     "noWorkSteps": "No work steps available.",
     "stepFallback": "Work Step {{number}}"
+  },
+  "saveFlow": {
+    "library": "My library",
+    "saveDocument": "Save document",
+    "privateHint": "Private copies retain all entered information, participants and photos.",
+    "publicHint": "Public copies omit dates, location, department, manager, equipment, participants, notes, photos and custom field values. Review the title and analysis text yourself.",
+    "publicConfirm": "Create a public copy? Check that its title and analysis contain no personal or confidential information. Your private original stays private.",
+    "archiveWarning": "The document was saved, but the draft could not be archived. It remains available.",
+    "changed": "This document changed or cannot be updated. Reopen it or save a new private copy.",
+    "failed": "Save failed. Your draft remains available; please try again.",
+    "publicCopy": "Create public copy",
+    "newPrivate": "Save new private copy",
+    "updatePrivate": "Update existing private document",
+    "templatesHint": "Templates store reusable layout settings. Document saving is separate.",
+    "templateError": "Templates could not be loaded or saved. Check your login and connection, then reload.",
+    "confirmUpdate": "Replace this template with the current layout?",
+    "confirmDelete": "Delete this template? Existing documents will not change.",
+    "newTemplate": "Save as new template",
+    "rename": "Rename",
+    "updateTemplate": "Update from current layout",
+    "clearDefault": "Clear default",
+    "makeDefault": "Set as default",
+    "deleteTemplate": "Delete template",
+    "defaultHint": "The default template applies only to new documents; it never replaces an existing layout."
   }
 }

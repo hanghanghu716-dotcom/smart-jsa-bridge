@@ -1,3 +1,4 @@
+import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
@@ -37,12 +38,13 @@ export default function Info() {
 
   const draftSave = useJsaDraftAutosave({
     enabled: recoverySettled && Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
+    layoutData: pickDocumentLayout(location.state, recoveredDraft?.layout_data),
     stage: 'info',
     formData,
     participants,
     procedures: location.state?.procedures || recoveredDraft?.procedures || [],
     analysisData: location.state?.analysisData || recoveredDraft?.analysis_data || [],
-    sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
+    sourceProjectId: location.state?.existingId || location.state?.id || location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function Info() {
     }));
 
     const loadedParticipants = recoveredDraft.participants || [];
-    setParticipants(Array(14).fill('').map((_, i) => loadedParticipants[i] || ''));
+    setParticipants(Array(Math.max(14, loadedParticipants.length)).fill('').map((_, i) => loadedParticipants[i] || ''));
   }, [shouldRecoverDraft, recoveredDraft]);
 
   useEffect(() => {
@@ -85,7 +87,7 @@ export default function Info() {
       setParticipants(Array(14).fill(''));
     } else if (location.state?.participants) {
       const loadedParticipants = location.state.participants || [];
-      setParticipants(Array(14).fill('').map((_, i) => loadedParticipants[i] || ''));
+      setParticipants(Array(Math.max(14, loadedParticipants.length)).fill('').map((_, i) => loadedParticipants[i] || ''));
     } 
   }, [location.state]);
 
@@ -146,6 +148,7 @@ export default function Info() {
     // ✅ 언어 경로를 유지하며 다음 단계로 이동[cite: 14]
     navigate('/procedure', {
       state: {
+        ...recoveredDraft?.layout_data, ...location.state,
         formData,
         participants,
         procedures: location.state?.procedures || recoveredDraft?.procedures,
