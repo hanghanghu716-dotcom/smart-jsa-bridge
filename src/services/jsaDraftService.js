@@ -83,11 +83,15 @@ export const saveDraftSnapshot = async ({
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
+    const raw = localStorage.getItem(GUEST_DRAFT_PREFIX + draftId);
+    const previous = raw ? JSON.parse(raw) : null;
+    const version = Number(previous?.version || 0) + 1;
     localStorage.setItem(
       GUEST_DRAFT_PREFIX + draftId,
-      JSON.stringify({ ...payload, guest: true })
+      JSON.stringify({ ...payload, guest: true, version })
     );
-    return { draftId, storage: 'local' };
+    sessionStorage.setItem(ACTIVE_DRAFT_VERSION_KEY, String(version));
+    return { draftId, storage: 'local', version };
   }
 
   let expectedVersion = getActiveDraftVersion();
@@ -190,6 +194,7 @@ export const archiveActiveDraft = async () => {
   if (!draftId) return;
   await archiveDraft(draftId);
   sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
+  sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
 };
 
 export const archiveDraft = async (draftId) => {
@@ -215,6 +220,7 @@ export const deleteDraft = async (draftId) => {
     localStorage.removeItem(GUEST_DRAFT_PREFIX + draftId);
     if (getExistingActiveDraftId() === draftId) {
       sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
+      sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
     }
     return;
   }
