@@ -26,5 +26,25 @@
   "cancelBtn": "キャンセル",
   "alertReportLoginRequired": "報告機能を使用するにはログインが必要です。",
   "alertActionCompleted": "処理が完了しました。",
-  "alertErrorOccurred": "処理中にエラーが発生しました。"
+  "alertErrorOccurred": "処理中にエラーが発生しました。",
+  "viewDetails": "詳細を見る",
+  "publicJsa": {
+    "notFoundTitle": "公開JSAが見つかりません",
+    "notFoundDescription": "このJSAは削除されたか非公開に変更された可能性があります。",
+    "backExplore": "Exploreに戻る",
+    "eyebrow": "公開JSA",
+    "publicButNotIndexed": "このJSAは公開閲覧できますが、コンテンツ品質基準を満たしていないため検索インデックスの対象外です。",
+    "steps": "作業ステップ",
+    "hazards": "危険要因",
+    "controls": "対策",
+    "workSequence": "作業ステップとリスク評価",
+    "untitledStep": "無題の作業ステップ",
+    "noHazards": "このステップには危険要因が登録されていません。",
+    "hazard": "危険要因",
+    "currentControl": "現在 / 基本対策",
+    "recommendedControl": "追加 / 推奨対策",
+    "riskLevel": "リスク",
+    "ctaTitle": "このJSAを基に現場用JSAを作成しますか？",
+    "ctaDescription": "作業条件に合わせてステップと危険要因を調整し、新しいJSAとして保存できます。"
+  }
 }
