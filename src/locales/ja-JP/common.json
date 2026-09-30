@@ -133,6 +133,9 @@
     "savingTemplate": "保存中...",
     "templateSaved": "文書テンプレートを保存しました。",
     "templateSaveError": "テンプレートを保存できませんでした。",
-    "loginRequired": "ログインが必要です。"
+    "loginRequired": "ログインが必要です。",
+    "fieldValues": "作業ステップ別の値",
+    "noWorkSteps": "作業ステップがありません。",
+    "stepFallback": "作業ステップ {{number}}"
   }
 }
