@@ -1,3 +1,4 @@
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
@@ -160,7 +161,7 @@ export default function Info() {
   const permitOptions = ['일반', '화기', '밀폐', '정전', '굴착', '방사선', '고소', '중량물', '가연성가스'];
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
       
@@ -173,6 +174,7 @@ export default function Info() {
         <h1 style={styles.logo} onClick={handleLogoClick}>
           Smart JSA Bridge
         </h1>
+        <ThemeSwitcher compact />
       </header>
 
       <div style={styles.mainLayout}>
@@ -215,7 +217,7 @@ export default function Info() {
                   <div style={styles.row}>
                     <div style={{ ...styles.flexItem, flex: 2 }}>
                       <label style={styles.label}>
-                        {t('form.projectName')} <span style={{ color: '#ff4d4d' }}>{t('form.required')}</span>
+                        {t('form.projectName')} <span style={{ color: "var(--danger)" }}>{t('form.required')}</span>
                       </label>
                       <input
                         name="projectName"
@@ -301,7 +303,7 @@ export default function Info() {
                           style={styles.checkboxSmall}
                         />
                         <span style={{ 
-                          color: formData.hasNewWorker ? '#ff4d4d' : '#888', 
+                          color: formData.hasNewWorker ? "var(--danger)" : "var(--text-muted)",
                           fontWeight: 'bold',
                           transition: 'color 0.2s',
                           fontSize: '0.9rem'
@@ -432,50 +434,50 @@ const styles = {
   wrapper: { position: 'relative', minHeight: '100vh', width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent', overflowX: 'hidden' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: "var(--text-primary)", cursor: 'pointer' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 20px', gap: '4rem', zIndex: 10, overflow: 'visible' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }, 
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', height: '78vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  formCard: { width: '100%', maxWidth: '1440px', height: '78vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: "var(--shadow-panel)", display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
   warningBox: { backgroundColor: 'rgba(255, 77, 77, 0.08)', border: '1px solid rgba(255, 77, 77, 0.3)', borderRadius: '8px', padding: '1rem 1.2rem', marginBottom: '1.5rem' },
-  warningText: { fontSize: '0.82rem', color: '#ff7675', margin: 0, lineHeight: '1.6', fontWeight: '500' },
+  warningText: { fontSize: '0.82rem', color: "var(--danger)", margin: 0, lineHeight: '1.6', fontWeight: '500' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
-  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepText: { fontSize: '0.85rem', color: '#aaa' },
-  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
+  stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 1 },
+  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--on-accent)", boxShadow: "var(--shadow-panel)" },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: "var(--surface-hover)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--text-secondary)" },
+  stepTextActive: { fontSize: '0.85rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepText: { fontSize: '0.85rem', color: "var(--text-secondary)" },
+  stepLine: { width: '30px', height: '1px', backgroundColor: "var(--border-default)" },
+  formHeader: { marginBottom: '1.2rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)" },
   formGrid: { display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '2.5rem', marginBottom: '0.5rem' },
   leftSection: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   rightSection: { display: 'flex', flexDirection: 'column', gap: '0.8rem' },
-  divider: { border: 'none', borderTop: '1px solid rgba(255,255,255,0.08)', margin: '1.5rem 0' },
+  divider: { border: 'none', borderTop: "1px solid var(--border-default)", margin: '1.5rem 0' },
   safetyGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', marginBottom: '1.5rem' },
   safetySection: { display: 'flex', flexDirection: 'column', gap: '1rem' },
-  checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.6rem 0.4rem', backgroundColor: '#161616', padding: '1rem', borderRadius: '8px' },
-  checkLabel: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' },
-  checkLabelHighlight: { color: '#ddd', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer', backgroundColor: '#161616', padding: '0 1rem', borderRadius: '6px', border: '1px solid #333', height: '45px', boxSizing: 'border-box' },
-  label: { fontSize: '0.8rem', color: '#888', fontWeight: '700' },
-  input: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
-  inputDate: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', colorScheme: 'dark', width: '100%', boxSizing: 'border-box' },
-  selectInput: { height: '45px', padding: '0 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box', cursor: 'pointer' },
-  textarea: { padding: '0.8rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', minHeight: '80px', outline: 'none', resize: 'none' },
+  checkGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.6rem 0.4rem', backgroundColor: "var(--card-bg)", padding: '1rem', borderRadius: '8px' },
+  checkLabel: { color: "var(--text-primary)", fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' },
+  checkLabelHighlight: { color: "var(--text-primary)", fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.7rem', cursor: 'pointer', backgroundColor: "var(--card-bg)", padding: '0 1rem', borderRadius: '6px', border: "1px solid var(--border-default)", height: '45px', boxSizing: 'border-box' },
+  label: { fontSize: '0.8rem', color: "var(--text-muted)", fontWeight: '700' },
+  input: { height: '45px', padding: '0 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' },
+  inputDate: { height: '45px', padding: '0 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", colorScheme: "inherit", width: '100%', boxSizing: 'border-box' },
+  selectInput: { height: '45px', padding: '0 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box', cursor: 'pointer' },
+  textarea: { padding: '0.8rem 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', minHeight: '80px', outline: 'none', resize: 'none' },
   row: { display: 'flex', gap: '1rem' },
   flexItem: { display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 },
   participantGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' },
-  participantBox: { display: 'flex', alignItems: 'center', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', paddingLeft: '10px', height: '40px' },
-  pNumber: { fontSize: '0.7rem', color: '#555', fontWeight: '800', width: '20px' },
-  pInput: { flex: 1, padding: '0.7rem', backgroundColor: 'transparent', border: 'none', color: '#fff', fontSize: '0.9rem', outline: 'none' },
+  participantBox: { display: 'flex', alignItems: 'center', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', paddingLeft: '10px', height: '40px' },
+  pNumber: { fontSize: '0.7rem', color: "var(--text-muted)", fontWeight: '800', width: '20px' },
+  pInput: { flex: 1, padding: '0.7rem', backgroundColor: 'transparent', border: 'none', color: "var(--text-primary)", fontSize: '0.9rem', outline: 'none' },
   checkboxSmall: { width: '1.1rem', height: '1.1rem', cursor: 'pointer' },
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  nextBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   footerArea: { width: '100%', zIndex: 10, position: 'relative', padding: '1.5rem 5rem', backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '0.7rem' },

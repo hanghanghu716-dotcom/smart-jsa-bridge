@@ -73,5 +73,12 @@
     "saved": "Guardado",
     "error": "Error al guardar",
     "conflict": "Se guardó un borrador más reciente en otra pestaña · es necesario actualizar"
+  },
+  "appearance": {
+    "title": "Apariencia",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "active": "Activo"
   }
 }

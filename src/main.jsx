@@ -2,6 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async';
 import './index.css'
+import './theme/theme.css'
+import { ThemeProvider } from './contexts/ThemeContext';
 import App from './App.jsx'
 import './i18n';
 import { captureCaseBootstrap, clearPrerenderedCaseMetadata } from './utils/caseBootstrap.js';
@@ -27,7 +29,7 @@ if (isReactSnap && rootElement.hasChildNodes()) {
 createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>
-      <App />
+      <ThemeProvider><App /></ThemeProvider>
     </HelmetProvider>
   </StrictMode>
 );

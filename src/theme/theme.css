@@ -1,0 +1,101 @@
+:root, html[data-theme="light"] {
+  color-scheme: light;
+  --app-bg: #f4f6f8;
+  --panel-bg: #ffffff;
+  --card-bg: #f8fafc;
+  --input-bg: #ffffff;
+  --surface-hover: #e9eef5;
+  --text-primary: #18202a;
+  --text-secondary: #475467;
+  --text-muted: #667085;
+  --border-default: #d9dee5;
+  --border-strong: #98a2b3;
+  --accent: #0062cc;
+  --accent-soft: #eaf2ff;
+  --on-accent: #ffffff;
+  --success: #21753a;
+  --success-soft: #edf8ef;
+  --warning: #855c00;
+  --warning-soft: #fff7df;
+  --danger: #bc3030;
+  --danger-soft: #fff0ef;
+  --risk-low: #21753a;
+  --risk-medium: #855c00;
+  --risk-high: #bc3030;
+  --overlay: rgba(15, 23, 42, .55);
+  --workspace-overlay: rgba(244, 246, 248, .96);
+  --shadow-panel: 0 12px 40px rgba(16, 24, 40, .12);
+  --paper-bg: #ffffff;
+  --paper-text: #111111;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --app-bg: #0f1115;
+  --panel-bg: #171a20;
+  --card-bg: #1d2128;
+  --input-bg: #12161c;
+  --surface-hover: #29313c;
+  --text-primary: #f3f4f6;
+  --text-secondary: #b8c1ce;
+  --text-muted: #9ca3af;
+  --border-default: #303640;
+  --border-strong: #637083;
+  --accent: #66adff;
+  --accent-soft: #1a304c;
+  --success: #79d58c;
+  --success-soft: #173323;
+  --warning: #e9bd45;
+  --warning-soft: #332a15;
+  --danger: #ff9290;
+  --danger-soft: #392124;
+  --risk-low: #79d58c;
+  --risk-medium: #e9bd45;
+  --risk-high: #ff9290;
+  --overlay: rgba(0, 0, 0, .75);
+  --workspace-overlay: rgba(15, 17, 21, .94);
+  --shadow-panel: 0 20px 60px rgba(0, 0, 0, .4);
+}
+
+/* Solid action backgrounds keep a white label in both modes. */
+:root { --action-bg: #0062cc; --success-action: #21753a; --danger-action: #bc3030; }
+html, body, #root { background-color: var(--app-bg); }
+.theme-workspace { color: var(--text-primary); background-color: var(--app-bg); }
+.theme-workspace input::placeholder, .theme-workspace textarea::placeholder { color: var(--text-muted); opacity: 1; }
+.theme-workspace :is(button, input, select, textarea, a):focus-visible,
+.main-side-drawer :is(button, a):focus-visible,
+.theme-settings :focus-visible { outline: 2px solid var(--accent) !important; outline-offset: 3px; }
+.theme-settings { border: 0; margin: 0 0 24px; padding: 0; min-width: 0; color: var(--text-primary); }
+.theme-settings legend { font-size: .85rem; font-weight: 700; margin-bottom: 10px; }
+.theme-current { margin-inline-start: 12px; color: var(--text-muted); font-size: .75rem; font-weight: 400; }
+.theme-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.theme-option { display: flex; align-items: center; gap: 8px; padding: 10px 12px; min-height: 44px;
+  cursor: pointer; border: 1px solid var(--border-default); border-radius: 8px;
+  background: var(--card-bg); color: var(--text-secondary); font-size: .85rem; }
+.theme-option[data-selected="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.theme-option input { accent-color: var(--action-bg); }
+.theme-paper { color-scheme: light; background: var(--paper-bg); color: var(--paper-text); }
+
+/* Preserve the initial Phase 2.5 token names for compact controls and extensions. */
+:root {
+  --surface-panel: var(--panel-bg);
+  --surface: var(--input-bg);
+  --surface-2: var(--card-bg);
+  --surface-3: var(--surface-hover);
+  --text-faint: var(--text-muted);
+  --text-inverse: var(--app-bg);
+  --text-on-accent: var(--on-accent);
+  --hero-text: #ffffff;
+  --border-soft: var(--border-default);
+  --border-subtle: var(--border-default);
+  --accent-hover: var(--action-bg);
+  --accent-text: var(--accent);
+  --overlay-strong: var(--overlay);
+  --overlay-soft: var(--overlay);
+  --shadow-xl: var(--shadow-panel);
+  --button-strong-bg: var(--action-bg);
+  --button-strong-text: var(--on-accent);
+  --warning-contrast: var(--warning);
+  --theme-color-scheme: light;
+}
+:root[data-theme="dark"] { --theme-color-scheme: dark; }
