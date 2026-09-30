@@ -125,6 +125,14 @@
     "projectFallback": "프로젝트명",
     "ppeLabel": "보호구:",
     "permitLabel": "작업허가:",
-    "signatureRows": "서명 {{count}}행"
+    "signatureRows": "서명 {{count}}행",
+    "templates": "문서 템플릿",
+    "chooseTemplate": "저장된 템플릿 불러오기",
+    "templateName": "템플릿 이름",
+    "saveTemplate": "저장",
+    "savingTemplate": "저장 중...",
+    "templateSaved": "문서 템플릿을 저장했습니다.",
+    "templateSaveError": "템플릿 저장 중 오류가 발생했습니다.",
+    "loginRequired": "로그인이 필요합니다."
   }
 }
