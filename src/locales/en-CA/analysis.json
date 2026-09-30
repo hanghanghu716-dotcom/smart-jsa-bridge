@@ -102,6 +102,8 @@
     "backProjects": "Project list",
     "sourceCurrent": "Current JSA",
     "analysisIncluded": "Analysis included",
-    "stepOnly": "Step only"
+    "stepOnly": "Step only",
+    "mergeOneHazard": "+ Hazard",
+    "mergeOneFull": "+ Full"
   }
 }
