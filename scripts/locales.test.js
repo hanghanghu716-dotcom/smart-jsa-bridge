@@ -78,7 +78,7 @@ test('procedure step composer translations are complete for every base locale', 
     'filterAll', 'filterMy', 'filterScrap', 'filterRecent', 'stepSearch',
     'preview', 'closePreview', 'noSteps', 'previewHazards', 'noPreviewHazards',
     'hazard', 'currentControl', 'recommendedControl', 'riskLevel',
-    'mergeOneHazard', 'mergeOneFull',
+    'mergeOneHazard', 'mergeOneFull', 'mergeResult', 'noRisksToMerge',
     'badgeFull', 'badgeProcedureOnly', 'workStepLibrary', 'filterSteps', 'stepLibraryBadge',
   ];
 
