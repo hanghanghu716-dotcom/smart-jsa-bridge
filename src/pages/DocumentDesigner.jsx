@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import { supabase } from '../supabaseClient';
 
 const DEFAULT_BLOCKS = [
   { id: 'PROJECT_INFO', enabled: true },
@@ -102,6 +103,9 @@ export default function DocumentDesigner() {
   const [selectedBlock, setSelectedBlock] = useState('JSA_TABLE');
   const [draggedBlock, setDraggedBlock] = useState(null);
   const [draggedColumn, setDraggedColumn] = useState(null);
+  const [savedLayouts, setSavedLayouts] = useState([]);
+  const [templateName, setTemplateName] = useState('');
+  const [isSavingTemplate, setIsSavingTemplate] = useState(false);
 
   const layoutData = {
     documentBlocks: blocks,
@@ -115,6 +119,60 @@ export default function DocumentDesigner() {
     appr2,
     appr3,
     documentNotes: notesText
+  };
+
+  useEffect(() => {
+    let mounted = true;
+    const loadLayouts = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data, error } = await supabase
+        .from('user_layouts')
+        .select('id, name, layout_data, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+      if (!error && mounted) setSavedLayouts(data || []);
+    };
+    loadLayouts();
+    return () => { mounted = false; };
+  }, []);
+
+  const applyTemplate = template => {
+    const data = template?.layout_data || {};
+    if (Array.isArray(data.documentBlocks)) setBlocks(data.documentBlocks);
+    if (Array.isArray(data.savedActiveOrder)) setActiveOrder(data.savedActiveOrder);
+    if (Array.isArray(data.savedUserColumns)) setUserColumns(data.savedUserColumns);
+    if (data.savedColumnOverrides && typeof data.savedColumnOverrides === 'object') setColumnOverrides(data.savedColumnOverrides);
+    if (data.savedOrientation) setOrientation(data.savedOrientation);
+    if (data.savedSignatureRows) setSignatureRows(data.savedSignatureRows);
+    if (data.docTitle) setDocTitle(data.docTitle);
+    if (data.appr1) setAppr1(data.appr1);
+    if (data.appr2) setAppr2(data.appr2);
+    if (data.appr3) setAppr3(data.appr3);
+    if (data.documentNotes !== undefined) setNotesText(data.documentNotes || '');
+  };
+
+  const saveTemplate = async () => {
+    if (!templateName.trim()) return;
+    setIsSavingTemplate(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return alert(t('designer.loginRequired'));
+      const { data, error } = await supabase
+        .from('user_layouts')
+        .insert({ user_id: user.id, name: templateName.trim(), layout_data: layoutData })
+        .select('id, name, layout_data, created_at')
+        .single();
+      if (error) throw error;
+      setSavedLayouts(prev => [data, ...prev]);
+      setTemplateName('');
+      alert(t('designer.templateSaved'));
+    } catch (error) {
+      console.error('[Document Designer] template save failed:', error);
+      alert(t('designer.templateSaveError'));
+    } finally {
+      setIsSavingTemplate(false);
+    }
   };
 
   const draftSave = useJsaDraftAutosave({
@@ -545,6 +603,37 @@ export default function DocumentDesigner() {
           </section>
 
           <aside style={styles.rightPanel}>
+            <div style={styles.templatePanel}>
+              <h3 style={styles.sideTitle}>{t('designer.templates')}</h3>
+              <select
+                defaultValue=""
+                style={styles.select}
+                onChange={e => {
+                  const template = savedLayouts.find(item => item.id === e.target.value);
+                  if (template) applyTemplate(template);
+                }}
+              >
+                <option value="">{t('designer.chooseTemplate')}</option>
+                {savedLayouts.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+              </select>
+              <div style={styles.templateSaveRow}>
+                <input
+                  value={templateName}
+                  onChange={e => setTemplateName(e.target.value)}
+                  placeholder={t('designer.templateName')}
+                  style={styles.inlineInput}
+                />
+                <button
+                  type="button"
+                  style={styles.templateSaveBtn}
+                  disabled={isSavingTemplate || !templateName.trim()}
+                  onClick={saveTemplate}
+                >
+                  {isSavingTemplate ? t('designer.savingTemplate') : t('designer.saveTemplate')}
+                </button>
+              </div>
+            </div>
+            <div style={styles.divider} />
             {renderGlobalSettings()}
             <div style={styles.divider} />
             {renderSelectedSettings()}
@@ -573,6 +662,9 @@ const styles = {
   canvasPanel: { border: '1px solid #222', background: '#0b0b0b', borderRadius: '10px', padding: '12px', overflow: 'auto' },
   sideTitle: { margin: '0 0 10px', fontSize: '0.82rem' },
   sideHint: { color: '#666', fontSize: '0.65rem', lineHeight: 1.45, marginBottom: '12px' },
+  templatePanel: { display: 'flex', flexDirection: 'column', gap: '6px' },
+  templateSaveRow: { display: 'grid', gridTemplateColumns: '1fr auto', gap: '5px', alignItems: 'center' },
+  templateSaveBtn: { padding: '6px 8px', borderRadius: '5px', border: '1px solid #007bff', background: 'rgba(0,123,255,.12)', color: '#64adff', fontSize: '0.6rem', fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' },
   globalSettings: { display: 'flex', flexDirection: 'column' },
   divider: { height: '1px', background: '#242424', margin: '14px 0' },
   blockSelector: { width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px', marginBottom: '6px', borderRadius: '7px', border: '1px solid #252525', background: '#121212', color: '#777', cursor: 'pointer', textAlign: 'left' },
