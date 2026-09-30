@@ -133,6 +133,9 @@
     "savingTemplate": "Salvando...",
     "templateSaved": "Modelo de documento salvo.",
     "templateSaveError": "Falha ao salvar o modelo.",
-    "loginRequired": "É necessário entrar na conta."
+    "loginRequired": "É necessário entrar na conta.",
+    "fieldValues": "Valores por etapa",
+    "noWorkSteps": "Não há etapas de trabalho.",
+    "stepFallback": "Etapa {{number}}"
   }
 }
