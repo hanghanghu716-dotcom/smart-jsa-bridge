@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
@@ -399,6 +400,7 @@ export default function MyLibrary() {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
+        <ThemeSwitcher compact />
       </header>
 
       <div style={styles.mainLayout}>
@@ -730,7 +732,7 @@ const styles = {
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 120px', gap: '4rem', zIndex: 10 },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
