@@ -120,6 +120,9 @@ test('phase 2 draft and work-step translations are complete', () => {
     assert.ok(analysis.filter?.savingStepBtn?.trim(), `Missing analysis.filter.savingStepBtn for ${locale}`);
     assert.ok(analysis.alert?.stepSaved?.trim(), `Missing analysis.alert.stepSaved for ${locale}`);
     assert.ok(analysis.alert?.stepSaveFailed?.trim(), `Missing analysis.alert.stepSaveFailed for ${locale}`);
+
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    assert.ok(common.draftSave?.conflict?.trim(), `Missing common.draftSave.conflict for ${locale}`);
   }
 });
 
