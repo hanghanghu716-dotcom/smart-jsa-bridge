@@ -125,6 +125,14 @@
     "projectFallback": "Projeto",
     "ppeLabel": "EPI:",
     "permitLabel": "Permissões:",
-    "signatureRows": "{{count}} linha(s) de assinatura"
+    "signatureRows": "{{count}} linha(s) de assinatura",
+    "templates": "Modelos de documento",
+    "chooseTemplate": "Carregar modelo salvo",
+    "templateName": "Nome do modelo",
+    "saveTemplate": "Salvar",
+    "savingTemplate": "Salvando...",
+    "templateSaved": "Modelo de documento salvo.",
+    "templateSaveError": "Falha ao salvar o modelo.",
+    "loginRequired": "É necessário entrar na conta."
   }
 }
