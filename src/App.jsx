@@ -29,6 +29,7 @@ import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword'; 
 import Profile from './pages/Profile';
 import PublicExplore from './components/PublicExplore';
+import PublicJsa from './pages/PublicJsa';
 import LayoutBuilder from './pages/LayoutBuilder';
 import FactorDictionary from './pages/FactorDictionary';
 import ModuleBuilder from './pages/ModuleBuilder';
@@ -129,6 +130,7 @@ export default function App() {
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
+            <Route path="/:lng/public-jsa/:id" element={<LanguageWrapper><PublicJsa /></LanguageWrapper>} />
             <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />
             <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
             <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />

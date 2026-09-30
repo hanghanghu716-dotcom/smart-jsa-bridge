@@ -16,7 +16,8 @@
     "test:analysis": "node --test scripts/analysis-knowledge.test.js",
     "test:document": "node --test scripts/document-layout.test.js",
     "test:persistence": "node --test scripts/project-persistence.test.js",
-    "test:persistence:browser": "node scripts/project-persistence-browser.cjs"
+    "test:persistence:browser": "node scripts/project-persistence-browser.cjs",
+    "test:public": "node --test scripts/public-jsa.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -90,7 +91,8 @@
       "\\/layout-table",
       "\\/reset-password",
       "\\/jsa-preview",
-      "\\/jsasamplepreview"
+      "\\/jsasamplepreview",
+      "\\/public-jsa"
     ],
     "puppeteerArgs": [
       "--no-sandbox",

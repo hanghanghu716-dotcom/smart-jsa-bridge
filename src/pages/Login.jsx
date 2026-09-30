@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom'; 
+import { safeReturnPath } from '../utils/publicJsa';
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO';
@@ -9,6 +10,8 @@ import { AuthContext } from '../contexts/AuthContext'; // ✅ 신규 생성된 �
 
 export default function Login() {
   const navigate = useLanguageNavigate();
+  const location = useLocation();
+  const returnTo = safeReturnPath(new URLSearchParams(location.search).get('next'));
   const { t, i18n } = useTranslation('login'); // ✅ i18n 객체 추가 추출
 
   // 애드센스 설정 정보
@@ -93,9 +96,9 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      navigate('/'); 
+      navigate(returnTo, { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, navigate, returnTo]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -137,7 +140,7 @@ export default function Login() {
       try {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate('/'); 
+        navigate(returnTo, { replace: true });
       } catch (err) { alert(err.message); } finally { setLoading(false); }
     }
   };
@@ -237,7 +240,7 @@ export default function Login() {
               <button 
                 onClick={() => supabase.auth.signInWithOAuth({
                   provider: 'google',
-                  options: { redirectTo: `${window.location.origin}/${i18n.language}` }
+                  options: { redirectTo: `${window.location.origin}/${i18n.language}/login?next=${encodeURIComponent(returnTo)}` }
                 })} 
                 style={styles.googleBtn}
               >
