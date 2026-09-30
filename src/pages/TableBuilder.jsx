@@ -355,7 +355,7 @@ const renderDataTablePreview = () => {
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
                 <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>{t('toolbar.saveTitle')}</h3><button style={{...styles.miniBtn, backgroundColor: 'var(--success)', padding: '12px'}} onClick={() => setShowSaveModal(true)}>{t('toolbar.saveBtn')}</button><span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginTop: '4px' }}>{t('toolbar.saveDesc')}</span></div>
-                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>{t('toolbar.orientationTitle')}</h3><div style={styles.buttonGroupSmall}><button style={{...styles.miniBtn, backgroundColor: orientation === 'landscape' ? '#444' : '#222'}} onClick={() => setOrientation('landscape')}>{t('toolbar.landscape')}</button><button style={{...styles.miniBtn, backgroundColor: orientation === 'portrait' ? '#444' : '#222'}} onClick={() => setOrientation('portrait')}>{t('toolbar.portrait')}</button></div><div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'#888'}}>{t('toolbar.zoom')}</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div></div>
+                <div style={styles.toolSectionCompact}><h3 style={styles.toolTitleMini}>{t('toolbar.orientationTitle')}</h3><div style={styles.buttonGroupSmall}><button style={{...styles.miniBtn, backgroundColor: orientation === 'landscape' ? 'var(--surface-3)' : 'var(--surface)'}} onClick={() => setOrientation('landscape')}>{t('toolbar.landscape')}</button><button style={{...styles.miniBtn, backgroundColor: orientation === 'portrait' ? 'var(--surface-3)' : 'var(--surface)'}} onClick={() => setOrientation('portrait')}>{t('toolbar.portrait')}</button></div><div style={styles.inputFieldCompact}><span style={{fontSize:'0.6rem', color:'var(--text-muted)'}}>{t('toolbar.zoom')}</span><input type="range" min="0.5" max="1.5" step="0.1" value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} style={styles.rangeInputCompact} /></div></div>
                 <div style={styles.toolSectionCompact}>
                   <h3 style={styles.toolTitleMini}>{t('toolbar.columnConfig')}</h3>
                   <div style={styles.tagToggleContainerCompact}>
@@ -368,7 +368,7 @@ const renderDataTablePreview = () => {
                           <button 
                             key={key} 
                             onClick={() => toggleTag(key)} 
-                            style={{...styles.tagBtnSmall, backgroundColor: isActive ? TAG_META[key].color : '#161616', color: isActive ? '#fff' : '#666', borderColor: TAG_META[key].color, opacity: 1}}
+                            style={{...styles.tagBtnSmall, backgroundColor: isActive ? TAG_META[key].color : 'var(--surface-2)', color: isActive ? 'var(--text-on-accent)' : 'var(--text-muted)', borderColor: TAG_META[key].color, opacity: 1}}
                           >
                             {label}
                           </button>
@@ -393,7 +393,7 @@ const renderDataTablePreview = () => {
                           onDragStart={() => setDraggedIdx(idx)} 
                           onDragOver={(e) => handleDragOver(e, idx)} 
                           className="tag-item" 
-                          style={{...styles.dragTagMini, borderColor: meta.color || '#444', backgroundColor: meta.color ? `${meta.color}33` : '#222'}}
+                          style={{...styles.dragTagMini, borderColor: meta.color || 'var(--border-default)', backgroundColor: meta.color ? `${meta.color}33` : 'var(--surface-3)'}}
                         >
                           <span style={{cursor:'grab', color:'#888', marginRight:'8px'}}>☰</span>
                           {isUser ? (
@@ -451,7 +451,7 @@ const styles = {
   stepBadgeActive: { width: '20px', height: '20px', backgroundColor: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-on-accent)', fontSize: '0.75rem', fontWeight: 'bold' },
   stepTextActive: { fontSize: '0.8rem', color: 'var(--text-primary)', fontWeight: '700' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.4rem', opacity: 0.3 },
-  stepBadge: { width: '20px', height: '20px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', fontSize: '0.75rem' },
+  stepBadge: { width: '20px', height: '20px', backgroundColor: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', fontSize: '0.75rem' },
   stepText: { fontSize: '0.8rem', color: 'var(--text-secondary)' },
   stepLine: { width: '20px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
   stepLineActive: { width: '20px', height: '1px', backgroundColor: 'var(--success)' },
@@ -484,5 +484,5 @@ const styles = {
   modalInput: { backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', padding: '1rem', borderRadius: '6px', fontSize: '1rem', outline: 'none' },
   modalBtnGroup: { display: 'flex', gap: '10px' },
   modalBtnPrimary: { flex: 1, backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', padding: '1rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.95rem' },
-  modalBtnSecondary: { flex: 1, backgroundColor: '#333', color: 'var(--text-primary)', border: 'none', padding: '1rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.95rem' }
+  modalBtnSecondary: { flex: 1, backgroundColor: 'var(--surface-3)', color: 'var(--text-primary)', border: 'none', padding: '1rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.95rem' }
 };
