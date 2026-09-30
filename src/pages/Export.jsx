@@ -43,7 +43,7 @@ const COLUMN_GROUPS = [
 export default function Export() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
-  const { t, i18n } = useTranslation(['export']); 
+  const { t, i18n } = useTranslation(['export', 'common']); 
   const isEnglish = i18n.language?.startsWith('en');
   const isFrench = i18n.language?.startsWith('fr');
 
@@ -378,6 +378,23 @@ export default function Export() {
     );
   };
 
+  const translatePpe = value => ({
+    '안전모': t('ppe.helmet'),
+    '안전화': t('ppe.shoes'),
+    '보안경': t('ppe.glasses'),
+    '장갑': t('ppe.gloves'),
+    '방진마스크': t('ppe.mask')
+  }[value] || value);
+
+  const translatePermit = value => ({
+    '화기': t('permit.hotWork'),
+    '밀폐': t('permit.confinedSpace'),
+    '정전': t('permit.electrical'),
+    '고소': t('permit.highElevation'),
+    '중량물': t('permit.heavyLifting'),
+    '굴착': t('permit.excavation')
+  }[value] || value);
+
   const renderDesignerSafety = () => {
     const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: isEnglish ? '9px' : '10px' };
     const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', width: '15%' };
@@ -386,11 +403,11 @@ export default function Export() {
         <tbody>
           <tr>
             <td style={label}>{t('header.ppe')}</td>
-            <td style={td}>{(formData?.ppe || []).join(' · ') || '—'}</td>
+            <td style={td}>{(formData?.ppe || []).map(translatePpe).join(' · ') || '—'}</td>
           </tr>
           <tr>
             <td style={label}>{t('header.highRiskWork')}</td>
-            <td style={td}>{(formData?.permits || []).join(' · ') || '—'}</td>
+            <td style={td}>{(formData?.permits || []).map(translatePermit).join(' · ') || '—'}</td>
           </tr>
         </tbody>
       </table>
@@ -420,7 +437,7 @@ export default function Export() {
       <tbody>
         <tr>
           <td style={{ border: '1px solid #888', background: '#f2f2f2', fontWeight: 'bold', color: '#000', width: '15%', padding: '6px', fontSize: '10px' }}>
-            {t('table.notes', 'Notes')}
+            {t('common:designer.blocks.NOTES', 'Notes')}
           </td>
           <td style={{ border: '1px solid #888', color: '#000', padding: '7px', whiteSpace: 'pre-wrap', fontSize: '10px', minHeight: '42px' }}>
             {documentNotes || '—'}
