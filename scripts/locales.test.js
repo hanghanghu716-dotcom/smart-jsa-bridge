@@ -78,7 +78,7 @@ test('procedure step composer translations are complete for every base locale', 
     'filterAll', 'filterMy', 'filterScrap', 'filterRecent', 'stepSearch',
     'preview', 'closePreview', 'noSteps', 'previewHazards', 'noPreviewHazards',
     'hazard', 'currentControl', 'recommendedControl', 'riskLevel',
-    'badgeFull', 'badgeProcedureOnly',
+    'badgeFull', 'badgeProcedureOnly', 'workStepLibrary', 'filterSteps', 'stepLibraryBadge',
   ];
 
   for (const locale of baseLocales) {
@@ -87,6 +87,51 @@ test('procedure step composer translations are complete for every base locale', 
     for (const key of requiredKeys) {
       assert.equal(typeof procedure.workbench[key], 'string', `Missing workbench.${key} for ${locale}`);
       assert.ok(procedure.workbench[key].trim(), `Empty workbench.${key} for ${locale}`);
+    }
+  }
+});
+
+test('phase 2 draft and work-step translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const libraryKeys = [
+    'menuDrafts', 'menuWorkSteps', 'draftListTitle', 'noDrafts', 'draftStage',
+    'resumeDraft', 'workStepListTitle', 'noWorkSteps', 'hazardsCount',
+    'usedCount', 'useWorkStep', 'confirmDeleteWorkStep', 'workStepDeleteError',
+    'confirmDeleteDraft', 'draftDeleteError', 'workStepTagsPlaceholder',
+    'cloneWorkStep', 'workStepCloneSuccess', 'workStepCloneError',
+    'searchWorkSteps', 'favoritesOnly', 'addFavorite', 'removeFavorite',
+    'editWorkStep', 'saveChanges', 'cancelEdit', 'workStepUpdateError',
+    'menuSaveWorkSteps', 'bulkSavingSteps', 'bulkStepSaveSuccess', 'bulkStepSaveError',
+    'archiveDraft', 'confirmArchiveDraft', 'draftArchiveError'
+  ];
+  const draftStageKeys = ['info', 'procedure', 'analysis', 'module', 'table', 'export'];
+
+  for (const locale of baseLocales) {
+    const library = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/mylibrary.json`, import.meta.url)));
+    const analysis = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/analysis.json`, import.meta.url)));
+
+    for (const key of libraryKeys) {
+      assert.ok(library[key]?.trim(), `Missing library.${key} for ${locale}`);
+    }
+    for (const key of draftStageKeys) {
+      assert.ok(library.draftStages?.[key]?.trim(), `Missing library.draftStages.${key} for ${locale}`);
+    }
+    assert.ok(analysis.filter?.saveStepBtn?.trim(), `Missing analysis.filter.saveStepBtn for ${locale}`);
+    assert.ok(analysis.filter?.savingStepBtn?.trim(), `Missing analysis.filter.savingStepBtn for ${locale}`);
+    assert.ok(analysis.alert?.stepSaved?.trim(), `Missing analysis.alert.stepSaved for ${locale}`);
+    assert.ok(analysis.alert?.stepSaveFailed?.trim(), `Missing analysis.alert.stepSaveFailed for ${locale}`);
+
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    assert.ok(common.draftSave?.conflict?.trim(), `Missing common.draftSave.conflict for ${locale}`);
+  }
+});
+
+test('draft save status translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    for (const key of ['pending', 'saved', 'error']) {
+      assert.ok(common.draftSave?.[key]?.trim(), `Missing common.draftSave.${key} for ${locale}`);
     }
   }
 });

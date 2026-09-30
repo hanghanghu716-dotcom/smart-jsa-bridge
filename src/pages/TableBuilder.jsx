@@ -5,6 +5,9 @@ import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO'; // ✅ [추가] 시킨 기능만 추가
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 시킨 기능만 추가
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 /**
  * [TableBuilder 컴포넌트]
@@ -72,11 +75,23 @@ export default function TableBuilder() {
   const { t, i18n } = useTranslation(['tablebuilder']);
   const isEnglish = i18n.language?.startsWith('en'); 
   
-  const { 
-    existingId, analysisData = [], formData = {}, participants = [], procedures = [], 
-    savedActiveOrder, savedOrientation, savedUserColumns,
-    docTitle, appr1, appr2, appr3, savedSignatureRows
-  } = location.state || {};
+  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
+  const state = location.state || {};
+  const recoveredLayout = recoveredDraft?.layout_data || {};
+
+  const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
+  const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const formData = state.formData || recoveredDraft?.form_data || {};
+  const participants = state.participants || recoveredDraft?.participants || [];
+  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const savedActiveOrder = state.savedActiveOrder ?? recoveredLayout.savedActiveOrder;
+  const savedOrientation = state.savedOrientation ?? recoveredLayout.savedOrientation;
+  const savedUserColumns = state.savedUserColumns ?? recoveredLayout.savedUserColumns;
+  const docTitle = state.docTitle ?? recoveredLayout.docTitle;
+  const appr1 = state.appr1 ?? recoveredLayout.appr1;
+  const appr2 = state.appr2 ?? recoveredLayout.appr2;
+  const appr3 = state.appr3 ?? recoveredLayout.appr3;
+  const savedSignatureRows = state.savedSignatureRows ?? recoveredLayout.savedSignatureRows;
 
   const [orientation, setOrientation] = useState(savedOrientation || 'landscape');
   const [zoom, setZoom] = useState(1.0); 
@@ -95,6 +110,37 @@ export default function TableBuilder() {
   const [draggedIdx, setDraggedIdx] = useState(null);
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [saveName, setSaveName] = useState('');
+
+  useEffect(() => {
+    if (!recoveredDraft || location.state?.formData) return;
+    setOrientation(recoveredLayout.savedOrientation || 'landscape');
+    if (recoveredLayout.savedActiveOrder?.length) {
+      setActiveOrder(getNormalizedOrder(recoveredLayout.savedActiveOrder));
+    }
+    if (Array.isArray(recoveredLayout.savedUserColumns)) {
+      setUserColumns(recoveredLayout.savedUserColumns);
+    }
+  }, [recoveredDraft, recoveredLayout, location.state?.formData]);
+
+  const draftSave = useJsaDraftAutosave({
+    enabled: Boolean(location.state?.formData || recoveredDraft),
+    stage: 'table',
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    layoutData: {
+      savedSignatureRows,
+      docTitle,
+      appr1,
+      appr2,
+      appr3,
+      savedActiveOrder: activeOrder,
+      savedUserColumns: userColumns,
+      savedOrientation: orientation
+    },
+    sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
+  });
 
   useEffect(() => {
     const normalized = getNormalizedOrder(activeOrder);
@@ -276,7 +322,8 @@ const renderDataTablePreview = () => {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 기능만 추가 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 기능만 추가 */}
       <style>{`
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .canvas-container { 

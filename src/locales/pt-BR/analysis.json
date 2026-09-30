@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Por favor, selecione primeiro uma medida de segurança atual através do sistema de recomendação.",
     "noData": "Nenhum dado vinculado encontrado. Por favor, insira diretamente.",
     "confirmMain": "Tem certeza de que deseja ir para a tela principal? Todos os dados não salvos poderão ser perdidos.",
-    "loginRequired": "O login é obrigatório."
+    "loginRequired": "O login é obrigatório.",
+    "stepSaved": "Etapa salva na biblioteca.",
+    "stepSaveFailed": "Falha ao salvar a etapa."
   },
   "libModal": {
     "title": "Chamar Biblioteca de Etapas de Tarefas",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtro de Alto Risco",
     "auto": "(Sugestão Automática)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Pesquisar perigos..."
+    "searchPlaceholder": "Pesquisar perigos...",
+    "saveStepBtn": "Salvar etapa",
+    "savingStepBtn": "Salvando..."
   },
   "base": {
     "label": "Base de Conhecimento de Segurança (Extração de Perigos)",

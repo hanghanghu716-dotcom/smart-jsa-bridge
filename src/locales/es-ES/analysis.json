@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Por favor, seleccione primero la medida de seguridad actual a través del sistema de recomendación.",
     "noData": "No hay datos vinculados. Por favor, introdúzcalos manualmente.",
     "confirmMain": "¿Desea ir a la pantalla principal? Los datos en los que está trabajando podrían eliminarse.",
-    "loginRequired": "Es necesario iniciar sesión."
+    "loginRequired": "Es necesario iniciar sesión.",
+    "stepSaved": "El paso se guardó en su biblioteca.",
+    "stepSaveFailed": "No se pudo guardar el paso."
   },
   "libModal": {
     "title": "Llamada a la biblioteca de pasos de trabajo",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtro de Alto Riesgo",
     "auto": "(Sugerencia automática)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Buscar factores de riesgo directamente..."
+    "searchPlaceholder": "Buscar factores de riesgo directamente...",
+    "saveStepBtn": "Guardar paso",
+    "savingStepBtn": "Guardando..."
   },
   "base": {
     "label": "Base de Conocimientos de Seguridad (Extracción de Riesgos)",

@@ -7,6 +7,8 @@ import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
+import { listRecentDrafts, setActiveDraftId, archiveDraft, deleteDraft } from '../services/jsaDraftService';
+import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed, cloneWorkStep, listWorkStepVersions, restoreWorkStepVersion } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -17,12 +19,22 @@ export default function MyLibrary() {
   const [reports, setReports] = useState([]); 
   const [blocks, setBlocks] = useState([]);   
   const [projectBlocks, setProjectBlocks] = useState([]); 
-  const [layouts, setLayouts] = useState([]); 
+  const [layouts, setLayouts] = useState([]);
+  const [drafts, setDrafts] = useState([]);
+  const [workSteps, setWorkSteps] = useState([]); 
   
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
-  const [activeMenuId, setActiveMenuId] = useState(null); 
+  const [activeMenuId, setActiveMenuId] = useState(null);
+  const [workStepSearch, setWorkStepSearch] = useState('');
+  const [workStepFavoritesOnly, setWorkStepFavoritesOnly] = useState(false);
+  const [editingWorkStepId, setEditingWorkStepId] = useState(null);
+  const [workStepEditForm, setWorkStepEditForm] = useState({ title: '', detail: '', tags: '' });
+  const [historyWorkStepId, setHistoryWorkStepId] = useState(null);
+  const [workStepVersions, setWorkStepVersions] = useState([]);
+  const [isVersionHistoryLoading, setIsVersionHistoryLoading] = useState(false);
+  const [bulkSavingProjectId, setBulkSavingProjectId] = useState(null); 
 
   const buildFolderTree = (items, parentId = null) => {
     return items
@@ -51,14 +63,16 @@ export default function MyLibrary() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const [cats, favs, authored, reps, blks, pBlks, userLayouts] = await Promise.all([
+    const [cats, favs, authored, reps, blks, pBlks, userLayouts, draftRows, stepRows] = await Promise.all([
       supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
       supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
       supabase.from('jsa_projects').select('*').eq('author_id', user.id).order('created_at', { ascending: false }),
       supabase.from('user_reports').select('*, jsa_projects(title)').eq('reporter_id', user.id),
       supabase.from('user_blocks').select('*, profiles:blocked_user_id(username)').eq('blocker_id', user.id),
       supabase.from('user_project_blocks').select('*, jsa_projects(title)').eq('user_id', user.id),
-      supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false })
+      supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
+      listRecentDrafts(20),
+      listWorkSteps({ limit: 100 })
     ]);
 
     setCategories(cats.data || []);
@@ -66,6 +80,8 @@ export default function MyLibrary() {
     setBlocks(blks.data || []);
     setProjectBlocks(pBlks.data || []);
     setLayouts(userLayouts.data || []);
+    setDrafts(draftRows || []);
+    setWorkSteps(stepRows || []);
 
     const combined = [
       ...(favs.data || []).map(item => ({ ...item, displayType: 'SCRAP', originData: item.jsa_projects })),
@@ -121,7 +137,10 @@ export default function MyLibrary() {
     await supabase.from('user_jsa_categories').insert({ 
       user_id: user.id, 
       category_name: newCatName, 
-      parent_id: (selectedCatId && selectedCatId !== 'SYSTEM_FOLDER' && selectedCatId !== 'LAYOUT_FOLDER') ? selectedCatId : null 
+      parent_id: (
+        selectedCatId
+        && !['SYSTEM_FOLDER', 'LAYOUT_FOLDER', 'DRAFT_FOLDER', 'WORK_STEP_FOLDER'].includes(selectedCatId)
+      ) ? selectedCatId : null 
     });
     setNewCatName(""); fetchLibraryData();
   };
@@ -144,6 +163,225 @@ export default function MyLibrary() {
     }
     fetchLibraryData();
   };
+
+  const resumeDraft = (draft) => {
+    if (!draft?.id) return;
+    setActiveDraftId(draft.id, draft.version || null);
+
+    const routeMap = {
+      info: '/info',
+      procedure: '/procedure',
+      analysis: '/analysis',
+      module: '/layout-module',
+      table: '/layout-table',
+      export: '/export'
+    };
+
+    navigate(routeMap[draft.current_stage] || '/info', {
+      state: {
+        draftId: draft.id,
+        formData: draft.form_data || {},
+        participants: draft.participants || [],
+        procedures: draft.procedures || [],
+        analysisData: draft.analysis_data || [],
+        parentId: draft.source_project_id || null,
+        ...(draft.layout_data || {})
+      }
+    });
+  };
+
+  const useSavedWorkStep = (step) => {
+    markWorkStepUsed(step).catch(error =>
+      console.error('[Work Step Library] usage update failed:', error)
+    );
+    const proc = {
+      stepTitle: step.title || '',
+      stepDetail: step.detail || '',
+      savedWorkStepId: step.id,
+      sourceProjectId: step.source_project_id || null,
+      sourceProjectTitle: step.source_project_title || '',
+      sourceStepIndex: step.source_step_index
+    };
+
+    const analysis = {
+      ...(step.analysis_data || {}),
+      id: 0,
+      proc,
+      risks: Array.isArray(step.analysis_data?.risks)
+        ? step.analysis_data.risks.map(risk => ({ ...risk }))
+        : []
+    };
+
+    navigate('/procedure', {
+      state: {
+        formData: {},
+        participants: [],
+        procedures: [proc],
+        analysisData: [analysis]
+      }
+    });
+  };
+
+  const handleArchiveDraft = async (draftId) => {
+    if (!window.confirm(t('confirmArchiveDraft'))) return;
+    try {
+      await archiveDraft(draftId);
+      setDrafts(prev => prev.filter(draft => draft.id !== draftId));
+    } catch (error) {
+      console.error('[JSA Draft] archive failed:', error);
+      alert(t('draftArchiveError'));
+    }
+  };
+
+  const handleDeleteDraft = async (draftId) => {
+    if (!window.confirm(t('confirmDeleteDraft'))) return;
+    try {
+      await deleteDraft(draftId);
+      setDrafts(prev => prev.filter(draft => draft.id !== draftId));
+    } catch (error) {
+      console.error('[JSA Draft] delete failed:', error);
+      alert(t('draftDeleteError'));
+    }
+  };
+
+  const beginEditWorkStep = (step) => {
+    setEditingWorkStepId(step.id);
+    setWorkStepEditForm({
+      title: step.title || '',
+      detail: step.detail || '',
+      tags: (step.tags || []).join(', ')
+    });
+  };
+
+  const saveWorkStepEdits = async (id) => {
+    if (!workStepEditForm.title.trim()) return;
+    try {
+      const updated = await updateWorkStep(id, {
+        title: workStepEditForm.title.trim(),
+        detail: workStepEditForm.detail || '',
+        tags: workStepEditForm.tags
+          .split(',')
+          .map(tag => tag.trim())
+          .filter(Boolean)
+      });
+      setWorkSteps(prev => prev.map(step => step.id === id ? updated : step));
+      setEditingWorkStepId(null);
+    } catch (error) {
+      console.error('[Work Step Library] update failed:', error);
+      alert(t('workStepUpdateError'));
+    }
+  };
+
+  const handleCloneWorkStep = async (step) => {
+    try {
+      const cloned = await cloneWorkStep(step);
+      if (cloned) {
+        setWorkSteps(prev => [cloned, ...prev]);
+        alert(t('workStepCloneSuccess'));
+      }
+    } catch (error) {
+      console.error('[Work Step Library] clone failed:', error);
+      alert(t('workStepCloneError'));
+    }
+  };
+
+  const toggleWorkStepFavorite = async (step) => {
+    try {
+      const updated = await setWorkStepFavorite(step, !step.is_favorite);
+      setWorkSteps(prev => prev
+        .map(item => item.id === step.id ? updated : item)
+        .sort((a, b) => Number(b.is_favorite) - Number(a.is_favorite)
+          || new Date(b.last_used_at || b.updated_at || 0) - new Date(a.last_used_at || a.updated_at || 0)));
+    } catch (error) {
+      console.error('[Work Step Library] favorite update failed:', error);
+      alert(t('workStepUpdateError'));
+    }
+  };
+
+  const handleSaveProjectSteps = async (project) => {
+    if (!project?.id || !Array.isArray(project.analysis_data)) return;
+    setBulkSavingProjectId(project.id);
+    try {
+      const saved = await saveProjectWorkSteps(project);
+      await fetchLibraryData();
+      alert(t('bulkStepSaveSuccess', { count: saved.length }));
+      setActiveMenuId(null);
+    } catch (error) {
+      console.error('[Work Step Library] bulk save failed:', error);
+      alert(t('bulkStepSaveError'));
+    } finally {
+      setBulkSavingProjectId(null);
+    }
+  };
+
+  const toggleWorkStepHistory = async (step) => {
+    if (historyWorkStepId === step.id) {
+      setHistoryWorkStepId(null);
+      setWorkStepVersions([]);
+      return;
+    }
+
+    setHistoryWorkStepId(step.id);
+    setIsVersionHistoryLoading(true);
+    try {
+      const versions = await listWorkStepVersions(step.id, 20);
+      setWorkStepVersions(versions);
+    } catch (error) {
+      console.error('[Work Step Library] version history failed:', error);
+      alert(t('workStepHistoryError'));
+      setHistoryWorkStepId(null);
+    } finally {
+      setIsVersionHistoryLoading(false);
+    }
+  };
+
+  const handleRestoreWorkStepVersion = async (step, versionRow) => {
+    if (!window.confirm(t('confirmRestoreWorkStepVersion', { version: versionRow.version }))) return;
+
+    try {
+      const restored = await restoreWorkStepVersion(step.id, versionRow);
+      if (restored) {
+        setWorkSteps(prev => prev.map(item => item.id === step.id ? restored : item));
+        const versions = await listWorkStepVersions(step.id, 20);
+        setWorkStepVersions(versions);
+        alert(t('workStepVersionRestored'));
+      }
+    } catch (error) {
+      console.error('[Work Step Library] version restore failed:', error);
+      alert(t('workStepVersionRestoreError'));
+    }
+  };
+
+  const removeWorkStep = async (id) => {
+    if (!window.confirm(t('confirmDeleteWorkStep'))) return;
+    try {
+      await deleteWorkStep(id);
+      setWorkSteps(prev => prev.filter(step => step.id !== id));
+    } catch (error) {
+      console.error('[Work Step Library] delete failed:', error);
+      alert(t('workStepDeleteError'));
+    }
+  };
+
+  const visibleWorkSteps = workSteps.filter(step => {
+    if (workStepFavoritesOnly && !step.is_favorite) return false;
+    const q = workStepSearch.trim().toLowerCase();
+    if (!q) return true;
+    const haystack = [
+      step.title,
+      step.detail,
+      step.source_project_title,
+      ...(step.tags || []),
+      ...(step.analysis_data?.risks || []).flatMap(risk => [
+        risk?.factor,
+        risk?.risk_factor,
+        risk?.measure,
+        risk?.current_measure,
+        risk?.recommend_measure
+      ])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return haystack.includes(q);
+  });
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "-";
@@ -181,6 +419,8 @@ export default function MyLibrary() {
             <div style={styles.contentGrid}>
               <aside style={styles.catSidebar}>
                 <div style={selectedCatId === 'SYSTEM_FOLDER' ? styles.systemCatActive : styles.systemCat} onClick={() => setSelectedCatId('SYSTEM_FOLDER')}>{t('menuSystem')}</div>
+                <div style={selectedCatId === 'DRAFT_FOLDER' ? styles.draftCatActive : styles.draftCat} onClick={() => setSelectedCatId('DRAFT_FOLDER')}>{t('menuDrafts')} ({drafts.length})</div>
+                <div style={selectedCatId === 'WORK_STEP_FOLDER' ? styles.workStepCatActive : styles.workStepCat} onClick={() => setSelectedCatId('WORK_STEP_FOLDER')}>{t('menuWorkSteps')} ({workSteps.length})</div>
                 <div style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat} onClick={() => setSelectedCatId('LAYOUT_FOLDER')}>{t('menuLayout')} ({layouts.length})</div>
                 <div style={styles.catDivider} />
                 <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>{t('menuViewAll')} ({favorites.length})</div>
@@ -217,6 +457,137 @@ export default function MyLibrary() {
                         <div key={p.id} style={styles.mRow}>
                           <span>{t('projectHideLabel')}: {p.jsa_projects?.title}</span>
                           <button style={styles.mBtn} onClick={() => handleWithdraw('projectBlock', p.id)}>{t('releaseBtn')}</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : selectedCatId === 'DRAFT_FOLDER' ? (
+                  <div style={styles.managementView}>
+                    <div style={styles.mGroup}>
+                      <h4 style={styles.mTitle}>{t('draftListTitle')}</h4>
+                      {drafts.length === 0 && <div style={styles.emptyAsset}>{t('noDrafts')}</div>}
+                      {drafts.map(draft => (
+                        <div key={draft.id} style={styles.assetRow}>
+                          <div style={styles.assetInfo}>
+                            <strong style={styles.assetTitle}>{draft.title}</strong>
+                            <span style={styles.assetMeta}>
+                              {t('draftStage')}: {t(`draftStages.${draft.current_stage}`, draft.current_stage)} · {formatDate(draft.updated_at)}
+                            </span>
+                          </div>
+                          <div style={styles.assetActions}>
+                            <button style={styles.assetPrimaryBtn} onClick={() => resumeDraft(draft)}>{t('resumeDraft')}</button>
+                            <button style={styles.assetSecondaryBtn} onClick={() => handleArchiveDraft(draft.id)}>{t('archiveDraft')}</button>
+                            <button style={styles.assetDeleteBtn} onClick={() => handleDeleteDraft(draft.id)}>{t('deleteBtn')}</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : selectedCatId === 'WORK_STEP_FOLDER' ? (
+                  <div style={styles.managementView}>
+                    <div style={styles.mGroup}>
+                      <div style={styles.workStepHeaderRow}>
+                        <h4 style={{ ...styles.mTitle, marginBottom: 0, flex: 1 }}>{t('workStepListTitle')}</h4>
+                        <label style={styles.favoriteFilterLabel}>
+                          <input
+                            type="checkbox"
+                            checked={workStepFavoritesOnly}
+                            onChange={(e) => setWorkStepFavoritesOnly(e.target.checked)}
+                          />
+                          {t('favoritesOnly')}
+                        </label>
+                      </div>
+                      <input
+                        style={styles.workStepSearchInput}
+                        value={workStepSearch}
+                        onChange={(e) => setWorkStepSearch(e.target.value)}
+                        placeholder={t('searchWorkSteps')}
+                      />
+                      {visibleWorkSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
+                      {visibleWorkSteps.map(step => (
+                        <div key={step.id} style={styles.assetRow}>
+                          <div style={styles.assetInfo}>
+                            {editingWorkStepId === step.id ? (
+                              <>
+                                <input
+                                  style={styles.inlineEditInput}
+                                  value={workStepEditForm.title}
+                                  onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, title: e.target.value }))}
+                                />
+                                <textarea
+                                  style={styles.inlineEditTextarea}
+                                  value={workStepEditForm.detail}
+                                  onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, detail: e.target.value }))}
+                                />
+                                <input
+                                  style={styles.inlineEditInput}
+                                  value={workStepEditForm.tags}
+                                  onChange={(e) => setWorkStepEditForm(prev => ({ ...prev, tags: e.target.value }))}
+                                  placeholder={t('workStepTagsPlaceholder')}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <div style={styles.assetTitleRow}>
+                                  <strong style={styles.assetTitle}>{step.title}</strong>
+                                  {step.is_favorite && <span style={styles.favoriteBadge}>★</span>}
+                                </div>
+                                <span style={styles.assetDescription}>{step.detail || '-'}</span>
+                              </>
+                            )}
+                            <span style={styles.assetMeta}>
+                              {t('hazardsCount')}: {step.analysis_data?.risks?.length || 0}
+                              {step.source_project_title ? ` · ${step.source_project_title}` : ''}
+                              {step.use_count ? ` · ${t('usedCount')}: ${step.use_count}` : ''}
+                              {step.version ? ` · v${step.version}` : ''}
+                            </span>
+                            {historyWorkStepId === step.id && (
+                              <div style={styles.versionPanel}>
+                                <div style={styles.versionPanelHeader}>
+                                  <strong>{t('workStepHistoryTitle')}</strong>
+                                  {isVersionHistoryLoading && <span>{t('loading')}</span>}
+                                </div>
+                                {!isVersionHistoryLoading && workStepVersions.length === 0 && (
+                                  <div style={styles.versionEmpty}>{t('workStepHistoryEmpty')}</div>
+                                )}
+                                {!isVersionHistoryLoading && workStepVersions.map(versionRow => (
+                                  <div key={versionRow.id} style={styles.versionRow}>
+                                    <div style={styles.versionInfo}>
+                                      <strong>v{versionRow.version}</strong>
+                                      <span>{formatDate(versionRow.created_at)}</span>
+                                    </div>
+                                    <button
+                                      style={styles.versionRestoreBtn}
+                                      onClick={() => handleRestoreWorkStepVersion(step, versionRow)}
+                                    >
+                                      {t('restoreVersion')}
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                          <div style={styles.assetActions}>
+                            <button
+                              style={step.is_favorite ? styles.favoriteBtnActive : styles.favoriteBtn}
+                              onClick={() => toggleWorkStepFavorite(step)}
+                              title={step.is_favorite ? t('removeFavorite') : t('addFavorite')}
+                            >★</button>
+                            {editingWorkStepId === step.id ? (
+                              <>
+                                <button style={styles.assetPrimaryBtn} onClick={() => saveWorkStepEdits(step.id)}>{t('saveChanges')}</button>
+                                <button style={styles.assetSecondaryBtn} onClick={() => setEditingWorkStepId(null)}>{t('cancelEdit')}</button>
+                              </>
+                            ) : (
+                              <>
+                                <button style={styles.assetSecondaryBtn} onClick={() => beginEditWorkStep(step)}>{t('editWorkStep')}</button>
+                                <button style={styles.assetSecondaryBtn} onClick={() => toggleWorkStepHistory(step)}>{t('workStepHistory')}</button>
+                                <button style={styles.assetSecondaryBtn} onClick={() => handleCloneWorkStep(step)}>{t('cloneWorkStep')}</button>
+                                <button style={styles.assetPrimaryBtn} onClick={() => useSavedWorkStep(step)}>{t('useWorkStep')}</button>
+                                <button style={styles.assetDeleteBtn} onClick={() => removeWorkStep(step.id)}>{t('deleteBtn')}</button>
+                              </>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -284,6 +655,14 @@ export default function MyLibrary() {
                                     <div style={styles.dropdownItem} onClick={() => navigate('/export', { state: { analysisData: f.originData.analysis_data, formData: f.originData.form_data, participants: f.originData.participants } })}>{t('menuViewReport')}</div>
                                     <div style={styles.dropdownItem} onClick={() => handleClone(f.originData)}>{t('menuClone')}</div>
                                   </>
+                                )}
+                                {f.originData?.analysis_data?.length > 0 && (
+                                  <div
+                                    style={{ ...styles.dropdownItem, color: '#4caf50', fontWeight: 'bold' }}
+                                    onClick={() => handleSaveProjectSteps(f.originData)}
+                                  >
+                                    {bulkSavingProjectId === f.originData?.id ? t('bulkSavingSteps') : t('menuSaveWorkSteps')}
+                                  </div>
                                 )}
                                 <div style={{...styles.dropdownItem, color: '#ff4d4d'}} onClick={async () => {
                                   if(window.confirm(t('confirmDeleteItem'))) {
@@ -366,6 +745,10 @@ const styles = {
   catSidebar: { borderRight: '1px solid #222', paddingRight: '1rem', overflowY: 'auto' },
   systemCat: { padding: '1rem', color: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
   systemCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  draftCat: { padding: '1rem', color: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(233,189,69,0.25)', marginBottom: '10px' },
+  draftCatActive: { padding: '1rem', color: '#111', backgroundColor: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  workStepCat: { padding: '1rem', color: '#4caf50', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
+  workStepCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#4caf50', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   layoutCat: { padding: '1rem', color: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
   layoutCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   catDivider: { height: '1px', backgroundColor: '#222', margin: '10px 0' },
@@ -395,6 +778,31 @@ const styles = {
   mTitle: { fontSize: '0.95rem', color: '#fff', marginBottom: '1rem', borderBottom: '1px solid #333', paddingBottom: '5px', fontWeight: 'bold' },
   mRow: { display: 'flex', justifyContent: 'space-between', padding: '1rem', backgroundColor: '#111', borderRadius: '8px', marginBottom: '8px', fontSize: '0.85rem' },
   mBtn: { padding: '4px 10px', backgroundColor: '#222', color: '#ff4d4d', border: '1px solid #444', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem' },
+  emptyAsset: { padding: '1.5rem', color: '#666', fontSize: '0.82rem', textAlign: 'center', border: '1px dashed #2a2a2a', borderRadius: '8px' },
+  assetRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1rem', backgroundColor: '#101010', border: '1px solid #222', borderRadius: '8px', marginBottom: '8px' },
+  assetInfo: { minWidth: 0, flex: 1, display: 'flex', flexDirection: 'column', gap: '5px' },
+  assetTitleRow: { display: 'flex', alignItems: 'center', gap: '6px' },
+  assetTitle: { color: '#eee', fontSize: '0.88rem' },
+  assetDescription: { color: '#777', fontSize: '0.72rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  assetMeta: { color: '#555', fontSize: '0.65rem' },
+  favoriteBadge: { color: '#e9bd45', fontSize: '0.75rem' },
+  assetActions: { display: 'flex', gap: '6px', flexShrink: 0 },
+  assetPrimaryBtn: { padding: '7px 11px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
+  assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: '#ff5c5c', border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  assetSecondaryBtn: { padding: '7px 11px', backgroundColor: '#171717', color: '#aaa', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  favoriteBtn: { width: '32px', height: '32px', backgroundColor: 'transparent', color: '#555', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer' },
+  favoriteBtnActive: { width: '32px', height: '32px', backgroundColor: 'rgba(233,189,69,0.12)', color: '#e9bd45', border: '1px solid rgba(233,189,69,0.4)', borderRadius: '5px', cursor: 'pointer' },
+  workStepHeaderRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', borderBottom: '1px solid #333', paddingBottom: '6px' },
+  favoriteFilterLabel: { display: 'flex', alignItems: 'center', gap: '6px', color: '#888', fontSize: '0.7rem', cursor: 'pointer' },
+  workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: '#0a0a0a', color: '#fff', border: '1px solid #2d2d2d', borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
+  inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: '#080808', color: '#fff', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.8rem' },
+  inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: '#080808', color: '#ddd', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
+  versionPanel: { marginTop: '8px', padding: '9px', backgroundColor: '#0a0a0a', border: '1px solid #292929', borderRadius: '7px' },
+  versionPanelHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#aaa', fontSize: '0.66rem', marginBottom: '7px' },
+  versionEmpty: { color: '#555', fontSize: '0.65rem', padding: '6px 0' },
+  versionRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', padding: '6px 0', borderTop: '1px solid #1f1f1f' },
+  versionInfo: { display: 'flex', alignItems: 'center', gap: '8px', color: '#777', fontSize: '0.62rem' },
+  versionRestoreBtn: { padding: '4px 8px', backgroundColor: 'rgba(0,123,255,0.1)', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.62rem' },
   loader: { textAlign: 'center', padding: '5rem', color: '#444' },
   footerArea: { width: '100%', position: 'absolute', bottom: 0, padding: '1.5rem 5rem', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },

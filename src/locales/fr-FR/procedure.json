@@ -86,6 +86,9 @@
     "recommendedControl": "Mesure additionnelle / recommandée",
     "riskLevel": "Risque",
     "badgeFull": "Analyse incluse",
-    "badgeProcedureOnly": "Étape seule"
+    "badgeProcedureOnly": "Étape seule",
+    "workStepLibrary": "Mes étapes de travail",
+    "filterSteps": "Étapes",
+    "stepLibraryBadge": "ÉTAPE"
   }
 }

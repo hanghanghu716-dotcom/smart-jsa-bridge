@@ -86,6 +86,9 @@
     "recommendedControl": "Misura aggiuntiva / raccomandata",
     "riskLevel": "Rischio",
     "badgeFull": "Analisi inclusa",
-    "badgeProcedureOnly": "Solo fase"
+    "badgeProcedureOnly": "Solo fase",
+    "workStepLibrary": "Le mie fasi",
+    "filterSteps": "Fasi",
+    "stepLibraryBadge": "FASE"
   }
 }

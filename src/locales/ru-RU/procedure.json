@@ -86,6 +86,9 @@
     "recommendedControl": "Дополнительная / рекомендуемая мера",
     "riskLevel": "Риск",
     "badgeFull": "С анализом",
-    "badgeProcedureOnly": "Только этап"
+    "badgeProcedureOnly": "Только этап",
+    "workStepLibrary": "Мои этапы работ",
+    "filterSteps": "Этапы",
+    "stepLibraryBadge": "ЭТАП"
   }
 }

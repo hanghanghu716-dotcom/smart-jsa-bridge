@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Selezionare prima una misura di prevenzione tramite il sistema di raccomandazione.",
     "noData": "Nessun dato di riferimento trovato. Procedere con l'inserimento manuale.",
     "confirmMain": "Tornare alla schermata principale? I dati non salvati andranno definitivamente persi.",
-    "loginRequired": "Autenticazione richiesta."
+    "loginRequired": "Autenticazione richiesta.",
+    "stepSaved": "Fase salvata nella libreria.",
+    "stepSaveFailed": "Impossibile salvare la fase."
   },
   "libModal": {
     "title": "Carica Libreria Fasi Lavorative",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtro Attività ad Alto Rischio",
     "auto": "(Suggerimento Automatico da DB)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Ricerca fattori di rischio..."
+    "searchPlaceholder": "Ricerca fattori di rischio...",
+    "saveStepBtn": "Salva fase",
+    "savingStepBtn": "Salvataggio..."
   },
   "base": {
     "label": "Knowledge Base Sicurezza (Estrazione Rischi)",

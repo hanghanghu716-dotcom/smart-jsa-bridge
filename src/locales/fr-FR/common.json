@@ -17,15 +17,61 @@
     "downloadBtn": "Télécharger le PDF original"
   },
   "steps": [
-    { "step": "01", "task": "TBT avant tâche et inspection des EPI", "hazard": "Étendue du travail peu claire, utilisation incorrecte des EPI" },
-    { "step": "02", "task": "Systèmes de protection contre les chutes", "hazard": "Défaillance du point d'ancrage, glissades dues aux intempéries" },
-    { "step": "03", "task": "Isolation des combustibles et surveillance incendie", "hazard": "Étincelles de travaux à chaud, explosion de gaz résiduel" },
-    { "step": "04", "task": "Installation de gréage et de levage", "hazard": "Mauvaise stabilité du sol, défaillance d'élingue/câble" },
-    { "step": "05", "task": "Tests atmosphériques et ventilation", "hazard": "Déficience en oxygène, inhalation de gaz toxiques" },
-    { "step": "06", "task": "Sécurité des excavations et des tranchées", "hazard": "Contact avec des réseaux souterrains, effondrement de tranchées" },
-    { "step": "07", "task": "LOTO et vérification d'absence d'énergie", "hazard": "Remise sous tension accidentelle, choc résiduel" },
-    { "step": "08", "task": "Balisage et radioprotection", "hazard": "Entrée non autorisée, exposition aux rayonnements ionisants" },
-    { "step": "09", "task": "Mise en service et tests de boucle", "hazard": "Interverrouillages shuntés, fuites haute pression" },
-    { "step": "10", "task": "Nettoyage et retrait du LOTO après travail", "hazard": "Outils/débris laissés sur place, risques de court-circuit" }
-  ]
+    {
+      "step": "01",
+      "task": "TBT avant tâche et inspection des EPI",
+      "hazard": "Étendue du travail peu claire, utilisation incorrecte des EPI"
+    },
+    {
+      "step": "02",
+      "task": "Systèmes de protection contre les chutes",
+      "hazard": "Défaillance du point d'ancrage, glissades dues aux intempéries"
+    },
+    {
+      "step": "03",
+      "task": "Isolation des combustibles et surveillance incendie",
+      "hazard": "Étincelles de travaux à chaud, explosion de gaz résiduel"
+    },
+    {
+      "step": "04",
+      "task": "Installation de gréage et de levage",
+      "hazard": "Mauvaise stabilité du sol, défaillance d'élingue/câble"
+    },
+    {
+      "step": "05",
+      "task": "Tests atmosphériques et ventilation",
+      "hazard": "Déficience en oxygène, inhalation de gaz toxiques"
+    },
+    {
+      "step": "06",
+      "task": "Sécurité des excavations et des tranchées",
+      "hazard": "Contact avec des réseaux souterrains, effondrement de tranchées"
+    },
+    {
+      "step": "07",
+      "task": "LOTO et vérification d'absence d'énergie",
+      "hazard": "Remise sous tension accidentelle, choc résiduel"
+    },
+    {
+      "step": "08",
+      "task": "Balisage et radioprotection",
+      "hazard": "Entrée non autorisée, exposition aux rayonnements ionisants"
+    },
+    {
+      "step": "09",
+      "task": "Mise en service et tests de boucle",
+      "hazard": "Interverrouillages shuntés, fuites haute pression"
+    },
+    {
+      "step": "10",
+      "task": "Nettoyage et retrait du LOTO après travail",
+      "hazard": "Outils/débris laissés sur place, risques de court-circuit"
+    }
+  ],
+  "draftSave": {
+    "pending": "Enregistrement",
+    "saved": "Enregistré",
+    "error": "Erreur d’enregistrement",
+    "conflict": "Un brouillon plus récent a été enregistré dans un autre onglet · actualisation requise"
+  }
 }

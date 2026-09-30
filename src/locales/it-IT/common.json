@@ -17,15 +17,61 @@
     "downloadBtn": "Scarica il PDF Originale"
   },
   "steps": [
-    { "step": "01", "task": "Riunione Preliminare (TBT) e Ispezione DPI", "hazard": "Ambito di lavoro non chiaro, uso improprio dei DPI" },
-    { "step": "02", "task": "Sistemi di Protezione contro le Cadute dall'Alto (D.Lgs. 81/08, Titolo IV)", "hazard": "Cedimento del punto di ancoraggio, scivolamenti dovuti al maltempo" },
-    { "step": "03", "task": "Isolamento Materiali Combustibili e Sorveglianza Antincendio", "hazard": "Scintille da lavoro a caldo, esplosione di gas residui" },
-    { "step": "04", "task": "Allestimento Imbracature e Apparecchi di Sollevamento", "hazard": "Scarsa stabilità del suolo, rottura di brache o cavi" },
-    { "step": "05", "task": "Test Atmosferico e Ventilazione (Ambienti Sospetti di Inquinamento)", "hazard": "Carenza di ossigeno, inalazione di gas tossici" },
-    { "step": "06", "task": "Sicurezza Scavi e Trincee", "hazard": "Urto contro sottoservizi, crollo o smottamento delle pareti" },
-    { "step": "07", "task": "LOTO (Lockout/Tagout) e Verifica Energia Zero", "hazard": "Riattivazione accidentale, scossa residua" },
-    { "step": "08", "task": "Delimitazione Aree e Radioprotezione (D.Lgs. 101/2020)", "hazard": "Accesso non autorizzato, esposizione a radiazioni ionizzanti" },
-    { "step": "09", "task": "Messa in Servizio (Commissioning) e Test di Loop", "hazard": "Interlock bypassati, perdite ad alta pressione" },
-    { "step": "10", "task": "Riordino (Housekeeping) e Rimozione LOTO Post-Lavoro", "hazard": "Utensili o detriti lasciati sul posto, rischi di cortocircuito" }
-  ]
+    {
+      "step": "01",
+      "task": "Riunione Preliminare (TBT) e Ispezione DPI",
+      "hazard": "Ambito di lavoro non chiaro, uso improprio dei DPI"
+    },
+    {
+      "step": "02",
+      "task": "Sistemi di Protezione contro le Cadute dall'Alto (D.Lgs. 81/08, Titolo IV)",
+      "hazard": "Cedimento del punto di ancoraggio, scivolamenti dovuti al maltempo"
+    },
+    {
+      "step": "03",
+      "task": "Isolamento Materiali Combustibili e Sorveglianza Antincendio",
+      "hazard": "Scintille da lavoro a caldo, esplosione di gas residui"
+    },
+    {
+      "step": "04",
+      "task": "Allestimento Imbracature e Apparecchi di Sollevamento",
+      "hazard": "Scarsa stabilità del suolo, rottura di brache o cavi"
+    },
+    {
+      "step": "05",
+      "task": "Test Atmosferico e Ventilazione (Ambienti Sospetti di Inquinamento)",
+      "hazard": "Carenza di ossigeno, inalazione di gas tossici"
+    },
+    {
+      "step": "06",
+      "task": "Sicurezza Scavi e Trincee",
+      "hazard": "Urto contro sottoservizi, crollo o smottamento delle pareti"
+    },
+    {
+      "step": "07",
+      "task": "LOTO (Lockout/Tagout) e Verifica Energia Zero",
+      "hazard": "Riattivazione accidentale, scossa residua"
+    },
+    {
+      "step": "08",
+      "task": "Delimitazione Aree e Radioprotezione (D.Lgs. 101/2020)",
+      "hazard": "Accesso non autorizzato, esposizione a radiazioni ionizzanti"
+    },
+    {
+      "step": "09",
+      "task": "Messa in Servizio (Commissioning) e Test di Loop",
+      "hazard": "Interlock bypassati, perdite ad alta pressione"
+    },
+    {
+      "step": "10",
+      "task": "Riordino (Housekeeping) e Rimozione LOTO Post-Lavoro",
+      "hazard": "Utensili o detriti lasciati sul posto, rischi di cortocircuito"
+    }
+  ],
+  "draftSave": {
+    "pending": "Salvataggio",
+    "saved": "Salvato",
+    "error": "Errore di salvataggio",
+    "conflict": "Una bozza più recente è stata salvata in un'altra scheda · aggiorna la pagina"
+  }
 }

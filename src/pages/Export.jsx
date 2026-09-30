@@ -8,6 +8,10 @@ import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDic
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
+import { archiveActiveDraft } from '../services/jsaDraftService';
 
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
@@ -49,25 +53,27 @@ export default function Export() {
   const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
   const [showCopyAdModal, setShowCopyAdModal] = useState(false); // 👇 [기능 추가] 복사 전 광고 모달 상태
 
-  const { 
-    existingId = null, 
-    analysisData = [], 
-    formData = {}, 
-    participants = [], 
-    procedures = [], 
-    savedActiveOrder = [],
-    savedUserColumns = [],
-    savedOrientation = 'landscape',
-    isModuleSkipped, // ✅ 모듈 설정 건너뛰기 여부 플래그 추가
-    docTitle = t('default.docTitle', '위험성평가표 (JSA)'),
-    appr1 = t('default.appr1', '작성'),
-    appr2 = t('default.appr2', '검토'),
-    appr3 = t('default.appr3', '승인'),
-    savedSignatureRows = 1,
-    isFork = false,
-    parentId = null, 
-    originalAnalysisData = null 
-  } = location.state || {};
+  const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
+  const state = location.state || {};
+  const recoveredLayout = recoveredDraft?.layout_data || {};
+
+  const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
+  const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const formData = state.formData || recoveredDraft?.form_data || {};
+  const participants = state.participants || recoveredDraft?.participants || [];
+  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || [];
+  const savedUserColumns = state.savedUserColumns || recoveredLayout.savedUserColumns || [];
+  const savedOrientation = state.savedOrientation || recoveredLayout.savedOrientation || 'landscape';
+  const isModuleSkipped = state.isModuleSkipped ?? recoveredLayout.isModuleSkipped;
+  const docTitle = state.docTitle || recoveredLayout.docTitle || t('default.docTitle', '위험성평가표 (JSA)');
+  const appr1 = state.appr1 || recoveredLayout.appr1 || t('default.appr1', '작성');
+  const appr2 = state.appr2 || recoveredLayout.appr2 || t('default.appr2', '검토');
+  const appr3 = state.appr3 || recoveredLayout.appr3 || t('default.appr3', '승인');
+  const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
+  const isFork = state.isFork || false;
+  const parentId = state.parentId || recoveredDraft?.source_project_id || null;
+  const originalAnalysisData = state.originalAnalysisData || null;
 
   const totalRisks = analysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0);
   const originalTotalRisks = originalAnalysisData ? originalAnalysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0) : 0;
@@ -75,6 +81,27 @@ export default function Export() {
     (analysisData.length > originalAnalysisData.length) || 
     (totalRisks >= originalTotalRisks + 2)
   );
+
+  const draftSave = useJsaDraftAutosave({
+    enabled: Boolean(location.state?.formData || recoveredDraft),
+    stage: 'export',
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    layoutData: {
+      savedSignatureRows,
+      docTitle,
+      appr1,
+      appr2,
+      appr3,
+      savedActiveOrder,
+      savedUserColumns,
+      savedOrientation,
+      isModuleSkipped
+    },
+    sourceProjectId: parentId || existingId || null,
+  });
 
   const jsaType = formData.jsaType || '2-step';
   const COLS = savedOrientation === 'landscape' ? 56 : 40; 
@@ -147,6 +174,7 @@ export default function Export() {
 
       const { error } = await supabase.from('jsa_projects').upsert(projectData);
       if (error) throw error;
+      await archiveActiveDraft();
       alert(isPublic ? t('alert.savePublic') : t('alert.savePrivate'));
     } catch (err) { alert(t('alert.saveError') + err.message); } finally { setIsProcessing(false); }
   };
@@ -425,7 +453,8 @@ export default function Export() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 기능 추가 */}
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 기능 추가 */}
       {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>

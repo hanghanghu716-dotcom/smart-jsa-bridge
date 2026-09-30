@@ -6,6 +6,10 @@ import AdBanner from '../AdBanner';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
+import { saveWorkStep } from '../services/workStepLibraryService';
 
 export default function Analysis() {
   const navigate = useLanguageNavigate();
@@ -14,28 +18,51 @@ export default function Analysis() {
   const { t, i18n } = useTranslation(['analysis', 'tags']);
   const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
-  const {
-    id: existingId = null,
-    procedures = [],
-    formData = {},
-    participants = [],
-    analysisData: incomingAnalysisData
-  } = location.state || {};
+  const state = location.state || {};
+  const shouldRecoverDraft = !state.formData && !state.analysisData;
+  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
+  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
+
+  const existingId = state.id ?? recoveredDraft?.source_project_id ?? null;
+  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const formData = state.formData || recoveredDraft?.form_data || {};
+  const participants = state.participants || recoveredDraft?.participants || [];
+  const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || [];
 
   const jsaType = formData.jsaType || '2-step';
   useEffect(() => {
-    if (location.state?.isFastTrack !== undefined) {
-      localStorage.setItem('jsa_isFastTrack', JSON.stringify(location.state.isFastTrack));
+    if (state.isFastTrack !== undefined) {
+      localStorage.setItem('jsa_isFastTrack', JSON.stringify(state.isFastTrack));
     }
-  }, [location.state?.isFastTrack]);
+  }, [state.isFastTrack]);
 
-  const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');  const [dbRisks, setDbRisks] = useState([]);
+  const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');
+  const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
+
+  useEffect(() => {
+    if (analysisData.length === 0 && incomingAnalysisData.length > 0) {
+      setAnalysisData(incomingAnalysisData);
+    }
+  }, [incomingAnalysisData, analysisData.length]);
+
+  const draftSave = useJsaDraftAutosave({
+    enabled: recoverySettled && Boolean(
+      formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
+    ),
+    stage: 'analysis',
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
+  });
   const [activeIdx, setActiveIdx] = useState(0);
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedHighRisk, setSelectedHighRisk] = useState("");
+  const [isSavingWorkStep, setIsSavingWorkStep] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [measureSearchModal, setMeasureSearchModal] = useState({
     isOpen: false,
@@ -468,6 +495,41 @@ export default function Analysis() {
 
   const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
 
+  const handleSaveCurrentWorkStep = async () => {
+    if (!currentStep?.proc?.stepTitle?.trim()) return;
+
+    setIsSavingWorkStep(true);
+    try {
+      await saveWorkStep({
+        title: currentStep.proc.stepTitle,
+        detail: currentStep.proc.stepDetail || '',
+        analysisData: {
+          ...currentStep,
+          proc: {
+            stepTitle: currentStep.proc.stepTitle,
+            stepDetail: currentStep.proc.stepDetail || ''
+          },
+          risks: Array.isArray(currentStep.risks)
+            ? currentStep.risks.map(risk => ({ ...risk }))
+            : []
+        },
+        tags: formData?.tags || [],
+        locale: i18n.language || 'en-US',
+        sourceProjectId: currentStep.proc.sourceProjectId || existingId || null,
+        sourceProjectTitle: currentStep.proc.sourceProjectTitle || formData?.projectName || '',
+        sourceStepIndex: Number.isInteger(currentStep.proc.sourceStepIndex)
+          ? currentStep.proc.sourceStepIndex
+          : activeIdx,
+      });
+      alert(t('alert.stepSaved'));
+    } catch (error) {
+      console.error('[Work Step Library] save failed:', error);
+      alert(error?.message === 'LOGIN_REQUIRED' ? t('alert.loginRequired') : t('alert.stepSaveFailed'));
+    } finally {
+      setIsSavingWorkStep(false);
+    }
+  };
+
   useEffect(() => {
     const updateRecommendations = async () => {
       let matched = [];
@@ -550,6 +612,7 @@ export default function Analysis() {
   return (
     <div style={styles.wrapper}>
       <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
       {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
 
       {isLibraryModalOpen && (
@@ -712,6 +775,13 @@ export default function Analysis() {
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
                     <button style={styles.libLoadBtn} onClick={fetchMyLibrary}>{t('filter.loadLibBtn')}</button>
+                    <button
+                      style={styles.saveStepBtn}
+                      onClick={handleSaveCurrentWorkStep}
+                      disabled={isSavingWorkStep || !currentStep?.proc?.stepTitle?.trim()}
+                    >
+                      {isSavingWorkStep ? t('filter.savingStepBtn') : t('filter.saveStepBtn')}
+                    </button>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
