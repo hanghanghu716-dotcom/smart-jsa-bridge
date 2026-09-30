@@ -163,7 +163,7 @@ export default function MyLibrary() {
 
   const resumeDraft = (draft) => {
     if (!draft?.id) return;
-    setActiveDraftId(draft.id);
+    setActiveDraftId(draft.id, draft.version || null);
 
     const routeMap = {
       info: '/info',
