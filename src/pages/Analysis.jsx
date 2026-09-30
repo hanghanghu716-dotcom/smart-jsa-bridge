@@ -9,6 +9,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { saveWorkStep } from '../services/workStepLibraryService';
 
 export default function Analysis() {
@@ -725,6 +726,7 @@ export default function Analysis() {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
+        <ThemeSwitcher compact />
       </header>
 
       <div style={styles.mainLayout}>
@@ -1024,7 +1026,7 @@ const styles = {
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { padding: '1.2rem 5rem', zIndex: 10, position: 'relative' },
+  header: { padding: '1.2rem 5rem', zIndex: 10, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
   logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { flex: 1, display: 'flex', padding: '0 5rem 80px', zIndex: 10, overflow: 'hidden', gap: '3rem' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
