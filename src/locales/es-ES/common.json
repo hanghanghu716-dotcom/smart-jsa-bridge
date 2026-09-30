@@ -71,6 +71,7 @@
   "draftSave": {
     "pending": "Guardando",
     "saved": "Guardado",
-    "error": "Error al guardar"
+    "error": "Error al guardar",
+    "conflict": "Se guardó un borrador más reciente en otra pestaña · es necesario actualizar"
   }
 }
