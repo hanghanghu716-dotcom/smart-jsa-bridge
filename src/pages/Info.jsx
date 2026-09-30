@@ -446,7 +446,7 @@ const styles = {
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.3 },
   stepBadgeActive: { width: '22px', height: '22px', backgroundColor: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-on-accent)', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-secondary)' },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-secondary)' },
   stepTextActive: { fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '700' },
   stepText: { fontSize: '0.85rem', color: 'var(--text-secondary)' },
   stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
