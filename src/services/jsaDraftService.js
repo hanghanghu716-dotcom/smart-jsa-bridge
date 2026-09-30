@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 const GUEST_DRAFT_PREFIX = 'smartjsa_guest_draft:';
 const ACTIVE_DRAFT_KEY = 'smartjsa_active_draft_id';
 const ACTIVE_DRAFT_VERSION_KEY = 'smartjsa_active_draft_version';
+const draftSaveQueues = new Map();
 
 const newUuid = () => {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
@@ -53,7 +54,7 @@ export const clearActiveDraft = () => {
   if (draftId) localStorage.removeItem(GUEST_DRAFT_PREFIX + draftId);
 };
 
-export const saveDraftSnapshot = async ({
+const performDraftSnapshotSave = async ({
   draftId,
   title,
   currentStage,
@@ -138,6 +139,24 @@ export const saveDraftSnapshot = async ({
   }
 
   return { draftId, storage: 'cloud', version: saved?.version || 1 };
+};
+
+export const saveDraftSnapshot = (snapshot) => {
+  const draftId = snapshot?.draftId;
+  if (!draftId) return Promise.resolve({ draftId: null, storage: 'none' });
+
+  const previous = draftSaveQueues.get(draftId) || Promise.resolve();
+  const queued = previous
+    .catch(() => {})
+    .then(() => performDraftSnapshotSave(snapshot));
+
+  draftSaveQueues.set(draftId, queued);
+
+  return queued.finally(() => {
+    if (draftSaveQueues.get(draftId) === queued) {
+      draftSaveQueues.delete(draftId);
+    }
+  });
 };
 
 export const loadActiveDraft = async () => {
