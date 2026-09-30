@@ -133,6 +133,9 @@
     "savingTemplate": "Сохранение...",
     "templateSaved": "Шаблон документа сохранён.",
     "templateSaveError": "Не удалось сохранить шаблон.",
-    "loginRequired": "Требуется вход."
+    "loginRequired": "Требуется вход.",
+    "fieldValues": "Значения по этапам",
+    "noWorkSteps": "Нет этапов работ.",
+    "stepFallback": "Этап {{number}}"
   }
 }
