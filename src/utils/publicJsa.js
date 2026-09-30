@@ -4,11 +4,29 @@ import { publicProjectSnapshot, projectEditorState } from './projectPersistence.
 export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,form_data,analysis_data,custom_layout,tags,created_at,updated_at,scrap_count';
 export const validProjectId = id => typeof id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 const cleanText = value => typeof value === 'string' ? value.trim() : '';
+const object = value => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+const strings = value => Array.isArray(value) ? value.filter(item => typeof item === 'string') : [];
+function publicLayout(value) {
+  const layout = { ...object(value) };
+  for (const key of ['docTitle', 'appr1', 'appr2', 'appr3']) if (key in layout) layout[key] = cleanText(layout[key]);
+  if ('documentBlocks' in layout) layout.documentBlocks = (Array.isArray(layout.documentBlocks) ? layout.documentBlocks : []).filter(block => typeof block?.id === 'string').map(block => ({ id: block.id, enabled: Boolean(block.enabled) }));
+  if ('savedActiveOrder' in layout) layout.savedActiveOrder = strings(layout.savedActiveOrder);
+  if ('savedUserColumns' in layout) layout.savedUserColumns = (Array.isArray(layout.savedUserColumns) ? layout.savedUserColumns : []).filter(column => typeof column?.id === 'string').map(column => ({ id: column.id, label: cleanText(column.label), align: ['left','right','center'].includes(column.align) ? column.align : 'left', width: Number(column.width) || 5, fieldType: cleanText(column.fieldType), options: strings(column.options) }));
+  layout.savedColumnOverrides = Object.fromEntries(Object.entries(object(layout.savedColumnOverrides)).map(([key, column]) => [key, { label: cleanText(column?.label), width: Number(column?.width) || undefined, align: ['left','right','center'].includes(column?.align) ? column.align : undefined }]));
+  if ('savedSignatureRows' in layout) layout.savedSignatureRows = Math.max(1, Math.min(8, Number(layout.savedSignatureRows) || 1));
+  return layout;
+}
 
 // Public readers never receive private document fields, even for older rows.
 export function publicJsaView(row) {
   if (!row || row.is_public !== true) return null;
-  const clean = publicProjectSnapshot({ formData: row.form_data || {}, analysisData: Array.isArray(row.analysis_data) ? row.analysis_data.filter(step => step && typeof step === 'object').map(step => ({ ...step, risks: Array.isArray(step.risks) ? step.risks.filter(risk => risk && typeof risk === 'object') : [] })) : [], layoutData: row.custom_layout || {} });
+  const form = object(row.form_data);
+  const formData = { ...form, projectName: cleanText(form.projectName), ppe: strings(form.ppe), permits: strings(form.permits) };
+  const analysisData = (Array.isArray(row.analysis_data) ? row.analysis_data : []).filter(step => step && typeof step === 'object').map(step => ({ ...step,
+    proc: { stepTitle: cleanText(step.proc?.stepTitle), stepDetail: cleanText(step.proc?.stepDetail) },
+    risks: (Array.isArray(step.risks) ? step.risks : []).filter(risk => risk && typeof risk === 'object').map(risk => ({ ...risk, ...Object.fromEntries(['factor','category','measure','current_measure','recommend_measure'].map(key => [key,cleanText(risk[key])])) })),
+  }));
+  const clean = publicProjectSnapshot({ formData, analysisData, layoutData: publicLayout(row.custom_layout) });
   return { id: row.id, author_id: row.author_id, title: cleanText(row.title), is_public: true,
     public_locale: SUPPORTED_LANGS.includes(row.public_locale) ? row.public_locale : null,
     form_data: clean.formData, analysis_data: clean.analysisData, participants: [],

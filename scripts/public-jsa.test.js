@@ -53,3 +53,7 @@ test('static publishing never snapshots user-owned routes, even when they are li
   assert.ok(routes.every(route=>!/(?:explore|public-jsa|business|library|login|export|profile)/.test(route)));
   assert.match(fs.readFileSync(new URL('./prerender-cases.js',import.meta.url),'utf8'),/crawl: false/);
 });
+test('malformed community fields cannot inject objects into the document renderer',()=>{
+  const safe=publicJsaView({...row,form_data:{projectName:{bad:true},ppe:'bad',permits:[{}]},analysis_data:[null,{proc:{stepTitle:{}},risks:[null,{factor:{bad:true}}]}],custom_layout:{docTitle:{},documentBlocks:[null],savedActiveOrder:[null,{}],savedUserColumns:[null],savedColumnOverrides:{DATA_HAZARD:null}}});
+  assert.equal(safe.form_data.projectName,'');assert.deepEqual(safe.form_data.ppe,[]);assert.equal(safe.analysis_data[0].proc.stepTitle,'');assert.equal(safe.analysis_data[0].risks[0].factor,'');assert.deepEqual(safe.custom_layout.savedUserColumns,[]);
+});

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-sitemap.js",
-    "build": "vite build && node scripts/prerender-cases.js",
+    "build": "vite build && node scripts/prerender-cases.js && node scripts/verify-public-build.js",
     "lint": "eslint .",
     "test:locales": "node --test scripts/locales.test.js",
     "preview": "vite preview",
@@ -17,7 +17,9 @@
     "test:document": "node --test scripts/document-layout.test.js",
     "test:persistence": "node --test scripts/project-persistence.test.js",
     "test:persistence:browser": "node scripts/project-persistence-browser.cjs",
-    "test:public": "node --test scripts/public-jsa.test.js"
+    "test:public": "node --test scripts/public-jsa.test.js",
+    "test:business": "node --test scripts/business.test.js",
+    "test:business:browser": "node scripts/business-browser.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -92,7 +94,8 @@
       "\\/reset-password",
       "\\/jsa-preview",
       "\\/jsasamplepreview",
-      "\\/public-jsa"
+      "\\/public-jsa",
+      "\\/business"
     ],
     "puppeteerArgs": [
       "--no-sandbox",

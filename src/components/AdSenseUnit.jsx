@@ -37,5 +37,6 @@ function AdSlot({ client, slot, format, responsive, style }) {
 
 export default function AdSenseUnit({ client, slot, format = 'auto', responsive = 'true', style = {} }) {
   const { pathname } = useLocation();
+  if (/\/(business|login)(\/|$)/.test(pathname)) return null;
   return <AdSlot key={pathname + ':' + client + ':' + slot} {...{ client, slot, format, responsive, style }} />;
 }

@@ -1,3 +1,4 @@
+import CompanyTemplateManager from './CompanyTemplateManager';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { listTemplates, writeTemplate, removeTemplate, setDefaultTemplate } from '../services/documentTemplateService';
@@ -67,5 +68,6 @@ export default function DocumentTemplateManager({ layout, onApply, allowDefault 
       <button style={button} disabled={busy || !selected} onClick={() => perform('delete')}>{t('saveFlow.deleteTemplate')}</button>
     </div>
     <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.5 }}>{t('saveFlow.defaultHint')}</p>
+    <CompanyTemplateManager layout={layout} onApply={onApply} />
   </section>;
 }

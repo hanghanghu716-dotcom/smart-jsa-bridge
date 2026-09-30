@@ -1,6 +1,7 @@
 import { projectEditorState } from '../utils/projectPersistence';
 import { saveProject } from '../services/projectPersistenceService';
 import { clearActiveDraft } from '../services/jsaDraftService';
+import { getBusinessUi } from '../locales/businessUi';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getLanguageTag } from '../locales/config.js';
 import React, { useState, useEffect } from 'react';
@@ -393,7 +394,7 @@ export default function MyLibrary() {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
-        <ThemeSwitcher compact />
+        <LanguageLink to="/business" style={{ color: 'var(--accent)', fontSize: 14 }}>{getBusinessUi(i18n.language).title} →</LanguageLink><ThemeSwitcher compact />
       </header>
 
       <div style={styles.mainLayout}>

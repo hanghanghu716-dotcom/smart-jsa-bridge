@@ -9,7 +9,7 @@ export default function MobileGuard({ children }) {
     ? '/' + segments.slice(2).join('/') : pathname;
   const allowedPaths = ['/jrajsa', '/about', '/terms', '/privacy', '/regulation',
     '/riskclassification', '/protectiveequipment', '/guideline', '/admin/upload',
-    '/case-study', '/explore', '/public-jsa', '/login', '/dictionary', '/info', '/archive'];
+    '/case-study', '/explore', '/public-jsa', '/business', '/login', '/dictionary', '/info', '/archive'];
   const isAllowedPath = purePath === '/' || purePath === ''
     || allowedPaths.some(path => purePath === path || purePath.startsWith(path + '/'));
 
