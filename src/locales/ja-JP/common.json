@@ -125,6 +125,14 @@
     "projectFallback": "プロジェクト",
     "ppeLabel": "PPE:",
     "permitLabel": "許可:",
-    "signatureRows": "署名 {{count}} 行"
+    "signatureRows": "署名 {{count}} 行",
+    "templates": "文書テンプレート",
+    "chooseTemplate": "保存済みテンプレートを読み込む",
+    "templateName": "テンプレート名",
+    "saveTemplate": "保存",
+    "savingTemplate": "保存中...",
+    "templateSaved": "文書テンプレートを保存しました。",
+    "templateSaveError": "テンプレートを保存できませんでした。",
+    "loginRequired": "ログインが必要です。"
   }
 }
