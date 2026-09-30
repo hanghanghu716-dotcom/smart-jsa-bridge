@@ -311,7 +311,7 @@ export default function Export() {
               return (
                 <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
                   {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: '#888'}}>{t('signature.sign')}</span>
+                  <span style={{color: 'var(--text-muted)'}}>{t('signature.sign')}</span>
                 </td>
               );
             })}
@@ -324,7 +324,7 @@ export default function Export() {
                 return (
                   <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
                     {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: '#888'}}>{t('signature.sign')}</span>
+                    <span style={{color: 'var(--text-muted)'}}>{t('signature.sign')}</span>
                   </td>
                 );
               })}
@@ -488,7 +488,7 @@ export default function Export() {
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
               <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
               {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
-              <button style={{...styles.pdfBtn, backgroundColor: '#28a745', color: '#fff'}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
+              <button style={{...styles.pdfBtn, backgroundColor: '#28a745', color: 'var(--text-primary)'}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
 
               {/* 👇 [기능 추가] 복사 전용 광고 모달 (PDF 모달 구조 재사용) */}
               {showCopyAdModal && (
@@ -532,21 +532,21 @@ export default function Export() {
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h3 style={styles.modalTitle}>{t('modal.pubTitle')}</h3>
-              <p style={{ ...styles.modalSub, color: '#ff7675', fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
+              <p style={{ ...styles.modalSub, color: 'var(--danger)', fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
             <p style={styles.modalSub}>{t('modal.pubSub')}</p>
             <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
             <div style={styles.typeGrid}>
               {(isFork && !isValuableFork) ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
                   <div style={{...styles.typeBadge, backgroundColor: '#444'}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: '#888'}}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
+                  <h4 style={{...styles.typeLabel, color: 'var(--text-muted)'}}>{t('modal.pubPublicLabel')}</h4>
+                  <p style={{...styles.typeDesc, color: 'var(--danger)', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
                 </div>
               ) : totalRisks < 3 ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
                   <div style={{...styles.typeBadge, backgroundColor: '#444'}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: '#888'}}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
+                  <h4 style={{...styles.typeLabel, color: 'var(--text-muted)'}}>{t('modal.pubPublicLabel')}</h4>
+                  <p style={{...styles.typeDesc, color: 'var(--danger)', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
                 </div>
               ) : (
                 <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
@@ -578,47 +578,47 @@ const styles = {
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)', backgroundPosition: 'center' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 5rem 60px', zIndex: 10, gap: '3rem', overflow: 'hidden', alignItems: 'center' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1550px', height: '82vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.9)' },
+  formCard: { width: '100%', maxWidth: '1550px', height: '82vh', backgroundColor: 'var(--surface-panel)', border: '1px solid var(--border-soft)', borderRadius: '12px', padding: '1.5rem 2.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: 'var(--shadow-xl)' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', gap: '0.4rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.3rem' },
-  stepBadgeDone: { width: '18px', height: '18px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.65rem' },
-  stepTextDone: { fontSize: '0.75rem', color: '#4caf50', fontWeight: '700' },
+  stepBadgeDone: { width: '18px', height: '18px', backgroundColor: 'var(--success)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-on-accent)', fontSize: '0.65rem' },
+  stepTextDone: { fontSize: '0.75rem', color: 'var(--success)', fontWeight: '700' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.3rem' },
-  stepBadgeActive: { width: '18px', height: '18px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', fontWeight: 'bold' },
-  stepTextActive: { fontSize: '0.75rem', color: '#fff', fontWeight: '700' },
-  stepLineActive: { width: '20px', height: '1px', backgroundColor: '#4caf50' },
+  stepBadgeActive: { width: '18px', height: '18px', backgroundColor: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-on-accent)', fontSize: '0.7rem', fontWeight: 'bold' },
+  stepTextActive: { fontSize: '0.75rem', color: 'var(--text-primary)', fontWeight: '700' },
+  stepLineActive: { width: '20px', height: '1px', backgroundColor: 'var(--success)' },
   formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
-  previewArea: { flex: 1, overflow: 'auto', backgroundColor: '#111', borderRadius: '10px', padding: '3rem', border: '1px solid #333' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary)' },
+  previewArea: { flex: 1, overflow: 'auto', backgroundColor: 'var(--surface)', borderRadius: '10px', padding: '3rem', border: '1px solid var(--border-default)' },
   reportPaper: { color: '#000', backgroundColor: '#fff', height: 'auto', display: 'flex', flexDirection: 'column', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border-default)', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: 'var(--button-strong-bg)', color: 'var(--button-strong-text)', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   processingOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
-  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' },
+  loaderText: { color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 'bold' },
   modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  modalContent: { width: '500px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
-  modalTitle: { fontSize: '1.5rem', color: '#fff', marginBottom: '0.5rem', fontWeight: '800' },
-  modalSub: { fontSize: '0.9rem', color: '#888', marginBottom: '2rem' },
-  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.03)' },
+  modalContent: { width: '500px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalTitle: { fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem', fontWeight: '800' },
+  modalSub: { fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '2rem' },
+  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: 'var(--border-subtle)' },
   typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
-  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
-  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '2px solid #007bff', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
-  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: '#aaa', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
-  typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
-  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
+  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: 'var(--surface-2)', border: '1px solid var(--border-default)', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
+  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: 'var(--surface-2)', border: '2px solid var(--accent)', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: 'var(--text-secondary)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeLabel: { fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.8rem', fontWeight: 'bold' },
+  typeDesc: { fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' },
+  modalCloseBtn: { background: 'none', border: 'none', color: 'var(--text-faint)', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
 };
 
 if (typeof document !== 'undefined') {
   const styleId = "jsa-bridge-export-style-v2";
   let styleTag = document.getElementById(styleId);
   if (!styleTag) { styleTag = document.createElement("style"); styleTag.id = styleId; document.head.appendChild(styleTag); }
-  styleTag.innerHTML = `html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; } * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; } *::-webkit-scrollbar { display: none !important; }`;
+  styleTag.innerHTML = `html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: var(--app-bg) !important; overflow-y: auto !important; } * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; } *::-webkit-scrollbar { display: none !important; }`;
 }

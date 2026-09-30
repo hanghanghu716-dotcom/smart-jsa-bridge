@@ -1,3 +1,87 @@
+/* Theme foundation: Auto / Light / Dark semantic tokens */
+:root,
+html[data-theme="dark"] {
+  --app-bg: #0f1115;
+  --surface-panel: rgba(18, 21, 26, 0.97);
+  --surface: #111418;
+  --surface-2: #171b21;
+  --surface-3: #1d232b;
+  --input-bg: #1b2027;
+  --text-primary: #f5f7fa;
+  --text-secondary: #b1bac6;
+  --text-muted: #7f8997;
+  --text-faint: #596473;
+  --text-inverse: #0b0e12;
+  --text-on-accent: #ffffff;
+  --hero-text: #ffffff;
+  --border-default: #323946;
+  --border-soft: rgba(255,255,255,0.12);
+  --border-subtle: rgba(255,255,255,0.07);
+  --accent: #0b7cff;
+  --accent-hover: #0069dc;
+  --accent-soft: rgba(11,124,255,0.12);
+  --accent-text: #6fb4ff;
+  --success: #4caf50;
+  --warning: #e9bd45;
+  --danger: #ff5c5c;
+  --danger-soft: rgba(255,92,92,0.10);
+  --overlay-strong: rgba(0,0,0,0.82);
+  --overlay-soft: rgba(0,0,0,0.42);
+  --shadow-xl: 0 28px 70px rgba(0,0,0,0.55);
+  --button-strong-bg: #f5f7fa;
+  --button-strong-text: #0b0e12;
+  --paper-bg: #ffffff;
+  --paper-text: #111827;
+}
+
+html[data-theme="light"] {
+  --app-bg: #eef2f6;
+  --surface-panel: rgba(255,255,255,0.97);
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --surface-3: #edf1f5;
+  --input-bg: #ffffff;
+  --text-primary: #18202a;
+  --text-secondary: #475467;
+  --text-muted: #667085;
+  --text-faint: #98a2b3;
+  --text-inverse: #ffffff;
+  --text-on-accent: #ffffff;
+  --hero-text: #ffffff;
+  --border-default: #d0d5dd;
+  --border-soft: rgba(24,32,42,0.14);
+  --border-subtle: rgba(24,32,42,0.08);
+  --accent: #066fe8;
+  --accent-hover: #005fc8;
+  --accent-soft: rgba(6,111,232,0.10);
+  --accent-text: #0759b6;
+  --success: #2f8f46;
+  --warning: #a66b00;
+  --danger: #d92d20;
+  --danger-soft: rgba(217,45,32,0.08);
+  --overlay-strong: rgba(16,24,40,0.54);
+  --overlay-soft: rgba(16,24,40,0.22);
+  --shadow-xl: 0 24px 60px rgba(16,24,40,0.16);
+  --button-strong-bg: #18202a;
+  --button-strong-text: #ffffff;
+  --paper-bg: #ffffff;
+  --paper-text: #111827;
+}
+
+html {
+  background: var(--app-bg);
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--text-primary);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
 /* 1. 반드시 최상단에 위치해야 하는 임포트 (v4 방식) */
 @import "tailwindcss";
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -11,9 +95,6 @@
 
 :root {
   font-family: 'Pretendard', -apple-system, sans-serif;
-  /* 배경색을 주석 처리하거나 제거하여 Tailwind의 bg-white가 작동하게 합니다 */
-  /* background-color: #000; */ 
-  color: #fff;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }

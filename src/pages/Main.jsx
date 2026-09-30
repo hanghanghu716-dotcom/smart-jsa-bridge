@@ -9,7 +9,8 @@ import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { AuthContext } from '../contexts/AuthContext';
-import { clearActiveDraft } from '../services/jsaDraftService'; 
+import { clearActiveDraft } from '../services/jsaDraftService';
+import ThemeSwitcher from '../components/ThemeSwitcher'; 
 
 // Compact header copy is kept here so this file can be replaced independently.
 // Optional main:header.* translations take precedence over these defaults.
@@ -442,6 +443,8 @@ export default function Main() {
               <LanguageLink to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</LanguageLink>
             )}
 
+            <div style={{ ...styles.navCategory, marginTop: '30px' }}>APPEARANCE</div>
+            <ThemeSwitcher />
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
             <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</LanguageLink>
             <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navProcess')}</LanguageLink>

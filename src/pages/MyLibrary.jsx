@@ -596,7 +596,7 @@ export default function MyLibrary() {
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
                       <h4 style={styles.mTitle}>{t('layoutListTitle')}</h4>
-                      {layouts.length === 0 && <div style={{color: '#888', fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
+                      {layouts.length === 0 && <div style={{color: 'var(--text-muted)', fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
                       {layouts.map(l => (
                         <div key={l.id} style={styles.mRow}>
                           <span>[{t('layoutLabel')}] {l.name} <span style={{fontSize:'0.75rem', color:'#666', marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
@@ -646,7 +646,7 @@ export default function MyLibrary() {
                             {activeMenuId === f.id && (
                               <div style={styles.dropdown}>
                                 {f.displayType === 'MY_JSA' && (
-                                  <div style={{...styles.dropdownItem, color: '#007bff', fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.id, f.originData?.is_public)}>
+                                  <div style={{...styles.dropdownItem, color: 'var(--accent)', fontWeight: 'bold'}} onClick={() => handleTogglePublic(f.id, f.originData?.is_public)}>
                                     {f.originData?.is_public ? t('menuToPrivate') : t('menuToPublic')}
                                   </div>
                                 )}
@@ -658,13 +658,13 @@ export default function MyLibrary() {
                                 )}
                                 {f.originData?.analysis_data?.length > 0 && (
                                   <div
-                                    style={{ ...styles.dropdownItem, color: '#4caf50', fontWeight: 'bold' }}
+                                    style={{ ...styles.dropdownItem, color: 'var(--success)', fontWeight: 'bold' }}
                                     onClick={() => handleSaveProjectSteps(f.originData)}
                                   >
                                     {bulkSavingProjectId === f.originData?.id ? t('bulkSavingSteps') : t('menuSaveWorkSteps')}
                                   </div>
                                 )}
-                                <div style={{...styles.dropdownItem, color: '#ff4d4d'}} onClick={async () => {
+                                <div style={{...styles.dropdownItem, color: 'var(--danger)'}} onClick={async () => {
                                   if(window.confirm(t('confirmDeleteItem'))) {
                                     const table = f.displayType === 'MY_JSA' ? 'jsa_projects' : 'user_favorites';
                                     const id = f.displayType === 'MY_JSA' ? f.id.replace('mine-','') : f.id;
@@ -726,84 +726,84 @@ const FolderItem = ({ folder, selectedId, onSelect, onDelete, favorites, level =
 
 // 스타일 객체는 원본 소스코드를 절대적으로 유지합니다.[cite: 16]
 const styles = {
-  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: '#000', position: 'relative' },
+  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: 'var(--app-bg)', position: 'relative' },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
   header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: 'var(--hero-text)', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 120px', gap: '4rem', zIndex: 10 },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', height: '75vh', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', overflow: 'hidden' },
-  libHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px solid #222' },
-  title: { fontSize: '1.5rem', fontWeight: '800', color: '#fff' },
+  formCard: { width: '100%', backgroundColor: 'var(--surface-panel)', border: '1px solid var(--border-soft)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', height: '75vh', boxShadow: 'var(--shadow-xl)', overflow: 'hidden' },
+  libHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border-default)' },
+  title: { fontSize: '1.5rem', fontWeight: '800', color: 'var(--text-primary)' },
   addCategoryBox: { display: 'flex', gap: '10px' },
-  catInput: { backgroundColor: '#111', border: '1px solid #333', color: '#fff', padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.85rem' },
-  catAddBtn: { backgroundColor: '#007bff', color: '#fff', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
+  catInput: { backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', padding: '0.6rem 1rem', borderRadius: '6px', outline: 'none', fontSize: '0.85rem' },
+  catAddBtn: { backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', padding: '0.6rem 1.2rem', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' },
   contentGrid: { display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2.5rem', flex: 1, overflow: 'hidden' },
   catSidebar: { borderRight: '1px solid #222', paddingRight: '1rem', overflowY: 'auto' },
-  systemCat: { padding: '1rem', color: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
-  systemCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  systemCat: { padding: '1rem', color: 'var(--danger)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #331111', marginBottom: '10px' },
+  systemCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: '#ff4d4d', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
   draftCat: { padding: '1rem', color: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(233,189,69,0.25)', marginBottom: '10px' },
   draftCatActive: { padding: '1rem', color: '#111', backgroundColor: '#e9bd45', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  workStepCat: { padding: '1rem', color: '#4caf50', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
-  workStepCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#4caf50', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  layoutCat: { padding: '1rem', color: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
-  layoutCatActive: { padding: '1rem', color: '#fff', backgroundColor: '#007bff', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
-  catDivider: { height: '1px', backgroundColor: '#222', margin: '10px 0' },
-  catItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: '#888', cursor: 'pointer', fontSize: '0.85rem' },
-  catItemActive: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: '#fff', backgroundColor: '#222', borderRadius: '8px', fontSize: '0.85rem' },
-  catDelBtn: { background: 'none', border: 'none', color: '#555', fontSize: '0.75rem', cursor: 'pointer' },
+  workStepCat: { padding: '1rem', color: 'var(--success)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid rgba(76,175,80,0.25)', marginBottom: '10px' },
+  workStepCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: 'var(--success)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  layoutCat: { padding: '1rem', color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', border: '1px solid #002244', marginBottom: '10px' },
+  layoutCatActive: { padding: '1rem', color: 'var(--text-primary)', backgroundColor: 'var(--accent)', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '8px', marginBottom: '10px' },
+  catDivider: { height: '1px', backgroundColor: 'var(--surface-3)', margin: '10px 0' },
+  catItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.85rem' },
+  catItemActive: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem', color: 'var(--text-primary)', backgroundColor: 'var(--surface-3)', borderRadius: '8px', fontSize: '0.85rem' },
+  catDelBtn: { background: 'none', border: 'none', color: 'var(--text-faint)', fontSize: '0.75rem', cursor: 'pointer' },
   catScrollArea: { overflowY: 'auto' },
   listSection: { overflowY: 'auto', paddingRight: '10px' },
   jsaGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' },
-  jsaCard: { backgroundColor: '#050505', border: '1px solid #111', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.2s ease' },
+  jsaCard: { backgroundColor: 'var(--surface)', border: '1px solid #111', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.2s ease' },
   cardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' },
-  typeBadge: { fontSize: '0.55rem', fontWeight: 'bold', color: '#fff', padding: '1px 5px', borderRadius: '3px' },
+  typeBadge: { fontSize: '0.55rem', fontWeight: 'bold', color: 'var(--text-primary)', padding: '1px 5px', borderRadius: '3px' },
   menuWrapper: { position: 'relative' },
   menuBtn: { background: 'none', border: 'none', color: '#333', fontSize: '1.2rem', cursor: 'pointer' },
-  dropdown: { position: 'absolute', top: '100%', right: 0, width: '150px', backgroundColor: '#0a0a0a', border: '1px solid #222', borderRadius: '6px', padding: '0.3rem', zIndex: 100 },
-  dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: '#888', cursor: 'pointer', borderRadius: '3px' },
-  cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: '#eee', lineHeight: '1.3' },
-  dateLabel: { fontSize: '0.7rem', color: '#666', marginBottom: '1rem' }, 
+  dropdown: { position: 'absolute', top: '100%', right: 0, width: '150px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '6px', padding: '0.3rem', zIndex: 100 },
+  dropdownItem: { padding: '0.5rem 0.8rem', fontSize: '0.75rem', color: 'var(--text-muted)', cursor: 'pointer', borderRadius: '3px' },
+  cardTitle: { fontSize: '1rem', fontWeight: '800', margin: '0 0 0.3rem', color: 'var(--text-primary)', lineHeight: '1.3' },
+  dateLabel: { fontSize: '0.7rem', color: 'var(--text-muted)', marginBottom: '1rem' }, 
   cardTags: { display: 'flex', gap: '6px', marginBottom: '1.8rem', flexWrap: 'wrap' },
-  miniTag: { fontSize: '0.65rem', color: '#555' },
+  miniTag: { fontSize: '0.65rem', color: 'var(--text-faint)' },
   cardFooter: { marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', position: 'relative' },
-  moveSelect: { width: '100%', backgroundColor: '#000', color: '#555', border: '1px solid #222', padding: '0.5rem', borderRadius: '4px', fontSize: '0.75rem', marginBottom: '10px' },
-  useBtn: { width: '100%', padding: '0.8rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '6px', fontWeight: '900', cursor: 'pointer', fontSize: '0.85rem' },
-  scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: '#444', letterSpacing: '0.5px' }, 
+  moveSelect: { width: '100%', backgroundColor: 'var(--app-bg)', color: 'var(--text-faint)', border: '1px solid var(--border-default)', padding: '0.5rem', borderRadius: '4px', fontSize: '0.75rem', marginBottom: '10px' },
+  useBtn: { width: '100%', padding: '0.8rem', backgroundColor: 'var(--button-strong-bg)', color: 'var(--button-strong-text)', border: 'none', borderRadius: '6px', fontWeight: '900', cursor: 'pointer', fontSize: '0.85rem' },
+  scrapRow: { marginTop: '8px', fontSize: '0.6rem', color: 'var(--text-faint)', letterSpacing: '0.5px' }, 
   managementView: { padding: '1rem' },
   mGroup: { marginBottom: '2rem' },
-  mTitle: { fontSize: '0.95rem', color: '#fff', marginBottom: '1rem', borderBottom: '1px solid #333', paddingBottom: '5px', fontWeight: 'bold' },
-  mRow: { display: 'flex', justifyContent: 'space-between', padding: '1rem', backgroundColor: '#111', borderRadius: '8px', marginBottom: '8px', fontSize: '0.85rem' },
-  mBtn: { padding: '4px 10px', backgroundColor: '#222', color: '#ff4d4d', border: '1px solid #444', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem' },
-  emptyAsset: { padding: '1.5rem', color: '#666', fontSize: '0.82rem', textAlign: 'center', border: '1px dashed #2a2a2a', borderRadius: '8px' },
-  assetRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1rem', backgroundColor: '#101010', border: '1px solid #222', borderRadius: '8px', marginBottom: '8px' },
+  mTitle: { fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '1rem', borderBottom: '1px solid var(--border-default)', paddingBottom: '5px', fontWeight: 'bold' },
+  mRow: { display: 'flex', justifyContent: 'space-between', padding: '1rem', backgroundColor: 'var(--surface)', borderRadius: '8px', marginBottom: '8px', fontSize: '0.85rem' },
+  mBtn: { padding: '4px 10px', backgroundColor: 'var(--surface-3)', color: 'var(--danger)', border: '1px solid var(--border-default)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem' },
+  emptyAsset: { padding: '1.5rem', color: 'var(--text-muted)', fontSize: '0.82rem', textAlign: 'center', border: '1px dashed #2a2a2a', borderRadius: '8px' },
+  assetRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', padding: '1rem', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '8px', marginBottom: '8px' },
   assetInfo: { minWidth: 0, flex: 1, display: 'flex', flexDirection: 'column', gap: '5px' },
   assetTitleRow: { display: 'flex', alignItems: 'center', gap: '6px' },
-  assetTitle: { color: '#eee', fontSize: '0.88rem' },
-  assetDescription: { color: '#777', fontSize: '0.72rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
-  assetMeta: { color: '#555', fontSize: '0.65rem' },
+  assetTitle: { color: 'var(--text-primary)', fontSize: '0.88rem' },
+  assetDescription: { color: 'var(--text-muted)', fontSize: '0.72rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  assetMeta: { color: 'var(--text-faint)', fontSize: '0.65rem' },
   favoriteBadge: { color: '#e9bd45', fontSize: '0.75rem' },
   assetActions: { display: 'flex', gap: '6px', flexShrink: 0 },
-  assetPrimaryBtn: { padding: '7px 11px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
-  assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: '#ff5c5c', border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
-  assetSecondaryBtn: { padding: '7px 11px', backgroundColor: '#171717', color: '#aaa', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
-  favoriteBtn: { width: '32px', height: '32px', backgroundColor: 'transparent', color: '#555', border: '1px solid #333', borderRadius: '5px', cursor: 'pointer' },
+  assetPrimaryBtn: { padding: '7px 11px', backgroundColor: 'var(--accent)', color: 'var(--text-on-accent)', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' },
+  assetDeleteBtn: { padding: '7px 11px', backgroundColor: 'transparent', color: 'var(--danger)', border: '1px solid #4a2424', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  assetSecondaryBtn: { padding: '7px 11px', backgroundColor: 'var(--surface-2)', color: 'var(--text-secondary)', border: '1px solid var(--border-default)', borderRadius: '5px', cursor: 'pointer', fontSize: '0.72rem' },
+  favoriteBtn: { width: '32px', height: '32px', backgroundColor: 'transparent', color: 'var(--text-faint)', border: '1px solid var(--border-default)', borderRadius: '5px', cursor: 'pointer' },
   favoriteBtnActive: { width: '32px', height: '32px', backgroundColor: 'rgba(233,189,69,0.12)', color: '#e9bd45', border: '1px solid rgba(233,189,69,0.4)', borderRadius: '5px', cursor: 'pointer' },
-  workStepHeaderRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', borderBottom: '1px solid #333', paddingBottom: '6px' },
-  favoriteFilterLabel: { display: 'flex', alignItems: 'center', gap: '6px', color: '#888', fontSize: '0.7rem', cursor: 'pointer' },
-  workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: '#0a0a0a', color: '#fff', border: '1px solid #2d2d2d', borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
-  inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: '#080808', color: '#fff', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.8rem' },
-  inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: '#080808', color: '#ddd', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
-  versionPanel: { marginTop: '8px', padding: '9px', backgroundColor: '#0a0a0a', border: '1px solid #292929', borderRadius: '7px' },
-  versionPanelHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#aaa', fontSize: '0.66rem', marginBottom: '7px' },
-  versionEmpty: { color: '#555', fontSize: '0.65rem', padding: '6px 0' },
-  versionRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', padding: '6px 0', borderTop: '1px solid #1f1f1f' },
-  versionInfo: { display: 'flex', alignItems: 'center', gap: '8px', color: '#777', fontSize: '0.62rem' },
-  versionRestoreBtn: { padding: '4px 8px', backgroundColor: 'rgba(0,123,255,0.1)', color: '#64adff', border: '1px solid rgba(0,123,255,0.35)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.62rem' },
-  loader: { textAlign: 'center', padding: '5rem', color: '#444' },
+  workStepHeaderRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px', borderBottom: '1px solid var(--border-default)', paddingBottom: '6px' },
+  favoriteFilterLabel: { display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '0.7rem', cursor: 'pointer' },
+  workStepSearchInput: { width: '100%', boxSizing: 'border-box', marginBottom: '12px', padding: '0.65rem 0.8rem', backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid var(--border-default)', borderRadius: '6px', outline: 'none', fontSize: '0.78rem' },
+  inlineEditInput: { width: '100%', boxSizing: 'border-box', padding: '0.55rem 0.7rem', backgroundColor: 'var(--surface)', color: 'var(--text-primary)', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.8rem' },
+  inlineEditTextarea: { width: '100%', minHeight: '58px', boxSizing: 'border-box', padding: '0.55rem 0.7rem', resize: 'vertical', backgroundColor: 'var(--surface)', color: 'var(--text-secondary)', border: '1px solid #3b3b3b', borderRadius: '5px', fontSize: '0.72rem', fontFamily: 'inherit' },
+  versionPanel: { marginTop: '8px', padding: '9px', backgroundColor: 'var(--surface)', border: '1px solid var(--border-default)', borderRadius: '7px' },
+  versionPanelHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'var(--text-secondary)', fontSize: '0.66rem', marginBottom: '7px' },
+  versionEmpty: { color: 'var(--text-faint)', fontSize: '0.65rem', padding: '6px 0' },
+  versionRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', padding: '6px 0', borderTop: '1px solid var(--border-subtle)' },
+  versionInfo: { display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.62rem' },
+  versionRestoreBtn: { padding: '4px 8px', backgroundColor: 'rgba(0,123,255,0.1)', color: 'var(--accent-text)', border: '1px solid rgba(0,123,255,0.35)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.62rem' },
+  loader: { textAlign: 'center', padding: '5rem', color: 'var(--text-faint)' },
   footerArea: { width: '100%', position: 'absolute', bottom: 0, padding: '1.5rem 5rem', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
 };
@@ -817,8 +817,8 @@ if (typeof document !== 'undefined') {
     document.head.appendChild(styleTag);
   }
   styleTag.innerHTML = `
-    .card:hover { border-color: #222 !important; background-color: #080808 !important; transform: translateY(-3px); }
-    .dropdownItem:hover { background-color: #111; color: #fff !important; }
+    .card:hover { border-color: var(--border-default) !important; background-color: var(--surface-2) !important; transform: translateY(-3px); }
+    .dropdownItem:hover { background-color: var(--surface); color: var(--text-primary) !important; }
     *::-webkit-scrollbar { display: none !important; }
   `;
 }

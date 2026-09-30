@@ -5,6 +5,9 @@ import './index.css'
 import App from './App.jsx'
 import './i18n';
 import { captureCaseBootstrap, clearPrerenderedCaseMetadata } from './utils/caseBootstrap.js';
+import { ThemeProvider, initializeTheme } from './contexts/ThemeContext.jsx';
+
+initializeTheme();
 
 const rootElement = document.getElementById('root');
 
@@ -27,7 +30,9 @@ if (isReactSnap && rootElement.hasChildNodes()) {
 createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </HelmetProvider>
   </StrictMode>
 );
