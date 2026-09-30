@@ -78,7 +78,6 @@ test('procedure step composer translations are complete for every base locale', 
     'filterAll', 'filterMy', 'filterScrap', 'filterRecent', 'stepSearch',
     'preview', 'closePreview', 'noSteps', 'previewHazards', 'noPreviewHazards',
     'hazard', 'currentControl', 'recommendedControl', 'riskLevel',
-    'mergeOneHazard', 'mergeOneFull', 'mergeResult', 'noRisksToMerge',
     'badgeFull', 'badgeProcedureOnly', 'workStepLibrary', 'filterSteps', 'stepLibraryBadge',
   ];
 
@@ -130,7 +129,8 @@ test('phase 3 analysis knowledge dock translations are complete', () => {
     'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
     'sourceLibrary', 'sourceCurrent', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
     'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
-    'mergeFull', 'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly'
+    'mergeFull', 'mergeOneHazard', 'mergeOneFull', 'mergeResult', 'noRisksToMerge',
+    'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly'
   ];
 
   for (const locale of baseLocales) {
