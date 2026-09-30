@@ -40,10 +40,7 @@ cloud project output includes designer settings in `custom_layout`.
 
 Template saving is optional before export. The designer's Save action adds a
 reusable layout to the template picker. Export's cloud save stores an analyzed
-project with its layout; it does not add an entry to that picker. The existing
-cloud save policy clears department, location, date, manager, equipment,
-additional form items and the participant list. Draft recovery and a downloaded
-PDF are separate from that sanitized project save.
+project with its layout; it does not add an entry to that picker. Phase 4.5 preserves those fields for private completed documents and sanitizes only public copies; see [saving and reuse](document-save-reuse.md). Draft recovery and a downloaded PDF remain separate from template saving.
 
 The header places project information on the left (70%) and three approval
 cells on the right (30%), below a shared full-width document title. Legacy
@@ -64,7 +61,7 @@ inline display only for html2canvas's hidden font-metric probes, preventing
 Tailwind's image reset from shifting text down. The temporary rule is removed
 even when capture fails; document photo styles are unchanged.
 
-No schema, policy or live account data changes were required. This phase covers
+Phase 4 itself required no schema, policy or live account data changes. Phase 4.5 adds template defaults and public snapshot safeguards. This phase covers
 the five supported blocks; arbitrary custom blocks and company-logo editing are
 not included. Photo attachment continues through the existing Export control.
 

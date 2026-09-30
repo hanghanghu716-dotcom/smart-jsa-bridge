@@ -16,6 +16,9 @@ export default function useJsaDraftAutosave({
   const [status, setStatus] = useState('idle');
   const [lastSavedAt, setLastSavedAt] = useState(null);
   const saveSequence = useRef(0);
+  const timerRef = useRef(null);
+  const pausedRef = useRef(false);
+  const [resumeSequence, setResumeSequence] = useState(0);
 
   const snapshotJson = JSON.stringify({
     draftId,
@@ -30,13 +33,14 @@ export default function useJsaDraftAutosave({
   });
 
   useEffect(() => {
-    if (!enabled || !draftId) return;
+    if (!enabled || !draftId || pausedRef.current) return;
 
     const snapshot = JSON.parse(snapshotJson);
     setStatus('pending');
     const sequence = ++saveSequence.current;
 
     const timer = window.setTimeout(async () => {
+      if (pausedRef.current) return;
       try {
         await saveDraftSnapshot(snapshot);
         if (sequence === saveSequence.current) {
@@ -50,9 +54,19 @@ export default function useJsaDraftAutosave({
         }
       }
     }, delay);
+    timerRef.current = timer;
 
     return () => window.clearTimeout(timer);
-  }, [enabled, delay, draftId, snapshotJson]);
+  }, [enabled, delay, draftId, snapshotJson, resumeSequence]);
 
-  return { draftId, status, lastSavedAt };
+  const flushAndPause = async () => {
+    pausedRef.current = true;
+    window.clearTimeout(timerRef.current);
+    ++saveSequence.current;
+    const saved = await saveDraftSnapshot(JSON.parse(snapshotJson));
+    setStatus('saved'); setLastSavedAt(new Date());
+    return saved;
+  };
+  const resume = () => { pausedRef.current = false; setResumeSequence(value => value + 1); };
+  return { draftId, status, lastSavedAt, flushAndPause, resume };
 }

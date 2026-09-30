@@ -145,5 +145,29 @@
     "fieldValues": "Valores por paso",
     "noWorkSteps": "No hay pasos de trabajo.",
     "stepFallback": "Paso {{number}}"
+  },
+  "saveFlow": {
+    "library": "Mi biblioteca",
+    "saveDocument": "Guardar documento",
+    "privateHint": "Las copias privadas conservan todos los datos, participantes y fotos.",
+    "publicHint": "Las copias públicas omiten fechas, lugar, departamento, responsable, equipos, participantes, notas, fotos y valores personalizados. Revise el título y el análisis.",
+    "publicConfirm": "¿Crear una copia pública? Compruebe que el título y el análisis no contengan datos personales o confidenciales. El original seguirá siendo privado.",
+    "archiveWarning": "El documento se guardó, pero no se pudo archivar el borrador. Sigue disponible.",
+    "changed": "El documento cambió o no se puede actualizar. Ábralo de nuevo o guarde otra copia privada.",
+    "failed": "No se pudo guardar. Se conserva el borrador. Inténtelo de nuevo.",
+    "publicCopy": "Crear copia pública",
+    "newPrivate": "Guardar nueva copia privada",
+    "updatePrivate": "Actualizar documento privado",
+    "templatesHint": "Las plantillas guardan diseños reutilizables. Los documentos se guardan por separado.",
+    "templateError": "No se pudieron cargar o guardar las plantillas. Revise su sesión y conexión y recargue.",
+    "confirmUpdate": "¿Reemplazar esta plantilla con el diseño actual?",
+    "confirmDelete": "¿Eliminar esta plantilla? Los documentos existentes no cambiarán.",
+    "newTemplate": "Guardar nueva plantilla",
+    "rename": "Cambiar nombre",
+    "updateTemplate": "Actualizar con el diseño actual",
+    "clearDefault": "Quitar predeterminada",
+    "makeDefault": "Usar como predeterminada",
+    "deleteTemplate": "Eliminar plantilla",
+    "defaultHint": "La plantilla predeterminada solo se aplica a documentos nuevos; no reemplaza diseños existentes."
   }
 }

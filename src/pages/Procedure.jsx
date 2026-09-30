@@ -1,3 +1,4 @@
+import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
@@ -13,6 +14,7 @@ import DraftSaveStatus from '../components/DraftSaveStatus';
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
   .map(() => ({ stepTitle: '', stepDetail: '' }));
+const EMPTY_PHOTOS = {};
 
 export default function Procedure() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
@@ -24,6 +26,7 @@ export default function Procedure() {
   const [isWorkbenchOpen, setIsWorkbenchOpen] = useState(false);
   const [composerTouched, setComposerTouched] = useState(false);
   const [composedAnalysisData, setComposedAnalysisData] = useState(null);
+  const [composedPhotos, setComposedPhotos] = useState(null);
 
   const shouldRecoverDraft = !location.state?.formData && !location.state?.procedures;
   const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
@@ -34,6 +37,7 @@ export default function Procedure() {
   const analysisData = location.state?.analysisData || recoveredDraft?.analysis_data || [];
   const isFastTrack = location.state?.isFastTrack ?? false;
   const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : analysisData;
+  const stepPhotos = composedPhotos ?? location.state?.stepPhotos ?? recoveredDraft?.layout_data?.stepPhotos ?? EMPTY_PHOTOS;
   const hasMeaningfulProcedure = procedures.some(
     proc => proc?.stepTitle?.trim() || proc?.stepDetail?.trim()
   );
@@ -42,12 +46,13 @@ export default function Procedure() {
     enabled: recoverySettled && Boolean(
       formData?.projectName?.trim() || hasMeaningfulProcedure || location.state?.draftId || recoveredDraft?.id
     ),
+    layoutData: { ...pickDocumentLayout(location.state, recoveredDraft?.layout_data), stepPhotos },
     stage: 'procedure',
     formData,
     participants,
     procedures,
     analysisData: effectiveAnalysisData,
-    sourceProjectId: location.state?.parentId || recoveredDraft?.source_project_id || null,
+    sourceProjectId: location.state?.existingId || location.state?.id || location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
   useEffect(() => {
@@ -91,12 +96,11 @@ export default function Procedure() {
 
 const startAnalysis = (jsaType) => {
     const validEntries = procedures
-      .map((proc, index) => ({ proc, analysis: composedAnalysisData?.[index] }))
+      .map((proc, index) => ({ proc, analysis: effectiveAnalysisData[index], photo: stepPhotos[index] }))
       .filter(({ proc }) => proc.stepTitle.trim() && proc.stepDetail.trim());
 
     const validProcs = validEntries.map(({ proc }) => proc);
-    const nextAnalysisData = composerTouched
-      ? validEntries.map(({ proc, analysis }, index) => ({
+    const nextAnalysisData = validEntries.map(({ proc, analysis }, index) => ({
           ...(analysis || {}),
           id: index,
           proc,
@@ -104,16 +108,16 @@ const startAnalysis = (jsaType) => {
           frequency: analysis?.frequency ?? 1,
           severity: analysis?.severity ?? 1,
           riskLevel: analysis?.riskLevel ?? 1,
-        }))
-      : analysisData;
+        }));
 
     navigate('/analysis', {
       state: {
-        ...location.state, // [핵심] 이전 페이지에서 넘어온 모든 state를 보존
+        ...recoveredDraft?.layout_data, ...location.state,
         procedures: validProcs,
         formData: { ...formData, jsaType },
         participants,
         analysisData: nextAnalysisData,
+        stepPhotos: Object.fromEntries(validEntries.flatMap((item, index) => item.photo ? [[index, item.photo]] : [])),
         isFastTrack // 명시적 전달
       },
     });
@@ -129,9 +133,11 @@ const startAnalysis = (jsaType) => {
 
       navigate('/info', {
         state: {
+        ...recoveredDraft?.layout_data, ...location.state,
           formData,
           participants,
           procedures, 
+          stepPhotos,
           analysisData: composerTouched ? (composedAnalysisData || []) : analysisData,
           isFork: location.state?.isFork,
           parentId: location.state?.parentId,
@@ -150,10 +156,12 @@ const startAnalysis = (jsaType) => {
         onClose={() => setIsWorkbenchOpen(false)}
         procedures={procedures}
         analysisData={effectiveAnalysisData}
+        stepPhotos={stepPhotos}
         maxSteps={20}
-        onApply={(nextProcedures, nextAnalysisData) => {
+        onApply={(nextProcedures, nextAnalysisData, nextPhotos) => {
           setProcedures(nextProcedures);
           setComposedAnalysisData(nextAnalysisData);
+          setComposedPhotos(nextPhotos);
           setComposerTouched(true);
         }}
       />

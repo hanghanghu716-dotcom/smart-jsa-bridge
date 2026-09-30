@@ -4,6 +4,7 @@ import { supabase } from '../supabaseClient';
 import { listWorkSteps, markWorkStepUsed } from '../services/workStepLibraryService';
 
 const makeDraftKey = () => 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+const EMPTY_PHOTOS = {};
 const makeSourceStepKey = (projectId, stepIndex) => String(projectId) + ':' + stepIndex;
 const safeReadIdList = (key) => {
   try {
@@ -19,6 +20,7 @@ export default function WorkStepWorkbench({
   onClose,
   procedures = [],
   analysisData = [],
+  stepPhotos = EMPTY_PHOTOS,
   onApply,
   maxSteps = 20
 }) {
@@ -44,7 +46,7 @@ export default function WorkStepWorkbench({
     if (!isOpen) return;
 
     const initialDraft = procedures
-      .map((proc, index) => ({ proc, analysis: analysisData[index] }))
+      .map((proc, index) => ({ proc, analysis: analysisData[index], photo: stepPhotos[index] }))
       .filter(item => item.proc?.stepTitle?.trim() || item.proc?.stepDetail?.trim())
       .map(item => {
         const inferredImportMode = item.proc?.composerImportMode
@@ -55,6 +57,7 @@ export default function WorkStepWorkbench({
 
         return {
           key: makeDraftKey(),
+          photo: item.photo,
           proc: { ...item.proc, ...(inferredImportMode ? { composerImportMode: inferredImportMode } : {}) },
           importMode: inferredImportMode,
           analysis: item.analysis ? {
@@ -171,7 +174,7 @@ export default function WorkStepWorkbench({
     };
 
     fetchProjects();
-  }, [isOpen, procedures, analysisData]);
+  }, [isOpen, procedures, analysisData, stepPhotos]);
 
   const filteredProjects = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
@@ -455,7 +458,8 @@ export default function WorkStepWorkbench({
         riskLevel: base.riskLevel ?? 1
       };
     });
-    onApply?.(nextProcedures, nextAnalysisData);
+    const nextPhotos = Object.fromEntries(draftSteps.flatMap((item, index) => item.photo ? [[index, item.photo]] : []));
+    onApply?.(nextProcedures, nextAnalysisData, nextPhotos);
     onClose?.();
   };
 
