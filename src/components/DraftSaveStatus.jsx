@@ -7,9 +7,11 @@ export default function DraftSaveStatus({ status }) {
 
   const config = status === 'pending'
     ? { label: t('draftSave.pending'), symbol: '●', style: styles.pending }
-    : status === 'error'
-      ? { label: t('draftSave.error'), symbol: '!', style: styles.error }
-      : { label: t('draftSave.saved'), symbol: '✓', style: styles.saved };
+    : status === 'conflict'
+      ? { label: t('draftSave.conflict'), symbol: '↻', style: styles.conflict }
+      : status === 'error'
+        ? { label: t('draftSave.error'), symbol: '!', style: styles.error }
+        : { label: t('draftSave.saved'), symbol: '✓', style: styles.saved };
 
   return (
     <div style={{ ...styles.base, ...config.style }} role="status" aria-live="polite">
@@ -46,6 +48,11 @@ const styles = {
     color: '#65c96b',
     border: '1px solid rgba(76,175,80,0.36)',
     background: 'rgba(15,34,17,0.88)'
+  },
+  conflict: {
+    color: '#ffb74d',
+    border: '1px solid rgba(255,183,77,0.42)',
+    background: 'rgba(44,28,10,0.92)'
   },
   error: {
     color: '#ff7675',
