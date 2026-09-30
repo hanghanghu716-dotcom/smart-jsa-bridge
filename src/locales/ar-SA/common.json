@@ -125,6 +125,14 @@
     "projectFallback": "المشروع",
     "ppeLabel": "معدات الوقاية:",
     "permitLabel": "التصاريح:",
-    "signatureRows": "{{count}} صف توقيع"
+    "signatureRows": "{{count}} صف توقيع",
+    "templates": "قوالب المستند",
+    "chooseTemplate": "تحميل قالب محفوظ",
+    "templateName": "اسم القالب",
+    "saveTemplate": "حفظ",
+    "savingTemplate": "جارٍ الحفظ...",
+    "templateSaved": "تم حفظ قالب المستند.",
+    "templateSaveError": "تعذر حفظ القالب.",
+    "loginRequired": "يلزم تسجيل الدخول."
   }
 }
