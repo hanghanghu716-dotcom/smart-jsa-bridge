@@ -26,5 +26,25 @@
   "cancelBtn": "إلغاء",
   "alertReportLoginRequired": "تسجيل الدخول مطلوب لاستخدام ميزة الإبلاغ.",
   "alertActionCompleted": "تم اكتمال الإجراء.",
-  "alertErrorOccurred": "حدث خطأ أثناء المعالجة."
+  "alertErrorOccurred": "حدث خطأ أثناء المعالجة.",
+  "viewDetails": "عرض التفاصيل",
+  "publicJsa": {
+    "notFoundTitle": "تعذر العثور على JSA العامة",
+    "notFoundDescription": "ربما تم حذف JSA هذه أو تحويلها إلى خاصة.",
+    "backExplore": "العودة إلى Explore",
+    "eyebrow": "JSA عامة",
+    "publicButNotIndexed": "يمكن قراءة JSA هذه علنًا، لكنها مستبعدة من فهرسة البحث لأنها لا تستوفي حد جودة المحتوى.",
+    "steps": "خطوات العمل",
+    "hazards": "المخاطر",
+    "controls": "إجراءات التحكم",
+    "workSequence": "خطوات العمل وتحليل المخاطر",
+    "untitledStep": "خطوة عمل بدون عنوان",
+    "noHazards": "لا توجد مخاطر مسجلة لهذه الخطوة.",
+    "hazard": "الخطر",
+    "currentControl": "إجراء التحكم الحالي / الأساسي",
+    "recommendedControl": "إجراء التحكم الإضافي / الموصى به",
+    "riskLevel": "مستوى الخطر",
+    "ctaTitle": "إنشاء JSA جاهزة للموقع استنادًا إلى هذا المستند؟",
+    "ctaDescription": "عدّل خطوات العمل والمخاطر بما يناسب ظروفك ثم احفظها كـ JSA جديدة."
+  }
 }
