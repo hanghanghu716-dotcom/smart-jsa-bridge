@@ -90,9 +90,10 @@ export async function fetchBing({ apiKey, property }, fetcher = fetch) {
 }
 export async function runSync({ env, backfill = false, fetcher = fetch, now = new Date(), report = () => {} }) {
   const url = env.SUPABASE_URL;
-  const key = env.SUPABASE_SERVICE_ROLE_KEY;
-  if (url !== 'https://aajvezmhyrdawxxbulqz.supabase.co' || !key) throw new SyncError('CONFIG_ERROR');
-  const save = payload => jsonRequest(`${url}/rest/v1/rpc/ingest_search_metrics`, { method: 'POST', headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_payload: payload }) }, fetcher);
+  const key = env.SUPABASE_PUBLISHABLE_KEY;
+  const token = env.SEARCH_METRICS_INGEST_TOKEN;
+  if (url !== 'https://aajvezmhyrdawxxbulqz.supabase.co' || !key?.startsWith('sb_publishable_') || !/^[0-9a-f]{64}$/.test(token || '')) throw new SyncError('CONFIG_ERROR');
+  const save = payload => jsonRequest(`${url}/rest/v1/rpc/ingest_search_metrics_token`, { method: 'POST', headers: { apikey: key, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_token: token, p_payload: payload }) }, fetcher);
   const results = [];
   for (const provider of ['google', 'bing']) {
     const enabled = provider === 'google' ? Boolean(env.GOOGLE_SERVICE_ACCOUNT_JSON) : Boolean(env.BING_WEBMASTER_API_KEY);
