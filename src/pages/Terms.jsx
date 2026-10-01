@@ -1,3 +1,5 @@
+import CommunityFooter from '../components/CommunityFooter';
+import '../styles/community.css';
 import { useTranslation } from 'react-i18next';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
@@ -96,7 +98,7 @@ export default function Terms() {
             <p style={styles.articleP}>{t('section9.content')}</p>
           </div>
         </div>
-      </section>
+      </section><CommunityFooter/>
 
       <footer style={styles.footer}><p>{t('footer')}</p></footer>
     </div>

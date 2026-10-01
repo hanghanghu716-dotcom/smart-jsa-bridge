@@ -1,3 +1,4 @@
+import DiscoveryLinks from '../components/DiscoveryLinks';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { cleanSummary, serializeStructuredData } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
@@ -245,6 +246,7 @@ export default function CaseStudyDetail() {
         </div>
       </div>
 
+      <DiscoveryLinks kind="case" target={id}/>
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <div style={styles.footerFlex}>

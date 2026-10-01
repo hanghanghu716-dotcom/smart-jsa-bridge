@@ -25,27 +25,27 @@
   },
   "section3": {
     "title": "3. Período de Retenção e Uso",
-    "subtitle": "Por princípio, a empresa descarta as informações sem demora após a finalidade da coleta e uso ser alcançada.",
+    "subtitle": "Prazos de retenção, operadores e transferências internacionais estão em verificação na beta. Não há exclusão automática por prazo. Solicite acesso, correção ou exclusão no Suporte.",
     "step1": {
       "bold": "Registros de Visita (Logs de Acesso):",
-      "desc": "Destruídos após armazenamento por até 6 meses (conforme Marco Civil da Internet)."
+      "desc": "Prazos de retenção, operadores e transferências internacionais estão em verificação na beta. Não há exclusão automática por prazo. Solicite acesso, correção ou exclusão no Suporte."
     },
     "step2": {
       "bold": "Detalhes do Atendimento:",
-      "desc": "Armazenados por 1 ano após o encerramento do atendimento."
+      "desc": "Prazos de retenção, operadores e transferências internacionais estão em verificação na beta. Não há exclusão automática por prazo. Solicite acesso, correção ou exclusão no Suporte."
     },
     "step3": {
       "bold": "Conformidade Legal:",
-      "desc": "Armazenados pelo período exigido pelas leis e regulamentos relevantes no Brasil."
+      "desc": "Prazos de retenção, operadores e transferências internacionais estão em verificação na beta. Não há exclusão automática por prazo. Solicite acesso, correção ou exclusão no Suporte."
     },
     "step4": {
       "bold": "Procedimento de Descarte:",
-      "desc": "As informações em formato de arquivo eletrônico são excluídas usando métodos técnicos que impedem a reprodução ou recuperação dos registros."
+      "desc": "Prazos de retenção, operadores e transferências internacionais estão em verificação na beta. Não há exclusão automática por prazo. Solicite acesso, correção ou exclusão no Suporte."
     }
   },
   "section4": {
     "title": "4. Fornecimento a Terceiros e Compartilhamento",
-    "content": "Este serviço inclui o Google AdSense, e informamos que <strong>terceiros, como o Google, podem instalar ou ler cookies</strong> em seu navegador para fornecer anúncios personalizados, de acordo com o seu consentimento de cookies."
+    "content": "Publicidade e análise externa estão desativadas. Visualizações contam visitas autenticadas; reutilizações contam ações, não pessoas únicas nem uso em campo. A identidade do operador e o contato sem conta aguardam verificação. Pedidos beta exigem login."
   },
   "imageCaption": "O Smart JSA Bridge prioriza a segurança dos seus dados."
 }

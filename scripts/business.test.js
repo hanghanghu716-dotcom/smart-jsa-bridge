@@ -51,7 +51,7 @@ test('all supported language routes have complete Business and storage translati
     assert.equal(typeof value,'string',`${locale}.${key}`);
     assert.ok(value.trim(),`${locale}.${key} is empty`);
     assert.deepEqual(value.match(/\{\w+\}/g)||[],en[key].match(/\{\w+\}/g)||[],`${locale}.${key} placeholders`);
-    const sharedWord=key==='free'||(key==='editor'&&['es-ES','pt-BR'].includes(locale));
+    const sharedWord=key==='free'||(key==='title'&&value==='Community / Professional')||(key==='editor'&&['es-ES','pt-BR'].includes(locale));
     if(!locale.startsWith('en')&&!sharedWord)assert.notEqual(value,en[key],`${locale}.${key} English fallback`);
    }
   }

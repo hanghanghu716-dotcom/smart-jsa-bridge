@@ -25,27 +25,27 @@
   },
   "section3": {
     "title": "3. Aufbewahrungs- und Nutzungsdauer",
-    "subtitle": "Grundsätzlich vernichtet das Unternehmen die Informationen unverzüglich, nachdem der Zweck der Erhebung und Verwendung erreicht wurde.",
+    "subtitle": "Aufbewahrungsfristen, Auftragsverarbeiter und internationale Übermittlungen werden für die Beta geprüft. Eine automatische Löschung nach Fristablauf ist nicht eingerichtet. Auskunft, Berichtigung oder Löschung können über die Hilfe beantragt werden.",
     "step1": {
       "bold": "Besuchsaufzeichnungen:",
-      "desc": "Vernichtung nach einer Speicherung von bis zu 3 Monaten"
+      "desc": "Aufbewahrungsfristen, Auftragsverarbeiter und internationale Übermittlungen werden für die Beta geprüft. Eine automatische Löschung nach Fristablauf ist nicht eingerichtet. Auskunft, Berichtigung oder Löschung können über die Hilfe beantragt werden."
     },
     "step2": {
       "bold": "Beratungsdetails:",
-      "desc": "Speicherung für 1 Jahr nach Ende der Beratung"
+      "desc": "Aufbewahrungsfristen, Auftragsverarbeiter und internationale Übermittlungen werden für die Beta geprüft. Eine automatische Löschung nach Fristablauf ist nicht eingerichtet. Auskunft, Berichtigung oder Löschung können über die Hilfe beantragt werden."
     },
     "step3": {
       "bold": "Compliance:",
-      "desc": "Speicherung für den Zeitraum, der durch einschlägige Gesetze und Vorschriften vorgeschrieben ist"
+      "desc": "Aufbewahrungsfristen, Auftragsverarbeiter und internationale Übermittlungen werden für die Beta geprüft. Eine automatische Löschung nach Fristablauf ist nicht eingerichtet. Auskunft, Berichtigung oder Löschung können über die Hilfe beantragt werden."
     },
     "step4": {
       "bold": "Vernichtungsverfahren:",
-      "desc": "Informationen im elektronischen Dateiformat werden mit technischen Methoden gelöscht, die eine Wiederherstellung des Datensatzes unmöglich machen"
+      "desc": "Aufbewahrungsfristen, Auftragsverarbeiter und internationale Übermittlungen werden für die Beta geprüft. Eine automatische Löschung nach Fristablauf ist nicht eingerichtet. Auskunft, Berichtigung oder Löschung können über die Hilfe beantragt werden."
     }
   },
   "section4": {
     "title": "4. Bereitstellung an Dritte und Beauftragung",
-    "content": "Dieser Dienst umfasst Google AdSense. Wir informieren Sie darüber, dass <strong>Dritte wie Google Cookies in Ihrem Browser installieren oder lesen können</strong>, um personalisierte Werbung bereitzustellen."
+    "content": "Werbung und externe Besuchsanalyse sind deaktiviert. Aufrufe zählen angemeldete Besuche; Nutzung zählt Aktionen, nicht eindeutige Personen oder tatsächliche Einsätze. Betreiberidentität und Kontakt für Nichtmitglieder werden noch geprüft. Beta-Anfragen erfordern eine Anmeldung."
   },
   "imageCaption": "Smart JSA Bridge legt höchsten Wert auf die Sicherheit Ihrer Daten."
 }

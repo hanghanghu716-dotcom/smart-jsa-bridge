@@ -1,4 +1,6 @@
 import { getSiteUi } from '../locales/siteUi.js';
+import CommunityFooter from '../components/CommunityFooter';
+import '../styles/community.css';
 import { useTranslation } from 'react-i18next';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
@@ -84,12 +86,7 @@ export default function Privacy() {
 
             <h3 style={styles.articleH3}>{t('section3.title')}</h3>
             <p style={styles.articleP}>{t('section3.subtitle')}</p>
-            <ul style={styles.listWrapper}>
-              <li style={styles.listItem}><span style={styles.listBullet}>1.</span> <strong>{t('section3.step1.bold')}</strong> {t('section3.step1.desc')}</li>
-              <li style={styles.listItem}><span style={styles.listBullet}>2.</span> <strong>{t('section3.step2.bold')}</strong> {t('section3.step2.desc')}</li>
-              <li style={styles.listItem}><span style={styles.listBullet}>3.</span> <strong>{t('section3.step3.bold')}</strong> {t('section3.step3.desc')}</li>
-              <li style={styles.listItem}><span style={styles.listBullet}>4.</span> <strong>{t('section3.step4.bold')}</strong> {t('section3.step4.desc')}</li>
-            </ul>
+
 
             <h3 style={styles.articleH3}>{t('section4.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section4.content') }} />
@@ -106,7 +103,7 @@ export default function Privacy() {
              </p>
           </div>
         </div>
-      </section>
+      </section><CommunityFooter/>
 
       <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
     </div>

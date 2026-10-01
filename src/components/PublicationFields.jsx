@@ -1,0 +1,10 @@
+import { useTranslation } from 'react-i18next';
+import { getCommunityUi } from '../locales/communityUi';
+import { LanguageLink } from '../hooks/useLanguage';
+import '../styles/community.css';
+export default function PublicationFields({consent,onConsent,context,onContext}) {
+ const {i18n}=useTranslation(),ui=getCommunityUi(i18n.language);
+ return <fieldset className="publication-context" dir={i18n.dir()}><legend>{ui.scope}</legend><p>{ui.contextHint}</p>
+ {['scope','region','limitations','sources'].map(key=><label key={key}>{ui[key]}<textarea maxLength={key==='region'?120:1800} value={context[key]||''} onChange={e=>onContext({...context,[key]:e.target.value})}/></label>)}
+ <label className="publication-consent"><input type="checkbox" checked={consent} onChange={e=>onConsent(e.target.checked)}/><span>{ui.consent} <LanguageLink to="/community">{ui.hub} ↗</LanguageLink></span></label></fieldset>;
+}

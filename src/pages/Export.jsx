@@ -1,3 +1,4 @@
+import PublicationFields from '../components/PublicationFields';
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
 import { isStorageLimitError } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
@@ -11,7 +12,6 @@ import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { captureReport } from '../utils/captureReport';
 import jsPDF from 'jspdf'; 
 import { supabase } from '../supabaseClient'; 
-import AdBanner from '../AdBanner';
 import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; 
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
@@ -66,8 +66,8 @@ function ExportEditor({ recoveredDraft }) {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [showPublishModal, setShowPublishModal] = useState(Boolean(location.state?.openSaveDialog));
-  const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
-  const [showCopyAdModal, setShowCopyAdModal] = useState(false); // 👇 [기능 추가] 복사 전 광고 모달 상태
+  const [publicationConsent,setPublicationConsent]=useState(false);
+  const [publicationContext,setPublicationContext]=useState({});
 
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
@@ -165,7 +165,7 @@ function ExportEditor({ recoveredDraft }) {
 
   const handleCloudAction = async (mode) => {
     if (cloudBusy.current) return;
-    if (mode === 'public' && !window.confirm(t('common:saveFlow.publicConfirm'))) return;
+    if (mode === 'public' && !publicationConsent) return;
     cloudBusy.current = true; setIsProcessing(true);
     let savedProject = null;
     try {
@@ -174,8 +174,8 @@ function ExportEditor({ recoveredDraft }) {
       const tags = rawTags.filter(tag => Object.keys(DIMENSIONAL_KEYWORD_MAP).includes(tag));
       savedProject = await saveProject({
         mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,
-        parentId: mode === 'public' ? (projectTarget?.id || parentId) : parentId,
-        snapshot: { locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
+        parentId: mode === 'public' ? (parentId || projectTarget?.id) : parentId,
+        snapshot: { publicationConsent, publicationContext, locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
       });
       if (mode !== 'public') {
         try { await archiveActiveDraft(draftResult.version); }
@@ -221,10 +221,9 @@ function ExportEditor({ recoveredDraft }) {
     } catch (error) { console.error(error); alert(t('alert.pdfError')); } finally { setIsProcessing(false); }
   };
 
-  const handlePdfDownload = async () => { setShowPdfAdModal(false); await generatePDF(); };
+  const handlePdfDownload = async () => { await generatePDF(); };
 
   const handleCopyToClipboard = async () => {
-     setShowCopyAdModal(false); // 👇 [수정] 모달 닫기
       const paper = document.querySelector('.reportPaper');
       if (!paper) return;
       try {
@@ -456,7 +455,6 @@ function ExportEditor({ recoveredDraft }) {
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper} className="no-print">
@@ -488,47 +486,13 @@ function ExportEditor({ recoveredDraft }) {
             <div style={styles.btnArea} className="no-print">
               <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('common:saveFlow.saveDocument')}</button>
-              <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
-              {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
-              <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
+              <button style={styles.pdfBtn} onClick={handlePdfDownload}>{t('btn.pdfSave')}</button>
+              <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={handleCopyToClipboard}>{t('btn.copyTable')}</button>
 
-              {/* 👇 [기능 추가] 복사 전용 광고 모달 (PDF 모달 구조 재사용) */}
-              {showCopyAdModal && (
-                <div style={styles.modalOverlay} onClick={() => setShowCopyAdModal(false)}>
-                  <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-                    <h3 style={styles.modalTitle}>{t('modal.copyTitle')}</h3>
-                    <p style={styles.modalSub}>{t('modal.copySub')}</p>
-                    <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
-                    <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handleCopyToClipboard}>
-                      <div style={styles.typeBadgeActive}>Copy to Clipboard</div>
-                      <h4 style={styles.typeLabel}>{t('modal.copyBtnLabel')}</h4>
-                      <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.copyBtnDesc') }}></p>
-                    </div>
-                    <button style={styles.modalCloseBtn} onClick={() => setShowCopyAdModal(false)}>{t('modal.close')}</button>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
-
-      {showPdfAdModal && (
-        <div style={styles.modalOverlay} onClick={() => setShowPdfAdModal(false)}>
-          <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('modal.pdfTitle')}</h3>
-            <p style={styles.modalSub}>{t('modal.pdfSub')}</p>
-            <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
-            <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handlePdfDownload}>
-              <div style={styles.typeBadgeActive}>Download</div>
-              <h4 style={styles.typeLabel}>{t('modal.pdfBtnLabel')}</h4>
-              <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.pdfBtnDesc') }}></p>
-            </div>
-            <button style={styles.modalCloseBtn} onClick={() => setShowPdfAdModal(false)}>{t('modal.close')}</button>
-          </div>
-        </div>
-      )}
 
       {showPublishModal && (
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
@@ -538,7 +502,7 @@ function ExportEditor({ recoveredDraft }) {
             {storageLimited && !storageUsage?.can_create && <p role="alert" dir={i18n.dir()} style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
               <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('common:saveFlow.privateHint')}</p>
             <p style={styles.modalSub}>{t('common:saveFlow.publicHint')}</p>
-            <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
+            <PublicationFields consent={publicationConsent} onConsent={setPublicationConsent} context={publicationContext} onContext={setPublicationContext} />
             <div style={{ ...styles.typeGrid, pointerEvents: isProcessing ? 'none' : 'auto', opacity: isProcessing ? 0.6 : 1 }}>
               {canUpdate && <button type="button" data-save-mode="update" style={styles.typeCard} disabled={isProcessing} onClick={() => handleCloudAction('update')}><h4 style={styles.typeLabel}>{t('common:saveFlow.updatePrivate')}</h4><p style={styles.typeDesc}>{formData.projectName}</p></button>}
               {(isFork && !isValuableFork) ? (
@@ -554,7 +518,7 @@ function ExportEditor({ recoveredDraft }) {
                   <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
                 </div>
               ) : (
-                <button type="button" disabled={isProcessing} data-save-mode="public" style={styles.typeCardHighlight} onClick={() => handleCloudAction('public')}>
+                <button type="button" disabled={isProcessing || !publicationConsent} data-save-mode="public" style={styles.typeCardHighlight} onClick={() => handleCloudAction('public')}>
                   <div style={styles.typeBadgeActive}>Public</div>
                   <h4 style={styles.typeLabel}>{t('common:saveFlow.publicCopy')}</h4>
                   <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.publicHint') }}></p>

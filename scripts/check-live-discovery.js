@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createExploreHandler} from '../api/explore.js';
+import {createPublicHandler} from '../api/public-jsa.js';
+const shell=fs.readFileSync('dist/index.html','utf8');
+const response=()=>({headers:{},setHeader(k,v){this.headers[k]=v;},end(body){this.body=body;}});
+const listing=response();await createExploreHandler({readShell:async()=>shell})({query:{lng:'ko'}},listing);
+assert.equal(listing.statusCode,200);assert.match(listing.body,/<article>/);assert.equal(listing.headers['CDN-Cache-Control'],'no-store');
+const id=listing.body.match(/\/public-jsa\/([a-f\d-]{36})/)?.[1];assert.ok(id);
+const detail=response();await createPublicHandler({readShell:async()=>shell})({query:{lng:'ko',id}},detail);
+assert.equal(detail.statusCode,200);assert.match(detail.body,/위험도/);assert.match(detail.body,/안전대책/);assert.match(detail.body,/noindex,follow/);
+console.log('Live anonymous catalog + Explore/detail HTML verified; test publication remains noindex.');

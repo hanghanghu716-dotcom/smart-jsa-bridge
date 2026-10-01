@@ -31,6 +31,8 @@ import Profile from './pages/Profile';
 import PublicExplore from './components/PublicExplore';
 import PublicJsa from './pages/PublicJsa';
 import Business from './pages/Business';
+import Community from './pages/Community';
+import { communityAction } from './services/communityService';
 import LayoutBuilder from './pages/LayoutBuilder';
 import FactorDictionary from './pages/FactorDictionary';
 import ModuleBuilder from './pages/ModuleBuilder';
@@ -43,45 +45,12 @@ import SEO from './components/SEO';
 
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
-/**
- * ✅ 비밀코드 인증을 통한 관리자 라우트 컴포넌트
- */
 function AdminRoute({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [passcode, setPasscode] = useState('');
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (passcode === 'cnshcnsh2@') {
-      setIsAuthenticated(true);
-    } else {
-      alert('비밀코드가 일치하지 않습니다.');
-      setPasscode('');
-    }
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <div style={{ padding: '200px 24px', textAlign: 'center', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
-        <SEO noIndex />
-        <h2 style={{ marginBottom: '20px', color: '#111', fontSize: '1.5rem', fontWeight: 'bold' }}>관리자 접근</h2>
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-        <input
-            type="password"
-            value={passcode}
-            onChange={(e) => setPasscode(e.target.value)}
-            placeholder="비밀코드를 입력하세요"
-            style={{ padding: '12px', width: '280px', border: '1px solid #ccc', borderRadius: '6px', fontSize: '1rem', outline: 'none', color: '#111', backgroundColor: '#fff' }}
-            autoFocus
-          />
-          <button type="submit" style={{ padding: '12px 24px', width: '280px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>
-            인증 및 접속
-          </button>
-        </form>
-      </div>
-    );
-  }
-
+  const [allowed, setAllowed] = useState(null);
+  const { i18n } = useTranslation();
+  useEffect(() => { let live=true; communityAction('status').then(value=>{if(live)setAllowed(value.admin === true);}).catch(()=>{if(live)setAllowed(false);}); return()=>{live=false;}; }, []);
+  if (allowed === null) return <><SEO noIndex /><p role="status">…</p></>;
+  if (!allowed) return <Navigate replace to={'/'+normalizeLocale(i18n.language)+'/community'} />;
   return <><SEO noIndex />{children}</>;
 }
 
@@ -131,6 +100,7 @@ export default function App() {
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
+            <Route path="/:lng/community" element={<CrawlerBlocker><LanguageWrapper><Community /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/business" element={<CrawlerBlocker><LanguageWrapper><Business /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/public-jsa/:id" element={<LanguageWrapper><PublicJsa /></LanguageWrapper>} />
             <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />

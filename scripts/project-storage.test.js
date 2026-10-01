@@ -21,7 +21,8 @@ test('quota rejection is distinct from ownership and general server errors',()=>
  assert.equal(isStorageLimitError({message:'PROJECT_OWNER_INVALID'}),false);
  assert.equal(isStorageLimitError(null),false);
 });
-test('quota text explains preserved drafts and existing edit/export access',()=>{
+test('storage text preserves drafts without advertising obsolete three-document limits',()=>{
  const ko=getStorageUi('ko'),en=getStorageUi('en-US');assert.deepEqual(Object.keys(ko),Object.keys(en));
- assert.match(ko.limitError,/작성 중인 내용은 유지/);assert.match(en.full,/edited and exported/);assert.match(ko.hint,/임시저장과 공개 자료 스크랩/);
+ assert.match(ko.limitError,/작성 중인 내용은 유지/);assert.match(en.full,/edited and exported/);assert.match(ko.hint,/개인 비공개 저장/);
+ assert.doesNotMatch(Object.values(ko).join(' '),/3개|유료/);assert.doesNotMatch(en.used,/\{limit\}/);
 });

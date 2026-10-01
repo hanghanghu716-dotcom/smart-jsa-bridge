@@ -25,27 +25,27 @@
   },
   "section3": {
     "title": "3. Periodo de Conservación y Uso de Datos Personales",
-    "subtitle": "En principio, la empresa destruye la información sin demora una vez alcanzado el propósito de su recopilación y uso.",
+    "subtitle": "Los plazos de conservación, encargados y transferencias internacionales están en revisión para la beta. No hay borrado automático por vencimiento. Puede solicitar acceso, corrección o eliminación en Ayuda.",
     "step1": {
       "bold": "Registros de Visita:",
-      "desc": "Conservación hasta un máximo de 3 meses y posterior destrucción."
+      "desc": "Los plazos de conservación, encargados y transferencias internacionales están en revisión para la beta. No hay borrado automático por vencimiento. Puede solicitar acceso, corrección o eliminación en Ayuda."
     },
     "step2": {
       "bold": "Historial de Consultas:",
-      "desc": "Conservación por 1 año tras la finalización de la consulta."
+      "desc": "Los plazos de conservación, encargados y transferencias internacionales están en revisión para la beta. No hay borrado automático por vencimiento. Puede solicitar acceso, corrección o eliminación en Ayuda."
     },
     "step3": {
       "bold": "Cumplimiento Legal:",
-      "desc": "En caso de necesidad de conservación según las disposiciones de las leyes relacionadas, se conservará por dicho periodo."
+      "desc": "Los plazos de conservación, encargados y transferencias internacionales están en revisión para la beta. No hay borrado automático por vencimiento. Puede solicitar acceso, corrección o eliminación en Ayuda."
     },
     "step4": {
       "bold": "Procedimiento de Destrucción:",
-      "desc": "La información en formato de archivo electrónico se elimina mediante métodos técnicos que impiden la reproducción de los registros."
+      "desc": "Los plazos de conservación, encargados y transferencias internacionales están en revisión para la beta. No hay borrado automático por vencimiento. Puede solicitar acceso, corrección o eliminación en Ayuda."
     }
   },
   "section4": {
     "title": "4. Provisión a Terceros y Subcontratación",
-    "content": "Este servicio incluye Google AdSense. Le informamos que <strong>terceros como Google pueden instalar o leer cookies en el navegador del usuario</strong> para proporcionar anuncios personalizados."
+    "content": "La publicidad y el análisis externo están desactivados. Las vistas cuentan visitas con sesión y los usos cuentan acciones, no personas únicas ni uso real en obra. La identidad del operador y el contacto sin cuenta están pendientes de verificación. Las solicitudes beta requieren iniciar sesión."
   },
   "imageCaption": "Smart JSA Bridge considera la seguridad de los datos del usuario como su máxima prioridad."
 }

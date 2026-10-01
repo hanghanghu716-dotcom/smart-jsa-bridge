@@ -1,6 +1,7 @@
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
 import { isStorageLimitError } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
+import { getCommunityUi } from '../locales/communityUi';
 import { projectEditorState } from '../utils/projectPersistence';
 import { saveProject } from '../services/projectPersistenceService';
 import { clearActiveDraft } from '../services/jsaDraftService';
@@ -99,6 +100,7 @@ export default function MyLibrary() {
   };
 
   const openProject = (project, own, route = '/analysis', openSaveDialog = false) => {
+    if (!own && project.reuse_license !== 'community-v1') { alert(getCommunityUi(i18n.language).licensePending); return; }
     clearActiveDraft();
     navigate(route, { state: { ...projectEditorState(project, own), openSaveDialog } });
   };
@@ -112,6 +114,8 @@ export default function MyLibrary() {
   };
 
   const handleClone = async (project) => {
+    const {data:{user}}=await supabase.auth.getUser();
+    if(project.author_id !== user?.id && project.reuse_license !== 'community-v1') { alert(getCommunityUi(i18n.language).licensePending);return; }
     if (!window.confirm(t('confirmClone'))) return;
     try {
       const data = projectEditorState(project);

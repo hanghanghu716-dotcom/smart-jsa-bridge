@@ -13,6 +13,7 @@ import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
+import { recordPublicEngagement } from '../services/publicEngagementService';
 
 const EMPTY_LIST = [];
 
@@ -480,7 +481,7 @@ export default function Analysis() {
       });
       (favoritesRes.data || []).forEach(item => {
         const project = item?.jsa_projects;
-        if (project?.id && !projectMap.has(String(project.id))) {
+        if (project?.id && project.reuse_license === 'community-v1' && !projectMap.has(String(project.id))) {
           projectMap.set(String(project.id), { ...item, libraryType: 'SCRAP' });
         }
       });
@@ -510,6 +511,9 @@ export default function Analysis() {
       mode, jsaType, sourceMeta, category: t('base.etc')
     });
     setAnalysisData(prev => prev.map((step, index) => index === activeIdx ? result.step : step));
+    if (result.added > 0 && Number.isInteger(sourceMeta.stepIndex)) {
+      void recordPublicEngagement(sourceMeta.projectId, 'reuse', [sourceMeta.stepIndex]);
+    }
     setKnowledgeNotice(t('knowledgeDock.mergeResult', { added: result.added, skipped: result.skipped }));
   };
 

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, noIndex = false }) => {
+const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, canonicalSearch = '', noIndex = false }) => {
   const location = useLocation();
   const { t, i18n } = useTranslation('main');
 
@@ -48,7 +48,7 @@ const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, no
 
   // 3. 현재 URL 동적 조합
   const pathSuffix = purePath ? `/${purePath}` : '';
-  const currentUrl = `${baseUrl}/${currentLang}${pathSuffix}`;
+  const currentUrl = `${baseUrl}/${currentLang}${pathSuffix}${canonicalSearch}`;
 
   return (
     <Helmet>
@@ -79,11 +79,11 @@ const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, no
           key={lang} 
           rel="alternate" 
           hrefLang={lang} 
-          href={`${baseUrl}/${getSeoLocale(lang)}${pathSuffix}`}
+          href={`${baseUrl}/${getSeoLocale(lang)}${pathSuffix}${canonicalSearch}`}
         />
       ))}
       {/* 기본 언어 폴백 (x-default) */}
-      {hasDefault && <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/en-US${pathSuffix}`} />}    </Helmet>
+      {hasDefault && <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/en-US${pathSuffix}${canonicalSearch}`} />}    </Helmet>
   );
 };
 

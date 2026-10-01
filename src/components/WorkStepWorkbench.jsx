@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
 import { listWorkSteps, markWorkStepUsed } from '../services/workStepLibraryService';
+import { recordAppliedPublicSteps } from '../services/publicEngagementService';
 
 const makeDraftKey = () => 'draft-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
 const EMPTY_PHOTOS = {};
@@ -101,7 +102,7 @@ export default function WorkStepWorkbench({
             .order('updated_at', { ascending: false }),
           supabase
             .from('user_favorites')
-            .select('id, jsa_projects(id, title, tags, analysis_data, updated_at)')
+            .select('id, jsa_projects(id, title, tags, analysis_data, updated_at, reuse_license)')
             .eq('user_id', user.id),
           listWorkSteps({ limit: 100 })
         ]);
@@ -137,7 +138,7 @@ export default function WorkStepWorkbench({
         });
         (favoriteRes.data || []).forEach(item => {
           const project = item?.jsa_projects;
-          if (project?.id && !map.has(project.id)) {
+          if (project?.id && project.reuse_license === 'community-v1' && !map.has(project.id)) {
             map.set(project.id, { ...project, libraryType: 'SCRAP' });
           }
         });
@@ -339,7 +340,7 @@ export default function WorkStepWorkbench({
       proc
     };
 
-    return { key: makeDraftKey(), proc, analysis: taggedAnalysis, importMode };
+    return { key: makeDraftKey(), proc, analysis: taggedAnalysis, importMode, newlyImported: true };
   };
 
   const addLibraryStep = (project, step, stepIndex) => {
@@ -460,6 +461,7 @@ export default function WorkStepWorkbench({
     });
     const nextPhotos = Object.fromEntries(draftSteps.flatMap((item, index) => item.photo ? [[index, item.photo]] : []));
     onApply?.(nextProcedures, nextAnalysisData, nextPhotos);
+    void recordAppliedPublicSteps(draftSteps.filter(item => item.newlyImported).map(item => item.proc));
     onClose?.();
   };
 

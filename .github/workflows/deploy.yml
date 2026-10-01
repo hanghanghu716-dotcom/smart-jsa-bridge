@@ -34,7 +34,7 @@ jobs:
       - name: Install Chrome system dependencies
         run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64
       - name: Verify content and locale logic
-        run: npm run test:locales && npm run test:site && npm run test:content && npm run test:theme && npm run test:analysis && npm run test:document && npm run test:persistence && npm run test:public && npm run test:business && npm run test:storage
+        run: npm run test:locales && npm run test:site && npm run test:content && npm run test:theme && npm run test:analysis && npm run test:document && npm run test:persistence && npm run test:community && npm run test:business && npm run test:storage
       - name: Load Vercel project configuration
         run: npx --yes vercel@59.23.2 pull --yes --environment=production --token="$VERCEL_TOKEN"
       - name: Build current database content and verify initial HTML

@@ -1,3 +1,4 @@
+import { getPlansUi } from './plansUi.js';
 import { getPhase6Ui, phase6Language } from './phase6Ui.js';
 const en = {
  title:'Business workspace', beta:'Free beta', intro:'Try Pro and Business features for 30 days. No card, payment or automatic billing. Your saved documents remain readable after the trial.',
@@ -19,7 +20,12 @@ const ko = {
  companyHint:'문서 디자이너에서 회사를 선택하면 회사 양식을 적용하거나 현재 양식을 공유할 수 있습니다.', chooseTemplate:'회사 양식을 선택하세요', templateName:'양식 이름', saveTemplate:'새 회사 양식으로 저장', updateTemplate:'선택한 회사 양식 갱신', deleteTemplate:'선택한 회사 양식 삭제', templateConfirm:'모든 구성원이 사용하는 회사 양식을 변경하거나 삭제할까요?', apply:'양식 적용', noOrg:'회사 작업공간에서 회사를 만들거나 초대에 참여하세요.',
  interest:'향후 유료 요금제 관심 등록 (구매 아님)', interestedPro:'Pro에 관심 있음', interestedBusiness:'Business에 관심 있음', current:'현재 버전', close:'미리보기 닫기', refresh:'새로고침', trialIncludes:'체험에는 Pro와 Business 기능이 모두 포함됩니다. 유료 요금제는 아직 판매하지 않습니다.',
 };
-export const getBusinessUi = (locale = 'en-US') => getPhase6Ui('business', locale) || (phase6Language(locale) === 'ko' ? ko : en);
+const businessCache=new Map();
+export function getBusinessUi(locale='en-US') {
+ const language=phase6Language(locale),base=getPhase6Ui('business',locale)||(language==='ko'?ko:en),plans=getPlansUi(locale);
+ if(!businessCache.has(base))businessCache.set(base,{...base,title:plans.title,intro:plans.intro,start:plans.start,trialIncludes:plans.trialIncludes,expired:plans.expired});
+ return businessCache.get(base);
+}
 export function businessError(error, ui) {
  const code = error?.message || '';
  if (code.includes('VERSION_CONFLICT')) return ui.conflict;

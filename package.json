@@ -8,6 +8,7 @@
     "prebuild": "node scripts/generate-sitemap.js",
     "build": "vite build && node scripts/prerender-cases.js && node scripts/verify-public-build.js",
     "lint": "eslint .",
+    "test:all": "node --test scripts/*.test.js",
     "test:locales": "node --test scripts/locales.test.js",
     "preview": "vite preview",
     "test:site": "node --test scripts/site-quality.test.js",
@@ -20,7 +21,8 @@
     "test:public": "node --test scripts/public-jsa.test.js",
     "test:business": "node --test scripts/business.test.js",
     "test:business:browser": "node scripts/business-browser.cjs",
-    "test:storage": "node --test scripts/project-storage.test.js"
+    "test:storage": "node --test scripts/project-storage.test.js",
+    "test:community": "node --test scripts/community.test.js scripts/public-jsa.test.js scripts/discovery.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

@@ -1,18 +1,34 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createPublicHandler, renderPublicHtml } from '../api/public-jsa.js';
-import { publicJsaView, publicJsaQuality, publicForkState, safeReturnPath } from '../src/utils/publicJsa.js';
+import { publicJsaView, publicJsaQuality, publicForkState, safeReturnPath, publicSortColumn } from '../src/utils/publicJsa.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
 import { staticRoutes } from './static-routes.js';
 import fs from 'node:fs';
 const id = '10000000-0000-4000-8000-000000000001';
-const row = { id, author_id: 'author', is_public: true, public_locale: 'ko', title: 'Installation inspection',
+const row = { assessment:{checked:true,review:'pending'}, id, author_id: 'author', is_public: true, reuse_license:'community-v1', public_locale: 'ko', title: 'Installation inspection',
   form_data: { projectName: 'Installation inspection', workDate: 'private', workLocation: 'private', ppe: [] }, participants: ['private'],
   analysis_data: ['Prepare', 'Lift', 'Inspect'].map(stepTitle => ({ proc: { stepTitle, stepDetail: 'Inspect the access route, equipment and work area before starting the task.' }, risks: [{ factor: 'Falling objects and collision', measure: 'Isolate the work area with barriers and inspect lifting equipment before use.' }], customFields: { NAME: 'private' } })),
   custom_layout: { documentNotes: 'private', stepPhotos: { 0: 'private' } } };
 const shell = '<!doctype html><html><head></head><body><div id="root"></div></body></html>';
+test('engagement metrics normalize legacy values and sort columns use a strict allowlist', () => {
+  const safe = publicJsaView({ ...row, view_count: '1234', reuse_count: -4, scrap_count: null });
+  assert.equal(safe.view_count, 1234);
+  assert.equal(safe.reuse_count, 0);
+  assert.equal(safe.scrap_count, 0);
+  assert.equal(publicJsaView({ ...row, view_count: 'invalid' }).view_count, 0);
+  for (const [input, expected] of [['latest','created_at'],['popular','scrap_count'],['views','view_count'],['reused','reuse_count'],['constructor','created_at'],['__proto__','created_at'],['unknown','created_at']]) assert.equal(publicSortColumn(input), expected);
+});
 function response() { return { headers: {}, setHeader(k,v) { this.headers[k]=v; }, end(body) { this.body=body; } }; }
+test('selected reuse preserves original step attribution and excludes unselected steps',()=>{
+ const copy=publicForkState(row,[2,1,1,-1,999]);
+ assert.deepEqual(copy.procedures.map(p=>p.stepTitle),['Lift','Inspect']);
+ assert.deepEqual(copy.procedures.map(p=>p.sourceStepIndex),[1,2]);
+ assert.equal(copy.procedures[0].sourceProjectId,id);
+ assert.equal(copy.parentId,id);
+ assert.throws(()=>publicForkState(row,[]),/NO_STEPS/);
+});
 
 test('public projection strips private fields and forks without a writable source id', () => {
   const before = JSON.stringify(row), safe = publicJsaView(row), fork = publicForkState(row);
@@ -32,7 +48,7 @@ test('server HTML contains actual public content, canonical language, safe JSON 
 });
 test('live endpoint checks public visibility on every request and never caches private responses', async () => {
   let publicNow=true, calls=0;
-  const handler=createPublicHandler({ readShell: async()=>shell, fetcher: async url => { calls++; assert.equal(new URL(url).searchParams.get('is_public'),'eq.true'); return { ok:true,json:async()=>publicNow?[row]:[] }; } });
+  const handler=createPublicHandler({ readShell: async()=>shell, fetcher: async url => { if(url.includes('/rpc/'))return {ok:true,json:async()=>null};calls++; assert.equal(new URL(url).searchParams.get('is_public'),'eq.true'); return { ok:true,json:async()=>publicNow?[row]:[] }; } });
   const first=response();await handler({query:{id,lng:'ko'}},first);assert.equal(first.statusCode,200);
   publicNow=false;const second=response();await handler({query:{id,lng:'ko'}},second);assert.equal(second.statusCode,404);assert.match(second.body,/noindex/);assert.doesNotMatch(second.body,/Installation inspection/);assert.match(second.headers['Cache-Control'],/no-store/);assert.equal(calls,2);
 });

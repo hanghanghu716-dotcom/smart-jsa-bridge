@@ -38,6 +38,7 @@ export function projectPayload(snapshot, userId, isPublic, tags = [], parentId =
   delete layout.projectSaveContext;
   return {
     author_id: userId, user_id: userId, title: data.formData.projectName,
+    ...(isPublic ? { reuse_license: snapshot.publicationConsent ? 'community-v1' : null, publication_context: snapshot.publicationContext || {} } : {}),
     project_name: data.formData.projectName, is_public: isPublic,
     ...(isPublic ? { public_locale: snapshot.locale || null } : {}),
     form_data: data.formData, participants: data.participants || [],
