@@ -22,7 +22,7 @@
     "test:business": "node --test scripts/business.test.js",
     "test:business:browser": "node scripts/business-browser.cjs",
     "test:storage": "node --test scripts/project-storage.test.js",
-    "test:community": "node --test scripts/community.test.js scripts/public-jsa.test.js scripts/discovery.test.js"
+    "test:community": "node --test scripts/community.test.js scripts/public-jsa.test.js scripts/discovery.test.js scripts/search-console.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
