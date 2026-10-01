@@ -67,6 +67,6 @@ node --env-file=.env.search.local scripts/sync-search-console.js --backfill
 
 DB 소유자가 암호학적으로 안전한 32바이트 난수를 64자리 소문자 16진수로 생성하고, 원문은 GitHub Secret에만 등록합니다. `jsa_private.search_ingest_tokens`에는 원문의 SHA-256 해시와 허용 사이트·서비스·만료일을 등록합니다. 토큰/해시를 마이그레이션이나 소스코드에 넣지 않습니다. 폐기는 해당 행의 `revoked_at`을 현재 시각으로 설정합니다. 이 테이블을 읽거나 수정하는 클라이언트 권한은 없습니다.
 
-2026-10-02 연결: Google의 정확한 속성은 `https://smartjsabridge.com/`이고 전용 계정 권한은 Restricted입니다. 최초 45일의 실제 Google 통계 수집·저장 및 전용 토큰 REST 호출을 검증했습니다. Google 인증서와 수집 토큰은 한국시간 2027-10-02 만료 전에 교체해야 합니다. 일일 실행은 PR 반영 및 `SEARCH_SYNC_ENABLED=true` 설정 후 실행 기록을 별도로 확인해야 합니다.
+2026-10-02 연결 완료: Google의 정확한 속성은 `https://smartjsabridge.com/`이고 전용 계정 권한은 Restricted입니다. [PR #14](https://github.com/hanghanghu716-dotcom/smart-jsa-bridge/pull/14)를 운영 브랜치에 반영하고 `SEARCH_SYNC_ENABLED=true`로 활성화했습니다. [첫 자동 수집](https://github.com/hanghanghu716-dotcom/smart-jsa-bridge/actions/runs/36886661496)은 19초 만에 성공했고, 요청 기간 2025-10-01~2026-09-28에서 Google이 제공한 일별 집계 246건을 저장했습니다. 사이트 전체와 라이브러리 범위의 행을 합친 건수이며 클릭 수가 아닙니다. 매일 한국시간 05:23에 실행하도록 설정됐으며 GitHub 사정에 따라 지연될 수 있습니다. Bing은 미연결, 네이버는 수동 입력입니다. Google 인증서와 수집 토큰은 한국시간 2027-10-02 만료 전에 교체해야 합니다.
 
 공식 참고: [Google Search Analytics](https://developers.google.com/webmaster-tools/v1/searchanalytics/query), [Google 서버 인증](https://developers.google.com/identity/protocols/oauth2/service-account), [Bing 통계 API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.bing.webmaster.api.interfaces.iwebmasterapi.getrankandtrafficstats?view=bing-webmaster-dotnet), [네이버 서치어드바이저](https://searchadvisor.naver.com/).
