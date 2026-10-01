@@ -11,7 +11,8 @@
     "test:locales": "node --test scripts/locales.test.js",
     "preview": "vite preview",
     "test:site": "node --test scripts/site-quality.test.js",
-    "test:content": "node --test scripts/content-publishing.test.js"
+    "test:content": "node --test scripts/content-publishing.test.js",
+    "audit:editorial": "node scripts/audit-editorial-claims.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

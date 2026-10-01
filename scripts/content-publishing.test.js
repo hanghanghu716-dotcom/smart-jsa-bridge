@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { buildCaseManifest, verifyCaseHtml, contentFingerprint } from './case-build-data.js';
 import { selectLocalizedCases } from '../src/locales/config.js';
 import {
-  readAllCaseStudies, buildSubmitData, saveCaseStudy, removePdfFromForm,
+  readAllCaseStudies, buildSubmitData, saveCaseStudy, removePdfFromForm, findUnsupportedProfessionalReviewClaims,
 } from '../src/pages/caseStudyAdminTools.js';
 
 function fakeReadClient(rows, { cap = Infinity, secondCount, failAt, emptyAt, overlapAt } = {}) {
@@ -85,6 +85,16 @@ test('preserves body markup and ID whitespace while validating JSON before writi
   assert.deepEqual(output.schema_markup, { '@type': 'FAQPage' });
   assert.throws(() => buildSubmitData({ ...form, schema_markup: '{bad}' }, body), /JSON/);
 });
+
+test('flags unsupported professional-review claims but allows explicit no-review disclosures', () => {
+  assert.equal(findUnsupportedProfessionalReviewClaims('Reviewed and verified by CMIOSH and IRATA Level 3 experts.').length, 1);
+  assert.equal(findUnsupportedProfessionalReviewClaims('본 자료는 건설안전기술사의 검토를 받았습니다.').length, 1);
+  assert.equal(findUnsupportedProfessionalReviewClaims('This content has not been professionally reviewed by a CMIOSH practitioner.').length, 0);
+  assert.equal(findUnsupportedProfessionalReviewClaims('전문가 검토를 받지 않은 교육용 초안입니다.').length, 0);
+  const form = { title: '제목', post_group_id: 'id', meta_description: '요약', schema_markup: '', pdf_list: [] };
+  assert.throws(() => buildSubmitData(form, 'Verified by a Professional Engineer.'), /전문가 검토/);
+});
+
 test('removing the linked PDF updates the legacy URL without deleting storage objects', () => {
   const form = { pdf_list: [{ url: 'a' }, { url: 'b' }], pdf_download_url: 'b' };
   assert.deepEqual(removePdfFromForm(form, 1), { pdf_list: [{ url: 'a' }], pdf_download_url: 'a' });

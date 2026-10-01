@@ -1,8 +1,9 @@
 import { normalizeLocale } from './locales/config.js';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthContext, AuthProvider } from './contexts/AuthContext';
+import { supabase } from './supabaseClient';
 
 import Main from './pages/Main';
 import Info from './pages/Info';
@@ -10,6 +11,7 @@ import Analysis from './pages/Analysis';
 import Export from './pages/Export';
 import Procedure from './pages/Procedure';
 import About from './pages/About';
+import EditorialPolicy from './pages/EditorialPolicy';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import MobileGuard from './MobileGuard';
@@ -41,47 +43,85 @@ import SEO from './components/SEO';
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
 /**
- * ✅ 비밀코드 인증을 통한 관리자 라우트 컴포넌트
+ * Admin routes use the existing Supabase Auth session.
+ * Authorization is based on app_metadata.role, which normal clients cannot edit.
+ * Database/storage writes are also protected by RLS; this UI check is defense in depth.
  */
 function AdminRoute({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [passcode, setPasscode] = useState('');
+  const { user } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const isAdmin = user?.app_metadata?.role === 'admin';
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (passcode === 'cnshcnsh2@') {
-      setIsAuthenticated(true);
-    } else {
-      alert('비밀코드가 일치하지 않습니다.');
-      setPasscode('');
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setAuthError('');
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+    } catch (error) {
+      setAuthError(error?.message || '관리자 인증에 실패했습니다.');
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!isAuthenticated) {
+  if (!user) {
     return (
-      <div style={{ padding: '200px 24px', textAlign: 'center', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
+      <div style={{ padding: '160px 24px', textAlign: 'center', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
         <SEO noIndex />
-        <h2 style={{ marginBottom: '20px', color: '#111', fontSize: '1.5rem', fontWeight: 'bold' }}>관리자 접근</h2>
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-        <input
-            type="password"
-            value={passcode}
-            onChange={(e) => setPasscode(e.target.value)}
-            placeholder="비밀코드를 입력하세요"
-            style={{ padding: '12px', width: '280px', border: '1px solid #ccc', borderRadius: '6px', fontSize: '1rem', outline: 'none', color: '#111', backgroundColor: '#fff' }}
-            autoFocus
+        <h2 style={{ marginBottom: '12px', color: '#111', fontSize: '1.5rem', fontWeight: 'bold' }}>관리자 로그인</h2>
+        <p style={{ margin: '0 auto 24px', maxWidth: '520px', color: '#555', lineHeight: 1.6 }}>
+          Supabase 계정으로 로그인합니다. 관리자 역할이 부여된 계정만 편집실에 접근할 수 있습니다.
+        </p>
+        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="관리자 이메일"
+            autoComplete="username"
+            style={{ padding: '12px', width: '300px', border: '1px solid #ccc', borderRadius: '6px', fontSize: '1rem', color: '#111', backgroundColor: '#fff' }}
+            required
           />
-          <button type="submit" style={{ padding: '12px 24px', width: '280px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>
-            인증 및 접속
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="비밀번호"
+            autoComplete="current-password"
+            style={{ padding: '12px', width: '300px', border: '1px solid #ccc', borderRadius: '6px', fontSize: '1rem', color: '#111', backgroundColor: '#fff' }}
+            required
+          />
+          {authError && <p role="alert" style={{ maxWidth: '420px', color: '#b42318', margin: 0 }}>{authError}</p>}
+          <button type="submit" disabled={loading}
+            style={{ padding: '12px 24px', width: '300px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '6px', cursor: loading ? 'wait' : 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>
+            {loading ? '인증 중...' : '로그인'}
           </button>
         </form>
       </div>
     );
   }
 
+  if (!isAdmin) {
+    return (
+      <div style={{ padding: '160px 24px', textAlign: 'center', minHeight: '100vh' }}>
+        <SEO noIndex />
+        <h2 style={{ color: '#111' }}>관리자 권한이 없습니다.</h2>
+        <p style={{ color: '#555' }}>{user.email}</p>
+        <button type="button" onClick={() => supabase.auth.signOut()}
+          style={{ padding: '10px 18px', border: '1px solid #ccc', borderRadius: '6px', background: '#fff', cursor: 'pointer' }}>
+          로그아웃
+        </button>
+      </div>
+    );
+  }
+
   return <><SEO noIndex />{children}</>;
 }
-
 function LanguageInit() {
   useLanguageDetect();
   return null;
@@ -127,6 +167,7 @@ export default function App() {
             <Route path="/" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
+            <Route path="/:lng/editorial-policy" element={<LanguageWrapper><EditorialPolicy /></LanguageWrapper>} />
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
             <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />
             <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
