@@ -60,8 +60,8 @@ test('network and provider errors never expose URL secrets or response bodies', 
 });
 test('provider failure records status without replacing data; other provider can succeed', async () => {
  const saved = [], logs = [];
- const results = await runSync({ env: { SUPABASE_URL: 'https://aajvezmhyrdawxxbulqz.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'fake', GOOGLE_SERVICE_ACCOUNT_JSON: 'bad-json', GOOGLE_SEARCH_CONSOLE_PROPERTY: 'sc-domain:smartjsabridge.com', BING_WEBMASTER_API_KEY: 'SECRET' }, now: new Date('2026-10-01'), report: value => logs.push(value), fetcher: async (url, options) => {
-  if (String(url).includes('/rest/')) { saved.push(JSON.parse(options.body).p_payload); return response({ ok: true }); }
+ const results = await runSync({ env: { SUPABASE_URL: 'https://aajvezmhyrdawxxbulqz.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test', SEARCH_METRICS_INGEST_TOKEN: 'a'.repeat(64), GOOGLE_SERVICE_ACCOUNT_JSON: 'bad-json', GOOGLE_SEARCH_CONSOLE_PROPERTY: 'sc-domain:smartjsabridge.com', BING_WEBMASTER_API_KEY: 'SECRET' }, now: new Date('2026-10-01'), report: value => logs.push(value), fetcher: async (url, options) => {
+  if (String(url).includes('/rest/')) { assert.ok(url.endsWith('/rpc/ingest_search_metrics_token')); assert.equal(options.headers.Authorization, undefined); assert.equal(options.headers.apikey, 'sb_publishable_test'); assert.equal(JSON.parse(options.body).p_token, 'a'.repeat(64)); saved.push(JSON.parse(options.body).p_payload); return response({ ok: true }); }
   return response({ d: [{ Date: '2026-09-01', Clicks: 4, Impressions: 20 }] });
  } });
  assert.deepEqual(results, [{ provider: 'google', ok: false }, { provider: 'bing', ok: true }]);
@@ -69,9 +69,13 @@ test('provider failure records status without replacing data; other provider can
  assert.equal(saved[1].rows[0].clicks, 4); assert.ok(logs.every(message => !message.includes('SECRET')));
 });
 test('unconfigured providers fail clearly, and unexpected database hosts are rejected', async () => {
- await assert.rejects(runSync({ env: { SUPABASE_URL: 'https://evil.invalid', SUPABASE_SERVICE_ROLE_KEY: 'fake' } }), /CONFIG_ERROR/);
- await assert.rejects(runSync({ env: { SUPABASE_URL: 'https://aajvezmhyrdawxxbulqz.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'fake' } }), /NOT_CONFIGURED/);
+ await assert.rejects(runSync({ env: { SUPABASE_URL: 'https://evil.invalid', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test', SEARCH_METRICS_INGEST_TOKEN: 'a'.repeat(64) } }), /CONFIG_ERROR/);
+ await assert.rejects(runSync({ env: { SUPABASE_URL: 'https://aajvezmhyrdawxxbulqz.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test', SEARCH_METRICS_INGEST_TOKEN: 'a'.repeat(64) } }), /NOT_CONFIGURED/);
 });
 test('search integrations have complete labels across supported locales', () => {
  for (const locale of SUPPORTED_LANGS) for (const [key, value] of Object.entries(getSearchConsoleUi(locale))) assert.ok(value?.trim(), `${locale}:${key}`);
+});
+
+test('database admin credentials cannot substitute for scoped ingestion credentials', async () => {
+ await assert.rejects(runSync({ env: { SUPABASE_URL: 'https://aajvezmhyrdawxxbulqz.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'admin-secret' } }), /CONFIG_ERROR/);
 });
