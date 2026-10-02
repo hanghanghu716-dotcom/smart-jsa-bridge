@@ -480,10 +480,10 @@ function ExportEditor({ recoveredDraft }) {
               stepPhotos={stepPhotos} onPhotoClick={index => { setActivePhotoRow(index); fileInputRef.current.click(); }} />
           ) : (
             <>
-              {/* Keep the default header, safety, assessment, signature order on the legacy path too. */}
+              {/* Keep signatures between safety information and the assessment on the legacy path too. */}
               {!isModuleSkipped && renderUnifiedHeader()}
-              {renderDataTable()}
               {!isModuleSkipped && renderSignatureTable()}
+              {renderDataTable()}
             </>
           )}        
         </div>

@@ -1,4 +1,4 @@
-export const DEFAULT_BLOCKS = ['PROJECT_INFO', 'SAFETY', 'JSA_TABLE', 'PARTICIPANTS', 'NOTES'].map(id => ({ id, enabled: id !== 'NOTES' }));
+export const DEFAULT_BLOCKS = ['PROJECT_INFO', 'SAFETY', 'PARTICIPANTS', 'JSA_TABLE', 'NOTES'].map(id => ({ id, enabled: id !== 'NOTES' }));
 
 // Keep the earliest former header position, and retain the header if either
 // legacy block was visible. Other blocks and the caller's data are unchanged.
