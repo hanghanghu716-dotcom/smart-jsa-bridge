@@ -1,6 +1,6 @@
 import { supabase } from '../supabaseClient';
 export async function communityAction(action,id=null,payload={},client=supabase) {
- const {data,error}=await client.rpc('community_action',{p_action:action,p_id:id,p_payload:payload});
+ const {data,error}=await client.rpc('community_workflow',{p_action:action,p_id:id,p_payload:payload});
  if(error)throw error;return data;
 }
 export async function myCommunityData(client=supabase) {

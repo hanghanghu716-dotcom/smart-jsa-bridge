@@ -32,6 +32,7 @@ import PublicExplore from './components/PublicExplore';
 import PublicJsa from './pages/PublicJsa';
 import Business from './pages/Business';
 import Community from './pages/Community';
+import Authors from './pages/Authors';
 import { communityAction } from './services/communityService';
 import LayoutBuilder from './pages/LayoutBuilder';
 import FactorDictionary from './pages/FactorDictionary';
@@ -103,6 +104,8 @@ export default function App() {
             <Route path="/:lng/community" element={<CrawlerBlocker><LanguageWrapper><Community /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/business" element={<CrawlerBlocker><LanguageWrapper><Business /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/public-jsa/:id" element={<LanguageWrapper><PublicJsa /></LanguageWrapper>} />
+            <Route path="/:lng/authors/:id" element={<LanguageWrapper><Authors /></LanguageWrapper>} />
+            <Route path="/:lng/following" element={<CrawlerBlocker><LanguageWrapper><Authors /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/dictionary" element={<LanguageWrapper><FactorDictionary /></LanguageWrapper>} />
             <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
             <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />

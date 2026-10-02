@@ -1,4 +1,5 @@
 import CommunityFooter from './CommunityFooter';
+import { getSocialUi } from '../locales/socialUi';
 import '../styles/community.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -96,6 +97,7 @@ export default function PublicExplore() {
         <div><p className="jsa-eyebrow">EXPLORE / JSA</p><h1>{ui.title}</h1><p className="explore-intro">{ui.intro}</p></div>
         <div className="explore-hero-art" aria-hidden="true"><ExploreIcon name="library" /></div>
       </section>
+      <nav className="jsa-toolbar"><LanguageLink to="/explore" aria-current="page">{getSocialUi(i18n.language).all}</LanguageLink><LanguageLink to="/following">{getSocialUi(i18n.language).following}</LanguageLink></nav>
       <div className="explore-searchbar" role="search">
         <label className="explore-search"><ExploreIcon name="search" /><input aria-label={ui.search} placeholder={ui.search} value={search} onChange={e => { setSearch(e.target.value); }} /></label>
         <select aria-label={ui.sort} value={sort} onChange={e => { setSort(e.target.value); }}><option value="latest">{ui.latest}</option><option value="popular">{ui.popular}</option><option value="views">{ui.mostViewed}</option><option value="reused">{ui.mostReused}</option></select>

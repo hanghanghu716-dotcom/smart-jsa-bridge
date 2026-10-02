@@ -1,4 +1,5 @@
 import DiscoveryLinks from '../components/DiscoveryLinks';
+import AuthorLink from '../components/AuthorLink';
 import AdSenseUnit from '../components/AdSenseUnit';
 import {documentStats,riskValue} from '../utils/discovery';
 import {getDiscoveryUi} from '../locales/discoveryUi';
@@ -92,6 +93,7 @@ export default function PublicJsa() {
       {status === 'error' && <p role="alert">{ui.error} <button onClick={() => setAttempt(n => n + 1)}>{ui.retry}</button></p>}
       {status === 'missing' && <h1>{ui.unavailable}</h1>}
       {currentRow && <><span className="jsa-eyebrow">{ui.community}</span><h1>{currentRow.title}</h1>
+        <AuthorLink id={currentRow.author_id}/>
         <section className="public-document-preview" aria-labelledby="public-document-preview-title">
           <h2 id="public-document-preview-title">{community.preview}</h2>
           <div className="jsa-paper-scroll" tabIndex={0} role="region" aria-labelledby="public-document-preview-title">
