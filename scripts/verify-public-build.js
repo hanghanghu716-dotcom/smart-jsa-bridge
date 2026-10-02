@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
 for (const locale of SUPPORTED_LANGS) {
- for (const page of ['business','explore','public-jsa','library','login','profile','export','info','analysis','procedure','document-designer']) {
+ for (const page of ['business','explore','public-jsa','library','login','profile','export','info','analysis','procedure','document-designer','work-packages']) {
   if (fs.existsSync(`dist/${locale}/${page}`)) throw new Error(`Unexpected dynamic snapshot: ${locale}/${page}`);
  }
 }

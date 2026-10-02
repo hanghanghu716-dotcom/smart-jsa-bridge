@@ -1,4 +1,5 @@
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
+import {getWorkPackageUi} from '../locales/workPackageUi';
 import { isStorageLimitError } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
 import { getCommunityUi } from '../locales/communityUi';
@@ -401,6 +402,7 @@ export default function MyLibrary() {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
+        <LanguageLink to="/work-packages" style={{color:'var(--accent)'}}>{getWorkPackageUi(i18n.language).title}</LanguageLink>
         <LanguageLink to="/business" dir={i18n.dir()} style={{ color: 'var(--accent)', fontSize: 14 }}>{getBusinessUi(i18n.language).title} <span aria-hidden="true">{i18n.dir()==='rtl'?'←':'→'}</span></LanguageLink><ThemeSwitcher compact />
       </header>
 

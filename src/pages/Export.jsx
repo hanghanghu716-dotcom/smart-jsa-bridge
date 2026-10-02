@@ -12,8 +12,8 @@ import DocumentContent from '../components/DocumentContent';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
-import { captureReport } from '../utils/captureReport';
-import jsPDF from 'jspdf'; 
+import { createReportPdf } from '../utils/reportPdf';
+
 import { supabase } from '../supabaseClient'; 
 import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; 
 import { useTranslation } from 'react-i18next';
@@ -202,27 +202,7 @@ function ExportEditor({ recoveredDraft }) {
   const generatePDF = async () => {
     setIsProcessing(true); const paper = document.querySelector('.reportPaper'); if (!paper) return setIsProcessing(false);
     try {
-      window.scrollTo(0, 0); const canvas = await captureReport(paper);
-      const imgWidthPx = canvas.width; const imgHeightPx = canvas.height; const doc = new jsPDF(savedOrientation === 'landscape' ? 'l' : 'p', 'mm', 'a4');
-      const pageWidth = doc.internal.pageSize.getWidth(); const pageHeight = doc.internal.pageSize.getHeight(); const margin = 10; const contentWidth = pageWidth - (margin * 2); const pxToMm = contentWidth / imgWidthPx;
-      const contentHeightMm = imgHeightPx * pxToMm; let leftHeightMm = contentHeightMm; let positionMm = 0; const paperRect = paper.getBoundingClientRect();
-      const trElements = paper.querySelectorAll('tr'); const cutPointRatios = Array.from(trElements).map(el => (el.getBoundingClientRect().bottom - paperRect.top) / paperRect.height).sort((a, b) => a - b);
-      while (leftHeightMm > 0) {
-        let maxPageHeightMm = pageHeight - (margin * 2); let sliceHeightMm = leftHeightMm > maxPageHeightMm ? maxPageHeightMm : leftHeightMm;
-        if (leftHeightMm > maxPageHeightMm) {
-          const currentCanvasY = positionMm / pxToMm; const maxCanvasY = currentCanvasY + (maxPageHeightMm / pxToMm); let bestCutCanvasY = maxCanvasY; let foundCutPoint = false;
-          for (let i = 0; i < cutPointRatios.length; i++) {
-            const elBottomPx = cutPointRatios[i] * imgHeightPx;
-            if (elBottomPx > currentCanvasY + 20 && elBottomPx <= maxCanvasY) { bestCutCanvasY = elBottomPx; foundCutPoint = true; } else if (elBottomPx > maxCanvasY) { break; }
-          }
-          if (foundCutPoint) sliceHeightMm = (bestCutCanvasY - currentCanvasY) * pxToMm;
-        }
-        const sourceY = positionMm / pxToMm; const sourceH = sliceHeightMm / pxToMm; const tempCanvas = document.createElement('canvas'); tempCanvas.width = imgWidthPx; tempCanvas.height = sourceH;
-        const ctx = tempCanvas.getContext('2d'); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(canvas, 0, Math.floor(sourceY), Math.floor(imgWidthPx), Math.floor(sourceH), 0, 0, Math.floor(imgWidthPx), Math.floor(sourceH));
-        doc.addImage(tempCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, sliceHeightMm);
-        leftHeightMm -= sliceHeightMm; positionMm += sliceHeightMm; if (leftHeightMm > 0.1) doc.addPage();
-      }
+      const {doc}=await createReportPdf([{element:paper,orientation:savedOrientation}]);
       doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
     } catch (error) { console.error(error); alert(t('alert.pdfError')); } finally { setIsProcessing(false); }
   };
