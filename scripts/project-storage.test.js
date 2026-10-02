@@ -34,7 +34,7 @@ test('visibility defaults privately; owned public documents and explicit choices
  assert.equal(projectEditorState(source,true).formData.saveVisibility,'public');
  const snapshot={formData:source.form_data};
  assert.equal(projectPayload(snapshot,'owner',false).form_data.saveVisibility,'private');
- assert.equal(projectPayload(snapshot,'owner',true).form_data.saveVisibility,undefined);
+ assert.equal(projectPayload({...snapshot,publicationConsent:true},'owner',true).form_data.saveVisibility,undefined);
 });
 test('every supported route explains visibility and Community quota in its language',()=>{
  const base=Object.keys(getVisibilityUi('en-US')).sort();

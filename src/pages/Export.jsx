@@ -3,6 +3,7 @@ import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
 import { getSaveVisibility } from '../utils/projectPersistence';
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
 import { isStorageLimitError } from '../services/projectStorageService';
+import { getVisibilityUi } from '../locales/visibilityUi';
 import { getStorageUi } from '../locales/storageUi';
 import { saveProject } from '../services/projectPersistenceService';
 import DocumentSignatures from '../components/DocumentSignatures';
@@ -512,19 +513,19 @@ function ExportEditor({ recoveredDraft }) {
               {saveVisibility === 'public' && ((isFork && !isValuableFork) ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
                   <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('common:saveFlow.publicCopy')}</h4>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{getVisibilityUi(i18n.language).public}</h4>
                   <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
                 </div>
               ) : totalRisks < 3 ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
                   <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('modal.pubPublicLabel')}</h4>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{getVisibilityUi(i18n.language).public}</h4>
                   <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
                 </div>
               ) : (
                 <button type="button" disabled={isProcessing || !publicationConsent} data-save-mode="public" style={styles.typeCardHighlight} onClick={() => handleCloudAction('public')}>
                   <div style={styles.typeBadgeActive}>Public</div>
-                  <h4 style={styles.typeLabel}>{t('common:saveFlow.publicCopy')}</h4>
+                  <h4 style={styles.typeLabel}>{getVisibilityUi(i18n.language).public}</h4>
                   <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.publicHint') }}></p>
                 </button>
               ))}

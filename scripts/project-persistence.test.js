@@ -26,7 +26,7 @@ test('private document round trip retains full fields, procedures, zero/false va
 
 test('public copy excludes structured private fields without mutating its private source', () => {
   const before = JSON.stringify(snapshot);
-  const row = projectPayload(snapshot, 'owner', true);
+  const row = projectPayload({ ...snapshot, publicationConsent: true }, 'owner', true);
   assert.deepEqual(Object.keys(row.form_data).sort(), ['jsaType', 'ppe', 'projectName']);
   assert.deepEqual(row.participants, []); assert.deepEqual(row.analysis_data[0].customFields, {});
   assert.equal(row.custom_layout.stepPhotos, undefined); assert.equal(row.custom_layout.documentNotes, '');
@@ -74,15 +74,15 @@ function mockClient(result = { data: { id: 'saved', updated_at: 'revision2', is_
 
 test('an in-flight save for the previous draft cannot replace the new draft revision', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
-  const previousWindow = global.window, previousStorage = global.sessionStorage;
+  const previousWindow = globalThis.window, previousStorage = globalThis.sessionStorage;
   let client, previousGetUser, previousRpc;
   try {
     const { supabase } = await server.ssrLoadModule('/src/supabaseClient.js');
     client = supabase; previousGetUser = client.auth.getUser; previousRpc = client.rpc;
     const drafts = await server.ssrLoadModule('/src/services/jsaDraftService.js');
     const memory = new Map();
-    global.window = {};
-    global.sessionStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value), removeItem: key => memory.delete(key) };
+    globalThis.window = {};
+    globalThis.sessionStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value), removeItem: key => memory.delete(key) };
     client.auth.getUser = async () => ({ data: { user: { id: 'owner' } } });
     let releaseSave, notifyStarted;
     const started = new Promise(resolve => { notifyStarted = resolve; });
@@ -97,7 +97,7 @@ test('an in-flight save for the previous draft cannot replace the new draft revi
     assert.equal(drafts.getActiveDraftVersion(), 1);
   } finally {
     if (client) { client.auth.getUser = previousGetUser; client.rpc = previousRpc; }
-    global.window = previousWindow; global.sessionStorage = previousStorage;
+    globalThis.window = previousWindow; globalThis.sessionStorage = previousStorage;
     await server.close();
   }
 });
@@ -112,9 +112,15 @@ test('save services enforce ownership/revision, explicit insert modes and failed
     assert.deepEqual(client.calls.filter(call => call[0] === 'eq'), [['eq', 'id', 'existing'], ['eq', 'author_id', 'owner'], ['eq', 'is_public', false], ['eq', 'updated_at', 'revision1']]);
     assert.ok(!client.calls.some(call => call[0] === 'insert'));
     for (const mode of ['private', 'public']) {
-      const insert = mockClient(); await saveProject({ snapshot, mode, client: insert });
+      const insert = mockClient(); await saveProject({ snapshot: { ...snapshot, publicationConsent: true }, mode, client: insert });
       assert.equal(insert.calls.find(call => call[0] === 'insert')[1].is_public, mode === 'public');
     }
+    for (const consent of [undefined, false, 'true']) {
+      const blocked = mockClient();
+      await assert.rejects(saveProject({ snapshot: { ...snapshot, publicationConsent: consent }, mode: 'public', client: blocked }), /PUBLICATION_CONSENT_REQUIRED/);
+      assert.equal(blocked.calls.length, 0);
+    }
+    assert.equal(projectPayload({ ...snapshot, publicationConsent: true }, 'owner', true).reuse_license, 'community-v1');
     await assert.rejects(saveProject({ snapshot, mode: 'update', targetId: 'existing', client }), /PROJECT_CHANGED/);
     await assert.rejects(saveProject({ snapshot, mode: 'update', targetId: 'existing', expectedUpdatedAt: 'stale', client: mockClient({ data: null }) }), /PROJECT_CHANGED/);
     await assert.rejects(saveProject({ snapshot, mode: 'private', client: mockClient(undefined, null) }), /AUTH_REQUIRED/);

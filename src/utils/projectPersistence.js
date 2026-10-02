@@ -38,12 +38,13 @@ export function publicProjectSnapshot(snapshot) {
 }
 
 export function projectPayload(snapshot, userId, isPublic, tags = [], parentId = null) {
+  if (isPublic && snapshot.publicationConsent !== true) throw new Error('PUBLICATION_CONSENT_REQUIRED');
   const data = isPublic ? publicProjectSnapshot(snapshot) : snapshot;
   const layout = { ...pickDocumentLayout(data.layoutData), procedures: data.procedures || [] };
   delete layout.projectSaveContext;
   return {
     author_id: userId, user_id: userId, title: data.formData.projectName,
-    ...(isPublic ? { reuse_license: snapshot.publicationConsent ? 'community-v1' : null, publication_context: snapshot.publicationContext || {} } : {}),
+    ...(isPublic ? { reuse_license: 'community-v1', publication_context: snapshot.publicationContext || {} } : {}),
     project_name: data.formData.projectName, is_public: isPublic,
     ...(isPublic ? { public_locale: snapshot.locale || null } : {}),
     form_data: isPublic ? data.formData : { ...data.formData, saveVisibility: 'private' }, participants: data.participants || [],
