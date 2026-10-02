@@ -14,6 +14,7 @@ import {
 } from "../../utils/reportPdf";
 import WorkPreview from "./WorkPreview";
 import AnnotationEditor from "./AnnotationEditor";
+import WorkFlowGuide from "./WorkFlowGuide";
 export default function WorkRun({ record, drawings, ui, onBack }) {
   const [run, setRun] = useState(() => startWork(record)),
     [busy, setBusy] = useState(false),
@@ -111,6 +112,7 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
   const selectedDrawing = run.documents.find((d) => d.id === drawingId);
   return (
     <div className={busy ? "work-run work-busy" : "work-run"} aria-busy={busy}>
+      <WorkFlowGuide ui={ui} current={artifact ? 2 : 1} />
       <div className="work-tools">
         <button
           disabled={busy}
@@ -118,17 +120,17 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
             if (artifact || window.confirm(ui.unsaved)) onBack();
           }}
         >
-          {ui.back}
+          {ui.backEditor}
         </button>
         <h2>
           {record.name} · {record.version_name}
         </h2>
       </div>
-      <p>{ui.runtimeHelp}</p>
-      <p>{ui.archiveHelp}</p>
+      <p className="jsa-notice">{ui.runtimeHelp}</p>
       {message && <p role="status">{message}</p>}
       <fieldset disabled={busy}>
-        <legend>{ui.currentWork}</legend>
+        <legend>2. {ui.fillTitle}</legend>
+        <p className="work-section-help">{ui.inputsHelp}</p>
         <div className="work-common-grid">
           {[
             "projectName",
@@ -223,8 +225,14 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
           }
         />
       )}
+      <section className="work-output-section">
+      <h2>3. {ui.outputTitle}</h2>
+      <p>{ui.previewHelp}</p>
+      <p>{ui.archiveHelp}</p>
+      {!run.documents.some((d) => d.enabled) && <p role="status">{ui.noDocuments}</p>}
       <div className="work-tools">
         <button
+          className="jsa-primary"
           disabled={busy || !outputReady(run)}
           onClick={() => exportAll(false)}
         >
@@ -237,7 +245,8 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
           {ui.print}
         </button>
       </div>
-      <h2>{ui.preview}</h2>
+      </section>
+      <h3 className="work-preview-heading">{ui.preview}</h3>
       <div ref={preview}>
         <WorkPreview run={run} drawings={drawings} ui={ui} />
       </div>

@@ -32,6 +32,7 @@ import AnnotationEditor from "../components/work/AnnotationEditor";
 import FormEditor from "../components/work/FormEditor";
 import WorkRun from "../components/work/WorkRun";
 import ArchivedOutput from "../components/work/ArchivedOutput";
+import WorkFlowGuide from "../components/work/WorkFlowGuide";
 import "../styles/workspaces.css";
 import "../styles/work-packages.css";
 const tables = {
@@ -97,7 +98,7 @@ export default function WorkPackages() {
   };
   const newPackage = () =>
     setRecord({
-      name: ui.create,
+      name: "",
       version_name: "ver.1",
       data: {
         commonDefaults: { projectName: "", workLocation: "", department: "" },
@@ -121,7 +122,8 @@ export default function WorkPackages() {
       </header>
       <main className="jsa-container">
         <h1>{ui.title}</h1>
-        <p>{ui.privateHelp}</p>
+        <p className="work-intro">{ui.intro}</p>
+        <p className="work-privacy">{ui.privateHelp}</p>
         {message && <p role="alert">{message}</p>}
         {record ? (
           <PackageEditor
@@ -135,7 +137,8 @@ export default function WorkPackages() {
           />
         ) : (
           <>
-            <nav className="work-tools">
+            <WorkFlowGuide ui={ui} />
+            <nav className="work-tools work-tabs" aria-label={ui.title}>
               {Object.keys(tables).map((t) => (
                 <button
                   key={t}
@@ -149,6 +152,10 @@ export default function WorkPackages() {
                 </button>
               ))}
             </nav>
+            <div className="work-section-heading">
+              <h2>{ui[tab]}</h2>
+              <p>{ui[`${tab}Help`]}</p>
+            </div>
             {state?.key !== key ? (
               <p role="status">{ui.loading}</p>
             ) : state.login ? (
@@ -166,7 +173,7 @@ export default function WorkPackages() {
               </p>
             ) : (
               <>
-                {tab === "packages" && (
+                {tab === "packages" && state.rows.length > 0 && (
                   <button className="jsa-primary" onClick={newPackage}>
                     {ui.create}
                   </button>
@@ -177,7 +184,13 @@ export default function WorkPackages() {
                     onSaved={() => setRefresh((n) => n + 1)}
                   />
                 )}
-                {!state.rows.length && <p>{ui.empty}</p>}
+                {!state.rows.length && (
+                  <section className="work-empty">
+                    <h3>{ui[`${tab}Empty`]}</h3>
+                    <p>{ui[`${tab}EmptyHelp`]}</p>
+                    {tab === "packages" && <button className="jsa-primary" onClick={newPackage}>{ui.create}</button>}
+                  </section>
+                )}
                 <div className="jsa-card-grid">
                   {state.rows.map((row) => (
                     <article className="jsa-card" key={row.id}>
@@ -189,6 +202,7 @@ export default function WorkPackages() {
                             .join(" · ")}
                       </p>
                       <time>{new Date(row.created_at).toLocaleString()}</time>
+                      <div className="work-tools work-card-actions">
                       {tab === "packages" && (
                         <button
                           disabled={busy}
@@ -252,10 +266,11 @@ export default function WorkPackages() {
                           </button>
                         </>
                       )}
+                      </div>
                     </article>
                   ))}
                 </div>
-                <nav className="work-tools">
+                {(page > 0 || state.rows.length >= 50) && <nav className="work-tools">
                   <button
                     disabled={!page || busy}
                     onClick={() => setPage((p) => p - 1)}
@@ -268,7 +283,7 @@ export default function WorkPackages() {
                   >
                     {ui.next}
                   </button>
-                </nav>
+                </nav>}
               </>
             )}
           </>
@@ -481,20 +496,22 @@ function PackageEditor({ initial, ui, onBack }) {
     );
   return (
     <div className={busy ? "package-editor work-busy" : "package-editor"}>
-      <div className="work-tools">
+      <WorkFlowGuide ui={ui} current={0} />
+      <div className="work-tools work-editor-actions">
         <button
           disabled={busy}
           onClick={() => {
             if (!dirty || window.confirm(ui.unsaved)) onBack();
           }}
         >
-          {ui.back}
+          {ui.backPackages}
         </button>
         <button
+          className="jsa-primary"
           disabled={busy || !record.name.trim() || !record.version_name.trim()}
           onClick={() => save(false)}
         >
-          {ui.save}
+          {ui.savePackage}
         </button>
         <button disabled={busy || !record.id} onClick={() => save(true)}>
           {ui.copy}
@@ -503,16 +520,19 @@ function PackageEditor({ initial, ui, onBack }) {
           disabled={busy || dirty || !record.id || !library}
           onClick={() => setWorking(true)}
         >
-          {ui.start}
+          {ui.continueWork}
         </button>
       </div>
-      {(dirty || !record.id) && <p>{ui.saveFirst}</p>}
+      <p className="jsa-notice">{dirty || !record.id ? ui.saveFirst : ui.readyHelp}</p>
       {message && <p role="status">{message}</p>}
-      <fieldset disabled={busy}>
+      <fieldset disabled={busy} className="work-section">
+        <legend>{ui.basicTitle}</legend>
+        <p className="work-section-help">{ui.basicHelp}</p>
         <div className="work-common-grid">
           <label>
-            {ui.name}
+            {ui.packageName}
             <input
+              placeholder={ui.packageNameHint}
               maxLength={120}
               value={record.name}
               onChange={(e) => setRecord({ ...record, name: e.target.value })}
@@ -521,6 +541,7 @@ function PackageEditor({ initial, ui, onBack }) {
           <label>
             {ui.version}
             <input
+              placeholder={ui.versionHint}
               maxLength={80}
               value={record.version_name}
               onChange={(e) =>
@@ -551,6 +572,10 @@ function PackageEditor({ initial, ui, onBack }) {
           ))}
         </div>
       </fieldset>
+      <section className="work-section work-add-section">
+      <h2>{ui.addTitle}</h2>
+      <p>{!record.id ? ui.addHelp : ui.orderHelp}</p>
+      <h3>{ui.blankForms}</h3>
       <div className="work-tools">
         {["ptw", "tbm", "checklist", "custom"].map((type) => (
           <button
@@ -561,7 +586,10 @@ function PackageEditor({ initial, ui, onBack }) {
             {ui.add} · {ui[type]}
           </button>
         ))}
-        <select
+      </div>
+      <h3>{ui.savedMaterials}</h3>
+      <div className="work-tools work-materials">
+        <label>{ui.importJsa}<select
           aria-label={ui.importJsa}
           disabled={busy || !library}
           value=""
@@ -570,14 +598,14 @@ function PackageEditor({ initial, ui, onBack }) {
             if (id) task(async () => addDoc(importJsa(await ownJsa(id))));
           }}
         >
-          <option value="">{ui.importJsa}</option>
+          <option value="">{!library ? ui.loading : !library.jsas.length ? ui.noJsa : ui.importJsa}</option>
           {library?.jsas.map((j) => (
             <option value={j.id} key={j.id}>
               {j.title}
             </option>
           ))}
-        </select>
-        <select
+        </select></label>
+        <label>{ui.templates}<select
           aria-label={ui.templates}
           disabled={busy || !library}
           value=""
@@ -588,14 +616,14 @@ function PackageEditor({ initial, ui, onBack }) {
             if (saved) addDoc({ ...clone(saved.data), id: uid() });
           }}
         >
-          <option value="">{ui.templates}</option>
+          <option value="">{!library ? ui.loading : !library.templates.length ? ui.noTemplates : ui.templates}</option>
           {library?.templates.map((t) => (
             <option key={t.id} value={t.id}>
               {t.name}
             </option>
           ))}
-        </select>
-        <select
+        </select></label>
+        <label>{ui.drawings}<select
           aria-label={ui.drawings}
           disabled={busy || !library}
           value=""
@@ -616,18 +644,21 @@ function PackageEditor({ initial, ui, onBack }) {
           }}
         >
           <option value="">
-            {ui.add} · {ui.drawings}
+            {!library ? ui.loading : !library.drawings.length ? ui.noDrawings : `${ui.add} · ${ui.drawings}`}
           </option>
           {library?.drawings.map((d) => (
             <option key={d.id} value={d.id}>
               {d.name} · {d.revision}
             </option>
           ))}
-        </select>
+        </select></label>
       </div>
       <DrawingUpload ui={ui} onSaved={() => setRefresh((n) => n + 1)} />
+      </section>
       <div className="work-editor-grid">
         <aside>
+          <h2>{ui.orderTitle}</h2>
+          <p>{ui.orderHelp}</p>
           <ol className="work-document-list">
             {record.data.documents.map((d, i) => (
               <li key={d.id} className={selected === d.id ? "selected" : ""}>
@@ -696,7 +727,10 @@ function PackageEditor({ initial, ui, onBack }) {
             ))}
           </ol>
         </aside>
-        <section>
+        <section className="work-document-editor">
+          <h2>{ui.editTitle}</h2>
+          <p>{ui.editHelp}</p>
+          {!doc && <p className="work-empty">{ui.selectDocument}</p>}
           {doc && (
             <>
               <div className="work-common-grid">
@@ -712,7 +746,7 @@ function PackageEditor({ initial, ui, onBack }) {
                 </label>
                 {doc.type !== "drawing" && (
                   <label>
-                    {ui.layout}
+                    {ui.orientation}
                     <select
                       value={doc.orientation}
                       onChange={(e) =>

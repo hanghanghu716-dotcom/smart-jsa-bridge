@@ -1,12 +1,10 @@
-import ProjectStorageUsage from '../components/ProjectStorageUsage';
-import {getWorkPackageUi} from '../locales/workPackageUi';
+import LibraryWorkspaceOverview from '../components/LibraryWorkspaceOverview';
 import { isStorageLimitError } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
 import { getCommunityUi } from '../locales/communityUi';
 import { projectEditorState } from '../utils/projectPersistence';
 import { saveProject } from '../services/projectPersistenceService';
 import { clearActiveDraft } from '../services/jsaDraftService';
-import { getBusinessUi } from '../locales/businessUi';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getLanguageTag } from '../locales/config.js';
 import React, { useState, useEffect } from 'react';
@@ -132,7 +130,6 @@ export default function MyLibrary() {
     fetchLibraryData();
   };
 
-  const handleLogoClick = () => { navigate('/'); };
 
   const createCategory = async () => {
     if (!newCatName.trim()) return;
@@ -393,36 +390,35 @@ export default function MyLibrary() {
   };
 
   return (
-    <div className="theme-workspace" style={styles.wrapper}>
+    <div className="theme-workspace library-page" style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
         <div style={styles.dimOverlay} />
       </div>
 
-      <header style={styles.header}>
-        <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
-        <LanguageLink to="/work-packages" style={{color:'var(--accent)'}}>{getWorkPackageUi(i18n.language).title}</LanguageLink>
-        <LanguageLink to="/business" dir={i18n.dir()} style={{ color: 'var(--accent)', fontSize: 14 }}>{getBusinessUi(i18n.language).title} <span aria-hidden="true">{i18n.dir()==='rtl'?'←':'→'}</span></LanguageLink><ThemeSwitcher compact />
+      <header style={styles.header} className="library-header">
+        <LanguageLink to="/" className="library-brand">Smart JSA Bridge</LanguageLink>
+        <ThemeSwitcher compact />
       </header>
 
-      <div style={{position:'relative',zIndex:10,margin:'0 5%'}}><ProjectStorageUsage refreshKey={favorites} /></div>
-      <div style={styles.mainLayout}>
+      <div style={styles.mainLayout} className="library-main">
         <aside style={styles.sideAd}>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
-        <main style={styles.centerContent}>
-          <div style={styles.formCard}>
-            <div style={styles.libHeader}>
-              <h2 style={styles.title}>{t('pageTitle')}</h2>
+        <main style={styles.centerContent} className="library-content">
+          <LibraryWorkspaceOverview refreshKey={favorites}/>
+          <div style={styles.formCard} className="library-panel">
+            <div style={styles.libHeader} className="library-panel-header">
+              <h1 style={styles.title}>{t('pageTitle')}</h1>
               <div style={styles.addCategoryBox}>
                 <input style={styles.catInput} value={newCatName} onChange={(e)=>setNewCatName(e.target.value)} placeholder={t('newFolderPlaceholder')} />
                 <button style={styles.catAddBtn} onClick={createCategory}>{t('addFolderBtn')}</button>
               </div>
             </div>
 
-            <div style={styles.contentGrid}>
+            <div style={styles.contentGrid} className="library-grid">
               <aside style={styles.catSidebar}>
                 <div style={selectedCatId === 'SYSTEM_FOLDER' ? styles.systemCatActive : styles.systemCat} onClick={() => setSelectedCatId('SYSTEM_FOLDER')}>{t('menuSystem')}</div>
                 <div style={selectedCatId === 'DRAFT_FOLDER' ? styles.draftCatActive : styles.draftCat} onClick={() => setSelectedCatId('DRAFT_FOLDER')}>{t('menuDrafts')} ({drafts.length})</div>

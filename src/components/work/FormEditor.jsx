@@ -13,7 +13,7 @@ function FieldSettings({ field, onChange, ui }) {
         />
       </label>
       <label>
-        {ui.field}
+        {ui.fieldKind}
         <select
           value={f.kind}
           onChange={(e) =>
@@ -28,7 +28,7 @@ function FieldSettings({ field, onChange, ui }) {
         </select>
       </label>
       <label>
-        {ui.defaults}
+        {ui.fieldMode}
         <select
           value={f.mode}
           onChange={(e) =>
@@ -91,7 +91,8 @@ export default function FormEditor({ doc, onChange, onSaveTemplate, ui }) {
       ],
     });
   return (
-    <div>
+    <div className="work-form-editor">
+      <p className="work-field-help">{ui.fieldModeHelp}</p>
       <div className="work-tools">
         <button onClick={() => add("field")}>
           {ui.add} · {ui.field}

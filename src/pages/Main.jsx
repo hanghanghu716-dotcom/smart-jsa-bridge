@@ -12,6 +12,7 @@ import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { AuthContext } from '../contexts/AuthContext';
 import { clearActiveDraft } from '../services/jsaDraftService';
 import '../styles/case-pagination.css';
+import { getWorkspaceNavUi } from '../locales/workspaceNavUi';
 
 // Compact header copy is kept here so this file can be replaced independently.
 // Optional main:header.* translations take precedence over these defaults.
@@ -66,6 +67,7 @@ export default function Main() {
   const location = useLocation();
   const { t, i18n } = useTranslation('main');
   const ui = getSiteUi(i18n.language);
+  const workspaceUi = getWorkspaceNavUi(i18n.language);
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -346,6 +348,8 @@ export default function Main() {
               <LanguageLink to="/explore" className="main-header-link">{headerLabels.explore}</LanguageLink>
               <a href="#case-studies" className="main-header-link">{headerLabels.cases}</a>
               <button type="button" className="main-header-link" onClick={openLibrary}>{headerLabels.library}</button>
+              <LanguageLink to="/work-packages" className="main-header-link">{workspaceUi.packages}</LanguageLink>
+              <LanguageLink to="/business" className="main-header-link">{workspaceUi.plans}</LanguageLink>
             </nav>
             <div ref={headerActionsRef} className="main-header-actions">
               <div
@@ -449,6 +453,10 @@ export default function Main() {
               <LanguageLink to="/login" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('loginSignup')}</LanguageLink>
             )}
 
+            <div style={{ ...styles.navCategory, marginTop: '30px' }}>{workspaceUi.workspace}</div>
+            <button type="button" className="main-drawer-action" style={styles.drawerLink} onClick={openLibrary}>{t('navLibrary')}</button>
+            <LanguageLink to="/work-packages" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{workspaceUi.packages}</LanguageLink>
+            <LanguageLink to="/business" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{workspaceUi.plans}</LanguageLink>
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>CONTENTS</div>
             <LanguageLink to="/regulation" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navRegulation')}</LanguageLink>
             <LanguageLink to="/jrajsa" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navProcess')}</LanguageLink>
@@ -459,7 +467,6 @@ export default function Main() {
               {t('navCaseStudy', { defaultValue: 'Case Studies' })}
             </a>
             <LanguageLink to="/explore" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navExplore')}</LanguageLink>
-            <button type="button" className="main-drawer-action" style={styles.drawerLink} onClick={openLibrary}>{t('navLibrary')}</button>
             <div style={{ ...styles.navCategory, marginTop: '30px' }}>{ui.sectorGuides}</div>
             <LanguageLink to="/guideline/common" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideCommon')}</LanguageLink>
             <LanguageLink to="/guideline/construction" style={styles.drawerLink} onClick={() => setIsMenuOpen(false)}>{t('navGuideConstruction')}</LanguageLink>
