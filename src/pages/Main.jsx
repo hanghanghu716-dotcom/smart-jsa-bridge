@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { AuthContext } from '../contexts/AuthContext';
 import { clearActiveDraft } from '../services/jsaDraftService';
+import '../styles/case-pagination.css';
 
 // Compact header copy is kept here so this file can be replaced independently.
 // Optional main:header.* translations take precedence over these defaults.
@@ -280,13 +281,17 @@ export default function Main() {
   });
 
   // 필터링된 결과 데이터를 기준으로 페이지네이션 계산 처리
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const totalPages = Math.ceil(filteredCaseStudies.length / ITEMS_PER_PAGE);
+  const activePage = Math.min(currentPage, Math.max(1, totalPages));
+  const groupStart = Math.floor((activePage - 1) / 5) * 5 + 1;
+  const groupEnd = Math.min(groupStart + 4, totalPages);
+  const visiblePages = Array.from({ length: Math.max(0, groupEnd - groupStart + 1) }, (_, i) => groupStart + i);
+  const indexOfLastItem = activePage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = filteredCaseStudies.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredCaseStudies.length / ITEMS_PER_PAGE);
 
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    setCurrentPage(Math.max(1, Math.min(pageNumber, totalPages)));
     const element = document.getElementById('case-studies');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -681,22 +686,26 @@ export default function Main() {
 
               {/* 페이지네이션 인터페이스 제어 요소 */}
               {totalPages > 1 && (
-                <div style={styles.paginationContainer}>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                <nav className="case-pagination" aria-label={t('casePagination.label')} dir={i18n.dir()}>
+                  <button type="button" className="case-pagination-previous" disabled={groupStart === 1}
+                    onClick={() => handlePageChange(groupStart - 5)}>{t('casePagination.previousGroup')}</button>
+                  <div className="case-pagination-numbers">
+                  {visiblePages.map((pageNumber) => (
                     <button
+                      type="button"
                       key={pageNumber}
                       onClick={() => handlePageChange(pageNumber)}
-                      style={{
-                        ...styles.paginationButton,
-                        backgroundColor: currentPage === pageNumber ? '#007bff' : '#ffffff',
-                        color: currentPage === pageNumber ? '#ffffff' : '#111111',
-                        borderColor: currentPage === pageNumber ? '#007bff' : '#eee'
-                      }}
+                      aria-label={t('casePagination.page', { page: pageNumber })}
+                      aria-current={activePage === pageNumber ? 'page' : undefined}
                     >
                       {pageNumber}
                     </button>
                   ))}
-                </div>
+                  </div>
+                  <button type="button" className="case-pagination-next" disabled={groupEnd >= totalPages}
+                    onClick={() => handlePageChange(groupEnd + 1)}>{t('casePagination.nextGroup')}</button>
+                  <span className="case-pagination-status" aria-live="polite">{t('casePagination.status', { current: activePage, total: totalPages })}</span>
+                </nav>
               )}
 
               <p style={{ marginTop: '24px' }}><LanguageLink to="/archive">{t('footerArchive', { defaultValue: 'Archive' })}</LanguageLink></p>
@@ -853,11 +862,6 @@ const styles = {
     height: '18px',
     color: '#888',
     pointerEvents: 'none' // 아이콘 클릭 시에도 인풋 창에 포커스가 가도록 설정
-  },
-  paginationContainer: { display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '50px', width: '100%' },
-  paginationButton: {
-    padding: '10px 18px', fontSize: '0.9rem', fontWeight: 'bold', border: '1px solid',
-    borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s ease-in-out'
   },
   noResultBox: { width: '100%', textAlign: 'center', padding: '80px 0', color: '#666', fontSize: '1.1rem' }
 };

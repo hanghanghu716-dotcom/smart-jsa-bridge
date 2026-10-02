@@ -1,3 +1,5 @@
+-- Run ONLY against the disposable quota_test database; this changes fixture account trial dates.
+-- Never run against production or real accounts, even with ROLLBACK.
 begin;
 create temporary table qa_quota as
  select u.id owner_id,(select id from auth.users where id<>u.id order by id limit 1) other_id,

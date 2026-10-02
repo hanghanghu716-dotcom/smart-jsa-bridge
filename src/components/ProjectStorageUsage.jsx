@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getStorageUsage } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
 import { formatStorageCount } from '../locales/phase6Ui';
+import { getVisibilityUi } from '../locales/visibilityUi';
 export default function ProjectStorageUsage({ refreshKey, onStatus }) {
  const { i18n }=useTranslation(),ui=getStorageUi(i18n.language);
  const [usage,setUsage]=useState(null),[failed,setFailed]=useState(false),[attempt,setAttempt]=useState(0);
@@ -18,6 +19,6 @@ export default function ProjectStorageUsage({ refreshKey, onStatus }) {
  if(!usage&&!failed)return null;
  return <section data-storage-usage dir={i18n.dir()} style={{padding:'14px 16px',margin:'12px 0',border:'1px solid var(--border-default)',borderRadius:8,background:'var(--panel-bg)',color:'var(--text-primary)',fontSize:13,lineHeight:1.6,textAlign:'start',minWidth:0,overflowWrap:'anywhere'}}>
   <strong>{ui.title}</strong>
-  {failed?<p role="status">{ui.error} <button type="button" onClick={()=>setAttempt(n=>n+1)}>{ui.retry}</button></p>:<><p>{ui.used.replace('{used}',formatStorageCount(usage.used,i18n.language))}</p><p>{usage.can_create?ui.hint:ui.full}</p></>}
+  {failed?<p role="status">{ui.error} <button type="button" onClick={()=>setAttempt(n=>n+1)}>{ui.retry}</button></p>:<><p>{(usage.trial_active ? ui.trial : ui.used).replace('{used}',formatStorageCount(usage.used,i18n.language)).replace('{limit}',formatStorageCount(usage.limit ?? 3,i18n.language))}</p>{!usage.trial_active && usage.trial_expires_at && <p>{ui.expired}</p>}<p>{usage.trial_active?getVisibilityUi(i18n.language).beta:usage.can_create?ui.hint:ui.full}</p></>}
  </section>;
 }

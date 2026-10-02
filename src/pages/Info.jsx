@@ -1,6 +1,6 @@
 import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
@@ -9,6 +9,9 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
+import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
+import ProjectStorageUsage from '../components/ProjectStorageUsage';
+import { getSaveVisibility } from '../utils/projectPersistence';
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -23,73 +26,43 @@ const DEFAULT_FORM_DATA = {
   permits: [],
   equipment: '',
   additionalItems: '',
+  saveVisibility: 'private',
 };
 
 export default function Info() {
-  const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용[cite: 11, 14]
   const location = useLocation();
-  const { t } = useTranslation(['info']); 
+  const { t } = useTranslation('common');
+  const shouldRecover = !location.state?.formData && !location.state?.isFork;
+  const { draft, status } = useJsaDraftRecovery(shouldRecover);
+  if (shouldRecover && !['ready', 'empty', 'error'].includes(status)) return <div className="theme-workspace"><p role="status">{t('draftSave.pending')}</p></div>;
+  return <InfoEditor key={location.key} recoveredDraft={draft} />;
+}
 
-  const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
-  const [participants, setParticipants] = useState(Array(14).fill(''));
-  const shouldRecoverDraft = !location.state?.formData && !location.state?.isFork;
-  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
-  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
-
+function InfoEditor({ recoveredDraft }) {
+  const navigate = useLanguageNavigate();
+  const location = useLocation();
+  const { t } = useTranslation(['info']);
+  const [formData, setFormData] = useState(() => {
+    const loaded = location.state?.formData || recoveredDraft?.form_data || {};
+    return {
+      ...DEFAULT_FORM_DATA, ...loaded,
+      ppe: loaded.ppe || [], permits: loaded.permits || [],
+      saveVisibility: location.state?.isFork ? 'private' : getSaveVisibility(loaded, location.state?.projectSaveContext || recoveredDraft?.layout_data?.projectSaveContext),
+      ...(location.state?.isFork ? { projectName: '', department: '', workLocation: '', workDate: '', managerName: '' } : {}),
+    };
+  });
+  const [participants, setParticipants] = useState(() => {
+    const loaded = location.state?.isFork ? [] : location.state?.participants || recoveredDraft?.participants || [];
+    return Array.from({ length: Math.max(14, loaded.length) }, (_, i) => loaded[i] || '');
+  });
   const draftSave = useJsaDraftAutosave({
-    enabled: recoverySettled && Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
+    enabled: Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
     layoutData: pickDocumentLayout(location.state, recoveredDraft?.layout_data),
-    stage: 'info',
-    formData,
-    participants,
+    stage: 'info', formData, participants,
     procedures: location.state?.procedures || recoveredDraft?.procedures || [],
     analysisData: location.state?.analysisData || recoveredDraft?.analysis_data || [],
     sourceProjectId: location.state?.existingId || location.state?.id || location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
-
-  useEffect(() => {
-    if (!shouldRecoverDraft || !recoveredDraft) return;
-
-    const loadedData = recoveredDraft.form_data || {};
-    setFormData(prev => ({
-      ...prev,
-      ...loadedData,
-      ppe: loadedData.ppe || [],
-      permits: loadedData.permits || []
-    }));
-
-    const loadedParticipants = recoveredDraft.participants || [];
-    setParticipants(Array(Math.max(14, loadedParticipants.length)).fill('').map((_, i) => loadedParticipants[i] || ''));
-  }, [shouldRecoverDraft, recoveredDraft]);
-
-  useEffect(() => {
-    const isFork = location.state?.isFork;
-
-    if (location.state?.formData) {
-      const loadedData = location.state.formData;
-      
-      setFormData(prev => ({
-        ...prev, 
-        ...loadedData, 
-        ppe: loadedData.ppe || [], 
-        permits: loadedData.permits || [], 
-        ...(isFork ? { 
-          projectName: '',
-          department: '',
-          workLocation: '',
-          workDate: '',
-          managerName: ''
-        } : {})
-      }));
-    }
-
-    if (isFork) {
-      setParticipants(Array(14).fill(''));
-    } else if (location.state?.participants) {
-      const loadedParticipants = location.state.participants || [];
-      setParticipants(Array(Math.max(14, loadedParticipants.length)).fill('').map((_, i) => loadedParticipants[i] || ''));
-    } 
-  }, [location.state]);
 
   const handleLogoClick = () => {
     if (window.confirm(t('alert.confirmMain'))) {
@@ -209,11 +182,8 @@ export default function Info() {
             </div>
 
             <div style={styles.scrollArea}>
-              <div style={styles.warningBox}>
-                <p style={styles.warningText}>
-                  ⚠️ <strong>{t('warning.title')}</strong> {t('warning.text')}
-                </p>
-              </div>
+              <StorageVisibilityChoice value={formData.saveVisibility} onChange={saveVisibility => setFormData(prev => ({ ...prev, saveVisibility }))} />
+              <ProjectStorageUsage />
 
               <div style={styles.formGrid}>
                 <section style={styles.leftSection}>

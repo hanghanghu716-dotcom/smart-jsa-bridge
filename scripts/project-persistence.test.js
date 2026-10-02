@@ -6,7 +6,7 @@ import { projectEditorState, projectPayload, templatePayload } from '../src/util
 import { pickDocumentLayout } from '../src/utils/documentLayout.js';
 
 const snapshot = {
-  formData: { projectName: 'Inspection', jsaType: '3-step', workDate: '2026-09-30', department: 'Private department', workLocation: 'Private site', managerName: 'Private name', equipment: 'Serial 123', ppe: ['Helmet'], additionalItems: 'Private notes' },
+  formData: { projectName: 'Inspection', saveVisibility: 'private', jsaType: '3-step', workDate: '2026-09-30', department: 'Private department', workLocation: 'Private site', managerName: 'Private name', equipment: 'Serial 123', ppe: ['Helmet'], additionalItems: 'Private notes' },
   participants: ['Worker A', 'Worker B'],
   analysisData: [{ id: 0, proc: { stepTitle: 'Inspect', stepDetail: 'Check access', sourceProjectTitle: 'Private source' }, risks: [{ factor: 'Fall', current_measure: 'Barrier' }], frequency: 2, customFields: { USER_name: 'Private name', USER_zero: 0, USER_false: false }, sourceProjectId: 'source' }],
   procedures: [{ stepTitle: 'Inspect', stepDetail: 'Check access', sourceProjectTitle: 'Private source' }],

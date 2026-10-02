@@ -29,6 +29,7 @@ const insert=`insert into public.jsa_projects(author_id,user_id,title,is_public)
 (async()=>{
  await run(setup);
  await run('begin;'+fs.readFileSync('supabase/migrations/20260930150840_free_private_project_quota.sql','utf8')+'commit;');
+ await run('begin;'+fs.readFileSync('supabase/migrations/20261001162553_community_private_storage_visibility.sql','utf8')+'commit;');
  for(const isolation of ['read committed','repeatable read']){
   const writer=sql(`begin;${session}${insert}select 'QUOTA_SLOT_HELD';select pg_sleep(2);commit;`,'QUOTA_SLOT_HELD');
   await writer.ready;

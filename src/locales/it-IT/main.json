@@ -59,5 +59,12 @@
     "07": { "title": "Macchine di Movimentazione", "f": "Schiacciamento pedoni per manovra in retromarcia o punti ciechi", "m": "Presenza di movieri (segnalatori a terra) con giubbotto alta visibilità e separazione flussi" },
     "08": { "title": "Sollevamento (Gru/Gruili)", "f": "Precipitazione del carico sospeso per rottura o cattiva imbracatura", "m": "Controllo usura fasce, rispetto portate, divieto di transito sotto il raggio d'azione" },
     "09": { "title": "Lavori ATEX (Atmosfere Esplosive)", "f": "Scoppio causato da scintillio meccanico o correnti statiche durante flussaggi", "m": "Messa a terra impianti, utilizzo esclusivo di utensili in lega antiscintilla (bronzo/berillio)" }
+  },
+  "casePagination": {
+    "label": "Pagine dei casi studio",
+    "previousGroup": "5 precedenti",
+    "nextGroup": "5 successive",
+    "page": "Pagina {{page}}",
+    "status": "{{current}} / {{total}}"
   }
 }

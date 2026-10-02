@@ -1,10 +1,15 @@
 import { pickDocumentLayout } from './documentLayout.js';
 
+export function getSaveVisibility(formData, context) {
+  if (formData?.saveVisibility === 'public' || formData?.saveVisibility === 'private') return formData.saveVisibility;
+  return context?.own && context?.isPublic ? 'public' : 'private';
+}
+
 export function projectEditorState(project, own = false) {
   const layout = project.custom_layout || {};
   return {
     ...pickDocumentLayout(layout),
-    formData: project.form_data || {}, participants: project.participants || [],
+    formData: { ...project.form_data, saveVisibility: own && project.is_public ? 'public' : 'private' }, participants: project.participants || [],
     analysisData: project.analysis_data || [],
     procedures: layout.procedures || (project.analysis_data || []).map(step => step.proc).filter(Boolean),
     existingId: own ? project.id : null, id: own ? project.id : null,
@@ -41,7 +46,7 @@ export function projectPayload(snapshot, userId, isPublic, tags = [], parentId =
     ...(isPublic ? { reuse_license: snapshot.publicationConsent ? 'community-v1' : null, publication_context: snapshot.publicationContext || {} } : {}),
     project_name: data.formData.projectName, is_public: isPublic,
     ...(isPublic ? { public_locale: snapshot.locale || null } : {}),
-    form_data: data.formData, participants: data.participants || [],
+    form_data: isPublic ? data.formData : { ...data.formData, saveVisibility: 'private' }, participants: data.participants || [],
     analysis_data: data.analysisData || [], custom_layout: layout,
     tags, auto_tags: tags, parent_id: parentId,
     updated_at: new Date().toISOString(),

@@ -1,4 +1,18 @@
-# Free private document storage
+# Community private document storage
+
+## 2026-10-02 policy restoration
+
+Community is limited to **three concurrently saved private documents**, not three monthly creations. `20261001102907_community_operations.sql` had removed enforcement while retaining counters. The new migration `20261001162553_community_private_storage_visibility.sql` restores the cap using those counters and the existing row-locking trigger. No stored document is deleted, hidden or published by this change. Professional free beta lifts the cap while active; expiry preserves existing documents and restricts only additional private slots.
+
+Info defaults new documents and reused public examples to private. The `formData.saveVisibility` choice travels through editor navigation and private draft recovery. Export displays the matching save actions and allows changing the choice. Public saving still requires explicit publication/reuse consent and existing content-quality checks. An existing private original is never overwritten by a public save. Public copies exclude structured private fields, but free text must be reviewed by the author.
+
+The selection, privacy guidance and quota descriptions cover all supported locales. Private usage appears in Info, Export, Library and Business. Community and Professional plan descriptions explain their storage rules.
+
+Validation: application tests; isolated intercepted-browser checks for Info selection/navigation/recovery, public-source privacy defaults, explicit consent, public saving at the private cap, concurrent-save rejection, draft preservation and existing-document updates; client production bundle; isolated PostgreSQL (PGlite) checks for restoring the cap over existing counts, null visibility, bulk rollback, ownership, conversion, deletion and beta expiry. `scripts/quota-concurrency.cjs` also applies the new migration before its two-session CI checks. These checks do not access real user records.
+
+**Deployment:** the new migration has not been applied to the hosted database. This session has no Supabase CLI authentication or linked project. Apply the migration with the matching frontend release; local UI changes alone do not enforce the hosted database limit. Do not run `project-storage-rls.sql` against production: its account fixtures are intended only for the disposable test database.
+
+## Original implementation notes (historical)
 
 Free accounts may keep three saved private JSA projects. This is a concurrent storage limit, not a monthly creation allowance. Steps, risks, drafts, public projects and public bookmarks do not consume additional private slots. Existing private documents remain editable and exportable. Deleting a private document frees a slot. Saving a new private copy or changing a public project to private consumes a slot.
 

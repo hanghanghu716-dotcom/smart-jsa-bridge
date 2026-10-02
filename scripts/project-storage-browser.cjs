@@ -31,7 +31,7 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   else if(url.includes('/rest/v1/jsa_projects')){
    if(method==='POST'||method==='PATCH'){
     calls.push([method,body,Object.fromEntries(q)]);
-    if(quotaReject&&method==='POST'){status=400;result={message:'FREE_PROJECT_LIMIT',code:'P0001'};}
+    if(quotaReject&&method==='POST'&&!body.is_public){status=400;result={message:'FREE_PROJECT_LIMIT',code:'P0001'};}
     else if(failProject){status=500;result={message:'forced offline'};}
     else if(method==='POST'){result={...body,id:'project-'+(projects.length+1),created_at:new Date().toISOString()};projects.push(result);}
     else {result=projects.find(x=>x.id===eq('id')&&!staleProject&&x.updated_at===eq('updated_at'))||null;if(result)Object.assign(result,body);}
@@ -52,6 +52,31 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  async function fill(selector,value){await p.$eval(selector,(n,value)=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(n,value);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await p.waitFor(80);}
  async function open(route,state){await p.goto(baseURL+'/ko/'+route,{waitUntil:'networkidle0'});await p.evaluate(state=>{sessionStorage.removeItem('smartjsa_active_draft_id');sessionStorage.removeItem('smartjsa_active_draft_version');history.replaceState({usr:state},'',location.href)},state);await p.reload({waitUntil:'networkidle0'});}
 
+
+ await open('info',initial);
+ assert.equal(await p.$eval('[data-storage-visibility=private]',n=>n.checked),true);
+ await p.click('[data-storage-visibility=public]');await p.waitFor(1200);
+ assert.ok(calls.some(c=>c[0]==='draft'&&c[1].p_form_data.saveVisibility==='public'));
+ await p.screenshot({path:path.join(out,'info-public-visibility.png')});
+ const next=JSON.parse(fs.readFileSync(path.join(root,'src/locales/ko/info.json'))).btn.next;
+ await click(next);assert.ok(p.url().endsWith('/procedure'));
+ const carried=await p.evaluate(()=>history.state.usr);
+ assert.equal(carried.formData.saveVisibility,'public');
+ await open('export',{...carried,openSaveDialog:true});
+ assert.equal(await p.$eval('[data-storage-visibility=public]',n=>n.checked),true);
+ assert.equal(await p.$eval('[data-save-mode=public]',n=>n.disabled),true);
+ assert.equal(await p.$('[data-save-mode=private]'),null);
+ await p.click('[data-storage-visibility=private]');
+ assert.equal(await p.$('.publication-consent'),null);
+ assert.ok(await p.$('[data-save-mode=private]'));
+ // Changing the preference survives a draft restore with no route state.
+ await p.waitFor(1200);await p.evaluate(()=>history.replaceState({},'',location.href));
+ await p.reload({waitUntil:'networkidle0'});await click('작업물 저장');
+ assert.equal(await p.$eval('[data-storage-visibility=private]',n=>n.checked),true);
+ // Public source reuse must start privately even if the source carries a public preference.
+ await open('info',{...initial,isFork:true,formData:{...initial.formData,saveVisibility:'public'}});
+ assert.equal(await p.$eval('[data-storage-visibility=private]',n=>n.checked),true);
+ assert.equal(await p.$eval('input[name=projectName]',n=>n.value),'');
  const editState={...initial,existingId:'project-1',projectSaveContext:{id:'project-1',updatedAt:'2026-09-30T00:00:00Z',own:true,isPublic:false,parentId:null}};
  projects.push({id:'project-1',author_id:user.id,user_id:user.id,title:'배관 점검',form_data:initial.formData,analysis_data:initial.analysisData,procedures,is_public:false,updated_at:'2026-09-30T00:00:00Z'});
  await open('export',editState);await click('작업물 저장');await p.waitForSelector('[data-storage-usage]');
@@ -79,6 +104,25 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  assert.ok(calls.some(x=>x[0]==='PATCH'));assert.equal(calls.filter(x=>x[0]==='archive').length,archived+1);
  assert.ok(p.url().endsWith('/library'));await p.waitForSelector('[data-storage-usage]');
  assert.match(await p.$eval('[data-storage-usage]',n=>n.textContent),/4 \/ 3/);
- assert.deepEqual(errors,[]);console.log('PASS: quota race rejection preserves draft, trial unblocks, expiry keeps update available, Library usage displayed.');
+ // Full private storage must not publish automatically; explicit public consent still permits publication.
+ await open('export',{...initial,openSaveDialog:true,formData:{...initial.formData,saveVisibility:'public'}});
+ assert.equal(await p.$eval('[data-save-mode=public]',n=>n.disabled),true);
+ await p.click('.publication-consent input');
+ const beforePublicArchive=calls.filter(x=>x[0]==='archive').length;
+ await p.click('[data-save-mode=public]');await p.waitFor(1200);
+ const savedPublic=projects.find(x=>x.is_public);
+ assert.ok(savedPublic);assert.equal(savedPublic.form_data.department,undefined);
+ assert.equal(savedPublic.reuse_license,'community-v1');assert.deepEqual(savedPublic.participants,[]);
+ assert.equal(calls.filter(x=>x[0]==='archive').length,beforePublicArchive);
+ for(const locale of ['en-US','ar-SA']){
+  await p.goto(baseURL+'/'+locale+'/info',{waitUntil:'networkidle0'});
+  await p.evaluate(state=>history.replaceState({usr:state},'',location.href),{...initial,formData:{...initial.formData,saveVisibility:'public'}});
+  await p.reload({waitUntil:'networkidle0'});
+  assert.equal(await p.$eval('[data-storage-visibility=public]',n=>n.checked),true);
+  assert.equal(await p.$eval('.storage-visibility',n=>n.dir),locale==='ar-SA'?'rtl':'ltr');
+  assert.equal(await p.$eval('.storage-visibility',n=>n.scrollWidth<=n.clientWidth+1),true);
+  await p.screenshot({path:path.join(out,'info-visibility-'+locale+'.png')});
+ }
+ assert.deepEqual(errors,[]);console.log('PASS: Info selection, navigation, draft recovery, safe fork defaults, consented public save at quota, ko/en/ar layout, quota race, beta expiry and private update.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

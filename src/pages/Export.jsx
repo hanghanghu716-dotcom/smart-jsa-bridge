@@ -1,4 +1,6 @@
 import PublicationFields from '../components/PublicationFields';
+import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
+import { getSaveVisibility } from '../utils/projectPersistence';
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
 import { isStorageLimitError } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
@@ -74,7 +76,9 @@ function ExportEditor({ recoveredDraft }) {
 
   const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
   const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
-  const formData = state.formData || recoveredDraft?.form_data || {};
+  const sourceFormData = state.formData || recoveredDraft?.form_data || {};
+  const [saveVisibility, setSaveVisibility] = useState(() => getSaveVisibility(sourceFormData, state.projectSaveContext || recoveredLayout.projectSaveContext));
+  const formData = { ...sourceFormData, saveVisibility };
   const participants = state.participants || recoveredDraft?.participants || [];
   const procedures = state.procedures || recoveredDraft?.procedures || [];
   const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || [];
@@ -165,6 +169,7 @@ function ExportEditor({ recoveredDraft }) {
 
   const handleCloudAction = async (mode) => {
     if (cloudBusy.current) return;
+    if ((mode === 'public') !== (saveVisibility === 'public')) return;
     if (mode === 'public' && !publicationConsent) return;
     cloudBusy.current = true; setIsProcessing(true);
     let savedProject = null;
@@ -498,14 +503,13 @@ function ExportEditor({ recoveredDraft }) {
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h3 style={styles.modalTitle}>{t('common:saveFlow.saveDocument')}</h3>
+            <StorageVisibilityChoice value={saveVisibility} disabled={isProcessing} onChange={value => { setSaveVisibility(value); setPublicationConsent(false); }} />
             <ProjectStorageUsage refreshKey={storageRefresh} onStatus={setStorageUsage} />
             {storageLimited && !storageUsage?.can_create && <p role="alert" dir={i18n.dir()} style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
-              <p style={{ ...styles.modalSub, color: "var(--danger)", fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('common:saveFlow.privateHint')}</p>
-            <p style={styles.modalSub}>{t('common:saveFlow.publicHint')}</p>
-            <PublicationFields consent={publicationConsent} onConsent={setPublicationConsent} context={publicationContext} onContext={setPublicationContext} />
+            {saveVisibility === 'public' && <PublicationFields consent={publicationConsent} onConsent={setPublicationConsent} context={publicationContext} onContext={setPublicationContext} />}
             <div style={{ ...styles.typeGrid, pointerEvents: isProcessing ? 'none' : 'auto', opacity: isProcessing ? 0.6 : 1 }}>
-              {canUpdate && <button type="button" data-save-mode="update" style={styles.typeCard} disabled={isProcessing} onClick={() => handleCloudAction('update')}><h4 style={styles.typeLabel}>{t('common:saveFlow.updatePrivate')}</h4><p style={styles.typeDesc}>{formData.projectName}</p></button>}
-              {(isFork && !isValuableFork) ? (
+              {saveVisibility === 'private' && canUpdate && <button type="button" data-save-mode="update" style={styles.typeCard} disabled={isProcessing} onClick={() => handleCloudAction('update')}><h4 style={styles.typeLabel}>{t('common:saveFlow.updatePrivate')}</h4><p style={styles.typeDesc}>{formData.projectName}</p></button>}
+              {saveVisibility === 'public' && ((isFork && !isValuableFork) ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
                   <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
                   <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{t('common:saveFlow.publicCopy')}</h4>
@@ -523,13 +527,13 @@ function ExportEditor({ recoveredDraft }) {
                   <h4 style={styles.typeLabel}>{t('common:saveFlow.publicCopy')}</h4>
                   <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.publicHint') }}></p>
                 </button>
-              )}
+              ))}
               
-              <button type="button" disabled={isProcessing || storageUsage?.can_create === false} data-save-mode="private" style={styles.typeCard} onClick={() => handleCloudAction('private')}>
+              {saveVisibility === 'private' && <button type="button" disabled={isProcessing || storageUsage?.can_create === false} data-save-mode="private" style={styles.typeCard} onClick={() => handleCloudAction('private')}>
                 <div style={styles.typeBadge}>Private</div>
                 <h4 style={styles.typeLabel}>{t('common:saveFlow.newPrivate')}</h4>
                 <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.privateHint') }}></p>
-              </button>
+              </button>}
             </div>
 
             <button style={styles.modalCloseBtn} onClick={() => setShowPublishModal(false)}>{t('modal.close')}</button>
