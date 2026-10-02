@@ -92,6 +92,12 @@ export default function PublicJsa() {
       {status === 'error' && <p role="alert">{ui.error} <button onClick={() => setAttempt(n => n + 1)}>{ui.retry}</button></p>}
       {status === 'missing' && <h1>{ui.unavailable}</h1>}
       {currentRow && <><span className="jsa-eyebrow">{ui.community}</span><h1>{currentRow.title}</h1>
+        <section className="public-document-preview" aria-labelledby="public-document-preview-title">
+          <h2 id="public-document-preview-title">{community.preview}</h2>
+          <div className="jsa-paper-scroll" tabIndex={0} role="region" aria-labelledby="public-document-preview-title">
+            <div className="jsa-public-paper"><DocumentContent formData={currentRow.form_data} participants={[]} analysisData={currentRow.analysis_data} layout={layout} /></div>
+          </div>
+        </section>
         <p>{ui.steps}: {quality.steps} · {ui.quality}</p><p className="jsa-notice">{ui.notice}</p>
         <p>{ui.views} {currentRow.view_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.reuses} {currentRow.reuse_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.scraps} {currentRow.scrap_count.toLocaleString(getLanguageTag(i18n.language))}</p>
         <details className="jsa-metric-help"><summary>{ui.metricHelp}</summary><p>{ui.metricRules}</p></details>
@@ -104,7 +110,6 @@ export default function PublicJsa() {
 
         <DiscoveryLinks id={id}/><AdSenseUnit client="ca-pub-9791625990220699" slot="1284119169" content={{indexable:quality.indexable,review:currentRow.assessment.review}}/>
         {message && <p role="status">{message}</p>}
-        <details className="public-paper-disclosure"><summary>{community.preview}</summary><div className="jsa-paper-scroll"><div className="jsa-public-paper"><DocumentContent formData={currentRow.form_data} participants={[]} analysisData={currentRow.analysis_data} layout={layout} /></div></div></details>
       </>}
     </main><CommunityFooter/>
   </div>;
