@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Veuillez d'abord sélectionner une mesure de sécurité actuelle via le système de recommandation.",
     "noData": "Aucune donnée liée trouvée. Veuillez saisir directement.",
     "confirmMain": "Êtes-vous sûr de vouloir revenir à l'écran principal ? Toutes les données non sauvegardées seront perdues.",
-    "loginRequired": "Connexion requise."
+    "loginRequired": "Connexion requise.",
+    "stepSaved": "L’étape a été enregistrée dans votre bibliothèque.",
+    "stepSaveFailed": "Impossible d’enregistrer l’étape."
   },
   "libModal": {
     "title": "Appeler la bibliothèque d'étapes de tâche",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtre haut risque",
     "auto": "(Suggestion auto)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Rechercher des dangers..."
+    "searchPlaceholder": "Rechercher des dangers...",
+    "saveStepBtn": "Enregistrer l’étape",
+    "savingStepBtn": "Enregistrement..."
   },
   "base": {
     "label": "Base de connaissances sécurité\n(Extraction des dangers)",
@@ -75,5 +79,39 @@
   "searchModal": {
     "title": "Recherche dans la base de données",
     "placeholder": "Entrez les termes de recherche..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Dock de connaissances",
+    "opened": "Dock ouvert",
+    "untitledStep": "Étape sans titre",
+    "sourceManual": "Saisie manuelle",
+    "sourceDatabase": "Base de dangers",
+    "sourceLibrary": "Connaissances antérieures",
+    "eyebrow": "DOCK DE CONNAISSANCES",
+    "title": "Connaissances de travaux antérieurs",
+    "savedSteps": "Étapes enregistrées",
+    "projects": "Projets",
+    "search": "Rechercher travaux, dangers ou mesures",
+    "emptySteps": "Aucune étape enregistrée.",
+    "independentStep": "Étape indépendante",
+    "hazards": "dangers",
+    "noControl": "Aucune mesure",
+    "mergeHazards": "Dangers uniquement",
+    "mergeFull": "Fusionner avec mesures",
+    "emptyProjects": "Aucun projet enregistré ou favori.",
+    "steps": "étapes",
+    "backProjects": "Liste des projets",
+    "sourceCurrent": "JSA actuelle",
+    "analysisIncluded": "Analyse incluse",
+    "stepOnly": "Étape seule",
+    "mergeOneHazard": "+ Danger",
+    "mergeOneFull": "+ Complet",
+    "mergeResult": "{{added}} ajoutés · {{skipped}} doublons ignorés",
+    "noRisksToMerge": "Aucun danger à fusionner.",
+    "loading": "Chargement de la bibliothèque…",
+    "loadError": "Impossible de charger la bibliothèque. Réessayez.",
+    "retry": "Réessayer",
+    "close": "Fermer la bibliothèque",
+    "noMatches": "Aucune étape ni aucun projet correspondant."
   }
 }

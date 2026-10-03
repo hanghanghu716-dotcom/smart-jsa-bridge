@@ -1,0 +1,14 @@
+.storage-visibility { min-width:0; margin:0 0 1.25rem; padding:1rem; border:1px solid var(--border-default); border-radius:12px; color:var(--text-primary); text-align:start; }
+.storage-visibility legend { padding:0 .4rem; font-weight:750; font-size:.95rem; }
+.storage-visibility-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+.storage-visibility-options label { display:flex; align-items:flex-start; gap:.7rem; padding:1rem; border:1px solid var(--border-default); background:var(--card-bg); border-radius:10px; cursor:pointer; min-width:0; }
+.storage-visibility-options label.is-selected { border-color:var(--accent); background:var(--surface-hover); box-shadow:inset 0 0 0 1px var(--accent); }
+.storage-visibility-options label:focus-within { outline:2px solid var(--accent); outline-offset:3px; }
+.storage-visibility-options input { flex-shrink:0; margin-top:.3rem; accent-color:var(--accent); }
+.storage-visibility-options strong, .storage-visibility-options span span { display:block; }
+.storage-visibility-options span span { margin-top:.35rem; color:var(--text-secondary); font-size:.82rem; line-height:1.6; overflow-wrap:anywhere; }
+.storage-visibility p { font-size:.82rem; line-height:1.65; margin:.6rem 0 0; overflow-wrap:anywhere; color:var(--text-secondary); }
+.storage-visibility-notice { margin-top:.85rem; padding:.85rem 1rem; border-inline-start:3px solid var(--accent); background:var(--card-bg); border-radius:6px; }
+.storage-visibility-notice strong { font-size:.85rem; }
+.storage-visibility:disabled { opacity:.7; }
+@media(max-width:650px) { .storage-visibility-options { grid-template-columns:1fr; } }

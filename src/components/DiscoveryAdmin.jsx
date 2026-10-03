@@ -1,0 +1,27 @@
+import { useEffect,useRef,useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LanguageLink } from '../hooks/useLanguage';
+import { discoveryAdmin,discoveryLinks } from '../services/discoveryService';
+import { supabase } from '../supabaseClient';
+import { getDiscoveryUi,getGuideTitle,getCohortNote } from '../locales/discoveryUi';
+import { getPublicUi } from '../locales/publicUi';
+import { getCaseLanguages,selectLocalizedCases,getLanguageTag } from '../locales/config';
+import SearchConsoleAdmin from './SearchConsoleAdmin';
+export default function DiscoveryAdmin(){
+ const {i18n}=useTranslation(),ui=getDiscoveryUi(i18n.language),p=getPublicUi(i18n.language);
+ const [data,setData]=useState(null),[queue,setQueue]=useState([]),[cases,setCases]=useState([]),[offset,setOffset]=useState(0),[revision,setRevision]=useState(0),[message,setMessage]=useState(''),[busy,setBusy]=useState(false);
+ const [id,setId]=useState(''),[state,setState]=useState('approved'),[reason,setReason]=useState(''),[kind,setKind]=useState('guide'),[target,setTarget]=useState('common'),[links,setLinks]=useState([]);
+ const lock=useRef(false);
+ useEffect(()=>{let live=true;Promise.all([discoveryAdmin('dashboard'),discoveryAdmin('queue',null,{offset}),supabase.from('case_studies').select('post_group_id,title,language_code').in('language_code',getCaseLanguages(i18n.language)).order('post_group_id').limit(1000)]).then(([metrics,rows,caseData])=>{if(caseData.error)throw caseData.error;if(live){setData(metrics);setQueue(rows);setCases(selectLocalizedCases(caseData.data||[],i18n.language));}}).catch(()=>{if(live)setMessage(p.error);});return()=>{live=false;};},[revision,offset,i18n.language,p.error]);
+ useEffect(()=>{let live=true;if(id)discoveryLinks(id).then(data=>{if(live)setLinks(data?.editorial||[]);}).catch(()=>{if(live)setMessage(p.error);});return()=>{live=false;};},[id,revision,p.error]);
+ const run=async(action,payload,project=id)=>{if(lock.current)return;lock.current=true;setBusy(true);setMessage('');try{await discoveryAdmin(action,project,payload);setMessage(p.saved);setRevision(n=>n+1);}catch{setMessage(p.error);}finally{lock.current=false;setBusy(false);}};
+ const selected=queue.find(row=>row.id===id);
+ return <section className="jsa-card discovery-admin"><h2>{ui.insights}</h2><p>{ui.metricsHelp}</p><p>{getCohortNote(i18n.language)}</p><button onClick={()=>setRevision(n=>n+1)} disabled={busy}>{ui.refresh}</button>{message&&<p role="status">{message}</p>}
+ <div className="discovery-table"><table><caption>{ui.insights} · UTC</caption><thead><tr>{['month','reuseSteps','reuseActions','published','ratio'].map(k=><th key={k} scope="col">{ui[k]}</th>)}</tr></thead><tbody>{data?.map(row=><tr key={row.month}><th scope="row">{row.month.slice(0,7)}</th><td>{row.reused_steps}</td><td>{row.reuse_actions}</td><td>{row.published}</td><td>{row.published?new Intl.NumberFormat(getLanguageTag(i18n.language),{style:'percent',maximumFractionDigits:1}).format(row.derived/row.published):'—'}</td></tr>)}</tbody></table></div>
+ <SearchConsoleAdmin />
+ <h3>{ui.review}</h3><p>{ui.reviewHelp}</p><select aria-label={ui.review} value={id} onChange={e=>{setId(e.target.value);setReason('');setLinks([]);}}><option value="">—</option>{queue.map(row=><option value={row.id} key={row.id}>{row.title} · {ui[row.assessment?.review]||ui.pending}</option>)}</select><nav><button disabled={!offset||busy} onClick={()=>{setId('');setOffset(n=>Math.max(0,n-100));}}>{ui.previous}</button><button disabled={queue.length<100||busy} onClick={()=>{setId('');setOffset(n=>n+100);}}>{ui.next}</button></nav>
+ {selected&&<><LanguageLink to={'/public-jsa/'+id} target="_blank" rel="noopener">{selected.title} ↗</LanguageLink>{selected.assessment?.duplicate_of&&<p>{ui.duplicate}: <LanguageLink to={'/public-jsa/'+selected.assessment.duplicate_of}>{ui.source} ↗</LanguageLink></p>}
+ <form onSubmit={e=>{e.preventDefault();run('review',{state,reason,revision:selected.assessment.revision});}}><label>{ui.review}<select value={state} onChange={e=>setState(e.target.value)}><option value="approved">{ui.approved}</option><option value="rejected">{ui.rejected}</option></select></label><label>{ui.reason}<textarea required minLength={10} maxLength={2000} value={reason} onChange={e=>setReason(e.target.value)}/></label><button disabled={busy||!selected.assessment?.revision}>{ui.save}</button></form>
+ <h3>{ui.editorial}</h3><ul>{links.map(link=><li key={link.kind+link.target}>{link.kind==='guide'?ui.guide:ui.caseStudy} · {link.kind==='guide'?getGuideTitle(link.target,i18n.language):(cases.find(c=>c.post_group_id===link.target)?.title||link.target)} <button disabled={busy} onClick={()=>run('unlink',link)}>{ui.unlink}</button></li>)}</ul><form onSubmit={e=>{e.preventDefault();run('link',{kind,target});}}><label>{ui.editorial}<select value={kind} onChange={e=>{setKind(e.target.value);setTarget(e.target.value==='guide'?'common':cases[0]?.post_group_id||'');}}><option value="guide">{ui.guide}</option><option value="case">{ui.caseStudy}</option></select></label><label>{kind==='guide'?ui.guide:ui.caseStudy}<select required value={target} onChange={e=>setTarget(e.target.value)}>{kind==='guide'?['common','construction','manufacturing','chemical','high-risk','general'].map(k=><option key={k} value={k}>{getGuideTitle(k,i18n.language)}</option>):cases.map(c=><option key={c.post_group_id} value={c.post_group_id}>{c.title}</option>)}</select></label><button disabled={busy||!target}>{ui.link}</button></form></>}
+ </section>;
+}

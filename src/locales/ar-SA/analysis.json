@@ -7,7 +7,9 @@
     "needCurrentMeasure": "يرجى تحديد تدبير سلامة حالي عبر نظام التوصية أولاً.",
     "noData": "لم يتم العثور على بيانات مرتبطة. يرجى الإدخال مباشرة.",
     "confirmMain": "هل أنت متأكد أنك تريد الانتقال إلى الشاشة الرئيسية؟ قد تفقد جميع البيانات غير المحفوظة.",
-    "loginRequired": "تسجيل الدخول مطلوب."
+    "loginRequired": "تسجيل الدخول مطلوب.",
+    "stepSaved": "تم حفظ خطوة العمل في المكتبة.",
+    "stepSaveFailed": "تعذر حفظ خطوة العمل."
   },
   "libModal": {
     "title": "استدعاء مكتبة خطوات المهمة",
@@ -42,7 +44,9 @@
     "label": "⚠️ تصفية المخاطر العالية",
     "auto": "(اقتراح تلقائي)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "البحث عن المخاطر..."
+    "searchPlaceholder": "البحث عن المخاطر...",
+    "saveStepBtn": "حفظ الخطوة",
+    "savingStepBtn": "جارٍ الحفظ..."
   },
   "base": {
     "label": "قاعدة معرفة السلامة (استخراج المخاطر)",
@@ -75,5 +79,39 @@
   "searchModal": {
     "title": "البحث في قاعدة بيانات التدابير",
     "placeholder": "أدخل مصطلحات البحث..."
+  },
+  "knowledgeDock": {
+    "openBtn": "لوحة المعرفة",
+    "opened": "اللوحة مفتوحة",
+    "untitledStep": "خطوة بلا عنوان",
+    "sourceManual": "إدخال يدوي",
+    "sourceDatabase": "قاعدة المخاطر",
+    "sourceLibrary": "معرفة سابقة",
+    "eyebrow": "لوحة المعرفة",
+    "title": "معرفة الأعمال السابقة",
+    "savedSteps": "الخطوات المحفوظة",
+    "projects": "المشاريع",
+    "search": "البحث في العمل أو المخاطر أو الضوابط",
+    "emptySteps": "لا توجد خطوات عمل محفوظة.",
+    "independentStep": "خطوة عمل مستقلة",
+    "hazards": "مخاطر",
+    "noControl": "لا يوجد إجراء",
+    "mergeHazards": "المخاطر فقط",
+    "mergeFull": "دمج مع إجراءات التحكم",
+    "emptyProjects": "لا توجد مشاريع محفوظة أو مفضلة.",
+    "steps": "خطوات",
+    "backProjects": "قائمة المشاريع",
+    "sourceCurrent": "JSA الحالي",
+    "analysisIncluded": "يشمل التحليل",
+    "stepOnly": "الخطوة فقط",
+    "mergeOneHazard": "+ خطر",
+    "mergeOneFull": "+ كامل",
+    "mergeResult": "تمت إضافة {{added}} · تم تجاوز {{skipped}} مكرر",
+    "noRisksToMerge": "لا توجد مخاطر للدمج.",
+    "loading": "جارٍ تحميل المكتبة…",
+    "loadError": "تعذر تحميل المكتبة. يرجى المحاولة مجددًا.",
+    "retry": "إعادة المحاولة",
+    "close": "إغلاق المكتبة",
+    "noMatches": "لا توجد خطوات أو مشاريع مطابقة."
   }
 }

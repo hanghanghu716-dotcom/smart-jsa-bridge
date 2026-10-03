@@ -58,5 +58,12 @@
     "07": { "title": "Équipements Lourds", "f": "Collision/écrasement de piétons dans les angles morts", "m": "Affecter des signaleurs dédiés et vérifier les caméras de recul" },
     "08": { "title": "Manipulation de Matériel", "f": "Chute de charge due à une défaillance de l'élingage", "m": "Inspecter l'usure de l'élingage et utiliser des cordes de guidage" },
     "09": { "title": "Gaz Inflammable", "f": "Inflammation/explosion de fuite de gaz lors de tests de pression", "m": "Appliquer des mesures antistatiques et inspecter avec des détecteurs" }
+  },
+  "casePagination": {
+    "label": "Pages des études de cas",
+    "previousGroup": "5 précédentes",
+    "nextGroup": "5 suivantes",
+    "page": "Page {{page}}",
+    "status": "{{current}} / {{total}}"
   }
 }

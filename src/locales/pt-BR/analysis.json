@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Por favor, selecione primeiro uma medida de segurança atual através do sistema de recomendação.",
     "noData": "Nenhum dado vinculado encontrado. Por favor, insira diretamente.",
     "confirmMain": "Tem certeza de que deseja ir para a tela principal? Todos os dados não salvos poderão ser perdidos.",
-    "loginRequired": "O login é obrigatório."
+    "loginRequired": "O login é obrigatório.",
+    "stepSaved": "Etapa salva na biblioteca.",
+    "stepSaveFailed": "Falha ao salvar a etapa."
   },
   "libModal": {
     "title": "Chamar Biblioteca de Etapas de Tarefas",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtro de Alto Risco",
     "auto": "(Sugestão Automática)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Pesquisar perigos..."
+    "searchPlaceholder": "Pesquisar perigos...",
+    "saveStepBtn": "Salvar etapa",
+    "savingStepBtn": "Salvando..."
   },
   "base": {
     "label": "Base de Conhecimento de Segurança (Extração de Perigos)",
@@ -75,5 +79,39 @@
   "searchModal": {
     "title": "Pesquisa no BD de Medidas",
     "placeholder": "Insira os termos de pesquisa..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Dock de conhecimento",
+    "opened": "Dock aberto",
+    "untitledStep": "Etapa sem título",
+    "sourceManual": "Manual",
+    "sourceDatabase": "BD de perigos",
+    "sourceLibrary": "Conhecimento anterior",
+    "eyebrow": "DOCK DE CONHECIMENTO",
+    "title": "Conhecimento de trabalhos anteriores",
+    "savedSteps": "Etapas salvas",
+    "projects": "Projetos",
+    "search": "Pesquisar trabalho, perigos ou controles",
+    "emptySteps": "Nenhuma etapa salva.",
+    "independentStep": "Etapa independente",
+    "hazards": "perigos",
+    "noControl": "Sem controle",
+    "mergeHazards": "Somente perigos",
+    "mergeFull": "Mesclar com controles",
+    "emptyProjects": "Nenhum projeto salvo ou favorito.",
+    "steps": "etapas",
+    "backProjects": "Lista de projetos",
+    "sourceCurrent": "JSA atual",
+    "analysisIncluded": "Análise incluída",
+    "stepOnly": "Somente etapa",
+    "mergeOneHazard": "+ Perigo",
+    "mergeOneFull": "+ Completo",
+    "mergeResult": "{{added}} adicionados · {{skipped}} duplicados ignorados",
+    "noRisksToMerge": "Não há perigos para combinar.",
+    "loading": "Carregando biblioteca…",
+    "loadError": "Não foi possível carregar a biblioteca. Tente novamente.",
+    "retry": "Tentar novamente",
+    "close": "Fechar biblioteca",
+    "noMatches": "Nenhuma etapa ou projeto correspondente."
   }
 }

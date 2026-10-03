@@ -291,6 +291,7 @@ export default function AdminPostUpload() {
             {CANADIAN_PROVINCES.map(({ code, label }) => <option key={code} value={code}>{label}</option>)}
             <option value="en-AU">English (en-AU)</option>
             <option value="en-GB">English (en-GB)</option>
+            <option value="en-SG">English (Singapore)</option>
             <option value="de-DE">Deutsch (de-DE)</option>
             <option value="ja-JP">日本語 (ja-JP)</option>
             <option value="fr-FR">Français (fr-FR)</option>

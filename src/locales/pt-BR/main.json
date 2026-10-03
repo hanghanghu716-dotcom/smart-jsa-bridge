@@ -59,5 +59,12 @@
     "07": { "title": "Equipamentos Pesados (Linha Amarela)", "f": "Atropelamento ou prensamento de pedestres nos pontos cegos (rear blind spot)", "m": "Apoio com sinaleiros dedicados (colete refletivo) e verificação dos sensores de ré/câmeras do maquinário" },
     "08": { "title": "Içamento (Movimentação de Cargas)", "f": "Queda ou impacto da carga devido ao rompimento ou falha no sistema de eslingas (rigging)", "m": "Inspecionar desgaste de cintas e cabos de aço e obrigatoriamente usar cordas guias (tag lines) para manobrar a carga" },
     "09": { "title": "Gases Inflamáveis", "f": "Ignição ou explosão durante o vazamento na realização de teste hidrostático/pressão", "m": "Executar procedimento de aterramento/antiestática e rastrear minuciosamente conexões com detectores de gás" }
+  },
+  "casePagination": {
+    "label": "Páginas de estudos de caso",
+    "previousGroup": "5 anteriores",
+    "nextGroup": "5 seguintes",
+    "page": "Página {{page}}",
+    "status": "{{current}} / {{total}}"
   }
 }

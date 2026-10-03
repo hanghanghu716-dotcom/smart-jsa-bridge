@@ -1,9 +1,11 @@
 import { getDataLocale } from '../locales/config.js';
-import { useState, useEffect } from 'react';
-import { dictionarySearchFilter, parseKeywords } from '../utils/content.js';
+import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { findDictionaryHazards, readDictionaryGroups } from '../utils/dictionaryGroups';
+import { getDictionaryGroupUi } from '../locales/dictionaryGroupUi';
+import '../styles/dictionary-groups.css';
 import { getSiteUi } from '../locales/siteUi.js';
 import { supabase } from '../supabaseClient';
-import AdBanner from '../AdBanner'; 
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
@@ -18,13 +20,16 @@ export default function FactorDictionary() {
   
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [request, setRequest] = useState({ locale: null, page: 1, category: '', search: '' });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const indexCache = useRef(null);
+  const [loadedKey, setLoadedKey] = useState(null);
+  const groupUi = getDictionaryGroupUi(i18n.language);
   const [loadError, setLoadError] = useState(false);
   const [retry, setRetry] = useState(0);
   const ui = getSiteUi(i18n.language);
   
-  // Fetch 20 rows per page.
-  const ITEMS_PER_PAGE = 20;
+  // Page by complete hazards, never by flattened combinations.
+  const ITEMS_PER_PAGE = 10;
 
   const [draftSearch, setDraftSearch] = useState({ locale: null, value: '' });
   const [categoryData, setCategoryData] = useState({ locale: null, values: [] });
@@ -50,13 +55,21 @@ export default function FactorDictionary() {
     return 'ko-KR'; 
   };
   const currentLocale = getDbLocale(getDataLocale(i18n.language));
-  const searchTerm = draftSearch.locale === currentLocale ? draftSearch.value : '';
+  const submittedSearch = (searchParams.get('q') || '').trim();
+  const searchTerm = draftSearch.locale === currentLocale && draftSearch.baseSearch === submittedSearch ? draftSearch.value : submittedSearch;
   const categories = categoryData.locale === currentLocale ? categoryData.values : [];
-  const sameLocale = request.locale === currentLocale;
-  const currentPage = sameLocale ? request.page : 1;
-  const categoryFilter = sameLocale ? request.category : '';
-  const submittedSearch = sameLocale ? request.search : '';
-  const updateRequest = (updates) => setRequest({ locale: currentLocale, page: currentPage, category: categoryFilter, search: submittedSearch, ...updates });
+  const requestedPage = /^\d+$/.test(searchParams.get('page') || '') ? Math.max(1, Math.min(1000000, Number(searchParams.get('page')))) : 1;
+  const categoryFilter = searchParams.get('category') || '';
+  const requestKey = JSON.stringify([currentLocale, categoryFilter, submittedSearch, requestedPage, retry]);
+  const queryFor = updates => {
+    const values = { page: requestedPage, category: categoryFilter, search: submittedSearch, ...updates };
+    const params = new URLSearchParams();
+    if (values.category) params.set('category', values.category);
+    if (values.search) params.set('q', values.search);
+    if (values.page > 1) params.set('page', String(values.page));
+    return params;
+  };
+  const updateRequest = updates => setSearchParams(queryFor(updates));
 
   useEffect(() => {
     let active = true;
@@ -78,47 +91,48 @@ export default function FactorDictionary() {
   }, [currentLocale]);
 
   useEffect(() => {
-    let active = true;
+    const controller = new AbortController();
     const fetchData = async () => {
-      setLoading(true);
-      setLoadError(false);
+      setLoading(true); setLoadError(false);
       try {
-        const from = (currentPage - 1) * ITEMS_PER_PAGE;
-        let query = supabase.from('factor_dictionary_view')
-          .select('*', { count: 'exact' }).eq('locale', currentLocale);
-        if (categoryFilter) query = query.eq('category', categoryFilter);
-        if (submittedSearch) query = query.or(dictionarySearchFilter(submittedSearch));
-        const { data: rows, count, error } = await query
-          .order('hazard_id', { ascending: true })
-          .order('measure_text', { ascending: true })
-          .order('solution_text', { ascending: true })
-          .range(from, from + ITEMS_PER_PAGE - 1);
-        if (error) throw error;
-        if (active) { setData(rows || []); setTotalCount(count || 0); }
+        const indexKey = JSON.stringify([currentLocale, categoryFilter, submittedSearch, retry]);
+        let ids = indexCache.current?.key === indexKey ? indexCache.current.ids : null;
+        if (!ids) {
+          ids = await findDictionaryHazards(supabase, { locale: currentLocale, category: categoryFilter, search: submittedSearch, signal: controller.signal });
+          if (controller.signal.aborted) return;
+          indexCache.current = { key: indexKey, ids };
+        }
+        const page = Math.min(requestedPage, Math.max(1, Math.ceil(ids.length / ITEMS_PER_PAGE)));
+        const pageIds = ids.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+        const groups = await readDictionaryGroups(supabase, { locale: currentLocale, ids: pageIds, signal: controller.signal });
+        if (!controller.signal.aborted) { setData(groups); setTotalCount(ids.length); }
       } catch (error) {
-        if (active) {
+        if (!controller.signal.aborted) {
           console.error('Dictionary lookup failed:', error.message);
+          indexCache.current = null;
           setData([]); setTotalCount(0); setLoadError(true);
         }
       } finally {
-        if (active) setLoading(false);
+        if (!controller.signal.aborted) { setLoading(false); setLoadedKey(requestKey); }
       }
     };
     fetchData();
-    return () => { active = false; };
-  }, [categoryFilter, currentLocale, currentPage, submittedSearch, retry]);
+    return () => controller.abort();
+  }, [categoryFilter, currentLocale, requestedPage, submittedSearch, retry, requestKey]);
 
   const handleSearch = (event) => {
     event.preventDefault();
     updateRequest({ page: 1, search: searchTerm.trim() });
+    setDraftSearch({ locale: null, value: '' });
     setRetry(value => value + 1);
   };
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
-  const getParsedKeywords = parseKeywords;
+  const currentPage = Math.min(requestedPage, Math.max(1, totalPages));
+  const pending = loading || loadedKey !== requestKey;
 
   return (
-    <div style={styles.wrapper}>
-      <SEO /> 
+    <div style={styles.wrapper} dir={i18n.dir()}>
+      <SEO pageDescription={groupUi.intro} noIndex={Boolean(submittedSearch || categoryFilter || loadError || (!pending && totalCount === 0))} canonicalSearch={!submittedSearch && !categoryFilter && currentPage > 1 ? '?page=' + currentPage : ''} />
       
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
@@ -161,8 +175,8 @@ export default function FactorDictionary() {
           </h2>
           
           <div style={styles.seoContextBox}>
-            <p style={styles.seoText}>{t('hero.seoText1')}</p>
-            <p style={styles.seoText}>{t('hero.seoText2')}</p>
+            <p style={styles.seoText}>{groupUi.intro}</p>
+            <p style={styles.seoText}>{groupUi.howTo}</p>
           </div>
         </div>
       </section>
@@ -171,6 +185,7 @@ export default function FactorDictionary() {
         <div style={styles.container}>
           <form onSubmit={handleSearch} style={styles.searchForm} className="flex-col lg:flex-row gap-4">
             <select 
+              aria-label={t('filter.allCategories')}
               value={categoryFilter} 
               onChange={(e) => updateRequest({ category: e.target.value, page: 1 })}
               style={styles.selectBox}
@@ -186,87 +201,62 @@ export default function FactorDictionary() {
               <input 
                 type="text" 
                 placeholder={t('filter.searchPlaceholder')} 
+                aria-label={t('filter.searchPlaceholder')}
                 value={searchTerm}
-                onChange={(e) => setDraftSearch({ locale: currentLocale, value: e.target.value })}
+                onChange={(e) => setDraftSearch({ locale: currentLocale, baseSearch: submittedSearch, value: e.target.value })}
                 style={styles.searchInput}
               />
               <button type="submit" style={styles.searchBtn}>{t('filter.searchBtn')}</button>
             </div>
           </form>
-          <div style={styles.resultCount}>{t('filter.resultPrefix')} <strong>{totalCount}</strong>{t('filter.resultSuffix')}</div>
+          <div style={styles.resultCount} role="status">{pending ? t('data.loading') : !loadError && groupUi.count.replace('{{count}}', String(totalCount))}</div>
         </div>
       </section>
 
       <section style={styles.dataSection} className="max-lg:!px-6 max-lg:!py-10">
         <div style={styles.mainLayout} className="max-lg:!px-0 max-lg:!gap-0">
-          <aside style={styles.sideAd} className="max-lg:!hidden">
-            <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-          </aside>
 
-          <div style={styles.centerContent}>
-            {loadError ? (
+          <div style={styles.centerContent} id="dictionary-results" className="dictionary-results" aria-busy={pending}>
+            <p className="dictionary-usage">{groupUi.groupHint}<br />{groupUi.reference}<br /><LanguageLink to="/guideline/common">{groupUi.guide}</LanguageLink> · <LanguageLink to="/archive">{groupUi.cases}</LanguageLink></p>
+            {pending ? (
+              <div role="status" style={styles.loadingState}>{t('data.loading')}</div>
+            ) : loadError ? (
               <div role="alert" style={styles.emptyState}>{ui.loadError} <button type="button" onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>
-            ) : loading ? (
-              <div style={styles.loadingState}>{t('data.loading')}</div>
+
             ) : data.length === 0 ? (
               <div style={styles.emptyState}>{t('data.empty')}</div>
             ) : (
               <div style={styles.dataGrid}>
-                {data.map((item, index) => (
-                  <div key={JSON.stringify([item.hazard_id, item.measure_text, item.solution_text, index])} style={styles.dataCard}>
-                    <div style={styles.cardCategory}>{item.category}</div>
-                    
-                    <div style={styles.factorBox}>
-                      <strong style={styles.boxLabelRed}>{t('data.riskFactorLabel')}</strong>
-                      <p style={styles.boxContent}>{item.hazard_name || t('data.empty')}</p>
-                    </div>
-                    
-                    <div style={styles.measureBox}>
-                      <strong style={styles.boxLabelBlue}>{t('data.currentMeasureLabel')}</strong>
-                      <p style={styles.boxContent}>{item.measure_text || t('data.empty')}</p>
-                    </div>
-
-                    <div style={styles.advancedMeasureBox}>
-                      <strong style={styles.boxLabelGreen}>{t('data.advancedMeasureLabel')}</strong>
-                      <p style={styles.boxContent}>{item.solution_text || t('data.empty')}</p>
-                    </div>
-                    
-                    {item.keywords && getParsedKeywords(item.keywords).length > 0 && (
-                      <div style={styles.keywordWrap}>
-                        {getParsedKeywords(item.keywords).map((kw, idx) => (
-                          <span key={idx} style={styles.keywordBadge}>#{kw}</span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                {data.map(hazard => (
+                  <article key={hazard.id} id={'hazard-' + hazard.id} className="dictionary-hazard">
+                    <span style={styles.cardCategory}>{hazard.category}</span>
+                    <strong style={styles.boxLabelRed}>{t('data.riskFactorLabel')}</strong>
+                    <h3>{hazard.name || 'ID ' + hazard.id}</h3>
+                    <ol className="dictionary-measures">
+                      {hazard.measures.map((measure, index) => <li key={index} className="dictionary-measure">
+                        <h4>{t('data.currentMeasureLabel')} · {index + 1}</h4>
+                        <p>{measure.text || groupUi.missingMeasure}</p>
+                        <div className="dictionary-solutions">
+                          <strong>{t('data.advancedMeasureLabel')}</strong>
+                          {measure.solutions.length ? <ul>{measure.solutions.map(solution => <li key={solution}>{solution}</li>)}</ul> : <p>{groupUi.missingSolutions}</p>}
+                        </div>
+                      </li>)}
+                    </ol>
+                    {hazard.keywords.length > 0 && <div style={styles.keywordWrap}>{hazard.keywords.map(keyword => <span key={keyword} style={styles.keywordBadge}>#{keyword}</span>)}</div>}
+                  </article>
                 ))}
               </div>
             )}
 
-            {totalPages > 1 && (
-              <div style={styles.pagination}>
-                <button 
-                  disabled={loading || currentPage === 1} 
-                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); updateRequest({ page: currentPage - 1 }); }}
-                  style={{ ...styles.pageBtn, opacity: currentPage === 1 ? 0.5 : 1 }}
-                >
-                  {t('pagination.prev')}
-                </button>
-                <span style={styles.pageInfo}>{currentPage} / {totalPages}</span>
-                <button 
-                  disabled={loading || currentPage >= totalPages} 
-                  onClick={() => { window.scrollTo({ top: 400, behavior: 'smooth' }); updateRequest({ page: currentPage + 1 }); }}
-                  style={{ ...styles.pageBtn, opacity: currentPage === totalPages ? 0.5 : 1 }}
-                >
-                  {t('pagination.next')}
-                </button>
-              </div>
+            {!pending && !loadError && totalPages > 1 && (
+              <nav className="dictionary-pager" aria-label={groupUi.pageLabel}>
+                {currentPage > 1 ? <LanguageLink to={'/dictionary?' + queryFor({ page: currentPage - 1 }) + '#dictionary-results'}>{t('pagination.prev')}</LanguageLink> : <span aria-disabled="true">{t('pagination.prev')}</span>}
+                <span role="status">{currentPage} / {totalPages}</span>
+                {currentPage < totalPages ? <LanguageLink to={'/dictionary?' + queryFor({ page: currentPage + 1 }) + '#dictionary-results'}>{t('pagination.next')}</LanguageLink> : <span aria-disabled="true">{t('pagination.next')}</span>}
+              </nav>
             )}
           </div>
 
-          <aside style={styles.sideAd} className="max-lg:!hidden">
-            <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-          </aside>
         </div>
       </section>
 
@@ -307,7 +297,7 @@ const styles = {
   searchBtn: { padding: '0 30px', backgroundColor: '#1c1b1f', color: '#fff', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', whiteSpace: 'nowrap' },
   resultCount: { fontSize: '0.9rem', color: '#666', textAlign: 'right' },
   dataSection: { padding: '60px 0 100px 0' },
-  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '4rem', zIndex: 10, justifyContent: 'center' },
+  mainLayout: { position: 'relative', display: 'flex', alignItems: 'flex-start', padding: '0 5rem', gap: '0', zIndex: 10, justifyContent: 'center' },
   sideAd: { width: '160px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '40px' },
   centerContent: { flex: 1, minWidth: 0, width: '100%', display: 'flex', flexDirection: 'column', maxWidth: '1000px', alignItems: 'center' },
   dataGrid: { display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' },

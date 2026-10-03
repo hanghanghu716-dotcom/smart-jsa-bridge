@@ -17,15 +17,157 @@
     "downloadBtn": "원본 PDF 다운로드"
   },
   "steps": [
-    { "step": "01", "task": "작업 전 TBM 및 개인보호구 점검", "hazard": "작업 범위 미숙지, 보호구 오착용" },
-    { "step": "02", "task": "추락 방지 시설 점검", "hazard": "구명줄 고정점 파손, 악천후 실족" },
-    { "step": "03", "task": "가연물 격리 및 화재 예방", "hazard": "용접 불꽃 비산, 잔류 가스 폭발" },
-    { "step": "04", "task": "인양 장비 및 줄걸이 셋팅", "hazard": "지반 지지력 부족, 줄걸이 파단" },
-    { "step": "05", "task": "가스 농도 측정 및 환기", "hazard": "산소 결핍, 유독가스 체류 질식" },
-    { "step": "06", "task": "지하 매설물 탐지 및 붕괴 방지", "hazard": "매설물 파손 폭발, 사면 붕괴 매몰" },
-    { "step": "07", "task": "LOTO 체결 및 무전압 확인", "hazard": "임의 전원 투입 감전, 잔류 전하 감전" },
-    { "step": "08", "task": "구획 설정 및 피폭 방지", "hazard": "일반인 무단 진입, 방사선 피폭" },
-    { "step": "09", "task": "설비 시운전 및 루프 테스트", "hazard": "인터록 해제 가동, 고압 누출" },
-    { "step": "10", "task": "작업 후 정리정돈 및 LOTO 해제", "hazard": "잔류 공구 방치, 단락 사고" }
-  ]
+    {
+      "step": "01",
+      "task": "작업 전 TBM 및 개인보호구 점검",
+      "hazard": "작업 범위 미숙지, 보호구 오착용"
+    },
+    {
+      "step": "02",
+      "task": "추락 방지 시설 점검",
+      "hazard": "구명줄 고정점 파손, 악천후 실족"
+    },
+    {
+      "step": "03",
+      "task": "가연물 격리 및 화재 예방",
+      "hazard": "용접 불꽃 비산, 잔류 가스 폭발"
+    },
+    {
+      "step": "04",
+      "task": "인양 장비 및 줄걸이 셋팅",
+      "hazard": "지반 지지력 부족, 줄걸이 파단"
+    },
+    {
+      "step": "05",
+      "task": "가스 농도 측정 및 환기",
+      "hazard": "산소 결핍, 유독가스 체류 질식"
+    },
+    {
+      "step": "06",
+      "task": "지하 매설물 탐지 및 붕괴 방지",
+      "hazard": "매설물 파손 폭발, 사면 붕괴 매몰"
+    },
+    {
+      "step": "07",
+      "task": "LOTO 체결 및 무전압 확인",
+      "hazard": "임의 전원 투입 감전, 잔류 전하 감전"
+    },
+    {
+      "step": "08",
+      "task": "구획 설정 및 피폭 방지",
+      "hazard": "일반인 무단 진입, 방사선 피폭"
+    },
+    {
+      "step": "09",
+      "task": "설비 시운전 및 루프 테스트",
+      "hazard": "인터록 해제 가동, 고압 누출"
+    },
+    {
+      "step": "10",
+      "task": "작업 후 정리정돈 및 LOTO 해제",
+      "hazard": "잔류 공구 방치, 단락 사고"
+    }
+  ],
+  "draftSave": {
+    "pending": "저장 중",
+    "saved": "저장됨",
+    "error": "저장 오류",
+    "conflict": "다른 탭에서 최신 Draft가 저장됨 · 새로고침 필요"
+  },
+  "appearance": {
+    "title": "화면 모드",
+    "system": "시스템 설정",
+    "light": "라이트",
+    "dark": "다크",
+    "active": "적용 중"
+  },
+  "designer": {
+    "defaultTitle": "위험성평가표 (JSA)",
+    "appr1": "작성",
+    "appr2": "검토",
+    "appr3": "승인",
+    "eyebrow": "DOCUMENT DESIGNER",
+    "title": "문서 구성",
+    "subtitle": "문서 블록과 위험성평가 표를 한 화면에서 구성합니다.",
+    "back": "위험 분석으로",
+    "next": "최종 출력",
+    "blocksTitle": "문서 블록",
+    "blocksHint": "블록을 끌어 순서를 바꾸고 체크박스로 표시 여부를 설정합니다.",
+    "blocks": {
+      "PROJECT_INFO": "문서 머리말 (기본정보·결재)",
+      "SAFETY": "PPE / 작업허가",
+      "JSA_TABLE": "위험성평가 표",
+      "PARTICIPANTS": "작업자 서명",
+      "APPROVAL": "작성·검토·승인",
+      "NOTES": "특이사항"
+    },
+    "enabled": "사용",
+    "disabled": "숨김",
+    "documentTitle": "문서 제목",
+    "orientation": "용지 방향",
+    "landscape": "가로",
+    "portrait": "세로",
+    "tableSettings": "표 설정",
+    "addColumn": "사용자 컬럼 추가",
+    "newColumn": "새 컬럼",
+    "customColumn": "사용자 컬럼",
+    "systemColumn": "기본 컬럼",
+    "reset": "초기화",
+    "columnLabel": "컬럼명",
+    "columnWidth": "컬럼 폭",
+    "fieldTypes": {
+      "text": "텍스트",
+      "number": "숫자",
+      "date": "날짜",
+      "checkbox": "체크박스",
+      "dropdown": "선택목록"
+    },
+    "dropdownOptions": "선택 항목을 쉼표로 구분",
+    "participantSettings": "작업자 서명 설정",
+    "approvalSettings": "승인란 설정",
+    "notesSettings": "특이사항 설정",
+    "notesPlaceholder": "현장 특이사항 또는 추가 지시사항",
+    "notesEmpty": "특이사항 없음",
+    "blockSettings": "블록 설정",
+    "blockSettingsHint": "이 블록은 현재 문서 데이터에서 자동 구성됩니다.",
+    "projectFallback": "프로젝트명",
+    "ppeLabel": "보호구:",
+    "permitLabel": "작업허가:",
+    "signatureRows": "서명 {{count}}행",
+    "templates": "문서 템플릿",
+    "chooseTemplate": "저장된 템플릿 불러오기",
+    "templateName": "템플릿 이름",
+    "saveTemplate": "저장",
+    "savingTemplate": "저장 중...",
+    "templateSaved": "문서 템플릿을 저장했습니다.",
+    "templateSaveError": "템플릿 저장 중 오류가 발생했습니다.",
+    "loginRequired": "로그인이 필요합니다.",
+    "fieldValues": "작업단계별 값",
+    "noWorkSteps": "작업단계가 없습니다.",
+    "stepFallback": "작업단계 {{number}}"
+  },
+  "saveFlow": {
+    "library": "내 보관함",
+    "saveDocument": "작업물 저장",
+    "privateHint": "개인 완성본은 입력 정보·참여자·사진을 모두 보존합니다.",
+    "publicHint": "공개 사본은 날짜·장소·부서·담당자·장비·참여자·특이사항·사진·사용자 컬럼 값을 제외합니다. 제목과 분석 문구는 직접 확인해주세요.",
+    "publicConfirm": "공개 사본을 만들까요? 제목과 분석 문구에 개인정보나 기밀 내용이 없는지 확인해주세요. 개인 원본은 비공개로 유지됩니다.",
+    "archiveWarning": "작업물은 저장했지만 초안을 보관 처리하지 못했습니다. 초안은 그대로 남아 있습니다.",
+    "changed": "다른 곳에서 수정되었거나 갱신할 수 없는 문서입니다. 다시 열거나 새 개인 사본으로 저장해주세요.",
+    "failed": "저장하지 못했습니다. 초안은 유지됩니다. 다시 시도해주세요.",
+    "publicCopy": "공개 사본 만들기",
+    "newPrivate": "새 개인 완성본으로 저장",
+    "updatePrivate": "기존 개인 완성본 갱신",
+    "templatesHint": "템플릿은 재사용할 문서 양식입니다. 작업물 저장과는 별개입니다.",
+    "templateError": "템플릿을 읽거나 저장하지 못했습니다. 로그인과 연결 상태를 확인하고 새로고침해주세요.",
+    "confirmUpdate": "이 템플릿을 현재 문서 양식으로 갱신할까요?",
+    "confirmDelete": "이 템플릿을 삭제할까요? 기존 문서는 바뀌지 않습니다.",
+    "newTemplate": "새 템플릿으로 저장",
+    "rename": "이름 변경",
+    "updateTemplate": "현재 양식으로 갱신",
+    "clearDefault": "기본 지정 해제",
+    "makeDefault": "기본 양식으로 지정",
+    "deleteTemplate": "템플릿 삭제",
+    "defaultHint": "기본 양식은 새 문서에만 적용되며 기존 편집 내용은 바꾸지 않습니다."
+  }
 }

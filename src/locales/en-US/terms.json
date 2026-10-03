@@ -29,7 +29,7 @@
       "desc": "The platform does not guarantee the absolute accuracy or site-suitability of the shared content."
     },
     "item2": {
-      "desc": "When utilizing another user's template, you must review and finalize it to fit your specific site conditions. The platform is not liable for any accidents resulting from negligence in this regard."
+      "desc": "Shared material is a reference, not an approved work permit. A competent person must check site conditions, local rules and controls before work."
     }
   },
   "section5": {
@@ -40,7 +40,7 @@
     },
     "item2": {
       "bold": "Shared Content:",
-      "desc": "By contributing content set to 'Public', it is considered that you grant other users a non-exclusive license to copy, modify, and utilize that content."
+      "desc": "Community reuse v1: ownership stays with the author. Permission covers copying, adapting and republishing for work, with a link to the source and a note of changes. It does not grant rights to third-party material or certify safety. Removing a public page does not recall copies already obtained. Mandatory legal rights remain unaffected."
     }
   },
   "section6": {

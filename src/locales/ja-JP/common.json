@@ -17,15 +17,157 @@
     "downloadBtn": "オリジナルPDFのダウンロード"
   },
   "steps": [
-    { "step": "01", "task": "作業前のTBMおよび保護具の点検", "hazard": "作業範囲の不明確さ、不適切な保護具の使用" },
-    { "step": "02", "task": "墜落防護設備・墜落制止用器具（安衛則準拠）", "hazard": "アンカーポイントの破損、天候によるスリップ・転倒" },
-    { "step": "03", "task": "可燃物の隔離および火気監視", "hazard": "火気作業の火花（飛散）、残留ガスの爆発" },
-    { "step": "04", "task": "玉掛けおよびクレーン吊り上げの準備", "hazard": "地盤の軟弱さ、スリング・ワイヤーの破断" },
-    { "step": "05", "task": "ガス濃度測定および換気", "hazard": "酸欠（酸素欠乏症）、有毒ガスの吸入" },
-    { "step": "06", "task": "掘削・土留め作業の安全", "hazard": "地下埋設物の破損、掘削面・土留めの崩壊" },
-    { "step": "07", "task": "LOTOおよびゼロエネルギー状態の確認", "hazard": "予期せぬ再通電、残留電圧による感電" },
-    { "step": "08", "task": "立入禁止区画の設置および放射線防護", "hazard": "無許可者の立ち入り、電離放射線へのばく露" },
-    { "step": "09", "task": "試運転（コミッショニング）およびループテスト", "hazard": "インターロックの無効化、高圧漏えい" },
-    { "step": "10", "task": "整理整頓（4S）および作業後のLOTO解除", "hazard": "工具や資材の放置、短絡（ショート）の危険" }
-  ]
+    {
+      "step": "01",
+      "task": "作業前のTBMおよび保護具の点検",
+      "hazard": "作業範囲の不明確さ、不適切な保護具の使用"
+    },
+    {
+      "step": "02",
+      "task": "墜落防護設備・墜落制止用器具（安衛則準拠）",
+      "hazard": "アンカーポイントの破損、天候によるスリップ・転倒"
+    },
+    {
+      "step": "03",
+      "task": "可燃物の隔離および火気監視",
+      "hazard": "火気作業の火花（飛散）、残留ガスの爆発"
+    },
+    {
+      "step": "04",
+      "task": "玉掛けおよびクレーン吊り上げの準備",
+      "hazard": "地盤の軟弱さ、スリング・ワイヤーの破断"
+    },
+    {
+      "step": "05",
+      "task": "ガス濃度測定および換気",
+      "hazard": "酸欠（酸素欠乏症）、有毒ガスの吸入"
+    },
+    {
+      "step": "06",
+      "task": "掘削・土留め作業の安全",
+      "hazard": "地下埋設物の破損、掘削面・土留めの崩壊"
+    },
+    {
+      "step": "07",
+      "task": "LOTOおよびゼロエネルギー状態の確認",
+      "hazard": "予期せぬ再通電、残留電圧による感電"
+    },
+    {
+      "step": "08",
+      "task": "立入禁止区画の設置および放射線防護",
+      "hazard": "無許可者の立ち入り、電離放射線へのばく露"
+    },
+    {
+      "step": "09",
+      "task": "試運転（コミッショニング）およびループテスト",
+      "hazard": "インターロックの無効化、高圧漏えい"
+    },
+    {
+      "step": "10",
+      "task": "整理整頓（4S）および作業後のLOTO解除",
+      "hazard": "工具や資材の放置、短絡（ショート）の危険"
+    }
+  ],
+  "draftSave": {
+    "pending": "保存中",
+    "saved": "保存済み",
+    "error": "保存エラー",
+    "conflict": "別のタブで新しい下書きが保存されました · 再読み込みが必要です"
+  },
+  "appearance": {
+    "title": "表示モード",
+    "system": "システム設定",
+    "light": "ライト",
+    "dark": "ダーク",
+    "active": "適用中"
+  },
+  "designer": {
+    "defaultTitle": "作業安全分析（JSA）",
+    "appr1": "作成",
+    "appr2": "確認",
+    "appr3": "承認",
+    "eyebrow": "DOCUMENT DESIGNER",
+    "title": "ドキュメントデザイナー",
+    "subtitle": "文書ブロックとJSAテーブルを1つの画面で構成します。",
+    "back": "リスク分析へ戻る",
+    "next": "最終出力",
+    "blocksTitle": "文書ブロック",
+    "blocksHint": "ドラッグで順序を変更し、チェックボックスで表示・非表示を設定します。",
+    "blocks": {
+      "PROJECT_INFO": "文書ヘッダー（基本情報・承認）",
+      "SAFETY": "PPE / 作業許可",
+      "JSA_TABLE": "JSAテーブル",
+      "PARTICIPANTS": "作業者署名",
+      "APPROVAL": "承認",
+      "NOTES": "特記事項"
+    },
+    "enabled": "表示",
+    "disabled": "非表示",
+    "documentTitle": "文書タイトル",
+    "orientation": "用紙方向",
+    "landscape": "横",
+    "portrait": "縦",
+    "tableSettings": "テーブル設定",
+    "addColumn": "カスタム列を追加",
+    "newColumn": "新しい列",
+    "customColumn": "カスタム列",
+    "systemColumn": "標準列",
+    "reset": "リセット",
+    "columnLabel": "列名",
+    "columnWidth": "列幅",
+    "fieldTypes": {
+      "text": "テキスト",
+      "number": "数値",
+      "date": "日付",
+      "checkbox": "チェックボックス",
+      "dropdown": "選択リスト"
+    },
+    "dropdownOptions": "選択肢をカンマ区切りで入力",
+    "participantSettings": "署名設定",
+    "approvalSettings": "承認欄設定",
+    "notesSettings": "特記事項設定",
+    "notesPlaceholder": "現場メモまたは追加指示",
+    "notesEmpty": "特記事項なし",
+    "blockSettings": "ブロック設定",
+    "blockSettingsHint": "このブロックは現在のJSAデータから自動構成されます。",
+    "projectFallback": "プロジェクト",
+    "ppeLabel": "PPE:",
+    "permitLabel": "許可:",
+    "signatureRows": "署名 {{count}} 行",
+    "templates": "文書テンプレート",
+    "chooseTemplate": "保存済みテンプレートを読み込む",
+    "templateName": "テンプレート名",
+    "saveTemplate": "保存",
+    "savingTemplate": "保存中...",
+    "templateSaved": "文書テンプレートを保存しました。",
+    "templateSaveError": "テンプレートを保存できませんでした。",
+    "loginRequired": "ログインが必要です。",
+    "fieldValues": "作業ステップ別の値",
+    "noWorkSteps": "作業ステップがありません。",
+    "stepFallback": "作業ステップ {{number}}"
+  },
+  "saveFlow": {
+    "library": "マイライブラリ",
+    "saveDocument": "作業文書を保存",
+    "privateHint": "非公開の完成版には入力情報・参加者・写真をすべて保存します。",
+    "publicHint": "公開コピーからは日付・場所・部署・担当者・設備・参加者・備考・写真・独自項目の値を除外します。タイトルと分析内容はご確認ください。",
+    "publicConfirm": "公開コピーを作成しますか？タイトルと分析内容に個人情報や機密情報がないことをご確認ください。元の文書は非公開のままです。",
+    "archiveWarning": "文書は保存しましたが、下書きをアーカイブできませんでした。下書きは残っています。",
+    "changed": "この文書は変更されたか更新できません。開き直すか、新しい非公開コピーとして保存してください。",
+    "failed": "保存できませんでした。下書きは保持されます。再試行してください。",
+    "publicCopy": "公開コピーを作成",
+    "newPrivate": "新しい非公開の完成版を保存",
+    "updatePrivate": "既存の非公開文書を更新",
+    "templatesHint": "テンプレートは再利用する書式です。作業文書の保存とは別です。",
+    "templateError": "テンプレートを読み込み・保存できませんでした。ログインと接続を確認し、再読み込みしてください。",
+    "confirmUpdate": "このテンプレートを現在の書式に更新しますか？",
+    "confirmDelete": "テンプレートを削除しますか？既存の文書には影響しません。",
+    "newTemplate": "新しいテンプレートとして保存",
+    "rename": "名前を変更",
+    "updateTemplate": "現在の書式で更新",
+    "clearDefault": "既定の指定を解除",
+    "makeDefault": "既定の書式に設定",
+    "deleteTemplate": "テンプレートを削除",
+    "defaultHint": "既定の書式は新しい文書のみに適用され、既存の編集内容は変更しません。"
+  }
 }

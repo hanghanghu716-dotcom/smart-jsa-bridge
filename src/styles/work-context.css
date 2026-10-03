@@ -1,0 +1,23 @@
+.regional-work-context { min-width: 0; padding: 22px; margin: 24px 0; border: 1px solid var(--border-default, #d5dce4); border-radius: 14px; background: var(--panel-bg, #fff); color: var(--text-primary, #18202b); }
+.regional-work-context legend { font-weight: 700; padding-inline: 8px; }
+.regional-work-context .work-section-help { margin: 0 0 18px; line-height: 1.6; }
+.regional-work-context .work-common-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 18px; }
+.regional-work-context label { display: grid; gap: 8px; min-width: 0; font-size: 14px; }
+.regional-work-context input, .regional-work-context select { box-sizing: border-box; width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--border-default, #d5dce4); border-radius: 8px; background: var(--input-bg, var(--panel-bg, #fff)); color: inherit; font: inherit; }
+.regional-template-actions { margin-block: 20px; }
+.work-row-context { display: block; max-width: 240px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; margin-top: 6px; }
+.regional-catalog > label { max-width: 640px; }
+.work-region-review { margin-block: 20px; padding: 16px; border: 1px solid var(--border-default); border-radius: 10px; }
+.bundle-paper .regional-print-context { font-size: 10px; line-height: 1.5; color: #333; overflow-wrap: anywhere; }
+.bundle-paper[dir="rtl"] { direction: rtl; }
+.bundle-paper[dir="ltr"] { direction: ltr; }
+.regional-print-context, .regional-catalog button { overflow-wrap: anywhere; }
+.regional-catalog button { white-space: normal; }
+/* Explicit task selection only affects newly added PTW forms. */
+.regional-task-checks { margin: 1rem 0; padding: 1rem; border: 1px solid var(--border-color, #8794a5); border-radius: .75rem; min-width: 0; }
+.regional-task-checks legend { padding: 0 .35rem; font-weight: 600; }
+.regional-task-checks p { margin: .25rem 0 .85rem; }
+.regional-task-checks > div { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
+.regional-task-checks > div > label { display: flex; flex-direction: row; align-items: flex-start; gap: .5rem; flex: 1 1 14rem; min-width: 0; }
+.regional-task-checks input[type="checkbox"] { width: 1.1rem; min-width: 1.1rem; height: 1.1rem; margin: .15rem 0 0; padding: 0; }
+.regional-task-checks span { overflow-wrap: anywhere; }

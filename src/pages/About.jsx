@@ -1,3 +1,5 @@
+import PlanOverview from '../components/PlanOverview';
+import {getPlansUi} from '../locales/plansUi';
 import { useTranslation } from 'react-i18next';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
@@ -5,7 +7,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ 커스텀 다
 
 export default function About() {
   const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 19]
-  const { t } = useTranslation('about'); // ✅ 'about' 네임스페이스 로드[cite: 19]
+  const { t,i18n } = useTranslation('about'); // ✅ 'about' 네임스페이스 로드[cite: 19]
 
   // 애드센스 설정 정보[cite: 19]
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
@@ -101,6 +103,7 @@ export default function About() {
         </div>
       </section>
 
+      <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
       <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
     </div>
   );

@@ -20,49 +20,79 @@
         "num": "01",
         "title": "Protezione del Capo",
         "desc": "Assorbe gli urti da caduta o proiezione di oggetti e protegge dai contatti elettrici.",
-        "tags": ["Elmetti di Protezione (EN 397)", "Elmetti Dielettrici (EN 50365)"]
+        "tags": [
+          "Elmetti di Protezione (EN 397)",
+          "Elmetti Dielettrici (EN 50365)"
+        ]
       },
       "item2": {
         "num": "02",
         "title": "Protezione Occhi e Viso",
         "desc": "Scherma da particelle volanti, radiazioni ottiche nocive e spruzzi chimici.",
-        "tags": ["Occhiali di Sicurezza (EN 166)", "Occhiali a Mascherina", "Visiere"]
+        "tags": [
+          "Occhiali di Sicurezza (EN 166)",
+          "Occhiali a Mascherina",
+          "Visiere"
+        ]
       },
       "item3": {
         "num": "03",
         "title": "Protezione dell'Udito (Otoprotettori)",
         "desc": "Previene l'ipoacusia da trauma acustico in ambienti ad alti decibel (esposti a LEX,8h > 85 dB(A)).",
-        "tags": ["Inserti Auricolari (EN 352-2)", "Cuffie (EN 352-1)", "Valore SNR"]
+        "tags": [
+          "Inserti Auricolari (EN 352-2)",
+          "Cuffie (EN 352-1)",
+          "Valore SNR"
+        ]
       },
       "item4": {
         "num": "04",
         "title": "Protezione delle Vie Respiratorie (APV)",
         "desc": "Protegge da polveri sottili, gas nocivi e atmosfere carenti di ossigeno.",
-        "tags": ["Facciali Filtranti (FFP2/FFP3 - EN 149)", "Maschere per Gas", "Autorespiratori (SCBA - EN 137)"]
+        "tags": [
+          "Facciali Filtranti (FFP2/FFP3 - EN 149)",
+          "Maschere per Gas",
+          "Autorespiratori (SCBA - EN 137)"
+        ]
       },
       "item5": {
         "num": "05",
         "title": "Protezione delle Mani",
         "desc": "Protegge da tagli, ustioni, scosse elettriche ed esposizione ad agenti chimici.",
-        "tags": ["Antitaglio (EN 388)", "Dielettrici (EN 60903)", "Rischio Chimico (EN 374)"]
+        "tags": [
+          "Antitaglio (EN 388)",
+          "Dielettrici (EN 60903)",
+          "Rischio Chimico (EN 374)"
+        ]
       },
       "item6": {
         "num": "06",
         "title": "Protezione dei Piedi",
         "desc": "Previene lesioni da schiacciamento da caduta carichi e perforazione accidentale.",
-        "tags": ["Calzature di Sicurezza (EN ISO 20345)", "Calzature Antistatiche (ESD)"]
+        "tags": [
+          "Calzature di Sicurezza (EN ISO 20345)",
+          "Calzature Antistatiche (ESD)"
+        ]
       },
       "item7": {
         "num": "07",
         "title": "Sistemi Anticaduta (Lavori in Quota)",
         "desc": "Arresta la caduta e assorbe l'energia cinetica durante i lavori oltre i 2 metri.",
-        "tags": ["Imbracatura Completa (EN 361)", "Cordini con Assorbitore (EN 355)", "Linee Vita (EN 795)"]
+        "tags": [
+          "Imbracatura Completa (EN 361)",
+          "Cordini con Assorbitore (EN 355)",
+          "Linee Vita (EN 795)"
+        ]
       },
       "item8": {
         "num": "08",
         "title": "Indumenti di Protezione",
         "desc": "Isola l'intero corpo da prodotti chimici pericolosi, calore estremo o arco elettrico.",
-        "tags": ["Tute Rischio Chimico (Tipo 1-6)", "Indumenti Ignifughi (EN ISO 11612)", "Protezione Arco Elettrico"]
+        "tags": [
+          "Tute Rischio Chimico (Tipo 1-6)",
+          "Indumenti Ignifughi (EN ISO 11612)",
+          "Protezione Arco Elettrico"
+        ]
       }
     }
   },
@@ -87,5 +117,55 @@
       }
     }
   },
-  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>",
+  "menuDrafts": "Bozze",
+  "menuWorkSteps": "Libreria fasi",
+  "draftListTitle": "Bozze JSA",
+  "noDrafts": "Nessuna bozza salvata.",
+  "draftStage": "Fase corrente",
+  "resumeDraft": "Riprendi",
+  "workStepListTitle": "Le mie fasi",
+  "noWorkSteps": "Nessuna fase salvata.",
+  "hazardsCount": "Pericoli",
+  "usedCount": "Utilizzi",
+  "useWorkStep": "Usa questa fase",
+  "confirmDeleteWorkStep": "Eliminare questa fase di lavoro?",
+  "workStepDeleteError": "Errore durante l’eliminazione della fase.",
+  "draftStages": {
+    "info": "Info generali",
+    "procedure": "Procedura",
+    "analysis": "Analisi rischi",
+    "module": "Config. modulo",
+    "table": "Layout tabella",
+    "export": "Output finale"
+  },
+  "searchWorkSteps": "Cerca fasi, pericoli o misure",
+  "favoritesOnly": "Solo preferiti",
+  "addFavorite": "Aggiungi ai preferiti",
+  "removeFavorite": "Rimuovi dai preferiti",
+  "editWorkStep": "Modifica",
+  "saveChanges": "Salva",
+  "cancelEdit": "Annulla",
+  "workStepUpdateError": "Impossibile aggiornare la fase.",
+  "menuSaveWorkSteps": "Salva tutte le fasi nella libreria",
+  "bulkSavingSteps": "Salvataggio fasi...",
+  "bulkStepSaveSuccess": "Salvate {{count}} fasi.",
+  "bulkStepSaveError": "Impossibile salvare le fasi.",
+  "archiveDraft": "Archivia",
+  "confirmArchiveDraft": "Archiviare questa bozza?",
+  "draftArchiveError": "Impossibile archiviare la bozza.",
+  "confirmDeleteDraft": "Eliminare definitivamente questa bozza?",
+  "draftDeleteError": "Errore durante l’eliminazione della bozza.",
+  "workStepTagsPlaceholder": "Inserisci tag separati da virgole",
+  "cloneWorkStep": "Duplica",
+  "workStepCloneSuccess": "Fase duplicata.",
+  "workStepCloneError": "Impossibile duplicare la fase.",
+  "workStepHistory": "Cronologia",
+  "workStepHistoryTitle": "Cronologia versioni",
+  "workStepHistoryEmpty": "Nessuna versione precedente.",
+  "restoreVersion": "Ripristina",
+  "confirmRestoreWorkStepVersion": "Ripristinare la versione v{{version}}? Lo stato attuale resterà nella cronologia.",
+  "workStepVersionRestored": "La versione selezionata è stata ripristinata.",
+  "workStepVersionRestoreError": "Impossibile ripristinare questa versione.",
+  "workStepHistoryError": "Impossibile caricare la cronologia delle versioni."
 }

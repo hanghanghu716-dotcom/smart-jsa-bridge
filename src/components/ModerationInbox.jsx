@@ -1,0 +1,26 @@
+import { useEffect,useRef,useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { LanguageLink } from '../hooks/useLanguage';
+import { communityAction } from '../services/communityService';
+import { getSocialUi } from '../locales/socialUi';
+import { getCommunityUi } from '../locales/communityUi';
+import { getLanguageTag } from '../locales/config';
+export default function ModerationInbox(){
+ const {i18n}=useTranslation(),ui={...getCommunityUi(i18n.language),...getSocialUi(i18n.language)};
+ const [state,setState]=useState(null),[status,setStatus]=useState('pending'),[page,setPage]=useState(0),[refresh,setRefresh]=useState(0),[selected,setSelected]=useState(''),[detail,setDetail]=useState(null),[decision,setDecision]=useState('reviewing'),[reason,setReason]=useState(''),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
+ const lock=useRef(false),key=[status,page,refresh].join(':');
+ useEffect(()=>{let active=true;communityAction('queue',null,{status,offset:page*50}).then(rows=>{if(active)setState({key,rows});}).catch(()=>{if(active)setState({key,error:true});});return()=>{active=false;};},[key,status,page,refresh]);
+ useEffect(()=>{let active=true;if(selected)communityAction('report_detail',selected).then(data=>{if(active)setDetail({id:selected,data});}).catch(()=>{if(active)setDetail({id:selected,error:true});});return()=>{active=false;};},[selected,refresh]);
+ const rows=state?.key===key?state.rows||[]:[],item=rows.find(row=>row.id===selected),report=detail?.id===selected?detail:null;
+ const reload=()=>{setSelected('');setReason('');setRefresh(n=>n+1);};
+ const act=async e=>{e.preventDefault();if(lock.current||!item)return;lock.current=true;setBusy(true);setMessage('');try{await communityAction('decide',item.id,{decision,reason,expectedUpdatedAt:item.updated_at,projectRevision:item.project_revision});setMessage(ui.saved);reload();}catch(error){setMessage(/STALE_/.test(error.message)?ui.conflict:ui.error);}finally{lock.current=false;setBusy(false);}};
+ const date=value=>new Date(value).toLocaleString(getLanguageTag(i18n.language));
+ return <section className="jsa-card moderation-inbox"><h2>{ui.manage}</h2><p>{ui.reviewHelp}</p><div className="jsa-toolbar"><select aria-label={ui.manage} value={status} disabled={busy} onChange={e=>{setStatus(e.target.value);setPage(0);setSelected('');}}>{['pending','open','reviewing','awaiting_changes','resolved','declined','all'].map(s=><option key={s} value={s}>{ui[s]}</option>)}</select><button disabled={busy} onClick={reload}>{ui.refresh}</button></div>
+ {message&&<p role="status">{message}</p>}{state?.key!==key&&<p role="status">…</p>}{state?.key===key&&state.error&&<p role="alert">{ui.error}</p>}
+ <ul className="moderation-queue">{rows.map(row=><li key={row.id}><button disabled={busy} aria-pressed={selected===row.id} onClick={()=>{setSelected(row.id);setReason('');setDecision('reviewing');}}><strong>{ui[row.category]} · {ui[row.status]}</strong><span>{row.project_title||row.id.slice(0,8)}</span><small>{row.priority>0?ui.priority+' · ':''}{row.overdue?ui.overdue+' · ':''}{date(row.created_at)}</small></button></li>)}</ul>
+ <nav className="jsa-toolbar"><button disabled={busy||!page} onClick={()=>{setPage(n=>n-1);setSelected('');}}>{ui.previous}</button><button disabled={busy||rows.length<50} onClick={()=>{setPage(n=>n+1);setSelected('');}}>{ui.next}</button></nav>
+ {item&&<article className="moderation-detail"><h3>{ui.receipt}: {item.id}</h3><p className="preserve-lines">{item.detail}</p>{item.evidence&&<blockquote>{item.evidence}</blockquote>}{item.project_id&&<p><LanguageLink to={'/public-jsa/'+(item.revision_project_id||item.project_id)} target="_blank" rel="noopener">{item.project_title||item.project_id} ↗</LanguageLink>{item.restricted&&' · '+ui.restrict}</p>}
+ {report?.error&&<p role="alert">{ui.error}</p>}{report?.data&&<>{[['current_document',ui.currentDocument],['snapshot',ui.snapshot]].map(([key,label])=><details key={key}><summary>{label}</summary>{report.data[key]?<><h4>{report.data[key].title}</h4><time>{date(report.data[key].updated_at)}</time>{(report.data[key].analysis_data||[]).map((step,index)=><section key={index}><h4>{index+1}. {step.proc?.stepTitle}</h4><p>{step.proc?.stepDetail}</p>{(step.risks||[]).map((risk,n)=><p className="preserve-lines" key={n}>{risk.factor}<br/>{risk.current_measure||risk.measure}<br/>{risk.recommend_measure}</p>)}</section>)}</>:<p>{ui.empty}</p>}</details>)} <details><summary>{ui.history}</summary>{report.data.history.map((h,i)=><p key={i}>{ui[h.action]||h.action} · {date(h.created_at)}<br/>{h.reason}</p>)}</details></>}
+ <form onSubmit={act}><label>{ui.manage}<select value={decision} onChange={e=>setDecision(e.target.value)}>{['reviewing','request_changes','restrict','restore','resolve','decline'].filter(a=>item.project_id||!['request_changes','restrict','restore'].includes(a)).map(a=><option value={a} key={a}>{ui[a]}</option>)}</select></label><label>{ui.reason}<textarea required minLength={10} maxLength={2000} value={reason} onChange={e=>setReason(e.target.value)}/></label><button disabled={busy||reason.trim().length<10||!report?.data}>{ui.send}</button></form></article>}
+ </section>;
+}

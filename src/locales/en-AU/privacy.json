@@ -25,27 +25,27 @@
   },
   "section3": {
     "title": "3. Retention and Usage Period",
-    "subtitle": "In principle, the company destroys the information without delay after the purpose of collection and use is achieved.",
+    "subtitle": "Retention periods, processors and international transfers are being verified for the beta. Automatic expiry deletion is not currently provided. Request access, correction or deletion through Support.",
     "step1": {
       "bold": "Visit Records:",
-      "desc": "Destroyed after storage for up to 3 months"
+      "desc": "Retention periods, processors and international transfers are being verified for the beta. Automatic expiry deletion is not currently provided. Request access, correction or deletion through Support."
     },
     "step2": {
       "bold": "Consultation Details:",
-      "desc": "Stored for 1 year after consultation ends"
+      "desc": "Retention periods, processors and international transfers are being verified for the beta. Automatic expiry deletion is not currently provided. Request access, correction or deletion through Support."
     },
     "step3": {
       "bold": "Compliance:",
-      "desc": "Stored for the period required by relevant laws and regulations"
+      "desc": "Retention periods, processors and international transfers are being verified for the beta. Automatic expiry deletion is not currently provided. Request access, correction or deletion through Support."
     },
     "step4": {
       "bold": "Destruction Procedure:",
-      "desc": "Information in electronic file format is deleted using technical methods that cannot reproduce the record"
+      "desc": "Retention periods, processors and international transfers are being verified for the beta. Automatic expiry deletion is not currently provided. Request access, correction or deletion through Support."
     }
   },
   "section4": {
     "title": "4. Third-Party Provision and Entrustment",
-    "content": "This service includes Google AdSense, and we inform you that <strong>third parties such as Google may install or read cookies</strong> on your browser to provide customized advertisements."
+    "content": "Advertising and external visitor analytics are currently disabled. Public views count signed-in visits; reuse counts recorded actions, not unique people or proof of use on site. Operator identity and a non-member contact channel are awaiting verification. This beta request form currently requires sign-in."
   },
   "imageCaption": "Smart JSA Bridge prioritizes the safety of your data."
 }

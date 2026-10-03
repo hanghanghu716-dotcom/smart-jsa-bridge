@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Bitte wählen Sie zuerst eine aktuelle Sicherheitsmaßnahme über das Empfehlungssystem aus.",
     "noData": "Keine verknüpften Daten gefunden. Bitte direkt eingeben.",
     "confirmMain": "Möchten Sie wirklich zum Hauptbildschirm zurückkehren? Alle ungespeicherten Daten gehen verloren.",
-    "loginRequired": "Anmeldung erforderlich."
+    "loginRequired": "Anmeldung erforderlich.",
+    "stepSaved": "Arbeitsschritt wurde in der Bibliothek gespeichert.",
+    "stepSaveFailed": "Arbeitsschritt konnte nicht gespeichert werden."
   },
   "libModal": {
     "title": "Aufgabenschritt-Bibliothek aufrufen",
@@ -42,7 +44,9 @@
     "label": "⚠️ Hochrisiko-Filter",
     "auto": "(Auto-Vorschlag)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Gefährdungen suchen..."
+    "searchPlaceholder": "Gefährdungen suchen...",
+    "saveStepBtn": "Schritt speichern",
+    "savingStepBtn": "Speichern..."
   },
   "base": {
     "label": "Sicherheits-Wissensdatenbank (Gefährdungsermittlung)",
@@ -75,5 +79,39 @@
   "searchModal": {
     "title": "Maßnahmen-DB-Suche",
     "placeholder": "Suchbegriffe eingeben..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Wissens-Dock",
+    "opened": "Dock offen",
+    "untitledStep": "Unbenannter Schritt",
+    "sourceManual": "Manuell",
+    "sourceDatabase": "Gefahren-DB",
+    "sourceLibrary": "Früheres Wissen",
+    "eyebrow": "WISSENS-DOCK",
+    "title": "Früheres Arbeitswissen",
+    "savedSteps": "Gespeicherte Schritte",
+    "projects": "Projekte",
+    "search": "Arbeit, Gefährdungen oder Maßnahmen suchen",
+    "emptySteps": "Keine gespeicherten Arbeitsschritte.",
+    "independentStep": "Unabhängiger Arbeitsschritt",
+    "hazards": "Gefährdungen",
+    "noControl": "Keine Maßnahme",
+    "mergeHazards": "Nur Gefährdungen",
+    "mergeFull": "Mit Maßnahmen übernehmen",
+    "emptyProjects": "Keine gespeicherten oder vorgemerkten Projekte.",
+    "steps": "Schritte",
+    "backProjects": "Projektliste",
+    "sourceCurrent": "Aktuelle JSA",
+    "analysisIncluded": "Analyse enthalten",
+    "stepOnly": "Nur Schritt",
+    "mergeOneHazard": "+ Gefahr",
+    "mergeOneFull": "+ Voll",
+    "mergeResult": "{{added}} hinzugefügt · {{skipped}} Duplikate übersprungen",
+    "noRisksToMerge": "Keine Gefährdungen zum Zusammenführen.",
+    "loading": "Bibliothek wird geladen…",
+    "loadError": "Die Bibliothek konnte nicht geladen werden. Bitte erneut versuchen.",
+    "retry": "Erneut versuchen",
+    "close": "Bibliothek schließen",
+    "noMatches": "Keine passenden Schritte oder Projekte."
   }
 }

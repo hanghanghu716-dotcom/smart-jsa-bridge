@@ -7,7 +7,9 @@
     "needCurrentMeasure": "Por favor, seleccione primero la medida de seguridad actual a través del sistema de recomendación.",
     "noData": "No hay datos vinculados. Por favor, introdúzcalos manualmente.",
     "confirmMain": "¿Desea ir a la pantalla principal? Los datos en los que está trabajando podrían eliminarse.",
-    "loginRequired": "Es necesario iniciar sesión."
+    "loginRequired": "Es necesario iniciar sesión.",
+    "stepSaved": "El paso se guardó en su biblioteca.",
+    "stepSaveFailed": "No se pudo guardar el paso."
   },
   "libModal": {
     "title": "Llamada a la biblioteca de pasos de trabajo",
@@ -42,7 +44,9 @@
     "label": "⚠️ Filtro de Alto Riesgo",
     "auto": "(Sugerencia automática)",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "Buscar factores de riesgo directamente..."
+    "searchPlaceholder": "Buscar factores de riesgo directamente...",
+    "saveStepBtn": "Guardar paso",
+    "savingStepBtn": "Guardando..."
   },
   "base": {
     "label": "Base de Conocimientos de Seguridad (Extracción de Riesgos)",
@@ -75,5 +79,39 @@
   "searchModal": {
     "title": "Búsqueda en DB de Medidas",
     "placeholder": "Introduzca el término de búsqueda..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Dock de conocimiento",
+    "opened": "Dock abierto",
+    "untitledStep": "Paso sin título",
+    "sourceManual": "Manual",
+    "sourceDatabase": "BD de peligros",
+    "sourceLibrary": "Conocimiento previo",
+    "eyebrow": "DOCK DE CONOCIMIENTO",
+    "title": "Conocimiento de trabajos anteriores",
+    "savedSteps": "Pasos guardados",
+    "projects": "Proyectos",
+    "search": "Buscar trabajo, peligros o controles",
+    "emptySteps": "No hay pasos guardados.",
+    "independentStep": "Paso independiente",
+    "hazards": "peligros",
+    "noControl": "Sin control",
+    "mergeHazards": "Solo peligros",
+    "mergeFull": "Combinar con controles",
+    "emptyProjects": "No hay proyectos guardados o favoritos.",
+    "steps": "pasos",
+    "backProjects": "Lista de proyectos",
+    "sourceCurrent": "JSA actual",
+    "analysisIncluded": "Análisis incluido",
+    "stepOnly": "Solo paso",
+    "mergeOneHazard": "+ Peligro",
+    "mergeOneFull": "+ Completo",
+    "mergeResult": "{{added}} añadidos · {{skipped}} duplicados omitidos",
+    "noRisksToMerge": "No hay peligros para combinar.",
+    "loading": "Cargando biblioteca…",
+    "loadError": "No se pudo cargar la biblioteca. Inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "close": "Cerrar biblioteca",
+    "noMatches": "No hay pasos ni proyectos coincidentes."
   }
 }

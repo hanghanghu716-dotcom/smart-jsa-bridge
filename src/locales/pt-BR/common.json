@@ -17,15 +17,157 @@
     "downloadBtn": "Baixar PDF Original"
   },
   "steps": [
-    { "step": "01", "task": "DDS (Diálogo Diário de Segurança) e Inspeção de EPI (NR-06)", "hazard": "Escopo de trabalho não claro, uso inadequado de Equipamento de Proteção Individual (EPI)" },
-    { "step": "02", "task": "Sistemas de Proteção contra Quedas (NR-35)", "hazard": "Falha no ponto de ancoragem, escorregões devido a intempéries" },
-    { "step": "03", "task": "Isolamento de Combustíveis e Observador de Fogo", "hazard": "Fagulhas de trabalho a quente, explosão de gás residual" },
-    { "step": "04", "task": "Configuração de Amarração e Içamento (Rigging - NR-11)", "hazard": "Má estabilidade do solo, falha de cinta (sling)/cabo de aço" },
-    { "step": "05", "task": "Teste Atmosférico e Ventilação (Espaço Confinado - NR-33)", "hazard": "Deficiência de oxigênio (Asfixia), inalação de gás tóxico" },
-    { "step": "06", "task": "Segurança em Escavações e Valas (NR-18)", "hazard": "Ruptura de utilidades subterrâneas, soterramento por colapso da vala" },
-    { "step": "07", "task": "LOTO (Bloqueio e Etiquetagem) e Verificação de Energia Zero (NR-10)", "hazard": "Reenergização acidental, choque por tensão residual" },
-    { "step": "08", "task": "Isolamento de Área e Radioproteção", "hazard": "Acesso não autorizado, exposição a radiação ionizante" },
-    { "step": "09", "task": "Comissionamento e Teste de Malha (Loop Test)", "hazard": "Intertravamentos burlados (bypassed), vazamentos de alta pressão" },
-    { "step": "10", "task": "Housekeeping (Limpeza) e Remoção de LOTO Pós-Tarefa", "hazard": "Ferramentas/detritos esquecidos, perigos de curto-circuito" }
-  ]
+    {
+      "step": "01",
+      "task": "DDS (Diálogo Diário de Segurança) e Inspeção de EPI (NR-06)",
+      "hazard": "Escopo de trabalho não claro, uso inadequado de Equipamento de Proteção Individual (EPI)"
+    },
+    {
+      "step": "02",
+      "task": "Sistemas de Proteção contra Quedas (NR-35)",
+      "hazard": "Falha no ponto de ancoragem, escorregões devido a intempéries"
+    },
+    {
+      "step": "03",
+      "task": "Isolamento de Combustíveis e Observador de Fogo",
+      "hazard": "Fagulhas de trabalho a quente, explosão de gás residual"
+    },
+    {
+      "step": "04",
+      "task": "Configuração de Amarração e Içamento (Rigging - NR-11)",
+      "hazard": "Má estabilidade do solo, falha de cinta (sling)/cabo de aço"
+    },
+    {
+      "step": "05",
+      "task": "Teste Atmosférico e Ventilação (Espaço Confinado - NR-33)",
+      "hazard": "Deficiência de oxigênio (Asfixia), inalação de gás tóxico"
+    },
+    {
+      "step": "06",
+      "task": "Segurança em Escavações e Valas (NR-18)",
+      "hazard": "Ruptura de utilidades subterrâneas, soterramento por colapso da vala"
+    },
+    {
+      "step": "07",
+      "task": "LOTO (Bloqueio e Etiquetagem) e Verificação de Energia Zero (NR-10)",
+      "hazard": "Reenergização acidental, choque por tensão residual"
+    },
+    {
+      "step": "08",
+      "task": "Isolamento de Área e Radioproteção",
+      "hazard": "Acesso não autorizado, exposição a radiação ionizante"
+    },
+    {
+      "step": "09",
+      "task": "Comissionamento e Teste de Malha (Loop Test)",
+      "hazard": "Intertravamentos burlados (bypassed), vazamentos de alta pressão"
+    },
+    {
+      "step": "10",
+      "task": "Housekeeping (Limpeza) e Remoção de LOTO Pós-Tarefa",
+      "hazard": "Ferramentas/detritos esquecidos, perigos de curto-circuito"
+    }
+  ],
+  "draftSave": {
+    "pending": "Salvando",
+    "saved": "Salvo",
+    "error": "Erro ao salvar",
+    "conflict": "Um rascunho mais recente foi salvo em outra aba · atualize a página"
+  },
+  "appearance": {
+    "title": "Aparência",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "active": "Ativo"
+  },
+  "designer": {
+    "defaultTitle": "Análise de Segurança do Trabalho (JSA)",
+    "appr1": "Elaborado",
+    "appr2": "Revisado",
+    "appr3": "Aprovado",
+    "eyebrow": "DOCUMENT DESIGNER",
+    "title": "Designer de documento",
+    "subtitle": "Configure blocos do documento e a tabela JSA em um único espaço.",
+    "back": "Voltar à análise",
+    "next": "Saída final",
+    "blocksTitle": "Blocos do documento",
+    "blocksHint": "Arraste os blocos para reordenar e use a caixa de seleção para mostrar ou ocultar.",
+    "blocks": {
+      "PROJECT_INFO": "Cabeçalho do documento",
+      "SAFETY": "EPI / Permissões",
+      "JSA_TABLE": "Tabela JSA",
+      "PARTICIPANTS": "Assinaturas",
+      "APPROVAL": "Aprovação",
+      "NOTES": "Observações"
+    },
+    "enabled": "Exibido",
+    "disabled": "Oculto",
+    "documentTitle": "Título do documento",
+    "orientation": "Orientação",
+    "landscape": "Paisagem",
+    "portrait": "Retrato",
+    "tableSettings": "Configurações da tabela",
+    "addColumn": "Adicionar coluna personalizada",
+    "newColumn": "Nova coluna",
+    "customColumn": "Coluna personalizada",
+    "systemColumn": "Coluna do sistema",
+    "reset": "Redefinir",
+    "columnLabel": "Nome da coluna",
+    "columnWidth": "Largura",
+    "fieldTypes": {
+      "text": "Texto",
+      "number": "Número",
+      "date": "Data",
+      "checkbox": "Caixa de seleção",
+      "dropdown": "Lista"
+    },
+    "dropdownOptions": "Opções separadas por vírgulas",
+    "participantSettings": "Configurações de assinatura",
+    "approvalSettings": "Configurações de aprovação",
+    "notesSettings": "Configurações de observações",
+    "notesPlaceholder": "Observações de campo ou instruções adicionais",
+    "notesEmpty": "Sem observações",
+    "blockSettings": "Configurações do bloco",
+    "blockSettingsHint": "Este bloco é preenchido automaticamente com os dados JSA atuais.",
+    "projectFallback": "Projeto",
+    "ppeLabel": "EPI:",
+    "permitLabel": "Permissões:",
+    "signatureRows": "{{count}} linha(s) de assinatura",
+    "templates": "Modelos de documento",
+    "chooseTemplate": "Carregar modelo salvo",
+    "templateName": "Nome do modelo",
+    "saveTemplate": "Salvar",
+    "savingTemplate": "Salvando...",
+    "templateSaved": "Modelo de documento salvo.",
+    "templateSaveError": "Falha ao salvar o modelo.",
+    "loginRequired": "É necessário entrar na conta.",
+    "fieldValues": "Valores por etapa",
+    "noWorkSteps": "Não há etapas de trabalho.",
+    "stepFallback": "Etapa {{number}}"
+  },
+  "saveFlow": {
+    "library": "Minha biblioteca",
+    "saveDocument": "Salvar documento",
+    "privateHint": "As cópias privadas preservam todos os dados, participantes e fotos.",
+    "publicHint": "As cópias públicas omitem datas, local, departamento, responsável, equipamentos, participantes, notas, fotos e valores personalizados. Revise o título e a análise.",
+    "publicConfirm": "Criar uma cópia pública? Verifique se o título e a análise não contêm dados pessoais ou confidenciais. O original permanece privado.",
+    "archiveWarning": "Documento salvo, mas não foi possível arquivar o rascunho. Ele continua disponível.",
+    "changed": "O documento mudou ou não pode ser atualizado. Abra-o novamente ou salve uma nova cópia privada.",
+    "failed": "Falha ao salvar. O rascunho foi mantido. Tente novamente.",
+    "publicCopy": "Criar cópia pública",
+    "newPrivate": "Salvar nova cópia privada",
+    "updatePrivate": "Atualizar documento privado",
+    "templatesHint": "Os modelos guardam layouts reutilizáveis. Os documentos são salvos separadamente.",
+    "templateError": "Não foi possível carregar ou salvar os modelos. Verifique a sessão e a conexão e recarregue.",
+    "confirmUpdate": "Substituir este modelo pelo layout atual?",
+    "confirmDelete": "Excluir este modelo? Os documentos existentes não serão alterados.",
+    "newTemplate": "Salvar novo modelo",
+    "rename": "Renomear",
+    "updateTemplate": "Atualizar com o layout atual",
+    "clearDefault": "Remover padrão",
+    "makeDefault": "Definir como padrão",
+    "deleteTemplate": "Excluir modelo",
+    "defaultHint": "O modelo padrão só se aplica a novos documentos e não substitui layouts existentes."
+  }
 }

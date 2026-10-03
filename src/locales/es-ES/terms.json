@@ -29,7 +29,7 @@
       "desc": "La plataforma no garantiza la exactitud absoluta ni la adecuación al sitio del contenido compartido."
     },
     "item2": {
-      "desc": "Al utilizar plantillas de terceros, el usuario debe realizar obligatoriamente una revisión y edición final adaptada a las condiciones de su propio sitio de trabajo. La plataforma no asume responsabilidad por accidentes ocurridos debido a la negligencia en este proceso."
+      "desc": "El material es una referencia, no un permiso de trabajo aprobado. Una persona competente debe comprobar el lugar, las normas locales y las medidas antes del trabajo."
     }
   },
   "section5": {
@@ -40,7 +40,7 @@
     },
     "item2": {
       "bold": "Contenido Compartido:",
-      "desc": "Para el contenido aportado por el usuario como 'Público', se considera que este otorga a otros usuarios una licencia no exclusiva para reproducir, modificar y utilizar dicho contenido."
+      "desc": "Reutilización comunitaria v1: el autor conserva los derechos. Se permite copiar, adaptar y republicar para el trabajo con enlace a la fuente y aviso de cambios. No concede derechos de terceros ni certificación de seguridad. Retirar una página no recupera las copias obtenidas. Los derechos legales imperativos no se limitan."
     }
   },
   "section6": {

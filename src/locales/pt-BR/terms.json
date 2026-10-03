@@ -29,7 +29,7 @@
       "desc": "A plataforma não garante a precisão absoluta, conformidade legal estrita (NRs) ou adequação ao local exato do conteúdo compartilhado."
     },
     "item2": {
-      "desc": "Ao utilizar o modelo de outro usuário, você deve revisá-lo e finalizá-lo rigorosamente para se adequar às condições específicas do seu canteiro de obras ou fábrica, validando-o com os responsáveis locais. A plataforma não é responsável, civil ou criminalmente, por acidentes, multas ou infrações resultantes de negligência a esse respeito."
+      "desc": "O material é referência, não permissão de trabalho aprovada. Uma pessoa competente deve verificar o local, as regras locais e as medidas antes do trabalho."
     }
   },
   "section5": {
@@ -40,7 +40,7 @@
     },
     "item2": {
       "bold": "Conteúdo Compartilhado (Open Source):",
-      "desc": "Ao contribuir com conteúdo configurado como 'Público', entende-se que você concede a outros usuários uma licença perpétua e não exclusiva para copiar, modificar e utilizar esse conteúdo livremente em prol da segurança do trabalho."
+      "desc": "Reutilização comunitária v1: os direitos permanecem com o autor. Cópia, adaptação e republicação para trabalho são permitidas com link da fonte e indicação das alterações. Não concede direitos de terceiros nem certificação de segurança. Remover uma página não recupera cópias recebidas. Direitos legais obrigatórios são preservados."
     }
   },
   "section6": {

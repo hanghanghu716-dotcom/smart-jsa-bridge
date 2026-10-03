@@ -10,6 +10,7 @@ export const LANGUAGE_OPTIONS = [
   ...CANADIAN_PROVINCES,
   { code: 'en-AU', label: 'English (Australia)' },
   { code: 'en-GB', label: 'English (UK)' },
+  { code: 'en-SG', label: 'English (Singapore)' },
   { code: 'de-DE', label: 'Deutsch' },
   { code: 'ja-JP', label: '日本語' },
   { code: 'fr-FR', label: 'Français' },
@@ -27,11 +28,12 @@ export const normalizeLocale = code => ['en-CA-QC', 'fr-CA'].includes(code) ? 'f
 export const getLanguageTag = code => normalizeLocale(code) === 'fr-CA-QC' ? 'fr-CA' : (isCanadianProvince(code) ? 'en-CA' : code);
 // Provincial hazard/measure datasets have not been supplied yet.
 // Reuse existing French hazard/measure translations until a Quebec dataset is provided.
-export const getDataLocale = code => normalizeLocale(code) === 'fr-CA-QC' ? 'fr-FR' : getLanguageTag(code);
+// Singapore currently shares the English hazard/measure dataset; it is not a local regulatory dataset.
+export const getDataLocale = code => code === 'en-SG' ? 'en-US' : normalizeLocale(code) === 'fr-CA-QC' ? 'fr-FR' : getLanguageTag(code);
 export const getTranslationFallbacks = code => normalizeLocale(code) === 'fr-CA-QC'
   ? ['fr-FR'] : (isCanadianProvince(code) ? ['en-CA', 'en-US'] : ['en-US']);
 export const getSeoLocale = code => code === 'fr-CA' ? 'fr-CA-QC' : code;
-export const SEO_LANGUAGES = ['en-US', 'en-CA', 'fr-CA', 'en-AU', 'en-GB', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
+export const SEO_LANGUAGES = ['en-US', 'en-CA', 'fr-CA', 'en-AU', 'en-GB', 'en-SG', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
 export const hasLanguagePrefix = path => SUPPORTED_LANGS.includes(normalizeLocale(path.split(/[/?#]/)[1]));
 export function detectLanguage(browserLanguage = '') {
   if (browserLanguage.toLowerCase() === 'fr-ca') return 'fr-CA-QC';

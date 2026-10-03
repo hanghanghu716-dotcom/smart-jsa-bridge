@@ -58,5 +58,12 @@
     "07": { "title": "Heavy Equipment", "f": "Collision/crushing of pedestrians in blind spots", "m": "Assign dedicated spotters and check rear cameras/sensors" },
     "08": { "title": "Material Handling", "f": "Load dropping/striking due to rigging failure", "m": "Inspect rigging wear and utilize tag lines" },
     "09": { "title": "Flammable Gas", "f": "Ignition/explosion of leaking gas during pipe pressure tests", "m": "Apply anti-static measures and inspect closely with detectors" }
+  },
+  "casePagination": {
+    "label": "Case study pages",
+    "previousGroup": "Previous 5",
+    "nextGroup": "Next 5",
+    "page": "Page {{page}}",
+    "status": "{{current}} / {{total}}"
   }
 }

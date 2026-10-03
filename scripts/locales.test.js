@@ -11,7 +11,7 @@ import {
 } from '../src/locales/config.js';
 
 test('province routes, browser detection and standards-based formatting', () => {
-  assert.equal(LANGUAGE_OPTIONS.length, 16);
+  assert.equal(LANGUAGE_OPTIONS.length, 17);
   assert.equal(detectLanguage('en-CA'), 'en-CA');
   assert.equal(detectLanguage('en-ca'), 'en-CA');
   assert.equal(detectLanguage('ko-KR'), 'ko');
@@ -39,6 +39,25 @@ test('province routes, browser detection and standards-based formatting', () => 
   for (const code of SEO_LANGUAGES) assert.doesNotThrow(() => Intl.getCanonicalLocales(code));
 });
 
+test('Singapore routes, data fallback and sitemap keep their regional identity', () => {
+  assert.equal(LANGUAGE_OPTIONS.find(({ code }) => code === 'en-SG')?.label, 'English (Singapore)');
+  assert.equal(detectLanguage('en-sg'), 'en-SG');
+  assert.equal(getLanguageTag('en-SG'), 'en-SG');
+  assert.equal(getDataLocale('en-SG'), 'en-US');
+  assert.deepEqual(getTranslationFallbacks('en-SG'), ['en-US']);
+  assert.deepEqual(getCaseLanguages('en-SG'), ['en-SG']);
+  assert.ok(hasLanguagePrefix('/en-SG/work-packages'));
+  assert.ok(!hasLanguagePrefix('/en-SG-invalid/work-packages'));
+  assert.doesNotThrow(() => new Intl.DateTimeFormat(getLanguageTag('en-SG')).format(new Date()));
+  const xml = buildSitemap([{ post_group_id: 'us-only', language_code: 'en-US' }, { post_group_id: 'sg-case', language_code: 'en-SG' }]);
+  assert.ok(xml.includes('<loc>https://smartjsabridge.com/en-SG</loc>'));
+  assert.ok(xml.includes('hreflang="en-SG"'));
+  assert.ok(xml.includes('/en-SG/case-study/sg-case'));
+  assert.ok(!xml.includes('/en-SG/case-study/us-only'));
+  const { reactSnap } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url)));
+  assert.ok(reactSnap.include.includes('/en-SG/'));
+});
+
 test('case studies prefer provincial content and retain shared articles', () => {
   const shared = { post_group_id: 'one', language_code: 'en-CA', created_at: '2026-01-03' };
   const province = { post_group_id: 'one', language_code: 'en-CA-ON', created_at: '2026-01-01' };
@@ -64,6 +83,152 @@ test('sitemap includes provincial routes without inventing translated articles',
   assert.ok(xml.includes('/ko/case-study/test-case'));
   assert.ok(!xml.includes('/de-DE/case-study/test-case'));
   assert.ok(!xml.includes('/en-CA-QC'));
+});
+
+test('procedure step composer translations are complete for every base locale', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const requiredKeys = [
+    'hint', 'openButton', 'title', 'subtitle', 'projectLibrary', 'search',
+    'open', 'unpin', 'noProject', 'loginRequired', 'loading', 'addSelected',
+    'add', 'riskCount', 'today', 'todayHint', 'emptyToday', 'source',
+    'remove', 'apply', 'cancel', 'maxReached', 'pinLimit', 'own', 'scrap',
+    'eyebrow', 'stepLabel', 'currentJsa', 'importMode', 'importFull',
+    'importProcedureOnly', 'alreadyAdded', 'added', 'selectedAlreadyAdded', 'recent',
+    'filterAll', 'filterMy', 'filterScrap', 'filterRecent', 'stepSearch',
+    'preview', 'closePreview', 'noSteps', 'previewHazards', 'noPreviewHazards',
+    'hazard', 'currentControl', 'recommendedControl', 'riskLevel',
+    'badgeFull', 'badgeProcedureOnly', 'workStepLibrary', 'filterSteps', 'stepLibraryBadge',
+  ];
+
+  for (const locale of baseLocales) {
+    const procedure = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/procedure.json`, import.meta.url)));
+    assert.ok(procedure.workbench, `Missing workbench translations for ${locale}`);
+    for (const key of requiredKeys) {
+      assert.equal(typeof procedure.workbench[key], 'string', `Missing workbench.${key} for ${locale}`);
+      assert.ok(procedure.workbench[key].trim(), `Empty workbench.${key} for ${locale}`);
+    }
+  }
+});
+
+test('phase 2 draft and work-step translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const libraryKeys = [
+    'menuDrafts', 'menuWorkSteps', 'draftListTitle', 'noDrafts', 'draftStage',
+    'resumeDraft', 'workStepListTitle', 'noWorkSteps', 'hazardsCount',
+    'usedCount', 'useWorkStep', 'confirmDeleteWorkStep', 'workStepDeleteError',
+    'searchWorkSteps', 'favoritesOnly', 'addFavorite', 'removeFavorite',
+    'editWorkStep', 'saveChanges', 'cancelEdit', 'workStepUpdateError',
+    'menuSaveWorkSteps', 'bulkSavingSteps', 'bulkStepSaveSuccess', 'bulkStepSaveError',
+    'archiveDraft', 'confirmArchiveDraft', 'draftArchiveError',
+    'confirmDeleteDraft', 'draftDeleteError', 'workStepTagsPlaceholder',
+    'cloneWorkStep', 'workStepCloneSuccess', 'workStepCloneError'
+  ];
+  const draftStageKeys = ['info', 'procedure', 'analysis', 'module', 'table', 'export'];
+
+  for (const locale of baseLocales) {
+    const library = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/mylibrary.json`, import.meta.url)));
+    const analysis = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/analysis.json`, import.meta.url)));
+
+    for (const key of libraryKeys) {
+      assert.ok(library[key]?.trim(), `Missing library.${key} for ${locale}`);
+    }
+    for (const key of draftStageKeys) {
+      assert.ok(library.draftStages?.[key]?.trim(), `Missing library.draftStages.${key} for ${locale}`);
+    }
+    assert.ok(analysis.filter?.saveStepBtn?.trim(), `Missing analysis.filter.saveStepBtn for ${locale}`);
+    assert.ok(analysis.filter?.savingStepBtn?.trim(), `Missing analysis.filter.savingStepBtn for ${locale}`);
+    assert.ok(analysis.alert?.stepSaved?.trim(), `Missing analysis.alert.stepSaved for ${locale}`);
+    assert.ok(analysis.alert?.stepSaveFailed?.trim(), `Missing analysis.alert.stepSaveFailed for ${locale}`);
+
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    assert.ok(common.draftSave?.conflict?.trim(), `Missing common.draftSave.conflict for ${locale}`);
+  }
+});
+
+test('phase 3 analysis knowledge dock translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const keys = [
+    'openBtn', 'opened', 'untitledStep', 'sourceManual', 'sourceDatabase',
+    'sourceLibrary', 'sourceCurrent', 'eyebrow', 'title', 'savedSteps', 'projects', 'search',
+    'emptySteps', 'independentStep', 'hazards', 'noControl', 'mergeHazards',
+    'mergeFull', 'emptyProjects', 'steps', 'backProjects', 'analysisIncluded', 'stepOnly',
+    'mergeOneHazard', 'mergeOneFull', 'mergeResult', 'noRisksToMerge',
+    'loading', 'loadError', 'retry', 'close', 'noMatches'
+  ];
+
+  for (const locale of baseLocales) {
+    const analysis = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/analysis.json`, import.meta.url)));
+    assert.ok(analysis.knowledgeDock, `Missing analysis.knowledgeDock for ${locale}`);
+    for (const key of keys) {
+      assert.ok(analysis.knowledgeDock[key]?.trim(), `Missing analysis.knowledgeDock.${key} for ${locale}`);
+    }
+  }
+});
+
+test('draft save status translations are complete', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    for (const key of ['pending', 'saved', 'error']) {
+      assert.ok(common.draftSave?.[key]?.trim(), `Missing common.draftSave.${key} for ${locale}`);
+    }
+  }
+});
+
+test('theme foundation has complete appearance translations and semantic tokens', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const appearanceKeys = ['title', 'active', 'system', 'light', 'dark'];
+
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    for (const key of appearanceKeys) {
+      assert.ok(common.appearance?.[key]?.trim(), `Missing common.appearance.${key} for ${locale}`);
+    }
+  }
+
+  const css = fs.readFileSync(new URL('../src/index.css', import.meta.url), 'utf8')
+    + fs.readFileSync(new URL('../src/theme/theme.css', import.meta.url), 'utf8');
+  const requiredTokens = [
+    '--app-bg', '--surface-panel', '--surface', '--surface-2', '--surface-3',
+    '--input-bg', '--text-primary', '--text-secondary', '--text-muted',
+    '--border-default', '--accent', '--success', '--warning', '--danger',
+    '--paper-bg', '--paper-text'
+  ];
+  for (const token of requiredTokens) assert.ok(css.includes(token), `Missing theme token ${token}`);
+  assert.ok(css.includes('html[data-theme="light"]'));
+  assert.ok(css.indexOf('@import "tailwindcss";') < css.indexOf(':root'));
+});
+
+test('document designer translations are complete for every base locale', () => {
+  const baseLocales = ['ko', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'de-DE', 'fr-FR', 'es-ES', 'ru-RU', 'ja-JP', 'it-IT', 'ar-SA', 'pt-BR'];
+  const designerKeys = [
+    'defaultTitle', 'appr1', 'appr2', 'appr3', 'eyebrow', 'title', 'subtitle',
+    'back', 'next', 'blocksTitle', 'blocksHint', 'enabled', 'disabled',
+    'documentTitle', 'orientation', 'landscape', 'portrait', 'tableSettings',
+    'addColumn', 'newColumn', 'customColumn', 'systemColumn', 'reset',
+    'columnLabel', 'columnWidth', 'dropdownOptions', 'participantSettings',
+    'approvalSettings', 'notesSettings', 'notesPlaceholder', 'notesEmpty',
+    'blockSettings', 'blockSettingsHint', 'projectFallback', 'ppeLabel',
+    'permitLabel', 'signatureRows', 'templates', 'chooseTemplate', 'templateName',
+    'saveTemplate', 'savingTemplate', 'templateSaved', 'templateSaveError',
+    'loginRequired', 'fieldValues', 'noWorkSteps', 'stepFallback'
+  ];
+  const blockKeys = ['PROJECT_INFO', 'SAFETY', 'JSA_TABLE', 'PARTICIPANTS', 'APPROVAL', 'NOTES'];
+  const fieldTypes = ['text', 'number', 'date', 'checkbox', 'dropdown'];
+
+  for (const locale of baseLocales) {
+    const common = JSON.parse(fs.readFileSync(new URL(`../src/locales/${locale}/common.json`, import.meta.url)));
+    assert.ok(common.designer, `Missing common.designer for ${locale}`);
+    for (const key of designerKeys) {
+      assert.ok(common.designer[key]?.trim(), `Missing common.designer.${key} for ${locale}`);
+    }
+    for (const key of blockKeys) {
+      assert.ok(common.designer.blocks?.[key]?.trim(), `Missing designer.blocks.${key} for ${locale}`);
+    }
+    for (const key of fieldTypes) {
+      assert.ok(common.designer.fieldTypes?.[key]?.trim(), `Missing designer.fieldTypes.${key} for ${locale}`);
+    }
+  }
 });
 
 test('actual i18n configuration retains province and falls back per translation key', async () => {
@@ -99,6 +264,25 @@ test('actual i18n configuration retains province and falls back per translation 
       assert.equal(i18n.t('provinceTest.title', { ns: 'main' }), code);
       assert.equal(i18n.t('seo.title', { ns: 'main' }), i18n.getResource(code, 'main', 'seo.title') ?? i18n.getResource(baseLocale, 'main', 'seo.title'));
     }
+    await i18n.changeLanguage('en-SG');
+    assert.equal(i18n.language, 'en-SG');
+    assert.equal(global.document.documentElement.lang, 'en-SG');
+    assert.equal(global.document.documentElement.dir, 'ltr');
+    const leaves = (obj, prefix = '') => Object.entries(obj).flatMap(([key, value]) => {
+      const path = prefix ? `${prefix}.${key}` : key;
+      return typeof value === 'string' ? [path] : value && typeof value === 'object' ? leaves(value, path) : [];
+    });
+    for (const ns of i18n.options.ns) {
+      for (const key of leaves(i18n.getResourceBundle('en-US', ns))) {
+        const value = i18n.getFixedT('en-SG', ns)(key);
+        assert.ok(value && value !== key, `Missing Singapore ${ns}:${key}`);
+        assert.doesNotMatch(value, /OSHA|ANSI|NIOSH|NFPA|US workplaces|4ft|6ft/, `Foreign legal claim in Singapore ${ns}:${key}`);
+      }
+    }
+    assert.match(i18n.t('seo.title', { ns: 'main' }), /Singapore/);
+    assert.match(i18n.t('section3.table.rows.row2.col2', { ns: 'regulation' }), /three years/);
+    assert.match(i18n.t('hero.seoText1', { ns: 'dictionary' }), /shared English/);
+    assert.equal(i18n.t('default.docTitle', { ns: 'export' }), 'Risk Assessment / Job Safety Analysis (JSA)');
     await i18n.changeLanguage('ar-SA');
     assert.equal(global.document.documentElement.dir, 'rtl');
     await i18n.changeLanguage('fr-CA-QC');

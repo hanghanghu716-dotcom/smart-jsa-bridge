@@ -1,13 +1,20 @@
+import { pickDocumentLayout } from '../utils/documentLayout';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import WorkStepWorkbench from '../components/WorkStepWorkbench';
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
   .map(() => ({ stepTitle: '', stepDetail: '' }));
+const EMPTY_PHOTOS = {};
 
 export default function Procedure() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
@@ -16,16 +23,44 @@ export default function Procedure() {
 
   const [procedures, setProcedures] = useState(DEFAULT_PROCEDURES);
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
+  const [isWorkbenchOpen, setIsWorkbenchOpen] = useState(false);
+  const [composerTouched, setComposerTouched] = useState(false);
+  const [composedAnalysisData, setComposedAnalysisData] = useState(null);
+  const [composedPhotos, setComposedPhotos] = useState(null);
 
-  const formData = location.state?.formData;
-  const participants = location.state?.participants;
-  const analysisData = location.state?.analysisData;
+  const shouldRecoverDraft = !location.state?.formData && !location.state?.procedures;
+  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
+  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
+
+  const formData = location.state?.formData || recoveredDraft?.form_data || {};
+  const participants = location.state?.participants || recoveredDraft?.participants || [];
+  const analysisData = location.state?.analysisData || recoveredDraft?.analysis_data || [];
+  const isFastTrack = location.state?.isFastTrack ?? false;
+  const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : analysisData;
+  const stepPhotos = composedPhotos ?? location.state?.stepPhotos ?? recoveredDraft?.layout_data?.stepPhotos ?? EMPTY_PHOTOS;
+  const hasMeaningfulProcedure = procedures.some(
+    proc => proc?.stepTitle?.trim() || proc?.stepDetail?.trim()
+  );
+
+  const draftSave = useJsaDraftAutosave({
+    enabled: recoverySettled && Boolean(
+      formData?.projectName?.trim() || hasMeaningfulProcedure || location.state?.draftId || recoveredDraft?.id
+    ),
+    layoutData: { ...pickDocumentLayout(location.state, recoveredDraft?.layout_data), stepPhotos },
+    stage: 'procedure',
+    formData,
+    participants,
+    procedures,
+    analysisData: effectiveAnalysisData,
+    sourceProjectId: location.state?.existingId || location.state?.id || location.state?.parentId || recoveredDraft?.source_project_id || null,
+  });
 
   useEffect(() => {
-    if (location.state?.procedures && location.state.procedures.length > 0) {
-      setProcedures(location.state.procedures);
+    const restoredProcedures = location.state?.procedures || recoveredDraft?.procedures;
+    if (restoredProcedures && restoredProcedures.length > 0) {
+      setProcedures(restoredProcedures);
     }
-  }, [location.state?.procedures]);
+  }, [location.state?.procedures, recoveredDraft]);
 
   const handleLogoClick = () => {
     if (window.confirm(t('alert.confirmMain'))) {
@@ -60,18 +95,30 @@ export default function Procedure() {
   };
 
 const startAnalysis = (jsaType) => {
-    const validProcs = procedures.filter(
-      p => p.stepTitle.trim() && p.stepDetail.trim()
-    );
+    const validEntries = procedures
+      .map((proc, index) => ({ proc, analysis: effectiveAnalysisData[index], photo: stepPhotos[index] }))
+      .filter(({ proc }) => proc.stepTitle.trim() && proc.stepDetail.trim());
+
+    const validProcs = validEntries.map(({ proc }) => proc);
+    const nextAnalysisData = validEntries.map(({ proc, analysis }, index) => ({
+          ...(analysis || {}),
+          id: index,
+          proc,
+          risks: Array.isArray(analysis?.risks) ? analysis.risks : [],
+          frequency: analysis?.frequency ?? 1,
+          severity: analysis?.severity ?? 1,
+          riskLevel: analysis?.riskLevel ?? 1,
+        }));
 
     navigate('/analysis', {
       state: {
-        ...location.state, // [핵심] 이전 페이지에서 넘어온 모든 state를 보존
+        ...recoveredDraft?.layout_data, ...location.state,
         procedures: validProcs,
         formData: { ...formData, jsaType },
         participants,
-        analysisData: analysisData,
-        isFastTrack: location.state?.isFastTrack ?? false // 명시적 전달
+        analysisData: nextAnalysisData,
+        stepPhotos: Object.fromEntries(validEntries.flatMap((item, index) => item.photo ? [[index, item.photo]] : [])),
+        isFastTrack // 명시적 전달
       },
     });
   };
@@ -86,10 +133,12 @@ const startAnalysis = (jsaType) => {
 
       navigate('/info', {
         state: {
+        ...recoveredDraft?.layout_data, ...location.state,
           formData,
           participants,
           procedures, 
-          analysisData: analysisData,
+          stepPhotos,
+          analysisData: composerTouched ? (composedAnalysisData || []) : analysisData,
           isFork: location.state?.isFork,
           parentId: location.state?.parentId,
           originalAnalysisData: location.state?.originalAnalysisData 
@@ -98,8 +147,24 @@ const startAnalysis = (jsaType) => {
     };
 
   return (
-    <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+    <div className="theme-workspace" style={styles.wrapper}>
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
+
+      <WorkStepWorkbench
+        isOpen={isWorkbenchOpen}
+        onClose={() => setIsWorkbenchOpen(false)}
+        procedures={procedures}
+        analysisData={effectiveAnalysisData}
+        stepPhotos={stepPhotos}
+        maxSteps={20}
+        onApply={(nextProcedures, nextAnalysisData, nextPhotos) => {
+          setProcedures(nextProcedures);
+          setComposedAnalysisData(nextAnalysisData);
+          setComposedPhotos(nextPhotos);
+          setComposerTouched(true);
+        }}
+      />
 
       {isTypeModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsTypeModalOpen(false)}>
@@ -137,6 +202,7 @@ const startAnalysis = (jsaType) => {
 
       <header style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
+        <ThemeSwitcher compact />
       </header>
 
       <div style={styles.mainLayout}>
@@ -169,7 +235,13 @@ const startAnalysis = (jsaType) => {
             </nav>
 
             <div style={styles.formHeader}>
-              <h2 style={styles.formTitle}>{t('form.title')}</h2>
+              <div>
+                <h2 style={styles.formTitle}>{t('form.title')}</h2>
+                <div style={styles.formSubTitle}>{t('workbench.hint')}</div>
+              </div>
+              <button type="button" style={styles.workbenchBtn} onClick={() => setIsWorkbenchOpen(true)}>
+                {t('workbench.openButton')}
+              </button>
             </div>
 
             <div style={styles.scrollArea}>
@@ -229,58 +301,60 @@ const startAnalysis = (jsaType) => {
 
 // 스타일 객체는 원본 그대로 유지합니다[cite: 14].
 const styles = {
-  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: '#000' },
+  wrapper: { display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', backgroundColor: "var(--app-bg)" },
   bgWrapper: { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1 },
-  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer' },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', letterSpacing: '2px', textTransform: 'uppercase', color: "var(--text-primary)", cursor: 'pointer' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', alignItems: 'center', padding: '0 5rem 100px', gap: '4rem', zIndex: 10, overflow: 'hidden' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1440px', height: '75vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: '0 40px 80px rgba(0,0,0,0.9)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  formCard: { width: '100%', maxWidth: '1440px', height: '75vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '2rem 2.5rem', boxShadow: "var(--shadow-panel)", display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   scrollArea: { flex: 1, overflowY: 'auto', paddingRight: '1rem' },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', gap: '0.8rem' },
   stepItem: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.6rem' },
-  stepBadge: { width: '22px', height: '22px', backgroundColor: '#333', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#aaa' },
-  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: '#fff', boxShadow: '0 0 10px rgba(0,123,255,0.6)' },
-  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem' },
-  stepText: { fontSize: '0.85rem', color: '#444' },
-  stepTextActive: { fontSize: '0.85rem', color: '#fff', fontWeight: '700' },
-  stepTextDone: { fontSize: '0.85rem', color: '#4caf50', fontWeight: '700' },
-  stepLine: { width: '30px', height: '1px', backgroundColor: 'rgba(255,255,255,0.1)' },
-  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: '#4caf50' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
+  stepBadge: { width: '22px', height: '22px', backgroundColor: "var(--surface-hover)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--text-secondary)" },
+  stepBadgeActive: { width: '22px', height: '22px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 'bold', color: "var(--on-accent)", boxShadow: "var(--shadow-panel)" },
+  stepBadgeDone: { width: '22px', height: '22px', backgroundColor: "var(--success-action)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.7rem' },
+  stepText: { fontSize: '0.85rem', color: "var(--text-muted)" },
+  stepTextActive: { fontSize: '0.85rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepTextDone: { fontSize: '0.85rem', color: "var(--success)", fontWeight: '700' },
+  stepLine: { width: '30px', height: '1px', backgroundColor: "var(--border-default)" },
+  stepLineActive: { width: '30px', height: '1.5px', backgroundColor: "var(--success-action)" },
+  formHeader: { marginBottom: '1.2rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)", margin: 0 },
+  formSubTitle: { marginTop: '4px', color: "var(--text-muted)", fontSize: '0.72rem' },
+  workbenchBtn: { padding: '0.7rem 1rem', backgroundColor: 'rgba(0,123,255,0.12)', color: "var(--accent)", border: "1px solid var(--accent)", borderRadius: '7px', cursor: 'pointer', fontWeight: '800', fontSize: '0.78rem', whiteSpace: 'nowrap' },
   procedureContainer: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   gridHeader: { display: 'flex', paddingLeft: '3.2rem', gap: '1rem', marginBottom: '0.5rem' },
-  headerLabelShort: { width: '180px', fontSize: '0.85rem', color: '#007bff', fontWeight: 'bold' },
-  headerLabelLong: { flex: 1, fontSize: '0.85rem', color: '#007bff', fontWeight: 'bold' },
+  headerLabelShort: { width: '180px', fontSize: '0.85rem', color: "var(--accent)", fontWeight: 'bold' },
+  headerLabelLong: { flex: 1, fontSize: '0.85rem', color: "var(--accent)", fontWeight: 'bold' },
   rowWrapper: { display: 'flex', alignItems: 'center', gap: '1rem' },
-  stepNumberBadge: { width: '2.2rem', fontSize: '0.9rem', color: '#555', fontWeight: '900', textAlign: 'center' },
+  stepNumberBadge: { width: '2.2rem', fontSize: '0.9rem', color: "var(--text-muted)", fontWeight: '900', textAlign: 'center' },
   inputGroup: { flex: 1, display: 'flex', gap: '1rem' },
-  inputTitle: { width: '180px', padding: '0.75rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none' },
-  inputDetail: { flex: 1, padding: '0.75rem 1rem', backgroundColor: '#1d1d1d', border: '1px solid #333', borderRadius: '6px', color: '#fff', fontSize: '0.95rem', outline: 'none' },
-  addBtn: { width: '100%', padding: '1.1rem', backgroundColor: 'transparent', color: '#007bff', border: '1px dashed #007bff', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', marginTop: '1rem' },
+  inputTitle: { width: '180px', padding: '0.75rem 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none' },
+  inputDetail: { flex: 1, padding: '0.75rem 1rem', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", fontSize: '0.95rem', outline: 'none' },
+  addBtn: { width: '100%', padding: '1.1rem', backgroundColor: 'transparent', color: "var(--accent)", border: "1px dashed var(--accent)", borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', marginTop: '1rem' },
   btnArea: { marginTop: '1.5rem', display: 'flex', gap: '1.2rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  nextBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  nextBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   footerArea: { width: '100%', padding: '1.5rem 5rem', zIndex: 10, position: 'absolute', bottom: 0, backgroundColor: 'transparent', display: 'flex', justifyContent: 'center' },
   bottomAdWrapper: { width: '100%', display: 'flex', justifyContent: 'center' },
-  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  modalContent: { width: '500px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
-  modalTitle: { fontSize: '1.5rem', color: '#fff', marginBottom: '0.5rem' },
-  modalSub: { fontSize: '0.9rem', color: '#888', marginBottom: '2rem' },
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
+  modalContent: { width: '500px', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalTitle: { fontSize: '1.5rem', color: "var(--text-primary)", marginBottom: '0.5rem' },
+  modalSub: { fontSize: '0.9rem', color: "var(--text-muted)", marginBottom: '2rem' },
   typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
-  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
-  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '2px solid #007bff', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
-  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: '#aaa', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
-  typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
-  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline' },
+  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
+  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "2px solid var(--accent)", borderRadius: '12px', cursor: 'pointer', boxShadow: "var(--shadow-panel)" },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--surface-hover)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeLabel: { fontSize: '1rem', color: "var(--text-primary)", marginBottom: '0.8rem', fontWeight: 'bold' },
+  typeDesc: { fontSize: '0.8rem', color: "var(--text-muted)", lineHeight: '1.5' },
+  modalCloseBtn: { background: 'none', border: 'none', color: "var(--text-muted)", cursor: 'pointer', textDecoration: 'underline' },
   modalAdWrapper: {
     width: '100%',
     marginBottom: '1.5rem',
@@ -288,21 +362,6 @@ const styles = {
     justifyContent: 'center',
     overflow: 'hidden',
     borderRadius: '8px',
-    backgroundColor: 'rgba(255,255,255,0.03)'
+    backgroundColor: "var(--app-bg)"
   },
 };
-
-if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-global-style";
-  let styleTag = document.getElementById(styleId);
-  if (!styleTag) {
-    styleTag = document.createElement("style");
-    styleTag.id = styleId;
-    document.head.appendChild(styleTag);
-  }
-  styleTag.innerHTML = `
-    html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; }
-    * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; }
-    *::-webkit-scrollbar { display: none !important; }
-  `;
-}

@@ -17,15 +17,157 @@
     "downloadBtn": "Télécharger le PDF original"
   },
   "steps": [
-    { "step": "01", "task": "TBT avant tâche et inspection des EPI", "hazard": "Étendue du travail peu claire, utilisation incorrecte des EPI" },
-    { "step": "02", "task": "Systèmes de protection contre les chutes", "hazard": "Défaillance du point d'ancrage, glissades dues aux intempéries" },
-    { "step": "03", "task": "Isolation des combustibles et surveillance incendie", "hazard": "Étincelles de travaux à chaud, explosion de gaz résiduel" },
-    { "step": "04", "task": "Installation de gréage et de levage", "hazard": "Mauvaise stabilité du sol, défaillance d'élingue/câble" },
-    { "step": "05", "task": "Tests atmosphériques et ventilation", "hazard": "Déficience en oxygène, inhalation de gaz toxiques" },
-    { "step": "06", "task": "Sécurité des excavations et des tranchées", "hazard": "Contact avec des réseaux souterrains, effondrement de tranchées" },
-    { "step": "07", "task": "LOTO et vérification d'absence d'énergie", "hazard": "Remise sous tension accidentelle, choc résiduel" },
-    { "step": "08", "task": "Balisage et radioprotection", "hazard": "Entrée non autorisée, exposition aux rayonnements ionisants" },
-    { "step": "09", "task": "Mise en service et tests de boucle", "hazard": "Interverrouillages shuntés, fuites haute pression" },
-    { "step": "10", "task": "Nettoyage et retrait du LOTO après travail", "hazard": "Outils/débris laissés sur place, risques de court-circuit" }
-  ]
+    {
+      "step": "01",
+      "task": "TBT avant tâche et inspection des EPI",
+      "hazard": "Étendue du travail peu claire, utilisation incorrecte des EPI"
+    },
+    {
+      "step": "02",
+      "task": "Systèmes de protection contre les chutes",
+      "hazard": "Défaillance du point d'ancrage, glissades dues aux intempéries"
+    },
+    {
+      "step": "03",
+      "task": "Isolation des combustibles et surveillance incendie",
+      "hazard": "Étincelles de travaux à chaud, explosion de gaz résiduel"
+    },
+    {
+      "step": "04",
+      "task": "Installation de gréage et de levage",
+      "hazard": "Mauvaise stabilité du sol, défaillance d'élingue/câble"
+    },
+    {
+      "step": "05",
+      "task": "Tests atmosphériques et ventilation",
+      "hazard": "Déficience en oxygène, inhalation de gaz toxiques"
+    },
+    {
+      "step": "06",
+      "task": "Sécurité des excavations et des tranchées",
+      "hazard": "Contact avec des réseaux souterrains, effondrement de tranchées"
+    },
+    {
+      "step": "07",
+      "task": "LOTO et vérification d'absence d'énergie",
+      "hazard": "Remise sous tension accidentelle, choc résiduel"
+    },
+    {
+      "step": "08",
+      "task": "Balisage et radioprotection",
+      "hazard": "Entrée non autorisée, exposition aux rayonnements ionisants"
+    },
+    {
+      "step": "09",
+      "task": "Mise en service et tests de boucle",
+      "hazard": "Interverrouillages shuntés, fuites haute pression"
+    },
+    {
+      "step": "10",
+      "task": "Nettoyage et retrait du LOTO après travail",
+      "hazard": "Outils/débris laissés sur place, risques de court-circuit"
+    }
+  ],
+  "draftSave": {
+    "pending": "Enregistrement",
+    "saved": "Enregistré",
+    "error": "Erreur d’enregistrement",
+    "conflict": "Un brouillon plus récent a été enregistré dans un autre onglet · actualisation requise"
+  },
+  "appearance": {
+    "title": "Apparence",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre",
+    "active": "Actif"
+  },
+  "designer": {
+    "defaultTitle": "Analyse de sécurité des tâches (JSA)",
+    "appr1": "Rédigé",
+    "appr2": "Vérifié",
+    "appr3": "Approuvé",
+    "eyebrow": "DOCUMENT DESIGNER",
+    "title": "Concepteur de document",
+    "subtitle": "Configurez les blocs du document et le tableau JSA dans un seul espace.",
+    "back": "Retour à l’analyse",
+    "next": "Sortie finale",
+    "blocksTitle": "Blocs du document",
+    "blocksHint": "Faites glisser les blocs pour les réordonner et cochez pour les afficher ou les masquer.",
+    "blocks": {
+      "PROJECT_INFO": "En-tête du document",
+      "SAFETY": "EPI / Permis",
+      "JSA_TABLE": "Tableau JSA",
+      "PARTICIPANTS": "Signatures des participants",
+      "APPROVAL": "Approbation",
+      "NOTES": "Notes"
+    },
+    "enabled": "Affiché",
+    "disabled": "Masqué",
+    "documentTitle": "Titre du document",
+    "orientation": "Orientation",
+    "landscape": "Paysage",
+    "portrait": "Portrait",
+    "tableSettings": "Paramètres du tableau",
+    "addColumn": "Ajouter une colonne personnalisée",
+    "newColumn": "Nouvelle colonne",
+    "customColumn": "Colonne personnalisée",
+    "systemColumn": "Colonne système",
+    "reset": "Réinitialiser",
+    "columnLabel": "Nom de colonne",
+    "columnWidth": "Largeur",
+    "fieldTypes": {
+      "text": "Texte",
+      "number": "Nombre",
+      "date": "Date",
+      "checkbox": "Case à cocher",
+      "dropdown": "Liste déroulante"
+    },
+    "dropdownOptions": "Options séparées par des virgules",
+    "participantSettings": "Paramètres de signature",
+    "approvalSettings": "Paramètres d’approbation",
+    "notesSettings": "Paramètres des notes",
+    "notesPlaceholder": "Notes de chantier ou instructions supplémentaires",
+    "notesEmpty": "Aucune note",
+    "blockSettings": "Paramètres du bloc",
+    "blockSettingsHint": "Ce bloc est rempli automatiquement à partir des données JSA actuelles.",
+    "projectFallback": "Projet",
+    "ppeLabel": "EPI :",
+    "permitLabel": "Permis :",
+    "signatureRows": "{{count}} ligne(s) de signature",
+    "templates": "Modèles de document",
+    "chooseTemplate": "Charger un modèle enregistré",
+    "templateName": "Nom du modèle",
+    "saveTemplate": "Enregistrer",
+    "savingTemplate": "Enregistrement...",
+    "templateSaved": "Modèle de document enregistré.",
+    "templateSaveError": "Échec de l’enregistrement du modèle.",
+    "loginRequired": "Connexion requise.",
+    "fieldValues": "Valeurs par étape",
+    "noWorkSteps": "Aucune étape de travail.",
+    "stepFallback": "Étape {{number}}"
+  },
+  "saveFlow": {
+    "library": "Ma bibliothèque",
+    "saveDocument": "Enregistrer le document",
+    "privateHint": "Les copies privées conservent toutes les informations, les participants et les photos.",
+    "publicHint": "Les copies publiques excluent dates, lieu, service, responsable, équipement, participants, notes, photos et valeurs personnalisées. Vérifiez le titre et le texte de l’analyse.",
+    "publicConfirm": "Créer une copie publique ? Vérifiez que le titre et l’analyse ne contiennent aucune information personnelle ou confidentielle. L’original reste privé.",
+    "archiveWarning": "Document enregistré, mais le brouillon n’a pas pu être archivé. Il reste disponible.",
+    "changed": "Ce document a changé ou ne peut pas être mis à jour. Rouvrez-le ou enregistrez une nouvelle copie privée.",
+    "failed": "Échec de l’enregistrement. Le brouillon est conservé. Réessayez.",
+    "publicCopy": "Créer une copie publique",
+    "newPrivate": "Enregistrer une nouvelle copie privée",
+    "updatePrivate": "Mettre à jour le document privé",
+    "templatesHint": "Les modèles conservent une mise en page réutilisable. Les documents sont enregistrés séparément.",
+    "templateError": "Impossible de charger ou d’enregistrer les modèles. Vérifiez votre connexion puis actualisez.",
+    "confirmUpdate": "Remplacer ce modèle par la mise en page actuelle ?",
+    "confirmDelete": "Supprimer ce modèle ? Les documents existants ne changeront pas.",
+    "newTemplate": "Enregistrer un nouveau modèle",
+    "rename": "Renommer",
+    "updateTemplate": "Utiliser la mise en page actuelle",
+    "clearDefault": "Retirer le modèle par défaut",
+    "makeDefault": "Définir par défaut",
+    "deleteTemplate": "Supprimer le modèle",
+    "defaultHint": "Le modèle par défaut s’applique uniquement aux nouveaux documents, sans remplacer les mises en page existantes."
+  }
 }

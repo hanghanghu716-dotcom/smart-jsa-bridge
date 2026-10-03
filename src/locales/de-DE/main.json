@@ -58,5 +58,12 @@
     "07": { "title": "Schwere Maschinen", "f": "Kollision/Quetschung von Fußgängern im toten Winkel", "m": "Einweiser einsetzen und Rückfahrkameras/-sensoren prüfen" },
     "08": { "title": "Materialtransport", "f": "Herabfallende Lasten durch Versagen der Anschlagmittel", "m": "Anschlagmittel prüfen und Führungsseile verwenden" },
     "09": { "title": "Brennbares Gas", "f": "Entzündung/Explosion bei Druckprüfungen", "m": "Antistatische Maßnahmen anwenden und mit Detektoren prüfen" }
+  },
+  "casePagination": {
+    "label": "Fallstudien-Seiten",
+    "previousGroup": "Vorherige 5",
+    "nextGroup": "Nächste 5",
+    "page": "Seite {{page}}",
+    "status": "{{current}} / {{total}}"
   }
 }

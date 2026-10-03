@@ -2,7 +2,10 @@
   "git": { "deploymentEnabled": false },
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": { "api/public-jsa.js": { "includeFiles": "dist/public-jsa-shell.html" }, "api/explore.js": { "includeFiles": "dist/public-jsa-shell.html" } },
   "rewrites": [
+    { "source": "/:lng/explore", "destination": "/api/explore?lng=:lng" },
+    { "source": "/:lng/public-jsa/:id", "destination": "/api/public-jsa?lng=:lng&id=:id" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

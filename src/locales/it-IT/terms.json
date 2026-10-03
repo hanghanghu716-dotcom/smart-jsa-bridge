@@ -29,7 +29,7 @@
       "desc": "La piattaforma non garantisce in alcun modo l'accuratezza assoluta o la conformità legislativa (es. D.Lgs. 81/08) dei contenuti condivisi rispetto al singolo contesto aziendale."
     },
     "item2": {
-      "desc": "Nell'utilizzare il modello di un altro utente, è obbligatorio sottoporlo a revisione e validazione tecnica in base alle specifiche condizioni del proprio cantiere/impianto. La piattaforma non è responsabile civilmente o penalmente per eventuali infortuni o sanzioni derivanti dall'applicazione di tali documenti."
+      "desc": "I contenuti sono riferimenti, non permessi di lavoro approvati. Una persona competente deve verificare sito, norme locali e misure prima del lavoro."
     }
   },
   "section5": {
@@ -40,7 +40,7 @@
     },
     "item2": {
       "bold": "Contenuti Condivisi:",
-      "desc": "Pubblicando un contenuto con visibilità 'Pubblica', l'utente concede tacitamente agli altri membri una licenza non esclusiva per copiare, modificare e utilizzare tale contenuto per scopi di prevenzione."
+      "desc": "Riutilizzo comunitario v1: i diritti restano all’autore. Sono consentite copia, modifica e ripubblicazione per lavoro con link alla fonte e nota delle modifiche. Non concede diritti di terzi o certificazioni di sicurezza. La rimozione non richiama copie già ricevute. Restano salvi i diritti inderogabili."
     }
   },
   "section6": {

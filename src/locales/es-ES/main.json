@@ -58,5 +58,12 @@
     "07": { "title": "Operación de Maquinaria Pesada", "f": "Atropello o atrapamiento con peatones en puntos ciegos del equipo", "m": "Asignación de señalero exclusivo y verificación de cámaras/sensores traseros" },
     "08": { "title": "Manejo de Cargas Críticas", "f": "Caída o impacto de la carga por rotura de aparejos o eslingas", "m": "Inspección del desgaste de aparejos y uso de cuerdas de guía (Tag Line)" },
     "09": { "title": "Gases Inflamables", "f": "Inflamación o explosión por fuga de gas durante pruebas de estanqueidad", "m": "Medidas preventivas contra estática y control preciso con detectores de gas" }
+  },
+  "casePagination": {
+    "label": "Páginas de casos",
+    "previousGroup": "5 anteriores",
+    "nextGroup": "5 siguientes",
+    "page": "Página {{page}}",
+    "status": "{{current}} / {{total}}"
   }
 }

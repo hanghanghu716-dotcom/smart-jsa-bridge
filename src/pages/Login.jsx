@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom'; 
+import { safeReturnPath } from '../utils/publicJsa';
 import { supabase } from '../supabaseClient';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO';
@@ -9,6 +10,8 @@ import { AuthContext } from '../contexts/AuthContext'; // ✅ 신규 생성된 �
 
 export default function Login() {
   const navigate = useLanguageNavigate();
+  const location = useLocation();
+  const returnTo = safeReturnPath(new URLSearchParams(location.search).get('next'));
   const { t, i18n } = useTranslation('login'); // ✅ i18n 객체 추가 추출
 
   // 애드센스 설정 정보
@@ -28,15 +31,15 @@ export default function Login() {
   const { user } = useContext(AuthContext);
 
   const [val, setVal] = useState({
-    nick: { msg: '', isOk: false, color: '#666' },
-    pwComplexity: { msg: '', isOk: false, color: '#666' },
-    pwMatch: { msg: '', isOk: false, color: '#666' }
+    nick: { msg: '', isOk: false, color: "var(--text-muted)" },
+    pwComplexity: { msg: '', isOk: false, color: "var(--text-muted)" },
+    pwMatch: { msg: '', isOk: false, color: "var(--text-muted)" }
   });
 
   useEffect(() => {
     const validateNick = async () => {
       if (!nickname) {
-        setVal(p => ({ ...p, nick: { msg: '', isOk: false, color: '#666' } }));
+        setVal(p => ({ ...p, nick: { msg: '', isOk: false, color: "var(--text-muted)" } }));
         return;
       }
       
@@ -45,20 +48,20 @@ export default function Login() {
       const hasSpecial = /[^a-zA-Z0-9가-힣]/.test(nickname);
 
       if (hasBadWord) {
-        setVal(p => ({ ...p, nick: { msg: t('val.nickBadWord'), isOk: false, color: '#ff4d4d' } }));
+        setVal(p => ({ ...p, nick: { msg: t('val.nickBadWord'), isOk: false, color: "var(--danger)" } }));
         return;
       }
       if (hasSpecial) {
-        setVal(p => ({ ...p, nick: { msg: t('val.nickNoSpecial'), isOk: false, color: '#ff4d4d' } }));
+        setVal(p => ({ ...p, nick: { msg: t('val.nickNoSpecial'), isOk: false, color: "var(--danger)" } }));
         return;
       }
 
       const { data } = await supabase.from('profiles').select('username').eq('username', nickname).maybeSingle();
 
       if (data) {
-        setVal(p => ({ ...p, nick: { msg: t('val.nickInUse'), isOk: false, color: '#ff4d4d' } }));
+        setVal(p => ({ ...p, nick: { msg: t('val.nickInUse'), isOk: false, color: "var(--danger)" } }));
       } else {
-        setVal(p => ({ ...p, nick: { msg: t('val.nickAvailable'), isOk: true, color: '#007bff' } }));
+        setVal(p => ({ ...p, nick: { msg: t('val.nickAvailable'), isOk: true, color: "var(--accent)" } }));
       }
     };
     const timer = setTimeout(validateNick, 400); 
@@ -67,14 +70,14 @@ export default function Login() {
 
   useEffect(() => {
     if (!password) {
-      setVal(p => ({ ...p, pwComplexity: { msg: '', isOk: false, color: '#666' } }));
+      setVal(p => ({ ...p, pwComplexity: { msg: '', isOk: false, color: "var(--text-muted)" } }));
       return;
     }
     const isOk = /[a-zA-Z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*()]/.test(password) && password.length >= 8;
     setVal(p => ({ ...p, pwComplexity: { 
       msg: isOk ? t('val.pwSafe') : t('val.pwRule'), 
       isOk, 
-      color: isOk ? '#007bff' : '#ff4d4d' 
+      color: isOk ? "var(--accent)" : "var(--danger)"
     } }));
   }, [password, t]);
 
@@ -84,18 +87,18 @@ export default function Login() {
       setVal(p => ({ ...p, pwMatch: { 
         msg: isMatch ? t('val.pwMatch') : t('val.pwMismatch'), 
         isOk: isMatch, 
-        color: isMatch ? '#007bff' : '#ff4d4d' 
+        color: isMatch ? "var(--accent)" : "var(--danger)"
       } }));
     } else {
-      setVal(p => ({ ...p, pwMatch: { msg: '', isOk: false, color: '#666' } }));
+      setVal(p => ({ ...p, pwMatch: { msg: '', isOk: false, color: "var(--text-muted)" } }));
     }
   }, [password, confirmPassword, t]);
 
   useEffect(() => {
     if (user) {
-      navigate('/'); 
+      navigate(returnTo, { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, navigate, returnTo]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -137,13 +140,13 @@ export default function Login() {
       try {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate('/'); 
+        navigate(returnTo, { replace: true });
       } catch (err) { alert(err.message); } finally { setLoading(false); }
     }
   };
 
   return (
-    <div style={styles.wrapper}>
+    <div className="theme-workspace" style={styles.wrapper}>
       <SEO />
       
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
@@ -237,7 +240,7 @@ export default function Login() {
               <button 
                 onClick={() => supabase.auth.signInWithOAuth({
                   provider: 'google',
-                  options: { redirectTo: `${window.location.origin}/${i18n.language}` }
+                  options: { redirectTo: `${window.location.origin}/${i18n.language}/login?next=${encodeURIComponent(returnTo)}` }
                 })} 
                 style={styles.googleBtn}
               >
@@ -262,33 +265,33 @@ const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'brightness(0.3)' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1 },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
   header: { padding: '1.5rem 4rem', zIndex: 10 },
-  logo: { fontSize: '1.2rem', fontWeight: '900', color: '#fff', cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '1px' },
+  logo: { fontSize: '1.2rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '1px' },
   mainLayout: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10, padding: '20px' },
-  formCard: { width: '100%', maxWidth: '440px', backgroundColor: 'rgba(15, 15, 15, 0.95)', border: '1px solid #222', borderRadius: '12px', padding: '40px', boxShadow: '0 30px 60px rgba(0,0,0,0.8)' },
-  formHeader: { marginBottom: '10px', borderLeft: '4px solid #007bff', paddingLeft: '12px' },
-  formTitle: { fontSize: '1.3rem', fontWeight: '800', color: '#fff', margin: 0 },
-  guideText: { color: '#666', fontSize: '0.8rem', marginBottom: '30px' },
+  formCard: { width: '100%', maxWidth: '440px', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '40px', boxShadow: "var(--shadow-panel)" },
+  formHeader: { marginBottom: '10px', borderLeft: "4px solid var(--accent)", paddingLeft: '12px' },
+  formTitle: { fontSize: '1.3rem', fontWeight: '800', color: "var(--text-primary)", margin: 0 },
+  guideText: { color: "var(--text-muted)", fontSize: '0.8rem', marginBottom: '30px' },
   inputGroup: { display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' },
   row: { display: 'flex', gap: '10px', marginBottom: '20px' },
   flexItem: { display: 'flex', flexDirection: 'column', gap: '8px' },
-  label: { fontSize: '0.75rem', color: '#888', fontWeight: 'bold', paddingLeft: '2px' },
-  input: { height: '48px', padding: '0 14px', backgroundColor: '#000', border: '1px solid #222', borderRadius: '6px', color: '#fff', outline: 'none', fontSize: '0.9rem', boxSizing: 'border-box', width: '100%' },
-  selectInput: { height: '48px', padding: '0 10px', backgroundColor: '#000', border: '1px solid #222', borderRadius: '6px', color: '#fff', outline: 'none', fontSize: '0.85rem', boxSizing: 'border-box', width: '100%', cursor: 'pointer' },
+  label: { fontSize: '0.75rem', color: "var(--text-muted)", fontWeight: 'bold', paddingLeft: '2px' },
+  input: { height: '48px', padding: '0 14px', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", outline: 'none', fontSize: '0.9rem', boxSizing: 'border-box', width: '100%' },
+  selectInput: { height: '48px', padding: '0 10px', backgroundColor: "var(--input-bg)", border: "1px solid var(--border-default)", borderRadius: '6px', color: "var(--text-primary)", outline: 'none', fontSize: '0.85rem', boxSizing: 'border-box', width: '100%', cursor: 'pointer' },
   valMsg: { fontSize: '0.7rem', marginTop: '4px', fontWeight: 'bold' },
   forgotPasswordArea: { textAlign: 'right', marginTop: '6px' },
-  textLinkBtn: { background: 'none', border: 'none', color: '#007bff', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold', textDecoration: 'underline' },
-  primaryBtn: { width: '100%', height: '52px', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '900', fontSize: '1rem', marginTop: '10px' },
-  googleBtn: { width: '100%', height: '52px', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' },
-  secondaryBtn: { width: '100%', height: '52px', backgroundColor: 'transparent', color: '#666', border: '1px solid #222', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' },
+  textLinkBtn: { background: 'none', border: 'none', color: "var(--accent)", cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold', textDecoration: 'underline' },
+  primaryBtn: { width: '100%', height: '52px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '900', fontSize: '1rem', marginTop: '10px' },
+  googleBtn: { width: '100%', height: '52px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' },
+  secondaryBtn: { width: '100%', height: '52px', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' },
   dividerContainer: { display: 'flex', alignItems: 'center', margin: '24px 0', gap: '12px' },
-  line: { flex: 1, height: '1px', backgroundColor: '#222' },
-  dividerText: { color: '#444', fontSize: '0.7rem', fontWeight: '900' },
+  line: { flex: 1, height: '1px', backgroundColor: "var(--card-bg)" },
+  dividerText: { color: "var(--text-muted)", fontSize: '0.7rem', fontWeight: '900' },
   switchModeArea: { marginTop: '12px' },
   form: { display: 'flex', flexDirection: 'column' },
-  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
-  adLabel: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
+  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: "var(--card-bg)", border: "1px dashed var(--border-default)", borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
+  adLabel: { fontSize: '11px', color: "var(--text-primary)", fontWeight: 'bold', marginBottom: '10px' },
   adSlotFixedLeft: { position: 'fixed', top: '50%', left: 'calc(50% - 220px - 160px - 20px)', transform: 'translateY(-50%)', width: '160px', minHeight: '600px', zIndex: 100 },
   adSlotFixedRight: { position: 'fixed', top: '50%', right: 'calc(50% - 220px - 160px - 20px)', transform: 'translateY(-50%)', width: '160px', minHeight: '600px', zIndex: 100 }
 };

@@ -27,8 +27,14 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Install Chrome system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64
+        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core
       - name: Verify content and locale logic
-        run: npm run test:locales && npm run test:site && npm run test:content
+        run: npm run test:all
+      - name: Verify isolated work-package and moderation access controls
+        run: |
+          npm install --prefix "$RUNNER_TEMP/work-db" --no-save --ignore-scripts @electric-sql/pglite@0.5.8
+          export PGLITE_MODULE="$RUNNER_TEMP/work-db/node_modules/@electric-sql/pglite"
+          node scripts/work-packages-db.cjs
+          node scripts/author-moderation-db.cjs
       - name: Render and verify every current case-study URL
         run: npm run build

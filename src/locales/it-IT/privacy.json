@@ -25,27 +25,27 @@
   },
   "section3": {
     "title": "3. Periodo di Conservazione dei Dati",
-    "subtitle": "In linea di principio, l'Azienda cancella i dati senza ingiustificato ritardo al raggiungimento della finalità per cui sono stati raccolti.",
+    "subtitle": "Tempi di conservazione, responsabili e trasferimenti internazionali sono in verifica per la beta. La cancellazione automatica alla scadenza non è disponibile. Richiedere accesso, rettifica o cancellazione tramite Assistenza.",
     "step1": {
       "bold": "Log di Accesso:",
-      "desc": "Cancellati automaticamente dopo un periodo massimo di 3 mesi."
+      "desc": "Tempi di conservazione, responsabili e trasferimenti internazionali sono in verifica per la beta. La cancellazione automatica alla scadenza non è disponibile. Richiedere accesso, rettifica o cancellazione tramite Assistenza."
     },
     "step2": {
       "bold": "Dati di Assistenza (Ticket):",
-      "desc": "Conservati per 1 anno dalla chiusura della segnalazione."
+      "desc": "Tempi di conservazione, responsabili e trasferimenti internazionali sono in verifica per la beta. La cancellazione automatica alla scadenza non è disponibile. Richiedere accesso, rettifica o cancellazione tramite Assistenza."
     },
     "step3": {
       "bold": "Obblighi di Legge:",
-      "desc": "Conservati per il periodo strettamente richiesto da normative fiscali o penali applicabili."
+      "desc": "Tempi di conservazione, responsabili e trasferimenti internazionali sono in verifica per la beta. La cancellazione automatica alla scadenza non è disponibile. Richiedere accesso, rettifica o cancellazione tramite Assistenza."
     },
     "step4": {
       "bold": "Procedura di Cancellazione:",
-      "desc": "I file elettronici vengono sovrascritti/eliminati mediante procedure tecniche irreversibili."
+      "desc": "Tempi di conservazione, responsabili e trasferimenti internazionali sono in verifica per la beta. La cancellazione automatica alla scadenza non è disponibile. Richiedere accesso, rettifica o cancellazione tramite Assistenza."
     }
   },
   "section4": {
     "title": "4. Trasferimento a Terzi e Responsabili del Trattamento",
-    "content": "Il servizio integra Google AdSense. Ti informiamo che, previo tuo consenso tramite cookie banner, <strong>terze parti come Google potrebbero installare o leggere cookie di profilazione</strong> sul tuo browser per l'erogazione di annunci personalizzati, in conformità alla Direttiva ePrivacy."
+    "content": "Pubblicità e analisi esterne sono disattivate. Le visualizzazioni contano visite con accesso; i riutilizzi contano azioni, non persone uniche o uso sul campo. Identità del gestore e contatto senza account sono in verifica. Le richieste beta richiedono l’accesso."
   },
   "imageCaption": "Smart JSA Bridge garantisce la sicurezza e la riservatezza delle tue informazioni aziendali."
 }

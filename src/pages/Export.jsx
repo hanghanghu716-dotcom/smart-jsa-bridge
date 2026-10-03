@@ -1,13 +1,28 @@
+import PublicationFields from '../components/PublicationFields';
+import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
+import { getSaveVisibility } from '../utils/projectPersistence';
+import ProjectStorageUsage from '../components/ProjectStorageUsage';
+import { isStorageLimitError } from '../services/projectStorageService';
+import { getVisibilityUi } from '../locales/visibilityUi';
+import { getStorageUi } from '../locales/storageUi';
+import { saveProject } from '../services/projectPersistenceService';
+import DocumentSignatures from '../components/DocumentSignatures';
+import { normalizeDocumentBlocks } from '../utils/documentLayout';
+import DocumentContent from '../components/DocumentContent';
+import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf'; 
+import { createReportPdf } from '../utils/reportPdf';
+
 import { supabase } from '../supabaseClient'; 
-import AdBanner from '../AdBanner';
 import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; 
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
+import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
+import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
+import DraftSaveStatus from '../components/DraftSaveStatus';
+import { archiveActiveDraft } from '../services/jsaDraftService';
 
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
@@ -37,37 +52,73 @@ const COLUMN_GROUPS = [
 ];
 
 export default function Export() {
+  const location = useLocation();
+  const { draft, status } = useJsaDraftRecovery(!location.state?.formData);
+  const { t } = useTranslation('common');
+  const navigate = useLanguageNavigate();
+  if (!location.state?.formData && status !== 'ready') return <div className="theme-workspace" style={{ padding: 40, minHeight: '100vh', background: 'var(--app-bg)' }}><p role="status">{t(status === 'error' ? 'draftSave.error' : status === 'empty' ? 'designer.noWorkSteps' : 'draftSave.pending')}</p><button onClick={() => navigate('/library')}>{t('saveFlow.library')}</button></div>;
+  return <ExportEditor recoveredDraft={draft} />;
+}
+
+function ExportEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
-  const { t, i18n } = useTranslation(['export']); 
-  const isEnglish = i18n.language?.startsWith('en');
-  const isFrench = i18n.language?.startsWith('fr');
+  const { t, i18n } = useTranslation(['export', 'common']); 
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [userProfile, setUserProfile] = useState(null); 
-  const [showPublishModal, setShowPublishModal] = useState(false);
-  const [showPdfAdModal, setShowPdfAdModal] = useState(false); 
-  const [showCopyAdModal, setShowCopyAdModal] = useState(false); // 👇 [기능 추가] 복사 전 광고 모달 상태
+  const [showPublishModal, setShowPublishModal] = useState(Boolean(location.state?.openSaveDialog));
+  const [publicationConsent,setPublicationConsent]=useState(false);
+  const [publicationContext,setPublicationContext]=useState({});
 
-  const { 
-    existingId = null, 
-    analysisData = [], 
-    formData = {}, 
-    participants = [], 
-    procedures = [], 
-    savedActiveOrder = [],
-    savedUserColumns = [],
-    savedOrientation = 'landscape',
-    isModuleSkipped, // ✅ 모듈 설정 건너뛰기 여부 플래그 추가
-    docTitle = t('default.docTitle', '위험성평가표 (JSA)'),
-    appr1 = t('default.appr1', '작성'),
-    appr2 = t('default.appr2', '검토'),
-    appr3 = t('default.appr3', '승인'),
-    savedSignatureRows = 1,
-    isFork = false,
-    parentId = null, 
-    originalAnalysisData = null 
-  } = location.state || {};
+  const state = location.state || {};
+  const recoveredLayout = recoveredDraft?.layout_data || {};
+
+  const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
+  const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
+  const sourceFormData = state.formData || recoveredDraft?.form_data || {};
+  const [saveVisibility, setSaveVisibility] = useState(() => getSaveVisibility(sourceFormData, state.projectSaveContext || recoveredLayout.projectSaveContext));
+  const formData = { ...sourceFormData, saveVisibility };
+  const documentLocale = formData.context?.documentLocale || i18n.language;
+  const documentT = i18n.getFixedT(documentLocale, ['export', 'common']);
+  const isEnglish = documentLocale?.startsWith('en');
+  const isFrench = documentLocale?.startsWith('fr');
+  const participants = state.participants || recoveredDraft?.participants || [];
+  const procedures = state.procedures || recoveredDraft?.procedures || [];
+  const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || [];
+  const savedUserColumns = state.savedUserColumns || recoveredLayout.savedUserColumns || [];
+  const savedOrientation = state.savedOrientation || recoveredLayout.savedOrientation || 'landscape';
+  const isModuleSkipped = state.isModuleSkipped ?? recoveredLayout.isModuleSkipped;
+  const docTitle = state.docTitle ?? recoveredLayout.docTitle ?? documentT('default.docTitle', '위험성평가표 (JSA)');
+  const appr1 = state.appr1 ?? recoveredLayout.appr1 ?? documentT('default.appr1', '작성');
+  const appr2 = state.appr2 ?? recoveredLayout.appr2 ?? documentT('default.appr2', '검토');
+  const appr3 = state.appr3 ?? recoveredLayout.appr3 ?? documentT('default.appr3', '승인');
+  const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
+  const documentBlocks = normalizeDocumentBlocks(state.documentBlocks || recoveredLayout.documentBlocks || []);
+  const savedColumnOverrides = state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {};
+  const documentNotes = state.documentNotes ?? recoveredLayout.documentNotes ?? '';
+  const hasDesignerLayout = Array.isArray(documentBlocks) && documentBlocks.length > 0;
+  const savedContext = state.projectSaveContext || recoveredLayout.projectSaveContext;
+  const isFork = state.isFork ?? (savedContext ? !savedContext.own : false);
+  const parentId = savedContext ? (savedContext.own ? savedContext.parentId || null : savedContext.id) : state.parentId || recoveredDraft?.source_project_id || null;
+  const originalAnalysisData = state.originalAnalysisData || savedContext?.originalAnalysisData || null;
+
+  const [stepPhotos, setStepPhotos] = useState(state.stepPhotos || recoveredLayout.stepPhotos || {});
+  const [projectTarget, setProjectTarget] = useState(state.projectSaveContext || recoveredLayout.projectSaveContext || null);
+  const cloudBusy = useRef(false);
+  const [storageUsage,setStorageUsage]=useState(null);
+  const [storageRefresh,setStorageRefresh]=useState(0);
+  const [storageLimited,setStorageLimited]=useState(false);
+  useEffect(() => {
+    if (!existingId || projectTarget || isFork) return;
+    let active = true;
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      const { data } = await supabase.from('jsa_projects').select('id,updated_at,is_public').eq('id', existingId).eq('author_id', user.id).maybeSingle();
+      if (active && data) setProjectTarget({ id: data.id, updatedAt: data.updated_at, isPublic: data.is_public, own: true });
+    });
+    return () => { active = false; };
+  }, [existingId, projectTarget, isFork]);
+  const canUpdate = projectTarget?.own && !projectTarget.isPublic && !isFork;
 
   const totalRisks = analysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0);
   const originalTotalRisks = originalAnalysisData ? originalAnalysisData.reduce((sum, step) => sum + (step.risks?.length || 0), 0) : 0;
@@ -76,24 +127,35 @@ export default function Export() {
     (totalRisks >= originalTotalRisks + 2)
   );
 
+  const draftSave = useJsaDraftAutosave({
+    enabled: Boolean(location.state?.formData || recoveredDraft),
+    stage: 'export',
+    formData,
+    participants,
+    procedures,
+    analysisData,
+    layoutData: {
+      savedSignatureRows,
+      docTitle,
+      appr1,
+      appr2,
+      appr3,
+      savedActiveOrder,
+      savedUserColumns,
+      savedColumnOverrides,
+      savedOrientation,
+      documentBlocks,
+      documentNotes,
+      isModuleSkipped, stepPhotos, projectSaveContext: projectTarget
+    },
+    sourceProjectId: parentId || existingId || null,
+  });
+
   const jsaType = formData.jsaType || '2-step';
   const COLS = savedOrientation === 'landscape' ? 56 : 40; 
   const PAPER_WIDTH = savedOrientation === 'landscape' ? '1080px' : '750px';
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          const { data } = await supabase.from('profiles').select('username, signature_url').eq('id', user.id).single();
-          setUserProfile(data);
-        }
-      } catch (err) { console.error("Profile fetch error:", err); }
-    };
-    fetchProfile();
-  }, []);
 
-  const [stepPhotos, setStepPhotos] = useState({});
   const [activePhotoRow, setActivePhotoRow] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -108,81 +170,48 @@ export default function Export() {
 
   const handleLogoClick = () => { navigate('/'); }; // ✅ 언어 경로 자동 유지
 
-  const handleCloudAction = async (isPublic) => {
-    setIsProcessing(true);
-    setShowPublishModal(false);
+  const handleCloudAction = async (mode) => {
+    if (cloudBusy.current) return;
+    if ((mode === 'public') !== (saveVisibility === 'public')) return;
+    if (mode === 'public' && !publicationConsent) return;
+    cloudBusy.current = true; setIsProcessing(true);
+    let savedProject = null;
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return alert(t('alert.needLogin'));
-
-      const securedFormData = {
-        ...formData,
-        department: "",
-        workLocation: "",
-        workDate: "",
-        managerName: "",
-        equipment: "",
-        additionalItems: ""
-      };
-
-      const rawAutoTags = extractAutoTagsFromJSA(formData.projectName || "", analysisData);
-      const validTagKeys = Object.keys(DIMENSIONAL_KEYWORD_MAP);
-      const standardizedTags = rawAutoTags.filter(tag => validTagKeys.includes(tag));
-
-      const projectData = { 
-        user_id: user.id, 
-        author_id: user.id, 
-        title: formData.projectName, 
-        tags: standardizedTags, 
-        is_public: isPublic, 
-        project_name: formData.projectName, 
-        auto_tags: standardizedTags, 
-        form_data: securedFormData, 
-        analysis_data: analysisData, 
-        participants: [], 
-        custom_layout: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedOrientation }, 
-        updated_at: new Date(),
-        parent_id: parentId || null 
-      };
-
-      const { error } = await supabase.from('jsa_projects').upsert(projectData);
-      if (error) throw error;
-      alert(isPublic ? t('alert.savePublic') : t('alert.savePrivate'));
-    } catch (err) { alert(t('alert.saveError') + err.message); } finally { setIsProcessing(false); }
+      const draftResult = await draftSave.flushAndPause();
+      const rawTags = extractAutoTagsFromJSA(formData.projectName || '', analysisData);
+      const tags = rawTags.filter(tag => Object.keys(DIMENSIONAL_KEYWORD_MAP).includes(tag));
+      savedProject = await saveProject({
+        mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,
+        parentId: mode === 'public' ? (parentId || projectTarget?.id) : parentId,
+        snapshot: { publicationConsent, publicationContext, locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
+      });
+      if (mode !== 'public') {
+        try { await archiveActiveDraft(draftResult.version); }
+        catch { alert(t('common:saveFlow.archiveWarning')); }
+      }
+      setShowPublishModal(false);
+      navigate('/library');
+    } catch (error) {
+      console.error('[Project save]', error);
+      if (isStorageLimitError(error)) { setStorageLimited(true); setStorageRefresh(n=>n+1); }
+      else alert(t(error.message === 'PROJECT_CHANGED' ? 'common:saveFlow.changed' : 'common:saveFlow.failed'));
+    } finally {
+      if (!savedProject) draftSave.resume();
+      cloudBusy.current = false; setIsProcessing(false);
+    }
   };
 
   const generatePDF = async () => {
     setIsProcessing(true); const paper = document.querySelector('.reportPaper'); if (!paper) return setIsProcessing(false);
     try {
-      window.scrollTo(0, 0); const canvas = await html2canvas(paper, { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, imageTimeout: 0, scrollY: 0 });
-      const imgWidthPx = canvas.width; const imgHeightPx = canvas.height; const doc = new jsPDF(savedOrientation === 'landscape' ? 'l' : 'p', 'mm', 'a4');
-      const pageWidth = doc.internal.pageSize.getWidth(); const pageHeight = doc.internal.pageSize.getHeight(); const margin = 10; const contentWidth = pageWidth - (margin * 2); const pxToMm = contentWidth / imgWidthPx;
-      const contentHeightMm = imgHeightPx * pxToMm; let leftHeightMm = contentHeightMm; let positionMm = 0; const paperRect = paper.getBoundingClientRect();
-      const trElements = paper.querySelectorAll('tr'); const cutPointRatios = Array.from(trElements).map(el => (el.getBoundingClientRect().bottom - paperRect.top) / paperRect.height).sort((a, b) => a - b);
-      while (leftHeightMm > 0) {
-        let maxPageHeightMm = pageHeight - (margin * 2); let sliceHeightMm = leftHeightMm > maxPageHeightMm ? maxPageHeightMm : leftHeightMm;
-        if (leftHeightMm > maxPageHeightMm) {
-          const currentCanvasY = positionMm / pxToMm; const maxCanvasY = currentCanvasY + (maxPageHeightMm / pxToMm); let bestCutCanvasY = maxCanvasY; let foundCutPoint = false;
-          for (let i = 0; i < cutPointRatios.length; i++) {
-            const elBottomPx = cutPointRatios[i] * imgHeightPx;
-            if (elBottomPx > currentCanvasY + 20 && elBottomPx <= maxCanvasY) { bestCutCanvasY = elBottomPx; foundCutPoint = true; } else if (elBottomPx > maxCanvasY) { break; }
-          }
-          if (foundCutPoint) sliceHeightMm = (bestCutCanvasY - currentCanvasY) * pxToMm;
-        }
-        const sourceY = positionMm / pxToMm; const sourceH = sliceHeightMm / pxToMm; const tempCanvas = document.createElement('canvas'); tempCanvas.width = imgWidthPx; tempCanvas.height = sourceH;
-        const ctx = tempCanvas.getContext('2d'); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(canvas, 0, Math.floor(sourceY), Math.floor(imgWidthPx), Math.floor(sourceH), 0, 0, Math.floor(imgWidthPx), Math.floor(sourceH));
-        doc.addImage(tempCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, sliceHeightMm);
-        leftHeightMm -= sliceHeightMm; positionMm += sliceHeightMm; if (leftHeightMm > 0.1) doc.addPage();
-      }
+      const {doc}=await createReportPdf([{element:paper,orientation:savedOrientation}]);
       doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
     } catch (error) { console.error(error); alert(t('alert.pdfError')); } finally { setIsProcessing(false); }
   };
 
-  const handlePdfDownload = async () => { setShowPdfAdModal(false); await generatePDF(); };
+  const handlePdfDownload = async () => { await generatePDF(); };
 
   const handleCopyToClipboard = async () => {
-     setShowCopyAdModal(false); // 👇 [수정] 모달 닫기
       const paper = document.querySelector('.reportPaper');
       if (!paper) return;
       try {
@@ -200,6 +229,7 @@ export default function Export() {
     };
 
   const renderUnifiedHeader = () => {
+    const t = documentT;
     const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '10px' : '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
     const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: isEnglish ? 'normal' : 'nowrap', lineHeight: '1.2' };
     const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
@@ -268,47 +298,25 @@ export default function Export() {
     );
   };
 
-  const renderSignatureTable = () => {
-    const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '9px' : '10px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
-    const labelTdStyle = { ...commonTdStyle, border: '1px solid #888', backgroundColor: '#f2f2f2', fontWeight: 'bold', width: '10%', whiteSpace: isEnglish ? 'normal' : 'nowrap' };
-    const sigRows = Array.from({ length: savedSignatureRows }, (_, i) => i);
-    const cols = Array.from({ length: 8 }, (_, i) => i);
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #888', tableLayout: 'fixed', marginTop: '-1px', marginBottom: '20px', position: 'relative', zIndex: 2 }}>        
-        <tbody>
-          <tr>
-            <td rowSpan={savedSignatureRows} style={labelTdStyle}>{t('signature.participants')}</td>
-            {cols.map(c => {
-              const pName = participants?.[c] || '';
-              return (
-                <td key={`sig-0-${c}`} style={{...commonTdStyle, width: '11.25%', height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
-                  {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                  <span style={{color: '#888'}}>{t('signature.sign')}</span>
-                </td>
-              );
-            })}
-          </tr>
-          {sigRows.slice(1).map(r => (
-            <tr key={`sig-row-${r}`}>
-              {cols.map(c => {
-                const pIdx = r * 8 + c;
-                const pName = participants?.[pIdx] || '';
-                return (
-                  <td key={`sig-${r}-${c}`} style={{...commonTdStyle, height: '28px', textAlign: 'right', paddingRight: '4px', verticalAlign: 'middle', color: '#000'}}>
-                    {pName && <span style={{float: 'left', paddingLeft: '4px', fontWeight: 'bold'}}>{pName}</span>}
-                    <span style={{color: '#888'}}>{t('signature.sign')}</span>
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
+  const renderSignatureTable = () => <DocumentSignatures documentLocale={documentLocale} participants={participants} rows={savedSignatureRows} orientation={savedOrientation} />;
+
+  const getColumnMeta = (key) => {
+    const custom = savedUserColumns.find(u => u.id === key);
+    if (custom) return custom;
+    const system = TAG_META[key];
+    if (!system) return null;
+    return { ...system, ...(savedColumnOverrides[key] || {}) };
+  };
+
+  const getColumnLabel = (key, meta) => {
+    if (key.startsWith('USER_')) return meta?.label || key;
+    if (savedColumnOverrides[key]?.label) return savedColumnOverrides[key].label;
+    return t(`tags.${key}`, meta?.label || key);
   };
 
   const renderDataTable = () => {
-      const isEuroLang = ['en', 'fr', 'de'].some(lang => i18n.language?.startsWith(lang));
+      const t = documentT;
+      const isEuroLang = ['en', 'fr', 'de'].some(lang => documentLocale?.startsWith(lang));
 
       const commonTdStyle = { 
         border: '1px solid #888', 
@@ -323,9 +331,9 @@ export default function Export() {
         hyphens: 'auto'
       };
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
-    const currentItems = savedActiveOrder.filter(key => TAG_META[key] || savedUserColumns.find(u => u.id === key));
+    const currentItems = savedActiveOrder.filter(key => getColumnMeta(key));
     const fixedWidth = currentItems.reduce((sum, key) => {
-      const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+      const meta = getColumnMeta(key);
       return sum + (meta?.isFlex ? 0 : (parseInt(meta?.width) || 5));
     }, 0);
     const flexItems = currentItems.filter(key => (TAG_META[key]?.isFlex || savedUserColumns.find(u => u.id === key)?.isFlex));
@@ -343,7 +351,7 @@ export default function Export() {
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed' }}>
         <colgroup>{currentItems.map(key => {
-            const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+            const meta = getColumnMeta(key);
             let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
             return <col key={key} style={{ width: `${pct}%` }} />;
           })}</colgroup>
@@ -354,8 +362,8 @@ export default function Export() {
                 return ( <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{groupLabel}</th> ); 
               } 
               else {
-                const key = group.keys[0]; const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); 
-                let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                const key = group.keys[0]; const meta = getColumnMeta(key); 
+                let label = getColumnLabel(key, meta);
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak'); 
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                 if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
@@ -367,8 +375,8 @@ export default function Export() {
             <tr>
               {groups.filter(g => g.isGroup).flatMap(group =>
                 group.keys.map(key => {
-                  const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
-                  let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                  const meta = getColumnMeta(key);
+                  let label = getColumnLabel(key, meta);
                   if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                   if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                   if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
@@ -393,7 +401,7 @@ export default function Export() {
         <tbody>
         <tr style={{ height: 0, visibility: 'hidden', border: 'none' }}>
             {currentItems.map(key => {
-              const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key);
+              const meta = getColumnMeta(key);
               let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
               return <td key={`ghost-${key}`} style={{ width: `${pct}%`, height: 0, padding: 0, margin: 0, border: 'none' }}></td>;
             })}
@@ -402,8 +410,7 @@ export default function Export() {
           {analysisData.map((stepData, stepIdx) => (
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
-                const meta = TAG_META[key] || savedUserColumns.find(u => u.id === key); let content = "";
-                let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
+                const meta = getColumnMeta(key); let content = "";
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = stepData.risks.map(r => `• ${r.factor}`).join('\n');
@@ -413,6 +420,12 @@ export default function Export() {
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency || "-");
                 else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel || "-");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks[0]?.category || "";
+                else if (key.startsWith('USER_')) {
+                  const raw = stepData.customFields?.[key];
+                  if (raw !== undefined && raw !== null) content = typeof raw === 'boolean' ? (raw ? '☑' : '☐') : String(raw);
+                  else if (meta.fieldType === 'checkbox') content = '☐';
+                  else content = '';
+                }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
                 return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
               })}
@@ -424,14 +437,14 @@ export default function Export() {
   };
 
   return (
-    <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 기능 추가 */}
+    <div className="theme-workspace" style={styles.wrapper}>
+      <SEO />
+      <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 기능 추가 */}
       {isProcessing && <div style={styles.processingOverlay}><div style={styles.loaderText}>{t('ui.processing')}</div></div>}
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} accept="image/*" onChange={handlePhotoChange} />
       <div style={styles.bgWrapper} className="no-print"><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
-      <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1></header>
+      <header style={styles.header} className="no-print"><h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper} className="no-print">
@@ -445,93 +458,67 @@ export default function Export() {
             <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div>
             <div style={styles.previewArea}>
             {/* 가상의 A4 용지 영역 */}
-        <div className="reportPaper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
-          {/* ✅ isModuleSkipped가 false(혹은 undefined)일 때만 모듈 관련 섹션 출력 */}
-          {!isModuleSkipped && renderUnifiedHeader()}    
-          {!isModuleSkipped && renderSignatureTable()}   
-          
-          {/* 위험성 평가 본문은 항상 출력 */}
-          {renderDataTable()}        
+        <div className="reportPaper theme-paper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
+          {hasDesignerLayout ? (
+            <DocumentContent documentLocale={documentLocale} formData={formData} participants={participants} analysisData={analysisData}
+              layout={{ documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes }}
+              stepPhotos={stepPhotos} onPhotoClick={index => { setActivePhotoRow(index); fileInputRef.current.click(); }} />
+          ) : (
+            <>
+              {/* Keep signatures between safety information and the assessment on the legacy path too. */}
+              {!isModuleSkipped && renderUnifiedHeader()}
+              {!isModuleSkipped && renderSignatureTable()}
+              {renderDataTable()}
+            </>
+          )}        
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate('/layout-table', { state: location.state })}>{t('btn.prev')}</button>
-              <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('btn.cloudSave')}</button>
-              <button style={styles.pdfBtn} onClick={() => setShowPdfAdModal(true)}>{t('btn.pdfSave')}</button>
-              {/* 👇 [수정] 하드코딩 제거 및 광고 모달 트리거로 변경 */}
-              <button style={{...styles.pdfBtn, backgroundColor: '#28a745', color: '#fff'}} onClick={() => setShowCopyAdModal(true)}>{t('btn.copyTable')}</button>
+              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
+              <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('common:saveFlow.saveDocument')}</button>
+              <button style={styles.pdfBtn} onClick={handlePdfDownload}>{t('btn.pdfSave')}</button>
+              <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={handleCopyToClipboard}>{t('btn.copyTable')}</button>
 
-              {/* 👇 [기능 추가] 복사 전용 광고 모달 (PDF 모달 구조 재사용) */}
-              {showCopyAdModal && (
-                <div style={styles.modalOverlay} onClick={() => setShowCopyAdModal(false)}>
-                  <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-                    <h3 style={styles.modalTitle}>{t('modal.copyTitle')}</h3>
-                    <p style={styles.modalSub}>{t('modal.copySub')}</p>
-                    <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
-                    <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handleCopyToClipboard}>
-                      <div style={styles.typeBadgeActive}>Copy to Clipboard</div>
-                      <h4 style={styles.typeLabel}>{t('modal.copyBtnLabel')}</h4>
-                      <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.copyBtnDesc') }}></p>
-                    </div>
-                    <button style={styles.modalCloseBtn} onClick={() => setShowCopyAdModal(false)}>{t('modal.close')}</button>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
-
-      {showPdfAdModal && (
-        <div style={styles.modalOverlay} onClick={() => setShowPdfAdModal(false)}>
-          <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('modal.pdfTitle')}</h3>
-            <p style={styles.modalSub}>{t('modal.pdfSub')}</p>
-            <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
-            <div style={{...styles.typeCardHighlight, marginBottom: '2rem'}} onClick={handlePdfDownload}>
-              <div style={styles.typeBadgeActive}>Download</div>
-              <h4 style={styles.typeLabel}>{t('modal.pdfBtnLabel')}</h4>
-              <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.pdfBtnDesc') }}></p>
-            </div>
-            <button style={styles.modalCloseBtn} onClick={() => setShowPdfAdModal(false)}>{t('modal.close')}</button>
-          </div>
-        </div>
-      )}
 
       {showPublishModal && (
         <div style={styles.modalOverlay} onClick={() => setShowPublishModal(false)}>
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <h3 style={styles.modalTitle}>{t('modal.pubTitle')}</h3>
-              <p style={{ ...styles.modalSub, color: '#ff7675', fontWeight: 'bold', whiteSpace: 'pre-wrap', lineHeight: '1.6' }}>{t('modal.pubWarning')}</p>
-            <p style={styles.modalSub}>{t('modal.pubSub')}</p>
-            <div style={styles.modalAdWrapper}><AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" /></div>
-            <div style={styles.typeGrid}>
-              {(isFork && !isValuableFork) ? (
+            <h3 style={styles.modalTitle}>{t('common:saveFlow.saveDocument')}</h3>
+            <StorageVisibilityChoice value={saveVisibility} disabled={isProcessing} onChange={value => { setSaveVisibility(value); setPublicationConsent(false); }} />
+            <ProjectStorageUsage refreshKey={storageRefresh} onStatus={setStorageUsage} />
+            {storageLimited && !storageUsage?.can_create && <p role="alert" dir={i18n.dir()} style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
+            {saveVisibility === 'public' && <PublicationFields consent={publicationConsent} onConsent={setPublicationConsent} context={publicationContext} onContext={setPublicationContext} />}
+            <div style={{ ...styles.typeGrid, pointerEvents: isProcessing ? 'none' : 'auto', opacity: isProcessing ? 0.6 : 1 }}>
+              {saveVisibility === 'private' && canUpdate && <button type="button" data-save-mode="update" style={styles.typeCard} disabled={isProcessing} onClick={() => handleCloudAction('update')}><h4 style={styles.typeLabel}>{t('common:saveFlow.updatePrivate')}</h4><p style={styles.typeDesc}>{formData.projectName}</p></button>}
+              {saveVisibility === 'public' && ((isFork && !isValuableFork) ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
-                  <div style={{...styles.typeBadge, backgroundColor: '#444'}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: '#888'}}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
+                  <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{getVisibilityUi(i18n.language).public}</h4>
+                  <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubForkLimit') }}></p>
                 </div>
               ) : totalRisks < 3 ? (
                 <div style={{...styles.typeCard, opacity: 0.5, cursor: 'not-allowed'}}>
-                  <div style={{...styles.typeBadge, backgroundColor: '#444'}}>{t('modal.pubBadgeLimited')}</div>
-                  <h4 style={{...styles.typeLabel, color: '#888'}}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={{...styles.typeDesc, color: '#ff7675', fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
+                  <div style={{...styles.typeBadge, backgroundColor: "var(--surface-hover)"}}>{t('modal.pubBadgeLimited')}</div>
+                  <h4 style={{...styles.typeLabel, color: "var(--text-muted)"}}>{getVisibilityUi(i18n.language).public}</h4>
+                  <p style={{...styles.typeDesc, color: "var(--danger)", fontWeight: 'bold'}} dangerouslySetInnerHTML={{ __html: t('modal.pubRiskLimit') }}></p>
                 </div>
               ) : (
-                <div style={styles.typeCardHighlight} onClick={() => handleCloudAction(true)}>
+                <button type="button" disabled={isProcessing || !publicationConsent} data-save-mode="public" style={styles.typeCardHighlight} onClick={() => handleCloudAction('public')}>
                   <div style={styles.typeBadgeActive}>Public</div>
-                  <h4 style={styles.typeLabel}>{t('modal.pubPublicLabel')}</h4>
-                  <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.pubPublicDesc') }}></p>
-                </div>
-              )}
+                  <h4 style={styles.typeLabel}>{getVisibilityUi(i18n.language).public}</h4>
+                  <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.publicHint') }}></p>
+                </button>
+              ))}
               
-              <div style={styles.typeCard} onClick={() => handleCloudAction(false)}>
+              {saveVisibility === 'private' && <button type="button" disabled={isProcessing || storageUsage?.can_create === false} data-save-mode="private" style={styles.typeCard} onClick={() => handleCloudAction('private')}>
                 <div style={styles.typeBadge}>Private</div>
-                <h4 style={styles.typeLabel}>{t('modal.pubPrivateLabel')}</h4>
-                <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('modal.pubPrivateDesc') }}></p>
-              </div>
+                <h4 style={styles.typeLabel}>{t('common:saveFlow.newPrivate')}</h4>
+                <p style={styles.typeDesc} dangerouslySetInnerHTML={{ __html: t('common:saveFlow.privateHint') }}></p>
+              </button>}
             </div>
 
             <button style={styles.modalCloseBtn} onClick={() => setShowPublishModal(false)}>{t('modal.close')}</button>
@@ -547,49 +534,42 @@ const styles = {
   wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: 'transparent' },
   bgWrapper: { position: 'fixed', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image4.jpg)', backgroundSize: 'cover', filter: 'brightness(0.12)', backgroundPosition: 'center' },
-  dimOverlay: { position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 },
-  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10 },
-  logo: { fontSize: '1.4rem', fontWeight: '900', color: '#fff', cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
+  dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
+  header: { position: 'relative', padding: '1.2rem 5rem', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' },
+  logo: { fontSize: '1.4rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer', letterSpacing: '2px', textTransform: 'uppercase' },
   mainLayout: { position: 'relative', flex: 1, display: 'flex', padding: '0 5rem 60px', zIndex: 10, gap: '3rem', overflow: 'hidden', alignItems: 'center' },
   sideAd: { flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' },
   centerContent: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  formCard: { width: '100%', maxWidth: '1550px', height: '82vh', backgroundColor: 'rgba(18, 18, 18, 0.98)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '12px', padding: '1.5rem 2.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.9)' },
+  formCard: { width: '100%', maxWidth: '1550px', height: '82vh', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', padding: '1.5rem 2.5rem', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: "var(--shadow-panel)" },
   stepper: { display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', gap: '0.4rem' },
   stepItemDone: { display: 'flex', alignItems: 'center', gap: '0.3rem' },
-  stepBadgeDone: { width: '18px', height: '18px', backgroundColor: '#4caf50', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.65rem' },
-  stepTextDone: { fontSize: '0.75rem', color: '#4caf50', fontWeight: '700' },
+  stepBadgeDone: { width: '18px', height: '18px', backgroundColor: "var(--success-action)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.65rem' },
+  stepTextDone: { fontSize: '0.75rem', color: "var(--success)", fontWeight: '700' },
   stepItemActive: { display: 'flex', alignItems: 'center', gap: '0.3rem' },
-  stepBadgeActive: { width: '18px', height: '18px', backgroundColor: '#007bff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', fontWeight: 'bold' },
-  stepTextActive: { fontSize: '0.75rem', color: '#fff', fontWeight: '700' },
-  stepLineActive: { width: '20px', height: '1px', backgroundColor: '#4caf50' },
-  formHeader: { marginBottom: '1.2rem', borderLeft: '5px solid #007bff', paddingLeft: '1rem' },
-  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: '#fff' },
-  previewArea: { flex: 1, overflow: 'auto', backgroundColor: '#111', borderRadius: '10px', padding: '3rem', border: '1px solid #333' },
+  stepBadgeActive: { width: '18px', height: '18px', backgroundColor: "var(--action-bg)", borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: "var(--on-accent)", fontSize: '0.7rem', fontWeight: 'bold' },
+  stepTextActive: { fontSize: '0.75rem', color: "var(--text-primary)", fontWeight: '700' },
+  stepLineActive: { width: '20px', height: '1px', backgroundColor: "var(--success-action)" },
+  formHeader: { marginBottom: '1.2rem', borderLeft: "5px solid var(--accent)", paddingLeft: '1rem' },
+  formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)" },
+  previewArea: { flex: 1, overflow: 'auto', backgroundColor: "var(--card-bg)", borderRadius: '10px', padding: '3rem', border: "1px solid var(--border-default)" },
   reportPaper: { color: '#000', backgroundColor: '#fff', height: 'auto', display: 'flex', flexDirection: 'column', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
   btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
-  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: '#888', border: '1px solid #333', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
-  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: '#fff', color: '#000', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
-  processingOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
-  loaderText: { color: '#fff', fontSize: '1.2rem', fontWeight: 'bold' },
-  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-  modalContent: { width: '500px', backgroundColor: '#111', border: '1px solid #333', borderRadius: '16px', padding: '2rem', textAlign: 'center' },
-  modalTitle: { fontSize: '1.5rem', color: '#fff', marginBottom: '0.5rem', fontWeight: '800' },
-  modalSub: { fontSize: '0.9rem', color: '#888', marginBottom: '2rem' },
-  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.03)' },
-  typeGrid: { display: 'flex', gap: '1.2rem', marginBottom: '2rem' },
-  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
-  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: '#1a1a1a', border: '2px solid #007bff', borderRadius: '12px', cursor: 'pointer', boxShadow: '0 0 15px rgba(0,123,255,0.2)' },
-  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#333', color: '#aaa', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
-  typeLabel: { fontSize: '1rem', color: '#fff', marginBottom: '0.8rem', fontWeight: 'bold' },
-  typeDesc: { fontSize: '0.8rem', color: '#666', lineHeight: '1.5' },
-  modalCloseBtn: { background: 'none', border: 'none', color: '#555', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
+  prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
+  cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  pdfBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
+  processingOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000 },
+  loaderText: { color: "var(--on-accent)", fontSize: '1.2rem', fontWeight: 'bold' },
+  modalOverlay: { position: 'fixed', inset: 0, backgroundColor: "var(--overlay)", display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
+  modalContent: { width: 'min(900px, calc(100vw - 32px))', maxHeight: '90vh', overflowY: 'auto', boxSizing: 'border-box', backgroundColor: "var(--panel-bg)", border: "1px solid var(--border-default)", borderRadius: '16px', padding: '2rem', textAlign: 'center' },
+  modalTitle: { fontSize: '1.5rem', color: "var(--text-primary)", marginBottom: '0.5rem', fontWeight: '800' },
+  modalSub: { fontSize: '0.9rem', color: "var(--text-muted)", marginBottom: '2rem' },
+  modalAdWrapper: { width: '100%', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', backgroundColor: "var(--app-bg)" },
+  typeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))', gap: '1.2rem', marginBottom: '2rem' },
+  typeCard: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "1px solid var(--border-default)", borderRadius: '12px', cursor: 'pointer', transition: '0.2s' },
+  typeCardHighlight: { flex: 1, padding: '1.5rem', backgroundColor: "var(--card-bg)", border: "2px solid var(--accent)", borderRadius: '12px', cursor: 'pointer', boxShadow: "var(--shadow-panel)" },
+  typeBadge: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--surface-hover)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeBadgeActive: { display: 'inline-block', padding: '2px 8px', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", borderRadius: '4px', fontSize: '0.7rem', marginBottom: '1rem' },
+  typeLabel: { fontSize: '1rem', color: "var(--text-primary)", marginBottom: '0.8rem', fontWeight: 'bold' },
+  typeDesc: { fontSize: '0.8rem', color: "var(--text-muted)", lineHeight: '1.5' },
+  modalCloseBtn: { background: 'none', border: 'none', color: "var(--text-muted)", cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' },
 };
-
-if (typeof document !== 'undefined') {
-  const styleId = "jsa-bridge-export-style-v2";
-  let styleTag = document.getElementById(styleId);
-  if (!styleTag) { styleTag = document.createElement("style"); styleTag.id = styleId; document.head.appendChild(styleTag); }
-  styleTag.innerHTML = `html, body, #root { min-height: 100%; margin: 0; padding: 0; background-color: #000 !important; overflow-y: auto !important; } * { -ms-overflow-style: none !important; scrollbar-width: none !important; outline: none !important; } *::-webkit-scrollbar { display: none !important; }`;
-}

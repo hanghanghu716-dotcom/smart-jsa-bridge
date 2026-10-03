@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { operations } from '../config/operations';
+import { adEligible } from '../utils/adEligibility';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function AdSlot({ client, slot, format, responsive, style }) {
@@ -35,7 +37,17 @@ function AdSlot({ client, slot, format, responsive, style }) {
   );
 }
 
-export default function AdSenseUnit({ client, slot, format = 'auto', responsive = 'true', style = {} }) {
+export default function AdSenseUnit({ client, slot, format = 'auto', responsive = 'true', style = {}, content = null }) {
   const { pathname } = useLocation();
+  const [consent,setConsent]=useState(null),[checkedAt,setCheckedAt]=useState(()=>Date.now());
+  useEffect(()=>{const update=()=>{setCheckedAt(Date.now());setConsent(window.__SMARTJSA_PRIVACY__ || null);};window.addEventListener('smartjsa-privacy-change',update);update();return()=>window.removeEventListener('smartjsa-privacy-change',update);},[]);
+  useEffect(()=>{if(!consent?.expiresAt)return;const timer=setTimeout(()=>setConsent(null),Math.max(0,Math.min(2147483647,consent.expiresAt-Date.now())));return()=>clearTimeout(timer);},[consent]);
+  const allowed=adEligible(operations,consent,pathname,checkedAt,content);
+  useEffect(()=>{
+    if(!allowed || document.querySelector('script[data-smartjsa-ads]'))return;
+    const script=document.createElement('script');script.dataset.smartjsaAds='true';script.async=true;script.crossOrigin='anonymous';
+    script.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(client);document.head.appendChild(script);
+  },[allowed,client]);
+  if (!allowed) return null;
   return <AdSlot key={pathname + ':' + client + ':' + slot} {...{ client, slot, format, responsive, style }} />;
 }

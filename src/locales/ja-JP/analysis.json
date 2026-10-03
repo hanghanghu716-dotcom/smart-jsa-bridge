@@ -7,7 +7,9 @@
     "needCurrentMeasure": "先に推奨システムを通じて現在の安全対策を選択してください。",
     "noData": "関連データが見つかりません。直接入力してください。",
     "confirmMain": "メイン画面へ移動しますか？保存されていないデータは失われる可能性があります。",
-    "loginRequired": "ログインが必要です。"
+    "loginRequired": "ログインが必要です。",
+    "stepSaved": "現在の作業ステップをライブラリに保存しました。",
+    "stepSaveFailed": "作業ステップを保存できませんでした。"
   },
   "libModal": {
     "title": "作業ステップライブラリの呼び出し",
@@ -42,7 +44,9 @@
     "label": "⚠️ 高リスクフィルター",
     "auto": "（自動提案）",
     "loadLibBtn": "📂",
-    "searchPlaceholder": "危険要因を検索..."
+    "searchPlaceholder": "危険要因を検索...",
+    "saveStepBtn": "ステップ保存",
+    "savingStepBtn": "保存中..."
   },
   "base": {
     "label": "安全知識ベース（危険要因の抽出）",
@@ -75,5 +79,39 @@
   "searchModal": {
     "title": "対策データベース検索",
     "placeholder": "検索語を入力してください..."
+  },
+  "knowledgeDock": {
+    "openBtn": "ナレッジDock",
+    "opened": "Dock表示中",
+    "untitledStep": "名称未設定",
+    "sourceManual": "直接入力",
+    "sourceDatabase": "危険DB",
+    "sourceLibrary": "過去の知識",
+    "eyebrow": "KNOWLEDGE DOCK",
+    "title": "過去の作業知識",
+    "savedSteps": "保存ステップ",
+    "projects": "プロジェクト",
+    "search": "作業・危険要因・対策を検索",
+    "emptySteps": "保存された作業ステップがありません。",
+    "independentStep": "独立作業ステップ",
+    "hazards": "危険要因",
+    "noControl": "対策なし",
+    "mergeHazards": "危険要因のみ",
+    "mergeFull": "対策まで統合",
+    "emptyProjects": "保存またはブックマークしたプロジェクトはありません。",
+    "steps": "ステップ",
+    "backProjects": "プロジェクト一覧",
+    "sourceCurrent": "現在のJSA",
+    "analysisIncluded": "分析含む",
+    "stepOnly": "ステップのみ",
+    "mergeOneHazard": "+ 危険",
+    "mergeOneFull": "+ 全体",
+    "mergeResult": "{{added}}件追加 · 重複{{skipped}}件をスキップ",
+    "noRisksToMerge": "追加できる危険要因がありません。",
+    "loading": "ライブラリを読み込み中…",
+    "loadError": "ライブラリを読み込めませんでした。再試行してください。",
+    "retry": "再試行",
+    "close": "ライブラリを閉じる",
+    "noMatches": "一致する作業やプロジェクトがありません。"
   }
 }

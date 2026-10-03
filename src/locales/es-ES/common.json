@@ -17,15 +17,157 @@
     "downloadBtn": "Descargar PDF Original"
   },
   "steps": [
-    { "step": "01", "task": "Inspección de TBM (Charla) y EPP", "hazard": "Desconocimiento del alcance del trabajo, uso incorrecto de protección" },
-    { "step": "02", "task": "Inspección de sistemas de protección contra caídas", "hazard": "Puntos de anclaje dañados, resbalones por clima adverso" },
-    { "step": "03", "task": "Aislamiento de materiales combustibles y prevención de incendios", "hazard": "Proyección de chispas de soldadura, explosión por gas residual" },
-    { "step": "04", "task": "Configuración de equipos de izaje y aparejos", "hazard": "Capacidad de carga del suelo insuficiente, rotura de eslingas" },
-    { "step": "05", "task": "Medición de gases y ventilación", "hazard": "Deficiencia de oxígeno, asfixia por acumulación de gases tóxicos" },
-    { "step": "06", "task": "Detección de servicios subterráneos y prevención de derrumbes", "hazard": "Rotura de tuberías/explosión, sepultamiento por colapso de taludes" },
-    { "step": "07", "task": "Bloqueo LOTO y verificación de ausencia de tensión", "hazard": "Energización accidental/choque eléctrico, descarga por energía residual" },
-    { "step": "08", "task": "Delimitación de áreas y prevención de exposición", "hazard": "Ingreso no autorizado de terceros, exposición a radiación" },
-    { "step": "09", "task": "Puesta en marcha y pruebas de lazo (Loop Test)", "hazard": "Operación con enclavamientos anulados, fugas a alta presión" },
-    { "step": "10", "task": "Orden, limpieza tras el trabajo y retiro de LOTO", "hazard": "Herramientas olvidadas, accidentes por cortocircuito" }
-  ]
+    {
+      "step": "01",
+      "task": "Inspección de TBM (Charla) y EPP",
+      "hazard": "Desconocimiento del alcance del trabajo, uso incorrecto de protección"
+    },
+    {
+      "step": "02",
+      "task": "Inspección de sistemas de protección contra caídas",
+      "hazard": "Puntos de anclaje dañados, resbalones por clima adverso"
+    },
+    {
+      "step": "03",
+      "task": "Aislamiento de materiales combustibles y prevención de incendios",
+      "hazard": "Proyección de chispas de soldadura, explosión por gas residual"
+    },
+    {
+      "step": "04",
+      "task": "Configuración de equipos de izaje y aparejos",
+      "hazard": "Capacidad de carga del suelo insuficiente, rotura de eslingas"
+    },
+    {
+      "step": "05",
+      "task": "Medición de gases y ventilación",
+      "hazard": "Deficiencia de oxígeno, asfixia por acumulación de gases tóxicos"
+    },
+    {
+      "step": "06",
+      "task": "Detección de servicios subterráneos y prevención de derrumbes",
+      "hazard": "Rotura de tuberías/explosión, sepultamiento por colapso de taludes"
+    },
+    {
+      "step": "07",
+      "task": "Bloqueo LOTO y verificación de ausencia de tensión",
+      "hazard": "Energización accidental/choque eléctrico, descarga por energía residual"
+    },
+    {
+      "step": "08",
+      "task": "Delimitación de áreas y prevención de exposición",
+      "hazard": "Ingreso no autorizado de terceros, exposición a radiación"
+    },
+    {
+      "step": "09",
+      "task": "Puesta en marcha y pruebas de lazo (Loop Test)",
+      "hazard": "Operación con enclavamientos anulados, fugas a alta presión"
+    },
+    {
+      "step": "10",
+      "task": "Orden, limpieza tras el trabajo y retiro de LOTO",
+      "hazard": "Herramientas olvidadas, accidentes por cortocircuito"
+    }
+  ],
+  "draftSave": {
+    "pending": "Guardando",
+    "saved": "Guardado",
+    "error": "Error al guardar",
+    "conflict": "Se guardó un borrador más reciente en otra pestaña · es necesario actualizar"
+  },
+  "appearance": {
+    "title": "Apariencia",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "active": "Activo"
+  },
+  "designer": {
+    "defaultTitle": "Análisis de Seguridad del Trabajo (JSA)",
+    "appr1": "Elaborado",
+    "appr2": "Revisado",
+    "appr3": "Aprobado",
+    "eyebrow": "DOCUMENT DESIGNER",
+    "title": "Diseñador de documentos",
+    "subtitle": "Configure los bloques del documento y la tabla JSA en un solo espacio.",
+    "back": "Volver al análisis",
+    "next": "Salida final",
+    "blocksTitle": "Bloques del documento",
+    "blocksHint": "Arrastre los bloques para reordenarlos y use la casilla para mostrar u ocultar.",
+    "blocks": {
+      "PROJECT_INFO": "Encabezado del documento",
+      "SAFETY": "EPP / Permisos",
+      "JSA_TABLE": "Tabla JSA",
+      "PARTICIPANTS": "Firmas de participantes",
+      "APPROVAL": "Aprobación",
+      "NOTES": "Notas"
+    },
+    "enabled": "Visible",
+    "disabled": "Oculto",
+    "documentTitle": "Título del documento",
+    "orientation": "Orientación",
+    "landscape": "Horizontal",
+    "portrait": "Vertical",
+    "tableSettings": "Configuración de tabla",
+    "addColumn": "Añadir columna personalizada",
+    "newColumn": "Nueva columna",
+    "customColumn": "Columna personalizada",
+    "systemColumn": "Columna del sistema",
+    "reset": "Restablecer",
+    "columnLabel": "Nombre de columna",
+    "columnWidth": "Ancho",
+    "fieldTypes": {
+      "text": "Texto",
+      "number": "Número",
+      "date": "Fecha",
+      "checkbox": "Casilla",
+      "dropdown": "Lista"
+    },
+    "dropdownOptions": "Opciones separadas por comas",
+    "participantSettings": "Configuración de firmas",
+    "approvalSettings": "Configuración de aprobación",
+    "notesSettings": "Configuración de notas",
+    "notesPlaceholder": "Notas de campo o instrucciones adicionales",
+    "notesEmpty": "Sin notas",
+    "blockSettings": "Configuración del bloque",
+    "blockSettingsHint": "Este bloque se completa automáticamente con los datos JSA actuales.",
+    "projectFallback": "Proyecto",
+    "ppeLabel": "EPP:",
+    "permitLabel": "Permisos:",
+    "signatureRows": "{{count}} fila(s) de firma",
+    "templates": "Plantillas de documento",
+    "chooseTemplate": "Cargar una plantilla guardada",
+    "templateName": "Nombre de plantilla",
+    "saveTemplate": "Guardar",
+    "savingTemplate": "Guardando...",
+    "templateSaved": "Plantilla de documento guardada.",
+    "templateSaveError": "No se pudo guardar la plantilla.",
+    "loginRequired": "Es necesario iniciar sesión.",
+    "fieldValues": "Valores por paso",
+    "noWorkSteps": "No hay pasos de trabajo.",
+    "stepFallback": "Paso {{number}}"
+  },
+  "saveFlow": {
+    "library": "Mi biblioteca",
+    "saveDocument": "Guardar documento",
+    "privateHint": "Las copias privadas conservan todos los datos, participantes y fotos.",
+    "publicHint": "Las copias públicas omiten fechas, lugar, departamento, responsable, equipos, participantes, notas, fotos y valores personalizados. Revise el título y el análisis.",
+    "publicConfirm": "¿Crear una copia pública? Compruebe que el título y el análisis no contengan datos personales o confidenciales. El original seguirá siendo privado.",
+    "archiveWarning": "El documento se guardó, pero no se pudo archivar el borrador. Sigue disponible.",
+    "changed": "El documento cambió o no se puede actualizar. Ábralo de nuevo o guarde otra copia privada.",
+    "failed": "No se pudo guardar. Se conserva el borrador. Inténtelo de nuevo.",
+    "publicCopy": "Crear copia pública",
+    "newPrivate": "Guardar nueva copia privada",
+    "updatePrivate": "Actualizar documento privado",
+    "templatesHint": "Las plantillas guardan diseños reutilizables. Los documentos se guardan por separado.",
+    "templateError": "No se pudieron cargar o guardar las plantillas. Revise su sesión y conexión y recargue.",
+    "confirmUpdate": "¿Reemplazar esta plantilla con el diseño actual?",
+    "confirmDelete": "¿Eliminar esta plantilla? Los documentos existentes no cambiarán.",
+    "newTemplate": "Guardar nueva plantilla",
+    "rename": "Cambiar nombre",
+    "updateTemplate": "Actualizar con el diseño actual",
+    "clearDefault": "Quitar predeterminada",
+    "makeDefault": "Usar como predeterminada",
+    "deleteTemplate": "Eliminar plantilla",
+    "defaultHint": "La plantilla predeterminada solo se aplica a documentos nuevos; no reemplaza diseños existentes."
+  }
 }

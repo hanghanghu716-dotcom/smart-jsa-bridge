@@ -17,15 +17,157 @@
     "downloadBtn": "Scarica il PDF Originale"
   },
   "steps": [
-    { "step": "01", "task": "Riunione Preliminare (TBT) e Ispezione DPI", "hazard": "Ambito di lavoro non chiaro, uso improprio dei DPI" },
-    { "step": "02", "task": "Sistemi di Protezione contro le Cadute dall'Alto (D.Lgs. 81/08, Titolo IV)", "hazard": "Cedimento del punto di ancoraggio, scivolamenti dovuti al maltempo" },
-    { "step": "03", "task": "Isolamento Materiali Combustibili e Sorveglianza Antincendio", "hazard": "Scintille da lavoro a caldo, esplosione di gas residui" },
-    { "step": "04", "task": "Allestimento Imbracature e Apparecchi di Sollevamento", "hazard": "Scarsa stabilità del suolo, rottura di brache o cavi" },
-    { "step": "05", "task": "Test Atmosferico e Ventilazione (Ambienti Sospetti di Inquinamento)", "hazard": "Carenza di ossigeno, inalazione di gas tossici" },
-    { "step": "06", "task": "Sicurezza Scavi e Trincee", "hazard": "Urto contro sottoservizi, crollo o smottamento delle pareti" },
-    { "step": "07", "task": "LOTO (Lockout/Tagout) e Verifica Energia Zero", "hazard": "Riattivazione accidentale, scossa residua" },
-    { "step": "08", "task": "Delimitazione Aree e Radioprotezione (D.Lgs. 101/2020)", "hazard": "Accesso non autorizzato, esposizione a radiazioni ionizzanti" },
-    { "step": "09", "task": "Messa in Servizio (Commissioning) e Test di Loop", "hazard": "Interlock bypassati, perdite ad alta pressione" },
-    { "step": "10", "task": "Riordino (Housekeeping) e Rimozione LOTO Post-Lavoro", "hazard": "Utensili o detriti lasciati sul posto, rischi di cortocircuito" }
-  ]
+    {
+      "step": "01",
+      "task": "Riunione Preliminare (TBT) e Ispezione DPI",
+      "hazard": "Ambito di lavoro non chiaro, uso improprio dei DPI"
+    },
+    {
+      "step": "02",
+      "task": "Sistemi di Protezione contro le Cadute dall'Alto (D.Lgs. 81/08, Titolo IV)",
+      "hazard": "Cedimento del punto di ancoraggio, scivolamenti dovuti al maltempo"
+    },
+    {
+      "step": "03",
+      "task": "Isolamento Materiali Combustibili e Sorveglianza Antincendio",
+      "hazard": "Scintille da lavoro a caldo, esplosione di gas residui"
+    },
+    {
+      "step": "04",
+      "task": "Allestimento Imbracature e Apparecchi di Sollevamento",
+      "hazard": "Scarsa stabilità del suolo, rottura di brache o cavi"
+    },
+    {
+      "step": "05",
+      "task": "Test Atmosferico e Ventilazione (Ambienti Sospetti di Inquinamento)",
+      "hazard": "Carenza di ossigeno, inalazione di gas tossici"
+    },
+    {
+      "step": "06",
+      "task": "Sicurezza Scavi e Trincee",
+      "hazard": "Urto contro sottoservizi, crollo o smottamento delle pareti"
+    },
+    {
+      "step": "07",
+      "task": "LOTO (Lockout/Tagout) e Verifica Energia Zero",
+      "hazard": "Riattivazione accidentale, scossa residua"
+    },
+    {
+      "step": "08",
+      "task": "Delimitazione Aree e Radioprotezione (D.Lgs. 101/2020)",
+      "hazard": "Accesso non autorizzato, esposizione a radiazioni ionizzanti"
+    },
+    {
+      "step": "09",
+      "task": "Messa in Servizio (Commissioning) e Test di Loop",
+      "hazard": "Interlock bypassati, perdite ad alta pressione"
+    },
+    {
+      "step": "10",
+      "task": "Riordino (Housekeeping) e Rimozione LOTO Post-Lavoro",
+      "hazard": "Utensili o detriti lasciati sul posto, rischi di cortocircuito"
+    }
+  ],
+  "draftSave": {
+    "pending": "Salvataggio",
+    "saved": "Salvato",
+    "error": "Errore di salvataggio",
+    "conflict": "Una bozza più recente è stata salvata in un'altra scheda · aggiorna la pagina"
+  },
+  "appearance": {
+    "title": "Aspetto",
+    "system": "Sistema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "active": "Attivo"
+  },
+  "designer": {
+    "defaultTitle": "Analisi di Sicurezza del Lavoro (JSA)",
+    "appr1": "Redatto",
+    "appr2": "Verificato",
+    "appr3": "Approvato",
+    "eyebrow": "DOCUMENT DESIGNER",
+    "title": "Designer documento",
+    "subtitle": "Configura i blocchi del documento e la tabella JSA in un unico spazio.",
+    "back": "Torna all’analisi",
+    "next": "Output finale",
+    "blocksTitle": "Blocchi documento",
+    "blocksHint": "Trascina i blocchi per riordinarli e usa la casella per mostrarli o nasconderli.",
+    "blocks": {
+      "PROJECT_INFO": "Intestazione del documento",
+      "SAFETY": "DPI / Permessi",
+      "JSA_TABLE": "Tabella JSA",
+      "PARTICIPANTS": "Firme partecipanti",
+      "APPROVAL": "Approvazione",
+      "NOTES": "Note"
+    },
+    "enabled": "Visibile",
+    "disabled": "Nascosto",
+    "documentTitle": "Titolo documento",
+    "orientation": "Orientamento",
+    "landscape": "Orizzontale",
+    "portrait": "Verticale",
+    "tableSettings": "Impostazioni tabella",
+    "addColumn": "Aggiungi colonna personalizzata",
+    "newColumn": "Nuova colonna",
+    "customColumn": "Colonna personalizzata",
+    "systemColumn": "Colonna di sistema",
+    "reset": "Ripristina",
+    "columnLabel": "Nome colonna",
+    "columnWidth": "Larghezza",
+    "fieldTypes": {
+      "text": "Testo",
+      "number": "Numero",
+      "date": "Data",
+      "checkbox": "Casella",
+      "dropdown": "Elenco"
+    },
+    "dropdownOptions": "Opzioni separate da virgole",
+    "participantSettings": "Impostazioni firme",
+    "approvalSettings": "Impostazioni approvazione",
+    "notesSettings": "Impostazioni note",
+    "notesPlaceholder": "Note di cantiere o istruzioni aggiuntive",
+    "notesEmpty": "Nessuna nota",
+    "blockSettings": "Impostazioni blocco",
+    "blockSettingsHint": "Questo blocco viene compilato automaticamente dai dati JSA correnti.",
+    "projectFallback": "Progetto",
+    "ppeLabel": "DPI:",
+    "permitLabel": "Permessi:",
+    "signatureRows": "{{count}} riga/e firma",
+    "templates": "Modelli documento",
+    "chooseTemplate": "Carica un modello salvato",
+    "templateName": "Nome modello",
+    "saveTemplate": "Salva",
+    "savingTemplate": "Salvataggio...",
+    "templateSaved": "Modello documento salvato.",
+    "templateSaveError": "Impossibile salvare il modello.",
+    "loginRequired": "Accesso richiesto.",
+    "fieldValues": "Valori per fase",
+    "noWorkSteps": "Nessuna fase di lavoro.",
+    "stepFallback": "Fase {{number}}"
+  },
+  "saveFlow": {
+    "library": "La mia raccolta",
+    "saveDocument": "Salva documento",
+    "privateHint": "Le copie private conservano tutti i dati, i partecipanti e le foto.",
+    "publicHint": "Le copie pubbliche escludono date, luogo, reparto, responsabile, attrezzature, partecipanti, note, foto e valori personalizzati. Controlla titolo e analisi.",
+    "publicConfirm": "Creare una copia pubblica? Verifica che titolo e analisi non contengano dati personali o riservati. L’originale rimane privato.",
+    "archiveWarning": "Documento salvato, ma non è stato possibile archiviare la bozza. Rimane disponibile.",
+    "changed": "Il documento è cambiato o non può essere aggiornato. Riaprilo o salva una nuova copia privata.",
+    "failed": "Salvataggio non riuscito. La bozza è conservata. Riprova.",
+    "publicCopy": "Crea copia pubblica",
+    "newPrivate": "Salva nuova copia privata",
+    "updatePrivate": "Aggiorna documento privato",
+    "templatesHint": "I modelli salvano impaginazioni riutilizzabili. I documenti si salvano separatamente.",
+    "templateError": "Impossibile caricare o salvare i modelli. Verifica accesso e connessione, poi ricarica.",
+    "confirmUpdate": "Sostituire questo modello con l’impaginazione attuale?",
+    "confirmDelete": "Eliminare questo modello? I documenti esistenti non cambieranno.",
+    "newTemplate": "Salva nuovo modello",
+    "rename": "Rinomina",
+    "updateTemplate": "Aggiorna con il layout attuale",
+    "clearDefault": "Rimuovi predefinito",
+    "makeDefault": "Imposta come predefinito",
+    "deleteTemplate": "Elimina modello",
+    "defaultHint": "Il modello predefinito si applica solo ai nuovi documenti e non sostituisce i layout esistenti."
+  }
 }

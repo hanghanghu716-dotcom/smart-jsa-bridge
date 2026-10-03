@@ -29,7 +29,7 @@
       "desc": "Die Plattform garantiert nicht die absolute Richtigkeit oder Standorteignung der geteilten Inhalte."
     },
     "item2": {
-      "desc": "Bei der Nutzung der Vorlage eines anderen Nutzers müssen Sie diese überprüfen und an Ihre spezifischen Standortbedingungen anpassen. Die Plattform haftet nicht für Unfälle, die aus diesbezüglicher Fahrlässigkeit resultieren."
+      "desc": "Geteilte Inhalte sind Referenzen, keine genehmigten Arbeitserlaubnisse. Fachkundige müssen Einsatzbedingungen, örtliches Recht und Maßnahmen vor Arbeitsbeginn prüfen."
     }
   },
   "section5": {
@@ -40,7 +40,7 @@
     },
     "item2": {
       "bold": "Geteilte Inhalte:",
-      "desc": "Durch das Beisteuern von Inhalten, die auf 'Öffentlich' gesetzt sind, wird davon ausgegangen, dass Sie anderen Nutzern eine nicht-exklusive Lizenz zum Kopieren, Ändern und Nutzen dieser Inhalte gewähren."
+      "desc": "Community-Nutzung v1: Rechte verbleiben beim Autor. Kopieren, Bearbeiten und erneutes Veröffentlichen für die Arbeit sind mit Quellenlink und Änderungshinweis erlaubt. Rechte Dritter und Sicherheitszertifizierungen sind nicht umfasst. Eine Löschung ruft erhaltene Kopien nicht zurück. Zwingende gesetzliche Rechte bleiben unberührt."
     }
   },
   "section6": {
