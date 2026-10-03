@@ -32,7 +32,7 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
       - name: Install Chrome system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64
+        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core
       - name: Verify content and locale logic
         run: npm run test:all
       - name: Load Vercel project configuration

@@ -28,3 +28,6 @@ dist-ssr
 # Local build verification inputs
 .cache/
 supabase/.temp/
+
+# Generated local guide PDFs; production regenerates these with HTML at build time.
+public/assets/guides/
