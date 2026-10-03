@@ -1,4 +1,14 @@
-# Canadian provinces
+# Regional locales
+
+## Singapore (English)
+
+`en-SG` is a selectable English region with its own routes, HTML language tag, dates, SEO alternates and static routes. `en-SG/overrides.json` contains regional copy; general application labels fall back to `en-US`. Document titles use Risk Assessment / Job Safety Analysis. Regulatory, PPE and risk-classification copy replaces inherited US regulatory claims and numeric thresholds. This is not a full legal compliance review or regulatory certification.
+
+Hazard/control queries explicitly share the existing `en-US` dataset. The dictionary explains that these are general references. Case studies remain `en-SG` only; US articles are not relabelled as Singapore articles. Publish Singapore articles with the new language option in the admin editor. No database content or schema migration is performed by this locale change. Singapore Chinese, Malay and Tamil are outside this addition.
+
+Sources checked 2026-10-03: [MOM risk management](https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management), [MOM review timing](https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment), [WSH Risk Management Regulations](https://sso.agc.gov.sg/SL/WSHA2006-RG8). Recheck official sources when editing legal guidance.
+
+## Canadian regional fallback
 
 The selector exposes en-CA-AB (Alberta), en-CA-ON (Ontario), en-CA-BC (British Columbia), and fr-CA-QC (Québec). Québec uses French; the other three use English. Generic /en-CA URLs remain available. Old /en-CA-QC URLs redirect to /fr-CA-QC with their path, query, hash, and navigation state preserved. Saved English Quebec preferences also migrate. A fr-CA browser selects fr-CA-QC; fr and fr-FR still select French for France.
 
@@ -10,8 +20,8 @@ Province identifiers are internal URL/content keys. Dates, HTML lang and Open Gr
 
 ## Business and private storage
 
-Business, company-template, invitation, approval, revision and private-storage messages support the ten base languages (Korean, English, German, Japanese, French, Italian, Spanish, Arabic, Brazilian Portuguese and Russian). The existing 17 routes reuse their base language: English regions use English and Québec uses French, including the legacy Quebec alias. Product plan names Free, Pro and Business remain unchanged.
+Business, company-template, invitation, approval, revision and private-storage messages support the ten base languages (Korean, English, German, Japanese, French, Italian, Spanish, Arabic, Brazilian Portuguese and Russian). The 18 routes reuse their base language: English regions use English and Québec uses French, including the legacy Quebec alias. The current plan labels are Community and Professional.
 
 `businessUi.js` and `storageUi.js` keep the Korean/English resources. Other translations live in `phase6/`; `phase6Ui.js` resolves the locale and formats dates/counts using a valid Intl language tag. Unknown UI languages fall back to English. These resources cover the new application interface; user-authored documents, organization names and comments are not automatically translated.
 
-The Business page and embedded company-template/storage panels set their own reading direction. Controls wrap long labels, and arrows follow the reading direction. Automated checks verify complete keys, interpolation placeholders, regional aliases and dates/counts. With the local app running, `node scripts/business-locales-browser.cjs` checks all 17 routes in the Business desktop/mobile views, company-template controls and Export storage notices using intercepted fixture data. Set JSA_QA_OUTPUT to choose the screenshot directory.
+The Business page and embedded company-template/storage panels set their own reading direction. Controls wrap long labels, and arrows follow the reading direction. Automated checks verify complete keys, interpolation placeholders, regional aliases and dates/counts. With the local app running, `node scripts/business-locales-browser.cjs` checks all supported routes in the Business desktop/mobile views, company-template controls and Export storage notices using intercepted fixture data. Set JSA_QA_OUTPUT to choose the screenshot directory.

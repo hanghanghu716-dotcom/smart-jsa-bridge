@@ -2,6 +2,7 @@ import frCAQCOverrides from './locales/fr-CA-QC/overrides.json';
 import enCABCOverrides from './locales/en-CA-BC/overrides.json';
 import enCAONOverrides from './locales/en-CA-ON/overrides.json';
 import enCAABOverrides from './locales/en-CA-AB/overrides.json';
+import enSGOverrides from './locales/en-SG/overrides.json';
 import { SUPPORTED_LANGS, CANADIAN_PROVINCES, getLanguageTag, getTranslationFallbacks, normalizeLocale } from './locales/config.js';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -640,6 +641,7 @@ const resources = {
 };
 
 const provinceOverrides = { 'en-CA-AB': enCAABOverrides, 'en-CA-ON': enCAONOverrides, 'en-CA-BC': enCABCOverrides, 'fr-CA-QC': frCAQCOverrides };
+resources['en-SG'] = enSGOverrides;
 for (const { code } of CANADIAN_PROVINCES) resources[code] = provinceOverrides[code];
 
 i18n

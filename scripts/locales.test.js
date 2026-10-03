@@ -11,7 +11,7 @@ import {
 } from '../src/locales/config.js';
 
 test('province routes, browser detection and standards-based formatting', () => {
-  assert.equal(LANGUAGE_OPTIONS.length, 16);
+  assert.equal(LANGUAGE_OPTIONS.length, 17);
   assert.equal(detectLanguage('en-CA'), 'en-CA');
   assert.equal(detectLanguage('en-ca'), 'en-CA');
   assert.equal(detectLanguage('ko-KR'), 'ko');
@@ -37,6 +37,25 @@ test('province routes, browser detection and standards-based formatting', () => 
   }
   assert.ok(!hasLanguagePrefix('/en-CA-invalid'));
   for (const code of SEO_LANGUAGES) assert.doesNotThrow(() => Intl.getCanonicalLocales(code));
+});
+
+test('Singapore routes, data fallback and sitemap keep their regional identity', () => {
+  assert.equal(LANGUAGE_OPTIONS.find(({ code }) => code === 'en-SG')?.label, 'English (Singapore)');
+  assert.equal(detectLanguage('en-sg'), 'en-SG');
+  assert.equal(getLanguageTag('en-SG'), 'en-SG');
+  assert.equal(getDataLocale('en-SG'), 'en-US');
+  assert.deepEqual(getTranslationFallbacks('en-SG'), ['en-US']);
+  assert.deepEqual(getCaseLanguages('en-SG'), ['en-SG']);
+  assert.ok(hasLanguagePrefix('/en-SG/work-packages'));
+  assert.ok(!hasLanguagePrefix('/en-SG-invalid/work-packages'));
+  assert.doesNotThrow(() => new Intl.DateTimeFormat(getLanguageTag('en-SG')).format(new Date()));
+  const xml = buildSitemap([{ post_group_id: 'us-only', language_code: 'en-US' }, { post_group_id: 'sg-case', language_code: 'en-SG' }]);
+  assert.ok(xml.includes('<loc>https://smartjsabridge.com/en-SG</loc>'));
+  assert.ok(xml.includes('hreflang="en-SG"'));
+  assert.ok(xml.includes('/en-SG/case-study/sg-case'));
+  assert.ok(!xml.includes('/en-SG/case-study/us-only'));
+  const { reactSnap } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url)));
+  assert.ok(reactSnap.include.includes('/en-SG/'));
 });
 
 test('case studies prefer provincial content and retain shared articles', () => {
@@ -245,6 +264,25 @@ test('actual i18n configuration retains province and falls back per translation 
       assert.equal(i18n.t('provinceTest.title', { ns: 'main' }), code);
       assert.equal(i18n.t('seo.title', { ns: 'main' }), i18n.getResource(code, 'main', 'seo.title') ?? i18n.getResource(baseLocale, 'main', 'seo.title'));
     }
+    await i18n.changeLanguage('en-SG');
+    assert.equal(i18n.language, 'en-SG');
+    assert.equal(global.document.documentElement.lang, 'en-SG');
+    assert.equal(global.document.documentElement.dir, 'ltr');
+    const leaves = (obj, prefix = '') => Object.entries(obj).flatMap(([key, value]) => {
+      const path = prefix ? `${prefix}.${key}` : key;
+      return typeof value === 'string' ? [path] : value && typeof value === 'object' ? leaves(value, path) : [];
+    });
+    for (const ns of i18n.options.ns) {
+      for (const key of leaves(i18n.getResourceBundle('en-US', ns))) {
+        const value = i18n.getFixedT('en-SG', ns)(key);
+        assert.ok(value && value !== key, `Missing Singapore ${ns}:${key}`);
+        assert.doesNotMatch(value, /OSHA|ANSI|NIOSH|NFPA|US workplaces|4ft|6ft/, `Foreign legal claim in Singapore ${ns}:${key}`);
+      }
+    }
+    assert.match(i18n.t('seo.title', { ns: 'main' }), /Singapore/);
+    assert.match(i18n.t('section3.table.rows.row2.col2', { ns: 'regulation' }), /three years/);
+    assert.match(i18n.t('hero.seoText1', { ns: 'dictionary' }), /shared English/);
+    assert.equal(i18n.t('default.docTitle', { ns: 'export' }), 'Risk Assessment / Job Safety Analysis (JSA)');
     await i18n.changeLanguage('ar-SA');
     assert.equal(global.document.documentElement.dir, 'rtl');
     await i18n.changeLanguage('fr-CA-QC');

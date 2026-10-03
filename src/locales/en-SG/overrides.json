@@ -1,0 +1,127 @@
+{
+  "main": {
+    "seo": {
+      "title": "Smart JSA Bridge Singapore | Risk Assessment & JSA",
+      "description": "Prepare task risk assessments, reuse JSA content and organise work document packages. English workspace for Singapore users.",
+      "ogTitle": "Smart JSA Bridge Singapore"
+    }
+  },
+  "modulebuilder": {
+    "default": { "docTitle": "Risk Assessment / Job Safety Analysis (JSA)" },
+    "preview": { "header": "JSA Structure Preview" },
+    "header": { "subtitle": "Configure document headers and the permit-to-work information needed for your task." },
+    "step": { "finalOutput": "Step 6: Document Export" }
+  },
+  "export": {
+    "default": { "docTitle": "Risk Assessment / Job Safety Analysis (JSA)" }
+  },
+  "dictionary": {
+    "hero": {
+      "seoText1": "Browse the shared English hazard and control library as a starting point for your assessment. These entries are general references, not a Singapore-specific regulatory dataset. Check each suggestion against the actual task and applicable local requirements."
+    }
+  },
+  "jrajsa": {
+    "hero": {
+      "tag": "TASK RISK ASSESSMENT",
+      "title2": "& Workplace Risk Management",
+      "subTitle1": "A practical workflow for preparing and reviewing task risk assessments",
+      "subTitle2": "alongside your workplace's Singapore WSH procedures."
+    }
+  },
+  "regulation": {
+    "hero": {
+      "tag": "SINGAPORE WORKPLACE SAFETY AND HEALTH",
+      "mainTitle": "Preparing Workplace<br />Risk Assessment Procedures",
+      "subTitle": "Use this planning guide alongside Ministry of Manpower (MOM) guidance and the Workplace Safety and Health (Risk Management) Regulations. A completed form alone does not establish compliance."
+    },
+    "section1": {
+      "para": "Internal risk assessment procedures describe how a workplace identifies hazards, evaluates risks and puts controls into practice. MOM's guidance covers routine and non-routine activities and recommends a multidisciplinary assessment team.",
+      "infoList": { "item4": "Keep an accessible record of the assessment, decisions, controls and review actions." }
+    },
+    "section2": {
+      "title": "2. Suggested Structure for Internal Procedures",
+      "para": "The following ten headings are a practical drafting checklist, not a prescribed statutory form. Adapt them to the work and the applicable requirements.",
+      "items": {
+        "item9": { "content": "Define where assessments and control records are kept, who maintains them and the applicable retention period. The Risk Management Regulations require the relevant records to be kept for at least three years." }
+      }
+    },
+    "section3": {
+      "table": {
+        "rows": {
+          "row1": {
+            "col2": "Plan the assessment and controls before the activity begins, including preparation and non-routine work.",
+            "col3": "Include the people who understand and perform the task."
+          },
+          "row2": {
+            "col2": "Review at least once every three years, and sooner when changes or incidents trigger a review.",
+            "col3": "Do not wait for the scheduled date if the assessment is inadequate."
+          },
+          "row3": {
+            "col1": "Change or Incident Review",
+            "col2": "Review after significant process or design changes, new machinery, substances or procedures, or an injury or incident from hazard exposure.",
+            "col3": "Recheck the controls and communicate the revised assessment."
+          }
+        }
+      }
+    },
+    "section4": {
+      "title": "4. Official Sources and Workplace Review",
+      "para": "Check current official guidance and the requirements for your activity before approving work. This editor does not certify a site, assessment or permit.",
+      "legalList": {
+        "item1": "<a href=\"https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management\">MOM: Risk management</a> — assessment, control and communication guidance.",
+        "item2": "<a href=\"https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment\">MOM: When to review an assessment</a> — scheduled and change-triggered reviews.",
+        "item3": "<a href=\"https://sso.agc.gov.sg/SL/WSHA2006-RG8\">Singapore Statutes Online: WSH (Risk Management) Regulations</a> — current legal text."
+      }
+    }
+  },
+  "ppe": {
+    "hero": {
+      "title2": "Workplace Selection Guide",
+      "subTitle1": "Select protection for the hazards and exposure of the actual task.",
+      "subTitle2": "Check fit, compatibility, training and maintenance, together with",
+      "subTitle3": "applicable Singapore WSH requirements and the manufacturer's instructions."
+    },
+    "section1": {
+      "types": {
+        "item1": { "desc": "Select a helmet for the expected impact and any electrical hazards; check its limitations.", "tags": ["Industrial Safety Helmets", "Task-appropriate Protection"] },
+        "item2": { "tags": ["Safety Glasses", "Goggles", "Face Shields"] },
+        "item3": { "tags": ["Earplugs", "Earmuffs", "Suitable Attenuation"] },
+        "item4": { "desc": "Select respiratory protection for the substance and exposure. Filtering respirators do not supply oxygen and cannot protect in an oxygen-deficient atmosphere.", "tags": ["Particulate Respirators", "Suitable Gas/Vapour Cartridges", "Breathing Apparatus"] }
+      }
+    },
+    "section3": {
+      "title": "3. Checking PPE Before Use",
+      "faq": {
+        "item1": { "q": "Where can I find Singapore workplace safety guidance?", "a": "Start with MOM's workplace safety and health guidance and the WSH Council's resources. Check the requirements relevant to your activity and equipment." },
+        "item2": { "q": "Does a certification mark guarantee that PPE suits the task?", "a": "No. Check the protection offered, test documentation, size, fit and compatibility with other equipment against the actual hazards." },
+        "item3": { "q": "When should PPE be replaced?", "a": "Follow the manufacturer's service-life and replacement instructions. Check condition before use and remove damaged or unsuitable equipment from service." },
+        "item4": { "q": "What information should I keep?", "a": "Keep the product identification, instructions, relevant test or conformity information, and your workplace's inspection and training records." }
+      }
+    }
+  },
+  "risk": {
+    "ui": {
+      "heroTag": "WORKPLACE RISK ASSESSMENT",
+      "subTitle1": "Identify hazards, evaluate risk and choose suitable controls",
+      "subTitle2": "using your workplace's assessment method and applicable Singapore requirements.",
+      "section2": "2. Example Risk Matrix"
+    },
+    "matrix": { "title": "Example Matrix (5 Frequency × 4 Severity) — adapt to your workplace" },
+    "tasks": [
+      { "t": "Work at Heights", "c": "Work where a fall could cause injury. Assess access, edges, openings and fall prevention for the actual task." },
+      { "t": "Confined Space Entry", "c": "Entry involving restricted access and possible hazardous atmospheres; plan isolation, testing, ventilation and rescue." },
+      { "t": "Hot Work", "c": "Welding, cutting or other tasks producing heat, sparks or flame." },
+      { "t": "Lifting Operations", "c": "Plan the load, lifting equipment, ground conditions, exclusion zones and communication." },
+      { "t": "Electrical Work", "c": "Assess electrical hazards and establish suitable isolation and verification before work." },
+      { "t": "Excavation", "c": "Check ground stability, buried services, access and nearby plant before disturbing the ground." },
+      { "t": "Ionising Radiation", "c": "Specialist work with radiation sources requiring task-specific controls and authorisation." },
+      { "t": "Hazardous Substances", "c": "Assess the substance, exposure routes and safe handling using current safety data." },
+      { "t": "Maintenance and Isolation", "c": "Control hazardous energy and verify the safe condition before maintenance." }
+    ]
+  },
+  "terms": {
+    "section7": {
+      "content": "Users must assess content against the laws and requirements applicable to their workplace. Selecting Singapore or using an example does not certify compliance with Singapore WSH requirements."
+    }
+  }
+}
