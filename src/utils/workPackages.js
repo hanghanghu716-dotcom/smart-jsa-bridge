@@ -1,4 +1,6 @@
 import { templateLayout } from "./documentLayout.js";
+import { workContext } from './workJurisdiction.js';
+import { regionalContextMismatch } from './regionalWorkTemplates.js';
 export const FIELD_KINDS = [
   "text",
   "date",
@@ -25,6 +27,7 @@ export function normalizeField(field) {
 export function cleanPackage(data) {
   return {
     ...clone(data),
+    ...(data.context ? { context: workContext(data.context) } : {}),
     commonDefaults: {
       projectName: data.commonDefaults?.projectName || "",
       workLocation: data.commonDefaults?.workLocation || "",
@@ -65,6 +68,8 @@ export function startWork(record) {
     version: record.version_name,
     packageUpdatedAt: record.updated_at,
     startedAt: new Date().toISOString(),
+    context: workContext(record.data.context),
+    regionalReviewed: false,
     common: {
       ...record.data.commonDefaults,
       workDate: "",
@@ -100,6 +105,8 @@ export function importJsa(project) {
       jsaType: f.jsaType || "2-step",
       ppe: clone(f.ppe || []),
       permits: clone(f.permits || []),
+      equipment: f.equipment || '',
+      ...(f.context ? { context: workContext(f.context) } : {}),
     },
     participants: [],
     analysisData: (project.analysis_data || []).map((step) => ({
@@ -192,6 +199,7 @@ export function outputReady(run) {
   const selected = run.documents.filter((d) => d.enabled);
   return (
     selected.length > 0 &&
+    (!selected.some(d => d.regional) || (run.regionalReviewed === true && !regionalContextMismatch(selected, run.context))) &&
     selected.every(
       (d) => d.type !== "drawing" || (!d.needsReview && d.pages?.length > 0),
     )

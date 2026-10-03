@@ -33,6 +33,10 @@ import FormEditor from "../components/work/FormEditor";
 import WorkRun from "../components/work/WorkRun";
 import ArchivedOutput from "../components/work/ArchivedOutput";
 import WorkFlowGuide from "../components/work/WorkFlowGuide";
+import WorkContext from '../components/work/WorkContext';
+import RegionalTemplatePicker from '../components/work/RegionalTemplatePicker';
+import { workContext, workContextUi } from '../utils/workJurisdiction';
+import { regionalContextMismatch } from '../utils/regionalWorkTemplates';
 import "../styles/workspaces.css";
 import "../styles/work-packages.css";
 const tables = {
@@ -102,11 +106,8 @@ export default function WorkPackages() {
       version_name: "ver.1",
       data: {
         commonDefaults: { projectName: "", workLocation: "", department: "" },
-        documents: [
-          newForm("ptw", ui),
-          newForm("tbm", ui),
-          newForm("checklist", ui),
-        ],
+        context: workContext(),
+        documents: [],
       },
     });
   if (archive)
@@ -380,6 +381,8 @@ function DrawingUpload({ ui, onSaved }) {
   );
 }
 function PackageEditor({ initial, ui, onBack }) {
+  const { i18n } = useTranslation();
+  const regionUi = workContextUi(i18n.language);
   const [record, setRecord] = useState(() => clone(initial)),
     [saved, setSaved] = useState(() => JSON.stringify(initial)),
     [selected, setSelected] = useState(initial.data.documents[0]?.id || ""),
@@ -472,6 +475,11 @@ function PackageEditor({ initial, ui, onBack }) {
     }));
     setSelected(doc.id);
   };
+  const addDocuments = (documents) => {
+    if (record.data.documents.length + documents.length > 40) { setMessage(ui.error); return; }
+    setRecord(r => ({ ...r, data: { ...r.data, documents: [...r.data.documents, ...documents] } }));
+    setSelected(documents[0]?.id || selected);
+  };
   const save = (copy) =>
     task(async () => {
       const value = await saveWorkPackage(
@@ -524,6 +532,7 @@ function PackageEditor({ initial, ui, onBack }) {
         </button>
       </div>
       <p className="jsa-notice">{dirty || !record.id ? ui.saveFirst : ui.readyHelp}</p>
+      {regionalContextMismatch(record.data.documents, record.data.context) && <p role="alert" className="jsa-notice">{regionUi.mismatch}</p>}
       {message && <p role="status">{message}</p>}
       <fieldset disabled={busy} className="work-section">
         <legend>{ui.basicTitle}</legend>
@@ -572,6 +581,8 @@ function PackageEditor({ initial, ui, onBack }) {
           ))}
         </div>
       </fieldset>
+      <WorkContext value={record.data.context} locale={i18n.language} disabled={busy} onChange={context => setRecord(r => ({ ...r, data: { ...r.data, context } }))} />
+      <RegionalTemplatePicker context={workContext(record.data.context)} locale={i18n.language} jsas={library?.jsas} disabled={busy || !library} onAdd={addDocuments} errorText={ui.error} />
       <section className="work-section work-add-section">
       <h2>{ui.addTitle}</h2>
       <p>{!record.id ? ui.addHelp : ui.orderHelp}</p>
@@ -733,6 +744,7 @@ function PackageEditor({ initial, ui, onBack }) {
           {!doc && <p className="work-empty">{ui.selectDocument}</p>}
           {doc && (
             <>
+              {doc.regional && <p className="jsa-notice">{regionUi.retained} {doc.regional.context.jurisdiction} · {doc.regional.context.documentLocale} · {regionUi.version} {doc.regional.version}</p>}
               <div className="work-common-grid">
                 <label>
                   {ui.formTitle}

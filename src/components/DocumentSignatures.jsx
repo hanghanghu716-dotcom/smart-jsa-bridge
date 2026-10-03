@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function DocumentSignatures({ participants = [], rows = 1, orientation = 'landscape' }) {
-  const { t } = useTranslation('export');
+export default function DocumentSignatures({ participants = [], rows = 1, orientation = 'landscape', documentLocale }) {
+  const { t: screenT, i18n } = useTranslation('export');
+  const t = documentLocale ? i18n.getFixedT(documentLocale, 'export') : screenT;
   const columns = orientation === 'portrait' ? 4 : 8;
   const rowCount = Math.max(1, Number(rows) || 1, Math.ceil(participants.length / columns));
   const cell = { border: '1px solid #888', padding: '5px', fontSize: '10px', lineHeight: 1.35, verticalAlign: 'middle', color: '#000', overflowWrap: 'anywhere', whiteSpace: 'normal' };

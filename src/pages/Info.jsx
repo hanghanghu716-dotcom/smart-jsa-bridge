@@ -11,6 +11,7 @@ import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
+import WorkContext from '../components/work/WorkContext';
 import { getSaveVisibility } from '../utils/projectPersistence';
 
 const DEFAULT_FORM_DATA = {
@@ -41,7 +42,7 @@ export default function Info() {
 function InfoEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate();
   const location = useLocation();
-  const { t } = useTranslation(['info']);
+  const { t, i18n } = useTranslation(['info']);
   const [formData, setFormData] = useState(() => {
     const loaded = location.state?.formData || recoveredDraft?.form_data || {};
     return {
@@ -184,6 +185,7 @@ function InfoEditor({ recoveredDraft }) {
             <div style={styles.scrollArea}>
               <StorageVisibilityChoice value={formData.saveVisibility} onChange={saveVisibility => setFormData(prev => ({ ...prev, saveVisibility }))} />
               <ProjectStorageUsage />
+              <WorkContext value={formData.context} locale={i18n.language} onChange={context => setFormData(prev => ({ ...prev, context }))} />
 
               <div style={styles.formGrid}>
                 <section style={styles.leftSection}>

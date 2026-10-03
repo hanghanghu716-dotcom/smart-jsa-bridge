@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import DocumentContent from "../DocumentContent";
 import { fieldValue } from "../../utils/workPackages";
 import { drawingPage, paintAnnotations } from "../../utils/drawingRender";
+import { getWorkPackageUi } from '../../locales/workPackageUi';
+import { regionalText } from '../../locales/regionalWorkText';
+import { documentDirection } from '../../utils/workJurisdiction';
 function DrawingPaper({ doc, drawing, page, common, ui }) {
   const [image, setImage] = useState(null),
     key = JSON.stringify([drawing?.id, page, doc.annotations?.[page]]);
@@ -29,7 +32,7 @@ function DrawingPaper({ doc, drawing, page, common, ui }) {
   const ready = image?.key === key && !image.error,
     orientation = image?.landscape ? "landscape" : "portrait";
   return (
-    <article
+    <article dir={documentDirection(doc.regional?.context.documentLocale || doc.documentLocale)}
       className={"bundle-paper " + orientation}
       data-orientation={orientation}
       data-ready={ready ? "true" : "false"}
@@ -69,19 +72,23 @@ export default function WorkPreview({ run, drawings, ui }) {
       {run.documents
         .filter((d) => d.enabled)
         .flatMap((doc) => {
+          const documentLocale = doc.regional?.context.documentLocale || run.context?.documentLocale;
+          const printUi = documentLocale ? getWorkPackageUi(documentLocale) : ui;
           if (doc.type === "drawing")
             return doc.pages.map((page) => (
               <DrawingPaper
                 key={doc.id + ":" + page}
-                doc={doc}
+                doc={{ ...doc, documentLocale }}
                 drawing={drawings.find((d) => d.id === doc.drawingId)}
                 page={page}
                 common={run.common}
-                ui={ui}
+                ui={printUi}
               />
             ));
           return (
             <article
+              dir={documentLocale ? documentDirection(documentLocale) : undefined}
+              lang={documentLocale?.split('-')[0]}
               key={doc.id}
               className={"bundle-paper " + doc.orientation}
               data-orientation={doc.orientation}
@@ -90,6 +97,7 @@ export default function WorkPreview({ run, drawings, ui }) {
               {doc.type === "jsa" ? (
                 <>
                   <DocumentContent
+                    documentLocale={documentLocale}
                     formData={{ ...doc.formData, ...run.common }}
                     analysisData={doc.analysisData}
                     participants={run.common.workers
@@ -103,12 +111,17 @@ export default function WorkPreview({ run, drawings, ui }) {
                     }}
                   />
                   <p>
-                    {ui.manager}: {run.common.manager}
+                    {printUi.manager}: {run.common.manager}
                   </p>
                 </>
               ) : (
                 <>
                   <h2>{doc.title}</h2>
+                  {doc.regional && <p className="regional-print-context">
+                    {[doc.regional.context.jurisdiction, doc.regional.context.region, doc.regional.context.industry, doc.regional.context.activity].filter(Boolean).join(' · ')}
+                    <br />{regionalText(documentLocale, 'Draft for site review', '현장 검토용 초안')} · {regionalText(documentLocale, 'Template version', '양식 버전')} <bdi dir="ltr">{doc.regional.version}</bdi>
+                    {doc.regional.sourceJsaTitle && <> · {regionalText(documentLocale, 'Source JSA', '참고 JSA')}: <bdi>{doc.regional.sourceJsaTitle}</bdi></>}
+                  </p>}
                   <table className="work-common-table">
                     <tbody>
                       {[
@@ -120,8 +133,8 @@ export default function WorkPreview({ run, drawings, ui }) {
                         "workers",
                       ].map((k) => (
                         <tr key={k}>
-                          <th>{ui[k]}</th>
-                          <td>{run.common[k] || ""}</td>
+                          <th>{printUi[k]}</th>
+                          <td dir="auto">{run.common[k] || ""}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -134,7 +147,7 @@ export default function WorkPreview({ run, drawings, ui }) {
                         className="printed-field"
                       >
                         <h3>{b.field.label}</h3>
-                        <div>
+                        <div dir="auto">
                           {fieldValue(b.field, run, doc.id + ":" + b.id)}
                         </div>
                       </section>
@@ -153,7 +166,7 @@ export default function WorkPreview({ run, drawings, ui }) {
                             {b.rows.map((r) => (
                               <tr key={r.id}>
                                 {b.columns.map((c) => (
-                                  <td key={c.id}>
+                                  <td key={c.id} dir={c.key === 'sourceRisk' ? 'ltr' : 'auto'}>
                                     {fieldValue(
                                       c,
                                       run,

@@ -14,6 +14,17 @@ export async function createReportPdf(papers) {
       throw Error("WORK_OUTPUT_LARGE");
     const canvas = await captureReport(element);
     if (!canvas.width || !canvas.height) throw Error("WORK_RENDER_FAILED");
+    // html2canvas includes the paper's bottom padding. Do not turn trailing
+    // white rows into an extra page after the last printable block.
+    const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+    let contentHeight = canvas.height;
+    trim: while (contentHeight > 1) {
+      const start = (contentHeight - 1) * canvas.width * 4;
+      for (let x = start; x < start + canvas.width * 4; x += 4) {
+        if (pixels[x + 3] && (pixels[x] < 250 || pixels[x + 1] < 250 || pixels[x + 2] < 250)) break trim;
+      }
+      contentHeight--;
+    }
     const landscape = orientation !== "portrait",
       pw = landscape ? 297 : 210,
       ph = landscape ? 210 : 297,
@@ -22,19 +33,22 @@ export async function createReportPdf(papers) {
       scale = contentWidth / canvas.width;
     const bounds = element.getBoundingClientRect(),
       cuts = [...element.querySelectorAll("tr,[data-print-block]")]
+        // Keep table headings with at least their first body row. A heading-only
+        // cut strands the measurement columns at the foot of the previous page.
+        .filter(el => el.tagName !== 'TR' || !el.closest('thead'))
         .map((el) =>
-          Math.floor(
+          1 + Math.ceil(
             ((el.getBoundingClientRect().bottom - bounds.top) / bounds.height) *
               canvas.height,
           ),
         )
         .sort((a, b) => a - b);
     let y = 0;
-    while (y < canvas.height) {
+    while (y < contentHeight) {
       if (images.length >= 100) throw Error("WORK_OUTPUT_LARGE");
-      const max = Math.min(canvas.height, y + Math.floor((ph - 20) / scale));
+      const max = Math.min(contentHeight, y + Math.floor((ph - 20) / scale));
       let end = max;
-      if (max < canvas.height) {
+      if (max < contentHeight) {
         const candidates = cuts.filter((c) => c > y + 20 && c <= max);
         if (candidates.length) end = candidates[candidates.length - 1];
       }

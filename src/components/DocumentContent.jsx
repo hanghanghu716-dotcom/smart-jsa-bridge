@@ -30,9 +30,11 @@ const COLUMN_GROUPS = [
 ];
 
 
-export default function DocumentContent({ formData = {}, participants = [], analysisData = [], layout = {}, stepPhotos = {}, onPhotoClick }) {
-  const { t, i18n } = useTranslation(['export', 'common']);
-  const isEnglish = i18n.language?.startsWith('en');
+export default function DocumentContent({ formData = {}, participants = [], analysisData = [], layout = {}, stepPhotos = {}, onPhotoClick, documentLocale }) {
+  const { t: screenT, i18n } = useTranslation(['export', 'common']);
+  const language = documentLocale || i18n.language;
+  const t = documentLocale ? i18n.getFixedT(documentLocale, ['export', 'common']) : screenT;
+  const isEnglish = language?.startsWith('en');
   const jsaType = formData.jsaType || '2-step';
   const { documentBlocks = [], savedActiveOrder = [], savedUserColumns = [], savedColumnOverrides = {}, docTitle = '', appr1 = '', appr2 = '', appr3 = '', documentNotes = '' } = layout;
   const getColumnMeta = (key) => {
@@ -52,7 +54,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   const renderDesignerProjectInfo = () => {
     const td = { border: '1px solid #888', padding: '5px 7px', color: '#000', fontSize: '10px', lineHeight: 1.35, verticalAlign: 'middle', whiteSpace: 'pre-wrap', wordBreak: 'normal', overflowWrap: 'anywhere' };
     const label = { ...td, background: '#f2f2f2', fontWeight: 'bold', textAlign: 'center', whiteSpace: 'normal' };
-    const direction = i18n.dir();
+    const direction = i18n.dir(language);
     return <table data-document-header dir="ltr" style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', marginBottom: '6px' }}>
       <colgroup>{[16, 19, 16, 19, 10, 10, 10].map((width, index) => <col key={index} style={{ width: width + '%' }} />)}</colgroup>
       <tbody>
@@ -124,7 +126,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   );
 
   const renderDataTable = () => {
-      const isEuroLang = ['en', 'fr', 'de'].some(lang => i18n.language?.startsWith(lang));
+      const isEuroLang = ['en', 'fr', 'de'].some(lang => language?.startsWith(lang));
 
       const commonTdStyle = {
         border: '1px solid #888',
@@ -241,7 +243,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     if (id === 'PROJECT_INFO') return renderDesignerProjectInfo();
     if (id === 'SAFETY') return renderDesignerSafety();
     if (id === 'JSA_TABLE') return renderDataTable();
-    if (id === 'PARTICIPANTS') return <DocumentSignatures participants={participants} rows={layout.savedSignatureRows} orientation={layout.savedOrientation} />;
+    if (id === 'PARTICIPANTS') return <DocumentSignatures documentLocale={documentLocale} participants={participants} rows={layout.savedSignatureRows} orientation={layout.savedOrientation} />;
     if (id === 'NOTES') return renderDesignerNotes();
     return null;
   };

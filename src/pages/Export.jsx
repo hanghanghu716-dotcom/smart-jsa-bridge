@@ -64,8 +64,6 @@ function ExportEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
   const { t, i18n } = useTranslation(['export', 'common']); 
-  const isEnglish = i18n.language?.startsWith('en');
-  const isFrench = i18n.language?.startsWith('fr');
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [showPublishModal, setShowPublishModal] = useState(Boolean(location.state?.openSaveDialog));
@@ -80,16 +78,20 @@ function ExportEditor({ recoveredDraft }) {
   const sourceFormData = state.formData || recoveredDraft?.form_data || {};
   const [saveVisibility, setSaveVisibility] = useState(() => getSaveVisibility(sourceFormData, state.projectSaveContext || recoveredLayout.projectSaveContext));
   const formData = { ...sourceFormData, saveVisibility };
+  const documentLocale = formData.context?.documentLocale || i18n.language;
+  const documentT = i18n.getFixedT(documentLocale, ['export', 'common']);
+  const isEnglish = documentLocale?.startsWith('en');
+  const isFrench = documentLocale?.startsWith('fr');
   const participants = state.participants || recoveredDraft?.participants || [];
   const procedures = state.procedures || recoveredDraft?.procedures || [];
   const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || [];
   const savedUserColumns = state.savedUserColumns || recoveredLayout.savedUserColumns || [];
   const savedOrientation = state.savedOrientation || recoveredLayout.savedOrientation || 'landscape';
   const isModuleSkipped = state.isModuleSkipped ?? recoveredLayout.isModuleSkipped;
-  const docTitle = state.docTitle ?? recoveredLayout.docTitle ?? t('default.docTitle', '위험성평가표 (JSA)');
-  const appr1 = state.appr1 ?? recoveredLayout.appr1 ?? t('default.appr1', '작성');
-  const appr2 = state.appr2 ?? recoveredLayout.appr2 ?? t('default.appr2', '검토');
-  const appr3 = state.appr3 ?? recoveredLayout.appr3 ?? t('default.appr3', '승인');
+  const docTitle = state.docTitle ?? recoveredLayout.docTitle ?? documentT('default.docTitle', '위험성평가표 (JSA)');
+  const appr1 = state.appr1 ?? recoveredLayout.appr1 ?? documentT('default.appr1', '작성');
+  const appr2 = state.appr2 ?? recoveredLayout.appr2 ?? documentT('default.appr2', '검토');
+  const appr3 = state.appr3 ?? recoveredLayout.appr3 ?? documentT('default.appr3', '승인');
   const savedSignatureRows = state.savedSignatureRows || recoveredLayout.savedSignatureRows || 1;
   const documentBlocks = normalizeDocumentBlocks(state.documentBlocks || recoveredLayout.documentBlocks || []);
   const savedColumnOverrides = state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {};
@@ -227,6 +229,7 @@ function ExportEditor({ recoveredDraft }) {
     };
 
   const renderUnifiedHeader = () => {
+    const t = documentT;
     const commonTdStyle = { border: '1px solid #888', padding: '2px 6px 10px 6px', fontSize: isEnglish ? '10px' : '11px', textAlign: 'center', verticalAlign: 'middle', color: '#000', wordBreak: 'break-word' };
     const labelTdStyle = { ...commonTdStyle, backgroundColor: '#f2f2f2', fontWeight: 'bold', whiteSpace: isEnglish ? 'normal' : 'nowrap', lineHeight: '1.2' };
     const checkboxItemStyle = { display: 'inline-block', marginRight: '10px', whiteSpace: 'nowrap' };
@@ -295,7 +298,7 @@ function ExportEditor({ recoveredDraft }) {
     );
   };
 
-  const renderSignatureTable = () => <DocumentSignatures participants={participants} rows={savedSignatureRows} orientation={savedOrientation} />;
+  const renderSignatureTable = () => <DocumentSignatures documentLocale={documentLocale} participants={participants} rows={savedSignatureRows} orientation={savedOrientation} />;
 
   const getColumnMeta = (key) => {
     const custom = savedUserColumns.find(u => u.id === key);
@@ -312,7 +315,8 @@ function ExportEditor({ recoveredDraft }) {
   };
 
   const renderDataTable = () => {
-      const isEuroLang = ['en', 'fr', 'de'].some(lang => i18n.language?.startsWith(lang));
+      const t = documentT;
+      const isEuroLang = ['en', 'fr', 'de'].some(lang => documentLocale?.startsWith(lang));
 
       const commonTdStyle = { 
         border: '1px solid #888', 
@@ -456,7 +460,7 @@ function ExportEditor({ recoveredDraft }) {
             {/* 가상의 A4 용지 영역 */}
         <div className="reportPaper theme-paper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
           {hasDesignerLayout ? (
-            <DocumentContent formData={formData} participants={participants} analysisData={analysisData}
+            <DocumentContent documentLocale={documentLocale} formData={formData} participants={participants} analysisData={analysisData}
               layout={{ documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes }}
               stepPhotos={stepPhotos} onPhotoClick={index => { setActivePhotoRow(index); fileInputRef.current.click(); }} />
           ) : (

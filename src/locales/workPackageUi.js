@@ -1,3 +1,5 @@
+import { workPackageTranslations } from './workPackageText.js';
+import { REGIONAL_CATALOG } from '../utils/regionalCatalog.js';
 const en = {
   intro: "Prepare your repeat-work documents once, then enter today's details and print them together.",
   workflow: "How to use document packages",
@@ -12,7 +14,7 @@ const en = {
   templatesHelp: "Individual forms saved from a package editor. Add them to other packages from the saved-materials section.",
   outputsHelp: "PDFs and input records archived when you output a work. Use a package for a new day's work.",
   packagesEmpty: "Create your first document package",
-  packagesEmptyHelp: "Start with a work permit, TBM record and checklist. Add your JSA or drawings as needed.",
+  packagesEmptyHelp: "Choose a work country and starter forms, or use generic forms. Add your JSA and drawings as needed.",
   drawingsEmpty: "No drawings uploaded yet",
   drawingsEmptyHelp: "Use Upload new original above. You can reuse a drawing in several packages.",
   templatesEmpty: "No personal forms yet",
@@ -25,7 +27,7 @@ const en = {
   basicTitle: "Package details",
   basicHelp: "Save common defaults here. Dates, workers and measurements are entered separately for each work.",
   addTitle: "Add documents and drawings",
-  addHelp: "The three starter forms are included. Add only what you need; arrange the output order below.",
+  addHelp: "Add the forms and saved materials you need, then arrange the output order below.",
   blankForms: "Add a blank form",
   savedMaterials: "Add saved materials",
   noJsa: "No saved JSA available",
@@ -189,7 +191,7 @@ const ko = {
   templatesHelp: "묶음 편집 화면에서 ‘개인 양식으로 저장’한 서류입니다. 다른 묶음의 ‘저장한 자료 가져오기’에서 추가할 수 있습니다.",
   outputsHelp: "작업할 때 출력한 PDF와 당시 입력값입니다. 다른 날 작업하려면 ‘서류 묶음’에서 다시 시작하세요.",
   packagesEmpty: "첫 서류 묶음을 만들어 보세요",
-  packagesEmptyHelp: "작업허가서·TBM 기록지·안전점검표가 기본으로 들어갑니다. 필요한 JSA와 도면을 더해 보세요.",
+  packagesEmptyHelp: "작업 국가에 맞는 기본 양식이나 범용 양식을 선택하세요. 필요한 JSA와 도면도 추가할 수 있습니다.",
   drawingsEmpty: "아직 등록한 도면이 없습니다",
   drawingsEmptyHelp: "위의 ‘새 원본 업로드’에서 등록하세요. 하나의 도면을 여러 서류 묶음에 사용할 수 있습니다.",
   templatesEmpty: "아직 저장한 개인 양식이 없습니다",
@@ -202,7 +204,7 @@ const ko = {
   basicTitle: "묶음 기본 정보",
   basicHelp: "반복해서 사용할 공통 정보를 저장합니다. 날짜·작업자·실측값은 다음 화면에서 작업마다 입력합니다.",
   addTitle: "서류·도면 추가",
-  addHelp: "기본 서류 3종이 준비되어 있습니다. 필요한 것만 더하고, 아래에서 출력 순서를 정하세요.",
+  addHelp: "필요한 양식과 저장된 자료를 추가하고, 아래에서 출력 순서를 정하세요.",
   blankForms: "빈 서류 추가",
   savedMaterials: "저장한 자료 가져오기",
   noJsa: "저장된 JSA가 없습니다",
@@ -354,5 +356,11 @@ const ko = {
   next: "다음",
 };
 export function getWorkPackageUi(locale = "en-US") {
-  return locale.startsWith("ko") ? ko : en;
+  const lang = locale.split('-')[0];
+  const base = lang === 'ko' ? ko : lang === 'en' ? en : workPackageTranslations[lang] || en;
+  const region = ({'en-US':'US','en-CA':'CA','en-CA-AB':'CA-AB','en-CA-ON':'CA-ON','en-CA-BC':'CA-BC','fr-CA-QC':'CA-QC','fr-CA':'CA-QC','de-DE':'DE','ja-JP':'JP','fr-FR':'FR','it-IT':'IT','es-ES':'ES','ar-SA':'SA','pt-BR':'BR','ru-RU':'RU'})[locale];
+  const profile = REGIONAL_CATALOG[region];
+  if (profile) return { ...base, jsa: profile.titles.risk_assessment, ptw: profile.titles.permit_to_work, tbm: profile.titles.toolbox_talk, checklist: profile.titles.inspection };
+  if (lang === 'en') return { ...base, ptw: 'Permit to Work', tbm: locale === 'en-SG' ? 'Toolbox Meeting' : locale === 'en-AU' ? 'Pre-start / Toolbox Talk' : 'Toolbox Talk' };
+  return base;
 }

@@ -15,7 +15,12 @@ import {
 import WorkPreview from "./WorkPreview";
 import AnnotationEditor from "./AnnotationEditor";
 import WorkFlowGuide from "./WorkFlowGuide";
+import { useTranslation } from 'react-i18next';
+import { workContextUi, documentDirection } from '../../utils/workJurisdiction';
+import { regionalContextMismatch } from '../../utils/regionalWorkTemplates';
 export default function WorkRun({ record, drawings, ui, onBack }) {
+  const { i18n } = useTranslation();
+  const regionUi = workContextUi(i18n.language);
   const [run, setRun] = useState(() => startWork(record)),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
@@ -25,7 +30,7 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
     lock = useRef(false),
     pendingOutput = useRef(null);
   const edit = (fn) => {
-    setRun(fn);
+    setRun(r => ({ ...fn(r), regionalReviewed: false }));
     setArtifact(null);
     pendingOutput.current = null;
   };
@@ -47,6 +52,8 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
     setBusy(true);
     setMessage("");
     try {
+      if (regionalContextMismatch(run.documents, run.context)) throw Error('WORK_CONTEXT_MISMATCH');
+      if (run.documents.some(d => d.enabled && d.regional) && !run.regionalReviewed) throw Error('WORK_REGIONAL_REVIEW');
       if (!outputReady(run)) throw Error("WORK_REVIEW_REQUIRED");
       let ready = artifact;
       if (!ready) {
@@ -87,7 +94,7 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
       setMessage(ui.printReady);
     } catch (error) {
       setMessage(
-        error.message === "WORK_REVIEW_REQUIRED"
+        error.message === 'WORK_CONTEXT_MISMATCH' ? regionUi.mismatch : error.message === 'WORK_REGIONAL_REVIEW' ? regionUi.reviewNeeded : error.message === "WORK_REVIEW_REQUIRED"
           ? ui.needReview
           : error.message === "WORK_RENDER_PENDING"
             ? ui.loading
@@ -127,6 +134,7 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
         </h2>
       </div>
       <p className="jsa-notice">{ui.runtimeHelp}</p>
+      {regionalContextMismatch(run.documents, run.context) && <p role="alert">{regionUi.mismatch}</p>}
       {message && <p role="status">{message}</p>}
       <fieldset disabled={busy}>
         <legend>2. {ui.fillTitle}</legend>
@@ -178,7 +186,7 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
         {run.documents
           .filter((d) => d.enabled && d.type === "form")
           .map((doc) => (
-            <details className="work-block" key={doc.id} open>
+            <details className="work-block" key={doc.id} dir={documentDirection(doc.regional?.context.documentLocale || run.context?.documentLocale || i18n.language)} open>
               <summary>{doc.title}</summary>
               {doc.blocks.map((b) =>
                 b.type === "field" ? (
@@ -190,6 +198,7 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
                       <div className="work-input-row" key={r.id}>
                         <span>
                           {ui.row} {i + 1}
+                          <small className="work-row-context">{b.columns.filter(c => c.mode === 'standard').slice(0, 2).map(c => r.values?.[c.id]).filter(Boolean).join(' · ')}</small>
                         </span>
                         {b.columns.map((c) =>
                           fieldInput(c, [doc.id, b.id, r.id, c.id].join(":")),
@@ -229,6 +238,9 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
       <h2>3. {ui.outputTitle}</h2>
       <p>{ui.previewHelp}</p>
       <p>{ui.archiveHelp}</p>
+      {run.documents.some(d => d.enabled && d.regional) && <label className="work-region-review">
+        <input type="checkbox" disabled={busy} checked={run.regionalReviewed === true} onChange={e => { setRun(r => ({ ...r, regionalReviewed: e.target.checked })); setArtifact(null); pendingOutput.current = null; }} />{regionUi.review}
+      </label>}
       {!run.documents.some((d) => d.enabled) && <p role="status">{ui.noDocuments}</p>}
       <div className="work-tools">
         <button
