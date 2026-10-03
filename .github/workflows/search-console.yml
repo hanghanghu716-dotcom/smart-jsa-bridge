@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify collector
+        run: node --test scripts/search-console-collector.test.js
       - name: Collect aggregate search metrics
         env:
           SUPABASE_URL: https://aajvezmhyrdawxxbulqz.supabase.co
