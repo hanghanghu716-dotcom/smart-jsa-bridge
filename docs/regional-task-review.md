@@ -1,8 +1,8 @@
 # 작업별 세부 요건·전문용어 검수 기록
 
-기초 검수일: 2026-10-03. 추가 검수일: 2026-10-04. 현재 작업별 PTW 항목 버전 `2026-10-04.2`.
+기초 검수일: 2026-10-03. 추가 검수일: 2026-10-04. 현재 작업별 PTW 항목 버전 `2026-10-04.3`.
 
-최신 추가 결과는 [②·③ 추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다. 16개 국가/지역·18개 작업 조합에 37개 입력란을 추가하고 10개 언어에 반영했다. 아래 기초 검수와 이번 추가 검수의 범위를 합쳐도 모든 현행 법률·전문용어를 전수 검수한 것은 아니다.
+최신 추가 결과는 [②·③ 추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다. 18개 국가/지역·22개 작업 조합에 50개 입력란을 추가하고 10개 언어에 반영했다. 아래 기초 검수와 이번 추가 검수의 범위를 합쳐도 모든 현행 법률·전문용어를 전수 검수한 것은 아니다.
 
 ## 단계 구분
 
@@ -38,7 +38,7 @@
 | 미국 | 1910.146의 authorized entrant / attendant / entry supervisor, 작업 시간 범위·취소·구조·별도 허가 참조를 구분 | 일반산업 기준을 건설/조선/농업에 전용하지 않음. State Plan 차이·업종 예외·특수 전기작업은 미완료 |
 | 캐나다 공통 | CCOHS의 entry permit·attendant, 에너지 차단, 추락/구조계획 및 hot work 참고 | CCOHS 안내를 연방·전 주의 단일 법률로 표시하지 않음 |
 | Alberta | Part 5에서 confined/restricted space 구분, entry permit·tending worker 역할 확인 | 나머지 3개 작업의 주별 수치·면허·세부 조항 대조 미완료 |
-| Ontario | 10/4 공식 안내 색인 본문으로 교대 전 확인·서명/게시의 차이·기록 보존 확인 및 입력란 추가 | 통합 규정 직접 열람 미완료. 다른 작업은 CCOHS 일반 지침 범위 |
+| Ontario | 10/4 공식 e-Laws API로 현행 632/05 전문 확보. 사전 평가 서명과 허가 교대 확인, 다중 고용주 조정·구조·보존 기록 보강 | 밀폐 작업 관련 조항 범위 검수. 다른 작업은 CCOHS 일반 지침 범위 |
 | British Columbia | Part 9의 허가 적용 조건과 변경/교대 재승인, responsible supervisor·standby person 구분 | 허가 대상 판단 자동화, 대기인 배치의 위험도별 예외 및 다른 작업의 주별 요건은 미완료 |
 | Québec | `espace clos`, 전기 `cadenassage` 사용. 프랑스 `espace confiné`/`consignation`과 별도 표시 | RSST/CSTC 적용, 업종·연방 관할 및 고소·화기 세부 의무 미완료 |
 | 독일 | DGUV의 Freimessen·Sicherungsposten·Erlaubnisschein, Elektrofachkraft·5대 안전수칙, Brandwache, Rückhalte/Auffangsystem 구분 | 모든 전압·설비의 예외, 해당 DIN/VDE 판본·업종 적용 전수 대조는 미완료 |
@@ -46,9 +46,9 @@
 | 프랑스 | Permis de pénétrer·surveillant·secours, Habilitation électrique·consignation·VAT, Permis de feu 사용 | 교육 수료와 고용주의 habilitation을 동일시하지 않음. CATEC 적용 분야·특수 작업 및 NF 전문 대조 미완료 |
 | 이탈리아 | DPR 177/2011의 업체 자격과 도급 조정, 전기 PES/PAV 및 활선 적합성, 집단 추락방호, 화기 전후 점검 연결 | 현행 교육 협약·CEI 판본의 세부 자격·예외 전수 대조 미완료 |
 | 스페인 | 밀폐공간 Autorización de trabajo·recurso preventivo·외부 감시 역할, 전기 autorizado/cualificado·supresión de la tensión 구분 | NTP를 법정 표준서식으로 표시하지 않음. 작업 조건별 필수 역할·법정 허가 판정 미완료 |
-| 사우디 | HRSD 안내의 아랍어 밀폐·고소·화기·전기 용어를 연결하고 현장 확인 항목 제공 | 업종·면허·발주처 절차와 현행 의무 요건 대조 미완료. 네 작업 모두 부분 검수 상태로 출력 |
+| 사우디 | HRSD 안내의 아랍어 밀폐·고소·화기·전기 용어와 비계 점검·현장 절차 확인 항목 제공 | 업종·면허·발주처 절차와 현행 의무 요건 대조 미완료. 네 작업 모두 부분 검수 상태로 출력 |
 | 브라질 | NR-33 PET·supervisor de entrada·vigia·trabalhador autorizado, NR-10 자격/권한·정전 순서 구분 | 10/4 추가 검수에서 NR-35 교육·사다리 개정 원문과 NR-10의 2027 시행일 구분을 반영. 현장별 예외 판정·신판 전체 대조는 미완료. NR-34는 해양·조선 범위로 한정 |
-| 러시아 | ОЗП·наряд-допуск·наблюдающий, 전기 допускающий 등 분야별 명칭을 연결 | 원문 페이지와 최신 개정본 대조 미완료. 네 작업 모두 historical reference/부분 검수 상태. 과거 명령을 현행 법률 확정값으로 넣지 않음 |
+| 러시아 | ОЗП·наряд-допуск·наблюдающий, 전기 допускающий 등 명칭과 실제 작업일의 적용 판본 확인란. 공식 고용센터 공지로 3개 명령의 연장 확인 | 최신 개정 전문 대조 미완료. 과거 게시문과 공식 연장 공지의 근거 종류를 구별하며 네 작업 모두 부분 검수 유지 |
 
 ## 검수에서 확인한 주요 근거
 
@@ -58,7 +58,7 @@
 - [INSST 밀폐공간](https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados): 작업허가, recurso preventivo, 구조 수단과 서면 절차를 구분했다.
 - [CNESST 전기설비](https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques)와 [INRS habilitation](https://www.inrs.fr/risques/electriques/habilitation-electrique): 프랑스어가 같아도 관할별 관리 용어·권한 체계는 별도다.
 - [MTE 2026-09-02 안내](https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais): 기초 검수에서 NR-35 교육 방식과 고정 수직사다리 변경을 확인했지만 관보 접근은 실패했다. 10/4 후속 검수에서는 MTE의 법령 PDF를 확보했다. 시행·경과조건과 남은 해석 범위는 [추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다.
-- 러시아 [2025 개정 공표 위치](https://publication.pravo.gov.ru/document/0001202505300025)는 접근 시간이 초과됐다. 원래 Минтруд 페이지의 과거 종료일을 현재 만료라고 단정하지도, 개정 전문을 읽었다고 처리하지도 않았다.
+- 러시아 [2025 개정 공표 위치](https://publication.pravo.gov.ru/document/0001202505300025)는 접근 시간이 초과됐다. 이후 공식 고용센터 공지로 해당 3개 명령의 연장은 확인했으며 [후속 기록](regional-requirements-review-20261004.md)에 추가했다. 개정 전문 검수 완료로 처리하지 않는다.
 
 ## 완료 판정과 다음 검수 단위
 

@@ -83,7 +83,9 @@ test('unresolved current-law reviews remain explicit in saved data and printed f
     assert.ok(doc.blocks.filter(b => b.field?.key.endsWith('.notice')).every(b => b.field.value.includes(taskSafetyText('en-US','pending'))));
   }
   assert.equal(taskReview(ctx('BR'), 'height').status, 'partial-source-review');
-  assert.ok(taskReview(ctx('RU'), 'electrical').sources.every(s => s.basis === 'historical-publication'));
+  const russian = taskReview(ctx('RU'), 'electrical');
+  assert.ok(russian.sources.some(s => s.basis === 'historical-publication'));
+  assert.ok(russian.sources.some(s => s.basis === 'official-notice'));
   assert.equal(taskReview(ctx('AU'), 'confined').sources[0].basis, 'model-code');
 });
 test('all specialist wording supports ten languages and follows document language independently', () => {
@@ -214,7 +216,7 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.equal(us.sources.find(s => s.url.includes('1910.146')).checkedAt, '2026-10-04');
   assert.equal(taskReview(ctx('US'), 'hot').requirements, undefined);
   for (const country of ['SA', 'RU']) {
-    assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review' && !r.requirements));
+    assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review'));
   }
   const doc = make('CA-BC', ['confined']);
   const original = { id: 'historical', data: cleanPackage({ context: ctx('CA-BC'), documents: [doc] }) };
@@ -225,4 +227,50 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.ok(!original.data.documents[0].regional.taskReviews[0].requirements.fields.includes('changed'));
   us.requirements.fields.push('mutated');
   assert.ok(!REGIONAL_REQUIREMENT_REVIEW.US.confined.fields.includes('mutated'));
+});
+
+test('Ontario signed assessment is distinct from shift permit verification and retains current statutory evidence', () => {
+  const doc = make('CA-ON', ['confined']);
+  const keys = doc.blocks.flatMap(b => b.field ? [b.field.key] : []);
+  for (const key of ['assessmentEndorsement', 'shiftVerification', 'planReference', 'trainingEvidence', 'employerCoordination', 'rescueReadiness', 'atmosphericBasis']) {
+    assert.ok(keys.includes('confined.' + key));
+    const f = doc.blocks.find(b => b.field?.key === 'confined.' + key).field;
+    assert.equal(f.value, '');
+    assert.equal(f.mode, 'runtime');
+  }
+  assert.ok(!keys.includes('confined.entryAuthorisation'));
+  assert.equal(doc.regional.taskReviews[0].status, 'scoped-source-review');
+  assert.ok(doc.regional.taskReviews[0].sources.some(s => s.basis === 'regulation' && s.url.endsWith('/050632')));
+  const note = doc.blocks.find(b => b.field?.key === 'confined.notice').field.value;
+  assert.match(note, /assessor's signature and date/);
+  assert.match(note, /before multi-employer work/);
+  assert.match(note, /longer of one year/);
+  assert.ok(!make('US', ['confined']).blocks.some(b => b.field?.key.endsWith('.employerCoordination')));
+});
+
+test('Quebec construction and Saudi scaffold guidance preserve limited applicability', () => {
+  const qc = make('CA-QC', ['confined'], 'fr-CA-QC');
+  assert.equal(qc.regional.taskReviews[0].status, 'partial-source-review');
+  assert.match(qc.blocks.find(b => b.field?.key === 'confined.notice').field.value, /RSST.*CSTC/);
+  assert.ok(qc.blocks.some(b => b.field?.key === 'confined.jointHazardRecord'));
+  const sa = make('SA', ['height'], 'ar-SA');
+  assert.equal(sa.regional.taskReviews[0].status, 'partial-source-review');
+  assert.ok(sa.blocks.some(b => b.field?.key === 'height.scaffoldInspection'));
+  assert.ok(sa.regional.taskReviews[0].requirements.sources.every(s => s.basis === 'official-guidance'));
+  assert.equal(taskReview(ctx('SA'), 'confined').requirements, undefined);
+  assert.ok(!make('GB', ['height']).blocks.some(b => b.field?.key.endsWith('.scaffoldInspection')));
+});
+
+test('Russian extension notice confirms duration only and never upgrades all topics to current-law review', () => {
+  for (const topic of ['height', 'confined', 'electrical']) {
+    const doc = make('RU', [topic], 'ru-RU');
+    const review = doc.regional.taskReviews[0];
+    assert.equal(review.status, 'partial-source-review');
+    assert.match(review.requirements.sources[0].scope, /duration only/);
+    const notice = doc.blocks.find(b => b.field?.key === topic + '.notice').field.value;
+    assert.match(notice, /2031-09-01/);
+    assert.ok(notice.includes(taskSafetyText('ru-RU', 'pending')));
+    assert.equal(doc.blocks.find(b => b.field?.key === topic + '.applicableEdition').field.value, '');
+  }
+  assert.equal(taskReview(ctx('RU'), 'hot').requirements, undefined);
 });

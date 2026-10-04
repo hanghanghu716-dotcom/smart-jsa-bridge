@@ -9,6 +9,10 @@ const finding = (noteKey, fields, sources, additionalNotes = []) => ({
   status: 'source-backed-prompts', noteKey, additionalNotes, fields, sources,
 });
 const br = 'https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/';
+const ruExtension = () => finding('ruExtensionNotice', ['applicableEdition'], [source(
+  'Каневской ЦЗН · Приказ 287н, продление 782н / 902н / 903н',
+  'https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/',
+  'Official municipal employment-centre notice, 2025-09-03: extension to 2031-09-01 effective 2025-09-01. Corroborates duration only; amendment full text and subsequent changes remain unreconciled', 'official-notice')]);
 
 export const REGIONAL_REQUIREMENT_REVIEW = {
   KR: { confined: finding('krEntryNotice', ['permitDisplay'], [source(
@@ -51,22 +55,36 @@ export const REGIONAL_REQUIREMENT_REVIEW = {
     'Alberta OHS Code · 47, 56, 58',
     'https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/',
     'Confined/restricted-space distinction; competent-person permit signature; tending worker; retention one year or two after incident/unplanned event', 'regulation')]) },
-  'CA-ON': { confined: finding('onEntryNotice', ['shiftVerification', 'permitRecord'], [
+  'CA-ON': { confined: finding('onEntryNotice', ['shiftVerification', 'permitRecord', 'employerCoordination', 'assessmentEndorsement', 'planReference', 'trainingEvidence', 'rescueReadiness', 'atmosphericBasis'], [
     source('Ontario · Entry permit, section 10',
       'https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit',
-      'Official indexed guidance read: competent-person verification before each shift; signature/entrance posting not separately mandatory. Consolidated statute direct access unavailable'),
+      'Competent-person verification before each shift; permit signature/entrance posting not separately mandatory. Assessment signature remains required under s6(7)'),
     source('Ontario · Confined space documents',
       'https://www.ontario.ca/document/guideline-working-confined-spaces/documents',
       'Official indexed guidance: non-project longer of one year/two most recent records; construction one year after project completion; programme retained separately'),
-  ]) },
+    source('Ontario · Coordination document, section 4',
+      'https://www.ontario.ca/document/guideline-working-confined-spaces/coordination-document',
+      'Multi-employer work in the same space or related work: lead employer/constructor prepares coordination before work; does not transfer general training, PPE or record duties'),
+    source('Ontario · O. Reg. 632/05, current e-Laws text',
+      'https://www.ontario.ca/laws/regulation/050632',
+      'Official public e-Laws API returned state=current, consolidation from 2016-07-01, last amendment 346/15. Sections 4–21 read: coordination, signed assessment, plan, training, shift verification, immediate rescue, atmospheric criteria and retention', 'regulation'),
+  ], ['onCoordinationNotice', 'onAssessmentNotice']) },
   'CA-BC': { confined: finding('bcEntryNotice', ['permitTrigger', 'shiftAuthorisation', 'permitRecord'], [source(
     'WorkSafeBC · 9.13–9.16',
     'https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces',
     'Conditional permit triggers; responsible-supervisor signature on crew/shift/supervisor changes; signed permit kept at least one year', 'regulation')]) },
-  'CA-QC': { confined: finding('qcEntryNotice', ['restartReview', 'rescueLeadership'], [source(
+  'CA-QC': { confined: finding('qcEntryNotice', ['restartReview', 'rescueLeadership', 'applicableFramework', 'jointHazardRecord'], [source(
     'Québec · RSST, 308–309',
     'https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2C%20R.%2013.pdf',
-    'Indexed official consolidation dated 2025-07-15: RSST 308–309, reassessment and rescue leader; current HTML direct access unavailable, CSTC applicability remains separate', 'regulation')]) },
+    'Indexed official consolidation dated 2025-07-15: RSST 308–309, reassessment and rescue leader; current HTML direct access unavailable, CSTC applicability remains separate', 'regulation'), source(
+    'Québec · CSTC, 3.21.1–3.21.2',
+    'https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2CR.4.pdf',
+    'Indexed official consolidation dated 2025-09-01: construction principal contractor jointly with employer identifies equipment, services, hazards, contaminants and rescue in writing, available on site. Current consolidation not obtained', 'regulation')], ['qcFrameworkNotice']) },
+  SA: { height: finding('saScaffoldNotice', ['scaffoldInspection', 'siteProcedure'], [source(
+    'HRSD · Guidance Manual on the Use of Scaffolding, p.6',
+    'https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady-hwl-astkhdam-alsqalat-anjlyzy.pdf',
+    'Ministry guidance: pre-use specialist inspection, daily competent-person checks, access, exclusion zone and rescue. Not evidence of a universal statutory permit or licence; no numerical clearance default')]) },
+  RU: { height: ruExtension(), confined: ruExtension(), electrical: ruExtension() },
   DE: { confined: finding('deEntryNotice', ['measurementCompetence'], [source(
     'DGUV · 113-004, 4.3.5.3–4.3.5.5',
     'https://publikationen.dguv.de/widgets/pdf/download/article/915',
