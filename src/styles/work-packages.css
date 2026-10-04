@@ -284,3 +284,7 @@
 .bundle-paper section > table tbody tr {
   height: 36px;
 }
+.work-recovery, .work-storage { margin-block: 16px; padding: 16px; overflow-wrap: anywhere; }
+.work-recovery p, .work-storage p { margin: 8px 0; }
+.work-recovery .work-tools { gap: 12px; flex-wrap: wrap; }
+@media print { .work-recovery, .work-storage { display: none; } }

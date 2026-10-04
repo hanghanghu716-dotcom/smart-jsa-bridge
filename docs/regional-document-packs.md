@@ -1,6 +1,6 @@
 # Regional document packs — implementation status
 
-Updated: 2026-10-03. Scope: every currently supported locale — 14 countries, 18 country/region profiles, 10 languages.
+Updated: 2026-10-04. Scope: every currently supported locale — 14 countries, 18 country/region profiles, 10 languages.
 
 ## Progress
 
@@ -8,7 +8,7 @@ Updated: 2026-10-03. Scope: every currently supported locale — 14 countries, 1
 2. Regional starter forms: 89 editable definitions across all 18 profiles. Basic implementation is complete; detailed requirements review remains in progress. Four opt-in PTW task sections and evidence scopes are implemented; see [task review findings](regional-task-review.md). These are site-review drafts, not regulator-issued or legally certified forms.
 3. Localization: all supported languages are connected. Specialist terms are being reviewed; regional differences and unresolved scope are tracked in the task review report. Translation presence tests do not certify terminology accuracy.
 4. Save / copy / output: regional names and fields remain attached to the document; country changes do not overwrite existing forms. Incompatible selected forms block output until replaced or excluded. Output snapshots retain context and template version. Generic and legacy packages remain supported. JSA mapping retains standard steps, hazards, controls and original scores, while excluding prior measurements, dates, people and signatures.
-5. Real-user verification: actual-account save and cross-account access tests remain incomplete. Isolated browser tests validate code and output but do not complete this stage. Legal/requirements review belongs to stage 2; specialist terminology review belongs to stage 3. The earlier basic-form source comparison is recorded in [the basic-form review report](regional-document-review.md).
+5. Real-user verification: on 2026-10-04 two actual test accounts passed owner save/re-login restoration and cross-account/anonymous denial checks for packages, forms, drawings and outputs, using normal user Auth/Data/Storage APIs. The browser also saved a package and generated/archived a private PDF. Local UI draft restoration and save/clear were verified; concurrency and fresh-work reset were checked in the isolated browser fixture. Exhaustive regional-form output, physical printing and live quota-boundary scenarios remain unverified. See [work-package verification scope](work-packages.md). Legal/requirements review remains in stage 2; specialist terminology review remains in stage 3. The earlier basic-form source comparison is recorded in [the basic-form review report](regional-document-review.md).
 
 ## Storage
 

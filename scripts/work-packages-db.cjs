@@ -172,6 +172,21 @@ const { PGlite } = require(process.env.PGLITE_MODULE || "@electric-sql/pglite");
       (await db.query("select * from storage.objects")).rows.length,
       0,
     );
+    await db.exec('reset role');
+    const usageMigration = fs.readdirSync(path.join(__dirname, '../supabase/migrations')).find(f => f.endsWith('_work_storage_summary.sql'));
+    await db.exec(fs.readFileSync(path.join(__dirname, '../supabase/migrations', usageMigration), 'utf8'));
+    await db.exec('set role authenticated');
+    await actor(1);
+    const usage = (await db.query('select public.work_storage_summary() as usage')).rows[0].usage;
+    assert.equal(usage.files, 2); assert.equal(usage.bytes, 200); assert.equal(usage.unregisteredFiles, 0);
+    await db.query("insert into storage.objects(bucket_id,name,metadata) values('work-bundle-assets',$1,'{\"size\":23}')", [id(1) + '/drawings/unregistered/source.png']);
+    const pending = (await db.query('select public.work_storage_summary() as usage')).rows[0].usage;
+    assert.equal(pending.unregisteredFiles, 1); assert.equal(pending.unregisteredBytes, 23);
+    await actor(2);
+    assert.equal((await db.query('select public.work_storage_summary() as usage')).rows[0].usage.bytes, 0);
+    await db.exec('reset role; set role anon'); await actor(null);
+    await assert.rejects(db.query('select public.work_storage_summary()'), /permission denied/);
+    console.log('PASS: owner-scoped file totals, unregistered uploads and anonymous usage denial.');
     console.log(
       "PASS: package isolation, immutable originals/archives, private Storage, cross-owner references, impersonation, page bounds, and retained output snapshots.",
     );

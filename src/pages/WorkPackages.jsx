@@ -34,6 +34,9 @@ import WorkRun from "../components/work/WorkRun";
 import ArchivedOutput from "../components/work/ArchivedOutput";
 import WorkFlowGuide from "../components/work/WorkFlowGuide";
 import WorkContext from '../components/work/WorkContext';
+import RecoveryNotice from '../components/work/RecoveryNotice';
+import useWorkRecovery from '../hooks/useWorkRecovery';
+import WorkStorageUsage from '../components/work/WorkStorageUsage';
 import RegionalTemplatePicker from '../components/work/RegionalTemplatePicker';
 import { workContext, workContextUi } from '../utils/workJurisdiction';
 import { regionalContextMismatch } from '../utils/regionalWorkTemplates';
@@ -57,6 +60,17 @@ export default function WorkPackages() {
     ui = getWorkPackageUi(i18n.language),
     location = useLocation();
   const [archive, setArchive] = useState(null);
+  const [ownerId, setOwnerId] = useState(null);
+  const currentOwner = useRef(null);
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const next = session?.user?.id || null;
+      if (currentOwner.current !== next) { setRecord(null); setArchive(null); setState(null); }
+      currentOwner.current = next;
+      setOwnerId(next);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
   const [tab, setTab] = useState("packages"),
     [page, setPage] = useState(0),
     [state, setState] = useState(null),
@@ -65,7 +79,7 @@ export default function WorkPackages() {
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
   const lock = useRef(false),
-    key = tab + ":" + page + ":" + refresh;
+    key = ownerId + ":" + tab + ":" + page + ":" + refresh;
   useEffect(() => {
     let active = true;
     workUser()
@@ -125,10 +139,12 @@ export default function WorkPackages() {
         <h1>{ui.title}</h1>
         <p className="work-intro">{ui.intro}</p>
         <p className="work-privacy">{ui.privateHelp}</p>
+        {ownerId && <WorkStorageUsage key={ownerId + ':' + refresh} locale={i18n.language} />}
         {message && <p role="alert">{message}</p>}
         {record ? (
           <PackageEditor
-            key={record.id || "new"}
+            key={ownerId + ':' + (record.id || "new")}
+            ownerId={ownerId}
             initial={record}
             ui={ui}
             onBack={() => {
@@ -208,9 +224,11 @@ export default function WorkPackages() {
                         <button
                           disabled={busy}
                           onClick={() =>
-                            run(async () =>
-                              setRecord(await getWorkPackage(row.id)),
-                            )
+                            run(async () => {
+                              const requestedOwner = currentOwner.current;
+                              const loaded = await getWorkPackage(row.id);
+                              if (currentOwner.current === requestedOwner) setRecord(loaded);
+                            })
                           }
                         >
                           {ui.open}
@@ -380,7 +398,7 @@ function DrawingUpload({ ui, onSaved }) {
     </details>
   );
 }
-function PackageEditor({ initial, ui, onBack }) {
+function PackageEditor({ initial, ui, onBack, ownerId }) {
   const { i18n } = useTranslation();
   const regionUi = workContextUi(i18n.language);
   const [record, setRecord] = useState(() => clone(initial)),
@@ -393,6 +411,9 @@ function PackageEditor({ initial, ui, onBack }) {
     [refresh, setRefresh] = useState(0);
   const lock = useRef(false),
     dirty = JSON.stringify(record) !== saved;
+  const recovery = useWorkRecovery({ owner: ownerId, kind: 'package', id: record.id || 'new',
+    base: record.updated_at || '', value: record, dirty,
+    restore: value => { setRecord(value); setSelected(value.data.documents[0]?.id || ''); } });
   useEffect(() => {
     const h = (e) => {
       if (dirty) {
@@ -487,6 +508,7 @@ function PackageEditor({ initial, ui, onBack }) {
           ? duplicatePackage(record, record.name, record.version_name)
           : record,
       );
+      await recovery.clear().catch(() => {});
       setRecord(value);
       setSaved(JSON.stringify(value));
       setMessage(ui.saved);
@@ -497,14 +519,17 @@ function PackageEditor({ initial, ui, onBack }) {
     return (
       <WorkRun
         record={record}
+        ownerId={ownerId}
         drawings={library.drawings}
         ui={ui}
         onBack={() => setWorking(false)}
       />
     );
+  if (recovery.blocked) return <><button onClick={onBack}>{ui.backPackages}</button><RecoveryNotice recovery={recovery} kind="package" /></>;
   return (
     <div className={busy ? "package-editor work-busy" : "package-editor"}>
       <WorkFlowGuide ui={ui} current={0} />
+      <RecoveryNotice recovery={recovery} kind="package" />
       <div className="work-tools work-editor-actions">
         <button
           disabled={busy}
