@@ -4,9 +4,9 @@ export const REQUIREMENT_REVIEW_DATE = '2026-10-04';
 const source = (title, url, scope, basis = 'official-guidance') => ({
   title, url, scope, basis, checkedAt: REQUIREMENT_REVIEW_DATE,
 });
-const finding = (noteKey, fields, sources) => ({
+const finding = (noteKey, fields, sources, additionalNotes = []) => ({
   checkedAt: REQUIREMENT_REVIEW_DATE,
-  status: 'source-backed-prompts', noteKey, fields, sources,
+  status: 'source-backed-prompts', noteKey, additionalNotes, fields, sources,
 });
 const br = 'https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/';
 
@@ -19,10 +19,16 @@ export const REGIONAL_REQUIREMENT_REVIEW = {
     'HSENI · Approval of L101 (2022)',
     'https://www.hseni.gov.uk/news/hseni-approves-two-revised-acops-l101-and-l113-use-northern-ireland',
     'L101 third edition approved for Northern Ireland from 2022-03-21; NI regulations remain distinct')]) },
-  AU: { confined: finding('auEntryNotice', ['permitCloseout', 'permitRecord'], [source(
+  AU: { confined: finding('auEntryNotice', ['permitCloseout', 'permitRecord', 'stateCodeBasis'], [source(
     'Safe Work Australia · Confined spaces, November 2024',
     'https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf',
-    'Model WHS Regulations 67/77: written entry permit, exit acknowledgement and incident-dependent retention; local adoption required', 'model-code')]) },
+    'Model WHS Regulations 67/77: written entry permit, exit acknowledgement and incident-dependent retention; local adoption required', 'model-code'), source(
+    'Safe Work Australia · Jurisdictional adoption',
+    'https://www.safeworkaustralia.gov.au/law-and-regulation/legislation',
+    'Victoria has not adopted the model WHS laws; other jurisdictions can vary them and model amendments do not apply automatically'), source(
+    'WorkSafe Victoria · Confined spaces compliance code, December 2019',
+    'https://www.worksafe.vic.gov.au/resources/compliance-code-confined-spaces',
+    'Victoria-specific code under OHS Act 2004 / OHS Regulations 2017; do not treat the national model as Victoria law')], ['auJurisdictionNotice']) },
   SG: {
     confined: finding('sgEntryNotice', ['dailyReview', 'permitDisplay'], [source(
       'WSHC · Confined space permit review (7.6)',
@@ -81,10 +87,24 @@ export const REGIONAL_REQUIREMENT_REVIEW = {
     'BOE · RD 614/2001, Anexo II A.1',
     'https://boe.es/buscar/act.php?id=BOE-A-2001-11881',
     'Suppression/restoration of voltage: authorised workers; qualified workers for high voltage. Does not authorise live work', 'regulation')]) },
-  BR: { height: finding('brHeightNotice', ['routineClassification', 'shiftAuthorisation', 'permitRecord'], [source(
+  BR: { height: finding('brHeightNotice', ['routineClassification', 'shiftAuthorisation', 'permitRecord', 'trainingDelivery', 'ladderAssessment', 'transitionEvidence'], [source(
     'MTE · NR-35, 35.3.1(j), 35.5.7–35.5.8.2',
     br + 'normas-regulamentadora/normas-regulamentadoras-vigentes/nr-35-atualizada-2025-1.pdf',
-    'PDF includes Portaria 1259/2026: non-routine PT, shift/workday-limited validity, unchanged conditions/crew for revalidation, five-year records unless a specific NR differs. Training/ladder transition review remains open', 'regulation')]) },
+    'PDF includes Portaria 1259/2026: non-routine PT, shift/workday-limited validity, unchanged conditions/crew for revalidation, five-year records unless a specific NR differs', 'regulation'), source(
+    'MTE · Portaria 1.259/2026, arts. 1–9',
+    'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-1-259-alteracao-do-anexo-iii-da-nr-35.pdf',
+    'Effective publication 2026-07-16: in-person training; one-year initial-training transition; ladder-specific risk analysis, SPIQ competence, dated project evidence and staged implementation. No automatic exemption/deadline determination', 'regulation')], ['brHeightTransitionNotice']),
+    electrical: finding('brElectricalEditionNotice', ['applicableEdition'], [source(
+      'MTE · NR-10, current and forthcoming editions',
+      br + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10',
+      'Ministry identifies existing edition valid through 2027-05-31 and Portaria 737/2026 edition effective 2027-06-01'), {
+      ...source('MTE · Portaria 737/2026, arts. 3 and 5',
+        'https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-737-nova-nr-10.pdf',
+        'Forthcoming edition, not a current 2026 duty. Existing-installation extension applies only to 10.6.4(e), one year after this edition takes effect', 'regulation'),
+      effectiveFrom: '2027-06-01',
+      transition: { clause: '10.6.4(e)', scope: 'installations existing when Portaria takes effect', effectiveFrom: '2028-06-01' },
+    }]),
+  },
 };
 
 export function requirementReview(jurisdiction, topic) {

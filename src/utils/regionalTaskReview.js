@@ -1,7 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-04.1';
+export const TASK_REVIEW_VERSION = '2026-10-04.2';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.
@@ -77,7 +77,7 @@ export const TASK_REVIEW_SOURCES = {
   },
   SA: Object.fromEntries(TASK_TYPES.map(t => [t, [sa]])),
   BR: {
-    height: [ref('MTE · NR-35', brRoot + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35', 'Current publication hub; 2026 training/ladder changes still require clause-level reconciliation')],
+    height: [ref('MTE · NR-35', brRoot + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35', 'Publication hub; 2026 training/ladder provisions are covered by the dated requirement supplement; site transition applicability is not automatically determined')],
     confined: [ref('MTE · NR-33', brRoot + 'arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf', 'PET, supervisor de entrada, vigia and authorised entrants', 'regulation')],
     electrical: [ref('MTE · NR-10', brRoot + 'arquivos/normas-regulamentadoras/nr-10.pdf', 'Desenergização, qualification, authorisation and re-energisation sequence', 'regulation')],
     hot: [ref('MTE · NR-34', brRoot + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-34-nr-34', 'Shipbuilding/repair/dismantling only; not all-industry hot-work requirements')],
@@ -162,7 +162,7 @@ export function taskReviewBlocks(context, topics, { field, table, col, txt }) {
     const f = (key, kind = 'verification') => field(`${topic}.${key}`, `${title} · ${t(key)}`, kind);
     const items = [field(`${topic}.notice`, `${title} · ${t('notice')}`, 'text', 'standard',
       [t('scopeNote'), ...review.scopeNotes.map(t), ...(review.status === 'partial-source-review' ? [t('pending')] : []),
-        ...(review.requirements ? [t(review.requirements.noteKey)] : [])].join('\n')),
+        ...(review.requirements ? [review.requirements.noteKey, ...(review.requirements.additionalNotes || [])].map(t) : [])].join('\n')),
       f('applicability'), field(`${topic}.roles`, `${title} · ${t('roles')} — ${review.terms}`, 'worker'), f('competence'),
       ...checks[topic].map(key => f(key, key === 'entryRoles' ? 'worker' : 'verification')),
       ...(review.requirements?.fields || []).map(key => f(key, key === 'entryAuthorisation' ? 'worker' : 'verification')),

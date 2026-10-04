@@ -136,10 +136,13 @@ test('country supplements are translated in every document language without leak
       for (const review of doc.regional.taskReviews) {
         if (!review.requirements) continue;
         const evidence = review.requirements;
-        for (const key of [evidence.noteKey, ...evidence.fields]) {
+        for (const key of [evidence.noteKey, ...(evidence.additionalNotes || []), ...evidence.fields]) {
           assert.ok(TASK_SAFETY_TEXT[key]?.[locale], `${jurisdiction.id}/${locale}/${key}`);
         }
         assert.ok(doc.blocks.find(b => b.field?.key === review.topic + '.notice').field.value.includes(taskSafetyText(locale, evidence.noteKey)));
+        for (const key of evidence.additionalNotes || []) {
+          assert.ok(doc.blocks.find(b => b.field?.key === review.topic + '.notice').field.value.includes(taskSafetyText(locale, key)));
+        }
         for (const key of evidence.fields) {
           const f = doc.blocks.find(b => b.field?.key === `${review.topic}.${key}`).field;
           assert.ok(f.label.includes(taskSafetyText(locale, key)));
@@ -156,6 +159,52 @@ test('country supplements are translated in every document language without leak
   assert.doesNotMatch(singaporeJapanese.blocks.find(b => b.field?.key === 'confined.entryRoles').field.label, /作業主任者/);
   assert.match(taskReview(ctx('JP'), 'confined').terms, /作業主任者/);
   assert.match(taskReview(ctx('SG'), 'electrical').terms, /Licensed Electrical Worker/);
+});
+
+test('Brazil transitions preserve effective dates without preselecting compliance or reusing past evidence', () => {
+  const electrical = make('BR', ['electrical'], 'pt-BR');
+  const review = electrical.regional.taskReviews[0];
+  const future = review.sources.find(s => s.effectiveFrom);
+  assert.equal(future.effectiveFrom, '2027-06-01');
+  assert.deepEqual(future.transition, {
+    clause: '10.6.4(e)', scope: 'installations existing when Portaria takes effect', effectiveFrom: '2028-06-01',
+  });
+  const notice = electrical.blocks.find(b => b.field?.key === 'electrical.notice').field.value;
+  assert.match(notice, /2027-05-31/);
+  assert.match(notice, /2027-06-01/);
+  assert.match(notice, /10\.6\.4\(e\)/);
+  assert.ok(!make('US', ['electrical'], 'pt-BR').blocks.some(b => b.field?.key.endsWith('.applicableEdition')));
+  for (const [topic, keys] of [
+    ['electrical', ['applicableEdition']],
+    ['height', ['trainingDelivery', 'ladderAssessment', 'transitionEvidence']],
+  ]) {
+    const doc = make('BR', [topic]);
+    for (const key of keys) {
+      const field = doc.blocks.find(b => b.field?.key === `${topic}.${key}`).field;
+      assert.equal(field.mode, 'runtime');
+      assert.equal(field.value, '');
+      field.mode = 'standard'; field.value = 'OLD_ELIGIBILITY';
+    }
+    const record = { id: 'transition', data: cleanPackage({ context: ctx('BR'), documents: [doc] }) };
+    const run = startWork(record);
+    assert.doesNotMatch(JSON.stringify(run), /OLD_ELIGIBILITY/);
+    if (topic === 'electrical') {
+      assert.deepEqual(run.documents[0].regional.taskReviews[0].sources.find(s => s.effectiveFrom), future);
+    }
+  }
+  assert.ok(!make('US', ['electrical']).blocks.some(b => b.field?.key.endsWith('.applicableEdition')));
+  assert.ok(!make('AU', ['height']).blocks.some(b => b.field?.key.endsWith('.transitionEvidence')));
+});
+
+test('Australian confined-space form records actual law without treating Victoria as model-WHS adoption', () => {
+  const doc = make('AU', ['confined']);
+  const field = doc.blocks.find(b => b.field?.key === 'confined.stateCodeBasis').field;
+  assert.equal(field.value, '');
+  assert.equal(field.mode, 'runtime');
+  const notice = doc.blocks.find(b => b.field?.key === 'confined.notice').field.value;
+  assert.match(notice, /Victoria has a separate OHS framework/);
+  assert.ok(doc.regional.taskReviews[0].sources.some(s => s.url.includes('worksafe.vic.gov.au')));
+  assert.ok(!make('US', ['confined']).blocks.some(b => b.field?.key.endsWith('.stateCodeBasis')));
 });
 
 test('review evidence is dated by scope and does not upgrade unresolved countries or rewrite saved forms', () => {

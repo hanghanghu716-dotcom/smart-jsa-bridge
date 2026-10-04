@@ -1,8 +1,8 @@
 # 작업별 세부 요건·전문용어 검수 기록
 
-기초 검수일: 2026-10-03. 추가 검수일: 2026-10-04. 현재 작업별 PTW 항목 버전 `2026-10-04.1`.
+기초 검수일: 2026-10-03. 추가 검수일: 2026-10-04. 현재 작업별 PTW 항목 버전 `2026-10-04.2`.
 
-최신 추가 결과는 [②·③ 추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다. 16개 국가/지역·17개 작업 조합에 32개 입력란을 추가하고 10개 언어에 반영했다. 아래 기초 검수와 이번 추가 검수의 범위를 합쳐도 모든 현행 법률·전문용어를 전수 검수한 것은 아니다.
+최신 추가 결과는 [②·③ 추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다. 16개 국가/지역·18개 작업 조합에 37개 입력란을 추가하고 10개 언어에 반영했다. 아래 기초 검수와 이번 추가 검수의 범위를 합쳐도 모든 현행 법률·전문용어를 전수 검수한 것은 아니다.
 
 ## 단계 구분
 
@@ -47,7 +47,7 @@
 | 이탈리아 | DPR 177/2011의 업체 자격과 도급 조정, 전기 PES/PAV 및 활선 적합성, 집단 추락방호, 화기 전후 점검 연결 | 현행 교육 협약·CEI 판본의 세부 자격·예외 전수 대조 미완료 |
 | 스페인 | 밀폐공간 Autorización de trabajo·recurso preventivo·외부 감시 역할, 전기 autorizado/cualificado·supresión de la tensión 구분 | NTP를 법정 표준서식으로 표시하지 않음. 작업 조건별 필수 역할·법정 허가 판정 미완료 |
 | 사우디 | HRSD 안내의 아랍어 밀폐·고소·화기·전기 용어를 연결하고 현장 확인 항목 제공 | 업종·면허·발주처 절차와 현행 의무 요건 대조 미완료. 네 작업 모두 부분 검수 상태로 출력 |
-| 브라질 | NR-33 PET·supervisor de entrada·vigia·trabalhador autorizado, NR-10 자격/권한·정전 순서 구분 | NR-35 2026 교육·사다리 개정 조문/경과규정 대조 미완료. NR-34는 해양·조선 범위로 한정 |
+| 브라질 | NR-33 PET·supervisor de entrada·vigia·trabalhador autorizado, NR-10 자격/권한·정전 순서 구분 | 10/4 추가 검수에서 NR-35 교육·사다리 개정 원문과 NR-10의 2027 시행일 구분을 반영. 현장별 예외 판정·신판 전체 대조는 미완료. NR-34는 해양·조선 범위로 한정 |
 | 러시아 | ОЗП·наряд-допуск·наблюдающий, 전기 допускающий 등 분야별 명칭을 연결 | 원문 페이지와 최신 개정본 대조 미완료. 네 작업 모두 historical reference/부분 검수 상태. 과거 명령을 현행 법률 확정값으로 넣지 않음 |
 
 ## 검수에서 확인한 주요 근거
@@ -57,7 +57,7 @@
 - [WorkSafeBC Part 9](https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces): 9.13의 허가 조건과 9.15의 교대·인원/감독 변경 재승인을 구분했다.
 - [INSST 밀폐공간](https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados): 작업허가, recurso preventivo, 구조 수단과 서면 절차를 구분했다.
 - [CNESST 전기설비](https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques)와 [INRS habilitation](https://www.inrs.fr/risques/electriques/habilitation-electrique): 프랑스어가 같아도 관할별 관리 용어·권한 체계는 별도다.
-- [MTE 2026-09-02 안내](https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais): NR-35 교육 방식과 고정 수직사다리 변경을 확인했다. [관보 원문](https://www.in.gov.br/web/dou/-/portaria-mte-n-1.259-de-15-de-julho-de-2026-719529365)은 이번 접근에서 502여서 시행·경과조건을 코드의 확정 판정값으로 넣지 않았다.
+- [MTE 2026-09-02 안내](https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais): 기초 검수에서 NR-35 교육 방식과 고정 수직사다리 변경을 확인했지만 관보 접근은 실패했다. 10/4 후속 검수에서는 MTE의 법령 PDF를 확보했다. 시행·경과조건과 남은 해석 범위는 [추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다.
 - 러시아 [2025 개정 공표 위치](https://publication.pravo.gov.ru/document/0001202505300025)는 접근 시간이 초과됐다. 원래 Минтруд 페이지의 과거 종료일을 현재 만료라고 단정하지도, 개정 전문을 읽었다고 처리하지도 않았다.
 
 ## 완료 판정과 다음 검수 단위
