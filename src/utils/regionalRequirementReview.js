@@ -136,6 +136,15 @@ for (const [jurisdiction, findings] of Object.entries(REQUIREMENT_REVIEW_REMAINI
   Object.assign(BASE_REQUIREMENT_REVIEW[jurisdiction], findings);
 }
 
+// Retain saved field keys while preventing Québec-only RSST/CSTC labels from
+// appearing in Ontario or Saudi forms. Their own source limitations still apply.
+for (const [jurisdiction, topics] of [['CA-ON', ['height', 'electrical', 'hot']], ['SA', ['confined']]]) {
+  for (const topic of topics) {
+    const finding = BASE_REQUIREMENT_REVIEW[jurisdiction][topic];
+    finding.fieldLabels = { ...finding.fieldLabels, applicableFramework: 'frameworkBasis' };
+  }
+}
+
 export function requirementReview(jurisdiction, topic) {
   const record = REGIONAL_REQUIREMENT_REVIEW[jurisdiction]?.[topic];
   return record ? structuredClone(record) : null;

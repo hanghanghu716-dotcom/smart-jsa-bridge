@@ -46,9 +46,15 @@ const errors = [];
       localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token', JSON.stringify(s));
       const original = URL.createObjectURL; URL.createObjectURL = function(blob) { if (blob.type === 'application/pdf') window.testPdfBlob = blob; return original.call(this, blob); };
     }, { access_token: token, refresh_token: 'fixture', expires_at: Math.floor(Date.now()/1000)+3600, user });
-    const click = async text => { await p.waitForFunction(t => [...document.querySelectorAll('button')].some(b => b.textContent.trim() === t && !b.disabled), {}, text); await p.evaluate(t => [...document.querySelectorAll('button')].find(b => b.textContent.trim() === t).click(), text); };
+    // A save can replace the editor between separate lookup/click evaluations.
+    const click = async text => { await p.waitForFunction(t => {
+      const button = [...document.querySelectorAll('button')].find(b => b.textContent.trim() === t && !b.disabled);
+      if (!button) return false;
+      button.click(); return true;
+    }, {}, text); };
     const fill = async (selector, value) => p.$eval(selector, (el,v) => { Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(el,v); el.dispatchEvent(new Event('input', { bubbles: true })); }, value);
     await p.goto(base + '/' + screenLocale + '/work-packages', { waitUntil: 'networkidle0' }); await click(ui.create);
+    await p.waitForSelector('.regional-work-context select');
     await p.select('.regional-work-context select', country);
     if (country === 'AU') await p.select('.regional-work-context label:last-child select', 'yes');
     await p.waitForSelector('.regional-catalog select option[value="' + source.id + '"]');
@@ -84,6 +90,11 @@ const errors = [];
     await p.click('.work-region-review input');
     await p.$eval('.bundle-preview', el => el.scrollIntoView());
     await p.screenshot({ path: path.join(qa,'preview.png') });
+    assert.equal(await p.$$eval('.bundle-paper', papers => papers.every(paper => paper.scrollWidth <= paper.clientWidth + 1)), true, 'No horizontal overflow in document previews');
+    if (country === 'CA') {
+      const papers = await p.$$('.bundle-paper');
+      await papers[papers.length - 1].screenshot({ path: path.join(qa, 'inspection.png') });
+    }
     await click(ui.pdf); await p.waitForFunction(() => Boolean(window.testPdfBlob), { timeout: 60000 });
     assert.equal(uploads, 1); assert.equal(output.snapshot.context.jurisdiction, country);
     assert.equal(output.snapshot.regionalReviewed, true); assert.ok(output.snapshot.documents.every(d => d.regional.version));

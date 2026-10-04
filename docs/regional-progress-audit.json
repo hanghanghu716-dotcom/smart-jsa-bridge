@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.7",
+  "evidenceVersion": "2026-10-05.8",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,38 +17,38 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 310
+    "fieldVocabularyGroups": 322
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 309,
-      "pending": 174,
+      "completed": 319,
+      "pending": 164,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 161,
-      "completionPercent": 64,
-      "remainingPercent": 36
+      "pendingFinalVerification": 151,
+      "completionPercent": 66,
+      "remainingPercent": 34
     },
     "stage3": {
-      "reviewGroups": 471,
-      "checkpoints": 1413,
-      "completed": 1191,
-      "pending": 222,
+      "reviewGroups": 483,
+      "checkpoints": 1449,
+      "completed": 1260,
+      "pending": 189,
       "pendingSourceResolution": 0,
-      "pendingFinalVerification": 222,
-      "completionPercent": 84.3,
-      "remainingPercent": 15.7
+      "pendingFinalVerification": 189,
+      "completionPercent": 87,
+      "remainingPercent": 13
     },
     "combined": {
-      "reviewGroups": 632,
-      "checkpoints": 1896,
-      "completed": 1500,
-      "pending": 396,
+      "reviewGroups": 644,
+      "checkpoints": 1932,
+      "completed": 1579,
+      "pending": 353,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 383,
-      "completionPercent": 79.1,
-      "remainingPercent": 20.9
+      "pendingFinalVerification": 340,
+      "completionPercent": 81.7,
+      "remainingPercent": 18.3
     }
   },
   "stage2": [
@@ -131,9 +131,9 @@
     {
       "id": "form:GB.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -142,17 +142,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:GB.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm"
+          ],
+          "sha256": "d2bee4e0d9e18864fd4b61ed91f86b060f2d98b7ea68cbab9bcd3f1b07cf7619"
         }
       }
     },
     {
       "id": "form:GB.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -161,17 +180,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:GB.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.hse.gov.uk/construction/safetytopics/admin.htm"
+          ],
+          "sha256": "3a6cbceb638f45ae9dd037f05bc49c82868860354ef05f3b5ff83db76de149cc"
         }
       }
     },
     {
       "id": "form:GB.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -180,17 +218,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:GB.permit_to_work",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.hse.gov.uk/humanfactors/topics/ptw.htm"
+          ],
+          "sha256": "e68686022cf58e39fbe66a2e972220ade4932af36708dac4c9259f9816b20f44"
         }
       }
     },
     {
       "id": "form:GB.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -199,8 +256,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:GB.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.hse.gov.uk/construction/resources/toolboxtalks.htm",
+            "https://www.hse.gov.uk/involvement/consult/involveemployees.htm"
+          ],
+          "sha256": "700fd1038624ffb8a64f994e46e186155c272f50136887e7d29cfaa30fa01399"
         }
       }
     },
@@ -416,9 +493,9 @@
     {
       "id": "form:US.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -427,17 +504,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:US.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf"
+          ],
+          "sha256": "81829b31bead7294df199e1b62d6d398f1fab232e69be0903603db58e7d92d7a"
         }
       }
     },
     {
       "id": "form:US.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -446,8 +542,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:US.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
+            "https://www.osha.gov/sites/default/files/publications/osha3071.pdf"
+          ],
+          "sha256": "859d4150ab36fc94823c16d8b5e7fbbc58aefa9ab88d1b739a56db6098419841"
         }
       }
     },
@@ -511,9 +627,9 @@
     {
       "id": "form:CA.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -522,17 +638,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+          ],
+          "sha256": "e834e5a05adc4a7aed873d26c8427dee23c54954f1d030a49d0a092e1b8811ab"
         }
       }
     },
     {
       "id": "form:CA.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -541,8 +676,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+          ],
+          "sha256": "0df9fa07a8ccaf5fae36544d2df23e54d415e8650d269188bc1fabf981431f03"
         }
       }
     },
@@ -568,9 +722,9 @@
     {
       "id": "form:CA.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -579,17 +733,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+          ],
+          "sha256": "6ed8f43733240c9e6529b981fc798575fa7ab2850d762bc60c748f795f9f4f9d"
         }
       }
     },
     {
       "id": "form:CA.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -598,8 +771,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+          ],
+          "sha256": "04270563c27c72d3cf67d594b81a7301ebe71b7ae9d79f0d88b71e0663d07e33"
         }
       }
     },
@@ -6396,6 +6588,42 @@
       }
     },
     {
+      "id": "task:actionCloseout",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:actionCloseout",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "df3f0ca807212c9ffd2b561d6186238fd7482b3027e5da1272960af93e991d68"
+        }
+      }
+    },
+    {
       "id": "task:anchorCheck",
       "evidence": [
         "regional-task-review.md"
@@ -6453,9 +6681,10 @@
     {
       "id": "task:applicableEdition",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6464,17 +6693,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:applicableEdition",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "43a0c60be8f6f6a83aab38319757a0bc2840a9c82f40bcdfae5509a746ea3bea"
         }
       }
     },
     {
       "id": "task:applicableFramework",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6483,17 +6729,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:applicableFramework",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "5d74cf7bef71d5e99bfc0655b448a802795b59439781302ac5903fbd60ae6b55"
         }
       }
     },
     {
       "id": "task:assessmentEndorsement",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6502,8 +6765,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:assessmentEndorsement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "74b415192a79c058b72be51d29e54387091a1aa0de1903fcf066e006449af0d3"
         }
       }
     },
@@ -6546,9 +6825,10 @@
     {
       "id": "task:atmosphericBasis",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6557,8 +6837,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:atmosphericBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "9e09c998d40ef384508ebc16c1a3a479e948c062268ce8322083e10f77c292c0"
         }
       }
     },
@@ -6992,6 +7288,78 @@
       }
     },
     {
+      "id": "task:briefingFollowup",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:briefingFollowup",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "634af4e35ffb63c79a72ba04e4a1bec2c8040c6e415c3df286bc662c7bf9b9f9"
+        }
+      }
+    },
+    {
+      "id": "task:briefingScope",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:briefingScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "5f1df48fd4295abcb56bcac6ae362e26147aea8950574d3e23a70e379d13b5e7"
+        }
+      }
+    },
+    {
       "id": "task:caEnergyDetail",
       "evidence": [
         "regional-task-review.md"
@@ -7305,9 +7673,10 @@
     {
       "id": "task:countryProcedure",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -7316,8 +7685,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:countryProcedure",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "d7a1a8ae25f9297dee0979734bd7f4c676646e012b4b647c37b05bc17bdda7a2"
         }
       }
     },
@@ -7396,9 +7781,10 @@
     {
       "id": "task:dailyReview",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -7407,8 +7793,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:dailyReview",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "ceb8ca6adaf1590dfea4ae0b4707660c31cc7dd970b4bb569d3794e940b41c2a"
         }
       }
     },
@@ -7654,9 +8056,10 @@
     {
       "id": "task:employerAuthorisation",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -7665,17 +8068,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:employerAuthorisation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "3085ef0e9dc4da28464b97d40bb14a38bb59c3ac685948cd17a11c11b2a029d2"
         }
       }
     },
     {
       "id": "task:employerCoordination",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -7684,17 +8104,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:employerCoordination",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "acabd977c76821ac25850acc8253295a71506458cfe88539b6f18f7e3fc6de42"
         }
       }
     },
     {
       "id": "task:entryAuthorisation",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -7703,8 +8140,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:entryAuthorisation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "a1cf85d768c76e5d9d7c658981b664498990705bd2b68b6ee6920d2a5bbb1d6a"
         }
       }
     },
@@ -8176,6 +8629,42 @@
       }
     },
     {
+      "id": "task:frameworkBasis",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frameworkBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "88745564fd69c42a33dc43b10b5a7bca32190c919de5937732921443f2394e89"
+        }
+      }
+    },
+    {
       "id": "task:gasFumes",
       "evidence": [
         "regional-task-review.md",
@@ -8320,6 +8809,42 @@
           "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
           "evidence": "regional-title-core-review-20261005.md",
           "sha256": "cdc1b69f087e8a664d149ca5a372b5eaee9183830bb3c74c1263d79e215d7873"
+        }
+      }
+    },
+    {
+      "id": "task:hazardScenario",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:hazardScenario",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "b7e993bcaabd53f1b10b84694fab1da3938e5071ec03d297623bba64b0352adf"
         }
       }
     },
@@ -8485,6 +9010,186 @@
         "finalVerification": {
           "status": "needs-final-verification",
           "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+        }
+      }
+    },
+    {
+      "id": "task:inspectionLimits",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:inspectionLimits",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "dcaa569ba322f232cd41145669e09603d67b3c2e9a17f74dda15fe088fa0cc49"
+        }
+      }
+    },
+    {
+      "id": "task:inspectionLocation",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:inspectionLocation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "4bb627a8e89c4cffa6e95f6563fec44848b774aa9f1e3487110ae79ff1184f57"
+        }
+      }
+    },
+    {
+      "id": "task:inspectionPlan",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:inspectionPlan",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "73856c6dcda3694cd4baea73707cccd2962741847e3f5395200b6cdc3a631baa"
+        }
+      }
+    },
+    {
+      "id": "task:inspectionPriority",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:inspectionPriority",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "cebdad1d3e0c261c9fb34eae64936496eb77d0811086229e54a4c22817c48e7f"
+        }
+      }
+    },
+    {
+      "id": "task:inspectionReview",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:inspectionReview",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "7f6a9960b48cf042564a0b98341014dacc9e1a4c594ae9b6a5ce9d112242bead"
         }
       }
     },
@@ -8859,9 +9564,10 @@
     {
       "id": "task:jointHazardRecord",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8870,8 +9576,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:jointHazardRecord",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "c352af88e0867ca9d56a156f79f8a3cdeb2943321c1ba9752bfe1cc8c30c4c8f"
         }
       }
     },
@@ -9049,9 +9771,10 @@
     {
       "id": "task:ladderAssessment",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9060,8 +9783,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ladderAssessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "7096973ff34353a3f083dc59615e4529252fedfd4b8cc83a5794c4fbab9b8384"
         }
       }
     },
@@ -9106,9 +9845,10 @@
     {
       "id": "task:licenceScope",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9117,8 +9857,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:licenceScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "82139196adf4d7ae09950b10683f31bfceb0eac983ff88b10310a894e8558254"
         }
       }
     },
@@ -9180,9 +9936,10 @@
     {
       "id": "task:measurementCompetence",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9191,8 +9948,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:measurementCompetence",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "a5d6201e615c9e6060a1a265040972c47ca3be64cc14b89949ce2003f49a5ecd"
         }
       }
     },
@@ -9461,9 +10234,10 @@
     {
       "id": "task:permitCloseout",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9472,8 +10246,60 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:permitCloseout",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "5b6fdc83b56b9f9d86e6772ebc038d45328889f75452d046bb0b6d8d8c1b144a"
+        }
+      }
+    },
+    {
+      "id": "task:permitCoordination",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:permitCoordination",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "17fb5418d2eb8c8598bb282bd30f5ea991211bf8440af03005023a98fbbc2eb8"
         }
       }
     },
@@ -9499,9 +10325,10 @@
     {
       "id": "task:permitDisplay",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9510,17 +10337,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:permitDisplay",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "4f2362113d8521ee3ef68d67af04ccd553a8c9cedd81979df123d7960438c08c"
         }
       }
     },
     {
       "id": "task:permitRecord",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9529,17 +10373,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:permitRecord",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "7eae45f3f822ab2d620e307b8103d889d8ec633a1c786bd6347f87af06256329"
         }
       }
     },
     {
       "id": "task:permitTrigger",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9548,8 +10409,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:permitTrigger",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "b1887ca0e25e0d7ea69d11c821be8c1b38925af9ea36af5d709ad5d4ce7cc660"
         }
       }
     },
@@ -9613,9 +10490,10 @@
     {
       "id": "task:planReference",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9624,8 +10502,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:planReference",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "2ead1aaa4fc036ed4270143001d06400046166b2a65da4a57f60eb45a13f3174"
         }
       }
     },
@@ -10087,9 +10981,10 @@
     {
       "id": "task:rescueLeadership",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10098,17 +10993,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:rescueLeadership",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "2f4fb66bf7619019268c29bb7a6560de4825ac6690e26630801423cbafa0319e"
         }
       }
     },
     {
       "id": "task:rescueReadiness",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10117,17 +11029,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:rescueReadiness",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "de987df04644fdf4bf25dbc39e43be9fe19868860e3d8accf707a4075e18194c"
         }
       }
     },
     {
       "id": "task:restartReview",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10136,8 +11065,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:restartReview",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "8c82cee94ea947ace7499fa6bd971e21cf88538fc2db981a70fbf300acd7400b"
         }
       }
     },
@@ -10218,9 +11163,10 @@
     {
       "id": "task:retestTriggers",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10229,8 +11175,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:retestTriggers",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "9245638cdcdb0087a62b81f25ee74f0ac521cf314a4fb63a1f46767a9135d575"
         }
       }
     },
@@ -10311,9 +11273,10 @@
     {
       "id": "task:routineClassification",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10322,8 +11285,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:routineClassification",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "f42ecc3508b8ee3c71f2f8918ab7f0249147aa5d7e9f9990f279aaf6a8f0c390"
         }
       }
     },
@@ -10643,9 +11622,10 @@
     {
       "id": "task:scaffoldInspection",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10654,8 +11634,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:scaffoldInspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "13e1496806f8c18312edacc5d8ca923f3cce95a4d64622a423b38c91926108cc"
         }
       }
     },
@@ -11223,9 +12219,10 @@
     {
       "id": "task:shiftAuthorisation",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11234,17 +12231,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:shiftAuthorisation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "0549ead1ff6b41aef6ae9487f9ecb3eee56a1ae2b4373a955bb21116381fb38f"
         }
       }
     },
     {
       "id": "task:shiftVerification",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11253,17 +12267,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:shiftVerification",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "70a214ba3aa255d6478b2e60e7b32ff13d4b4c1ac2774aac654030e9370d2525"
         }
       }
     },
     {
       "id": "task:siteProcedure",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11272,8 +12303,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:siteProcedure",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "bad9481f16f6aa634a3cd9d14e08fe9b3fa9b938fb61f261680b54911336f045"
         }
       }
     },
@@ -11316,9 +12363,10 @@
     {
       "id": "task:spaceClass",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11327,17 +12375,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:spaceClass",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "1c6429657b2accfb2b4cae7ba094b8a75468af5792cbcc8473f189f5c1ca7930"
         }
       }
     },
     {
       "id": "task:stateCodeBasis",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11346,8 +12411,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:stateCodeBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "7f20f5aefc1705f0e212140abd38ae3149db2e66c266cb7de1677cf2e1e1d963"
         }
       }
     },
@@ -11409,9 +12490,10 @@
     {
       "id": "task:trainingDelivery",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11420,17 +12502,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:trainingDelivery",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "e21fad933e1c2c49d07cc7e08d55e4370ddb118be4eef4078a72a61f022f5213"
         }
       }
     },
     {
       "id": "task:trainingEvidence",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11439,17 +12538,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:trainingEvidence",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "b649b4327199a0b5ec13704bcc29bc87c5db4f91c24a63b721e0bbf73e5af96d"
         }
       }
     },
     {
       "id": "task:transitionEvidence",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11458,8 +12574,60 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:transitionEvidence",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "3d573cad84b440e183d8cfcff3e113c41e59227fcf1d06a7bcbbeca7783e7e1e"
+        }
+      }
+    },
+    {
+      "id": "task:usBaseScope",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:usBaseScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the named field: roles, actual status, timing, follow-up and jurisdiction boundaries. No statutory or site approval.",
+          "sha256": "82c8b2a006f06af4f7436bb7c2d196dcd529ef4112d6e51c6b194bd0f5947d21"
         }
       }
     },
@@ -11614,9 +12782,10 @@
     {
       "id": "task:voltageRole",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11625,8 +12794,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:voltageRole",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
+          "sha256": "474a7f6883cacf25a0f4f80beafc7b00f4fba94344861dbd183463834d7e0154"
         }
       }
     },
@@ -11870,7 +13055,7 @@
     {
       "id": "title:GB.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -11906,7 +13091,7 @@
     {
       "id": "title:GB.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -11942,7 +13127,7 @@
     {
       "id": "title:GB.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -11978,7 +13163,7 @@
     {
       "id": "title:GB.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -12409,7 +13594,7 @@
     {
       "id": "title:US.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -12445,7 +13630,7 @@
     {
       "id": "title:US.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -12589,7 +13774,7 @@
     {
       "id": "title:CA.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -12625,7 +13810,7 @@
     {
       "id": "title:CA.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -12697,7 +13882,7 @@
     {
       "id": "title:CA.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -12733,7 +13918,7 @@
     {
       "id": "title:CA.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

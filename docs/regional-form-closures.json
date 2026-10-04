@@ -1,0 +1,224 @@
+[
+  {
+    "id": "form:GB.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm"
+    ],
+    "sha256": "d2bee4e0d9e18864fd4b61ed91f86b060f2d98b7ea68cbab9bcd3f1b07cf7619"
+  },
+  {
+    "id": "form:GB.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/construction/safetytopics/admin.htm"
+    ],
+    "sha256": "3a6cbceb638f45ae9dd037f05bc49c82868860354ef05f3b5ff83db76de149cc"
+  },
+  {
+    "id": "form:GB.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/humanfactors/topics/ptw.htm"
+    ],
+    "sha256": "e68686022cf58e39fbe66a2e972220ade4932af36708dac4c9259f9816b20f44"
+  },
+  {
+    "id": "form:GB.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/construction/resources/toolboxtalks.htm",
+      "https://www.hse.gov.uk/involvement/consult/involveemployees.htm"
+    ],
+    "sha256": "700fd1038624ffb8a64f994e46e186155c272f50136887e7d29cfaa30fa01399"
+  },
+  {
+    "id": "form:US.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf"
+    ],
+    "sha256": "81829b31bead7294df199e1b62d6d398f1fab232e69be0903603db58e7d92d7a"
+  },
+  {
+    "id": "form:US.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
+      "https://www.osha.gov/sites/default/files/publications/osha3071.pdf"
+    ],
+    "sha256": "859d4150ab36fc94823c16d8b5e7fbbc58aefa9ab88d1b739a56db6098419841"
+  },
+  {
+    "id": "form:CA.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "e834e5a05adc4a7aed873d26c8427dee23c54954f1d030a49d0a092e1b8811ab"
+  },
+  {
+    "id": "form:CA.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "0df9fa07a8ccaf5fae36544d2df23e54d415e8650d269188bc1fabf981431f03"
+  },
+  {
+    "id": "form:CA.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+    ],
+    "sha256": "6ed8f43733240c9e6529b981fc798575fa7ab2850d762bc60c748f795f9f4f9d"
+  },
+  {
+    "id": "form:CA.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+    ],
+    "sha256": "04270563c27c72d3cf67d594b81a7301ebe71b7ae9d79f0d88b71e0663d07e33"
+  }
+]

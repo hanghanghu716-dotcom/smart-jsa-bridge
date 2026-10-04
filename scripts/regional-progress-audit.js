@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import process from 'node:process';
 import assert from 'node:assert/strict';
 import { terminologyText, terminologyHash } from './regional-terminology-fingerprint.js';
+import { formFingerprint } from './regional-form-fingerprint.js';
 import { reviewLedger } from './regional-review-ledger.js';
 import { createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
 import { taskReview } from '../src/utils/regionalTaskReview.js';
@@ -15,6 +16,15 @@ import { WORK_DOCUMENT_LANGUAGES } from '../src/utils/workJurisdiction.js';
 // measures full item closure, which historical records do not establish.
 const ledger = reviewLedger();
 const closures = JSON.parse(fs.readFileSync('docs/regional-terminology-closures.json', 'utf8'));
+const formClosures = JSON.parse(fs.readFileSync('docs/regional-form-closures.json', 'utf8'));
+assert.equal(new Set(formClosures.map(entry => entry.id)).size, formClosures.length);
+for (const closure of formClosures) {
+  assert.ok(ledger.forms.some(form => `form:${form.id}` === closure.id), closure.id);
+  assert.ok(closure.scope && closure.checkedAt && closure.evidence && closure.sourceUrls.length, closure.id);
+  assert.deepEqual(closure.languages, TASK_SAFETY_LANGUAGES);
+  assert.equal(formFingerprint(closure.id), closure.sha256,
+    `Form or renderer changed after field-to-source review: ${closure.id}`);
+}
 assert.equal(new Set(closures.map(entry => entry.id)).size, closures.length);
 const vocabularyIds = new Set([...ledger.vocabulary.map(v => v.id), ...ledger.forms.map(f => `title:${f.id}`)]);
 for (const closure of closures) {
@@ -73,7 +83,7 @@ const finalCheck = {
   reason: 'No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated.',
 };
 function item(id, firstPass, evidence, note) {
-  const closure = closures.find(entry => entry.id === id);
+  const closure = [...closures, ...formClosures].find(entry => entry.id === id);
   if (closure) evidence = [...new Set([...evidence, closure.evidence])];
   assert.ok(evidence.every(evidenceExists), id);
   return {
@@ -153,7 +163,7 @@ const markdown = `# ②·③ 진행률 — 확인 단계 기준\n\n` +
   `| 합산 | ${combined.reviewGroups} | ${combined.checkpoints} | ${combined.completed} | ${combined.pending} | ${combined.completionPercent}% | ${combined.remainingPercent}% |\n\n` +
   `②: 기본 양식 ${ledger.forms.length}개 + 작업 조합 ${ledger.tasks.length}개. 1차 대조 ${s2.reviewGroups - s2.pendingSourceResolution}, 코드 반영 ${s2.reviewGroups}, 최종 확인 ${s2.reviewGroups - s2.pendingFinalVerification}건. 남은 ${s2.pending}단계는 부분 근거 ${s2.pendingSourceResolution}건과 최종 확인 ${s2.pendingFinalVerification}건입니다.\n\n` +
   `③: 기본 문구 ${ledger.summary.baseVocabularyKeys} + 작업 문구 ${ledger.summary.taskVocabularyKeys} + 국가별 문서명 ${ledger.forms.length} + 원어 용어 묶음 ${ledger.tasks.length} = ${s3.reviewGroups}개. 보고서 범위의 1차 대조 ${s3.reviewGroups}, 코드 반영 ${s3.reviewGroups}, 항목별 최종 확인 ${s3.reviewGroups - s3.pendingFinalVerification}건. 남은 최종 확인 ${s3.pendingFinalVerification}건에는 완료 기록 누락과 실제 추가 검수 필요분이 함께 포함됩니다. 이를 전부 미번역 문구로 취급하지 않습니다.\n\n` +
-  `이번 변경: 국가별 문서명 89종, 공통 작업 문구 46개, 신규 싱가포르 평가 문구 3개의 10언어 의미 대조 기록을 추가했습니다(③ 분모 468→471). 기존 111개를 포함한 최종 확인 ${closures.length}건. 싱가포르 평가 양식에 작업 범위·이해관계자 전달·보존관리 항목도 보완했습니다. [추가 검수 근거](regional-title-core-review-20261005.md).\n\n` +
+  `이번 변경: GB·US·CA 일반 작업용 양식 10종의 필드별 공식 근거 대조를 마치고 종결 기록을 추가했습니다. 조치 이행·허가 조정·회의 후속 조치·점검 기록을 보완하고 온타리오/사우디 4개 조합의 퀘벡 법령명 혼입을 수정했습니다. 기존 33개와 신규 12개 문구의 10언어 의미 검수로 ③ 분모 471→483, 누적 문구·명칭 최종 확인 ${closures.length}건입니다. 특수 작업의 최종 확인이나 현장 법적 적합성 확인으로 확대하지 않습니다. [양식별 근거](regional-form-review-20261005.md).\n\n` +
   `## 이번 확인과 한계\n\n` +
   `- 기본 양식 ${generatedFormChecks}건(89종 × 10언어)과 작업 조합 ${generatedTaskChecks}건(72종 × 10언어)을 생성하여 제목·필드·국가별 용어 보존을 확인했습니다. 이것은 코드 연결 확인이며 의미 정확성 검수 완료가 아닙니다.\n` +
   `- 모든 항목의 완료 기록 부재를 기존 작업 전체 미완료로 계산하지 않고, 최종 확인 단계만 남깁니다. 실제 추가 수정량·소요시간의 백분율은 이 지표로 주장하지 않습니다.\n` +

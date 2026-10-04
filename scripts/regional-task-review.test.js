@@ -184,7 +184,7 @@ test('country supplements are translated in every document language without leak
         }
         for (const key of evidence.fields) {
           const f = doc.blocks.find(b => b.field?.key === `${review.topic}.${key}`).field;
-          assert.ok(f.label.includes(taskSafetyText(locale, key)));
+          assert.ok(f.label.includes(taskSafetyText(locale, evidence.fieldLabels?.[key] || key)));
           assert.equal(f.value, '');
           assert.equal(f.mode, 'runtime');
         }
@@ -443,7 +443,7 @@ test('remaining batch covers exactly the 37 formerly baseline-only combinations 
         const field = doc.blocks.find(b => b.field?.key === `${topic}.${key}`).field;
         assert.equal(field.mode, 'runtime');
         assert.equal(field.value, '');
-        assert.ok(field.label.includes(taskSafetyText(locale, key)));
+        assert.ok(field.label.includes(taskSafetyText(locale, r.requirements.fieldLabels?.[key] || key)));
       }
     }
   }
