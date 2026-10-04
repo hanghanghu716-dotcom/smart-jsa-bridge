@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.5",
+  "evidenceVersion": "2026-10-05.6",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,7 +17,7 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 293
+    "fieldVocabularyGroups": 307
   },
   "summary": {
     "stage2": {
@@ -31,24 +31,24 @@
       "remainingPercent": 36
     },
     "stage3": {
-      "reviewGroups": 454,
-      "checkpoints": 1362,
-      "completed": 917,
-      "pending": 445,
+      "reviewGroups": 468,
+      "checkpoints": 1404,
+      "completed": 1047,
+      "pending": 357,
       "pendingSourceResolution": 0,
-      "pendingFinalVerification": 445,
-      "completionPercent": 67.3,
-      "remainingPercent": 32.7
+      "pendingFinalVerification": 357,
+      "completionPercent": 74.6,
+      "remainingPercent": 25.4
     },
     "combined": {
-      "reviewGroups": 615,
-      "checkpoints": 1845,
-      "completed": 1226,
-      "pending": 619,
+      "reviewGroups": 629,
+      "checkpoints": 1887,
+      "completed": 1356,
+      "pending": 531,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 606,
-      "completionPercent": 66.4,
-      "remainingPercent": 33.6
+      "pendingFinalVerification": 518,
+      "completionPercent": 71.9,
+      "remainingPercent": 28.1
     }
   },
   "stage2": [
@@ -2449,7 +2449,7 @@
     {
       "id": "task:CA-QC.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Source currency/framework/sector limitations remain; see dated evidence.",
       "checkpoints": {
@@ -2487,7 +2487,7 @@
     {
       "id": "task:CA-QC.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Current Quebec RSST PDF retrieval failed; historical 2023 consolidation is not used as current law. Quebec-specific hot-work/fire-code clause review remains open.",
       "checkpoints": {
@@ -2734,7 +2734,7 @@
     {
       "id": "task:IT.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Enacted December 2025 articles 113/115 compared. Full current consolidation and later amendments/sector exceptions remain open; no automatic ladder exemption.",
       "checkpoints": {
@@ -2772,7 +2772,7 @@
     {
       "id": "task:IT.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "CEI 11-27:2025 edition existence and revision topics verified; paid full text and applicable corrigenda not compared with INAIL 2018. No automatic qualification from a training certificate.",
       "checkpoints": {
@@ -2886,7 +2886,7 @@
     {
       "id": "task:SA.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
       "checkpoints": {
@@ -2905,7 +2905,7 @@
     {
       "id": "task:SA.confined",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
       "checkpoints": {
@@ -2924,7 +2924,7 @@
     {
       "id": "task:SA.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
       "checkpoints": {
@@ -2943,7 +2943,7 @@
     {
       "id": "task:SA.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
       "checkpoints": {
@@ -2962,7 +2962,7 @@
     {
       "id": "task:BR.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Order 1680/2025 identified and periodic-inspection clause compared. Heading-year inconsistency and site-specific transition applicability remain explicit; full-topic closure remains open.",
       "checkpoints": {
@@ -3095,7 +3095,7 @@
     {
       "id": "task:RU.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Current consolidated fire-regime amendments and sector exceptions remain unresolved; no automatic duration or expiry from historical checklists or this notice.",
       "checkpoints": {
@@ -3116,7 +3116,8 @@
     {
       "id": "base:Action owner and due date",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3127,15 +3128,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Action owner and due date",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "6bb7de230270147f72a86af15961ab6d66e21e5c81f0aeca2f094606c3163b67"
         }
       }
     },
     {
       "id": "base:Action priority and remaining risks to communicate",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3146,15 +3164,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Action priority and remaining risks to communicate",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "972a1070224ab99ffe544f66c8a99012220fc22692a272c1f6cc92593d0e75b9"
         }
       }
     },
     {
       "id": "base:Activity",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3165,15 +3200,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Activity",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "fe00dc8efe3b5f1a0798bf55a9e9bb75a24d2a663e775f2d0cfbc40f96c91c02"
         }
       }
     },
     {
       "id": "base:Additional controls",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3184,15 +3236,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Additional controls",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "f5143534d2ca038bfd9b981d849cd43dfcf1d246ea6ff42edc6354f6fcd62139"
         }
       }
     },
     {
       "id": "base:Agreed actions and persons responsible",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3203,15 +3272,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Agreed actions and persons responsible",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7ca92412b1f21f71d973e6d569991cd521b3c6f0f4656c956ad79eed10071b32"
         }
       }
     },
     {
       "id": "base:Applicable high risk construction work and site conditions",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3222,15 +3308,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Applicable high risk construction work and site conditions",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7bb2e00b6bc01c1d1c2f1749d1082550fdfbc8ccd7edf93af7e5cf77f80bd333"
         }
       }
     },
     {
       "id": "base:Applicable procedures, training and work authorisations",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3241,8 +3344,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Applicable procedures, training and work authorisations",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "5c9855b371890bdd2eb6c071de84eaf62ef0d2781b03a6f0dcf6b1b0ffe79d75"
         }
       }
     },
@@ -3268,7 +3387,8 @@
     {
       "id": "base:Assessment / revision date",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3279,15 +3399,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Assessment / revision date",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "742e1adfceecb3558d50704e14f86accd863b2679fc048279b3e7d33dbdde170"
         }
       }
     },
     {
       "id": "base:Assessment criteria, matrix and reassessment notes",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3298,15 +3435,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Assessment criteria, matrix and reassessment notes",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "3d0082df1f3ef1da104d2fe05d4e1e0683f41653b4320ca082c2b10a805657b8"
         }
       }
     },
     {
       "id": "base:Assessment team / reviewer signatures",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3317,15 +3471,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Assessment team / reviewer signatures",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "c1c9eb1541a256730c634bbc0ea029539e4d9671a977ba9db6724151e1ed5246"
         }
       }
     },
     {
       "id": "base:Assessment team leader and approving manager",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3336,15 +3507,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Assessment team leader and approving manager",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "cd28fbc49ff063b4db7fa8af10e04b5d53bb6679ba8621e21d020c888cc91365"
         }
       }
     },
     {
       "id": "base:Assessment type and risk acceptance criteria",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3355,15 +3543,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Assessment type and risk acceptance criteria",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "07446672b3f43635b821cf622c2ac18950c3173eb5ebe185f8ef9eab0597849b"
         }
       }
     },
     {
       "id": "base:Attendance and acknowledgement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3374,15 +3579,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Attendance and acknowledgement",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "ab5aaff58808e6021b7cf928d10ae258b08ac3e90faf17b02f2028fccf79777b"
         }
       }
     },
     {
       "id": "base:Briefing leader and time",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3393,15 +3615,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Briefing leader and time",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "df99486702f50aed529eb21c1912bbe3daa0531b44569cc4f8c35bc0bdd1cd8d"
         }
       }
     },
     {
       "id": "base:Changes, recent incidents and worker feedback",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3412,15 +3651,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Changes, recent incidents and worker feedback",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "44f6b17eed44693a7428fa1edacc70cd68c98fc1165a98a16db16eb8f68f39ff"
         }
       }
     },
     {
       "id": "base:Completion, handback and permit closure",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3431,15 +3687,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Completion, handback and permit closure",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "78f7b5292276fd3cc9c6afff534224fa26f585dc12fd31e98b46f6af78533d32"
         }
       }
     },
     {
       "id": "base:Contracting parties and coordination record",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3450,15 +3723,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Contracting parties and coordination record",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "5102adeff70cf0376531e5cda619737db7335a70b087ba2582bcae3a1a1fa9ef"
         }
       }
     },
     {
       "id": "base:Control / item to check",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3469,15 +3759,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Control / item to check",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "d3564d36b5e88b5cb47cf99da9ffee8e20c56cac5c4d65c4bcd05653c5cdbfca"
         }
       }
     },
     {
       "id": "base:Control hierarchy, implementation and effectiveness",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3488,15 +3795,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Control hierarchy, implementation and effectiveness",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "941722094c77f8cd578f8a6c7e1bb8ee6ea65166818f9e412bab8d23c0c5fd5d"
         }
       }
     },
     {
       "id": "base:Defect / corrective action",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3507,15 +3831,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Defect / corrective action",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "9caeaf7fd8e52b379f14d4e10f411c6368610a275133d5a7ade4319ef7cb127f"
         }
       }
     },
     {
       "id": "base:Draft for site review",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3526,15 +3867,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Draft for site review",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "bbf01edf463317ca218b4adb657f1bb356090cfe2a5cfd184106421a83646c76"
         }
       }
     },
     {
       "id": "base:Effectiveness checks and review date",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3545,15 +3903,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Effectiveness checks and review date",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "356c139b1b515758052a02db1ded4b33298be0159fe12d56f1f048b6ff5041de"
         }
       }
     },
     {
       "id": "base:Existing controls",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3564,15 +3939,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Existing controls",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "0d5adbb7267d56351d9984055b777687a889ddb0808da94ea921f95363435ccc"
         }
       }
     },
     {
       "id": "base:Finding / measurement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3583,15 +3975,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Finding / measurement",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "9d0ef3559c5b409bd7955b4d17bc9e3933bd14ba5bc386900c31c4a1372aab4f"
         }
       }
     },
     {
       "id": "base:Further controls",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3602,15 +4011,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Further controls",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "21cd119c9098a84d51a8369c80ec9fa1b4a46603eb939ded4afc29b9d26fe0be"
         }
       }
     },
     {
       "id": "base:Hazard",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3621,15 +4047,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Hazard",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "4bf9f0a932dc310e67a019c15f408e8ca55b2fce3f690a394800e09a02556e9c"
         }
       }
     },
     {
       "id": "base:Hazards",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3640,15 +4083,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Hazards",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "c12537edd99d8e3ca6ac799c3fe55c8c3805bd7a150f105e8415efa9cb1f322c"
         }
       }
     },
     {
       "id": "base:Hazards and controls to discuss",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3659,15 +4119,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Hazards and controls to discuss",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "60d27a1d07a866ae3ba1719e9ab13ec0d64c3df8c484fa1cd10b7dc3c4d15510"
         }
       }
     },
     {
       "id": "base:Hazards and controls — source scores retained without reassessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3678,15 +4155,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Hazards and controls — source scores retained without reassessment",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2b61bd8ee381a6d495684074638bfac2ccdb0de7014e3b4754eb680ae1bf96ab"
         }
       }
     },
     {
       "id": "base:Hazards and precautions",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3697,15 +4191,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Hazards and precautions",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "b4e8a30539950ea1ac74e07fc76798bbda6217698fc766c3eb9e55d15b19da29"
         }
       }
     },
     {
       "id": "base:Implementation, monitoring, review and stop-work arrangements",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3716,15 +4227,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Implementation, monitoring, review and stop-work arrangements",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "45a1a47f049e24de600ffbd6d34e47f33f47379b11fb0ee50cb346547a59d31f"
         }
       }
     },
     {
       "id": "base:Inspection Checklist",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3735,15 +4263,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Inspection Checklist",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "ea08bc572b8cd0cd4f020b43fdbe67e87abc6892297126cc32217028d5619ce3"
         }
       }
     },
     {
       "id": "base:Inspection items and findings",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3754,15 +4299,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Inspection items and findings",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "d1b27c2c46f194871d0eca160044ae2456ea9297dee7a71562d5050d3887c4e2"
         }
       }
     },
     {
       "id": "base:Inspector, time and follow-up verification",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3773,15 +4335,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Inspector, time and follow-up verification",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7f81b70ea309bc2c0e2f40f29be4762a9dc197c4e7f11b8d66b4e8aee2c4f70d"
         }
       }
     },
     {
       "id": "base:Isolation, lockout / tagout and linked permit checks",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3792,15 +4371,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Isolation, lockout / tagout and linked permit checks",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "dfc62b2b4dea74f18626655f3ecee5d72e65c8207a9f3d574bbd7b16e1279909"
         }
       }
     },
     {
       "id": "base:Local procedures, interfaces and responsible roles",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3811,15 +4407,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Local procedures, interfaces and responsible roles",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "47b28aed2b0af3c0561e6c77c00d042b4016d6022a482a666960b6a5e8b6370a"
         }
       }
     },
     {
       "id": "base:Name",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3830,15 +4443,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Name",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "0987dfcad6f8a4b86fe67a514c0c1d7ab159ba19f9369cf8271110b3c261b470"
         }
       }
     },
     {
       "id": "base:Next review date and early review triggers",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3849,15 +4479,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Next review date and early review triggers",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "bcfff71b32389e8fcf7a5fdce066b5d55dcdd2b24047d7c01bea7be333fa921d"
         }
       }
     },
     {
       "id": "base:Owner / due date",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3868,8 +4515,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Owner / due date",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "01fa27ffae7b1a540686a25029af81340e0d39e728331a4ef99a3c873b65204d"
         }
       }
     },
@@ -3895,7 +4558,8 @@
     {
       "id": "base:People at risk and possible harm",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3906,15 +4570,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:People at risk and possible harm",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "3f991bea5a02f4ca0ba8e4e95167c1674191ec72ace71b8208cd59376dc95a67"
         }
       }
     },
     {
       "id": "base:Permit applicant / work supervisor",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3925,15 +4606,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Permit applicant / work supervisor",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7dbda97e38aafaa1d32fdb969b9341d56d1929a22457f7f925f1463a48b3819e"
         }
       }
     },
     {
       "id": "base:Permit issuer",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3944,15 +4642,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Permit issuer",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "92491906df94ca2c2bfa582b0a5287108ed138832650bb18a46a4bad076bfe23"
         }
       }
     },
     {
       "id": "base:Permit to Work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3963,15 +4678,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Permit to Work",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "5f8a229799a19f9d0c255b2e2b0dcc21521c70bb993bd8e3aa61d7cfcb7c65b3"
         }
       }
     },
     {
       "id": "base:Permit type, number and work area",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -3982,15 +4714,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Permit type, number and work area",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2d60248af51aab44ed84dea6ad0683d6b2189a54b4f650728bedcdabb4c98a31"
         }
       }
     },
     {
       "id": "base:Permit valid from / until",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4001,15 +4750,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Permit valid from / until",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2ba2480729e1ec76253b521fdb3ea4953c984168b7ab6b083b99be0a064021c8"
         }
       }
     },
     {
       "id": "base:Person responsible",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4020,15 +4786,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Person responsible",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "5d074faae507b62474caf3c5afbae414d5d4944879b68207cc2b2905b99dcc4a"
         }
       }
     },
     {
       "id": "base:Personal protective equipment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4039,15 +4822,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Personal protective equipment",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "b9bbc1594059ff3fa8febf1b2cbd4ac2871d61ca9eaadec7bb7c86e7b3c3218f"
         }
       }
     },
     {
       "id": "base:Plant, equipment and tools",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4058,15 +4858,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Plant, equipment and tools",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "b04a75a64c18e540a25dff35128473bcfd8c9763ffce883e4ab38b28bbfc305b"
         }
       }
     },
     {
       "id": "base:Preparations, stop-work and change review arrangements",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4077,15 +4894,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Preparations, stop-work and change review arrangements",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7e498f8c69b322f49753da061a1f205d174649d31abef9f7e62e880b2b3e42a0"
         }
       }
     },
     {
       "id": "base:Prepared / reviewed / authorised signatures",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4096,15 +4930,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Prepared / reviewed / authorised signatures",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "37d249a3cbe3bed81681cb4869bebf58ed038d561fef2dbdd524f6c87e4ef4fe"
         }
       }
     },
     {
       "id": "base:Prevention plan reference and follow-up",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4115,15 +4966,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Prevention plan reference and follow-up",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2f1f14573336ff1771148f2434a125faa059c251d0e8c3fb996cec4e2873d4af"
         }
       }
     },
     {
       "id": "base:Priority hazards and team action commitments",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4134,15 +5002,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Priority hazards and team action commitments",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "c65bb66d30a77586d85c6c2a69e27bb1213b6f648eb6c232fc6568f3dd0892c9"
         }
       }
     },
     {
       "id": "base:Procedure",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4153,15 +5038,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Procedure",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "fb80c542fde66230914928b753ebd89d59c5e67f383e7477e115c387a1a8735d"
         }
       }
     },
     {
       "id": "base:Reading / unit",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4172,15 +5074,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Reading / unit",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "404da2897cfb7567f2fd2283f087fbd22d2d2192c3f92d190bd7224ef9197e1b"
         }
       }
     },
     {
       "id": "base:Reassessed risk under site criteria",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4191,15 +5110,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Reassessed risk under site criteria",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2a3824175c2a7b607b9a76301b6052f58265fcbd4264cd79b4e1f929e753e427"
         }
       }
     },
     {
       "id": "base:Records custodian and retention arrangements",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4210,15 +5146,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Records custodian and retention arrangements",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "6e44b206a3b90c10dca4402fdf6eb000c12dd79604741666d46ad1c3840c6447"
         }
       }
     },
     {
       "id": "base:Reference to the applicable permit form and procedure",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4229,15 +5182,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Reference to the applicable permit form and procedure",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "52dc40e3e3612e9b755b9c4a2e0e50d8a06ce2d857f8d6613be9649e6e6fe496"
         }
       }
     },
     {
       "id": "base:Related organisation-wide record (not replaced by this task form)",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4248,15 +5218,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Related organisation-wide record (not replaced by this task form)",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "23b27943aa7d7cc3c1d38bc478e389c734ee4a7a6ae0cb538c1a1a566f74ea25"
         }
       }
     },
     {
       "id": "base:Related prevention programme or action plan",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4267,15 +5254,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Related prevention programme or action plan",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "4f1a9ad39647f9394cbfea9c6639a2f52e4404acd58264bbd304df3c2eda8b75"
         }
       }
     },
     {
       "id": "base:Risk Assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4286,15 +5290,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Risk Assessment",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "35de8d9d56a661d288f4ebd867daac8f48521655b732932c22dd1624b6918dca"
         }
       }
     },
     {
       "id": "base:Roles, training and competency checks",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4305,15 +5326,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Roles, training and competency checks",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "83bcce084ce7d98a1af44ebc945a4bb9c383f746e717be8a761cc4ce80789b50"
         }
       }
     },
     {
       "id": "base:SG review: within 3 years, or earlier after changes or incidents",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4324,15 +5362,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:SG review: within 3 years, or earlier after changes or incidents",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "b3df72d90b76b830f277f3b930f19e7d95853ae051a8e15db0ee36a42891d8f3"
         }
       }
     },
     {
       "id": "base:Safe Work Procedure",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4343,15 +5398,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Safe Work Procedure",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "f512609ea436b37421f0131c5513e2b16be1b2c8b7c61a64fae15cce0882ef0a"
         }
       }
     },
     {
       "id": "base:Safe completion and return to service",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4362,15 +5434,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Safe completion and return to service",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "4cacb2c64f5f362049f1804014fcd274df87a9a8f9ba7330257a6f6c96f1dd43"
         }
       }
     },
     {
       "id": "base:Signature",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4381,15 +5470,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Signature",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2348da993ee1e8426b89eed51ca4665fc0a03a33ba5cdf367945d889ff5b154d"
         }
       }
     },
     {
       "id": "base:Site checks and changes",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4400,15 +5506,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Site checks and changes",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "fea5a2cb1920aa4a622aa4b83c4a6454a6a35e1a5034c35602e1789e3065433f"
         }
       }
     },
     {
       "id": "base:Site emergency contacts, evacuation and rescue arrangements",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4419,15 +5542,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Site emergency contacts, evacuation and rescue arrangements",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "719a149c64b318c03c598463fe331c32acf453c1398f8294b87a41aecba26315"
         }
       }
     },
     {
       "id": "base:Site measurements where applicable",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4438,15 +5578,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Site measurements where applicable",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "0bb3a76fbeba3e824e8769c01cb9ee8739cacc4621b2355d51c7886473200219"
         }
       }
     },
     {
       "id": "base:Site precautions verified by",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4457,15 +5614,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Site precautions verified by",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "bc98d606d4f30af6a457765125fee1dafc3e679f22a9baa684bfebff59f76f0a"
         }
       }
     },
     {
       "id": "base:Source JSA",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4476,15 +5650,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Source JSA",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "c8c16dd38f242bece27237053b3f5635115b821ab5998acd38d59e5170c83150"
         }
       }
     },
     {
       "id": "base:Source likelihood / severity / risk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4495,15 +5686,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Source likelihood / severity / risk",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "d266b7185a8611c30da3ac8d0b5d7e01b9a80a6d1c34e6dcd09448db6be8b1a4"
         }
       }
     },
     {
       "id": "base:Suspension, revalidation and shift handover",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4514,15 +5722,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Suspension, revalidation and shift handover",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "914e7ed8664311be387fbe925c2a3d432b33451b913c47c72d7816108db1460f"
         }
       }
     },
     {
       "id": "base:Template version",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4533,15 +5758,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Template version",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "3eebfedc3559042bbde90872ce133e50b2f7d8f16457215ae571f1b81c17e827"
         }
       }
     },
     {
       "id": "base:Test / location",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4552,15 +5794,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Test / location",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "b4184565e800d68aa9a2366749841585e914d369c9216ce6afbff1101212628c"
         }
       }
     },
     {
       "id": "base:Test time",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4571,15 +5830,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Test time",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "1d9fc0d585cc9ef0add87a7623ad9dfb4af7b3a90c80ba825b7fdc1d4a61fd76"
         }
       }
     },
     {
       "id": "base:Tester",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4590,15 +5866,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Tester",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "3945c869cac2e59651c1dd1451386ea3f56d8a30ba5c1734ae25144d0032c3e7"
         }
       }
     },
     {
       "id": "base:Toolbox Talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4609,15 +5902,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Toolbox Talk",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "aae9710baae5d82f814431332df7911bf8aa3bed4b0f91ac265b0ea49141db56"
         }
       }
     },
     {
       "id": "base:Work scope",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4628,15 +5938,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Work scope",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "6e6e4c1a7883763364854b1aee6e95842e2ab2c27312a6115b7ea780a52e2c24"
         }
       }
     },
     {
       "id": "base:Work sequence and control measures",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4647,15 +5974,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Work sequence and control measures",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "13907ff37fb0795a8366a5e864149037ece6018d8adcf6ec7105db6ee7a8f50e"
         }
       }
     },
     {
       "id": "base:Work step",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4666,15 +6010,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Work step",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "f8a02001a4e5cf94d6f5435c436b74b8b9f15913f3954b295eceb6ac5338bbe0"
         }
       }
     },
     {
       "id": "base:Work team acceptance",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4685,15 +6046,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Work team acceptance",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "d956e206308b05f7972576447a1270c7742bf33cee412db3d42739333371f68d"
         }
       }
     },
     {
       "id": "base:Work unit and related prevention documents",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4704,15 +6082,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Work unit and related prevention documents",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "fe2b166ccc78530efc71e8477a1f0461f3eb41a52766775d62eb5873aa5c15f6"
         }
       }
     },
     {
       "id": "base:Work unit, exposure and affected groups",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4723,15 +6118,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Work unit, exposure and affected groups",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "fe7fed067edef1674e6c6bd02121fca4bef4936b177e0d0fefa9d78ea5b5a462"
         }
       }
     },
     {
       "id": "base:Worker consultation and communication of remaining risks",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4742,15 +6154,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Worker consultation and communication of remaining risks",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "a2e956e4a40fd9227ba047490f2e4233c77bbb0b8a653e0d9c0c8c9126116808"
         }
       }
     },
     {
       "id": "base:Worker consultation and reassessment triggers",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4761,15 +6190,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Worker consultation and reassessment triggers",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7686ffa9171ae54ac9e42a8c600397bdb7a3e4cedaa05e80f3fb9b87cff104e7"
         }
       }
     },
     {
       "id": "base:Worker consultation, briefing and acknowledgement signatures",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4780,15 +6226,32 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Worker consultation, briefing and acknowledgement signatures",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "97cd39fa89b0e6f2bccdd6f3a2969da5b0ead05fe63c25462db7c13fff36e39c"
         }
       }
     },
     {
       "id": "base:Worksite conditions and lone work arrangements",
       "evidence": [
-        "regional-document-review.md"
+        "regional-document-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -4799,8 +6262,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "base:Worksite conditions and lone work arrangements",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review of the live form label and all inline Korean variants; generic document meaning, not jurisdictional legal certification.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "4e20dfebb82ed2727a10d4fcc952599f292c82a86046c3826ed76aaaa9a79565"
         }
       }
     },
@@ -5314,6 +6793,78 @@
         "finalVerification": {
           "status": "needs-final-verification",
           "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+        }
+      }
+    },
+    {
+      "id": "task:brLadderInventory",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brLadderInventory",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "9edf7f97eb9896ebceb8b2727c7ffe12bdad1d3a18366263adff9d997a902b08"
+        }
+      }
+    },
+    {
+      "id": "task:brLadderNotice",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brLadderNotice",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "7c52595de9749648127f72003130fdfe0743eec0d4455240ec58e6e7c7a4f692"
         }
       }
     },
@@ -6591,6 +8142,78 @@
       }
     },
     {
+      "id": "task:itElectricalRoles",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itElectricalRoles",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "07612cbbd894ab9db7981ba7532f187f651a424dfe0ceacedb585da56161ff62"
+        }
+      }
+    },
+    {
+      "id": "task:itElectricalUpdate",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itElectricalUpdate",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "2e1d80aea9b5129e8603230d377ed37c4142b28f768a51e629eeb72de18b673d"
+        }
+      }
+    },
+    {
       "id": "task:itEnergyDetail",
       "evidence": [
         "regional-task-review.md"
@@ -6682,6 +8305,78 @@
         "finalVerification": {
           "status": "needs-final-verification",
           "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+        }
+      }
+    },
+    {
+      "id": "task:itRoofNotice",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itRoofNotice",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "1abf3057bf84b8886355ce1297d147b8de8434048a4ae94ae3da6f7bfc012c1e"
+        }
+      }
+    },
+    {
+      "id": "task:itRoofStrength",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itRoofStrength",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "ff3436ba011805b76e33417e086a5eab162969607cfe593d4cc76751a8e3f557"
         }
       }
     },
@@ -7522,6 +9217,42 @@
       }
     },
     {
+      "id": "task:qcEntryUpdate",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcEntryUpdate",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "ab9c15979161fa2bcf2409af6e97c7ad7b1597ad75c246bb8f22090462cca4a7"
+        }
+      }
+    },
+    {
       "id": "task:qcFrameworkNotice",
       "evidence": [
         "regional-task-review.md"
@@ -7537,6 +9268,42 @@
         "finalVerification": {
           "status": "needs-final-verification",
           "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+        }
+      }
+    },
+    {
+      "id": "task:qcFumeSources",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcFumeSources",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "d5b941e7b93aa680cabfdd5ae9e33c7662c4e0fdcfad93eda21dcb6249bbc3d0"
         }
       }
     },
@@ -7562,7 +9329,8 @@
     {
       "id": "task:qcHotDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
       ],
       "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
       "checkpoints": {
@@ -7573,8 +9341,60 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:qcHotDetail",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "934c6781e43ad4388c7719340555f70412f309840955952b050bbfb5ef60627a"
+        }
+      }
+    },
+    {
+      "id": "task:qcOxygenCause",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcOxygenCause",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "fe06d1f419fc14a0041def4c27ea1d5f9895d99d5e75cc4a869a7c1238b32445"
         }
       }
     },
@@ -7845,6 +9665,42 @@
       }
     },
     {
+      "id": "task:ruCrewBriefing",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruCrewBriefing",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "9c7cd6a3d4f932dedf5887d3c5a1fababb08d53feb74adf98234492d06dd30c8"
+        }
+      }
+    },
+    {
       "id": "task:ruExtensionNotice",
       "evidence": [
         "regional-task-review.md"
@@ -7860,6 +9716,78 @@
         "finalVerification": {
           "status": "needs-final-verification",
           "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+        }
+      }
+    },
+    {
+      "id": "task:ruFireClearance",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruFireClearance",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "6ee5bda47a46643cfe6997e3d0a3384a1f914a6765551ce0935daf34d959bb5e"
+        }
+      }
+    },
+    {
+      "id": "task:ruFireScopeNotice",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruFireScopeNotice",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "941d329ff8403efd6bf7e0cc6c26e87971a0f4fd086f8b061158e578968f2902"
         }
       }
     },
@@ -7940,6 +9868,42 @@
       }
     },
     {
+      "id": "task:saPracticeNotice",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saPracticeNotice",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "dd27570d25cb82ad766607f3820915aceb6f812b517bd493dd84239a5c03988e"
+        }
+      }
+    },
+    {
       "id": "task:saPracticeUpdate",
       "evidence": [
         "regional-task-review.md"
@@ -7955,6 +9919,42 @@
         "finalVerification": {
           "status": "needs-final-verification",
           "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+        }
+      }
+    },
+    {
+      "id": "task:saPracticeValidity",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-batch-review-20261005.md"
+      ],
+      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saPracticeValidity",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "checkedAt": "2026-10-05",
+          "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
+          "evidence": "regional-batch-review-20261005.md",
+          "sha256": "b896c7d9b376d666345d429243e1caeb247e83102a67039f065dcae41dc3fbe4"
         }
       }
     },
@@ -11268,7 +13268,7 @@
       "id": "native:CA-QC.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11308,7 +13308,7 @@
       "id": "native:CA-QC.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11568,7 +13568,7 @@
       "id": "native:IT.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11608,7 +13608,7 @@
       "id": "native:IT.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11728,7 +13728,7 @@
       "id": "native:SA.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11748,7 +13748,7 @@
       "id": "native:SA.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11768,7 +13768,7 @@
       "id": "native:SA.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11788,7 +13788,7 @@
       "id": "native:SA.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11808,7 +13808,7 @@
       "id": "native:BR.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -11948,7 +13948,7 @@
       "id": "native:RU.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md"
+        "regional-batch-review-20261005.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {

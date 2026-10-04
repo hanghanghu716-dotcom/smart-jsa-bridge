@@ -514,7 +514,7 @@ test('follow-up amendments stay local and retain evidence without automatically 
     const sa = make('SA', [topic]);
     const r = sa.regional.taskReviews[0];
     assert.equal(r.status, 'partial-source-review');
-    assert.deepEqual(r.requirements.resolvedIssues, ['sa-gazette-publication-date']);
+    assert.deepEqual(r.requirements.resolvedIssues, ['sa-gazette-publication-date', 'sa-employer-validity-and-training-check']);
     assert.ok(sa.blocks.some(b => b.field?.key === `${topic}.occupationClassification`));
     assert.match(sa.blocks.find(b => b.field?.key === `${topic}.notice`).field.value, /2026-01-09.*180 days/);
     assert.doesNotMatch(sa.blocks.find(b => b.field?.key === `${topic}.notice`).field.value, /Publication, implementation and sector rules remain unverified/);

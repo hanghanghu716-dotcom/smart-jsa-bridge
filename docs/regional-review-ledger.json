@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.5",
+  "inventoryVersion": "2026-10-05.6",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 205,
+    "supplementFields": 224,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 204,
+    "taskVocabularyKeys": 218,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -2211,8 +2211,8 @@
       "terms": "Espace clos · surveillant · plan de sauvetage",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2C%20R.%2013.pdf",
@@ -2225,16 +2225,33 @@
           "scope": "Indexed official consolidation dated 2025-09-01: construction principal contractor jointly with employer identifies equipment, services, hazards, contaminants and rescue in writing, available on site. Current consolidation not obtained",
           "basis": "regulation",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/espaces-clos",
+          "scope": "Current guidance: >=18 years, trained entrants/attendants/rescuers, competent risk/rescue planning, investigate oxygen below normal air despite the 19.5% minimum. Other atmosphere criteria and RSST/CSTC scope remain distinct.",
+          "basis": "regulator-guidance",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.publicationsduquebec.gouv.qc.ca/fileadmin/gazette/pdf_encrypte/lois_reglements/2025F/85643.pdf",
+          "scope": "Published 2025-05-21; RSST 302 oxygen minimum changed from 20.5% to 19.5%, effective 2025-06-05. Not a complete current consolidation or an automatic entry decision.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "restartReview",
         "rescueLeadership",
         "applicableFramework",
-        "jointHazardRecord"
+        "jointHazardRecord",
+        "qcOxygenCause",
+        "trainingEvidence",
+        "rescueReadiness"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
+      "resolvedIssues": [
+        "qc-oxygen-minimum-2025-amendment"
+      ],
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2271,19 +2288,26 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html",
           "scope": "Canadian general guidance in French only; not evidence of current Quebec RSST/CSTC or adopted fire-code clauses.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://reptox.cnesst.gouv.qc.ca/Pages/fiche-complete.aspx?no_produit=13896&nom=Gaz+et+fum%EF%BF%BDes+de+soudage+et+de+coupage",
+          "scope": "Qualitative fume-source mechanisms: base/filler metal, coatings, degreasers, shielding gases and confined-space asphyxiation. Older hygiene section is not evidence of current exposure limits or full fire-code compliance.",
+          "basis": "regulator-guidance",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "applicableFramework",
         "containerHistory",
-        "watchCloseout"
+        "watchCloseout",
+        "qcFumeSources"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
@@ -2603,12 +2627,12 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.lavoro.gov.it/documenti-e-norme/interpelli/Documents/Interpello-Dlgs-81-08-n-6-2019.pdf",
-          "scope": "Official interpretation of articles 111/148: collective priority, compensatory protection and restoration, and specific roof/fragile-surface duties. Does not establish the complete current consolidated D.Lgs. 81/2008 text.",
-          "basis": "official-guidance",
+          "scope": "Interprets art.111 collective priority/temporary removal and art.148 specific collective-protection duty for roof works; strength assessment considers workers and material. Not a 2026 consolidated act.",
+          "basis": "official-interpretation",
           "checkedAt": "2026-10-05"
         },
         {
@@ -2624,11 +2648,13 @@
         "fragileSurface",
         "fallSystemChoice",
         "fixedLadderRecord",
-        "anchorCheck"
+        "anchorCheck",
+        "itRoofStrength"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "it-2025-conversion-height-amendment"
+        "it-2025-conversion-height-amendment",
+        "it-roof-specific-collective-protection"
       ],
       "remaining": "Enacted December 2025 articles 113/115 compared. Full current consolidation and later amendments/sector exceptions remain open; no automatic ladder exemption."
     },
@@ -2660,11 +2686,11 @@
       "id": "IT.electrical",
       "jurisdiction": "IT",
       "topic": "electrical",
-      "terms": "PES / PAV · idoneità ai lavori sotto tensione (se applicabile)",
+      "terms": "GI (Gestore Impianto) · RI (Responsabile impianto) · GL (Gestore programmazione lavoro) · RLE (Responsabile del Lavoro elettrico) · LAV (Lavoratore) · PES / PAV · idoneità ai lavori sotto tensione (se applicabile)",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2018/07/LavoriElettriciBassaTensione2018.pdf",
@@ -2677,15 +2703,24 @@
           "scope": "Publisher confirms valid from 2025-11, replaces 2021-09; changed professional roles, supervision definitions, distances and emergency/arc-flash annexes. Only public catalogue/summary reviewed, not purchased full text.",
           "basis": "publisher-summary",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://ceimagazine.ceinorme.it/la-normativa-sulla-sicurezza-dei-lavori-con-rischio-elettrico/",
+          "scope": "Final 2025 roles: GI, RI, GL, RLE, LAV, not draft RL/L. PES/PAV competence recognition is distinct from assignment and needs practical competence, not theory alone. Full paid standard/distances not verified.",
+          "basis": "standards-publisher-guidance",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "applicableEdition",
         "trainingEvidence",
-        "pesPavRecognition"
+        "pesPavRecognition",
+        "itElectricalRoles"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
+      "resolvedIssues": [
+        "it-electrical-2025-role-names"
+      ],
       "remaining": "CEI 11-27:2025 edition existence and revision topics verified; paid full text and applicable corrigenda not compared with INAIL 2018. No automatic qualification from a training certificate."
     },
     {
@@ -2823,7 +2858,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady-hwl-astkhdam-alsqalat-anjlyzy.pdf",
@@ -2833,7 +2868,7 @@
         },
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
+          "scope": "Actual duties/exposure determine classification. Employer verifies valid required permits/evaluations/training, including contractor compliance. Occupational practice permit differs from site PTW and OSH-practitioner licence. Implementing workflows remain unverified.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -2848,11 +2883,14 @@
         "scaffoldInspection",
         "siteProcedure",
         "occupationPermitBasis",
-        "occupationClassification"
+        "occupationClassification",
+        "saPracticeValidity",
+        "trainingEvidence"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "sa-gazette-publication-date"
+        "sa-gazette-publication-date",
+        "sa-employer-validity-and-training-check"
       ],
       "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
@@ -2864,11 +2902,11 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
+          "scope": "Actual duties/exposure determine classification. Employer verifies valid required permits/evaluations/training, including contractor compliance. Occupational practice permit differs from site PTW and OSH-practitioner licence. Implementing workflows remain unverified.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -2883,11 +2921,14 @@
         "applicableFramework",
         "occupationPermitBasis",
         "siteProcedure",
-        "occupationClassification"
+        "occupationClassification",
+        "saPracticeValidity",
+        "trainingEvidence"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "sa-gazette-publication-date"
+        "sa-gazette-publication-date",
+        "sa-employer-validity-and-training-check"
       ],
       "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
@@ -2899,11 +2940,11 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
+          "scope": "Actual duties/exposure determine classification. Employer verifies valid required permits/evaluations/training, including contractor compliance. Occupational practice permit differs from site PTW and OSH-practitioner licence. Implementing workflows remain unverified.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -2924,11 +2965,14 @@
         "occupationPermitBasis",
         "weldingEquipmentCheck",
         "countryProcedure",
-        "occupationClassification"
+        "occupationClassification",
+        "saPracticeValidity",
+        "trainingEvidence"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "sa-gazette-publication-date"
+        "sa-gazette-publication-date",
+        "sa-employer-validity-and-training-check"
       ],
       "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
@@ -2940,11 +2984,11 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
+          "scope": "Actual duties/exposure determine classification. Employer verifies valid required permits/evaluations/training, including contractor compliance. Occupational practice permit differs from site PTW and OSH-practitioner licence. Implementing workflows remain unverified.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -2965,11 +3009,14 @@
         "occupationPermitBasis",
         "weldingEquipmentCheck",
         "siteProcedure",
-        "occupationClassification"
+        "occupationClassification",
+        "saPracticeValidity",
+        "trainingEvidence"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "sa-gazette-publication-date"
+        "sa-gazette-publication-date",
+        "sa-employer-validity-and-training-check"
       ],
       "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
@@ -2981,7 +3028,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-35-atualizada-2025-1.pdf",
@@ -2991,7 +3038,7 @@
         },
         {
           "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-1-259-alteracao-do-anexo-iii-da-nr-35.pdf",
-          "scope": "Access-only fixed ladder risk analysis, routine-work procedure and periodic inspection criteria for structure, use frequency/criticality and design. Article 6 names Order 1.680/2025; heading year inconsistency is recorded, not silently corrected by the app.",
+          "scope": "Grouped analysis only for similar characteristics/use conditions. Art.7 staged fixed-ladder adequacy: <=500 first year, 501–1000 second, >=1001 third, per unit/sector/activity; clause applicability and dated exemption evidence must be assessed. Header year discrepancy remains explicit.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -3009,11 +3056,13 @@
         "trainingDelivery",
         "ladderAssessment",
         "transitionEvidence",
-        "ladderInspectionSchedule"
+        "ladderInspectionSchedule",
+        "brLadderInventory"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "br-order-1680-year-and-periodic-inspection"
+        "br-order-1680-year-and-periodic-inspection",
+        "br-ladder-grouping-and-inventory-basis"
       ],
       "remaining": "Order 1680/2025 identified and periodic-inspection clause compared. Heading-year inconsistency and site-specific transition applicability remain explicit; full-topic closure remains open."
     },
@@ -3181,22 +3230,34 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-batch-review-20261005.md",
       "findings": [
         {
           "url": "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257",
           "scope": "Temporary hot-work authorization and post-work watch in a 2026 notice. Notice says two hours, unlike older four-hour material; current consolidated fire-regime clause must be reconciled.",
           "basis": "official-notice",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+          "scope": "Agency-hosted reproduction amended 2025-02-03: paras.356–363, 372 and appendix 5. At least 2-hour post-work watch under 363; separate sector rules may be longer. Daily admission, crew briefing, permit scope and electronic-signature-law conditions under 372. Clearance radius depends on height, not a universal distance. Later consolidation remains open.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "applicableEdition",
         "hotAuthorisation",
-        "watchCloseout"
+        "watchCloseout",
+        "ruCrewBriefing",
+        "ruFireClearance",
+        "dailyReview",
+        "permitRecord"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
+      "resolvedIssues": [
+        "ru-1479-watch-and-permit-snapshot"
+      ],
       "remaining": "Current consolidated fire-regime amendments and sector exceptions remain unresolved; no automatic duration or expiry from historical checklists or this notice."
     }
   ],
@@ -6420,6 +6481,40 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:brLadderInventory",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:brLadderNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:brLadderUpdate",
       "languages": [
         "ko",
@@ -7559,6 +7654,40 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:itElectricalRoles",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:itElectricalUpdate",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:itEnergyDetail",
       "languages": [
         "ko",
@@ -7628,6 +7757,40 @@
     },
     {
       "id": "task:itHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:itRoofNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:itRoofStrength",
       "languages": [
         "ko",
         "en",
@@ -8392,7 +8555,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:qcEntryUpdate",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:qcFrameworkNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:qcFumeSources",
       "languages": [
         "ko",
         "en",
@@ -8427,6 +8624,23 @@
     },
     {
       "id": "task:qcHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:qcOxygenCause",
       "languages": [
         "ko",
         "en",
@@ -8681,7 +8895,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ruCrewBriefing",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:ruExtensionNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ruFireClearance",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ruFireScopeNotice",
       "languages": [
         "ko",
         "en",
@@ -8766,7 +9031,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:saPracticeNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:saPracticeUpdate",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saPracticeValidity",
       "languages": [
         "ko",
         "en",

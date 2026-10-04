@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import process from 'node:process';
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { terminologyText, terminologyHash } from './regional-terminology-fingerprint.js';
 import { reviewLedger } from './regional-review-ledger.js';
 import { createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
 import { taskReview } from '../src/utils/regionalTaskReview.js';
@@ -17,10 +17,10 @@ const ledger = reviewLedger();
 const closures = JSON.parse(fs.readFileSync('docs/regional-terminology-closures.json', 'utf8'));
 assert.equal(new Set(closures.map(entry => entry.id)).size, closures.length);
 for (const closure of closures) {
-  const text = TASK_SAFETY_TEXT[closure.id.slice('task:'.length)];
-  assert.ok(closure.id.startsWith('task:') && text && closure.scope && closure.checkedAt);
+  const text = terminologyText(closure.id);
+  assert.ok(text && closure.scope && closure.checkedAt, closure.id);
   assert.deepEqual(closure.languages, TASK_SAFETY_LANGUAGES);
-  assert.equal(createHash('sha256').update(JSON.stringify(text)).digest('hex'), closure.sha256,
+  assert.equal(terminologyHash(text), closure.sha256,
     `Terminology changed after semantic review; re-review before retaining closure: ${closure.id}`);
 }
 const evidenceExists = path => fs.existsSync(`docs/${path}`);
@@ -151,7 +151,7 @@ const markdown = `# ②·③ 진행률 — 확인 단계 기준\n\n` +
   `| 합산 | ${combined.reviewGroups} | ${combined.checkpoints} | ${combined.completed} | ${combined.pending} | ${combined.completionPercent}% | ${combined.remainingPercent}% |\n\n` +
   `②: 기본 양식 ${ledger.forms.length}개 + 작업 조합 ${ledger.tasks.length}개. 1차 대조 ${s2.reviewGroups - s2.pendingSourceResolution}, 코드 반영 ${s2.reviewGroups}, 최종 확인 ${s2.reviewGroups - s2.pendingFinalVerification}건. 남은 ${s2.pending}단계는 부분 근거 ${s2.pendingSourceResolution}건과 최종 확인 ${s2.pendingFinalVerification}건입니다.\n\n` +
   `③: 기본 문구 ${ledger.summary.baseVocabularyKeys} + 작업 문구 ${ledger.summary.taskVocabularyKeys} + 국가별 문서명 ${ledger.forms.length} + 원어 용어 묶음 ${ledger.tasks.length} = ${s3.reviewGroups}개. 보고서 범위의 1차 대조 ${s3.reviewGroups}, 코드 반영 ${s3.reviewGroups}, 항목별 최종 확인 ${s3.reviewGroups - s3.pendingFinalVerification}건. 남은 최종 확인 ${s3.pendingFinalVerification}건에는 완료 기록 누락과 실제 추가 검수 필요분이 함께 포함됩니다. 이를 전부 미번역 문구로 취급하지 않습니다.\n\n` +
-  `이번 변경: 싱가포르 현행 원문 2건의 접근·대조 문제 해소, 새 문구 7개 추가(③ 분모 447→454), 문구 9개 × 10언어의 의미 대조 기록과 문자열 해시 고정. [추가 검수 근거](regional-singapore-review-20261005.md).\n\n` +
+  `이번 변경: 5개 국가·지역의 작업 조합 10개 보완, 새 문구 14개 추가(③ 분모 454→468). 사용 중인 기본 문구 87개와 새 작업 문구 14개와 기존 작업 문구 1개를 10언어에서 대조하여 항목별 기록·문자열 해시를 추가했습니다. 이전 완료 9개를 포함한 용어 최종 확인 ${closures.length}건. [추가 검수 근거](regional-batch-review-20261005.md).\n\n` +
   `## 이번 확인과 한계\n\n` +
   `- 기본 양식 ${generatedFormChecks}건(89종 × 10언어)과 작업 조합 ${generatedTaskChecks}건(72종 × 10언어)을 생성하여 제목·필드·국가별 용어 보존을 확인했습니다. 이것은 코드 연결 확인이며 의미 정확성 검수 완료가 아닙니다.\n` +
   `- 모든 항목의 완료 기록 부재를 기존 작업 전체 미완료로 계산하지 않고, 최종 확인 단계만 남깁니다. 실제 추가 수정량·소요시간의 백분율은 이 지표로 주장하지 않습니다.\n` +

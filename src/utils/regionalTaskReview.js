@@ -1,7 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-05.5';
+export const TASK_REVIEW_VERSION = '2026-10-05.6';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.
@@ -106,7 +106,7 @@ export const TASK_LOCAL_TERMS = {
   DE: { confined: 'Erlaubnisschein · Aufsichtführende · Sicherungsposten · Freimessen', electrical: 'Elektrofachkraft · fünf Sicherheitsregeln', hot: 'Schweißerlaubnisschein · Brandposten während der Arbeit · Brandwache nach der Arbeit', height: 'Rückhaltesystem / Auffangsystem · Rettungskonzept' },
   JP: { confined: '酸素欠乏危険作業 / 酸素欠乏・硫化水素危険作業 · 作業主任者 · 監視人', electrical: '停電作業 · 作業指揮者 · 検電 · 短絡接地', hot: '溶接・溶断 · 火気使用', height: '要求性能墜落制止用器具 · 作業床 · 開口部' },
   FR: { confined: 'Autorisation individuelle de travail · permis de pénétrer · surveillant · secours', electrical: 'Habilitation électrique · consignation · vérification d’absence de tension', hot: 'Permis de feu · surveillance après travaux', height: 'Protection collective · retenue / arrêt des chutes' },
-  IT: { confined: 'DPR 177/2011 · qualificazione delle imprese · rappresentante del committente', electrical: 'PES / PAV · idoneità ai lavori sotto tensione (se applicabile)', height: 'Lavori in quota · protezione collettiva', hot: 'Lavori a caldo' },
+  IT: { confined: 'DPR 177/2011 · qualificazione delle imprese · rappresentante del committente', electrical: 'GI (Gestore Impianto) · RI (Responsabile impianto) · GL (Gestore programmazione lavoro) · RLE (Responsabile del Lavoro elettrico) · LAV (Lavoratore) · PES / PAV · idoneità ai lavori sotto tensione (se applicabile)', height: 'Lavori in quota · protezione collettiva', hot: 'Lavori a caldo' },
   ES: { confined: 'Autorización de trabajo · recurso preventivo · vigilancia exterior', electrical: 'Trabajador autorizado / cualificado · supresión de la tensión', hot: 'Autorización de trabajos en caliente', height: 'Protección colectiva · sistema de retención / anticaídas' },
   SA: { confined: 'الأماكن المحصورة · مراقب خارجي · خطة الإنقاذ', electrical: 'العزل الكهربائي · القفل ووضع البطاقات', hot: 'الأعمال الساخنة · مراقب الحريق', height: 'العمل على ارتفاع · منع السقوط' },
   BR: { confined: 'PET · supervisor de entrada · vigia · trabalhador autorizado', electrical: 'NR-10 · qualificação / habilitação / capacitação / autorização', hot: 'Trabalho a quente · NR-34 (indústria naval)', height: 'NR-35 · AR · PT (atividade não rotineira)' },

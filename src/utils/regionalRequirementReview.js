@@ -3,6 +3,7 @@
 import { REQUIREMENT_REVIEW_20261005 } from './regionalRequirementReview20261005.js';
 import { REQUIREMENT_REVIEW_REMAINING_20261005 } from './regionalRequirementReviewRemaining20261005.js';
 import { applyReviewFollowup } from './regionalReviewFollowup20261005.js';
+import { applyRegionalBatchReview } from './regionalBatchReview20261005.js';
 export const REQUIREMENT_REVIEW_DATE = '2026-10-04';
 const source = (title, url, scope, basis = 'official-guidance') => ({
   title, url, scope, basis, checkedAt: REQUIREMENT_REVIEW_DATE,
@@ -140,4 +141,4 @@ export function requirementReview(jurisdiction, topic) {
   return record ? structuredClone(record) : null;
 }
 
-export const REGIONAL_REQUIREMENT_REVIEW = applyReviewFollowup(BASE_REQUIREMENT_REVIEW);
+export const REGIONAL_REQUIREMENT_REVIEW = applyRegionalBatchReview(applyReviewFollowup(BASE_REQUIREMENT_REVIEW));

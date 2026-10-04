@@ -1,5 +1,6 @@
 import test from 'node:test';
 import { SINGAPORE_REVIEW_ROWS } from '../src/locales/singaporeReviewText20261005.js';
+import { REGIONAL_BATCH_ROWS } from '../src/locales/regionalBatchText20261005.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { reviewLedger, ledgerMarkdown } from './regional-review-ledger.js';
@@ -17,9 +18,9 @@ test('review inventory enumerates all forms and topics without promoting partial
   assert.equal(ledger.summary.clauseSupplements, 72);
   assert.equal(ledger.summary.baselineOnlyTasks, 0);
   assert.equal(ledger.summary.sourceLimitedTasks, 13);
-  assert.equal(ledger.summary.supplementFields, 205);
-  assert.equal(ledger.summary.taskVocabularyKeys, 204);
-  assert.deepEqual(ledger.tasks.find(t => t.id === 'IT.height').resolvedIssues, ['it-2025-conversion-height-amendment']);
+  assert.equal(ledger.summary.supplementFields, 224);
+  assert.equal(ledger.summary.taskVocabularyKeys, 218);
+  assert.deepEqual(ledger.tasks.find(t => t.id === 'IT.height').resolvedIssues, ['it-2025-conversion-height-amendment', 'it-roof-specific-collective-protection']);
   assert.deepEqual(ledger.tasks.find(t => t.id === 'JP.electrical').fieldLabels, { disconnect: 'jpIsolationChoice' });
   assert.equal(ledger.summary.overallCompletionPercent, null);
   assert.ok(ledger.forms.every(f => f.remaining && f.sourceUrls.length));
@@ -32,7 +33,7 @@ test('review inventory enumerates all forms and topics without promoting partial
 });
 
 test('dated terminology batches cannot silently overwrite existing keys or lose a document language', () => {
-  const rows = [REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005, SINGAPORE_REVIEW_ROWS].flatMap(s => s.trim().split('\n'));
+  const rows = [REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005, SINGAPORE_REVIEW_ROWS, REGIONAL_BATCH_ROWS].flatMap(s => s.trim().split('\n'));
   assert.equal(new Set(rows.map(r => r.split('|')[0])).size, rows.length);
   for (const row of rows) {
     const [key, ...values] = row.split('|');

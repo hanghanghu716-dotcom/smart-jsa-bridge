@@ -5,7 +5,7 @@ import { REGIONAL_REVIEW_SOURCES, REGIONAL_REVIEW_VERSION, REGIONAL_REVIEW_SCOPE
 import { taskReviewBlocks, TASK_REVIEW_VERSION } from './regionalTaskReview.js';
 
 // These are editable starter forms, not regulator-issued or certified forms.
-export const TEMPLATE_VERSION = REGIONAL_REVIEW_VERSION;
+export const TEMPLATE_VERSION = '2026-10-05.6';
 const BASE_SOURCES = {
   ...Object.fromEntries(Object.entries(REGIONAL_CATALOG).map(([id, p]) => [id, p.sources])),
   KR: [{ title: '고용노동부 · 작업 전 안전점검회의(TBM) 가이드', url: 'https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455' }],
@@ -100,7 +100,7 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   } else if (kind === 'method_statement') {
     blocks = [scope, equipment, ppe, sequence];
     if (context.jurisdiction === 'AU') blocks.splice(1, 0, field('hrcw', txt('해당 고위험 건설작업 종류·현장 조건', 'Applicable high risk construction work and site conditions')));
-    blocks.push(field('competency', txt('역할·교육·자격 확인', 'Roles, training and competency checks'), 'verification'), emergency,
+    blocks.push(field('competency', txt('역할·교육·역량·자격 확인', 'Roles, training and competency checks'), 'verification'), emergency,
       field('monitoring', context.jurisdiction === 'AU' ? txt('조치 실행·모니터링·검토 및 작업중지 기준', 'Implementation, monitoring, review and stop-work arrangements') : txt('작업 전 준비·작업중지 및 변경 시 검토', 'Preparations, stop-work and change review arrangements')),
       signature('consultation', txt('작업자 협의·설명 및 확인 서명', 'Worker consultation, briefing and acknowledgement signatures')),
       signature('approval', txt('작성·검토·승인 서명', 'Prepared / reviewed / authorised signatures')));
