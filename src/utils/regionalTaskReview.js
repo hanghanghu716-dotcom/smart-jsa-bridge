@@ -1,7 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-04.3';
+export const TASK_REVIEW_VERSION = '2026-10-05.1';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.
@@ -125,7 +125,8 @@ export function taskReview(context, topic) {
     ...TASK_REVIEW_SOURCES[jurisdiction][topic], ...(requirements?.sources || []),
   ].map(s => [s.url, s])).values()];
   const unresolved = jurisdiction === 'RU' || jurisdiction === 'SA' || !sources.length
-    || (jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined');
+    || (jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined')
+    || (jurisdiction === 'SG' && topic === 'height');
   return {
     topic, jurisdiction, version: TASK_REVIEW_VERSION, checkedAt: '2026-10-03',
     status: unresolved ? 'partial-source-review' : 'scoped-source-review',

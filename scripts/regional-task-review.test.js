@@ -6,6 +6,7 @@ import { TASK_TYPES, taskReview, taskLabel } from '../src/utils/regionalTaskRevi
 import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT, taskSafetyText } from '../src/locales/taskSafetyText.js';
 import { cleanPackage, duplicatePackage, startWork } from '../src/utils/workPackages.js';
 import { REGIONAL_REQUIREMENT_REVIEW } from '../src/utils/regionalRequirementReview.js';
+import { regionalText } from '../src/locales/regionalWorkText.js';
 
 const ctx = (jurisdiction, documentLocale = 'en-US') => ({ jurisdiction, documentLocale });
 const make = (jurisdiction, taskTypes = TASK_TYPES, documentLocale = 'en-US') => createRegionalTemplate('permit_to_work', ctx(jurisdiction, documentLocale), null, { taskTypes });
@@ -214,7 +215,8 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.equal(us.checkedAt, '2026-10-03');
   assert.equal(us.requirements.checkedAt, '2026-10-04');
   assert.equal(us.sources.find(s => s.url.includes('1910.146')).checkedAt, '2026-10-04');
-  assert.equal(taskReview(ctx('US'), 'hot').requirements, undefined);
+  assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-05');
+  assert.equal(taskReview(ctx('DE'), 'hot').requirements, undefined);
   for (const country of ['SA', 'RU']) {
     assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review'));
   }
@@ -227,6 +229,45 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.ok(!original.data.documents[0].regional.taskReviews[0].requirements.fields.includes('changed'));
   us.requirements.fields.push('mutated');
   assert.ok(!REGIONAL_REQUIREMENT_REVIEW.US.confined.fields.includes('mutated'));
+});
+
+test('US and GB checks preserve different evidence without prefilled clearances or automatic expiry', () => {
+  const notice = (j, topic) => make(j, [topic]).blocks.find(b => b.field?.key === `${topic}.notice`).field.value;
+  assert.match(notice('US', 'hot'), /at least 30 minutes/);
+  assert.match(notice('US', 'hot'), /written permit is preferred/);
+  assert.match(notice('GB', 'hot'), /extending to 60 minutes/);
+  assert.doesNotMatch(notice('GB', 'hot'), /1910\.252/);
+  assert.match(notice('US', 'electrical'), /Above nominal 600 V/);
+  assert.match(notice('GB', 'electrical'), /Do not import the US 600 V condition/);
+  for (const j of ['US', 'GB']) {
+    const doc = make(j, ['height', 'electrical', 'hot']);
+    for (const b of doc.blocks.filter(b => b.field?.kind === 'verification')) {
+      assert.equal(b.field.value, '');
+      b.field.mode = 'standard'; b.field.value = 'PAST_CLEARANCE';
+    }
+    const run = startWork({ data: cleanPackage({ context: ctx(j), documents: [doc] }) });
+    assert.doesNotMatch(JSON.stringify(run), /PAST_CLEARANCE/);
+  }
+  assert.match(notice('SG', 'height'), /combining assessor\/manager requires checking conditions/);
+  assert.match(notice('SG', 'height'), /not set the seven-day guidance as an automatic statutory expiry/);
+  assert.equal(taskReview(ctx('SG'), 'height').status, 'partial-source-review');
+  assert.equal(taskReview(ctx('SG'), 'height').requirements.checkedAt, '2026-10-05');
+});
+
+test('Russian document language does not turn foreign generic forms into Russian statutory records', () => {
+  assert.equal(regionalText('ru-RU', 'Permit to Work'), 'Разрешение на работы');
+  assert.equal(regionalText('ru-RU', 'Toolbox Talk'), 'Обсуждение безопасности перед работой');
+  assert.doesNotMatch(regionalText('ru-RU', 'Briefing leader and time'), /инструктаж/);
+  const title = createRegionalTemplate('toolbox_talk', ctx('FR', 'ru-RU')).title;
+  assert.match(title, /Обсуждение безопасности/);
+  assert.match(title, /Causerie sécurité/);
+  assert.doesNotMatch(title, /инструктаж/);
+  // Explicit local terms remain available for the actual Russian task context.
+  assert.match(taskReview(ctx('RU'), 'height').terms, /наряд-допуск/);
+  assert.doesNotMatch(taskSafetyText('ru-RU', 'applicability'), /наряд-допуск/);
+  assert.doesNotMatch(taskSafetyText('ar-SA', 'entryRoles'), /مشرف الدخول/);
+  assert.match(taskSafetyText('ja-JP', 'fallSystem'), /クリアランス/);
+  assert.match(taskSafetyText('pt-BR', 'fallSystem'), /restrição de movimentação\/retenção de queda/);
 });
 
 test('Ontario signed assessment is distinct from shift permit verification and retains current statutory evidence', () => {
