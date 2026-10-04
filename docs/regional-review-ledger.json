@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.1",
+  "inventoryVersion": "2026-10-05.2",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -13,12 +13,12 @@
     "languages": 10,
     "baseForms": 89,
     "taskCombinations": 72,
-    "clauseSupplements": 29,
-    "baselineOnlyTasks": 43,
-    "clauseSupplementCoveragePercent": 40.3,
-    "supplementFields": 64,
+    "clauseSupplements": 35,
+    "baselineOnlyTasks": 37,
+    "clauseSupplementCoveragePercent": 48.6,
+    "supplementFields": 81,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 122,
+    "taskVocabularyKeys": 141,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1198,13 +1198,25 @@
       "jurisdiction": "KR",
       "topic": "height",
       "terms": "추락 방지 · 작업발판 · 안전대 부착설비",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573",
+          "scope": "Published consolidation effective 2026-03-02: platform/net hierarchy and conditional mobile-ladder route in 42(4); opening protection under 43; anchorage and pre-work checks under 44. No universal exemption below 2 m",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallProtectionBasis",
+        "ladderConditions",
+        "anchorCheck"
+      ],
+      "fieldLabels": {},
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "KR.confined",
@@ -1226,6 +1238,7 @@
       "fieldKeys": [
         "permitDisplay"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1233,26 +1246,50 @@
       "jurisdiction": "KR",
       "topic": "electrical",
       "terms": "정전전로 작업 · 검전 · 잠금·표지",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625",
+          "scope": "Published consolidation effective 2026-03-02: eligible electrical worker, all supplies, locks AND tags, stored-charge discharge, voltage test and conditional earthing; restoration requires installer removal of locks/tags. US absent-owner exception is not imported",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "electricalEligibility",
+        "isolationSequence",
+        "lockRemoval"
+      ],
+      "fieldLabels": {},
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "KR.hot",
       "jurisdiction": "KR",
       "topic": "hot",
       "terms": "화재위험작업 · 화재감시자",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618",
+          "scope": "Published consolidation effective 2026-03-02: container precautions, no oxygen ventilation, start-to-finish written posting with regular/repeated-place exception; certified welding blankets when used; conditional watcher appointment, alarm checks and evacuation equipment. No numeric post-work watch duration in these clauses",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "permitDisplay",
+        "fireWatchBasis",
+        "fireBlanket"
+      ],
+      "fieldLabels": {},
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "GB.height",
@@ -1275,6 +1312,7 @@
         "fragileSurface",
         "fallingObjects"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1297,6 +1335,7 @@
       "fieldKeys": [
         "countryProcedure"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1319,6 +1358,7 @@
       "fieldKeys": [
         "isolationVerification"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1342,6 +1382,7 @@
         "watchCloseout",
         "containerHistory"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1355,6 +1396,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1391,6 +1433,7 @@
         "permitRecord",
         "stateCodeBasis"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1404,6 +1447,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1417,6 +1461,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1441,6 +1486,7 @@
         "dailyReview",
         "permitCoverage"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -1464,6 +1510,7 @@
         "dailyReview",
         "permitDisplay"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1486,6 +1533,7 @@
       "fieldKeys": [
         "licenceScope"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1499,6 +1547,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1522,6 +1571,7 @@
         "equipmentRelease",
         "rescueReadiness"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1546,6 +1596,7 @@
         "permitCloseout",
         "permitRecord"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1569,6 +1620,7 @@
         "isolationVerification",
         "restorationRelease"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1592,6 +1644,7 @@
         "hotAuthorisation",
         "watchCloseout"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1605,6 +1658,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1628,6 +1682,7 @@
         "countryProcedure",
         "permitRecord"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1641,6 +1696,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1654,6 +1710,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1667,6 +1724,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1691,6 +1749,7 @@
         "entryAuthorisation",
         "permitRecord"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1704,6 +1763,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1717,6 +1777,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1730,6 +1791,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1777,6 +1839,7 @@
         "rescueReadiness",
         "atmosphericBasis"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1790,6 +1853,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1803,6 +1867,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1816,6 +1881,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1840,6 +1906,7 @@
         "shiftAuthorisation",
         "permitRecord"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1853,6 +1920,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1866,6 +1934,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1879,6 +1948,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1910,6 +1980,7 @@
         "applicableFramework",
         "jointHazardRecord"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -1923,6 +1994,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1936,6 +2008,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1949,6 +2022,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1971,6 +2045,7 @@
       "fieldKeys": [
         "measurementCompetence"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1984,6 +2059,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -1997,20 +2073,33 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
       "id": "JP.height",
       "jurisdiction": "JP",
       "topic": "height",
-      "terms": "墜落制止用器具 · 作業床 · 開口部",
-      "reviewLevel": "baseline-source-review",
+      "terms": "要求性能墜落制止用器具 · 作業床 · 開口部",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=9",
+          "scope": "Platforms/edge protection and alternatives under 518/519, anchorage and inspections under 521, weather stop and fragile roofs. Rope-work survey/plan/director/daily inspection applies only to rope work; no universal safe exemption below 2 m",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallProtectionBasis",
+        "anchorCheck",
+        "ropeWorkPlan"
+      ],
+      "fieldLabels": {},
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "JP.confined",
@@ -2034,33 +2123,59 @@
         "trainingEvidence",
         "retestTriggers"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "JP.electrical",
       "jurisdiction": "JP",
       "topic": "electrical",
-      "terms": "停電作業 · 検電 · 短絡接地",
-      "reviewLevel": "baseline-source-review",
+      "terms": "停電作業 · 作業指揮者 · 検電 · 短絡接地",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8",
+          "scope": "339: lock OR no-energisation display OR watcher, discharge stored charge; high/extra-high-voltage de-energisation test and short-circuit earthing; safe restoration. 350: task/circuit briefing and appointed work director. Not the statutory operations-chief title or a universal electrician licence",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "isolationSequence",
+        "workLeader",
+        "restorationNotice"
+      ],
+      "fieldLabels": {
+        "disconnect": "jpIsolationChoice"
+      },
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "JP.hot",
       "jurisdiction": "JP",
       "topic": "hot",
       "terms": "溶接・溶断 · 火気使用",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=7",
+          "scope": "Remove dangerous/flammable substances and dust or otherwise prevent explosion/fire before hot/spark-producing work on pipes/containers; prohibit oxygen as ventilation in inadequately ventilated work. Does not prescribe a nationwide written permit or numeric watch duration",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "containerHistory",
+        "oxygenExclusion"
+      ],
+      "fieldLabels": {},
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "FR.height",
@@ -2073,6 +2188,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2086,6 +2202,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2108,6 +2225,7 @@
       "fieldKeys": [
         "employerAuthorisation"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2121,6 +2239,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2134,6 +2253,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2156,6 +2276,7 @@
       "fieldKeys": [
         "trainingEvidence"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2169,6 +2290,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2182,6 +2304,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2195,6 +2318,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2208,6 +2332,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2230,6 +2355,7 @@
       "fieldKeys": [
         "voltageRole"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2243,6 +2369,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2266,6 +2393,7 @@
         "scaffoldInspection",
         "siteProcedure"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2279,6 +2407,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2292,6 +2421,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2305,6 +2435,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2338,6 +2469,7 @@
         "ladderAssessment",
         "transitionEvidence"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2351,6 +2483,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2379,6 +2512,7 @@
       "fieldKeys": [
         "applicableEdition"
       ],
+      "fieldLabels": {},
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2392,6 +2526,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
     },
     {
@@ -2414,6 +2549,7 @@
       "fieldKeys": [
         "applicableEdition"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2436,6 +2572,7 @@
       "fieldKeys": [
         "applicableEdition"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2458,6 +2595,7 @@
       "fieldKeys": [
         "applicableEdition"
       ],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2471,6 +2609,7 @@
       "evidence": "regional-task-review.md",
       "findings": [],
       "fieldKeys": [],
+      "fieldLabels": {},
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     }
   ],
@@ -5269,6 +5408,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:anchorCheck",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:applicability",
       "languages": [
         "ko",
@@ -5796,6 +5952,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:electricalEligibility",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:employerAuthorisation",
       "languages": [
         "ko",
@@ -5915,6 +6088,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:fallProtectionBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:fallSystem",
       "languages": [
         "ko",
@@ -5949,7 +6139,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:fireBlanket",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:fireWatch",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:fireWatchBasis",
       "languages": [
         "ko",
         "en",
@@ -6204,6 +6428,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:isolationSequence",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:isolationVerification",
       "languages": [
         "ko",
@@ -6255,7 +6496,92 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:jpElectricalDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:jpEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:jpHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:jpHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:jpIsolationChoice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:krElectricalDetail",
       "languages": [
         "ko",
         "en",
@@ -6289,6 +6615,40 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:krHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:krHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:ladderAssessment",
       "languages": [
         "ko",
@@ -6306,7 +6666,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ladderConditions",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:licenceScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:lockRemoval",
       "languages": [
         "ko",
         "en",
@@ -6409,6 +6803,23 @@
     },
     {
       "id": "task:onEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:oxygenExclusion",
       "languages": [
         "ko",
         "en",
@@ -6731,6 +7142,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:restorationNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:restorationRelease",
       "languages": [
         "ko",
@@ -6800,6 +7228,23 @@
     },
     {
       "id": "task:roles",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ropeWorkPlan",
       "languages": [
         "ko",
         "en",
@@ -7293,6 +7738,23 @@
     },
     {
       "id": "task:weather",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:workLeader",
       "languages": [
         "ko",
         "en",

@@ -139,7 +139,7 @@ test('country supplements are translated in every document language without leak
       for (const review of doc.regional.taskReviews) {
         if (!review.requirements) continue;
         const evidence = review.requirements;
-        for (const key of [evidence.noteKey, ...(evidence.additionalNotes || []), ...evidence.fields]) {
+        for (const key of [evidence.noteKey, ...(evidence.additionalNotes || []), ...evidence.fields, ...Object.values(evidence.fieldLabels || {})]) {
           assert.ok(TASK_SAFETY_TEXT[key]?.[locale], `${jurisdiction.id}/${locale}/${key}`);
         }
         assert.ok(doc.blocks.find(b => b.field?.key === review.topic + '.notice').field.value.includes(taskSafetyText(locale, evidence.noteKey)));
@@ -151,6 +151,12 @@ test('country supplements are translated in every document language without leak
           assert.ok(f.label.includes(taskSafetyText(locale, key)));
           assert.equal(f.value, '');
           assert.equal(f.mode, 'runtime');
+        }
+        for (const [fieldKey, labelKey] of Object.entries(evidence.fieldLabels || {})) {
+          const f = doc.blocks.find(b => b.field?.key === `${review.topic}.${fieldKey}`).field;
+          assert.ok(f.label.includes(taskSafetyText(locale, labelKey)));
+          assert.equal(f.mode, 'runtime');
+          assert.equal(f.value, '');
         }
       }
     }
@@ -252,6 +258,64 @@ test('US and GB checks preserve different evidence without prefilled clearances 
   assert.match(notice('SG', 'height'), /not set the seven-day guidance as an automatic statutory expiry/);
   assert.equal(taskReview(ctx('SG'), 'height').status, 'partial-source-review');
   assert.equal(taskReview(ctx('SG'), 'height').requirements.checkedAt, '2026-10-05');
+});
+
+test('KR and JP electrical rules preserve different isolation choices and native work-director roles', () => {
+  const kr = make('KR', ['electrical']);
+  const jp = make('JP', ['electrical']);
+  const f = (doc, key) => doc.blocks.find(b => b.field?.key === `electrical.${key}`).field;
+  assert.match(f(kr, 'notice').value, /locks AND tags/);
+  assert.match(f(kr, 'lockRemoval').label, /by the installing worker/);
+  assert.ok(!kr.blocks.some(b => b.field?.key === 'electrical.restorationRelease'));
+  assert.match(f(jp, 'disconnect').label, /lock OR no-energisation notice OR watcher/);
+  assert.ok(!f(kr, 'disconnect').label.includes('JP Article 339'));
+  assert.match(f(jp, 'notice').value, /high\/extra-high voltage/);
+  const jpNative = make('JP', ['electrical'], 'ja-JP');
+  assert.match(f(jpNative, 'workLeader').label, /作業指揮者/);
+  assert.doesNotMatch(f(jpNative, 'workLeader').label, /作業主任者/);
+  assert.doesNotMatch(jpNative.regional.taskReviews[0].terms, /作業主任者/);
+  assert.match(taskReview(ctx('JP'), 'confined').terms, /作業主任者/);
+  // Document language must not transplant Japan's alternative isolation rule.
+  assert.ok(!make('KR', ['electrical'], 'ja-JP').blocks.some(b => b.field?.label.includes('又は監視人')));
+});
+
+test('KR and JP height and hot-work supplements keep conditional measures in their jurisdiction', () => {
+  const keys = (j, topic) => make(j, [topic]).blocks.flatMap(b => b.field ? [b.field.key] : []);
+  assert.ok(keys('KR', 'height').includes('height.ladderConditions'));
+  assert.ok(!keys('JP', 'height').includes('height.ladderConditions'));
+  assert.ok(keys('JP', 'height').includes('height.ropeWorkPlan'));
+  assert.ok(!keys('KR', 'height').includes('height.ropeWorkPlan'));
+  assert.ok(keys('KR', 'hot').includes('hot.permitDisplay'));
+  assert.ok(keys('KR', 'hot').includes('hot.fireBlanket'));
+  assert.ok(!keys('JP', 'hot').includes('hot.fireBlanket'));
+  assert.ok(keys('JP', 'hot').includes('hot.oxygenExclusion'));
+  for (const j of ['KR', 'JP']) {
+    const doc = make(j, ['height', 'hot']);
+    const notice = doc.blocks.find(b => b.field?.key === 'hot.notice').field.value;
+    assert.doesNotMatch(notice, /at least 30 minutes/);
+    assert.ok(doc.regional.taskReviews.every(r => r.requirements.sources.every(s => s.basis === 'regulation')));
+  }
+  assert.match(taskSafetyText('en', 'fireBlanket'), /When a welding fire blanket is used/);
+  assert.match(taskSafetyText('en', 'ropeWorkPlan'), /If applicable/);
+  assert.match(taskSafetyText('en', 'krHotDetail'), /conditions\/exceptions separately/);
+  assert.match(taskSafetyText('en', 'jpHotDetail'), /do not establish a nationwide written-permit rule/);
+});
+
+test('local isolation labels survive job snapshots and copies without mutating saved forms or reusing checks', () => {
+  const doc = make('JP', ['electrical']);
+  const disconnect = doc.blocks.find(b => b.field?.key === 'electrical.disconnect').field;
+  disconnect.mode = 'standard'; disconnect.value = 'OLD_ISOLATION';
+  const record = { id: 'jp-isolation', data: cleanPackage({ context: ctx('JP'), documents: [doc] }) };
+  const before = structuredClone(record);
+  const run = startWork(record);
+  const copy = duplicatePackage(record, 'Separate', 'ver.2');
+  assert.doesNotMatch(JSON.stringify(run), /OLD_ISOLATION/);
+  assert.equal(run.documents[0].regional.taskReviews[0].requirements.fieldLabels.disconnect, 'jpIsolationChoice');
+  copy.data.documents[0].regional.taskReviews[0].requirements.fieldLabels.disconnect = 'changed';
+  run.documents[0].regional.taskReviews[0].requirements.fieldLabels.disconnect = 'changed-run';
+  assert.deepEqual(record, before);
+  assert.equal(taskReview(ctx('JP'), 'electrical').requirements.fieldLabels.disconnect, 'jpIsolationChoice');
+  assert.equal(taskReview(ctx('KR'), 'electrical').requirements.fieldLabels, undefined);
 });
 
 test('Russian document language does not turn foreign generic forms into Russian statutory records', () => {

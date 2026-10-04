@@ -11,8 +11,9 @@ test('review inventory enumerates all forms and topics without promoting partial
   assert.equal(ledger.tasks.length, 72);
   assert.equal(new Set(ledger.forms.map(f => f.id)).size, 89);
   assert.equal(new Set(ledger.tasks.map(f => f.id)).size, 72);
-  assert.equal(ledger.summary.clauseSupplements, 29);
-  assert.equal(ledger.summary.supplementFields, 64);
+  assert.equal(ledger.summary.clauseSupplements, 35);
+  assert.equal(ledger.summary.supplementFields, 81);
+  assert.deepEqual(ledger.tasks.find(t => t.id === 'JP.electrical').fieldLabels, { disconnect: 'jpIsolationChoice' });
   assert.equal(ledger.summary.overallCompletionPercent, null);
   assert.ok(ledger.forms.every(f => f.remaining && f.sourceUrls.length));
   assert.ok(ledger.tasks.every(t => t.remaining));

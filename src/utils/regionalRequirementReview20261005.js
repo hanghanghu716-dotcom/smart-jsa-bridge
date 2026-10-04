@@ -7,6 +7,37 @@ const finding = (noteKey, fields, evidence) => ({
   noteKey, additionalNotes: [], fields, sources: [evidence],
 });
 export const REQUIREMENT_REVIEW_20261005 = {
+  KR: {
+    height: finding('krHeightDetail', ['fallProtectionBasis', 'ladderConditions', 'anchorCheck'], source(
+      '국가법령정보센터 · 안전보건규칙 제42–44조',
+      'https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573',
+      'Published consolidation effective 2026-03-02: platform/net hierarchy and conditional mobile-ladder route in 42(4); opening protection under 43; anchorage and pre-work checks under 44. No universal exemption below 2 m', 'regulation')),
+    electrical: finding('krElectricalDetail', ['electricalEligibility', 'isolationSequence', 'lockRemoval'], source(
+      '국가법령정보센터 · 안전보건규칙 제318–320조',
+      'https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625',
+      'Published consolidation effective 2026-03-02: eligible electrical worker, all supplies, locks AND tags, stored-charge discharge, voltage test and conditional earthing; restoration requires installer removal of locks/tags. US absent-owner exception is not imported', 'regulation')),
+    hot: finding('krHotDetail', ['permitDisplay', 'fireWatchBasis', 'fireBlanket'], source(
+      '국가법령정보센터 · 안전보건규칙 제240–241조의2',
+      'https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618',
+      'Published consolidation effective 2026-03-02: container precautions, no oxygen ventilation, start-to-finish written posting with regular/repeated-place exception; certified welding blankets when used; conditional watcher appointment, alarm checks and evacuation equipment. No numeric post-work watch duration in these clauses', 'regulation')),
+  },
+  JP: {
+    height: finding('jpHeightDetail', ['fallProtectionBasis', 'anchorCheck', 'ropeWorkPlan'], source(
+      '厚生労働省 · 安衛則 第518–524条、第539条の4–9',
+      'https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=9',
+      'Platforms/edge protection and alternatives under 518/519, anchorage and inspections under 521, weather stop and fragile roofs. Rope-work survey/plan/director/daily inspection applies only to rope work; no universal safe exemption below 2 m', 'regulation')),
+    electrical: {
+      ...finding('jpElectricalDetail', ['isolationSequence', 'workLeader', 'restorationNotice'], source(
+        '厚生労働省 · 安衛則 第339条、第350条',
+        'https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8',
+        '339: lock OR no-energisation display OR watcher, discharge stored charge; high/extra-high-voltage de-energisation test and short-circuit earthing; safe restoration. 350: task/circuit briefing and appointed work director. Not the statutory operations-chief title or a universal electrician licence', 'regulation')),
+      fieldLabels: { disconnect: 'jpIsolationChoice' },
+    },
+    hot: finding('jpHotDetail', ['containerHistory', 'oxygenExclusion'], source(
+      '厚生労働省 · 安衛則 第285–286条',
+      'https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=7',
+      'Remove dangerous/flammable substances and dust or otherwise prevent explosion/fire before hot/spark-producing work on pipes/containers; prohibit oxygen as ventilation in inadequately ventilated work. Does not prescribe a nationwide written permit or numeric watch duration', 'regulation')),
+  },
   US: {
     height: finding('usHeightNotice', ['equipmentRelease', 'rescueReadiness'], source(
       'OSHA · 1910.140(c)(17), (18), (21)',
