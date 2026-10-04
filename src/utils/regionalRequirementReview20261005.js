@@ -70,6 +70,6 @@ export const REQUIREMENT_REVIEW_20261005 = {
     height: finding('sgHeightReviewNotice', ['roleSeparation', 'dailyReview', 'permitCoverage'], source(
       'MOM · WAH amendment factsheet, Annex A questions 3–5',
       'https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf',
-      '2014 guidance remains publicly hosted: assess common hazards/controls for multiple locations, daily review for extended permits, assessor/applicant separation; assessor/manager combination only under stated conditions. Seven days is guidance, not an express statutory maximum. Current consolidated SSO text could not be retrieved')),
+      '2014 guidance remains publicly hosted: assess common hazards/controls for multiple locations, daily review for extended permits, assessor/applicant separation; assessor/manager combination only under stated conditions. Seven days is guidance, not an express statutory maximum. Historical retrieval limitation resolved by the separate 2026-10-05 SSO supplement')),
   },
 };

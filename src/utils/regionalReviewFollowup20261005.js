@@ -45,5 +45,28 @@ export function applyReviewFollowup(records) {
   br.partial = true;
   br.resolvedIssues = ['br-order-1680-year-and-periodic-inspection'];
   br.remaining = 'Order 1680/2025 identified and periodic-inspection clause compared. Heading-year inconsistency and site-specific transition applicability remain explicit; full-topic closure remains open.';
+
+  const height = result.SG.height;
+  height.sources = appendSources(height.sources, [source(
+    'Singapore Statutes Online · WSH (Work at Heights) Regulations 2013, current 2026-10-05',
+    'https://sso.agc.gov.sg/SL/WSHA2006-S223-2013',
+    'Full current text read: regs 2–18, 20–30 and First Schedule. Factory/hazardous-WAH PTW scope; every-shift anchorage inspection, immediate entry/handover before shift end and >=2-year records; joint inspection, posting, daily review and expiry/reapplication; rope-access design/register duties and limited tree-work exceptions.', 'regulation')]);
+  height.additionalNotes.push('sgHeightLawNotice');
+  height.fields.push('sgAnchorRegister', 'sgRopeRegister', 'sgJointInspection', 'permitDisplay', 'permitRecord');
+  height.partial = false;
+  height.resolvedIssues = ['sg-height-current-consolidation'];
+  height.remaining = 'Current text reconciled for these added prompts. Full individual checklist closure remains: detailed scaffold/ladder/roof and rope-system design checks and site-specific First Schedule applicability; no engineering approval is inferred.';
+  height.evidence = 'regional-singapore-review-20261005.md';
+
+  const hot = result.SG.hot;
+  hot.sources = appendSources(hot.sources, [source(
+    'Singapore Statutes Online · WSH (Shipbuilding and Ship-repairing) Regulations 2008, current 2026-10-05',
+    'https://sso.agc.gov.sg/SL/WSHA2006-S270-2008',
+    'Full current text read: regs 2–3, 23–24, 27–37 and 53–65. Exact-location sketch, joint inspection, necessity/no alternative, serialised controlled permit, display/retention and daily review; trained watchman; equipment register intervals under r61 and break/restart conditions r60. Marine scope only; electrical-device and ventilation design checks remain beyond these prompts.', 'regulation')]);
+  hot.fields.push('sgJointInspection', 'sgHotBasisSketch', 'sgHotEquipmentRegister', 'sgHotBreakRestart', 'permitDisplay');
+  hot.partial = false;
+  hot.resolvedIssues = ['sg-marine-hot-current-consolidation'];
+  hot.remaining = 'Current marine consolidation and amended permit numbering reconciled. Full individual checklist closure remains: device-specific r53–59/r62–65 controls and fire-emergency escalation details; no universal post-work watch duration or non-marine PTW rule is inferred.';
+  hot.evidence = 'regional-singapore-review-20261005.md';
   return result;
 }

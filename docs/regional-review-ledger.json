@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.4",
+  "inventoryVersion": "2026-10-05.5",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -15,11 +15,11 @@
     "taskCombinations": 72,
     "clauseSupplements": 72,
     "baselineOnlyTasks": 0,
-    "sourceLimitedTasks": 15,
+    "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 195,
+    "supplementFields": 205,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 197,
+    "taskVocabularyKeys": 204,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1516,25 +1516,38 @@
       "topic": "height",
       "terms": "Factory / hazardous WAH applicability · WAH safety assessor · authorised manager",
       "reviewLevel": "clause-supplement-recorded",
-      "sourceStatus": "partial-source-review",
+      "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-singapore-review-20261005.md",
       "findings": [
         {
           "url": "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
-          "scope": "2014 guidance remains publicly hosted: assess common hazards/controls for multiple locations, daily review for extended permits, assessor/applicant separation; assessor/manager combination only under stated conditions. Seven days is guidance, not an express statutory maximum. Current consolidated SSO text could not be retrieved",
+          "scope": "2014 guidance remains publicly hosted: assess common hazards/controls for multiple locations, daily review for extended permits, assessor/applicant separation; assessor/manager combination only under stated conditions. Seven days is guidance, not an express statutory maximum. Historical retrieval limitation resolved by the separate 2026-10-05 SSO supplement",
           "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://sso.agc.gov.sg/SL/WSHA2006-S223-2013",
+          "scope": "Full current text read: regs 2–18, 20–30 and First Schedule. Factory/hazardous-WAH PTW scope; every-shift anchorage inspection, immediate entry/handover before shift end and >=2-year records; joint inspection, posting, daily review and expiry/reapplication; rope-access design/register duties and limited tree-work exceptions.",
+          "basis": "regulation",
           "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "roleSeparation",
         "dailyReview",
-        "permitCoverage"
+        "permitCoverage",
+        "sgAnchorRegister",
+        "sgRopeRegister",
+        "sgJointInspection",
+        "permitDisplay",
+        "permitRecord"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "resolvedIssues": [
+        "sg-height-current-consolidation"
+      ],
+      "remaining": "Current text reconciled for these added prompts. Full individual checklist closure remains: detailed scaffold/ladder/roof and rope-system design checks and site-specific First Schedule applicability; no engineering approval is inferred."
     },
     {
       "id": "SG.confined",
@@ -1591,14 +1604,20 @@
       "topic": "hot",
       "terms": "Marine PTW · safety assessor · ship repair manager",
       "reviewLevel": "clause-supplement-recorded",
-      "sourceStatus": "partial-source-review",
+      "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "evidence": "regional-singapore-review-20261005.md",
       "findings": [
         {
           "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
           "scope": "Marine PTW: safety assessor evaluation, ship repair manager approval, incompatible-work coordination, daily review and controlled permit records. Older manual clause numbers are not asserted as current legislation.",
           "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008",
+          "scope": "Full current text read: regs 2–3, 23–24, 27–37 and 53–65. Exact-location sketch, joint inspection, necessity/no alternative, serialised controlled permit, display/retention and daily review; trained watchman; equipment register intervals under r61 and break/restart conditions r60. Marine scope only; electrical-device and ventilation design checks remain beyond these prompts.",
+          "basis": "regulation",
           "checkedAt": "2026-10-05"
         }
       ],
@@ -1606,11 +1625,18 @@
         "hotAuthorisation",
         "dailyReview",
         "permitRecord",
-        "multiEmployerRoles"
+        "multiEmployerRoles",
+        "sgJointInspection",
+        "sgHotBasisSketch",
+        "sgHotEquipmentRegister",
+        "sgHotBreakRestart",
+        "permitDisplay"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
-      "remaining": "Current Shipbuilding and Ship-repair Regulations consolidation was inaccessible; reconcile amended numbering and approval conditions before closing legal review."
+      "resolvedIssues": [
+        "sg-marine-hot-current-consolidation"
+      ],
+      "remaining": "Current marine consolidation and amended permit numbering reconciled. Full individual checklist closure remains: device-specific r53–59/r62–65 controls and fire-emergency escalation details; no universal post-work watch duration or non-marine PTW rule is inferred."
     },
     {
       "id": "US.height",
@@ -8825,6 +8851,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgAnchorRegister",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:sgElectricalNotice",
       "languages": [
         "ko",
@@ -8843,6 +8886,23 @@
     },
     {
       "id": "task:sgEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgHeightLawNotice",
       "languages": [
         "ko",
         "en",
@@ -8893,7 +8953,92 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgHotBasisSketch",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgHotBreakRestart",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgHotEquipmentRegister",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgJointInspection",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:sgMarineHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgRopeRegister",
       "languages": [
         "ko",
         "en",

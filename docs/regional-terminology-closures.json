@@ -1,0 +1,173 @@
+[
+  {
+    "id": "task:sgAnchorRegister",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "768295fdd4f60997a95116169702c4962acfee5837e0dd214adf6a7a73ccc5fe"
+  },
+  {
+    "id": "task:sgRopeRegister",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "341917c1572d5cab2b4ae87c06f7c811582fceaa383fd75fcc7ce4a381fd9f9c"
+  },
+  {
+    "id": "task:sgJointInspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "c7671a799548a2b7296b3500dbd3f3d984d715162fd05f33e2cccd78b03a5f27"
+  },
+  {
+    "id": "task:sgHotBasisSketch",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "9fa48b64b54058ed3bb768e41e675a93d9fdb2ece899814d2dea8347e474f180"
+  },
+  {
+    "id": "task:sgHotEquipmentRegister",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "2d3a9681ded88b28a0072eebe29704f012609793698344d8a62401735c4ff7a3"
+  },
+  {
+    "id": "task:sgHotBreakRestart",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "49c187ee5bbb44d0c53ebafa63a02b21ab91faca2aad12e3ccff6245bbdad1a1"
+  },
+  {
+    "id": "task:sgHeightLawNotice",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "9a5ae2f1bd1e1d87b062005845017c6c69694bd81b967f0604abd2bd2641763d"
+  },
+  {
+    "id": "task:sgHeightScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "749851a596f43956677e1ac2bc75a9864101cc1b43a72449360a1865c433f71f"
+  },
+  {
+    "id": "task:sgMarineHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, numbers/units, exception boundaries; not whole-topic or legal certification.",
+    "sha256": "4d102158d6209991cd0c493d0d37a07b209529efd001bfed6ca01b65771ff627"
+  }
+]

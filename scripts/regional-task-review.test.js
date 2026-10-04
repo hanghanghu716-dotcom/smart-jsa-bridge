@@ -11,6 +11,41 @@ import { REQUIREMENT_REVIEW_REMAINING_20261005 } from '../src/utils/regionalRequ
 
 const ctx = (jurisdiction, documentLocale = 'en-US') => ({ jurisdiction, documentLocale });
 const make = (jurisdiction, taskTypes = TASK_TYPES, documentLocale = 'en-US') => createRegionalTemplate('permit_to_work', ctx(jurisdiction, documentLocale), null, { taskTypes });
+
+test('Singapore current-law prompts preserve marine scope, blank checks and historical copy independence', () => {
+  for (const lang of TASK_SAFETY_LANGUAGES) {
+    const locale = WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === lang).locale;
+    const doc = make('SG', ['height', 'hot'], locale);
+    const keys = ['height.sgAnchorRegister', 'height.sgRopeRegister', 'height.sgJointInspection',
+      'height.permitDisplay', 'height.permitRecord', 'hot.sgJointInspection', 'hot.sgHotBasisSketch',
+      'hot.sgHotEquipmentRegister', 'hot.sgHotBreakRestart', 'hot.permitDisplay'];
+    for (const key of keys) {
+      const f = doc.blocks.find(b => b.field?.key === key).field;
+      assert.equal(f.value, ''); assert.equal(f.mode, 'runtime');
+      // Imported/edited templates cannot turn a previous inspection into a default.
+      f.value = 'SG_PAST_INSPECTION'; f.mode = 'standard';
+    }
+    for (const r of doc.regional.taskReviews) {
+      assert.equal(r.status, 'scoped-source-review');
+      assert.match(r.requirements.remaining, /Full individual checklist closure remains/);
+      assert.ok(r.sources.some(s => s.url.startsWith('https://sso.agc.gov.sg/') && s.checkedAt === '2026-10-05'));
+    }
+    const record = { id: 'sg-review', data: cleanPackage({ context: ctx('SG', locale), documents: [doc] }) };
+    const before = structuredClone(record);
+    const run = startWork(record);
+    assert.doesNotMatch(JSON.stringify(run), /SG_PAST_INSPECTION/);
+    assert.deepEqual(run.documents[0].regional.taskReviews, doc.regional.taskReviews);
+    duplicatePackage(record, 'Independent SG', 'ver.2').data.documents[0].regional.taskReviews[0].requirements.sources[0].scope = 'changed';
+    assert.deepEqual(record, before);
+    assert.ok(doc.regional.taskReviews.find(r => r.topic === 'hot').scopeNotes.includes('marineScope'));
+  }
+  const sg = make('SG', ['height', 'hot']);
+  assert.match(sg.blocks.find(b => b.field?.key === 'hot.sgHotEquipmentRegister').field.label, /30 days.*14 days.*12 months/);
+  assert.match(sg.blocks.find(b => b.field?.key === 'height.notice').field.value, /exceeding 3 m/);
+  for (const j of WORK_JURISDICTIONS.filter(p => p.id !== 'SG')) {
+    assert.ok(!make(j.id).blocks.some(b => b.field?.key.includes('.sg')));
+  }
+});
 test('all 18 jurisdictions expose four opt-in task checks before permit signatures', () => {
   for (const profile of WORK_JURISDICTIONS) {
     const plain = make(profile.id, [], profile.locale);
@@ -257,7 +292,7 @@ test('US and GB checks preserve different evidence without prefilled clearances 
   }
   assert.match(notice('SG', 'height'), /combining assessor\/manager requires checking conditions/);
   assert.match(notice('SG', 'height'), /not set the seven-day guidance as an automatic statutory expiry/);
-  assert.equal(taskReview(ctx('SG'), 'height').status, 'partial-source-review');
+  assert.equal(taskReview(ctx('SG'), 'height').status, 'scoped-source-review');
   assert.equal(taskReview(ctx('SG'), 'height').requirements.checkedAt, '2026-10-05');
 });
 
@@ -431,7 +466,7 @@ test('new Canadian and marine prompts preserve different plan triggers, sectors 
 });
 
 test('source limitations stay visible in all languages and survive independent saved copies', () => {
-  const limited = [['SG', 'hot'], ['CA-QC', 'hot'], ['IT', 'height'], ['IT', 'electrical'],
+  const limited = [['CA-QC', 'hot'], ['IT', 'height'], ['IT', 'electrical'],
     ['SA', 'confined'], ['SA', 'electrical'], ['SA', 'hot'], ['RU', 'hot']];
   for (const [j, topic] of limited) {
     for (const locale of TASK_SAFETY_LANGUAGES) {

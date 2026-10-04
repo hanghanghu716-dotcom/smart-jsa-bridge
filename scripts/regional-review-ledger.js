@@ -26,9 +26,9 @@ export function reviewLedger() {
       id: `${p.id}.${topic}`, jurisdiction: p.id, topic, terms: r.terms,
       reviewLevel: r.requirements ? 'clause-supplement-recorded' : 'baseline-source-review',
       sourceStatus: r.status, checkedAt: r.requirements?.checkedAt || r.checkedAt,
-      evidence: r.requirements?.checkedAt === '2026-10-05'
+      evidence: r.requirements?.evidence || (r.requirements?.checkedAt === '2026-10-05'
         ? 'regional-requirements-review-20261005.md' : r.requirements
-          ? 'regional-requirements-review-20261004.md' : 'regional-task-review.md',
+          ? 'regional-requirements-review-20261004.md' : 'regional-task-review.md'),
       findings: r.requirements?.sources.map(s => ({ url: s.url, scope: s.scope, basis: s.basis, checkedAt: s.checkedAt })) || [],
       fieldKeys: r.requirements?.fields || [],
       fieldLabels: r.requirements?.fieldLabels || {},
@@ -55,7 +55,7 @@ export function reviewLedger() {
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-05.4',
+    inventoryVersion: '2026-10-05.5',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',
