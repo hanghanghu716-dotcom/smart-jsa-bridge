@@ -2107,5 +2107,2627 @@
     "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
     "evidence": "regional-batch-review-20261005.md",
     "sha256": "934c6781e43ad4388c7719340555f70412f309840955952b050bbfb5ef60627a"
+  },
+  {
+    "id": "title:KR.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "6076a69705c0d34a74dd7d603a3d19960f9d2eec3d895149ee7b3b6d69b15322"
+  },
+  {
+    "id": "title:KR.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "7e0ffd1984306af395cb6c90f0c15227906e8e0ab168d08e9eced22d87fabaa8"
+  },
+  {
+    "id": "title:KR.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "48421c5e490e689cb383cfdaff375da9f12b3620f337130ed8261bf9c5d05fc1"
+  },
+  {
+    "id": "title:KR.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "62c730ff7d40efb85742ce087efd2c1eb6a450be821933756ca8f0a4f9073224"
+  },
+  {
+    "id": "title:GB.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "555a6af7595ee9a02b24f87178f9199674fa7f3f560a5b21696d49bfb7b39dfe"
+  },
+  {
+    "id": "title:GB.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "738e6172d3f61f1c93f12c5ce645c5d8ee8c9b5f1f318b7fc66de6bb5bfffba0"
+  },
+  {
+    "id": "title:GB.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "75298ff726ad5b843ad87447895eefb9693d60519e6232e36cd5c3d6c2f46e67"
+  },
+  {
+    "id": "title:GB.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "ecad032fae37fea2d69b4cb1d7fdfbf4abd8cb36eb757d2c0404f74fb6362fd0"
+  },
+  {
+    "id": "title:GB.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e6c06eea39387a1135973ca048e1d3d40b3cd1930de283ee4514f4ca9a58ade7"
+  },
+  {
+    "id": "title:AU.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "555a6af7595ee9a02b24f87178f9199674fa7f3f560a5b21696d49bfb7b39dfe"
+  },
+  {
+    "id": "title:AU.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1a5771a7bb704676612489099544b4b64cf072a92b9c808b57b4bbee0282aafd"
+  },
+  {
+    "id": "title:AU.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "9625f1dfbb96f1f911da2330a3b9d78b6dcb1b807b0830276762f0c33629599e"
+  },
+  {
+    "id": "title:AU.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "024c6ae25ee024ba379a4b671fa48e68734c002648ec399336485a5d7474b420"
+  },
+  {
+    "id": "title:AU.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "3f86fa49a83ea5c0b19d0196a2a1f26ac6e82598f158145331d392ca85bae004"
+  },
+  {
+    "id": "title:SG.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "eb620217d8e8020227f222e5dc0745cf984bb7bdaa5a43a82f64cf0c96c2fa02"
+  },
+  {
+    "id": "title:SG.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "14ed51b5448e9cbb63add2ecbafc056f9d9dfe7e7072913507053ddc2fff6847"
+  },
+  {
+    "id": "title:SG.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "75298ff726ad5b843ad87447895eefb9693d60519e6232e36cd5c3d6c2f46e67"
+  },
+  {
+    "id": "title:SG.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "88fbf0cce7589e3e315f4283bd8393d7956bde4fe7221464fa74529b9275721f"
+  },
+  {
+    "id": "title:SG.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "07bdc4861dbdcdb90cb9d93808d5c26dfba00db48234b867fc66d4ca0d9bed17"
+  },
+  {
+    "id": "title:US.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1465c5f7154c0c65cb99ddaf377ae93cc438e813593fb8a9a76c23328c74c695"
+  },
+  {
+    "id": "title:US.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "6337b9b2794e4945724378c4980b3d50178a6f764f2316d99ff137566e4fa46a"
+  },
+  {
+    "id": "title:US.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fdf40c4141dedd2a8f7992ab8128f477c3a832756a7e6101f3e09cfde388ebc8"
+  },
+  {
+    "id": "title:US.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5fb93948ae19bf912d7673c74e4fdb10dc399ad7a95281ca5ebfab976d97b7e8"
+  },
+  {
+    "id": "title:US.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e31da83afabb4e6c37b9f841ac6e9a283482157dfa95c69b89f0210b62f75e6b"
+  },
+  {
+    "id": "title:CA.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "71f82fb11ffbad4470e759c6fe673ae4b4509b3c0c107b9fbf7e75a88a9624c6"
+  },
+  {
+    "id": "title:CA.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5af5994e861974432f67d0c131991c87282c715793491892192b2e38237acd53"
+  },
+  {
+    "id": "title:CA.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fdf40c4141dedd2a8f7992ab8128f477c3a832756a7e6101f3e09cfde388ebc8"
+  },
+  {
+    "id": "title:CA.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5fb93948ae19bf912d7673c74e4fdb10dc399ad7a95281ca5ebfab976d97b7e8"
+  },
+  {
+    "id": "title:CA.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e738b8f1435abb6848a229730281dd1de238a50d01d724723b227dc56d4513c7"
+  },
+  {
+    "id": "title:CA-AB.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e781baf17b6f0e7868c43f545b4715563f370ac3f18de1b81961fdcebc537229"
+  },
+  {
+    "id": "title:CA-AB.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5af5994e861974432f67d0c131991c87282c715793491892192b2e38237acd53"
+  },
+  {
+    "id": "title:CA-AB.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "648bfc17a802521af316ca5b3c3c9dc5f75cdbba4ae843a5f99ca15870155770"
+  },
+  {
+    "id": "title:CA-AB.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "816d9387386b171523b515d7e5cf7f6b15e70525558ab35f883012a0c6786350"
+  },
+  {
+    "id": "title:CA-AB.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e738b8f1435abb6848a229730281dd1de238a50d01d724723b227dc56d4513c7"
+  },
+  {
+    "id": "title:CA-ON.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "71f82fb11ffbad4470e759c6fe673ae4b4509b3c0c107b9fbf7e75a88a9624c6"
+  },
+  {
+    "id": "title:CA-ON.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5af5994e861974432f67d0c131991c87282c715793491892192b2e38237acd53"
+  },
+  {
+    "id": "title:CA-ON.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fdf40c4141dedd2a8f7992ab8128f477c3a832756a7e6101f3e09cfde388ebc8"
+  },
+  {
+    "id": "title:CA-ON.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a2fb82d7f9976c14d14da6999a7d7bd1e80f70a9e109eee907eebdb983639c46"
+  },
+  {
+    "id": "title:CA-ON.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e738b8f1435abb6848a229730281dd1de238a50d01d724723b227dc56d4513c7"
+  },
+  {
+    "id": "title:CA-BC.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "0e7d620e121fd87a824eb4f6d43dc2c58136f0b3ab8a039fed26d830b3308923"
+  },
+  {
+    "id": "title:CA-BC.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5af5994e861974432f67d0c131991c87282c715793491892192b2e38237acd53"
+  },
+  {
+    "id": "title:CA-BC.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fdf40c4141dedd2a8f7992ab8128f477c3a832756a7e6101f3e09cfde388ebc8"
+  },
+  {
+    "id": "title:CA-BC.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "816d9387386b171523b515d7e5cf7f6b15e70525558ab35f883012a0c6786350"
+  },
+  {
+    "id": "title:CA-BC.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e738b8f1435abb6848a229730281dd1de238a50d01d724723b227dc56d4513c7"
+  },
+  {
+    "id": "title:CA-QC.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5f45311ee6dbc4b6ce681f125c888bc4569f2a9e32c2426abeffcbeb4e9facc0"
+  },
+  {
+    "id": "title:CA-QC.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "0195e5d7204bd86f06cd98f5e67ff5fe567090317164c41a9355ec3d6008c7b4"
+  },
+  {
+    "id": "title:CA-QC.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "3f7b6afcd2fa07ed176495100a71ad8bcc91601f91190af7ea847b4d93c78b09"
+  },
+  {
+    "id": "title:CA-QC.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "b4f397321c1e70092ae2af5612ad9a1822861b483b7b077222a7d9148766db34"
+  },
+  {
+    "id": "title:CA-QC.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "339036f5fc4e97118936b77e7f42b30d268b89e28b64daf3c1054d9575dc10cb"
+  },
+  {
+    "id": "title:DE.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "238326d6fc5e484a7f2454dafbe0bed0fe2130d9b087054da5edbe630c429f5b"
+  },
+  {
+    "id": "title:DE.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e7cf64deb7834355a8f2fa79f5052938ceba17f2e3b22ea69d5d0dc71f663bd5"
+  },
+  {
+    "id": "title:DE.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "72e260dd6e1474127304b42bec9fce49a3716e450d7fc1f74a77f8dfd37cba6c"
+  },
+  {
+    "id": "title:DE.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "4b7e6e866ddaaa6bfd4d6fac70d57f3fb3ca1b5a882da63445b54e8103b138a4"
+  },
+  {
+    "id": "title:DE.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a0868f21c1fdcaa24156bd16488d576c45850ffdf284c594553358a02bc45ae9"
+  },
+  {
+    "id": "title:JP.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "f6e6e39bcce9536590906ff10f29e24ea24aeae0946ff2456884cccd42295b36"
+  },
+  {
+    "id": "title:JP.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "966caff3a3c71ef0bcaa419600d2843119e9a2c797935900d0930e58d1942ed7"
+  },
+  {
+    "id": "title:JP.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "24025a3439595526c1d2041a50262f07492fbdcbf41bdcb1150c2b5888bec4e3"
+  },
+  {
+    "id": "title:JP.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "71461d5c63f4a045df8973e528cda1bfd0981ba390823c741b6f2658e281e630"
+  },
+  {
+    "id": "title:JP.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fa31a936c577ddc1c6a66d9f45c1dde7ab8c03829ca896148e0362125eff0a9f"
+  },
+  {
+    "id": "title:FR.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "7cf64577fb45b014cd103d3ac71e2d43521ec76fbfbba3cc94f4d243a461be64"
+  },
+  {
+    "id": "title:FR.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fda4ceab62e4be7eefe266b5d6f12c6cc24fbc861c72ae53e78ba6a41e98a028"
+  },
+  {
+    "id": "title:FR.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "3f7b6afcd2fa07ed176495100a71ad8bcc91601f91190af7ea847b4d93c78b09"
+  },
+  {
+    "id": "title:FR.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "6519df66201e532c87a89e20e840bcfd05f1357d69782aa1896487866e55f2e3"
+  },
+  {
+    "id": "title:FR.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "46a81ee3a7cda877bfaada54ec9d2145c85b37d2c65c6f8b0e08bdf651b812e6"
+  },
+  {
+    "id": "title:IT.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "698f3616e7991cc4a06657bada0ed8a437f13bd746936921916e4717a1d68761"
+  },
+  {
+    "id": "title:IT.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "4237225734719335fdd4c2c9fb7bb6107605683458d6c88d633409971e1aadc2"
+  },
+  {
+    "id": "title:IT.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "ff39326052ea20e0143001f14ceaeccfa076a4bc0c5db436108a128366e20f00"
+  },
+  {
+    "id": "title:IT.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "4ff457d6d2227b9bf8501ba34eef1718dfa7b6fb34fbe5b32fb59cd2e6c3e5c8"
+  },
+  {
+    "id": "title:IT.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a02a910e9aa092c432a29558ca4372a89aeddcbbd29f93dbcf5542045ecfc7a6"
+  },
+  {
+    "id": "title:ES.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "74e5f2548f5c7ebab62b6346c4b66fa1c9d5940da9b582ed623e07d4214279f3"
+  },
+  {
+    "id": "title:ES.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1cceba6967664654ddcb6c29f39fb9cf2e71d760269db7c128eb389f995ed0f2"
+  },
+  {
+    "id": "title:ES.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "3775b4518cf2d0fd19b3afcf7fd6e4c5e65357af4faee4f09882af13bbaab669"
+  },
+  {
+    "id": "title:ES.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "0405b083a2dec64fbbc9fc24382f9af4f5b8c0816f363a30206c0c764b813d75"
+  },
+  {
+    "id": "title:ES.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "49b363adf7d48dc533bcaec0660a2c44cf91c25c696f5f6846bd0f97fa88441a"
+  },
+  {
+    "id": "title:SA.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "17430539dd49a5649f8308fac9b4b4e83f3ed2aec385a97c724fa13ed096e4cb"
+  },
+  {
+    "id": "title:SA.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "2cabec81423002c81c37b4a80c810d30efef9d67edd5a25641a7521f1d9f7162"
+  },
+  {
+    "id": "title:SA.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "b75d1c3ca575ca28410408e02ec86d3e772d96ea5138006a264527154307d9a4"
+  },
+  {
+    "id": "title:SA.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "d6dc98ffde9c37f2dd14a988fff78d90b3a3fe2d893c30dbab9dc65d7a40a02a"
+  },
+  {
+    "id": "title:SA.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "649b9d77260487577982cb7f926c1d93a1c5aabab247a59ddf274ab32aafb5f7"
+  },
+  {
+    "id": "title:BR.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "7949fb5638c2f1cfe0c8bc472263cef6d948c54cad499c37471a69bd52b784e6"
+  },
+  {
+    "id": "title:BR.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "be0285d8fdd42558ee90d66f9c61cb4b526d6b5eef5f87bc24b3accc0bc9a2ff"
+  },
+  {
+    "id": "title:BR.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "47bf2925b8d796d52fc91d4e11aa47a56ed6f9a2d15a7699c16f84cf4f42e8ac"
+  },
+  {
+    "id": "title:BR.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "f6b0a8b928c7f320097800b24f6719586ea3ea8e9014d2504ddc2d87922e0ade"
+  },
+  {
+    "id": "title:BR.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "cc04ec340990ab1015fca846ac5e05dc886b71dd7a9538bf8bac93920b3b2ee8"
+  },
+  {
+    "id": "title:RU.risk_assessment",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5504afd5b35bfa4474f111306a470ed0b84ae1f883208e2c2b4984db140bc3c1"
+  },
+  {
+    "id": "title:RU.method_statement",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "faac87458e27fdbd093da7d577cc4aacbd2f4563d0b142a37b51190dace9cae2"
+  },
+  {
+    "id": "title:RU.permit_to_work",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fae33971a16502067d37de13075feaaec84b5a09ad22b0220fd236a92c84b378"
+  },
+  {
+    "id": "title:RU.toolbox_talk",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "173125e6c2ea260e9c93f1d0d06af41dc50699f6a46b42fdcbd96d4f25b4ca15"
+  },
+  {
+    "id": "title:RU.inspection",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "f6c84d1babd75805234545ddb8d22f1497dbb1ff01a09a7479cbe132ddc61b6e"
+  },
+  {
+    "id": "task:usScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "4e832b3bb363b59a81d179f0454a67c2fe3457a8eb17afa1c1541a166cd5c5c9"
+  },
+  {
+    "id": "task:auScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "fa69ade72d8d7a7e4788df9e0cb3df4194b911437bc30773516386af1e0052a9"
+  },
+  {
+    "id": "task:gbScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "cdc1b69f087e8a664d149ca5a372b5eaee9183830bb3c74c1263d79e215d7873"
+  },
+  {
+    "id": "task:marineScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "4cab1d75af68d9293dee96511fa183d6654a9518a34c8cbe316d222dfc661a09"
+  },
+  {
+    "id": "task:caScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1f905d2d1f28feab8d0301df83067da4244b42fc774d35c07e96358a43026a54"
+  },
+  {
+    "id": "task:deadScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "bca97b27fe3a983e7c1927d42456ef50accd7c51933b602f2b51a1f0bb18d555"
+  },
+  {
+    "id": "task:select",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "aa2599f523472e3e5cb2e6475ca48c1d76ff579870e67577d62dedf923f888f7"
+  },
+  {
+    "id": "task:help",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1c01295e13f8f99d6899175f987fd1a11c3e4ffc4e990d3d6423893603725d3d"
+  },
+  {
+    "id": "task:height",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "2f95faf8d45fe9877cc551c18dea283b6f3ec0584b31b9533226c67d023ebad4"
+  },
+  {
+    "id": "task:confined",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "31c3d1fe7ea98f41ec46846044f6a383e22335fa1a2e424aaa0bbe7d444f5acf"
+  },
+  {
+    "id": "task:electrical",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "0c7eaa372952df73bbacc40df1dfc92d378f747e706df542e49ff13878e705ec"
+  },
+  {
+    "id": "task:hot",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "aef43990f10ed2203743c46ee5ddd60fcb1a4f28f1a113044e68c74642ff169d"
+  },
+  {
+    "id": "task:applicability",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "35afa55c84804c38d72fb99e4b3fda22f79c873d16db675ca665741b97639065"
+  },
+  {
+    "id": "task:competence",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "787babeef224e76cb8c6255f136e1e0d675fdd4d06d3eedafcf52e3fdf9523d7"
+  },
+  {
+    "id": "task:avoidHeight",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "6c47ef419a9482bdd158803590266a2ca0e7c9f4e975e25af279a7c3196bc650"
+  },
+  {
+    "id": "task:fallSystem",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "2591311f9c73d5a7bff3980cfbbe612d18436b514162c70236a89c632c817d24"
+  },
+  {
+    "id": "task:access",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a8d364863c6a486eb41d783f55287810172b3c8f8658f76ea576156e466547f9"
+  },
+  {
+    "id": "task:weather",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "cf5bd79e81d50b0e30bff05e9b6d4aa23f59ca37e8ad1e1de47b69ed91e5833d"
+  },
+  {
+    "id": "task:rescue",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "297757512438a9dfce3592c1334476924dd1b9b28fad07dd587b8d4741c2c8af"
+  },
+  {
+    "id": "task:space",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a52eda4542298ca67c4f4246bdfea34ae440905c966cab9d518a70609c19beb0"
+  },
+  {
+    "id": "task:entryRoles",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "66c0b8fe21f6a15713c60ae0a47b92ab1c27e0bda6957cbbfab706f5c84b6b9a"
+  },
+  {
+    "id": "task:atmosphere",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "19b71f65a7fb92a73242b765cf71ea59d329de6ad111953246456ab0f5e3309e"
+  },
+  {
+    "id": "task:isolation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a185d7b379260a59f228593e5093cb182b312dbe4505cc9331fd116c7e8d82ca"
+  },
+  {
+    "id": "task:ventilation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "a2f90a22b0bdc300ff77b1ea35673ba6d7d29baab30fc6c6fd7fefb28e2ee12f"
+  },
+  {
+    "id": "task:entryLog",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5da49636ae4f45a2c89d1565eb217e18bae6564c079ac4311052d6a4fa3d854e"
+  },
+  {
+    "id": "task:circuit",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5ade48acf9a224be1d3940ca2b6ee1dc4c2b5a5bb7958c89fbc6a62fe4c589fa"
+  },
+  {
+    "id": "task:disconnect",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "f439ea1d4133874cb6368ad27d6ade55c5f135cd7a275cea701b2f565425e4ec"
+  },
+  {
+    "id": "task:proveDead",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "b3908a8200d9eacb10390ed3945a4615d4daaa5d0a1a204e4a1b0bb1bca84922"
+  },
+  {
+    "id": "task:earthBarrier",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "0fa8bbe97dbf9a7efe3d00363ed4e1a85e9cb05285664894050eeae10288c23c"
+  },
+  {
+    "id": "task:restore",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "375519078e9905dd706228a579654002edb75a1758a054f394bbc641d936b868"
+  },
+  {
+    "id": "task:combustibles",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1cfb8e956e8f0a092fd1d52089837e4a3a29f78abae234ebc52c26a32c5dc8e2"
+  },
+  {
+    "id": "task:fireWatch",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "12e99489bb394466689524711fe9cd3a7aac2e9fdf7e0ee503203abc41afccdc"
+  },
+  {
+    "id": "task:gasFumes",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "9eda49e7cd49890177a6613fa807b6ec4dbfe0a5209c8f419bebcc40fe525ece"
+  },
+  {
+    "id": "task:cylinders",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1e746a1f2bbda8897dc19d25dd0e545d97cd185279cc13523f885ac30301c87e"
+  },
+  {
+    "id": "task:stop",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "8e7f28ff44c12f940b4f83d0e0ab5f3893f8b4d47d2fbef643dd625718f28c70"
+  },
+  {
+    "id": "task:record",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "17931337de30506abea30b01e6fec7329a4fe97651d55a9ea6d2b4c39bdf3d47"
+  },
+  {
+    "id": "task:instrument",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "ef8d10de4970df7f0b6422b73dd6254f03a779a866612d9ad7ad9b047ce9a662"
+  },
+  {
+    "id": "task:criteria",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "76693e7dfdc13fa529c9c879812b6477ce16491a2f0cc6fe0889003f1697c4f9"
+  },
+  {
+    "id": "task:scopeNote",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "bf507403acef72866c56b39ca35f4267df8432f70e1d64a1c808680ca8eb0eec"
+  },
+  {
+    "id": "task:references",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "443ae8e806fadf8ae0688c45d36959b674c964f4d8f3b08b3dd25657b6429548"
+  },
+  {
+    "id": "task:qcConfined",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "64488142145bd7ddfaf77a1af4ecabbfbbafc4ae7def728b92dcd07bbf040096"
+  },
+  {
+    "id": "task:qcElectrical",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "31dedd9ac007fbf1fd97b933a2aa9ac9de894f0fdc7f165e3567f517824dccdf"
+  },
+  {
+    "id": "task:roles",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e1d3a97ea852c5ef6dccd38ffcc61dd75f09621b2ddf7f0c7de795250e2e93d4"
+  },
+  {
+    "id": "task:pending",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "61e64043cccfcff7736cb933557357fcb25856659b3aea1cdab052dabb2ffd5c"
+  },
+  {
+    "id": "task:notice",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "e1aa45c7236d7a9a5408309c00908457d89c84a5f32153651d01398f8e851a8e"
+  },
+  {
+    "id": "task:copy",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "9c9fd090028fed7db3f7a4b15f95014a17c5633d06a98867ebd8511a6f35d9b2"
+  },
+  {
+    "id": "task:sgRiskScope",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "5059c619e947378a16c8be5f3b648f84dc848cd354c127e61ca8c215d6b6cebe"
+  },
+  {
+    "id": "task:sgRiskCommunication",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "9fddebbfbe82baba4154e7b29f02c92c9b980d0496ad491931c74a751c845bc2"
+  },
+  {
+    "id": "task:sgRiskRecord",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "checkedAt": "2026-10-05",
+    "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
+    "evidence": "regional-title-core-review-20261005.md",
+    "sha256": "1d59dee5517d82562e602b365f0e113fcbaec3bf8d2b3fa4e7ef783dcfdc9936"
   }
 ]

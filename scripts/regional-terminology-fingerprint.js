@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { regionalFieldTranslations } from '../src/locales/regionalWorkText.js';
 import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT } from '../src/locales/taskSafetyText.js';
+import { regionalTemplates } from '../src/utils/regionalWorkTemplates.js';
+import { WORK_DOCUMENT_LANGUAGES } from '../src/utils/workJurisdiction.js';
 
 const producerPaths = ['src/utils/regionalWorkTemplates.js', 'src/utils/regionalTaskReview.js', 'src/components/work/WorkPreview.jsx'];
 // Include actual inline Korean callers, not an assumed Korean translation of
@@ -24,6 +26,15 @@ export function baseTerminologyText(key, sources = producerPaths.map(path => fs.
 export function terminologyText(id) {
   if (id.startsWith('task:')) return TASK_SAFETY_TEXT[id.slice(5)];
   if (id.startsWith('base:')) return baseTerminologyText(id.slice(5));
+  if (id.startsWith('title:')) {
+    const [jurisdiction, kind] = id.slice(6).split('.');
+    const titles = TASK_SAFETY_LANGUAGES.map(language => {
+      const documentLocale = WORK_DOCUMENT_LANGUAGES.find(locale => locale.split('-')[0] === language);
+      const title = regionalTemplates({ jurisdiction, documentLocale, highRiskConstruction: 'yes' }).find(form => form.kind === kind)?.title;
+      return [language, title];
+    });
+    return titles.every(([, title]) => title) ? Object.fromEntries(titles) : null;
+  }
   return null;
 }
 export const terminologyHash = text => createHash('sha256').update(JSON.stringify(text)).digest('hex');

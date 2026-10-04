@@ -16,7 +16,7 @@ export function reviewLedger() {
   }).map(form => ({
     id: `${p.id}.${form.kind}`, jurisdiction: p.id, kind: form.kind,
     title: form.title, reviewLevel: 'baseline-source-review',
-    evidence: 'regional-document-review.md',
+    evidence: p.id === 'SG' && form.kind === 'risk_assessment' ? 'regional-title-core-review-20261005.md' : 'regional-document-review.md',
     sourceUrls: REGIONAL_REVIEW_SOURCES[p.id].map(s => s.url),
     remaining: 'Individual form field-to-source and complete terminology closure not recorded.',
   })));
@@ -55,7 +55,7 @@ export function reviewLedger() {
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-05.6',
+    inventoryVersion: '2026-10-05.7',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',

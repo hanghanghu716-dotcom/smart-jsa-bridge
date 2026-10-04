@@ -1,7 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-05.6';
+export const TASK_REVIEW_VERSION = '2026-10-05.7';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.

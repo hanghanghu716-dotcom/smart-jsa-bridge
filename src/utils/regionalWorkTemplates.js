@@ -3,9 +3,10 @@ import { regionalText } from '../locales/regionalWorkText.js';
 import { REGIONAL_CATALOG } from './regionalCatalog.js';
 import { REGIONAL_REVIEW_SOURCES, REGIONAL_REVIEW_VERSION, REGIONAL_REVIEW_SCOPE } from './regionalReview.js';
 import { taskReviewBlocks, TASK_REVIEW_VERSION } from './regionalTaskReview.js';
+import { taskSafetyText } from '../locales/taskSafetyText.js';
 
 // These are editable starter forms, not regulator-issued or certified forms.
-export const TEMPLATE_VERSION = '2026-10-05.6';
+export const TEMPLATE_VERSION = '2026-10-05.7';
 const BASE_SOURCES = {
   ...Object.fromEntries(Object.entries(REGIONAL_CATALOG).map(([id, p]) => [id, p.sources])),
   KR: [{ title: '고용노동부 · 작업 전 안전점검회의(TBM) 가이드', url: 'https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455' }],
@@ -93,6 +94,11 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
     signature('assessor', txt('평가 참여자·검토자 서명', 'Assessment team / reviewer signatures'))];
     if (context.jurisdiction === 'KR') blocks.splice(1, 0, field('assessmentBasis', txt('평가 종류·허용 가능한 위험성 기준', 'Assessment type and risk acceptance criteria'), 'verification'));
     if (context.jurisdiction === 'SG') blocks.push(field('assessmentApproval', txt('평가팀장·승인 책임자', 'Assessment team leader and approving manager'), 'worker'));
+    if (context.jurisdiction === 'SG') {
+      for (const key of ['sgRiskScope', 'sgRiskCommunication', 'sgRiskRecord']) {
+        blocks.push(field(key, taskSafetyText(context.documentLocale, key), 'verification'));
+      }
+    }
     if (context.jurisdiction === 'JP') blocks.push(field('riskPriority', txt('조치 우선순위·전달할 잔여 위험', 'Action priority and remaining risks to communicate'), 'verification'));
     if (['FR','ES','BR'].includes(context.jurisdiction)) blocks.splice(1, 0, field('exposureGroups', txt('작업 단위·노출 및 영향받는 집단', 'Work unit, exposure and affected groups'), 'verification'));
     if (context.jurisdiction === 'CA-QC') blocks.push(field('preventionProgramme', txt('관련 예방 프로그램·실행계획', 'Related prevention programme or action plan'), 'verification'));

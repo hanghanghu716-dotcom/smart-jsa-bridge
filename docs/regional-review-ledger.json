@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.6",
+  "inventoryVersion": "2026-10-05.7",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 218,
+    "taskVocabularyKeys": 221,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -218,8 +218,9 @@
       "kind": "risk_assessment",
       "title": "Risk Assessment (RA)",
       "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "evidence": "regional-title-core-review-20261005.md",
       "sourceUrls": [
+        "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
@@ -235,6 +236,7 @@
       "reviewLevel": "baseline-source-review",
       "evidence": "regional-document-review.md",
       "sourceUrls": [
+        "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
@@ -250,6 +252,7 @@
       "reviewLevel": "baseline-source-review",
       "evidence": "regional-document-review.md",
       "sourceUrls": [
+        "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
@@ -265,6 +268,7 @@
       "reviewLevel": "baseline-source-review",
       "evidence": "regional-document-review.md",
       "sourceUrls": [
+        "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
@@ -280,6 +284,7 @@
       "reviewLevel": "baseline-source-review",
       "evidence": "regional-document-review.md",
       "sourceUrls": [
+        "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
@@ -1040,7 +1045,7 @@
       "id": "SA.toolbox_talk",
       "jurisdiction": "SA",
       "kind": "toolbox_talk",
-      "title": "اجتماع السلامة قبل العمل (محادثات صندوق الأدوات)",
+      "title": "اجتماع السلامة قبل بدء العمل",
       "reviewLevel": "baseline-source-review",
       "evidence": "regional-document-review.md",
       "sourceUrls": [
@@ -9321,6 +9326,57 @@
     },
     {
       "id": "task:sgMarineHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgRiskCommunication",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgRiskRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgRiskScope",
       "languages": [
         "ko",
         "en",
