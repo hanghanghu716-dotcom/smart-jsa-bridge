@@ -1,6 +1,7 @@
 // Clause-level additions to the original review. Dates apply only to these
 // findings, not to every reference in the country catalogue. No pass/fail defaults.
 import { REQUIREMENT_REVIEW_20261005 } from './regionalRequirementReview20261005.js';
+import { REQUIREMENT_REVIEW_REMAINING_20261005 } from './regionalRequirementReviewRemaining20261005.js';
 export const REQUIREMENT_REVIEW_DATE = '2026-10-04';
 const source = (title, url, scope, basis = 'official-guidance') => ({
   title, url, scope, basis, checkedAt: REQUIREMENT_REVIEW_DATE,
@@ -127,6 +128,9 @@ export const REGIONAL_REQUIREMENT_REVIEW = {
 };
 
 for (const [jurisdiction, findings] of Object.entries(REQUIREMENT_REVIEW_20261005)) {
+  Object.assign(REGIONAL_REQUIREMENT_REVIEW[jurisdiction], findings);
+}
+for (const [jurisdiction, findings] of Object.entries(REQUIREMENT_REVIEW_REMAINING_20261005)) {
   Object.assign(REGIONAL_REQUIREMENT_REVIEW[jurisdiction], findings);
 }
 

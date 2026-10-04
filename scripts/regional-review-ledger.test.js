@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import { reviewLedger, ledgerMarkdown } from './regional-review-ledger.js';
 import { REQUIREMENT_REVIEW_ROWS } from '../src/locales/requirementReviewText.js';
 import { REQUIREMENT_REVIEW_ROWS_20261005 } from '../src/locales/requirementReviewText20261005.js';
+import { REQUIREMENT_REVIEW_REMAINING_ROWS_20261005 } from '../src/locales/requirementReviewRemainingText20261005.js';
 
 test('review inventory enumerates all forms and topics without promoting partial evidence to completion', () => {
   const ledger = reviewLedger();
@@ -11,8 +12,10 @@ test('review inventory enumerates all forms and topics without promoting partial
   assert.equal(ledger.tasks.length, 72);
   assert.equal(new Set(ledger.forms.map(f => f.id)).size, 89);
   assert.equal(new Set(ledger.tasks.map(f => f.id)).size, 72);
-  assert.equal(ledger.summary.clauseSupplements, 35);
-  assert.equal(ledger.summary.supplementFields, 81);
+  assert.equal(ledger.summary.clauseSupplements, 72);
+  assert.equal(ledger.summary.baselineOnlyTasks, 0);
+  assert.equal(ledger.summary.sourceLimitedTasks, 15);
+  assert.equal(ledger.summary.supplementFields, 186);
   assert.deepEqual(ledger.tasks.find(t => t.id === 'JP.electrical').fieldLabels, { disconnect: 'jpIsolationChoice' });
   assert.equal(ledger.summary.overallCompletionPercent, null);
   assert.ok(ledger.forms.every(f => f.remaining && f.sourceUrls.length));
@@ -25,7 +28,7 @@ test('review inventory enumerates all forms and topics without promoting partial
 });
 
 test('dated terminology batches cannot silently overwrite existing keys or lose a document language', () => {
-  const rows = [REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005].flatMap(s => s.trim().split('\n'));
+  const rows = [REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005].flatMap(s => s.trim().split('\n'));
   assert.equal(new Set(rows.map(r => r.split('|')[0])).size, rows.length);
   for (const row of rows) {
     const [key, ...values] = row.split('|');

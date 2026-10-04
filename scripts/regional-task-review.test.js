@@ -7,6 +7,7 @@ import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT, taskSafetyText } from '../src/
 import { cleanPackage, duplicatePackage, startWork } from '../src/utils/workPackages.js';
 import { REGIONAL_REQUIREMENT_REVIEW } from '../src/utils/regionalRequirementReview.js';
 import { regionalText } from '../src/locales/regionalWorkText.js';
+import { REQUIREMENT_REVIEW_REMAINING_20261005 } from '../src/utils/regionalRequirementReviewRemaining20261005.js';
 
 const ctx = (jurisdiction, documentLocale = 'en-US') => ({ jurisdiction, documentLocale });
 const make = (jurisdiction, taskTypes = TASK_TYPES, documentLocale = 'en-US') => createRegionalTemplate('permit_to_work', ctx(jurisdiction, documentLocale), null, { taskTypes });
@@ -222,7 +223,7 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.equal(us.requirements.checkedAt, '2026-10-04');
   assert.equal(us.sources.find(s => s.url.includes('1910.146')).checkedAt, '2026-10-04');
   assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-05');
-  assert.equal(taskReview(ctx('DE'), 'hot').requirements, undefined);
+  assert.equal(taskReview(ctx('DE'), 'hot').requirements.checkedAt, '2026-10-05');
   for (const country of ['SA', 'RU']) {
     assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review'));
   }
@@ -362,7 +363,7 @@ test('Quebec construction and Saudi scaffold guidance preserve limited applicabi
   assert.equal(sa.regional.taskReviews[0].status, 'partial-source-review');
   assert.ok(sa.blocks.some(b => b.field?.key === 'height.scaffoldInspection'));
   assert.ok(sa.regional.taskReviews[0].requirements.sources.every(s => s.basis === 'official-guidance'));
-  assert.equal(taskReview(ctx('SA'), 'confined').requirements, undefined);
+  assert.equal(taskReview(ctx('SA'), 'confined').requirements.partial, true);
   assert.ok(!make('GB', ['height']).blocks.some(b => b.field?.key.endsWith('.scaffoldInspection')));
 });
 
@@ -377,5 +378,89 @@ test('Russian extension notice confirms duration only and never upgrades all top
     assert.ok(notice.includes(taskSafetyText('ru-RU', 'pending')));
     assert.equal(doc.blocks.find(b => b.field?.key === topic + '.applicableEdition').field.value, '');
   }
-  assert.equal(taskReview(ctx('RU'), 'hot').requirements, undefined);
+  assert.equal(taskReview(ctx('RU'), 'hot').requirements.partial, true);
+});
+
+test('remaining batch covers exactly the 37 formerly baseline-only combinations with explicit scope', () => {
+  const expected = {
+    AU: ['height', 'electrical', 'hot'], SG: ['hot'],
+    CA: ['height', 'electrical', 'hot'], 'CA-AB': ['height', 'electrical', 'hot'],
+    'CA-BC': ['height', 'electrical', 'hot'], 'CA-ON': ['height', 'electrical', 'hot'],
+    'CA-QC': ['height', 'electrical', 'hot'], DE: ['height', 'electrical', 'hot'],
+    FR: ['height', 'confined', 'hot'], IT: ['height', 'electrical', 'hot'],
+    ES: ['height', 'confined', 'hot'], SA: ['confined', 'electrical', 'hot'],
+    BR: ['confined', 'hot'], RU: ['hot'],
+  };
+  const ids = Object.entries(expected).flatMap(([j, topics]) => topics.map(t => `${j}.${t}`)).sort();
+  assert.equal(ids.length, 37);
+  assert.deepEqual(Object.entries(REQUIREMENT_REVIEW_REMAINING_20261005)
+    .flatMap(([j, topics]) => Object.keys(topics).map(t => `${j}.${t}`)).sort(), ids);
+  for (const [j, topics] of Object.entries(expected)) for (const topic of topics) {
+    const r = taskReview(ctx(j), topic);
+    assert.equal(r.requirements.checkedAt, '2026-10-05');
+    assert.ok(r.requirements.sources.every(s => s.scope && s.basis && s.checkedAt === '2026-10-05'));
+    for (const locale of TASK_SAFETY_LANGUAGES) {
+      const doc = make(j, [topic], WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === locale).locale);
+      const note = doc.blocks.find(b => b.field?.key === `${topic}.notice`).field.value;
+      assert.ok(note.includes(taskSafetyText(locale, r.requirements.noteKey)));
+      for (const key of r.requirements.fields) {
+        const field = doc.blocks.find(b => b.field?.key === `${topic}.${key}`).field;
+        assert.equal(field.mode, 'runtime');
+        assert.equal(field.value, '');
+        assert.ok(field.label.includes(taskSafetyText(locale, key)));
+      }
+    }
+  }
+});
+
+test('new Canadian and marine prompts preserve different plan triggers, sectors and roles', () => {
+  const note = (j, t) => make(j, [t]).blocks.find(b => b.field?.key === `${t}.notice`).field.value;
+  assert.match(note('CA-AB', 'height'), /3 m/);
+  assert.match(note('CA-BC', 'height'), /7.5 m.*alternative procedures/);
+  assert.doesNotMatch(note('CA', 'height'), /7.5 m/);
+  assert.match(note('CA-ON', 'electrical'), /different scopes and exceptions/);
+  assert.match(note('CA-QC', 'electrical'), /Do not substitute France/);
+  assert.match(taskReview(ctx('SG'), 'hot').terms, /ship repair manager/);
+  assert.doesNotMatch(taskReview(ctx('SG'), 'hot').terms, /authorised manager/);
+  assert.match(taskReview(ctx('SG'), 'confined').terms, /authorised manager/);
+  assert.ok(make('CA-AB', ['hot']).blocks.some(b => b.field?.key === 'hot.hotPermitTrigger'));
+  assert.ok(!make('CA-AB', ['hot']).blocks.some(b => b.field?.label.includes('Entry-permit triggers')));
+  assert.ok(make('IT', ['electrical']).blocks.some(b => b.field?.key === 'electrical.pesPavRecognition'));
+  assert.ok(!make('IT', ['electrical']).blocks.some(b => b.field?.key === 'electrical.employerAuthorisation'));
+});
+
+test('source limitations stay visible in all languages and survive independent saved copies', () => {
+  const limited = [['SG', 'hot'], ['CA-QC', 'hot'], ['IT', 'height'], ['IT', 'electrical'],
+    ['SA', 'confined'], ['SA', 'electrical'], ['SA', 'hot'], ['RU', 'hot']];
+  for (const [j, topic] of limited) {
+    for (const locale of TASK_SAFETY_LANGUAGES) {
+      const doc = make(j, [topic], WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === locale).locale);
+      const r = doc.regional.taskReviews[0];
+      assert.equal(r.status, 'partial-source-review');
+      assert.ok(r.requirements.remaining);
+      assert.ok(doc.blocks.find(b => b.field?.key === `${topic}.notice`).field.value.includes(taskSafetyText(locale, 'pending')));
+    }
+    const record = { id: 'limited', data: cleanPackage({ context: ctx(j), documents: [make(j, [topic])] }) };
+    const before = structuredClone(record);
+    const run = startWork(record);
+    assert.equal(run.documents[0].regional.taskReviews[0].requirements.remaining,
+      record.data.documents[0].regional.taskReviews[0].requirements.remaining);
+    duplicatePackage(record, 'Independent', 'ver.2').data.documents[0].regional.taskReviews[0].requirements.remaining = 'changed';
+    assert.deepEqual(record, before);
+  }
+});
+
+test('European distinct roles and Brazilian lifecycle never silently pre-authorise work', () => {
+  assert.match(taskReview(ctx('DE'), 'hot').terms, /Brandposten.*Brandwache/);
+  assert.match(taskReview(ctx('FR'), 'confined').terms, /Autorisation individuelle.*permis de pénétrer/);
+  assert.ok(make('ES', ['confined']).blocks.some(b => b.field?.key === 'confined.preventivePresence'));
+  assert.ok(!make('FR', ['confined']).blocks.some(b => b.field?.key === 'confined.preventivePresence'));
+  const br = make('BR', ['confined', 'hot']);
+  assert.match(br.blocks.find(b => b.field?.key === 'confined.notice').field.value, /24-hour cap is not an automatic validity period/);
+  for (const topic of ['confined', 'hot']) {
+    assert.equal(br.blocks.find(b => b.field?.key === `${topic}.permitRecord`).field.value, '');
+    assert.equal(br.blocks.find(b => b.field?.key === `${topic}.restartReview`).field.value, '');
+  }
+  assert.ok(taskReview(ctx('BR'), 'hot').scopeNotes.includes('marineScope'));
+  assert.match(taskReview(ctx('RU'), 'hot').requirements.remaining, /no automatic duration/);
 });

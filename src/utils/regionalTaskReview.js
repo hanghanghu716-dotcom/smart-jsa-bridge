@@ -1,7 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-05.2';
+export const TASK_REVIEW_VERSION = '2026-10-05.3';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.
@@ -96,16 +96,16 @@ export const TASK_LOCAL_TERMS = {
   KR: { confined: '밀폐공간 작업 프로그램 · 산소 및 유해가스 측정 · 감시인', electrical: '정전전로 작업 · 검전 · 잠금·표지', hot: '화재위험작업 · 화재감시자', height: '추락 방지 · 작업발판 · 안전대 부착설비' },
   GB: { confined: 'Safe system of work · emergency arrangements', electrical: 'Safe isolation · competent person', hot: 'Hot-work permit · fire watch', height: 'Avoid / prevent / minimise · collective protection' },
   AU: { confined: 'Confined space entry permit · stand-by person', electrical: 'De-energised electrical work · licensed/competent person', hot: 'Hot work · fire watch', height: 'Fall prevention · SWMS (high risk construction work)' },
-  SG: { confined: 'Confined space entry permit · confined space safety assessor · authorised manager · attendant', height: 'Factory / hazardous WAH applicability · WAH safety assessor · authorised manager', electrical: 'Licensed Electrical Worker (LEW) · Electrician / Electrical Technician / Electrical Engineer', hot: 'Hot-work permit · fire watch' },
+  SG: { confined: 'Confined space entry permit · confined space safety assessor · authorised manager · attendant', height: 'Factory / hazardous WAH applicability · WAH safety assessor · authorised manager', electrical: 'Licensed Electrical Worker (LEW) · Electrician / Electrical Technician / Electrical Engineer', hot: 'Marine PTW · safety assessor · ship repair manager' },
   US: { confined: 'Permit-required confined space · authorized entrant · attendant · entry supervisor', electrical: 'Qualified person · de-energization verification', hot: 'Fire watch · post-work monitoring', height: 'General industry / construction / shipyard classification' },
   CA: { confined: 'Entry permit · attendant · jurisdiction-specific procedure', electrical: 'Lockout/Tag out', height: 'Fall protection plan · rescue plan', hot: 'Hot-work permit · fire watch' },
-  'CA-AB': { confined: 'Confined / restricted space · entry permit · tending worker' },
-  'CA-ON': { confined: 'Entry permit · attendant · on-site rescue' },
-  'CA-BC': { confined: 'Responsible supervisor · standby person · 9.13 permit triggers / 9.15 reauthorisation' },
+  'CA-AB': { confined: 'Confined / restricted space · entry permit · tending worker', height: 'Fall protection plan · section 140', electrical: 'Control of hazardous energy · personal lock', hot: 'Hot work in hazardous locations · section 169' },
+  'CA-ON': { confined: 'Entry permit · attendant · on-site rescue', height: 'Construction projects · rescue procedures · working at heights training', electrical: 'Construction / industrial establishments · lockout verification', hot: 'Fire Code · hot surface applications · container precautions' },
+  'CA-BC': { confined: 'Responsible supervisor · standby person · 9.13 permit triggers / 9.15 reauthorisation', height: 'Fall protection plan · section 11.3', electrical: 'Personal lockout · group lockout · qualified worker', hot: 'Welding containers · qualified atmosphere testing' },
   'CA-QC': { confined: 'Espace clos · surveillant · plan de sauvetage', electrical: 'Cadenassage · contrôle des énergies', height: 'Plan de protection contre les chutes · plan de sauvetage', hot: 'Travaux à chaud · surveillance incendie' },
-  DE: { confined: 'Erlaubnisschein · Aufsichtführende · Sicherungsposten · Freimessen', electrical: 'Elektrofachkraft · fünf Sicherheitsregeln', hot: 'Schweißerlaubnisschein · Brandwache', height: 'Rückhaltesystem / Auffangsystem · Rettungskonzept' },
+  DE: { confined: 'Erlaubnisschein · Aufsichtführende · Sicherungsposten · Freimessen', electrical: 'Elektrofachkraft · fünf Sicherheitsregeln', hot: 'Schweißerlaubnisschein · Brandposten während der Arbeit · Brandwache nach der Arbeit', height: 'Rückhaltesystem / Auffangsystem · Rettungskonzept' },
   JP: { confined: '酸素欠乏危険作業 / 酸素欠乏・硫化水素危険作業 · 作業主任者 · 監視人', electrical: '停電作業 · 作業指揮者 · 検電 · 短絡接地', hot: '溶接・溶断 · 火気使用', height: '要求性能墜落制止用器具 · 作業床 · 開口部' },
-  FR: { confined: 'Permis de pénétrer · surveillant · secours', electrical: 'Habilitation électrique · consignation · vérification d’absence de tension', hot: 'Permis de feu · surveillance après travaux', height: 'Protection collective · retenue / arrêt des chutes' },
+  FR: { confined: 'Autorisation individuelle de travail · permis de pénétrer · surveillant · secours', electrical: 'Habilitation électrique · consignation · vérification d’absence de tension', hot: 'Permis de feu · surveillance après travaux', height: 'Protection collective · retenue / arrêt des chutes' },
   IT: { confined: 'DPR 177/2011 · qualificazione delle imprese · rappresentante del committente', electrical: 'PES / PAV · idoneità ai lavori sotto tensione (se applicabile)', height: 'Lavori in quota · protezione collettiva', hot: 'Lavori a caldo' },
   ES: { confined: 'Autorización de trabajo · recurso preventivo · vigilancia exterior', electrical: 'Trabajador autorizado / cualificado · supresión de la tensión', hot: 'Autorización de trabajos en caliente', height: 'Protección colectiva · sistema de retención / anticaídas' },
   SA: { confined: 'الأماكن المحصورة · مراقب خارجي · خطة الإنقاذ', electrical: 'العزل الكهربائي · القفل ووضع البطاقات', hot: 'الأعمال الساخنة · مراقب الحريق', height: 'العمل على ارتفاع · منع السقوط' },
@@ -124,7 +124,7 @@ export function taskReview(context, topic) {
   const sources = [...new Map([
     ...TASK_REVIEW_SOURCES[jurisdiction][topic], ...(requirements?.sources || []),
   ].map(s => [s.url, s])).values()];
-  const unresolved = jurisdiction === 'RU' || jurisdiction === 'SA' || !sources.length
+  const unresolved = requirements?.partial || jurisdiction === 'RU' || jurisdiction === 'SA' || !sources.length
     || (jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined')
     || (jurisdiction === 'SG' && topic === 'height');
   return {

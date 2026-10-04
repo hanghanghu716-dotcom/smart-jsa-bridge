@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.2",
+  "inventoryVersion": "2026-10-05.3",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -13,12 +13,13 @@
     "languages": 10,
     "baseForms": 89,
     "taskCombinations": 72,
-    "clauseSupplements": 35,
-    "baselineOnlyTasks": 37,
-    "clauseSupplementCoveragePercent": 48.6,
-    "supplementFields": 81,
+    "clauseSupplements": 72,
+    "baselineOnlyTasks": 0,
+    "sourceLimitedTasks": 15,
+    "clauseSupplementCoveragePercent": 100,
+    "supplementFields": 186,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 141,
+    "taskVocabularyKeys": 190,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1390,14 +1391,25 @@
       "jurisdiction": "AU",
       "topic": "height",
       "terms": "Fall prevention · SWMS (high risk construction work)",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.safeworkaustralia.gov.au/safety-topic/hazards/working-heights",
+          "scope": "Model framework: ground/solid construction, prevention, positioning, arrest hierarchy; SWMS for high-risk construction fall risk over 2 m. This is not a safe exemption below 2 m; local adoption must be checked.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "stateCodeBasis",
+        "planReference",
+        "fallProtectionBasis"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "AU.confined",
@@ -1441,28 +1453,50 @@
       "jurisdiction": "AU",
       "topic": "electrical",
       "terms": "De-energised electrical work · licensed/competent person",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.safeworkaustralia.gov.au/system/files/documents/1810/model-cop-managing-electrical-risks-in-the-workplace.pdf",
+          "scope": "Isolation, testing before touch and safe restoration for covered electrical work. Model code adoption, licensing and excluded installations require local confirmation.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "stateCodeBasis",
+        "isolationSequence",
+        "restorationRelease"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "AU.hot",
       "jurisdiction": "AU",
       "topic": "hot",
       "terms": "Hot work · fire watch",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.safeworkaustralia.gov.au/system/files/documents/1901/code_of_practice_-_welding_processes_0.pdf",
+          "scope": "Fire/explosion controls and hot-work permit procedure guidance; a confined-space entry permit is a separate requirement when applicable. Model code, not a nationwide all-welding permit mandate.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "stateCodeBasis",
+        "hotAuthorisation",
+        "containerHistory"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "SG.height",
@@ -1540,15 +1574,27 @@
       "id": "SG.hot",
       "jurisdiction": "SG",
       "topic": "hot",
-      "terms": "Hot-work permit · fire watch",
-      "reviewLevel": "baseline-source-review",
-      "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "terms": "Marine PTW · safety assessor · ship repair manager",
+      "reviewLevel": "clause-supplement-recorded",
+      "sourceStatus": "partial-source-review",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
+          "scope": "Marine PTW: safety assessor evaluation, ship repair manager approval, incompatible-work coordination, daily review and controlled permit records. Older manual clause numbers are not asserted as current legislation.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "hotAuthorisation",
+        "dailyReview",
+        "permitRecord",
+        "multiEmployerRoles"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Current Shipbuilding and Ship-repair Regulations consolidation was inaccessible; reconcile amended numbering and approval conditions before closing legal review."
     },
     {
       "id": "US.height",
@@ -1652,14 +1698,25 @@
       "jurisdiction": "CA",
       "topic": "height",
       "terms": "Fall protection plan · rescue plan",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html",
+          "scope": "General guidance on site-specific plan, anchorage, clearance and rescue; provincial/federal legal triggers are not determined.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "planReference",
+        "anchorCheck",
+        "rescueReadiness"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA.confined",
@@ -1690,42 +1747,73 @@
       "jurisdiction": "CA",
       "topic": "electrical",
       "terms": "Lockout/Tag out",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "scope": "Equipment-specific hazardous-energy control and verification, including stored/non-electrical energy; not an electrical licence or nationwide statute.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "countryProcedure",
+        "isolationHandover"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA.hot",
       "jurisdiction": "CA",
       "topic": "hot",
       "terms": "Hot-work permit · fire watch",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html",
+          "scope": "Program/permit and watcher guidance: at least 60 minutes afterward, potentially longer. Guidance is not a uniform provincial legal duration; no automatic expiry.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "hotAuthorisation",
+        "watchCloseout"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-AB.height",
       "jurisdiction": "CA-AB",
       "topic": "height",
-      "terms": "Fall protection plan · rescue plan",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Fall protection plan · section 140",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-9-fall-protection/",
+          "scope": "Section 140 written plan trigger: possible fall of 3 m or more without guardrails. Plan includes systems, anchors, clearance and rescue. Plan trigger is not the complete protection trigger.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallPlanTrigger",
+        "planReference",
+        "rescueReadiness"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-AB.confined",
@@ -1756,43 +1844,75 @@
       "id": "CA-AB.electrical",
       "jurisdiction": "CA-AB",
       "topic": "electrical",
-      "terms": "Lockout/Tag out",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Control of hazardous energy · personal lock",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "scope": "Energy isolation/equivalent effective control, worker verification of inoperative/safe equipment, identifiable personal locks and accessible identification list. Operating-equipment exceptions not automatically approved.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "countryProcedure",
+        "personalLockRegister"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-AB.hot",
       "jurisdiction": "CA-AB",
       "topic": "hot",
-      "terms": "Hot-work permit · fire watch",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Hot work in hazardous locations · section 169",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-10-fire-and-explosion-hazards/",
+          "scope": "Hot work in hazardous locations: conditional permit, atmospheric testing type/frequency and safe method. Not a permit mandate for every welding job; no safe gas threshold prefilled.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "hotPermitTrigger",
+        "hotAuthorisation",
+        "retestTriggers"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-ON.height",
       "jurisdiction": "CA-ON",
       "topic": "height",
-      "terms": "Fall protection plan · rescue plan",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Construction projects · rescue procedures · working at heights training",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ontario.ca/laws/regulation/910213",
+          "scope": "Current official API consolidation effective 2026-04-20: construction hierarchy, written rescue before fall arrest/net, equipment training and records; distinct from approved working-at-heights training.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "trainingEvidence",
+        "rescueReadiness"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-ON.confined",
@@ -1846,43 +1966,81 @@
       "id": "CA-ON.electrical",
       "jurisdiction": "CA-ON",
       "topic": "electrical",
-      "terms": "Lockout/Tag out",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Construction / industrial establishments · lockout verification",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ontario.ca/laws/regulation/910213",
+          "scope": "Construction: power isolation, lock/tag, discharge, worker verification and multiple-worker communication. Current official API consolidation effective 2026-04-20.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.ontario.ca/laws/regulation/900851",
+          "scope": "Industrial establishments: separate isolation/verification exceptions and utility scope. Do not transfer construction exceptions; live work remains outside this form. Current official API consolidation effective 2022-07-01.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "countryProcedure",
+        "isolationHandover"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-ON.hot",
       "jurisdiction": "CA-ON",
       "topic": "hot",
-      "terms": "Hot-work permit · fire watch",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Fire Code · hot surface applications · container precautions",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ontario.ca/laws/regulation/070213",
+          "scope": "Current official API consolidation effective 2026-01-01: building fire precautions, combustible separation/protection, container cleaning/testing or engineering measures; no hot work on totally enclosed containers. Not an all-sector written PTW mandate.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "containerHistory",
+        "hotAreaCheck"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-BC.height",
       "jurisdiction": "CA-BC",
       "topic": "height",
-      "terms": "Fall protection plan · rescue plan",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Fall protection plan · section 11.3",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-11-fall-protection",
+          "scope": "Written plan for possible fall of 7.5 m or more without permanent guardrails, or alternative procedures under 11.2(5). Distinct from the lower fall-protection trigger.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallPlanTrigger",
+        "planReference"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-BC.confined",
@@ -1913,43 +2071,75 @@
       "id": "CA-BC.electrical",
       "jurisdiction": "CA-BC",
       "topic": "electrical",
-      "terms": "Lockout/Tag out",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Personal lockout · group lockout · qualified worker",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "scope": "Personal lock/key control; absent-owner removal requires responsible supervisor/manager procedure and notification. Group lockout uses two qualified workers for independent verification.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "personalLockRegister",
+        "restorationRelease"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-BC.hot",
       "jurisdiction": "CA-BC",
       "topic": "hot",
-      "terms": "Hot-work permit · fire watch",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Welding containers · qualified atmosphere testing",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-12-tools-machinery-and-equipment",
+          "scope": "Container cleaning and qualified atmosphere testing with subsequent tests at suitable intervals; equipment defects, leaks/contamination and flashback prevention.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "containerHistory",
+        "retestTriggers",
+        "weldingEquipmentCheck"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-QC.height",
       "jurisdiction": "CA-QC",
       "topic": "height",
       "terms": "Plan de protection contre les chutes · plan de sauvetage",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/harnais-liaison-darret-chute",
+          "scope": "Quebec guidance: harness/linkage/anchorage and rescue procedure; confirm applicable RSST or construction CSTC framework.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "anchorCheck",
+        "rescueReadiness"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-QC.confined",
@@ -1988,42 +2178,75 @@
       "jurisdiction": "CA-QC",
       "topic": "electrical",
       "terms": "Cadenassage · contrôle des énergies",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques",
+          "scope": "Construction/renovation coordination, de-energisation and cadenassage, personal-key control, procedures/materials/training. French habilitation is not imported.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "countryProcedure",
+        "trainingEvidence"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "CA-QC.hot",
       "jurisdiction": "CA-QC",
       "topic": "hot",
       "terms": "Travaux à chaud · surveillance incendie",
-      "reviewLevel": "baseline-source-review",
-      "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "reviewLevel": "clause-supplement-recorded",
+      "sourceStatus": "partial-source-review",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html",
+          "scope": "Canadian general guidance in French only; not evidence of current Quebec RSST/CSTC or adopted fire-code clauses.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "containerHistory",
+        "watchCloseout"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Current Quebec RSST PDF retrieval failed; historical 2023 consolidation is not used as current law. Quebec-specific hot-work/fire-code clause review remains open."
     },
     {
       "id": "DE.height",
       "jurisdiction": "DE",
       "topic": "height",
       "terms": "Rückhaltesystem / Auffangsystem · Rettungskonzept",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.gesetze-im-internet.de/betrsichv_2015/anhang_1.html",
+          "scope": "Collective priority, conditional ladder/rope use, safe access/evacuation, compensatory protection before temporary removal and restoration afterward.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallProtectionBasis",
+        "temporaryProtection",
+        "ladderConditions"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "DE.confined",
@@ -2053,28 +2276,48 @@
       "jurisdiction": "DE",
       "topic": "electrical",
       "terms": "Elektrofachkraft · fünf Sicherheitsregeln",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.bghm.de/arbeitsschuetzer/themen/elektrotechnik/arbeiten-an-elektrischer-anlagen-und-betriebsmitteln",
+          "scope": "Five safety rules and Elektrofachkraft responsibility; instructed persons under oversight. Voltage/installation exceptions not automatically applied.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "isolationSequence",
+        "trainingEvidence"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "DE.hot",
       "jurisdiction": "DE",
       "topic": "hot",
-      "terms": "Schweißerlaubnisschein · Brandwache",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Schweißerlaubnisschein · Brandposten während der Arbeit · Brandwache nach der Arbeit",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://publikationen.dguv.de/widgets/pdf/download/article/319",
+          "scope": "Written welding authorization/site coordination; Brandposten during work versus Brandwache afterward. Repeated identical conditions may use an operating instruction; no uniform 30-minute default.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "hotAuthorisation",
+        "watchCloseout"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "JP.height",
@@ -2182,28 +2425,49 @@
       "jurisdiction": "FR",
       "topic": "height",
       "terms": "Protection collective · retenue / arrêt des chutes",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.inrs.fr/risques/chutes-hauteur/equipements-acces-hauteur.html",
+          "scope": "Ladders normally access equipment; workstation exceptions for technical impossibility of collective protection or low-risk, short, non-repetitive tasks.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallProtectionBasis",
+        "ladderConditions"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "FR.confined",
       "jurisdiction": "FR",
       "topic": "confined",
-      "terms": "Permis de pénétrer · surveillant · secours",
-      "reviewLevel": "baseline-source-review",
+      "terms": "Autorisation individuelle de travail · permis de pénétrer · surveillant · secours",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.inrs.fr/risques/espaces-confines/prevenir-risques.html",
+          "scope": "Employer personal autorisation de travail distinguished from operation-specific permis de pénétrer; outside surveillance, atmosphere/isolation and rescue arrangements. No universal CATEC mandate inferred.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "personTaskAuthorisation",
+        "entryAuthorisation",
+        "rescueReadiness"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "FR.electrical",
@@ -2233,28 +2497,50 @@
       "jurisdiction": "FR",
       "topic": "hot",
       "terms": "Permis de feu · surveillance après travaux",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf",
+          "scope": "Permis de feu guidance: site/contractor coordination, validity and changed conditions, post-work surveillance (two hours in guide). Not a universal statutory duration.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "hotAuthorisation",
+        "watchCloseout",
+        "multiEmployerRoles"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "IT.height",
       "jurisdiction": "IT",
       "topic": "height",
       "terms": "Lavori in quota · protezione collettiva",
-      "reviewLevel": "baseline-source-review",
-      "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "reviewLevel": "clause-supplement-recorded",
+      "sourceStatus": "partial-source-review",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.lavoro.gov.it/documenti-e-norme/interpelli/Documents/Interpello-Dlgs-81-08-n-6-2019.pdf",
+          "scope": "Official interpretation of articles 111/148: collective priority, compensatory protection and restoration, and specific roof/fragile-surface duties. Does not establish the complete current consolidated D.Lgs. 81/2008 text.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallProtectionBasis",
+        "temporaryProtection",
+        "fragileSurface"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Normattiva current consolidation could not be retrieved; later height-protection amendments and current article wording remain to reconcile."
     },
     {
       "id": "IT.confined",
@@ -2284,56 +2570,105 @@
       "jurisdiction": "IT",
       "topic": "electrical",
       "terms": "PES / PAV · idoneità ai lavori sotto tensione (se applicabile)",
-      "reviewLevel": "baseline-source-review",
-      "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "reviewLevel": "clause-supplement-recorded",
+      "sourceStatus": "partial-source-review",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2018/07/LavoriElettriciBassaTensione2018.pdf",
+          "scope": "PES/PAV competence and employer attribution, separate live-work suitability. Historical technical edition, not confirmation of the latest CEI text.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://mycatalogo.ceinorme.it/cei/item/0000025437?sso=y",
+          "scope": "Publisher confirms valid from 2025-11, replaces 2021-09; changed professional roles, supervision definitions, distances and emergency/arc-flash annexes. Only public catalogue/summary reviewed, not purchased full text.",
+          "basis": "publisher-summary",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableEdition",
+        "trainingEvidence",
+        "pesPavRecognition"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "CEI 11-27:2025 edition existence and revision topics verified; paid full text and applicable corrigenda not compared with INAIL 2018. No automatic qualification from a training certificate."
     },
     {
       "id": "IT.hot",
       "jurisdiction": "IT",
       "topic": "hot",
       "terms": "Lavori a caldo",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2022/07/FactSheetRischi%20estate.pdf",
+          "scope": "Major-accident establishment guidance: work permits in operating plants and final contractor/shift-leader checks for residual ignition. Not a nationwide all-sector hot-work mandate.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "hotAuthorisation",
+        "watchCloseout"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "ES.height",
       "jurisdiction": "ES",
       "topic": "height",
       "terms": "Protección colectiva · sistema de retención / anticaídas",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1997-17824",
+          "scope": "Collective priority, conditional ladder/rope routes, access/evacuation and compensatory measures before temporary removal of protection.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "fallProtectionBasis",
+        "temporaryProtection",
+        "ladderConditions"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "ES.confined",
       "jurisdiction": "ES",
       "topic": "confined",
       "terms": "Autorización de trabajo · recurso preventivo · vigilancia exterior",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados",
+          "scope": "Written work authorization, recurso preventivo presence and external surveillance/rescue roles; do not automatically combine those roles.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "preventivePresence",
+        "entryAuthorisation",
+        "rescueReadiness"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "ES.electrical",
@@ -2363,14 +2698,25 @@
       "jurisdiction": "ES",
       "topic": "hot",
       "terms": "Autorización de trabajos en caliente",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.",
+          "scope": "Special-work authorization system guidance and example forms. A 2001 technical note is not a current universal statutory permit template.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "permitCoverage",
+        "hotAuthorisation",
+        "countryProcedure"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "SA.height",
@@ -2401,42 +2747,87 @@
       "jurisdiction": "SA",
       "topic": "confined",
       "terms": "الأماكن المحصورة · مراقب خارجي · خطة الإنقاذ",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
+          "scope": "Occupational classification/training/practice permits, distinct from a site PTW. Article 19: commencement 180 days after Gazette publication; publication date and implementing mechanisms not reconciled.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableFramework",
+        "occupationPermitBasis",
+        "siteProcedure"
+      ],
       "fieldLabels": {},
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "remaining": "Gazette publication/commencement and implementation of occupational permits, plus sector-specific PTW rules, remain unverified."
     },
     {
       "id": "SA.electrical",
       "jurisdiction": "SA",
       "topic": "electrical",
       "terms": "العزل الكهربائي · القفل ووضع البطاقات",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
+          "scope": "Occupational classification/training/practice permits, distinct from a site PTW. Article 19: commencement 180 days after Gazette publication; publication date and implementing mechanisms not reconciled.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady--dlyl-almkhatr-alsna-yt-almt-lqt-balslamt-walsht-almhnyt--wkyfyt-alt-aml-m-ha-anjlyzy.pdf",
+          "scope": "Welding guidance: cable condition, competent equipment connection, combustible removal and ventilation. Not an all-sector electrical isolation code or statutory hot-work permit procedure.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "occupationPermitBasis",
+        "weldingEquipmentCheck",
+        "countryProcedure"
+      ],
       "fieldLabels": {},
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "remaining": "Gazette publication/commencement and implementation of occupational permits, plus sector-specific PTW rules, remain unverified."
     },
     {
       "id": "SA.hot",
       "jurisdiction": "SA",
       "topic": "hot",
       "terms": "الأعمال الساخنة · مراقب الحريق",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
+          "scope": "Occupational classification/training/practice permits, distinct from a site PTW. Article 19: commencement 180 days after Gazette publication; publication date and implementing mechanisms not reconciled.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady--dlyl-almkhatr-alsna-yt-almt-lqt-balslamt-walsht-almhnyt--wkyfyt-alt-aml-m-ha-anjlyzy.pdf",
+          "scope": "Welding guidance: cable condition, competent equipment connection, combustible removal and ventilation. Not an all-sector electrical isolation code or statutory hot-work permit procedure.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "occupationPermitBasis",
+        "weldingEquipmentCheck",
+        "siteProcedure"
+      ],
       "fieldLabels": {},
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "remaining": "Gazette publication/commencement and implementation of occupational permits, plus sector-specific PTW rules, remain unverified."
     },
     {
       "id": "BR.height",
@@ -2477,14 +2868,26 @@
       "jurisdiction": "BR",
       "topic": "confined",
       "terms": "PET · supervisor de entrada · vigia · trabalhador autorizado",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf",
+          "scope": "PET per entry, five-year records, closure triggers and shift validity; extension only with all specified conditions, capped at 24 hours including extensions. Continuous vigia/atmosphere and entry checks are not replaced by renewal.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "permitCloseout",
+        "permitRecord",
+        "restartReview",
+        "permitCoverage"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "BR.electrical",
@@ -2520,14 +2923,26 @@
       "jurisdiction": "BR",
       "topic": "hot",
       "terms": "Trabalho a quente · NR-34 (indústria naval)",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-34-atualizada-2022.pdf",
+          "scope": "Naval industry only: PT/record lifecycle, APR/PT for non-designated areas, trained observer when determined by APR, completion ignition inspection; five-year records. Not all-industry requirements.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "permitRecord",
+        "restartReview",
+        "hotAuthorisation",
+        "watchCloseout"
+      ],
       "fieldLabels": {},
-      "remaining": "Clause-level applicability, role, lifecycle and record review not yet recorded."
+      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
       "id": "RU.height",
@@ -2603,14 +3018,25 @@
       "jurisdiction": "RU",
       "topic": "hot",
       "terms": "Огневые работы · наряд-допуск",
-      "reviewLevel": "baseline-source-review",
+      "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-03",
-      "evidence": "regional-task-review.md",
-      "findings": [],
-      "fieldKeys": [],
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
+      "findings": [
+        {
+          "url": "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257",
+          "scope": "Temporary hot-work authorization and post-work watch in a 2026 notice. Notice says two hours, unlike older four-hour material; current consolidated fire-regime clause must be reconciled.",
+          "basis": "official-notice",
+          "checkedAt": "2026-10-05"
+        }
+      ],
+      "fieldKeys": [
+        "applicableEdition",
+        "hotAuthorisation",
+        "watchCloseout"
+      ],
       "fieldLabels": {},
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "remaining": "Current consolidated fire-regime amendments and sector exceptions remain unresolved; no automatic duration or expiry from historical checklists or this notice."
     }
   ],
   "vocabulary": [
@@ -5374,7 +5800,58 @@
       "evidence": "regional-document-review.md"
     },
     {
+      "id": "task:abEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:abEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:abHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:abHotDetail",
       "languages": [
         "ko",
         "en",
@@ -5527,7 +6004,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:auElectricalDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:auEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:auHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:auHotDetail",
       "languages": [
         "ko",
         "en",
@@ -5595,7 +6123,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:bcEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:bcEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:bcHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:bcHotDetail",
       "languages": [
         "ko",
         "en",
@@ -5663,7 +6242,92 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:brHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:brPetDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:caEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:caEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:caHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:caHotDetail",
       "languages": [
         "ko",
         "en",
@@ -5867,7 +6531,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:deEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:deEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:deHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:deHotDetail",
       "languages": [
         "ko",
         "en",
@@ -6071,7 +6786,75 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:esConfinedDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:esElectricalNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:esHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:esHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:fallPlanTrigger",
       "languages": [
         "ko",
         "en",
@@ -6190,7 +6973,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:frConfinedDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:frElectricalNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:frHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:frHotDetail",
       "languages": [
         "ko",
         "en",
@@ -6377,7 +7211,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:hotAreaCheck",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:hotAuthorisation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:hotPermitTrigger",
       "languages": [
         "ko",
         "en",
@@ -6428,6 +7296,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:isolationHandover",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:isolationSequence",
       "languages": [
         "ko",
@@ -6462,7 +7347,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:itEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:itEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:itHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:itHotDetail",
       "languages": [
         "ko",
         "en",
@@ -6751,7 +7687,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:multiEmployerRoles",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:notice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:occupationPermitBasis",
       "languages": [
         "ko",
         "en",
@@ -6802,7 +7772,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:onEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:onEntryNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:onHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:onHotDetail",
       "languages": [
         "ko",
         "en",
@@ -6938,7 +7959,75 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:personTaskAuthorisation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:personalLockRegister",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:pesPavRecognition",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:planReference",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:preventivePresence",
       "languages": [
         "ko",
         "en",
@@ -7006,6 +8095,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:qcEnergyDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:qcEntryNotice",
       "languages": [
         "ko",
@@ -7024,6 +8130,40 @@
     },
     {
       "id": "task:qcFrameworkNotice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:qcHeightDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:qcHotDetail",
       "languages": [
         "ko",
         "en",
@@ -7295,6 +8435,74 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ruHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saElectricalDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saOccupationDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:saScaffoldNotice",
       "languages": [
         "ko",
@@ -7431,6 +8639,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgMarineHotDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:shiftAuthorisation",
       "languages": [
         "ko",
@@ -7534,6 +8759,23 @@
     },
     {
       "id": "task:stop",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:temporaryProtection",
       "languages": [
         "ko",
         "en",
@@ -7738,6 +8980,23 @@
     },
     {
       "id": "task:weather",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:weldingEquipmentCheck",
       "languages": [
         "ko",
         "en",

@@ -34,10 +34,10 @@ export function reviewLedger() {
       fieldLabels: r.requirements?.fieldLabels || {},
       // A narrow supplement cannot close the whole topic's applicability,
       // controls, roles, stop/restart, records and exceptions checklist.
-      remaining: r.status === 'partial-source-review'
+      remaining: r.requirements?.remaining || (r.status === 'partial-source-review'
         ? 'Source currency/framework/sector limitations remain; see dated evidence.'
         : r.requirements ? 'Complete topic checklist closure remains beyond the recorded clauses.'
-          : 'Clause-level applicability, role, lifecycle and record review not yet recorded.',
+          : 'Clause-level applicability, role, lifecycle and record review not yet recorded.'),
     };
   }));
   const vocabulary = [
@@ -54,7 +54,7 @@ export function reviewLedger() {
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-05.2',
+    inventoryVersion: '2026-10-05.3',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',
@@ -67,6 +67,7 @@ export function reviewLedger() {
       jurisdictionProfiles: WORK_JURISDICTIONS.length, languages: TASK_SAFETY_LANGUAGES.length,
       baseForms: forms.length, taskCombinations: tasks.length,
       clauseSupplements: supplemented, baselineOnlyTasks: tasks.length - supplemented,
+      sourceLimitedTasks: tasks.filter(t => t.sourceStatus === 'partial-source-review').length,
       clauseSupplementCoveragePercent: Math.round(supplemented / tasks.length * 1000) / 10,
       supplementFields: tasks.reduce((n, t) => n + t.fieldKeys.length, 0),
       baseVocabularyKeys: vocabulary.filter(v => v.id.startsWith('base:')).length,
@@ -87,7 +88,7 @@ export function ledgerMarkdown(ledger) {
     `대상은 작업별 서류 묶음의 **기본 양식 ${s.baseForms}개 + 관할별 작업 항목 ${s.taskCombinations}개**입니다. Case Study 본문·첨부 PDF, guideline 콘텐츠와 웹사이트 전체 UI는 포함하지 않습니다.\n\n` +
     `## 집계 해석\n\n` +
     `- ② 추가 조항 대조 기록: **${s.clauseSupplements}/${s.taskCombinations}개 (${s.clauseSupplementCoveragePercent}%)**. 이는 추가 대조가 있는 범위이며 전체 검수 완료율이 아닙니다. 추가 입력란은 ${s.supplementFields}개입니다.\n` +
-    `- 나머지 ${s.baselineOnlyTasks}개 작업 항목은 기초 출처 대조까지만 기록되어 있습니다.\n` +
+    `- 기초 출처 대조만 있는 작업 항목: ${s.baselineOnlyTasks}개. 현행 원문·시행 또는 적용 범위가 미해결인 항목: **${s.sourceLimitedTasks}개**. 아래 표의 ‘원문/범위 미해결’ 및 JSON의 remaining을 확인하세요.\n` +
     `- 기본 양식 ${s.baseForms}개는 기존 국가별 기초 검수 보고서에 연결됩니다. 양식별 세부 항목 종결은 별도 기록이 필요합니다.\n` +
     `- ③ 고정 검수 목록: 기본 문서 문구 ${s.baseVocabularyKeys}개, 작업별 문구 ${s.taskVocabularyKeys}개, 원어 역할·용어 ${s.taskCombinations}개 조합, 문서 명칭 ${s.baseForms}개. 각 문구는 10개 언어를 대상으로 합니다. 번역 존재율과 전문용어 검수 완료율은 구분합니다.\n` +
     `- 기존 보고서에는 모든 항목의 종결 기록이 없으므로 전체 완료율은 **미산정**입니다. 추가 입력란 수·번역 존재 여부만으로 완료율을 만들지 않습니다.\n\n` +
