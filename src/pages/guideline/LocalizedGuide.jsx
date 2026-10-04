@@ -6,6 +6,7 @@ import ThemeSwitcher from '../../components/ThemeSwitcher';
 import DiscoveryLinks from '../../components/DiscoveryLinks';
 import { LANGUAGE_OPTIONS, SUPPORTED_LANGS } from '../../locales/config.js';
 import { guideText } from '../../locales/guideText.js';
+import { recoveryUi } from '../../locales/workRecoveryUi.js';
 import { GUIDE_CATEGORIES, guideResourceLocale, makeGuide } from '../../utils/guideContent.js';
 import '../../styles/workspaces.css';
 import '../../styles/guides.css';
@@ -16,6 +17,7 @@ export default function LocalizedGuide({category}){
  const locale=SUPPORTED_LANGS.includes(lng)?lng:'en-US';
  const resource=resources[`../../locales/${guideResourceLocale(locale)}/${GUIDE_CATEGORIES[category]}.json`];
  const guide=makeGuide(locale,category,resource),t=key=>guideText(locale,key);
+ const pdfUi = recoveryUi(locale);
  const [preview,setPreview]=useState(false),[pdfState,setPdfState]=useState('idle');
  useEffect(()=>{setPreview(false);setPdfState('idle');},[locale,category]);
  useEffect(()=>{
@@ -49,7 +51,7 @@ export default function LocalizedGuide({category}){
     <article id="guide-document" data-guide-version={guide.version} lang={guide.language}>
      <header className="guide-hero"><span className="guide-kicker">{t('library')} / {guide.region}</span><h1>{guide.title}</h1><p className="guide-lead">{t('intro')}</p><div className="guide-meta"><span>{t('editorial')}</span><span>{t('edition')} <time dateTime={guide.version}>{guide.version}</time></span></div>
       <div className="guide-actions guide-screen"><a className="jsa-primary" href={guide.pdfUrl} download>{t('download')} <span aria-hidden="true">↓</span></a><button type="button" aria-expanded={preview} aria-controls="guide-pdf-preview" onClick={()=>setPreview(v=>!v)}>{t(preview?'close':'preview')}</button><a href="#guide-examples">{t('read')} →</a></div>
-      <p className="guide-pdf-help guide-screen">{t('pdfHelp')}</p>
+      <p className="guide-pdf-help guide-screen">{t('pdfHelp')} {pdfUi.pdfHelp} <a href={guide.pdfUrl} target="_blank" rel="noopener noreferrer">{pdfUi.openPdf} ↗</a></p>
       {preview&&<div id="guide-pdf-preview" className="guide-pdf guide-screen">{pdfState==='loading'&&<p role="status">{t('loading')}</p>}{pdfState==='error'&&<p role="alert">{t('pdfUnavailable')}</p>}{pdfState==='ready'&&<iframe src={guide.pdfUrl} title={`${t('pdfLabel')} · ${guide.region}`} loading="lazy"/>}</div>}
      </header>
      <section id="guide-local" className="guide-section guide-local"><div className="guide-section-heading"><span>01</span><h2>{t('local')}</h2></div><p>{guide.localNote}</p><ul className="guide-documents">{guide.documents.map(d=><li key={d}>{d}</li>)}</ul><p className="guide-scope">{t('scope')}</p></section>

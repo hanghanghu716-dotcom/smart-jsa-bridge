@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Isolated recovery transaction checks</title></head><body><h1>Recovery transaction checks</h1><pre id="result">Running</pre><script type="module">
+import {readRecovery,writeRecovery,removeRecovery,recoveryKey} from '/src/utils/workRecovery.js';
+const owner=crypto.randomUUID(), key=recoveryKey(owner,'run','fixture');
+const checks=[];
+const assert=(condition,label)=>{if(!condition)throw Error(label);checks.push(label);};
+try {
+ const input={key,owner,kind:'run',base:'v1',value:{regionalReviewed:true,values:{measurement:'12'}},revision:0};
+ const settled=await Promise.allSettled([writeRecovery(input),writeRecovery(input)]);
+ assert(settled.filter(r=>r.status==='fulfilled').length===1,'Concurrent writes: exactly one succeeds');
+ const row=await readRecovery(key);
+ assert(row.value.values.measurement==='12'&&!row.value.regionalReviewed,'Measurements preserved, review invalidated');
+ assert(await readRecovery(recoveryKey('other','run','fixture'))===null,'Different account key has no draft');
+ let rejected=false;try{await removeRecovery(key,0);}catch{rejected=true;}
+ assert(rejected&&Boolean(await readRecovery(key)),'Stale clear cannot delete another tab’s draft');
+ await removeRecovery(key,row.revision);
+ assert(await readRecovery(key)===null,'Matching revision clears only its draft');
+ document.querySelector('#result').textContent='PASS\n'+checks.join('\n');
+}catch(error){document.querySelector('#result').textContent='FAIL: '+error.message;}
+</script></body></html>

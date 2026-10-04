@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { getWorkOutput, assetBlob } from "../../services/workPackageService";
 import { downloadBlob } from "../../utils/reportPdf";
+import { useTranslation } from 'react-i18next';
+import { recoveryUi } from '../../locales/workRecoveryUi';
 export default function ArchivedOutput({ id, ui, onBack }) {
+  const { i18n } = useTranslation(), pdfUi = recoveryUi(i18n.language);
   const [state, setState] = useState(null);
   useEffect(() => {
     let active = true,
@@ -46,6 +49,7 @@ export default function ArchivedOutput({ id, ui, onBack }) {
               )}
             </dl>
             <div className="work-tools">
+              <a href={state.url} target="_blank" rel="noopener noreferrer">{pdfUi.openPdf} ↗</a>
               <button
                 onClick={() =>
                   downloadBlob(state.blob, state.record.name + ".pdf")
@@ -66,6 +70,7 @@ export default function ArchivedOutput({ id, ui, onBack }) {
                 {ui.snapshot}
               </button>
             </div>
+            <p>{pdfUi.pdfHelp}</p>
             <iframe
               title={ui.outputs}
               src={state.url}

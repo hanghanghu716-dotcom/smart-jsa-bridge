@@ -15,10 +15,12 @@ import {
 import WorkPreview from "./WorkPreview";
 import AnnotationEditor from "./AnnotationEditor";
 import WorkFlowGuide from "./WorkFlowGuide";
+import RecoveryNotice from './RecoveryNotice';
+import useWorkRecovery from '../../hooks/useWorkRecovery';
 import { useTranslation } from 'react-i18next';
 import { workContextUi, documentDirection } from '../../utils/workJurisdiction';
 import { regionalContextMismatch } from '../../utils/regionalWorkTemplates';
-export default function WorkRun({ record, drawings, ui, onBack }) {
+export default function WorkRun({ record, drawings, ui, onBack, ownerId }) {
   const { i18n } = useTranslation();
   const regionUi = workContextUi(i18n.language);
   const [run, setRun] = useState(() => startWork(record)),
@@ -26,10 +28,15 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
     [message, setMessage] = useState(""),
     [drawingId, setDrawingId] = useState(""),
     [artifact, setArtifact] = useState(null);
+  const [edited, setEdited] = useState(false);
+  const recovery = useWorkRecovery({ owner: ownerId, kind: 'run', id: record.id,
+    base: record.updated_at || '', value: run, dirty: edited && !artifact,
+    restore: value => { setRun(value); setEdited(true); } });
   const preview = useRef(null),
     lock = useRef(false),
     pendingOutput = useRef(null);
   const edit = (fn) => {
+    setEdited(true);
     setRun(r => ({ ...fn(r), regionalReviewed: false }));
     setArtifact(null);
     pendingOutput.current = null;
@@ -84,6 +91,8 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
         );
         ready = { ...pending.rendered, id: pending.id };
         setArtifact(ready);
+        setEdited(false);
+        await recovery.clear().catch(() => {});
       }
       if (print) await printReportImages(ready.images);
       else
@@ -117,9 +126,11 @@ export default function WorkRun({ record, drawings, ui, onBack }) {
       </label>
     ) : null;
   const selectedDrawing = run.documents.find((d) => d.id === drawingId);
+  if (recovery.blocked) return <><button onClick={onBack}>{ui.backEditor}</button><RecoveryNotice recovery={recovery} kind="run" /></>;
   return (
     <div className={busy ? "work-run work-busy" : "work-run"} aria-busy={busy}>
       <WorkFlowGuide ui={ui} current={artifact ? 2 : 1} />
+      <RecoveryNotice recovery={recovery} kind="run" />
       <div className="work-tools">
         <button
           disabled={busy}
