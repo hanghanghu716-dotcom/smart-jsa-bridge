@@ -362,7 +362,8 @@ test('Quebec construction and Saudi scaffold guidance preserve limited applicabi
   const sa = make('SA', ['height'], 'ar-SA');
   assert.equal(sa.regional.taskReviews[0].status, 'partial-source-review');
   assert.ok(sa.blocks.some(b => b.field?.key === 'height.scaffoldInspection'));
-  assert.ok(sa.regional.taskReviews[0].requirements.sources.every(s => s.basis === 'official-guidance'));
+  assert.ok(sa.regional.taskReviews[0].requirements.sources.some(s => s.basis === 'official-guidance'));
+  assert.ok(sa.regional.taskReviews[0].requirements.sources.some(s => s.url === 'https://www.uqn.gov.sa/details?p=28771'));
   assert.equal(taskReview(ctx('SA'), 'confined').requirements.partial, true);
   assert.ok(!make('GB', ['height']).blocks.some(b => b.field?.key.endsWith('.scaffoldInspection')));
 });
@@ -463,4 +464,52 @@ test('European distinct roles and Brazilian lifecycle never silently pre-authori
   }
   assert.ok(taskReview(ctx('BR'), 'hot').scopeNotes.includes('marineScope'));
   assert.match(taskReview(ctx('RU'), 'hot').requirements.remaining, /no automatic duration/);
+});
+
+test('follow-up amendments stay local and retain evidence without automatically closing country review', () => {
+  const it = make('IT', ['height']);
+  const keys = it.blocks.flatMap(b => b.field ? [b.field.key] : []);
+  for (const key of ['fallSystemChoice', 'fixedLadderRecord', 'anchorCheck']) assert.ok(keys.includes('height.' + key));
+  const itReview = it.regional.taskReviews[0];
+  assert.equal(itReview.status, 'partial-source-review');
+  assert.match(itReview.requirements.sources.find(s => s.url.includes('gazzettaufficiale')).scope, /over 5 m.*over 75 degrees/);
+  assert.match(itReview.requirements.remaining, /later amendments/);
+  assert.ok(!make('KR', ['height']).blocks.some(b => b.field?.key === 'height.fixedLadderRecord'));
+  for (const topic of TASK_TYPES) {
+    const sa = make('SA', [topic]);
+    const r = sa.regional.taskReviews[0];
+    assert.equal(r.status, 'partial-source-review');
+    assert.deepEqual(r.requirements.resolvedIssues, ['sa-gazette-publication-date']);
+    assert.ok(sa.blocks.some(b => b.field?.key === `${topic}.occupationClassification`));
+    assert.match(sa.blocks.find(b => b.field?.key === `${topic}.notice`).field.value, /2026-01-09.*180 days/);
+    assert.doesNotMatch(sa.blocks.find(b => b.field?.key === `${topic}.notice`).field.value, /Publication, implementation and sector rules remain unverified/);
+  }
+  const br = taskReview(ctx('BR'), 'height');
+  assert.equal(br.status, 'partial-source-review');
+  assert.ok(br.requirements.fields.includes('ladderInspectionSchedule'));
+  assert.equal(br.requirements.sources.filter(s => s.url.includes('portaria-mte-no-1-259')).length, 1);
+  assert.match(br.requirements.remaining, /site-specific transition/);
+});
+
+test('updated evidence and terminology survive snapshots while new actual checks reset in all document languages', () => {
+  for (const language of TASK_SAFETY_LANGUAGES) {
+    const locale = WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === language).locale;
+    for (const j of ['IT', 'SA', 'BR']) {
+      const doc = make(j, ['height'], locale);
+      const r = doc.regional.taskReviews[0];
+      for (const key of [r.requirements.noteKey, ...r.requirements.additionalNotes]) {
+        assert.ok(doc.blocks.find(b => b.field?.key === 'height.notice').field.value.includes(taskSafetyText(locale, key)));
+      }
+      for (const b of doc.blocks) if (b.field?.key.startsWith('height.') && b.field.mode === 'runtime') {
+        b.field.value = 'OLD_FOLLOWUP_CHECK'; b.field.mode = 'standard';
+      }
+      const record = { id: 'followup', data: cleanPackage({ context: ctx(j, locale), documents: [doc] }) };
+      const saved = structuredClone(record);
+      const run = startWork(record);
+      assert.doesNotMatch(JSON.stringify(run), /OLD_FOLLOWUP_CHECK/);
+      assert.deepEqual(run.documents[0].regional.taskReviews[0].requirements.resolvedIssues, r.requirements.resolvedIssues);
+      duplicatePackage(record, 'Copy', 'ver.2').data.documents[0].regional.taskReviews[0].requirements.resolvedIssues.push('changed');
+      assert.deepEqual(record, saved);
+    }
+  }
 });

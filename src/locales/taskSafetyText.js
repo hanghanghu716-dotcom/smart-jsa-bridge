@@ -1,6 +1,7 @@
 import { REQUIREMENT_REVIEW_ROWS } from './requirementReviewText.js';
 import { REQUIREMENT_REVIEW_ROWS_20261005 } from './requirementReviewText20261005.js';
 import { REQUIREMENT_REVIEW_REMAINING_ROWS_20261005 } from './requirementReviewRemainingText20261005.js';
+import { REVIEW_FOLLOWUP_ROWS_20261005 } from './regionalReviewFollowupText20261005.js';
 // Every column is a document language, independent of the work jurisdiction.
 export const TASK_SAFETY_LANGUAGES = ['ko','en','de','ja','fr','it','es','ar','pt','ru'];
 const rows = `
@@ -53,7 +54,7 @@ notice|작성 시 확인 사항|Completion guidance|Hinweise zum Ausfüllen|記�
 copy|추가한 서류에만 적용됩니다. 기존 저장본은 변경하지 않습니다.|Applies only to newly added documents. Saved forms stay unchanged.|Gilt nur für neu hinzugefügte Dokumente. Gespeicherte Formulare bleiben unverändert.|追加する文書にのみ適用します。保存済みの様式は変更しません。|S’applique aux documents ajoutés. Les formulaires enregistrés restent inchangés.|Si applica ai nuovi documenti. I moduli salvati restano invariati.|Se aplica a documentos nuevos. Los guardados no cambian.|ينطبق على المستندات المضافة فقط. النماذج المحفوظة لا تتغير.|Aplica-se aos novos documentos. Os formulários salvos não mudam.|Применяется к новым документам. Сохранённые формы не изменяются.
 `;
 // Keep this dictionary limited to the actual specialist form/UI vocabulary.
-export const TASK_SAFETY_TEXT = Object.fromEntries([rows, REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005].flatMap(text => text.trim().split('\n')).map(line => {
+export const TASK_SAFETY_TEXT = Object.fromEntries([rows, REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005].flatMap(text => text.trim().split('\n')).map(line => {
   const [key, ...values] = line.split('|');
   if (values.length !== TASK_SAFETY_LANGUAGES.length || values.some(v => !v)) throw Error(`Missing task safety translation: ${key}`);
   return [key, Object.fromEntries(TASK_SAFETY_LANGUAGES.map((l,i) => [l, values[i]]))];

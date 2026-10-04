@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.3",
+  "inventoryVersion": "2026-10-05.4",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 15,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 186,
+    "supplementFields": 195,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 190,
+    "taskVocabularyKeys": 197,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1217,6 +1217,7 @@
         "anchorCheck"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1240,6 +1241,7 @@
         "permitDisplay"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1265,6 +1267,7 @@
         "lockRemoval"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1290,6 +1293,7 @@
         "fireBlanket"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1314,6 +1318,7 @@
         "fallingObjects"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1337,6 +1342,7 @@
         "countryProcedure"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1360,6 +1366,7 @@
         "isolationVerification"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1384,6 +1391,7 @@
         "containerHistory"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1409,6 +1417,7 @@
         "fallProtectionBasis"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1446,6 +1455,7 @@
         "stateCodeBasis"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1471,6 +1481,7 @@
         "restorationRelease"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1496,6 +1507,7 @@
         "containerHistory"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1521,6 +1533,7 @@
         "permitCoverage"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -1545,6 +1558,7 @@
         "permitDisplay"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1568,6 +1582,7 @@
         "licenceScope"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1594,6 +1609,7 @@
         "multiEmployerRoles"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Current Shipbuilding and Ship-repair Regulations consolidation was inaccessible; reconcile amended numbering and approval conditions before closing legal review."
     },
     {
@@ -1618,6 +1634,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1643,6 +1660,7 @@
         "permitRecord"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1667,6 +1685,7 @@
         "restorationRelease"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1691,6 +1710,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1716,6 +1736,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1740,6 +1761,7 @@
         "permitRecord"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1764,6 +1786,7 @@
         "isolationHandover"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1788,6 +1811,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1813,6 +1837,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1838,6 +1863,7 @@
         "permitRecord"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1862,6 +1888,7 @@
         "personalLockRegister"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1887,6 +1914,7 @@
         "retestTriggers"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1912,6 +1940,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1960,6 +1989,7 @@
         "atmosphericBasis"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -1991,6 +2021,7 @@
         "isolationHandover"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2016,6 +2047,7 @@
         "hotAreaCheck"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2040,6 +2072,7 @@
         "planReference"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2065,6 +2098,7 @@
         "permitRecord"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2089,6 +2123,7 @@
         "restorationRelease"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2114,6 +2149,7 @@
         "weldingEquipmentCheck"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2139,6 +2175,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2171,6 +2208,7 @@
         "jointHazardRecord"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2196,6 +2234,7 @@
         "trainingEvidence"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2221,6 +2260,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Current Quebec RSST PDF retrieval failed; historical 2023 consolidation is not used as current law. Quebec-specific hot-work/fire-code clause review remains open."
     },
     {
@@ -2246,6 +2286,7 @@
         "ladderConditions"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2269,6 +2310,7 @@
         "measurementCompetence"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2293,6 +2335,7 @@
         "trainingEvidence"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2317,6 +2360,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2342,6 +2386,7 @@
         "ropeWorkPlan"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2367,6 +2412,7 @@
         "retestTriggers"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2394,6 +2440,7 @@
       "fieldLabels": {
         "disconnect": "jpIsolationChoice"
       },
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2418,6 +2465,7 @@
         "oxygenExclusion"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2442,6 +2490,7 @@
         "ladderConditions"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2467,6 +2516,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2490,6 +2540,7 @@
         "employerAuthorisation"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2515,6 +2566,7 @@
         "multiEmployerRoles"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2532,15 +2584,27 @@
           "scope": "Official interpretation of articles 111/148: collective priority, compensatory protection and restoration, and specific roof/fragile-surface duties. Does not establish the complete current consolidated D.Lgs. 81/2008 text.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.gazzettaufficiale.it/eli/gu/2025/12/30/301/sg/pdf",
+          "scope": "Printed p.137 (PDF page 141): final arts.113(2)/115, fixed vertical ladder over 5 m and over 75 degrees; priority among protection systems, anchorage and rope cross-references. Existing ladders installed by 2025-10-31: transition effective 2026-02-01. This is enacted amendment evidence, not a complete 2026 consolidation.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "fallProtectionBasis",
         "temporaryProtection",
-        "fragileSurface"
+        "fragileSurface",
+        "fallSystemChoice",
+        "fixedLadderRecord",
+        "anchorCheck"
       ],
       "fieldLabels": {},
-      "remaining": "Normattiva current consolidation could not be retrieved; later height-protection amendments and current article wording remain to reconcile."
+      "resolvedIssues": [
+        "it-2025-conversion-height-amendment"
+      ],
+      "remaining": "Enacted December 2025 articles 113/115 compared. Full current consolidation and later amendments/sector exceptions remain open; no automatic ladder exemption."
     },
     {
       "id": "IT.confined",
@@ -2563,6 +2627,7 @@
         "trainingEvidence"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2594,6 +2659,7 @@
         "pesPavRecognition"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "CEI 11-27:2025 edition existence and revision topics verified; paid full text and applicable corrigenda not compared with INAIL 2018. No automatic qualification from a training certificate."
     },
     {
@@ -2618,6 +2684,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2643,6 +2710,7 @@
         "ladderConditions"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2668,6 +2736,7 @@
         "rescueReadiness"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2691,6 +2760,7 @@
         "voltageRole"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2716,6 +2786,7 @@
         "countryProcedure"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2725,22 +2796,39 @@
       "terms": "العمل على ارتفاع · منع السقوط",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
       "findings": [
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady-hwl-astkhdam-alsqalat-anjlyzy.pdf",
           "scope": "Ministry guidance: pre-use specialist inspection, daily competent-person checks, access, exclusion zone and rescue. Not evidence of a universal statutory permit or licence; no numerical clearance default",
           "basis": "official-guidance",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
+          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.uqn.gov.sa/details?p=28771",
+          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "scaffoldInspection",
-        "siteProcedure"
+        "siteProcedure",
+        "occupationPermitBasis",
+        "occupationClassification"
       ],
       "fieldLabels": {},
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "resolvedIssues": [
+        "sa-gazette-publication-date"
+      ],
+      "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
     {
       "id": "SA.confined",
@@ -2754,7 +2842,13 @@
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/training/practice permits, distinct from a site PTW. Article 19: commencement 180 days after Gazette publication; publication date and implementing mechanisms not reconciled.",
+          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.uqn.gov.sa/details?p=28771",
+          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         }
@@ -2762,10 +2856,14 @@
       "fieldKeys": [
         "applicableFramework",
         "occupationPermitBasis",
-        "siteProcedure"
+        "siteProcedure",
+        "occupationClassification"
       ],
       "fieldLabels": {},
-      "remaining": "Gazette publication/commencement and implementation of occupational permits, plus sector-specific PTW rules, remain unverified."
+      "resolvedIssues": [
+        "sa-gazette-publication-date"
+      ],
+      "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
     {
       "id": "SA.electrical",
@@ -2779,7 +2877,7 @@
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/training/practice permits, distinct from a site PTW. Article 19: commencement 180 days after Gazette publication; publication date and implementing mechanisms not reconciled.",
+          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -2788,15 +2886,25 @@
           "scope": "Welding guidance: cable condition, competent equipment connection, combustible removal and ventilation. Not an all-sector electrical isolation code or statutory hot-work permit procedure.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.uqn.gov.sa/details?p=28771",
+          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "occupationPermitBasis",
         "weldingEquipmentCheck",
-        "countryProcedure"
+        "countryProcedure",
+        "occupationClassification"
       ],
       "fieldLabels": {},
-      "remaining": "Gazette publication/commencement and implementation of occupational permits, plus sector-specific PTW rules, remain unverified."
+      "resolvedIssues": [
+        "sa-gazette-publication-date"
+      ],
+      "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
     {
       "id": "SA.hot",
@@ -2810,7 +2918,7 @@
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
-          "scope": "Occupational classification/training/practice permits, distinct from a site PTW. Article 19: commencement 180 days after Gazette publication; publication date and implementing mechanisms not reconciled.",
+          "scope": "Occupational classification/practice permits are separate from site task permits. Gazette date is now evidenced separately; implementation and sector rules remain open.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-05"
         },
@@ -2819,15 +2927,25 @@
           "scope": "Welding guidance: cable condition, competent equipment connection, combustible removal and ventilation. Not an all-sector electrical isolation code or statutory hot-work permit procedure.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.uqn.gov.sa/details?p=28771",
+          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
         "occupationPermitBasis",
         "weldingEquipmentCheck",
-        "siteProcedure"
+        "siteProcedure",
+        "occupationClassification"
       ],
       "fieldLabels": {},
-      "remaining": "Gazette publication/commencement and implementation of occupational permits, plus sector-specific PTW rules, remain unverified."
+      "resolvedIssues": [
+        "sa-gazette-publication-date"
+      ],
+      "remaining": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic."
     },
     {
       "id": "BR.height",
@@ -2836,8 +2954,8 @@
       "terms": "NR-35 · AR · PT (atividade não rotineira)",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-05",
+      "evidence": "regional-requirements-review-20261005.md",
       "findings": [
         {
           "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-35-atualizada-2025-1.pdf",
@@ -2847,9 +2965,15 @@
         },
         {
           "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-1-259-alteracao-do-anexo-iii-da-nr-35.pdf",
-          "scope": "Effective publication 2026-07-16: in-person training; one-year initial-training transition; ladder-specific risk analysis, SPIQ competence, dated project evidence and staged implementation. No automatic exemption/deadline determination",
-          "basis": "regulation",
-          "checkedAt": "2026-10-04"
+          "scope": "Access-only fixed ladder risk analysis, routine-work procedure and periodic inspection criteria for structure, use frequency/criticality and design. Article 6 names Order 1.680/2025; heading year inconsistency is recorded, not silently corrected by the app.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2025/portaria-mte-no-1-680-aprova-o-anexo-escadas-nr-35.pdf",
+          "scope": "Order dated 2025-10-02, published 2025-10-03; article 6 gives 90-day commencement. Amended article 2 identifies exempt clauses and evidence. Annex text still contains older wording, so the amending order governs the reviewed change.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-05"
         }
       ],
       "fieldKeys": [
@@ -2858,10 +2982,14 @@
         "permitRecord",
         "trainingDelivery",
         "ladderAssessment",
-        "transitionEvidence"
+        "transitionEvidence",
+        "ladderInspectionSchedule"
       ],
       "fieldLabels": {},
-      "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
+      "resolvedIssues": [
+        "br-order-1680-year-and-periodic-inspection"
+      ],
+      "remaining": "Order 1680/2025 identified and periodic-inspection clause compared. Heading-year inconsistency and site-specific transition applicability remain explicit; full-topic closure remains open."
     },
     {
       "id": "BR.confined",
@@ -2887,6 +3015,7 @@
         "permitCoverage"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2916,6 +3045,7 @@
         "applicableEdition"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2942,6 +3072,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
     },
     {
@@ -2965,6 +3096,7 @@
         "applicableEdition"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -2988,6 +3120,7 @@
         "applicableEdition"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -3011,6 +3144,7 @@
         "applicableEdition"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Source currency/framework/sector limitations remain; see dated evidence."
     },
     {
@@ -3036,6 +3170,7 @@
         "watchCloseout"
       ],
       "fieldLabels": {},
+      "resolvedIssues": [],
       "remaining": "Current consolidated fire-regime amendments and sector exceptions remain unresolved; no automatic duration or expiry from historical checklists or this notice."
     }
   ],
@@ -6259,6 +6394,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:brLadderUpdate",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:brPetDetail",
       "languages": [
         "ko",
@@ -6905,6 +7057,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:fallSystemChoice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:fallingObjects",
       "languages": [
         "ko",
@@ -6957,6 +7126,23 @@
     },
     {
       "id": "task:fireWatchBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:fixedLadderRecord",
       "languages": [
         "ko",
         "en",
@@ -7398,6 +7584,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:itHeightUpdate",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:itHotDetail",
       "languages": [
         "ko",
@@ -7619,6 +7822,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ladderInspectionSchedule",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:licenceScope",
       "languages": [
         "ko",
@@ -7705,6 +7925,23 @@
     },
     {
       "id": "task:notice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:occupationClassification",
       "languages": [
         "ko",
         "en",
@@ -8487,6 +8724,23 @@
     },
     {
       "id": "task:saOccupationDetail",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saPracticeUpdate",
       "languages": [
         "ko",
         "en",

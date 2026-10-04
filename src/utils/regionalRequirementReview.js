@@ -2,6 +2,7 @@
 // findings, not to every reference in the country catalogue. No pass/fail defaults.
 import { REQUIREMENT_REVIEW_20261005 } from './regionalRequirementReview20261005.js';
 import { REQUIREMENT_REVIEW_REMAINING_20261005 } from './regionalRequirementReviewRemaining20261005.js';
+import { applyReviewFollowup } from './regionalReviewFollowup20261005.js';
 export const REQUIREMENT_REVIEW_DATE = '2026-10-04';
 const source = (title, url, scope, basis = 'official-guidance') => ({
   title, url, scope, basis, checkedAt: REQUIREMENT_REVIEW_DATE,
@@ -16,7 +17,7 @@ const ruExtension = () => finding('ruExtensionNotice', ['applicableEdition'], [s
   'https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/',
   'Official municipal employment-centre notice, 2025-09-03: extension to 2031-09-01 effective 2025-09-01. Corroborates duration only; amendment full text and subsequent changes remain unreconciled', 'official-notice')]);
 
-export const REGIONAL_REQUIREMENT_REVIEW = {
+const BASE_REQUIREMENT_REVIEW = {
   KR: { confined: finding('krEntryNotice', ['permitDisplay'], [source(
     '안전보건규칙 · 제619조제3항',
     'https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028543703',
@@ -128,13 +129,15 @@ export const REGIONAL_REQUIREMENT_REVIEW = {
 };
 
 for (const [jurisdiction, findings] of Object.entries(REQUIREMENT_REVIEW_20261005)) {
-  Object.assign(REGIONAL_REQUIREMENT_REVIEW[jurisdiction], findings);
+  Object.assign(BASE_REQUIREMENT_REVIEW[jurisdiction], findings);
 }
 for (const [jurisdiction, findings] of Object.entries(REQUIREMENT_REVIEW_REMAINING_20261005)) {
-  Object.assign(REGIONAL_REQUIREMENT_REVIEW[jurisdiction], findings);
+  Object.assign(BASE_REQUIREMENT_REVIEW[jurisdiction], findings);
 }
 
 export function requirementReview(jurisdiction, topic) {
   const record = REGIONAL_REQUIREMENT_REVIEW[jurisdiction]?.[topic];
   return record ? structuredClone(record) : null;
 }
+
+export const REGIONAL_REQUIREMENT_REVIEW = applyReviewFollowup(BASE_REQUIREMENT_REVIEW);

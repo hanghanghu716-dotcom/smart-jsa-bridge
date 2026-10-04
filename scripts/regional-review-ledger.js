@@ -32,6 +32,7 @@ export function reviewLedger() {
       findings: r.requirements?.sources.map(s => ({ url: s.url, scope: s.scope, basis: s.basis, checkedAt: s.checkedAt })) || [],
       fieldKeys: r.requirements?.fields || [],
       fieldLabels: r.requirements?.fieldLabels || {},
+      resolvedIssues: r.requirements?.resolvedIssues || [],
       // A narrow supplement cannot close the whole topic's applicability,
       // controls, roles, stop/restart, records and exceptions checklist.
       remaining: r.requirements?.remaining || (r.status === 'partial-source-review'
@@ -54,7 +55,7 @@ export function reviewLedger() {
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-05.3',
+    inventoryVersion: '2026-10-05.4',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',
