@@ -10594,5 +10594,138 @@
     ],
     "scope": "Ten-language conditional GB permit supporting the safe system, avoidable entry, risk-based application and rescue.",
     "sha256": "d49a4dcf379240f25b3d9376c355429d57b1398d5a33d557166813946d897173"
+  },
+  {
+    "id": "task:fallServiceRelease",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Inspection, withdrawal reason and required evidence before reuse; no automatic release or substitute certifier.",
+    "sha256": "ffcd4104fd768df043014008127b36b94084143d5004d4a45e3c990d20e2ca76"
+  },
+  {
+    "id": "task:standbyArrangement",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Risk-dependent attendant location, communications, interval and relief handover.",
+    "sha256": "473e423ab31d528af124e6036ab11f8371cd97bcc9929e291ec1b7ee54200070"
+  },
+  {
+    "id": "task:rescueNotification",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Entry/all-out rescue notification, external agreement and drills versus conditional notification exception.",
+    "sha256": "f5c01bf5195476421035d1b5dc9f2af25e81b62e90d31fb45d05411fc27cc21e"
+  },
+  {
+    "id": "task:abEntryScopeNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Restricted/confined distinction, assessment/training/rescue/tending worker, conditional location/remote monitoring.",
+    "sha256": "a934ea3c6b42c1194be87701e9b2fe90fd0beb90abc85461455c974f41232ba8"
+  },
+  {
+    "id": "task:bcStandbyScopeNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Risk-specific periodic checks versus continuous entrance attendance, rescue notification and drills.",
+    "sha256": "f3966badf05e3aff383f0ca95d35f74cb8bd4ff70d20d7d981785b49accb052e"
+  },
+  {
+    "id": "task:bcGroupScopeNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Two qualified workers, independent isolation, signed/posted checklist, personal locks, group release and separate removal exceptions.",
+    "sha256": "58ad74473e6200889fa5eaf653d1975145f60f48cf52f8670eda242f76a8d403"
+  },
+  {
+    "id": "task:onHotEquipmentNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Daily/pre-use inspection versus monthly leak test, repair before use, actual records, no compliance certification.",
+    "sha256": "ab7ebf621fc6e68295881eb50e8dda5627d2ddef687ff766d108d4add22a9d8a"
   }
 ]

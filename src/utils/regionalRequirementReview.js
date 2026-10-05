@@ -1,6 +1,7 @@
 // Clause-level additions to the original review. Dates apply only to these
 // findings, not to every reference in the country catalogue. No pass/fail defaults.
 import { applyEnglishTaskReview } from './regionalEnglishTaskReview20261006.js';
+import { applyCanadianTaskReview } from './regionalCanadianTaskReview20261006.js';
 import { REQUIREMENT_REVIEW_20261005 } from './regionalRequirementReview20261005.js';
 import { REQUIREMENT_REVIEW_REMAINING_20261005 } from './regionalRequirementReviewRemaining20261005.js';
 import { applyReviewFollowup } from './regionalReviewFollowup20261005.js';
@@ -151,4 +152,4 @@ export function requirementReview(jurisdiction, topic) {
   return record ? structuredClone(record) : null;
 }
 
-export const REGIONAL_REQUIREMENT_REVIEW = applyEnglishTaskReview(applyRegionalBatchReview(applyReviewFollowup(BASE_REQUIREMENT_REVIEW)));
+export const REGIONAL_REQUIREMENT_REVIEW = applyCanadianTaskReview(applyEnglishTaskReview(applyRegionalBatchReview(applyReviewFollowup(BASE_REQUIREMENT_REVIEW))));

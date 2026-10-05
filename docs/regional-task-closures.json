@@ -419,5 +419,434 @@
       "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html"
     ],
     "sha256": "4abbf5eba27274c802c2911c896da0d4d990f5b83f502a3722e49cef20c81ff3"
+  },
+  {
+    "id": "task:CA-AB.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-9-fall-protection/",
+      "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+    ],
+    "sha256": "70d42328636697fb378c8264c9600f3e5fa1d2e319c266d376dfc2a7158b230f"
+  },
+  {
+    "id": "task:CA-AB.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/",
+      "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+    ],
+    "sha256": "639f1e94b4647bab7eeb232377e1727bc856c4994f668bf26ce33367dbdcb91f"
+  },
+  {
+    "id": "task:CA-AB.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+      "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+    ],
+    "sha256": "33a4363152209d51e121b1f5e2c0d9a82ba839680022e83ff146e81352191be5"
+  },
+  {
+    "id": "task:CA-AB.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-10-fire-and-explosion-hazards/",
+      "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+    ],
+    "sha256": "7193b8456becf5784f71b532d8c6c1b5f1ede10c763c3bdbab0cabf0717ab172"
+  },
+  {
+    "id": "task:CA-BC.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-11-fall-protection",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-guidelines/guidelines-part-11"
+    ],
+    "sha256": "305941b8531f34056e4533268b15bc9f19da862251c31ebf127b69a0958744b8"
+  },
+  {
+    "id": "task:CA-BC.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
+    ],
+    "sha256": "3685979404dcdfcf78537b76aecb5a7ab6be47ecca4c1c97ea2f9553f671bb48"
+  },
+  {
+    "id": "task:CA-BC.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout"
+    ],
+    "sha256": "d6dc80558d4c0951aebf51d479b97149e7a4f8f105cf2cfaff60eeda6fe0f115"
+  },
+  {
+    "id": "task:CA-BC.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-12-tools-machinery-and-equipment"
+    ],
+    "sha256": "5a41b9b38d949e7ff0fe8394a011d83259d463d2b74dcb889dce82b5fce6a495"
+  },
+  {
+    "id": "task:CA-ON.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.ontario.ca/laws/regulation/910213"
+    ],
+    "sha256": "1e93cbaa758c7590bdc38316183aaeed29ac0ea449c114af141a05721df98d04"
+  },
+  {
+    "id": "task:CA-ON.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/documents",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/coordination-document",
+      "https://www.ontario.ca/laws/regulation/050632"
+    ],
+    "sha256": "89c6f4d005c1992d8feae4538393b520bc2c06a97b5ecbfb118a1495a3956043"
+  },
+  {
+    "id": "task:CA-ON.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.ontario.ca/laws/regulation/910213",
+      "https://www.ontario.ca/laws/regulation/900851"
+    ],
+    "sha256": "9e32d15fce3f2e4b7cf78b086a7e4f603b010fbc0b342ccd838670f90346c2b8"
+  },
+  {
+    "id": "task:CA-ON.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-canadian-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.ontario.ca/laws/regulation/070213"
+    ],
+    "sha256": "e35bc30e8555e0aadeb4ed4e35a76cb6479d2a35ec525dcf5b506cc139459243"
   }
 ]

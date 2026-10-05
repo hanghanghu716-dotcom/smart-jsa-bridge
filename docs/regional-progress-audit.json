@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.20",
+  "evidenceVersion": "2026-10-06.21",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 383
+    "fieldVocabularyGroups": 390
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 410,
-      "pending": 73,
+      "completed": 422,
+      "pending": 61,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 60,
-      "completionPercent": 84.9,
-      "remainingPercent": 15.1
+      "pendingFinalVerification": 48,
+      "completionPercent": 87.4,
+      "remainingPercent": 12.6
     },
     "stage3": {
-      "reviewGroups": 544,
-      "checkpoints": 1632,
-      "completed": 1629,
+      "reviewGroups": 551,
+      "checkpoints": 1653,
+      "completed": 1650,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 705,
-      "checkpoints": 2115,
-      "completed": 2039,
-      "pending": 76,
+      "reviewGroups": 712,
+      "checkpoints": 2136,
+      "completed": 2072,
+      "pending": 64,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 63,
-      "completionPercent": 96.4,
-      "remainingPercent": 3.6
+      "pendingFinalVerification": 51,
+      "completionPercent": 97,
+      "remainingPercent": 3
     }
   },
   "stage2": [
@@ -4333,9 +4333,9 @@
     {
       "id": "task:CA-AB.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4344,17 +4344,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-AB.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-9-fall-protection/",
+            "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+          ],
+          "sha256": "70d42328636697fb378c8264c9600f3e5fa1d2e319c266d376dfc2a7158b230f"
         }
       }
     },
     {
       "id": "task:CA-AB.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4363,17 +4396,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-AB.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/",
+            "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+          ],
+          "sha256": "639f1e94b4647bab7eeb232377e1727bc856c4994f668bf26ce33367dbdcb91f"
         }
       }
     },
     {
       "id": "task:CA-AB.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4382,17 +4448,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-AB.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+            "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+          ],
+          "sha256": "33a4363152209d51e121b1f5e2c0d9a82ba839680022e83ff146e81352191be5"
         }
       }
     },
     {
       "id": "task:CA-AB.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4401,17 +4500,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-AB.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-10-fire-and-explosion-hazards/",
+            "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
+          ],
+          "sha256": "7193b8456becf5784f71b532d8c6c1b5f1ede10c763c3bdbab0cabf0717ab172"
         }
       }
     },
     {
       "id": "task:CA-ON.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4420,17 +4552,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-ON.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.ontario.ca/laws/regulation/910213"
+          ],
+          "sha256": "1e93cbaa758c7590bdc38316183aaeed29ac0ea449c114af141a05721df98d04"
         }
       }
     },
     {
       "id": "task:CA-ON.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4439,17 +4603,52 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-ON.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit",
+            "https://www.ontario.ca/document/guideline-working-confined-spaces/documents",
+            "https://www.ontario.ca/document/guideline-working-confined-spaces/coordination-document",
+            "https://www.ontario.ca/laws/regulation/050632"
+          ],
+          "sha256": "89c6f4d005c1992d8feae4538393b520bc2c06a97b5ecbfb118a1495a3956043"
         }
       }
     },
     {
       "id": "task:CA-ON.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4458,17 +4657,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-ON.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.ontario.ca/laws/regulation/910213",
+            "https://www.ontario.ca/laws/regulation/900851"
+          ],
+          "sha256": "9e32d15fce3f2e4b7cf78b086a7e4f603b010fbc0b342ccd838670f90346c2b8"
         }
       }
     },
     {
       "id": "task:CA-ON.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4477,17 +4709,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-ON.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.ontario.ca/laws/regulation/070213"
+          ],
+          "sha256": "e35bc30e8555e0aadeb4ed4e35a76cb6479d2a35ec525dcf5b506cc139459243"
         }
       }
     },
     {
       "id": "task:CA-BC.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4496,17 +4760,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-BC.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-11-fall-protection",
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-guidelines/guidelines-part-11"
+          ],
+          "sha256": "305941b8531f34056e4533268b15bc9f19da862251c31ebf127b69a0958744b8"
         }
       }
     },
     {
       "id": "task:CA-BC.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4515,17 +4812,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-BC.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
+          ],
+          "sha256": "3685979404dcdfcf78537b76aecb5a7ab6be47ecca4c1c97ea2f9553f671bb48"
         }
       }
     },
     {
       "id": "task:CA-BC.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4534,17 +4863,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-BC.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout"
+          ],
+          "sha256": "d6dc80558d4c0951aebf51d479b97149e7a4f8f105cf2cfaff60eeda6fe0f115"
         }
       }
     },
     {
       "id": "task:CA-BC.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-canadian-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -4553,8 +4914,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-BC.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Alberta/BC/Ontario provincial scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated CSA/NFPA standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-12-tools-machinery-and-equipment"
+          ],
+          "sha256": "5a41b9b38d949e7ff0fe8394a011d83259d463d2b74dcb889dce82b5fce6a495"
         }
       }
     },
@@ -8484,6 +8877,41 @@
       }
     },
     {
+      "id": "task:abEntryScopeNote",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Restricted/confined distinction, assessment/training/rescue/tending worker, conditional location/remote monitoring.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:abEntryScopeNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Restricted/confined distinction, assessment/training/rescue/tending worker, conditional location/remote monitoring.",
+          "sha256": "a934ea3c6b42c1194be87701e9b2fe90fd0beb90abc85461455c974f41232ba8"
+        }
+      }
+    },
+    {
       "id": "task:abHeightDetail",
       "evidence": [
         "regional-task-review.md",
@@ -9347,6 +9775,41 @@
       }
     },
     {
+      "id": "task:bcGroupScopeNote",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Two qualified workers, independent isolation, signed/posted checklist, personal locks, group release and separate removal exceptions.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:bcGroupScopeNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Two qualified workers, independent isolation, signed/posted checklist, personal locks, group release and separate removal exceptions.",
+          "sha256": "58ad74473e6200889fa5eaf653d1975145f60f48cf52f8670eda242f76a8d403"
+        }
+      }
+    },
+    {
       "id": "task:bcHeightDetail",
       "evidence": [
         "regional-task-review.md",
@@ -9485,6 +9948,41 @@
           ],
           "scope": "Ten-language preservation of OHS 3.1/3.2 applicability and monthly meetings only for small operations covered by 3.2; meeting records retained, no universal frequency for every toolbox talk.",
           "sha256": "9fa0760ccda98d049cb5c3f5eac17be8284865cd280ec780c516119d9c241e66"
+        }
+      }
+    },
+    {
+      "id": "task:bcStandbyScopeNote",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Risk-specific periodic checks versus continuous entrance attendance, rescue notification and drills.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:bcStandbyScopeNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Risk-specific periodic checks versus continuous entrance attendance, rescue notification and drills.",
+          "sha256": "f3966badf05e3aff383f0ca95d35f74cb8bd4ff70d20d7d981785b49accb052e"
         }
       }
     },
@@ -11493,6 +11991,41 @@
           ],
           "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
           "sha256": "936ece5c893fa129cfe11ffdb2e0952ba3c67ffa99b55cada1d80b84de3a5e8d"
+        }
+      }
+    },
+    {
+      "id": "task:fallServiceRelease",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Inspection, withdrawal reason and required evidence before reuse; no automatic release or substitute certifier.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:fallServiceRelease",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Inspection, withdrawal reason and required evidence before reuse; no automatic release or substitute certifier.",
+          "sha256": "ffcd4104fd768df043014008127b36b94084143d5004d4a45e3c990d20e2ca76"
         }
       }
     },
@@ -14583,6 +15116,41 @@
       }
     },
     {
+      "id": "task:onHotEquipmentNote",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Daily/pre-use inspection versus monthly leak test, repair before use, actual records, no compliance certification.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:onHotEquipmentNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Daily/pre-use inspection versus monthly leak test, repair before use, actual records, no compliance certification.",
+          "sha256": "ab7ebf621fc6e68295881eb50e8dda5627d2ddef687ff766d108d4add22a9d8a"
+        }
+      }
+    },
+    {
       "id": "task:onInspectionBasis",
       "evidence": [
         "regional-kr-on-form-review-20261005.md"
@@ -16079,6 +16647,41 @@
           ],
           "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
           "sha256": "2f4fb66bf7619019268c29bb7a6560de4825ac6690e26630801423cbafa0319e"
+        }
+      }
+    },
+    {
+      "id": "task:rescueNotification",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Entry/all-out rescue notification, external agreement and drills versus conditional notification exception.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:rescueNotification",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Entry/all-out rescue notification, external agreement and drills versus conditional notification exception.",
+          "sha256": "f5c01bf5195476421035d1b5dc9f2af25e81b62e90d31fb45d05411fc27cc21e"
         }
       }
     },
@@ -18267,6 +18870,41 @@
           ],
           "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
           "sha256": "1c6429657b2accfb2b4cae7ba094b8a75468af5792cbcc8473f189f5c1ca7930"
+        }
+      }
+    },
+    {
+      "id": "task:standbyArrangement",
+      "evidence": [
+        "regional-canadian-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Risk-dependent attendant location, communications, interval and relief handover.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:standbyArrangement",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-canadian-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Risk-dependent attendant location, communications, interval and relief handover.",
+          "sha256": "473e423ab31d528af124e6036ab11f8371cd97bcc9929e291ec1b7ee54200070"
         }
       }
     },
@@ -23195,7 +23833,7 @@
       "id": "native:CA-AB.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Section 140 plan distinguished from broader fall-protection triggers.",
@@ -23237,7 +23875,7 @@
       "id": "native:CA-AB.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Confined/restricted-space and tending-worker terms; permit scope/monitoring conditions remain separate.",
@@ -23278,7 +23916,7 @@
       "id": "native:CA-AB.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Hazardous-energy control and personal locks; multiworker/shift procedures retain separate meaning.",
@@ -23320,7 +23958,7 @@
       "id": "native:CA-AB.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Section 169 hazardous-location qualifier retained, not all welding.",
@@ -23362,7 +24000,7 @@
       "id": "native:CA-ON.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Construction projects, rescue procedures and working-at-heights training remain separate concepts.",
@@ -23405,7 +24043,7 @@
       "id": "native:CA-ON.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Permit, attendant and on-site rescue terms compared with official role/rescue guidance.",
@@ -23452,7 +24090,7 @@
       "id": "native:CA-ON.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Construction versus industrial-establishment frameworks and lockout verification preserved; prior dated clause review retained.",
@@ -23495,7 +24133,7 @@
       "id": "native:CA-ON.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Fire Code hot-surface applications and container precautions are distinct scopes; no generic all-work permit claim.",
@@ -23537,7 +24175,7 @@
       "id": "native:CA-BC.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Section 11.3 plan distinguished from lower fall-protection triggers.",
@@ -23579,7 +24217,7 @@
       "id": "native:CA-BC.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Responsible supervisor and standby roles; 9.13 permit triggers and 9.15 updating/reauthorisation preserved.",
@@ -23620,7 +24258,7 @@
       "id": "native:CA-BC.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Personal/group lockout and qualified worker, without collapsing two-worker group-control responsibilities.",
@@ -23662,7 +24300,7 @@
       "id": "native:CA-BC.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-canadian-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Container welding and qualified atmosphere testing, within Part 12.116 scope.",

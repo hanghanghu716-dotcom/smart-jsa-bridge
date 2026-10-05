@@ -437,9 +437,9 @@ test('remaining batch covers exactly the 37 formerly baseline-only combinations 
     .flatMap(([j, topics]) => Object.keys(topics).map(t => `${j}.${t}`)).sort(), ids);
   for (const [j, topics] of Object.entries(expected)) for (const topic of topics) {
     const r = taskReview(ctx(j), topic);
-    assert.equal(r.requirements.checkedAt, j === 'CA' ? '2026-10-06' : '2026-10-05');
+    assert.equal(r.requirements.checkedAt, ['CA', 'CA-AB', 'CA-BC', 'CA-ON'].includes(j) ? '2026-10-06' : '2026-10-05');
     assert.ok(r.requirements.sources.every(s => s.scope && s.basis &&
-      (s.checkedAt === '2026-10-05' || (j === 'CA' && s.checkedAt === '2026-10-06'))));
+      (s.checkedAt === '2026-10-05' || (['CA', 'CA-AB', 'CA-BC', 'CA-ON'].includes(j) && s.checkedAt === '2026-10-06'))));
     for (const locale of TASK_SAFETY_LANGUAGES) {
       const doc = make(j, [topic], WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === locale).locale);
       const note = doc.blocks.find(b => b.field?.key === `${topic}.notice`).field.value;

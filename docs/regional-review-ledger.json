@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.20",
+  "inventoryVersion": "2026-10-06.21",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 267,
+    "supplementFields": 309,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 296,
+    "taskVocabularyKeys": 303,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -2020,24 +2020,33 @@
       "terms": "Fall protection plan · section 140",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-9-fall-protection/",
-          "scope": "Section 140 written plan trigger: possible fall of 3 m or more without guardrails. Plan includes systems, anchors, clearance and rescue. Plan trigger is not the complete protection trigger.",
+          "scope": "Protection hierarchy and separate plan trigger; plan review after change, instruction, each-shift inspection, withdrawal and authorized return. Engineering and special equipment exceptions require separate assessment.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf",
+          "scope": "139–141, 150–150.2: current government-linked consolidation cross-check; amendments through 210/2024. Protection hierarchy and separate plan trigger; plan review after change, instruction, each-shift inspection, withdrawal and authorized return. Engineering and special equipment exceptions require separate assessment.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "fallPlanTrigger",
         "planReference",
-        "rescueReadiness"
+        "rescueReadiness",
+        "anchorCheck",
+        "trainingEvidence",
+        "fallServiceRelease"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-AB.confined",
@@ -2046,24 +2055,37 @@
       "terms": "Confined / restricted space · entry permit · tending worker",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/",
-          "scope": "Confined/restricted-space distinction; competent-person permit signature; tending worker; retention one year or two after incident/unplanned event",
+          "scope": "Confined/restricted classification; written practice and confined-space permit; training, isolation, tests, ventilation failure, effective rescue and conditional tending-worker position. No automatic remote-monitoring approval.",
           "basis": "regulation",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf",
+          "scope": "44–58: current government-linked consolidation cross-check; amendments through 210/2024. Confined/restricted classification; written practice and confined-space permit; training, isolation, tests, ventilation failure, effective rescue and conditional tending-worker position. No automatic remote-monitoring approval.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "spaceClass",
         "entryAuthorisation",
-        "permitRecord"
+        "permitRecord",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "atmosphericBasis",
+        "permitDisplay",
+        "standbyArrangement",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-AB.electrical",
@@ -2072,23 +2094,31 @@
       "terms": "Control of hazardous energy · personal lock",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
-          "scope": "Energy isolation/equivalent effective control, worker verification of inoperative/safe equipment, identifiable personal locks and accessible identification list. Operating-equipment exceptions not automatically approved.",
+          "scope": "Equipment energy control: individual verification and locks, continuous protection across shifts, worker accounting and safe return. Complex groups, pipelines and utility electrical work need their own procedures.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf",
+          "scope": "212–215.3: current government-linked consolidation cross-check; amendments through 210/2024. Equipment energy control: individual verification and locks, continuous protection across shifts, worker accounting and safe return. Complex groups, pipelines and utility electrical work need their own procedures.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "countryProcedure",
-        "personalLockRegister"
+        "personalLockRegister",
+        "isolationHandover",
+        "restorationRelease"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-AB.hot",
@@ -2097,24 +2127,33 @@
       "terms": "Hot work in hazardous locations · section 169",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-10-fire-and-explosion-hazards/",
-          "scope": "Hot work in hazardous locations: conditional permit, atmospheric testing type/frequency and safe method. Not a permit mandate for every welding job; no safe gas threshold prefilled.",
+          "scope": "Conditional permit and testing, combustible isolation, continued safe performance and equipment checks. Section 169 limits are not a universal safe gas reading; hot tapping needs its own section 170 plan.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf",
+          "scope": "169–171.2: current government-linked consolidation cross-check; amendments through 210/2024. Conditional permit and testing, combustible isolation, continued safe performance and equipment checks. Section 169 limits are not a universal safe gas reading; hot tapping needs its own section 170 plan.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "hotPermitTrigger",
         "hotAuthorisation",
-        "retestTriggers"
+        "retestTriggers",
+        "containerHistory",
+        "atmosphericBasis",
+        "weldingEquipmentCheck"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-ON.height",
@@ -2123,26 +2162,29 @@
       "terms": "Construction projects · rescue procedures · working at heights training",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ontario.ca/laws/regulation/910213",
-          "scope": "Current official API consolidation effective 2026-04-20: construction hierarchy, written rescue before fall arrest/net, equipment training and records; distinct from approved working-at-heights training.",
+          "scope": "Construction only: protection hierarchy, openings, written rescue, separate equipment and working-at-heights training, inspections and system suitability. Current e-Laws API consolidation from 2026-04-20; no blanket height exemption.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "applicableFramework",
         "trainingEvidence",
-        "rescueReadiness"
+        "rescueReadiness",
+        "anchorCheck",
+        "planReference",
+        "fallServiceRelease"
       ],
       "fieldLabels": {
         "applicableFramework": "frameworkBasis"
       },
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-ON.confined",
@@ -2151,8 +2193,8 @@
       "terms": "Entry permit · attendant · on-site rescue",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit",
@@ -2174,9 +2216,9 @@
         },
         {
           "url": "https://www.ontario.ca/laws/regulation/050632",
-          "scope": "Official public e-Laws API returned state=current, consolidation from 2016-07-01, last amendment 346/15. Sections 4–21 read: coordination, signed assessment, plan, training, shift verification, immediate rescue, atmospheric criteria and retention",
+          "scope": "Assessment endorsement versus each-shift permit verification; programme/plan, training, coordination, attendant outside, immediate rescue, availability, testing, task-dependent atmosphere, ventilation warning/exit and retention. Current API consolidation from 2016-07-01; do not import BC posting/signature rules.",
           "basis": "regulation",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -2187,11 +2229,14 @@
         "planReference",
         "trainingEvidence",
         "rescueReadiness",
-        "atmosphericBasis"
+        "atmosphericBasis",
+        "permitDisplay",
+        "standbyArrangement",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-ON.electrical",
@@ -2200,32 +2245,34 @@
       "terms": "Construction / industrial establishments · lockout verification",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ontario.ca/laws/regulation/910213",
-          "scope": "Construction: power isolation, lock/tag, discharge, worker verification and multiple-worker communication. Current official API consolidation effective 2026-04-20.",
+          "scope": "Construction dead-work written procedure, disconnect/lock/tag, stored energy, verification, multi-worker communication and safe tag removal. Section 191 energized-work route is outside this template; current API from 2026-04-20.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.ontario.ca/laws/regulation/900851",
-          "scope": "Industrial establishments: separate isolation/verification exceptions and utility scope. Do not transfer construction exceptions; live work remains outside this form. Current official API consolidation effective 2022-07-01.",
+          "scope": "Industrial establishment disconnect/lock/tag and worker verification; limited lock exceptions, separate energized work and utility rules. Current API from 2022-07-01; do not transfer exceptions between frameworks.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "applicableFramework",
         "countryProcedure",
-        "isolationHandover"
+        "isolationHandover",
+        "personalLockRegister",
+        "restorationRelease"
       ],
       "fieldLabels": {
         "applicableFramework": "frameworkBasis"
       },
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-ON.hot",
@@ -2234,26 +2281,29 @@
       "terms": "Fire Code · hot surface applications · container precautions",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ontario.ca/laws/regulation/070213",
-          "scope": "Current official API consolidation effective 2026-01-01: building fire precautions, combustible separation/protection, container cleaning/testing or engineering measures; no hot work on totally enclosed containers. Not an all-sector written PTW mandate.",
+          "scope": "Equipment defects/inspection/leak tests, building precautions, concurrent ignition hazards, containers and extinguisher. Current API from 2026-01-01. Referenced CSA/NFPA standards need applicable-site review; no universal permit/watch duration claimed.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "applicableFramework",
         "containerHistory",
-        "hotAreaCheck"
+        "hotAreaCheck",
+        "weldingEquipmentCheck",
+        "hotFireProtection",
+        "planReference"
       ],
       "fieldLabels": {
         "applicableFramework": "frameworkBasis"
       },
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-BC.height",
@@ -2262,23 +2312,33 @@
       "terms": "Fall protection plan · section 11.3",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-11-fall-protection",
-          "scope": "Written plan for possible fall of 7.5 m or more without permanent guardrails, or alternative procedures under 11.2(5). Distinct from the lower fall-protection trigger.",
+          "scope": "Protection versus written-plan triggers, instruction, anchor/inspection records and fall-arrest withdrawal/recertification. Engineering, rope access and planned entertainment falls remain separate.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-guidelines/guidelines-part-11",
+          "scope": "Plan, training and rescue/evacuation arrangements; section 4.13 consideration remains even without a mandatory fall plan.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "fallPlanTrigger",
-        "planReference"
+        "planReference",
+        "anchorCheck",
+        "trainingEvidence",
+        "rescueReadiness",
+        "fallServiceRelease"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-BC.confined",
@@ -2287,24 +2347,32 @@
       "terms": "Responsible supervisor · standby person · 9.13 permit triggers / 9.15 reauthorisation",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces",
-          "scope": "Conditional permit triggers; responsible-supervisor signature on crew/shift/supervisor changes; signed permit kept at least one year",
+          "scope": "Programme, qualified assessment, conditional signed/posted permit and controlled updates; testing/ventilation; risk-specific standby; rescue agreement, drills and entry/exit notification. Posting exception is conditional.",
           "basis": "regulation",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "permitTrigger",
         "shiftAuthorisation",
-        "permitRecord"
+        "permitRecord",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "entryAuthorisation",
+        "permitDisplay",
+        "standbyArrangement",
+        "rescueNotification",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-BC.electrical",
@@ -2313,23 +2381,25 @@
       "terms": "Personal lockout · group lockout · qualified worker",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
-          "scope": "Personal lock/key control; absent-owner removal requires responsible supervisor/manager procedure and notification. Group lockout uses two qualified workers for independent verification.",
+          "scope": "Worker verification, shift transfer, personal-lock removal/contact/notification and group locking/release by two qualified workers. Exceptions do not grant energized-work approval; power systems use Part 19.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "personalLockRegister",
-        "restorationRelease"
+        "restorationRelease",
+        "countryProcedure",
+        "isolationHandover"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-BC.hot",
@@ -2338,24 +2408,26 @@
       "terms": "Welding containers · qualified atmosphere testing",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-canadian-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-12-tools-machinery-and-equipment",
-          "scope": "Container cleaning and qualified atmosphere testing with subsequent tests at suitable intervals; equipment defects, leaks/contamination and flashback prevention.",
+          "scope": "Welding process scope, ventilation/coatings, container cleaning, qualified testing and safe procedures/retests, defects and flashback prevention. Referenced CSA standard and fire-code particulars are not reproduced or certified.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "containerHistory",
         "retestTriggers",
-        "weldingEquipmentCheck"
+        "weldingEquipmentCheck",
+        "atmosphericBasis",
+        "planReference"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
       "id": "CA-QC.height",
@@ -6192,6 +6264,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:abEntryScopeNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
+    },
+    {
       "id": "task:abHeightDetail",
       "languages": [
         "ko",
@@ -6600,6 +6689,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:bcGroupScopeNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
+    },
+    {
       "id": "task:bcHeightDetail",
       "languages": [
         "ko",
@@ -6666,6 +6772,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-country-form-review-20261005.md"
+    },
+    {
+      "id": "task:bcStandbyScopeNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
     },
     {
       "id": "task:brElectricalEditionNotice",
@@ -7618,6 +7741,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:fallServiceRelease",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
     },
     {
       "id": "task:fallSystem",
@@ -9082,6 +9222,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:onHotEquipmentNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
+    },
+    {
       "id": "task:onInspectionBasis",
       "languages": [
         "ko",
@@ -9794,6 +9951,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:rescueNotification",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
     },
     {
       "id": "task:rescueReadiness",
@@ -10831,6 +11005,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:standbyArrangement",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-canadian-task-review-20261006.md"
     },
     {
       "id": "task:stateCodeBasis",

@@ -1,3 +1,4 @@
+import { CANADIAN_TASK_ROWS } from '../src/locales/regionalCanadianTaskText20261006.js';
 import { ENGLISH_TASK_ROWS } from '../src/locales/regionalEnglishTaskText20261006.js';
 import { SA_RU_FORM_ROWS } from '../src/locales/regionalSaRuFormText20261006.js';
 import { FOLLOWUP_PERMIT_ROWS } from '../src/locales/regionalPermitFollowupText20261006.js';
@@ -31,8 +32,8 @@ test('review inventory enumerates all forms and topics without promoting partial
   assert.equal(ledger.summary.clauseSupplements, 72);
   assert.equal(ledger.summary.baselineOnlyTasks, 0);
   assert.equal(ledger.summary.sourceLimitedTasks, 13);
-  assert.equal(ledger.summary.supplementFields, 267);
-  assert.equal(ledger.summary.taskVocabularyKeys, 296);
+  assert.equal(ledger.summary.supplementFields, 309);
+  assert.equal(ledger.summary.taskVocabularyKeys, 303);
   assert.deepEqual(ledger.tasks.find(t => t.id === 'IT.height').resolvedIssues, ['it-2025-conversion-height-amendment', 'it-roof-specific-collective-protection']);
   assert.deepEqual(ledger.tasks.find(t => t.id === 'JP.electrical').fieldLabels, { disconnect: 'jpIsolationChoice' });
   assert.equal(ledger.summary.overallCompletionPercent, null);
@@ -46,7 +47,7 @@ test('review inventory enumerates all forms and topics without promoting partial
 });
 
 test('dated terminology batches cannot silently overwrite existing keys or lose a document language', () => {
-  const rows = [REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005, SINGAPORE_REVIEW_ROWS, REGIONAL_BATCH_ROWS, REGIONAL_ASSESSMENT_ROWS, REGIONAL_FORM_REVIEW_ROWS, SINGAPORE_FORM_ROWS, AU_JP_FORM_ROWS, INSPECTION_FORM_ROWS, PERMIT_FORM_ROWS, COUNTRY_FORM_ROWS, FR_ES_FORM_ROWS, IT_BR_QC_FORM_ROWS, KR_ON_FORM_ROWS, FOLLOWUP_PERMIT_ROWS, SA_RU_FORM_ROWS, ENGLISH_TASK_ROWS].flatMap(s => s.trim().split('\n'));
+  const rows = [REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005, SINGAPORE_REVIEW_ROWS, REGIONAL_BATCH_ROWS, REGIONAL_ASSESSMENT_ROWS, REGIONAL_FORM_REVIEW_ROWS, SINGAPORE_FORM_ROWS, AU_JP_FORM_ROWS, INSPECTION_FORM_ROWS, PERMIT_FORM_ROWS, COUNTRY_FORM_ROWS, FR_ES_FORM_ROWS, IT_BR_QC_FORM_ROWS, KR_ON_FORM_ROWS, FOLLOWUP_PERMIT_ROWS, SA_RU_FORM_ROWS, ENGLISH_TASK_ROWS, CANADIAN_TASK_ROWS].flatMap(s => s.trim().split('\n'));
   assert.equal(new Set(rows.map(r => r.split('|')[0])).size, rows.length);
   for (const row of rows) {
     const [key, ...values] = row.split('|');
