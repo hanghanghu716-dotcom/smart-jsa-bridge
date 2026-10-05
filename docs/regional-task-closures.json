@@ -848,5 +848,298 @@
       "https://www.ontario.ca/laws/regulation/070213"
     ],
     "sha256": "e35bc30e8555e0aadeb4ed4e35a76cb6479d2a35ec525dcf5b506cc139459243"
+  },
+  {
+    "id": "task:AU.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/safety-topic/hazards/working-heights",
+      "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2022-10/Model%20Code%20of%20Practice%20-%20Managing%20the%20Risk%20of%20Falls%20at%20Workplaces%2021102022_0.pdf"
+    ],
+    "sha256": "ed119537b5ae179f39506198ca065808570634a00bb079a7a66c87d3dccdceaf"
+  },
+  {
+    "id": "task:AU.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
+      "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+      "https://www.worksafe.vic.gov.au/resources/compliance-code-confined-spaces"
+    ],
+    "sha256": "761b62217eee44b58b698d06c8ca776aaf9f0e49b8f2be8aebb9c4665f934f0d"
+  },
+  {
+    "id": "task:AU.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/system/files/documents/1810/model-cop-managing-electrical-risks-in-the-workplace.pdf",
+      "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation"
+    ],
+    "sha256": "dd4dfab956c64545b5164e8b754dbd93a651cc342f224c99ed9f1c1482986d82"
+  },
+  {
+    "id": "task:AU.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/system/files/documents/1901/code_of_practice_-_welding_processes_0.pdf",
+      "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf"
+    ],
+    "sha256": "9e55f2756fbcdfce6a0f06d4b81606bbb27420d88ae508276509b7795f03ac65"
+  },
+  {
+    "id": "task:SG.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
+      "https://sso.agc.gov.sg/SL/WSHA2006-S223-2013",
+      "https://www.tal.sg/wshc/topics/work-at-height/preventing-falls-from-heights"
+    ],
+    "sha256": "46069b177a9971e5b36e0c2483880863fe644f824d7765c046d413a0e9c6b4e8"
+  },
+  {
+    "id": "task:SG.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
+      "https://sso.agc.gov.sg/SL/WSHA2006-S462-2009"
+    ],
+    "sha256": "e5970463a44eae396e462729bb9a871877dccec769bcc3c15dba27349b79b0ab"
+  },
+  {
+    "id": "task:SG.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.ema.gov.sg/consumer-information/electricity/engaging-licensed-workers",
+      "https://sso.agc.gov.sg/SL/354A-RG1?DocDate=20260929&ProvIds=P1III-",
+      "https://sso.agc.gov.sg/SL/EA2001-RG5?ProvIds=P1IV-"
+    ],
+    "sha256": "f1338d2107c7b9c466ed53c7259e436d6a2b743c2c1b448c4053bf8e74115917"
+  },
+  {
+    "id": "task:SG.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
+      "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008"
+    ],
+    "sha256": "5ad56609bde331431474d4370ebdaafe0043ff45e78406ef547cc2ffb3218a2e"
   }
 ]

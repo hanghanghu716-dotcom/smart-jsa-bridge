@@ -27,8 +27,8 @@ test('Singapore current-law prompts preserve marine scope, blank checks and hist
     }
     for (const r of doc.regional.taskReviews) {
       assert.equal(r.status, 'scoped-source-review');
-      assert.match(r.requirements.remaining, /Full individual checklist closure remains/);
-      assert.ok(r.sources.some(s => s.url.startsWith('https://sso.agc.gov.sg/') && s.checkedAt === '2026-10-05'));
+      assert.match(r.requirements.remaining, /Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate/);
+      assert.ok(r.sources.some(s => s.url.startsWith('https://sso.agc.gov.sg/') && ['2026-10-05', '2026-10-06'].includes(s.checkedAt)));
     }
     const record = { id: 'sg-review', data: cleanPackage({ context: ctx('SG', locale), documents: [doc] }) };
     const before = structuredClone(record);
@@ -297,7 +297,7 @@ test('US and GB checks preserve different evidence without prefilled clearances 
   assert.match(notice('SG', 'height'), /combining assessor\/manager requires checking conditions/);
   assert.match(notice('SG', 'height'), /not set the seven-day guidance as an automatic statutory expiry/);
   assert.equal(taskReview(ctx('SG'), 'height').status, 'scoped-source-review');
-  assert.equal(taskReview(ctx('SG'), 'height').requirements.checkedAt, '2026-10-05');
+  assert.equal(taskReview(ctx('SG'), 'height').requirements.checkedAt, '2026-10-06');
 });
 
 test('KR and JP electrical rules preserve different isolation choices and native work-director roles', () => {
@@ -437,9 +437,9 @@ test('remaining batch covers exactly the 37 formerly baseline-only combinations 
     .flatMap(([j, topics]) => Object.keys(topics).map(t => `${j}.${t}`)).sort(), ids);
   for (const [j, topics] of Object.entries(expected)) for (const topic of topics) {
     const r = taskReview(ctx(j), topic);
-    assert.equal(r.requirements.checkedAt, ['CA', 'CA-AB', 'CA-BC', 'CA-ON'].includes(j) ? '2026-10-06' : '2026-10-05');
+    assert.equal(r.requirements.checkedAt, ['CA', 'CA-AB', 'CA-BC', 'CA-ON', 'AU', 'SG'].includes(j) ? '2026-10-06' : '2026-10-05');
     assert.ok(r.requirements.sources.every(s => s.scope && s.basis &&
-      (s.checkedAt === '2026-10-05' || (['CA', 'CA-AB', 'CA-BC', 'CA-ON'].includes(j) && s.checkedAt === '2026-10-06'))));
+      (['2026-10-05', '2026-10-06'].includes(s.checkedAt) || (['CA', 'CA-AB', 'CA-BC', 'CA-ON', 'AU', 'SG'].includes(j) && s.checkedAt === '2026-10-06'))));
     for (const locale of TASK_SAFETY_LANGUAGES) {
       const doc = make(j, [topic], WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === locale).locale);
       const note = doc.blocks.find(b => b.field?.key === `${topic}.notice`).field.value;

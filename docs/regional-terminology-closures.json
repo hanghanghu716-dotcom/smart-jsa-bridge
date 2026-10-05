@@ -10727,5 +10727,138 @@
     ],
     "scope": "Ten-language meaning review: Daily/pre-use inspection versus monthly leak test, repair before use, actual records, no compliance certification.",
     "sha256": "ab7ebf621fc6e68295881eb50e8dda5627d2ddef687ff766d108d4add22a9d8a"
+  },
+  {
+    "id": "task:heightAccessCheck",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Platform/opening/fragile-roof/ladder suitability, protection, securing and safe access.",
+    "sha256": "b39071010f57b579321d11fc41e1a11bdeddeb53138059ef6bb99fc2b3c32403"
+  },
+  {
+    "id": "task:sgMarineEquipmentCheck",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Marine electrical/gas safeguards, six-month shock-preventor test, wet-condition electric shock prevention and ventilation.",
+    "sha256": "f1600f7039deca4a43e532f491ac1fd1fd66133131af05c396782395ecf3886b"
+  },
+  {
+    "id": "task:sgFireEscalation",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Trained fire watch, equipment, surrounding-area monitoring and immediate SCDF report when unable to control fire.",
+    "sha256": "8cbe40ed434553244078c465fe74a9516fc58b70981a65241ee1011a4d5f7b13"
+  },
+  {
+    "id": "task:sgRescueInspection",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Competent-person rescue-equipment inspection at least monthly or authority-set interval and two-year record retention.",
+    "sha256": "df4a25407b0b1273fbb2b4ca4a8d605a53eed7e043cbd410e53c57581b1937b8"
+  },
+  {
+    "id": "task:auEntryReviewNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Local model adoption, permit revalidation triggers, continuous outside standby without rescue entry, all-out and incident-dependent retention.",
+    "sha256": "9abfcd6d9ed0fa71d9a7f37266535dd2387f18e9f2f586b5744792bab5aaac82"
+  },
+  {
+    "id": "task:sgEntryReviewNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Ordered calibrated tests, two-or-more entrant continuous monitoring, evacuation/cause evaluation/new permit, expiry separate from daily review and no exception approval.",
+    "sha256": "4e596ae87cd396a6b27e947592e0db5819af1c2183204bebb76e18cd12437624"
+  },
+  {
+    "id": "task:sgElectricalBoundaryNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-au-sg-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: LEW scope and distinct high-voltage switching engineer, permit, key custody and completion/cancellation; no energized-work approval.",
+    "sha256": "7924e8de3d066b9ae15415b4475fb18ca2b816ef71daa9ae73cefbfe43b72ba0"
   }
 ]

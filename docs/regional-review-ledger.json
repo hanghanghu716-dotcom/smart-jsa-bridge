@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.21",
+  "inventoryVersion": "2026-10-06.22",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 309,
+    "supplementFields": 358,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 303,
+    "taskVocabularyKeys": 310,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1540,24 +1540,41 @@
       "terms": "Fall prevention · SWMS (high risk construction work)",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.safeworkaustralia.gov.au/safety-topic/hazards/working-heights",
           "scope": "Model framework: ground/solid construction, prevention, positioning, arrest hierarchy; SWMS for high-risk construction fall risk over 2 m. This is not a safe exemption below 2 m; local adoption must be checked.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+          "scope": "Model codes are not automatically local law; Victoria has not adopted model WHS laws. Confirm adoption, variations, licensing and sector rules.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2022-10/Model%20Code%20of%20Practice%20-%20Managing%20the%20Risk%20of%20Falls%20at%20Workplaces%2021102022_0.pdf",
+          "scope": "Model hierarchy, access/fragile surfaces/ladders, competent inspection, withdrawal after defects or arrest, training and tested rescue. SWMS trigger does not exempt lower falls; scaffold/anchor engineering and state adoption separate.",
+          "basis": "model-code",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "stateCodeBasis",
         "planReference",
-        "fallProtectionBasis"
+        "fallProtectionBasis",
+        "anchorCheck",
+        "trainingEvidence",
+        "rescueReadiness",
+        "fallServiceRelease",
+        "heightAccessCheck"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "AU.confined",
@@ -1566,20 +1583,20 @@
       "terms": "Confined space entry permit · stand-by person",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
-          "scope": "Model WHS Regulations 67/77: written entry permit, exit acknowledgement and incident-dependent retention; local adoption required",
+          "scope": "Model scope/classification, written assessment/permit, isolation, atmosphere, outside standby and practised rescue, permit revalidation, all-out acknowledgement and incident-dependent retention. Local rules and Victoria remain distinct.",
           "basis": "model-code",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
-          "scope": "Victoria has not adopted the model WHS laws; other jurisdictions can vary them and model amendments do not apply automatically",
+          "scope": "Model codes are not automatically local law; Victoria has not adopted model WHS laws. Confirm adoption, variations, licensing and sector rules.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.worksafe.vic.gov.au/resources/compliance-code-confined-spaces",
@@ -1591,11 +1608,18 @@
       "fieldKeys": [
         "permitCloseout",
         "permitRecord",
-        "stateCodeBasis"
+        "stateCodeBasis",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "atmosphericBasis",
+        "entryAuthorisation",
+        "standbyArrangement",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "AU.electrical",
@@ -1604,24 +1628,34 @@
       "terms": "De-energised electrical work · competent person · electrical licensing/registration for the task and jurisdiction",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.safeworkaustralia.gov.au/system/files/documents/1810/model-cop-managing-electrical-risks-in-the-workplace.pdf",
-          "scope": "Isolation, testing before touch and safe restoration for covered electrical work. Model code adoption, licensing and excluded installations require local confirmation.",
+          "scope": "Licensed/registered electrical worker, all supplies/stored energy, test-before-touch, locking/tagging, safe unfinished-work handover and restoration. Energised testing requires its separate route; supply-authority exclusions and local licences are not inferred.",
+          "basis": "model-code",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+          "scope": "Model codes are not automatically local law; Victoria has not adopted model WHS laws. Confirm adoption, variations, licensing and sector rules.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "stateCodeBasis",
         "isolationSequence",
-        "restorationRelease"
+        "restorationRelease",
+        "licenceScope",
+        "personalLockRegister",
+        "isolationHandover",
+        "countryProcedure"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "AU.hot",
@@ -1630,24 +1664,41 @@
       "terms": "Hot work · fire watch",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.safeworkaustralia.gov.au/system/files/documents/1901/code_of_practice_-_welding_processes_0.pdf",
           "scope": "Fire/explosion controls and hot-work permit procedure guidance; a confined-space entry permit is a separate requirement when applicable. Model code, not a nationwide all-welding permit mandate.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+          "scope": "Model codes are not automatically local law; Victoria has not adopted model WHS laws. Confirm adoption, variations, licensing and sector rules.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf",
+          "scope": "Current publication-hub download checked: consultation/training, fire/explosion, fumes/ventilation, cylinders, equipment inspection and surrounding work. Confined entry and hot-work procedures remain separate; no nationwide permit or watch-duration mandate.",
+          "basis": "model-code",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "stateCodeBasis",
         "hotAuthorisation",
-        "containerHistory"
+        "containerHistory",
+        "atmosphericBasis",
+        "weldingEquipmentCheck",
+        "hotFireProtection",
+        "trainingEvidence",
+        "multiEmployerRoles"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "SG.height",
@@ -1656,8 +1707,8 @@
       "terms": "Factory / hazardous WAH applicability · work-at-height safety assessor · authorised manager",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-singapore-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
@@ -1667,9 +1718,15 @@
         },
         {
           "url": "https://sso.agc.gov.sg/SL/WSHA2006-S223-2013",
-          "scope": "Full current text read: regs 2–18, 20–30 and First Schedule. Factory/hazardous-WAH PTW scope; every-shift anchorage inspection, immediate entry/handover before shift end and >=2-year records; joint inspection, posting, daily review and expiry/reapplication; rope-access design/register duties and limited tree-work exceptions.",
+          "scope": "Current SSO parts and schedule read. General fall prevention and scheduled fall plan versus factory hazardous-WAH permits, access/roof/fragile/ladder controls, training/supervision, shift inspection, posting/review/reapplication and completion notification. Rope engineering and scaffold-specific rules separate.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.tal.sg/wshc/topics/work-at-height/preventing-falls-from-heights",
+          "scope": "Site-specific fall plan includes training, inspection/maintenance and emergency response; factory permit scope remains controlled by the regulation.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -1680,13 +1737,19 @@
         "sgRopeRegister",
         "sgJointInspection",
         "permitDisplay",
-        "permitRecord"
+        "permitRecord",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "heightAccessCheck",
+        "permitCloseout",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sg-height-current-consolidation"
       ],
-      "remaining": "Current text reconciled for these added prompts. Full individual checklist closure remains: detailed scaffold/ladder/roof and rope-system design checks and site-specific First Schedule applicability; no engineering approval is inferred."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "SG.confined",
@@ -1695,23 +1758,40 @@
       "terms": "Confined space entry permit · confined space safety assessor · authorised manager · confined space attendant",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
           "scope": "Daily authorised-manager review, posting and permit validity; advisory does not extend an expired permit",
           "basis": "official-guidance",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://sso.agc.gov.sg/SL/WSHA2006-S462-2009",
+          "scope": "Current SSO consolidation effective 2024-06-01: necessary entry, appointed assessor/manager/attendant, ordered calibrated testing, endorsement/issue, posted permit, daily review, expiry/new application, hazardous atmosphere exit/new permit, rescue inspection and two-year test/inspection records. Reg 10(2) exception is not automatically authorised.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "dailyReview",
-        "permitDisplay"
+        "permitDisplay",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "atmosphericBasis",
+        "standbyArrangement",
+        "entryAuthorisation",
+        "permitCloseout",
+        "permitRecord",
+        "restartReview",
+        "multiEmployerRoles",
+        "sgRescueInspection"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "SG.electrical",
@@ -1720,22 +1800,39 @@
       "terms": "Licensed Electrical Worker (LEW) · Electrician / Electrical Technician / Electrical Engineer",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ema.gov.sg/consumer-information/electricity/engaging-licensed-workers",
-          "scope": "Electrical installation work: valid LEW licence and class/load/voltage scope; separate from marine permit procedure",
+          "scope": "Verify valid licence, class, load/voltage and supervision scope; generic competence is not a licence.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://sso.agc.gov.sg/SL/354A-RG1?DocDate=20260929&ProvIds=P1III-",
+          "scope": "Current canonical SSO text read: safe equipment, shock protection and instructed lock-out procedures covering all energy sources and prevention of inadvertent energisation.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://sso.agc.gov.sg/SL/EA2001-RG5?ProvIds=P1IV-",
+          "scope": "High-voltage route: authorised switching engineer, appointed appropriate-class LEW, dedicated permits, key custody, completion/cancellation and external-supply certificate. This general isolation record does not issue that permit.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
-        "licenceScope"
+        "licenceScope",
+        "countryProcedure",
+        "isolationSequence",
+        "isolationHandover",
+        "restorationRelease",
+        "trainingEvidence"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "SG.hot",
@@ -1744,8 +1841,8 @@
       "terms": "Marine hot-work permit · safety assessor · ship repair manager",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-singapore-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-au-sg-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
@@ -1755,9 +1852,9 @@
         },
         {
           "url": "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008",
-          "scope": "Full current text read: regs 2–3, 23–24, 27–37 and 53–65. Exact-location sketch, joint inspection, necessity/no alternative, serialised controlled permit, display/retention and daily review; trained watchman; equipment register intervals under r61 and break/restart conditions r60. Marine scope only; electrical-device and ventilation design checks remain beyond these prompts.",
+          "scope": "Current SSO marine scope: serialised permit, exact location and joint assessment, trained fire watch and SCDF escalation, electrical shock protection/6-month preventor test, gas backflow/flashback/leak devices, wet-work prohibition, ventilation and container controls. Existing 14/30-day and annual register checks retained.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -1769,13 +1866,19 @@
         "sgHotBasisSketch",
         "sgHotEquipmentRegister",
         "sgHotBreakRestart",
-        "permitDisplay"
+        "permitDisplay",
+        "sgMarineEquipmentCheck",
+        "sgFireEscalation",
+        "atmosphericBasis",
+        "hotFireProtection",
+        "trainingEvidence",
+        "containerHistory"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sg-marine-hot-current-consolidation"
       ],
-      "remaining": "Current marine consolidation and amended permit numbering reconciled. Full individual checklist closure remains: device-specific r53–59/r62–65 controls and fire-emergency escalation details; no universal post-work watch duration or non-marine PTW rule is inferred."
+      "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
       "id": "US.height",
@@ -6536,6 +6639,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:auEntryReviewNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
+    },
+    {
       "id": "task:auHeightDetail",
       "languages": [
         "ko",
@@ -8166,6 +8286,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:heightAccessCheck",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
     },
     {
       "id": "task:help",
@@ -10616,6 +10753,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgElectricalBoundaryNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
+    },
+    {
       "id": "task:sgElectricalNotice",
       "languages": [
         "ko",
@@ -10648,6 +10802,40 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgEntryReviewNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
+    },
+    {
+      "id": "task:sgFireEscalation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
     },
     {
       "id": "task:sgHeightLawNotice",
@@ -10786,6 +10974,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgMarineEquipmentCheck",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
+    },
+    {
       "id": "task:sgMarineHotDetail",
       "languages": [
         "ko",
@@ -10818,6 +11023,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgRescueInspection",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-au-sg-task-review-20261006.md"
     },
     {
       "id": "task:sgResidualRisk",

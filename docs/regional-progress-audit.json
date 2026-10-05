@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.21",
+  "evidenceVersion": "2026-10-06.22",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 390
+    "fieldVocabularyGroups": 397
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 422,
-      "pending": 61,
+      "completed": 430,
+      "pending": 53,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 48,
-      "completionPercent": 87.4,
-      "remainingPercent": 12.6
+      "pendingFinalVerification": 40,
+      "completionPercent": 89,
+      "remainingPercent": 11
     },
     "stage3": {
-      "reviewGroups": 551,
-      "checkpoints": 1653,
-      "completed": 1650,
+      "reviewGroups": 558,
+      "checkpoints": 1674,
+      "completed": 1671,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 712,
-      "checkpoints": 2136,
-      "completed": 2072,
-      "pending": 64,
+      "reviewGroups": 719,
+      "checkpoints": 2157,
+      "completed": 2101,
+      "pending": 56,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 51,
-      "completionPercent": 97,
-      "remainingPercent": 3
+      "pendingFinalVerification": 43,
+      "completionPercent": 97.4,
+      "remainingPercent": 2.6
     }
   },
   "stage2": [
@@ -3772,9 +3772,9 @@
     {
       "id": "task:AU.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3783,17 +3783,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:AU.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.safeworkaustralia.gov.au/safety-topic/hazards/working-heights",
+            "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+            "https://www.safeworkaustralia.gov.au/sites/default/files/2022-10/Model%20Code%20of%20Practice%20-%20Managing%20the%20Risk%20of%20Falls%20at%20Workplaces%2021102022_0.pdf"
+          ],
+          "sha256": "ed119537b5ae179f39506198ca065808570634a00bb079a7a66c87d3dccdceaf"
         }
       }
     },
     {
       "id": "task:AU.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3802,17 +3836,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:AU.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
+            "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+            "https://www.worksafe.vic.gov.au/resources/compliance-code-confined-spaces"
+          ],
+          "sha256": "761b62217eee44b58b698d06c8ca776aaf9f0e49b8f2be8aebb9c4665f934f0d"
         }
       }
     },
     {
       "id": "task:AU.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3821,17 +3889,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:AU.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.safeworkaustralia.gov.au/system/files/documents/1810/model-cop-managing-electrical-risks-in-the-workplace.pdf",
+            "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation"
+          ],
+          "sha256": "dd4dfab956c64545b5164e8b754dbd93a651cc342f224c99ed9f1c1482986d82"
         }
       }
     },
     {
       "id": "task:AU.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3840,17 +3941,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:AU.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.safeworkaustralia.gov.au/system/files/documents/1901/code_of_practice_-_welding_processes_0.pdf",
+            "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+            "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf"
+          ],
+          "sha256": "9e55f2756fbcdfce6a0f06d4b81606bbb27420d88ae508276509b7795f03ac65"
         }
       }
     },
     {
       "id": "task:SG.height",
       "evidence": [
-        "regional-singapore-review-20261005.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Current text reconciled for these added prompts. Full individual checklist closure remains: detailed scaffold/ladder/roof and rope-system design checks and site-specific First Schedule applicability; no engineering approval is inferred.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3859,17 +3994,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:SG.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
+            "https://sso.agc.gov.sg/SL/WSHA2006-S223-2013",
+            "https://www.tal.sg/wshc/topics/work-at-height/preventing-falls-from-heights"
+          ],
+          "sha256": "46069b177a9971e5b36e0c2483880863fe644f824d7765c046d413a0e9c6b4e8"
         }
       }
     },
     {
       "id": "task:SG.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3878,17 +4047,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:SG.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
+            "https://sso.agc.gov.sg/SL/WSHA2006-S462-2009"
+          ],
+          "sha256": "e5970463a44eae396e462729bb9a871877dccec769bcc3c15dba27349b79b0ab"
         }
       }
     },
     {
       "id": "task:SG.electrical",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3897,17 +4099,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:SG.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.ema.gov.sg/consumer-information/electricity/engaging-licensed-workers",
+            "https://sso.agc.gov.sg/SL/354A-RG1?DocDate=20260929&ProvIds=P1III-",
+            "https://sso.agc.gov.sg/SL/EA2001-RG5?ProvIds=P1IV-"
+          ],
+          "sha256": "f1338d2107c7b9c466ed53c7259e436d6a2b743c2c1b448c4053bf8e74115917"
         }
       }
     },
     {
       "id": "task:SG.hot",
       "evidence": [
-        "regional-singapore-review-20261005.md"
+        "regional-au-sg-task-review-20261006.md"
       ],
-      "note": "Current marine consolidation and amended permit numbering reconciled. Full individual checklist closure remains: device-specific r53–59/r62–65 controls and fire-emergency escalation details; no universal post-work watch duration or non-marine PTW rule is inferred.",
+      "note": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3916,8 +4152,41 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:SG.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Australian model or Singapore national/sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Local Australian adoption/variations, full incorporated AS/NZS/SS standards, special-sector rules, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
+            "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008"
+          ],
+          "sha256": "5ad56609bde331431474d4370ebdaafe0043ff45e78406ef547cc2ffb3218a2e"
         }
       }
     },
@@ -9451,6 +9720,41 @@
       }
     },
     {
+      "id": "task:auEntryReviewNote",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Local model adoption, permit revalidation triggers, continuous outside standby without rescue entry, all-out and incident-dependent retention.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:auEntryReviewNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Local model adoption, permit revalidation triggers, continuous outside standby without rescue entry, all-out and incident-dependent retention.",
+          "sha256": "9abfcd6d9ed0fa71d9a7f37266535dd2387f18e9f2f586b5744792bab5aaac82"
+        }
+      }
+    },
+    {
       "id": "task:auHeightDetail",
       "evidence": [
         "regional-task-review.md",
@@ -12887,6 +13191,41 @@
           "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
           "evidence": "regional-title-core-review-20261005.md",
           "sha256": "2f95faf8d45fe9877cc551c18dea283b6f3ec0584b31b9533226c67d023ebad4"
+        }
+      }
+    },
+    {
+      "id": "task:heightAccessCheck",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Platform/opening/fragile-roof/ladder suitability, protection, securing and safe access.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:heightAccessCheck",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Platform/opening/fragile-roof/ladder suitability, protection, securing and safe access.",
+          "sha256": "b39071010f57b579321d11fc41e1a11bdeddeb53138059ef6bb99fc2b3c32403"
         }
       }
     },
@@ -18046,6 +18385,41 @@
       }
     },
     {
+      "id": "task:sgElectricalBoundaryNote",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: LEW scope and distinct high-voltage switching engineer, permit, key custody and completion/cancellation; no energized-work approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgElectricalBoundaryNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: LEW scope and distinct high-voltage switching engineer, permit, key custody and completion/cancellation; no energized-work approval.",
+          "sha256": "7924e8de3d066b9ae15415b4475fb18ca2b816ef71daa9ae73cefbfe43b72ba0"
+        }
+      }
+    },
+    {
       "id": "task:sgElectricalNotice",
       "evidence": [
         "regional-task-review.md",
@@ -18114,6 +18488,76 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "b845e1935ac1703c0df9352c5637c1bd3f6c2cf18b877e5eebd5c5d22251a0ca"
+        }
+      }
+    },
+    {
+      "id": "task:sgEntryReviewNote",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Ordered calibrated tests, two-or-more entrant continuous monitoring, evacuation/cause evaluation/new permit, expiry separate from daily review and no exception approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgEntryReviewNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Ordered calibrated tests, two-or-more entrant continuous monitoring, evacuation/cause evaluation/new permit, expiry separate from daily review and no exception approval.",
+          "sha256": "4e596ae87cd396a6b27e947592e0db5819af1c2183204bebb76e18cd12437624"
+        }
+      }
+    },
+    {
+      "id": "task:sgFireEscalation",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Trained fire watch, equipment, surrounding-area monitoring and immediate SCDF report when unable to control fire.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgFireEscalation",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Trained fire watch, equipment, surrounding-area monitoring and immediate SCDF report when unable to control fire.",
+          "sha256": "8cbe40ed434553244078c465fe74a9516fc58b70981a65241ee1011a4d5f7b13"
         }
       }
     },
@@ -18406,6 +18850,41 @@
       }
     },
     {
+      "id": "task:sgMarineEquipmentCheck",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Marine electrical/gas safeguards, six-month shock-preventor test, wet-condition electric shock prevention and ventilation.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgMarineEquipmentCheck",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Marine electrical/gas safeguards, six-month shock-preventor test, wet-condition electric shock prevention and ventilation.",
+          "sha256": "f1600f7039deca4a43e532f491ac1fd1fd66133131af05c396782395ecf3886b"
+        }
+      }
+    },
+    {
       "id": "task:sgMarineHotDetail",
       "evidence": [
         "regional-task-review.md",
@@ -18474,6 +18953,41 @@
           ],
           "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
           "sha256": "bfc326c07285fbdd84601cf2a87409659aabdba3d3a209cdbf95d428973a538c"
+        }
+      }
+    },
+    {
+      "id": "task:sgRescueInspection",
+      "evidence": [
+        "regional-au-sg-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Competent-person rescue-equipment inspection at least monthly or authority-set interval and two-year record retention.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgRescueInspection",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-au-sg-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Competent-person rescue-equipment inspection at least monthly or authority-set interval and two-year record retention.",
+          "sha256": "df4a25407b0b1273fbb2b4ca4a8d605a53eed7e043cbd410e53c57581b1937b8"
         }
       }
     },
@@ -23166,7 +23680,7 @@
       "id": "native:AU.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Fall prevention and SWMS for high-risk construction remain conditional on local framework.",
@@ -23208,7 +23722,7 @@
       "id": "native:AU.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Entry permit and outside stand-by role are distinct; no automatic rescue competence.",
@@ -23252,7 +23766,7 @@
       "id": "native:AU.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Competence is task-specific; electrical licensing/registration must separately satisfy local requirements.",
@@ -23294,7 +23808,7 @@
       "id": "native:AU.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Hot work/fire-watch terminology supported by SWA and NSW guidance; NSW guidance not a national statute.",
@@ -23336,7 +23850,7 @@
       "id": "native:SG.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-singapore-review-20261005.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Full work-at-height safety assessor title; factory scope and authorised-manager role retained.",
@@ -23378,7 +23892,7 @@
       "id": "native:SG.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Confined-space assessor, authorised manager and confined-space attendant remain distinct roles.",
@@ -23419,7 +23933,7 @@
       "id": "native:SG.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "LEW classes preserved; licence validity, class and task scope remain separate checks.",
@@ -23461,7 +23975,7 @@
       "id": "native:SG.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-singapore-review-20261005.md",
+        "regional-au-sg-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Marine hot-work permit distinguished from generic high-risk PTW; assessor and ship-repair-manager roles retained.",
