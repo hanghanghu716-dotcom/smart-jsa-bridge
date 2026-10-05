@@ -11805,5 +11805,195 @@
     ],
     "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: 903н, amendment 279н and extension 287н were compared for this generic de-energised checklist. It does not authorise live-work methods or an individual site permit.",
     "sha256": "0755db7f2b2631b373b17d95e0dc279eaa031e62425bc6f89feb20e6d317f904"
+  },
+  {
+    "id": "task:ruWeldingScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russia: verify 884н applicability, excluded facilities and separate industrial-safety procedure",
+    "sha256": "afb0fa0dd9a48111f2c27596b1a46d54164c903ba929ae940836e0a8c1cdb8f4"
+  },
+  {
+    "id": "task:ruWeldingPermitCycle",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: issuing authority, task validity, cancellation and new permit for unforeseen hazards",
+    "sha256": "e6577ddb4d42db2759125c19a230de5e0a518193a997778e659645cf39c2eae9"
+  },
+  {
+    "id": "task:ruWeldingShutdown",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: electrical/gas shutdown at breaks and completion; checks and restart after leaks or flashback",
+    "sha256": "af0b4aa6971914efe5874c4dc80793eb3beb4b7a05f42a044a2b4e73fef115bd"
+  },
+  {
+    "id": "task:ruWeldingRecord",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: permit-register reference, issuer/receiver/closure sign-off and dates, daily admission record",
+    "sha256": "a8018790e8bd23568cdc65226cb37284dc9862f1986e8e30658cd1a23b5fe68c"
+  },
+  {
+    "id": "task:ruWeldingReviewedNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russia: welding rules 884н and fire rules 1479 were compared. Check separate procedures for excluded facilities and specialist processes. This form does not replace the statutory permit or actual work authorisation.",
+    "sha256": "1b2d59d51843a01e9a62f750acd63b04f20da8dab9f1f26e24c548803e2e903e"
+  },
+  {
+    "id": "task:saTrainingRoute",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: applicable accredited specialist training, licence application route and verification basis",
+    "sha256": "830ff9e928b0698389ccce2c12f127f315c98cd233b35ada42cf382a80cef969"
+  },
+  {
+    "id": "task:saPtwRelease",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi site procedure: linked permits/isolation complete, issuer approval and work lead acceptance",
+    "sha256": "b9092831d2cdabcc8ee83873457eb7bcc4ff74887e8cbbd86623d2545fcd442f"
+  },
+  {
+    "id": "task:saPtwChange",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi site procedure: reassessment/new-permit decision after condition, scope or validity changes; closure and retention",
+    "sha256": "2b3454ea7c18f3f016d89c345158d0dc2eb29332d9792ec98e77afb188bf5103"
+  },
+  {
+    "id": "task:saElectricalEquipment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi electrical work: suitability and inspection of insulated tools, PPE and test instruments under the site procedure",
+    "sha256": "025fae2864d8395b0021cb0831fbd27af471ac541b5dfffb3cea521590f84f03"
+  },
+  {
+    "id": "task:saProcedureScopeNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: occupational licensing and site PTW are separate. EXPRO guidance concerns government-facility operation/maintenance; check the more specific site procedure. Licensing implementation and sector requirements remain unverified.",
+    "sha256": "c9dc203f04fcadff76fadfaaf11c87077d381f5eaa8cc8890698cd161f3c94d3"
   }
 ]

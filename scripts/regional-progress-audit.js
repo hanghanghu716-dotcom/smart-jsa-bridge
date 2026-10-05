@@ -176,7 +176,7 @@ const markdown = `# ②·③ 진행률 — 확인 단계 기준\n\n` +
   `| 합산 | ${combined.reviewGroups} | ${combined.checkpoints} | ${combined.completed} | ${combined.pending} | ${combined.completionPercent}% | ${combined.remainingPercent}% |\n\n` +
   `②: 기본 양식 ${ledger.forms.length}개 + 작업 조합 ${ledger.tasks.length}개. 1차 대조 ${s2.reviewGroups - s2.pendingSourceResolution}, 코드 반영 ${s2.reviewGroups}, 최종 확인 ${s2.reviewGroups - s2.pendingFinalVerification}건. 남은 ${s2.pending}단계는 부분 근거 ${s2.pendingSourceResolution}건과 최종 확인 ${s2.pendingFinalVerification}건입니다.\n\n` +
   `③: 기본 문구 ${ledger.summary.baseVocabularyKeys} + 작업 문구 ${ledger.summary.taskVocabularyKeys} + 국가별 문서명 ${ledger.forms.length} + 원어 용어 묶음 ${ledger.tasks.length} = ${s3.reviewGroups}개. 보고서 범위의 1차 대조 ${s3.reviewGroups}, 코드 반영 ${s3.reviewGroups}, 항목별 최종 확인 ${s3.reviewGroups - s3.pendingFinalVerification}건. 남은 최종 확인 ${s3.pendingFinalVerification}건에는 완료 기록 누락과 실제 추가 검수 필요분이 함께 포함됩니다. 이를 전부 미번역 문구로 취급하지 않습니다.\n\n` +
-  `이번 변경: 러시아 정전 작업을 903н 원문·279н 전체 개정·287н 연장과 대조하고 9개 현장 확인란 및 7종 × 10언어 문구를 반영했습니다. 기존 597개 문구·89개 기본 양식·64개 작업 해시는 유지했습니다. 미완료 체크포인트는 16개에서 14개로 감소했습니다. ②의 작업 7조합은 근거·최종 확인이 각각 남고 ③의 미완료 항목은 없습니다. [검수 근거](regional-ru-electrical-review-20261006.md).\n\n` +
+  `이번 변경: 남은 7조합을 전부 재확인해 러시아 화기 1조합을 종결하고 사우디 공통 허가 절차·전기 장비 문구를 보완했습니다. 신규 10종 × 10언어 문구를 검수했으며 기존 604문구·89양식·65작업 해시는 유지했습니다. 미완료는 14확인에서 12확인으로 감소했습니다. 남은 6조합은 CEI/CSA 전문 및 사우디 시행·업종 근거가 필요합니다. [확인 내용과 접근 경로](regional-closeout-review-20261006.md).\n\n` +
   `## 이번 확인과 한계\n\n` +
   `- 기본 양식 ${generatedFormChecks}건(89종 × 10언어)과 작업 조합 ${generatedTaskChecks}건(72종 × 10언어)을 생성하여 제목·필드·국가별 용어 보존을 확인했습니다. 이것은 코드 연결 확인이며 의미 정확성 검수 완료가 아닙니다.\n` +
   `- 모든 항목의 완료 기록 부재를 기존 작업 전체 미완료로 계산하지 않고, 최종 확인 단계만 남깁니다. 실제 추가 수정량·소요시간의 백분율은 이 지표로 주장하지 않습니다.\n` +

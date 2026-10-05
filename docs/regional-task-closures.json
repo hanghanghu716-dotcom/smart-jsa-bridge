@@ -2336,5 +2336,43 @@
       "https://minjust.consultant.ru/documents/55545"
     ],
     "sha256": "01de331ee6031e3e32c221f6b0954871e15da07cf1170509d59d1f76341d2c7e"
+  },
+  {
+    "id": "task:RU.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-closeout-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic hot-work checklist: original 884н, 287н item 30 and cited MChS 1479 consolidation; industrial exclusions and specialist procedures remain separate.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Individual competence, actual permit issue, atmosphere readings and final site release.",
+      "Industrial facilities excluded by 884н clause 8, specialist welding engineering and sector procedures.",
+      "Actual-account and production validation; statutory-form certification."
+    ],
+    "sourceUrls": [
+      "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257",
+      "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+      "https://minjust.consultant.ru/documents/25450",
+      "https://minjust.consultant.ru/documents/55545"
+    ],
+    "sha256": "30d13a3b73e732e54bdfb84f46de652ec56c87437a77dfcc304766724091736d"
   }
 ]

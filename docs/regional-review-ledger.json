@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.27",
+  "inventoryVersion": "2026-10-06.28",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -15,11 +15,11 @@
     "taskCombinations": 72,
     "clauseSupplements": 72,
     "baselineOnlyTasks": 0,
-    "sourceLimitedTasks": 7,
+    "sourceLimitedTasks": 6,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 633,
+    "supplementFields": 651,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 356,
+    "taskVocabularyKeys": 366,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1339,6 +1339,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -1384,6 +1385,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -1413,6 +1415,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -1444,6 +1447,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -1472,6 +1476,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -1509,6 +1514,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -1536,6 +1542,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -1563,6 +1570,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -1606,6 +1614,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1651,6 +1660,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1687,6 +1697,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1730,6 +1741,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1781,6 +1793,7 @@
       "resolvedIssues": [
         "sg-height-current-consolidation"
       ],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1823,6 +1836,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1864,6 +1878,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1910,6 +1925,7 @@
       "resolvedIssues": [
         "sg-marine-hot-current-consolidation"
       ],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared under the recorded model/national/sector scope. Local adoption, site decisions, engineered designs, incorporated standards and statutory permits remain separate; see evidence."
     },
     {
@@ -1944,6 +1960,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -1978,6 +1995,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2005,6 +2023,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2033,6 +2052,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2061,6 +2081,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2092,6 +2113,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2119,6 +2141,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2146,6 +2169,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
@@ -2181,6 +2205,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2220,6 +2245,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2253,6 +2279,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2288,6 +2315,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2319,6 +2347,7 @@
         "applicableFramework": "frameworkBasis"
       },
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2371,6 +2400,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2407,6 +2437,7 @@
         "applicableFramework": "frameworkBasis"
       },
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2438,6 +2469,7 @@
         "applicableFramework": "frameworkBasis"
       },
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2473,6 +2505,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2507,6 +2540,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2534,6 +2568,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2562,6 +2597,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist reviewed under the cited provincial scope. Site/sector decisions, incorporated standards, engineering, statutory form certification and actual-user validation are separate; see evidence."
     },
     {
@@ -2599,6 +2635,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2669,6 +2706,7 @@
         "qc-oxygen-minimum-2025-amendment",
         "qc-current-rsst-cstc-confined"
       ],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2708,6 +2746,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2718,7 +2757,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html",
@@ -2755,6 +2794,12 @@
           "scope": "Introduction p.5: effective 17 April 2025; prior provisions may be applied through 16 October 2026 under the transition. Requires actual site/code selection; the date does not select a code automatically.",
           "basis": "regulator-guidance",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/informations-prevention/normes-csa",
+          "scope": "Regulator documents free read-only CSA access after account registration. Reader requires login; incorporated W117.2 editions/clauses have not been read. No account was created and reader restrictions were not bypassed.",
+          "basis": "regulator-access-guide",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -2773,7 +2818,13 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Amended Quebec CNPI 2020 section 5.2 and published transition compared. Full incorporated CSA W117.2 requirements and site-specific code/transition applicability remain unresolved."
+      "reviewBlocker": {
+        "code": "standard-access",
+        "required": "Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically.",
+        "accessUrl": "https://community.csagroup.org/login.jspa",
+        "checkedAt": "2026-10-06"
+      },
+      "remaining": "Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically."
     },
     {
       "id": "DE.height",
@@ -2811,6 +2862,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2844,6 +2896,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2881,6 +2934,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2919,6 +2973,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2950,6 +3005,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -2984,6 +3040,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3016,6 +3073,7 @@
         "disconnect": "jpIsolationChoice"
       },
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3053,6 +3111,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3096,6 +3155,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3142,6 +3202,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3185,6 +3246,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3219,6 +3281,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within the cited German/French guidance and legal provisions. Full standards, special sectors, site decisions, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3270,6 +3333,7 @@
         "it-roof-specific-collective-protection",
         "it-current-height-consolidation"
       ],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3309,6 +3373,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3319,7 +3384,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2018/07/LavoriElettriciBassaTensione2018.pdf",
@@ -3350,6 +3415,12 @@
           "scope": "Professional council presentation pp.14–24 and 30–44: RI/RLE workplace handover/start/return, employer task-specific PES/PAV attribution, tools/movement in approach distance and task-specific arc assessment. Not the normative standard text.",
           "basis": "professional-guidance",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://mycatalogo.ceinorme.it/cei/item/0000025437",
+          "scope": "Publisher catalogue: 84-page sixth edition, validity November 2025. Full text not obtained; a catalogue/preview is not a clause review.",
+          "basis": "publisher-summary",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3369,7 +3440,13 @@
       "resolvedIssues": [
         "it-electrical-2025-role-names"
       ],
-      "remaining": "CEI publisher confirms 11-27;EC (December 2025, valid January 2026). Full 11-27:2025 and EC text remain unread. The CNI professional presentation supports scoped prompts, not full-standard compliance."
+      "reviewBlocker": {
+        "code": "standard-access",
+        "required": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references.",
+        "accessUrl": "https://mycatalogo.ceinorme.it/cei/item/0000025437",
+        "checkedAt": "2026-10-06"
+      },
+      "remaining": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references."
     },
     {
       "id": "IT.hot",
@@ -3398,6 +3475,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3437,6 +3515,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3483,6 +3562,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3519,6 +3599,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3552,6 +3633,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3562,7 +3644,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady-hwl-astkhdam-alsqalat-anjlyzy.pdf",
@@ -3593,6 +3675,18 @@
           "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://ncosh.gov.sa/media/gwwhsqoc/rowhro-25-ar.pdf",
+          "scope": "Final council text pp.8–18: actual occupation/exposure classification, validity, task-specific competence and accredited specialist training. Article 14 names the council application route; articles 15/17 delegate implementing procedures. This text is not evidence that a particular licensing service or sector procedure has been verified.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
+          "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3606,14 +3700,23 @@
         "rescueReadiness",
         "planReference",
         "permitCoordination",
-        "saPrivateConfirmation"
+        "saPrivateConfirmation",
+        "saTrainingRoute",
+        "saPtwRelease",
+        "saPtwChange"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
+      "reviewBlocker": {
+        "code": "implementation-evidence",
+        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable height sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "checkedAt": "2026-10-06"
+      },
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable height sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
     },
     {
       "id": "SA.confined",
@@ -3623,7 +3726,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3646,6 +3749,18 @@
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-06/qrar-wzary-ba-tmad-aldlyl-alajrayy-llayht-fhwsat-allyaqt-almhnyt-walamrad-ghyr-alm-dyt.pdf",
           "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://ncosh.gov.sa/media/gwwhsqoc/rowhro-25-ar.pdf",
+          "scope": "Final council text pp.8–18: actual occupation/exposure classification, validity, task-specific competence and accredited specialist training. Article 14 names the council application route; articles 15/17 delegate implementing procedures. This text is not evidence that a particular licensing service or sector procedure has been verified.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
+          "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
@@ -3664,7 +3779,10 @@
         "rescueReadiness",
         "restartReview",
         "permitRecord",
-        "saPrivateConfirmation"
+        "saPrivateConfirmation",
+        "saTrainingRoute",
+        "saPtwRelease",
+        "saPtwChange"
       ],
       "fieldLabels": {
         "applicableFramework": "frameworkBasis"
@@ -3673,7 +3791,13 @@
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
+      "reviewBlocker": {
+        "code": "implementation-evidence",
+        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable confined sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "checkedAt": "2026-10-06"
+      },
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable confined sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
     },
     {
       "id": "SA.electrical",
@@ -3683,7 +3807,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3714,11 +3838,22 @@
           "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://ncosh.gov.sa/media/gwwhsqoc/rowhro-25-ar.pdf",
+          "scope": "Final council text pp.8–18: actual occupation/exposure classification, validity, task-specific competence and accredited specialist training. Article 14 names the council application route; articles 15/17 delegate implementing procedures. This text is not evidence that a particular licensing service or sector procedure has been verified.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
+          "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "occupationPermitBasis",
-        "weldingEquipmentCheck",
         "countryProcedure",
         "occupationClassification",
         "saPracticeValidity",
@@ -3727,14 +3862,24 @@
         "isolationHandover",
         "planReference",
         "permitCoordination",
-        "saPrivateConfirmation"
+        "saPrivateConfirmation",
+        "saTrainingRoute",
+        "saPtwRelease",
+        "saPtwChange",
+        "saElectricalEquipment"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
+      "reviewBlocker": {
+        "code": "implementation-evidence",
+        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable electrical sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "checkedAt": "2026-10-06"
+      },
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable electrical sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
     },
     {
       "id": "SA.hot",
@@ -3744,7 +3889,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3773,6 +3918,18 @@
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-06/qrar-wzary-ba-tmad-aldlyl-alajrayy-llayht-fhwsat-allyaqt-almhnyt-walamrad-ghyr-alm-dyt.pdf",
           "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://ncosh.gov.sa/media/gwwhsqoc/rowhro-25-ar.pdf",
+          "scope": "Final council text pp.8–18: actual occupation/exposure classification, validity, task-specific competence and accredited specialist training. Article 14 names the council application route; articles 15/17 delegate implementing procedures. This text is not evidence that a particular licensing service or sector procedure has been verified.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
+          "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
@@ -3788,14 +3945,23 @@
         "atmosphericBasis",
         "watchCloseout",
         "permitCoordination",
-        "saPrivateConfirmation"
+        "saPrivateConfirmation",
+        "saTrainingRoute",
+        "saPtwRelease",
+        "saPtwChange"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
+      "reviewBlocker": {
+        "code": "implementation-evidence",
+        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable hot sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "checkedAt": "2026-10-06"
+      },
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable hot sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
     },
     {
       "id": "BR.height",
@@ -3854,6 +4020,7 @@
         "br-ladder-grouping-and-inventory-basis",
         "br-current-nr35-publication-date"
       ],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3890,6 +4057,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3934,6 +4102,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -3967,6 +4136,7 @@
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
+      "reviewBlocker": null,
       "remaining": "Application task checklist compared within the cited sources. Site measurements, competence, engineering, sector exceptions and statutory authorisations remain separate; see evidence."
     },
     {
@@ -4021,6 +4191,7 @@
       "resolvedIssues": [
         "ru-782n-original-and-2025-amendment"
       ],
+      "reviewBlocker": null,
       "remaining": "Scoped generic task checklist compared with original rules and amendment. Site values, individual authorisation, engineering, specialist processes and statutory-form certification remain outside this closure; see evidence."
     },
     {
@@ -4078,6 +4249,7 @@
       "resolvedIssues": [
         "ru-902n-original-and-2025-amendment"
       ],
+      "reviewBlocker": null,
       "remaining": "Scoped generic task checklist compared with original rules and amendment. Site values, individual authorisation, engineering, specialist processes and statutory-form certification remain outside this closure; see evidence."
     },
     {
@@ -4138,6 +4310,7 @@
         "ru-903n-original-and-2025-amendment",
         "ru-279n-2022-deenergised-sequence"
       ],
+      "reviewBlocker": null,
       "remaining": "Generic de-energised checklist compared with 903н, all 279н amendments and 287н item 35. Actual switching, voltage/earthing method, competence, individual permits, live work and equipment/sector-specific procedures remain outside this closure."
     },
     {
@@ -4146,9 +4319,9 @@
       "topic": "hot",
       "terms": "Огневые работы · наряд-допуск",
       "reviewLevel": "clause-supplement-recorded",
-      "sourceStatus": "partial-source-review",
+      "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-closeout-review-20261006.md",
       "findings": [
         {
           "url": "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257",
@@ -4158,9 +4331,21 @@
         },
         {
           "url": "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
-          "scope": "Agency-hosted reproduction amended 2025-02-03: paras.356–363, 372 and appendix 5. At least 2-hour post-work watch under 363; separate sector rules may be longer. Daily admission, crew briefing, permit scope and electronic-signature-law conditions under 372. Clearance radius depends on height, not a universal distance. Later consolidation remains open.",
+          "scope": "Agency-hosted consolidation saved 2 February 2026. Clauses 354–372 and clearance table annex 5 compared with welding rules. Clause 372 has temporary-location exceptions; 363 requires at least two hours of post-work observation in its scope. Later replacement plans are not enacted rules.",
+          "basis": "regulation-consolidation",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/25450",
+          "scope": "Original 24-page scan reviewed: 1–9 scope/exclusion; 10–22 premises; 23–30 permit roles, coordination, cancellation/reissue and register; 31–58 preparation/equipment; 77–117 gas checks, shutdown and confined-work interfaces. Specialist methods/equipment engineering are not certified.",
           "basis": "regulation-publication",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/55545",
+          "scope": "Original scan p.5 item 30 extends 884н to 1 September 2031; it does not extend an individual permit.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -4175,13 +4360,21 @@
         "weldingEquipmentCheck",
         "atmosphericBasis",
         "restartReview",
-        "permitCoordination"
+        "permitCoordination",
+        "ruWeldingScope",
+        "ruWeldingPermitCycle",
+        "ruWeldingShutdown",
+        "ruWeldingRecord",
+        "combustibleSurroundings",
+        "isolationVerification"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
-        "ru-1479-watch-and-permit-snapshot"
+        "ru-1479-watch-and-permit-snapshot",
+        "ru-884n-287n-and-1479-hot-work"
       ],
-      "remaining": "The cited MChS 1479 snapshot supports daily admission and the two-hour minimum post-work watch in that framework. Current later amendments and applicable welding/industrial-sector rules remain unclosed; do not transfer height/confined permit periods here."
+      "reviewBlocker": null,
+      "remaining": "Generic hot-work checklist closed against 884н/287н and the cited 1479 consolidation. Apply 884н clause 8 exclusions and separate industrial/sector procedures; do not transfer height/confined permit periods. Individual permits, engineering, live site readings and post-work release are not certified."
     }
   ],
   "vocabulary": [
@@ -11762,6 +11955,91 @@
       "evidence": "regional-sa-ru-form-review-20261006.md"
     },
     {
+      "id": "task:ruWeldingPermitCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:ruWeldingRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:ruWeldingReviewedNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:ruWeldingScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:ruWeldingShutdown",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
       "id": "task:saBriefingTransfer",
       "languages": [
         "ko",
@@ -11794,6 +12072,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saElectricalEquipment",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
     },
     {
       "id": "task:saHotDetail",
@@ -11915,6 +12210,57 @@
       "evidence": "regional-outstanding-task-review-20261006.md"
     },
     {
+      "id": "task:saProcedureScopeNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:saPtwChange",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:saPtwRelease",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
       "id": "task:saScaffoldNotice",
       "languages": [
         "ko",
@@ -11964,6 +12310,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-sa-ru-form-review-20261006.md"
+    },
+    {
+      "id": "task:saTrainingRoute",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-closeout-review-20261006.md"
     },
     {
       "id": "task:scaffoldInspection",

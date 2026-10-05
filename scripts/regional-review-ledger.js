@@ -1,3 +1,4 @@
+import { CLOSEOUT_ROWS } from '../src/locales/regionalCloseoutText20261006.js';
 import { RU_ELECTRICAL_ROWS } from '../src/locales/regionalRuElectricalText20261006.js';
 import { OUTSTANDING_TASK_ROWS } from '../src/locales/regionalOutstandingTaskText20261006.js';
 import { FINAL_TASK_ROWS } from '../src/locales/regionalFinalTaskText20261006.js';
@@ -54,6 +55,7 @@ export function reviewLedger() {
       fieldKeys: r.requirements?.fields || [],
       fieldLabels: r.requirements?.fieldLabels || {},
       resolvedIssues: r.requirements?.resolvedIssues || [],
+      reviewBlocker: r.requirements?.reviewBlocker || null,
       // A narrow supplement cannot close the whole topic's applicability,
       // controls, roles, stop/restart, records and exceptions checklist.
       remaining: r.requirements?.remaining || (r.status === 'partial-source-review'
@@ -71,12 +73,12 @@ export function reviewLedger() {
     })),
     ...Object.keys(TASK_SAFETY_TEXT).sort().map(key => ({
       id: `task:${key}`, languages: Object.keys(TASK_SAFETY_TEXT[key]),
-      reviewLevel: 'translated-and-scoped-review', evidence: RU_ELECTRICAL_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-ru-electrical-review-20261006.md' : OUTSTANDING_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-outstanding-task-review-20261006.md' : FINAL_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-final-task-review-20261006.md' : KR_ES_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-kr-es-task-review-20261006.md' : DE_FR_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-de-fr-task-review-20261006.md' : AU_SG_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-au-sg-task-review-20261006.md' : CANADIAN_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-canadian-task-review-20261006.md' : ENGLISH_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-english-task-review-20261006.md' : SA_RU_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-sa-ru-form-review-20261006.md' : FOLLOWUP_PERMIT_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-permit-followup-review-20261006.md' : KR_ON_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-kr-on-form-review-20261005.md' : IT_BR_QC_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-it-br-qc-form-review-20261005.md' : FR_ES_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-fr-es-form-review-20261005.md' : COUNTRY_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-country-form-review-20261005.md' : 'regional-task-review.md',
+      reviewLevel: 'translated-and-scoped-review', evidence: CLOSEOUT_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-closeout-review-20261006.md' : RU_ELECTRICAL_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-ru-electrical-review-20261006.md' : OUTSTANDING_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-outstanding-task-review-20261006.md' : FINAL_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-final-task-review-20261006.md' : KR_ES_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-kr-es-task-review-20261006.md' : DE_FR_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-de-fr-task-review-20261006.md' : AU_SG_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-au-sg-task-review-20261006.md' : CANADIAN_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-canadian-task-review-20261006.md' : ENGLISH_TASK_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-english-task-review-20261006.md' : SA_RU_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-sa-ru-form-review-20261006.md' : FOLLOWUP_PERMIT_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-permit-followup-review-20261006.md' : KR_ON_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-kr-on-form-review-20261005.md' : IT_BR_QC_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-it-br-qc-form-review-20261005.md' : FR_ES_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-fr-es-form-review-20261005.md' : COUNTRY_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-country-form-review-20261005.md' : 'regional-task-review.md',
     })),
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-06.27',
+    inventoryVersion: '2026-10-06.28',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',

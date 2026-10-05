@@ -1,3 +1,4 @@
+import { CLOSEOUT_REVIEW, CLOSEOUT_VERSION } from '../src/utils/regionalCloseoutReview20261006.js';
 import { RU_ELECTRICAL_VERSION } from '../src/utils/regionalRuElectricalReview20261006.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -17,10 +18,10 @@ test('remaining ten combinations preserve scoped status and translated blank che
   assert.equal(OUTSTANDING_TASK_ROWS.trim().split('\n').length, 14);
   for (const [id, review] of Object.entries(OUTSTANDING_TASK_REVIEW)) for (const language of TASK_SAFETY_LANGUAGES) {
     const [country, topic] = id.split('.'), doc = make(country, topic, language), r = doc.regional.taskReviews[0];
-    assert.equal(r.status, (id === 'RU.electrical' || review.resolve) ? 'scoped-source-review' : 'partial-source-review');
+    assert.equal(r.status, (CLOSEOUT_REVIEW[id]?.resolve || id === 'RU.electrical' || review.resolve) ? 'scoped-source-review' : 'partial-source-review');
     assert.equal(r.legalApplicability, 'site-and-sector-review-required');
-    assert.equal(r.version, id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : OUTSTANDING_TASK_VERSION);
-    assert.equal(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, 'pending')), !(id === 'RU.electrical' || review.resolve));
+    assert.equal(r.version, CLOSEOUT_REVIEW[id] ? CLOSEOUT_VERSION : id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : OUTSTANDING_TASK_VERSION);
+    assert.equal(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, 'pending')), !(CLOSEOUT_REVIEW[id]?.resolve || id === 'RU.electrical' || review.resolve));
     for (const key of review.removeNotes || []) assert.ok(!field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, key)));
     if (review.replaceNote) assert.ok(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, review.replaceNote)));
     for (const key of review.fields) {

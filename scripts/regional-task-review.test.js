@@ -114,8 +114,8 @@ test('jurisdiction terminology and applicability do not leak across countries sh
   assert.ok(taskReview(ctx('BR'), 'hot').scopeNotes.includes('marineScope'));
 });
 test('unresolved current-law reviews remain explicit in saved data and printed form content', () => {
-  for (const jurisdiction of ['RU','SA']) {
-    const doc = make(jurisdiction, jurisdiction === 'RU' ? ['hot'] : undefined);
+  for (const jurisdiction of ['SA']) {
+    const doc = make(jurisdiction);
     assert.ok(doc.regional.taskReviews.every(r => r.status === 'partial-source-review'));
     assert.ok(doc.blocks.filter(b => b.field?.key.endsWith('.notice')).every(b => b.field.value.includes(taskSafetyText('en-US','pending'))));
   }
@@ -263,8 +263,8 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.equal(us.sources.find(s => s.url.includes('1910.146')).checkedAt, '2026-10-06');
   assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-06');
   assert.equal(taskReview(ctx('DE'), 'hot').requirements.checkedAt, '2026-10-06');
-  for (const country of ['SA', 'RU']) {
-    assert.ok(make(country, country === 'RU' ? ['hot'] : undefined).regional.taskReviews.every(r => r.status === 'partial-source-review'));
+  for (const country of ['SA']) {
+    assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review'));
   }
   const doc = make('CA-BC', ['confined']);
   const original = { id: 'historical', data: cleanPackage({ context: ctx('CA-BC'), documents: [doc] }) };
@@ -420,7 +420,10 @@ test('Russian extension alone cannot close a topic; resolved topics require orig
     else assert.match(notice, /2031-09-01/);
     assert.equal(doc.blocks.find(b => b.field?.key === topic + '.applicableEdition').field.value, '');
   }
-  assert.equal(taskReview(ctx('RU'), 'hot').requirements.partial, true);
+  const hot = taskReview(ctx('RU'), 'hot');
+  assert.equal(hot.requirements.partial, false);
+  assert.ok(hot.sources.some(s => s.url.endsWith('/25450')));
+  assert.ok(hot.requirements.resolvedIssues.includes('ru-884n-287n-and-1479-hot-work'));
 });
 
 test('remaining batch covers exactly the 37 formerly baseline-only combinations with explicit scope', () => {
@@ -474,7 +477,7 @@ test('new Canadian and marine prompts preserve different plan triggers, sectors 
 
 test('source limitations stay visible in all languages and survive independent saved copies', () => {
   const limited = [['CA-QC', 'hot'], ['IT', 'electrical'],
-    ['SA', 'confined'], ['SA', 'electrical'], ['SA', 'hot'], ['RU', 'hot']];
+    ['SA', 'confined'], ['SA', 'electrical'], ['SA', 'hot']];
   for (const [j, topic] of limited) {
     for (const locale of TASK_SAFETY_LANGUAGES) {
       const doc = make(j, [topic], WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === locale).locale);

@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.27",
+  "evidenceVersion": "2026-10-06.28",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 443
+    "fieldVocabularyGroups": 453
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 469,
-      "pending": 14,
-      "pendingSourceResolution": 7,
-      "pendingFinalVerification": 7,
-      "completionPercent": 97.1,
-      "remainingPercent": 2.9
+      "completed": 471,
+      "pending": 12,
+      "pendingSourceResolution": 6,
+      "pendingFinalVerification": 6,
+      "completionPercent": 97.5,
+      "remainingPercent": 2.5
     },
     "stage3": {
-      "reviewGroups": 604,
-      "checkpoints": 1812,
-      "completed": 1812,
+      "reviewGroups": 614,
+      "checkpoints": 1842,
+      "completed": 1842,
       "pending": 0,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 0,
@@ -41,14 +41,14 @@
       "remainingPercent": 0
     },
     "combined": {
-      "reviewGroups": 765,
-      "checkpoints": 2295,
-      "completed": 2281,
-      "pending": 14,
-      "pendingSourceResolution": 7,
-      "pendingFinalVerification": 7,
-      "completionPercent": 99.4,
-      "remainingPercent": 0.6
+      "reviewGroups": 775,
+      "checkpoints": 2325,
+      "completed": 2313,
+      "pending": 12,
+      "pendingSourceResolution": 6,
+      "pendingFinalVerification": 6,
+      "completionPercent": 99.5,
+      "remainingPercent": 0.5
     }
   },
   "stage2": [
@@ -5513,9 +5513,9 @@
     {
       "id": "task:CA-QC.hot",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "Amended Quebec CNPI 2020 section 5.2 and published transition compared. Full incorporated CSA W117.2 requirements and site-specific code/transition applicability remain unresolved.",
+      "note": "Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6259,9 +6259,9 @@
     {
       "id": "task:IT.electrical",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "CEI publisher confirms 11-27;EC (December 2025, valid January 2026). Full 11-27:2025 and EC text remain unread. The CNI professional presentation supports scoped prompts, not full-standard compliance.",
+      "note": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6537,9 +6537,9 @@
     {
       "id": "task:SA.height",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable height sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6556,9 +6556,9 @@
     {
       "id": "task:SA.confined",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable confined sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6575,9 +6575,9 @@
     {
       "id": "task:SA.electrical",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable electrical sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6594,9 +6594,9 @@
     {
       "id": "task:SA.hot",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable hot sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6984,19 +6984,54 @@
     {
       "id": "task:RU.hot",
       "evidence": [
-        "regional-outstanding-task-review-20261006.md"
+        "regional-closeout-review-20261006.md"
       ],
-      "note": "The cited MChS 1479 snapshot supports daily admission and the two-hour minimum post-work watch in that framework. Current later amendments and applicable welding/industrial-sector rules remain unclosed; do not transfer height/confined permit periods here.",
+      "note": "Generic hot-work checklist: original 884н, 287н item 30 and cited MChS 1479 consolidation; industrial exclusions and specialist procedures remain separate.",
       "checkpoints": {
         "scopedComparison": {
-          "status": "needs-source-resolution"
+          "status": "recorded"
         },
         "implementation": {
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:RU.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic hot-work checklist: original 884н, 287н item 30 and cited MChS 1479 consolidation; industrial exclusions and specialist procedures remain separate.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Individual competence, actual permit issue, atmosphere readings and final site release.",
+            "Industrial facilities excluded by 884н clause 8, specialist welding engineering and sector procedures.",
+            "Actual-account and production validation; statutory-form certification."
+          ],
+          "sourceUrls": [
+            "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257",
+            "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+            "https://minjust.consultant.ru/documents/25450",
+            "https://minjust.consultant.ru/documents/55545"
+          ],
+          "sha256": "30d13a3b73e732e54bdfb84f46de652ec56c87437a77dfcc304766724091736d"
         }
       }
     }
@@ -20376,6 +20411,181 @@
       }
     },
     {
+      "id": "task:ruWeldingPermitCycle",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: issuing authority, task validity, cancellation and new permit for unforeseen hazards",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruWeldingPermitCycle",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: issuing authority, task validity, cancellation and new permit for unforeseen hazards",
+          "sha256": "e6577ddb4d42db2759125c19a230de5e0a518193a997778e659645cf39c2eae9"
+        }
+      }
+    },
+    {
+      "id": "task:ruWeldingRecord",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: permit-register reference, issuer/receiver/closure sign-off and dates, daily admission record",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruWeldingRecord",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: permit-register reference, issuer/receiver/closure sign-off and dates, daily admission record",
+          "sha256": "a8018790e8bd23568cdc65226cb37284dc9862f1986e8e30658cd1a23b5fe68c"
+        }
+      }
+    },
+    {
+      "id": "task:ruWeldingReviewedNote",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russia: welding rules 884н and fire rules 1479 were compared. Check separate procedures for excluded facilities and specialist processes. This form does not replace the statutory permit or actual work authorisation.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruWeldingReviewedNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russia: welding rules 884н and fire rules 1479 were compared. Check separate procedures for excluded facilities and specialist processes. This form does not replace the statutory permit or actual work authorisation.",
+          "sha256": "1b2d59d51843a01e9a62f750acd63b04f20da8dab9f1f26e24c548803e2e903e"
+        }
+      }
+    },
+    {
+      "id": "task:ruWeldingScope",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russia: verify 884н applicability, excluded facilities and separate industrial-safety procedure",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruWeldingScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russia: verify 884н applicability, excluded facilities and separate industrial-safety procedure",
+          "sha256": "afb0fa0dd9a48111f2c27596b1a46d54164c903ba929ae940836e0a8c1cdb8f4"
+        }
+      }
+    },
+    {
+      "id": "task:ruWeldingShutdown",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: electrical/gas shutdown at breaks and completion; checks and restart after leaks or flashback",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruWeldingShutdown",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Russian welding: electrical/gas shutdown at breaks and completion; checks and restart after leaks or flashback",
+          "sha256": "af0b4aa6971914efe5874c4dc80793eb3beb4b7a05f42a044a2b4e73fef115bd"
+        }
+      }
+    },
+    {
       "id": "task:saBriefingTransfer",
       "evidence": [
         "regional-sa-ru-form-review-20261006.md"
@@ -20443,6 +20653,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "6fc2df28fbdb0cc531c53787199c1a8f86ef13844eadf6c588b6c9c77c7c1755"
+        }
+      }
+    },
+    {
+      "id": "task:saElectricalEquipment",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi electrical work: suitability and inspection of insulated tools, PPE and test instruments under the site procedure",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saElectricalEquipment",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi electrical work: suitability and inspection of insulated tools, PPE and test instruments under the site procedure",
+          "sha256": "025fae2864d8395b0021cb0831fbd27af471ac541b5dfffb3cea521590f84f03"
         }
       }
     },
@@ -20697,6 +20942,111 @@
       }
     },
     {
+      "id": "task:saProcedureScopeNote",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: occupational licensing and site PTW are separate. EXPRO guidance concerns government-facility operation/maintenance; check the more specific site procedure. Licensing implementation and sector requirements remain unverified.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saProcedureScopeNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: occupational licensing and site PTW are separate. EXPRO guidance concerns government-facility operation/maintenance; check the more specific site procedure. Licensing implementation and sector requirements remain unverified.",
+          "sha256": "c9dc203f04fcadff76fadfaaf11c87077d381f5eaa8cc8890698cd161f3c94d3"
+        }
+      }
+    },
+    {
+      "id": "task:saPtwChange",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi site procedure: reassessment/new-permit decision after condition, scope or validity changes; closure and retention",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saPtwChange",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi site procedure: reassessment/new-permit decision after condition, scope or validity changes; closure and retention",
+          "sha256": "2b3454ea7c18f3f016d89c345158d0dc2eb29332d9792ec98e77afb188bf5103"
+        }
+      }
+    },
+    {
+      "id": "task:saPtwRelease",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi site procedure: linked permits/isolation complete, issuer approval and work lead acceptance",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saPtwRelease",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi site procedure: linked permits/isolation complete, issuer approval and work lead acceptance",
+          "sha256": "b9092831d2cdabcc8ee83873457eb7bcc4ff74887e8cbbd86623d2545fcd442f"
+        }
+      }
+    },
+    {
       "id": "task:saScaffoldNotice",
       "evidence": [
         "regional-task-review.md",
@@ -20799,6 +21149,41 @@
           ],
           "scope": "Ten-language Saudi task-draft boundary: establishment OSH system, specialised site permits and occupational licences remain separate, with applicable responsible roles.",
           "sha256": "597034ea6e32141e33e77d90802bb5c83f556b2c061340789df4a05d1e9c1f81"
+        }
+      }
+    },
+    {
+      "id": "task:saTrainingRoute",
+      "evidence": [
+        "regional-closeout-review-20261006.md"
+      ],
+      "note": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: applicable accredited specialist training, licence application route and verification basis",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saTrainingRoute",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-closeout-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: applicable accredited specialist training, licence application route and verification basis",
+          "sha256": "830ff9e928b0698389ccce2c12f127f315c98cd233b35ada42cf382a80cef969"
         }
       }
     },
@@ -27685,7 +28070,7 @@
       "id": "native:CA-QC.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "French-Canadian hot-work and fire-watch vocabulary checked against CCOHS guidance; not represented as a current Quebec-wide statutory permit or fixed watch duration.",
@@ -28305,7 +28690,7 @@
       "id": "native:IT.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "PES/PAV competence and live-work suitability are not interchangeable. Current GI/RI/GL/RLE/LAV role names checked against the publisher and CNI 2026 material; full paid CEI standard not accessed, so legal-topic closure remains open.",
@@ -28552,7 +28937,7 @@
       "id": "native:SA.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic height work and fall prevention are descriptive safety concepts, not statutory licence names; HRSD equipment/maintenance guidance supports the task meaning.",
@@ -28593,7 +28978,7 @@
       "id": "native:SA.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic confined spaces, outside attendant and rescue plan retain their ordinary technical meanings. EXPRO facility guidance defines an outside entry attendant; no universal Saudi statutory job title inferred.",
@@ -28635,7 +29020,7 @@
       "id": "native:SA.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic isolation and lock/tag wording retain distinct energy-control actions; HRSD supports isolation/locking, while the tag phrase is a descriptive translation, not a verified Saudi statutory title or all-sector LOTO mandate.",
@@ -28676,7 +29061,7 @@
       "id": "native:SA.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Use the fire-watcher term in EXPRO guidance. The facility-management source (which cites foreign standards) is a terminology reference, not a universal Saudi permit law.",
@@ -29008,7 +29393,7 @@
       "id": "native:RU.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-outstanding-task-review-20261006.md",
+        "regional-closeout-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Hot work and its work permit remain distinct. MCHS protected-site guidance corroborates the permit title; its nuclear-site procedures and observation periods are not generalised nationally.",

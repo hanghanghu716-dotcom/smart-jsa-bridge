@@ -1,3 +1,4 @@
+import { CLOSEOUT_REVIEW, CLOSEOUT_VERSION } from '../src/utils/regionalCloseoutReview20261006.js';
 import { RU_ELECTRICAL_VERSION } from '../src/utils/regionalRuElectricalReview20261006.js';
 import { OUTSTANDING_TASK_REVIEW, OUTSTANDING_TASK_VERSION } from '../src/utils/regionalOutstandingTaskReview20261006.js';
 import test from 'node:test';
@@ -20,13 +21,13 @@ test('24 task supplements retain current-work blanks and individual evidence sta
   assert.equal(FINAL_TASK_CLOSABLE_IDS.length, 14);
   for (const [id, review] of Object.entries(FINAL_TASK_REVIEW)) for (const language of TASK_SAFETY_LANGUAGES) {
     const [country, topic] = id.split('.'), doc = make(country, topic, language), metadata = doc.regional.taskReviews[0];
-    const newer = id === 'RU.electrical' ? { ...OUTSTANDING_TASK_REVIEW[id], resolve: true, replaceNote: 'ruElectricalReviewedNote', removeNotes: ['ruTaskEvidenceNote', 'ruExtensionNotice'] } : OUTSTANDING_TASK_REVIEW[id];
-    assert.equal(doc.regional.version, id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : newer ? OUTSTANDING_TASK_VERSION : FINAL_TASK_VERSION);
+    const newer = CLOSEOUT_REVIEW[id] ? { ...OUTSTANDING_TASK_REVIEW[id], ...CLOSEOUT_REVIEW[id] } : (id === 'RU.electrical' ? { ...OUTSTANDING_TASK_REVIEW[id], resolve: true, replaceNote: 'ruElectricalReviewedNote', removeNotes: ['ruTaskEvidenceNote', 'ruExtensionNotice'] } : OUTSTANDING_TASK_REVIEW[id]);
+    assert.equal(doc.regional.version, CLOSEOUT_REVIEW[id] ? CLOSEOUT_VERSION : id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : newer ? OUTSTANDING_TASK_VERSION : FINAL_TASK_VERSION);
     assert.equal(doc.regional.status, 'site-review-draft');
     assert.equal(metadata.legalApplicability, 'site-and-sector-review-required');
     assert.equal(metadata.status, (newer ? !newer.resolve : review.pending) ? 'partial-source-review' : 'scoped-source-review', id);
     assert.equal(metadata.requirements.checkedAt, '2026-10-06');
-    for (const key of review.fields) {
+    for (const key of review.fields.filter(key => !CLOSEOUT_REVIEW[id]?.removeFields?.includes(key))) {
       const f = field(doc, `${topic}.${key}`);
       assert.equal(f.kind, key === 'entryAuthorisation' ? 'worker' : 'verification');
       assert.equal(f.mode, 'runtime'); assert.equal(f.value, '');
@@ -60,7 +61,7 @@ test('country-specific record periods and authorisation concepts cannot leak acr
 test('source gaps remain explicit while three resolved source issues require dated evidence', () => {
   for (const country of ['SA', 'RU']) for (const topic of ['height', 'confined', 'electrical', 'hot']) {
     const r = make(country, topic, 'en').regional.taskReviews[0];
-    if ((country === 'RU' && topic === 'electrical') || OUTSTANDING_TASK_REVIEW[`${country}.${topic}`]?.resolve) continue;
+    if (CLOSEOUT_REVIEW[`${country}.${topic}`]?.resolve || (country === 'RU' && topic === 'electrical') || OUTSTANDING_TASK_REVIEW[`${country}.${topic}`]?.resolve) continue;
     assert.equal(r.requirements.partial, true);
     assert.equal(r.status, 'partial-source-review');
     if (country === 'SA') assert.ok(r.sources.some(s => s.basis === 'company-guidance'));
