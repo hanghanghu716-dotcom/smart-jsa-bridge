@@ -1141,5 +1141,294 @@
       "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008"
     ],
     "sha256": "5ad56609bde331431474d4370ebdaafe0043ff45e78406ef547cc2ffb3218a2e"
+  },
+  {
+    "id": "task:DE.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/betrsichv_2015/anhang_1.html",
+      "https://publikationen.dguv.de/widgets/pdf/download/article/1013"
+    ],
+    "sha256": "03cb74e70ec78cf5ab1622fd79cc2079208abcd1f8f78069c44a2eb0b4bba7bd"
+  },
+  {
+    "id": "task:DE.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/915"
+    ],
+    "sha256": "b998945d78640579dba16ee8017c3c776b741784ecff0ad9fe124b6666801e2f"
+  },
+  {
+    "id": "task:DE.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.bghm.de/arbeitsschuetzer/themen/elektrotechnik/arbeiten-an-elektrischer-anlagen-und-betriebsmitteln",
+      "https://publikationen.dguv.de/widgets/pdf/download/article/284"
+    ],
+    "sha256": "ef42acbcc869c08aed572ab2f9544bedafc08a32d4a521239655340051b663ff"
+  },
+  {
+    "id": "task:DE.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/319",
+      "https://publikationen.dguv.de/widgets/pdf/download/article/318"
+    ],
+    "sha256": "da4e7b6a68171331921568944bb86fecd7edeb0ac489e06242ce3ff0c3931a26"
+  },
+  {
+    "id": "task:FR.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/chutes-hauteur/equipements-acces-hauteur.html",
+      "https://www.inrs.fr/risques/chutes-hauteur/reglementation-travail-hauteur.html",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018531391"
+    ],
+    "sha256": "724afc34b1d1fb4dced69f3be04e5442786b6804db3546597e680d9d5d293612"
+  },
+  {
+    "id": "task:FR.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/espaces-confines/prevenir-risques.html",
+      "https://www.inrs.fr/risques/espaces-confines/procedure-travail-espaces-confines.html",
+      "https://www.inrs.fr/risques/espaces-confines/prevenir-risques"
+    ],
+    "sha256": "a6350f6ee71931d61203d695db61bcf3c4656fb6cbf8b63995d31cd837d543dd"
+  },
+  {
+    "id": "task:FR.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/electriques/habilitation-electrique-foire-aux-questions",
+      "https://www.inrs.fr/risques/electriques/prevention-risque-electrique.html",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051500368"
+    ],
+    "sha256": "57bf702d94c5f10e1c3d7a70a555f4c05c80e8ae774c254e2f9469c5c884f3aa"
+  },
+  {
+    "id": "task:FR.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
+    ],
+    "sha256": "9a7e31e9fed0b002f7b657a8c40779c006f415ca59a81b4c93ecd523e7145705"
   }
 ]

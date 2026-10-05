@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.22",
+  "evidenceVersion": "2026-10-06.23",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 397
+    "fieldVocabularyGroups": 403
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 430,
-      "pending": 53,
+      "completed": 438,
+      "pending": 45,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 40,
-      "completionPercent": 89,
-      "remainingPercent": 11
+      "pendingFinalVerification": 32,
+      "completionPercent": 90.7,
+      "remainingPercent": 9.3
     },
     "stage3": {
-      "reviewGroups": 558,
-      "checkpoints": 1674,
-      "completed": 1671,
+      "reviewGroups": 564,
+      "checkpoints": 1692,
+      "completed": 1689,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 719,
-      "checkpoints": 2157,
-      "completed": 2101,
-      "pending": 56,
+      "reviewGroups": 725,
+      "checkpoints": 2175,
+      "completed": 2127,
+      "pending": 48,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 43,
-      "completionPercent": 97.4,
-      "remainingPercent": 2.6
+      "pendingFinalVerification": 35,
+      "completionPercent": 97.8,
+      "remainingPercent": 2.2
     }
   },
   "stage2": [
@@ -5299,9 +5299,9 @@
     {
       "id": "task:DE.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5310,17 +5310,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:DE.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/betrsichv_2015/anhang_1.html",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/1013"
+          ],
+          "sha256": "03cb74e70ec78cf5ab1622fd79cc2079208abcd1f8f78069c44a2eb0b4bba7bd"
         }
       }
     },
     {
       "id": "task:DE.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5329,17 +5362,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:DE.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://publikationen.dguv.de/widgets/pdf/download/article/915"
+          ],
+          "sha256": "b998945d78640579dba16ee8017c3c776b741784ecff0ad9fe124b6666801e2f"
         }
       }
     },
     {
       "id": "task:DE.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5348,17 +5413,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:DE.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.bghm.de/arbeitsschuetzer/themen/elektrotechnik/arbeiten-an-elektrischer-anlagen-und-betriebsmitteln",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/284"
+          ],
+          "sha256": "ef42acbcc869c08aed572ab2f9544bedafc08a32d4a521239655340051b663ff"
         }
       }
     },
     {
       "id": "task:DE.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5367,8 +5465,41 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:DE.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://publikationen.dguv.de/widgets/pdf/download/article/319",
+            "https://publikationen.dguv.de/widgets/pdf/download/article/318"
+          ],
+          "sha256": "da4e7b6a68171331921568944bb86fecd7edeb0ac489e06242ce3ff0c3931a26"
         }
       }
     },
@@ -5451,9 +5582,9 @@
     {
       "id": "task:FR.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5462,17 +5593,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:FR.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.inrs.fr/risques/chutes-hauteur/equipements-acces-hauteur.html",
+            "https://www.inrs.fr/risques/chutes-hauteur/reglementation-travail-hauteur.html",
+            "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018531391"
+          ],
+          "sha256": "724afc34b1d1fb4dced69f3be04e5442786b6804db3546597e680d9d5d293612"
         }
       }
     },
     {
       "id": "task:FR.confined",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5481,17 +5646,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:FR.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.inrs.fr/risques/espaces-confines/prevenir-risques.html",
+            "https://www.inrs.fr/risques/espaces-confines/procedure-travail-espaces-confines.html",
+            "https://www.inrs.fr/risques/espaces-confines/prevenir-risques"
+          ],
+          "sha256": "a6350f6ee71931d61203d695db61bcf3c4656fb6cbf8b63995d31cd837d543dd"
         }
       }
     },
     {
       "id": "task:FR.electrical",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5500,17 +5699,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:FR.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.inrs.fr/risques/electriques/habilitation-electrique-foire-aux-questions",
+            "https://www.inrs.fr/risques/electriques/prevention-risque-electrique.html",
+            "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051500368"
+          ],
+          "sha256": "57bf702d94c5f10e1c3d7a70a555f4c05c80e8ae774c254e2f9469c5c884f3aa"
         }
       }
     },
     {
       "id": "task:FR.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-de-fr-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5519,8 +5752,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:FR.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited German/French guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated DIN/VDE/NF standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
+          ],
+          "sha256": "9a7e31e9fed0b002f7b657a8c40779c006f415ca59a81b4c93ecd523e7145705"
         }
       }
     },
@@ -11438,6 +11703,41 @@
       }
     },
     {
+      "id": "task:deElectricalRelease",
+      "evidence": [
+        "regional-de-fr-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: German work/installation responsible roles, work release and completion/readiness handback.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:deElectricalRelease",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: German work/installation responsible roles, work release and completion/readiness handback.",
+          "sha256": "86b77d43f934baa09a11dd1321aeabaa05f80c96997145d143c92893f520d5af"
+        }
+      }
+    },
+    {
       "id": "task:deEnergyDetail",
       "evidence": [
         "regional-task-review.md",
@@ -11470,6 +11770,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "1bd349f9c7564cfec9975c3018fd0e67abd8ae082d9f47518f01de5f6ede6ae3"
+        }
+      }
+    },
+    {
+      "id": "task:deEntryLifecycleNote",
+      "evidence": [
+        "regional-de-fr-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: German reissue/extension after long breaks or personnel changes and rechecking; no automatic operating-instruction or standby exemption.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:deEntryLifecycleNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: German reissue/extension after long breaks or personnel changes and rechecking; no automatic operating-instruction or standby exemption.",
+          "sha256": "c7ce93e187624a16009e405011f99ad1366e9277cc3f78528e561a55567d2a65"
         }
       }
     },
@@ -12622,6 +12957,41 @@
       }
     },
     {
+      "id": "task:frElectricalBoundaryNote",
+      "evidence": [
+        "regional-de-fr-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Employer habilitation scope/instructions, separate medical-attestation condition for exposed live-part proximity without diagnoses, no live-work approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frElectricalBoundaryNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Employer habilitation scope/instructions, separate medical-attestation condition for exposed live-part proximity without diagnoses, no live-work approval.",
+          "sha256": "ebfbac8391f0f34430577b53fdab8341be0c7eec6c7cc427f704626d29fcdab9"
+        }
+      }
+    },
+    {
       "id": "task:frElectricalNotice",
       "evidence": [
         "regional-task-review.md",
@@ -12654,6 +13024,41 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "ae053fead4ad8aee4e15170155e820500d3ce296f6ffdf7f51e1842b50195313"
+        }
+      }
+    },
+    {
+      "id": "task:frEntryMonitoringNote",
+      "evidence": [
+        "regional-de-fr-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: French guidance: personal continuous atmospheric monitoring, dedicated outside attendant without entry, evacuation and restart reassessment.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frEntryMonitoringNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: French guidance: personal continuous atmospheric monitoring, dedicated outside attendant without entry, evacuation and restart reassessment.",
+          "sha256": "646806c87717147632c8cd9cb9372a9a274ca81cb380997e1e295b31a0dfb62d"
         }
       }
     },
@@ -12694,6 +13099,41 @@
       }
     },
     {
+      "id": "task:frHeightRescue",
+      "evidence": [
+        "regional-de-fr-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: French fall-arrest use: no lone work, prompt rescue, communications and employer anchor-use instructions.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frHeightRescue",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: French fall-arrest use: no lone work, prompt rescue, communications and employer anchor-use instructions.",
+          "sha256": "e8962e652f304b0637f1428e68be91e554b55b133dba8c577533ff49fa613ee1"
+        }
+      }
+    },
+    {
       "id": "task:frHotDetail",
       "evidence": [
         "regional-task-review.md",
@@ -12726,6 +13166,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "c3bf0c8b9929bd49ebc055d7d32cfcb96a268b9f51ad33f82602163b2b95b35c"
+        }
+      }
+    },
+    {
+      "id": "task:frHotLifecycleNote",
+      "evidence": [
+        "regional-de-fr-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: French guidance: multi-day daily review, shift/condition changes, two-hour watch and five-year archive as recommendations rather than universal statutory periods.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frHotLifecycleNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-de-fr-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: French guidance: multi-day daily review, shift/condition changes, two-hour watch and five-year archive as recommendations rather than universal statutory periods.",
+          "sha256": "377ab9674224b68f3b9e16d56a35e183550001314538ecc550af0c028d7eaae9"
         }
       }
     },
@@ -25020,7 +25495,7 @@
       "id": "native:DE.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Personal fall protection and a rescue concept remain separate; restraint prevents reaching the fall area whereas arrest limits an actual fall.",
@@ -25061,7 +25536,7 @@
       "id": "native:DE.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Entry permission, qualified atmosphere testing, supervisor and safety attendant are distinct DGUV roles; the permit is not itself a competence qualification.",
@@ -25103,7 +25578,7 @@
       "id": "native:DE.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Five safety rules and Elektrofachkraft retain distinct action/competence meanings. The cited automation guidance is not promoted to an all-sector permit statute.",
@@ -25144,7 +25619,7 @@
       "id": "native:DE.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Welding permission, fire post during work and subsequent fire surveillance are distinct; no universal observation period inferred.",
@@ -25351,7 +25826,7 @@
       "id": "native:FR.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Collective protection, restraint and fall arrest are distinct; INRS expressly distinguishes preventing access from stopping a fall.",
@@ -25393,7 +25868,7 @@
       "id": "native:FR.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Employer individual authorisation, operation-specific entry permission and outside surveillance/rescue arrangements are separate, not a single qualification.",
@@ -25434,7 +25909,7 @@
       "id": "native:FR.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Employer-issued habilitation is not the training certificate; consignation and absence-of-voltage verification remain separate technical actions.",
@@ -25475,7 +25950,7 @@
       "id": "native:FR.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-de-fr-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Permis de feu refers to hot-work prevention/coordination; retaining the French title does not impose a universal statutory form or monitoring duration.",

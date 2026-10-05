@@ -10860,5 +10860,119 @@
     ],
     "scope": "Ten-language meaning review: LEW scope and distinct high-voltage switching engineer, permit, key custody and completion/cancellation; no energized-work approval.",
     "sha256": "7924e8de3d066b9ae15415b4475fb18ca2b816ef71daa9ae73cefbfe43b72ba0"
+  },
+  {
+    "id": "task:deElectricalRelease",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: German work/installation responsible roles, work release and completion/readiness handback.",
+    "sha256": "86b77d43f934baa09a11dd1321aeabaa05f80c96997145d143c92893f520d5af"
+  },
+  {
+    "id": "task:frHeightRescue",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: French fall-arrest use: no lone work, prompt rescue, communications and employer anchor-use instructions.",
+    "sha256": "e8962e652f304b0637f1428e68be91e554b55b133dba8c577533ff49fa613ee1"
+  },
+  {
+    "id": "task:deEntryLifecycleNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: German reissue/extension after long breaks or personnel changes and rechecking; no automatic operating-instruction or standby exemption.",
+    "sha256": "c7ce93e187624a16009e405011f99ad1366e9277cc3f78528e561a55567d2a65"
+  },
+  {
+    "id": "task:frEntryMonitoringNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: French guidance: personal continuous atmospheric monitoring, dedicated outside attendant without entry, evacuation and restart reassessment.",
+    "sha256": "646806c87717147632c8cd9cb9372a9a274ca81cb380997e1e295b31a0dfb62d"
+  },
+  {
+    "id": "task:frElectricalBoundaryNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Employer habilitation scope/instructions, separate medical-attestation condition for exposed live-part proximity without diagnoses, no live-work approval.",
+    "sha256": "ebfbac8391f0f34430577b53fdab8341be0c7eec6c7cc427f704626d29fcdab9"
+  },
+  {
+    "id": "task:frHotLifecycleNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-de-fr-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: French guidance: multi-day daily review, shift/condition changes, two-hour watch and five-year archive as recommendations rather than universal statutory periods.",
+    "sha256": "377ab9674224b68f3b9e16d56a35e183550001314538ecc550af0c028d7eaae9"
   }
 ]
