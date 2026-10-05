@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.25",
+  "inventoryVersion": "2026-10-06.26",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -15,11 +15,11 @@
     "taskCombinations": 72,
     "clauseSupplements": 72,
     "baselineOnlyTasks": 0,
-    "sourceLimitedTasks": 10,
+    "sourceLimitedTasks": 8,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 600,
+    "supplementFields": 624,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 335,
+    "taskVocabularyKeys": 349,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -2718,7 +2718,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html",
@@ -2743,6 +2743,18 @@
           "scope": "3.14: precautions, incorporated CSA W117.2-M87, container checks, arc screens, gas/flashback devices and electrical protection. Applicable fire-code review remains open.",
           "basis": "regulation",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://publications-cnrc.canada.ca/fra/voir/td/?id=645222bb-21e8-44cc-853e-178b7aeafbaa",
+          "scope": "Section 5.2: noncombustible location or conditional precautions, nearby/adjacent combustibles, distinct continuous watch and final inspection. Do not turn conditional code times into universal defaults.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.rbq.gouv.qc.ca/fileadmin/medias/pdf/Publications/francais/cahier-explicatif-changements-cnpi-2020.pdf",
+          "scope": "Introduction p.5: effective 17 April 2025; prior provisions may be applied through 16 October 2026 under the transition. Requires actual site/code selection; the date does not select a code automatically.",
+          "basis": "regulator-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -2754,11 +2766,14 @@
         "weldingEquipmentCheck",
         "atmosphericBasis",
         "restartReview",
-        "permitRecord"
+        "permitRecord",
+        "qcFireEdition",
+        "qcWatchStages",
+        "combustibleSurroundings"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Current RSST 313–319/CSTC 3.14 compared. Incorporated CSA welding-standard text and applicable adopted fire-code requirements remain unresolved."
+      "remaining": "Amended Quebec CNPI 2020 section 5.2 and published transition compared. Full incorporated CSA W117.2 requirements and site-specific code/transition applicability remain unresolved."
     },
     {
       "id": "DE.height",
@@ -3304,7 +3319,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2018/07/LavoriElettriciBassaTensione2018.pdf",
@@ -3323,6 +3338,18 @@
           "scope": "Final 2025 roles: GI, RI, GL, RLE, LAV, not draft RL/L. PES/PAV competence recognition is distinct from assignment and needs practical competence, not theory alone. Full paid standard/distances not verified.",
           "basis": "standards-publisher-guidance",
           "checkedAt": "2026-10-05"
+        },
+        {
+          "url": "https://mycatalogo.ceinorme.it/cei/item/0010026052?sso=y",
+          "scope": "Publisher catalogue confirms correction of internal references, publication December 2025 and validity January 2026. Full corrigendum not obtained.",
+          "basis": "publisher-summary",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.cni.it/images/eventi/2026/WEBINAR_NORMA_CEI_11-27_novit%C3%A0_6_edizione_30.03.2026.pdf",
+          "scope": "Professional council presentation pp.14–24 and 30–44: RI/RLE workplace handover/start/return, employer task-specific PES/PAV attribution, tools/movement in approach distance and task-specific arc assessment. Not the normative standard text.",
+          "basis": "professional-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3333,13 +3360,16 @@
         "electricalEligibility",
         "countryProcedure",
         "isolationHandover",
-        "permitRecord"
+        "permitRecord",
+        "itElectricalHandover",
+        "itDistanceReview",
+        "itCorrectionReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "it-electrical-2025-role-names"
       ],
-      "remaining": "Full CEI 11-27:2025 text and applicable corrections/procedure details remain unread. Public role summaries do not close that gap."
+      "remaining": "CEI publisher confirms 11-27;EC (December 2025, valid January 2026). Full 11-27:2025 and EC text remain unread. The CNI professional presentation supports scoped prompts, not full-standard compliance."
     },
     {
       "id": "IT.hot",
@@ -3532,7 +3562,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady-hwl-astkhdam-alsqalat-anjlyzy.pdf",
@@ -3557,6 +3587,12 @@
           "scope": "Company rules 1, 2, 4, 6 and 7: isolation/shift communication, permit coordination, height checks, hot-work atmosphere and confined-space attendance/rescue. Supports site-procedure prompts only, not national legislation or licensing implementation.",
           "basis": "company-guidance",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2026-06/qrar-wzary-ba-tmad-aldlyl-alajrayy-llayht-fhwsat-allyaqt-almhnyt-walamrad-ghyr-alm-dyt.pdf",
+          "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3569,14 +3605,15 @@
         "heightAccessCheck",
         "rescueReadiness",
         "planReference",
-        "permitCoordination"
+        "permitCoordination",
+        "saPrivateConfirmation"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
     },
     {
       "id": "SA.confined",
@@ -3586,7 +3623,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3604,6 +3641,12 @@
           "url": "https://www.se.com.sa/-/media/sec/Our-Partners/Join-Us/Life-Saving-Rules-booklet/Life-Saving-Rules-booklet-in-Arabic.ashx",
           "scope": "Company rules 1, 2, 4, 6 and 7: isolation/shift communication, permit coordination, height checks, hot-work atmosphere and confined-space attendance/rescue. Supports site-procedure prompts only, not national legislation or licensing implementation.",
           "basis": "company-guidance",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2026-06/qrar-wzary-ba-tmad-aldlyl-alajrayy-llayht-fhwsat-allyaqt-almhnyt-walamrad-ghyr-alm-dyt.pdf",
+          "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
       ],
@@ -3620,7 +3663,8 @@
         "standbyArrangement",
         "rescueReadiness",
         "restartReview",
-        "permitRecord"
+        "permitRecord",
+        "saPrivateConfirmation"
       ],
       "fieldLabels": {
         "applicableFramework": "frameworkBasis"
@@ -3629,7 +3673,7 @@
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
     },
     {
       "id": "SA.electrical",
@@ -3639,7 +3683,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3663,6 +3707,12 @@
           "url": "https://www.se.com.sa/-/media/sec/Our-Partners/Join-Us/Life-Saving-Rules-booklet/Life-Saving-Rules-booklet-in-Arabic.ashx",
           "scope": "Company rules 1, 2, 4, 6 and 7: isolation/shift communication, permit coordination, height checks, hot-work atmosphere and confined-space attendance/rescue. Supports site-procedure prompts only, not national legislation or licensing implementation.",
           "basis": "company-guidance",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2026-06/qrar-wzary-ba-tmad-aldlyl-alajrayy-llayht-fhwsat-allyaqt-almhnyt-walamrad-ghyr-alm-dyt.pdf",
+          "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
       ],
@@ -3676,14 +3726,15 @@
         "electricalEligibility",
         "isolationHandover",
         "planReference",
-        "permitCoordination"
+        "permitCoordination",
+        "saPrivateConfirmation"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
     },
     {
       "id": "SA.hot",
@@ -3693,7 +3744,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3718,6 +3769,12 @@
           "scope": "Company rules 1, 2, 4, 6 and 7: isolation/shift communication, permit coordination, height checks, hot-work atmosphere and confined-space attendance/rescue. Supports site-procedure prompts only, not national legislation or licensing implementation.",
           "basis": "company-guidance",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2026-06/qrar-wzary-ba-tmad-aldlyl-alajrayy-llayht-fhwsat-allyaqt-almhnyt-walamrad-ghyr-alm-dyt.pdf",
+          "scope": "Medical-record confidentiality and restricted medical access. Used only to minimise the application prompt to reviewer/time of authorised confirmation, not to reproduce approved medical forms. This guide is not the high-risk occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3730,14 +3787,15 @@
         "hotFireProtection",
         "atmosphericBasis",
         "watchCloseout",
-        "permitCoordination"
+        "permitCoordination",
+        "saPrivateConfirmation"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
         "sa-gazette-publication-date",
         "sa-employer-validity-and-training-check"
       ],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "remaining": "High-risk occupation licensing implementation and sector-specific PTW details remain unverified. The June 2026 fitness procedural guide is a separate instrument and cannot close those issues. Do not collect medical records in the work document."
     },
     {
       "id": "BR.height",
@@ -3917,9 +3975,9 @@
       "topic": "height",
       "terms": "Работы на высоте · наряд-допуск",
       "reviewLevel": "clause-supplement-recorded",
-      "sourceStatus": "partial-source-review",
+      "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
@@ -3932,6 +3990,18 @@
           "scope": "Original regulator notice supports the height-work/naryad-dopusk terminology and roof-snow preparation, training and exclusion-zone prompts. Historical notice does not verify current full 782н.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/25045",
+          "scope": "Original scan pp.2–23, clauses 1–92: scope, avoidance/hierarchy, conditional permit exceptions, competence groups, work/rescue plans, weather, issuer/leader/producer roles, interruption/re-entry, changed crew/hazards, permit period and records. Later specialist equipment/engineering clauses are outside this generic task-checklist closure.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/55545",
+          "scope": "Original official scan: amendment items 11, 34 and 35 extend 782н, 902н and 903н to 1 September 2031. This is not a new technical procedure or an individual permit extension.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3939,11 +4009,19 @@
         "trainingEvidence",
         "fallingObjects",
         "permitCoverage",
-        "planReference"
+        "planReference",
+        "ruHeightCycle",
+        "heightAccessCheck",
+        "fallServiceRelease",
+        "rescueReadiness",
+        "permitCloseout",
+        "restartReview"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "resolvedIssues": [
+        "ru-782n-original-and-2025-amendment"
+      ],
+      "remaining": "Scoped generic task checklist compared with original rules and amendment. Site values, individual authorisation, engineering, specialist processes and statutory-form certification remain outside this closure; see evidence."
     },
     {
       "id": "RU.confined",
@@ -3951,9 +4029,9 @@
       "topic": "confined",
       "terms": "ОЗП · наряд-допуск · наблюдающий",
       "reviewLevel": "clause-supplement-recorded",
-      "sourceStatus": "partial-source-review",
+      "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
@@ -3966,6 +4044,18 @@
           "scope": "Regulator-hosted rule presentation: ОЗП, naryad-dopusk and outside observing worker; supports role meaning and risk/testing/communication prompts. Undated consolidation is not current-amendment closure.",
           "basis": "official-guidance",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/25506",
+          "scope": "Original scan pp.2–40: applicability/excluded industrial-safety facilities; assessment entry versus work authorisation; roles, isolation, measurement, permit lifecycle and records; gas alarms, outside observation, rescue plan/training/communication and signs. Specialist process/respirator design and site acceptance values are not certified by the form.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/55545",
+          "scope": "Original official scan: amendment items 11, 34 and 35 extend 782н, 902н and 903н to 1 September 2031. This is not a new technical procedure or an individual permit extension.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3975,11 +4065,20 @@
         "standbyArrangement",
         "atmosphericBasis",
         "rescueReadiness",
-        "permitCoverage"
+        "permitCoverage",
+        "ruFacilityScope",
+        "ruEntryPurpose",
+        "ruEntryCycle",
+        "measurementCompetence",
+        "isolationVerification",
+        "restartReview",
+        "permitCloseout"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "resolvedIssues": [
+        "ru-902n-original-and-2025-amendment"
+      ],
+      "remaining": "Scoped generic task checklist compared with original rules and amendment. Site values, individual authorisation, engineering, specialist processes and statutory-form certification remain outside this closure; see evidence."
     },
     {
       "id": "RU.electrical",
@@ -3989,13 +4088,31 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
           "scope": "Official municipal employment-centre notice, 2025-09-03: extension to 2031-09-01 effective 2025-09-01. Corroborates duration only; amendment full text and subsequent changes remain unreconciled",
           "basis": "official-notice",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/25496",
+          "scope": "Original scan pp.11–12 and 16–18, especially 5.8: допускающий prepares or assesses preparation of the workplace, briefs and admits the crew. Separate from issuer, responsible leader and work producer; electrical-safety group is a competence category, not crew size.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/31327",
+          "scope": "Amendment original pp.3–6: training/group assessment, coordination, role and permit changes. Item 14 adjusts voltage wording in 5.8 without changing the admitting role. Remaining technical amendments are not claimed reviewed.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://minjust.consultant.ru/documents/55545",
+          "scope": "Original official scan: amendment items 11, 34 and 35 extend 782н, 902н and 903н to 1 September 2031. This is not a new technical procedure or an individual permit extension.",
+          "basis": "regulation-publication",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -4004,11 +4121,12 @@
         "trainingEvidence",
         "countryProcedure",
         "isolationHandover",
-        "permitRecord"
+        "permitRecord",
+        "ruAdmittingCheck"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md."
+      "remaining": "903н 5.8 original and 279н item 14 reconcile допускающий terminology. Full de-energised-work technical sequence and all applicable 2022 amendment provisions still need comparison; extension alone does not close them."
     },
     {
       "id": "RU.hot",
@@ -4018,7 +4136,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-final-task-review-20261006.md",
+      "evidence": "regional-outstanding-task-review-20261006.md",
       "findings": [
         {
           "url": "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257",
@@ -4051,7 +4169,7 @@
       "resolvedIssues": [
         "ru-1479-watch-and-permit-snapshot"
       ],
-      "remaining": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md. There is no automatic duration or expiry from historical material."
+      "remaining": "The cited MChS 1479 snapshot supports daily admission and the two-hour minimum post-work watch in that framework. Current later amendments and applicable welding/industrial-sector rules remain unclosed; do not transfer height/confined permit periods here."
     }
   ],
   "vocabulary": [
@@ -9269,6 +9387,57 @@
       "evidence": "regional-final-task-review-20261006.md"
     },
     {
+      "id": "task:itCorrectionReview",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:itDistanceReview",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:itElectricalHandover",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
       "id": "task:itElectricalRoles",
       "languages": [
         "ko",
@@ -10697,6 +10866,40 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:qcFireEdition",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:qcFireReviewedNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
       "id": "task:qcFrameworkNotice",
       "languages": [
         "ko",
@@ -10848,6 +11051,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-it-br-qc-form-review-20261005.md"
+    },
+    {
+      "id": "task:qcWatchStages",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
     },
     {
       "id": "task:record",
@@ -11122,6 +11342,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ruAdmittingCheck",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
       "id": "task:ruBriefingRecordLink",
       "languages": [
         "ko",
@@ -11156,6 +11393,57 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ruEntryCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:ruEntryPurpose",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:ruEntryReviewedNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
       "id": "task:ruExtensionNotice",
       "languages": [
         "ko",
@@ -11171,6 +11459,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ruFacilityScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
     },
     {
       "id": "task:ruFireClearance",
@@ -11205,6 +11510,40 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ruHeightCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:ruHeightReviewedNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
     },
     {
       "id": "task:ruHotDetail",
@@ -11426,6 +11765,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saPrivateConfirmation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-outstanding-task-review-20261006.md"
     },
     {
       "id": "task:saScaffoldNotice",

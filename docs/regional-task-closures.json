@@ -2222,5 +2222,81 @@
       "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
     ],
     "sha256": "51d5bfd809b7b011f549b2262c5a3ade1fd907a6527da90fd367703fc76bd635"
+  },
+  {
+    "id": "task:RU.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task checklist: applicability, protective measures, roles, permit lifecycle, stop/restart and records compared with original rule and 2025 amendment. No site or specialist-equipment certification.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Individual competence, actual atmosphere/weather, rescue capability, permit issue and exception approval.",
+      "Specialist engineering/equipment design, industrial-safety facilities excluded by 902н, hazardous-process methods and other sector instruments.",
+      "Actual-account access checks, production deployment and statutory-form certification."
+    ],
+    "sourceUrls": [
+      "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
+      "https://git59.rostrud.gov.ru/upload/iblock/528/20691_rlu.pdf",
+      "https://minjust.consultant.ru/documents/25045",
+      "https://minjust.consultant.ru/documents/55545"
+    ],
+    "sha256": "5b0d6149a1c0ee5aa6582e01075b6c6e3afa68cf4ee2161fafe31ec97a5c7240"
+  },
+  {
+    "id": "task:RU.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task checklist: applicability, protective measures, roles, permit lifecycle, stop/restart and records compared with original rule and 2025 amendment. No site or specialist-equipment certification.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Individual competence, actual atmosphere/weather, rescue capability, permit issue and exception approval.",
+      "Specialist engineering/equipment design, industrial-safety facilities excluded by 902н, hazardous-process methods and other sector instruments.",
+      "Actual-account access checks, production deployment and statutory-form certification."
+    ],
+    "sourceUrls": [
+      "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
+      "https://git62.rostrud.gov.ru/upload/iblock/388/pamyatka-dlya-rabotodateley.pdf",
+      "https://minjust.consultant.ru/documents/25506",
+      "https://minjust.consultant.ru/documents/55545"
+    ],
+    "sha256": "a4061cf2ddbadb6b7ee1f6f2156ec4e2fa5f2799b12b7e83b564f0832eebb759"
   }
 ]

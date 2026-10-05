@@ -11381,5 +11381,296 @@
       "https://git62.rostrud.gov.ru/upload/iblock/388/pamyatka-dlya-rabotodateley.pdf"
     ],
     "sha256": "bc4284011218f1b1ba6e0bf5f4b526c0b2e08e98cb9008b073e456ab18d454d4"
+  },
+  {
+    "id": "task:ruHeightCycle",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia height: permit period, extension basis, reissue after changes, closeout record and storage location",
+    "sha256": "f909ad1902537913d59ac95d5893c45741bc1d2f95e1e8bbe726ee9a6ea5f5b9"
+  },
+  {
+    "id": "task:ruEntryPurpose",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia confined space: distinguish entry for assessment from permission to work; verify permit numbers and authorisers",
+    "sha256": "b98f7483323131fdee3c38b75e94c880cf16b5c9e9be6028331929dc1bd4e11b"
+  },
+  {
+    "id": "task:ruEntryCycle",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia confined space: shift validity, basis for exceptional extension, re-entry tests, cancellation and one-year storage location",
+    "sha256": "bf1d38776338bafb09b9a1636f6c1e1265f0e4570f9fd85f73075b3c3c8c0b34"
+  },
+  {
+    "id": "task:ruFacilityScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia confined space: verify 902н scope, excluded hazardous production facilities and separately applicable rules",
+    "sha256": "723b466aad81251cdc8f637c34507947b6e1a3c9445c17b6b6d49b479d08d847"
+  },
+  {
+    "id": "task:ruAdmittingCheck",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia electrical: verify допускающий appointment, authority, voltage-specific safety group, workplace preparation and briefing",
+    "sha256": "a57fb7ed6b43f4541396d6792e5866761d4b0d3a6f4053b72bfafc791c9b8f3b"
+  },
+  {
+    "id": "task:ruHeightReviewedNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia height: permit, roles, stop/restart and record prompts were compared with 782н and its 2025 amendment. Site exceptions, rescue capability and equipment design need separate checks; approval is not automatic.",
+    "sha256": "98ddb69ba8a092415b50be6023a9c0b82f0750c8395e76bef7920670458b05ff"
+  },
+  {
+    "id": "task:ruEntryReviewedNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Russia confined space: assessment entry is not work permission. Shift-based permits are the default; extension and re-entry require conditions to be checked. Stop for gas alarms/new hazards; no unprotected rescue entry.",
+    "sha256": "e5403694f3ca8c9a55a90c69664b00136f4726532f97b20543eecaf2677aab5e"
+  },
+  {
+    "id": "task:qcFireEdition",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Québec: site-applicable fire-code edition, effective date and transition basis",
+    "sha256": "c03db04eee82b33dbdee58f53b49fa5dca70079ed8005cd4f6c3bfb65f5c7475"
+  },
+  {
+    "id": "task:qcWatchStages",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Québec: separate during/after-work watch and final inspection; plan, adjacent areas, people and actual times",
+    "sha256": "ccbb799bb0e979830d35a7943e926838f535cef28e10898ea511aa0b789db3b3"
+  },
+  {
+    "id": "task:qcFireReviewedNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Québec: hot-work clauses of amended CNPI 2020 were compared. Verify the site-applicable edition and transition separately. Full incorporated CSA standards remain unreviewed; watch times are not set automatically.",
+    "sha256": "7a73bf9c8b84dbccf30b5c163256351c5f51ae8e8b284aa58db024cfcece33ec"
+  },
+  {
+    "id": "task:itElectricalHandover",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Italy: RI–RLE workplace handover, start authorisation, completion notice and restoration handback",
+    "sha256": "7f029c79f31507162b45c6eccf2831e51a4773af437570dacafc5331d8926d93"
+  },
+  {
+    "id": "task:itDistanceReview",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Italy: task-specific approach-distance and arc-risk review including tools and movement allowance",
+    "sha256": "4dc88d39595b34cb5ab77874fb69e41ebdc86b8de8bae2d45846ee421fc2926b"
+  },
+  {
+    "id": "task:itCorrectionReview",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Italy: verify application of CEI 11-27:2025 and EC corrigendum to the procedure",
+    "sha256": "898eaeba71e968661a051156526ac8a8604fbbed045d2eeabeaaf5a450f033ed"
+  },
+  {
+    "id": "task:saPrivateConfirmation",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Saudi Arabia: record only reviewer/time of authorised fitness confirmation — no diagnoses, test values or medical reports",
+    "sha256": "669c6072d832f6b0ea596b8e2a517539ea9ff517926adcdefd2d4beaa4452c5b"
+  },
+  {
+    "id": "native:RU.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-outstanding-task-review-20261006.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "903н 5.8 and 279н item 14: допускающий is the workplace-preparation/assessment, briefing and admitting role, distinct from issuer, leader and producer. Группа по электробезопасности is a competence category, not a crew. Native role string retained across all ten document languages; technical-procedure closure remains separate.",
+    "sourceUrls": [
+      "https://minjust.consultant.ru/documents/25496",
+      "https://minjust.consultant.ru/documents/31327",
+      "https://minjust.consultant.ru/documents/55545"
+    ],
+    "sha256": "273e6c07e8e3cbe57837b0b5712d0e6891fb076386500c462eb3db43d712ebf9"
   }
 ]

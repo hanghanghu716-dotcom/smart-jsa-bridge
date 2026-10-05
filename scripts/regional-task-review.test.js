@@ -115,7 +115,7 @@ test('jurisdiction terminology and applicability do not leak across countries sh
 });
 test('unresolved current-law reviews remain explicit in saved data and printed form content', () => {
   for (const jurisdiction of ['RU','SA']) {
-    const doc = make(jurisdiction);
+    const doc = make(jurisdiction, jurisdiction === 'RU' ? ['electrical', 'hot'] : undefined);
     assert.ok(doc.regional.taskReviews.every(r => r.status === 'partial-source-review'));
     assert.ok(doc.blocks.filter(b => b.field?.key.endsWith('.notice')).every(b => b.field.value.includes(taskSafetyText('en-US','pending'))));
   }
@@ -264,7 +264,7 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-06');
   assert.equal(taskReview(ctx('DE'), 'hot').requirements.checkedAt, '2026-10-06');
   for (const country of ['SA', 'RU']) {
-    assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review'));
+    assert.ok(make(country, country === 'RU' ? ['electrical', 'hot'] : undefined).regional.taskReviews.every(r => r.status === 'partial-source-review'));
   }
   const doc = make('CA-BC', ['confined']);
   const original = { id: 'historical', data: cleanPackage({ context: ctx('CA-BC'), documents: [doc] }) };
@@ -407,15 +407,17 @@ test('Quebec construction and Saudi scaffold guidance preserve limited applicabi
   assert.ok(!make('GB', ['height']).blocks.some(b => b.field?.key.endsWith('.scaffoldInspection')));
 });
 
-test('Russian extension notice confirms duration only and never upgrades all topics to current-law review', () => {
+test('Russian extension alone cannot close a topic; resolved topics require original-rule reconciliation', () => {
   for (const topic of ['height', 'confined', 'electrical']) {
     const doc = make('RU', [topic], 'ru-RU');
-    const review = doc.regional.taskReviews[0];
-    assert.equal(review.status, 'partial-source-review');
+    const review = doc.regional.taskReviews[0], resolved = topic !== 'electrical';
+    assert.equal(review.status, resolved ? 'scoped-source-review' : 'partial-source-review');
     assert.match(review.requirements.sources[0].scope, /duration only/);
+    assert.ok(review.requirements.sources.some(s => s.url.includes('minjust.consultant.ru/documents/55545')));
     const notice = doc.blocks.find(b => b.field?.key === topic + '.notice').field.value;
-    assert.match(notice, /2031-09-01/);
-    assert.ok(notice.includes(taskSafetyText('ru-RU', 'pending')));
+    assert.equal(notice.includes(taskSafetyText('ru-RU', 'pending')), !resolved);
+    if (resolved) assert.ok(review.requirements.resolvedIssues.some(id => id.includes('original-and-2025-amendment')));
+    else assert.match(notice, /2031-09-01/);
     assert.equal(doc.blocks.find(b => b.field?.key === topic + '.applicableEdition').field.value, '');
   }
   assert.equal(taskReview(ctx('RU'), 'hot').requirements.partial, true);
@@ -503,7 +505,7 @@ test('European distinct roles and Brazilian lifecycle never silently pre-authori
     assert.equal(br.blocks.find(b => b.field?.key === `${topic}.restartReview`).field.value, '');
   }
   assert.ok(taskReview(ctx('BR'), 'hot').scopeNotes.includes('marineScope'));
-  assert.match(taskReview(ctx('RU'), 'hot').requirements.remaining, /no automatic duration/);
+  assert.match(taskReview(ctx('RU'), 'hot').requirements.remaining, /do not transfer height\/confined permit periods/);
 });
 
 test('follow-up amendments stay local and retain evidence without automatically closing country review', () => {

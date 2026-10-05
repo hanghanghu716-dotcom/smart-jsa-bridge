@@ -1,3 +1,4 @@
+import { OUTSTANDING_TASK_REVIEW, OUTSTANDING_TASK_VERSION } from '../src/utils/regionalOutstandingTaskReview20261006.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
@@ -18,10 +19,11 @@ test('24 task supplements retain current-work blanks and individual evidence sta
   assert.equal(FINAL_TASK_CLOSABLE_IDS.length, 14);
   for (const [id, review] of Object.entries(FINAL_TASK_REVIEW)) for (const language of TASK_SAFETY_LANGUAGES) {
     const [country, topic] = id.split('.'), doc = make(country, topic, language), metadata = doc.regional.taskReviews[0];
-    assert.equal(doc.regional.version, FINAL_TASK_VERSION);
+    const newer = OUTSTANDING_TASK_REVIEW[id];
+    assert.equal(doc.regional.version, newer ? OUTSTANDING_TASK_VERSION : FINAL_TASK_VERSION);
     assert.equal(doc.regional.status, 'site-review-draft');
     assert.equal(metadata.legalApplicability, 'site-and-sector-review-required');
-    assert.equal(metadata.status, review.pending ? 'partial-source-review' : 'scoped-source-review', id);
+    assert.equal(metadata.status, (newer ? !newer.resolve : review.pending) ? 'partial-source-review' : 'scoped-source-review', id);
     assert.equal(metadata.requirements.checkedAt, '2026-10-06');
     for (const key of review.fields) {
       const f = field(doc, `${topic}.${key}`);
@@ -29,8 +31,8 @@ test('24 task supplements retain current-work blanks and individual evidence sta
       assert.equal(f.mode, 'runtime'); assert.equal(f.value, '');
       assert.ok(f.label.includes(taskSafetyText(language, key)), `${id}.${key}.${language}`);
     }
-    for (const key of [review.note, review.replaceNote].filter(Boolean)) assert.ok(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, key)));
-    assert.equal(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, 'pending')), !!review.pending);
+    for (const key of [review.note, review.replaceNote].filter(k => k && !newer?.removeNotes?.includes(k) && !(newer?.replaceNote && k === review.replaceNote))) assert.ok(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, key)));
+    assert.equal(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, 'pending')), !!(newer ? !newer.resolve : review.pending));
     assert.ok(review.sources.every(s => metadata.sources.some(r => r.url === s.url && r.checkedAt === s.checkedAt)));
     const keys = doc.blocks.flatMap(b => b.field ? [b.field.key] : []);
     assert.equal(new Set(keys).size, keys.length);
@@ -57,6 +59,7 @@ test('country-specific record periods and authorisation concepts cannot leak acr
 test('source gaps remain explicit while three resolved source issues require dated evidence', () => {
   for (const country of ['SA', 'RU']) for (const topic of ['height', 'confined', 'electrical', 'hot']) {
     const r = make(country, topic, 'en').regional.taskReviews[0];
+    if (OUTSTANDING_TASK_REVIEW[`${country}.${topic}`]?.resolve) continue;
     assert.equal(r.requirements.partial, true);
     assert.equal(r.status, 'partial-source-review');
     if (country === 'SA') assert.ok(r.sources.some(s => s.basis === 'company-guidance'));
