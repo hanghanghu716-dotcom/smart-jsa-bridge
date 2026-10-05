@@ -209,6 +209,10 @@ test('country supplements are translated in every document language without leak
 test('Brazil transitions preserve effective dates without preselecting compliance or reusing past evidence', () => {
   const electrical = make('BR', ['electrical'], 'pt-BR');
   const review = electrical.regional.taskReviews[0];
+  // The ministry's undated nr-10.pdf was replaced with the future edition.
+  // The first/current reference must not silently inherit that replacement.
+  assert.match(review.sources[0].url, /nr-10-atualizada-2019-1\.pdf$/);
+  assert.match(review.sources[0].title, /valid through 2027-05-31/);
   const future = review.sources.find(s => s.effectiveFrom);
   assert.equal(future.effectiveFrom, '2027-06-01');
   assert.deepEqual(future.transition, {

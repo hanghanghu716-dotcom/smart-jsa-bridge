@@ -8897,5 +8897,866 @@
     ],
     "scope": "Ten-language semantic review: editable generic record, site procedure, task/sector/jurisdiction-specific permits and roles, and no authorisation from completion/printing alone.",
     "sha256": "6e2ae8f4a26f39bce9048b92af4a3286b25097279487df8dfc0f896ff8fba2ad"
+  },
+  {
+    "id": "native:KR.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Work platforms and personal fall protection remain different controls; safety-belt vocabulary does not authorise replacing a platform.",
+    "sourceUrls": [
+      "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573"
+    ],
+    "sha256": "8e4ad097ebb1dabd38f20ab17248f6ec0c2f2a399038b60471a1ef97abb3adaa"
+  },
+  {
+    "id": "native:KR.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Entry programme, atmosphere checks and outside attendant are distinct. Article 619(3) posting clause read directly; 619/623 role text corroborated by official indexed clauses, not a fresh full consolidated-law review.",
+    "sourceUrls": [
+      "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028543703",
+      "https://www.law.go.kr/lsInfoP.do?ancYnChk=0&lsiSeq=273603"
+    ],
+    "sha256": "c3f085f152efac61b3e2b2d8c5fcd03fc35fea29c811dd682b1d22d7da6b253a"
+  },
+  {
+    "id": "native:KR.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Use the regulation wording for a locking device AND a tag. De-energised work remains distinct from voltage verification and work leadership.",
+    "sourceUrls": [
+      "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625"
+    ],
+    "sha256": "acc154ac6da9642d5fd213b96b2c78724a5c8052c0b1abbcc51707dbb7ee5bc7"
+  },
+  {
+    "id": "native:KR.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Fire-risk work and fire watcher are separate concepts; article 241-2 conditions/exceptions do not mean every welding task requires the same watcher arrangement.",
+    "sourceUrls": [
+      "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618"
+    ],
+    "sha256": "398b4f73c46ef0d326af72c275abb869e571eb1ee6b970938cf41c6bb67e9be4"
+  },
+  {
+    "id": "native:JP.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Fall-restraint equipment, work platform and openings retain the Japanese regulatory vocabulary; equipment does not replace collective controls automatically.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/content/11302000/001293037.pdf",
+      "https://www.mhlw.go.jp/web/t_doc?dataId=00tc8681&dataType=1&pageNo=1"
+    ],
+    "sha256": "5e1297405c904c4d1c2e4661f1d50464751ada023aa98e3e27344d9870dbbd00"
+  },
+  {
+    "id": "native:JP.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "First/second oxygen-deficiency work classifications, the full operations-chief title in article 11 and monitoring in article 13 remain distinct; corrected the abbreviated chief label. Official indexed provisions and ministry guidance corroborate meanings; no claim of full consolidation review.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74105000&dataType=0&pageNo=1",
+      "https://jsite.mhlw.go.jp/okayama-roudoukyoku/newpage_01834.html"
+    ],
+    "sha256": "603aeb346ecd00badbbb43c5acce85fd5022f0a0cb528c94eaf609504a40e0d6"
+  },
+  {
+    "id": "native:JP.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Article 350 work director is not the oxygen-deficiency operations chief. Isolation and absence-of-voltage confirmation remain separate actions.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
+    ],
+    "sha256": "ae5e78368a2b21ebb9e451a4194dc81b7988c2c264e4650baa7d2d2be7869bc7"
+  },
+  {
+    "id": "native:JP.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Welding/cutting and ignition-source precautions retain their local meaning; no universal permit role or imported fire-watch duration.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=7"
+    ],
+    "sha256": "f81522a93755c91ae1f5e8c0967bc4224b4d004d4d7e3d19841b1025668c43a4"
+  },
+  {
+    "id": "native:CA-QC.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Use CNESST harness/fall-arrest connection and rescue procedure terminology instead of a generic province-independent fall-plan title. Rescue remains a separate arrangement.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/harnais-liaison-darret-chute"
+    ],
+    "sha256": "e1f6d96d46798d331f27c0bda613b2ecb07e9303e493fdbd9febdcf53d6a7046"
+  },
+  {
+    "id": "native:CA-QC.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Qualified risk/rescue planning, entrant, outside attendant and trained rescue roles are separate. Language review does not close the outstanding Quebec consolidated-law review.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/espaces-clos"
+    ],
+    "sha256": "b51027fd140be71a11a08e6604587ba21c72cdf11ad99f7da432782601fe1a09"
+  },
+  {
+    "id": "native:CA-QC.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Cadenassage and hazardous-energy control retain Quebec usage; French habilitation is not substituted as a Quebec occupational credential.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques"
+    ],
+    "sha256": "d0c0092799b7f184148eacb4962d176f43d81fa404a703c1f51c0096c0b0fa70"
+  },
+  {
+    "id": "native:CA-QC.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "French-Canadian hot-work and fire-watch vocabulary checked against CCOHS guidance; not represented as a current Quebec-wide statutory permit or fixed watch duration.",
+    "sourceUrls": [
+      "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html"
+    ],
+    "sha256": "554fc0469504c1cd170d0c23a5fada8b6b9de68cfe1d9e359d45ccb3c6727aa4"
+  },
+  {
+    "id": "native:DE.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Personal fall protection and a rescue concept remain separate; restraint prevents reaching the fall area whereas arrest limits an actual fall.",
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/1013"
+    ],
+    "sha256": "f7e87ca31bd42a80fe0c9aa9ef98807013a3ade2a0dd166d06fa581009ba2911"
+  },
+  {
+    "id": "native:DE.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Entry permission, qualified atmosphere testing, supervisor and safety attendant are distinct DGUV roles; the permit is not itself a competence qualification.",
+    "sourceUrls": [
+      "https://www.bgbau-medien.de/handlungshilfen_gb/daten/dguv/113_004/4.htm",
+      "https://www.dguv.de/fb-rci/sachgebiete/behaelter/index.jsp"
+    ],
+    "sha256": "f244e705a3d85ce84e8d0383b2d7432e8612d9e489a7d90f64179a45358ec360"
+  },
+  {
+    "id": "native:DE.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Five safety rules and Elektrofachkraft retain distinct action/competence meanings. The cited automation guidance is not promoted to an all-sector permit statute.",
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/5231"
+    ],
+    "sha256": "35a065178fb694cb08536bc8b4e5ef9781234e85d3a919125f7516b121b7e1e2"
+  },
+  {
+    "id": "native:DE.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Welding permission, fire post during work and subsequent fire surveillance are distinct; no universal observation period inferred.",
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/318"
+    ],
+    "sha256": "6999d067d524c2d8b8a64b18091773f1e91b6c345ca573f256f539a976a2f606"
+  },
+  {
+    "id": "native:FR.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Collective protection, restraint and fall arrest are distinct; INRS expressly distinguishes preventing access from stopping a fall.",
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/chutes-hauteur/equipements-protection-individuelle-chutes-hauteur.html",
+      "https://www.inrs.fr/risques/chutes-hauteur/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "6257925e65aca518319643d3248565f2545e6f4a050b57dbe7d20e8dddd93471"
+  },
+  {
+    "id": "native:FR.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Employer individual authorisation, operation-specific entry permission and outside surveillance/rescue arrangements are separate, not a single qualification.",
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/espaces-confines/prevenir-risques.html"
+    ],
+    "sha256": "931ed3172956954c7c29d1b4235229281123ad0e84847b62598d2173c26fe5be"
+  },
+  {
+    "id": "native:FR.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Employer-issued habilitation is not the training certificate; consignation and absence-of-voltage verification remain separate technical actions.",
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/electriques/habilitation-electrique.html"
+    ],
+    "sha256": "a21877f96490816ea93d097259ea1d5fba0e60491488bfcd389036046b765798"
+  },
+  {
+    "id": "native:FR.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Permis de feu refers to hot-work prevention/coordination; retaining the French title does not impose a universal statutory form or monitoring duration.",
+    "sourceUrls": [
+      "https://www.inrs.fr/media.html?refINRS=ED+6030"
+    ],
+    "sha256": "01ed7fd4c3cc7928860d3eeac057be4251c164b9a1de6ce17e6b9be92289350a"
+  },
+  {
+    "id": "native:ES.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Retention prevents access to a fall zone and is not fall arrest; NTP is guidance, not a universal permit duty.",
+    "sourceUrls": [
+      "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/37-serie-ntp-numeros-1191-a-1214-ano-2024/ntp-1205-sistemas-de-proteccion-individual-contra-caidas-sistemas-de-retencion-2024"
+    ],
+    "sha256": "5fcdaf752a95e82942649b5cefa5485a27827ab024def79db9946987765e9e32"
+  },
+  {
+    "id": "native:ES.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Written work authorisation, recurso preventivo and outside surveillance retain separate meanings; neither the watcher nor document automatically provides rescue competence.",
+    "sourceUrls": [
+      "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados"
+    ],
+    "sha256": "aa0aaca3ddb7781c72f43bed2bdd0e440c0a699381612c70e8f98c73e0ac2521"
+  },
+  {
+    "id": "native:ES.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Authorised and qualified workers are separately named under Annex I; the former slash could imply interchangeable roles. Voltage suppression remains a procedure, not a credential.",
+    "sourceUrls": [
+      "https://boe.es/buscar/act.php?id=BOE-A-2001-11881"
+    ],
+    "sha256": "5f1edaa3c1dad38341f5dfe1b12619a0776c8e4062ec68341f9d362c5852d332"
+  },
+  {
+    "id": "native:ES.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Special-work authorisation and hot work retain NTP 562 meanings. The dated prevention example is not a current universally prescribed legal form.",
+    "sourceUrls": [
+      "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+    ],
+    "sha256": "2dec902f9c2b8db052079a9e543b8473e22084c0236786ba0d2c27aab3b3e652"
+  },
+  {
+    "id": "native:IT.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Collective parapets/nets and personal fall protection remain separate. Lexical closure does not close task/equipment-specific legal applicability.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/cantieristica/parapetti-provvisori-e-reti-di-sicurezza.html?all=true",
+      "https://www.lavoro.gov.it/documenti-e-norme/interpelli/Documents/Interpello-Dlgs-81-08-n-6-2019.pdf"
+    ],
+    "sha256": "8ca3960575ff53d2d20f1c5d6fe5bc06b0ceb1f621285a43c02d0287dfcca6be"
+  },
+  {
+    "id": "native:IT.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Suspected pollution/confined environments, DPR 177 company qualification and the client-employer representative retain separate meanings; the 2021 source is not proof of all current training requirements.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/it/inail-comunica/news/notizia.2021.05.ambienti-confinati-dall-inail-tre-fact-sheet-su-normativa-ricerca-e-formazione.html"
+    ],
+    "sha256": "159999de0d8b5d9b1e48c483c088d5701858e508068067d3f7a9e4dc03d81d8c"
+  },
+  {
+    "id": "native:IT.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "PES/PAV competence and live-work suitability are not interchangeable. Current GI/RI/GL/RLE/LAV role names checked against the publisher and CNI 2026 material; full paid CEI standard not accessed, so legal-topic closure remains open.",
+    "sourceUrls": [
+      "https://ceimagazine.ceinorme.it/la-normativa-sulla-sicurezza-dei-lavori-con-rischio-elettrico/",
+      "https://www.cni.it/images/eventi/2026/WEBINAR_NORMA_CEI_11-27_novit%C3%A0_6_edizione_30.03.2026.pdf"
+    ],
+    "sha256": "4533cb20c7e6bf2bfdf4b77d312291c44c0eaef5f2c66f0f3be3fcbc1309fdaf"
+  },
+  {
+    "id": "native:IT.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Hot work includes ignition-producing operations; pre-work assessment and post-work inspection remain different controls. INAIL terminology guidance is not certification of every current fire-code duty.",
+    "sourceUrls": [
+      "https://www.inail.it/content/dam/inail-hub-site/documenti/2022/07/Documento%20Tecnico%20Progettazione%20della%20sicurezza%20antincendio%20nei%20luoghi%20di%20lavoro.pdf"
+    ],
+    "sha256": "99f47c6ef8ed30b5bcf604d25abdc322bb6df7ce8eec9e4adfa6bd1813a782f0"
+  },
+  {
+    "id": "native:SA.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Arabic height work and fall prevention are descriptive safety concepts, not statutory licence names; HRSD equipment/maintenance guidance supports the task meaning.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_0.pdf"
+    ],
+    "sha256": "aa33209db2b7f41308f82334d2868be7a300f8b0cae4bcfd5ca48479e5327254"
+  },
+  {
+    "id": "native:SA.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Arabic confined spaces, outside attendant and rescue plan retain their ordinary technical meanings. EXPRO facility guidance defines an outside entry attendant; no universal Saudi statutory job title inferred.",
+    "sourceUrls": [
+      "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لمراقبة%20السلامة.pdf",
+      "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_0.pdf"
+    ],
+    "sha256": "a70ff3466fe8374d1ce5d6e2af5e661adbc0778f85250d01500979fb298fcb04"
+  },
+  {
+    "id": "native:SA.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Arabic isolation and lock/tag wording retain distinct energy-control actions; HRSD supports isolation/locking, while the tag phrase is a descriptive translation, not a verified Saudi statutory title or all-sector LOTO mandate.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_0.pdf"
+    ],
+    "sha256": "cdafb016eca165b2cee82d56b40c3757fd82d58f80d999bb627cdc62cc215ade"
+  },
+  {
+    "id": "native:SA.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Use the fire-watcher term in EXPRO guidance. The facility-management source (which cites foreign standards) is a terminology reference, not a universal Saudi permit law.",
+    "sourceUrls": [
+      "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لمراقبة%20السلامة.pdf",
+      "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_0.pdf"
+    ],
+    "sha256": "b8179214d31a3de1ff0096f8704a38473c4e577929269b73bb770c739f7be12f"
+  },
+  {
+    "id": "native:BR.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "AR and PT are distinct; NR-35 links the permit to non-routine work. Lexical meaning does not close current training/ladder-transition or sector checks.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2022/portaria-mtp-no-4-218-nova-nr-35-1.pdf/@@download/file"
+    ],
+    "sha256": "62261ac0c4a45fb084249f35253634328461f9c6c22828b12eff038f05882c27"
+  },
+  {
+    "id": "native:BR.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "PET, entry supervisor, outside watcher and authorised entrant retain distinct NR-33 roles; watcher does not automatically become the rescue team.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
+    ],
+    "sha256": "f0bea46c896818f00fb1750be7006f87088bcd5b42c3eaea67badbb7cb881519"
+  },
+  {
+    "id": "native:BR.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Qualification, professional habilitation, supervised capacitation and employer authorisation remain four distinct NR-10 concepts. Current 2019 edition applies through 2027-05-31; generic PDF now points to the future 2027-06-01 edition.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-10-atualizada-2019-1.pdf",
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10"
+    ],
+    "sha256": "b18bd1ca8045a3f1128d7c3682b02697c67e44cb886bd97f5265a57b5743eb2a"
+  },
+  {
+    "id": "native:BR.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Trabalho a quente retains its hot-work meaning; the native label explicitly limits NR-34 to the naval industry and does not apply it to every workplace.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-34-nr-34"
+    ],
+    "sha256": "41fc17c67f853fcdfd85474ecb9d501f78acc6d765f521e28725bc7f5a9e5550"
+  },
+  {
+    "id": "native:RU.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-followup-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Hot work and its work permit remain distinct. MCHS protected-site guidance corroborates the permit title; its nuclear-site procedures and observation periods are not generalised nationally.",
+    "sourceUrls": [
+      "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257"
+    ],
+    "sha256": "b3e6cd513c06e4e94ef0175980116efb93e81965d44e012f145a5ed8332743f1"
   }
 ]

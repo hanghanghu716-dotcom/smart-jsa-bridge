@@ -29,7 +29,7 @@ test('native terminology fingerprints detect changes to either original roles or
 
 test('reviewed native roles retain the work jurisdiction in all document languages and remain blank actuals', () => {
   const closures = JSON.parse(fs.readFileSync('docs/regional-terminology-closures.json', 'utf8')).filter(c => c.id.startsWith('native:'));
-  assert.equal(closures.length, 32);
+  assert.equal(closures.length, 69);
   for (const closure of closures) {
     const [jurisdiction, topic] = closure.id.slice(7).split('.');
     for (const documentLocale of WORK_DOCUMENT_LANGUAGES) {

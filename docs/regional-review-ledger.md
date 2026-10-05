@@ -1,6 +1,6 @@
 # ②·③ 검수 목록과 집계
 
-기준: 2026-10-05.12. 이 파일과 JSON은 scripts/regional-review-ledger.js에서 생성합니다.
+기준: 2026-10-05.13. 이 파일과 JSON은 scripts/regional-review-ledger.js에서 생성합니다.
 
 대상은 작업별 서류 묶음의 **기본 양식 89개 + 관할별 작업 항목 72개**입니다. Case Study 본문·첨부 PDF, guideline 콘텐츠와 웹사이트 전체 UI는 포함하지 않습니다.
 
