@@ -309,5 +309,139 @@
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
     ],
     "sha256": "39729696041a760d114e2664daaf07a30a0e8ab1abd01e6437f2a688c9b8378a"
+  },
+  {
+    "id": "form:AU.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
+    ],
+    "sha256": "3ca4d241f5d1f6391e77fc70fc24192884fa58ee6fe55f060449d79f81259c58"
+  },
+  {
+    "id": "form:AU.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/system/files/documents/1703/information-sheet-safe-work-method-statement.pdf",
+      "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+    ],
+    "sha256": "4d0f62e424c434c9c48f6b3c98a01247c098be3e39f8a3c1540c7b6bb1aed839"
+  },
+  {
+    "id": "form:AU.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/consultation",
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
+    ],
+    "sha256": "84988ab752136ff50c90255bee4870a9282ae118d4657e06f11b28e8d5c91af3"
+  },
+  {
+    "id": "form:AU.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
+    ],
+    "sha256": "87c151e861ddd8e3b8aa941752dd4d54ea4924fb84f32a987ef38eb9b63c353d"
+  },
+  {
+    "id": "form:JP.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/content/11300000/001414377.pdf"
+    ],
+    "sha256": "e96bd92c1e788ec8ee1bfa8a9990371aa714d2668f08b127262399a076d21594"
+  },
+  {
+    "id": "form:JP.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf"
+    ],
+    "sha256": "8becb8f9296fbb2c2808fb1bc28fece82c42987504c59bf64b5b8e4cf2c9c059"
   }
 ]

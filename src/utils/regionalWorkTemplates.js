@@ -94,7 +94,8 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
     field('consultationRecord', txt('근로자 참여·잔여 위험 전달 기록', 'Worker consultation and communication of remaining risks'), 'verification'),
     field('controlReview', txt('대책 우선순위·실행 및 효과 확인', 'Control hierarchy, implementation and effectiveness'), 'verification'), verification,
     signature('assessor', txt('평가 참여자·검토자 서명', 'Assessment team / reviewer signatures'))];
-    if (['GB', 'US', 'CA'].includes(context.jurisdiction)) blocks.push(field('actionCloseout', reviewedText('actionCloseout'), 'verification'));
+    if (['GB', 'US', 'CA', 'AU', 'JP'].includes(context.jurisdiction)) blocks.push(field('actionCloseout', reviewedText('actionCloseout'), 'verification'));
+    if (['AU', 'JP'].includes(context.jurisdiction)) blocks.splice(2, 0, field('currentRiskDecision', reviewedText('currentRiskDecision'), 'verification'));
     if (context.jurisdiction === 'US') blocks.push(field('hazardScenario', reviewedText('hazardScenario'), 'verification'));
     if (context.jurisdiction === 'CA') blocks.push(signature('approval', txt('작성·검토·승인 서명', 'Prepared / reviewed / authorised signatures')));
     if (context.jurisdiction === 'KR') blocks.splice(1, 0, field('assessmentBasis', txt('평가 종류·허용 가능한 위험성 기준', 'Assessment type and risk acceptance criteria'), 'verification'));
@@ -127,7 +128,10 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
       field('monitoring', context.jurisdiction === 'AU' ? txt('조치 실행·모니터링·검토 및 작업중지 기준', 'Implementation, monitoring, review and stop-work arrangements') : txt('작업 전 준비·작업중지 및 변경 시 검토', 'Preparations, stop-work and change review arrangements')),
       signature('consultation', txt('작업자 협의·설명 및 확인 서명', 'Worker consultation, briefing and acknowledgement signatures')),
       signature('approval', txt('작성·검토·승인 서명', 'Prepared / reviewed / authorised signatures')));
-    if (['AU','FR','IT'].includes(context.jurisdiction)) blocks.splice(1, 0, field('contractorCoordination', `${txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record')}${context.jurisdiction === 'IT' ? ' · DUVRI' : context.jurisdiction === 'FR' ? ' · Plan de prévention' : ' · PCBU / principal contractor'}`, 'verification'));
+    if (['FR','IT'].includes(context.jurisdiction)) blocks.splice(1, 0, field('contractorCoordination', `${txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record')}${context.jurisdiction === 'IT' ? ' · DUVRI' : ' · Plan de prévention'}`, 'verification'));
+    if (context.jurisdiction === 'AU') blocks.push(
+      field('auSwmsLifecycle', reviewedText('auSwmsLifecycle'), 'verification'),
+      field('auSwmsRecord', reviewedText('auSwmsRecord'), 'verification'));
     if (context.jurisdiction === 'GB') blocks.splice(1, 0, field('contractorCoordination', txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record'), 'verification'));
     if (context.jurisdiction === 'RU') blocks.push(field('safeCompletion', txt('안전한 작업 종료·설비 복구', 'Safe completion and return to service'), 'verification'));
     if (context.jurisdiction === 'SG') blocks.push(field('sgProcedureReview', reviewedText('sgProcedureReview'), 'verification'));
@@ -153,18 +157,24 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
       field('actions', txt('논의 결과·추가 조치 및 담당자', 'Agreed actions and persons responsible')),
       table(txt('참여자 확인', 'Attendance and acknowledgement'), [col('name', txt('성명', 'Name'), 'worker', 'blank'), col('signature', txt('서명', 'Signature'), 'worker', 'blank')], [{}, {}, {}, {}]),
       signature('leader', txt('진행자·실시시각', 'Briefing leader and time'))];
-    if (['GB', 'CA', 'SG'].includes(context.jurisdiction)) {
+    if (['GB', 'CA', 'SG', 'AU'].includes(context.jurisdiction)) {
       blocks.splice(1, 0, field('briefingScope', reviewedText('notice'), 'text', 'standard', reviewedText('briefingScope')));
       blocks.splice(blocks.findIndex(b => b.field?.key === 'actions') + 1, 0, field('briefingFollowup', reviewedText('briefingFollowup'), 'verification'));
     }
     if (context.jurisdiction === 'SG') blocks.splice(blocks.findIndex(b => b.field?.key === 'changes') + 1, 0,
       field('sgBriefingReadiness', reviewedText('sgBriefingReadiness'), 'verification'),
       field('sgBriefingUnderstanding', reviewedText('sgBriefingUnderstanding'), 'verification'));
+    if (context.jurisdiction === 'JP') {
+      blocks.splice(1, 0, field('briefingScope', reviewedText('notice'), 'text', 'standard', reviewedText('jpKyScope')));
+      blocks.splice(blocks.findIndex(b => b.field?.key === 'actions') + 1, 0,
+        field('jpKyAction', reviewedText('jpKyAction'), 'verification'),
+        field('briefingFollowup', reviewedText('briefingFollowup'), 'verification'));
+    }
   } else {
     const checks = rows.flatMap(row => [row.controls, row.further].filter(Boolean).map(control => ({ item: `${row.step}\n${control}` })));
     blocks = [scope, table(txt('점검 항목 및 결과', 'Inspection items and findings'), [col('item', txt('확인할 조치·항목', 'Control / item to check')), col('result', txt('결과·실측값', 'Finding / measurement'), 'verification', 'runtime'), col('action', txt('미흡 사항·개선 조치', 'Defect / corrective action'), 'verification', 'runtime'), col('owner', txt('담당자·완료기한', 'Owner / due date'), 'worker', 'runtime')], checks),
       signature('inspector', txt('점검자·점검시각·후속 확인', 'Inspector, time and follow-up verification'))];
-    if (['CA', 'SG'].includes(context.jurisdiction)) {
+    if (['CA', 'SG', 'AU'].includes(context.jurisdiction)) {
       const findings = blocks.find(b => b.type === 'table');
       findings.columns.splice(1, 0, col('inspectionLocation', reviewedText('inspectionLocation'), 'verification', 'runtime'));
       findings.columns.push(col('inspectionPriority', reviewedText('inspectionPriority'), 'verification', 'runtime'), col('actionCloseout', reviewedText('actionCloseout'), 'verification', 'runtime'));
@@ -185,16 +195,21 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   if (profile?.organisationRecord && kind === 'risk_assessment') blocks.splice(2, 0, field('organisationRecord', `${txt('관련 사업장 전체 관리문서 (이 작업용 양식으로 대체되지 않음)', 'Related organisation-wide record (not replaced by this task form)')} · ${profile.organisationRecord}`));
   if (context.jurisdiction === 'IT' && kind === 'risk_assessment') blocks.push(field('interferenceRecord', `${txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record')} · DUVRI`, 'verification'));
   if (context.jurisdiction === 'RU' && ['method_statement','toolbox_talk'].includes(kind)) blocks.push(field('localAuthorisations', txt('적용 절차·교육 및 작업 자격 확인', 'Applicable procedures, training and work authorisations'), 'verification'));
-  const baseScope = { GB: 'gbScope', US: 'usBaseScope', CA: 'caScope' }[context.jurisdiction];
+  const baseScope = { GB: 'gbScope', US: 'usBaseScope', CA: 'caScope', AU: 'auJurisdictionNotice' }[context.jurisdiction];
   if (baseScope) blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText(baseScope)));
+  if (context.jurisdiction === 'AU') blocks.splice(2, 0,
+    field('frameworkBasis', reviewedText('frameworkBasis'), 'verification'),
+    field('auDutyHolders', reviewedText('auDutyHolders'), 'verification'));
   const taskChecks = kind === 'permit_to_work'
     ? taskReviewBlocks(context, options.taskTypes, { field, table, col, txt }) : { blocks: [], reviews: [] };
   // Put task-specific preparation and measurements before permit signatures.
   if (taskChecks.blocks.length) blocks.splice(blocks.findIndex(b => b.field?.key === 'applicant'), 0, ...taskChecks.blocks);
+  const baseVersion = ['AU', 'JP'].includes(context.jurisdiction) ? '2026-10-05.10'
+    : context.jurisdiction === 'SG' && kind !== 'permit_to_work' ? '2026-10-05.9' : TEMPLATE_VERSION;
   return {
     id: id(), type: 'form', canonicalType: kind, formType: kind === 'permit_to_work' ? 'ptw' : kind === 'toolbox_talk' ? 'tbm' : kind === 'inspection' ? 'checklist' : 'custom',
-    enabled: true, title: entry.title, orientation: ['risk_assessment', 'method_statement'].includes(kind) || (['CA', 'SG'].includes(context.jurisdiction) && kind === 'inspection') ? 'landscape' : 'portrait', blocks,
-    regional: { templateId: `${context.jurisdiction}.${kind}`, version: taskChecks.reviews.length ? TASK_REVIEW_VERSION : context.jurisdiction === 'SG' && kind !== 'permit_to_work' ? '2026-10-05.9' : TEMPLATE_VERSION, context, status: 'site-review-draft', review: { version: REGIONAL_REVIEW_VERSION, scope: REGIONAL_REVIEW_SCOPE, status: 'official-source-desk-review' },
+    enabled: true, title: entry.title, orientation: ['risk_assessment', 'method_statement'].includes(kind) || (['CA', 'SG', 'AU'].includes(context.jurisdiction) && kind === 'inspection') ? 'landscape' : 'portrait', blocks,
+    regional: { templateId: `${context.jurisdiction}.${kind}`, version: taskChecks.reviews.length ? TASK_REVIEW_VERSION : baseVersion, context, status: 'site-review-draft', review: { version: REGIONAL_REVIEW_VERSION, scope: REGIONAL_REVIEW_SCOPE, status: 'official-source-desk-review' },
       ...(taskChecks.reviews.length ? { taskReviews: taskChecks.reviews } : {}),
       sourcesCheckedAt: '2026-10-03', sources: [...new Map([...structuredClone(REGIONAL_SOURCES[context.jurisdiction]), ...structuredClone(REGIONAL_FORM_SOURCES[`${context.jurisdiction}.${kind}`] || []), ...taskChecks.reviews.flatMap(r => r.sources)].map(s => [s.url, s])).values()], sourceJsaId: source?.sourceId || null, sourceJsaTitle: source?.title || '', sourceImportedAt: source ? new Date().toISOString() : null },
   };

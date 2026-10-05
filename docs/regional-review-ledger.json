@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.9",
+  "inventoryVersion": "2026-10-05.10",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 241,
+    "taskVocabularyKeys": 247,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -150,28 +150,30 @@
       "jurisdiction": "AU",
       "kind": "risk_assessment",
       "title": "Risk Assessment",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-au-jp-form-review-20261005.md",
       "sourceUrls": [
         "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/identify-assess-and-control-hazards/managing-risks",
         "https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-risk-construction-work-requiring-swms",
-        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms",
+        "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "AU.method_statement",
       "jurisdiction": "AU",
       "kind": "method_statement",
       "title": "Safe Work Method Statement (SWMS)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-au-jp-form-review-20261005.md",
       "sourceUrls": [
         "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/identify-assess-and-control-hazards/managing-risks",
         "https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-risk-construction-work-requiring-swms",
-        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms",
+        "https://www.safeworkaustralia.gov.au/system/files/documents/1703/information-sheet-safe-work-method-statement.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "AU.permit_to_work",
@@ -192,28 +194,31 @@
       "jurisdiction": "AU",
       "kind": "toolbox_talk",
       "title": "Pre-start / Toolbox Talk",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-au-jp-form-review-20261005.md",
       "sourceUrls": [
         "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/identify-assess-and-control-hazards/managing-risks",
         "https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-risk-construction-work-requiring-swms",
-        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms",
+        "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/consultation",
+        "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "AU.inspection",
       "jurisdiction": "AU",
       "kind": "inspection",
       "title": "Pre-start Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-au-jp-form-review-20261005.md",
       "sourceUrls": [
         "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/identify-assess-and-control-hazards/managing-risks",
         "https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-risk-construction-work-requiring-swms",
-        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms",
+        "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SG.risk_assessment",
@@ -755,13 +760,14 @@
       "jurisdiction": "JP",
       "kind": "risk_assessment",
       "title": "作業リスクアセスメント",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-au-jp-form-review-20261005.md",
       "sourceUrls": [
         "https://www.mhlw.go.jp/content/11300000/001411913.pdf",
-        "https://www.mhlw.go.jp/content/11300000/001413029.pdf"
+        "https://www.mhlw.go.jp/content/11300000/001413029.pdf",
+        "https://www.mhlw.go.jp/content/11300000/001414377.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "JP.method_statement",
@@ -794,13 +800,14 @@
       "jurisdiction": "JP",
       "kind": "toolbox_talk",
       "title": "危険予知活動（KY）記録",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-au-jp-form-review-20261005.md",
       "sourceUrls": [
         "https://www.mhlw.go.jp/content/11300000/001411913.pdf",
-        "https://www.mhlw.go.jp/content/11300000/001413029.pdf"
+        "https://www.mhlw.go.jp/content/11300000/001413029.pdf",
+        "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "JP.inspection",
@@ -6264,6 +6271,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:auDutyHolders",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:auElectricalDetail",
       "languages": [
         "ko",
@@ -6350,6 +6374,40 @@
     },
     {
       "id": "task:auScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:auSwmsLifecycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:auSwmsRecord",
       "languages": [
         "ko",
         "en",
@@ -6826,6 +6884,23 @@
     },
     {
       "id": "task:criteria",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:currentRiskDecision",
       "languages": [
         "ko",
         "en",
@@ -8084,6 +8159,40 @@
     },
     {
       "id": "task:jpIsolationChoice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:jpKyAction",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:jpKyScope",
       "languages": [
         "ko",
         "en",

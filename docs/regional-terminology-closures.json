@@ -6420,5 +6420,1031 @@
     ],
     "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
     "sha256": "8697f5c912c0c1152a252160573871105277af62bdd9276d1c551b81c935a26a"
+  },
+  {
+    "id": "task:fallPlanTrigger",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "c616b73cce0f70d7be1f4208484a93992c153bfcbcbbbb019361012447693a1d"
+  },
+  {
+    "id": "task:temporaryProtection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "003395f45fa6604f1d9348ada78c1021a22c9d970c7c7e728dc8775095d3701d"
+  },
+  {
+    "id": "task:personalLockRegister",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "f340b5b78f9e25fa6a600a4718bca2b5e0a7d39f0808d476039b0b15d698c70e"
+  },
+  {
+    "id": "task:isolationHandover",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "830287dd46e39607e9e589d124b34d07523629f176296b53ab30afd3326acfca"
+  },
+  {
+    "id": "task:weldingEquipmentCheck",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "685d160f727ddd702f610abaaa0f44e32e62c21453d68e4c9db5e89a42dba9bd"
+  },
+  {
+    "id": "task:occupationPermitBasis",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "351fe77f40dfc7562ff896da46c7803953bdd9a5b4accac12e9d3e1f3a2f3ae8"
+  },
+  {
+    "id": "task:personTaskAuthorisation",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "0eac2d8185cc1d7f37e87842721843043c2da142145fbb26401643333b5489e7"
+  },
+  {
+    "id": "task:preventivePresence",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "f3debf8130be54b0f788ece16b4fc80de2efdddb20284cbef5c18d43c267ad89"
+  },
+  {
+    "id": "task:hotAreaCheck",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "9e5e1ba6fc8adaa4d9e0436c2022285689a50254f12caae0edc0f62abbd4b976"
+  },
+  {
+    "id": "task:hotPermitTrigger",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "03416ade565f326fa790fc31f5abc129de2f2a8eeb255c8dc15bf8616de0861f"
+  },
+  {
+    "id": "task:multiEmployerRoles",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "a1e689acdc6f130406477e0317ac675a2f71fbdb35a0f0c4b6e7bcffe3e8bc28"
+  },
+  {
+    "id": "task:pesPavRecognition",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "d6430172b7c543ce92904cfbeb721b79702c64ec696fbfdafce4a3a313d9086c"
+  },
+  {
+    "id": "task:auHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "cb218e5e6201778bbe5a2d9a1b991ee4bc6b76743d2bc08bc9e8d2bd0917d5f2"
+  },
+  {
+    "id": "task:auElectricalDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "5873461605e5c25339eafc1a7bf5227ad81d4725d48d7f29a867f6b558bf63e2"
+  },
+  {
+    "id": "task:auHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "b9b43defa4120b5312198c11e2d53cf783dc8778730ec41b8ddedeabafd0d131"
+  },
+  {
+    "id": "task:caHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "ce88148bc0f104391e9378cd47e0430883312e2c969190bb6f2f4a434f9ad6d4"
+  },
+  {
+    "id": "task:caEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "f9f0940ff1f53983cdb83b1cb9637de65a3c99e71430a03942e72e3ecdfbb0f5"
+  },
+  {
+    "id": "task:caHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "d2af180f7073710fc7b9b9cff840a6d67bea4635f8603076fcc33a7761dbff41"
+  },
+  {
+    "id": "task:abHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "a087afbeb756d1d9218c8324504966e4b956c93374deabdaf6e10ba8651c31f9"
+  },
+  {
+    "id": "task:abEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "695c5d6c4c8cac090715d63ab8f27e129846040b8c3f1c558d87c7afd34c362e"
+  },
+  {
+    "id": "task:abHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "fe09e98e9cd6ae16059e0eab4f951c7e8e3ff5dc8249e5d4b38a7c9d254755e2"
+  },
+  {
+    "id": "task:bcHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "f354176138b29c0c22e19a4442055597cb31e1bf1ecc1ce6156b48428d99ad34"
+  },
+  {
+    "id": "task:bcEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "6b985f3aac310f8cdfed38352f849b94b25756c5cab2a4991774e2170ee6920d"
+  },
+  {
+    "id": "task:bcHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "f23598c54a25a3fb012a640f2f51eaa1347447e9346c2494d0f15b772cb553ce"
+  },
+  {
+    "id": "task:onHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "9716ac74ef75c0289c73d305d75cf15b5dd8f090d27c6af60d18221c3df281ea"
+  },
+  {
+    "id": "task:onEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "6d1b1d68e8333d5640b49d55d57a7e45db81a64ef2fb7faa7e1bacc49a519023"
+  },
+  {
+    "id": "task:onHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "4b8643a21e9edc64ac4b490e26c3ee0dcfed362a1014136389f28b88b545ae6b"
+  },
+  {
+    "id": "task:qcHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "f12ca8406ac43a9241265396b581ea8fc70a75806a8bee743a4a89e62ae30bf9"
+  },
+  {
+    "id": "task:qcEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "7d1a4c9b739ebcf33d5e0fcf50b514955422bb3e1c9d1c4a1dff23ec422812b3"
+  },
+  {
+    "id": "task:deHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "ffdc9275b374af9f4e4cfbb6b9878412ff326db88b332fedb3dc896877bee7de"
+  },
+  {
+    "id": "task:deEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "1bd349f9c7564cfec9975c3018fd0e67abd8ae082d9f47518f01de5f6ede6ae3"
+  },
+  {
+    "id": "task:deHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "13d6ca991015d43895169ea7c412830f83d4aa95e40e44f62e5fb7d8465501a0"
+  },
+  {
+    "id": "task:frHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "b2e02aeef26796b8f23acd5bf19ec3b5e4102b31cba25daac9e89b3e6b7da323"
+  },
+  {
+    "id": "task:frConfinedDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "2a89b2a544ceaa4e78064863e99db798d1e5e8fb6d38d2a9de31fb26fdb723e3"
+  },
+  {
+    "id": "task:frHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "c3bf0c8b9929bd49ebc055d7d32cfcb96a268b9f51ad33f82602163b2b95b35c"
+  },
+  {
+    "id": "task:itHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "da38716b21821b0d20ab2941a0f120e9fb830debaffe3b3e7dfa0987927add06"
+  },
+  {
+    "id": "task:itEnergyDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "00aba15b18ca0f6b704ed9b6839a3b15ede2bd7dcfe10dac50d4a20d7ed77fae"
+  },
+  {
+    "id": "task:itHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "46311a4a128e6c7d4385ec1a646ca94af76ecdd844f55b86f8a17d04dec1edca"
+  },
+  {
+    "id": "task:esHeightDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "32e21b84a635a224ed8605db6030a2260e3e8cf64c1d719f5175ad6bdecd731f"
+  },
+  {
+    "id": "task:esConfinedDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "940b6c1619828edc0bde2d330d4a7d7bab335d7ee968fa24f74de8d2f0e56193"
+  },
+  {
+    "id": "task:esHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "65be1d5592eb28eb0da13098cdf4f5b4e414d5d06a8015f0302dcbccef6a9807"
+  },
+  {
+    "id": "task:saOccupationDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "139062242b7a5b8f744a9f33a59bbf883e546614b169b94f4c5505174e5c543c"
+  },
+  {
+    "id": "task:saElectricalDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "6fc2df28fbdb0cc531c53787199c1a8f86ef13844eadf6c588b6c9c77c7c1755"
+  },
+  {
+    "id": "task:saHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "121a1ff3429e4f2d22f21b42f524dc0f3b31ece753a9f762888ad16e14ce1d74"
+  },
+  {
+    "id": "task:brPetDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "086d1582ce2d58dc05a9b52fd92b068d84f01db93cd8392bf57cca0e755e1380"
+  },
+  {
+    "id": "task:brHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "6b0e7389238e844a34e169cb9507a101e8e8f6fb2e58c96402e232ad1218d12f"
+  },
+  {
+    "id": "task:ruHotDetail",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "cc9a3e0d7d6ee105e2d7e0ba198800cf9d8aaa7d5182f14a2a049ebafec6f7bf"
+  },
+  {
+    "id": "task:auJurisdictionNotice",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "e1fb19967abf536349660594f0100ae1f17f00df92b9c9019fa75d23842529a2"
+  },
+  {
+    "id": "task:auDutyHolders",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "11e7f87650cb372193d0d9213cce67a1dea340a9b28385ff252111a7d81ead4d"
+  },
+  {
+    "id": "task:auSwmsLifecycle",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "203a3f49db61370e2e98967ba53d907df7954899fe7ef9917da85d1eef65b17c"
+  },
+  {
+    "id": "task:auSwmsRecord",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "22f06e134d278def1dc418f2555c8e1fb91cf2d31cdaf7ba0bf30e728b77e7f5"
+  },
+  {
+    "id": "task:currentRiskDecision",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "c0949add42d77a596ee385be64d4495a8b1021c751018f130422f5f406cd7444"
+  },
+  {
+    "id": "task:jpKyAction",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "5739b7218656222614aa66e7654a49ac95caa600831775a0ac2e1e5661916424"
+  },
+  {
+    "id": "task:jpKyScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
+    "sha256": "e0f3bf030361e41801e053d7c4123d459f7d0eba243bddd512f91bcfa00552b9"
   }
 ]

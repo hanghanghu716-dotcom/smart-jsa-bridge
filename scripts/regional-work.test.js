@@ -145,7 +145,7 @@ test('reviewed assessments retain evidence but never reuse dated reviews, consul
     const run = startWork({ data: saved });
     assert.doesNotMatch(JSON.stringify(run), /PAST_SITE_RECORD/);
     assert.equal(run.documents[0].regional.review.status, 'official-source-desk-review');
-    assert.equal(run.documents[0].regional.version, j.id === 'SG' ? '2026-10-05.9' : '2026-10-05.8');
+    assert.equal(run.documents[0].regional.version, ['AU', 'JP'].includes(j.id) ? '2026-10-05.10' : j.id === 'SG' ? '2026-10-05.9' : '2026-10-05.8');
     assert.ok(run.documents[0].regional.sources.some(s => s.basis));
   }
 });

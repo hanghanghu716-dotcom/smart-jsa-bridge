@@ -100,7 +100,7 @@ const errors = [];
     await p.$eval('.bundle-preview', el => el.scrollIntoView());
     await p.screenshot({ path: path.join(qa,'preview.png') });
     assert.equal(await p.$$eval('.bundle-paper', papers => papers.every(paper => paper.scrollWidth <= paper.clientWidth + 1)), true, 'No horizontal overflow in document previews');
-    if (['CA', 'SG'].includes(country)) {
+    if (['CA', 'SG', 'AU'].includes(country)) {
       const papers = await p.$$('.bundle-paper');
       await papers[papers.length - 1].screenshot({ path: path.join(qa, 'inspection.png') });
     }

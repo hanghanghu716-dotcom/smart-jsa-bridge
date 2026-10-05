@@ -17,7 +17,7 @@ export function reviewLedger() {
   }).map(form => ({
     id: `${p.id}.${form.kind}`, jurisdiction: p.id, kind: form.kind,
     title: form.title, reviewLevel: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? 'field-source-comparison-recorded' : 'baseline-source-review',
-    evidence: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? (p.id === 'SG' ? 'regional-singapore-form-review-20261005.md' : 'regional-form-review-20261005.md') : p.id === 'SG' && form.kind === 'risk_assessment' ? 'regional-title-core-review-20261005.md' : 'regional-document-review.md',
+    evidence: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? (['AU', 'JP'].includes(p.id) ? 'regional-au-jp-form-review-20261005.md' : p.id === 'SG' ? 'regional-singapore-form-review-20261005.md' : 'regional-form-review-20261005.md') : p.id === 'SG' && form.kind === 'risk_assessment' ? 'regional-title-core-review-20261005.md' : 'regional-document-review.md',
     sourceUrls: [...new Set([...REGIONAL_REVIEW_SOURCES[p.id], ...(REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] || [])].map(s => s.url))],
     remaining: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? 'Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped.' : 'Individual form field-to-source and complete terminology closure not recorded.',
   })));
@@ -56,7 +56,7 @@ export function reviewLedger() {
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-05.9',
+    inventoryVersion: '2026-10-05.10',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',
