@@ -1565,5 +1565,226 @@
       "https://www.ontario.ca/page/guide-health-and-safety-committees-and-representatives"
     ],
     "sha256": "74dedef3454d6919eefff3389c369b0e5266688f2a268794b2ce507c3a8f1db3"
+  },
+  {
+    "id": "form:CA.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
+    ],
+    "sha256": "8fca61203c706d153bae57a07362d26ecf119e1091cb53947920d610ed13c4cf"
+  },
+  {
+    "id": "form:CA-AB.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/"
+    ],
+    "sha256": "f9381838e00a7c72675d2b4c5b01ea3077b0fecb206ff1a127c9310defecca3f"
+  },
+  {
+    "id": "form:CA-BC.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
+    ],
+    "sha256": "9ceb8b33cb7228688522911d49b48de90330b61e5cb66d1318b029fbd09a49c0"
+  },
+  {
+    "id": "form:CA-QC.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/sites/default/files/documents/a2-travail-espace-clos.pdf"
+    ],
+    "sha256": "a66d0d68317720cce9e1d091ee8eb675294ffe05c6eb19e03817cf411264fb03"
+  },
+  {
+    "id": "form:DE.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/915"
+    ],
+    "sha256": "adc2192bbabf9f97be7232d80903465c579a58cf3cefc9e06a643e64d3f36dda"
+  },
+  {
+    "id": "form:JP.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=00tb2089&dataType=1&pageNo=1"
+    ],
+    "sha256": "fcf09e6be0f1a83a42e27d6cb3d036ff9b4dee08549b7dcd05a976fd6eda46ad"
+  },
+  {
+    "id": "form:FR.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/espaces-confines/prevenir-risques",
+      "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
+    ],
+    "sha256": "e41cc1e3914f12a1f46d6e2aec6e512c7129ac8ae2ffc1fb831664dca7051b2a"
+  },
+  {
+    "id": "form:IT.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.regione.emilia-romagna.it/sicurezza-nei-luoghi-di-lavoro/documentazione/linee-guida/2012/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/@@download/file"
+    ],
+    "sha256": "8fa20ac097eeed353d3c9fc08a573ac6f6f36aacbedc9420da80c502ac1f75ed"
+  },
+  {
+    "id": "form:ES.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+    ],
+    "sha256": "91a54bbda54e8101ad90e651452943389330f2bc2f6968e80a360243ad187860"
+  },
+  {
+    "id": "form:BR.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
+    ],
+    "sha256": "597239208fd46e4d7687b0217f02097094e7f2da731a75411535739b5125cb3c"
   }
 ]

@@ -10195,5 +10195,157 @@
     ],
     "scope": "Ten-language permit/linked-plan accessibility and pre-shift verifier/time/findings. Ontario entry-specific source and Korean practical record remain scoped; not a nationwide generic permit obligation or competency certification.",
     "sha256": "4f1101baa46b81944a2f2df6108e7088b92a78d763648661980a8308b4d82f92"
+  },
+  {
+    "id": "task:permitLinkedRecords",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language linkage of specialised permits/procedures/prevention records with identity, revision, current validity and on-site access; no permit issued by reference alone.",
+    "sha256": "4471695279859c694778154060921f00cd5176ad40b6fedf3f5dd1102cc0fb2f"
+  },
+  {
+    "id": "task:permitRoleAssignments",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language actual role assignments, organisations/contacts, required competence and briefing/acceptance; runtime people, not automatically reused personnel or qualification certification.",
+    "sha256": "77430bd26e6faf16bd37da369bb075df9fd02dbf4f41202fbb74980f42d86347"
+  },
+  {
+    "id": "task:permitRestartRecord",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language stop/change/shift/expiry review and responsible timed reissue/revalidation decision; conditional site reassessment rather than automatic renewal.",
+    "sha256": "e308de46696657b570a4893a4ac33eb6726af431bef318e28da90eaee8702083"
+  },
+  {
+    "id": "task:permitArchiveRecord",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language remaining hazards, continuing controls, handback and identified records custody/retention basis; no claim of software-guaranteed statutory retention.",
+    "sha256": "63cfa390b224bd8bd51258bfa670838bf301c9ab32d2fd7745c7a9c7e3da3ba9"
+  },
+  {
+    "id": "task:dePermitScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language Erlaubnisschein versus conditional Betriebsanweisung alternative under DGUV 113-004, consistently identical conditions/effective controls; not generic-copy exemption.",
+    "sha256": "2e058e64853dd3a3011cb3265e1b2d429390dbe02c9a82b5eb8dbf879cfcbb10"
+  },
+  {
+    "id": "task:jpPermitScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language 1997 steel-sector non-routine-work guidance boundary; no all-industry permit mandate or replacement of task-specific qualifications/procedures.",
+    "sha256": "d8fba2b28e0a0299b1f5e051a57e92abae1968b8ba8853b2dfa40ad577c05812"
+  },
+  {
+    "id": "task:frPermitScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language personal autorisation de travail, operation permis de pénétrer, permis de feu and plan de prévention distinctions, each separately satisfied.",
+    "sha256": "52e67ace732032721d461cea6fe1305a03f33e85bc032b73474441b61b174de7"
+  },
+  {
+    "id": "task:brPermitScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language generic PT versus full NR-33 PET, links to PGR/rescue, and no automatic renewal, compliant digital signature or statutory archive from PDF/copy.",
+    "sha256": "5cdcaa875bd2fda76af1591880a3db1dac7f08dd29ffcf68c38c14e94eb6d62f"
   }
 ]

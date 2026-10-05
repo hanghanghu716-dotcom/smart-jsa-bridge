@@ -68,7 +68,7 @@ test('reviewed field sets distinguish country, document purpose and actual versu
   assert.ok(permit.blocks.findIndex(b => b.field?.key === 'permitCoordination') < permit.blocks.findIndex(b => b.field?.key === 'issue'));
   assert.ok(field(permit, 'competency'));
   assert.equal(field(create('KR.permit_to_work'), 'permitCoordination').kind, 'verification');
-  assert.equal(field(create('CA.permit_to_work'), 'permitCoordination'), undefined);
+  assert.equal(field(create('CA.permit_to_work'), 'permitCoordination').kind, 'verification');
   assert.ok(field(create('US.risk_assessment'), 'hazardScenario'));
   assert.equal(field(create('KR.risk_assessment'), 'hazardScenario'), undefined);
   const inspection = create('CA.inspection');

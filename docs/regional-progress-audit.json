@@ -1,6 +1,6 @@
 {
-  "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.17",
+  "auditDate": "2026-10-06",
+  "evidenceVersion": "2026-10-06.18",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 362
+    "fieldVocabularyGroups": 370
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 378,
-      "pending": 105,
+      "completed": 388,
+      "pending": 95,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 92,
-      "completionPercent": 78.3,
-      "remainingPercent": 21.7
+      "pendingFinalVerification": 82,
+      "completionPercent": 80.3,
+      "remainingPercent": 19.7
     },
     "stage3": {
-      "reviewGroups": 523,
-      "checkpoints": 1569,
-      "completed": 1566,
+      "reviewGroups": 531,
+      "checkpoints": 1593,
+      "completed": 1590,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 684,
-      "checkpoints": 2052,
-      "completed": 1944,
-      "pending": 108,
+      "reviewGroups": 692,
+      "checkpoints": 2076,
+      "completed": 1978,
+      "pending": 98,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 95,
-      "completionPercent": 94.7,
-      "remainingPercent": 5.3
+      "pendingFinalVerification": 85,
+      "completionPercent": 95.3,
+      "remainingPercent": 4.7
     }
   },
   "stage2": [
@@ -1056,9 +1056,9 @@
     {
       "id": "form:CA.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1067,8 +1067,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
+          ],
+          "sha256": "8fca61203c706d153bae57a07362d26ecf119e1091cb53947920d610ed13c4cf"
         }
       }
     },
@@ -1229,9 +1248,9 @@
     {
       "id": "form:CA-AB.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1240,8 +1259,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-AB.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/"
+          ],
+          "sha256": "f9381838e00a7c72675d2b4c5b01ea3077b0fecb206ff1a127c9310defecca3f"
         }
       }
     },
@@ -1598,9 +1636,9 @@
     {
       "id": "form:CA-BC.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1609,8 +1647,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-BC.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
+          ],
+          "sha256": "9ceb8b33cb7228688522911d49b48de90330b61e5cb66d1318b029fbd09a49c0"
         }
       }
     },
@@ -1777,9 +1834,9 @@
     {
       "id": "form:CA-QC.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1788,8 +1845,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-QC.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/sites/default/files/documents/a2-travail-espace-clos.pdf"
+          ],
+          "sha256": "a66d0d68317720cce9e1d091ee8eb675294ffe05c6eb19e03817cf411264fb03"
         }
       }
     },
@@ -1953,9 +2029,9 @@
     {
       "id": "form:DE.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1964,8 +2040,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:DE.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://publikationen.dguv.de/widgets/pdf/download/article/915"
+          ],
+          "sha256": "adc2192bbabf9f97be7232d80903465c579a58cf3cefc9e06a643e64d3f36dda"
         }
       }
     },
@@ -2127,9 +2222,9 @@
     {
       "id": "form:JP.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2138,8 +2233,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:JP.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.mhlw.go.jp/web/t_doc?dataId=00tb2089&dataType=1&pageNo=1"
+          ],
+          "sha256": "fcf09e6be0f1a83a42e27d6cb3d036ff9b4dee08549b7dcd05a976fd6eda46ad"
         }
       }
     },
@@ -2300,9 +2414,9 @@
     {
       "id": "form:FR.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2311,8 +2425,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:FR.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.inrs.fr/risques/espaces-confines/prevenir-risques",
+            "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
+          ],
+          "sha256": "e41cc1e3914f12a1f46d6e2aec6e512c7129ac8ae2ffc1fb831664dca7051b2a"
         }
       }
     },
@@ -2474,9 +2608,9 @@
     {
       "id": "form:IT.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2485,8 +2619,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:IT.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.regione.emilia-romagna.it/sicurezza-nei-luoghi-di-lavoro/documentazione/linee-guida/2012/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/@@download/file"
+          ],
+          "sha256": "8fa20ac097eeed353d3c9fc08a573ac6f6f36aacbedc9420da80c502ac1f75ed"
         }
       }
     },
@@ -2648,9 +2801,9 @@
     {
       "id": "form:ES.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2659,8 +2812,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:ES.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+          ],
+          "sha256": "91a54bbda54e8101ad90e651452943389330f2bc2f6968e80a360243ad187860"
         }
       }
     },
@@ -2916,9 +3088,9 @@
     {
       "id": "form:BR.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-permit-followup-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2927,8 +3099,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:BR.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
+          ],
+          "sha256": "597239208fd46e4d7687b0217f02097094e7f2da731a75411535739b5125cb3c"
         }
       }
     },
@@ -8970,6 +9161,41 @@
       }
     },
     {
+      "id": "task:brPermitScope",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language generic PT versus full NR-33 PET, links to PGR/rescue, and no automatic renewal, compliant digital signature or statutory archive from PDF/copy.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brPermitScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language generic PT versus full NR-33 PET, links to PGR/rescue, and no automatic renewal, compliant digital signature or statutory archive from PDF/copy.",
+          "sha256": "5cdcaa875bd2fda76af1591880a3db1dac7f08dd29ffcf68c38c14e94eb6d62f"
+        }
+      }
+    },
+    {
       "id": "task:brPetDetail",
       "evidence": [
         "regional-task-review.md",
@@ -9935,6 +10161,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "13d6ca991015d43895169ea7c412830f83d4aa95e40e44f62e5fb7d8465501a0"
+        }
+      }
+    },
+    {
+      "id": "task:dePermitScope",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language Erlaubnisschein versus conditional Betriebsanweisung alternative under DGUV 113-004, consistently identical conditions/effective controls; not generic-copy exemption.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:dePermitScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language Erlaubnisschein versus conditional Betriebsanweisung alternative under DGUV 113-004, consistently identical conditions/effective controls; not generic-copy exemption.",
+          "sha256": "2e058e64853dd3a3011cb3265e1b2d429390dbe02c9a82b5eb8dbf879cfcbb10"
         }
       }
     },
@@ -11013,6 +11274,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "c3bf0c8b9929bd49ebc055d7d32cfcb96a268b9f51ad33f82602163b2b95b35c"
+        }
+      }
+    },
+    {
+      "id": "task:frPermitScope",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language personal autorisation de travail, operation permis de pénétrer, permis de feu and plan de prévention distinctions, each separately satisfied.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frPermitScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language personal autorisation de travail, operation permis de pénétrer, permis de feu and plan de prévention distinctions, each separately satisfied.",
+          "sha256": "52e67ace732032721d461cea6fe1305a03f33e85bc032b73474441b61b174de7"
         }
       }
     },
@@ -12671,6 +12967,41 @@
       }
     },
     {
+      "id": "task:jpPermitScope",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language 1997 steel-sector non-routine-work guidance boundary; no all-industry permit mandate or replacement of task-specific qualifications/procedures.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:jpPermitScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language 1997 steel-sector non-routine-work guidance boundary; no all-industry permit mandate or replacement of task-specific qualifications/procedures.",
+          "sha256": "d8fba2b28e0a0299b1f5e051a57e92abae1968b8ba8853b2dfa40ad577c05812"
+        }
+      }
+    },
+    {
       "id": "task:krAssessmentCycle",
       "evidence": [
         "regional-kr-on-form-review-20261005.md"
@@ -13779,6 +14110,41 @@
       }
     },
     {
+      "id": "task:permitArchiveRecord",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language remaining hazards, continuing controls, handback and identified records custody/retention basis; no claim of software-guaranteed statutory retention.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:permitArchiveRecord",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language remaining hazards, continuing controls, handback and identified records custody/retention basis; no claim of software-guaranteed statutory retention.",
+          "sha256": "63cfa390b224bd8bd51258bfa670838bf301c9ab32d2fd7745c7a9c7e3da3ba9"
+        }
+      }
+    },
+    {
       "id": "task:permitCloseout",
       "evidence": [
         "regional-task-review.md",
@@ -13923,6 +14289,41 @@
       }
     },
     {
+      "id": "task:permitLinkedRecords",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language linkage of specialised permits/procedures/prevention records with identity, revision, current validity and on-site access; no permit issued by reference alone.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:permitLinkedRecords",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language linkage of specialised permits/procedures/prevention records with identity, revision, current validity and on-site access; no permit issued by reference alone.",
+          "sha256": "4471695279859c694778154060921f00cd5176ad40b6fedf3f5dd1102cc0fb2f"
+        }
+      }
+    },
+    {
       "id": "task:permitRecord",
       "evidence": [
         "regional-task-review.md",
@@ -13955,6 +14356,76 @@
           ],
           "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
           "sha256": "7eae45f3f822ab2d620e307b8103d889d8ec633a1c786bd6347f87af06256329"
+        }
+      }
+    },
+    {
+      "id": "task:permitRestartRecord",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language stop/change/shift/expiry review and responsible timed reissue/revalidation decision; conditional site reassessment rather than automatic renewal.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:permitRestartRecord",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language stop/change/shift/expiry review and responsible timed reissue/revalidation decision; conditional site reassessment rather than automatic renewal.",
+          "sha256": "e308de46696657b570a4893a4ac33eb6726af431bef318e28da90eaee8702083"
+        }
+      }
+    },
+    {
+      "id": "task:permitRoleAssignments",
+      "evidence": [
+        "regional-permit-followup-review-20261006.md"
+      ],
+      "note": "Ten-language actual role assignments, organisations/contacts, required competence and briefing/acceptance; runtime people, not automatically reused personnel or qualification certification.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:permitRoleAssignments",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-permit-followup-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language actual role assignments, organisations/contacts, required competence and briefing/acceptance; runtime people, not automatically reused personnel or qualification certification.",
+          "sha256": "77430bd26e6faf16bd37da369bb075df9fd02dbf4f41202fbb74980f42d86347"
         }
       }
     },
@@ -18421,7 +18892,7 @@
     {
       "id": "title:CA.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18601,7 +19072,7 @@
     {
       "id": "title:CA-AB.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18961,7 +19432,7 @@
     {
       "id": "title:CA-BC.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19141,7 +19612,7 @@
     {
       "id": "title:CA-QC.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19321,7 +19792,7 @@
     {
       "id": "title:DE.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19501,7 +19972,7 @@
     {
       "id": "title:JP.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19681,7 +20152,7 @@
     {
       "id": "title:FR.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19861,7 +20332,7 @@
     {
       "id": "title:IT.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20041,7 +20512,7 @@
     {
       "id": "title:ES.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20401,7 +20872,7 @@
     {
       "id": "title:BR.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-permit-followup-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

@@ -2,6 +2,7 @@ import { COUNTRY_FORM_SOURCES } from './regionalCountryFormSources20261005.js';
 import { FR_ES_FORM_SOURCES } from './regionalFrEsFormSources20261005.js';
 import { IT_BR_QC_FORM_SOURCES } from './regionalItBrQcFormSources20261005.js';
 import { KR_ON_FORM_SOURCES } from './regionalKrOnFormSources20261005.js';
+import { FOLLOWUP_PERMIT_SOURCES } from './regionalPermitSources20261006.js';
 // Source-to-field review of generic starter forms, not sector permit approval.
 const source = (title, url, scope) => ({ title, url, scope, basis: 'official-guidance', checkedAt: '2026-10-05' });
 const gbRisk = source('HSE · Risk assessment templates', 'https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm', 'Great Britain: hazards, affected people, controls, action owners and dates; site-specific assessment required.');
@@ -32,6 +33,7 @@ const jpProcedure = source('厚生労働省 · 設備の経年化による労働
 const jpInspection = source('厚生労働省 · 3ステップでやさしく導入 労働安全衛生マネジメントシステム (2013)', 'https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf', 'Printed pages 71–73: routine inspection, procedures, timing/owners/method, corrective action and feedback to planning. Generic worksite check, not whole-OSHMS certification; example monthly dates and specific equipment checks are not imported as universal rules.');
 export const REGIONAL_FORM_SOURCES = {
   ...KR_ON_FORM_SOURCES,
+  ...FOLLOWUP_PERMIT_SOURCES,
   ...IT_BR_QC_FORM_SOURCES,
   ...FR_ES_FORM_SOURCES,
   ...COUNTRY_FORM_SOURCES,

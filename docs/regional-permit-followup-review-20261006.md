@@ -1,0 +1,49 @@
+# Generic permit review — ten jurisdictions
+
+Checked 2026-10-06. Stage ② concerns requirements/fields; stage ③ concerns terminology. This batch covers **CA, CA-AB, CA-BC, CA-QC, DE, JP, FR, IT, ES and BR**, one generic permit each, in all ten document languages. Case Study, guidelines, published user documents and database schema are outside this change.
+
+## Field-to-source comparison
+
+The generic document coordinates the actual applicable authorisations. It is not a replica of every specialised entry/hot-work/electrical permit. All ten retain work/area/period, precautions, isolation, fresh measurement records, emergency arrangements, issue/acceptance, suspension and handback. The following gaps were filled:
+
+| Fields | Implemented treatment |
+| --- | --- |
+| `frameworkBasis`, `competency`, `permitCoordination` | Fresh applicability, qualified roles and simultaneous/contractor-work checks before issue. No default approval. |
+| `permitLinkedRecords` | Identify specialist permits/procedures/prevention plans, revisions, current status and access location. A saved reference does not issue the linked permit. |
+| `permitRoleAssignments` | Actual names, organisations, contacts, competence and briefing/acceptance by role. A runtime worker field; never reuse past assigned people automatically. |
+| `permitRestartRecord` | Record interruption/change/shift/expiry, reassessment and responsible person/time/decision for reissue or revalidation. No automatic renewal. |
+| `permitArchiveRecord` | Record residual hazards, continuing controls, equipment handback, record location/custodian and applicable retention basis. Does not implement guaranteed statutory retention. |
+| `permitScope`, jurisdiction notice | Generic-form limits and, for DE/JP/FR/BR, the particular distinction below. Canadian provincial records retain the federal/provincial applicability notice. |
+
+## Sources actually examined and limits
+
+Source metadata and exact per-form URLs are in `src/utils/regionalPermitSources20261006.js`. Existing sources for unrelated forms are unchanged.
+
+| Profile | Official source/body examined | Consequence and boundary |
+| --- | --- | --- |
+| CA | [CCOHS confined-space programme](https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html), programme and entry-permit sections | Names/roles, hazards, tests, period, rescue/communication, authorisation and accessible records support the coordination fields. General Canadian guidance is not a nationwide statutory permit requirement. |
+| CA-AB | [Alberta OHS Code Part 5](https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/), sections 45–48 | Link the code of practice and actual confined-space permit, competent sign-off and accessible copy. A restricted-space classification is not automatically a confined-space permit requirement. |
+| CA-BC | [WorkSafeBC Part 9](https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces), 9.13–9.16 | Permit triggers are conditional. Responsible supervision, posting, expiry, authorised amendments and reauthorisation on crew/shift/supervisor changes differ from simply copying yesterday's form. The one-year signed-record rule belongs to this entry-permit context. |
+| CA-QC | [CNESST-hosted workshop PDF](https://www.cnesst.gouv.qc.ca/sites/default/files/documents/a2-travail-espace-clos.pdf), qualified preparation, unexpected-condition/reassessment and rescue sections | Use for coordination, control records and qualified reassessment; workshop material is not a full current RSST/CSTC consolidation. Existing partial-source task reviews remain open. No claim of reading a complete native permit from its miniature slide image. |
+| DE | [DGUV 113-004 PDF](https://publikationen.dguv.de/widgets/pdf/download/article/915), February 2019, 4.2.4–4.2.9 | Responsible issuer, supervisor/standby/contractor acknowledgement, changed/interrupted work and release of precautions. The Betriebsanweisung alternative is conditional on consistently identical conditions and effective controls; reusable generic paperwork is not that exception. |
+| JP | [MHLW steel-industry non-routine-work guidance](https://www.mhlw.go.jp/web/t_doc?dataId=00tb2089&dataType=1&pageNo=1), 1997, section 6(3) | Named command/witness/watch/workers, prior permission, scope/time/controls/prohibitions, display, changed-work approval and overrun renewal. This is a steel-sector workflow reference, not an all-industry permit mandate or a current qualification-law review. |
+| FR | [INRS confined-space prevention](https://www.inrs.fr/risques/espaces-confines/prevenir-risques) and [ED 6030 PDF](https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf), 2019, printed pages 5–11 | Distinguish nominative autorisation de travail from the operation's permis de pénétrer, hot-work permis de feu and plan de prévention. Identify user/intervening-company roles; reassess changed conditions and daily/shift validity where applicable. Post-work surveillance/handback and archive guidance remain separate from universal legal intervals. |
+| IT | [2012 Commissione consultiva manual, regional-government mirror PDF](https://www.regione.emilia-romagna.it/sicurezza-nei-luoghi-di-lavoro/documentazione/linee-guida/2012/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/@@download/file), Annex 1-a | Client/contractor/employer representative/preposto/worker roles, procedures/tests, acknowledgement and rechecks after interruption support the fields. Historical coordinated-work example; no assertion that old training durations meet subsequent law. Annex 1-b is not claimed fully reviewed. |
+| ES | [INSST NTP 562 full HTML body](https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.), authorisation procedure and example | Distinguish installation and execution responsibility plus workers' acknowledgement. Reference procedures, attached checks, limited validity, changed conditions/overruns, handback and archive. This is an adaptable good-practice example, not a universally mandatory form. The publication's own age/legal-status qualification is retained. |
+| BR | [MTE NR-33, rectified 2022 PDF](https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf), 33.5.2–33.5.21 | Link the actual PET/PGR/rescue procedure; roles, fresh tests, signatures, access and traceable records matter. Shift validity/conditional extension does not mean automatic 24-hour permission. Generic PT/PDF storage is not a full PET, compliant digital signature or guaranteed five-year archive. |
+
+## Terminology review
+
+Eight additions × ten languages (ko/en/de/ja/fr/it/es/ar/pt/ru): four record prompts and four jurisdiction notices. Reviewed the distinction between assigned roles and reusable job descriptions; restart decision versus automatic extension; applicable retention basis versus software-guaranteed storage; and linked specialist permits versus general PTW. German Erlaubnisschein/Betriebsanweisung, French authorisation de travail/permis de pénétrer/permis de feu, Brazilian PT/PET/PGR, and the Japanese steel-sector scope remain distinct in every translation. Arabic text is also checked in the rendered output.
+
+The previous **520 terminology hashes and 69 form hashes** must remain identical before adding these eight terminology closures and ten generic-form closures. No hazardous-task closure is inferred from this generic permit work. The 13 partial-source task combinations and RU height/confined/electrical native terminology groups remain open.
+
+## Verification
+
+Automated coverage checks 10 profiles × 10 languages: unique fields, applicable source metadata, blank runtime verification/people, fresh measurements after start/duplication, independent copies, unchanged older saved versions, specialist-task addition and absence of these additions from unrelated forms. Progress is generated from per-item evidence and fingerprints, not an estimate of time or a legal-compliance percentage.
+
+Results: **207/207 automated tests pass**, targeted ESLint and Vite client build (870 modules) pass. The audit was rechecked after correcting its displayed date to 2026-10-06. Previous 520 term/69 form hashes were verified unchanged before appending closures. Inventory generation checks 890 generic forms and 720 task forms.
+
+Five isolated browser flows pass with actual PDF generation and mocked remote persistence: CA-BC English (12 pages), DE German (12), JP Japanese (11), BR Portuguese (14), and FR jurisdiction with Arabic document text (13). All **62 PDF pages** were rendered with Poppler and visually inspected, including the new permit fields and RTL/mixed-native-term notice. No overlapping or clipped content observed. Some last pages remain sparse because complete field blocks move together; this batch does not change the shared renderer. The English source JSA sample remains English by design rather than being silently translated.
+
+Each browser flow covers mobile editing, source mapping, review gate, save payload and immutable output snapshot. Existing Windows browser-shutdown `Access denied` stderr occurred after PASS with exit 0; build retains its bundle-size warning. Full ten-language PDF visual coverage, physical printing, live-account access and server prerender release checks were not repeated in this batch. This is a draft-PR upload, not deployment.

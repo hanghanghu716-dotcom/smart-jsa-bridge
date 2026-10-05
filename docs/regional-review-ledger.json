@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.17",
+  "inventoryVersion": "2026-10-06.18",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 275,
+    "taskVocabularyKeys": 283,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -411,12 +411,13 @@
       "jurisdiction": "CA",
       "kind": "permit_to_work",
       "title": "Permit to Work",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
-        "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+        "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+        "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA.toolbox_talk",
@@ -475,13 +476,14 @@
       "jurisdiction": "CA-AB",
       "kind": "permit_to_work",
       "title": "Safe Work Permit",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/"
+        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-AB.toolbox_talk",
@@ -617,13 +619,14 @@
       "jurisdiction": "CA-BC",
       "kind": "permit_to_work",
       "title": "Permit to Work",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks"
+        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+        "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-BC.toolbox_talk",
@@ -694,14 +697,15 @@
       "jurisdiction": "CA-QC",
       "kind": "permit_to_work",
       "title": "Permis de travail",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://www.cnesst.gouv.qc.ca/fr/salle-presse/communiques/nouveau-reglement-prevention",
-        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action",
+        "https://www.cnesst.gouv.qc.ca/sites/default/files/documents/a2-travail-espace-clos.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-QC.toolbox_talk",
@@ -767,12 +771,13 @@
       "jurisdiction": "DE",
       "kind": "permit_to_work",
       "title": "Arbeitserlaubnis",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
-        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7"
+        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7",
+        "https://publikationen.dguv.de/widgets/pdf/download/article/915"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "DE.toolbox_talk",
@@ -836,13 +841,14 @@
       "jurisdiction": "JP",
       "kind": "permit_to_work",
       "title": "作業許可書",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.mhlw.go.jp/content/11300000/001411913.pdf",
-        "https://www.mhlw.go.jp/content/11300000/001413029.pdf"
+        "https://www.mhlw.go.jp/content/11300000/001413029.pdf",
+        "https://www.mhlw.go.jp/web/t_doc?dataId=00tb2089&dataType=1&pageNo=1"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "JP.toolbox_talk",
@@ -906,13 +912,15 @@
       "jurisdiction": "FR",
       "kind": "permit_to_work",
       "title": "Permis de travail",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
-        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html"
+        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html",
+        "https://www.inrs.fr/risques/espaces-confines/prevenir-risques",
+        "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "FR.toolbox_talk",
@@ -977,13 +985,14 @@
       "jurisdiction": "IT",
       "kind": "permit_to_work",
       "title": "Permesso di lavoro",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.inail.it/portale/prevenzione-e-sicurezza/it/prevenzione-e-sicurezza/prevenzione-per-la-salute-e-la-sicurezza-sul-lavoro/strumenti-per-la-valutazione-del-rischio.html",
-        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf"
+        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf",
+        "https://www.regione.emilia-romagna.it/sicurezza-nei-luoghi-di-lavoro/documentazione/linee-guida/2012/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/@@download/file"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "IT.toolbox_talk",
@@ -1049,13 +1058,13 @@
       "jurisdiction": "ES",
       "kind": "permit_to_work",
       "title": "Autorización de trabajo especial",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.insst.es/documents/94886/2927460/Directrices%20evaluaci%C3%B3n%20de%20riesgos.pdf",
         "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "ES.toolbox_talk",
@@ -1185,13 +1194,14 @@
       "jurisdiction": "BR",
       "kind": "permit_to_work",
       "title": "Permissão de Trabalho (PT)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-permit-followup-review-20261006.md",
       "sourceUrls": [
         "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
-        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35"
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35",
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "BR.toolbox_talk",
@@ -6708,6 +6718,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:brPermitScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
+    },
+    {
       "id": "task:brPetDetail",
       "languages": [
         "ko",
@@ -7165,6 +7192,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:dePermitScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
     },
     {
       "id": "task:deProcedureScope",
@@ -7675,6 +7719,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:frPermitScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
     },
     {
       "id": "task:frTaskFormScope",
@@ -8459,6 +8520,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:jpPermitScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
+    },
+    {
       "id": "task:krAssessmentCycle",
       "languages": [
         "ko",
@@ -8986,6 +9064,23 @@
       "evidence": "regional-kr-on-form-review-20261005.md"
     },
     {
+      "id": "task:permitArchiveRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
+    },
+    {
       "id": "task:permitCloseout",
       "languages": [
         "ko",
@@ -9054,6 +9149,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:permitLinkedRecords",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
+    },
+    {
       "id": "task:permitRecord",
       "languages": [
         "ko",
@@ -9069,6 +9181,40 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:permitRestartRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
+    },
+    {
+      "id": "task:permitRoleAssignments",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-permit-followup-review-20261006.md"
     },
     {
       "id": "task:permitScope",

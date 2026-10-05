@@ -65,7 +65,7 @@ test('provincial and German additions retain scope and do not rewrite older save
       assert.equal(field(restored, 'frameworkBasis'), undefined);
       const permit = make(country, 'permit_to_work', language);
       assert.notEqual(permit.regional.version, '2026-10-05.14');
-      assert.equal(field(permit, 'frameworkBasis'), undefined);
+      assert.equal(field(permit, 'frameworkBasis').kind, 'verification');
     }
     assert.equal(field(make('CA-AB', 'toolbox_talk', language), 'bcMeetingBasis'), undefined);
     assert.equal(field(make('DE', 'inspection', language), 'bcInspectionParticipation'), undefined);
