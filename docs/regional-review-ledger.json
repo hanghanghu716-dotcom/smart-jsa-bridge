@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.15",
+  "inventoryVersion": "2026-10-05.16",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 261,
+    "taskVocabularyKeys": 267,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -652,28 +652,32 @@
       "jurisdiction": "CA-QC",
       "kind": "risk_assessment",
       "title": "Analyse de la sécurité des tâches (AST)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://www.cnesst.gouv.qc.ca/fr/salle-presse/communiques/nouveau-reglement-prevention",
-        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action",
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail",
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-QC.method_statement",
       "jurisdiction": "CA-QC",
       "kind": "method_statement",
       "title": "Méthode de travail sécuritaire",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://www.cnesst.gouv.qc.ca/fr/salle-presse/communiques/nouveau-reglement-prevention",
-        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action",
+        "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-QC.permit_to_work",
@@ -694,28 +698,31 @@
       "jurisdiction": "CA-QC",
       "kind": "toolbox_talk",
       "title": "Rencontre de sécurité",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://www.cnesst.gouv.qc.ca/fr/salle-presse/communiques/nouveau-reglement-prevention",
-        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action",
+        "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-QC.inspection",
       "jurisdiction": "CA-QC",
       "kind": "inspection",
       "title": "Liste d’inspection du milieu de travail",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://www.cnesst.gouv.qc.ca/fr/salle-presse/communiques/nouveau-reglement-prevention",
-        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action",
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+        "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "DE.risk_assessment",
@@ -930,26 +937,30 @@
       "jurisdiction": "IT",
       "kind": "risk_assessment",
       "title": "Valutazione dei rischi – scheda di attività",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inail.it/portale/prevenzione-e-sicurezza/it/prevenzione-e-sicurezza/prevenzione-per-la-salute-e-la-sicurezza-sul-lavoro/strumenti-per-la-valutazione-del-rischio.html",
-        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf"
+        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/valutare-il-rischio.html",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "IT.method_statement",
       "jurisdiction": "IT",
       "kind": "method_statement",
       "title": "Procedura di lavoro sicuro",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inail.it/portale/prevenzione-e-sicurezza/it/prevenzione-e-sicurezza/prevenzione-per-la-salute-e-la-sicurezza-sul-lavoro/strumenti-per-la-valutazione-del-rischio.html",
-        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf"
+        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "IT.permit_to_work",
@@ -969,26 +980,29 @@
       "jurisdiction": "IT",
       "kind": "toolbox_talk",
       "title": "Riunione di sicurezza",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inail.it/portale/prevenzione-e-sicurezza/it/prevenzione-e-sicurezza/prevenzione-per-la-salute-e-la-sicurezza-sul-lavoro/strumenti-per-la-valutazione-del-rischio.html",
-        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf"
+        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "IT.inspection",
       "jurisdiction": "IT",
       "kind": "inspection",
       "title": "Lista di controllo della sicurezza",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inail.it/portale/prevenzione-e-sicurezza/it/prevenzione-e-sicurezza/prevenzione-per-la-salute-e-la-sicurezza-sul-lavoro/strumenti-per-la-valutazione-del-rischio.html",
-        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf"
+        "https://www.inail.it/content/dam/inail-hub-site/documenti/2016/03/ELABORAZIONE-DEL-DUVRI.pdf",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
+        "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "ES.risk_assessment",
@@ -1133,26 +1147,28 @@
       "jurisdiction": "BR",
       "kind": "risk_assessment",
       "title": "Análise de Risco da Tarefa (AR)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
-        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35"
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35",
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "BR.method_statement",
       "jurisdiction": "BR",
       "kind": "method_statement",
       "title": "Procedimento de Trabalho Seguro",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
-        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35"
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35",
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "BR.permit_to_work",
@@ -1172,26 +1188,28 @@
       "jurisdiction": "BR",
       "kind": "toolbox_talk",
       "title": "Diálogo Diário de Segurança (DDS)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
-        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35"
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35",
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "BR.inspection",
       "jurisdiction": "BR",
       "kind": "inspection",
       "title": "Lista de Verificação de Segurança",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-it-br-qc-form-review-20261005.md",
       "sourceUrls": [
         "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
-        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35"
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35",
+        "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "RU.risk_assessment",
@@ -6697,6 +6715,57 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:brReviewCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-it-br-qc-form-review-20261005.md"
+    },
+    {
+      "id": "task:brRiskCoverage",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-it-br-qc-form-review-20261005.md"
+    },
+    {
+      "id": "task:brTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-it-br-qc-form-review-20261005.md"
+    },
+    {
       "id": "task:briefingFollowup",
       "languages": [
         "ko",
@@ -8227,6 +8296,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:itTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-it-br-qc-form-review-20261005.md"
+    },
+    {
       "id": "task:jointHazardRecord",
       "languages": [
         "ko",
@@ -9194,6 +9280,40 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:qcRiskCoverage",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-it-br-qc-form-review-20261005.md"
+    },
+    {
+      "id": "task:qcTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-it-br-qc-form-review-20261005.md"
     },
     {
       "id": "task:record",

@@ -1087,5 +1087,279 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
     ],
     "sha256": "0d476305687fb31438680ad3484f95a17511a77f940a9dcda63882e6b7c6fcd7"
+  },
+  {
+    "id": "form:IT.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/valutare-il-rischio.html",
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
+    ],
+    "sha256": "f2be87d621c52ab9deb75f525738dd96d1f9b128e9cc4a689aa15064304e91a4"
+  },
+  {
+    "id": "form:IT.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html",
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
+    ],
+    "sha256": "37c7492f6b9a9365b63edbbf14b114aa378a67cb51802e90bed43e07efeb18c2"
+  },
+  {
+    "id": "form:IT.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
+    ],
+    "sha256": "9b7ea82927d00c16c366b6b99518fc7269a7c657de5432da332abfdd9752e3f0"
+  },
+  {
+    "id": "form:IT.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
+    ],
+    "sha256": "b5136df6b56174f77e5f641bc9c60a9cf2a4656d0e243460eeed2a437e4cfba1"
+  },
+  {
+    "id": "form:BR.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "ba314dddf6208e725518b3b6c68f1d285c7842ea4debe7101a5b4ff0062bec27"
+  },
+  {
+    "id": "form:BR.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "78344f5b38bd123b98b2b68bbbe4bb63c9abcb14864e8bf43407f324740cdd0a"
+  },
+  {
+    "id": "form:BR.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "253f3afb17405543273ae3ef4f23574a7564fc022d099703447c1f17ed793381"
+  },
+  {
+    "id": "form:BR.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "f5e170454347089e3da7133c143855ede0ae9c094249368c1fd464dbbaee94d3"
+  },
+  {
+    "id": "form:CA-QC.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "c7884a83173a114e7e97e4c165448c03f14dfb99e4f583c753717d1e165ccddf"
+  },
+  {
+    "id": "form:CA-QC.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "363dbed5cf2f82eb3fe629d4e119b65f671ed90cf27720a5e6f6fbb2c6683c6a"
+  },
+  {
+    "id": "form:CA-QC.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "49725ce7fafdab7895e1553468c4563aa4d8cb257f6e282b1f567611f03f2a1e"
+  },
+  {
+    "id": "form:CA-QC.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "addc69bcffe1cb52aae66ca637c9866a54a39e0231f166ec072aeaf835dff09a"
   }
 ]

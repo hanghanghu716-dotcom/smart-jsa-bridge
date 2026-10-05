@@ -9929,5 +9929,119 @@
     ],
     "scope": "Ten-language per-action people/equipment/budget, implementation conditions and effectiveness criteria; fresh site decisions, not inherited approval, certification or cost estimate.",
     "sha256": "39e0f04f9842540c40113374ca9fbbac591215f6d0a09a71ed86248ac59dfdb0"
+  },
+  {
+    "id": "task:itTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language task-record versus DVR/DUVRI, training/practical instruction and specialist equipment verification distinction; INAIL guidance scope, not a current full-law certification.",
+    "sha256": "589475cd983395278e4eeb1528eceff7ddcf2caf16a9f01d88f627cd5a1751e5"
+  },
+  {
+    "id": "task:brTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language PGR inventory/action-plan link, DDS versus NR training and output versus electronic-signature compliance distinction.",
+    "sha256": "db61894f0f2beb5fbef20660675014bbcedf8e607bf57172f12869777c5afcc0"
+  },
+  {
+    "id": "task:qcTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language Quebec programme/plan distinction, applicability not determined solely by headcount, separate construction requirements and training boundary.",
+    "sha256": "96a2bb32e7c667d27bdf1ab62c3ffc67460dfc39228616573c6f9cc640df95d8"
+  },
+  {
+    "id": "task:brRiskCoverage",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language occupational risk categories, work-related psychosocial factors, foreseeable external hazards and exposed groups; no personal diagnostic data requested.",
+    "sha256": "e20ea80bf9855859b3ef8a4b183a2bc675dffe396496b7840368f9fb27dbc351"
+  },
+  {
+    "id": "task:brReviewCycle",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language two-year NR-1 review, conditional up-to-three-year certified OSH-system exception and earlier review triggers; not automatic timing or certification.",
+    "sha256": "1be396069ec90c81dc6d74de05503bd1c3034be9cb1618fb9491900bd182ef91"
+  },
+  {
+    "id": "task:qcRiskCoverage",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language psychosocial and workers aged 16 or under risk coverage; inclusive age boundary and site applicability, not permission for minors to perform dangerous work.",
+    "sha256": "180f4c88bbbf2c721c7e194e704e943d6b257cad1a949d824318151889d256ba"
   }
 ]

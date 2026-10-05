@@ -7,6 +7,7 @@ import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { REGIONAL_FORM_SOURCES } from './regionalFormSources20261005.js';
 import { COUNTRY_FORM_IDS } from './regionalCountryFormSources20261005.js';
 import { FR_ES_FORM_IDS } from './regionalFrEsFormSources20261005.js';
+import { IT_BR_QC_FORM_IDS } from './regionalItBrQcFormSources20261005.js';
 
 // These are editable starter forms, not regulator-issued or certified forms.
 export const TEMPLATE_VERSION = '2026-10-05.8';
@@ -59,7 +60,8 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   const context = workContext(value), entry = regionalTemplates(context).find(t => t.kind === kind);
   if (!entry?.available) throw Error('WORK_TEMPLATE_UNAVAILABLE');
   const frEsForm = FR_ES_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
-  const countryForm = frEsForm || COUNTRY_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
+  const itBrQcForm = IT_BR_QC_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
+  const countryForm = itBrQcForm || frEsForm || COUNTRY_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
   const txt = (k, e) => regionalText(context.documentLocale, e, k);
   const reviewedText = key => taskSafetyText(context.documentLocale, key);
   const field = (key, label, fieldKind = 'text', mode = 'runtime', content = '') => ({
@@ -204,13 +206,27 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   }
   if (countryForm) {
     blocks.splice(1, 0, field('frameworkBasis', reviewedText('frameworkBasis'), 'verification'));
-    if (context.jurisdiction.startsWith('CA-')) blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText('caScope')));
+    if (['CA-AB', 'CA-BC'].includes(context.jurisdiction)) blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText('caScope')));
   }
   if (frEsForm) {
     blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText(context.jurisdiction === 'FR' ? 'frTaskFormScope' : 'esTaskFormScope')));
     if (['risk_assessment', 'inspection'].includes(kind)) blocks.push(
       field('preventionPlanLink', reviewedText('preventionPlanLink'), 'verification'),
       field('actionResources', reviewedText('actionResources'), 'verification'));
+  }
+  if (itBrQcForm) {
+    const scopeKey = { IT: 'itTaskFormScope', BR: 'brTaskFormScope', 'CA-QC': 'qcTaskFormScope' }[context.jurisdiction];
+    blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText(scopeKey)));
+    if (['risk_assessment', 'inspection'].includes(kind)) blocks.push(
+      field('preventionPlanLink', reviewedText('preventionPlanLink'), 'verification'),
+      field('actionResources', reviewedText('actionResources'), 'verification'));
+    if (kind === 'risk_assessment' && context.jurisdiction === 'BR') blocks.push(
+      field('brRiskCoverage', reviewedText('brRiskCoverage'), 'verification'),
+      field('brReviewCycle', reviewedText('brReviewCycle'), 'verification'));
+    if (kind === 'risk_assessment' && context.jurisdiction === 'CA-QC') blocks.push(
+      field('qcRiskCoverage', reviewedText('qcRiskCoverage'), 'verification'));
+    if (kind === 'method_statement' && context.jurisdiction === 'BR') blocks.splice(1, 0,
+      field('contractorCoordination', txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record'), 'verification'));
   }
   const profile = REGIONAL_CATALOG[context.jurisdiction];
   if (profile?.extra) blocks.splice(1, 0, field('jurisdictionReview', regionalText(context.documentLocale, profile.extra, {
@@ -237,7 +253,7 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   const newlyReviewed = (['GB', 'US', 'JP'].includes(context.jurisdiction) && kind === 'inspection')
     || (context.jurisdiction === 'US' && kind === 'toolbox_talk')
     || (context.jurisdiction === 'JP' && kind === 'method_statement');
-  const baseVersion = frEsForm ? '2026-10-05.15' : countryForm ? '2026-10-05.14' : kind === 'permit_to_work' && ['US', 'AU', 'SG'].includes(context.jurisdiction) ? '2026-10-05.12'
+  const baseVersion = itBrQcForm ? '2026-10-05.16' : frEsForm ? '2026-10-05.15' : countryForm ? '2026-10-05.14' : kind === 'permit_to_work' && ['US', 'AU', 'SG'].includes(context.jurisdiction) ? '2026-10-05.12'
     : newlyReviewed ? '2026-10-05.11' : ['AU', 'JP'].includes(context.jurisdiction) ? '2026-10-05.10'
     : context.jurisdiction === 'SG' && kind !== 'permit_to_work' ? '2026-10-05.9' : TEMPLATE_VERSION;
   return {

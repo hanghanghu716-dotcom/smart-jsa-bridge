@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.15",
+  "evidenceVersion": "2026-10-05.16",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 348
+    "fieldVocabularyGroups": 354
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 357,
-      "pending": 126,
+      "completed": 369,
+      "pending": 114,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 113,
-      "completionPercent": 73.9,
-      "remainingPercent": 26.1
+      "pendingFinalVerification": 101,
+      "completionPercent": 76.4,
+      "remainingPercent": 23.6
     },
     "stage3": {
-      "reviewGroups": 509,
-      "checkpoints": 1527,
-      "completed": 1524,
+      "reviewGroups": 515,
+      "checkpoints": 1545,
+      "completed": 1542,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 670,
-      "checkpoints": 2010,
-      "completed": 1881,
-      "pending": 129,
+      "reviewGroups": 676,
+      "checkpoints": 2028,
+      "completed": 1911,
+      "pending": 117,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 116,
-      "completionPercent": 93.6,
-      "remainingPercent": 6.4
+      "pendingFinalVerification": 104,
+      "completionPercent": 94.2,
+      "remainingPercent": 5.8
     }
   },
   "stage2": [
@@ -1520,9 +1520,9 @@
     {
       "id": "form:CA-QC.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1531,17 +1531,38 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-QC.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+          ],
+          "sha256": "c7884a83173a114e7e97e4c165448c03f14dfb99e4f583c753717d1e165ccddf"
         }
       }
     },
     {
       "id": "form:CA-QC.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1550,8 +1571,29 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-QC.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+          ],
+          "sha256": "363dbed5cf2f82eb3fe629d4e119b65f671ed90cf27720a5e6f6fbb2c6683c6a"
         }
       }
     },
@@ -1577,9 +1619,9 @@
     {
       "id": "form:CA-QC.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1588,17 +1630,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-QC.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+          ],
+          "sha256": "49725ce7fafdab7895e1553468c4563aa4d8cb257f6e282b1f567611f03f2a1e"
         }
       }
     },
     {
       "id": "form:CA-QC.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1607,8 +1669,29 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-QC.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+          ],
+          "sha256": "addc69bcffe1cb52aae66ca637c9866a54a39e0231f166ec072aeaf835dff09a"
         }
       }
     },
@@ -2136,9 +2219,9 @@
     {
       "id": "form:IT.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2147,17 +2230,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:IT.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+          "sourceUrls": [
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/valutare-il-rischio.html",
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
+          ],
+          "sha256": "f2be87d621c52ab9deb75f525738dd96d1f9b128e9cc4a689aa15064304e91a4"
         }
       }
     },
     {
       "id": "form:IT.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2166,8 +2269,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:IT.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+          "sourceUrls": [
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html",
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
+          ],
+          "sha256": "37c7492f6b9a9365b63edbbf14b114aa378a67cb51802e90bed43e07efeb18c2"
         }
       }
     },
@@ -2193,9 +2316,9 @@
     {
       "id": "form:IT.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2204,17 +2327,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:IT.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+          "sourceUrls": [
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
+          ],
+          "sha256": "9b7ea82927d00c16c366b6b99518fc7269a7c657de5432da332abfdd9752e3f0"
         }
       }
     },
     {
       "id": "form:IT.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2223,8 +2365,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:IT.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+          "sourceUrls": [
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
+            "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
+          ],
+          "sha256": "b5136df6b56174f77e5f641bc9c60a9cf2a4656d0e243460eeed2a437e4cfba1"
         }
       }
     },
@@ -2501,9 +2663,9 @@
     {
       "id": "form:BR.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2512,17 +2674,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:BR.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+          ],
+          "sha256": "ba314dddf6208e725518b3b6c68f1d285c7842ea4debe7101a5b4ff0062bec27"
         }
       }
     },
     {
       "id": "form:BR.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2531,8 +2712,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:BR.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+          ],
+          "sha256": "78344f5b38bd123b98b2b68bbbe4bb63c9abcb14864e8bf43407f324740cdd0a"
         }
       }
     },
@@ -2558,9 +2758,9 @@
     {
       "id": "form:BR.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2569,17 +2769,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:BR.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+          ],
+          "sha256": "253f3afb17405543273ae3ef4f23574a7564fc022d099703447c1f17ed793381"
         }
       }
     },
     {
       "id": "form:BR.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-it-br-qc-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2588,8 +2807,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:BR.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+          ],
+          "sha256": "f5e170454347089e3da7133c143855ede0ae9c094249368c1fd464dbbaee94d3"
         }
       }
     },
@@ -8591,6 +8829,111 @@
       }
     },
     {
+      "id": "task:brReviewCycle",
+      "evidence": [
+        "regional-it-br-qc-form-review-20261005.md"
+      ],
+      "note": "Ten-language two-year NR-1 review, conditional up-to-three-year certified OSH-system exception and earlier review triggers; not automatic timing or certification.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brReviewCycle",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language two-year NR-1 review, conditional up-to-three-year certified OSH-system exception and earlier review triggers; not automatic timing or certification.",
+          "sha256": "1be396069ec90c81dc6d74de05503bd1c3034be9cb1618fb9491900bd182ef91"
+        }
+      }
+    },
+    {
+      "id": "task:brRiskCoverage",
+      "evidence": [
+        "regional-it-br-qc-form-review-20261005.md"
+      ],
+      "note": "Ten-language occupational risk categories, work-related psychosocial factors, foreseeable external hazards and exposed groups; no personal diagnostic data requested.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brRiskCoverage",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language occupational risk categories, work-related psychosocial factors, foreseeable external hazards and exposed groups; no personal diagnostic data requested.",
+          "sha256": "e20ea80bf9855859b3ef8a4b183a2bc675dffe396496b7840368f9fb27dbc351"
+        }
+      }
+    },
+    {
+      "id": "task:brTaskFormScope",
+      "evidence": [
+        "regional-it-br-qc-form-review-20261005.md"
+      ],
+      "note": "Ten-language PGR inventory/action-plan link, DDS versus NR training and output versus electronic-signature compliance distinction.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language PGR inventory/action-plan link, DDS versus NR training and output versus electronic-signature compliance distinction.",
+          "sha256": "db61894f0f2beb5fbef20660675014bbcedf8e607bf57172f12869777c5afcc0"
+        }
+      }
+    },
+    {
       "id": "task:briefingFollowup",
       "evidence": [
         "regional-task-review.md",
@@ -11828,6 +12171,41 @@
       }
     },
     {
+      "id": "task:itTaskFormScope",
+      "evidence": [
+        "regional-it-br-qc-form-review-20261005.md"
+      ],
+      "note": "Ten-language task-record versus DVR/DUVRI, training/practical instruction and specialist equipment verification distinction; INAIL guidance scope, not a current full-law certification.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language task-record versus DVR/DUVRI, training/practical instruction and specialist equipment verification distinction; INAIL guidance scope, not a current full-law certification.",
+          "sha256": "589475cd983395278e4eeb1528eceff7ddcf2caf16a9f01d88f627cd5a1751e5"
+        }
+      }
+    },
+    {
       "id": "task:jointHazardRecord",
       "evidence": [
         "regional-task-review.md",
@@ -13874,6 +14252,76 @@
           "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
           "evidence": "regional-batch-review-20261005.md",
           "sha256": "fe06d1f419fc14a0041def4c27ea1d5f9895d99d5e75cc4a869a7c1238b32445"
+        }
+      }
+    },
+    {
+      "id": "task:qcRiskCoverage",
+      "evidence": [
+        "regional-it-br-qc-form-review-20261005.md"
+      ],
+      "note": "Ten-language psychosocial and workers aged 16 or under risk coverage; inclusive age boundary and site applicability, not permission for minors to perform dangerous work.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcRiskCoverage",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language psychosocial and workers aged 16 or under risk coverage; inclusive age boundary and site applicability, not permission for minors to perform dangerous work.",
+          "sha256": "180f4c88bbbf2c721c7e194e704e943d6b257cad1a949d824318151889d256ba"
+        }
+      }
+    },
+    {
+      "id": "task:qcTaskFormScope",
+      "evidence": [
+        "regional-it-br-qc-form-review-20261005.md"
+      ],
+      "note": "Ten-language Quebec programme/plan distinction, applicability not determined solely by headcount, separate construction requirements and training boundary.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-it-br-qc-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language Quebec programme/plan distinction, applicability not determined solely by headcount, separate construction requirements and training boundary.",
+          "sha256": "96a2bb32e7c667d27bdf1ab62c3ffc67460dfc39228616573c6f9cc640df95d8"
         }
       }
     },
@@ -18164,7 +18612,7 @@
     {
       "id": "title:CA-QC.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18200,7 +18648,7 @@
     {
       "id": "title:CA-QC.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18272,7 +18720,7 @@
     {
       "id": "title:CA-QC.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18308,7 +18756,7 @@
     {
       "id": "title:CA-QC.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18884,7 +19332,7 @@
     {
       "id": "title:IT.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18920,7 +19368,7 @@
     {
       "id": "title:IT.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18992,7 +19440,7 @@
     {
       "id": "title:IT.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19028,7 +19476,7 @@
     {
       "id": "title:IT.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19424,7 +19872,7 @@
     {
       "id": "title:BR.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19460,7 +19908,7 @@
     {
       "id": "title:BR.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19532,7 +19980,7 @@
     {
       "id": "title:BR.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -19568,7 +20016,7 @@
     {
       "id": "title:BR.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-it-br-qc-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
