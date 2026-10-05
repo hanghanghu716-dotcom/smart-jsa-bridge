@@ -1,0 +1,20 @@
+const ref = (title, url, scope, basis = 'official-guidance') => ({ title, url, scope, basis, checkedAt: '2026-10-06' });
+const saGuide = ref('HRSD · Lower-level OSH management implementation guide (2018)', 'https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf', 'Downloaded 13-page Arabic guide; pages 6–13 visually read: roles, needed permits, pre-work checks, stop/correct/restart, training access, initial review, priorities/resources/owners, exposed people, hierarchy, review and emergency planning. Guidance expressly does not replace other practices/forms; no mandatory universal matrix, inspection interval or complete specialist permit claimed.');
+const saTalk = ref('HRSD · Workplace safety toolbox guidance', 'https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf', 'Downloaded nine-page Arabic publication: hazard/risk concepts, changed conditions, equipment checks, instructions, cooperation and reporting. Supports practical briefing and follow-up; does not establish course accreditation or universal meeting duration.');
+const saLicence = ref('NCOSH · Regulation on work in high-risk occupations', 'https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf', 'Articles 1, 5–7: occupational licence is distinct from site work permission; determine exposure/task applicability, verify competence and valid evidence. Reference/issuer/validity only in this task record; no medical diagnoses, automatic licence or blanket sector PTW compliance.', 'regulation');
+const ruRisk = ref('Mintrud · Order 926: risk-assessment method recommendations (Rostrud copy)', 'https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf', 'Downloaded 67-page scanned official-hosted copy; opening recommendations 1–30 visually read: employer-selected methods, scope/complexity, uncertainty, evidence, worker communication, review and checklist method. Methodological guidance, not one compulsory matrix or a replacement for organisation-wide management/SOUT. No claim that all referenced historical standards are current.');
+const ruInstruction = ref('Rostrud · Employer safety instructions: inspector explanation (April 2023)', 'https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf', 'Downloaded complete two-page official-hosted inspector interview: instruction inputs, employer approval/worker representation, five sections, change triggers, access and meaningful knowledge checks. Explanation of Order 772n, not full original annex review. Historical training intervals and Order 2464 validity are not asserted as current.');
+const ruPermit = ref('MChS · Fire regime rules 1479, clause 372 (edition 2025-02-03)', 'https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf', 'Official-hosted consolidation: clause 372, pages 75–76, temporary hot-work permit roles, location/nature, preparation/work/completion precautions, team briefing, times, readiness, daily admission and closure. Used only for linking the applicable specialist record. This generic form is not a full naryad-dopusk; its exceptions and electronic-signature conditions are not generalized. Annex 5 is a clearance-radius table, not a permit form.', 'regulation');
+export const SA_RU_FORM_SOURCES = {
+  'SA.risk_assessment': [saGuide],
+  'SA.method_statement': [saGuide],
+  'SA.permit_to_work': [saGuide, saLicence],
+  'SA.toolbox_talk': [saGuide, saTalk],
+  'SA.inspection': [saGuide],
+  'RU.risk_assessment': [ruRisk],
+  'RU.method_statement': [ruInstruction, ruRisk],
+  'RU.permit_to_work': [ruPermit, ruInstruction],
+  'RU.toolbox_talk': [ruInstruction],
+  'RU.inspection': [ruRisk, ruInstruction],
+};
+export const SA_RU_FORM_IDS = Object.keys(SA_RU_FORM_SOURCES);

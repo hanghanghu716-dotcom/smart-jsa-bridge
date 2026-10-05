@@ -10347,5 +10347,157 @@
     ],
     "scope": "Ten-language generic PT versus full NR-33 PET, links to PGR/rescue, and no automatic renewal, compliant digital signature or statutory archive from PDF/copy.",
     "sha256": "5cdcaa875bd2fda76af1591880a3db1dac7f08dd29ffcf68c38c14e94eb6d62f"
+  },
+  {
+    "id": "task:saTaskFormScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language Saudi task-draft boundary: establishment OSH system, specialised site permits and occupational licences remain separate, with applicable responsible roles.",
+    "sha256": "597034ea6e32141e33e77d90802bb5c83f556b2c061340789df4a05d1e9c1f81"
+  },
+  {
+    "id": "task:ruTaskFormScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language Russian supporting-task boundary: СУОТ, СОУТ, approved instructions, required training/knowledge records and наряд-допуск are not replaced.",
+    "sha256": "a53fa20f61b2ebc5d6624df5e1f2cd57db225513dea6fec2a88cb1c58ac63261"
+  },
+  {
+    "id": "task:ruInstructionBasis",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language approved instruction references/revisions and role-specific SOUT, risk, incident and manufacturer/process inputs; no automatic employer approval.",
+    "sha256": "4086c54d83c4b1f7f1edecca2535af1e8d37e9874a7fc5f41faef88c302ceed8"
+  },
+  {
+    "id": "task:ruInstructionStages",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language cross-reference of five approved-instruction sections: general, before, during, emergency and completion, with gaps/owner; not a complete statutory instruction.",
+    "sha256": "b60f7129085e1c407d1566e69594664e6cf863de7d2391c260a8aee4dc74ef1e"
+  },
+  {
+    "id": "task:ruBriefingRecordLink",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language separate training/knowledge-check evidence and current completion status; safety-meeting attendance is not completion.",
+    "sha256": "a71ff49b059750f05beb12b2ce45c05a3ef0e3f0d9aebb418a97f44a0a9fe5a9"
+  },
+  {
+    "id": "task:saPermitBasis",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language distinction of site permit and occupational licence applicability/evidence, issuer/validity/checker; excludes clinical diagnoses.",
+    "sha256": "95e47fae21e05b236cbeb5f47ff5e45cfcbc800004c346f69ed62d9f8100c5e1"
+  },
+  {
+    "id": "task:riskMethodChoice",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language task-appropriate method/criteria, evidence, assumptions, uncertainty and affected persons; no universal mandatory matrix.",
+    "sha256": "dd35318f6720d9d1902851fef5cfce85478b4854ad3d1fa2448fedf70ace3e2e"
+  },
+  {
+    "id": "task:saBriefingTransfer",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language current hazards/changes, stop/report, understood language, understanding check, absent-person follow-up and action responsibility.",
+    "sha256": "1ac8f0f8cb2504ea41cbad05a586e86d8cbcdb7e4dcc569861e48f0011930866"
   }
 ]

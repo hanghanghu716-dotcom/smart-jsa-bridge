@@ -72,7 +72,7 @@ test('FR/ES task forms retain organisational boundaries and do not migrate older
     assert.notEqual(permit.regional.version, '2026-10-05.15');
     assert.equal(field(permit, 'preventionPlanLink'), undefined);
     assert.equal(field(permit, 'baseScope'), undefined);
-    assert.equal(field(make('SA', 'inspection', language), 'preventionPlanLink'), undefined);
-    assert.equal(field(make('RU', 'inspection', language), 'actionResources'), undefined);
+    assert.equal(field(make('DE', 'inspection', language), 'preventionPlanLink'), undefined);
+    assert.equal(field(make('GB', 'inspection', language), 'actionResources'), undefined);
   }
 });

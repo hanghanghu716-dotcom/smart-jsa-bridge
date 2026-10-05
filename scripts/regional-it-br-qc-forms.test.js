@@ -78,6 +78,6 @@ test('IT/BR/QC sources, country boundaries and older saved forms remain distinct
     assert.notEqual(permit.regional.version, '2026-10-05.16');
     assert.equal(field(permit, 'preventionPlanLink'), undefined);
     assert.equal(field(permit, 'baseScope'), undefined);
-    assert.equal(field(make('RU', 'inspection', language), 'actionResources'), undefined);
+    assert.equal(field(make('GB', 'inspection', language), 'actionResources'), undefined);
   }
 });

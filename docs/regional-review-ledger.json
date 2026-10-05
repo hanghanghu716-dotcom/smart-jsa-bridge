@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.18",
+  "inventoryVersion": "2026-10-06.19",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 283,
+    "taskVocabularyKeys": 291,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1101,65 +1101,71 @@
       "jurisdiction": "SA",
       "kind": "risk_assessment",
       "title": "تقييم مخاطر المهمة",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf",
-        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf"
+        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf",
+        "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SA.method_statement",
       "jurisdiction": "SA",
       "kind": "method_statement",
       "title": "إجراء العمل الآمن",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf",
-        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf"
+        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf",
+        "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SA.permit_to_work",
       "jurisdiction": "SA",
       "kind": "permit_to_work",
       "title": "تصريح العمل الآمن",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf",
-        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf"
+        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf",
+        "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+        "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SA.toolbox_talk",
       "jurisdiction": "SA",
       "kind": "toolbox_talk",
       "title": "اجتماع السلامة قبل بدء العمل",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf",
-        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf"
+        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf",
+        "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SA.inspection",
       "jurisdiction": "SA",
       "kind": "inspection",
       "title": "قائمة فحص السلامة",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf",
-        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf"
+        "https://www.hrsd.gov.sa/sites/default/files/2018-05/2016.10.01%20Booklet_0.pdf",
+        "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "BR.risk_assessment",
@@ -1236,65 +1242,73 @@
       "jurisdiction": "RU",
       "kind": "risk_assessment",
       "title": "Оценка рисков при выполнении работ",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://mintrud.gov.ru/docs/mintrud/orders/2220",
-        "https://mintrud.gov.ru/docs/mintrud/orders/2183"
+        "https://mintrud.gov.ru/docs/mintrud/orders/2183",
+        "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "RU.method_statement",
       "jurisdiction": "RU",
       "kind": "method_statement",
       "title": "Инструкция по безопасному выполнению работ",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://mintrud.gov.ru/docs/mintrud/orders/2220",
-        "https://mintrud.gov.ru/docs/mintrud/orders/2183"
+        "https://mintrud.gov.ru/docs/mintrud/orders/2183",
+        "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf",
+        "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "RU.permit_to_work",
       "jurisdiction": "RU",
       "kind": "permit_to_work",
       "title": "Разрешение на работы — рабочий шаблон",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://mintrud.gov.ru/docs/mintrud/orders/2220",
-        "https://mintrud.gov.ru/docs/mintrud/orders/2183"
+        "https://mintrud.gov.ru/docs/mintrud/orders/2183",
+        "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+        "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "RU.toolbox_talk",
       "jurisdiction": "RU",
       "kind": "toolbox_talk",
       "title": "Обсуждение безопасности перед работой",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://mintrud.gov.ru/docs/mintrud/orders/2220",
-        "https://mintrud.gov.ru/docs/mintrud/orders/2183"
+        "https://mintrud.gov.ru/docs/mintrud/orders/2183",
+        "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "RU.inspection",
       "jurisdiction": "RU",
       "kind": "inspection",
       "title": "Контрольный лист безопасности",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-sa-ru-form-review-20261006.md",
       "sourceUrls": [
         "https://mintrud.gov.ru/docs/mintrud/orders/2220",
-        "https://mintrud.gov.ru/docs/mintrud/orders/2183"
+        "https://mintrud.gov.ru/docs/mintrud/orders/2183",
+        "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf",
+        "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     }
   ],
   "tasks": [
@@ -9778,6 +9792,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:riskMethodChoice",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
+    },
+    {
       "id": "task:roleSeparation",
       "languages": [
         "ko",
@@ -9844,6 +9875,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ruBriefingRecordLink",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
     },
     {
       "id": "task:ruCrewBriefing",
@@ -9931,6 +9979,74 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:ruInstructionBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
+    },
+    {
+      "id": "task:ruInstructionStages",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
+    },
+    {
+      "id": "task:ruTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
+    },
+    {
+      "id": "task:saBriefingTransfer",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
+    },
+    {
       "id": "task:saElectricalDetail",
       "languages": [
         "ko",
@@ -9980,6 +10096,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saPermitBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
     },
     {
       "id": "task:saPracticeNotice",
@@ -10048,6 +10181,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:saTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-sa-ru-form-review-20261006.md"
     },
     {
       "id": "task:scaffoldInspection",

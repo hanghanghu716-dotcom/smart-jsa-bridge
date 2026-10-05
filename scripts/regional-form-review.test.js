@@ -81,7 +81,7 @@ test('reviewed field sets distinguish country, document purpose and actual versu
     assert.ok(table.rows.every(row => row.values[c.id] === undefined));
   }
   assert.equal(field(create('CA-ON.inspection'), 'inspectionPlan').kind, 'verification');
-  assert.equal(field(create('SA.inspection'), 'inspectionPlan'), undefined);
+  assert.equal(field(create('SA.inspection'), 'inspectionPlan').kind, 'verification');
   for (const country of ['GB', 'CA']) {
     const doc = create(`${country}.toolbox_talk`);
     assert.match(field(doc, 'briefingScope').value, /does not replace/);

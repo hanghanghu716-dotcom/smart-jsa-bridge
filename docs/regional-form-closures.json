@@ -1786,5 +1786,230 @@
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
     ],
     "sha256": "597239208fd46e4d7687b0217f02097094e7f2da731a75411535739b5125cb3c"
+  },
+  {
+    "id": "form:SA.risk_assessment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+    ],
+    "sha256": "19b263e8d8b173b51ff9d639e054486be2a3b494413bc05b5480db74431439db"
+  },
+  {
+    "id": "form:SA.method_statement",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+    ],
+    "sha256": "0f3fa68823eaa48cdaf81faf8d87555fc70b25edb7f0f2120da470676948f50b"
+  },
+  {
+    "id": "form:SA.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+      "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf"
+    ],
+    "sha256": "594eb21223d9b4a09a66756213949784f7deee86ba26c63163f0e46b76079b67"
+  },
+  {
+    "id": "form:SA.toolbox_talk",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+      "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf"
+    ],
+    "sha256": "b02c5677c40845d7282f3319ae667b2a94c28c44a31eec3a8066b6cc8ee5707a"
+  },
+  {
+    "id": "form:SA.inspection",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+    ],
+    "sha256": "e20cdc81ec847cb796f1eeabf3b7c5696cc1ca92b6799a9468773e6cc8032f8e"
+  },
+  {
+    "id": "form:RU.risk_assessment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
+    ],
+    "sha256": "57d53fa7fdde055d2fae8b045aeb0d3d5afb4684528134adeaea8ebddc3627a1"
+  },
+  {
+    "id": "form:RU.method_statement",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf",
+      "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
+    ],
+    "sha256": "2c8d49e529c4adcaea4ff34ca9a84a4bf3db2b16b1fb06f9fc2a1fa3eaf99e8d"
+  },
+  {
+    "id": "form:RU.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+    ],
+    "sha256": "0b6216e939a88eac03e11333586036a0c2462ed070bf8741525ec5b84b96d614"
+  },
+  {
+    "id": "form:RU.toolbox_talk",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+    ],
+    "sha256": "38cb114e4b95f03833cc188ab97aaf028165813044fbba308e36250a7833a1e3"
+  },
+  {
+    "id": "form:RU.inspection",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf",
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+    ],
+    "sha256": "41334179d6fac2a3734b5bff4c1fc13842f37dd43c1af75b6832a1ffe19053d2"
   }
 ]

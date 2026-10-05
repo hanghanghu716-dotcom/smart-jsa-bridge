@@ -1,3 +1,4 @@
+import { SA_RU_FORM_SOURCES } from './regionalSaRuFormSources20261006.js';
 import { COUNTRY_FORM_SOURCES } from './regionalCountryFormSources20261005.js';
 import { FR_ES_FORM_SOURCES } from './regionalFrEsFormSources20261005.js';
 import { IT_BR_QC_FORM_SOURCES } from './regionalItBrQcFormSources20261005.js';
@@ -34,6 +35,7 @@ const jpInspection = source('厚生労働省 · 3ステップでやさしく導�
 export const REGIONAL_FORM_SOURCES = {
   ...KR_ON_FORM_SOURCES,
   ...FOLLOWUP_PERMIT_SOURCES,
+  ...SA_RU_FORM_SOURCES,
   ...IT_BR_QC_FORM_SOURCES,
   ...FR_ES_FORM_SOURCES,
   ...COUNTRY_FORM_SOURCES,

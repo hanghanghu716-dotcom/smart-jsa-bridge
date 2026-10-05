@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.18",
+  "evidenceVersion": "2026-10-06.19",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 370
+    "fieldVocabularyGroups": 378
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 388,
-      "pending": 95,
+      "completed": 398,
+      "pending": 85,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 82,
-      "completionPercent": 80.3,
-      "remainingPercent": 19.7
+      "pendingFinalVerification": 72,
+      "completionPercent": 82.4,
+      "remainingPercent": 17.6
     },
     "stage3": {
-      "reviewGroups": 531,
-      "checkpoints": 1593,
-      "completed": 1590,
+      "reviewGroups": 539,
+      "checkpoints": 1617,
+      "completed": 1614,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 692,
-      "checkpoints": 2076,
-      "completed": 1978,
-      "pending": 98,
+      "reviewGroups": 700,
+      "checkpoints": 2100,
+      "completed": 2012,
+      "pending": 88,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 85,
-      "completionPercent": 95.3,
-      "remainingPercent": 4.7
+      "pendingFinalVerification": 75,
+      "completionPercent": 95.8,
+      "remainingPercent": 4.2
     }
   },
   "stage2": [
@@ -2917,9 +2917,9 @@
     {
       "id": "form:SA.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2928,17 +2928,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SA.risk_assessment",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+          ],
+          "sha256": "19b263e8d8b173b51ff9d639e054486be2a3b494413bc05b5480db74431439db"
         }
       }
     },
     {
       "id": "form:SA.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2947,17 +2966,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SA.method_statement",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+          ],
+          "sha256": "0f3fa68823eaa48cdaf81faf8d87555fc70b25edb7f0f2120da470676948f50b"
         }
       }
     },
     {
       "id": "form:SA.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2966,17 +3004,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SA.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+            "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf"
+          ],
+          "sha256": "594eb21223d9b4a09a66756213949784f7deee86ba26c63163f0e46b76079b67"
         }
       }
     },
     {
       "id": "form:SA.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2985,17 +3043,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SA.toolbox_talk",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+            "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf"
+          ],
+          "sha256": "b02c5677c40845d7282f3319ae667b2a94c28c44a31eec3a8066b6cc8ee5707a"
         }
       }
     },
     {
       "id": "form:SA.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3004,8 +3082,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SA.inspection",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+          ],
+          "sha256": "e20cdc81ec847cb796f1eeabf3b7c5696cc1ca92b6799a9468773e6cc8032f8e"
         }
       }
     },
@@ -3202,9 +3299,9 @@
     {
       "id": "form:RU.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3213,17 +3310,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:RU.risk_assessment",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
+          ],
+          "sha256": "57d53fa7fdde055d2fae8b045aeb0d3d5afb4684528134adeaea8ebddc3627a1"
         }
       }
     },
     {
       "id": "form:RU.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3232,17 +3348,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:RU.method_statement",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf",
+            "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
+          ],
+          "sha256": "2c8d49e529c4adcaea4ff34ca9a84a4bf3db2b16b1fb06f9fc2a1fa3eaf99e8d"
         }
       }
     },
     {
       "id": "form:RU.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3251,17 +3387,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:RU.permit_to_work",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+            "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+          ],
+          "sha256": "0b6216e939a88eac03e11333586036a0c2462ed070bf8741525ec5b84b96d614"
         }
       }
     },
     {
       "id": "form:RU.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3270,17 +3426,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:RU.toolbox_talk",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+          ],
+          "sha256": "38cb114e4b95f03833cc188ab97aaf028165813044fbba308e36250a7833a1e3"
         }
       }
     },
     {
       "id": "form:RU.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-sa-ru-form-review-20261006.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3289,8 +3464,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:RU.inspection",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+          "sourceUrls": [
+            "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf",
+            "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+          ],
+          "sha256": "41334179d6fac2a3734b5bff4c1fc13842f37dd43c1af75b6832a1ffe19053d2"
         }
       }
     },
@@ -15614,6 +15809,41 @@
       }
     },
     {
+      "id": "task:riskMethodChoice",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language task-appropriate method/criteria, evidence, assumptions, uncertainty and affected persons; no universal mandatory matrix.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:riskMethodChoice",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language task-appropriate method/criteria, evidence, assumptions, uncertainty and affected persons; no universal mandatory matrix.",
+          "sha256": "dd35318f6720d9d1902851fef5cfce85478b4854ad3d1fa2448fedf70ace3e2e"
+        }
+      }
+    },
+    {
       "id": "task:roleSeparation",
       "evidence": [
         "regional-task-review.md",
@@ -15754,6 +15984,41 @@
           ],
           "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
           "sha256": "f42ecc3508b8ee3c71f2f8918ab7f0249147aa5d7e9f9990f279aaf6a8f0c390"
+        }
+      }
+    },
+    {
+      "id": "task:ruBriefingRecordLink",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language separate training/knowledge-check evidence and current completion status; safety-meeting attendance is not completion.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruBriefingRecordLink",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language separate training/knowledge-check evidence and current completion status; safety-meeting attendance is not completion.",
+          "sha256": "a71ff49b059750f05beb12b2ce45c05a3ef0e3f0d9aebb418a97f44a0a9fe5a9"
         }
       }
     },
@@ -15938,6 +16203,146 @@
       }
     },
     {
+      "id": "task:ruInstructionBasis",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language approved instruction references/revisions and role-specific SOUT, risk, incident and manufacturer/process inputs; no automatic employer approval.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruInstructionBasis",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language approved instruction references/revisions and role-specific SOUT, risk, incident and manufacturer/process inputs; no automatic employer approval.",
+          "sha256": "4086c54d83c4b1f7f1edecca2535af1e8d37e9874a7fc5f41faef88c302ceed8"
+        }
+      }
+    },
+    {
+      "id": "task:ruInstructionStages",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language cross-reference of five approved-instruction sections: general, before, during, emergency and completion, with gaps/owner; not a complete statutory instruction.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruInstructionStages",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language cross-reference of five approved-instruction sections: general, before, during, emergency and completion, with gaps/owner; not a complete statutory instruction.",
+          "sha256": "b60f7129085e1c407d1566e69594664e6cf863de7d2391c260a8aee4dc74ef1e"
+        }
+      }
+    },
+    {
+      "id": "task:ruTaskFormScope",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language Russian supporting-task boundary: СУОТ, СОУТ, approved instructions, required training/knowledge records and наряд-допуск are not replaced.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruTaskFormScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language Russian supporting-task boundary: СУОТ, СОУТ, approved instructions, required training/knowledge records and наряд-допуск are not replaced.",
+          "sha256": "a53fa20f61b2ebc5d6624df5e1f2cd57db225513dea6fec2a88cb1c58ac63261"
+        }
+      }
+    },
+    {
+      "id": "task:saBriefingTransfer",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language current hazards/changes, stop/report, understood language, understanding check, absent-person follow-up and action responsibility.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saBriefingTransfer",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language current hazards/changes, stop/report, understood language, understanding check, absent-person follow-up and action responsibility.",
+          "sha256": "1ac8f0f8cb2504ea41cbad05a586e86d8cbcdb7e4dcc569861e48f0011930866"
+        }
+      }
+    },
+    {
       "id": "task:saElectricalDetail",
       "evidence": [
         "regional-task-review.md",
@@ -16042,6 +16447,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "139062242b7a5b8f744a9f33a59bbf883e546614b169b94f4c5505174e5c543c"
+        }
+      }
+    },
+    {
+      "id": "task:saPermitBasis",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language distinction of site permit and occupational licence applicability/evidence, issuer/validity/checker; excludes clinical diagnoses.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saPermitBasis",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language distinction of site permit and occupational licence applicability/evidence, issuer/validity/checker; excludes clinical diagnoses.",
+          "sha256": "95e47fae21e05b236cbeb5f47ff5e45cfcbc800004c346f69ed62d9f8100c5e1"
         }
       }
     },
@@ -16186,6 +16626,41 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "8523671b32db37292bce69884fab1a2d4506a4185a3d3cd66574be2f316f59df"
+        }
+      }
+    },
+    {
+      "id": "task:saTaskFormScope",
+      "evidence": [
+        "regional-sa-ru-form-review-20261006.md"
+      ],
+      "note": "Ten-language Saudi task-draft boundary: establishment OSH system, specialised site permits and occupational licences remain separate, with applicable responsible roles.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saTaskFormScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-sa-ru-form-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language Saudi task-draft boundary: establishment OSH system, specialised site permits and occupational licences remain separate, with applicable responsible roles.",
+          "sha256": "597034ea6e32141e33e77d90802bb5c83f556b2c061340789df4a05d1e9c1f81"
         }
       }
     },
@@ -20620,7 +21095,7 @@
     {
       "id": "title:SA.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20656,7 +21131,7 @@
     {
       "id": "title:SA.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20692,7 +21167,7 @@
     {
       "id": "title:SA.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20728,7 +21203,7 @@
     {
       "id": "title:SA.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20764,7 +21239,7 @@
     {
       "id": "title:SA.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -20980,7 +21455,7 @@
     {
       "id": "title:RU.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -21016,7 +21491,7 @@
     {
       "id": "title:RU.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -21052,7 +21527,7 @@
     {
       "id": "title:RU.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -21088,7 +21563,7 @@
     {
       "id": "title:RU.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -21124,7 +21599,7 @@
     {
       "id": "title:RU.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-sa-ru-form-review-20261006.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

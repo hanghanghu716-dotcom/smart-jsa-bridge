@@ -79,7 +79,7 @@ test('Generic permits coordinate records without automatically creating speciali
     if (country.startsWith('CA-')) assert.equal(field(doc, 'permitRegionalScope').value, taskSafetyText(language, 'caScope'));
     for (const otherKind of ['risk_assessment', 'inspection', 'toolbox_talk']) assert.equal(field(make(country, otherKind, language), 'permitLinkedRecords'), undefined);
   }
-  for (const country of ['KR', 'GB', 'US', 'AU', 'SG', 'CA-ON', 'RU', 'SA']) assert.equal(field(make(country, 'permit_to_work', 'en'), 'permitLinkedRecords'), undefined);
+  for (const country of ['KR', 'GB', 'US', 'AU', 'SG', 'CA-ON']) assert.equal(field(make(country, 'permit_to_work', 'en'), 'permitLinkedRecords'), undefined);
 });
 
 test('Permit sources retain their jurisdiction and guidance limits', () => {
