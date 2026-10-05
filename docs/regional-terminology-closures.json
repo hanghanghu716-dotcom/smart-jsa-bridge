@@ -9853,5 +9853,81 @@
     ],
     "scope": "Ten-language distinction between a draft work sequence, employer Betriebsanweisung, manufacturer instructions and mandatory specialised instructions; retain native document identity and worker access.",
     "sha256": "aaa86e3adaa23ff91c7692d848b114df89985d1042e60aea707de42a7301a079"
+  },
+  {
+    "id": "task:frTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language distinction of task sheet, DUERP/action list/Papripact, CSE inspection process and applicable external-company Plan de prévention. Links do not certify whole-system completion.",
+    "sha256": "6a26489c6f924d12d3b79f9f433d1878d3a18f455dfa3ac8eac9d96dd889e37f"
+  },
+  {
+    "id": "task:esTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language distinction of task record from Plan de prevención, risk assessment, prevention planning, specialist examinations and required CAE; document identifiers stay jurisdiction-specific.",
+    "sha256": "17be58d545142ed3884f6971daa0d8836fbef95f5a0daf5fb05c1e567d61eb82"
+  },
+  {
+    "id": "task:preventionPlanLink",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language reference/revision/action-ID and incorporation-of-findings record; a fresh link to organisational follow-up, not replacement of the whole plan or automatic completion.",
+    "sha256": "f7ffb8840484124e595ea648923a1ef01465f2a0d125cb7fde30779657e0714f"
+  },
+  {
+    "id": "task:actionResources",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language per-action people/equipment/budget, implementation conditions and effectiveness criteria; fresh site decisions, not inherited approval, certification or cost estimate.",
+    "sha256": "39e0f04f9842540c40113374ca9fbbac591215f6d0a09a71ed86248ac59dfdb0"
   }
 ]

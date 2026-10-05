@@ -905,5 +905,187 @@
       "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
     ],
     "sha256": "04e26e8411459c4174933f63dcaf8e9639a40f6a547215f1b40929e60a97df90"
+  },
+  {
+    "id": "form:FR.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
+    "sourceUrls": [
+      "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "ae393b9bcb30d00c7ad257b37fa44432d47ff0c18b12e2bfc3573a1ebf54b748"
+  },
+  {
+    "id": "form:FR.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
+    "sourceUrls": [
+      "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html",
+      "https://www.inrs.fr/risques/entreprises-exterieures/mesures-prevention-prealables-intervention"
+    ],
+    "sha256": "70985a5832a5faefbd9ba64ce09ef478c21af1e9635455fd7f1a4fea36a0846a"
+  },
+  {
+    "id": "form:FR.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
+    "sourceUrls": [
+      "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "54afa94a6f79cc6b4bb79545ab22231e55744598f59f3df96a277d3038790a3f"
+  },
+  {
+    "id": "form:FR.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
+    "sourceUrls": [
+      "https://www.inrs.fr/dam/jcr:d975c3d3-384d-46a8-9054-dfd9b889028e/ed6513.pdf",
+      "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "aa39dc164b0d3b1fd476067f1155ee07a07bdea03491cc1b6dfb81770aec7264"
+  },
+  {
+    "id": "form:ES.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+    ],
+    "sha256": "9a338ca9cdc0b82100e8b6cb125f479f5e21053b0236c48596c53b2cfcd0e28c"
+  },
+  {
+    "id": "form:ES.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.insst.es/materias/transversales/gestion-prevencion"
+    ],
+    "sha256": "5740f01900936f36b9e902e0b7eecf95b6fb6c659e04ce6dda3f08abd4117072"
+  },
+  {
+    "id": "form:ES.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.insst.es/materias/transversales/gestion-prevencion"
+    ],
+    "sha256": "a2a08014a28def0c0e613564f4eadc0d08846714e74d1ad5bed38aca91369253"
+  },
+  {
+    "id": "form:ES.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+    ],
+    "sha256": "0d476305687fb31438680ad3484f95a17511a77f940a9dcda63882e6b7c6fcd7"
   }
 ]

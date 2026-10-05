@@ -1,3 +1,5 @@
+import { FR_ES_FORM_IDS } from '../src/utils/regionalFrEsFormSources20261005.js';
+import { FR_ES_FORM_ROWS } from '../src/locales/regionalFrEsFormText20261005.js';
 import { COUNTRY_FORM_IDS } from '../src/utils/regionalCountryFormSources20261005.js';
 import { COUNTRY_FORM_ROWS } from '../src/locales/regionalCountryFormText20261005.js';
 import fs from 'node:fs';
@@ -19,7 +21,7 @@ export function reviewLedger() {
   }).map(form => ({
     id: `${p.id}.${form.kind}`, jurisdiction: p.id, kind: form.kind,
     title: form.title, reviewLevel: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? 'field-source-comparison-recorded' : 'baseline-source-review',
-    evidence: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? (COUNTRY_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-country-form-review-20261005.md' : PERMIT_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-native-permit-review-20261005.md' : INSPECTION_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-inspection-form-review-20261005.md' : ['AU', 'JP'].includes(p.id) ? 'regional-au-jp-form-review-20261005.md' : p.id === 'SG' ? 'regional-singapore-form-review-20261005.md' : 'regional-form-review-20261005.md') : p.id === 'SG' && form.kind === 'risk_assessment' ? 'regional-title-core-review-20261005.md' : 'regional-document-review.md',
+    evidence: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? (FR_ES_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-fr-es-form-review-20261005.md' : COUNTRY_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-country-form-review-20261005.md' : PERMIT_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-native-permit-review-20261005.md' : INSPECTION_FORM_IDS.includes(`${p.id}.${form.kind}`) ? 'regional-inspection-form-review-20261005.md' : ['AU', 'JP'].includes(p.id) ? 'regional-au-jp-form-review-20261005.md' : p.id === 'SG' ? 'regional-singapore-form-review-20261005.md' : 'regional-form-review-20261005.md') : p.id === 'SG' && form.kind === 'risk_assessment' ? 'regional-title-core-review-20261005.md' : 'regional-document-review.md',
     sourceUrls: [...new Set([...REGIONAL_REVIEW_SOURCES[p.id], ...(REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] || [])].map(s => s.url))],
     remaining: REGIONAL_FORM_SOURCES[`${p.id}.${form.kind}`] ? 'Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped.' : 'Individual form field-to-source and complete terminology closure not recorded.',
   })));
@@ -53,12 +55,12 @@ export function reviewLedger() {
     })),
     ...Object.keys(TASK_SAFETY_TEXT).sort().map(key => ({
       id: `task:${key}`, languages: Object.keys(TASK_SAFETY_TEXT[key]),
-      reviewLevel: 'translated-and-scoped-review', evidence: COUNTRY_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-country-form-review-20261005.md' : 'regional-task-review.md',
+      reviewLevel: 'translated-and-scoped-review', evidence: FR_ES_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-fr-es-form-review-20261005.md' : COUNTRY_FORM_ROWS.trim().split('\n').some(row => row.startsWith(key + '|')) ? 'regional-country-form-review-20261005.md' : 'regional-task-review.md',
     })),
   ];
   const supplemented = tasks.filter(t => t.reviewLevel === 'clause-supplement-recorded').length;
   return {
-    inventoryVersion: '2026-10-05.14',
+    inventoryVersion: '2026-10-05.15',
     scope: 'Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.',
     completionCriteria: [
       'Current primary source and applicable sector/jurisdiction identified.',

@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.14",
+  "evidenceVersion": "2026-10-05.15",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 344
+    "fieldVocabularyGroups": 348
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 349,
-      "pending": 134,
+      "completed": 357,
+      "pending": 126,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 121,
-      "completionPercent": 72.3,
-      "remainingPercent": 27.7
+      "pendingFinalVerification": 113,
+      "completionPercent": 73.9,
+      "remainingPercent": 26.1
     },
     "stage3": {
-      "reviewGroups": 505,
-      "checkpoints": 1515,
-      "completed": 1512,
+      "reviewGroups": 509,
+      "checkpoints": 1527,
+      "completed": 1524,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 666,
-      "checkpoints": 1998,
-      "completed": 1861,
-      "pending": 137,
+      "reviewGroups": 670,
+      "checkpoints": 2010,
+      "completed": 1881,
+      "pending": 129,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 124,
-      "completionPercent": 93.1,
-      "remainingPercent": 6.9
+      "pendingFinalVerification": 116,
+      "completionPercent": 93.6,
+      "remainingPercent": 6.4
     }
   },
   "stage2": [
@@ -1963,9 +1963,9 @@
     {
       "id": "form:FR.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1974,17 +1974,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:FR.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
+          "sourceUrls": [
+            "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
+          ],
+          "sha256": "ae393b9bcb30d00c7ad257b37fa44432d47ff0c18b12e2bfc3573a1ebf54b748"
         }
       }
     },
     {
       "id": "form:FR.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1993,8 +2012,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:FR.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
+          "sourceUrls": [
+            "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html",
+            "https://www.inrs.fr/risques/entreprises-exterieures/mesures-prevention-prealables-intervention"
+          ],
+          "sha256": "70985a5832a5faefbd9ba64ce09ef478c21af1e9635455fd7f1a4fea36a0846a"
         }
       }
     },
@@ -2020,9 +2059,9 @@
     {
       "id": "form:FR.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2031,17 +2070,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:FR.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
+          "sourceUrls": [
+            "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html"
+          ],
+          "sha256": "54afa94a6f79cc6b4bb79545ab22231e55744598f59f3df96a277d3038790a3f"
         }
       }
     },
     {
       "id": "form:FR.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2050,8 +2108,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:FR.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
+          "sourceUrls": [
+            "https://www.inrs.fr/dam/jcr:d975c3d3-384d-46a8-9054-dfd9b889028e/ed6513.pdf",
+            "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
+          ],
+          "sha256": "aa39dc164b0d3b1fd476067f1155ee07a07bdea03491cc1b6dfb81770aec7264"
         }
       }
     },
@@ -2153,9 +2231,9 @@
     {
       "id": "form:ES.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2164,17 +2242,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:ES.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
+          "sourceUrls": [
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+          ],
+          "sha256": "9a338ca9cdc0b82100e8b6cb125f479f5e21053b0236c48596c53b2cfcd0e28c"
         }
       }
     },
     {
       "id": "form:ES.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2183,8 +2281,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:ES.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
+          "sourceUrls": [
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+            "https://www.insst.es/materias/transversales/gestion-prevencion"
+          ],
+          "sha256": "5740f01900936f36b9e902e0b7eecf95b6fb6c659e04ce6dda3f08abd4117072"
         }
       }
     },
@@ -2210,9 +2328,9 @@
     {
       "id": "form:ES.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2221,17 +2339,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:ES.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
+          "sourceUrls": [
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+            "https://www.insst.es/materias/transversales/gestion-prevencion"
+          ],
+          "sha256": "a2a08014a28def0c0e613564f4eadc0d08846714e74d1ad5bed38aca91369253"
         }
       }
     },
     {
       "id": "form:ES.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-fr-es-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -2240,8 +2378,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:ES.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
+          "sourceUrls": [
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+          ],
+          "sha256": "0d476305687fb31438680ad3484f95a17511a77f940a9dcda63882e6b7c6fcd7"
         }
       }
     },
@@ -7284,6 +7442,41 @@
       }
     },
     {
+      "id": "task:actionResources",
+      "evidence": [
+        "regional-fr-es-form-review-20261005.md"
+      ],
+      "note": "Ten-language per-action people/equipment/budget, implementation conditions and effectiveness criteria; fresh site decisions, not inherited approval, certification or cost estimate.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:actionResources",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language per-action people/equipment/budget, implementation conditions and effectiveness criteria; fresh site decisions, not inherited approval, certification or cost estimate.",
+          "sha256": "39e0f04f9842540c40113374ca9fbbac591215f6d0a09a71ed86248ac59dfdb0"
+        }
+      }
+    },
+    {
       "id": "task:anchorCheck",
       "evidence": [
         "regional-task-review.md",
@@ -9801,6 +9994,41 @@
       }
     },
     {
+      "id": "task:esTaskFormScope",
+      "evidence": [
+        "regional-fr-es-form-review-20261005.md"
+      ],
+      "note": "Ten-language distinction of task record from Plan de prevención, risk assessment, prevention planning, specialist examinations and required CAE; document identifiers stay jurisdiction-specific.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:esTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language distinction of task record from Plan de prevención, risk assessment, prevention planning, specialist examinations and required CAE; document identifiers stay jurisdiction-specific.",
+          "sha256": "17be58d545142ed3884f6971daa0d8836fbef95f5a0daf5fb05c1e567d61eb82"
+        }
+      }
+    },
+    {
       "id": "task:fallPlanTrigger",
       "evidence": [
         "regional-task-review.md",
@@ -10265,6 +10493,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "c3bf0c8b9929bd49ebc055d7d32cfcb96a268b9f51ad33f82602163b2b95b35c"
+        }
+      }
+    },
+    {
+      "id": "task:frTaskFormScope",
+      "evidence": [
+        "regional-fr-es-form-review-20261005.md"
+      ],
+      "note": "Ten-language distinction of task sheet, DUERP/action list/Papripact, CSE inspection process and applicable external-company Plan de prévention. Links do not certify whole-system completion.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:frTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language distinction of task sheet, DUERP/action list/Papripact, CSE inspection process and applicable external-company Plan de prévention. Links do not certify whole-system completion.",
+          "sha256": "6a26489c6f924d12d3b79f9f433d1878d3a18f455dfa3ac8eac9d96dd889e37f"
         }
       }
     },
@@ -13073,6 +13336,41 @@
           ],
           "scope": "Ten-language prompt comparison: retain local role identities, applicability, dated evidence, current checks and lifecycle distinctions. Separate country-rule notices and whole-topic legal scope remain open.",
           "sha256": "2ead1aaa4fc036ed4270143001d06400046166b2a65da4a57f60eb45a13f3174"
+        }
+      }
+    },
+    {
+      "id": "task:preventionPlanLink",
+      "evidence": [
+        "regional-fr-es-form-review-20261005.md"
+      ],
+      "note": "Ten-language reference/revision/action-ID and incorporation-of-findings record; a fresh link to organisational follow-up, not replacement of the whole plan or automatic completion.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:preventionPlanLink",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-fr-es-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language reference/revision/action-ID and incorporation-of-findings record; a fresh link to organisational follow-up, not replacement of the whole plan or automatic completion.",
+          "sha256": "f7ffb8840484124e595ea648923a1ef01465f2a0d125cb7fde30779657e0714f"
         }
       }
     },
@@ -18406,7 +18704,7 @@
     {
       "id": "title:FR.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18442,7 +18740,7 @@
     {
       "id": "title:FR.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18514,7 +18812,7 @@
     {
       "id": "title:FR.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18550,7 +18848,7 @@
     {
       "id": "title:FR.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18766,7 +19064,7 @@
     {
       "id": "title:ES.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18802,7 +19100,7 @@
     {
       "id": "title:ES.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18874,7 +19172,7 @@
     {
       "id": "title:ES.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18910,7 +19208,7 @@
     {
       "id": "title:ES.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-fr-es-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

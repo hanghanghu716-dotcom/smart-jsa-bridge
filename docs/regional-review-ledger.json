@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.14",
+  "inventoryVersion": "2026-10-05.15",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 257,
+    "taskVocabularyKeys": 261,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -861,26 +861,28 @@
       "jurisdiction": "FR",
       "kind": "risk_assessment",
       "title": "Évaluation des risques – fiche de tâche",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
         "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "FR.method_statement",
       "jurisdiction": "FR",
       "kind": "method_statement",
       "title": "Mode opératoire de sécurité",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
-        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html"
+        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html",
+        "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html",
+        "https://www.inrs.fr/risques/entreprises-exterieures/mesures-prevention-prealables-intervention"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "FR.permit_to_work",
@@ -900,26 +902,28 @@
       "jurisdiction": "FR",
       "kind": "toolbox_talk",
       "title": "Causerie sécurité",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
-        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html"
+        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html",
+        "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "FR.inspection",
       "jurisdiction": "FR",
       "kind": "inspection",
       "title": "Liste de contrôle de sécurité",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
-        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html"
+        "https://www.inrs.fr/risques/entreprises-exterieures/cadre-reglementaire.html",
+        "https://www.inrs.fr/dam/jcr:d975c3d3-384d-46a8-9054-dfd9b889028e/ed6513.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "IT.risk_assessment",
@@ -991,26 +995,30 @@
       "jurisdiction": "ES",
       "kind": "risk_assessment",
       "title": "Evaluación de riesgos de la tarea",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.insst.es/documents/94886/2927460/Directrices%20evaluaci%C3%B3n%20de%20riesgos.pdf",
-        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.",
+        "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+        "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "ES.method_statement",
       "jurisdiction": "ES",
       "kind": "method_statement",
       "title": "Procedimiento de trabajo seguro",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.insst.es/documents/94886/2927460/Directrices%20evaluaci%C3%B3n%20de%20riesgos.pdf",
-        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.",
+        "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+        "https://www.insst.es/materias/transversales/gestion-prevencion"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "ES.permit_to_work",
@@ -1030,26 +1038,30 @@
       "jurisdiction": "ES",
       "kind": "toolbox_talk",
       "title": "Charla de seguridad",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.insst.es/documents/94886/2927460/Directrices%20evaluaci%C3%B3n%20de%20riesgos.pdf",
-        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.",
+        "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+        "https://www.insst.es/materias/transversales/gestion-prevencion"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "ES.inspection",
       "jurisdiction": "ES",
       "kind": "inspection",
       "title": "Lista de comprobación de seguridad",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-fr-es-form-review-20261005.md",
       "sourceUrls": [
         "https://www.insst.es/documents/94886/2927460/Directrices%20evaluaci%C3%B3n%20de%20riesgos.pdf",
-        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+        "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.",
+        "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+        "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SA.risk_assessment",
@@ -6141,6 +6153,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:actionResources",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-fr-es-form-review-20261005.md"
+    },
+    {
       "id": "task:anchorCheck",
       "languages": [
         "ko",
@@ -7331,6 +7360,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:esTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-fr-es-form-review-20261005.md"
+    },
+    {
       "id": "task:fallPlanTrigger",
       "languages": [
         "ko",
@@ -7550,6 +7596,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:frTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-fr-es-form-review-20261005.md"
     },
     {
       "id": "task:fragileSurface",
@@ -8876,6 +8939,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:preventionPlanLink",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-fr-es-form-review-20261005.md"
     },
     {
       "id": "task:preventivePresence",

@@ -6,6 +6,7 @@ import { taskReviewBlocks, TASK_REVIEW_VERSION } from './regionalTaskReview.js';
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { REGIONAL_FORM_SOURCES } from './regionalFormSources20261005.js';
 import { COUNTRY_FORM_IDS } from './regionalCountryFormSources20261005.js';
+import { FR_ES_FORM_IDS } from './regionalFrEsFormSources20261005.js';
 
 // These are editable starter forms, not regulator-issued or certified forms.
 export const TEMPLATE_VERSION = '2026-10-05.8';
@@ -57,7 +58,8 @@ export function jsaWorkRows(source) {
 export function createRegionalTemplate(kind, value, source = null, options = {}) {
   const context = workContext(value), entry = regionalTemplates(context).find(t => t.kind === kind);
   if (!entry?.available) throw Error('WORK_TEMPLATE_UNAVAILABLE');
-  const countryForm = COUNTRY_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
+  const frEsForm = FR_ES_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
+  const countryForm = frEsForm || COUNTRY_FORM_IDS.includes(`${context.jurisdiction}.${kind}`);
   const txt = (k, e) => regionalText(context.documentLocale, e, k);
   const reviewedText = key => taskSafetyText(context.documentLocale, key);
   const field = (key, label, fieldKind = 'text', mode = 'runtime', content = '') => ({
@@ -99,6 +101,7 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
     if (countryForm || ['GB', 'US', 'CA', 'AU', 'JP'].includes(context.jurisdiction)) blocks.push(field('actionCloseout', reviewedText('actionCloseout'), 'verification'));
     if (countryForm || ['AU', 'JP'].includes(context.jurisdiction)) blocks.splice(2, 0, field('currentRiskDecision', reviewedText('currentRiskDecision'), 'verification'));
     if (context.jurisdiction === 'CA-AB') blocks.push(field('abAssessmentCycle', reviewedText('abAssessmentCycle'), 'verification'));
+    if (context.jurisdiction === 'ES') blocks.push(field('competency', txt('역할·교육·역량·자격 확인', 'Roles, training and competency checks'), 'verification'));
     if (context.jurisdiction === 'US') blocks.push(field('hazardScenario', reviewedText('hazardScenario'), 'verification'));
     if (context.jurisdiction === 'CA') blocks.push(signature('approval', txt('작성·검토·승인 서명', 'Prepared / reviewed / authorised signatures')));
     if (context.jurisdiction === 'KR') blocks.splice(1, 0, field('assessmentBasis', txt('평가 종류·허용 가능한 위험성 기준', 'Assessment type and risk acceptance criteria'), 'verification'));
@@ -132,6 +135,7 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
       signature('consultation', txt('작업자 협의·설명 및 확인 서명', 'Worker consultation, briefing and acknowledgement signatures')),
       signature('approval', txt('작성·검토·승인 서명', 'Prepared / reviewed / authorised signatures')));
     if (['FR','IT'].includes(context.jurisdiction)) blocks.splice(1, 0, field('contractorCoordination', `${txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record')}${context.jurisdiction === 'IT' ? ' · DUVRI' : ' · Plan de prévention'}`, 'verification'));
+    if (context.jurisdiction === 'ES') blocks.splice(1, 0, field('contractorCoordination', `${txt('발주자·도급업체 및 작업 조정 기록', 'Contracting parties and coordination record')} · CAE`, 'verification'));
     if (context.jurisdiction === 'AU') blocks.push(
       field('auSwmsLifecycle', reviewedText('auSwmsLifecycle'), 'verification'),
       field('auSwmsRecord', reviewedText('auSwmsRecord'), 'verification'));
@@ -202,6 +206,12 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
     blocks.splice(1, 0, field('frameworkBasis', reviewedText('frameworkBasis'), 'verification'));
     if (context.jurisdiction.startsWith('CA-')) blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText('caScope')));
   }
+  if (frEsForm) {
+    blocks.splice(1, 0, field('baseScope', reviewedText('notice'), 'text', 'standard', reviewedText(context.jurisdiction === 'FR' ? 'frTaskFormScope' : 'esTaskFormScope')));
+    if (['risk_assessment', 'inspection'].includes(kind)) blocks.push(
+      field('preventionPlanLink', reviewedText('preventionPlanLink'), 'verification'),
+      field('actionResources', reviewedText('actionResources'), 'verification'));
+  }
   const profile = REGIONAL_CATALOG[context.jurisdiction];
   if (profile?.extra) blocks.splice(1, 0, field('jurisdictionReview', regionalText(context.documentLocale, profile.extra, {
     'Worker consultation and reassessment triggers': '작업자 협의와 재평가 조건',
@@ -227,7 +237,7 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   const newlyReviewed = (['GB', 'US', 'JP'].includes(context.jurisdiction) && kind === 'inspection')
     || (context.jurisdiction === 'US' && kind === 'toolbox_talk')
     || (context.jurisdiction === 'JP' && kind === 'method_statement');
-  const baseVersion = countryForm ? '2026-10-05.14' : kind === 'permit_to_work' && ['US', 'AU', 'SG'].includes(context.jurisdiction) ? '2026-10-05.12'
+  const baseVersion = frEsForm ? '2026-10-05.15' : countryForm ? '2026-10-05.14' : kind === 'permit_to_work' && ['US', 'AU', 'SG'].includes(context.jurisdiction) ? '2026-10-05.12'
     : newlyReviewed ? '2026-10-05.11' : ['AU', 'JP'].includes(context.jurisdiction) ? '2026-10-05.10'
     : context.jurisdiction === 'SG' && kind !== 'permit_to_work' ? '2026-10-05.9' : TEMPLATE_VERSION;
   return {
