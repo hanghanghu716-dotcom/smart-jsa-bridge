@@ -11995,5 +11995,100 @@
     ],
     "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: occupational licensing and site PTW are separate. EXPRO guidance concerns government-facility operation/maintenance; check the more specific site procedure. Licensing implementation and sector requirements remain unverified.",
     "sha256": "c9dc203f04fcadff76fadfaaf11c87077d381f5eaa8cc8890698cd161f3c94d3"
+  },
+  {
+    "id": "task:qcWeldingBasis",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-qc-welding-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: workplace scope, welding process, applicable standard edition, clauses and exclusions",
+    "sha256": "d7040637aed04947d82dd3e1d9c59997b2ef656517208529de5b50d338d45268"
+  },
+  {
+    "id": "task:qcArcEquipment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-qc-welding-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If using an arc process: check protective grounding separately from the welding return circuit, cable condition and withdrawal of defective equipment",
+    "sha256": "542634056a2c85813006b35a6a70ae94c6c296dece05b33b779d48b139bfd1e6"
+  },
+  {
+    "id": "task:qcResistanceEquipment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-qc-welding-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If resistance welding: verify pinch-point guards, unintended-start prevention, safety interlocks and inspection by qualified personnel",
+    "sha256": "1e25abc6556504469e3f22630e4d6a9dca0a14bfb7f1153137ee675f137de674"
+  },
+  {
+    "id": "task:qcGasEquipment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-qc-welding-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If using gas: verify cylinder, regulator and hose suitability, leak/backflow/flashback safeguards and interruption/shutdown procedure",
+    "sha256": "93f9156592c7a42dd2db184db472866745a836ab741933dacb006ad91feb2b8a"
+  },
+  {
+    "id": "task:qcWeldingReviewNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-qc-welding-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: M87 general construction checks were compared; CSTC excludes 7.8.2.2. RSST-referenced M94 chapters 5, 6 and 8 still need original-text comparison. Verify site fire-code edition, transition and watch plan separately; no automatic times, distances or pass values.",
+    "sha256": "0ff1845242d403f11ecd339499b96d8b2c33ae0fce8c245fe575ad88f61fd54a"
   }
 ]

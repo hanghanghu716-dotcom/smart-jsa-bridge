@@ -14,7 +14,7 @@ test('all seven closeout combinations preserve unresolved evidence and reset cur
   assert.equal(Object.keys(CLOSEOUT_REVIEW).length, 7);
   for (const [id, supplement] of Object.entries(CLOSEOUT_REVIEW)) for (const language of TASK_SAFETY_LANGUAGES) {
     const [country, topic] = id.split('.'), doc = make(country, topic, language), r = doc.regional.taskReviews[0];
-    assert.equal(r.version, CLOSEOUT_VERSION);
+    assert.equal(r.version, supplement.version || CLOSEOUT_VERSION);
     assert.equal(r.legalApplicability, 'site-and-sector-review-required');
     assert.equal(r.status, supplement.resolve ? 'scoped-source-review' : 'partial-source-review');
     assert.equal(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, 'pending')), !supplement.resolve);
@@ -34,6 +34,25 @@ test('all seven closeout combinations preserve unresolved evidence and reset cur
       copy.documents[0].regional.taskReviews[0].requirements.remaining = 'COPY_ONLY';
     }
     assert.deepEqual(record, original);
+  }
+});
+
+test('Quebec records a partial M87 comparison without claiming that M94 or all processes were reviewed', () => {
+  for (const language of TASK_SAFETY_LANGUAGES) {
+    const doc = make('CA-QC', 'hot', language), review = doc.regional.taskReviews[0];
+    assert.equal(review.status, 'partial-source-review');
+    assert.equal(review.version, '2026-10-06.30');
+    assert.match(review.requirements.reviewBlocker.required, /M94 chapters 5, 6 and 8/);
+    assert.ok(review.sources.some(s => s.url.endsWith('/DOC-3695') && s.scope.includes('excludes 7.8.2.2')));
+    const notice = field(doc, 'hot.notice').value;
+    assert.ok(notice.includes(taskSafetyText(language, 'qcWeldingReviewNote')));
+    assert.ok(!notice.includes(taskSafetyText(language, 'qcFireReviewedNote')));
+    assert.equal(field(doc, 'hot.weldingEquipmentCheck'), undefined);
+    for (const key of ['qcWeldingBasis', 'qcArcEquipment', 'qcResistanceEquipment', 'qcGasEquipment']) {
+      assert.equal(field(doc, `hot.${key}`).value, '');
+      assert.equal(field(make('CA-QC', 'electrical', language), `electrical.${key}`), undefined);
+      assert.equal(field(make('CA-ON', 'hot', language), `hot.${key}`), undefined);
+    }
   }
 });
 

@@ -20,8 +20,16 @@ export const CLOSEOUT_REVIEW = {
     blocker: { code: 'standard-access', required: 'Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references.', accessUrl: 'https://mycatalogo.ceinorme.it/cei/item/0000025437' },
   },
   'CA-QC.hot': {
-    fields: [], sources: [source('CNESST · Consultation gratuite des normes CSA', 'https://www.cnesst.gouv.qc.ca/fr/prevention-securite/informations-prevention/normes-csa', 'Regulator documents free read-only CSA access after account registration. Reader requires login; incorporated W117.2 editions/clauses have not been read. No account was created and reader restrictions were not bypassed.', 'regulator-access-guide')],
-    blocker: { code: 'standard-access', required: 'Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically.', accessUrl: 'https://community.csagroup.org/login.jspa' },
+    version: '2026-10-06.30', evidence: 'regional-qc-welding-review-20261006.md',
+    fields: ['qcWeldingBasis', 'qcArcEquipment', 'qcResistanceEquipment', 'qcGasEquipment'],
+    removeFields: ['weldingEquipmentCheck'], replaceNote: 'qcWeldingReviewNote',
+    sources: [
+      source('CNESST · Consultation gratuite des normes CSA', 'https://www.cnesst.gouv.qc.ca/fr/prevention-securite/informations-prevention/normes-csa', 'Authenticated read-only access now works. M87 general checklist provisions were visually compared in the permitted viewer; M94 remains unavailable in the inspected free catalogue/search. No standard was downloaded, copied or redistributed.', 'regulator-access-guide'),
+      source('CSA · CAN/CSA-W117.2-M87, read-only original', 'https://community.csagroup.org/docs/DOC-3695', 'Printed pp.11–29, 38, 40–46 and amendment instructions compared for general process checks; see evidence for exact viewer pages and exclusions. Chapters 5/6/7 are arc/resistance/gas; M94 chapter numbering must not be inferred from M87. CSTC 3.14.2 excludes 7.8.2.2. No specialist-process, engineered-system or equipment certification.', 'standard-original-read-only'),
+      source('Légis Québec · CSTC 3.14.1–4', 'https://www.legisquebec.gouv.qc.ca/en/pdf/cr/S-2.1%2C%20R.%204.pdf', 'Official indexed consolidation updated 15 July 2025: 3.14.2 incorporates M87 except 7.8.2.2; 3.14.3 contains distinct vessel-work conditions. Retrieved excerpt, not a newly read complete code.', 'regulation-excerpt'),
+    ],
+    blocker: { code: 'standard-access', required: 'M87 general construction-check comparison recorded. Obtain lawful original M94 chapters 5, 6 and 8 incorporated by RSST 314–316 and compare them; authenticated CSA access alone does not provide that edition. Do not substitute M87 or a newer edition for M94.', accessUrl: 'https://community.csagroup.org/message/105022' },
+    remaining: 'M94 chapters 5/6/8 remain unread. M87 comparison covers generic construction checklist prompts only; specialist processes, engineered equipment, site fire-code/transition selection and actual authorisation are not certified. Keep CA-QC.hot partial until its RSST basis is compared.',
   },
   ...Object.fromEntries(['height', 'confined', 'electrical', 'hot'].map(topic => [`SA.${topic}`, {
     fields: ['saTrainingRoute', 'saPtwRelease', 'saPtwChange', ...(topic === 'electrical' ? ['saElectricalEquipment'] : [])],
@@ -36,14 +44,15 @@ export function applyCloseoutReview(records) {
     const [country, topic] = id.split('.'), record = result[country][topic];
     record.fields = [...new Set([...record.fields.filter(key => !review.removeFields?.includes(key)), ...review.fields])];
     record.additionalNotes = [...new Set([...(record.additionalNotes || []).filter(key => !review.removeNotes?.includes(key)), ...(review.note ? [review.note] : [])])];
+    if (review.replaceNote) record.noteKey = review.replaceNote;
     record.sources = [...new Map([...record.sources, ...review.sources].map(s => [s.url, s])).values()];
     record.partial = !review.resolve;
     if (review.resolve) record.resolvedIssues = [...new Set([...(record.resolvedIssues || []), review.resolve])];
     if (review.blocker) record.reviewBlocker = { ...review.blocker, checkedAt: '2026-10-06' };
     record.remaining = review.remaining || review.blocker.required;
-    record.version = CLOSEOUT_VERSION;
+    record.version = review.version || CLOSEOUT_VERSION;
     record.checkedAt = '2026-10-06';
-    record.evidence = CLOSEOUT_EVIDENCE;
+    record.evidence = review.evidence || CLOSEOUT_EVIDENCE;
   }
   return result;
 }

@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.28",
+  "evidenceVersion": "2026-10-06.30",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,7 +17,7 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 453
+    "fieldVocabularyGroups": 458
   },
   "summary": {
     "stage2": {
@@ -31,9 +31,9 @@
       "remainingPercent": 2.5
     },
     "stage3": {
-      "reviewGroups": 614,
-      "checkpoints": 1842,
-      "completed": 1842,
+      "reviewGroups": 619,
+      "checkpoints": 1857,
+      "completed": 1857,
       "pending": 0,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 0,
@@ -41,9 +41,9 @@
       "remainingPercent": 0
     },
     "combined": {
-      "reviewGroups": 775,
-      "checkpoints": 2325,
-      "completed": 2313,
+      "reviewGroups": 780,
+      "checkpoints": 2340,
+      "completed": 2328,
       "pending": 12,
       "pendingSourceResolution": 6,
       "pendingFinalVerification": 6,
@@ -5513,9 +5513,9 @@
     {
       "id": "task:CA-QC.hot",
       "evidence": [
-        "regional-closeout-review-20261006.md"
+        "regional-qc-welding-review-20261006.md"
       ],
-      "note": "Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically.",
+      "note": "M94 chapters 5/6/8 remain unread. M87 comparison covers generic construction checklist prompts only; specialist processes, engineered equipment, site fire-code/transition selection and actual authorisation are not certified. Keep CA-QC.hot partial until its RSST basis is compared.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -18317,6 +18317,41 @@
       }
     },
     {
+      "id": "task:qcArcEquipment",
+      "evidence": [
+        "regional-qc-welding-review-20261006.md"
+      ],
+      "note": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If using an arc process: check protective grounding separately from the welding return circuit, cable condition and withdrawal of defective equipment",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcArcEquipment",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-qc-welding-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If using an arc process: check protective grounding separately from the welding return circuit, cable condition and withdrawal of defective equipment",
+          "sha256": "542634056a2c85813006b35a6a70ae94c6c296dece05b33b779d48b139bfd1e6"
+        }
+      }
+    },
+    {
       "id": "task:qcConfined",
       "evidence": [
         "regional-task-review.md",
@@ -18709,6 +18744,41 @@
       }
     },
     {
+      "id": "task:qcGasEquipment",
+      "evidence": [
+        "regional-qc-welding-review-20261006.md"
+      ],
+      "note": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If using gas: verify cylinder, regulator and hose suitability, leak/backflow/flashback safeguards and interruption/shutdown procedure",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcGasEquipment",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-qc-welding-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If using gas: verify cylinder, regulator and hose suitability, leak/backflow/flashback safeguards and interruption/shutdown procedure",
+          "sha256": "93f9156592c7a42dd2db184db472866745a836ab741933dacb006ad91feb2b8a"
+        }
+      }
+    },
+    {
       "id": "task:qcHeightDetail",
       "evidence": [
         "regional-task-review.md",
@@ -18887,6 +18957,41 @@
       }
     },
     {
+      "id": "task:qcResistanceEquipment",
+      "evidence": [
+        "regional-qc-welding-review-20261006.md"
+      ],
+      "note": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If resistance welding: verify pinch-point guards, unintended-start prevention, safety interlocks and inspection by qualified personnel",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcResistanceEquipment",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-qc-welding-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. If resistance welding: verify pinch-point guards, unintended-start prevention, safety interlocks and inspection by qualified personnel",
+          "sha256": "1e25abc6556504469e3f22630e4d6a9dca0a14bfb7f1153137ee675f137de674"
+        }
+      }
+    },
+    {
       "id": "task:qcRiskCoverage",
       "evidence": [
         "regional-it-br-qc-form-review-20261005.md"
@@ -18988,6 +19093,76 @@
           ],
           "scope": "Ten-language comparison of conditions, jurisdiction and non-automatic authorisation: Québec: separate during/after-work watch and final inspection; plan, adjacent areas, people and actual times",
           "sha256": "ccbb799bb0e979830d35a7943e926838f535cef28e10898ea511aa0b789db3b3"
+        }
+      }
+    },
+    {
+      "id": "task:qcWeldingBasis",
+      "evidence": [
+        "regional-qc-welding-review-20261006.md"
+      ],
+      "note": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: workplace scope, welding process, applicable standard edition, clauses and exclusions",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcWeldingBasis",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-qc-welding-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: workplace scope, welding process, applicable standard edition, clauses and exclusions",
+          "sha256": "d7040637aed04947d82dd3e1d9c59997b2ef656517208529de5b50d338d45268"
+        }
+      }
+    },
+    {
+      "id": "task:qcWeldingReviewNote",
+      "evidence": [
+        "regional-qc-welding-review-20261006.md"
+      ],
+      "note": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: M87 general construction checks were compared; CSTC excludes 7.8.2.2. RSST-referenced M94 chapters 5, 6 and 8 still need original-text comparison. Verify site fire-code edition, transition and watch plan separately; no automatic times, distances or pass values.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcWeldingReviewNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-qc-welding-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: M87 general construction checks were compared; CSTC excludes 7.8.2.2. RSST-referenced M94 chapters 5, 6 and 8 still need original-text comparison. Verify site fire-code edition, transition and watch plan separately; no automatic times, distances or pass values.",
+          "sha256": "0ff1845242d403f11ecd339499b96d8b2c33ae0fce8c245fe575ad88f61fd54a"
         }
       }
     },
@@ -28070,7 +28245,7 @@
       "id": "native:CA-QC.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-closeout-review-20261006.md",
+        "regional-qc-welding-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "French-Canadian hot-work and fire-watch vocabulary checked against CCOHS guidance; not represented as a current Quebec-wide statutory permit or fixed watch duration.",

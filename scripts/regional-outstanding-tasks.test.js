@@ -20,10 +20,10 @@ test('remaining ten combinations preserve scoped status and translated blank che
     const [country, topic] = id.split('.'), doc = make(country, topic, language), r = doc.regional.taskReviews[0];
     assert.equal(r.status, (CLOSEOUT_REVIEW[id]?.resolve || id === 'RU.electrical' || review.resolve) ? 'scoped-source-review' : 'partial-source-review');
     assert.equal(r.legalApplicability, 'site-and-sector-review-required');
-    assert.equal(r.version, CLOSEOUT_REVIEW[id] ? CLOSEOUT_VERSION : id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : OUTSTANDING_TASK_VERSION);
+    assert.equal(r.version, CLOSEOUT_REVIEW[id] ? (CLOSEOUT_REVIEW[id].version || CLOSEOUT_VERSION) : id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : OUTSTANDING_TASK_VERSION);
     assert.equal(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, 'pending')), !(CLOSEOUT_REVIEW[id]?.resolve || id === 'RU.electrical' || review.resolve));
     for (const key of review.removeNotes || []) assert.ok(!field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, key)));
-    if (review.replaceNote) assert.ok(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, review.replaceNote)));
+    if (review.replaceNote) assert.ok(field(doc, `${topic}.notice`).value.includes(taskSafetyText(language, CLOSEOUT_REVIEW[id]?.replaceNote || review.replaceNote)));
     for (const key of review.fields) {
       const f = field(doc, `${topic}.${key}`);
       assert.equal(f.value, ''); assert.equal(f.mode, 'runtime'); assert.equal(f.kind, 'verification');

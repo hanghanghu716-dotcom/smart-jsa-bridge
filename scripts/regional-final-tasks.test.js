@@ -22,7 +22,7 @@ test('24 task supplements retain current-work blanks and individual evidence sta
   for (const [id, review] of Object.entries(FINAL_TASK_REVIEW)) for (const language of TASK_SAFETY_LANGUAGES) {
     const [country, topic] = id.split('.'), doc = make(country, topic, language), metadata = doc.regional.taskReviews[0];
     const newer = CLOSEOUT_REVIEW[id] ? { ...OUTSTANDING_TASK_REVIEW[id], ...CLOSEOUT_REVIEW[id] } : (id === 'RU.electrical' ? { ...OUTSTANDING_TASK_REVIEW[id], resolve: true, replaceNote: 'ruElectricalReviewedNote', removeNotes: ['ruTaskEvidenceNote', 'ruExtensionNotice'] } : OUTSTANDING_TASK_REVIEW[id]);
-    assert.equal(doc.regional.version, CLOSEOUT_REVIEW[id] ? CLOSEOUT_VERSION : id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : newer ? OUTSTANDING_TASK_VERSION : FINAL_TASK_VERSION);
+    assert.equal(doc.regional.version, CLOSEOUT_REVIEW[id] ? (CLOSEOUT_REVIEW[id].version || CLOSEOUT_VERSION) : id === 'RU.electrical' ? RU_ELECTRICAL_VERSION : newer ? OUTSTANDING_TASK_VERSION : FINAL_TASK_VERSION);
     assert.equal(doc.regional.status, 'site-review-draft');
     assert.equal(metadata.legalApplicability, 'site-and-sector-review-required');
     assert.equal(metadata.status, (newer ? !newer.resolve : review.pending) ? 'partial-source-review' : 'scoped-source-review', id);

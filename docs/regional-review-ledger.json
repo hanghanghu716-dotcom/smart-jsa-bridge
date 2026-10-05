@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.28",
+  "inventoryVersion": "2026-10-06.30",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 6,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 651,
+    "supplementFields": 654,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 366,
+    "taskVocabularyKeys": 371,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -2757,7 +2757,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-closeout-review-20261006.md",
+      "evidence": "regional-qc-welding-review-20261006.md",
       "findings": [
         {
           "url": "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html",
@@ -2797,8 +2797,20 @@
         },
         {
           "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/informations-prevention/normes-csa",
-          "scope": "Regulator documents free read-only CSA access after account registration. Reader requires login; incorporated W117.2 editions/clauses have not been read. No account was created and reader restrictions were not bypassed.",
+          "scope": "Authenticated read-only access now works. M87 general checklist provisions were visually compared in the permitted viewer; M94 remains unavailable in the inspected free catalogue/search. No standard was downloaded, copied or redistributed.",
           "basis": "regulator-access-guide",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://community.csagroup.org/docs/DOC-3695",
+          "scope": "Printed pp.11–29, 38, 40–46 and amendment instructions compared for general process checks; see evidence for exact viewer pages and exclusions. Chapters 5/6/7 are arc/resistance/gas; M94 chapter numbering must not be inferred from M87. CSTC 3.14.2 excludes 7.8.2.2. No specialist-process, engineered-system or equipment certification.",
+          "basis": "standard-original-read-only",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.legisquebec.gouv.qc.ca/en/pdf/cr/S-2.1%2C%20R.%204.pdf",
+          "scope": "Official indexed consolidation updated 15 July 2025: 3.14.2 incorporates M87 except 7.8.2.2; 3.14.3 contains distinct vessel-work conditions. Retrieved excerpt, not a newly read complete code.",
+          "basis": "regulation-excerpt",
           "checkedAt": "2026-10-06"
         }
       ],
@@ -2808,23 +2820,26 @@
         "watchCloseout",
         "qcFumeSources",
         "hotFireProtection",
-        "weldingEquipmentCheck",
         "atmosphericBasis",
         "restartReview",
         "permitRecord",
         "qcFireEdition",
         "qcWatchStages",
-        "combustibleSurroundings"
+        "combustibleSurroundings",
+        "qcWeldingBasis",
+        "qcArcEquipment",
+        "qcResistanceEquipment",
+        "qcGasEquipment"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
       "reviewBlocker": {
         "code": "standard-access",
-        "required": "Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically.",
-        "accessUrl": "https://community.csagroup.org/login.jspa",
+        "required": "M87 general construction-check comparison recorded. Obtain lawful original M94 chapters 5, 6 and 8 incorporated by RSST 314–316 and compare them; authenticated CSA access alone does not provide that edition. Do not substitute M87 or a newer edition for M94.",
+        "accessUrl": "https://community.csagroup.org/message/105022",
         "checkedAt": "2026-10-06"
       },
-      "remaining": "Authenticated CSA read-only access to the W117.2 editions incorporated by RSST/CSTC, followed by clause comparison; do not substitute the newest commercial edition automatically."
+      "remaining": "M94 chapters 5/6/8 remain unread. M87 comparison covers generic construction checklist prompts only; specialist processes, engineered equipment, site fire-code/transition selection and actual authorisation are not certified. Keep CA-QC.hot partial until its RSST basis is compared."
     },
     {
       "id": "DE.height",
@@ -10952,6 +10967,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:qcArcEquipment",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-qc-welding-review-20261006.md"
+    },
+    {
       "id": "task:qcConfined",
       "languages": [
         "ko",
@@ -11139,6 +11171,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:qcGasEquipment",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-qc-welding-review-20261006.md"
+    },
+    {
       "id": "task:qcHeightDetail",
       "languages": [
         "ko",
@@ -11224,6 +11273,23 @@
       "evidence": "regional-final-task-review-20261006.md"
     },
     {
+      "id": "task:qcResistanceEquipment",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-qc-welding-review-20261006.md"
+    },
+    {
       "id": "task:qcRiskCoverage",
       "languages": [
         "ko",
@@ -11273,6 +11339,40 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-outstanding-task-review-20261006.md"
+    },
+    {
+      "id": "task:qcWeldingBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-qc-welding-review-20261006.md"
+    },
+    {
+      "id": "task:qcWeldingReviewNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-qc-welding-review-20261006.md"
     },
     {
       "id": "task:record",

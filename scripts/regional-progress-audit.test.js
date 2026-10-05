@@ -11,7 +11,7 @@ test('published progress agrees with inventory and validates terminology closure
     ['scripts/regional-progress-audit.js', '--check'], { encoding: 'utf8' }));
   assert.equal(result.stage2.pendingSourceResolution, 6);
   assert.equal(result.stage2.pendingFinalVerification, 6);
-  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 614);
+  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 619);
   const audit = JSON.parse(fs.readFileSync('docs/regional-progress-audit.json', 'utf8'));
   assert.deepEqual(audit.stage3.filter(row => row.checkpoints.finalVerification.status === 'needs-final-verification').map(row => row.id).sort(),
     []);
