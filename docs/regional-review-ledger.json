@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.19",
+  "inventoryVersion": "2026-10-06.20",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 224,
+    "supplementFields": 267,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 291,
+    "taskVocabularyKeys": 296,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1421,23 +1421,26 @@
       "terms": "Avoid / prevent / minimise · collective protection",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hse.gov.uk/work-at-height/introduction.htm",
-          "scope": "Great Britain guidance: avoid/prevent/minimise, collective protection first, fragile surfaces, falling objects and rescue. No universal safe-height exemption",
+          "scope": "Avoid/prevent/minimise, collective protection, competence, planning, fragile surfaces, falling objects and rescue. GB guidance; NI and equipment-specific engineering remain outside this prompt review.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "fragileSurface",
-        "fallingObjects"
+        "fallingObjects",
+        "planReference",
+        "anchorCheck",
+        "rescueReadiness"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "GB.confined",
@@ -1446,22 +1449,35 @@
       "terms": "Safe system of work · emergency arrangements",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hseni.gov.uk/news/hseni-approves-two-revised-acops-l101-and-l113-use-northern-ireland",
           "scope": "L101 third edition approved for Northern Ireland from 2022-03-21; NI regulations remain distinct",
           "basis": "official-guidance",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://www.hse.gov.uk/pubns/priced/l101.pdf",
+          "scope": "Safe system, competence, conditional PTW, coordination, cancellation and emergency arrangements. Permit supports the system; no universal permit mandate. NI adoption is recorded separately.",
+          "basis": "approved-code-and-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
-        "countryProcedure"
+        "countryProcedure",
+        "permitTrigger",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "entryAuthorisation",
+        "permitCloseout",
+        "permitCoordination"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "GB.electrical",
@@ -1470,22 +1486,25 @@
       "terms": "Safe isolation · competent person",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hse.gov.uk/pubns/priced/hsg85.pdf",
-          "scope": "Great Britain guidance, third edition 2013: prove dead and check voltage detector before/after use. The US over-600-V statutory condition is not a GB threshold",
+          "scope": "Dead-work isolation, proving dead, relevant earthing, adjacent live parts, shift procedures and permit issue/return/cancellation. No live-work approval or universal low-voltage permit requirement.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
-        "isolationVerification"
+        "isolationVerification",
+        "planReference",
+        "isolationHandover",
+        "restorationRelease"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "GB.hot",
@@ -1494,23 +1513,25 @@
       "terms": "Hot-work permit · fire watch",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hse.gov.uk/welding/other-welding-risks.htm",
-          "scope": "Great Britain welding guidance: fire watch during/after work where safe area or combustible removal is unavailable; used containers need separate safe methods. At least 30 minutes after completion, extended to 60 for hard-to-detect/slow ignition; further sector guidance may differ",
+          "scope": "Combustibles on all sides, watch during work and at least 30 minutes after, 60 for slow/hidden ignition; tanks/drums need a separate safe method. Sector-specific rules remain separate.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "watchCloseout",
-        "containerHistory"
+        "containerHistory",
+        "hotAuthorisation",
+        "fireWatchBasis"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "AU.height",
@@ -1763,23 +1784,32 @@
       "terms": "General industry / construction / shipyard classification",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.140",
-          "scope": "General-industry personal fall protection: each-shift initial-use inspection, impact-loaded equipment withdrawal and competent-person clearance, prompt rescue. Does not decide when fall protection is required",
+          "scope": "Personal protection equipment, competent/qualified responsibilities, pre-shift inspection, impact withdrawal and prompt rescue, especially (c)(11)–(13), (17)–(21).",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.28",
+          "scope": "General-industry applicability/exceptions, task-specific fall and falling-object protection. Portable ladders, aerial lifts and other excluded activities use separate provisions; no universal threshold or engineered-system approval.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "equipmentRelease",
-        "rescueReadiness"
+        "rescueReadiness",
+        "frameworkBasis",
+        "anchorCheck",
+        "fallingObjects"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "US.confined",
@@ -1788,24 +1818,32 @@
       "terms": "Permit-required confined space · authorized entrant · attendant · entry supervisor",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146",
-          "scope": "General industry: signed entry-supervisor authorisation, task-limited duration, cancellation and at least one-year cancelled-permit retention",
+          "scope": "General industry only: (c)(5)/(7) alternative entry versus reclassification, (c)(8)/(9) host/contractor duties; (d) programme, (e)/(f) permit lifecycle/content, (g) training, (j)/(k) supervision/rescue. A field entry does not certify an alternative route.",
           "basis": "regulation",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "entryAuthorisation",
         "permitCloseout",
-        "permitRecord"
+        "permitRecord",
+        "spaceClass",
+        "permitTrigger",
+        "permitDisplay",
+        "trainingEvidence",
+        "rescueReadiness",
+        "atmosphericBasis",
+        "permitCoordination",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "US.electrical",
@@ -1814,23 +1852,25 @@
       "terms": "Qualified person · de-energization verification",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333",
-          "scope": "De-energised fixed equipment: all energy sources, qualified-person verification including induced/backfeed voltage; tester operation checks over 600 V; ordered restoration and absent lock-owner exception. Not a live-work permit",
+          "scope": "Written dead-work procedure and ordered isolation/verification/restoration under (b)(2). Lock/tag exceptions require specific conditions and additional safeguards. Tester before/after condition >600 V is US-specific. No energized-work approval.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "isolationVerification",
-        "restorationRelease"
+        "restorationRelease",
+        "planReference",
+        "frameworkBasis"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "US.hot",
@@ -1839,23 +1879,26 @@
       "terms": "Fire watch · post-work monitoring",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
-          "scope": "General-industry welding/cutting: conditional fire watch during work and at least half an hour afterward; site inspection and authorization, preferably a written permit. Not a universal written-permit mandate",
+          "scope": "(a)(1)–(4): guards/removal, conditional watch, area authorisation (written preferred), prohibited circumstances, used containers and confined work. Permit cannot override a prohibition; not a shipyard permit.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "hotAuthorisation",
-        "watchCloseout"
+        "watchCloseout",
+        "containerHistory",
+        "fireWatchBasis",
+        "hotFireProtection"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "CA.height",
@@ -1864,24 +1907,26 @@
       "terms": "Fall protection plan · rescue plan",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html",
-          "scope": "General guidance on site-specific plan, anchorage, clearance and rescue; provincial/federal legal triggers are not determined.",
+          "scope": "General site-plan, equipment, anchors and rescue guidance. Protection can be needed below usual thresholds because of hazards; actual federal/provincial duties and engineering are separate.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "planReference",
         "anchorCheck",
-        "rescueReadiness"
+        "rescueReadiness",
+        "fragileSurface",
+        "fallingObjects"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "CA.confined",
@@ -1890,23 +1935,29 @@
       "terms": "Entry permit · attendant · jurisdiction-specific procedure",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html",
-          "scope": "General guidance only; permit applicability and document control depend on the actual federal/provincial jurisdiction",
+          "scope": "General programme/entry-permit guidance: roles, testing, training, rescue, authorisation, availability, closeout and records. Permit applicability, signatures and retention follow actual jurisdiction; not national law.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-04"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "countryProcedure",
-        "permitRecord"
+        "permitRecord",
+        "planReference",
+        "trainingEvidence",
+        "rescueReadiness",
+        "entryAuthorisation",
+        "permitDisplay",
+        "permitCloseout"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "CA.electrical",
@@ -1915,23 +1966,25 @@
       "terms": "Lockout/Tag out",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
-          "scope": "Equipment-specific hazardous-energy control and verification, including stored/non-electrical energy; not an electrical licence or nationwide statute.",
+          "scope": "Equipment-specific written energy-control procedure, stored energy, worker communication, verification and removal/return to service. Electrical and other energy sources both matter; jurisdiction-specific authorisation remains separate.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "countryProcedure",
-        "isolationHandover"
+        "isolationHandover",
+        "planReference",
+        "restorationRelease"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "CA.hot",
@@ -1940,23 +1993,25 @@
       "terms": "Hot-work permit · fire watch",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-english-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html",
-          "scope": "Program/permit and watcher guidance: at least 60 minutes afterward, potentially longer. Guidance is not a uniform provincial legal duration; no automatic expiry.",
+          "scope": "Programme roles, cold alternatives, operable fire protection, explosive-atmosphere prohibition, watch during breaks and at least 60 minutes afterwards with further risk-based monitoring. Guidance, not a uniform statutory duration.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "hotAuthorisation",
-        "watchCloseout"
+        "watchCloseout",
+        "hotFireProtection",
+        "fireWatchBasis"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Scoped software task-prompt review recorded. Site-specific thresholds, engineering, statutory permit completeness, sector/NI/State Plan/provincial exceptions and actual-user validation are outside this closure; see evidence."
     },
     {
       "id": "CA-AB.height",
@@ -6953,6 +7008,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:caWatchGuidanceNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-english-task-review-20261006.md"
+    },
+    {
       "id": "task:circuit",
       "languages": [
         "ko",
@@ -7837,6 +7909,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:gbEntryPermitScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-english-task-review-20261006.md"
+    },
+    {
       "id": "task:gbHeightNotice",
       "languages": [
         "ko",
@@ -8005,6 +8094,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:hotFireProtection",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-english-task-review-20261006.md"
     },
     {
       "id": "task:hotPermitTrigger",
@@ -10863,6 +10969,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:usEntryPathNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-english-task-review-20261006.md"
+    },
+    {
       "id": "task:usHeightNotice",
       "languages": [
         "ko",
@@ -10895,6 +11018,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:usHotProhibitionNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-english-task-review-20261006.md"
     },
     {
       "id": "task:usIsolationNotice",

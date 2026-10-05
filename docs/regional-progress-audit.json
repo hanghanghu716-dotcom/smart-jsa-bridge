@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.19",
+  "evidenceVersion": "2026-10-06.20",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 378
+    "fieldVocabularyGroups": 383
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 398,
-      "pending": 85,
+      "completed": 410,
+      "pending": 73,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 72,
-      "completionPercent": 82.4,
-      "remainingPercent": 17.6
+      "pendingFinalVerification": 60,
+      "completionPercent": 84.9,
+      "remainingPercent": 15.1
     },
     "stage3": {
-      "reviewGroups": 539,
-      "checkpoints": 1617,
-      "completed": 1614,
+      "reviewGroups": 544,
+      "checkpoints": 1632,
+      "completed": 1629,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 700,
-      "checkpoints": 2100,
-      "completed": 2012,
-      "pending": 88,
+      "reviewGroups": 705,
+      "checkpoints": 2115,
+      "completed": 2039,
+      "pending": 76,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 75,
-      "completionPercent": 95.8,
-      "remainingPercent": 4.2
+      "pendingFinalVerification": 63,
+      "completionPercent": 96.4,
+      "remainingPercent": 3.6
     }
   },
   "stage2": [
@@ -3568,9 +3568,9 @@
     {
       "id": "task:GB.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3579,17 +3579,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:GB.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.hse.gov.uk/work-at-height/introduction.htm"
+          ],
+          "sha256": "6f2c648fadab793984730a0a815f0749a31a4cdc09f144bedaaa3d5c7a239e52"
         }
       }
     },
     {
       "id": "task:GB.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3598,17 +3630,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:GB.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.hse.gov.uk/pubns/priced/l101.pdf"
+          ],
+          "sha256": "aed8980d8014238323b43166d296e9660f4cf4d619d63683f7835777618dfa39"
         }
       }
     },
     {
       "id": "task:GB.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3617,17 +3681,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:GB.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.hse.gov.uk/pubns/priced/hsg85.pdf"
+          ],
+          "sha256": "49239b19188d2662fe700e47030456d2572dc7372e23dbf56c2c2f03ce429de1"
         }
       }
     },
     {
       "id": "task:GB.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3636,8 +3732,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:GB.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.hse.gov.uk/welding/other-welding-risks.htm"
+          ],
+          "sha256": "41a970408b122d4cd847be692aac149b23804cdd2ec6709ec2a274d9442e8530"
         }
       }
     },
@@ -3796,9 +3924,9 @@
     {
       "id": "task:US.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3807,17 +3935,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:US.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.28",
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.140"
+          ],
+          "sha256": "b094eb63ebdc35aaaec9ce0f1c306f22c41d3b678a143871e6050cb3cd4fd94b"
         }
       }
     },
     {
       "id": "task:US.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3826,17 +3987,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:US.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146"
+          ],
+          "sha256": "eded796adddda69ac2669c44782fa26f86b5ad1294307fe6ba04a3fa7d664652"
         }
       }
     },
     {
       "id": "task:US.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3845,17 +4038,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:US.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333"
+          ],
+          "sha256": "3615ade90e6e2fa5a0a7bad9b63a64619445985f0024ed1e1dafaa1644b270a9"
         }
       }
     },
     {
       "id": "task:US.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3864,17 +4089,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:US.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
+          ],
+          "sha256": "d3fb0e3db8f0c2606d094c8f3f1a87dc03161ef39ffd6866983934d33cf76f41"
         }
       }
     },
     {
       "id": "task:CA.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3883,17 +4140,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html"
+          ],
+          "sha256": "5de000d51842423e90e0430eca3e06ec3aeb3da50b8ff7ef97fd9c3b085f6af7"
         }
       }
     },
     {
       "id": "task:CA.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3902,17 +4191,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
+          ],
+          "sha256": "2a2cd5864b4cf61056c913b271af2d147e4cee553c9b51275823d4c07a4ae489"
         }
       }
     },
     {
       "id": "task:CA.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3921,17 +4242,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html"
+          ],
+          "sha256": "61a5c276cf1bc3b264208120cab073bc3aa506ea3004ad30e31fe07b6dba080b"
         }
       }
     },
     {
       "id": "task:CA.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-english-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3940,8 +4293,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site-specific measurements, competence decisions, engineering and rescue performance.",
+            "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+            "Live-account validation, deployment and full statutory form certification."
+          ],
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html"
+          ],
+          "sha256": "4abbf5eba27274c802c2911c896da0d4d990f5b83f502a3722e49cef20c81ff3"
         }
       }
     },
@@ -9820,6 +10205,41 @@
       }
     },
     {
+      "id": "task:caWatchGuidanceNote",
+      "evidence": [
+        "regional-english-task-review-20261006.md"
+      ],
+      "note": "Ten-language breaks, minimum 60-minute guidance, risk-based extension and actual closeout; not nationwide Canadian law.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:caWatchGuidanceNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language breaks, minimum 60-minute guidance, risk-based extension and actual closeout; not nationwide Canadian law.",
+          "sha256": "7294231006d6b782a4bad1a1f6be70058fca52ce6976cffe8df5b9ad88fa795a"
+        }
+      }
+    },
+    {
       "id": "task:circuit",
       "evidence": [
         "regional-task-review.md",
@@ -11687,6 +12107,41 @@
       }
     },
     {
+      "id": "task:gbEntryPermitScope",
+      "evidence": [
+        "regional-english-task-review-20261006.md"
+      ],
+      "note": "Ten-language conditional GB permit supporting the safe system, avoidable entry, risk-based application and rescue.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:gbEntryPermitScope",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language conditional GB permit supporting the safe system, avoidable entry, risk-based application and rescue.",
+          "sha256": "d49a4dcf379240f25b3d9376c355429d57b1398d5a33d557166813946d897173"
+        }
+      }
+    },
+    {
       "id": "task:gbHeightNotice",
       "evidence": [
         "regional-task-review.md",
@@ -12043,6 +12498,41 @@
           ],
           "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
           "sha256": "55453d1f94eb0585fa52f06fa8136e94edfb49f6cb8b95042e7b1128858500da"
+        }
+      }
+    },
+    {
+      "id": "task:hotFireProtection",
+      "evidence": [
+        "regional-english-task-review-20261006.md"
+      ],
+      "note": "Ten-language current suppression/alarm readiness and impairment/stop record without a prefilled satisfactory result.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:hotFireProtection",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language current suppression/alarm readiness and impairment/stop record without a prefilled satisfactory result.",
+          "sha256": "262be46ed3979413bd5a371e9b3787fd511c0bdf20a945026e6184ac27db0edc"
         }
       }
     },
@@ -18069,6 +18559,41 @@
       }
     },
     {
+      "id": "task:usEntryPathNote",
+      "evidence": [
+        "regional-english-task-review-20261006.md"
+      ],
+      "note": "Ten-language distinction of US alternative entry/reclassification, supporting certification and ventilation versus elimination; no automatic exception.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:usEntryPathNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language distinction of US alternative entry/reclassification, supporting certification and ventilation versus elimination; no automatic exception.",
+          "sha256": "090296de3109ecbf9773ed5a70893e5f43e4a442cfbe4974186e58487016cbb3"
+        }
+      }
+    },
+    {
       "id": "task:usHeightNotice",
       "evidence": [
         "regional-task-review.md",
@@ -18137,6 +18662,41 @@
           ],
           "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
           "sha256": "f9c796cc72d47d1a986857e53e8ac9ef52304e8ecd7773b9cfc45bc2baca03b6"
+        }
+      }
+    },
+    {
+      "id": "task:usHotProhibitionNote",
+      "evidence": [
+        "regional-english-task-review-20261006.md"
+      ],
+      "note": "Ten-language preservation of four US hot-work prohibition categories; a permit cannot override them.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:usHotProhibitionNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-english-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language preservation of four US hot-work prohibition categories; a permit cannot override them.",
+          "sha256": "978d9eab986bdc4777398db9bcfb77498b1ed96585edf786f5e7736737ac9a11"
         }
       }
     },
@@ -21801,7 +22361,7 @@
       "id": "native:GB.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Avoid/prevent/minimise hierarchy and collective protection, not a height threshold.",
@@ -21842,7 +22402,7 @@
       "id": "native:GB.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Safe system and planned emergency arrangements; a permit does not itself make entry safe.",
@@ -21885,7 +22445,7 @@
       "id": "native:GB.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Safe isolation and task-specific competence, not a universal electrical licence.",
@@ -21927,7 +22487,7 @@
       "id": "native:GB.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Hot-work permit and fire watch are separate controls; no universal duration inferred.",
@@ -22305,7 +22865,7 @@
       "id": "native:US.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "General-industry, construction and shipyard classifications remain distinct.",
@@ -22347,7 +22907,7 @@
       "id": "native:US.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Authorised entrant, attendant and entry supervisor definitions retained within general-industry scope.",
@@ -22388,7 +22948,7 @@
       "id": "native:US.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Qualified person and verification of deenergisation, not a universal licence or live-work authorisation.",
@@ -22429,7 +22989,7 @@
       "id": "native:US.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Fire watch during/after applicable work; no cross-sector automatic watch period.",
@@ -22470,7 +23030,7 @@
       "id": "native:CA.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "General fall-protection and rescue-planning vocabulary, subject to provincial rules.",
@@ -22511,7 +23071,7 @@
       "id": "native:CA.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Entry permit and attendant with jurisdiction-specific procedures; monitoring is not rescue qualification.",
@@ -22553,7 +23113,7 @@
       "id": "native:CA.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Lockout/tagout describes energy control, not an electrical occupational licence.",
@@ -22594,7 +23154,7 @@
       "id": "native:CA.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-english-task-review-20261006.md",
         "regional-native-permit-review-20261005.md"
       ],
       "note": "Permit and fire-watch vocabulary in general guidance; referenced standards not universal statutory duties.",

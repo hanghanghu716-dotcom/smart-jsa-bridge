@@ -3,7 +3,7 @@ import { workContext, sameWorkContext } from './workJurisdiction.js';
 import { regionalText } from '../locales/regionalWorkText.js';
 import { REGIONAL_CATALOG } from './regionalCatalog.js';
 import { REGIONAL_REVIEW_SOURCES, REGIONAL_REVIEW_VERSION, REGIONAL_REVIEW_SCOPE } from './regionalReview.js';
-import { taskReviewBlocks, TASK_REVIEW_VERSION } from './regionalTaskReview.js';
+import { taskReviewBlocks } from './regionalTaskReview.js';
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { REGIONAL_FORM_SOURCES } from './regionalFormSources20261005.js';
 import { COUNTRY_FORM_IDS } from './regionalCountryFormSources20261005.js';
@@ -309,7 +309,7 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   return {
     id: id(), type: 'form', canonicalType: kind, formType: kind === 'permit_to_work' ? 'ptw' : kind === 'toolbox_talk' ? 'tbm' : kind === 'inspection' ? 'checklist' : 'custom',
     enabled: true, title: entry.title, orientation: ['risk_assessment', 'method_statement'].includes(kind) || ((countryForm || ['CA', 'SG', 'AU', 'GB', 'US', 'JP'].includes(context.jurisdiction)) && kind === 'inspection') ? 'landscape' : 'portrait', blocks,
-    regional: { templateId: `${context.jurisdiction}.${kind}`, version: taskChecks.reviews.length ? TASK_REVIEW_VERSION : baseVersion, context, status: 'site-review-draft', review: { version: REGIONAL_REVIEW_VERSION, scope: REGIONAL_REVIEW_SCOPE, status: 'official-source-desk-review' },
+    regional: { templateId: `${context.jurisdiction}.${kind}`, version: taskChecks.reviews.length ? taskChecks.reviews.map(r => r.version).sort().at(-1) : baseVersion, context, status: 'site-review-draft', review: { version: REGIONAL_REVIEW_VERSION, scope: REGIONAL_REVIEW_SCOPE, status: 'official-source-desk-review' },
       ...(taskChecks.reviews.length ? { taskReviews: taskChecks.reviews } : {}),
       sourcesCheckedAt: '2026-10-03', sources: [...new Map([...structuredClone(REGIONAL_SOURCES[context.jurisdiction]), ...structuredClone(REGIONAL_FORM_SOURCES[`${context.jurisdiction}.${kind}`] || []), ...taskChecks.reviews.flatMap(r => r.sources)].map(s => [s.url, s])).values()], sourceJsaId: source?.sourceId || null, sourceJsaTitle: source?.title || '', sourceImportedAt: source ? new Date().toISOString() : null },
   };

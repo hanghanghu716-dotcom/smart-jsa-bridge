@@ -259,9 +259,9 @@ test('Australian confined-space form records actual law without treating Victori
 test('review evidence is dated by scope and does not upgrade unresolved countries or rewrite saved forms', () => {
   const us = taskReview(ctx('US'), 'confined');
   assert.equal(us.checkedAt, '2026-10-03');
-  assert.equal(us.requirements.checkedAt, '2026-10-04');
-  assert.equal(us.sources.find(s => s.url.includes('1910.146')).checkedAt, '2026-10-04');
-  assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-05');
+  assert.equal(us.requirements.checkedAt, '2026-10-06');
+  assert.equal(us.sources.find(s => s.url.includes('1910.146')).checkedAt, '2026-10-06');
+  assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-06');
   assert.equal(taskReview(ctx('DE'), 'hot').requirements.checkedAt, '2026-10-05');
   for (const country of ['SA', 'RU']) {
     assert.ok(make(country).regional.taskReviews.every(r => r.status === 'partial-source-review'));
@@ -437,8 +437,9 @@ test('remaining batch covers exactly the 37 formerly baseline-only combinations 
     .flatMap(([j, topics]) => Object.keys(topics).map(t => `${j}.${t}`)).sort(), ids);
   for (const [j, topics] of Object.entries(expected)) for (const topic of topics) {
     const r = taskReview(ctx(j), topic);
-    assert.equal(r.requirements.checkedAt, '2026-10-05');
-    assert.ok(r.requirements.sources.every(s => s.scope && s.basis && s.checkedAt === '2026-10-05'));
+    assert.equal(r.requirements.checkedAt, j === 'CA' ? '2026-10-06' : '2026-10-05');
+    assert.ok(r.requirements.sources.every(s => s.scope && s.basis &&
+      (s.checkedAt === '2026-10-05' || (j === 'CA' && s.checkedAt === '2026-10-06'))));
     for (const locale of TASK_SAFETY_LANGUAGES) {
       const doc = make(j, [topic], WORK_JURISDICTIONS.find(p => p.locale.split('-')[0] === locale).locale);
       const note = doc.blocks.find(b => b.field?.key === `${topic}.notice`).field.value;

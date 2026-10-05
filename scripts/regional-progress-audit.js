@@ -3,6 +3,7 @@ import process from 'node:process';
 import assert from 'node:assert/strict';
 import { terminologyText, terminologyHash } from './regional-terminology-fingerprint.js';
 import { formFingerprint } from './regional-form-fingerprint.js';
+import { taskFingerprint } from './regional-task-fingerprint.js';
 import { reviewLedger } from './regional-review-ledger.js';
 import { createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
 import { taskReview } from '../src/utils/regionalTaskReview.js';
@@ -17,6 +18,17 @@ import { WORK_DOCUMENT_LANGUAGES } from '../src/utils/workJurisdiction.js';
 const ledger = reviewLedger();
 const closures = JSON.parse(fs.readFileSync('docs/regional-terminology-closures.json', 'utf8'));
 const formClosures = JSON.parse(fs.readFileSync('docs/regional-form-closures.json', 'utf8'));
+const taskClosures = JSON.parse(fs.readFileSync('docs/regional-task-closures.json', 'utf8'));
+assert.equal(new Set(taskClosures.map(entry => entry.id)).size, taskClosures.length);
+for (const closure of taskClosures) {
+  const task = ledger.tasks.find(task => `task:${task.id}` === closure.id);
+  assert.ok(task && task.sourceStatus !== 'partial-source-review', closure.id);
+  assert.ok(closure.scope && closure.checkedAt && closure.evidence && closure.sourceUrls.length && closure.exclusions.length, closure.id);
+  assert.deepEqual(closure.languages, TASK_SAFETY_LANGUAGES);
+  assert.deepEqual(closure.checklist, ['applicability', 'controls', 'roles', 'stop-restart', 'records', 'exceptions']);
+  assert.equal(taskFingerprint(closure.id), closure.sha256,
+    `Task, underlying permit or renderer changed after review: ${closure.id}`);
+}
 assert.equal(new Set(formClosures.map(entry => entry.id)).size, formClosures.length);
 for (const closure of formClosures) {
   assert.ok(ledger.forms.some(form => `form:${form.id}` === closure.id), closure.id);
@@ -84,7 +96,7 @@ const finalCheck = {
   reason: 'No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated.',
 };
 function item(id, firstPass, evidence, note) {
-  const closure = [...closures, ...formClosures].find(entry => entry.id === id);
+  const closure = [...closures, ...formClosures, ...taskClosures].find(entry => entry.id === id);
   if (closure) evidence = [...new Set([...evidence, closure.evidence])];
   assert.ok(evidence.every(evidenceExists), id);
   return {
@@ -164,7 +176,7 @@ const markdown = `# ②·③ 진행률 — 확인 단계 기준\n\n` +
   `| 합산 | ${combined.reviewGroups} | ${combined.checkpoints} | ${combined.completed} | ${combined.pending} | ${combined.completionPercent}% | ${combined.remainingPercent}% |\n\n` +
   `②: 기본 양식 ${ledger.forms.length}개 + 작업 조합 ${ledger.tasks.length}개. 1차 대조 ${s2.reviewGroups - s2.pendingSourceResolution}, 코드 반영 ${s2.reviewGroups}, 최종 확인 ${s2.reviewGroups - s2.pendingFinalVerification}건. 남은 ${s2.pending}단계는 부분 근거 ${s2.pendingSourceResolution}건과 최종 확인 ${s2.pendingFinalVerification}건입니다.\n\n` +
   `③: 기본 문구 ${ledger.summary.baseVocabularyKeys} + 작업 문구 ${ledger.summary.taskVocabularyKeys} + 국가별 문서명 ${ledger.forms.length} + 원어 용어 묶음 ${ledger.tasks.length} = ${s3.reviewGroups}개. 보고서 범위의 1차 대조 ${s3.reviewGroups}, 코드 반영 ${s3.reviewGroups}, 항목별 최종 확인 ${s3.reviewGroups - s3.pendingFinalVerification}건. 남은 최종 확인 ${s3.pendingFinalVerification}건에는 완료 기록 누락과 실제 추가 검수 필요분이 함께 포함됩니다. 이를 전부 미번역 문구로 취급하지 않습니다.\n\n` +
-  `이번 변경: SA·RU 기본 양식 10종과 새 문구 8개 × 10언어를 대조·보완했습니다. 기본 양식 최종 확인은 누적 89건, 전문용어는 ${closures.length}건입니다. 기존 528개 문구·79개 양식 해시는 유지했습니다. 특수작업의 부분 근거 13건과 러시아 원어 3묶음은 여전히 열려 있습니다. [검수 근거](regional-sa-ru-form-review-20261006.md).\n\n` +
+  `이번 변경: GB·US·CA 작업 12조합의 현재 확인란 43개와 새 문구 5개 × 10언어를 보완했습니다. 기본 양식 최종 확인 ${formClosures.length}건, 작업 조합 ${taskClosures.length}건, 전문용어 ${closures.length}건입니다. 기존 536개 문구·89개 기본 양식 해시는 유지했습니다. 부분 근거 13건과 러시아 원어 3묶음은 여전히 열려 있습니다. [검수 근거](regional-english-task-review-20261006.md).\n\n` +
   `## 이번 확인과 한계\n\n` +
   `- 기본 양식 ${generatedFormChecks}건(89종 × 10언어)과 작업 조합 ${generatedTaskChecks}건(72종 × 10언어)을 생성하여 제목·필드·국가별 용어 보존을 확인했습니다. 이것은 코드 연결 확인이며 의미 정확성 검수 완료가 아닙니다.\n` +
   `- 모든 항목의 완료 기록 부재를 기존 작업 전체 미완료로 계산하지 않고, 최종 확인 단계만 남깁니다. 실제 추가 수정량·소요시간의 백분율은 이 지표로 주장하지 않습니다.\n` +

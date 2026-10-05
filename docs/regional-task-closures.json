@@ -1,0 +1,423 @@
+[
+  {
+    "id": "task:GB.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.hse.gov.uk/work-at-height/introduction.htm"
+    ],
+    "sha256": "6f2c648fadab793984730a0a815f0749a31a4cdc09f144bedaaa3d5c7a239e52"
+  },
+  {
+    "id": "task:GB.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.hse.gov.uk/pubns/priced/l101.pdf"
+    ],
+    "sha256": "aed8980d8014238323b43166d296e9660f4cf4d619d63683f7835777618dfa39"
+  },
+  {
+    "id": "task:GB.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.hse.gov.uk/pubns/priced/hsg85.pdf"
+    ],
+    "sha256": "49239b19188d2662fe700e47030456d2572dc7372e23dbf56c2c2f03ce429de1"
+  },
+  {
+    "id": "task:GB.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.hse.gov.uk/welding/other-welding-risks.htm"
+    ],
+    "sha256": "41a970408b122d4cd847be692aac149b23804cdd2ec6709ec2a274d9442e8530"
+  },
+  {
+    "id": "task:US.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.28",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.140"
+    ],
+    "sha256": "b094eb63ebdc35aaaec9ce0f1c306f22c41d3b678a143871e6050cb3cd4fd94b"
+  },
+  {
+    "id": "task:US.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146"
+    ],
+    "sha256": "eded796adddda69ac2669c44782fa26f86b5ad1294307fe6ba04a3fa7d664652"
+  },
+  {
+    "id": "task:US.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333"
+    ],
+    "sha256": "3615ade90e6e2fa5a0a7bad9b63a64619445985f0024ed1e1dafaa1644b270a9"
+  },
+  {
+    "id": "task:US.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
+    ],
+    "sha256": "d3fb0e3db8f0c2606d094c8f3f1a87dc03161ef39ffd6866983934d33cf76f41"
+  },
+  {
+    "id": "task:CA.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html"
+    ],
+    "sha256": "5de000d51842423e90e0430eca3e06ec3aeb3da50b8ff7ef97fd9c3b085f6af7"
+  },
+  {
+    "id": "task:CA.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
+    ],
+    "sha256": "2a2cd5864b4cf61056c913b271af2d147e4cee553c9b51275823d4c07a4ae489"
+  },
+  {
+    "id": "task:CA.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html"
+    ],
+    "sha256": "61a5c276cf1bc3b264208120cab073bc3aa506ea3004ad30e31fe07b6dba080b"
+  },
+  {
+    "id": "task:CA.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist under the declared GB HSE / US federal general-industry / CA CCOHS guidance scope; not certification of a statutory permit or site compliance.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site-specific measurements, competence decisions, engineering and rescue performance.",
+      "NI legislation, US State Plans and non-general-industry rules, Canadian federal/provincial statutory determinations.",
+      "Live-account validation, deployment and full statutory form certification."
+    ],
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html"
+    ],
+    "sha256": "4abbf5eba27274c802c2911c896da0d4d990f5b83f502a3722e49cef20c81ff3"
+  }
+]

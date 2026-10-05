@@ -10499,5 +10499,100 @@
     ],
     "scope": "Ten-language current hazards/changes, stop/report, understood language, understanding check, absent-person follow-up and action responsibility.",
     "sha256": "1ac8f0f8cb2504ea41cbad05a586e86d8cbcdb7e4dcc569861e48f0011930866"
+  },
+  {
+    "id": "task:usEntryPathNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language distinction of US alternative entry/reclassification, supporting certification and ventilation versus elimination; no automatic exception.",
+    "sha256": "090296de3109ecbf9773ed5a70893e5f43e4a442cfbe4974186e58487016cbb3"
+  },
+  {
+    "id": "task:hotFireProtection",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language current suppression/alarm readiness and impairment/stop record without a prefilled satisfactory result.",
+    "sha256": "262be46ed3979413bd5a371e9b3787fd511c0bdf20a945026e6184ac27db0edc"
+  },
+  {
+    "id": "task:usHotProhibitionNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language preservation of four US hot-work prohibition categories; a permit cannot override them.",
+    "sha256": "978d9eab986bdc4777398db9bcfb77498b1ed96585edf786f5e7736737ac9a11"
+  },
+  {
+    "id": "task:caWatchGuidanceNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language breaks, minimum 60-minute guidance, risk-based extension and actual closeout; not nationwide Canadian law.",
+    "sha256": "7294231006d6b782a4bad1a1f6be70058fca52ce6976cffe8df5b9ad88fa795a"
+  },
+  {
+    "id": "task:gbEntryPermitScope",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-english-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language conditional GB permit supporting the safe system, avoidable entry, risk-based application and rescue.",
+    "sha256": "d49a4dcf379240f25b3d9376c355429d57b1398d5a33d557166813946d897173"
   }
 ]

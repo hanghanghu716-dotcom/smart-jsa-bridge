@@ -127,7 +127,7 @@ export function taskReview(context, topic) {
   const unresolved = requirements?.partial || jurisdiction === 'RU' || jurisdiction === 'SA' || !sources.length
     || (jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined');
   return {
-    topic, jurisdiction, version: TASK_REVIEW_VERSION, checkedAt: '2026-10-03',
+    topic, jurisdiction, version: requirements?.version || TASK_REVIEW_VERSION, checkedAt: '2026-10-03',
     status: unresolved ? 'partial-source-review' : 'scoped-source-review',
     legalApplicability: 'site-and-sector-review-required',
     scopeNotes: [
