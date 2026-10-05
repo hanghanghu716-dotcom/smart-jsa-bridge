@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.13",
+  "evidenceVersion": "2026-10-05.14",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 339
+    "fieldVocabularyGroups": 344
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 337,
-      "pending": 146,
+      "completed": 349,
+      "pending": 134,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 133,
-      "completionPercent": 69.8,
-      "remainingPercent": 30.2
+      "pendingFinalVerification": 121,
+      "completionPercent": 72.3,
+      "remainingPercent": 27.7
     },
     "stage3": {
-      "reviewGroups": 500,
-      "checkpoints": 1500,
-      "completed": 1497,
+      "reviewGroups": 505,
+      "checkpoints": 1515,
+      "completed": 1512,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 661,
-      "checkpoints": 1983,
-      "completed": 1834,
-      "pending": 149,
+      "reviewGroups": 666,
+      "checkpoints": 1998,
+      "completed": 1861,
+      "pending": 137,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 136,
-      "completionPercent": 92.5,
-      "remainingPercent": 7.5
+      "pendingFinalVerification": 124,
+      "completionPercent": 93.1,
+      "remainingPercent": 6.9
     }
   },
   "stage2": [
@@ -1073,9 +1073,9 @@
     {
       "id": "form:CA-AB.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1084,17 +1084,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-AB.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+            "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+          ],
+          "sha256": "1613b3688388074ded54bb2b849284448ff4cea1d4fe5181bace13a796637fca"
         }
       }
     },
     {
       "id": "form:CA-AB.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1103,8 +1123,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-AB.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+            "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+          ],
+          "sha256": "c6a869a29a658e72512584e557f954610cdd0dd68cd519a787d6fb7112afae51"
         }
       }
     },
@@ -1130,9 +1170,9 @@
     {
       "id": "form:CA-AB.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1141,17 +1181,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-AB.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+            "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+          ],
+          "sha256": "63927a32904bb45562078eadb11aa157a485b20f9ead2f40dadcaeb132a29f4e"
         }
       }
     },
     {
       "id": "form:CA-AB.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1160,8 +1220,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-AB.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+          "sourceUrls": [
+            "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+            "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+          ],
+          "sha256": "137752621a84d1221e6f7644c321d9d0533cc1f50f1d2777d9c0279a33df03eb"
         }
       }
     },
@@ -1263,9 +1343,9 @@
     {
       "id": "form:CA-BC.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1274,17 +1354,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-BC.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
+          ],
+          "sha256": "f0ec933123adbbbca74ee2ca984dce3d2a2d90e45886ce46764bd276bccc86f7"
         }
       }
     },
     {
       "id": "form:CA-BC.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1293,8 +1393,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-BC.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
+          ],
+          "sha256": "81cdfdce0c73453e2eb7775ac7fca454bdc0a35ad2508abb6d93086bdda88587"
         }
       }
     },
@@ -1320,9 +1440,9 @@
     {
       "id": "form:CA-BC.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1331,17 +1451,38 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-BC.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+            "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+            "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+          ],
+          "sha256": "e2026526e496d46a2753e8f9539603e181c121cea337c114055e346a7a117c74"
         }
       }
     },
     {
       "id": "form:CA-BC.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1350,8 +1491,29 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-BC.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+          "sourceUrls": [
+            "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+            "https://www.worksafebc.com/en/health-safety/create-manage/workplace-inspections",
+            "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+          ],
+          "sha256": "aeaacde0575138aa7d0419c79451ce43b8bedb8d5df91e6ee420a0d792627ae4"
         }
       }
     },
@@ -1453,9 +1615,9 @@
     {
       "id": "form:DE.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1464,17 +1626,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:DE.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/arbschg/__5.html",
+            "https://www.gesetze-im-internet.de/arbschg/__6.html"
+          ],
+          "sha256": "fbfafb4b1a4c54c98d9d304c0a83876bdb6d84f238c12815fc76ea5eaa985540"
         }
       }
     },
     {
       "id": "form:DE.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1483,8 +1665,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:DE.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+          "sourceUrls": [
+            "https://aug.dguv.de/arbeitssicherheit/wie-unternehmen-betriebsanweisungen-richtig-nutzen/",
+            "https://www.gesetze-im-internet.de/arbschg/__12.html"
+          ],
+          "sha256": "5e7a3f82be62bb961b67821c2001a9e9ee204ceed8f65bf3aac04d685f308041"
         }
       }
     },
@@ -1510,9 +1712,9 @@
     {
       "id": "form:DE.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1521,17 +1723,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:DE.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/arbschg/__12.html",
+            "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
+          ],
+          "sha256": "48f091f6aafe0aa7b271515e7803c173b3c8e729f45b63cf8f82bb7bb9dc38db"
         }
       }
     },
     {
       "id": "form:DE.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-country-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1540,8 +1762,29 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:DE.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+          "sourceUrls": [
+            "https://www.gesetze-im-internet.de/arbschg/__5.html",
+            "https://www.gesetze-im-internet.de/arbschg/__6.html",
+            "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
+          ],
+          "sha256": "04e26e8411459c4174933f63dcaf8e9639a40f6a547215f1b40929e60a97df90"
         }
       }
     },
@@ -6790,6 +7033,41 @@
       }
     },
     {
+      "id": "task:abAssessmentCycle",
+      "evidence": [
+        "regional-country-form-review-20261005.md"
+      ],
+      "note": "Ten-language review of pre-work and practicable reassessment, new/changed process and before significant site alteration. A fresh planning record, not a fixed recurring date or completed assessment.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:abAssessmentCycle",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language review of pre-work and practicable reassessment, new/changed process and before significant site alteration. A fresh planning record, not a fixed recurring date or completed assessment.",
+          "sha256": "c6587448565274ee3d2f7bb648d9f9f4fc27b696f131c9eba7d82920edc632d1"
+        }
+      }
+    },
+    {
       "id": "task:abEnergyDetail",
       "evidence": [
         "regional-task-review.md",
@@ -7758,6 +8036,76 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "f23598c54a25a3fb012a640f2f51eaa1347447e9346c2494d0f15b772cb553ce"
+        }
+      }
+    },
+    {
+      "id": "task:bcInspectionParticipation",
+      "evidence": [
+        "regional-country-form-review-20261005.md"
+      ],
+      "note": "Ten-language preservation of feasible committee/worker representative participation, applicable representative selection and actual participation recording; no automatic appointment/attendance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:bcInspectionParticipation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language preservation of feasible committee/worker representative participation, applicable representative selection and actual participation recording; no automatic appointment/attendance.",
+          "sha256": "1c6f841c429409681c8a3d9f70b8eb356885129ce21bcc2b1860c7674a654c98"
+        }
+      }
+    },
+    {
+      "id": "task:bcMeetingBasis",
+      "evidence": [
+        "regional-country-form-review-20261005.md"
+      ],
+      "note": "Ten-language preservation of OHS 3.1/3.2 applicability and monthly meetings only for small operations covered by 3.2; meeting records retained, no universal frequency for every toolbox talk.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:bcMeetingBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language preservation of OHS 3.1/3.2 applicability and monthly meetings only for small operations covered by 3.2; meeting records retained, no universal frequency for every toolbox talk.",
+          "sha256": "9fa0760ccda98d049cb5c3f5eac17be8284865cd280ec780c516119d9c241e66"
         }
       }
     },
@@ -8874,6 +9222,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "13d6ca991015d43895169ea7c412830f83d4aa95e40e44f62e5fb7d8465501a0"
+        }
+      }
+    },
+    {
+      "id": "task:deProcedureScope",
+      "evidence": [
+        "regional-country-form-review-20261005.md"
+      ],
+      "note": "Ten-language distinction between a draft work sequence, employer Betriebsanweisung, manufacturer instructions and mandatory specialised instructions; retain native document identity and worker access.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:deProcedureScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language distinction between a draft work sequence, employer Betriebsanweisung, manufacturer instructions and mandatory specialised instructions; retain native document identity and worker access.",
+          "sha256": "aaa86e3adaa23ff91c7692d848b114df89985d1042e60aea707de42a7301a079"
         }
       }
     },
@@ -12726,6 +13109,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "f3debf8130be54b0f788ece16b4fc80de2efdddb20284cbef5c18d43c267ad89"
+        }
+      }
+    },
+    {
+      "id": "task:procedureAccess",
+      "evidence": [
+        "regional-country-form-review-20261005.md"
+      ],
+      "note": "Ten-language distinction between current procedure revision/approval, worker access location and explanation/understanding. All are fresh checks, not reusable historical approvals.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:procedureAccess",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-country-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language distinction between current procedure revision/approval, worker access location and explanation/understanding. All are fresh checks, not reusable historical approvals.",
+          "sha256": "26a12f82ff55dad346b3b6f4871725d048ca712dc1c5edcdb8e8c7fc63669780"
         }
       }
     },
@@ -16908,7 +17326,7 @@
     {
       "id": "title:CA-AB.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -16944,7 +17362,7 @@
     {
       "id": "title:CA-AB.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17016,7 +17434,7 @@
     {
       "id": "title:CA-AB.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17052,7 +17470,7 @@
     {
       "id": "title:CA-AB.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17268,7 +17686,7 @@
     {
       "id": "title:CA-BC.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17304,7 +17722,7 @@
     {
       "id": "title:CA-BC.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17376,7 +17794,7 @@
     {
       "id": "title:CA-BC.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17412,7 +17830,7 @@
     {
       "id": "title:CA-BC.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17628,7 +18046,7 @@
     {
       "id": "title:DE.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17664,7 +18082,7 @@
     {
       "id": "title:DE.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17736,7 +18154,7 @@
     {
       "id": "title:DE.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17772,7 +18190,7 @@
     {
       "id": "title:DE.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-country-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

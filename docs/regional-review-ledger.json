@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.13",
+  "inventoryVersion": "2026-10-05.14",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 252,
+    "taskVocabularyKeys": 257,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -446,26 +446,26 @@
       "jurisdiction": "CA-AB",
       "kind": "risk_assessment",
       "title": "Hazard Assessment",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-AB.method_statement",
       "jurisdiction": "CA-AB",
       "kind": "method_statement",
       "title": "Safe Work Procedure",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
         "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-AB.permit_to_work",
@@ -485,26 +485,28 @@
       "jurisdiction": "CA-AB",
       "kind": "toolbox_talk",
       "title": "Toolbox Meeting",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/"
+        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+        "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-AB.inspection",
       "jurisdiction": "CA-AB",
       "kind": "inspection",
       "title": "Workplace Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/"
+        "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+        "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-ON.risk_assessment",
@@ -576,26 +578,29 @@
       "jurisdiction": "CA-BC",
       "kind": "risk_assessment",
       "title": "Risk Assessment",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks"
+        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+        "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-BC.method_statement",
       "jurisdiction": "CA-BC",
       "kind": "method_statement",
       "title": "Safe Work Procedure",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks"
+        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+        "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+        "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-BC.permit_to_work",
@@ -615,26 +620,32 @@
       "jurisdiction": "CA-BC",
       "kind": "toolbox_talk",
       "title": "Toolbox Meeting",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks"
+        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+        "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+        "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+        "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-BC.inspection",
       "jurisdiction": "CA-BC",
       "kind": "inspection",
       "title": "Workplace Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks"
+        "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+        "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+        "https://www.worksafebc.com/en/health-safety/create-manage/workplace-inspections",
+        "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-QC.risk_assessment",
@@ -711,24 +722,28 @@
       "jurisdiction": "DE",
       "kind": "risk_assessment",
       "title": "Gefährdungsbeurteilung – Tätigkeit",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7"
+        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7",
+        "https://www.gesetze-im-internet.de/arbschg/__5.html",
+        "https://www.gesetze-im-internet.de/arbschg/__6.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "DE.method_statement",
       "jurisdiction": "DE",
       "kind": "method_statement",
       "title": "Arbeitsanweisung – sicheres Arbeiten",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7"
+        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7",
+        "https://aug.dguv.de/arbeitssicherheit/wie-unternehmen-betriebsanweisungen-richtig-nutzen/",
+        "https://www.gesetze-im-internet.de/arbschg/__12.html"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "DE.permit_to_work",
@@ -747,24 +762,29 @@
       "jurisdiction": "DE",
       "kind": "toolbox_talk",
       "title": "Sicherheitskurzbesprechung",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7"
+        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7",
+        "https://www.gesetze-im-internet.de/arbschg/__12.html",
+        "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "DE.inspection",
       "jurisdiction": "DE",
       "kind": "inspection",
       "title": "Sicherheitscheckliste",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-country-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7"
+        "https://www.baua.de/DE/Themen/Arbeitsgestaltung/Gefaehrdungsbeurteilung/Handbuch-Gefaehrdungsbeurteilung/Grundlagenwissen/Prozessschritte-der-Gefaehrdungsbeurteilung/Prozessschritte-der-Gefaehrdungsbeurteilung_dossier?pos=7",
+        "https://www.gesetze-im-internet.de/arbschg/__5.html",
+        "https://www.gesetze-im-internet.de/arbschg/__6.html",
+        "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "JP.risk_assessment",
@@ -6002,6 +6022,23 @@
       "evidence": "regional-document-review.md"
     },
     {
+      "id": "task:abAssessmentCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-country-form-review-20261005.md"
+    },
+    {
       "id": "task:abEnergyDetail",
       "languages": [
         "ko",
@@ -6459,6 +6496,40 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:bcInspectionParticipation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-country-form-review-20261005.md"
+    },
+    {
+      "id": "task:bcMeetingBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-country-form-review-20261005.md"
     },
     {
       "id": "task:brElectricalEditionNotice",
@@ -6986,6 +7057,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:deProcedureScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-country-form-review-20261005.md"
     },
     {
       "id": "task:deadScope",
@@ -8805,6 +8893,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:procedureAccess",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-country-form-review-20261005.md"
     },
     {
       "id": "task:procedureChangeRecord",

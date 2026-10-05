@@ -626,5 +626,284 @@
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx"
     ],
     "sha256": "c1c14ac94461e2ecbc92f36cdb9388746aa65daabb3b7becdaad5b6894635707"
+  },
+  {
+    "id": "form:CA-AB.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "1613b3688388074ded54bb2b849284448ff4cea1d4fe5181bace13a796637fca"
+  },
+  {
+    "id": "form:CA-AB.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "c6a869a29a658e72512584e557f954610cdd0dd68cd519a787d6fb7112afae51"
+  },
+  {
+    "id": "form:CA-AB.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+    ],
+    "sha256": "63927a32904bb45562078eadb11aa157a485b20f9ead2f40dadcaeb132a29f4e"
+  },
+  {
+    "id": "form:CA-AB.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+    ],
+    "sha256": "137752621a84d1221e6f7644c321d9d0533cc1f50f1d2777d9c0279a33df03eb"
+  },
+  {
+    "id": "form:CA-BC.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
+    ],
+    "sha256": "f0ec933123adbbbca74ee2ca984dce3d2a2d90e45886ce46764bd276bccc86f7"
+  },
+  {
+    "id": "form:CA-BC.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
+    ],
+    "sha256": "81cdfdce0c73453e2eb7775ac7fca454bdc0a35ad2508abb6d93086bdda88587"
+  },
+  {
+    "id": "form:CA-BC.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+      "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+    ],
+    "sha256": "e2026526e496d46a2753e8f9539603e181c121cea337c114055e346a7a117c74"
+  },
+  {
+    "id": "form:CA-BC.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+      "https://www.worksafebc.com/en/health-safety/create-manage/workplace-inspections",
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+    ],
+    "sha256": "aeaacde0575138aa7d0419c79451ce43b8bedb8d5df91e6ee420a0d792627ae4"
+  },
+  {
+    "id": "form:DE.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/arbschg/__5.html",
+      "https://www.gesetze-im-internet.de/arbschg/__6.html"
+    ],
+    "sha256": "fbfafb4b1a4c54c98d9d304c0a83876bdb6d84f238c12815fc76ea5eaa985540"
+  },
+  {
+    "id": "form:DE.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+    "sourceUrls": [
+      "https://aug.dguv.de/arbeitssicherheit/wie-unternehmen-betriebsanweisungen-richtig-nutzen/",
+      "https://www.gesetze-im-internet.de/arbschg/__12.html"
+    ],
+    "sha256": "5e7a3f82be62bb961b67821c2001a9e9ee204ceed8f65bf3aac04d685f308041"
+  },
+  {
+    "id": "form:DE.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/arbschg/__12.html",
+      "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
+    ],
+    "sha256": "48f091f6aafe0aa7b271515e7803c173b3c8e729f45b63cf8f82bb7bb9dc38db"
+  },
+  {
+    "id": "form:DE.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/arbschg/__5.html",
+      "https://www.gesetze-im-internet.de/arbschg/__6.html",
+      "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
+    ],
+    "sha256": "04e26e8411459c4174933f63dcaf8e9639a40f6a547215f1b40929e60a97df90"
   }
 ]

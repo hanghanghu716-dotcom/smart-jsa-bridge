@@ -9758,5 +9758,100 @@
       "https://87.mchs.gov.ru/deyatelnost/press-centr/novosti/5804257"
     ],
     "sha256": "b3e6cd513c06e4e94ef0175980116efb93e81965d44e012f145a5ed8332743f1"
+  },
+  {
+    "id": "task:abAssessmentCycle",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language review of pre-work and practicable reassessment, new/changed process and before significant site alteration. A fresh planning record, not a fixed recurring date or completed assessment.",
+    "sha256": "c6587448565274ee3d2f7bb648d9f9f4fc27b696f131c9eba7d82920edc632d1"
+  },
+  {
+    "id": "task:bcMeetingBasis",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language preservation of OHS 3.1/3.2 applicability and monthly meetings only for small operations covered by 3.2; meeting records retained, no universal frequency for every toolbox talk.",
+    "sha256": "9fa0760ccda98d049cb5c3f5eac17be8284865cd280ec780c516119d9c241e66"
+  },
+  {
+    "id": "task:bcInspectionParticipation",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language preservation of feasible committee/worker representative participation, applicable representative selection and actual participation recording; no automatic appointment/attendance.",
+    "sha256": "1c6f841c429409681c8a3d9f70b8eb356885129ce21bcc2b1860c7674a654c98"
+  },
+  {
+    "id": "task:procedureAccess",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language distinction between current procedure revision/approval, worker access location and explanation/understanding. All are fresh checks, not reusable historical approvals.",
+    "sha256": "26a12f82ff55dad346b3b6f4871725d048ca712dc1c5edcdb8e8c7fc63669780"
+  },
+  {
+    "id": "task:deProcedureScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language distinction between a draft work sequence, employer Betriebsanweisung, manufacturer instructions and mandatory specialised instructions; retain native document identity and worker access.",
+    "sha256": "aaa86e3adaa23ff91c7692d848b114df89985d1042e60aea707de42a7301a079"
   }
 ]
