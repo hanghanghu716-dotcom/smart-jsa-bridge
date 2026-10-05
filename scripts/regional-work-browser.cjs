@@ -21,7 +21,7 @@ const errors = [];
   const ui = getWorkPackageUi(screenLocale), regionUi = workContextUi(screenLocale);
   const documentLocale = process.env.WORK_TEST_DOCUMENT_LOCALE || jurisdiction.locale;
   const qaName = country + (process.env.WORK_TEST_DOCUMENT_LOCALE ? '-' + documentLocale : '');
-  const qa = path.join(root, '.cache/regional-qa', qaName);
+  const qa = path.join(root, '.cache/regional-qa', process.env.WORK_TEST_OUTPUT_GROUP || '', qaName);
   const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--no-sandbox'] });
   try {
     const p = await browser.newPage(); await p.setViewport({ width: 1440, height: 1000 });
@@ -100,11 +100,59 @@ const errors = [];
     await p.$eval('.bundle-preview', el => el.scrollIntoView());
     await p.screenshot({ path: path.join(qa,'preview.png') });
     assert.equal(await p.$$eval('.bundle-paper', papers => papers.every(paper => paper.scrollWidth <= paper.clientWidth + 1)), true, 'No horizontal overflow in document previews');
+    const layout = await p.$$eval('.bundle-paper', papers => papers.map(paper => ({
+      title: paper.querySelector('h2')?.textContent, orientation: paper.dataset.orientation,
+      height: paper.getBoundingClientRect().height,
+      tables: [...paper.querySelectorAll('table')].map(table => ({
+        top: table.getBoundingClientRect().top - paper.getBoundingClientRect().top,
+        bottom: table.getBoundingClientRect().bottom - paper.getBoundingClientRect().top,
+      })),
+      fields: [...paper.querySelectorAll('.printed-field')].map(section => {
+        const label = section.querySelector('h3'), value = section.querySelector('div');
+        return { label: label.textContent, fontSize: parseFloat(getComputedStyle(label).fontSize),
+          blankHeight: value.getBoundingClientRect().height,
+          overlap: label.getBoundingClientRect().bottom > value.getBoundingClientRect().top + 1 };
+      }),
+    })));
+    for (const paper of layout) for (const field of paper.fields) {
+      assert.ok(field.fontSize >= 14, 'Do not shrink field titles to fit pages');
+      assert.ok(field.blankHeight >= 44, 'Retain handwriting space');
+      assert.equal(field.overlap, false, field.label);
+    }
     if (['CA', 'SG', 'AU'].includes(country)) {
       const papers = await p.$$('.bundle-paper');
       await papers[papers.length - 1].screenshot({ path: path.join(qa, 'inspection.png') });
     }
+    await p.evaluate(() => {
+      window.testPdfSlices = [];
+      const original = CanvasRenderingContext2D.prototype.drawImage;
+      window.restorePdfProbe = () => { CanvasRenderingContext2D.prototype.drawImage = original; };
+      CanvasRenderingContext2D.prototype.drawImage = function(...args) {
+        const [source,x,y,w,h,dx,dy,dw,dh] = args;
+        if (args.length === 9 && source instanceof HTMLCanvasElement && x === 0 && dx === 0 && dy === 0 &&
+          source.width === this.canvas.width && w === source.width && dw === w && h === dh && h === this.canvas.height) {
+          window.testPdfSlices.push({ width: source.width, height: source.height, start: y, end: y+h });
+        }
+        return original.apply(this, args);
+      };
+    });
     await click(ui.pdf); await p.waitForFunction(() => Boolean(window.testPdfBlob), { timeout: 60000 });
+    const slices = await p.evaluate(() => { window.restorePdfProbe(); return window.testPdfSlices; });
+    const paperSlices = [];
+    for (const slice of slices) {
+      if (slice.start === 0) paperSlices.push([]);
+      paperSlices[paperSlices.length-1].push(slice);
+    }
+    assert.equal(paperSlices.length, layout.length, 'Capture each selected document exactly once');
+    for (let i=0; i<layout.length; i++) {
+      const paper=layout[i], pages=paperSlices[i], ratio=pages[0].height/paper.height;
+      const pagePixels=Math.floor((paper.orientation === 'portrait' ? 277/190 : 190/277)*pages[0].width);
+      for (const table of paper.tables) if ((table.bottom-table.top)*ratio <= pagePixels*0.4) {
+        for (const page of pages.slice(0,-1)) assert.ok(page.end <= table.top*ratio || page.end >= table.bottom*ratio,
+          `${paper.title}: short table must stay with its header`);
+      }
+      for (let j=1;j<pages.length;j++) assert.equal(pages[j].start, pages[j-1].end, 'No missing or duplicated image rows');
+    }
     assert.equal(uploads, 1); assert.equal(output.snapshot.context.jurisdiction, country);
     assert.equal(output.snapshot.regionalReviewed, true); assert.ok(output.snapshot.documents.every(d => d.regional.version));
     const bytes = await p.evaluate(async () => Array.from(new Uint8Array(await window.testPdfBlob.arrayBuffer())));
@@ -112,12 +160,39 @@ const errors = [];
     fs.writeFileSync(path.join(root,'.cache/regional-qa/output.pdf'), Buffer.from(bytes));
     fs.writeFileSync(path.join(root,`.cache/regional-qa/output-${country}.pdf`), Buffer.from(bytes));
     fs.writeFileSync(path.join(qa,'output.pdf'), Buffer.from(bytes));
+    const pageCount = (Buffer.from(bytes).toString('latin1').match(/\/Type \/Page\b/g) || []).length;
+    if (process.env.WORK_TEST_PRINT === '1') {
+      // Intercept only the test browser's print dialog; exercise the real app button
+      // and iframe, then use Chromium print emulation to check physical pagination.
+      await p.evaluate(() => {
+        const observer = new MutationObserver(records => {
+          for (const record of records) for (const node of record.addedNodes) {
+            if (node.tagName === 'IFRAME' && node.title === 'Print work documents') {
+              node.contentWindow.print = () => { window.testPrintHtml = node.contentDocument.documentElement.outerHTML; };
+              observer.disconnect();
+            }
+          }
+        });
+        observer.observe(document.body, { childList: true });
+      });
+      await click(ui.print);
+      await p.waitForFunction(() => Boolean(window.testPrintHtml), { timeout: 60000 });
+      assert.equal(uploads, 1, 'Printing an existing artifact must not archive again');
+      const printPage = await browser.newPage();
+      await printPage.setContent(await p.evaluate(() => window.testPrintHtml), { waitUntil: 'load' });
+      assert.equal(await printPage.$$eval('section', nodes => nodes.length), pageCount);
+      assert.equal(await printPage.$$eval('img', nodes => nodes.every(n => n.complete && n.naturalWidth)), true);
+      const printBytes = await printPage.pdf({ path: path.join(qa, 'print.pdf'), preferCSSPageSize: true, printBackground: true });
+      assert.equal((printBytes.toString('latin1').match(/\/Type \/Page\b/g) || []).length, pageCount, 'Print must not add blank pages or omit PDF pages');
+      await printPage.close();
+    }
+    fs.writeFileSync(path.join(qa, 'layout.json'), JSON.stringify({ country, screenLocale, documentLocale, pageCount, layout, paperSlices }, null, 2));
     // Visually checked English fixture: RA 3, SWP 2, meeting 2, inspection 2.
     if (country === 'SG' && !includePermit && documentLocale === 'en-SG') assert.equal((Buffer.from(bytes).toString('latin1').match(/\/Type \/Page\b/g) || []).length, 9, 'Reviewed fixture pagination must stay stable');
     // Existing JSA export also honours the explicit document language, including signatures.
     if (country === 'SG') {
       await p.evaluate(snapshot => history.pushState({ usr: snapshot }, '', '/ko/export'), {
-        formData: { ...source.form_data, context: { jurisdiction: 'SG', documentLocale: 'en-SG' } },
+        formData: { ...source.form_data, jsaType: '3-step', context: { jurisdiction: 'SG', documentLocale: 'en-SG' } },
         analysisData: source.analysis_data, participants: [],
         documentBlocks: ['PROJECT_INFO','PARTICIPANTS','JSA_TABLE'].map(id => ({ id, enabled: true })),
         savedActiveOrder: ['DATA_STEP_TITLE','DATA_HAZARD','DATA_CURRENT_MEASURE'],
@@ -126,6 +201,15 @@ const errors = [];
       await p.waitForSelector('[data-signature-label]');
       assert.match(await p.$eval('[data-signature-label]', el => el.textContent), /sign/i);
       assert.doesNotMatch(await p.$eval('.reportPaper', el => el.textContent), /참여자/);
+      assert.match(await p.$eval('.reportPaper', el => el.textContent), /Isolate supply/);
+      assert.doesNotMatch(await p.$eval('.reportPaper', el => el.textContent), /undefined/);
+      const legacyPdf = await p.evaluate(async () => {
+        const { createReportPdf } = await import('/src/utils/reportPdf.js');
+        const result = await createReportPdf([{ element: document.querySelector('.reportPaper'), orientation: 'landscape' }]);
+        return { pages: result.images.length, bytes: Array.from(new Uint8Array(await result.blob.arrayBuffer())) };
+      });
+      assert.equal(legacyPdf.pages, 1, 'A small existing JSA export still fits one page');
+      fs.writeFileSync(path.join(qa, 'export-jsa.pdf'), Buffer.from(legacyPdf.bytes));
     }
     assert.deepEqual(errors, []);
     console.log(`PASS ${country}/${screenLocale}/${documentLocale}${includePermit ? ' + PTW' : ''}: source JSA mapping, regional vocabulary, mobile editor, package persistence payload, review gate, real PDF generation and immutable output snapshot (mocked remote storage).`);

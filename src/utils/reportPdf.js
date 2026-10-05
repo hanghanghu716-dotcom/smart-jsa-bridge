@@ -31,11 +31,22 @@ export async function createReportPdf(papers) {
       margin = 10,
       contentWidth = pw - 20,
       scale = contentWidth / canvas.width;
+    const pagePixels = Math.floor((ph - 20) / scale);
     const bounds = element.getBoundingClientRect(),
+      pixelRatio = canvas.height / bounds.height,
       cuts = [...element.querySelectorAll("tr,[data-print-block]")]
         // Keep table headings with at least their first body row. A heading-only
         // cut strands the measurement columns at the foot of the previous page.
         .filter(el => el.tagName !== 'TR' || !el.closest('thead'))
+        // A short attendance/measurement table should travel with its heading,
+        // rather than leave a few unlabelled rows on the next page. Long tables
+        // still break at row boundaries and cannot force a mostly empty page.
+        .filter(el => {
+          if (el.tagName !== 'TR') return true;
+          const table = el.closest('table');
+          return !table || table.getBoundingClientRect().height * pixelRatio > pagePixels * 0.4 ||
+            el === table.rows[table.rows.length - 1];
+        })
         .map((el) =>
           1 + Math.ceil(
             ((el.getBoundingClientRect().bottom - bounds.top) / bounds.height) *
@@ -46,7 +57,7 @@ export async function createReportPdf(papers) {
     let y = 0;
     while (y < contentHeight) {
       if (images.length >= 100) throw Error("WORK_OUTPUT_LARGE");
-      const max = Math.min(contentHeight, y + Math.floor((ph - 20) / scale));
+      const max = Math.min(contentHeight, y + pagePixels);
       let end = max;
       if (max < contentHeight) {
         const candidates = cuts.filter((c) => c > y + 20 && c <= max);

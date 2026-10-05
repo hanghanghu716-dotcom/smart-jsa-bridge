@@ -12,6 +12,8 @@ Updated: 2026-10-06 (review version 2026-10-06.28). Scope: every currently suppo
 
 ## Storage
 
+Output follow-up on 2026-10-06: compact field spacing and intact short-table pagination passed a ten-language matrix (136 generated PDF pages, plus 136 print-emulation pages), the nine-page SG no-permit regression and existing one-page JSA Export. All 249 unit tests pass. This does not change the stage 2/3 counts above or claim exhaustive regional/physical-printer coverage. See [output verification and remaining source access](regional-output-verification-20261006.md).
+
 No new tables, columns or policies. Context lives in existing private `jsa_projects.form_data.context` and `work_packages.data.context`. Personal form metadata lives in `work_form_templates.data`; actual output context and form provenance are copied to `work_outputs.snapshot`. Public JSA redaction still excludes private context.
 
 Internal rendering discriminators remain `jsa`, `form`, `drawing`, compatible with the deployed database guard. Canonical form types are additional metadata. Published JSA content, attachments and private packs remain separate.
