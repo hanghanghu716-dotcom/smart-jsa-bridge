@@ -1361,5 +1361,209 @@
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
     ],
     "sha256": "addc69bcffe1cb52aae66ca637c9866a54a39e0231f166ec072aeaf835dff09a"
+  },
+  {
+    "id": "form:KR.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
+    "sourceUrls": [
+      "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+    ],
+    "sha256": "6be5c69525f0469aa6e7265f37beffea10ed5eb392d3bdb7a1a28b167da0d300"
+  },
+  {
+    "id": "form:KR.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
+    "sourceUrls": [
+      "https://oshri.kosha.or.kr/kosha/business/PublicInstitution_SafetyManagementRecord.do?articleNo=444292&attachNo=250186&mode=download"
+    ],
+    "sha256": "89e49feca04da9322dd8c8aff6b9a9ba3cd58bd979aab6974bfa9a3d34a66fd0"
+  },
+  {
+    "id": "form:KR.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
+    "sourceUrls": [
+      "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455",
+      "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+    ],
+    "sha256": "3a5e12e590bd8d006b268e63acc210f55ab395973427c8309405777b4629f458"
+  },
+  {
+    "id": "form:KR.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
+    "sourceUrls": [
+      "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
+      "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455"
+    ],
+    "sha256": "31261276f33f448717b04c9d30279b84d8ba264c05c20ce8cbd992be0b2690bb"
+  },
+  {
+    "id": "form:CA-ON.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+      "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+    ],
+    "sha256": "a7db1e22b25006f308adaa30ca6e27617622f8e7138114fc79213101066a5c6d"
+  },
+  {
+    "id": "form:CA-ON.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ontario task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and sector basis. General task record, not complete specialist procedure or mandatory training.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+      "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+    ],
+    "sha256": "41de0e4cf2c0832e67adf00bd4e8901c2f4c35c82b35e0d745b220acaf554645"
+  },
+  {
+    "id": "form:CA-ON.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
+    "sourceUrls": [
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit"
+    ],
+    "sha256": "c251848182294597ecb05617370683725d153e3b68d45be672cea0222a308a25"
+  },
+  {
+    "id": "form:CA-ON.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html",
+      "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+    ],
+    "sha256": "7a34f8a25da6204be9f252ed1da0824288f93c3751e89bb5195ee72be95a91dd"
+  },
+  {
+    "id": "form:CA-ON.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html",
+      "https://www.ontario.ca/page/guide-health-and-safety-committees-and-representatives"
+    ],
+    "sha256": "74dedef3454d6919eefff3389c369b0e5266688f2a268794b2ce507c3a8f1db3"
   }
 ]

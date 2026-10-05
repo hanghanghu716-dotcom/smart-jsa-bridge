@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.16",
+  "inventoryVersion": "2026-10-05.17",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 267,
+    "taskVocabularyKeys": 275,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -29,48 +29,51 @@
       "jurisdiction": "KR",
       "kind": "risk_assessment",
       "title": "위험성평가",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
         "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "KR.permit_to_work",
       "jurisdiction": "KR",
       "kind": "permit_to_work",
       "title": "작업허가서",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+        "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
+        "https://oshri.kosha.or.kr/kosha/business/PublicInstitution_SafetyManagementRecord.do?articleNo=444292&attachNo=250186&mode=download"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "KR.toolbox_talk",
       "jurisdiction": "KR",
       "kind": "toolbox_talk",
       "title": "작업 전 안전점검회의(TBM)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+        "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
+        "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "KR.inspection",
       "jurisdiction": "KR",
       "kind": "inspection",
       "title": "안전점검표",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
-        "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+        "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
+        "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "GB.risk_assessment",
@@ -513,65 +516,72 @@
       "jurisdiction": "CA-ON",
       "kind": "risk_assessment",
       "title": "Job Safety Analysis (JSA)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.ontario.ca/page/workplace-hazards"
+        "https://www.ontario.ca/page/workplace-hazards",
+        "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-ON.method_statement",
       "jurisdiction": "CA-ON",
       "kind": "method_statement",
       "title": "Safe Work Procedure",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.ontario.ca/page/workplace-hazards"
+        "https://www.ontario.ca/page/workplace-hazards",
+        "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-ON.permit_to_work",
       "jurisdiction": "CA-ON",
       "kind": "permit_to_work",
       "title": "Permit to Work",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.ontario.ca/page/workplace-hazards"
+        "https://www.ontario.ca/page/workplace-hazards",
+        "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-ON.toolbox_talk",
       "jurisdiction": "CA-ON",
       "kind": "toolbox_talk",
       "title": "Safety Talk",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.ontario.ca/page/workplace-hazards"
+        "https://www.ontario.ca/page/workplace-hazards",
+        "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html",
+        "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-ON.inspection",
       "jurisdiction": "CA-ON",
       "kind": "inspection",
       "title": "Workplace Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-kr-on-form-review-20261005.md",
       "sourceUrls": [
         "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
-        "https://www.ontario.ca/page/workplace-hazards"
+        "https://www.ontario.ca/page/workplace-hazards",
+        "https://www.ccohs.ca/oshanswers/prevention/effectiv.html",
+        "https://www.ontario.ca/page/guide-health-and-safety-committees-and-representatives"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA-BC.risk_assessment",
@@ -8449,6 +8459,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:krAssessmentCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
+    },
+    {
       "id": "task:krElectricalDetail",
       "languages": [
         "ko",
@@ -8515,6 +8542,57 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:krTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
+    },
+    {
+      "id": "task:krTbmTransfer",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
+    },
+    {
+      "id": "task:krWorkerParticipation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
     },
     {
       "id": "task:ladderAssessment",
@@ -8806,6 +8884,57 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:onInspectionBasis",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
+    },
+    {
+      "id": "task:onRecommendationResponse",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
+    },
+    {
+      "id": "task:onTaskFormScope",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
+    },
+    {
       "id": "task:oxygenExclusion",
       "languages": [
         "ko",
@@ -8838,6 +8967,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:permitAccessCheck",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-on-form-review-20261005.md"
     },
     {
       "id": "task:permitCloseout",

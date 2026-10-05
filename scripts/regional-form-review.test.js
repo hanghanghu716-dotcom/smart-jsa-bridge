@@ -67,7 +67,8 @@ test('reviewed field sets distinguish country, document purpose and actual versu
   const permit = create('GB.permit_to_work');
   assert.ok(permit.blocks.findIndex(b => b.field?.key === 'permitCoordination') < permit.blocks.findIndex(b => b.field?.key === 'issue'));
   assert.ok(field(permit, 'competency'));
-  assert.equal(field(create('KR.permit_to_work'), 'permitCoordination'), undefined);
+  assert.equal(field(create('KR.permit_to_work'), 'permitCoordination').kind, 'verification');
+  assert.equal(field(create('CA.permit_to_work'), 'permitCoordination'), undefined);
   assert.ok(field(create('US.risk_assessment'), 'hazardScenario'));
   assert.equal(field(create('KR.risk_assessment'), 'hazardScenario'), undefined);
   const inspection = create('CA.inspection');
@@ -79,7 +80,8 @@ test('reviewed field sets distinguish country, document purpose and actual versu
     assert.equal(c.kind, 'verification'); assert.equal(c.mode, 'runtime');
     assert.ok(table.rows.every(row => row.values[c.id] === undefined));
   }
-  assert.equal(field(create('CA-ON.inspection'), 'inspectionPlan'), undefined);
+  assert.equal(field(create('CA-ON.inspection'), 'inspectionPlan').kind, 'verification');
+  assert.equal(field(create('SA.inspection'), 'inspectionPlan'), undefined);
   for (const country of ['GB', 'CA']) {
     const doc = create(`${country}.toolbox_talk`);
     assert.match(field(doc, 'briefingScope').value, /does not replace/);

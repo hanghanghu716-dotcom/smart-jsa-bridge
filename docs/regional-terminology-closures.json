@@ -10043,5 +10043,157 @@
     ],
     "scope": "Ten-language psychosocial and workers aged 16 or under risk coverage; inclusive age boundary and site applicability, not permission for minors to perform dangerous work.",
     "sha256": "180f4c88bbbf2c721c7e194e704e943d6b257cad1a949d824318151889d256ba"
+  },
+  {
+    "id": "task:krTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language Korean task record versus whole-workplace assessment rules, statutory inspection, task-specific permit and training-completion distinction.",
+    "sha256": "bc35c5696dfad34cb41a356b5d573481138b73c4c0c1499aceb041d04689623f"
+  },
+  {
+    "id": "task:onTaskFormScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language Ontario task/sector scope and general inspection/Safety Talk versus JHSC/representative processes, specialist examinations, training and task permits.",
+    "sha256": "317090d5cb41ad33b9b91c34cddb24da26623311d8e958795ada3ecddaa1df1f"
+  },
+  {
+    "id": "task:krWorkerParticipation",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language affected-worker participation at criteria, hazard identification, risk decision, control planning/implementation and verification stages; not a final-signature-only process.",
+    "sha256": "de2b0fc0d46498c4b5dd2156cc1767a29c98d8dd1659df3fe3b13d40e18762d9"
+  },
+  {
+    "id": "task:krAssessmentCycle",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language initial/change-triggered/periodic assessment and conditional ongoing monthly findings, weekly checks and each-workday briefings; not TBM-only completion or application of the 2026 administrative proposal.",
+    "sha256": "ad88002bfb6d39da04a03ae6c729c1a42fa82b734048785ed90f46a3f81b457e"
+  },
+  {
+    "id": "task:krTbmTransfer",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language assessment-to-briefing transfer, priority controls, pre-work implementation, absentees, stop/report and post-work feedback; no automatic training-credit certification.",
+    "sha256": "5a7bf40a998ba1b51efb478790e9f004fdb04e727d7fe9fd95d8f34c733ec1c9"
+  },
+  {
+    "id": "task:onInspectionBasis",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language JHSC/representative applicability, designated inspector, monthly/annual coverage and exceptions; not a universal interval for every checklist.",
+    "sha256": "cc9c851ffd00159809126f21429b8a25fb5a5f91f36f4a6f9f74439237643fe6"
+  },
+  {
+    "id": "task:onRecommendationResponse",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language applicable written recommendation receipt, reply within 21 days, implementation schedule or disagreement reasons; not 21 business days or a universal defect-correction deadline.",
+    "sha256": "2d82f379745d5e8001bc8cc50fbda39301b7cc726968775a24d83f932298b8ea"
+  },
+  {
+    "id": "task:permitAccessCheck",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language permit/linked-plan accessibility and pre-shift verifier/time/findings. Ontario entry-specific source and Korean practical record remain scoped; not a nationwide generic permit obligation or competency certification.",
+    "sha256": "4f1101baa46b81944a2f2df6108e7088b92a78d763648661980a8308b4d82f92"
   }
 ]

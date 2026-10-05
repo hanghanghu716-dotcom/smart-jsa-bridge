@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.16",
+  "evidenceVersion": "2026-10-05.17",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 354
+    "fieldVocabularyGroups": 362
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 369,
-      "pending": 114,
+      "completed": 378,
+      "pending": 105,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 101,
-      "completionPercent": 76.4,
-      "remainingPercent": 23.6
+      "pendingFinalVerification": 92,
+      "completionPercent": 78.3,
+      "remainingPercent": 21.7
     },
     "stage3": {
-      "reviewGroups": 515,
-      "checkpoints": 1545,
-      "completed": 1542,
+      "reviewGroups": 523,
+      "checkpoints": 1569,
+      "completed": 1566,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,23 +41,23 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 676,
-      "checkpoints": 2028,
-      "completed": 1911,
-      "pending": 117,
+      "reviewGroups": 684,
+      "checkpoints": 2052,
+      "completed": 1944,
+      "pending": 108,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 104,
-      "completionPercent": 94.2,
-      "remainingPercent": 5.8
+      "pendingFinalVerification": 95,
+      "completionPercent": 94.7,
+      "remainingPercent": 5.3
     }
   },
   "stage2": [
     {
       "id": "form:KR.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -66,17 +66,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:KR.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
+          "sourceUrls": [
+            "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+          ],
+          "sha256": "6be5c69525f0469aa6e7265f37beffea10ed5eb392d3bdb7a1a28b167da0d300"
         }
       }
     },
     {
       "id": "form:KR.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -85,17 +104,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:KR.permit_to_work",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
+          "sourceUrls": [
+            "https://oshri.kosha.or.kr/kosha/business/PublicInstitution_SafetyManagementRecord.do?articleNo=444292&attachNo=250186&mode=download"
+          ],
+          "sha256": "89e49feca04da9322dd8c8aff6b9a9ba3cd58bd979aab6974bfa9a3d34a66fd0"
         }
       }
     },
     {
       "id": "form:KR.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -104,17 +142,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:KR.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
+          "sourceUrls": [
+            "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455",
+            "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+          ],
+          "sha256": "3a5e12e590bd8d006b268e63acc210f55ab395973427c8309405777b4629f458"
         }
       }
     },
     {
       "id": "form:KR.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -123,8 +181,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:KR.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
+          "sourceUrls": [
+            "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
+            "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455"
+          ],
+          "sha256": "31261276f33f448717b04c9d30279b84d8ba264c05c20ce8cbd992be0b2690bb"
         }
       }
     },
@@ -1248,9 +1326,9 @@
     {
       "id": "form:CA-ON.risk_assessment",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1259,17 +1337,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-ON.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+            "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+          ],
+          "sha256": "a7db1e22b25006f308adaa30ca6e27617622f8e7138114fc79213101066a5c6d"
         }
       }
     },
     {
       "id": "form:CA-ON.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Ontario task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and sector basis. General task record, not complete specialist procedure or mandatory training.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1278,17 +1376,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-ON.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ontario task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and sector basis. General task record, not complete specialist procedure or mandatory training.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+            "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+          ],
+          "sha256": "41de0e4cf2c0832e67adf00bd4e8901c2f4c35c82b35e0d745b220acaf554645"
         }
       }
     },
     {
       "id": "form:CA-ON.permit_to_work",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1297,17 +1415,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-ON.permit_to_work",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
+          "sourceUrls": [
+            "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit"
+          ],
+          "sha256": "c251848182294597ecb05617370683725d153e3b68d45be672cea0222a308a25"
         }
       }
     },
     {
       "id": "form:CA-ON.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1316,17 +1453,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-ON.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html",
+            "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+          ],
+          "sha256": "7a34f8a25da6204be9f252ed1da0824288f93c3751e89bb5195ee72be95a91dd"
         }
       }
     },
     {
       "id": "form:CA-ON.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-kr-on-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -1335,8 +1492,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:CA-ON.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
+          "sourceUrls": [
+            "https://www.ccohs.ca/oshanswers/prevention/effectiv.html",
+            "https://www.ontario.ca/page/guide-health-and-safety-committees-and-representatives"
+          ],
+          "sha256": "74dedef3454d6919eefff3389c369b0e5266688f2a268794b2ce507c3a8f1db3"
         }
       }
     },
@@ -12494,6 +12671,41 @@
       }
     },
     {
+      "id": "task:krAssessmentCycle",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language initial/change-triggered/periodic assessment and conditional ongoing monthly findings, weekly checks and each-workday briefings; not TBM-only completion or application of the 2026 administrative proposal.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krAssessmentCycle",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language initial/change-triggered/periodic assessment and conditional ongoing monthly findings, weekly checks and each-workday briefings; not TBM-only completion or application of the 2026 administrative proposal.",
+          "sha256": "ad88002bfb6d39da04a03ae6c729c1a42fa82b734048785ed90f46a3f81b457e"
+        }
+      }
+    },
+    {
       "id": "task:krElectricalDetail",
       "evidence": [
         "regional-task-review.md",
@@ -12634,6 +12846,111 @@
           ],
           "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
           "sha256": "17c4fe37111093a09ecbc1e47283cdcccc43791072a25a550654e49bd087e3ff"
+        }
+      }
+    },
+    {
+      "id": "task:krTaskFormScope",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language Korean task record versus whole-workplace assessment rules, statutory inspection, task-specific permit and training-completion distinction.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language Korean task record versus whole-workplace assessment rules, statutory inspection, task-specific permit and training-completion distinction.",
+          "sha256": "bc35c5696dfad34cb41a356b5d573481138b73c4c0c1499aceb041d04689623f"
+        }
+      }
+    },
+    {
+      "id": "task:krTbmTransfer",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language assessment-to-briefing transfer, priority controls, pre-work implementation, absentees, stop/report and post-work feedback; no automatic training-credit certification.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krTbmTransfer",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language assessment-to-briefing transfer, priority controls, pre-work implementation, absentees, stop/report and post-work feedback; no automatic training-credit certification.",
+          "sha256": "5a7bf40a998ba1b51efb478790e9f004fdb04e727d7fe9fd95d8f34c733ec1c9"
+        }
+      }
+    },
+    {
+      "id": "task:krWorkerParticipation",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language affected-worker participation at criteria, hazard identification, risk decision, control planning/implementation and verification stages; not a final-signature-only process.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krWorkerParticipation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language affected-worker participation at criteria, hazard identification, risk decision, control planning/implementation and verification stages; not a final-signature-only process.",
+          "sha256": "de2b0fc0d46498c4b5dd2156cc1767a29c98d8dd1659df3fe3b13d40e18762d9"
         }
       }
     },
@@ -13250,6 +13567,111 @@
       }
     },
     {
+      "id": "task:onInspectionBasis",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language JHSC/representative applicability, designated inspector, monthly/annual coverage and exceptions; not a universal interval for every checklist.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:onInspectionBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language JHSC/representative applicability, designated inspector, monthly/annual coverage and exceptions; not a universal interval for every checklist.",
+          "sha256": "cc9c851ffd00159809126f21429b8a25fb5a5f91f36f4a6f9f74439237643fe6"
+        }
+      }
+    },
+    {
+      "id": "task:onRecommendationResponse",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language applicable written recommendation receipt, reply within 21 days, implementation schedule or disagreement reasons; not 21 business days or a universal defect-correction deadline.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:onRecommendationResponse",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language applicable written recommendation receipt, reply within 21 days, implementation schedule or disagreement reasons; not 21 business days or a universal defect-correction deadline.",
+          "sha256": "2d82f379745d5e8001bc8cc50fbda39301b7cc726968775a24d83f932298b8ea"
+        }
+      }
+    },
+    {
+      "id": "task:onTaskFormScope",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language Ontario task/sector scope and general inspection/Safety Talk versus JHSC/representative processes, specialist examinations, training and task permits.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:onTaskFormScope",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language Ontario task/sector scope and general inspection/Safety Talk versus JHSC/representative processes, specialist examinations, training and task permits.",
+          "sha256": "317090d5cb41ad33b9b91c34cddb24da26623311d8e958795ada3ecddaa1df1f"
+        }
+      }
+    },
+    {
       "id": "task:oxygenExclusion",
       "evidence": [
         "regional-task-review.md",
@@ -13318,6 +13740,41 @@
           "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
           "evidence": "regional-title-core-review-20261005.md",
           "sha256": "61e64043cccfcff7736cb933557357fcb25856659b3aea1cdab052dabb2ffd5c"
+        }
+      }
+    },
+    {
+      "id": "task:permitAccessCheck",
+      "evidence": [
+        "regional-kr-on-form-review-20261005.md"
+      ],
+      "note": "Ten-language permit/linked-plan accessibility and pre-shift verifier/time/findings. Ontario entry-specific source and Korean practical record remain scoped; not a nationwide generic permit obligation or competency certification.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:permitAccessCheck",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-kr-on-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language permit/linked-plan accessibility and pre-shift verifier/time/findings. Ontario entry-specific source and Korean practical record remain scoped; not a nationwide generic permit obligation or competency certification.",
+          "sha256": "4f1101baa46b81944a2f2df6108e7088b92a78d763648661980a8308b4d82f92"
         }
       }
     },
@@ -17028,7 +17485,7 @@
     {
       "id": "title:KR.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17064,7 +17521,7 @@
     {
       "id": "title:KR.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17100,7 +17557,7 @@
     {
       "id": "title:KR.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -17136,7 +17593,7 @@
     {
       "id": "title:KR.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18252,7 +18709,7 @@
     {
       "id": "title:CA-ON.risk_assessment",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18288,7 +18745,7 @@
     {
       "id": "title:CA-ON.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18324,7 +18781,7 @@
     {
       "id": "title:CA-ON.permit_to_work",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18360,7 +18817,7 @@
     {
       "id": "title:CA-ON.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -18396,7 +18853,7 @@
     {
       "id": "title:CA-ON.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-kr-on-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

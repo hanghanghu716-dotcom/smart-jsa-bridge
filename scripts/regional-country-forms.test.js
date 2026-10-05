@@ -75,5 +75,6 @@ test('provincial and German additions retain scope and do not rewrite older save
   assert.match(taskSafetyText('de', 'bcMeetingBasis'), /monatlich für kleine Betriebe nach 3\.2/);
   assert.match(taskSafetyText('ko', 'bcMeetingBasis'), /3\.2 적용 소규모/);
   assert.match(taskSafetyText('en', 'bcInspectionParticipation'), /where feasible/);
-  assert.equal(field(make('CA-ON', 'inspection'), 'inspectionResponse'), undefined);
+  assert.equal(field(make('CA-ON', 'inspection'), 'inspectionResponse').kind, 'verification');
+  assert.equal(field(make('CA-ON', 'inspection'), 'bcInspectionParticipation'), undefined);
 });

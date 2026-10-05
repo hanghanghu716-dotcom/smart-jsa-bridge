@@ -164,7 +164,7 @@ const markdown = `# ②·③ 진행률 — 확인 단계 기준\n\n` +
   `| 합산 | ${combined.reviewGroups} | ${combined.checkpoints} | ${combined.completed} | ${combined.pending} | ${combined.completionPercent}% | ${combined.remainingPercent}% |\n\n` +
   `②: 기본 양식 ${ledger.forms.length}개 + 작업 조합 ${ledger.tasks.length}개. 1차 대조 ${s2.reviewGroups - s2.pendingSourceResolution}, 코드 반영 ${s2.reviewGroups}, 최종 확인 ${s2.reviewGroups - s2.pendingFinalVerification}건. 남은 ${s2.pending}단계는 부분 근거 ${s2.pendingSourceResolution}건과 최종 확인 ${s2.pendingFinalVerification}건입니다.\n\n` +
   `③: 기본 문구 ${ledger.summary.baseVocabularyKeys} + 작업 문구 ${ledger.summary.taskVocabularyKeys} + 국가별 문서명 ${ledger.forms.length} + 원어 용어 묶음 ${ledger.tasks.length} = ${s3.reviewGroups}개. 보고서 범위의 1차 대조 ${s3.reviewGroups}, 코드 반영 ${s3.reviewGroups}, 항목별 최종 확인 ${s3.reviewGroups - s3.pendingFinalVerification}건. 남은 최종 확인 ${s3.pendingFinalVerification}건에는 완료 기록 누락과 실제 추가 검수 필요분이 함께 포함됩니다. 이를 전부 미번역 문구로 취급하지 않습니다.\n\n` +
-  `이번 변경: 이탈리아·브라질·퀘벡 기본 양식 12종의 필드 대조·보완과 새 문구 6개 × 10언어 검수를 기록했습니다. 기본 양식 최종 확인은 누적 60건, 전문용어는 ${closures.length}건입니다. 기존 506개 문구·48개 양식 해시는 유지했습니다. 특수작업의 부분 근거 13건과 러시아 원어 3묶음은 여전히 열려 있습니다. [검수 근거](regional-it-br-qc-form-review-20261005.md).\n\n` +
+  `이번 변경: 한국 4종·온타리오 5종 기본 양식의 필드 대조·보완과 새 문구 8개 × 10언어 검수를 기록했습니다. 기본 양식 최종 확인은 누적 69건, 전문용어는 ${closures.length}건입니다. 기존 512개 문구·60개 양식 해시는 유지했습니다. 특수작업의 부분 근거 13건과 러시아 원어 3묶음은 여전히 열려 있습니다. [검수 근거](regional-kr-on-form-review-20261005.md).\n\n` +
   `## 이번 확인과 한계\n\n` +
   `- 기본 양식 ${generatedFormChecks}건(89종 × 10언어)과 작업 조합 ${generatedTaskChecks}건(72종 × 10언어)을 생성하여 제목·필드·국가별 용어 보존을 확인했습니다. 이것은 코드 연결 확인이며 의미 정확성 검수 완료가 아닙니다.\n` +
   `- 모든 항목의 완료 기록 부재를 기존 작업 전체 미완료로 계산하지 않고, 최종 확인 단계만 남깁니다. 실제 추가 수정량·소요시간의 백분율은 이 지표로 주장하지 않습니다.\n` +

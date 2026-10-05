@@ -10,8 +10,8 @@ test('published progress agrees with inventory and validates terminology closure
   const result = JSON.parse(execFileSync(process.execPath,
     ['scripts/regional-progress-audit.js', '--check'], { encoding: 'utf8' }));
   assert.equal(result.stage2.pendingSourceResolution, 13);
-  assert.equal(result.stage2.pendingFinalVerification, 101);
-  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 512);
+  assert.equal(result.stage2.pendingFinalVerification, 92);
+  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 520);
   const audit = JSON.parse(fs.readFileSync('docs/regional-progress-audit.json', 'utf8'));
   assert.deepEqual(audit.stage3.filter(row => row.checkpoints.finalVerification.status === 'needs-final-verification').map(row => row.id).sort(),
     ['native:RU.confined', 'native:RU.electrical', 'native:RU.height']);
