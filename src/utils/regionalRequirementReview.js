@@ -1,3 +1,4 @@
+import { applyRuElectricalReview } from './regionalRuElectricalReview20261006.js';
 import { applyOutstandingTaskReview } from './regionalOutstandingTaskReview20261006.js';
 import { applyFinalTaskReview } from './regionalFinalTaskReview20261006.js';
 import { applyKrEsTaskReview } from './regionalKrEsTaskReview20261006.js';
@@ -157,4 +158,4 @@ export function requirementReview(jurisdiction, topic) {
   return record ? structuredClone(record) : null;
 }
 
-export const REGIONAL_REQUIREMENT_REVIEW = applyOutstandingTaskReview(applyFinalTaskReview(applyKrEsTaskReview(applyDeFrTaskReview(applyAuSgTaskReview(applyCanadianTaskReview(applyEnglishTaskReview(applyRegionalBatchReview(applyReviewFollowup(BASE_REQUIREMENT_REVIEW)))))))));
+export const REGIONAL_REQUIREMENT_REVIEW = applyRuElectricalReview(applyOutstandingTaskReview(applyFinalTaskReview(applyKrEsTaskReview(applyDeFrTaskReview(applyAuSgTaskReview(applyCanadianTaskReview(applyEnglishTaskReview(applyRegionalBatchReview(applyReviewFollowup(BASE_REQUIREMENT_REVIEW))))))))));

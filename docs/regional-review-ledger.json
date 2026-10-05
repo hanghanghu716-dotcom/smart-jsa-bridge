@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.26",
+  "inventoryVersion": "2026-10-06.27",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -15,11 +15,11 @@
     "taskCombinations": 72,
     "clauseSupplements": 72,
     "baselineOnlyTasks": 0,
-    "sourceLimitedTasks": 8,
+    "sourceLimitedTasks": 7,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 624,
+    "supplementFields": 633,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 349,
+    "taskVocabularyKeys": 356,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -4086,9 +4086,9 @@
       "topic": "electrical",
       "terms": "Группа по электробезопасности · допускающий",
       "reviewLevel": "clause-supplement-recorded",
-      "sourceStatus": "partial-source-review",
+      "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-outstanding-task-review-20261006.md",
+      "evidence": "regional-ru-electrical-review-20261006.md",
       "findings": [
         {
           "url": "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
@@ -4098,13 +4098,13 @@
         },
         {
           "url": "https://minjust.consultant.ru/documents/25496",
-          "scope": "Original scan pp.11–12 and 16–18, especially 5.8: допускающий prepares or assesses preparation of the workplace, briefs and admits the crew. Separate from issuer, responsible leader and work producer; electrical-safety group is a competence category, not crew size.",
+          "scope": "Original 903н scan pp.11–56, chapters IV–XXIII: permit/order distinction, roles, admission, crew changes, interruptions, handback, de-energised preparation, re-energisation prevention, voltage verification, earthing and barriers. Special live work, overhead-line engineering and equipment-specific methods are outside the generic checklist closure.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-06"
         },
         {
           "url": "https://minjust.consultant.ru/documents/31327",
-          "scope": "Amendment original pp.3–6: training/group assessment, coordination, role and permit changes. Item 14 adjusts voltage wording in 5.8 without changing the admitting role. Remaining technical amendments are not claimed reviewed.",
+          "scope": "All 11 pages of 279н reconciled. In-scope items include 4.1/4.3, 5.5/5.8/5.9, 6.1/6.4/6.27, 9.3/10.3, 11.6/13.3, 15.1/15.2, 19.1/21.1/23.5. Special secondary-system, meter, overhead-line and visiting-personnel exceptions are not generic permissions.",
           "basis": "regulation-publication",
           "checkedAt": "2026-10-06"
         },
@@ -4122,11 +4122,23 @@
         "countryProcedure",
         "isolationHandover",
         "permitRecord",
-        "ruAdmittingCheck"
+        "ruAdmittingCheck",
+        "ruElectricalPreparation",
+        "ruElectricalAdmission",
+        "ruElectricalReissue",
+        "ruElectricalRelease",
+        "ruElectricalRecords",
+        "ruElectricalPermitCycle",
+        "isolationVerification",
+        "restartReview",
+        "permitCloseout"
       ],
       "fieldLabels": {},
-      "resolvedIssues": [],
-      "remaining": "903н 5.8 original and 279н item 14 reconcile допускающий terminology. Full de-energised-work technical sequence and all applicable 2022 amendment provisions still need comparison; extension alone does not close them."
+      "resolvedIssues": [
+        "ru-903n-original-and-2025-amendment",
+        "ru-279n-2022-deenergised-sequence"
+      ],
+      "remaining": "Generic de-energised checklist compared with 903н, all 279н amendments and 287н item 35. Actual switching, voltage/earthing method, competence, individual permits, live work and equipment/sector-specific procedures remain outside this closure."
     },
     {
       "id": "RU.hot",
@@ -11391,6 +11403,125 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:ruElectricalAdmission",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
+    },
+    {
+      "id": "task:ruElectricalPermitCycle",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
+    },
+    {
+      "id": "task:ruElectricalPreparation",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
+    },
+    {
+      "id": "task:ruElectricalRecords",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
+    },
+    {
+      "id": "task:ruElectricalReissue",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
+    },
+    {
+      "id": "task:ruElectricalRelease",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
+    },
+    {
+      "id": "task:ruElectricalReviewedNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-ru-electrical-review-20261006.md"
     },
     {
       "id": "task:ruEntryCycle",

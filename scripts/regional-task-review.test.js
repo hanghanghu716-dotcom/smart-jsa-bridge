@@ -115,7 +115,7 @@ test('jurisdiction terminology and applicability do not leak across countries sh
 });
 test('unresolved current-law reviews remain explicit in saved data and printed form content', () => {
   for (const jurisdiction of ['RU','SA']) {
-    const doc = make(jurisdiction, jurisdiction === 'RU' ? ['electrical', 'hot'] : undefined);
+    const doc = make(jurisdiction, jurisdiction === 'RU' ? ['hot'] : undefined);
     assert.ok(doc.regional.taskReviews.every(r => r.status === 'partial-source-review'));
     assert.ok(doc.blocks.filter(b => b.field?.key.endsWith('.notice')).every(b => b.field.value.includes(taskSafetyText('en-US','pending'))));
   }
@@ -264,7 +264,7 @@ test('review evidence is dated by scope and does not upgrade unresolved countrie
   assert.equal(taskReview(ctx('US'), 'hot').requirements.checkedAt, '2026-10-06');
   assert.equal(taskReview(ctx('DE'), 'hot').requirements.checkedAt, '2026-10-06');
   for (const country of ['SA', 'RU']) {
-    assert.ok(make(country, country === 'RU' ? ['electrical', 'hot'] : undefined).regional.taskReviews.every(r => r.status === 'partial-source-review'));
+    assert.ok(make(country, country === 'RU' ? ['hot'] : undefined).regional.taskReviews.every(r => r.status === 'partial-source-review'));
   }
   const doc = make('CA-BC', ['confined']);
   const original = { id: 'historical', data: cleanPackage({ context: ctx('CA-BC'), documents: [doc] }) };
@@ -410,7 +410,7 @@ test('Quebec construction and Saudi scaffold guidance preserve limited applicabi
 test('Russian extension alone cannot close a topic; resolved topics require original-rule reconciliation', () => {
   for (const topic of ['height', 'confined', 'electrical']) {
     const doc = make('RU', [topic], 'ru-RU');
-    const review = doc.regional.taskReviews[0], resolved = topic !== 'electrical';
+    const review = doc.regional.taskReviews[0], resolved = true;
     assert.equal(review.status, resolved ? 'scoped-source-review' : 'partial-source-review');
     assert.match(review.requirements.sources[0].scope, /duration only/);
     assert.ok(review.requirements.sources.some(s => s.url.includes('minjust.consultant.ru/documents/55545')));

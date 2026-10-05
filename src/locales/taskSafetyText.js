@@ -1,3 +1,4 @@
+import { RU_ELECTRICAL_ROWS } from './regionalRuElectricalText20261006.js';
 import { OUTSTANDING_TASK_ROWS } from './regionalOutstandingTaskText20261006.js';
 import { FINAL_TASK_ROWS } from './regionalFinalTaskText20261006.js';
 import { KR_ES_TASK_ROWS } from './regionalKrEsTaskText20261006.js';
@@ -75,7 +76,7 @@ notice|작성 시 확인 사항|Completion guidance|Hinweise zum Ausfüllen|記�
 copy|추가한 서류에만 적용됩니다. 기존 저장본은 변경하지 않습니다.|Applies only to newly added documents. Saved forms stay unchanged.|Gilt nur für neu hinzugefügte Dokumente. Gespeicherte Formulare bleiben unverändert.|追加する文書にのみ適用します。保存済みの様式は変更しません。|S’applique aux documents ajoutés. Les formulaires enregistrés restent inchangés.|Si applica ai nuovi documenti. I moduli salvati restano invariati.|Se aplica a documentos nuevos. Los guardados no cambian.|ينطبق على المستندات المضافة فقط. النماذج المحفوظة لا تتغير.|Aplica-se aos novos documentos. Os formulários salvos não mudam.|Применяется к новым документам. Сохранённые формы не изменяются.
 `;
 // Keep this dictionary limited to the actual specialist form/UI vocabulary.
-export const TASK_SAFETY_TEXT = Object.fromEntries([rows, REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005, SINGAPORE_REVIEW_ROWS, REGIONAL_BATCH_ROWS, REGIONAL_ASSESSMENT_ROWS, REGIONAL_FORM_REVIEW_ROWS, SINGAPORE_FORM_ROWS, AU_JP_FORM_ROWS, INSPECTION_FORM_ROWS, PERMIT_FORM_ROWS, COUNTRY_FORM_ROWS, FR_ES_FORM_ROWS, IT_BR_QC_FORM_ROWS, KR_ON_FORM_ROWS, FOLLOWUP_PERMIT_ROWS, SA_RU_FORM_ROWS, ENGLISH_TASK_ROWS, CANADIAN_TASK_ROWS, AU_SG_TASK_ROWS, DE_FR_TASK_ROWS, KR_ES_TASK_ROWS, FINAL_TASK_ROWS, OUTSTANDING_TASK_ROWS].flatMap(text => text.trim().split('\n')).map(line => {
+export const TASK_SAFETY_TEXT = Object.fromEntries([rows, REQUIREMENT_REVIEW_ROWS, REQUIREMENT_REVIEW_ROWS_20261005, REQUIREMENT_REVIEW_REMAINING_ROWS_20261005, REVIEW_FOLLOWUP_ROWS_20261005, SINGAPORE_REVIEW_ROWS, REGIONAL_BATCH_ROWS, REGIONAL_ASSESSMENT_ROWS, REGIONAL_FORM_REVIEW_ROWS, SINGAPORE_FORM_ROWS, AU_JP_FORM_ROWS, INSPECTION_FORM_ROWS, PERMIT_FORM_ROWS, COUNTRY_FORM_ROWS, FR_ES_FORM_ROWS, IT_BR_QC_FORM_ROWS, KR_ON_FORM_ROWS, FOLLOWUP_PERMIT_ROWS, SA_RU_FORM_ROWS, ENGLISH_TASK_ROWS, CANADIAN_TASK_ROWS, AU_SG_TASK_ROWS, DE_FR_TASK_ROWS, KR_ES_TASK_ROWS, FINAL_TASK_ROWS, OUTSTANDING_TASK_ROWS, RU_ELECTRICAL_ROWS].flatMap(text => text.trim().split('\n')).map(line => {
   const [key, ...values] = line.split('|');
   if (values.length !== TASK_SAFETY_LANGUAGES.length || values.some(v => !v)) throw Error(`Missing task safety translation: ${key}`);
   return [key, Object.fromEntries(TASK_SAFETY_LANGUAGES.map((l,i) => [l, values[i]]))];

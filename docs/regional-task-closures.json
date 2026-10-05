@@ -2298,5 +2298,43 @@
       "https://minjust.consultant.ru/documents/55545"
     ],
     "sha256": "a4061cf2ddbadb6b7ee1f6f2156ec4e2fa5f2799b12b7e83b564f0832eebb759"
+  },
+  {
+    "id": "task:RU.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic de-energised checklist: original 903н IV–XXIII, full 279н amendment, 287н extension. Actual switching, specialist equipment and live-work authorisation excluded.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Individual competence, permit issue, actual switching and voltage/earthing verification.",
+      "Live-work methods, equipment-specific engineering, overhead-line and sector procedures.",
+      "Actual-account and production validation; statutory-form certification."
+    ],
+    "sourceUrls": [
+      "https://kanevskadm.ru/news/mintrud-rossii-prodlil-srok-deystviya-pravil-po-okhrane-truda/",
+      "https://minjust.consultant.ru/documents/25496",
+      "https://minjust.consultant.ru/documents/31327",
+      "https://minjust.consultant.ru/documents/55545"
+    ],
+    "sha256": "01de331ee6031e3e32c221f6b0954871e15da07cf1170509d59d1f76341d2c7e"
   }
 ]

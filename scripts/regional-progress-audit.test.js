@@ -9,9 +9,9 @@ test('published progress agrees with inventory and validates terminology closure
   // Translation presence alone cannot satisfy the final-verification checkpoint.
   const result = JSON.parse(execFileSync(process.execPath,
     ['scripts/regional-progress-audit.js', '--check'], { encoding: 'utf8' }));
-  assert.equal(result.stage2.pendingSourceResolution, 8);
-  assert.equal(result.stage2.pendingFinalVerification, 8);
-  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 597);
+  assert.equal(result.stage2.pendingSourceResolution, 7);
+  assert.equal(result.stage2.pendingFinalVerification, 7);
+  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 604);
   const audit = JSON.parse(fs.readFileSync('docs/regional-progress-audit.json', 'utf8'));
   assert.deepEqual(audit.stage3.filter(row => row.checkpoints.finalVerification.status === 'needs-final-verification').map(row => row.id).sort(),
     []);

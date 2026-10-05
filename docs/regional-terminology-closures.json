@@ -11672,5 +11672,138 @@
       "https://minjust.consultant.ru/documents/55545"
     ],
     "sha256": "273e6c07e8e3cbe57837b0b5712d0e6891fb076386500c462eb3db43d712ebf9"
+  },
+  {
+    "id": "task:ruElectricalPreparation",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: Russia dead work: verify isolation, prevention of re-energisation, prohibition signs, absence-of-voltage check, earthing and barriers in the applicable sequence",
+    "sha256": "2b2b7d8c95c315753797b12f537dbeedbdf91fa7a3c0a8b849eba5b925b30f59"
+  },
+  {
+    "id": "task:ruElectricalAdmission",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: Russia electrical: verify workplace preparation, crew and qualifications, task-specific briefing and daily admission record",
+    "sha256": "61227a5b40898f1a49976a082269cfff1092c4634d48840ffb2ee2a16685e068"
+  },
+  {
+    "id": "task:ruElectricalReissue",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: Russia electrical: verify a new permit after replacement of the responsible leader, work producer or observer, change of more than half the crew, or changed work conditions",
+    "sha256": "b4a0a0731a90d1cae6c7a8d89b27187413471b555c85bd050b6ec930b0d40860"
+  },
+  {
+    "id": "task:ruElectricalRelease",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: Russia electrical: record all-crew withdrawal, completion notification, handling of earths and signs, restoration of permanent barriers and authority to re-energise",
+    "sha256": "8a6598b8c0ec5d178878776bd12b3a0e2786db44bdacf492390ce76512c6b442"
+  },
+  {
+    "id": "task:ruElectricalRecords",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: Russia electrical: verify separate retention periods and locations for completed permits and the work register; preserve incident-related records separately",
+    "sha256": "264d06cd965859f133805467524b30c6f45b230e08968893a0828caffd2c6fdd"
+  },
+  {
+    "id": "task:ruElectricalPermitCycle",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: Russia electrical: distinguish permit from work order; verify validity, extension authority, readmission after interruption and records",
+    "sha256": "7709d96ef0c664edbaad47fd338032b632c6357b0aacaa75def8633a615f805d"
+  },
+  {
+    "id": "task:ruElectricalReviewedNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-ru-electrical-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language comparison of conditional checks, separate records, authority and de-energised scope: 903н, amendment 279н and extension 287н were compared for this generic de-energised checklist. It does not authorise live-work methods or an individual site permit.",
+    "sha256": "0755db7f2b2631b373b17d95e0dc279eaa031e62425bc6f89feb20e6d317f904"
   }
 ]
