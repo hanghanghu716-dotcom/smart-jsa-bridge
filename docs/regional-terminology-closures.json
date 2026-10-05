@@ -8111,5 +8111,791 @@
     ],
     "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
     "sha256": "6727097e3eb3f6441911a888f6ca4a7d22163f367ea667e0c83d9022fa55e328"
+  },
+  {
+    "id": "native:GB.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Avoid/prevent/minimise hierarchy and collective protection, not a height threshold.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/work-at-height/introduction.htm"
+    ],
+    "sha256": "68124a00129cdc014b175b1312d5128d45cc10a6979f1ade2661167f40f4620d"
+  },
+  {
+    "id": "native:GB.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Safe system and planned emergency arrangements; a permit does not itself make entry safe.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/confinedspace/",
+      "https://www.hseni.gov.uk/news/hseni-approves-two-revised-acops-l101-and-l113-use-northern-ireland",
+      "https://www.hse.gov.uk/confinedspace/introduction.htm"
+    ],
+    "sha256": "19070d68d66f0ce70bf98da395cc4c56be1c623bd5d85f5f6383cdc81f8fb577"
+  },
+  {
+    "id": "native:GB.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Safe isolation and task-specific competence, not a universal electrical licence.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/pubns/books/hsg85.htm",
+      "https://www.hse.gov.uk/pubns/priced/hsg85.pdf"
+    ],
+    "sha256": "c8d7ddab67834ee46053f73ed0c457e55358701e35ab43c220e565ec00abf4e0"
+  },
+  {
+    "id": "native:GB.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Hot-work permit and fire watch are separate controls; no universal duration inferred.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/welding/other-welding-risks.htm"
+    ],
+    "sha256": "4cbcc10c87e311bb96397f1524b2cae8fb05a6ea2fc4725ca8606d3b40cc228b"
+  },
+  {
+    "id": "native:AU.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Fall prevention and SWMS for high-risk construction remain conditional on local framework.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2022-10/Model%20Code%20of%20Practice%20-%20Managing%20the%20Risk%20of%20Falls%20at%20Workplaces%2021102022_0.pdf",
+      "https://www.safeworkaustralia.gov.au/safety-topic/hazards/working-heights"
+    ],
+    "sha256": "7c0958e2c5fdca31d02885fbb8254a75b7ba178b69771c46a467ac4f27cf6a0d"
+  },
+  {
+    "id": "native:AU.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Entry permit and outside stand-by role are distinct; no automatic rescue competence.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/doc/model-code-practice-confined-spaces",
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
+      "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
+      "https://www.worksafe.vic.gov.au/resources/compliance-code-confined-spaces"
+    ],
+    "sha256": "ec2c98779e1c8535c23d4f602eda207b1351d512450e6badbf5e955a336c70be"
+  },
+  {
+    "id": "native:AU.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Competence is task-specific; electrical licensing/registration must separately satisfy local requirements.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/doc/model-code-practice-managing-electrical-risks-workplace",
+      "https://www.safeworkaustralia.gov.au/system/files/documents/1810/model-cop-managing-electrical-risks-in-the-workplace.pdf"
+    ],
+    "sha256": "c93500509afb09d16bbf0f07edb065ec88a68179067878267e063703e1f2ee39"
+  },
+  {
+    "id": "native:AU.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Hot work/fire-watch terminology supported by SWA and NSW guidance; NSW guidance not a national statute.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/system/files/documents/1901/code_of_practice_-_welding_processes_0.pdf",
+      "https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work"
+    ],
+    "sha256": "c4025bdf6b258aaef0d3e3a3e5197d7b3ecea2f42d3414127c1a88b5634dcb95"
+  },
+  {
+    "id": "native:SG.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Full work-at-height safety assessor title; factory scope and authorised-manager role retained.",
+    "sourceUrls": [
+      "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
+      "https://sso.agc.gov.sg/SL/WSHA2006-S223-2013"
+    ],
+    "sha256": "ff9a7db4e655bb11cdf62da035e4c361dde5de8055e34733b45853a8b44e7e60"
+  },
+  {
+    "id": "native:SG.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Confined-space assessor, authorised manager and confined-space attendant remain distinct roles.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx"
+    ],
+    "sha256": "61fce09b59ca531177948b1d804b5f64d9a1acb59520c101d30f5465f7707257"
+  },
+  {
+    "id": "native:SG.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "LEW classes preserved; licence validity, class and task scope remain separate checks.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
+      "https://www.ema.gov.sg/consumer-information/electricity/engaging-licensed-workers"
+    ],
+    "sha256": "513a8b7120363e6d497dd7cfab08eddd98a76d3f41a9d7084a5ae5ed66011ed5"
+  },
+  {
+    "id": "native:SG.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Marine hot-work permit distinguished from generic high-risk PTW; assessor and ship-repair-manager roles retained.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
+      "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008"
+    ],
+    "sha256": "ce36cba784d70d717c821a23f7a695e715850503abe548cc32820eb25163ab27"
+  },
+  {
+    "id": "native:US.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General-industry, construction and shipyard classifications remain distinct.",
+    "sourceUrls": [
+      "https://www.osha.gov/fall-protection",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.140"
+    ],
+    "sha256": "c71ce87582dbdede25a193982f698d0019e68b8b828a4021d2d0f24af8db7dfd"
+  },
+  {
+    "id": "native:US.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Authorised entrant, attendant and entry supervisor definitions retained within general-industry scope.",
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146"
+    ],
+    "sha256": "ae7e7f97a06dc5d1e67579a3fc0a9f588e137b40f5b5afac479001ed78f673e2"
+  },
+  {
+    "id": "native:US.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Qualified person and verification of deenergisation, not a universal licence or live-work authorisation.",
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333"
+    ],
+    "sha256": "303bf74087dcfde760be94b6c99deafbfb6198bfeabb9b1f48ca7cef64db9348"
+  },
+  {
+    "id": "native:US.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Fire watch during/after applicable work; no cross-sector automatic watch period.",
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
+    ],
+    "sha256": "16f50f91a9f349f9910ce2b1bb2fef42109a2283f7c6af511baaa7af381c76c9"
+  },
+  {
+    "id": "native:CA.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General fall-protection and rescue-planning vocabulary, subject to provincial rules.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html"
+    ],
+    "sha256": "c3c628592022a5aded5406679b031916f52de14a7c811488f39529d9affb6f45"
+  },
+  {
+    "id": "native:CA.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Entry permit and attendant with jurisdiction-specific procedures; monitoring is not rescue qualification.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_intro.html",
+      "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
+    ],
+    "sha256": "7bae2bbd7d45461becd21662d2c9f2dbf87deea600fccb71076a14d0d70aefdb"
+  },
+  {
+    "id": "native:CA.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Lockout/tagout describes energy control, not an electrical occupational licence.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html"
+    ],
+    "sha256": "e79e83e48b417dbbbbd1d1c7214e2e2ad23f5a42975026632896b39e859bd844"
+  },
+  {
+    "id": "native:CA.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Permit and fire-watch vocabulary in general guidance; referenced standards not universal statutory duties.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html"
+    ],
+    "sha256": "4cbcc10c87e311bb96397f1524b2cae8fb05a6ea2fc4725ca8606d3b40cc228b"
+  },
+  {
+    "id": "native:CA-AB.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Section 140 plan distinguished from broader fall-protection triggers.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html",
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-9-fall-protection/"
+    ],
+    "sha256": "c91f09c3c9735ea56d9a372629fa1d45446b138910dfe1bd38c3350987950d28"
+  },
+  {
+    "id": "native:CA-AB.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Confined/restricted-space and tending-worker terms; permit scope/monitoring conditions remain separate.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/"
+    ],
+    "sha256": "85a22ece8a4d66a7ab54d8ae4196fafe7989e6458e543dce79ed0b6393bb30ff"
+  },
+  {
+    "id": "native:CA-AB.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Hazardous-energy control and personal locks; multiworker/shift procedures retain separate meaning.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/"
+    ],
+    "sha256": "772a53d5bb1b479786f99971aeb6f1e884b99934de69d3b4c5246e419294fdba"
+  },
+  {
+    "id": "native:CA-AB.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Section 169 hazardous-location qualifier retained, not all welding.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html",
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-10-fire-and-explosion-hazards/"
+    ],
+    "sha256": "87b4dc1c8cdbfa626b1403dd24f340b62017969f534d2f5a5585328edd0270c2"
+  },
+  {
+    "id": "native:CA-ON.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Construction projects, rescue procedures and working-at-heights training remain separate concepts.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html",
+      "https://www.ontario.ca/laws/regulation/910213",
+      "https://www.ontario.ca/page/training-working-heights"
+    ],
+    "sha256": "91d8a81f635a79ae51357cca2811071d84e3c5253b5e14224e4eeece3b599996"
+  },
+  {
+    "id": "native:CA-ON.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Permit, attendant and on-site rescue terms compared with official role/rescue guidance.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_intro.html",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/documents",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/coordination-document",
+      "https://www.ontario.ca/laws/regulation/050632",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/roles-and-responsibilities",
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/site-rescue-procedures-and-equipment"
+    ],
+    "sha256": "0b16f4dcd20952356ffbe8474c9f841bb5c5cebf86cc2612a472a984e4e19f12"
+  },
+  {
+    "id": "native:CA-ON.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Construction versus industrial-establishment frameworks and lockout verification preserved; prior dated clause review retained.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+      "https://www.ontario.ca/laws/regulation/910213",
+      "https://www.ontario.ca/laws/regulation/900851"
+    ],
+    "sha256": "755be6db8220f2b6500d5f5ad62d11c7d49bd3d9cbfe68db5e906a39daa27b36"
+  },
+  {
+    "id": "native:CA-ON.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Fire Code hot-surface applications and container precautions are distinct scopes; no generic all-work permit claim.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html",
+      "https://www.ontario.ca/laws/regulation/070213"
+    ],
+    "sha256": "ea573a3de22648b014d77377bc159efa1cb9d9cb15c3bd6047e6c4dde38e092b"
+  },
+  {
+    "id": "native:CA-BC.height",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Section 11.3 plan distinguished from lower fall-protection triggers.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-11-fall-protection"
+    ],
+    "sha256": "a0049ad8ebcf48aee5b14b42fa5d785670ca9b8e2b9c6c3f2908412c52926776"
+  },
+  {
+    "id": "native:CA-BC.confined",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Responsible supervisor and standby roles; 9.13 permit triggers and 9.15 updating/reauthorisation preserved.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
+    ],
+    "sha256": "50be153781b0cdeda23ef893d4bb7a5b129eb789da71fd30e6e20ede9c0d14d1"
+  },
+  {
+    "id": "native:CA-BC.electrical",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Personal/group lockout and qualified worker, without collapsing two-worker group-control responsibilities.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout"
+    ],
+    "sha256": "f6854fd9ed8b21b5a4632d1d1411a892f29037758ac9c3884a2b9cf69f96363b"
+  },
+  {
+    "id": "native:CA-BC.hot",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Container welding and qualified atmosphere testing, within Part 12.116 scope.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-12-tools-machinery-and-equipment"
+    ],
+    "sha256": "999e37483efe5aff284f1ecee8f868be1479a78d907c2038640035c1358a7bab"
+  },
+  {
+    "id": "task:permitScope",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language semantic review: editable generic record, site procedure, task/sector/jurisdiction-specific permits and roles, and no authorisation from completion/printing alone.",
+    "sha256": "6e2ae8f4a26f39bce9048b92af4a3286b25097279487df8dfc0f896ff8fba2ad"
   }
 ]

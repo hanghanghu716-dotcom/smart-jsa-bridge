@@ -149,9 +149,11 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
       signature('acceptance', txt('작업팀 인수·확인', 'Work team acceptance')),
       field('suspension', txt('작업 중단·재허가·교대 인계', 'Suspension, revalidation and shift handover'), 'verification'),
       signature('handover', txt('작업 종료·인계·허가 종료 확인', 'Completion, handback and permit closure'))];
-    if (context.jurisdiction === 'GB') blocks.splice(3, 0,
+    if (['GB', 'US', 'AU', 'SG'].includes(context.jurisdiction)) blocks.splice(3, 0,
       field('competency', txt('역할·교육·역량·자격 확인', 'Roles, training and competency checks'), 'verification'),
       field('permitCoordination', reviewedText('permitCoordination'), 'verification'));
+    if (['US', 'AU', 'SG'].includes(context.jurisdiction)) blocks.splice(1, 0,
+      field('permitScope', reviewedText('notice'), 'text', 'standard', reviewedText('permitScope')));
   } else if (kind === 'toolbox_talk') {
     blocks = [scope, table(txt('오늘 공유할 위험요인과 대책', 'Hazards and controls to discuss'), [col('step', txt('작업단계', 'Activity')), col('hazard', txt('위험요인', 'Hazards')), col('controls', txt('현재 대책', 'Existing controls')), col('further', txt('추가 대책', 'Additional controls'))], rows),
       field('changes', txt('당일 변경 사항·최근 사건·작업자 의견', 'Changes, recent incidents and worker feedback'), 'verification'), emergency,
@@ -214,7 +216,8 @@ export function createRegionalTemplate(kind, value, source = null, options = {})
   const newlyReviewed = (['GB', 'US', 'JP'].includes(context.jurisdiction) && kind === 'inspection')
     || (context.jurisdiction === 'US' && kind === 'toolbox_talk')
     || (context.jurisdiction === 'JP' && kind === 'method_statement');
-  const baseVersion = newlyReviewed ? '2026-10-05.11' : ['AU', 'JP'].includes(context.jurisdiction) ? '2026-10-05.10'
+  const baseVersion = kind === 'permit_to_work' && ['US', 'AU', 'SG'].includes(context.jurisdiction) ? '2026-10-05.12'
+    : newlyReviewed ? '2026-10-05.11' : ['AU', 'JP'].includes(context.jurisdiction) ? '2026-10-05.10'
     : context.jurisdiction === 'SG' && kind !== 'permit_to_work' ? '2026-10-05.9' : TEMPLATE_VERSION;
   return {
     id: id(), type: 'form', canonicalType: kind, formType: kind === 'permit_to_work' ? 'ptw' : kind === 'toolbox_talk' ? 'tbm' : kind === 'inspection' ? 'checklist' : 'custom',

@@ -1,7 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-05.11';
+export const TASK_REVIEW_VERSION = '2026-10-05.12';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.
@@ -95,8 +95,8 @@ export const TASK_REVIEW_SOURCES = {
 export const TASK_LOCAL_TERMS = {
   KR: { confined: '밀폐공간 작업 프로그램 · 산소 및 유해가스 측정 · 감시인', electrical: '정전전로 작업 · 검전 · 잠금·표지', hot: '화재위험작업 · 화재감시자', height: '추락 방지 · 작업발판 · 안전대 부착설비' },
   GB: { confined: 'Safe system of work · emergency arrangements', electrical: 'Safe isolation · competent person', hot: 'Hot-work permit · fire watch', height: 'Avoid / prevent / minimise · collective protection' },
-  AU: { confined: 'Confined space entry permit · stand-by person', electrical: 'De-energised electrical work · licensed/competent person', hot: 'Hot work · fire watch', height: 'Fall prevention · SWMS (high risk construction work)' },
-  SG: { confined: 'Confined space entry permit · confined space safety assessor · authorised manager · attendant', height: 'Factory / hazardous WAH applicability · WAH safety assessor · authorised manager', electrical: 'Licensed Electrical Worker (LEW) · Electrician / Electrical Technician / Electrical Engineer', hot: 'Marine PTW · safety assessor · ship repair manager' },
+  AU: { confined: 'Confined space entry permit · stand-by person', electrical: 'De-energised electrical work · competent person · electrical licensing/registration for the task and jurisdiction', hot: 'Hot work · fire watch', height: 'Fall prevention · SWMS (high risk construction work)' },
+  SG: { confined: 'Confined space entry permit · confined space safety assessor · authorised manager · confined space attendant', height: 'Factory / hazardous WAH applicability · work-at-height safety assessor · authorised manager', electrical: 'Licensed Electrical Worker (LEW) · Electrician / Electrical Technician / Electrical Engineer', hot: 'Marine hot-work permit · safety assessor · ship repair manager' },
   US: { confined: 'Permit-required confined space · authorized entrant · attendant · entry supervisor', electrical: 'Qualified person · de-energization verification', hot: 'Fire watch · post-work monitoring', height: 'General industry / construction / shipyard classification' },
   CA: { confined: 'Entry permit · attendant · jurisdiction-specific procedure', electrical: 'Lockout/Tag out', height: 'Fall protection plan · rescue plan', hot: 'Hot-work permit · fire watch' },
   'CA-AB': { confined: 'Confined / restricted space · entry permit · tending worker', height: 'Fall protection plan · section 140', electrical: 'Control of hazardous energy · personal lock', hot: 'Hot work in hazardous locations · section 169' },

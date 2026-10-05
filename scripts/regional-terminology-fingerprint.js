@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { regionalFieldTranslations } from '../src/locales/regionalWorkText.js';
 import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT } from '../src/locales/taskSafetyText.js';
-import { regionalTemplates } from '../src/utils/regionalWorkTemplates.js';
+import { regionalTemplates, createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
+import { taskReview, TASK_TYPES } from '../src/utils/regionalTaskReview.js';
 import { WORK_DOCUMENT_LANGUAGES } from '../src/utils/workJurisdiction.js';
 
 const producerPaths = ['src/utils/regionalWorkTemplates.js', 'src/utils/regionalTaskReview.js', 'src/components/work/WorkPreview.jsx'];
@@ -24,6 +25,20 @@ export function baseTerminologyText(key, sources = producerPaths.map(path => fs.
   ]));
 }
 export function terminologyText(id) {
+  if (id.startsWith('native:')) {
+    const [jurisdiction, topic] = id.slice(7).split('.');
+    if (!TASK_TYPES.includes(topic)) return null;
+    // Pin both the retained native terms and their actual translated label in
+    // every document language. A string-presence test is not semantic review.
+    return Object.fromEntries(TASK_SAFETY_LANGUAGES.map(language => {
+      const context = { jurisdiction, documentLocale: WORK_DOCUMENT_LANGUAGES.find(locale => locale.split('-')[0] === language) };
+      const doc = createRegionalTemplate('permit_to_work', context, null, { taskTypes: [topic] });
+      return [language, {
+        terms: taskReview(context, topic).terms,
+        label: doc.blocks.find(block => block.field?.key === `${topic}.roles`)?.field.label,
+      }];
+    }));
+  }
   if (id.startsWith('task:')) return TASK_SAFETY_TEXT[id.slice(5)];
   if (id.startsWith('base:')) return baseTerminologyText(id.slice(5));
   if (id.startsWith('title:')) {

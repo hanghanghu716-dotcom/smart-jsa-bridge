@@ -40,6 +40,20 @@ export const REGIONAL_FORM_SOURCES = {
   'GB.inspection': [gbInspection, gbResponse],
   'US.toolbox_talk': [usEducation], 'US.inspection': [usInspection, usControl],
   'JP.method_statement': [jpProcedure], 'JP.inspection': [jpInspection, jpProcedure],
+  'US.permit_to_work': [
+    source('OSHA · 1910.146 permit system', 'https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146', 'Generic record only, compared with (d) coordination/training and (e)/(f) entry-permit lifecycle and content. The confined-space supplement and applicable employer permit remain necessary; this base form alone is not a 1910.146 entry permit.'),
+    source('OSHA · 1910.252 hot-work authorisation', 'https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252', '(a)(2)(iv): prior inspection, responsible authoriser and precautions, preferably a written permit. Not a universal all-work permit requirement.'),
+  ],
+  'AU.permit_to_work': [
+    source('Safe Work Australia · Confined spaces (November 2024)', 'https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf', '4.3 and Appendix C: competent person, identified space/workers/time, controls and exit/withdrawal. General base record is not the complete confined-space permit; state/territory adoption and Victoria procedures remain distinct.'),
+    source('SafeWork NSW · Hot work safety alert (2018)', 'https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work', 'Hazard review, controls, site/activity sign-off, permit communication and post-work check. NSW guidance supports template fields, not a national all-sector permit mandate.'),
+  ],
+  'SG.permit_to_work': [
+    source('WSHC · Confined spaces technical advisory', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx', 'Sections 3 and 7: distinct assessor/authorised-manager/attendant roles and entry-permit lifecycle. Generic form requires the applicable task procedure and specialised permit.'),
+    source('MOM · WAH amendment factsheet (2014)', 'https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf', 'Annex A: factory/hazardous-WAH scope, supervisor application, assessor and authorised-manager distinctions. Historical guidance, not a fresh full-law consolidation check.'),
+    source('WSHC · Marine industries manual', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx', 'Sections 4–5: location, site inspection, assessor endorsement/manager issue, linked work, period, display, review and closeout. Marine scope only; generic base is not a sector statutory permit replica.'),
+  ],
 };
 
 export const INSPECTION_FORM_IDS = ['GB.inspection', 'US.toolbox_talk', 'US.inspection', 'JP.method_statement', 'JP.inspection'];
+export const PERMIT_FORM_IDS = ['US.permit_to_work', 'AU.permit_to_work', 'SG.permit_to_work'];

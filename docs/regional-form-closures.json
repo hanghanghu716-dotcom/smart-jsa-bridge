@@ -556,5 +556,75 @@
       "https://www.mhlw.go.jp/content/000830745.pdf"
     ],
     "sha256": "cb29443653035b0fca906816164fb3b82cb539c919a565cd42bf53feaf7ae7c2"
+  },
+  {
+    "id": "form:US.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic starter-permit field comparison: task/period, controls, local procedure and roles/competence, linked work, measurements, emergency, issue/acceptance and stop/closeout. Not a complete statutory task/sector permit or an automatic authorisation.",
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
+    ],
+    "sha256": "247a9313f17fd10fee1c8cf810f119c37131edffe312d8bdb0547cbcb7768833"
+  },
+  {
+    "id": "form:AU.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic starter-permit field comparison: task/period, controls, local procedure and roles/competence, linked work, measurements, emergency, issue/acceptance and stop/closeout. Not a complete statutory task/sector permit or an automatic authorisation.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
+      "https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work"
+    ],
+    "sha256": "282a2d8a77c89b4e645c97959a0399376c1c5188496b0137adf50edc5dbecb7a"
+  },
+  {
+    "id": "form:SG.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic starter-permit field comparison: task/period, controls, local procedure and roles/competence, linked work, measurements, emergency, issue/acceptance and stop/closeout. Not a complete statutory task/sector permit or an automatic authorisation.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
+      "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx"
+    ],
+    "sha256": "c1c14ac94461e2ecbc92f36cdb9388746aa65daabb3b7becdaad5b6894635707"
   }
 ]

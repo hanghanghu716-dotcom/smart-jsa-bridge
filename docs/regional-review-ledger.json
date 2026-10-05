@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.11",
+  "inventoryVersion": "2026-10-05.12",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -18,8 +18,8 @@
     "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
-    "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 251,
+    "baseVocabularyKeys": 87,
+    "taskVocabularyKeys": 252,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -182,14 +182,16 @@
       "jurisdiction": "AU",
       "kind": "permit_to_work",
       "title": "Permit to Work",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-native-permit-review-20261005.md",
       "sourceUrls": [
         "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/identify-assess-and-control-hazards/managing-risks",
         "https://www.safeworkaustralia.gov.au/duties-tool/construction/hazards-information/high-risk-construction-work-requiring-swms",
-        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+        "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms",
+        "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
+        "https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "AU.toolbox_talk",
@@ -259,16 +261,19 @@
       "jurisdiction": "SG",
       "kind": "permit_to_work",
       "title": "Permit to Work (PTW)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-native-permit-review-20261005.md",
       "sourceUrls": [
         "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
-        "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems"
+        "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems",
+        "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
+        "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
+        "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SG.toolbox_talk",
@@ -336,13 +341,15 @@
       "jurisdiction": "US",
       "kind": "permit_to_work",
       "title": "Permit to Work",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-native-permit-review-20261005.md",
       "sourceUrls": [
         "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
-        "https://www.osha.gov/safety-management/hazard-prevention"
+        "https://www.osha.gov/safety-management/hazard-prevention",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "US.toolbox_talk",
@@ -1489,7 +1496,7 @@
       "id": "AU.electrical",
       "jurisdiction": "AU",
       "topic": "electrical",
-      "terms": "De-energised electrical work · licensed/competent person",
+      "terms": "De-energised electrical work · competent person · electrical licensing/registration for the task and jurisdiction",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-05",
@@ -1541,7 +1548,7 @@
       "id": "SG.height",
       "jurisdiction": "SG",
       "topic": "height",
-      "terms": "Factory / hazardous WAH applicability · WAH safety assessor · authorised manager",
+      "terms": "Factory / hazardous WAH applicability · work-at-height safety assessor · authorised manager",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-05",
@@ -1580,7 +1587,7 @@
       "id": "SG.confined",
       "jurisdiction": "SG",
       "topic": "confined",
-      "terms": "Confined space entry permit · confined space safety assessor · authorised manager · attendant",
+      "terms": "Confined space entry permit · confined space safety assessor · authorised manager · confined space attendant",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-04",
@@ -1629,7 +1636,7 @@
       "id": "SG.hot",
       "jurisdiction": "SG",
       "topic": "hot",
-      "terms": "Marine PTW · safety assessor · ship repair manager",
+      "terms": "Marine hot-work permit · safety assessor · ship repair manager",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
       "checkedAt": "2026-10-05",
@@ -3515,37 +3522,6 @@
       "evidence": "regional-document-review.md"
     },
     {
-      "id": "base:Applicant / site check / permit authority signatures",
-      "requiredLanguages": [
-        "ko",
-        "en",
-        "de",
-        "ja",
-        "fr",
-        "it",
-        "es",
-        "ar",
-        "pt",
-        "ru"
-      ],
-      "dictionaryLanguages": [
-        "de",
-        "ja",
-        "fr",
-        "it",
-        "es",
-        "ar",
-        "pt",
-        "ru"
-      ],
-      "inlineLanguages": [
-        "ko",
-        "en"
-      ],
-      "reviewLevel": "baseline-language-review",
-      "evidence": "regional-document-review.md"
-    },
-    {
       "id": "base:Assessment / revision date",
       "requiredLanguages": [
         "ko",
@@ -4508,37 +4484,6 @@
     },
     {
       "id": "base:Owner / due date",
-      "requiredLanguages": [
-        "ko",
-        "en",
-        "de",
-        "ja",
-        "fr",
-        "it",
-        "es",
-        "ar",
-        "pt",
-        "ru"
-      ],
-      "dictionaryLanguages": [
-        "de",
-        "ja",
-        "fr",
-        "it",
-        "es",
-        "ar",
-        "pt",
-        "ru"
-      ],
-      "inlineLanguages": [
-        "ko",
-        "en"
-      ],
-      "reviewLevel": "baseline-language-review",
-      "evidence": "regional-document-review.md"
-    },
-    {
-      "id": "base:People at risk",
       "requiredLanguages": [
         "ko",
         "en",
@@ -8727,6 +8672,23 @@
     },
     {
       "id": "task:permitRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:permitScope",
       "languages": [
         "ko",
         "en",
