@@ -220,5 +220,94 @@
       "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
     ],
     "sha256": "04270563c27c72d3cf67d594b81a7301ebe71b7ae9d79f0d88b71e0663d07e33"
+  },
+  {
+    "id": "form:SG.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+    ],
+    "sha256": "1080a6c08f59447496b474d2808e396873a5c29c334410c324aca9aa0b8e9cb9"
+  },
+  {
+    "id": "form:SG.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+    ],
+    "sha256": "c3173588c9c5000b3604758462c64275ed777ca13c64e4ee5dfee3f9359566aa"
+  },
+  {
+    "id": "form:SG.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf",
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf"
+    ],
+    "sha256": "746e8410fca140f27259e05ab077e01b7e0a37d242fdec4125e4916ca144ac75"
+  },
+  {
+    "id": "form:SG.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+    ],
+    "sha256": "39729696041a760d114e2664daaf07a30a0e8ab1abd01e6437f2a688c9b8378a"
   }
 ]

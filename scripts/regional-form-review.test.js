@@ -15,7 +15,7 @@ const create = (id, language = 'en', options) => {
 };
 const field = (doc, key) => doc.blocks.find(b => b.field?.key === key)?.field;
 
-test('100 reviewed forms reset actual findings, retain editable standards and preserve independent snapshots', () => {
+test('Reviewed forms in all ten languages reset actual findings, retain editable standards and preserve independent snapshots', () => {
   for (const id of Object.keys(REGIONAL_FORM_SOURCES)) for (const language of TASK_SAFETY_LANGUAGES) {
     const doc = create(id, language);
     field(doc, 'scope').value = 'REUSABLE_WORK_SCOPE';

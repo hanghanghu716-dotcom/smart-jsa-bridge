@@ -10,10 +10,15 @@ const usProcedure = source('OSHA · Job Hazard Analysis, OSHA 3071', 'https://ww
 const caJsa = source('CCOHS · Job Safety Analysis', 'https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html', 'Canadian general guidance: sequence, hazards, preventive measures, written procedures, review and participation. Does not establish a federal/provincial statutory form.');
 const caTalk = source('CCOHS · Safety Talks – How To', 'https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html', 'Work-relevant topic, contents, feedback, attendance, action and communication; not formal training. No mandatory five-minute duration or universal frequency.');
 const caInspection = source('CCOHS · Effective Workplace Inspections', 'https://www.ccohs.ca/oshanswers/prevention/effectiv.html', 'Planning, areas and findings, equipment/location references, priorities, owners/dates, incomplete areas, report distribution and follow-up. General inspection only, not a statutory technical examination or province-specific committee procedure.');
+const sgRisk = source('WSHC · Risk Management Code of Practice, third revision (2021)', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf', 'Task-level RA and SWP; sections 4–10, Appendix B and E. Inspection supports checking control implementation/effectiveness under 7.2.5; not a prescribed technical inspection or whole risk-management system.');
+const sgTalk = source('WSHC · ABC checklist for effective toolbox meetings', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf', 'Understood language, SWP communication, demonstration, worker questions, recent incidents, assigned follow-up and retained meeting notes. Guidance, not a universal statutory frequency.');
+const sgReadiness = source('WSHC · Guide to Effective Toolbox Meeting (December 2017)', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf', 'Work readiness, task-appropriate PPE, stop/report and housekeeping prompts only. No clinical thresholds, sobriety tests or automatic fitness decision are imported.');
 export const REGIONAL_FORM_SOURCES = {
   'GB.risk_assessment': [gbRisk], 'GB.method_statement': [gbMethod],
   'GB.permit_to_work': [gbPermit], 'GB.toolbox_talk': [gbTalk, gbParticipation],
   'US.risk_assessment': [usJha], 'US.method_statement': [usJha, usProcedure],
   'CA.risk_assessment': [caJsa], 'CA.method_statement': [caJsa],
   'CA.toolbox_talk': [caTalk], 'CA.inspection': [caInspection],
+  'SG.risk_assessment': [sgRisk], 'SG.method_statement': [sgRisk],
+  'SG.toolbox_talk': [sgTalk, sgReadiness], 'SG.inspection': [sgRisk],
 };

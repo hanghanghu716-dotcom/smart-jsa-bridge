@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-05",
-  "evidenceVersion": "2026-10-05.8",
+  "evidenceVersion": "2026-10-05.9",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,38 +17,38 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 322
+    "fieldVocabularyGroups": 330
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 319,
-      "pending": 164,
+      "completed": 323,
+      "pending": 160,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 151,
-      "completionPercent": 66,
-      "remainingPercent": 34
+      "pendingFinalVerification": 147,
+      "completionPercent": 66.9,
+      "remainingPercent": 33.1
     },
     "stage3": {
-      "reviewGroups": 483,
-      "checkpoints": 1449,
-      "completed": 1260,
-      "pending": 189,
+      "reviewGroups": 491,
+      "checkpoints": 1473,
+      "completed": 1320,
+      "pending": 153,
       "pendingSourceResolution": 0,
-      "pendingFinalVerification": 189,
-      "completionPercent": 87,
-      "remainingPercent": 13
+      "pendingFinalVerification": 153,
+      "completionPercent": 89.6,
+      "remainingPercent": 10.4
     },
     "combined": {
-      "reviewGroups": 644,
-      "checkpoints": 1932,
-      "completed": 1579,
-      "pending": 353,
+      "reviewGroups": 652,
+      "checkpoints": 1956,
+      "completed": 1643,
+      "pending": 313,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 340,
-      "completionPercent": 81.7,
-      "remainingPercent": 18.3
+      "pendingFinalVerification": 300,
+      "completionPercent": 84,
+      "remainingPercent": 16
     }
   },
   "stage2": [
@@ -398,9 +398,9 @@
     {
       "id": "form:SG.risk_assessment",
       "evidence": [
-        "regional-title-core-review-20261005.md"
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -409,17 +409,36 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SG.risk_assessment",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+          "sourceUrls": [
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+          ],
+          "sha256": "1080a6c08f59447496b474d2808e396873a5c29c334410c324aca9aa0b8e9cb9"
         }
       }
     },
     {
       "id": "form:SG.method_statement",
       "evidence": [
-        "regional-document-review.md"
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -428,8 +447,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SG.method_statement",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+          "sourceUrls": [
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+          ],
+          "sha256": "c3173588c9c5000b3604758462c64275ed777ca13c64e4ee5dfee3f9359566aa"
         }
       }
     },
@@ -455,9 +493,9 @@
     {
       "id": "form:SG.toolbox_talk",
       "evidence": [
-        "regional-document-review.md"
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -466,17 +504,37 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SG.toolbox_talk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+          "sourceUrls": [
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf",
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf"
+          ],
+          "sha256": "746e8410fca140f27259e05ab077e01b7e0a37d242fdec4125e4916ca144ac75"
         }
       }
     },
     {
       "id": "form:SG.inspection",
       "evidence": [
-        "regional-document-review.md"
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Country-level baseline comparison recorded; generated form checked in all ten languages. Detailed field-by-field closure remains unverified.",
+      "note": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -485,8 +543,27 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "form:SG.inspection",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+          "sourceUrls": [
+            "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+          ],
+          "sha256": "39729696041a760d114e2664daaf07a30a0e8ab1abd01e6437f2a688c9b8378a"
         }
       }
     },
@@ -6626,9 +6703,10 @@
     {
       "id": "task:anchorCheck",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6637,8 +6715,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:anchorCheck",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "96bf186d1d61f3afd39fc0ebfb0036bf4ea04a3252a9ba030146ac23d1787c8c"
         }
       }
     },
@@ -7618,9 +7712,10 @@
     {
       "id": "task:containerHistory",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -7629,8 +7724,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:containerHistory",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "c3ea0de57b207bc52f54b9248da11df72401b72be9ab02eec13ecfb781fed1c1"
         }
       }
     },
@@ -8037,9 +8148,10 @@
     {
       "id": "task:electricalEligibility",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8048,8 +8160,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:electricalEligibility",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "3108585523d06065987c6cf3a8defc2d3f8349d98f8970cef8694346562f732c"
         }
       }
     },
@@ -8236,9 +8364,10 @@
     {
       "id": "task:equipmentRelease",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8247,8 +8376,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:equipmentRelease",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "29714bdb31e9b4d5f529ff27e9d583d947fe0654c436aab8867676a5e5907b70"
         }
       }
     },
@@ -8350,9 +8495,10 @@
     {
       "id": "task:fallProtectionBasis",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8361,8 +8507,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:fallProtectionBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "936ece5c893fa129cfe11ffdb2e0952ba3c67ffa99b55cada1d80b84de3a5e8d"
         }
       }
     },
@@ -8424,9 +8586,10 @@
     {
       "id": "task:fallingObjects",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8435,17 +8598,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:fallingObjects",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "c084a290fad834ee98c7d42a6326cbcbcc55612c7ccc65aa248252debe3cd20f"
         }
       }
     },
     {
       "id": "task:fireBlanket",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8454,8 +8634,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:fireBlanket",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "ff2f645b257550fd8a4745fcd4277dfe0e22b7798916f76e612ad8cb468bd15c"
         }
       }
     },
@@ -8498,9 +8694,10 @@
     {
       "id": "task:fireWatchBasis",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8509,8 +8706,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:fireWatchBasis",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "c293489bf4153cc574f54e2a78a46e1b8216e5d754274057db385b4b0588f365"
         }
       }
     },
@@ -8612,9 +8825,10 @@
     {
       "id": "task:fragileSurface",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8623,8 +8837,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:fragileSurface",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "7df2364773943a58fbc58a650e5d3f7dad82878f702a3fa911840c642aa021d4"
         }
       }
     },
@@ -8722,9 +8952,10 @@
     {
       "id": "task:gbHeightNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8733,17 +8964,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:gbHeightNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "a27c514f20b629960ff28daaf72ecf2c22aab2661098881461130e31e51ee102"
         }
       }
     },
     {
       "id": "task:gbHotNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8752,17 +9000,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:gbHotNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "8eadd4cdc14b268c882d41d586ccc3671e584e0741a277733ce477dd1b9aedf4"
         }
       }
     },
     {
       "id": "task:gbIsolationNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8771,8 +9036,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:gbIsolationNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "90b7ef0a850ab0994827d273c3f39d1d8a9efbfa7e4de74df3ee9b9bd08f6e8c"
         }
       }
     },
@@ -8978,9 +9259,10 @@
     {
       "id": "task:hotAuthorisation",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -8989,8 +9271,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:hotAuthorisation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "55453d1f94eb0585fa52f06fa8136e94edfb49f6cb8b95042e7b1128858500da"
         }
       }
     },
@@ -9287,9 +9585,10 @@
     {
       "id": "task:isolationSequence",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9298,17 +9597,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:isolationSequence",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "ce1e072a9bc6cd53c976c41ddf6b36745f249d786a5f372c8b8a2be151c5ca26"
         }
       }
     },
     {
       "id": "task:isolationVerification",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9317,8 +9633,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:isolationVerification",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "04683758d2103fa1036e271a3cc9626062164d69c8f31fd568757dc73b715165"
         }
       }
     },
@@ -9600,9 +9932,10 @@
     {
       "id": "task:jpElectricalDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9611,8 +9944,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:jpElectricalDetail",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "f1320de60b77a845bbe698eedc3001cbea40ac1d096cddc877f2fed5ab6033a9"
         }
       }
     },
@@ -9638,9 +9987,10 @@
     {
       "id": "task:jpHeightDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9649,17 +9999,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:jpHeightDetail",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "2e5322f526d50185a236d842d6c34b7c0806166e004ff76c6e8e08c3f9f41188"
         }
       }
     },
     {
       "id": "task:jpHotDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9668,17 +10035,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:jpHotDetail",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "81538c41891dbf16ccb50c0712e7ae26b8097345cd5f48cc0bb76d0ce4d95447"
         }
       }
     },
     {
       "id": "task:jpIsolationChoice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9687,17 +10071,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:jpIsolationChoice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "7f36f37951eaa750e4e6fbb16ac7a3e4731843ba59a763d609402c5e7a6696b6"
         }
       }
     },
     {
       "id": "task:krElectricalDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9706,8 +10107,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:krElectricalDetail",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "7302a24dcb825cbfff026e10d37656ea679c923f8d89a1a791672dea47d1203f"
         }
       }
     },
@@ -9733,9 +10150,10 @@
     {
       "id": "task:krHeightDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9744,17 +10162,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:krHeightDetail",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "43eea196bf552e1d945dae722782175c1ff1bfaf7959d4cddf76ffa612f3957a"
         }
       }
     },
     {
       "id": "task:krHotDetail",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9763,8 +10198,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:krHotDetail",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "17c4fe37111093a09ecbc1e47283cdcccc43791072a25a550654e49bd087e3ff"
         }
       }
     },
@@ -9807,9 +10258,10 @@
     {
       "id": "task:ladderConditions",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9818,8 +10270,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ladderConditions",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "f9cd0acde472aa49994034005e0cc60451cdf2d4aecf7f69c1775d8aea816f27"
         }
       }
     },
@@ -9881,9 +10349,10 @@
     {
       "id": "task:lockRemoval",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -9892,8 +10361,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:lockRemoval",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "458168b2cf050d17d00b3a72e03b4a6d0dc6c03c757d646ff74d6ef3a6f27b2e"
         }
       }
     },
@@ -10179,9 +10664,10 @@
     {
       "id": "task:oxygenExclusion",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10190,8 +10676,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:oxygenExclusion",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "d63f4ae14e75de665952ab481d55a7cdfe7b4e9705a0dbae92cfda292d3039d0"
         }
       }
     },
@@ -10306,9 +10808,10 @@
     {
       "id": "task:permitCoverage",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -10317,8 +10820,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:permitCoverage",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "a86623ed83b455fc9a7ded49a097e45c76866da385aa33615fc840f18d5a612b"
         }
       }
     },
@@ -11089,9 +11608,10 @@
     {
       "id": "task:restorationNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11100,17 +11620,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:restorationNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "6070f645af52b783b5e480c3b583b6e9306845d7c1e3839eee57640edb3b2c08"
         }
       }
     },
     {
       "id": "task:restorationRelease",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11119,8 +11656,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:restorationRelease",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "6bfa5bd67de8b9b5d7beb6d9574d005df10b1d7dd15670b9885736f797c5318c"
         }
       }
     },
@@ -11199,9 +11752,10 @@
     {
       "id": "task:roleSeparation",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11210,8 +11764,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:roleSeparation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "f2eb9b6a3d48a47bdbca14ed7523a7fd6501a0aff9d01a426805c437c1ff796e"
         }
       }
     },
@@ -11254,9 +11824,10 @@
     {
       "id": "task:ropeWorkPlan",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11265,8 +11836,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ropeWorkPlan",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "11cc1b836a304a7ceb40c26788d523b69aaca971954b58205394eed21afa9835"
         }
       }
     },
@@ -11764,6 +12351,150 @@
       }
     },
     {
+      "id": "task:sgApprovalRecord",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgApprovalRecord",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "bf1742dc0b04095ac97944234cc274aed3c68ee7879882eca350b58fc082500e"
+        }
+      }
+    },
+    {
+      "id": "task:sgAssessmentRegister",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgAssessmentRegister",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "0dc1a080d8b5465e1ab0063f8106bfd740fc1d57e21dd86a3986242e6bf7aaf3"
+        }
+      }
+    },
+    {
+      "id": "task:sgBriefingReadiness",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgBriefingReadiness",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "89ef1be5b1e7c9607c403ba057b10243ea595fbbd46c43b42142357b0d14eef3"
+        }
+      }
+    },
+    {
+      "id": "task:sgBriefingUnderstanding",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgBriefingUnderstanding",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "8697f5c912c0c1152a252160573871105277af62bdd9276d1c551b81c935a26a"
+        }
+      }
+    },
+    {
       "id": "task:sgElectricalNotice",
       "evidence": [
         "regional-task-review.md"
@@ -11840,9 +12571,10 @@
     {
       "id": "task:sgHeightReviewNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -11851,8 +12583,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:sgHeightReviewNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "93fb822ac4cb43630b66ac14e1f7a1a830dbf5a58bb8f60900def75d8d602765"
         }
       }
     },
@@ -12001,6 +12749,42 @@
       }
     },
     {
+      "id": "task:sgInitialRisk",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgInitialRisk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "ed09c1646a6cb2fd8d078b49e5c07d4ab37ed552139dbb1ef21bb52ab5a8b2d4"
+        }
+      }
+    },
+    {
       "id": "task:sgJointInspection",
       "evidence": [
         "regional-task-review.md",
@@ -12073,6 +12857,78 @@
       }
     },
     {
+      "id": "task:sgProcedureReview",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgProcedureReview",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "bfc326c07285fbdd84601cf2a87409659aabdba3d3a209cdbf95d428973a538c"
+        }
+      }
+    },
+    {
+      "id": "task:sgResidualRisk",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgResidualRisk",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "ca7733ed0a2f282e88da910fec5ea24b009af34b70338745f778e6210553c0af"
+        }
+      }
+    },
+    {
       "id": "task:sgRiskCommunication",
       "evidence": [
         "regional-task-review.md",
@@ -12105,6 +12961,42 @@
           "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
           "evidence": "regional-title-core-review-20261005.md",
           "sha256": "9fddebbfbe82baba4154e7b29f02c92c9b980d0496ad491931c74a751c845bc2"
+        }
+      }
+    },
+    {
+      "id": "task:sgRiskEvaluation",
+      "evidence": [
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
+      ],
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:sgRiskEvaluation",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "4bc3c4498c44edebf7f29568f2dfa5ea4ef13e87539eeddee6c4066811fb475c"
         }
       }
     },
@@ -12653,9 +13545,10 @@
     {
       "id": "task:usHeightNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -12664,17 +13557,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:usHeightNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "ef744a4106099678c826291909cd48f8442df792916356eacbd61472ae98131e"
         }
       }
     },
     {
       "id": "task:usHotNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -12683,17 +13593,34 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:usHotNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "f9c796cc72d47d1a986857e53e8ac9ef52304e8ecd7773b9cfc45bc2baca03b6"
         }
       }
     },
     {
       "id": "task:usIsolationNotice",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -12702,8 +13629,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:usIsolationNotice",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "ddb508fbefb31c621f104520b66f0f96d271c2436fd8b1f22685bb14440cadc5"
         }
       }
     },
@@ -12818,9 +13761,10 @@
     {
       "id": "task:watchCloseout",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -12829,8 +13773,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:watchCloseout",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "d7bf07dea7b8cbd8b8dd0b18022abaedc9cc3bfff5aa712f1f37bf76899dcd8b"
         }
       }
     },
@@ -12892,9 +13852,10 @@
     {
       "id": "task:workLeader",
       "evidence": [
-        "regional-task-review.md"
+        "regional-task-review.md",
+        "regional-singapore-form-review-20261005.md"
       ],
-      "note": "Baseline/scoped language review recorded at report level. Code coverage is checked separately and is not a semantic sign-off for this key.",
+      "note": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -12903,8 +13864,24 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:workLeader",
+          "checkedAt": "2026-10-05",
+          "evidence": "regional-singapore-form-review-20261005.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
+          "sha256": "a3d560f0b6011d37a57a01c54b9a57968c0110034959d24ad2bc572d6d622cdc"
         }
       }
     },
@@ -13415,6 +14392,7 @@
     {
       "id": "title:SG.risk_assessment",
       "evidence": [
+        "regional-singapore-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -13450,7 +14428,7 @@
     {
       "id": "title:SG.method_statement",
       "evidence": [
-        "regional-document-review.md",
+        "regional-singapore-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -13522,7 +14500,7 @@
     {
       "id": "title:SG.toolbox_talk",
       "evidence": [
-        "regional-document-review.md",
+        "regional-singapore-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",
@@ -13558,7 +14536,7 @@
     {
       "id": "title:SG.inspection",
       "evidence": [
-        "regional-document-review.md",
+        "regional-singapore-form-review-20261005.md",
         "regional-title-core-review-20261005.md"
       ],
       "note": "Ten-language review of generated title: local document identity and translated type, without certifying form requirements.",

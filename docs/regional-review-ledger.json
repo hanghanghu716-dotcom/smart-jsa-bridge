@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.8",
+  "inventoryVersion": "2026-10-05.9",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 233,
+    "taskVocabularyKeys": 241,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -220,8 +220,8 @@
       "jurisdiction": "SG",
       "kind": "risk_assessment",
       "title": "Risk Assessment (RA)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-title-core-review-20261005.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-singapore-form-review-20261005.md",
       "sourceUrls": [
         "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
@@ -229,15 +229,15 @@
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SG.method_statement",
       "jurisdiction": "SG",
       "kind": "method_statement",
       "title": "Safe Work Procedure (SWP)",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-singapore-form-review-20261005.md",
       "sourceUrls": [
         "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
@@ -245,7 +245,7 @@
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SG.permit_to_work",
@@ -268,24 +268,26 @@
       "jurisdiction": "SG",
       "kind": "toolbox_talk",
       "title": "Toolbox Meeting",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-singapore-form-review-20261005.md",
       "sourceUrls": [
         "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
         "https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment",
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
-        "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems"
+        "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems",
+        "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf",
+        "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "SG.inspection",
       "jurisdiction": "SG",
       "kind": "inspection",
       "title": "Safety Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-singapore-form-review-20261005.md",
       "sourceUrls": [
         "https://sso.agc.gov.sg/SL/WSHA2006-RG8?ProvIds=pr5-&ValidDate=20250101",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
@@ -293,7 +295,7 @@
         "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf",
         "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/permit-to-work-systems"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "US.risk_assessment",
@@ -9373,6 +9375,74 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgApprovalRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgAssessmentRegister",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgBriefingReadiness",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgBriefingUnderstanding",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:sgElectricalNotice",
       "languages": [
         "ko",
@@ -9509,6 +9579,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgInitialRisk",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:sgJointInspection",
       "languages": [
         "ko",
@@ -9543,7 +9630,58 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:sgProcedureReview",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgResidualRisk",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:sgRiskCommunication",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:sgRiskEvaluation",
       "languages": [
         "ko",
         "en",
