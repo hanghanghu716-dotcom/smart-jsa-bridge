@@ -443,5 +443,118 @@
       "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf"
     ],
     "sha256": "8becb8f9296fbb2c2808fb1bc28fece82c42987504c59bf64b5b8e4cf2c9c059"
+  },
+  {
+    "id": "form:GB.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/pubns/priced/hsg65.pdf",
+      "https://www.hse.gov.uk/involvement/consult/representatives.htm"
+    ],
+    "sha256": "eff8e388e81780a6c4fc0661a192ba92fd30533fc6d1b5e088a1dad3ad0db1df"
+  },
+  {
+    "id": "form:US.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/safety-management/education-training"
+    ],
+    "sha256": "4153d5d1aec889bf399070c1b6f169e01b806e33f247705a7b3673602199b96e"
+  },
+  {
+    "id": "form:US.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/safety-management/hazard-identification",
+      "https://www.osha.gov/safety-management/hazard-prevention"
+    ],
+    "sha256": "dc98ab1805e6147fe0f63ef120a6e6e3f713369a7f4a9b85e33c45b8d3ee85ea"
+  },
+  {
+    "id": "form:JP.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/content/000830745.pdf"
+    ],
+    "sha256": "ea7bdaebe03378ee62092184ad4c824131b5f4ca98ff108ed3d4106b04121931"
+  },
+  {
+    "id": "form:JP.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf",
+      "https://www.mhlw.go.jp/content/000830745.pdf"
+    ],
+    "sha256": "cb29443653035b0fca906816164fb3b82cb539c919a565cd42bf53feaf7ae7c2"
   }
 ]

@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-05.10",
+  "inventoryVersion": "2026-10-05.11",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -19,7 +19,7 @@
     "clauseSupplementCoveragePercent": 100,
     "supplementFields": 224,
     "baseVocabularyKeys": 89,
-    "taskVocabularyKeys": 247,
+    "taskVocabularyKeys": 251,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -136,14 +136,16 @@
       "jurisdiction": "GB",
       "kind": "inspection",
       "title": "Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-inspection-form-review-20261005.md",
       "sourceUrls": [
         "https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm",
         "https://www.hseni.gov.uk/publications/five-steps-risk-assessment",
-        "https://www.hse.gov.uk/humanfactors/topics/ptw.htm"
+        "https://www.hse.gov.uk/humanfactors/topics/ptw.htm",
+        "https://www.hse.gov.uk/pubns/priced/hsg65.pdf",
+        "https://www.hse.gov.uk/involvement/consult/representatives.htm"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "AU.risk_assessment",
@@ -347,26 +349,28 @@
       "jurisdiction": "US",
       "kind": "toolbox_talk",
       "title": "Toolbox Talk",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-inspection-form-review-20261005.md",
       "sourceUrls": [
         "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
-        "https://www.osha.gov/safety-management/hazard-prevention"
+        "https://www.osha.gov/safety-management/hazard-prevention",
+        "https://www.osha.gov/safety-management/education-training"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "US.inspection",
       "jurisdiction": "US",
       "kind": "inspection",
       "title": "Safety Inspection Checklist",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-inspection-form-review-20261005.md",
       "sourceUrls": [
         "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
-        "https://www.osha.gov/safety-management/hazard-prevention"
+        "https://www.osha.gov/safety-management/hazard-prevention",
+        "https://www.osha.gov/safety-management/hazard-identification"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "CA.risk_assessment",
@@ -774,13 +778,14 @@
       "jurisdiction": "JP",
       "kind": "method_statement",
       "title": "安全作業手順書",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-inspection-form-review-20261005.md",
       "sourceUrls": [
         "https://www.mhlw.go.jp/content/11300000/001411913.pdf",
-        "https://www.mhlw.go.jp/content/11300000/001413029.pdf"
+        "https://www.mhlw.go.jp/content/11300000/001413029.pdf",
+        "https://www.mhlw.go.jp/content/000830745.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "JP.permit_to_work",
@@ -814,13 +819,15 @@
       "jurisdiction": "JP",
       "kind": "inspection",
       "title": "安全点検表",
-      "reviewLevel": "baseline-source-review",
-      "evidence": "regional-document-review.md",
+      "reviewLevel": "field-source-comparison-recorded",
+      "evidence": "regional-inspection-form-review-20261005.md",
       "sourceUrls": [
         "https://www.mhlw.go.jp/content/11300000/001411913.pdf",
-        "https://www.mhlw.go.jp/content/11300000/001413029.pdf"
+        "https://www.mhlw.go.jp/content/11300000/001413029.pdf",
+        "https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf",
+        "https://www.mhlw.go.jp/content/000830745.pdf"
       ],
-      "remaining": "Individual form field-to-source and complete terminology closure not recorded."
+      "remaining": "Generic starter-form field scope compared; pinned final verification in progress audit. Site and sector applicability remain separate, as originally scoped."
     },
     {
       "id": "FR.risk_assessment",
@@ -6679,6 +6686,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:briefingUnderstanding",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:caEnergyDetail",
       "languages": [
         "ko",
@@ -7818,7 +7842,41 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:inspectionResponse",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
       "id": "task:inspectionReview",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:inspectionScope",
       "languages": [
         "ko",
         "en",
@@ -8771,6 +8829,23 @@
     },
     {
       "id": "task:preventivePresence",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:procedureChangeRecord",
       "languages": [
         "ko",
         "en",

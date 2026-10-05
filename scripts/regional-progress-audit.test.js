@@ -9,7 +9,7 @@ test('published progress agrees with inventory and validates terminology closure
   const result = JSON.parse(execFileSync(process.execPath,
     ['scripts/regional-progress-audit.js', '--check'], { encoding: 'utf8' }));
   assert.equal(result.stage2.pendingSourceResolution, 13);
-  assert.equal(result.stage2.pendingFinalVerification, 141);
-  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 392);
+  assert.equal(result.stage2.pendingFinalVerification, 136);
+  assert.equal(result.stage3.reviewGroups - result.stage3.pendingFinalVerification, 427);
   assert.equal(result.combined.completed + result.combined.pending, result.combined.checkpoints);
 });

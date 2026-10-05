@@ -19,6 +19,13 @@ const auVictoria = source('WorkSafe Victoria · Safe work method statements (rev
 const auTalk = source('Safe Work Australia · Consultation', 'https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/consultation', 'Worker/HSR input and coordination among duty holders; toolbox meetings as a consultation channel, not a substitute for competence or a universally prescribed meeting frequency.');
 const jpRisk = source('厚生労働省 · 危険性又は有害性等の調査等に関する指針', 'https://www.mhlw.go.jp/content/11300000/001414377.pdf', 'General task-level RA: hazards, risk estimation/priorities, control hierarchy and records, sections 8–11. Relative estimates are allowed; no mandatory numeric matrix. Not a chemical-specific assessment or a full current-law certification.');
 const jpKy = source('厚生労働省 · リスクアセスメント記録とKY活動との違い（2008年資料）', 'https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf', 'Pages 46–49: records/review and daily KY hazard awareness, priority points, agreed actions and pointing/calling; significant findings feed organisational assessment and controls. Older method guidance, not a mandatory four-round format or universal assessment interval.');
+const usEducation = source('OSHA · Education and Training', 'https://www.osha.gov/safety-management/education-training', 'Recommended Practices, actions 1/3/4: understood language, demonstrations, questions, hazard reporting and additional task/change training. Toolbox discussion supports communication; it is not a substitute for required training or a state-specific programme.');
+const usInspection = source('OSHA · Hazard Identification and Assessment', 'https://www.osha.gov/safety-management/hazard-identification', 'Actions 1/2/6: worker involvement, regular inspections, locations/activities, documented findings, priorities and interim protection. Generic worksite record, not an OSHA enforcement inspection or statutory equipment certificate.');
+const usControl = source('OSHA · Hazard Prevention and Control', 'https://www.osha.gov/safety-management/hazard-prevention', 'Actions 3/6: owners, target dates, implementation tracking and effectiveness checks. No universal legal inspection interval or automatic approval is inferred.');
+const gbInspection = source('HSE · Managing for health and safety, HSG65 (2013)', 'https://www.hse.gov.uk/pubns/priced/hsg65.pdf', 'Pages 48–50: active monitoring, timely inspection findings, competent resources and reporting for action. Method guidance for general inspection; not a specific statutory examination.');
+const gbResponse = source('HSE · Consulting with representatives', 'https://www.hse.gov.uk/involvement/consult/representatives.htm', 'Inspection follow-up, reasons, communication and representative reinspection feedback. Union-appointed representatives have distinct inspection rights; no universal three-month workplace inspection schedule is set.');
+const jpProcedure = source('厚生労働省 · 設備の経年化による労働災害リスクと防止対策', 'https://www.mhlw.go.jp/content/000830745.pdf', 'Printed pages 7, 23–26: RA/manufacturer information in procedures, routine/nonroutine tasks, worker instruction, revisions and abnormality reporting. Equipment-ageing guidance supplies method principles, not all-sector statutory controls or a current legal consolidation.');
+const jpInspection = source('厚生労働省 · 3ステップでやさしく導入 労働安全衛生マネジメントシステム (2013)', 'https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf', 'Printed pages 71–73: routine inspection, procedures, timing/owners/method, corrective action and feedback to planning. Generic worksite check, not whole-OSHMS certification; example monthly dates and specific equipment checks are not imported as universal rules.');
 export const REGIONAL_FORM_SOURCES = {
   'GB.risk_assessment': [gbRisk], 'GB.method_statement': [gbMethod],
   'GB.permit_to_work': [gbPermit], 'GB.toolbox_talk': [gbTalk, gbParticipation],
@@ -30,4 +37,9 @@ export const REGIONAL_FORM_SOURCES = {
   'AU.risk_assessment': [auRisk], 'AU.method_statement': [auSwms, auVictoria],
   'AU.toolbox_talk': [auTalk, auRisk], 'AU.inspection': [auRisk],
   'JP.risk_assessment': [jpRisk], 'JP.toolbox_talk': [jpKy],
+  'GB.inspection': [gbInspection, gbResponse],
+  'US.toolbox_talk': [usEducation], 'US.inspection': [usInspection, usControl],
+  'JP.method_statement': [jpProcedure], 'JP.inspection': [jpInspection, jpProcedure],
 };
+
+export const INSPECTION_FORM_IDS = ['GB.inspection', 'US.toolbox_talk', 'US.inspection', 'JP.method_statement', 'JP.inspection'];
