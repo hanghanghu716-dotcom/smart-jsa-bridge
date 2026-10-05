@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.23",
+  "evidenceVersion": "2026-10-06.24",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,23 +17,23 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 403
+    "fieldVocabularyGroups": 409
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 438,
-      "pending": 45,
+      "completed": 446,
+      "pending": 37,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 32,
-      "completionPercent": 90.7,
-      "remainingPercent": 9.3
+      "pendingFinalVerification": 24,
+      "completionPercent": 92.3,
+      "remainingPercent": 7.7
     },
     "stage3": {
-      "reviewGroups": 564,
-      "checkpoints": 1692,
-      "completed": 1689,
+      "reviewGroups": 570,
+      "checkpoints": 1710,
+      "completed": 1707,
       "pending": 3,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 3,
@@ -41,14 +41,14 @@
       "remainingPercent": 0.2
     },
     "combined": {
-      "reviewGroups": 725,
-      "checkpoints": 2175,
-      "completed": 2127,
-      "pending": 48,
+      "reviewGroups": 731,
+      "checkpoints": 2193,
+      "completed": 2153,
+      "pending": 40,
       "pendingSourceResolution": 13,
-      "pendingFinalVerification": 35,
-      "completionPercent": 97.8,
-      "remainingPercent": 2.2
+      "pendingFinalVerification": 27,
+      "completionPercent": 98.2,
+      "remainingPercent": 1.8
     }
   },
   "stage2": [
@@ -3492,9 +3492,9 @@
     {
       "id": "task:KR.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3503,17 +3503,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:KR.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573"
+          ],
+          "sha256": "007ff870596463f0002f2f0e8dd8dbf6f53eaf0ab68dc48496b47b8b2954f3ee"
         }
       }
     },
     {
       "id": "task:KR.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3522,17 +3554,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:KR.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028543703",
+            "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=154679",
+            "https://moel.go.kr/news/enews/report/enewsView.do?news_seq=18669"
+          ],
+          "sha256": "854bd02d11c3a7b5344448934ee80efbed0730bacdb788c395e6fdb72e40a001"
         }
       }
     },
     {
       "id": "task:KR.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3541,17 +3607,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:KR.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625"
+          ],
+          "sha256": "a0d4ec7eab8ad2fb9e936af1b9f79a0b5fc88fbd2ca67b8b27723631e69ddbfe"
         }
       }
     },
     {
       "id": "task:KR.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -3560,8 +3658,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:KR.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618"
+          ],
+          "sha256": "ec56b72c5c44e7b90d980576e5fc0821240f717c2ecb48d59abdb4466bd7dd7a"
         }
       }
     },
@@ -5868,9 +5998,9 @@
     {
       "id": "task:ES.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5879,17 +6009,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ES.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1997-17824",
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+          ],
+          "sha256": "03fbdddbf848ad065afb52989a20fb5f53a7dce764043ce16de21f4770a04812"
         }
       }
     },
     {
       "id": "task:ES.confined",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5898,17 +6061,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ES.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados",
+            "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853",
+            "https://www.insst.es/documents/94886/203536/Gu%C3%ADa%2Bt%C3%A9cnica%2Bpara%2Bla%2Bevaluaci%C3%B3n%2By%2Bprevenci%C3%B3n%2Bde%2Blos%2Briesgos%2Brelativos%2Ba%2Bla%2Butilizaci%C3%B3n%2Bde%2Blugares%2Bde%2Btrabajo.pdf/deac8eb9-e242-48c4-a634-4cf88927fff7"
+          ],
+          "sha256": "ac80c1ab7e966a440479428dbf6a70aa8a8df19b6227d79f16fba9bb85748c85"
         }
       }
     },
     {
       "id": "task:ES.electrical",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5917,17 +6114,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ES.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://boe.es/buscar/act.php?id=BOE-A-2001-11881",
+            "https://www.boe.es/buscar/act.php?id=BOE-A-2001-11881"
+          ],
+          "sha256": "4cd6d60629c0485ccb14238b7b22f4390a8a866113f5c5215b8e5b6ebeb3672c"
         }
       }
     },
     {
       "id": "task:ES.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-kr-es-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5936,8 +6166,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:ES.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+          ],
+          "sha256": "c741130846118838a3955465a50c2011dbef7ebf1f75215be44c51247c028223"
         }
       }
     },
@@ -12455,6 +12717,76 @@
       }
     },
     {
+      "id": "task:esElectricalReturnNote",
+      "evidence": [
+        "regional-kr-es-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Spanish authorised/qualified electrical roles and live status from the first safety-measure withdrawal.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:esElectricalReturnNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Spanish authorised/qualified electrical roles and live status from the first safety-measure withdrawal.",
+          "sha256": "6cdf3df69bcb7b79cd2d1268ebf0ab566fe15e10cb7f7bf2f57131ecc4f5d220"
+        }
+      }
+    },
+    {
+      "id": "task:esEntryRolesNote",
+      "evidence": [
+        "regional-kr-es-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Spanish preventive-resource, outside attendant, communication and rescue duties are not automatically interchangeable.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:esEntryRolesNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Spanish preventive-resource, outside attendant, communication and rescue duties are not automatically interchangeable.",
+          "sha256": "7598e72c53c3e001b7f3b2933b78424b99af1b527d75989029439d9495f00ff5"
+        }
+      }
+    },
+    {
       "id": "task:esHeightDetail",
       "evidence": [
         "regional-task-review.md",
@@ -12523,6 +12855,41 @@
           ],
           "scope": "Semantic review of this ten-language prompt only: actor, condition, action, numbers/units and exception boundaries; not whole-topic legal certification.",
           "sha256": "65be1d5592eb28eb0da13098cdf4f5b4e414d5d06a8015f0302dcbccef6a9807"
+        }
+      }
+    },
+    {
+      "id": "task:esPermitLifecycleNote",
+      "evidence": [
+        "regional-kr-es-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: INSST NTP 562 shift-limited permission, changed-condition renewal, stop/report and handback/archive are guidance, not a universal statutory permit.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:esPermitLifecycleNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: INSST NTP 562 shift-limited permission, changed-condition renewal, stop/report and handback/archive are guidance, not a universal statutory permit.",
+          "sha256": "9d12ed4524949246ea350eec7ac8d065d1f93235579dab2f5c4652e4e60849b7"
         }
       }
     },
@@ -15069,6 +15436,41 @@
       }
     },
     {
+      "id": "task:krAtmosphereRecord",
+      "evidence": [
+        "regional-kr-es-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Korean measurement/assessment identity, date/time, location, results and three-year record retention.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krAtmosphereRecord",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Korean measurement/assessment identity, date/time, location, results and three-year record retention.",
+          "sha256": "d0b8f1e7fd30058e7da1d6d44048ad3bc36279d23d4ba29abca31c2a52189369"
+        }
+      }
+    },
+    {
       "id": "task:krElectricalDetail",
       "evidence": [
         "regional-task-review.md",
@@ -15105,6 +15507,41 @@
       }
     },
     {
+      "id": "task:krElectricalReturnNote",
+      "evidence": [
+        "regional-kr-es-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Korean lock/tag installer removal and ordered restoration checks; no imported absent-owner exception.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krElectricalReturnNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Korean lock/tag installer removal and ordered restoration checks; no imported absent-owner exception.",
+          "sha256": "b6d988fcf6482ed58ae971f97b96ad94c5c2d821e97933d2a145243619c95e23"
+        }
+      }
+    },
+    {
       "id": "task:krEntryNotice",
       "evidence": [
         "regional-task-review.md",
@@ -15137,6 +15574,41 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "f6722885dc935a7fec462e6d0a6f8355381a7f7b7b3f8056a04745a664d34710"
+        }
+      }
+    },
+    {
+      "id": "task:krEntryRestartNote",
+      "evidence": [
+        "regional-kr-es-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning review: Korean measurement before restart, immediate 119 notification, no unprotected rescue and no automatic Article 626 exemption.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:krEntryRestartNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-kr-es-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning review: Korean measurement before restart, immediate 119 notification, no unprotected rescue and no automatic Article 626 exemption.",
+          "sha256": "7e8092ab95fa9729dba640e00b4cb6e04587a099d1d2b3abe10543cbad12a8e3"
         }
       }
     },
@@ -23823,7 +24295,7 @@
       "id": "native:KR.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Work platforms and personal fall protection remain different controls; safety-belt vocabulary does not authorise replacing a platform.",
@@ -23864,7 +24336,7 @@
       "id": "native:KR.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Entry programme, atmosphere checks and outside attendant are distinct. Article 619(3) posting clause read directly; 619/623 role text corroborated by official indexed clauses, not a fresh full consolidated-law review.",
@@ -23906,7 +24378,7 @@
       "id": "native:KR.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Use the regulation wording for a locking device AND a tag. De-energised work remains distinct from voltage verification and work leadership.",
@@ -23947,7 +24419,7 @@
       "id": "native:KR.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Fire-risk work and fire watcher are separate concepts; article 241-2 conditions/exceptions do not mean every welding task requires the same watcher arrangement.",
@@ -26157,7 +26629,7 @@
       "id": "native:ES.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Retention prevents access to a fall zone and is not fall arrest; NTP is guidance, not a universal permit duty.",
@@ -26198,7 +26670,7 @@
       "id": "native:ES.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Written work authorisation, recurso preventivo and outside surveillance retain separate meanings; neither the watcher nor document automatically provides rescue competence.",
@@ -26239,7 +26711,7 @@
       "id": "native:ES.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Authorised and qualified workers are separately named under Annex I; the former slash could imply interchangeable roles. Voltage suppression remains a procedure, not a credential.",
@@ -26280,7 +26752,7 @@
       "id": "native:ES.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-kr-es-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Special-work authorisation and hot work retain NTP 562 meanings. The dated prevention example is not a current universally prescribed legal form.",

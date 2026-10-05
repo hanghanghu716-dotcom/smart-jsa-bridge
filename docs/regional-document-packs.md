@@ -1,6 +1,6 @@
 # Regional document packs — implementation status
 
-Updated: 2026-10-06 (review version 2026-10-06.23). Scope: every currently supported locale — 14 countries, 18 country/region profiles, 10 languages.
+Updated: 2026-10-06 (review version 2026-10-06.24). Scope: every currently supported locale — 14 countries, 18 country/region profiles, 10 languages.
 
 ## Progress
 
@@ -74,3 +74,7 @@ Eight AU/SG height/confined/electrical/hot combinations now record additional cu
 ## DE/FR task review — 2026-10-06
 
 Eight DE/FR height/confined/electrical/hot combinations add 57 current-work checks and six labels/notices in ten languages. German release/handback and confined-entry exceptions, French fall-arrest rescue, continuous entry monitoring, employer electrical authorisation and hot-permit guidance retain their local scope. Full automated tests: 230/230; client build: 880 modules; four isolated browser workflows and all 78 generated PDF pages checked (DE German 19, FR French 21, DE Korean 18, FR Arabic 20). Previous 555 terminology, 89 generic-form and 32 task closure fingerprints are preserved. No live database writes or deployment. See [source comparisons, terminology and validation limits](regional-de-fr-task-review-20261006.md). Stage 2: 438/483 checkpoints (90.7%); stage 3: 1,689/1,692 (99.8%); combined: 2,127/2,175 (97.8%), with 48 checkpoints remaining (32 task final checks, 13 source limitations and three Russian terminology groups).
+
+## 2026-10-06 KR/ES task review (batch 24)
+
+Eight KR/ES height/confined/electrical/hot combinations add 48 current-work checks and six labels/notices in ten languages. Korean entry measurement/retention, 119 notification and installer lock removal remain distinct from Spanish preventive-resource roles, authorised/qualified electrical work and NTP permit guidance. Full automated tests: 235/235; client build: 882 modules; four isolated browser workflows and all 74 generated PDF pages checked (KR Korean 16, ES Spanish 21, KR German 17, ES Arabic 20). Previous 561 terminology, 89 generic-form and 40 task closure fingerprints are preserved. See [source comparisons and validation limits](regional-kr-es-task-review-20261006.md). Stage 2: 446/483 (92.3%); stage 3: 1,707/1,710 (99.8%); combined: 2,153/2,193 (98.2%), with 40 checkpoints remaining (24 task final checks, 13 source limitations, three Russian terminology groups). No live database writes or production deployment.

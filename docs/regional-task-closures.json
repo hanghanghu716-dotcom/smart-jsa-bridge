@@ -1430,5 +1430,291 @@
       "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
     ],
     "sha256": "9a7e31e9fed0b002f7b657a8c40779c006f415ca59a81b4c93ecd523e7145705"
+  },
+  {
+    "id": "task:KR.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573"
+    ],
+    "sha256": "007ff870596463f0002f2f0e8dd8dbf6f53eaf0ab68dc48496b47b8b2954f3ee"
+  },
+  {
+    "id": "task:KR.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028543703",
+      "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=154679",
+      "https://moel.go.kr/news/enews/report/enewsView.do?news_seq=18669"
+    ],
+    "sha256": "854bd02d11c3a7b5344448934ee80efbed0730bacdb788c395e6fdb72e40a001"
+  },
+  {
+    "id": "task:KR.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625"
+    ],
+    "sha256": "a0d4ec7eab8ad2fb9e936af1b9f79a0b5fc88fbd2ca67b8b27723631e69ddbfe"
+  },
+  {
+    "id": "task:KR.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618"
+    ],
+    "sha256": "ec56b72c5c44e7b90d980576e5fc0821240f717c2ecb48d59abdb4466bd7dd7a"
+  },
+  {
+    "id": "task:ES.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-17824",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+    ],
+    "sha256": "03fbdddbf848ad065afb52989a20fb5f53a7dce764043ce16de21f4770a04812"
+  },
+  {
+    "id": "task:ES.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853",
+      "https://www.insst.es/documents/94886/203536/Gu%C3%ADa%2Bt%C3%A9cnica%2Bpara%2Bla%2Bevaluaci%C3%B3n%2By%2Bprevenci%C3%B3n%2Bde%2Blos%2Briesgos%2Brelativos%2Ba%2Bla%2Butilizaci%C3%B3n%2Bde%2Blugares%2Bde%2Btrabajo.pdf/deac8eb9-e242-48c4-a634-4cf88927fff7"
+    ],
+    "sha256": "ac80c1ab7e966a440479428dbf6a70aa8a8df19b6227d79f16fba9bb85748c85"
+  },
+  {
+    "id": "task:ES.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://boe.es/buscar/act.php?id=BOE-A-2001-11881",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-2001-11881"
+    ],
+    "sha256": "4cd6d60629c0485ccb14238b7b22f4390a8a866113f5c5215b8e5b6ebeb3672c"
+  },
+  {
+    "id": "task:ES.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Complete application task-prompt checklist within the cited Korean/Spanish guidance and legal-provision scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+    ],
+    "sha256": "c741130846118838a3955465a50c2011dbef7ebf1f75215be44c51247c028223"
   }
 ]

@@ -10974,5 +10974,119 @@
     ],
     "scope": "Ten-language meaning review: French guidance: multi-day daily review, shift/condition changes, two-hour watch and five-year archive as recommendations rather than universal statutory periods.",
     "sha256": "377ab9674224b68f3b9e16d56a35e183550001314538ecc550af0c028d7eaae9"
+  },
+  {
+    "id": "task:krAtmosphereRecord",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Korean measurement/assessment identity, date/time, location, results and three-year record retention.",
+    "sha256": "d0b8f1e7fd30058e7da1d6d44048ad3bc36279d23d4ba29abca31c2a52189369"
+  },
+  {
+    "id": "task:krEntryRestartNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Korean measurement before restart, immediate 119 notification, no unprotected rescue and no automatic Article 626 exemption.",
+    "sha256": "7e8092ab95fa9729dba640e00b4cb6e04587a099d1d2b3abe10543cbad12a8e3"
+  },
+  {
+    "id": "task:krElectricalReturnNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Korean lock/tag installer removal and ordered restoration checks; no imported absent-owner exception.",
+    "sha256": "b6d988fcf6482ed58ae971f97b96ad94c5c2d821e97933d2a145243619c95e23"
+  },
+  {
+    "id": "task:esEntryRolesNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Spanish preventive-resource, outside attendant, communication and rescue duties are not automatically interchangeable.",
+    "sha256": "7598e72c53c3e001b7f3b2933b78424b99af1b527d75989029439d9495f00ff5"
+  },
+  {
+    "id": "task:esElectricalReturnNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: Spanish authorised/qualified electrical roles and live status from the first safety-measure withdrawal.",
+    "sha256": "6cdf3df69bcb7b79cd2d1268ebf0ab566fe15e10cb7f7bf2f57131ecc4f5d220"
+  },
+  {
+    "id": "task:esPermitLifecycleNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-kr-es-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning review: INSST NTP 562 shift-limited permission, changed-condition renewal, stop/report and handback/archive are guidance, not a universal statutory permit.",
+    "sha256": "9d12ed4524949246ea350eec7ac8d065d1f93235579dab2f5c4652e4e60849b7"
   }
 ]

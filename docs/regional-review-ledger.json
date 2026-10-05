@@ -1,5 +1,5 @@
 {
-  "inventoryVersion": "2026-10-06.23",
+  "inventoryVersion": "2026-10-06.24",
   "scope": "Work Packages starter forms, task prompts and their document vocabulary; excludes Case Study, guideline articles, full site UI and site-specific legal compliance.",
   "completionCriteria": [
     "Current primary source and applicable sector/jurisdiction identified.",
@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 13,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 415,
+    "supplementFields": 463,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 316,
+    "taskVocabularyKeys": 322,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -1319,24 +1319,27 @@
       "terms": "추락 방지 · 작업발판 · 안전대 부착설비",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573",
-          "scope": "Published consolidation effective 2026-03-02: platform/net hierarchy and conditional mobile-ladder route in 42(4); opening protection under 43; anchorage and pre-work checks under 44. No universal exemption below 2 m",
+          "scope": "Collective protection, conditional portable-ladder use, openings/fragile roofs, anchors and pre-use checks, safe access. Ladder and height conditions are not a general low-height exemption; structural design remains separate.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "fallProtectionBasis",
         "ladderConditions",
-        "anchorCheck"
+        "anchorCheck",
+        "heightAccessCheck",
+        "temporaryProtection",
+        "fallServiceRelease"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "KR.confined",
@@ -1345,22 +1348,43 @@
       "terms": "밀폐공간 작업 프로그램 · 산소 및 유해가스 측정 · 감시인",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1028543703",
           "scope": "2026-03-02 edition: posting pre-entry information until completion; Article 626 exceptions require site review",
           "basis": "regulation",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=154679",
+          "scope": "Entry programme and posted work information; trained/equipped measurement before start and restart, recorded assessment retained three years, ventilation, outside attendant/contact, evacuation and protected rescue. Article 626 exemptions require their own conditions and do not exempt 619-2.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://moel.go.kr/news/enews/report/enewsView.do?news_seq=18669",
+          "scope": "Corroborates effective December 2025 measurement-equipment provision, three-year records, immediate 119 reporting and understanding/training checks where the consolidated link header is inconsistent.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
-        "permitDisplay"
+        "permitDisplay",
+        "planReference",
+        "measurementCompetence",
+        "trainingEvidence",
+        "atmosphericBasis",
+        "standbyArrangement",
+        "rescueReadiness",
+        "restartReview",
+        "permitRecord",
+        "krAtmosphereRecord"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "KR.electrical",
@@ -1369,24 +1393,27 @@
       "terms": "정전전로 작업 · 검전 · 잠금장치 및 꼬리표",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625",
-          "scope": "Published consolidation effective 2026-03-02: eligible electrical worker, all supplies, locks AND tags, stored-charge discharge, voltage test and conditional earthing; restoration requires installer removal of locks/tags. US absent-owner exception is not imported",
+          "scope": "Eligible electrical workers; all-source isolation, locks AND tags, discharge/test/conditional earthing, pre-work checks and ordered restoration with installer removing own lock/tag. Live-work routes and exceptions are not granted by this form.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "electricalEligibility",
         "isolationSequence",
-        "lockRemoval"
+        "lockRemoval",
+        "isolationVerification",
+        "isolationHandover",
+        "countryProcedure"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "KR.hot",
@@ -1395,24 +1422,29 @@
       "terms": "화재위험작업 · 화재감시자",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618",
-          "scope": "Published consolidation effective 2026-03-02: container precautions, no oxygen ventilation, start-to-finish written posting with regular/repeated-place exception; certified welding blankets when used; conditional watcher appointment, alarm checks and evacuation equipment. No numeric post-work watch duration in these clauses",
+          "scope": "Residual fire/explosion risk, container cleaning, work preparation and posted information, ventilation without oxygen, conditional fire-watch appointment/equipment and final ember removal. No universal post-work watch duration or automatic recurring-work exception.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "permitDisplay",
         "fireWatchBasis",
-        "fireBlanket"
+        "fireBlanket",
+        "containerHistory",
+        "hotFireProtection",
+        "trainingEvidence",
+        "atmosphericBasis",
+        "restartReview"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "GB.height",
@@ -3220,24 +3252,37 @@
       "terms": "Protección colectiva · sistema de retención / anticaídas",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1997-17824",
-          "scope": "Collective priority, conditional ladder/rope routes, access/evacuation and compensatory measures before temporary removal of protection.",
+          "scope": "Collective protection/access, conditional ladder/rope routes, weather, scaffold plan/competence and inspections, rope-work supervision and immediate rescue. Engineering, calculations and conditional alternate qualifications are separate.",
           "basis": "regulation",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853",
+          "scope": "Preventive-resource presence for specified risks, including especially serious falls and confined spaces; assessment, planning, monitoring, corrective action and employer coordination. Not a universal height threshold or interchangeable rescue role.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "fallProtectionBasis",
         "temporaryProtection",
-        "ladderConditions"
+        "ladderConditions",
+        "heightAccessCheck",
+        "anchorCheck",
+        "trainingEvidence",
+        "scaffoldInspection",
+        "planReference",
+        "rescueReadiness",
+        "preventivePresence"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "ES.confined",
@@ -3246,24 +3291,44 @@
       "terms": "Autorización de trabajo · recurso preventivo · vigilancia exterior",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados",
-          "scope": "Written work authorization, recurso preventivo presence and external surveillance/rescue roles; do not automatically combine those roles.",
+          "scope": "Entry necessity, individual authorisation, operation permission, controlled access, preventive presence and rescue arrangements.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853",
+          "scope": "Preventive-resource presence for specified risks, including especially serious falls and confined spaces; assessment, planning, monitoring, corrective action and employer coordination. Not a universal height threshold or interchangeable rescue role.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.insst.es/documents/94886/203536/Gu%C3%ADa%2Bt%C3%A9cnica%2Bpara%2Bla%2Bevaluaci%C3%B3n%2By%2Bprevenci%C3%B3n%2Bde%2Blos%2Briesgos%2Brelativos%2Ba%2Bla%2Butilizaci%C3%B3n%2Bde%2Blugares%2Bde%2Btrabajo.pdf/deac8eb9-e242-48c4-a634-4cf88927fff7",
+          "scope": "Printed pp. 57–59: individual work assessment, entry permit, isolation/testing/ventilation, outside monitoring, trained personnel and planned rescue; refresh training/permission after relevant changes. Numerical examples are not automatic acceptance criteria.",
+          "basis": "official-guidance",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "preventivePresence",
         "entryAuthorisation",
-        "rescueReadiness"
+        "rescueReadiness",
+        "planReference",
+        "trainingEvidence",
+        "atmosphericBasis",
+        "measurementCompetence",
+        "standbyArrangement",
+        "multiEmployerRoles",
+        "restartReview",
+        "permitRecord"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "ES.electrical",
@@ -3272,22 +3337,34 @@
       "terms": "Trabajador autorizado · trabajador cualificado · supresión de la tensión",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-04",
-      "evidence": "regional-requirements-review-20261004.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://boe.es/buscar/act.php?id=BOE-A-2001-11881",
           "scope": "Suppression/restoration of voltage: authorised workers; qualified workers for high voltage. Does not authorise live work",
           "basis": "regulation",
           "checkedAt": "2026-10-04"
+        },
+        {
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2001-11881",
+          "scope": "De-energised work sequence, authorised workers (qualified for high voltage), all-source isolation, test/earthing/proximity protections and restoration. Treat installation as live from withdrawal of the first safety measure; special annex II B and live-work methods remain separate.",
+          "basis": "regulation",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
-        "voltageRole"
+        "voltageRole",
+        "electricalEligibility",
+        "isolationSequence",
+        "isolationVerification",
+        "restorationRelease",
+        "isolationHandover",
+        "countryProcedure"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "ES.hot",
@@ -3296,24 +3373,31 @@
       "terms": "Autorización de trabajos en caliente",
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "scoped-source-review",
-      "checkedAt": "2026-10-05",
-      "evidence": "regional-requirements-review-20261005.md",
+      "checkedAt": "2026-10-06",
+      "evidence": "regional-kr-es-task-review-20261006.md",
       "findings": [
         {
           "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales.",
-          "scope": "Special-work authorization system guidance and example forms. A 2001 technical note is not a current universal statutory permit template.",
+          "scope": "Guide permit roles, joint checks, preparation/cleaning/isolation/fire controls, competent workers, shift-limited validity, changed-condition renewal, stop/notification and return/archive. The guide is not a universal statutory hot-work permit requirement.",
           "basis": "official-guidance",
-          "checkedAt": "2026-10-05"
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
         "permitCoverage",
         "hotAuthorisation",
-        "countryProcedure"
+        "countryProcedure",
+        "trainingEvidence",
+        "hotFireProtection",
+        "containerHistory",
+        "atmosphericBasis",
+        "permitRecord",
+        "restartReview",
+        "multiEmployerRoles"
       ],
       "fieldLabels": {},
       "resolvedIssues": [],
-      "remaining": "Complete topic checklist closure remains beyond the recorded clauses."
+      "remaining": "Application task-prompt checklist compared within cited Korean/Spanish sources. Full technical standards, specialist sectors, competence, site measurements, engineering and statutory authorisations remain separate; see evidence."
     },
     {
       "id": "SA.height",
@@ -7923,6 +8007,40 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:esElectricalReturnNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-es-task-review-20261006.md"
+    },
+    {
+      "id": "task:esEntryRolesNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-es-task-review-20261006.md"
+    },
+    {
       "id": "task:esHeightDetail",
       "languages": [
         "ko",
@@ -7955,6 +8073,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:esPermitLifecycleNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-es-task-review-20261006.md"
     },
     {
       "id": "task:esTaskFormScope",
@@ -9164,6 +9299,23 @@
       "evidence": "regional-kr-on-form-review-20261005.md"
     },
     {
+      "id": "task:krAtmosphereRecord",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-es-task-review-20261006.md"
+    },
+    {
       "id": "task:krElectricalDetail",
       "languages": [
         "ko",
@@ -9181,6 +9333,23 @@
       "evidence": "regional-task-review.md"
     },
     {
+      "id": "task:krElectricalReturnNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-es-task-review-20261006.md"
+    },
+    {
       "id": "task:krEntryNotice",
       "languages": [
         "ko",
@@ -9196,6 +9365,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-task-review.md"
+    },
+    {
+      "id": "task:krEntryRestartNote",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-kr-es-task-review-20261006.md"
     },
     {
       "id": "task:krHeightDetail",
