@@ -25,7 +25,7 @@ test('batch checks reset actual values in 100 country/topic/language forms, with
     const context = { jurisdiction, documentLocale };
     const doc = form(jurisdiction, topic, documentLocale);
     const review = doc.regional.taskReviews[0];
-    assert.equal(review.status, 'partial-source-review');
+    assert.equal(review.status, ['CA-QC.confined', 'IT.height', 'BR.height'].includes(jurisdiction + '.' + topic) ? 'scoped-source-review' : 'partial-source-review');
     const notice = doc.blocks.find(b => b.field?.key === `${topic}.notice`).field.value;
     for (const key of [review.requirements.noteKey, ...review.requirements.additionalNotes]) assert.ok(notice.includes(taskSafetyText(language, key)));
     for (const key of keys) {

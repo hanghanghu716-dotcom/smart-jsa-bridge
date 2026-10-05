@@ -1716,5 +1716,511 @@
       "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
     ],
     "sha256": "c741130846118838a3955465a50c2011dbef7ebf1f75215be44c51247c028223"
+  },
+  {
+    "id": "task:JP.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=9"
+    ],
+    "sha256": "e032fc201c5eff5449a13a925b3ef16ce8876de8253eac825497eef53457c51b"
+  },
+  {
+    "id": "task:JP.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74105000&dataType=0&pageNo=1"
+    ],
+    "sha256": "bdc6f9f1a6f32fa270d953f02b88fe8ca47aee13b2b181a87b314f7ecddfa85a"
+  },
+  {
+    "id": "task:JP.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
+    ],
+    "sha256": "127255ed81dfe22667921b6ec63390e0b5e1227bb262c81ccddf010126b64767"
+  },
+  {
+    "id": "task:JP.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=7",
+      "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
+    ],
+    "sha256": "8da1cbd630a6754bc504020324adfcde3f260bdbdb1df3a9856cbda2995a9142"
+  },
+  {
+    "id": "task:IT.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.lavoro.gov.it/documenti-e-norme/interpelli/Documents/Interpello-Dlgs-81-08-n-6-2019.pdf",
+      "https://www.gazzettaufficiale.it/eli/gu/2025/12/30/301/sg/pdf",
+      "https://www.ispettorato.gov.it/files/2026/10/TU-81-08-Ed.-Ottobre-2026.pdf"
+    ],
+    "sha256": "5bdfb711a23d369d266a036fd0c9d5e79ca7e4e979ab0892150100183d50d992"
+  },
+  {
+    "id": "task:IT.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.lavoro.gov.it/temi-e-priorita-salute-e-sicurezza/focus/faq-accordo-stato-regioni-27032026",
+      "https://www.gazzettaufficiale.it/eli/id/2011/11/08/011G0219/sg"
+    ],
+    "sha256": "aea2cd587913cc11e624cd7b9376f8bf1ac8adf977399439f671c2c7c99bf9fa"
+  },
+  {
+    "id": "task:IT.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.inail.it/content/dam/inail-hub-site/documenti/2022/07/FactSheetRischi%20estate.pdf"
+    ],
+    "sha256": "64927d36b64c972db56834d2a7726ed5163eb39d480853171b14eb28dc332012"
+  },
+  {
+    "id": "task:BR.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-35-atualizada-2025-1.pdf",
+      "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-1-259-alteracao-do-anexo-iii-da-nr-35.pdf",
+      "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2025/portaria-mte-no-1-680-aprova-o-anexo-escadas-nr-35.pdf",
+      "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais"
+    ],
+    "sha256": "2fd688160576ca0528b7560c53044c3c8ceea53fb7693cfc0c3647914f3ae837"
+  },
+  {
+    "id": "task:BR.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
+    ],
+    "sha256": "cf5bd2153b529c8a7f605c88fb10e41694ee308600da824442a43808bc240b79"
+  },
+  {
+    "id": "task:BR.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-737-nova-nr-10.pdf",
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-10-atualizada-2019-1.pdf"
+    ],
+    "sha256": "0d54b4007426a81e6dbb1da92d4e3c03ce5341491e3be34ac6bd40d69020ab84"
+  },
+  {
+    "id": "task:BR.hot",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-34-atualizada-2022.pdf"
+    ],
+    "sha256": "a63b81f27f41a68dd3b2b583d0a34f18e123056f68b1f4074c5475dfaca9db5f"
+  },
+  {
+    "id": "task:CA-QC.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/harnais-liaison-darret-chute",
+      "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
+    ],
+    "sha256": "56e2d7889400a1900b687e7873cd1970e9f78a8d72f4f1f58d28e73c336960e6"
+  },
+  {
+    "id": "task:CA-QC.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2C%20R.%2013.pdf",
+      "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2CR.4.pdf",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/espaces-clos",
+      "https://www.publicationsduquebec.gouv.qc.ca/fileadmin/gazette/pdf_encrypte/lois_reglements/2025F/85643.pdf",
+      "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20%20r.%2013?langcont=fr",
+      "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
+    ],
+    "sha256": "726ba4751f0d0a696d1255241ef3783cd3d8826435559082f12a5b01751ca9a0"
+  },
+  {
+    "id": "task:CA-QC.electrical",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+    "checklist": [
+      "applicability",
+      "controls",
+      "roles",
+      "stop-restart",
+      "records",
+      "exceptions"
+    ],
+    "exclusions": [
+      "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+      "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+      "Actual-account access validation and deployment."
+    ],
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques",
+      "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
+    ],
+    "sha256": "51d5bfd809b7b011f549b2262c5a3ade1fd907a6527da90fd367703fc76bd635"
   }
 ]

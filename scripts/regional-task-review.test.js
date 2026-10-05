@@ -119,7 +119,7 @@ test('unresolved current-law reviews remain explicit in saved data and printed f
     assert.ok(doc.regional.taskReviews.every(r => r.status === 'partial-source-review'));
     assert.ok(doc.blocks.filter(b => b.field?.key.endsWith('.notice')).every(b => b.field.value.includes(taskSafetyText('en-US','pending'))));
   }
-  assert.equal(taskReview(ctx('BR'), 'height').status, 'partial-source-review');
+  assert.equal(taskReview(ctx('BR'), 'height').status, 'scoped-source-review');
   const russian = taskReview(ctx('RU'), 'electrical');
   assert.ok(russian.sources.some(s => s.basis === 'historical-publication'));
   assert.ok(russian.sources.some(s => s.basis === 'official-notice'));
@@ -395,7 +395,7 @@ test('Ontario signed assessment is distinct from shift permit verification and r
 
 test('Quebec construction and Saudi scaffold guidance preserve limited applicability', () => {
   const qc = make('CA-QC', ['confined'], 'fr-CA-QC');
-  assert.equal(qc.regional.taskReviews[0].status, 'partial-source-review');
+  assert.equal(qc.regional.taskReviews[0].status, 'scoped-source-review');
   assert.match(qc.blocks.find(b => b.field?.key === 'confined.notice').field.value, /RSST.*CSTC/);
   assert.ok(qc.blocks.some(b => b.field?.key === 'confined.jointHazardRecord'));
   const sa = make('SA', ['height'], 'ar-SA');
@@ -437,7 +437,7 @@ test('remaining batch covers exactly the 37 formerly baseline-only combinations 
     .flatMap(([j, topics]) => Object.keys(topics).map(t => `${j}.${t}`)).sort(), ids);
   for (const [j, topics] of Object.entries(expected)) for (const topic of topics) {
     const r = taskReview(ctx(j), topic);
-    assert.equal(r.requirements.checkedAt, ['CA', 'CA-AB', 'CA-BC', 'CA-ON', 'AU', 'SG', 'DE', 'FR', 'ES'].includes(j) ? '2026-10-06' : '2026-10-05');
+    assert.equal(r.requirements.checkedAt, '2026-10-06');
     assert.ok(r.requirements.sources.every(s => s.scope && s.basis &&
       (['2026-10-05', '2026-10-06'].includes(s.checkedAt) || (['CA', 'CA-AB', 'CA-BC', 'CA-ON', 'AU', 'SG', 'DE', 'FR', 'ES'].includes(j) && s.checkedAt === '2026-10-06'))));
     for (const locale of TASK_SAFETY_LANGUAGES) {
@@ -471,7 +471,7 @@ test('new Canadian and marine prompts preserve different plan triggers, sectors 
 });
 
 test('source limitations stay visible in all languages and survive independent saved copies', () => {
-  const limited = [['CA-QC', 'hot'], ['IT', 'height'], ['IT', 'electrical'],
+  const limited = [['CA-QC', 'hot'], ['IT', 'electrical'],
     ['SA', 'confined'], ['SA', 'electrical'], ['SA', 'hot'], ['RU', 'hot']];
   for (const [j, topic] of limited) {
     for (const locale of TASK_SAFETY_LANGUAGES) {
@@ -511,9 +511,10 @@ test('follow-up amendments stay local and retain evidence without automatically 
   const keys = it.blocks.flatMap(b => b.field ? [b.field.key] : []);
   for (const key of ['fallSystemChoice', 'fixedLadderRecord', 'anchorCheck']) assert.ok(keys.includes('height.' + key));
   const itReview = it.regional.taskReviews[0];
-  assert.equal(itReview.status, 'partial-source-review');
+  assert.equal(itReview.status, 'scoped-source-review');
   assert.match(itReview.requirements.sources.find(s => s.url.includes('gazzettaufficiale')).scope, /over 5 m.*over 75 degrees/);
-  assert.match(itReview.requirements.remaining, /later amendments/);
+  assert.ok(itReview.requirements.resolvedIssues.includes('it-current-height-consolidation'));
+  assert.ok(itReview.requirements.sources.some(s => s.url.includes('Ottobre-2026')));
   assert.ok(!make('KR', ['height']).blocks.some(b => b.field?.key === 'height.fixedLadderRecord'));
   for (const topic of TASK_TYPES) {
     const sa = make('SA', [topic]);
@@ -525,10 +526,11 @@ test('follow-up amendments stay local and retain evidence without automatically 
     assert.doesNotMatch(sa.blocks.find(b => b.field?.key === `${topic}.notice`).field.value, /Publication, implementation and sector rules remain unverified/);
   }
   const br = taskReview(ctx('BR'), 'height');
-  assert.equal(br.status, 'partial-source-review');
+  assert.equal(br.status, 'scoped-source-review');
   assert.ok(br.requirements.fields.includes('ladderInspectionSchedule'));
   assert.equal(br.requirements.sources.filter(s => s.url.includes('portaria-mte-no-1-259')).length, 1);
-  assert.match(br.requirements.remaining, /site-specific transition/);
+  assert.ok(br.requirements.resolvedIssues.includes('br-current-nr35-publication-date'));
+  assert.equal(br.requirements.partial, false);
 });
 
 test('updated evidence and terminology survive snapshots while new actual checks reset in all document languages', () => {

@@ -125,7 +125,7 @@ export function taskReview(context, topic) {
     ...TASK_REVIEW_SOURCES[jurisdiction][topic], ...(requirements?.sources || []),
   ].map(s => [s.url, s])).values()];
   const unresolved = requirements?.partial || jurisdiction === 'RU' || jurisdiction === 'SA' || !sources.length
-    || (jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined');
+    || (requirements?.partial !== false && ((jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined')));
   return {
     topic, jurisdiction, version: requirements?.version || TASK_REVIEW_VERSION, checkedAt: '2026-10-03',
     status: unresolved ? 'partial-source-review' : 'scoped-source-review',

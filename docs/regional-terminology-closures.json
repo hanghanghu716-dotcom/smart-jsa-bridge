@@ -11088,5 +11088,298 @@
     ],
     "scope": "Ten-language meaning review: INSST NTP 562 shift-limited permission, changed-condition renewal, stop/report and handback/archive are guidance, not a universal statutory permit.",
     "sha256": "9d12ed4524949246ea350eec7ac8d065d1f93235579dab2f5c4652e4e60849b7"
+  },
+  {
+    "id": "task:jpAtmosphereRecord",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Japan: daily pre-work measurement date/time, method, location, conditions, results, measurer, actions and three-year storage location",
+    "sha256": "1dc12e162d5bcf3a1cbfebe598da17e76683cdf7c07769f49cefda75c2d986ab"
+  },
+  {
+    "id": "task:jpEntryLifecycleNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Japan: verify the class-specific operations chief and training. Retest after everyone has left and before restart, or after equipment/health abnormalities; stop and evacuate on danger. No pure-oxygen ventilation or unprotected rescue entry.",
+    "sha256": "d95970214394a44e6aaff2c21e3901a82fbc2a88c2ebc20bc94b6d2c6d0dc724"
+  },
+  {
+    "id": "task:itHeightCurrentNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Italy: distinguish collective-protection priority, ladder conditions, rope access and roof strength under articles 111, 113, 115, 116 and 148. Exceptions or temporary protection removal are not automatic approvals; restore protection after interruption/completion.",
+    "sha256": "53abe962461146a26c98adec91b1c5f3bb157731ad1f23dd12949275bff65196"
+  },
+  {
+    "id": "task:itContractReview",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Italy confined work: company/worker eligibility evidence, client representative, site hazard information transfer and rescue/emergency-service coordination procedure",
+    "sha256": "175f8709562035de07e7958b3592a0c31fc4f00f1a1b57651e566cca8397db53"
+  },
+  {
+    "id": "task:combustibleSurroundings",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Dry vegetation/combustibles around the work area, removal/protection and final ember check",
+    "sha256": "8664e22387d451f2faa11a7e3274e3e36bf5e1711ccf995dcda73dc42dd7c086"
+  },
+  {
+    "id": "task:brServiceOrder",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Brazil current NR-10: approved service-order ID, work type/date/location/procedure reference and authorised approver",
+    "sha256": "62111c029e061190b3de5fa673e1d442461d7395e44c2cb7a58ffce776fd3d55"
+  },
+  {
+    "id": "task:brPetSignatures",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Brazil PET: each entry supervisor and vigia name, signature, verification time and separate PET reference",
+    "sha256": "076fb159cbbff9998a82d72208c03d92e188fa746f4f37fed4a6677680e2746f"
+  },
+  {
+    "id": "task:qcRescueSchedule",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec construction, where CSTC 2.9.5–2.9.5.2 applies: release within 15 minutes after a fall, pre-work/six-month drills and on-site rescuer/equipment checks",
+    "sha256": "aa0a67f38785f2e15eeab5983ae210a93db9ec6020e171d04036dad09e258e68"
+  },
+  {
+    "id": "task:qcEntryRecords",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: applicable RSST/CSTC test register, space ID and record custodian; at least five-year retention of nonconforming readings under RSST 307",
+    "sha256": "888baa3b97f376e4aff91b363c2ff3f30cfab3bdb26488e3e0f3fbc3e504fd78"
+  },
+  {
+    "id": "task:qcEntryLimitsNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: RSST and construction CSTC differ in gas criteria, testing frequency and emergency exceptions. Verify the applicable clauses/criteria and enter current readings. RSST five-year retention concerns nonconforming test records under article 307.",
+    "sha256": "ef345dd682896081c52a637cbfb77a2f51118d01cdba18087c33b82195802506"
+  },
+  {
+    "id": "task:qcHotScopeNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: apply RSST 313–319 or CSTC 3.14 according to workplace scope. Full incorporated CSA standards and applicable fire-code comparison remain outstanding. No automatic fire-watch duration.",
+    "sha256": "f576688a1de87167487fd4204b3561813f29c0a3932ff707c6bdd29c3ce3f8ea"
+  },
+  {
+    "id": "task:saTaskEvidenceNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Saudi Arabia: these blanks record checks against the site procedure. Occupational-licensing implementation and sector PTW requirements are not fully verified; this form does not issue permission.",
+    "sha256": "5f9989b3530b71cc27963dde1b2c4998367055e501c6112da09305796e4c9c67"
+  },
+  {
+    "id": "task:ruTaskEvidenceNote",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Russia: check native terms and prompts against the rules and site procedure applicable on the work date. Historical agency material or an extension of validity alone does not verify current detailed requirements.",
+    "sha256": "70d769e53720e8cf1d419ccf105265697f5541825d2a64148c4e1679c7664b49"
+  },
+  {
+    "id": "native:RU.height",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Height work and naryad-dopusk remain distinct. Historical Rostrud roof-work notice supports role meaning only, not current-law completeness.",
+    "sourceUrls": [
+      "https://git59.rostrud.gov.ru/upload/iblock/528/20691_rlu.pdf"
+    ],
+    "sha256": "64b6d1c76c5b8bbe8ee80f279c5cf565529c0c0240d17f9e059a88e3d902872a"
+  },
+  {
+    "id": "native:RU.confined",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-final-task-review-20261006.md",
+    "reviewKind": "native-role-meaning-and-language-preservation",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Confined space, naryad-dopusk and outside observing worker preserve distinct meanings. Regulator-hosted 902н presentation supports terminology, not current-amendment verification.",
+    "sourceUrls": [
+      "https://git62.rostrud.gov.ru/upload/iblock/388/pamyatka-dlya-rabotodateley.pdf"
+    ],
+    "sha256": "bc4284011218f1b1ba6e0bf5f4b526c0b2e08e98cb9008b073e456ab18d454d4"
   }
 ]

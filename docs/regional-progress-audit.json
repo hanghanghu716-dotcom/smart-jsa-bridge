@@ -1,6 +1,6 @@
 {
   "auditDate": "2026-10-06",
-  "evidenceVersion": "2026-10-06.24",
+  "evidenceVersion": "2026-10-06.25",
   "metric": "equal-weight documented checkpoints, first defined 2026-10-05 for progress reporting",
   "checkpointsPerGroup": [
     "scoped comparison record",
@@ -17,38 +17,38 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 409
+    "fieldVocabularyGroups": 422
   },
   "summary": {
     "stage2": {
       "reviewGroups": 161,
       "checkpoints": 483,
-      "completed": 446,
-      "pending": 37,
-      "pendingSourceResolution": 13,
-      "pendingFinalVerification": 24,
-      "completionPercent": 92.3,
-      "remainingPercent": 7.7
+      "completed": 463,
+      "pending": 20,
+      "pendingSourceResolution": 10,
+      "pendingFinalVerification": 10,
+      "completionPercent": 95.9,
+      "remainingPercent": 4.1
     },
     "stage3": {
-      "reviewGroups": 570,
-      "checkpoints": 1710,
-      "completed": 1707,
-      "pending": 3,
+      "reviewGroups": 583,
+      "checkpoints": 1749,
+      "completed": 1748,
+      "pending": 1,
       "pendingSourceResolution": 0,
-      "pendingFinalVerification": 3,
-      "completionPercent": 99.8,
-      "remainingPercent": 0.2
+      "pendingFinalVerification": 1,
+      "completionPercent": 99.9,
+      "remainingPercent": 0.1
     },
     "combined": {
-      "reviewGroups": 731,
-      "checkpoints": 2193,
-      "completed": 2153,
-      "pending": 40,
-      "pendingSourceResolution": 13,
-      "pendingFinalVerification": 27,
-      "completionPercent": 98.2,
-      "remainingPercent": 1.8
+      "reviewGroups": 744,
+      "checkpoints": 2232,
+      "completed": 2211,
+      "pending": 21,
+      "pendingSourceResolution": 10,
+      "pendingFinalVerification": 11,
+      "completionPercent": 99.1,
+      "remainingPercent": 0.9
     }
   },
   "stage2": [
@@ -5353,9 +5353,9 @@
     {
       "id": "task:CA-QC.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5364,36 +5364,50 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-QC.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/harnais-liaison-darret-chute",
+            "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
+          ],
+          "sha256": "56e2d7889400a1900b687e7873cd1970e9f78a8d72f4f1f58d28e73c336960e6"
         }
       }
     },
     {
       "id": "task:CA-QC.confined",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Source currency/framework/sector limitations remain; see dated evidence.",
-      "checkpoints": {
-        "scopedComparison": {
-          "status": "needs-source-resolution"
-        },
-        "implementation": {
-          "status": "verified-in-code"
-        },
-        "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
-        }
-      }
-    },
-    {
-      "id": "task:CA-QC.electrical",
-      "evidence": [
-        "regional-requirements-review-20261005.md"
-      ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5402,17 +5416,106 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:CA-QC.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2C%20R.%2013.pdf",
+            "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1%2CR.4.pdf",
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/espaces-clos",
+            "https://www.publicationsduquebec.gouv.qc.ca/fileadmin/gazette/pdf_encrypte/lois_reglements/2025F/85643.pdf",
+            "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20%20r.%2013?langcont=fr",
+            "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
+          ],
+          "sha256": "726ba4751f0d0a696d1255241ef3783cd3d8826435559082f12a5b01751ca9a0"
+        }
+      }
+    },
+    {
+      "id": "task:CA-QC.electrical",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:CA-QC.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques",
+            "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
+          ],
+          "sha256": "51d5bfd809b7b011f549b2262c5a3ade1fd907a6527da90fd367703fc76bd635"
         }
       }
     },
     {
       "id": "task:CA-QC.hot",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Current Quebec RSST PDF retrieval failed; historical 2023 consolidation is not used as current law. Quebec-specific hot-work/fire-code clause review remains open.",
+      "note": "Current RSST 313–319/CSTC 3.14 compared. Incorporated CSA welding-standard text and applicable adopted fire-code requirements remain unresolved.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -5636,9 +5739,9 @@
     {
       "id": "task:JP.height",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5647,17 +5750,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:JP.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=9"
+          ],
+          "sha256": "e032fc201c5eff5449a13a925b3ef16ce8876de8253eac825497eef53457c51b"
         }
       }
     },
     {
       "id": "task:JP.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5666,17 +5801,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:JP.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.mhlw.go.jp/web/t_doc?dataId=74105000&dataType=0&pageNo=1"
+          ],
+          "sha256": "bdc6f9f1a6f32fa270d953f02b88fe8ca47aee13b2b181a87b314f7ecddfa85a"
         }
       }
     },
     {
       "id": "task:JP.electrical",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5685,17 +5852,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:JP.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
+          ],
+          "sha256": "127255ed81dfe22667921b6ec63390e0b5e1227bb262c81ccddf010126b64767"
         }
       }
     },
     {
       "id": "task:JP.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5704,8 +5903,41 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:JP.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=7",
+            "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
+          ],
+          "sha256": "8da1cbd630a6754bc504020324adfcde3f260bdbdb1df3a9856cbda2995a9142"
         }
       }
     },
@@ -5922,28 +6154,9 @@
     {
       "id": "task:IT.height",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Enacted December 2025 articles 113/115 compared. Full current consolidation and later amendments/sector exceptions remain open; no automatic ladder exemption.",
-      "checkpoints": {
-        "scopedComparison": {
-          "status": "needs-source-resolution"
-        },
-        "implementation": {
-          "status": "verified-in-code"
-        },
-        "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
-        }
-      }
-    },
-    {
-      "id": "task:IT.confined",
-      "evidence": [
-        "regional-requirements-review-20261004.md"
-      ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5952,17 +6165,103 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:IT.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.lavoro.gov.it/documenti-e-norme/interpelli/Documents/Interpello-Dlgs-81-08-n-6-2019.pdf",
+            "https://www.gazzettaufficiale.it/eli/gu/2025/12/30/301/sg/pdf",
+            "https://www.ispettorato.gov.it/files/2026/10/TU-81-08-Ed.-Ottobre-2026.pdf"
+          ],
+          "sha256": "5bdfb711a23d369d266a036fd0c9d5e79ca7e4e979ab0892150100183d50d992"
+        }
+      }
+    },
+    {
+      "id": "task:IT.confined",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:IT.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.lavoro.gov.it/temi-e-priorita-salute-e-sicurezza/focus/faq-accordo-stato-regioni-27032026",
+            "https://www.gazzettaufficiale.it/eli/id/2011/11/08/011G0219/sg"
+          ],
+          "sha256": "aea2cd587913cc11e624cd7b9376f8bf1ac8adf977399439f671c2c7c99bf9fa"
         }
       }
     },
     {
       "id": "task:IT.electrical",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "CEI 11-27:2025 edition existence and revision topics verified; paid full text and applicable corrigenda not compared with INAIL 2018. No automatic qualification from a training certificate.",
+      "note": "Full CEI 11-27:2025 text and applicable corrections/procedure details remain unread. Public role summaries do not close that gap.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -5979,9 +6278,9 @@
     {
       "id": "task:IT.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -5990,8 +6289,40 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:IT.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.inail.it/content/dam/inail-hub-site/documenti/2022/07/FactSheetRischi%20estate.pdf"
+          ],
+          "sha256": "64927d36b64c972db56834d2a7726ed5163eb39d480853171b14eb28dc332012"
         }
       }
     },
@@ -6206,9 +6537,9 @@
     {
       "id": "task:SA.height",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6225,9 +6556,9 @@
     {
       "id": "task:SA.confined",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6244,9 +6575,9 @@
     {
       "id": "task:SA.electrical",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6263,9 +6594,9 @@
     {
       "id": "task:SA.hot",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Gazette date and 180-day commencement rule verified. Implementing licensing workflows and task/sector-specific duties remain unverified; occupational classification is not automatic.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6282,28 +6613,63 @@
     {
       "id": "task:BR.height",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Order 1680/2025 identified and periodic-inspection clause compared. Heading-year inconsistency and site-specific transition applicability remain explicit; full-topic closure remains open.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
-          "status": "needs-source-resolution"
+          "status": "recorded"
         },
         "implementation": {
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:BR.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-35-atualizada-2025-1.pdf",
+            "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-1-259-alteracao-do-anexo-iii-da-nr-35.pdf",
+            "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2025/portaria-mte-no-1-680-aprova-o-anexo-escadas-nr-35.pdf",
+            "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais"
+          ],
+          "sha256": "2fd688160576ca0528b7560c53044c3c8ceea53fb7693cfc0c3647914f3ae837"
         }
       }
     },
     {
       "id": "task:BR.confined",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6312,17 +6678,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:BR.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
+          ],
+          "sha256": "cf5bd2153b529c8a7f605c88fb10e41694ee308600da824442a43808bc240b79"
         }
       }
     },
     {
       "id": "task:BR.electrical",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6331,17 +6729,51 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:BR.electrical",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+            "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-737-nova-nr-10.pdf",
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-10-atualizada-2019-1.pdf"
+          ],
+          "sha256": "0d54b4007426a81e6dbb1da92d4e3c03ce5341491e3be34ac6bd40d69020ab84"
         }
       }
     },
     {
       "id": "task:BR.hot",
       "evidence": [
-        "regional-requirements-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Complete topic checklist closure remains beyond the recorded clauses.",
+      "note": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -6350,17 +6782,49 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "task:BR.hot",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Application task-prompt checklist compared within the cited jurisdiction and sector scope; not a certified statutory permit.",
+          "checklist": [
+            "applicability",
+            "controls",
+            "roles",
+            "stop-restart",
+            "records",
+            "exceptions"
+          ],
+          "exclusions": [
+            "Site measurements, individual competence, engineering, rescue capability and exception authorisation.",
+            "Full incorporated technical standards, specialist-sector rules outside the cited scope, medical decisions, energized-work permits and statutory form certification.",
+            "Actual-account access validation and deployment."
+          ],
+          "sourceUrls": [
+            "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-34-atualizada-2022.pdf"
+          ],
+          "sha256": "a63b81f27f41a68dd3b2b583d0a34f18e123056f68b1f4074c5475dfaca9db5f"
         }
       }
     },
     {
       "id": "task:RU.height",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Source currency/framework/sector limitations remain; see dated evidence.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6377,9 +6841,9 @@
     {
       "id": "task:RU.confined",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Source currency/framework/sector limitations remain; see dated evidence.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6396,9 +6860,9 @@
     {
       "id": "task:RU.electrical",
       "evidence": [
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Source currency/framework/sector limitations remain; see dated evidence.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6415,9 +6879,9 @@
     {
       "id": "task:RU.hot",
       "evidence": [
-        "regional-batch-review-20261005.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Current consolidated fire-regime amendments and sector exceptions remain unresolved; no automatic duration or expiry from historical checklists or this notice.",
+      "note": "Latest implementing/sector requirements remain unresolved; added blanks are site-review prompts, not verified statutory duties. See individual gaps in regional-final-task-review-20261006.md. There is no automatic duration or expiry from historical material.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -11141,6 +11605,41 @@
       }
     },
     {
+      "id": "task:brPetSignatures",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Brazil PET: each entry supervisor and vigia name, signature, verification time and separate PET reference",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brPetSignatures",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Brazil PET: each entry supervisor and vigia name, signature, verification time and separate PET reference",
+          "sha256": "076fb159cbbff9998a82d72208c03d92e188fa746f4f37fed4a6677680e2746f"
+        }
+      }
+    },
+    {
       "id": "task:brReviewCycle",
       "evidence": [
         "regional-it-br-qc-form-review-20261005.md"
@@ -11207,6 +11706,41 @@
           ],
           "scope": "Ten-language occupational risk categories, work-related psychosocial factors, foreseeable external hazards and exposed groups; no personal diagnostic data requested.",
           "sha256": "e20ea80bf9855859b3ef8a4b183a2bc675dffe396496b7840368f9fb27dbc351"
+        }
+      }
+    },
+    {
+      "id": "task:brServiceOrder",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Brazil current NR-10: approved service-order ID, work type/date/location/procedure reference and authorised approver",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:brServiceOrder",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Brazil current NR-10: approved service-order ID, work type/date/location/procedure reference and authorised approver",
+          "sha256": "62111c029e061190b3de5fa673e1d442461d7395e44c2cb7a58ffce776fd3d55"
         }
       }
     },
@@ -11601,6 +12135,41 @@
           "scope": "Ten-language semantic review of common checks or the scoped SG assessment addition; conditional rules and fresh-work record meaning preserved.",
           "evidence": "regional-title-core-review-20261005.md",
           "sha256": "5ade48acf9a224be1d3940ca2b6ee1dc4c2b5a5bb7958c89fbc6a62fe4c589fa"
+        }
+      }
+    },
+    {
+      "id": "task:combustibleSurroundings",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Dry vegetation/combustibles around the work area, removal/protection and final ember check",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:combustibleSurroundings",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Dry vegetation/combustibles around the work area, removal/protection and final ember check",
+          "sha256": "8664e22387d451f2faa11a7e3274e3e36bf5e1711ccf995dcda73dc42dd7c086"
         }
       }
     },
@@ -14719,6 +15288,41 @@
       }
     },
     {
+      "id": "task:itContractReview",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Italy confined work: company/worker eligibility evidence, client representative, site hazard information transfer and rescue/emergency-service coordination procedure",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itContractReview",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Italy confined work: company/worker eligibility evidence, client representative, site hazard information transfer and rescue/emergency-service coordination procedure",
+          "sha256": "175f8709562035de07e7958b3592a0c31fc4f00f1a1b57651e566cca8397db53"
+        }
+      }
+    },
+    {
       "id": "task:itElectricalRoles",
       "evidence": [
         "regional-task-review.md",
@@ -14859,6 +15463,41 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "f4f7f6715d1d75cb530a136354945e2d0a5e0cc2f721150cdb9ffcf1233b1251"
+        }
+      }
+    },
+    {
+      "id": "task:itHeightCurrentNote",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Italy: distinguish collective-protection priority, ladder conditions, rope access and roof strength under articles 111, 113, 115, 116 and 148. Exceptions or temporary protection removal are not automatic approvals; restore protection after interruption/completion.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:itHeightCurrentNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Italy: distinguish collective-protection priority, ladder conditions, rope access and roof strength under articles 111, 113, 115, 116 and 148. Exceptions or temporary protection removal are not automatic approvals; restore protection after interruption/completion.",
+          "sha256": "53abe962461146a26c98adec91b1c5f3bb157731ad1f23dd12949275bff65196"
         }
       }
     },
@@ -15114,6 +15753,41 @@
       }
     },
     {
+      "id": "task:jpAtmosphereRecord",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Japan: daily pre-work measurement date/time, method, location, conditions, results, measurer, actions and three-year storage location",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:jpAtmosphereRecord",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Japan: daily pre-work measurement date/time, method, location, conditions, results, measurer, actions and three-year storage location",
+          "sha256": "1dc12e162d5bcf3a1cbfebe598da17e76683cdf7c07769f49cefda75c2d986ab"
+        }
+      }
+    },
+    {
       "id": "task:jpElectricalDetail",
       "evidence": [
         "regional-task-review.md",
@@ -15146,6 +15820,41 @@
           ],
           "scope": "Ten-language semantic comparison of the individually listed prompt or scoped notice; preserves local roles, alternatives, conditions and current-work records. Existing clause evidence is the canonical meaning, not a new whole-topic legal clearance.",
           "sha256": "f1320de60b77a845bbe698eedc3001cbea40ac1d096cddc877f2fed5ab6033a9"
+        }
+      }
+    },
+    {
+      "id": "task:jpEntryLifecycleNote",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Japan: verify the class-specific operations chief and training. Retest after everyone has left and before restart, or after equipment/health abnormalities; stop and evacuate on danger. No pure-oxygen ventilation or unprotected rescue entry.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:jpEntryLifecycleNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Japan: verify the class-specific operations chief and training. Retest after everyone has left and before restart, or after equipment/health abnormalities; stop and evacuate on danger. No pure-oxygen ventilation or unprotected rescue entry.",
+          "sha256": "d95970214394a44e6aaff2c21e3901a82fbc2a88c2ebc20bc94b6d2c6d0dc724"
         }
       }
     },
@@ -17471,6 +18180,41 @@
       }
     },
     {
+      "id": "task:qcEntryLimitsNote",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: RSST and construction CSTC differ in gas criteria, testing frequency and emergency exceptions. Verify the applicable clauses/criteria and enter current readings. RSST five-year retention concerns nonconforming test records under article 307.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcEntryLimitsNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: RSST and construction CSTC differ in gas criteria, testing frequency and emergency exceptions. Verify the applicable clauses/criteria and enter current readings. RSST five-year retention concerns nonconforming test records under article 307.",
+          "sha256": "ef345dd682896081c52a637cbfb77a2f51118d01cdba18087c33b82195802506"
+        }
+      }
+    },
+    {
       "id": "task:qcEntryNotice",
       "evidence": [
         "regional-task-review.md",
@@ -17503,6 +18247,41 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "a2f2a04544796596f8154a16e8bb1bd4704a2a2dbbbd7dad52ce5bfad6e812c9"
+        }
+      }
+    },
+    {
+      "id": "task:qcEntryRecords",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: applicable RSST/CSTC test register, space ID and record custodian; at least five-year retention of nonconforming readings under RSST 307",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcEntryRecords",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: applicable RSST/CSTC test register, space ID and record custodian; at least five-year retention of nonconforming readings under RSST 307",
+          "sha256": "888baa3b97f376e4aff91b363c2ff3f30cfab3bdb26488e3e0f3fbc3e504fd78"
         }
       }
     },
@@ -17687,6 +18466,41 @@
       }
     },
     {
+      "id": "task:qcHotScopeNote",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: apply RSST 313–319 or CSTC 3.14 according to workplace scope. Full incorporated CSA standards and applicable fire-code comparison remain outstanding. No automatic fire-watch duration.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcHotScopeNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec: apply RSST 313–319 or CSTC 3.14 according to workplace scope. Full incorporated CSA standards and applicable fire-code comparison remain outstanding. No automatic fire-watch duration.",
+          "sha256": "f576688a1de87167487fd4204b3561813f29c0a3932ff707c6bdd29c3ce3f8ea"
+        }
+      }
+    },
+    {
       "id": "task:qcOxygenCause",
       "evidence": [
         "regional-task-review.md",
@@ -17719,6 +18533,41 @@
           "scope": "Ten-language semantic review against the scoped batch finding; preserves jurisdiction, conditional applicability and non-automatic authorisation.",
           "evidence": "regional-batch-review-20261005.md",
           "sha256": "fe06d1f419fc14a0041def4c27ea1d5f9895d99d5e75cc4a869a7c1238b32445"
+        }
+      }
+    },
+    {
+      "id": "task:qcRescueSchedule",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec construction, where CSTC 2.9.5–2.9.5.2 applies: release within 15 minutes after a fall, pre-work/six-month drills and on-site rescuer/equipment checks",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:qcRescueSchedule",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Québec construction, where CSTC 2.9.5–2.9.5.2 applies: release within 15 minutes after a fall, pre-work/six-month drills and on-site rescuer/equipment checks",
+          "sha256": "aa0a67f38785f2e15eeab5983ae210a93db9ec6020e171d04036dad09e258e68"
         }
       }
     },
@@ -18652,6 +19501,41 @@
       }
     },
     {
+      "id": "task:ruTaskEvidenceNote",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Russia: check native terms and prompts against the rules and site procedure applicable on the work date. Historical agency material or an extension of validity alone does not verify current detailed requirements.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:ruTaskEvidenceNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Russia: check native terms and prompts against the rules and site procedure applicable on the work date. Historical agency material or an extension of validity alone does not verify current detailed requirements.",
+          "sha256": "70d769e53720e8cf1d419ccf105265697f5541825d2a64148c4e1679c7664b49"
+        }
+      }
+    },
+    {
       "id": "task:ruTaskFormScope",
       "evidence": [
         "regional-sa-ru-form-review-20261006.md"
@@ -19005,6 +19889,41 @@
           ],
           "scope": "Ten-language semantic review of actor, action, condition, records, numbers/dates and exception boundaries; preserves prior source limitations, not a new whole-topic legal certification.",
           "sha256": "8523671b32db37292bce69884fab1a2d4506a4185a3d3cd66574be2f316f59df"
+        }
+      }
+    },
+    {
+      "id": "task:saTaskEvidenceNote",
+      "evidence": [
+        "regional-final-task-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Saudi Arabia: these blanks record checks against the site procedure. Occupational-licensing implementation and sector PTW requirements are not fully verified; this form does not issue permission.",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saTaskEvidenceNote",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison preserving jurisdiction, conditions and evidence limitations: Saudi Arabia: these blanks record checks against the site procedure. Occupational-licensing implementation and sector PTW requirements are not fully verified; this form does not issue permission.",
+          "sha256": "5f9989b3530b71cc27963dde1b2c4998367055e501c6112da09305796e4c9c67"
         }
       }
     },
@@ -25803,7 +26722,7 @@
       "id": "native:CA-QC.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Use CNESST harness/fall-arrest connection and rescue procedure terminology instead of a generic province-independent fall-plan title. Rescue remains a separate arrangement.",
@@ -25844,7 +26763,7 @@
       "id": "native:CA-QC.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Qualified risk/rescue planning, entrant, outside attendant and trained rescue roles are separate. Language review does not close the outstanding Quebec consolidated-law review.",
@@ -25885,7 +26804,7 @@
       "id": "native:CA-QC.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Cadenassage and hazardous-energy control retain Quebec usage; French habilitation is not substituted as a Quebec occupational credential.",
@@ -25926,7 +26845,7 @@
       "id": "native:CA-QC.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "French-Canadian hot-work and fire-watch vocabulary checked against CCOHS guidance; not represented as a current Quebec-wide statutory permit or fixed watch duration.",
@@ -26132,7 +27051,7 @@
       "id": "native:JP.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Fall-restraint equipment, work platform and openings retain the Japanese regulatory vocabulary; equipment does not replace collective controls automatically.",
@@ -26174,7 +27093,7 @@
       "id": "native:JP.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "First/second oxygen-deficiency work classifications, the full operations-chief title in article 11 and monitoring in article 13 remain distinct; corrected the abbreviated chief label. Official indexed provisions and ministry guidance corroborate meanings; no claim of full consolidation review.",
@@ -26216,7 +27135,7 @@
       "id": "native:JP.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Article 350 work director is not the oxygen-deficiency operations chief. Isolation and absence-of-voltage confirmation remain separate actions.",
@@ -26257,7 +27176,7 @@
       "id": "native:JP.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Welding/cutting and ignition-source precautions retain their local meaning; no universal permit role or imported fire-watch duration.",
@@ -26463,7 +27382,7 @@
       "id": "native:IT.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Collective parapets/nets and personal fall protection remain separate. Lexical closure does not close task/equipment-specific legal applicability.",
@@ -26505,7 +27424,7 @@
       "id": "native:IT.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Suspected pollution/confined environments, DPR 177 company qualification and the client-employer representative retain separate meanings; the 2021 source is not proof of all current training requirements.",
@@ -26546,7 +27465,7 @@
       "id": "native:IT.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "PES/PAV competence and live-work suitability are not interchangeable. Current GI/RI/GL/RLE/LAV role names checked against the publisher and CNI 2026 material; full paid CEI standard not accessed, so legal-topic closure remains open.",
@@ -26588,7 +27507,7 @@
       "id": "native:IT.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Hot work includes ignition-producing operations; pre-work assessment and post-work inspection remain different controls. INAIL terminology guidance is not certification of every current fire-code duty.",
@@ -26793,7 +27712,7 @@
       "id": "native:SA.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic height work and fall prevention are descriptive safety concepts, not statutory licence names; HRSD equipment/maintenance guidance supports the task meaning.",
@@ -26834,7 +27753,7 @@
       "id": "native:SA.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic confined spaces, outside attendant and rescue plan retain their ordinary technical meanings. EXPRO facility guidance defines an outside entry attendant; no universal Saudi statutory job title inferred.",
@@ -26876,7 +27795,7 @@
       "id": "native:SA.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic isolation and lock/tag wording retain distinct energy-control actions; HRSD supports isolation/locking, while the tag phrase is a descriptive translation, not a verified Saudi statutory title or all-sector LOTO mandate.",
@@ -26917,7 +27836,7 @@
       "id": "native:SA.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Use the fire-watcher term in EXPRO guidance. The facility-management source (which cites foreign standards) is a terminology reference, not a universal Saudi permit law.",
@@ -26959,7 +27878,7 @@
       "id": "native:BR.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "AR and PT are distinct; NR-35 links the permit to non-routine work. Lexical meaning does not close current training/ladder-transition or sector checks.",
@@ -27000,7 +27919,7 @@
       "id": "native:BR.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "PET, entry supervisor, outside watcher and authorised entrant retain distinct NR-33 roles; watcher does not automatically become the rescue team.",
@@ -27041,7 +27960,7 @@
       "id": "native:BR.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Qualification, professional habilitation, supervised capacitation and employer authorisation remain four distinct NR-10 concepts. Current 2019 edition applies through 2027-05-31; generic PDF now points to the future 2027-06-01 edition.",
@@ -27083,7 +28002,7 @@
       "id": "native:BR.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Trabalho a quente retains its hot-work meaning; the native label explicitly limits NR-34 to the naval industry and does not apply it to every workplace.",
@@ -27124,9 +28043,9 @@
       "id": "native:RU.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
+      "note": "Height work and naryad-dopusk remain distinct. Historical Rostrud roof-work notice supports role meaning only, not current-law completeness.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -27135,8 +28054,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "native:RU.height",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "reviewKind": "native-role-meaning-and-language-preservation",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Height work and naryad-dopusk remain distinct. Historical Rostrud roof-work notice supports role meaning only, not current-law completeness.",
+          "sourceUrls": [
+            "https://git59.rostrud.gov.ru/upload/iblock/528/20691_rlu.pdf"
+          ],
+          "sha256": "64b6d1c76c5b8bbe8ee80f279c5cf565529c0c0240d17f9e059a88e3d902872a"
         }
       }
     },
@@ -27144,9 +28083,9 @@
       "id": "native:RU.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
-      "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
+      "note": "Confined space, naryad-dopusk and outside observing worker preserve distinct meanings. Regulator-hosted 902н presentation supports terminology, not current-amendment verification.",
       "checkpoints": {
         "scopedComparison": {
           "status": "recorded"
@@ -27155,8 +28094,28 @@
           "status": "verified-in-code"
         },
         "finalVerification": {
-          "status": "needs-final-verification",
-          "reason": "No individual full-scope closure established by the dated reports. This does not mean all previous review must be repeated."
+          "status": "verified-with-evidence",
+          "id": "native:RU.confined",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-final-task-review-20261006.md",
+          "reviewKind": "native-role-meaning-and-language-preservation",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Confined space, naryad-dopusk and outside observing worker preserve distinct meanings. Regulator-hosted 902н presentation supports terminology, not current-amendment verification.",
+          "sourceUrls": [
+            "https://git62.rostrud.gov.ru/upload/iblock/388/pamyatka-dlya-rabotodateley.pdf"
+          ],
+          "sha256": "bc4284011218f1b1ba6e0bf5f4b526c0b2e08e98cb9008b073e456ab18d454d4"
         }
       }
     },
@@ -27164,7 +28123,7 @@
       "id": "native:RU.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-requirements-review-20261004.md"
+        "regional-final-task-review-20261006.md"
       ],
       "note": "Native role/term distinctions covered by country/task reports; preservation in generated forms checked. Specialist final closure remains unverified.",
       "checkpoints": {
@@ -27184,7 +28143,7 @@
       "id": "native:RU.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-batch-review-20261005.md",
+        "regional-final-task-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Hot work and its work permit remain distinct. MCHS protected-site guidance corroborates the permit title; its nuclear-site procedures and observation periods are not generalised nationally.",
