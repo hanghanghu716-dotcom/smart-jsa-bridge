@@ -45,7 +45,7 @@
   },
   "section4": {
     "title": "4. Third-Party Provision and Entrustment",
-    "content": "Google Analytics の Cookie を使用して公開ページの訪問統計を自動収集します。広告は無効です。 閲覧数はログインした訪問、利用数は操作の記録で、現場利用や実人数ではありません。 運営者の身元と非会員の連絡窓口は確認中です。ベータ版の申請にはログインが必要です。"
+    "content": "Google Analytics の Cookie を使用して公開ページの訪問統計を自動収集します。広告は無効です。 公開ページのタイトルと参照元サイトのドメインも収集します。 閲覧数はログインした訪問、利用数は操作の記録で、現場利用や実人数ではありません。 運営者の身元と非会員の連絡窓口は確認中です。ベータ版の申請にはログインが必要です。"
   },
   "imageCaption": "Smart JSA Bridge prioritizes the safety of your data."
 }

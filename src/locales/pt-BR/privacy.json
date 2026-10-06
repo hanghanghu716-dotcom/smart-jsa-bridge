@@ -45,7 +45,7 @@
   },
   "section4": {
     "title": "4. Fornecimento a Terceiros e Compartilhamento",
-    "content": "O Google Analytics utiliza cookies para recolher automaticamente estatísticas de visitas a páginas públicas. A publicidade está desativada. Visualizações contam visitas autenticadas; reutilizações contam ações, não pessoas únicas nem uso em campo. A identidade do operador e o contato sem conta aguardam verificação. Pedidos beta exigem login."
+    "content": "O Google Analytics utiliza cookies para recolher automaticamente estatísticas de visitas a páginas públicas. A publicidade está desativada. Também são recolhidos os títulos das páginas públicas e os domínios dos sites de origem. Visualizações contam visitas autenticadas; reutilizações contam ações, não pessoas únicas nem uso em campo. A identidade do operador e o contato sem conta aguardam verificação. Pedidos beta exigem login."
   },
   "imageCaption": "O Smart JSA Bridge prioriza a segurança dos seus dados."
 }

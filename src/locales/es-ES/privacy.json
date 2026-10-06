@@ -45,7 +45,7 @@
   },
   "section4": {
     "title": "4. Provisión a Terceros y Subcontratación",
-    "content": "Google Analytics usa cookies para recopilar automáticamente estadísticas de visitas a páginas públicas. La publicidad está desactivada. Las vistas cuentan visitas con sesión y los usos cuentan acciones, no personas únicas ni uso real en obra. La identidad del operador y el contacto sin cuenta están pendientes de verificación. Las solicitudes beta requieren iniciar sesión."
+    "content": "Google Analytics usa cookies para recopilar automáticamente estadísticas de visitas a páginas públicas. La publicidad está desactivada. También se recopilan los títulos de las páginas públicas y los dominios de los sitios de procedencia. Las vistas cuentan visitas con sesión y los usos cuentan acciones, no personas únicas ni uso real en obra. La identidad del operador y el contacto sin cuenta están pendientes de verificación. Las solicitudes beta requieren iniciar sesión."
   },
   "imageCaption": "Smart JSA Bridge considera la seguridad de los datos del usuario como su máxima prioridad."
 }

@@ -1,5 +1,5 @@
 // Run GA in a separate, same-origin document. Enhanced measurement cannot read
-// the application's forms, links, titles or history, even if enabled in GA Admin.
+// the application's forms, links or history, even if enabled in GA Admin.
 export const MEASUREMENT_ID = 'G-73YTNRN5KJ';
 export const CONSENT_KEY = 'smartjsa_analytics_consent_v1';
 export const OPT_OUT_KEY = 'smartjsa_analytics_opt_out';
@@ -8,9 +8,30 @@ const COOKIE_AGE = 180 * 24 * 60 * 60;
 const locales = 'ko|en-US|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-AU|en-GB|en-SG|de-DE|ja-JP|fr-FR|it-IT|es-ES|ar-SA|pt-BR|ru-RU';
 const publicRoute = new RegExp(`^/(${locales})(?:/(about|explore|dictionary|jrajsa|regulation|riskclassification|protectiveequipment|terms|privacy|archive)|/(guideline)/(common|construction|manufacturing|chemical|high-risk|general)|/(case-study)/[a-zA-Z0-9_-]+|/(public-jsa)/[a-fA-F0-9-]{36})?/?$`);
 export function publicAnalyticsPath(path) {
-  // Never include query strings, fragments, document titles or user content.
+  // Never include query strings, fragments or private user content.
   const match = publicRoute.exec(path);
   return match ? path.replace(/\/$/, '') : null;
+}
+export function publicAnalyticsReferrer(value) {
+  // Retain the referring site for GA acquisition, never search terms, tokens,
+  // credentials or third-party paths. Same-site private paths stay excluded.
+  if (typeof value !== 'string' || !value) return '';
+  try {
+    const url = new URL(value);
+    if (!['https:', 'http:'].includes(url.protocol)) return '';
+    if (['smartjsabridge.com', 'www.smartjsabridge.com'].includes(url.hostname)) {
+      const path = publicAnalyticsPath(url.pathname);
+      return path ? url.origin + path : '';
+    }
+    return url.origin + '/';
+  } catch { return ''; }
+}
+export function publicAnalyticsTitle(value) {
+  return typeof value === 'string' && value.trim()
+    // Strip control characters from public titles before sending them to GA.
+    // eslint-disable-next-line no-control-regex
+    ? value.replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 200)
+    : 'Smart JSA Bridge';
 }
 export function analyticsHost(location, userAgent = '') {
   return location.protocol === 'https:' && ['smartjsabridge.com', 'www.smartjsabridge.com'].includes(location.hostname) && !/ReactSnap|HeadlessChrome/i.test(userAgent);
@@ -39,6 +60,8 @@ export function startAnalyticsFrame(win, doc) {
     if (data?.type !== 'smartjsa:page-view' || analyticsOptedOut(win.localStorage)) return;
     const path = publicAnalyticsPath(data.path);
     if (!path || !Number.isSafeInteger(data.sequence) || data.sequence <= lastSequence) return;
+    const referrer = previous ? win.location.origin + previous : publicAnalyticsReferrer(data.referrer);
+    const title = publicAnalyticsTitle(data.title);
     lastSequence = data.sequence;
     if (!started) {
       win.dataLayer = [];
@@ -49,7 +72,7 @@ export function startAnalyticsFrame(win, doc) {
       win.gtag('config', MEASUREMENT_ID, {
         send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false,
         cookie_expires: COOKIE_AGE, cookie_update: false,
-        page_location: win.location.origin + path, page_referrer: '', page_title: 'Smart JSA Bridge',
+        page_location: win.location.origin + path, page_referrer: referrer, page_title: title,
       });
       const script = doc.createElement('script');
       script.async = true;
@@ -59,7 +82,7 @@ export function startAnalyticsFrame(win, doc) {
     }
     win.gtag('event', 'page_view', {
       send_to: MEASUREMENT_ID, page_location: win.location.origin + path,
-      page_referrer: previous ? win.location.origin + previous : '', page_title: 'Smart JSA Bridge',
+      page_referrer: referrer, page_title: title,
     });
     previous = path;
   }
