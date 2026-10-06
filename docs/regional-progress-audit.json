@@ -17,7 +17,7 @@
   "checked": {
     "generatedFormChecks": 890,
     "generatedTaskChecks": 720,
-    "fieldVocabularyGroups": 458
+    "fieldVocabularyGroups": 461
   },
   "summary": {
     "stage2": {
@@ -31,9 +31,9 @@
       "remainingPercent": 2.5
     },
     "stage3": {
-      "reviewGroups": 619,
-      "checkpoints": 1857,
-      "completed": 1857,
+      "reviewGroups": 622,
+      "checkpoints": 1866,
+      "completed": 1866,
       "pending": 0,
       "pendingSourceResolution": 0,
       "pendingFinalVerification": 0,
@@ -41,9 +41,9 @@
       "remainingPercent": 0
     },
     "combined": {
-      "reviewGroups": 780,
-      "checkpoints": 2340,
-      "completed": 2328,
+      "reviewGroups": 783,
+      "checkpoints": 2349,
+      "completed": 2337,
       "pending": 12,
       "pendingSourceResolution": 6,
       "pendingFinalVerification": 6,
@@ -5513,7 +5513,7 @@
     {
       "id": "task:CA-QC.hot",
       "evidence": [
-        "regional-qc-welding-review-20261006.md"
+        "regional-source-access-review-20261006.md"
       ],
       "note": "M94 chapters 5/6/8 remain unread. M87 comparison covers generic construction checklist prompts only; specialist processes, engineered equipment, site fire-code/transition selection and actual authorisation are not certified. Keep CA-QC.hot partial until its RSST basis is compared.",
       "checkpoints": {
@@ -6259,9 +6259,9 @@
     {
       "id": "task:IT.electrical",
       "evidence": [
-        "regional-closeout-review-20261006.md"
+        "regional-source-access-review-20261006.md"
       ],
-      "note": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references.",
+      "note": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references. The EC PDF is listed at EUR 0.00 but its acquisition opens a CEI login; no CEI account/session or full-standard entitlement is available.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6537,9 +6537,9 @@
     {
       "id": "task:SA.height",
       "evidence": [
-        "regional-closeout-review-20261006.md"
+        "regional-source-access-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable height sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual height sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6556,9 +6556,9 @@
     {
       "id": "task:SA.confined",
       "evidence": [
-        "regional-closeout-review-20261006.md"
+        "regional-source-access-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable confined sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual confined sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6575,9 +6575,9 @@
     {
       "id": "task:SA.electrical",
       "evidence": [
-        "regional-closeout-review-20261006.md"
+        "regional-source-access-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable electrical sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual electrical sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -6594,9 +6594,9 @@
     {
       "id": "task:SA.hot",
       "evidence": [
-        "regional-closeout-review-20261006.md"
+        "regional-source-access-review-20261006.md"
       ],
-      "note": "High-risk occupation licensing implementation under articles 15/17 plus the applicable hot sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+      "note": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual hot sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
       "checkpoints": {
         "scopedComparison": {
           "status": "needs-source-resolution"
@@ -20867,6 +20867,41 @@
       }
     },
     {
+      "id": "task:saGasLeakStop",
+      "evidence": [
+        "regional-source-access-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. If gas cutting: stop work on a detected leak; verify cylinder restraint/separation from heat, hose damage and flashback protection",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saGasLeakStop",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-source-access-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. If gas cutting: stop work on a detected leak; verify cylinder restraint/separation from heat, hose damage and flashback protection",
+          "sha256": "968931b6cb1cbf578d475bd873aeef5935bc6dc034b22e6addbfce66a3eee047"
+        }
+      }
+    },
+    {
       "id": "task:saHotDetail",
       "evidence": [
         "regional-task-review.md",
@@ -21222,6 +21257,41 @@
       }
     },
     {
+      "id": "task:saRuleApplicability",
+      "evidence": [
+        "regional-source-access-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. Saudi Arabia: record applicable occupation rules, effective date, sector procedure and verification basis",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saRuleApplicability",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-source-access-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. Saudi Arabia: record applicable occupation rules, effective date, sector procedure and verification basis",
+          "sha256": "7fc6e4b5ddbfc7d8fddb9c97e728e65a6b2a5e99a81bb4eb1967711f00e26a6f"
+        }
+      }
+    },
+    {
       "id": "task:saScaffoldNotice",
       "evidence": [
         "regional-task-review.md",
@@ -21359,6 +21429,41 @@
           ],
           "scope": "Ten-language comparison of permit lifecycle, licence/permit distinctions and evidence limits: Saudi Arabia: applicable accredited specialist training, licence application route and verification basis",
           "sha256": "830ff9e928b0698389ccce2c12f127f315c98cd233b35ada42cf382a80cef969"
+        }
+      }
+    },
+    {
+      "id": "task:saWeldingMachine",
+      "evidence": [
+        "regional-source-access-review-20261006.md"
+      ],
+      "note": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. If using an engine-driven welder: verify shutdown before refuelling, rotating-part guards and surrounding flammable gases",
+      "checkpoints": {
+        "scopedComparison": {
+          "status": "recorded"
+        },
+        "implementation": {
+          "status": "verified-in-code"
+        },
+        "finalVerification": {
+          "status": "verified-with-evidence",
+          "id": "task:saWeldingMachine",
+          "checkedAt": "2026-10-06",
+          "evidence": "regional-source-access-review-20261006.md",
+          "languages": [
+            "ko",
+            "en",
+            "de",
+            "ja",
+            "fr",
+            "it",
+            "es",
+            "ar",
+            "pt",
+            "ru"
+          ],
+          "scope": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. If using an engine-driven welder: verify shutdown before refuelling, rotating-part guards and surrounding flammable gases",
+          "sha256": "e05565d64da0e53b8a2bfc90d58eb90522206cf4fd4c6a691e445a5628df78b0"
         }
       }
     },
@@ -28245,7 +28350,7 @@
       "id": "native:CA-QC.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-qc-welding-review-20261006.md",
+        "regional-source-access-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "French-Canadian hot-work and fire-watch vocabulary checked against CCOHS guidance; not represented as a current Quebec-wide statutory permit or fixed watch duration.",
@@ -28865,7 +28970,7 @@
       "id": "native:IT.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-closeout-review-20261006.md",
+        "regional-source-access-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "PES/PAV competence and live-work suitability are not interchangeable. Current GI/RI/GL/RLE/LAV role names checked against the publisher and CNI 2026 material; full paid CEI standard not accessed, so legal-topic closure remains open.",
@@ -29112,7 +29217,7 @@
       "id": "native:SA.height",
       "evidence": [
         "regional-task-review.md",
-        "regional-closeout-review-20261006.md",
+        "regional-source-access-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic height work and fall prevention are descriptive safety concepts, not statutory licence names; HRSD equipment/maintenance guidance supports the task meaning.",
@@ -29153,7 +29258,7 @@
       "id": "native:SA.confined",
       "evidence": [
         "regional-task-review.md",
-        "regional-closeout-review-20261006.md",
+        "regional-source-access-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic confined spaces, outside attendant and rescue plan retain their ordinary technical meanings. EXPRO facility guidance defines an outside entry attendant; no universal Saudi statutory job title inferred.",
@@ -29195,7 +29300,7 @@
       "id": "native:SA.electrical",
       "evidence": [
         "regional-task-review.md",
-        "regional-closeout-review-20261006.md",
+        "regional-source-access-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Arabic isolation and lock/tag wording retain distinct energy-control actions; HRSD supports isolation/locking, while the tag phrase is a descriptive translation, not a verified Saudi statutory title or all-sector LOTO mandate.",
@@ -29236,7 +29341,7 @@
       "id": "native:SA.hot",
       "evidence": [
         "regional-task-review.md",
-        "regional-closeout-review-20261006.md",
+        "regional-source-access-review-20261006.md",
         "regional-native-followup-review-20261005.md"
       ],
       "note": "Use the fire-watcher term in EXPRO guidance. The facility-management source (which cites foreign standards) is a terminology reference, not a universal Saudi permit law.",

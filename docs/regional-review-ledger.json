@@ -17,9 +17,9 @@
     "baselineOnlyTasks": 0,
     "sourceLimitedTasks": 6,
     "clauseSupplementCoveragePercent": 100,
-    "supplementFields": 654,
+    "supplementFields": 660,
     "baseVocabularyKeys": 87,
-    "taskVocabularyKeys": 371,
+    "taskVocabularyKeys": 374,
     "overallCompletionPercent": null,
     "explanation": "Supplement coverage is not completion. Older reports have no item-by-item closure record; no inferred completion percentage."
   },
@@ -2757,7 +2757,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-qc-welding-review-20261006.md",
+      "evidence": "regional-source-access-review-20261006.md",
       "findings": [
         {
           "url": "https://www.cchst.ca/oshanswers/safety_haz/welding/hotwork.html",
@@ -2812,6 +2812,12 @@
           "scope": "Official indexed consolidation updated 15 July 2025: 3.14.2 incorporates M87 except 7.8.2.2; 3.14.3 contains distinct vessel-work conditions. Retrieved excerpt, not a newly read complete code.",
           "basis": "regulation-excerpt",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.centredoc.cnesst.gouv.qc.ca/notice?id=p%3A%3Ausmarcdef_0000131140",
+          "scope": "1994 edition, call number NO-001563; Centre IST physical copy shown available. Electronic access is explicitly restricted to authorised personnel. Holdings evidence only; M94 content has not been read.",
+          "basis": "library-holdings",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -2835,8 +2841,9 @@
       "resolvedIssues": [],
       "reviewBlocker": {
         "code": "standard-access",
-        "required": "M87 general construction-check comparison recorded. Obtain lawful original M94 chapters 5, 6 and 8 incorporated by RSST 314–316 and compare them; authenticated CSA access alone does not provide that edition. Do not substitute M87 or a newer edition for M94.",
-        "accessUrl": "https://community.csagroup.org/message/105022",
+        "required": "M87 general construction-check comparison recorded. Obtain lawful original M94 chapters 5, 6 and 8 incorporated by RSST 314–316 and compare them; the exact 1994 edition is now located in Centre IST, but electronic access is restricted to authorised personnel. Do not substitute M87 or a newer edition for M94.",
+        "accessUrl": "https://www.centredoc.cnesst.gouv.qc.ca/notice?id=p%3A%3Ausmarcdef_0000131140",
+        "nextAction": "Ask Centre IST for a lawful no-cost remote consultation route for an overseas user, specifying W117.2-94, NO-001563 and RSST chapters 5/6/8. No eligibility or access is assumed.",
         "checkedAt": "2026-10-06"
       },
       "remaining": "M94 chapters 5/6/8 remain unread. M87 comparison covers generic construction checklist prompts only; specialist processes, engineered equipment, site fire-code/transition selection and actual authorisation are not certified. Keep CA-QC.hot partial until its RSST basis is compared."
@@ -3399,7 +3406,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-closeout-review-20261006.md",
+      "evidence": "regional-source-access-review-20261006.md",
       "findings": [
         {
           "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2018/07/LavoriElettriciBassaTensione2018.pdf",
@@ -3457,11 +3464,12 @@
       ],
       "reviewBlocker": {
         "code": "standard-access",
-        "required": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references.",
-        "accessUrl": "https://mycatalogo.ceinorme.it/cei/item/0000025437",
+        "required": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references. The EC PDF is listed at EUR 0.00 but its acquisition opens a CEI login; no CEI account/session or full-standard entitlement is available.",
+        "accessUrl": "https://mycatalogo.ceinorme.it/cei/item/0010026052",
+        "nextAction": "Obtain authorised CEI access or a publisher-provided no-cost consultation route. The free EC does not grant access to the 84-page parent standard.",
         "checkedAt": "2026-10-06"
       },
-      "remaining": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references."
+      "remaining": "Lawful full-text access to CEI 11-27:2025-10 and December 2025 EC; compare procedures, roles, distances and corrected references. The EC PDF is listed at EUR 0.00 but its acquisition opens a CEI login; no CEI account/session or full-standard entitlement is available."
     },
     {
       "id": "IT.hot",
@@ -3659,7 +3667,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-closeout-review-20261006.md",
+      "evidence": "regional-source-access-review-20261006.md",
       "findings": [
         {
           "url": "https://www.hrsd.gov.sa/sites/default/files/2026-03/dlyl-astrshady-hwl-astkhdam-alsqalat-anjlyzy.pdf",
@@ -3675,9 +3683,9 @@
         },
         {
           "url": "https://www.uqn.gov.sa/details?p=28771",
-          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
-          "basis": "regulation-publication",
-          "checkedAt": "2026-10-05"
+          "scope": "Official gazette announcement dated 9 January 2026: adoption and effect after 180 days from gazette publication. Confirms the publication/effectivity basis, not operation of a licence service or the content of delegated implementation rules.",
+          "basis": "official-gazette",
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.se.com.sa/-/media/sec/Our-Partners/Join-Us/Life-Saving-Rules-booklet/Life-Saving-Rules-booklet-in-Arabic.ashx",
@@ -3700,6 +3708,12 @@
         {
           "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
           "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.ncosh.gov.sa/media/bmtanopw/construction-safety-guide.pdf",
+          "scope": "Advisory industrial-hazards guide despite the filename. Pages 5–11 compared: fall/electrical controls, hot work, engine-driven welders, gas leaks, hose/cylinder protection. Pages 8–9 visually checked. Not a licensing implementation, complete confined-entry procedure or universal statutory permit.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
@@ -3718,7 +3732,8 @@
         "saPrivateConfirmation",
         "saTrainingRoute",
         "saPtwRelease",
-        "saPtwChange"
+        "saPtwChange",
+        "saRuleApplicability"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
@@ -3727,11 +3742,12 @@
       ],
       "reviewBlocker": {
         "code": "implementation-evidence",
-        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable height sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "required": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual height sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
         "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "nextAction": "Ask NCOSH for the currently applicable article 15/17 instrument numbers, effective dates and high-risk worker licence application/verification service. OSH-practitioner accreditation and medical-fitness rules are different services.",
         "checkedAt": "2026-10-06"
       },
-      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable height sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual height sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure."
     },
     {
       "id": "SA.confined",
@@ -3741,7 +3757,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-closeout-review-20261006.md",
+      "evidence": "regional-source-access-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3751,9 +3767,9 @@
         },
         {
           "url": "https://www.uqn.gov.sa/details?p=28771",
-          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
-          "basis": "regulation-publication",
-          "checkedAt": "2026-10-05"
+          "scope": "Official gazette announcement dated 9 January 2026: adoption and effect after 180 days from gazette publication. Confirms the publication/effectivity basis, not operation of a licence service or the content of delegated implementation rules.",
+          "basis": "official-gazette",
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.se.com.sa/-/media/sec/Our-Partners/Join-Us/Life-Saving-Rules-booklet/Life-Saving-Rules-booklet-in-Arabic.ashx",
@@ -3776,6 +3792,12 @@
         {
           "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
           "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.ncosh.gov.sa/media/bmtanopw/construction-safety-guide.pdf",
+          "scope": "Advisory industrial-hazards guide despite the filename. Pages 5–11 compared: fall/electrical controls, hot work, engine-driven welders, gas leaks, hose/cylinder protection. Pages 8–9 visually checked. Not a licensing implementation, complete confined-entry procedure or universal statutory permit.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
@@ -3797,7 +3819,8 @@
         "saPrivateConfirmation",
         "saTrainingRoute",
         "saPtwRelease",
-        "saPtwChange"
+        "saPtwChange",
+        "saRuleApplicability"
       ],
       "fieldLabels": {
         "applicableFramework": "frameworkBasis"
@@ -3808,11 +3831,12 @@
       ],
       "reviewBlocker": {
         "code": "implementation-evidence",
-        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable confined sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "required": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual confined sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
         "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "nextAction": "Ask NCOSH for the currently applicable article 15/17 instrument numbers, effective dates and high-risk worker licence application/verification service. OSH-practitioner accreditation and medical-fitness rules are different services.",
         "checkedAt": "2026-10-06"
       },
-      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable confined sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual confined sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure."
     },
     {
       "id": "SA.electrical",
@@ -3822,7 +3846,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-closeout-review-20261006.md",
+      "evidence": "regional-source-access-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3838,9 +3862,9 @@
         },
         {
           "url": "https://www.uqn.gov.sa/details?p=28771",
-          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
-          "basis": "regulation-publication",
-          "checkedAt": "2026-10-05"
+          "scope": "Official gazette announcement dated 9 January 2026: adoption and effect after 180 days from gazette publication. Confirms the publication/effectivity basis, not operation of a licence service or the content of delegated implementation rules.",
+          "basis": "official-gazette",
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.se.com.sa/-/media/sec/Our-Partners/Join-Us/Life-Saving-Rules-booklet/Life-Saving-Rules-booklet-in-Arabic.ashx",
@@ -3863,6 +3887,12 @@
         {
           "url": "https://expro.gov.sa/api/uploads/الدليل الإجرائي لتصريح الأعمال الخطرة.pdf",
           "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.ncosh.gov.sa/media/bmtanopw/construction-safety-guide.pdf",
+          "scope": "Advisory industrial-hazards guide despite the filename. Pages 5–11 compared: fall/electrical controls, hot work, engine-driven welders, gas leaks, hose/cylinder protection. Pages 8–9 visually checked. Not a licensing implementation, complete confined-entry procedure or universal statutory permit.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
         }
@@ -3881,6 +3911,7 @@
         "saTrainingRoute",
         "saPtwRelease",
         "saPtwChange",
+        "saRuleApplicability",
         "saElectricalEquipment"
       ],
       "fieldLabels": {},
@@ -3890,11 +3921,12 @@
       ],
       "reviewBlocker": {
         "code": "implementation-evidence",
-        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable electrical sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "required": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual electrical sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
         "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "nextAction": "Ask NCOSH for the currently applicable article 15/17 instrument numbers, effective dates and high-risk worker licence application/verification service. OSH-practitioner accreditation and medical-fitness rules are different services.",
         "checkedAt": "2026-10-06"
       },
-      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable electrical sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual electrical sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure."
     },
     {
       "id": "SA.hot",
@@ -3904,7 +3936,7 @@
       "reviewLevel": "clause-supplement-recorded",
       "sourceStatus": "partial-source-review",
       "checkedAt": "2026-10-06",
-      "evidence": "regional-closeout-review-20261006.md",
+      "evidence": "regional-source-access-review-20261006.md",
       "findings": [
         {
           "url": "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf",
@@ -3920,9 +3952,9 @@
         },
         {
           "url": "https://www.uqn.gov.sa/details?p=28771",
-          "scope": "Official Gazette publication date and commencement rule (180 days after publication) verified. Does not establish implementing workflows or sector PTW requirements.",
-          "basis": "regulation-publication",
-          "checkedAt": "2026-10-05"
+          "scope": "Official gazette announcement dated 9 January 2026: adoption and effect after 180 days from gazette publication. Confirms the publication/effectivity basis, not operation of a licence service or the content of delegated implementation rules.",
+          "basis": "official-gazette",
+          "checkedAt": "2026-10-06"
         },
         {
           "url": "https://www.se.com.sa/-/media/sec/Our-Partners/Join-Us/Life-Saving-Rules-booklet/Life-Saving-Rules-booklet-in-Arabic.ashx",
@@ -3947,6 +3979,12 @@
           "scope": "Government facilities operation/maintenance guidance, 31 March 2020, sections 2, 5–7: specific procedures take precedence; issuer/receiver acceptance, linked permits, changes, closure and records. Scope and current controlled edition must be checked locally; not national occupational-licensing implementation.",
           "basis": "official-procedural-guide",
           "checkedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.ncosh.gov.sa/media/bmtanopw/construction-safety-guide.pdf",
+          "scope": "Advisory industrial-hazards guide despite the filename. Pages 5–11 compared: fall/electrical controls, hot work, engine-driven welders, gas leaks, hose/cylinder protection. Pages 8–9 visually checked. Not a licensing implementation, complete confined-entry procedure or universal statutory permit.",
+          "basis": "official-procedural-guide",
+          "checkedAt": "2026-10-06"
         }
       ],
       "fieldKeys": [
@@ -3963,7 +4001,10 @@
         "saPrivateConfirmation",
         "saTrainingRoute",
         "saPtwRelease",
-        "saPtwChange"
+        "saPtwChange",
+        "saRuleApplicability",
+        "saWeldingMachine",
+        "saGasLeakStop"
       ],
       "fieldLabels": {},
       "resolvedIssues": [
@@ -3972,11 +4013,12 @@
       ],
       "reviewBlocker": {
         "code": "implementation-evidence",
-        "required": "High-risk occupation licensing implementation under articles 15/17 plus the applicable hot sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes.",
+        "required": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual hot sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure.",
         "accessUrl": "https://www.ncosh.gov.sa/ar/knowledge-center/rules-regulations/administrative-systems/",
+        "nextAction": "Ask NCOSH for the currently applicable article 15/17 instrument numbers, effective dates and high-risk worker licence application/verification service. OSH-practitioner accreditation and medical-fitness rules are different services.",
         "checkedAt": "2026-10-06"
       },
-      "remaining": "High-risk occupation licensing implementation under articles 15/17 plus the applicable hot sector procedure/current edition. EXPRO government-facility guidance and SEC company rules are not universal substitutes."
+      "remaining": "High-risk occupation licensing implementation under articles 15/17 remains unverified. Previously established gazette publication/effectivity has been rechecked. The actual hot sector/site controlled procedure is an operational input; EXPRO and the industrial-hazards guide do not establish a universal sector procedure."
     },
     {
       "id": "BR.height",
@@ -12191,6 +12233,23 @@
       "evidence": "regional-closeout-review-20261006.md"
     },
     {
+      "id": "task:saGasLeakStop",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-source-access-review-20261006.md"
+    },
+    {
       "id": "task:saHotDetail",
       "languages": [
         "ko",
@@ -12361,6 +12420,23 @@
       "evidence": "regional-closeout-review-20261006.md"
     },
     {
+      "id": "task:saRuleApplicability",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-source-access-review-20261006.md"
+    },
+    {
       "id": "task:saScaffoldNotice",
       "languages": [
         "ko",
@@ -12427,6 +12503,23 @@
       ],
       "reviewLevel": "translated-and-scoped-review",
       "evidence": "regional-closeout-review-20261006.md"
+    },
+    {
+      "id": "task:saWeldingMachine",
+      "languages": [
+        "ko",
+        "en",
+        "de",
+        "ja",
+        "fr",
+        "it",
+        "es",
+        "ar",
+        "pt",
+        "ru"
+      ],
+      "reviewLevel": "translated-and-scoped-review",
+      "evidence": "regional-source-access-review-20261006.md"
     },
     {
       "id": "task:scaffoldInspection",

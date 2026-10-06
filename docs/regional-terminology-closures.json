@@ -12090,5 +12090,62 @@
     ],
     "scope": "Ten-language semantic comparison: conditional welding process checks; grounding/return distinction; resistance versus arc; gas backflow versus flashback; M87 scope and unresolved M94 chapters. Québec: M87 general construction checks were compared; CSTC excludes 7.8.2.2. RSST-referenced M94 chapters 5, 6 and 8 still need original-text comparison. Verify site fire-code edition, transition and watch plan separately; no automatic times, distances or pass values.",
     "sha256": "0ff1845242d403f11ecd339499b96d8b2c33ae0fce8c245fe575ad88f61fd54a"
+  },
+  {
+    "id": "task:saRuleApplicability",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-source-access-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. Saudi Arabia: record applicable occupation rules, effective date, sector procedure and verification basis",
+    "sha256": "7fc6e4b5ddbfc7d8fddb9c97e728e65a6b2a5e99a81bb4eb1967711f00e26a6f"
+  },
+  {
+    "id": "task:saWeldingMachine",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-source-access-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. If using an engine-driven welder: verify shutdown before refuelling, rotating-part guards and surrounding flammable gases",
+    "sha256": "e05565d64da0e53b8a2bfc90d58eb90522206cf4fd4c6a691e445a5628df78b0"
+  },
+  {
+    "id": "task:saGasLeakStop",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-source-access-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ten-language meaning comparison: effective rules versus licence expiry; conditional engine-driven welder and gas-cutting checks; shutdown before refuelling and stop on detected gas leak. If gas cutting: stop work on a detected leak; verify cylinder restraint/separation from heat, hose damage and flashback protection",
+    "sha256": "968931b6cb1cbf578d475bd873aeef5935bc6dc034b22e6addbfce66a3eee047"
   }
 ]

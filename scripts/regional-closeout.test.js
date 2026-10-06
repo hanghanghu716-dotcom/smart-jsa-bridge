@@ -41,7 +41,7 @@ test('Quebec records a partial M87 comparison without claiming that M94 or all p
   for (const language of TASK_SAFETY_LANGUAGES) {
     const doc = make('CA-QC', 'hot', language), review = doc.regional.taskReviews[0];
     assert.equal(review.status, 'partial-source-review');
-    assert.equal(review.version, '2026-10-06.30');
+    assert.equal(review.version, '2026-10-06.31');
     assert.match(review.requirements.reviewBlocker.required, /M94 chapters 5, 6 and 8/);
     assert.ok(review.sources.some(s => s.url.endsWith('/DOC-3695') && s.scope.includes('excludes 7.8.2.2')));
     const notice = field(doc, 'hot.notice').value;
@@ -53,6 +53,22 @@ test('Quebec records a partial M87 comparison without claiming that M94 or all p
       assert.equal(field(make('CA-QC', 'electrical', language), `electrical.${key}`), undefined);
       assert.equal(field(make('CA-ON', 'hot', language), `hot.${key}`), undefined);
     }
+  }
+});
+
+test('Saudi new-work checks distinguish national evidence from optional welding equipment', () => {
+  for (const language of TASK_SAFETY_LANGUAGES) {
+    for (const topic of ['height', 'confined', 'electrical', 'hot']) {
+      const doc = make('SA', topic, language), review = doc.regional.taskReviews[0];
+      assert.equal(review.status, 'partial-source-review');
+      assert.ok(review.sources.some(s => s.basis === 'official-gazette' && s.url.endsWith('p=28771')));
+      assert.match(review.requirements.reviewBlocker.nextAction, /article 15\/17/);
+      assert.equal(field(doc, `${topic}.saRuleApplicability`).value, '');
+      for (const key of ['saWeldingMachine', 'saGasLeakStop']) {
+        assert.equal(Boolean(field(doc, `${topic}.${key}`)), topic === 'hot');
+      }
+    }
+    assert.equal(field(make('KR', 'hot', language), 'hot.saGasLeakStop'), undefined);
   }
 });
 
