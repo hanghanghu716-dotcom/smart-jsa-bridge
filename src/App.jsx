@@ -44,6 +44,7 @@ import CaseStudyDetail from './pages/CaseStudyDetail';
 import AdminPostUpload from './pages/AdminPostUpload';
 import Archive from './pages/Archive';
 import SEO from './components/SEO';
+import AnalyticsConsent from './components/AnalyticsConsent';
 
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
@@ -95,6 +96,7 @@ export default function App() {
     <AuthProvider>
       <Router>
         <LanguageInit /> 
+        <AnalyticsConsent />
         
         <MobileGuard>
           <Routes>

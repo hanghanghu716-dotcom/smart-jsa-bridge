@@ -6,6 +6,7 @@ import { guideDevPdf } from './scripts/guide-dev-pdf.js'
 export default defineConfig({
   plugins: [react(), guideDevPdf()],
   build: {
+    rollupOptions: { input: { main: 'index.html', analytics: 'analytics-frame.html' } },
     target: 'es2015'
   }
 })

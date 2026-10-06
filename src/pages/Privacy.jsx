@@ -1,4 +1,5 @@
 import { getSiteUi } from '../locales/siteUi.js';
+import { getAnalyticsText } from '../locales/analyticsText.js';
 import CommunityFooter from '../components/CommunityFooter';
 import '../styles/community.css';
 import { useTranslation } from 'react-i18next';
@@ -65,6 +66,9 @@ export default function Privacy() {
           </h2>
           
           <div style={styles.articleSection}>
+            <h3 style={styles.articleH3}>{getAnalyticsText(i18n.language).title}</h3>
+            <p style={styles.articleP}>{getAnalyticsText(i18n.language).body}</p>
+            <p style={styles.articleP}>{getAnalyticsText(i18n.language).detail}</p>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section1.content') }} />
 
