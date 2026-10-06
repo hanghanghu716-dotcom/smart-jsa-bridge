@@ -238,8 +238,15 @@
 .work-common-table th {
   width: 24%;
 }
+.bundle-paper > .work-common-table th,
+.bundle-paper > .work-common-table td {
+  padding-block: 5px;
+}
 .printed-field {
-  margin-block: 14px;
+  margin-block: 8px;
+}
+.bundle-paper .printed-field h3 {
+  margin-top: 8px;
 }
 .printed-field > div {
   white-space: pre-wrap;

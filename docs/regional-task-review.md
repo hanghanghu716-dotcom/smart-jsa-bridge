@@ -1,6 +1,8 @@
 # 작업별 세부 요건·전문용어 검수 기록
 
-확인일: 2026-10-03. 이번 변경: 작업별 PTW 확인 항목 버전 `2026-10-03.4`.
+기초 검수일: 2026-10-03. 추가 검수일: 2026-10-04. 현재 작업별 PTW 항목 버전 `2026-10-04.3`.
+
+최신 추가 결과는 [②·③ 추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다. 18개 국가/지역·22개 작업 조합에 50개 입력란을 추가하고 10개 언어에 반영했다. 아래 기초 검수와 이번 추가 검수의 범위를 합쳐도 모든 현행 법률·전문용어를 전수 검수한 것은 아니다.
 
 ## 단계 구분
 
@@ -10,7 +12,7 @@
 | ② 국가별 명칭·양식 및 세부 요건 | 기본 구현 완료. 고소·밀폐공간·전기·화기 4개 작업의 항목·적용 범위 대조와 코드 수정 진행. 아래 미완료 조건 존재 |
 | ③ 다국어화·전문용어 | 번역 연결 완료. 이번 항목의 현지 용어를 공식 자료와 대조해 수정. 모든 분야·모든 전문용어의 전수 검수 완료는 아님 |
 | ④ 저장·복제·출력 | 코드 및 격리 시험. 작업별 검수 근거·버전을 저장본과 출력 당시 데이터에 함께 보존 |
-| ⑤ 실제 사용 검증 | 실제 계정 저장·계정 간 접근권한 시험 미완료. 자료 조사나 모의 저장 시험을 이 단계 완료로 계산하지 않음 |
+| ⑤ 실제 사용 검증 | 10월 4일 두 실제 계정의 기본 저장·복원·접근권한 시험 수행. 국가별 최종 사용 검증은 미완료. 이번에는 ②·③을 우선하며 ⑤를 재개하지 않음 |
 
 ## 코드에 반영한 결과
 
@@ -30,13 +32,13 @@
 | 관할 | 이번에 대조한 차이·조치 | 아직 완료로 표시하지 않은 범위 |
 |---|---|---|
 | 한국 | 안전보건규칙의 추락·화재위험·정전전로·밀폐공간 체계에 맞춰 감시인, 검전, 안전대 부착설비 등 구분 | 2026 개정 사항의 모든 시행·경과조치, 개별 업종 허가 조건 및 자격·측정값 전수 대조 |
-| 영국 | HSE의 고소작업 회피→예방→피해 최소화, 밀폐공간 안전작업체계·구조, HSG85 정전/활선 구분 | HSE 적용 범위는 Great Britain. 북아일랜드 세부 작업 규정은 별도 미완료 |
+| 영국 | HSE의 고소작업 회피→예방→피해 최소화, 밀폐공간 안전작업체계·구조, HSG85 정전/활선 구분. 10/4 NI의 L101 승인 확인 및 관할 입력 추가 | 북아일랜드의 별도 법령 및 나머지 세부 작업 규정 전수 대조 미완료 |
 | 호주 | SWA 모델 지침의 밀폐공간 출입허가·stand-by person, 추락 방호, 전기 차단·용접 확인을 연결 | 주·준주 채택 및 전기 면허, SWMS 대상의 모든 예외. 고소 선택만으로 SWMS 확정하지 않음 |
-| 싱가포르 | WAH safety assessor/authorised manager와 밀폐공간 역할 구분. 공장 여부·추락거리·유효 방호 예외를 확인란에 연결 | 고소 PTW를 모든 장소·작업에 적용하지 않음. 전기·화기는 marine 지침 범위이며 다른 업종 자격·의무는 미완료 |
+| 싱가포르 | WAH 및 밀폐공간 역할 구분. 10/4 일일 허가 재검토·게시 및 EMA LEW 면허 범위 입력 추가 | 고소 PTW의 공장·추락거리·방호 예외, 조선업 화기 허가와 다른 업종 차이는 별도 검수 대상 |
 | 미국 | 1910.146의 authorized entrant / attendant / entry supervisor, 작업 시간 범위·취소·구조·별도 허가 참조를 구분 | 일반산업 기준을 건설/조선/농업에 전용하지 않음. State Plan 차이·업종 예외·특수 전기작업은 미완료 |
 | 캐나다 공통 | CCOHS의 entry permit·attendant, 에너지 차단, 추락/구조계획 및 hot work 참고 | CCOHS 안내를 연방·전 주의 단일 법률로 표시하지 않음 |
 | Alberta | Part 5에서 confined/restricted space 구분, entry permit·tending worker 역할 확인 | 나머지 3개 작업의 주별 수치·면허·세부 조항 대조 미완료 |
-| Ontario | 주의 entry permit 자료를 연결하되 전문 접근이 차단된 사실 기록 | 밀폐공간 규정 전문 확인 미완료. 다른 작업은 CCOHS 일반 지침 범위 |
+| Ontario | 10/4 공식 e-Laws API로 현행 632/05 전문 확보. 사전 평가 서명과 허가 교대 확인, 다중 고용주 조정·구조·보존 기록 보강 | 밀폐 작업 관련 조항 범위 검수. 다른 작업은 CCOHS 일반 지침 범위 |
 | British Columbia | Part 9의 허가 적용 조건과 변경/교대 재승인, responsible supervisor·standby person 구분 | 허가 대상 판단 자동화, 대기인 배치의 위험도별 예외 및 다른 작업의 주별 요건은 미완료 |
 | Québec | `espace clos`, 전기 `cadenassage` 사용. 프랑스 `espace confiné`/`consignation`과 별도 표시 | RSST/CSTC 적용, 업종·연방 관할 및 고소·화기 세부 의무 미완료 |
 | 독일 | DGUV의 Freimessen·Sicherungsposten·Erlaubnisschein, Elektrofachkraft·5대 안전수칙, Brandwache, Rückhalte/Auffangsystem 구분 | 모든 전압·설비의 예외, 해당 DIN/VDE 판본·업종 적용 전수 대조는 미완료 |
@@ -44,9 +46,9 @@
 | 프랑스 | Permis de pénétrer·surveillant·secours, Habilitation électrique·consignation·VAT, Permis de feu 사용 | 교육 수료와 고용주의 habilitation을 동일시하지 않음. CATEC 적용 분야·특수 작업 및 NF 전문 대조 미완료 |
 | 이탈리아 | DPR 177/2011의 업체 자격과 도급 조정, 전기 PES/PAV 및 활선 적합성, 집단 추락방호, 화기 전후 점검 연결 | 현행 교육 협약·CEI 판본의 세부 자격·예외 전수 대조 미완료 |
 | 스페인 | 밀폐공간 Autorización de trabajo·recurso preventivo·외부 감시 역할, 전기 autorizado/cualificado·supresión de la tensión 구분 | NTP를 법정 표준서식으로 표시하지 않음. 작업 조건별 필수 역할·법정 허가 판정 미완료 |
-| 사우디 | HRSD 안내의 아랍어 밀폐·고소·화기·전기 용어를 연결하고 현장 확인 항목 제공 | 업종·면허·발주처 절차와 현행 의무 요건 대조 미완료. 네 작업 모두 부분 검수 상태로 출력 |
-| 브라질 | NR-33 PET·supervisor de entrada·vigia·trabalhador autorizado, NR-10 자격/권한·정전 순서 구분 | NR-35 2026 교육·사다리 개정 조문/경과규정 대조 미완료. NR-34는 해양·조선 범위로 한정 |
-| 러시아 | ОЗП·наряд-допуск·наблюдающий, 전기 допускающий 등 분야별 명칭을 연결 | 원문 페이지와 최신 개정본 대조 미완료. 네 작업 모두 historical reference/부분 검수 상태. 과거 명령을 현행 법률 확정값으로 넣지 않음 |
+| 사우디 | HRSD 안내의 아랍어 밀폐·고소·화기·전기 용어와 비계 점검·현장 절차 확인 항목 제공 | 업종·면허·발주처 절차와 현행 의무 요건 대조 미완료. 네 작업 모두 부분 검수 상태로 출력 |
+| 브라질 | NR-33 PET·supervisor de entrada·vigia·trabalhador autorizado, NR-10 자격/권한·정전 순서 구분 | 10/4 추가 검수에서 NR-35 교육·사다리 개정 원문과 NR-10의 2027 시행일 구분을 반영. 현장별 예외 판정·신판 전체 대조는 미완료. NR-34는 해양·조선 범위로 한정 |
+| 러시아 | ОЗП·наряд-допуск·наблюдающий, 전기 допускающий 등 명칭과 실제 작업일의 적용 판본 확인란. 공식 고용센터 공지로 3개 명령의 연장 확인 | 최신 개정 전문 대조 미완료. 과거 게시문과 공식 연장 공지의 근거 종류를 구별하며 네 작업 모두 부분 검수 유지 |
 
 ## 검수에서 확인한 주요 근거
 
@@ -55,8 +57,8 @@
 - [WorkSafeBC Part 9](https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces): 9.13의 허가 조건과 9.15의 교대·인원/감독 변경 재승인을 구분했다.
 - [INSST 밀폐공간](https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados): 작업허가, recurso preventivo, 구조 수단과 서면 절차를 구분했다.
 - [CNESST 전기설비](https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques)와 [INRS habilitation](https://www.inrs.fr/risques/electriques/habilitation-electrique): 프랑스어가 같아도 관할별 관리 용어·권한 체계는 별도다.
-- [MTE 2026-09-02 안내](https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais): NR-35 교육 방식과 고정 수직사다리 변경을 확인했다. [관보 원문](https://www.in.gov.br/web/dou/-/portaria-mte-n-1.259-de-15-de-julho-de-2026-719529365)은 이번 접근에서 502여서 시행·경과조건을 코드의 확정 판정값으로 넣지 않았다.
-- 러시아 [2025 개정 공표 위치](https://publication.pravo.gov.ru/document/0001202505300025)는 접근 시간이 초과됐다. 원래 Минтруд 페이지의 과거 종료일을 현재 만료라고 단정하지도, 개정 전문을 읽었다고 처리하지도 않았다.
+- [MTE 2026-09-02 안내](https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais): 기초 검수에서 NR-35 교육 방식과 고정 수직사다리 변경을 확인했지만 관보 접근은 실패했다. 10/4 후속 검수에서는 MTE의 법령 PDF를 확보했다. 시행·경과조건과 남은 해석 범위는 [추가 검수 기록](regional-requirements-review-20261004.md)에 정리했다.
+- 러시아 [2025 개정 공표 위치](https://publication.pravo.gov.ru/document/0001202505300025)는 접근 시간이 초과됐다. 이후 공식 고용센터 공지로 해당 3개 명령의 연장은 확인했으며 [후속 기록](regional-requirements-review-20261004.md)에 추가했다. 개정 전문 검수 완료로 처리하지 않는다.
 
 ## 완료 판정과 다음 검수 단위
 
@@ -64,7 +66,7 @@
 
 후속 검수는 (1) 접근하지 못한 현행 조문·경과규정 확보, (2) 국가 내부 관할과 업종/작업의 적용 조건, (3) 자격·측정 기준·허가 유효시간·보존기간의 조건별 검수, (4) 확인한 조건에 맞는 필드·검증 로직 반영 순이다. 실제 계정 접근권한은 별도 ⑤단계다.
 
-## 소프트웨어 검증
+## 기초 구현의 소프트웨어 검증 (2026-10-03)
 
 - 자동 테스트 132개 통과. 18개 국가·지역 × 4개 작업 생성, 선택 격리, 현장값 재사용 방지, 복제 독립성, 근거/버전 보존, 10개 언어 연결 포함.
 - Vite 빌드 통과.

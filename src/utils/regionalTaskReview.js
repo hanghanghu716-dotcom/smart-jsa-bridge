@@ -1,6 +1,7 @@
 import { taskSafetyText } from '../locales/taskSafetyText.js';
+import { requirementReview } from './regionalRequirementReview.js';
 
-export const TASK_REVIEW_VERSION = '2026-10-03.4';
+export const TASK_REVIEW_VERSION = '2026-10-05.13';
 export const TASK_TYPES = ['height', 'confined', 'electrical', 'hot'];
 // These are evidence-linked prompts, not a decision engine or statutory permit replicas.
 // Scope and outstanding checks travel with the saved form and output snapshot.
@@ -76,9 +77,9 @@ export const TASK_REVIEW_SOURCES = {
   },
   SA: Object.fromEntries(TASK_TYPES.map(t => [t, [sa]])),
   BR: {
-    height: [ref('MTE · NR-35', brRoot + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35', 'Current publication hub; 2026 training/ladder changes still require clause-level reconciliation')],
+    height: [ref('MTE · NR-35', brRoot + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-35-nr-35', 'Publication hub; 2026 training/ladder provisions are covered by the dated requirement supplement; site transition applicability is not automatically determined')],
     confined: [ref('MTE · NR-33', brRoot + 'arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf', 'PET, supervisor de entrada, vigia and authorised entrants', 'regulation')],
-    electrical: [ref('MTE · NR-10', brRoot + 'arquivos/normas-regulamentadoras/nr-10.pdf', 'Desenergização, qualification, authorisation and re-energisation sequence', 'regulation')],
+    electrical: [ref('MTE · NR-10 (2019 edition, valid through 2027-05-31)', brRoot + 'arquivos/normas-regulamentadoras/nr-10-atualizada-2019-1.pdf', 'Sections 10.5 and 10.8: de-energisation, qualification and authorisation. The generic nr-10.pdf URL now contains the future edition effective 2027-06-01; consult the dated edition notice.', 'regulation')],
     hot: [ref('MTE · NR-34', brRoot + 'normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-34-nr-34', 'Shipbuilding/repair/dismantling only; not all-industry hot-work requirements')],
   },
   RU: {
@@ -92,22 +93,22 @@ export const TASK_REVIEW_SOURCES = {
 // Native terms from the references stay visible alongside translated field labels.
 // No assumed numeric permit threshold, gas limit, validity or competence is prefilled.
 export const TASK_LOCAL_TERMS = {
-  KR: { confined: '밀폐공간 작업 프로그램 · 산소 및 유해가스 측정 · 감시인', electrical: '정전전로 작업 · 검전 · 잠금·표지', hot: '화재위험작업 · 화재감시자', height: '추락 방지 · 작업발판 · 안전대 부착설비' },
+  KR: { confined: '밀폐공간 작업 프로그램 · 산소 및 유해가스 측정 · 감시인', electrical: '정전전로 작업 · 검전 · 잠금장치 및 꼬리표', hot: '화재위험작업 · 화재감시자', height: '추락 방지 · 작업발판 · 안전대 부착설비' },
   GB: { confined: 'Safe system of work · emergency arrangements', electrical: 'Safe isolation · competent person', hot: 'Hot-work permit · fire watch', height: 'Avoid / prevent / minimise · collective protection' },
-  AU: { confined: 'Confined space entry permit · stand-by person', electrical: 'De-energised electrical work · licensed/competent person', hot: 'Hot work · fire watch', height: 'Fall prevention · SWMS (high risk construction work)' },
-  SG: { confined: 'Confined space entry permit · confined space safety assessor · authorised manager · attendant', height: 'Factory / hazardous WAH applicability · WAH safety assessor · authorised manager', electrical: 'Electrical isolation · competent/authorised person', hot: 'Hot-work permit · fire watch' },
+  AU: { confined: 'Confined space entry permit · stand-by person', electrical: 'De-energised electrical work · competent person · electrical licensing/registration for the task and jurisdiction', hot: 'Hot work · fire watch', height: 'Fall prevention · SWMS (high risk construction work)' },
+  SG: { confined: 'Confined space entry permit · confined space safety assessor · authorised manager · confined space attendant', height: 'Factory / hazardous WAH applicability · work-at-height safety assessor · authorised manager', electrical: 'Licensed Electrical Worker (LEW) · Electrician / Electrical Technician / Electrical Engineer', hot: 'Marine hot-work permit · safety assessor · ship repair manager' },
   US: { confined: 'Permit-required confined space · authorized entrant · attendant · entry supervisor', electrical: 'Qualified person · de-energization verification', hot: 'Fire watch · post-work monitoring', height: 'General industry / construction / shipyard classification' },
   CA: { confined: 'Entry permit · attendant · jurisdiction-specific procedure', electrical: 'Lockout/Tag out', height: 'Fall protection plan · rescue plan', hot: 'Hot-work permit · fire watch' },
-  'CA-AB': { confined: 'Confined / restricted space · entry permit · tending worker' },
-  'CA-ON': { confined: 'Entry permit · attendant · on-site rescue' },
-  'CA-BC': { confined: 'Responsible supervisor · standby person · 9.13 permit triggers / 9.15 reauthorisation' },
-  'CA-QC': { confined: 'Espace clos · surveillant · plan de sauvetage', electrical: 'Cadenassage · contrôle des énergies', height: 'Plan de protection contre les chutes · plan de sauvetage', hot: 'Travaux à chaud · surveillance incendie' },
-  DE: { confined: 'Erlaubnisschein · Aufsichtführende · Sicherungsposten · Freimessen', electrical: 'Elektrofachkraft · fünf Sicherheitsregeln', hot: 'Schweißerlaubnisschein · Brandwache', height: 'Rückhaltesystem / Auffangsystem · Rettungskonzept' },
-  JP: { confined: '酸素欠乏危険作業 / 酸素欠乏・硫化水素危険作業 · 作業主任者 · 監視人', electrical: '停電作業 · 検電 · 短絡接地', hot: '溶接・溶断 · 火気使用', height: '墜落制止用器具 · 作業床 · 開口部' },
-  FR: { confined: 'Permis de pénétrer · surveillant · secours', electrical: 'Habilitation électrique · consignation · vérification d’absence de tension', hot: 'Permis de feu · surveillance après travaux', height: 'Protection collective · retenue / arrêt des chutes' },
-  IT: { confined: 'DPR 177/2011 · qualificazione delle imprese · rappresentante del committente', electrical: 'PES / PAV · idoneità ai lavori sotto tensione (se applicabile)', height: 'Lavori in quota · protezione collettiva', hot: 'Lavori a caldo' },
-  ES: { confined: 'Autorización de trabajo · recurso preventivo · vigilancia exterior', electrical: 'Trabajador autorizado / cualificado · supresión de la tensión', hot: 'Autorización de trabajos en caliente', height: 'Protección colectiva · sistema de retención / anticaídas' },
-  SA: { confined: 'الأماكن المحصورة · مراقب خارجي · خطة الإنقاذ', electrical: 'العزل الكهربائي · القفل ووضع البطاقات', hot: 'الأعمال الساخنة · مراقب الحريق', height: 'العمل على ارتفاع · منع السقوط' },
+  'CA-AB': { confined: 'Confined / restricted space · entry permit · tending worker', height: 'Fall protection plan · section 140', electrical: 'Control of hazardous energy · personal lock', hot: 'Hot work in hazardous locations · section 169' },
+  'CA-ON': { confined: 'Entry permit · attendant · on-site rescue', height: 'Construction projects · rescue procedures · working at heights training', electrical: 'Construction / industrial establishments · lockout verification', hot: 'Fire Code · hot surface applications · container precautions' },
+  'CA-BC': { confined: 'Responsible supervisor · standby person · 9.13 permit triggers / 9.15 reauthorisation', height: 'Fall protection plan · section 11.3', electrical: 'Personal lockout · group lockout · qualified worker', hot: 'Welding containers · qualified atmosphere testing' },
+  'CA-QC': { confined: 'Espace clos · surveillant · plan de sauvetage', electrical: 'Cadenassage · contrôle des énergies', height: 'Harnais et liaison d’arrêt de chute · procédure de sauvetage', hot: 'Travaux à chaud · surveillance incendie' },
+  DE: { confined: 'Erlaubnisschein · Aufsichtführende · Sicherungsposten · Freimessen', electrical: 'Elektrofachkraft · fünf Sicherheitsregeln', hot: 'Schweißerlaubnisschein · Brandposten während der Arbeit · Brandwache nach der Arbeit', height: 'Rückhaltesystem / Auffangsystem · Rettungskonzept' },
+  JP: { confined: '酸素欠乏危険作業（第一種 / 第二種） · 酸素欠乏危険作業主任者 · 監視人等', electrical: '停電作業 · 作業指揮者 · 検電 · 短絡接地', hot: '溶接・溶断 · 火気使用', height: '要求性能墜落制止用器具 · 作業床 · 開口部' },
+  FR: { confined: 'Autorisation individuelle de travail · permis de pénétrer · surveillant · secours', electrical: 'Habilitation électrique · consignation · vérification d’absence de tension', hot: 'Permis de feu · surveillance après travaux', height: 'Protection collective · retenue / arrêt des chutes' },
+  IT: { confined: 'DPR 177/2011 · qualificazione delle imprese · rappresentante del committente', electrical: 'GI (Gestore Impianto) · RI (Responsabile impianto) · GL (Gestore programmazione lavoro) · RLE (Responsabile del Lavoro elettrico) · LAV (Lavoratore) · PES / PAV · idoneità ai lavori sotto tensione (se applicabile)', height: 'Lavori in quota · protezione collettiva', hot: 'Lavori a caldo' },
+  ES: { confined: 'Autorización de trabajo · recurso preventivo · vigilancia exterior', electrical: 'Trabajador autorizado · trabajador cualificado · supresión de la tensión', hot: 'Autorización de trabajos en caliente', height: 'Protección colectiva · sistema de retención / anticaídas' },
+  SA: { confined: 'الأماكن المحصورة · مراقب خارجي · خطة الإنقاذ', electrical: 'العزل الكهربائي · القفل ووضع البطاقات', hot: 'الأعمال الساخنة · مراقب الحرائق', height: 'العمل على ارتفاع · منع السقوط' },
   BR: { confined: 'PET · supervisor de entrada · vigia · trabalhador autorizado', electrical: 'NR-10 · qualificação / habilitação / capacitação / autorização', hot: 'Trabalho a quente · NR-34 (indústria naval)', height: 'NR-35 · AR · PT (atividade não rotineira)' },
   RU: { confined: 'ОЗП · наряд-допуск · наблюдающий', electrical: 'Группа по электробезопасности · допускающий', hot: 'Огневые работы · наряд-допуск', height: 'Работы на высоте · наряд-допуск' },
 };
@@ -119,11 +120,14 @@ export function taskLabel(context, topic, locale = context.documentLocale) {
 export function taskReview(context, topic) {
   if (!TASK_TYPES.includes(topic) || !TASK_REVIEW_SOURCES[context.jurisdiction]) throw Error('WORK_TASK_REVIEW_UNAVAILABLE');
   const jurisdiction = context.jurisdiction;
-  const sources = TASK_REVIEW_SOURCES[jurisdiction][topic];
-  const unresolved = jurisdiction === 'RU' || jurisdiction === 'SA' || !sources.length
-    || (jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-ON' && topic === 'confined');
+  const requirements = requirementReview(jurisdiction, topic);
+  const sources = [...new Map([
+    ...TASK_REVIEW_SOURCES[jurisdiction][topic], ...(requirements?.sources || []),
+  ].map(s => [s.url, s])).values()];
+  const unresolved = requirements?.partial || (requirements?.partial !== false && ['RU', 'SA'].includes(jurisdiction)) || !sources.length
+    || (requirements?.partial !== false && ((jurisdiction === 'BR' && topic === 'height') || (jurisdiction === 'CA-QC' && topic === 'confined')));
   return {
-    topic, jurisdiction, version: TASK_REVIEW_VERSION, checkedAt: '2026-10-03',
+    topic, jurisdiction, version: requirements?.version || TASK_REVIEW_VERSION, checkedAt: '2026-10-03',
     status: unresolved ? 'partial-source-review' : 'scoped-source-review',
     legalApplicability: 'site-and-sector-review-required',
     scopeNotes: [
@@ -132,11 +136,14 @@ export function taskReview(context, topic) {
       ...(jurisdiction === 'AU' ? ['auScope'] : []),
       ...(jurisdiction.startsWith('CA') ? ['caScope'] : []),
       ...(jurisdiction === 'SG' && topic === 'height' ? ['sgHeightScope'] : []),
-      ...((jurisdiction === 'SG' && ['electrical', 'hot'].includes(topic)) || (jurisdiction === 'BR' && topic === 'hot') ? ['marineScope'] : []),
+      ...((jurisdiction === 'SG' && topic === 'hot') || (jurisdiction === 'BR' && topic === 'hot') ? ['marineScope'] : []),
       ...(topic === 'electrical' ? ['deadScope'] : []),
     ],
     terms: TASK_LOCAL_TERMS[jurisdiction]?.[topic] || TASK_LOCAL_TERMS.CA[topic],
     sources: structuredClone(sources),
+    // Keep the original source-review date above. A dated supplement is not
+    // evidence that every topic/exception was rechecked on the newer date.
+    ...(requirements ? { requirements } : {}),
   };
 }
 
@@ -152,11 +159,13 @@ export function taskReviewBlocks(context, topics, { field, table, col, txt }) {
   const t = key => taskSafetyText(context.documentLocale, key);
   const blocks = reviews.flatMap(review => {
     const topic = review.topic, title = taskLabel(context, topic);
-    const f = (key, kind = 'verification') => field(`${topic}.${key}`, `${title} · ${t(key)}`, kind);
+    const f = (key, kind = 'verification') => field(`${topic}.${key}`, `${title} · ${t(review.requirements?.fieldLabels?.[key] || key)}`, kind);
     const items = [field(`${topic}.notice`, `${title} · ${t('notice')}`, 'text', 'standard',
-      [t('scopeNote'), ...review.scopeNotes.map(t), ...(review.status === 'partial-source-review' ? [t('pending')] : [])].join('\n')),
+      [t('scopeNote'), ...review.scopeNotes.map(t), ...(review.status === 'partial-source-review' ? [t('pending')] : []),
+        ...(review.requirements ? [review.requirements.noteKey, ...(review.requirements.additionalNotes || [])].map(t) : [])].join('\n')),
       f('applicability'), field(`${topic}.roles`, `${title} · ${t('roles')} — ${review.terms}`, 'worker'), f('competence'),
       ...checks[topic].map(key => f(key, key === 'entryRoles' ? 'worker' : 'verification')),
+      ...(review.requirements?.fields || []).map(key => f(key, key === 'entryAuthorisation' ? 'worker' : 'verification')),
       f('stop')];
     if (['confined', 'electrical', 'hot'].includes(topic)) {
       items.push(f('instrument'), table(`${title} · ${t('record')}`, [

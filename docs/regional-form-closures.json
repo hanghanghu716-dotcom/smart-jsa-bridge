@@ -1,0 +1,2015 @@
+[
+  {
+    "id": "form:GB.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm"
+    ],
+    "sha256": "d2bee4e0d9e18864fd4b61ed91f86b060f2d98b7ea68cbab9bcd3f1b07cf7619"
+  },
+  {
+    "id": "form:GB.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/construction/safetytopics/admin.htm"
+    ],
+    "sha256": "3a6cbceb638f45ae9dd037f05bc49c82868860354ef05f3b5ff83db76de149cc"
+  },
+  {
+    "id": "form:GB.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/humanfactors/topics/ptw.htm"
+    ],
+    "sha256": "e68686022cf58e39fbe66a2e972220ade4932af36708dac4c9259f9816b20f44"
+  },
+  {
+    "id": "form:GB.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/construction/resources/toolboxtalks.htm",
+      "https://www.hse.gov.uk/involvement/consult/involveemployees.htm"
+    ],
+    "sha256": "700fd1038624ffb8a64f994e46e186155c272f50136887e7d29cfaa30fa01399"
+  },
+  {
+    "id": "form:US.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf"
+    ],
+    "sha256": "81829b31bead7294df199e1b62d6d398f1fab232e69be0903603db58e7d92d7a"
+  },
+  {
+    "id": "form:US.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
+      "https://www.osha.gov/sites/default/files/publications/osha3071.pdf"
+    ],
+    "sha256": "859d4150ab36fc94823c16d8b5e7fbbc58aefa9ab88d1b739a56db6098419841"
+  },
+  {
+    "id": "form:CA.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "e834e5a05adc4a7aed873d26c8427dee23c54954f1d030a49d0a092e1b8811ab"
+  },
+  {
+    "id": "form:CA.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "0df9fa07a8ccaf5fae36544d2df23e54d415e8650d269188bc1fabf981431f03"
+  },
+  {
+    "id": "form:CA.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+    ],
+    "sha256": "6ed8f43733240c9e6529b981fc798575fa7ab2850d762bc60c748f795f9f4f9d"
+  },
+  {
+    "id": "form:CA.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, province/state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+    ],
+    "sha256": "04270563c27c72d3cf67d594b81a7301ebe71b7ae9d79f0d88b71e0663d07e33"
+  },
+  {
+    "id": "form:SG.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+    ],
+    "sha256": "1080a6c08f59447496b474d2808e396873a5c29c334410c324aca9aa0b8e9cb9"
+  },
+  {
+    "id": "form:SG.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+    ],
+    "sha256": "c3173588c9c5000b3604758462c64275ed777ca13c64e4ee5dfee3f9359566aa"
+  },
+  {
+    "id": "form:SG.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf",
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf"
+    ],
+    "sha256": "746e8410fca140f27259e05ab077e01b7e0a37d242fdec4125e4916ca144ac75"
+  },
+  {
+    "id": "form:SG.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-singapore-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the Singapore generic task-level starter form, under its original scope; excludes sector technical inspections, specialised permits and whole-site legal compliance. See the field mapping and explicit limits.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
+    ],
+    "sha256": "39729696041a760d114e2664daaf07a30a0e8ab1abd01e6437f2a688c9b8378a"
+  },
+  {
+    "id": "form:AU.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
+    ],
+    "sha256": "3ca4d241f5d1f6391e77fc70fc24192884fa58ee6fe55f060449d79f81259c58"
+  },
+  {
+    "id": "form:AU.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/system/files/documents/1703/information-sheet-safe-work-method-statement.pdf",
+      "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
+    ],
+    "sha256": "4d0f62e424c434c9c48f6b3c98a01247c098be3e39f8a3c1540c7b6bb1aed839"
+  },
+  {
+    "id": "form:AU.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/consultation",
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
+    ],
+    "sha256": "84988ab752136ff50c90255bee4870a9282ae118d4657e06f11b28e8d5c91af3"
+  },
+  {
+    "id": "form:AU.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
+    ],
+    "sha256": "87c151e861ddd8e3b8aa941752dd4d54ea4924fb84f32a987ef38eb9b63c353d"
+  },
+  {
+    "id": "form:JP.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/content/11300000/001414377.pdf"
+    ],
+    "sha256": "e96bd92c1e788ec8ee1bfa8a9990371aa714d2668f08b127262399a076d21594"
+  },
+  {
+    "id": "form:JP.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-au-jp-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the generic starter form under the original task-level scope; not site compliance, state-specific law or the separate hazardous-task checklist. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf"
+    ],
+    "sha256": "8becb8f9296fbb2c2808fb1bc28fece82c42987504c59bf64b5b8e4cf2c9c059"
+  },
+  {
+    "id": "form:GB.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.hse.gov.uk/pubns/priced/hsg65.pdf",
+      "https://www.hse.gov.uk/involvement/consult/representatives.htm"
+    ],
+    "sha256": "eff8e388e81780a6c4fc0661a192ba92fd30533fc6d1b5e088a1dad3ad0db1df"
+  },
+  {
+    "id": "form:US.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/safety-management/education-training"
+    ],
+    "sha256": "4153d5d1aec889bf399070c1b6f169e01b806e33f247705a7b3673602199b96e"
+  },
+  {
+    "id": "form:US.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.osha.gov/safety-management/hazard-identification",
+      "https://www.osha.gov/safety-management/hazard-prevention"
+    ],
+    "sha256": "dc98ab1805e6147fe0f63ef120a6e6e3f713369a7f4a9b85e33c45b8d3ee85ea"
+  },
+  {
+    "id": "form:JP.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/content/000830745.pdf"
+    ],
+    "sha256": "ea7bdaebe03378ee62092184ad4c824131b5f4ca98ff108ed3d4106b04121931"
+  },
+  {
+    "id": "form:JP.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-inspection-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual field-to-source review of the original generic starter-form scope; not site compliance, statutory technical inspection, mandatory training or separate hazardous-task law. See the form-specific evidence table.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf",
+      "https://www.mhlw.go.jp/content/000830745.pdf"
+    ],
+    "sha256": "cb29443653035b0fca906816164fb3b82cb539c919a565cd42bf53feaf7ae7c2"
+  },
+  {
+    "id": "form:US.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic starter-permit field comparison: task/period, controls, local procedure and roles/competence, linked work, measurements, emergency, issue/acceptance and stop/closeout. Not a complete statutory task/sector permit or an automatic authorisation.",
+    "sourceUrls": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
+    ],
+    "sha256": "247a9313f17fd10fee1c8cf810f119c37131edffe312d8bdb0547cbcb7768833"
+  },
+  {
+    "id": "form:AU.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic starter-permit field comparison: task/period, controls, local procedure and roles/competence, linked work, measurements, emergency, issue/acceptance and stop/closeout. Not a complete statutory task/sector permit or an automatic authorisation.",
+    "sourceUrls": [
+      "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
+      "https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work"
+    ],
+    "sha256": "282a2d8a77c89b4e645c97959a0399376c1c5188496b0137adf50edc5dbecb7a"
+  },
+  {
+    "id": "form:SG.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-native-permit-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic starter-permit field comparison: task/period, controls, local procedure and roles/competence, linked work, measurements, emergency, issue/acceptance and stop/closeout. Not a complete statutory task/sector permit or an automatic authorisation.",
+    "sourceUrls": [
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
+      "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
+      "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx"
+    ],
+    "sha256": "c1c14ac94461e2ecbc92f36cdb9388746aa65daabb3b7becdaad5b6894635707"
+  },
+  {
+    "id": "form:CA-AB.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "1613b3688388074ded54bb2b849284448ff4cea1d4fe5181bace13a796637fca"
+  },
+  {
+    "id": "form:CA-AB.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
+    ],
+    "sha256": "c6a869a29a658e72512584e557f954610cdd0dd68cd519a787d6fb7112afae51"
+  },
+  {
+    "id": "form:CA-AB.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+    ],
+    "sha256": "63927a32904bb45562078eadb11aa157a485b20f9ead2f40dadcaeb132a29f4e"
+  },
+  {
+    "id": "form:CA-AB.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+    ],
+    "sha256": "137752621a84d1221e6f7644c321d9d0533cc1f50f1d2777d9c0279a33df03eb"
+  },
+  {
+    "id": "form:CA-BC.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
+    ],
+    "sha256": "f0ec933123adbbbca74ee2ca984dce3d2a2d90e45886ce46764bd276bccc86f7"
+  },
+  {
+    "id": "form:CA-BC.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
+    ],
+    "sha256": "81cdfdce0c73453e2eb7775ac7fca454bdc0a35ad2508abb6d93086bdda88587"
+  },
+  {
+    "id": "form:CA-BC.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+      "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
+    ],
+    "sha256": "e2026526e496d46a2753e8f9539603e181c121cea337c114055e346a7a117c74"
+  },
+  {
+    "id": "form:CA-BC.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities",
+      "https://www.worksafebc.com/en/health-safety/create-manage/workplace-inspections",
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
+    ],
+    "sha256": "aeaacde0575138aa7d0419c79451ce43b8bedb8d5df91e6ee420a0d792627ae4"
+  },
+  {
+    "id": "form:DE.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic task-assessment fields: site/task and affected groups, hazards, controls, current judgement separate from imported scores, criteria/date, worker consultation, review, action/effectiveness closeout and the regional source boundary documented in the evidence table.",
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/arbschg/__5.html",
+      "https://www.gesetze-im-internet.de/arbschg/__6.html"
+    ],
+    "sha256": "fbfafb4b1a4c54c98d9d304c0a83876bdb6d84f238c12815fc76ea5eaa985540"
+  },
+  {
+    "id": "form:DE.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual generic safe-work sequence fields: scope/resources, steps/hazards/controls, responsibilities/competence, emergency/stop/change, explanation/approval, current revision/access and linked instructions; not a complete specialist work procedure or organisational programme.",
+    "sourceUrls": [
+      "https://aug.dguv.de/arbeitssicherheit/wie-unternehmen-betriebsanweisungen-richtig-nutzen/",
+      "https://www.gesetze-im-internet.de/arbschg/__12.html"
+    ],
+    "sha256": "5e7a3f82be62bb961b67821c2001a9e9ee204ceed8f65bf3aac04d685f308041"
+  },
+  {
+    "id": "form:DE.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short pre-work discussion fields: task/hazards/controls, changes/feedback, emergency, actions/attendance/leader/time, understood explanation and follow-up. BC programme/meeting condition kept explicit. No automatic required-training or qualification certificate.",
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/arbschg/__12.html",
+      "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
+    ],
+    "sha256": "48f091f6aafe0aa7b271515e7803c173b3c8e729f45b63cf8f82bb7bb9dc38db"
+  },
+  {
+    "id": "form:DE.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-country-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general worksite-check fields: applicable framework, scope/plan, locations, findings/actions/owners/dates, priorities/closure, incomplete areas, reporting/response and effectiveness checks. BC participation retained where applicable. Not statutory specialist equipment examination or mandatory universal interval.",
+    "sourceUrls": [
+      "https://www.gesetze-im-internet.de/arbschg/__5.html",
+      "https://www.gesetze-im-internet.de/arbschg/__6.html",
+      "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
+    ],
+    "sha256": "04e26e8411459c4174933f63dcaf8e9639a40f6a547215f1b40929e60a97df90"
+  },
+  {
+    "id": "form:FR.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
+    "sourceUrls": [
+      "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "ae393b9bcb30d00c7ad257b37fa44432d47ff0c18b12e2bfc3573a1ebf54b748"
+  },
+  {
+    "id": "form:FR.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
+    "sourceUrls": [
+      "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html",
+      "https://www.inrs.fr/risques/entreprises-exterieures/mesures-prevention-prealables-intervention"
+    ],
+    "sha256": "70985a5832a5faefbd9ba64ce09ef478c21af1e9635455fd7f1a4fea36a0846a"
+  },
+  {
+    "id": "form:FR.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
+    "sourceUrls": [
+      "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "54afa94a6f79cc6b4bb79545ab22231e55744598f59f3df96a277d3038790a3f"
+  },
+  {
+    "id": "form:FR.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
+    "sourceUrls": [
+      "https://www.inrs.fr/dam/jcr:d975c3d3-384d-46a8-9054-dfd9b889028e/ed6513.pdf",
+      "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
+    ],
+    "sha256": "aa39dc164b0d3b1fd476067f1155ee07a07bdea03491cc1b6dfb81770aec7264"
+  },
+  {
+    "id": "form:ES.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task-level fields: work unit/exposed groups, hazards/controls, current risk decision separate from imported scores, assessment method/date/competence as applicable, consultation/review, actions/resources and organisational plan references. Scope and exclusions in the evidence table.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+    ],
+    "sha256": "9a338ca9cdc0b82100e8b6cb125f479f5e21053b0236c48596c53b2cfcd0e28c"
+  },
+  {
+    "id": "form:ES.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual task sequence, resources/controls/responsibilities, competence, emergency/stop/change, contractor coordination and current procedure revision/access/briefing fields. Not full Plan de prévention/CAE or a specialist technical work instruction.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.insst.es/materias/transversales/gestion-prevencion"
+    ],
+    "sha256": "5740f01900936f36b9e902e0b7eecf95b6fb6c659e04ce6dda3f08abd4117072"
+  },
+  {
+    "id": "form:ES.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual short discussion topic/hazards/controls, changes, emergency, feedback/actions, attendance/leader and understanding/follow-up fields. Not statutory training certification or universal mandatory talk frequency.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.insst.es/materias/transversales/gestion-prevencion"
+    ],
+    "sha256": "a2a08014a28def0c0e613564f4eadc0d08846714e74d1ad5bed38aca91369253"
+  },
+  {
+    "id": "form:ES.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-fr-es-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Individual general inspection plan/location/findings/priority/actions/owner/date/closure fields, incomplete areas, reporting/response and organisational plan/resources links. Not full CSE procedure or specialist equipment examination.",
+    "sourceUrls": [
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
+      "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
+    ],
+    "sha256": "0d476305687fb31438680ad3484f95a17511a77f940a9dcda63882e6b7c6fcd7"
+  },
+  {
+    "id": "form:IT.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/valutare-il-rischio.html",
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
+    ],
+    "sha256": "f2be87d621c52ab9deb75f525738dd96d1f9b128e9cc4a689aa15064304e91a4"
+  },
+  {
+    "id": "form:IT.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html",
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
+    ],
+    "sha256": "37c7492f6b9a9365b63edbbf14b114aa378a67cb51802e90bed43e07efeb18c2"
+  },
+  {
+    "id": "form:IT.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
+    ],
+    "sha256": "9b7ea82927d00c16c366b6b99518fc7269a7c657de5432da332abfdd9752e3f0"
+  },
+  {
+    "id": "form:IT.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+    "sourceUrls": [
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
+      "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
+    ],
+    "sha256": "b5136df6b56174f77e5f641bc9c60a9cf2a4656d0e243460eeed2a437e4cfba1"
+  },
+  {
+    "id": "form:BR.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "ba314dddf6208e725518b3b6c68f1d285c7842ea4debe7101a5b4ff0062bec27"
+  },
+  {
+    "id": "form:BR.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "78344f5b38bd123b98b2b68bbbe4bb63c9abcb14864e8bf43407f324740cdd0a"
+  },
+  {
+    "id": "form:BR.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "253f3afb17405543273ae3ef4f23574a7564fc022d099703447c1f17ed793381"
+  },
+  {
+    "id": "form:BR.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
+    ],
+    "sha256": "f5e170454347089e3da7133c143855ede0ae9c094249368c1fd464dbbaee94d3"
+  },
+  {
+    "id": "form:CA-QC.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision distinct from imported scores, criteria/date/review/consultation and action closeout/resources/organisational links; BR review/hazard scope and QC psychosocial/young-worker scope as applicable. Not whole enterprise prevention compliance.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "c7884a83173a114e7e97e4c165448c03f14dfb99e4f583c753717d1e165ccddf"
+  },
+  {
+    "id": "form:CA-QC.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and applicable coordination; general task record, not specialist procedure or whole DVR/DUVRI/PGR/Quebec programme.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "363dbed5cf2f82eb3fe629d4e119b65f671ed90cf27720a5e6f6fbb2c6683c6a"
+  },
+  {
+    "id": "form:CA-QC.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Short task discussion, hazards/controls, changes, emergency, input/actions, attendance/leader/time and understanding/follow-up; not statutory training certificate or universal mandatory frequency.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "49725ce7fafdab7895e1553468c4563aa4d8cb257f6e282b1f567611f03f2a1e"
+  },
+  {
+    "id": "form:CA-QC.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-it-br-qc-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General inspection plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and prevention-plan/resources links; not specialist equipment examination or universal statutory inspection interval.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
+      "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
+    ],
+    "sha256": "addc69bcffe1cb52aae66ca637c9866a54a39e0231f166ec072aeaf835dff09a"
+  },
+  {
+    "id": "form:KR.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
+    "sourceUrls": [
+      "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+    ],
+    "sha256": "6be5c69525f0469aa6e7265f37beffea10ed5eb392d3bdb7a1a28b167da0d300"
+  },
+  {
+    "id": "form:KR.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
+    "sourceUrls": [
+      "https://oshri.kosha.or.kr/kosha/business/PublicInstitution_SafetyManagementRecord.do?articleNo=444292&attachNo=250186&mode=download"
+    ],
+    "sha256": "89e49feca04da9322dd8c8aff6b9a9ba3cd58bd979aab6974bfa9a3d34a66fd0"
+  },
+  {
+    "id": "form:KR.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
+    "sourceUrls": [
+      "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455",
+      "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
+    ],
+    "sha256": "3a5e12e590bd8d006b268e63acc210f55ab395973427c8309405777b4629f458"
+  },
+  {
+    "id": "form:KR.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
+    "sourceUrls": [
+      "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
+      "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455"
+    ],
+    "sha256": "31261276f33f448717b04c9d30279b84d8ba264c05c20ce8cbd992be0b2690bb"
+  },
+  {
+    "id": "form:CA-ON.risk_assessment",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task-level scope, hazards/exposed persons/controls, current risk decision, criteria/date/review/participation, action closeout and records custody. KR five participation stages and initial/change/periodic/conditional ongoing assessment linked. Not whole-enterprise certification.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+      "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+    ],
+    "sha256": "a7db1e22b25006f308adaa30ca6e27617622f8e7138114fc79213101066a5c6d"
+  },
+  {
+    "id": "form:CA-ON.method_statement",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Ontario task sequence, equipment/PPE, competence, emergency/stop/change, current procedure revision/access/understanding and sector basis. General task record, not complete specialist procedure or mandatory training.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
+      "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+    ],
+    "sha256": "41de0e4cf2c0832e67adf00bd4e8901c2f4c35c82b35e0d745b220acaf554645"
+  },
+  {
+    "id": "form:CA-ON.permit_to_work",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit lifecycle and links, roles/competency, precautions, measurements, coordination, access/pre-shift check and handback. KR public-institution example and Ontario entry guidance explicitly scoped; not full P-94 review or complete confined-space permit; no automatic task selection.",
+    "sourceUrls": [
+      "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit"
+    ],
+    "sha256": "c251848182294597ecb05617370683725d153e3b68d45be672cea0222a308a25"
+  },
+  {
+    "id": "form:CA-ON.toolbox_talk",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Task discussion, hazards/controls, changes, emergency, actions, attendance/leader/time and understanding/follow-up. KR assessment transfer/absentees/stop-report/feedback. No automatic statutory training credit or universal frequency.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html",
+      "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
+    ],
+    "sha256": "7a34f8a25da6204be9f252ed1da0824288f93c3751e89bb5195ee72be95a91dd"
+  },
+  {
+    "id": "form:CA-ON.inspection",
+    "checkedAt": "2026-10-05",
+    "evidence": "regional-kr-on-form-review-20261005.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "General plan/location/findings/priority/actions/owner/deadline/closure, limitations/reporting and framework basis. Ontario JHSC/representative applicability, monthly/annual coverage/exceptions and written recommendation reply distinguished. Not specialist statutory equipment inspection.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/prevention/effectiv.html",
+      "https://www.ontario.ca/page/guide-health-and-safety-committees-and-representatives"
+    ],
+    "sha256": "74dedef3454d6919eefff3389c369b0e5266688f2a268794b2ce507c3a8f1db3"
+  },
+  {
+    "id": "form:CA.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
+    ],
+    "sha256": "8fca61203c706d153bae57a07362d26ecf119e1091cb53947920d610ed13c4cf"
+  },
+  {
+    "id": "form:CA-AB.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/"
+    ],
+    "sha256": "f9381838e00a7c72675d2b4c5b01ea3077b0fecb206ff1a127c9310defecca3f"
+  },
+  {
+    "id": "form:CA-BC.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
+    ],
+    "sha256": "9ceb8b33cb7228688522911d49b48de90330b61e5cb66d1318b029fbd09a49c0"
+  },
+  {
+    "id": "form:CA-QC.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.cnesst.gouv.qc.ca/sites/default/files/documents/a2-travail-espace-clos.pdf"
+    ],
+    "sha256": "a66d0d68317720cce9e1d091ee8eb675294ffe05c6eb19e03817cf411264fb03"
+  },
+  {
+    "id": "form:DE.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://publikationen.dguv.de/widgets/pdf/download/article/915"
+    ],
+    "sha256": "adc2192bbabf9f97be7232d80903465c579a58cf3cefc9e06a643e64d3f36dda"
+  },
+  {
+    "id": "form:JP.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.mhlw.go.jp/web/t_doc?dataId=00tb2089&dataType=1&pageNo=1"
+    ],
+    "sha256": "fcf09e6be0f1a83a42e27d6cb3d036ff9b4dee08549b7dcd05a976fd6eda46ad"
+  },
+  {
+    "id": "form:FR.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.inrs.fr/risques/espaces-confines/prevenir-risques",
+      "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
+    ],
+    "sha256": "e41cc1e3914f12a1f46d6e2aec6e512c7129ac8ae2ffc1fb831664dca7051b2a"
+  },
+  {
+    "id": "form:IT.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.regione.emilia-romagna.it/sicurezza-nei-luoghi-di-lavoro/documentazione/linee-guida/2012/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/@@download/file"
+    ],
+    "sha256": "8fa20ac097eeed353d3c9fc08a573ac6f6f36aacbedc9420da80c502ac1f75ed"
+  },
+  {
+    "id": "form:ES.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
+    ],
+    "sha256": "91a54bbda54e8101ad90e651452943389330f2bc2f6968e80a360243ad187860"
+  },
+  {
+    "id": "form:BR.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-permit-followup-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic permit source-to-field comparison: work/location/time, hazards/precautions, isolation/fresh measurements, emergency, role competence/coordination, linked specialist records, issue/acceptance, stop/change/restart decision, handback and custody. Jurisdiction-specific source scope retained; not a complete specialist permit or legal certification. Old saved versions preserved.",
+    "sourceUrls": [
+      "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
+    ],
+    "sha256": "597239208fd46e4d7687b0217f02097094e7f2da731a75411535739b5125cb3c"
+  },
+  {
+    "id": "form:SA.risk_assessment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+    ],
+    "sha256": "19b263e8d8b173b51ff9d639e054486be2a3b494413bc05b5480db74431439db"
+  },
+  {
+    "id": "form:SA.method_statement",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+    ],
+    "sha256": "0f3fa68823eaa48cdaf81faf8d87555fc70b25edb7f0f2120da470676948f50b"
+  },
+  {
+    "id": "form:SA.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+      "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf"
+    ],
+    "sha256": "594eb21223d9b4a09a66756213949784f7deee86ba26c63163f0e46b76079b67"
+  },
+  {
+    "id": "form:SA.toolbox_talk",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
+      "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf"
+    ],
+    "sha256": "b02c5677c40845d7282f3319ae667b2a94c28c44a31eec3a8066b6cc8ee5707a"
+  },
+  {
+    "id": "form:SA.inspection",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
+    ],
+    "sha256": "e20cdc81ec847cb796f1eeabf3b7c5696cc1ca92b6799a9468773e6cc8032f8e"
+  },
+  {
+    "id": "form:RU.risk_assessment",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
+    ],
+    "sha256": "57d53fa7fdde055d2fae8b045aeb0d3d5afb4684528134adeaea8ebddc3627a1"
+  },
+  {
+    "id": "form:RU.method_statement",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf",
+      "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
+    ],
+    "sha256": "2c8d49e529c4adcaea4ff34ca9a84a4bf3db2b16b1fb06f9fc2a1fa3eaf99e8d"
+  },
+  {
+    "id": "form:RU.permit_to_work",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+    ],
+    "sha256": "0b6216e939a88eac03e11333586036a0c2462ed070bf8741525ec5b84b96d614"
+  },
+  {
+    "id": "form:RU.toolbox_talk",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+    ],
+    "sha256": "38cb114e4b95f03833cc188ab97aaf028165813044fbba308e36250a7833a1e3"
+  },
+  {
+    "id": "form:RU.inspection",
+    "checkedAt": "2026-10-06",
+    "evidence": "regional-sa-ru-form-review-20261006.md",
+    "languages": [
+      "ko",
+      "en",
+      "de",
+      "ja",
+      "fr",
+      "it",
+      "es",
+      "ar",
+      "pt",
+      "ru"
+    ],
+    "scope": "Generic task-form source-to-field comparison: applicable framework, fresh assessment/action verification, procedure access/change, permit coordination/evidence, briefing understanding/follow-up and inspection tracking. Country-specific supporting-record limits retained. Not specialist authorisation, full statutory annex review or legal certification; original saved versions preserved.",
+    "sourceUrls": [
+      "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf",
+      "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
+    ],
+    "sha256": "41334179d6fac2a3734b5bff4c1fc13842f37dd43c1af75b6832a1ffe19053d2"
+  }
+]

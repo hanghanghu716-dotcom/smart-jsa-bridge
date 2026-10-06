@@ -62,22 +62,25 @@ export function duplicatePackage(record, name, version) {
   return { name, version_name: version, data: cleanPackage(record.data) };
 }
 export function startWork(record) {
+  // Old/imported packages may predate save-time normalisation. A fresh run must
+  // also discard embedded actuals, even if a non-text field was marked reusable.
+  const data = cleanPackage(record.data);
   return {
     packageId: record.id,
     packageName: record.name,
     version: record.version_name,
     packageUpdatedAt: record.updated_at,
     startedAt: new Date().toISOString(),
-    context: workContext(record.data.context),
+    context: workContext(data.context),
     regionalReviewed: false,
     common: {
-      ...record.data.commonDefaults,
+      ...data.commonDefaults,
       workDate: "",
       manager: "",
       workers: "",
     },
     values: {},
-    documents: clone(record.data.documents),
+    documents: data.documents,
   };
 }
 export function fieldValue(field, run, key, standard = field.value) {

@@ -1,0 +1,71 @@
+import { SA_RU_FORM_SOURCES } from './regionalSaRuFormSources20261006.js';
+import { COUNTRY_FORM_SOURCES } from './regionalCountryFormSources20261005.js';
+import { FR_ES_FORM_SOURCES } from './regionalFrEsFormSources20261005.js';
+import { IT_BR_QC_FORM_SOURCES } from './regionalItBrQcFormSources20261005.js';
+import { KR_ON_FORM_SOURCES } from './regionalKrOnFormSources20261005.js';
+import { FOLLOWUP_PERMIT_SOURCES } from './regionalPermitSources20261006.js';
+// Source-to-field review of generic starter forms, not sector permit approval.
+const source = (title, url, scope) => ({ title, url, scope, basis: 'official-guidance', checkedAt: '2026-10-05' });
+const gbRisk = source('HSE · Risk assessment templates', 'https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm', 'Great Britain: hazards, affected people, controls, action owners and dates; site-specific assessment required.');
+const gbMethod = source('HSE · Administration: method statements', 'https://www.hse.gov.uk/construction/safetytopics/admin.htm', 'Construction sequence, resources, competence, emergency arrangements and interfaces. Demolition/dismantling/structural alteration requires written arrangements; this generic draft is not a construction phase plan.');
+const gbPermit = source('HSE · Permit to work systems', 'https://www.hse.gov.uk/humanfactors/topics/ptw.htm', 'Generic permit communication, competence, coordination, shift handover and handback. Not the detailed technical permit for each hazardous activity.');
+const gbTalk = source('HSE · Toolbox talks', 'https://www.hse.gov.uk/construction/resources/toolboxtalks.htm', 'Short focused construction safety discussion; not a substitute for induction or required training.');
+const gbParticipation = source('HSE · How to involve employees', 'https://www.hse.gov.uk/involvement/consult/involveemployees.htm', 'Job-specific discussion and worker contribution to risks and solutions.');
+const usJha = source('OSHA · Job Hazard Analysis worksheet', 'https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf', 'Job steps, exposure and incident scenarios, hierarchy of controls, worker input and reassessment. Federal general guidance; applicable state and sector requirements remain separate.');
+const usProcedure = source('OSHA · Job Hazard Analysis, OSHA 3071', 'https://www.osha.gov/sites/default/files/publications/osha3071.pdf', 'Job procedures derived from hazard analysis, communicating changes and periodic/incident review. The older publication is used for method principles, not current state-plan counts or legal consolidation.');
+const caJsa = source('CCOHS · Job Safety Analysis', 'https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html', 'Canadian general guidance: sequence, hazards, preventive measures, written procedures, review and participation. Does not establish a federal/provincial statutory form.');
+const caTalk = source('CCOHS · Safety Talks – How To', 'https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html', 'Work-relevant topic, contents, feedback, attendance, action and communication; not formal training. No mandatory five-minute duration or universal frequency.');
+const caInspection = source('CCOHS · Effective Workplace Inspections', 'https://www.ccohs.ca/oshanswers/prevention/effectiv.html', 'Planning, areas and findings, equipment/location references, priorities, owners/dates, incomplete areas, report distribution and follow-up. General inspection only, not a statutory technical examination or province-specific committee procedure.');
+const sgRisk = source('WSHC · Risk Management Code of Practice, third revision (2021)', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf', 'Task-level RA and SWP; sections 4–10, Appendix B and E. Inspection supports checking control implementation/effectiveness under 7.2.5; not a prescribed technical inspection or whole risk-management system.');
+const sgTalk = source('WSHC · ABC checklist for effective toolbox meetings', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf', 'Understood language, SWP communication, demonstration, worker questions, recent incidents, assigned follow-up and retained meeting notes. Guidance, not a universal statutory frequency.');
+const sgReadiness = source('WSHC · Guide to Effective Toolbox Meeting (December 2017)', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf', 'Work readiness, task-appropriate PPE, stop/report and housekeeping prompts only. No clinical thresholds, sobriety tests or automatic fitness decision are imported.');
+const auRisk = source('Safe Work Australia · Model Code: How to manage work health and safety risks (November 2024)', 'https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf', 'Generic risk process, control implementation, consultation, inspection and review records, sections 2–6. Model guidance; local adoption and Victoria OHS duties must be checked separately.');
+const auSwms = source('Safe Work Australia · SWMS information sheet (December 2014)', 'https://www.safeworkaustralia.gov.au/system/files/documents/1703/information-sheet-safe-work-method-statement.pdf', 'HRCW, hazards/risks, controls and implementation/monitor/review; consultation, safe stop, revision, restart and site access. Older method guidance only: no monetary threshold, universal retention duration or local-law consolidation imported.');
+const auVictoria = source('WorkSafe Victoria · Safe work method statements (reviewed 14 January 2026)', 'https://www.worksafe.vic.gov.au/safe-work-method-statements-swms', 'Victoria OHS employer/self-employed duties, employee/HSR consultation, site-specific HRCW and safe stop/review/restart. SWMS is distinct from JSA/RA. A jurisdiction comparison, not a full state-specific ruleset.');
+const auTalk = source('Safe Work Australia · Consultation', 'https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/consultation', 'Worker/HSR input and coordination among duty holders; toolbox meetings as a consultation channel, not a substitute for competence or a universally prescribed meeting frequency.');
+const jpRisk = source('厚生労働省 · 危険性又は有害性等の調査等に関する指針', 'https://www.mhlw.go.jp/content/11300000/001414377.pdf', 'General task-level RA: hazards, risk estimation/priorities, control hierarchy and records, sections 8–11. Relative estimates are allowed; no mandatory numeric matrix. Not a chemical-specific assessment or a full current-law certification.');
+const jpKy = source('厚生労働省 · リスクアセスメント記録とKY活動との違い（2008年資料）', 'https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf', 'Pages 46–49: records/review and daily KY hazard awareness, priority points, agreed actions and pointing/calling; significant findings feed organisational assessment and controls. Older method guidance, not a mandatory four-round format or universal assessment interval.');
+const usEducation = source('OSHA · Education and Training', 'https://www.osha.gov/safety-management/education-training', 'Recommended Practices, actions 1/3/4: understood language, demonstrations, questions, hazard reporting and additional task/change training. Toolbox discussion supports communication; it is not a substitute for required training or a state-specific programme.');
+const usInspection = source('OSHA · Hazard Identification and Assessment', 'https://www.osha.gov/safety-management/hazard-identification', 'Actions 1/2/6: worker involvement, regular inspections, locations/activities, documented findings, priorities and interim protection. Generic worksite record, not an OSHA enforcement inspection or statutory equipment certificate.');
+const usControl = source('OSHA · Hazard Prevention and Control', 'https://www.osha.gov/safety-management/hazard-prevention', 'Actions 3/6: owners, target dates, implementation tracking and effectiveness checks. No universal legal inspection interval or automatic approval is inferred.');
+const gbInspection = source('HSE · Managing for health and safety, HSG65 (2013)', 'https://www.hse.gov.uk/pubns/priced/hsg65.pdf', 'Pages 48–50: active monitoring, timely inspection findings, competent resources and reporting for action. Method guidance for general inspection; not a specific statutory examination.');
+const gbResponse = source('HSE · Consulting with representatives', 'https://www.hse.gov.uk/involvement/consult/representatives.htm', 'Inspection follow-up, reasons, communication and representative reinspection feedback. Union-appointed representatives have distinct inspection rights; no universal three-month workplace inspection schedule is set.');
+const jpProcedure = source('厚生労働省 · 設備の経年化による労働災害リスクと防止対策', 'https://www.mhlw.go.jp/content/000830745.pdf', 'Printed pages 7, 23–26: RA/manufacturer information in procedures, routine/nonroutine tasks, worker instruction, revisions and abnormality reporting. Equipment-ageing guidance supplies method principles, not all-sector statutory controls or a current legal consolidation.');
+const jpInspection = source('厚生労働省 · 3ステップでやさしく導入 労働安全衛生マネジメントシステム (2013)', 'https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf', 'Printed pages 71–73: routine inspection, procedures, timing/owners/method, corrective action and feedback to planning. Generic worksite check, not whole-OSHMS certification; example monthly dates and specific equipment checks are not imported as universal rules.');
+export const REGIONAL_FORM_SOURCES = {
+  ...KR_ON_FORM_SOURCES,
+  ...FOLLOWUP_PERMIT_SOURCES,
+  ...SA_RU_FORM_SOURCES,
+  ...IT_BR_QC_FORM_SOURCES,
+  ...FR_ES_FORM_SOURCES,
+  ...COUNTRY_FORM_SOURCES,
+  'GB.risk_assessment': [gbRisk], 'GB.method_statement': [gbMethod],
+  'GB.permit_to_work': [gbPermit], 'GB.toolbox_talk': [gbTalk, gbParticipation],
+  'US.risk_assessment': [usJha], 'US.method_statement': [usJha, usProcedure],
+  'CA.risk_assessment': [caJsa], 'CA.method_statement': [caJsa],
+  'CA.toolbox_talk': [caTalk], 'CA.inspection': [caInspection],
+  'SG.risk_assessment': [sgRisk], 'SG.method_statement': [sgRisk],
+  'SG.toolbox_talk': [sgTalk, sgReadiness], 'SG.inspection': [sgRisk],
+  'AU.risk_assessment': [auRisk], 'AU.method_statement': [auSwms, auVictoria],
+  'AU.toolbox_talk': [auTalk, auRisk], 'AU.inspection': [auRisk],
+  'JP.risk_assessment': [jpRisk], 'JP.toolbox_talk': [jpKy],
+  'GB.inspection': [gbInspection, gbResponse],
+  'US.toolbox_talk': [usEducation], 'US.inspection': [usInspection, usControl],
+  'JP.method_statement': [jpProcedure], 'JP.inspection': [jpInspection, jpProcedure],
+  'US.permit_to_work': [
+    source('OSHA · 1910.146 permit system', 'https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146', 'Generic record only, compared with (d) coordination/training and (e)/(f) entry-permit lifecycle and content. The confined-space supplement and applicable employer permit remain necessary; this base form alone is not a 1910.146 entry permit.'),
+    source('OSHA · 1910.252 hot-work authorisation', 'https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252', '(a)(2)(iv): prior inspection, responsible authoriser and precautions, preferably a written permit. Not a universal all-work permit requirement.'),
+  ],
+  'AU.permit_to_work': [
+    source('Safe Work Australia · Confined spaces (November 2024)', 'https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf', '4.3 and Appendix C: competent person, identified space/workers/time, controls and exit/withdrawal. General base record is not the complete confined-space permit; state/territory adoption and Victoria procedures remain distinct.'),
+    source('SafeWork NSW · Hot work safety alert (2018)', 'https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work', 'Hazard review, controls, site/activity sign-off, permit communication and post-work check. NSW guidance supports template fields, not a national all-sector permit mandate.'),
+  ],
+  'SG.permit_to_work': [
+    source('WSHC · Confined spaces technical advisory', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx', 'Sections 3 and 7: distinct assessor/authorised-manager/attendant roles and entry-permit lifecycle. Generic form requires the applicable task procedure and specialised permit.'),
+    source('MOM · WAH amendment factsheet (2014)', 'https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf', 'Annex A: factory/hazardous-WAH scope, supervisor application, assessor and authorised-manager distinctions. Historical guidance, not a fresh full-law consolidation check.'),
+    source('WSHC · Marine industries manual', 'https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx', 'Sections 4–5: location, site inspection, assessor endorsement/manager issue, linked work, period, display, review and closeout. Marine scope only; generic base is not a sector statutory permit replica.'),
+  ],
+};
+
+export const INSPECTION_FORM_IDS = ['GB.inspection', 'US.toolbox_talk', 'US.inspection', 'JP.method_statement', 'JP.inspection'];
+export const PERMIT_FORM_IDS = ['US.permit_to_work', 'AU.permit_to_work', 'SG.permit_to_work'];
