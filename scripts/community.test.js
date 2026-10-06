@@ -25,7 +25,7 @@ test('community labels exist across every supported locale',()=>{
  for(const locale of SUPPORTED_LANGS)for(const key of keys)assert.equal(typeof getCommunityUi(locale)[key],'string',locale+':'+key);
  for(const locale of SUPPORTED_LANGS)for(const value of Object.values(getCommunityPolicy(locale)))assert.ok(typeof value==='string'&&value.length>0);
 });
-test('the HTML shell never loads advertising or analytics before consent',()=>{
+test('the HTML shell does not bypass the route-scoped analytics runtime or advertising gate',()=>{
  const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
  assert.doesNotMatch(html,/adsbygoogle|googletagmanager|gtag\(/);
 });
