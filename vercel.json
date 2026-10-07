@@ -2,6 +2,16 @@
   "git": { "deploymentEnabled": false },
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/:lng/guide/manu", "destination": "/:lng/guideline/manufacturing", "permanent": true },
+    { "source": "/:lng/guide/chem", "destination": "/:lng/guideline/chemical", "permanent": true },
+    { "source": "/:lng/guide/const", "destination": "/:lng/guideline/construction", "permanent": true },
+    { "source": "/:lng/guide/general", "destination": "/:lng/guideline/general", "permanent": true },
+    { "source": "/:lng/guide/highrisk", "destination": "/:lng/guideline/high-risk", "permanent": true },
+    { "source": "/:lng(en-US|en-AU|ar-SA|en-GB|ja-JP|ru-RU|it-IT|es-ES|de-DE|fr-FR|pt-BR|en-CA)/case-study/jsa-form-work", "destination": "/:lng/case-study/%20jsa-form-work", "permanent": true },
+    { "source": "/de-DE/case-study/jsa-leak-testing", "destination": "/de-DE/case-study/%20jsa-leak-testing", "permanent": true },
+    { "source": "/ja-JP/case-study/jsa-%20roof-truss", "destination": "/ja-JP/case-study/jsa-roof-truss", "permanent": true }
+  ],
   "functions": { "api/public-jsa.js": { "includeFiles": "dist/public-jsa-shell.html" }, "api/explore.js": { "includeFiles": "dist/public-jsa-shell.html" } },
   "rewrites": [
     { "source": "/:lng/explore", "destination": "/api/explore?lng=:lng" },

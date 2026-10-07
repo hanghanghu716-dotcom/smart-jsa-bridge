@@ -1,6 +1,13 @@
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
+import { staticRoutes } from './static-routes.js';
+import { verifyStaticMetadata } from './static-metadata.js';
+for (const route of staticRoutes([])) {
+ const filename = route === '/' ? 'dist/index.html' : `dist${route.replace(/\/$/, '')}/index.html`;
+ verifyStaticMetadata(fs.readFileSync(filename, 'utf8'), route);
+}
+console.log('Verified: all public static pages have one current title, description, robots tag and canonical.');
 for (const locale of SUPPORTED_LANGS) {
  for (const page of ['business','explore','public-jsa','library','login','profile','export','info','analysis','procedure','document-designer','work-packages']) {
   if (fs.existsSync(`dist/${locale}/${page}`)) throw new Error(`Unexpected dynamic snapshot: ${locale}/${page}`);

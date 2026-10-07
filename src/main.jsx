@@ -15,8 +15,10 @@ const isReactSnap = navigator.userAgent.includes('ReactSnap');
 const isCasePage = /^\/[^/]+\/case-study\/[^/]+\/?$/.test(window.location.pathname);
 if (!isReactSnap) {
   if (isCasePage) captureCaseBootstrap(document, window.location.pathname);
-  clearPrerenderedCaseMetadata(document);
 }
+// react-snap can load a previously captured index.html for the next route.
+// Remove inherited head metadata before every fresh React root, including builds.
+clearPrerenderedCaseMetadata(document);
 
 // react-snap captures settled effects and minifies inline styles. Its output
 // is initial HTML for readers/crawlers, not React's first-render state (for
