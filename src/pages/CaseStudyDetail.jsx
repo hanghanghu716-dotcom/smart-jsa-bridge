@@ -1,3 +1,5 @@
+import { caseViewCounts, recordCaseView } from '../services/caseStudyMetrics';
+import { getPublicUi } from '../locales/publicUi';
 import DiscoveryLinks from '../components/DiscoveryLinks';
 import RegionalStartActions from '../components/RegionalStartActions';
 import { regionalJourneyUi } from '../locales/regionalJourneyUi';
@@ -26,6 +28,17 @@ export default function CaseStudyDetail() {
   const [loadError, setLoadError] = useState(false);
   const [retry, setRetry] = useState(0);
   const viewerRef = useRef(null);
+  const [viewMetric,setViewMetric]=useState(null);
+  const metricId=post?.post_group_id===id&&!loading&&!loadError?post.id:null;
+  useEffect(()=>{
+    if(!metricId)return;
+    let active=true,timer;
+    const update=count=>{if(active&&count!==null)setViewMetric(previous=>({id:metricId,count:Math.max(previous?.id===metricId?previous.count:0,count)}));};
+    caseViewCounts([metricId]).then(counts=>update(counts.get(metricId)||0)).catch(()=>{});
+    const schedule=()=>{clearTimeout(timer);if(document.visibilityState==='visible')timer=setTimeout(()=>{recordCaseView(metricId).then(update);},2000);};
+    schedule();document.addEventListener('visibilitychange',schedule);
+    return()=>{active=false;clearTimeout(timer);document.removeEventListener('visibilitychange',schedule);};
+  },[metricId]);
   const ui = getSiteUi(i18n.language);
   const journeyUi = regionalJourneyUi(i18n.language);
 
@@ -167,7 +180,7 @@ export default function CaseStudyDetail() {
             {post.title}
           </h1>
           <p style={styles.date}>
-            {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))}
+            {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))} · {getPublicUi(i18n.language).views} {viewMetric?.id===post.id?viewMetric.count.toLocaleString(getLanguageTag(currentLang)):'—'}
           </p>
         </div>
       </section>

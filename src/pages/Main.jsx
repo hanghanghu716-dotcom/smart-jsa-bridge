@@ -1,3 +1,6 @@
+import { caseViewCounts } from '../services/caseStudyMetrics';
+import { sortCases } from '../utils/caseSort';
+import { getPublicUi } from '../locales/publicUi';
 import ThemeSettings from '../components/ThemeSettings';
 import CasePageJump from '../components/CasePageJump';
 import { cleanSummary } from '../utils/content.js';
@@ -90,6 +93,9 @@ export default function Main() {
   const drawerRef = useRef(null);
 
   const [caseStudies, setCaseStudies] = useState([]);
+  const [caseSort,setCaseSort]=useState('latest');
+  const [caseMetricsError,setCaseMetricsError]=useState(false);
+  const caseUi=getPublicUi(i18n.language);
   // 검색 및 페이지네이션을 위한 새로운 상태 변수 선언
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -242,6 +248,7 @@ export default function Main() {
   const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
 
   useEffect(() => {
+    let active=true;
     const fetchRecentCases = async () => {
       const pathLang = window.location.pathname.split('/')[1];
       const supportedCodes = SUPPORTED_LANGS;
@@ -249,14 +256,20 @@ export default function Main() {
 
       const { data, error } = await supabase
         .from('case_studies')
-        .select('post_group_id, title, meta_description, created_at, language_code')
+        .select('id, post_group_id, title, meta_description, created_at, language_code')
         .in('language_code', getCaseLanguages(currentLang))
         .order('created_at', { ascending: false }); // 구글 봇 탐색 권장 조건에 맞춰 제한 없이 전량 확보
 
       if (error) {
         console.error('Case studies fetch error:', error);
       } else {
-        setCaseStudies(selectLocalizedCases(data || [], currentLang));
+        if(!active)return;
+        const localized=selectLocalizedCases(data || [], currentLang);
+        setCaseStudies(localized);setCaseMetricsError(false);
+        try {
+          const counts=await caseViewCounts(localized.map(row=>row.id));
+          if(active)setCaseStudies(localized.map(row=>({...row,view_count:counts.get(row.id)||0})));
+        } catch { if(active)setCaseMetricsError(true); }
       }
     };
     fetchRecentCases();
@@ -266,7 +279,7 @@ export default function Main() {
     }, 5000);
 
     return () => {
-      clearInterval(timer);
+      active=false;clearInterval(timer);
     };
   }, [slides.length, i18n.language]);
 
@@ -280,7 +293,7 @@ export default function Main() {
   };
 
   // 실시간 검색어 기반 데이터 필터링 정의
-  const filteredCaseStudies = caseStudies.filter(caseItem => {
+  const filteredCaseStudies = sortCases(caseStudies,caseSort).filter(caseItem => {
     const query = searchQuery.toLowerCase();
     return (
       caseItem.title?.toLowerCase().includes(query) ||
@@ -654,6 +667,12 @@ export default function Main() {
             </div>
           </div>
 
+          <div className="case-sort-controls">
+            <label>{caseUi.sort}<select value={caseSort} onChange={e=>{setCaseSort(e.target.value);setCurrentPage(1);}}>
+              <option value="latest">{caseUi.latest}</option><option value="views" disabled={caseMetricsError}>{caseUi.mostViewed}</option>
+            </select></label>
+            {caseMetricsError&&<span role="status">{caseUi.views}: {caseUi.error}</span>}
+          </div>
           {currentItems.length > 0 ? (
             <>
               <div id="case-study-results" tabIndex={-1} style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 lg:px-0">
@@ -669,7 +688,7 @@ export default function Main() {
                         {cleanSummary(caseItem.meta_description)}
                       </p>
                       <span style={{ fontSize: '0.9rem', color: '#888', fontWeight: 'bold' }}>
-                        {new Date(caseItem.created_at).toLocaleDateString()}
+                        {new Date(caseItem.created_at).toLocaleDateString()} · {caseUi.views} {caseItem.view_count === undefined ? '—' : caseItem.view_count.toLocaleString()}
                       </span>
                     </div>
                   </LanguageLink>

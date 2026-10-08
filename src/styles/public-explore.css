@@ -86,3 +86,6 @@
   .explore-results-heading { margin-top: 24px; }.explore-page .explore-tags button { min-height: 40px; }
 }
 @media (prefers-reduced-motion: reduce) { .explore-page *, .explore-page *::before, .explore-page *::after { transition: none; animation: none; } }
+
+.explore-country { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:18px 0; font-size:14px; }
+.explore-country select { max-width:100%; min-height:44px; padding:10px 14px; border:1px solid var(--border-default); border-radius:12px; background:var(--panel-bg); color:var(--text-primary); }

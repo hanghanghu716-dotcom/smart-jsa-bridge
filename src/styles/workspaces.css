@@ -2,3 +2,7 @@
 .jsa-section{margin-top:24px}.jsa-history{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin:18px 0;max-height:360px;overflow:auto}.jsa-workspace button[aria-pressed=true]{border-color:var(--accent);background:var(--surface-hover)}
 .jsa-workspace button,.jsa-workspace .jsa-primary{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}.jsa-nav{flex-wrap:wrap}.jsa-toolbar>*{min-width:0;max-width:100%}.jsa-card,.jsa-card-grid>*{min-width:0}.jsa-history>*{max-width:100%}
 .jsa-metric-help{margin:0 0 20px;color:var(--text-muted);font-size:13px}.jsa-metric-help summary{cursor:pointer;width:fit-content}.jsa-metric-help p{max-width:850px;line-height:1.7}
+
+.public-translation-notice { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:18px 0; padding:14px 18px; background:var(--accent-soft); border:1px solid var(--border-default); border-radius:12px; font-size:14px; line-height:1.6; }
+.public-translation-notice p { flex-basis:100%; margin:0; }
+.public-translation-notice button { min-height:40px; }

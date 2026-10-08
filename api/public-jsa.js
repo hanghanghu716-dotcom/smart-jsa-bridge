@@ -15,7 +15,7 @@ export function renderPublicHtml(shell, row, locale, failed = false, links = nul
   const title = (safe?.title || (failed ? ui.error : ui.unavailable)) + ' | Smart JSA Bridge';
   const description = safe?.analysis_data.map(step => step.proc?.stepTitle).filter(Boolean).join(' · ').slice(0, 180) || ui.intro;
   const canonical = safe ? `https://smartjsabridge.com/${safe.public_locale || locale}/public-jsa/${safe.id}` : '';
-  const index = publicJsaQuality(safe).indexable;
+  const index = publicJsaQuality(safe).indexable && safe.public_locale === locale;
   const metadata = `<title data-rh="true">${escape(title)}</title><meta data-rh="true" name="description" content="${escape(description)}"><meta data-rh="true" name="robots" content="${index ? 'index,follow' : 'noindex,follow'}"><meta data-rh="true" property="og:title" content="${escape(title)}"><meta data-rh="true" property="og:description" content="${escape(description)}">${canonical ? `<link data-rh="true" rel="canonical" href="${escape(canonical)}"><meta data-rh="true" property="og:url" content="${escape(canonical)}">` : ''}`;
   const d=getDiscoveryUi(locale),c=getCommunityUi(locale),stats=documentStats(safe);
   const list=(label,items)=>items?.length?`<section><h2>${escape(label)}</h2><ul>${items.map(item=>`<li><a href="${escape(publicHref(item,locale))}">${escape(item.title)}</a></li>`).join('')}</ul></section>`:'';

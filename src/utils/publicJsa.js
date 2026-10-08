@@ -1,7 +1,8 @@
+import { validCountry } from './publicCountry.js';
 import { SUPPORTED_LANGS } from '../locales/config.js';
 import { publicProjectSnapshot, projectEditorState } from './projectPersistence.js';
 
-export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,form_data,analysis_data,custom_layout,tags,created_at,updated_at,scrap_count,view_count,reuse_count,reuse_license,publication_context,license_accepted_at,parent_id,fork_count,assessment';
+export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,public_country,form_data,analysis_data,custom_layout,tags,created_at,updated_at,scrap_count,view_count,reuse_count,reuse_license,publication_context,license_accepted_at,parent_id,fork_count,assessment';
 const sortColumns = new Map([['latest', 'created_at'], ['popular', 'scrap_count'], ['views', 'view_count'], ['reused', 'reuse_count']]);
 export const publicSortColumn = sort => sortColumns.get(sort) || 'created_at';
 export const safeMetric = value => Number.isFinite(Number(value)) ? Math.max(0, Math.floor(Number(value))) : 0;
@@ -31,6 +32,7 @@ export function publicJsaView(row) {
   }));
   const clean = publicProjectSnapshot({ formData, analysisData, layoutData: publicLayout(row.custom_layout) });
   return { id: row.id, author_id: row.author_id, title: cleanText(row.title), is_public: true,
+    public_country: validCountry(row.public_country) ? row.public_country : null,
     public_locale: SUPPORTED_LANGS.includes(row.public_locale) ? row.public_locale : null,
     assessment: { checked:row.assessment?.checked===true, duplicate_of:validProjectId(row.assessment?.duplicate_of)?row.assessment.duplicate_of:null, review:['approved','rejected','pending','stale'].includes(row.assessment?.review)?row.assessment.review:'pending', revision:cleanText(row.assessment?.revision) },
     reuse_license: row.reuse_license === 'community-v1' ? row.reuse_license : null,

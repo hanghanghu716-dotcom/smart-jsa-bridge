@@ -1,3 +1,7 @@
+import { PUBLIC_COUNTRIES, exploreCountry, localeCountry, countryLabel } from '../utils/publicCountry';
+import { getPublicCountryUi } from '../locales/publicCountryUi';
+import { usePublicTranslation } from '../hooks/usePublicTranslation';
+import PublicTranslationNotice from './PublicTranslationNotice';
 import CommunityFooter from './CommunityFooter';
 import { getSocialUi } from '../locales/socialUi';
 import '../styles/community.css';
@@ -39,7 +43,9 @@ export default function PublicExplore() {
   const d=getDiscoveryUi(i18n.language);
   const [params,setParams]=useSearchParams();
   const query=useMemo(()=>exploreQuery(params),[params]);
-  const {search,sort,tags,page}=query;
+  const {search,sort,tags,page,country}=query;
+  const countryUi=getPublicCountryUi(i18n.language);
+  const selectedCountry=exploreCountry(country,i18n.language);
   const queryRef=useRef(query);
   useEffect(()=>{queryRef.current=query;},[query]);
   const change=patch=>{const next={...queryRef.current,...patch,page:0};queryRef.current=next;setParams(exploreSearch(next).slice(1),{replace:true});};
@@ -77,7 +83,7 @@ export default function PublicExplore() {
           blocked = (users.data || []).map(item => item.blocked_user_id);
           hidden = (projects.data || []).map(item => item.project_id);
         }
-        const result = await listPublicJsa({ search, tags, sort, page, blocked, hidden });
+        const result = await listPublicJsa({ search, tags, sort, page, country: selectedCountry, blocked, hidden });
         if (active) {
           const visible = result.rows.filter(row => !blocked.includes(row.author_id) && !hidden.includes(row.id));
           setRows(visible);
@@ -88,9 +94,10 @@ export default function PublicExplore() {
       finally { if (active) setLoading(false); }
     }, search ? 250 : 0);
     return () => { active = false; clearTimeout(timer); };
-  }, [search, sort, tags, page, attempt]);
+  }, [search, sort, tags, page, attempt, selectedCountry]);
+  const translation=usePublicTranslation(rows.filter(row=>!selectedCountry||row.public_country===selectedCountry),i18n.language);
   return <div className="jsa-workspace explore-page" dir={i18n.dir()}>
-    <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={exploreSearch({page})} noIndex={Boolean(search || tags.length || sort!=='latest' || error || (!loading&&!rows.length))} />
+    <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={exploreSearch({page})} noIndex={Boolean(search || tags.length || sort!=='latest' || country || error || (!loading&&!rows.length))} />
     <header className="jsa-nav explore-nav"><LanguageLink className="explore-brand" to="/"><span className="explore-brand-mark"><ExploreIcon name="library" /></span>Smart JSA Bridge</LanguageLink><ThemeSwitcher compact /></header>
     <main className="jsa-container">
       <section className="explore-hero">
@@ -102,22 +109,28 @@ export default function PublicExplore() {
         <label className="explore-search"><ExploreIcon name="search" /><input aria-label={ui.search} placeholder={ui.search} value={search} onChange={e => { setSearch(e.target.value); }} /></label>
         <select aria-label={ui.sort} value={sort} onChange={e => { setSort(e.target.value); }}><option value="latest">{ui.latest}</option><option value="popular">{ui.popular}</option><option value="views">{ui.mostViewed}</option><option value="reused">{ui.mostReused}</option></select>
       </div>
+      <label className="explore-country">{countryUi.country}<select value={country||'local'} onChange={e=>{setRows([]);setTotal(0);change({country:e.target.value==='local'?undefined:e.target.value});}}>
+        <option value="local">{countryUi.local} · {countryLabel(localeCountry(i18n.language),i18n.language)}</option>
+        <option value="all">{countryUi.all}</option>
+        {PUBLIC_COUNTRIES.map(code=><option key={code} value={code}>{countryLabel(code,i18n.language)}</option>)}
+      </select></label>
       {suggestedTags.length>0 && <div className="explore-suggestions"><strong>{t('tagSearchResultLabel')}</strong><div className="explore-tags">{suggestedTags.map(tag=><button key={tag} onClick={()=>{change({tags:tags.includes(tag)?tags.filter(t=>t!==tag):[...tags,tag],search:''});}}>#{t(tag,{ns:'tags'})}</button>)}</div></div>}
       <details className="explore-filters" open>
         <summary>{t('sidebarTitle')}{tags.length>0 && <span>{tags.length}</span>}</summary>
-        <div className="explore-filter-tools"><button onClick={()=>{change({tags:[],search:'',sort:'latest'});}}>{t('resetBtn')}</button></div>
+        <div className="explore-filter-tools"><button onClick={()=>{change({tags:[],search:'',sort:'latest',country:undefined});}}>{t('resetBtn')}</button></div>
         <div className="explore-filter-groups">{groups.map(([id,label,values])=><details key={id}><summary>{t(label)}</summary><div className="explore-filter-options">{values.map(tag=><button key={tag} aria-pressed={tags.includes(tag)} onClick={()=>toggleTag(tag)}>{t(tag,{ns:'tags'})}</button>)}</div></details>)}</div>
       </details>
       <div className="explore-results-heading"><h2>{t('totalLabel')}<strong>{loading&&!rows.length?'…':total.toLocaleString(getLanguageTag(i18n.language))}</strong>{t('assetCountLabel')}</h2>{tags.map(tag => <button key={tag} className="explore-active-filter" onClick={() => toggleTag(tag)}>#{t(tag,{ns:'tags'})}<ExploreIcon name="close" /></button>)}</div>
       <details className="jsa-metric-help"><summary>{ui.metricHelp}</summary><p>{ui.metricRules}</p></details>
       {error && <div className="explore-state" role="alert"><p>{ui.error}</p><button onClick={() => setAttempt(n => n + 1)}>{ui.retry}</button></div>}
       {loading && <div className="explore-loading" role="status" aria-label={ui.title}><span /><span /><span /></div>}
-      {!loading && !error && rows.length === 0 && <div className="explore-state"><ExploreIcon name="search" /><p>{ui.empty}</p></div>}
-      <div className="jsa-card-grid explore-grid" aria-busy={loading}>{rows.map(row => <article className="jsa-card explore-card" key={row.id}>
+      {!loading && !error && rows.length === 0 && <div className="explore-state"><ExploreIcon name="search" /><p>{selectedCountry?countryUi.empty:ui.empty}</p>{selectedCountry&&<button onClick={()=>change({country:'all'})}>{countryUi.all}</button>}</div>}
+      <PublicTranslationNotice translation={translation} locale={i18n.language}/>
+      <div className="jsa-card-grid explore-grid" aria-busy={loading}>{translation.rows.map(row => <article className="jsa-card explore-card" key={row.id}>
         <div className="explore-card-top"><span className="explore-document-icon"><ExploreIcon name="document" /></span><PublicProjectActions row={row} onChanged={()=>{change({});setAttempt(n=>n+1);}} /></div>
-        <h2><LanguageLink to={'/public-jsa/' + row.id}>{row.title || ui.detail}</LanguageLink></h2>
+        <h2 lang={getLanguageTag(translation.translated?i18n.language:row.public_locale||i18n.language)}><LanguageLink to={'/public-jsa/' + row.id}>{row.title || ui.detail}</LanguageLink></h2>
         <p className="explore-meta"><ExploreIcon name="steps" />{ui.steps}<strong>{row.analysis_data.length}</strong></p>
-        <p className="explore-document-meta"><span>{row.form_data.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}</span><time dateTime={row.created_at}>{new Date(row.created_at).toLocaleDateString(getLanguageTag(i18n.language))}</time></p>
+        <p className="explore-document-meta"><span>{countryLabel(row.public_country,i18n.language)}</span><span>{row.form_data.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}</span><time dateTime={row.created_at}>{new Date(row.created_at).toLocaleDateString(getLanguageTag(i18n.language))}</time></p>
         <div className="explore-tags">{row.tags.slice(0, 5).map(value => <button key={value} aria-pressed={tags.includes(value)} onClick={() => toggleTag(value)}>#{t(value,{ns:'tags'})}</button>)}</div>
         <dl className="explore-metrics">{[['eye',ui.views,row.view_count],['reuse',ui.reuses,row.reuse_count],['bookmark',ui.scraps,row.scrap_count]].map(([icon,label,count]) => <div key={icon}><dt><ExploreIcon name={icon} />{label}</dt><dd>{count.toLocaleString(getLanguageTag(i18n.language))}</dd></div>)}</dl>
         <div className="explore-card-footer"><LanguageLink className="explore-detail" to={'/public-jsa/' + row.id}>{ui.detail}<ExploreIcon name="arrow" /></LanguageLink></div>

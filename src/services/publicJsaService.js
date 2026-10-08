@@ -1,3 +1,4 @@
+import { validCountry } from '../utils/publicCountry.js';
 import { supabase } from '../supabaseClient';
 import { PUBLIC_JSA_FIELDS, publicJsaView, validProjectId, publicSortColumn } from '../utils/publicJsa.js';
 
@@ -7,8 +8,9 @@ export async function getPublicJsa(id, client = supabase) {
   if (error) throw error;
   return publicJsaView(data);
 }
-export async function listPublicJsa({ search = '', tags = [], sort = 'latest', page = 0, blocked = [], hidden = [], client = supabase } = {}) {
+export async function listPublicJsa({ search = '', tags = [], sort = 'latest', page = 0, country = null, blocked = [], hidden = [], client = supabase } = {}) {
   let query = client.from('public_jsa_catalog').select(PUBLIC_JSA_FIELDS, { count: 'exact' }).eq('is_public', true);
+  if (validCountry(country)) query = query.eq('public_country', country);
   const excludedAuthors = blocked.filter(validProjectId), excludedProjects = hidden.filter(validProjectId);
   if (excludedAuthors.length) query = query.not('author_id', 'in', '(' + excludedAuthors.join(',') + ')');
   if (excludedProjects.length) query = query.not('id', 'in', '(' + excludedProjects.join(',') + ')');

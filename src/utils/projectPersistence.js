@@ -1,3 +1,4 @@
+import { documentCountry } from './publicCountry.js';
 import { pickDocumentLayout } from './documentLayout.js';
 
 export function getSaveVisibility(formData, context) {
@@ -9,7 +10,7 @@ export function projectEditorState(project, own = false) {
   const layout = project.custom_layout || {};
   return {
     ...pickDocumentLayout(layout),
-    formData: { ...project.form_data, saveVisibility: own && project.is_public ? 'public' : 'private' }, participants: project.participants || [],
+    formData: { ...project.form_data, ...(project.public_country && !project.form_data?.context ? { context: { jurisdiction: project.public_country, documentLocale: project.public_locale || '' } } : {}), saveVisibility: own && project.is_public ? 'public' : 'private' }, participants: project.participants || [],
     analysisData: project.analysis_data || [],
     procedures: layout.procedures || (project.analysis_data || []).map(step => step.proc).filter(Boolean),
     existingId: own ? project.id : null, id: own ? project.id : null,
@@ -46,7 +47,7 @@ export function projectPayload(snapshot, userId, isPublic, tags = [], parentId =
     author_id: userId, user_id: userId, title: data.formData.projectName,
     ...(isPublic ? { reuse_license: 'community-v1', publication_context: snapshot.publicationContext || {} } : {}),
     project_name: data.formData.projectName, is_public: isPublic,
-    ...(isPublic ? { public_locale: snapshot.locale || null } : {}),
+    ...(isPublic ? { public_locale: snapshot.locale || null, public_country: documentCountry(snapshot.formData?.context, snapshot.locale) } : {}),
     form_data: isPublic ? data.formData : { ...data.formData, saveVisibility: 'private' }, participants: data.participants || [],
     analysis_data: data.analysisData || [], custom_layout: layout,
     tags, auto_tags: tags, parent_id: parentId,
