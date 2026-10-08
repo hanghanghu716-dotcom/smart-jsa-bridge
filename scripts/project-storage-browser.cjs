@@ -104,6 +104,21 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  assert.ok(calls.some(x=>x[0]==='PATCH'));assert.equal(calls.filter(x=>x[0]==='archive').length,archived+1);
  assert.ok(p.url().endsWith('/library'));await p.waitForSelector('[data-storage-usage]');
  assert.match(await p.$eval('[data-storage-usage]',n=>n.textContent),/4 \/ 3/);
+ // A failed private save retains both the editor and draft; retry saves once.
+ usage={used:2,limit:3,trial_active:false,can_create:true};quotaReject=false;failProject=true;
+ await open('export',{...initial,openSaveDialog:true});await p.waitFor(1200);
+ const failedArchiveCount=calls.filter(x=>x[0]==='archive').length,failedProjectCount=projects.length;
+ const draftBeforeFailure=await p.evaluate(()=>sessionStorage.getItem('smartjsa_active_draft_id'));
+ assert.ok(draftBeforeFailure);
+ await p.click('[data-save-mode=private]');await p.waitFor(1200);
+ assert.equal(projects.length,failedProjectCount);
+ assert.equal(calls.filter(x=>x[0]==='archive').length,failedArchiveCount);
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('smartjsa_active_draft_id')),draftBeforeFailure);
+ assert.ok(p.url().endsWith('/export'));assert.ok(dialogs.some(x=>x.includes('저장하지 못했습니다')));
+ failProject=false;await p.click('[data-save-mode=private]');await p.waitFor(1400);
+ assert.equal(projects.length,failedProjectCount+1);assert.equal(calls.filter(x=>x[0]==='archive').length,failedArchiveCount+1);
+ assert.ok(p.url().endsWith('/library'));
+ usage={used:3,limit:3,trial_active:false,can_create:false};quotaReject=true;
  // Full private storage must not publish automatically; explicit public consent still permits publication.
  await open('export',{...initial,openSaveDialog:true,formData:{...initial.formData,saveVisibility:'public'}});
  assert.equal(await p.$eval('[data-save-mode=public]',n=>n.disabled),true);
@@ -123,6 +138,6 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   assert.equal(await p.$eval('.storage-visibility',n=>n.scrollWidth<=n.clientWidth+1),true);
   await p.screenshot({path:path.join(out,'info-visibility-'+locale+'.png')});
  }
- assert.deepEqual(errors,[]);console.log('PASS: Info selection, navigation, draft recovery, safe fork defaults, consented public save at quota, ko/en/ar layout, quota race, beta expiry and private update.');
+ assert.deepEqual(errors,[]);console.log('PASS: Info selection, navigation, draft recovery, safe fork defaults, consented public save at quota, ko/en/ar layout, quota race, beta expiry, private update and failed-save retry without draft loss.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

@@ -96,16 +96,20 @@ export async function hashBlob(blob) {
     .map((x) => x.toString(16).padStart(2, "0"))
     .join("");
 }
-async function uploadOnce(path, blob) {
+async function uploadOnce(path, blob, expectedHash) {
   const { error } = await supabase.storage
     .from(bucket)
     .upload(path, blob, { contentType: blob.type, upsert: false });
-  if (
-    error &&
-    String(error.statusCode) !== "409" &&
-    error.message !== "The resource already exists"
-  )
-    throw error;
+  if (!error) return;
+  const duplicate = String(error.statusCode) === "409" ||
+    ["ResourceAlreadyExists", "Duplicate"].includes(error.code) ||
+    /^(The resource already exists|Asset Already Exists)$/i.test(error.message || "");
+  if (!duplicate) throw error;
+  // An interrupted response can leave the upload completed. Reuse it only after
+  // verifying the stored bytes; never attach new metadata to a different file.
+  const stored = await assetBlob(path);
+  if (stored.size !== blob.size || await hashBlob(stored) !== expectedHash)
+    throw Error("WORK_UPLOAD_MISMATCH");
 }
 export async function uploadDrawing(file, meta, pageCount) {
   const user = await workUser();
@@ -120,7 +124,7 @@ export async function uploadDrawing(file, meta, pageCount) {
     throw Error("WORK_FILE_INVALID");
   const object_path = `${user.id}/drawings/${id}/source.${ext}`,
     sha256 = await hashBlob(file);
-  await uploadOnce(object_path, file);
+  await uploadOnce(object_path, file, sha256);
   const { data, error } = await supabase
     .from("work_drawings")
     .insert({
@@ -161,7 +165,7 @@ export async function archiveWorkOutput(id, run, pdf, drawings) {
     sha256 = await hashBlob(pdf),
     object_path = `${user.id}/outputs/${id}/output.pdf`;
   if (pdf.size > 40 * 1024 * 1024) throw Error("WORK_OUTPUT_LARGE");
-  await uploadOnce(object_path, pdf);
+  await uploadOnce(object_path, pdf, sha256);
   const snapshot = {
     ...structuredClone(run),
     drawings: drawings

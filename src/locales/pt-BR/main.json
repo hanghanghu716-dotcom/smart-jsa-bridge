@@ -65,6 +65,9 @@
     "previousGroup": "5 anteriores",
     "nextGroup": "5 seguintes",
     "page": "Página {{page}}",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "Ir para a página",
+    "jumpButton": "Ir",
+    "jumpError": "Digite um número inteiro de página entre 1 e {{total}}."
   }
 }

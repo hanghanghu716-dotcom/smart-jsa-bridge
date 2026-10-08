@@ -1,4 +1,17 @@
 /* Preserve the existing rounded writing buttons; only their order and colours change. */
+.main-entry-copy h2 { white-space: pre-line; text-wrap: balance; word-break: normal; overflow-wrap: normal; }
+.main-entry-description { white-space: pre-line; text-wrap: pretty; }
+.main-copy-line { display: block; white-space: normal; text-wrap: balance; }
+.main-entry-copy:lang(ko) h2, .main-entry-copy:lang(ko) .main-entry-description { word-break: keep-all; }
+.main-entry-copy:lang(ja) { line-break: strict; }
+.main-copy-term { white-space: nowrap; }
+/* Size long copy to its available column, including beside desktop ad slots. */
+.main-entry-copy { container: main-copy / inline-size; width: 100%; min-width: 0; }
+@container main-copy (max-width: 500px) {
+  .main-entry-copy h2 { font-size: 28px; }
+  .main-entry-description { font-size: 14px; }
+  .main-entry-actions .main-entry-button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+}
 .main-entry-button { display: inline-block; padding: 1.2rem 4.5rem; border-radius: 4rem; font-size: 1.1rem; font-weight: bold; color: #fff; cursor: pointer; white-space: nowrap; transition: all .2s ease; }
 .main-entry-primary { background: #007bff; border: 1px solid #007bff; box-shadow: 0 0 15px rgba(0,123,255,.3); }
 .main-entry-primary:hover { background: #0056b3; border-color: #0056b3; box-shadow: 0 0 30px rgba(0,123,255,.6); }

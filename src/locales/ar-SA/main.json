@@ -65,6 +65,9 @@
     "previousGroup": "الـ5 السابقة",
     "nextGroup": "الـ5 التالية",
     "page": "الصفحة {{page}}",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "الانتقال إلى صفحة",
+    "jumpButton": "انتقال",
+    "jumpError": "أدخل رقم صفحة صحيحاً من 1 إلى {{total}}."
   }
 }

@@ -1,4 +1,5 @@
 import ThemeSettings from '../components/ThemeSettings';
+import CasePageJump from '../components/CasePageJump';
 import { cleanSummary } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
 import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
@@ -491,12 +492,19 @@ export default function Main() {
           </aside>
 
           <main style={styles.centerContent} className="max-lg:!pl-0 max-lg:w-full min-w-0">
-            <div className="main-entry-copy" style={styles.heroContent}>
+            <div className="main-entry-copy" lang={baseLanguage} style={styles.heroContent}>
               <h2 className="text-[28px] lg:text-[clamp(2.5rem,5vw,3.8rem)] font-extrabold leading-tight mb-6" style={styles.mainTitle}>
-                {heroCopy.title}
+                {heroCopy.title.split('\n').map((line, index) => (
+                  <span className="main-copy-line" key={index}>{index > 0 ? '\n' : ''}{line}</span>
+                ))}
               </h2>
-              <p className="text-[14px] lg:text-[1.2rem]" style={styles.subTitle}>
-                {heroCopy.description}
+              <p className="main-entry-description text-[14px] lg:text-[1.2rem]" style={styles.subTitle}>
+                {heroCopy.description.split('\n').map((line, index) => (
+                  <span className="main-copy-line" key={index}>{index > 0 ? '\n' : ''}{baseLanguage === 'ja'
+                    ? line.split(/(公開JSA|作業ステップ|リスクアセスメント|安全作業手順書|KY活動記録|作業許可書)/g).map((part, termIndex) =>
+                      termIndex % 2 ? <span className="main-copy-term" key={termIndex}>{part}</span> : part
+                    ) : line}</span>
+                ))}
               </p>
 
               <div className="main-entry-actions" style={styles.heroBtnGroup}>
@@ -648,7 +656,7 @@ export default function Main() {
 
           {currentItems.length > 0 ? (
             <>
-              <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 lg:px-0">
+              <div id="case-study-results" tabIndex={-1} style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 lg:px-0">
                 {currentItems.map((caseItem) => (
                   <LanguageLink
                     key={caseItem.post_group_id}
@@ -689,6 +697,8 @@ export default function Main() {
                   <button type="button" className="case-pagination-next" disabled={groupEnd >= totalPages}
                     onClick={() => handlePageChange(groupEnd + 1)}>{t('casePagination.nextGroup')}</button>
                   <span className="case-pagination-status" aria-live="polite">{t('casePagination.status', { current: activePage, total: totalPages })}</span>
+                  <CasePageJump key={`${currentLanguage}:${activePage}:${totalPages}:${searchQuery}`}
+                    current={activePage} total={totalPages} onPageChange={handlePageChange} t={t}/>
                 </nav>
               )}
 
@@ -725,7 +735,7 @@ export default function Main() {
 const styles = {
   wrapper: { backgroundColor: '#fff', color: '#1c1b1f', width: '100%', overflowX: 'hidden' },
   container: { maxWidth: '1440px', margin: '0 auto' },
-  heroSection: { position: 'relative', height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  heroSection: { position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'opacity 2s ease-in-out' },
   dimOverlay: { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%)', zIndex: 1 },

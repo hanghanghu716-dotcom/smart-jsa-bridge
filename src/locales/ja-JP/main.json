@@ -65,6 +65,9 @@
     "previousGroup": "前の5ページ",
     "nextGroup": "次の5ページ",
     "page": "{{page}}ページ",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "ページを指定",
+    "jumpButton": "移動",
+    "jumpError": "1〜{{total}}の整数のページ番号を入力してください。"
   }
 }

@@ -64,6 +64,9 @@
     "previousGroup": "5 précédentes",
     "nextGroup": "5 suivantes",
     "page": "Page {{page}}",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "Aller à la page",
+    "jumpButton": "Aller",
+    "jumpError": "Saisissez un numéro de page entier entre 1 et {{total}}."
   }
 }

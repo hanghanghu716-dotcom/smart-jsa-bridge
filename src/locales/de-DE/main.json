@@ -64,6 +64,9 @@
     "previousGroup": "Vorherige 5",
     "nextGroup": "Nächste 5",
     "page": "Seite {{page}}",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "Seite aufrufen",
+    "jumpButton": "Los",
+    "jumpError": "Geben Sie eine ganze Seitenzahl von 1 bis {{total}} ein."
   }
 }

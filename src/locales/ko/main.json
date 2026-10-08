@@ -66,6 +66,9 @@
     "previousGroup": "이전 5페이지",
     "nextGroup": "다음 5페이지",
     "page": "{{page}}페이지",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "페이지 바로 이동",
+    "jumpButton": "이동",
+    "jumpError": "1~{{total}} 사이의 정수 페이지 번호를 입력해주세요."
   }
 }

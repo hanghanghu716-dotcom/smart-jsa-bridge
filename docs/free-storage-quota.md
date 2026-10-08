@@ -1,5 +1,11 @@
 # Community private document storage
 
+## Actual-account quota acceptance — 2026-10-08
+
+A pre-existing Community test account passed normal authenticated Data API checks: filling three private slots, rejecting a fourth save and a null-visibility bypass, updating an existing fixture at the cap, rejecting an outdated revision, freeing a slot and allowing exactly one of two concurrent insert requests. Every pre-existing project ID/revision stayed unchanged. Only fixtures created by this test were removed afterward; usage returned from three to its original zero. No trial dates, permissions or production policies were changed. This closes the live quota-boundary gap described in the historical notes below.
+
+The intercepted browser test separately confirms a failed project save keeps the active draft and editor; retry creates one project and archives the draft only after success. Test-account API checks and simulated network-failure UI checks are distinct; this does not claim physical printer or exhaustive regional coverage.
+
 ## 2026-10-02 policy restoration
 
 Community is limited to **three concurrently saved private documents**, not three monthly creations. `20261001102907_community_operations.sql` had removed enforcement while retaining counters. The new migration `20261001162553_community_private_storage_visibility.sql` restores the cap using those counters and the existing row-locking trigger. No stored document is deleted, hidden or published by this change. Professional free beta lifts the cap while active; expiry preserves existing documents and restricts only additional private slots.

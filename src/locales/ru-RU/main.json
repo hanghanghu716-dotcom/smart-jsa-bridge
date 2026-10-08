@@ -64,6 +64,9 @@
     "previousGroup": "Предыдущие 5",
     "nextGroup": "Следующие 5",
     "page": "Страница {{page}}",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "Перейти на страницу",
+    "jumpButton": "Перейти",
+    "jumpError": "Введите целый номер страницы от 1 до {{total}}."
   }
 }

@@ -64,6 +64,9 @@
     "previousGroup": "Previous 5",
     "nextGroup": "Next 5",
     "page": "Page {{page}}",
-    "status": "{{current}} / {{total}}"
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "Go to page",
+    "jumpButton": "Go",
+    "jumpError": "Enter a whole page number from 1 to {{total}}."
   }
 }
