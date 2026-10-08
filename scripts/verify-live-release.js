@@ -13,14 +13,28 @@ export function checkManifest(actual, expected) {
   }
   if (expected && (expected.length !== actual.length || expected.some(g => !actual.some(a => a.route === g.route && a.pdf === g.pdf && a.sha256 === g.sha256)))) throw Error('LIVE_RELEASE_NOT_CURRENT');
 }
-export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', expected, fetcher = fetch } = {}) {
+export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', expected, fetcher = fetch, manifestAttempts = 6, retryDelayMs = 5000, sleep = ms => new Promise(resolve => setTimeout(resolve, ms)), onManifestAttempt = () => {} } = {}) {
+  if (!Number.isInteger(manifestAttempts) || manifestAttempts < 1 || manifestAttempts > 10 || !Number.isFinite(retryDelayMs) || retryDelayMs < 0 || retryDelayMs > 10000) throw Error('INVALID_MANIFEST_RETRY_OPTIONS');
+  // A bad local expectation cannot be repaired by waiting for the production alias.
+  if (expected) checkManifest(expected);
   const get = async path => {
     const r = await fetcher(base + path, { signal: AbortSignal.timeout(30000), redirect: 'error', headers: { 'Cache-Control': 'no-cache' } });
     if (!r.ok) throw Error(`HTTP_${r.status}: ${path}`);
     return r;
   };
-  const manifest = await (await get('/assets/guides/manifest.json')).json();
-  checkManifest(manifest, expected);
+  let manifest;
+  for (let attempt = 1; attempt <= manifestAttempts; attempt++) {
+    const response = await get('/assets/guides/manifest.json');
+    manifest = await response.json();
+    let mismatch;
+    try { checkManifest(manifest, expected); } catch (error) { mismatch = error; }
+    onManifestAttempt({ attempt, observedAt: new Date().toISOString(), status: response.status,
+      headers: Object.fromEntries(response.headers), manifest, error: mismatch?.message || null });
+    if (!mismatch) break;
+    // Retry only a complete, valid older/different manifest. Corruption still fails immediately.
+    if (mismatch.message !== 'LIVE_RELEASE_NOT_CURRENT' || attempt === manifestAttempts) throw mismatch;
+    await sleep(retryDelayMs);
+  }
   const failures = [], queue = [...manifest]; let verified = 0;
   await Promise.all(Array.from({length:4}, async () => {
     while (queue.length) {
@@ -43,7 +57,15 @@ export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', e
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const path = process.argv[2], expected = path ? JSON.parse(fs.readFileSync(path,'utf8')) : undefined;
-  const result = await verifyLiveRelease({expected});
-  console.log(JSON.stringify(result,null,2));
-  if (result.failures.length) process.exitCode = 1;
+  const diagnostic = { startedAt: new Date().toISOString(), expectedPath: path || null, expected, attempts: [] };
+  const saveDiagnostic = () => { fs.mkdirSync('.cache', { recursive: true }); fs.writeFileSync('.cache/live-release-check.json', JSON.stringify(diagnostic, null, 2)); };
+  try {
+    const result = await verifyLiveRelease({expected, onManifestAttempt: attempt => { diagnostic.attempts.push(attempt); saveDiagnostic(); }});
+    diagnostic.result = result; saveDiagnostic();
+    console.log(JSON.stringify(result,null,2));
+    if (result.failures.length) process.exitCode = 1;
+  } catch (error) {
+    diagnostic.error = error.message; saveDiagnostic();
+    throw error;
+  }
 }

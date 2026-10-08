@@ -43,3 +43,15 @@ jobs:
         run: npx --yes vercel@59.23.2 deploy --prebuilt --prod --token="$VERCEL_TOKEN"
       - name: Verify production HTML and every localized PDF
         run: node scripts/verify-live-release.js dist/assets/guides/manifest.json
+      - name: Preserve failed release comparison evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-check-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: ignore
+          retention-days: 7
+          include-hidden-files: true
+          path: |
+            dist/assets/guides/manifest.json
+            .vercel/output/static/assets/guides/manifest.json
+            .cache/live-release-check.json
