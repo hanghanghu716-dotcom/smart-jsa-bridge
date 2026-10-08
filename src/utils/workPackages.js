@@ -1,5 +1,6 @@
 import { templateLayout } from "./documentLayout.js";
 import { workContext } from './workJurisdiction.js';
+import { defaultPaperSize } from './paperFormat.js';
 import { regionalContextMismatch } from './regionalWorkTemplates.js';
 export const FIELD_KINDS = [
   "text",
@@ -71,6 +72,7 @@ export function startWork(record) {
     version: record.version_name,
     packageUpdatedAt: record.updated_at,
     startedAt: new Date().toISOString(),
+    paperSize: defaultPaperSize(data.context?.jurisdiction),
     context: workContext(data.context),
     regionalReviewed: false,
     common: {

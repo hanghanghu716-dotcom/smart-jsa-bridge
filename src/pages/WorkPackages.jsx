@@ -120,7 +120,7 @@ export default function WorkPackages() {
       version_name: "ver.1",
       data: {
         commonDefaults: { projectName: "", workLocation: "", department: "" },
-        context: workContext(),
+        context: workContext(location.state?.regionalStartContext),
         documents: [],
       },
     });

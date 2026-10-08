@@ -1,0 +1,28 @@
+.regional-entry-container { max-width: 1288px; margin: 0 auto; padding: 0 24px; }
+.regional-journey { margin: 28px 0; padding: clamp(20px, 3vw, 32px); border: 1px solid var(--border-default, #d6deea); border-radius: 20px; background: var(--card-bg, #fff); color: var(--text-primary, #172536); box-shadow: 0 8px 28px #132f5310; }
+.regional-journey-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.regional-journey h2 { margin: 6px 0 12px; font-size: clamp(1.15rem, 2.5vw, 1.5rem); line-height: 1.4; }
+.regional-journey p { line-height: 1.65; margin: 8px 0 16px; overflow-wrap: anywhere; }
+.regional-journey-country { color: var(--accent, #066bd4); font-size: .82rem; font-weight: 750; }
+.regional-journey-activity { padding-inline-start: 12px; border-inline-start: 3px solid #0878de; font-weight: 650; }
+.regional-journey-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 0; margin: 22px 0; border: 0; min-width: 0; }
+.regional-journey-fields label, .regional-paper-select { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: .87rem; font-weight: 650; }
+.regional-journey-fields select, .regional-paper-select select { width: 100%; max-width: 100%; min-width: 0; padding: 11px 12px; min-height: 44px; border: 1px solid var(--border-default, #c4cfde); border-radius: 10px; background: var(--input-bg, #fff); color: var(--text-primary, #172536); font: inherit; }
+.regional-paper-select { margin-block: 12px; }
+.regional-journey-fields .regional-paper-select { margin: 0; }
+.regional-journey-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.regional-journey-actions button, .regional-journey-actions a, .regional-example-start { display: inline-flex; justify-content: center; align-items: center; padding: 12px 18px; border: 1px solid var(--border-default, #c4cfde); border-radius: 10px; min-height: 44px; line-height: 1.45; background: var(--card-bg, #fff); color: var(--text-primary, #172536); text-decoration: none; font: inherit; font-size: .9rem; font-weight: 650; cursor: pointer; }
+.regional-journey-actions .regional-journey-primary { background: #0066cf; color: white; border-color: #0066cf; }
+.regional-journey button:disabled { opacity: .6; cursor: wait; }
+.regional-journey :focus-visible, .regional-example-start:focus-visible, .regional-paper-select select:focus-visible { outline: 3px solid #50a3ff; outline-offset: 3px; }
+.regional-hero-examples { display: inline-block; margin-top: 18px; color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.regional-example-start { margin-top: 16px; }
+.regional-blank-host { position: fixed; left: -20000px; top: 0; pointer-events: none; }
+.regional-blank-paper { background: white; color: black; padding: 16px; }
+.regional-blank-paper[dir=rtl] { font-family: Arial, sans-serif; }
+.regional-blank-paper tbody td { height: 32px; }
+.regional-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+/* Keep the entry panel inside the existing desktop side-ad gutters. */
+@media (min-width: 1024px) { .regional-entry-container { width: calc(100% - 400px); padding-inline: 0; } }
+@media (max-width: 700px) { .regional-journey-fields { grid-template-columns: 1fr; } .regional-journey-actions { align-items: stretch; flex-direction: column; } }
+@media print { .regional-journey, .regional-example-start, .regional-paper-select { display: none !important; } }

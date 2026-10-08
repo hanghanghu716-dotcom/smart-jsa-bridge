@@ -32,7 +32,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/work-at-height/introduction.htm"
     ],
-    "sha256": "6f2c648fadab793984730a0a815f0749a31a4cdc09f144bedaaa3d5c7a239e52"
+    "sha256": "c0aca830e9309382e89a9f40925d583a944b7cb92ddae080f354048d25f85a4b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:GB.confined",
@@ -67,7 +68,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/pubns/priced/l101.pdf"
     ],
-    "sha256": "aed8980d8014238323b43166d296e9660f4cf4d619d63683f7835777618dfa39"
+    "sha256": "0ada8215cc20bd1a8ef5a99746bb09d3bbbbc904dd026d5115397c9a48d215f1",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:GB.electrical",
@@ -102,7 +104,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/pubns/priced/hsg85.pdf"
     ],
-    "sha256": "49239b19188d2662fe700e47030456d2572dc7372e23dbf56c2c2f03ce429de1"
+    "sha256": "4e92121122733222b85d5b597a5d36d44bf97782c587149b11029f3dd819b12c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:GB.hot",
@@ -137,7 +140,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/welding/other-welding-risks.htm"
     ],
-    "sha256": "41a970408b122d4cd847be692aac149b23804cdd2ec6709ec2a274d9442e8530"
+    "sha256": "fc14bec4eda3698ab2c5fd335ccc032e350eb406efcfc3ef2774c49eb7a3bc4e",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:US.height",
@@ -173,7 +177,8 @@
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.28",
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.140"
     ],
-    "sha256": "b094eb63ebdc35aaaec9ce0f1c306f22c41d3b678a143871e6050cb3cd4fd94b"
+    "sha256": "34f5e8b4cafab26a9643244f7efe33dc5bea88aa7e713b232ed5a88a110ab41b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:US.confined",
@@ -208,7 +213,8 @@
     "sourceUrls": [
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146"
     ],
-    "sha256": "eded796adddda69ac2669c44782fa26f86b5ad1294307fe6ba04a3fa7d664652"
+    "sha256": "192bf6f1340da60c2daa4835db35b60ef229d66843578f738a6ef7b14a7b4745",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:US.electrical",
@@ -243,7 +249,8 @@
     "sourceUrls": [
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333"
     ],
-    "sha256": "3615ade90e6e2fa5a0a7bad9b63a64619445985f0024ed1e1dafaa1644b270a9"
+    "sha256": "af6dd7bc530e79eccff86547b0e962a51fb480bade0d1837cb57297a78fc2699",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:US.hot",
@@ -278,7 +285,8 @@
     "sourceUrls": [
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
     ],
-    "sha256": "d3fb0e3db8f0c2606d094c8f3f1a87dc03161ef39ffd6866983934d33cf76f41"
+    "sha256": "18c9e5de26958d860719aa59226679813f32cdf066482171945bad7b7ae6a5df",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA.height",
@@ -313,7 +321,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/fall/fall_protection_general.html"
     ],
-    "sha256": "5de000d51842423e90e0430eca3e06ec3aeb3da50b8ff7ef97fd9c3b085f6af7"
+    "sha256": "f9cd642f16501fb63258982a93c144d99bd178c44aa240202e020d0bdc8b9c7a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA.confined",
@@ -348,7 +357,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
     ],
-    "sha256": "2a2cd5864b4cf61056c913b271af2d147e4cee553c9b51275823d4c07a4ae489"
+    "sha256": "15f87f3ecb9df32c1d45320c63ea5ca87f6ced198ea443a01f26ba53ec53324c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA.electrical",
@@ -383,7 +393,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html"
     ],
-    "sha256": "61a5c276cf1bc3b264208120cab073bc3aa506ea3004ad30e31fe07b6dba080b"
+    "sha256": "b1fd1d2a91f5957bbae5f2e78af7952e01d8cc69a3b4a2a5efa5d6b43d05f09b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA.hot",
@@ -418,7 +429,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/safety_haz/welding/hotwork.html"
     ],
-    "sha256": "4abbf5eba27274c802c2911c896da0d4d990f5b83f502a3722e49cef20c81ff3"
+    "sha256": "33e255f1e29d03674da306c31180f9c1657f3585ea39d4a4b4808d8e8ae47b68",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-AB.height",
@@ -454,7 +466,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-9-fall-protection/",
       "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
     ],
-    "sha256": "70d42328636697fb378c8264c9600f3e5fa1d2e319c266d376dfc2a7158b230f"
+    "sha256": "5e0cf7b639977c610bac3aea820e39b52420677baa3c28ba827e543cba17fdc6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-AB.confined",
@@ -490,7 +503,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/",
       "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
     ],
-    "sha256": "639f1e94b4647bab7eeb232377e1727bc856c4994f668bf26ce33367dbdcb91f"
+    "sha256": "f810b97dd4e4fa8545774cff4b96b0c6f91e5827fbc5d856fbf1520a54dde4dc",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-AB.electrical",
@@ -526,7 +540,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
       "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
     ],
-    "sha256": "33a4363152209d51e121b1f5e2c0d9a82ba839680022e83ff146e81352191be5"
+    "sha256": "c9a75c5d8b63088f42604bd3b67db1e6f2a72183038acbdf1f1a207263cc8d0a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-AB.hot",
@@ -562,7 +577,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-10-fire-and-explosion-hazards/",
       "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf"
     ],
-    "sha256": "7193b8456becf5784f71b532d8c6c1b5f1ede10c763c3bdbab0cabf0717ab172"
+    "sha256": "5eb8be0e888a6a34f2607abb0dfbe6f02415d372e56f758c090a9ea1b6445782",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-BC.height",
@@ -598,7 +614,8 @@
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-11-fall-protection",
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-guidelines/guidelines-part-11"
     ],
-    "sha256": "305941b8531f34056e4533268b15bc9f19da862251c31ebf127b69a0958744b8"
+    "sha256": "310d763dbca7a3f98121bbc9ccdac2963d707e60a075f6329aee9fa1df24b2a5",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-BC.confined",
@@ -633,7 +650,8 @@
     "sourceUrls": [
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
     ],
-    "sha256": "3685979404dcdfcf78537b76aecb5a7ab6be47ecca4c1c97ea2f9553f671bb48"
+    "sha256": "c880d57620df529b7cc0c739b2fb76339f0a2a2e10034cbed5429d87828ded17",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-BC.electrical",
@@ -668,7 +686,8 @@
     "sourceUrls": [
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout"
     ],
-    "sha256": "d6dc80558d4c0951aebf51d479b97149e7a4f8f105cf2cfaff60eeda6fe0f115"
+    "sha256": "8dbd93f46f1f48f16a3975127723a8d372c63a944e43e11d8949a19a66f4e575",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-BC.hot",
@@ -703,7 +722,8 @@
     "sourceUrls": [
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-12-tools-machinery-and-equipment"
     ],
-    "sha256": "5a41b9b38d949e7ff0fe8394a011d83259d463d2b74dcb889dce82b5fce6a495"
+    "sha256": "99ec672aedeab2fe79153fea99adf60190a13441ca8eccdbb58c41bcf7b83aa8",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-ON.height",
@@ -738,7 +758,8 @@
     "sourceUrls": [
       "https://www.ontario.ca/laws/regulation/910213"
     ],
-    "sha256": "1e93cbaa758c7590bdc38316183aaeed29ac0ea449c114af141a05721df98d04"
+    "sha256": "68802520308b586a2aa8a0384d1b771874fee5da8f8af4c661b1e469a8d9a96c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-ON.confined",
@@ -776,7 +797,8 @@
       "https://www.ontario.ca/document/guideline-working-confined-spaces/coordination-document",
       "https://www.ontario.ca/laws/regulation/050632"
     ],
-    "sha256": "89c6f4d005c1992d8feae4538393b520bc2c06a97b5ecbfb118a1495a3956043"
+    "sha256": "e52203431aa6404797aa7a19ab6c9dc3b748fbd0b116e39f6293cf54e42ada3c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-ON.electrical",
@@ -812,7 +834,8 @@
       "https://www.ontario.ca/laws/regulation/910213",
       "https://www.ontario.ca/laws/regulation/900851"
     ],
-    "sha256": "9e32d15fce3f2e4b7cf78b086a7e4f603b010fbc0b342ccd838670f90346c2b8"
+    "sha256": "3e1ace0655f36870fa092628c9d409c0f5767f631e4d6ede9ed3d09cf11fc7c9",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-ON.hot",
@@ -847,7 +870,8 @@
     "sourceUrls": [
       "https://www.ontario.ca/laws/regulation/070213"
     ],
-    "sha256": "e35bc30e8555e0aadeb4ed4e35a76cb6479d2a35ec525dcf5b506cc139459243"
+    "sha256": "80f2982c74cba933e026b5fa00485bf40fdc3dfbb16cba9ceab0983e688a4ef3",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:AU.height",
@@ -884,7 +908,8 @@
       "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
       "https://www.safeworkaustralia.gov.au/sites/default/files/2022-10/Model%20Code%20of%20Practice%20-%20Managing%20the%20Risk%20of%20Falls%20at%20Workplaces%2021102022_0.pdf"
     ],
-    "sha256": "ed119537b5ae179f39506198ca065808570634a00bb079a7a66c87d3dccdceaf"
+    "sha256": "9749e202e333e9674045fd274adc0bbcfc666a16a3da8896ab80b8accb23599a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:AU.confined",
@@ -921,7 +946,8 @@
       "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
       "https://www.worksafe.vic.gov.au/resources/compliance-code-confined-spaces"
     ],
-    "sha256": "761b62217eee44b58b698d06c8ca776aaf9f0e49b8f2be8aebb9c4665f934f0d"
+    "sha256": "c96272e012454559430dd4b42255fcfa417808d3d8efafd481c32dffe9de9c08",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:AU.electrical",
@@ -957,7 +983,8 @@
       "https://www.safeworkaustralia.gov.au/system/files/documents/1810/model-cop-managing-electrical-risks-in-the-workplace.pdf",
       "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation"
     ],
-    "sha256": "dd4dfab956c64545b5164e8b754dbd93a651cc342f224c99ed9f1c1482986d82"
+    "sha256": "b23c575b6fefa60a661c5570c9bfa2615c06811f75521ed83ad44e66f3dfa5b5",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:AU.hot",
@@ -994,7 +1021,8 @@
       "https://www.safeworkaustralia.gov.au/law-and-regulation/legislation",
       "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf"
     ],
-    "sha256": "9e55f2756fbcdfce6a0f06d4b81606bbb27420d88ae508276509b7795f03ac65"
+    "sha256": "9ac5aa8549856c578465b90a8af491de7c46d8ee7092d65f2114e419ea009ca8",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:SG.height",
@@ -1031,7 +1059,8 @@
       "https://sso.agc.gov.sg/SL/WSHA2006-S223-2013",
       "https://www.tal.sg/wshc/topics/work-at-height/preventing-falls-from-heights"
     ],
-    "sha256": "46069b177a9971e5b36e0c2483880863fe644f824d7765c046d413a0e9c6b4e8"
+    "sha256": "e765d108167d74254db969757cab4fde3c50ad0ba5c8eaf00d3b8275e42c28ac",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:SG.confined",
@@ -1067,7 +1096,8 @@
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/technical-advisories/files/cs2.ashx",
       "https://sso.agc.gov.sg/SL/WSHA2006-S462-2009"
     ],
-    "sha256": "e5970463a44eae396e462729bb9a871877dccec769bcc3c15dba27349b79b0ab"
+    "sha256": "9e432992ea98ea204bce6bd49a7a5a3b3de62cd0f0712a8257fe112d784bcc3c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:SG.electrical",
@@ -1104,7 +1134,8 @@
       "https://sso.agc.gov.sg/SL/354A-RG1?DocDate=20260929&ProvIds=P1III-",
       "https://sso.agc.gov.sg/SL/EA2001-RG5?ProvIds=P1IV-"
     ],
-    "sha256": "f1338d2107c7b9c466ed53c7259e436d6a2b743c2c1b448c4053bf8e74115917"
+    "sha256": "211c2e7f4043eeb0af5612cbdd662d0800f118c4ba30d021ae5f860bf2e6a558",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:SG.hot",
@@ -1140,7 +1171,8 @@
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx",
       "https://sso.agc.gov.sg/SL/WSHA2006-S270-2008"
     ],
-    "sha256": "5ad56609bde331431474d4370ebdaafe0043ff45e78406ef547cc2ffb3218a2e"
+    "sha256": "f79221532cd8b0fd1ab2292d57f958725659748a1d538c2281772cb8ea4422d7",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:DE.height",
@@ -1176,7 +1208,8 @@
       "https://www.gesetze-im-internet.de/betrsichv_2015/anhang_1.html",
       "https://publikationen.dguv.de/widgets/pdf/download/article/1013"
     ],
-    "sha256": "03cb74e70ec78cf5ab1622fd79cc2079208abcd1f8f78069c44a2eb0b4bba7bd"
+    "sha256": "a304aa33a953f17fc5807183a86b6e8f8457b433d1318564d02a9178fe0c2488",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:DE.confined",
@@ -1211,7 +1244,8 @@
     "sourceUrls": [
       "https://publikationen.dguv.de/widgets/pdf/download/article/915"
     ],
-    "sha256": "b998945d78640579dba16ee8017c3c776b741784ecff0ad9fe124b6666801e2f"
+    "sha256": "69dbf882ca3ec3eb96c81610e0543f7eca8ef5e23b2b3a7fa217c554593acd41",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:DE.electrical",
@@ -1247,7 +1281,8 @@
       "https://www.bghm.de/arbeitsschuetzer/themen/elektrotechnik/arbeiten-an-elektrischer-anlagen-und-betriebsmitteln",
       "https://publikationen.dguv.de/widgets/pdf/download/article/284"
     ],
-    "sha256": "ef42acbcc869c08aed572ab2f9544bedafc08a32d4a521239655340051b663ff"
+    "sha256": "cdadf350635b56d1f3af60fcd9661a81ad153449bd5b811887dc1036314530e7",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:DE.hot",
@@ -1283,7 +1318,8 @@
       "https://publikationen.dguv.de/widgets/pdf/download/article/319",
       "https://publikationen.dguv.de/widgets/pdf/download/article/318"
     ],
-    "sha256": "da4e7b6a68171331921568944bb86fecd7edeb0ac489e06242ce3ff0c3931a26"
+    "sha256": "e077408b68a2527ccf92d04af4e1b79c35272cb0277791910148e429c8aca0bd",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:FR.height",
@@ -1320,7 +1356,8 @@
       "https://www.inrs.fr/risques/chutes-hauteur/reglementation-travail-hauteur.html",
       "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018531391"
     ],
-    "sha256": "724afc34b1d1fb4dced69f3be04e5442786b6804db3546597e680d9d5d293612"
+    "sha256": "6e4d8720aa5c1eb6c02bdb315eabed336bdf01934466cd54ceab3bb0948e3ce3",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:FR.confined",
@@ -1357,7 +1394,8 @@
       "https://www.inrs.fr/risques/espaces-confines/procedure-travail-espaces-confines.html",
       "https://www.inrs.fr/risques/espaces-confines/prevenir-risques"
     ],
-    "sha256": "a6350f6ee71931d61203d695db61bcf3c4656fb6cbf8b63995d31cd837d543dd"
+    "sha256": "8a3af21283848c822e55a17f12674b72d7f39868894c463fa3b87fabb3cf440d",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:FR.electrical",
@@ -1394,7 +1432,8 @@
       "https://www.inrs.fr/risques/electriques/prevention-risque-electrique.html",
       "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051500368"
     ],
-    "sha256": "57bf702d94c5f10e1c3d7a70a555f4c05c80e8ae774c254e2f9469c5c884f3aa"
+    "sha256": "fe45aa350fca82e2d87b6aea30b9d2bd1769803c46f243382f8268902a46dc92",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:FR.hot",
@@ -1429,7 +1468,8 @@
     "sourceUrls": [
       "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
     ],
-    "sha256": "9a7e31e9fed0b002f7b657a8c40779c006f415ca59a81b4c93ecd523e7145705"
+    "sha256": "e478263505afc86d381b4b6af1f11724c07f55541c92790466df4a7b604a9b33",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:KR.height",
@@ -1464,7 +1504,8 @@
     "sourceUrls": [
       "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039573"
     ],
-    "sha256": "007ff870596463f0002f2f0e8dd8dbf6f53eaf0ab68dc48496b47b8b2954f3ee"
+    "sha256": "6daf40fa2d2a98ac6891eabec5b5fcef19b562543965c46b19afefddf0830eeb",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:KR.confined",
@@ -1501,7 +1542,8 @@
       "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=154679",
       "https://moel.go.kr/news/enews/report/enewsView.do?news_seq=18669"
     ],
-    "sha256": "854bd02d11c3a7b5344448934ee80efbed0730bacdb788c395e6fdb72e40a001"
+    "sha256": "7c8b1cb510ccddf25844474b6dc9390bc8ac338b458b04ed6d1c4ba8e234a9a8",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:KR.electrical",
@@ -1536,7 +1578,8 @@
     "sourceUrls": [
       "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029038625"
     ],
-    "sha256": "a0d4ec7eab8ad2fb9e936af1b9f79a0b5fc88fbd2ca67b8b27723631e69ddbfe"
+    "sha256": "6feaf45317dd3f2b1e9d3d878a3022fa3ae0f07bdba152b4f84f788244b5ff6d",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:KR.hot",
@@ -1571,7 +1614,8 @@
     "sourceUrls": [
       "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75618"
     ],
-    "sha256": "ec56b72c5c44e7b90d980576e5fc0821240f717c2ecb48d59abdb4466bd7dd7a"
+    "sha256": "4c0773e5aad1656185b277311e813bf6d07f83b917b69ce0b2f3e39b02cf08ba",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:ES.height",
@@ -1607,7 +1651,8 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1997-17824",
       "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
     ],
-    "sha256": "03fbdddbf848ad065afb52989a20fb5f53a7dce764043ce16de21f4770a04812"
+    "sha256": "8f5fd8e1fbe6c1ff6ced30952d86ef215ee32749c92dc250e2c5c98adc7f325a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:ES.confined",
@@ -1644,7 +1689,8 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853",
       "https://www.insst.es/documents/94886/203536/Gu%C3%ADa%2Bt%C3%A9cnica%2Bpara%2Bla%2Bevaluaci%C3%B3n%2By%2Bprevenci%C3%B3n%2Bde%2Blos%2Briesgos%2Brelativos%2Ba%2Bla%2Butilizaci%C3%B3n%2Bde%2Blugares%2Bde%2Btrabajo.pdf/deac8eb9-e242-48c4-a634-4cf88927fff7"
     ],
-    "sha256": "ac80c1ab7e966a440479428dbf6a70aa8a8df19b6227d79f16fba9bb85748c85"
+    "sha256": "726e87842a1a8fe780d2357ecf38f36f883b1b174e43534c48e81ca470936486",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:ES.electrical",
@@ -1680,7 +1726,8 @@
       "https://boe.es/buscar/act.php?id=BOE-A-2001-11881",
       "https://www.boe.es/buscar/act.php?id=BOE-A-2001-11881"
     ],
-    "sha256": "4cd6d60629c0485ccb14238b7b22f4390a8a866113f5c5215b8e5b6ebeb3672c"
+    "sha256": "66628de765f73ef663c65fea51df848f5639cd3f1d9b45a09adde80075309910",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:ES.hot",
@@ -1715,7 +1762,8 @@
     "sourceUrls": [
       "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
     ],
-    "sha256": "c741130846118838a3955465a50c2011dbef7ebf1f75215be44c51247c028223"
+    "sha256": "65ff20914f90badcb50291b1e7c27c1831d50d8b96c04ad2d9dcc3c879156e5a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:JP.height",
@@ -1750,7 +1798,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=9"
     ],
-    "sha256": "e032fc201c5eff5449a13a925b3ef16ce8876de8253eac825497eef53457c51b"
+    "sha256": "7029703a8c6800da38d69ae91fda24d8f6cac378974c6af918a3d7566cac83f9",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:JP.confined",
@@ -1785,7 +1834,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/web/t_doc?dataId=74105000&dataType=0&pageNo=1"
     ],
-    "sha256": "bdc6f9f1a6f32fa270d953f02b88fe8ca47aee13b2b181a87b314f7ecddfa85a"
+    "sha256": "dd07e42afecfaf90c11f2951b10056de654b58e42bec0813f105f9acdcf4e5e1",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:JP.electrical",
@@ -1820,7 +1870,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
     ],
-    "sha256": "127255ed81dfe22667921b6ec63390e0b5e1227bb262c81ccddf010126b64767"
+    "sha256": "e9f212e7f3a57f0f54fd438b5ed8bfe65aa6b04f734fcca0f0cad2cd9348d015",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:JP.hot",
@@ -1856,7 +1907,8 @@
       "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=7",
       "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=8"
     ],
-    "sha256": "8da1cbd630a6754bc504020324adfcde3f260bdbdb1df3a9856cbda2995a9142"
+    "sha256": "60ccf5c097bcadaeebf824a7ee25cbb58cd83e992738475e412f5c9851fd7b08",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:IT.height",
@@ -1893,7 +1945,8 @@
       "https://www.gazzettaufficiale.it/eli/gu/2025/12/30/301/sg/pdf",
       "https://www.ispettorato.gov.it/files/2026/10/TU-81-08-Ed.-Ottobre-2026.pdf"
     ],
-    "sha256": "5bdfb711a23d369d266a036fd0c9d5e79ca7e4e979ab0892150100183d50d992"
+    "sha256": "348ccd7a9ea6f701b24a0c0fb8c9a0e7ddcf74024c766341aaab292b9b25090b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:IT.confined",
@@ -1929,7 +1982,8 @@
       "https://www.lavoro.gov.it/temi-e-priorita-salute-e-sicurezza/focus/faq-accordo-stato-regioni-27032026",
       "https://www.gazzettaufficiale.it/eli/id/2011/11/08/011G0219/sg"
     ],
-    "sha256": "aea2cd587913cc11e624cd7b9376f8bf1ac8adf977399439f671c2c7c99bf9fa"
+    "sha256": "5d18fb6aa6cbd48032fa225c9f5f3c5dcaaa07d5e4bb19cb743c959be03bdb9c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:IT.hot",
@@ -1964,7 +2018,8 @@
     "sourceUrls": [
       "https://www.inail.it/content/dam/inail-hub-site/documenti/2022/07/FactSheetRischi%20estate.pdf"
     ],
-    "sha256": "64927d36b64c972db56834d2a7726ed5163eb39d480853171b14eb28dc332012"
+    "sha256": "c2e43ce95936a6ecac40272e2bc75dd8f81059a73362944140f531890073e330",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:BR.height",
@@ -2002,7 +2057,8 @@
       "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2025/portaria-mte-no-1-680-aprova-o-anexo-escadas-nr-35.pdf",
       "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/setembro/trabalho-em-altura-veja-o-que-muda-nos-treinamentos-e-nas-escadas-fixas-verticais"
     ],
-    "sha256": "2fd688160576ca0528b7560c53044c3c8ceea53fb7693cfc0c3647914f3ae837"
+    "sha256": "7ddae9d9d3ff0aac8d1f92b37fac53835da15a671e5a31492d3a7a4fab793957",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:BR.confined",
@@ -2037,7 +2093,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
     ],
-    "sha256": "cf5bd2153b529c8a7f605c88fb10e41694ee308600da824442a43808bc240b79"
+    "sha256": "b354a3718d04bf1e311925fb981571b7b0bdc871ddc7398bb354c92112835146",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:BR.electrical",
@@ -2074,7 +2131,8 @@
       "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-737-nova-nr-10.pdf",
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-10-atualizada-2019-1.pdf"
     ],
-    "sha256": "0d54b4007426a81e6dbb1da92d4e3c03ce5341491e3be34ac6bd40d69020ab84"
+    "sha256": "dc5e5c694c488e77de604ac4a81a67117a8c52ab67b1ef194ca3d1fbf55170df",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:BR.hot",
@@ -2109,7 +2167,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-34-atualizada-2022.pdf"
     ],
-    "sha256": "a63b81f27f41a68dd3b2b583d0a34f18e123056f68b1f4074c5475dfaca9db5f"
+    "sha256": "76f342e9f5d1cba0101181c41788697be2c24fe86921932599c790eaae386188",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-QC.height",
@@ -2145,7 +2204,8 @@
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/harnais-liaison-darret-chute",
       "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
     ],
-    "sha256": "56e2d7889400a1900b687e7873cd1970e9f78a8d72f4f1f58d28e73c336960e6"
+    "sha256": "899e17be45a39bfa89a0a9e7fa94bf270c7d06285ee51921a867622995d8e8b7",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-QC.confined",
@@ -2185,7 +2245,8 @@
       "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20%20r.%2013?langcont=fr",
       "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
     ],
-    "sha256": "726ba4751f0d0a696d1255241ef3783cd3d8826435559082f12a5b01751ca9a0"
+    "sha256": "b273adba536a58327d5c36cd720d0d7a2547a980044b14666b1c4d3ba6b9ee3c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:CA-QC.electrical",
@@ -2221,7 +2282,8 @@
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/travail-sur-installations-electriques",
       "https://www.legisquebec.gouv.qc.ca/fr/document/rc/S-2.1,%20r.%204"
     ],
-    "sha256": "51d5bfd809b7b011f549b2262c5a3ade1fd907a6527da90fd367703fc76bd635"
+    "sha256": "4c59e3ef7650408e57ebf9aa98102446d1622563704e4ba4f87c94e4084868e1",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:RU.height",
@@ -2259,7 +2321,8 @@
       "https://minjust.consultant.ru/documents/25045",
       "https://minjust.consultant.ru/documents/55545"
     ],
-    "sha256": "5b0d6149a1c0ee5aa6582e01075b6c6e3afa68cf4ee2161fafe31ec97a5c7240"
+    "sha256": "dfd72fb635c7ecec22f3059e6951b29fb25ce570d43423af8917fe6eba5e212a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:RU.confined",
@@ -2297,7 +2360,8 @@
       "https://minjust.consultant.ru/documents/25506",
       "https://minjust.consultant.ru/documents/55545"
     ],
-    "sha256": "a4061cf2ddbadb6b7ee1f6f2156ec4e2fa5f2799b12b7e83b564f0832eebb759"
+    "sha256": "16a5864cab79ffae46220bb8703ae531c54d4a7725e6016c408bbb3977a4302f",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:RU.electrical",
@@ -2335,7 +2399,8 @@
       "https://minjust.consultant.ru/documents/31327",
       "https://minjust.consultant.ru/documents/55545"
     ],
-    "sha256": "01de331ee6031e3e32c221f6b0954871e15da07cf1170509d59d1f76341d2c7e"
+    "sha256": "225c1735f1e4c1ff3eaba516c3b11ba9137c4468148eb2a15bdc55a1c81576da",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "task:RU.hot",
@@ -2373,6 +2438,7 @@
       "https://minjust.consultant.ru/documents/25450",
       "https://minjust.consultant.ru/documents/55545"
     ],
-    "sha256": "30d13a3b73e732e54bdfb84f46de652ec56c87437a77dfcc304766724091736d"
+    "sha256": "e1ef5f67eea6b6e963148e63338a1940aec7867de05d00da3bf8c4c138eea907",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   }
 ]

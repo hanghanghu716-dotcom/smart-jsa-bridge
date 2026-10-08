@@ -1,15 +1,16 @@
 import jsPDF from "jspdf";
 import { captureReport } from "./captureReport";
+import { normalizePaperSize, paperDimensions, paperPrintStyles } from './paperFormat';
 // Both the existing JSA export and work packages share row-aware pagination.
 export async function createReportPdf(papers) {
   if (!papers.length) throw Error("WORK_EMPTY");
   const doc = new jsPDF(
       papers[0].orientation === "portrait" ? "p" : "l",
       "mm",
-      "a4",
+      normalizePaperSize(papers[0].paperSize),
     ),
     images = [];
-  for (const { element, orientation } of papers) {
+  for (const { element, orientation, paperSize } of papers) {
     if (element.getBoundingClientRect().height > 16000)
       throw Error("WORK_OUTPUT_LARGE");
     const canvas = await captureReport(element);
@@ -26,8 +27,7 @@ export async function createReportPdf(papers) {
       contentHeight--;
     }
     const landscape = orientation !== "portrait",
-      pw = landscape ? 297 : 210,
-      ph = landscape ? 210 : 297,
+      { width: pw, height: ph } = paperDimensions(paperSize, orientation),
       margin = 10,
       contentWidth = pw - 20,
       scale = contentWidth / canvas.width;
@@ -81,7 +81,7 @@ export async function createReportPdf(papers) {
         end - y,
       );
       const url = slice.toDataURL("image/jpeg", 0.94);
-      if (images.length) doc.addPage("a4", landscape ? "l" : "p");
+      if (images.length) doc.addPage(normalizePaperSize(paperSize), landscape ? "l" : "p");
       doc.addImage(
         url,
         "JPEG",
@@ -93,6 +93,7 @@ export async function createReportPdf(papers) {
       images.push({
         url,
         orientation: landscape ? "landscape" : "portrait",
+        paperSize: normalizePaperSize(paperSize),
         width: contentWidth,
         height: slice.height * scale,
       });
@@ -122,7 +123,7 @@ export async function printReportImages(images) {
   const d = frame.contentDocument;
   d.open();
   d.write(
-    "<!doctype html><html><head><title>Work documents</title><style>@page portrait{size:A4 portrait;margin:10mm}@page landscape{size:A4 landscape;margin:10mm}body{margin:0}section{break-after:page}section:last-child{break-after:auto}img{display:block;max-width:100%}</style></head><body></body></html>",
+    `<!doctype html><html><head><title>Work documents</title><style>${paperPrintStyles()}body{margin:0}section{break-after:page}section:last-child{break-after:auto}img{display:block;max-width:100%}</style></head><body></body></html>`,
   );
   d.close();
   try {
@@ -131,7 +132,7 @@ export async function printReportImages(images) {
         (item) =>
           new Promise((resolve, reject) => {
             const section = d.createElement("section");
-            section.style.page = item.orientation;
+            section.style.page = `${normalizePaperSize(item.paperSize)}-${item.orientation === 'portrait' ? 'portrait' : 'landscape'}`;
             const img = d.createElement("img");
             img.style.width = item.width + "mm";
             img.style.height = item.height + "mm";

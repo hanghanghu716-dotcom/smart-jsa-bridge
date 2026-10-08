@@ -20,6 +20,7 @@ import useWorkRecovery from '../../hooks/useWorkRecovery';
 import { useTranslation } from 'react-i18next';
 import { workContextUi, documentDirection } from '../../utils/workJurisdiction';
 import { regionalContextMismatch } from '../../utils/regionalWorkTemplates';
+import PaperSizeSelect from '../PaperSizeSelect';
 export default function WorkRun({ record, drawings, ui, onBack, ownerId }) {
   const { i18n } = useTranslation();
   const regionUi = workContextUi(i18n.language);
@@ -78,6 +79,7 @@ export default function WorkRun({ record, drawings, ui, onBack, ownerId }) {
               papers.map((element) => ({
                 element,
                 orientation: element.dataset.orientation,
+                paperSize: run.paperSize,
               })),
             );
           pendingOutput.current = { id: uid(), run: frozen, rendered };
@@ -145,6 +147,7 @@ export default function WorkRun({ record, drawings, ui, onBack, ownerId }) {
         </h2>
       </div>
       <p className="jsa-notice">{ui.runtimeHelp}</p>
+      <PaperSizeSelect locale={i18n.language} value={run.paperSize} onChange={paperSize => edit(r => ({ ...r, paperSize }))} disabled={busy}/>
       {regionalContextMismatch(run.documents, run.context) && <p role="alert">{regionUi.mismatch}</p>}
       {message && <p role="status">{message}</p>}
       <fieldset disabled={busy}>

@@ -1,4 +1,6 @@
 import DiscoveryLinks from '../components/DiscoveryLinks';
+import RegionalStartActions from '../components/RegionalStartActions';
+import { regionalJourneyUi } from '../locales/regionalJourneyUi';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { cleanSummary, serializeStructuredData } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
@@ -25,6 +27,7 @@ export default function CaseStudyDetail() {
   const [retry, setRetry] = useState(0);
   const viewerRef = useRef(null);
   const ui = getSiteUi(i18n.language);
+  const journeyUi = regionalJourneyUi(i18n.language);
 
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
   const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
@@ -196,10 +199,10 @@ export default function CaseStudyDetail() {
             }}>
               <div>
                 <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginBottom: '4px' }}>
-                  Standard JSA Templates Available
+                  {journeyUi.attachments}
                 </strong>
                 <span style={{ fontSize: '0.9rem', color: '#475569' }}>
-                 Download version-controlled safety protocols for diverse operational scenarios and audit readiness.                </span>
+                  {journeyUi.attachmentHelp}</span>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 {/* 기존 단일 파일 호환성 유지 */}
@@ -210,7 +213,7 @@ export default function CaseStudyDetail() {
                     rel="noopener noreferrer"
                     style={{ padding: '10px 20px', backgroundColor: '#0284c7', color: '#fff', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
                   >
-                    📥 Download Original PDF
+                    ↓ {journeyUi.download} PDF
                   </a>
                 )}
                 {/* 다중 파일 리스트 렌더링 */}
@@ -222,13 +225,15 @@ export default function CaseStudyDetail() {
                     rel="noopener noreferrer"
                     style={{ padding: '10px 20px', backgroundColor: '#0284c7', color: '#fff', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
                   >
-                    📥 Download {pdf.name}
+                    ↓ {journeyUi.download} {pdf.name}
                   </a>
                 ))}
               </div>
             </div>
           )}
 
+          <DiscoveryLinks kind="case" target={id} showReuseHelp/>
+          <RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title}/>
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
             dir={isRtl ? 'rtl' : 'ltr'}
@@ -246,7 +251,6 @@ export default function CaseStudyDetail() {
         </div>
       </div>
 
-      <DiscoveryLinks kind="case" target={id}/>
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <div style={styles.footerFlex}>

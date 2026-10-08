@@ -79,6 +79,7 @@ export default function TableBuilder() {
   const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
+  const paperSize = state.paperSize || recoveredLayout.paperSize;
 
   const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
   const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
@@ -138,7 +139,8 @@ export default function TableBuilder() {
       appr3,
       savedActiveOrder: activeOrder,
       savedUserColumns: userColumns,
-      savedOrientation: orientation
+      savedOrientation: orientation,
+      paperSize
     },
     sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
   });
@@ -302,6 +304,7 @@ const renderDataTablePreview = () => {
       ...location.state, 
       savedActiveOrder: activeOrder, 
       savedOrientation: orientation, 
+      paperSize,
       savedUserColumns: userColumns,
       isFork: location.state?.isFork,
       parentId: location.state?.parentId, 
@@ -314,6 +317,7 @@ const renderDataTablePreview = () => {
       ...location.state, 
       savedActiveOrder: activeOrder, 
       savedOrientation: orientation, 
+      paperSize,
       savedUserColumns: userColumns,
       isFork: location.state?.isFork,
       parentId: location.state?.parentId, 

@@ -5,7 +5,8 @@ import { drawingPage, paintAnnotations } from "../../utils/drawingRender";
 import { getWorkPackageUi } from '../../locales/workPackageUi';
 import { regionalText } from '../../locales/regionalWorkText';
 import { documentDirection } from '../../utils/workJurisdiction';
-function DrawingPaper({ doc, drawing, page, common, ui }) {
+import { paperPreviewWidth } from '../../utils/paperFormat';
+function DrawingPaper({ doc, drawing, page, common, ui, paperSize }) {
   const [image, setImage] = useState(null),
     key = JSON.stringify([drawing?.id, page, doc.annotations?.[page]]);
   useEffect(() => {
@@ -35,6 +36,7 @@ function DrawingPaper({ doc, drawing, page, common, ui }) {
     <article dir={documentDirection(doc.regional?.context.documentLocale || doc.documentLocale)}
       className={"bundle-paper " + orientation}
       data-orientation={orientation}
+      style={{ width: paperPreviewWidth(paperSize, orientation) }}
       data-ready={ready ? "true" : "false"}
     >
       {ready ? (
@@ -83,6 +85,7 @@ export default function WorkPreview({ run, drawings, ui }) {
                 page={page}
                 common={run.common}
                 ui={printUi}
+                paperSize={run.paperSize}
               />
             ));
           return (
@@ -92,6 +95,7 @@ export default function WorkPreview({ run, drawings, ui }) {
               key={doc.id}
               className={"bundle-paper " + doc.orientation}
               data-orientation={doc.orientation}
+              style={{ width: paperPreviewWidth(run.paperSize, doc.orientation) }}
               data-ready="true"
             >
               {doc.type === "jsa" ? (

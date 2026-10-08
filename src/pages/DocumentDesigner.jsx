@@ -1,4 +1,6 @@
 import DocumentTemplateManager from '../components/DocumentTemplateManager';
+import PaperSizeSelect from '../components/PaperSizeSelect';
+import { normalizePaperSize, paperPreviewWidth } from '../utils/paperFormat';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import DocumentContent from '../components/DocumentContent';
 import { normalizeDocumentBlocks, defaultColumns, moveItem, templateLayout } from '../utils/documentLayout';
@@ -50,7 +52,7 @@ export default function DocumentDesigner() {
 function DesignerEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate();
   const location = useLocation();
-  const { t } = useTranslation(['common', 'tablebuilder']);
+  const { t, i18n } = useTranslation(['common', 'tablebuilder']);
 
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
@@ -60,6 +62,8 @@ function DesignerEditor({ recoveredDraft }) {
   const [analysisData, setAnalysisData] = useState(initialAnalysisData);
   const procedures = state.procedures || recoveredDraft?.procedures || [];
   const formData = state.formData || recoveredDraft?.form_data || {};
+  const documentLocale = formData.context?.documentLocale || i18n.language;
+  const documentT = i18n.getFixedT(documentLocale, 'common');
   const participants = state.participants || recoveredDraft?.participants || [];
 
   const [blocks, setBlocks] = useState(
@@ -74,6 +78,7 @@ function DesignerEditor({ recoveredDraft }) {
   const [columnOverrides, setColumnOverrides] = useState(
     state.savedColumnOverrides || recoveredLayout.savedColumnOverrides || {}
   );
+  const [paperSize, setPaperSize] = useState(() => normalizePaperSize(state.paperSize || recoveredLayout.paperSize));
   const [orientation, setOrientation] = useState(
     state.savedOrientation || recoveredLayout.savedOrientation || 'landscape'
   );
@@ -81,11 +86,11 @@ function DesignerEditor({ recoveredDraft }) {
     state.savedSignatureRows || recoveredLayout.savedSignatureRows || Math.max(1, Math.ceil(participants.length / 8))
   );
   const [docTitle, setDocTitle] = useState(
-    state.docTitle ?? recoveredLayout.docTitle ?? t('designer.defaultTitle')
+    state.docTitle ?? recoveredLayout.docTitle ?? documentT('designer.defaultTitle')
   );
-  const [appr1, setAppr1] = useState(state.appr1 ?? recoveredLayout.appr1 ?? t('designer.appr1'));
-  const [appr2, setAppr2] = useState(state.appr2 ?? recoveredLayout.appr2 ?? t('designer.appr2'));
-  const [appr3, setAppr3] = useState(state.appr3 ?? recoveredLayout.appr3 ?? t('designer.appr3'));
+  const [appr1, setAppr1] = useState(state.appr1 ?? recoveredLayout.appr1 ?? documentT('designer.appr1'));
+  const [appr2, setAppr2] = useState(state.appr2 ?? recoveredLayout.appr2 ?? documentT('designer.appr2'));
+  const [appr3, setAppr3] = useState(state.appr3 ?? recoveredLayout.appr3 ?? documentT('designer.appr3'));
   const [notesText, setNotesText] = useState(
     state.documentNotes ?? recoveredLayout.documentNotes ?? formData.additionalItems ?? ''
   );
@@ -97,10 +102,10 @@ function DesignerEditor({ recoveredDraft }) {
   const [previewScale, setPreviewScale] = useState(1);
   useEffect(() => {
     const canvas = canvasRef.current;
-    const observer = new ResizeObserver(() => setPreviewScale(Math.min(1, (canvas.clientWidth - 28) / (orientation === 'landscape' ? 1080 : 750))));
+    const observer = new ResizeObserver(() => setPreviewScale(Math.min(1, (canvas.clientWidth - 28) / paperPreviewWidth(paperSize, orientation))));
     observer.observe(canvas);
     return () => observer.disconnect();
-  }, [orientation]);
+  }, [orientation, paperSize]);
 
   const layoutData = {
     documentBlocks: blocks,
@@ -108,6 +113,7 @@ function DesignerEditor({ recoveredDraft }) {
     savedUserColumns: userColumns,
     savedColumnOverrides: columnOverrides,
     savedOrientation: orientation,
+    paperSize,
     savedSignatureRows: signatureRows,
     docTitle,
     appr1,
@@ -120,11 +126,12 @@ function DesignerEditor({ recoveredDraft }) {
 
   const applyTemplate = template => {
     const data = templateLayout(template?.layout_data, {
-      docTitle: t('designer.defaultTitle'), appr1: t('designer.appr1'), appr2: t('designer.appr2'), appr3: t('designer.appr3'),
-      savedActiveOrder: defaultColumns(formData.jsaType), savedSignatureRows: Math.max(1, Math.ceil(participants.length / 8))
+      docTitle: documentT('designer.defaultTitle'), appr1: documentT('designer.appr1'), appr2: documentT('designer.appr2'), appr3: documentT('designer.appr3'),
+      savedActiveOrder: defaultColumns(formData.jsaType), savedSignatureRows: Math.max(1, Math.ceil(participants.length / 8)), paperSize
     });
     setBlocks(data.documentBlocks); setActiveOrder(data.savedActiveOrder); setUserColumns(data.savedUserColumns);
     setColumnOverrides(data.savedColumnOverrides); setOrientation(data.savedOrientation); setSignatureRows(data.savedSignatureRows);
+    setPaperSize(data.paperSize);
     setDocTitle(data.docTitle); setAppr1(data.appr1); setAppr2(data.appr2); setAppr3(data.appr3); setNotesText(data.documentNotes);
   };
 
@@ -310,6 +317,7 @@ function DesignerEditor({ recoveredDraft }) {
     <div style={styles.globalSettings}>
       <label style={styles.label}>{t('designer.documentTitle')}</label>
       <input aria-label={t('designer.documentTitle')} value={docTitle} onChange={e => setDocTitle(e.target.value)} style={styles.input} />
+      <PaperSizeSelect locale={i18n.language} value={paperSize} onChange={setPaperSize}/>
       <label style={styles.label}>{t('designer.orientation')}</label>
       <div style={styles.orientationGroup}>
         <button
@@ -543,9 +551,9 @@ function DesignerEditor({ recoveredDraft }) {
               <strong>{docTitle}</strong>
             </div>
 
-            <div className="theme-paper designer-paper" style={{ ...styles.paper, width: orientation === 'landscape' ? '1080px' : '750px', zoom: previewScale }}
+            <div className="theme-paper designer-paper" style={{ ...styles.paper, width: `${paperPreviewWidth(paperSize, orientation)}px`, zoom: previewScale }}
               onClick={event => { const block = event.target.closest('[data-document-block]'); if (block) setSelectedBlock(block.dataset.documentBlock); }}>
-              <DocumentContent formData={formData} participants={participants} analysisData={analysisData} layout={layoutData} stepPhotos={layoutData.stepPhotos} />
+              <DocumentContent documentLocale={documentLocale} formData={formData} participants={participants} analysisData={analysisData} layout={layoutData} stepPhotos={layoutData.stepPhotos} />
             </div>
           </section>
 

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
 import DiscoveryLinks from '../../components/DiscoveryLinks';
+import RegionalStartActions from '../../components/RegionalStartActions';
+import { regionalJourneyUi } from '../../locales/regionalJourneyUi';
 import { LANGUAGE_OPTIONS, SUPPORTED_LANGS } from '../../locales/config.js';
 import { guideText } from '../../locales/guideText.js';
 import { recoveryUi } from '../../locales/workRecoveryUi.js';
@@ -14,12 +16,18 @@ import '../../styles/guides.css';
 const resources=import.meta.glob('../../locales/*/{common,const,manu,chem,highrisk,general}.json',{eager:true,import:'default'});
 export default function LocalizedGuide({category}){
  const {lng}=useParams();
+ const {hash}=useLocation();
  const locale=SUPPORTED_LANGS.includes(lng)?lng:'en-US';
  const resource=resources[`../../locales/${guideResourceLocale(locale)}/${GUIDE_CATEGORIES[category]}.json`];
  const guide=makeGuide(locale,category,resource),t=key=>guideText(locale,key);
  const pdfUi = recoveryUi(locale);
  const [preview,setPreview]=useState(false),[pdfState,setPdfState]=useState('idle');
- useEffect(()=>{setPreview(false);setPdfState('idle');},[locale,category]);
+ const [selectedTask,setSelectedTask]=useState('');
+ useEffect(()=>{setPreview(false);setPdfState('idle');setSelectedTask('');},[locale,category]);
+ useEffect(()=>{
+  const frame=requestAnimationFrame(()=>document.getElementById(hash.slice(1))?.scrollIntoView({block:'start'}));
+  return()=>cancelAnimationFrame(frame);
+ },[hash,locale,category]);
  useEffect(()=>{
   if(!preview)return;
   const controller=new AbortController();
@@ -56,7 +64,7 @@ export default function LocalizedGuide({category}){
      </header>
      <section id="guide-local" className="guide-section guide-local"><div className="guide-section-heading"><span>01</span><h2>{t('local')}</h2></div><p>{guide.localNote}</p><ul className="guide-documents">{guide.documents.map(d=><li key={d}>{d}</li>)}</ul><p className="guide-scope">{t('scope')}</p></section>
      <section id="guide-workflow" className="guide-section"><div className="guide-section-heading"><span>02</span><h2>{t('workflow')}</h2></div><ol className="guide-workflow">{guide.workflow.map((step,i)=><li key={step.title}><span className="guide-step-number">{i+1}</span><div><h3>{step.title}</h3><p>{step.body}</p></div></li>)}</ol></section>
-     <section id="guide-examples" className="guide-section"><div className="guide-section-heading"><span>03</span><h2>{t('examples')} <small>{guide.examples.length}</small></h2></div><div className="guide-example-list">{guide.examples.map(item=><section className="guide-example" id={item.id} key={item.id}><div className="guide-example-title"><span>{item.id}</span><h3>{item.title}</h3></div><dl><dt>{t('hazard')}</dt><dd>{item.hazard}</dd><dt>{t('checks')}</dt><dd><ul>{item.checks.map(check=><li key={check}>{check}</li>)}</ul></dd></dl></section>)}</div></section>
+     <section id="guide-examples" className="guide-section"><div className="guide-section-heading"><span>03</span><h2>{t('examples')} <small>{guide.examples.length}</small></h2></div><div className="guide-example-list">{guide.examples.map(item=><section className="guide-example" id={item.id} key={item.id}><div className="guide-example-title"><span>{item.id}</span><h3>{item.title}</h3></div><dl><dt>{t('hazard')}</dt><dd>{item.hazard}</dd><dt>{t('checks')}</dt><dd><ul>{item.checks.map(check=><li key={check}>{check}</li>)}</ul></dd></dl><button type="button" className="regional-example-start guide-screen" aria-expanded={selectedTask===item.id} aria-controls={`start-${item.id}`} onClick={()=>setSelectedTask(selectedTask===item.id?'':item.id)}>{regionalJourneyUi(locale).start} →</button><div id={`start-${item.id}`} hidden={selectedTask!==item.id}>{selectedTask===item.id&&<RegionalStartActions key={`${locale}:${item.id}`} locale={locale} activity={item.title}/>}</div></section>)}</div></section>
      <section id="guide-records" className="guide-section guide-records"><div className="guide-section-heading"><span>04</span><h2>{t('records')}</h2></div><p>{t('recordsBody')}</p><div className="guide-actions guide-screen"><Link className="jsa-primary" to={`/${locale}/info`}>{t('create')} →</Link><Link to={`/${locale}/work-packages`}>{t('package')} →</Link></div></section>
      <section id="guide-sources" className="guide-section guide-sources"><div className="guide-section-heading"><span>05</span><h2>{t('sources')}</h2></div><p>{t('referenceHelp')}</p><ul>{guide.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a></li>)}</ul><p className="guide-print-only">{guide.url}</p></section>
     </article>

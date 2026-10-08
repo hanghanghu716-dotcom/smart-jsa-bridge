@@ -46,12 +46,12 @@ export const setActiveDraftId = (draftId, version = null) => {
   }
 };
 
-export const clearActiveDraft = () => {
+export const clearActiveDraft = ({ preserveGuest = false } = {}) => {
   if (typeof window === 'undefined') return;
   const draftId = sessionStorage.getItem(ACTIVE_DRAFT_KEY);
   sessionStorage.removeItem(ACTIVE_DRAFT_KEY);
   sessionStorage.removeItem(ACTIVE_DRAFT_VERSION_KEY);
-  if (draftId) localStorage.removeItem(GUEST_DRAFT_PREFIX + draftId);
+  if (draftId && !preserveGuest) localStorage.removeItem(GUEST_DRAFT_PREFIX + draftId);
 };
 
 const performDraftSnapshotSave = async ({

@@ -19,7 +19,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/simple-health-safety/risk/risk-assessment-template-and-examples.htm"
     ],
-    "sha256": "d2bee4e0d9e18864fd4b61ed91f86b060f2d98b7ea68cbab9bcd3f1b07cf7619"
+    "sha256": "fc84b2cb57b4241cc6c4576a8f0019055dd79d8fe6c07d177fe67b654cf928a7",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:GB.method_statement",
@@ -41,7 +42,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/construction/safetytopics/admin.htm"
     ],
-    "sha256": "3a6cbceb638f45ae9dd037f05bc49c82868860354ef05f3b5ff83db76de149cc"
+    "sha256": "60464723ca4939fc241b0e2d44db5b265e295203b047dac7ecd59a3f3419ede2",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:GB.permit_to_work",
@@ -63,7 +65,8 @@
     "sourceUrls": [
       "https://www.hse.gov.uk/humanfactors/topics/ptw.htm"
     ],
-    "sha256": "e68686022cf58e39fbe66a2e972220ade4932af36708dac4c9259f9816b20f44"
+    "sha256": "3badb38f216b67710085de2da0a6c491af1385acc44d12c229583004f55218f6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:GB.toolbox_talk",
@@ -86,7 +89,8 @@
       "https://www.hse.gov.uk/construction/resources/toolboxtalks.htm",
       "https://www.hse.gov.uk/involvement/consult/involveemployees.htm"
     ],
-    "sha256": "700fd1038624ffb8a64f994e46e186155c272f50136887e7d29cfaa30fa01399"
+    "sha256": "f5629a4c76343cbde811b0908fa677dc5b569f33ada7bdacbba5d027750902e6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:US.risk_assessment",
@@ -108,7 +112,8 @@
     "sourceUrls": [
       "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf"
     ],
-    "sha256": "81829b31bead7294df199e1b62d6d398f1fab232e69be0903603db58e7d92d7a"
+    "sha256": "77f6c62ed238b54ce6aef4e2798b5072f30984d23763e88a48962059bdf03e74",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:US.method_statement",
@@ -131,7 +136,8 @@
       "https://www.osha.gov/sites/default/files/Job_Hazard_Analysis_Worksheet.pdf",
       "https://www.osha.gov/sites/default/files/publications/osha3071.pdf"
     ],
-    "sha256": "859d4150ab36fc94823c16d8b5e7fbbc58aefa9ab88d1b739a56db6098419841"
+    "sha256": "f420bbb5e1e03e7038f8a32941b6ae54d55a8a6f7ac47232c53dba7363bbe80b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA.risk_assessment",
@@ -153,7 +159,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
     ],
-    "sha256": "e834e5a05adc4a7aed873d26c8427dee23c54954f1d030a49d0a092e1b8811ab"
+    "sha256": "cf9dcf83a8e8cd457b2c7f885500f63422f5f122c4a2dfac5adf89321388238b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA.method_statement",
@@ -175,7 +182,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
     ],
-    "sha256": "0df9fa07a8ccaf5fae36544d2df23e54d415e8650d269188bc1fabf981431f03"
+    "sha256": "9f70d2166bf9e77d7776fc52b0dc48486774b8ef57867f71d74a938742293c42",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA.toolbox_talk",
@@ -197,7 +205,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
     ],
-    "sha256": "6ed8f43733240c9e6529b981fc798575fa7ab2850d762bc60c748f795f9f4f9d"
+    "sha256": "ad07cbbd24cb251ddeb943e6209247a0f79a457927c94f6e8945037a5dc3f46a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA.inspection",
@@ -219,7 +228,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
     ],
-    "sha256": "04270563c27c72d3cf67d594b81a7301ebe71b7ae9d79f0d88b71e0663d07e33"
+    "sha256": "be1be5ff439bab5c5193b68d584914d2f533d73d7ea73d762ec1b7d3142953a0",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SG.risk_assessment",
@@ -241,7 +251,8 @@
     "sourceUrls": [
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
     ],
-    "sha256": "1080a6c08f59447496b474d2808e396873a5c29c334410c324aca9aa0b8e9cb9"
+    "sha256": "1b1384ed100fed0aabe97cf047047de31f965578dd1315e54b94cb43bb941771",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SG.method_statement",
@@ -263,7 +274,8 @@
     "sourceUrls": [
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
     ],
-    "sha256": "c3173588c9c5000b3604758462c64275ed777ca13c64e4ee5dfee3f9359566aa"
+    "sha256": "20c919f1f6404330bb7dc2e2406369a37a4a0ee77413b0b150fad8cddae2ce96",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SG.toolbox_talk",
@@ -286,7 +298,8 @@
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/checklists-and-articles/files/abc_checklist_effective_toolbox_meetings_english.pdf",
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/guides-and-handbooks/files/toolbox_meeting_guide.pdf"
     ],
-    "sha256": "746e8410fca140f27259e05ab077e01b7e0a37d242fdec4125e4916ca144ac75"
+    "sha256": "2f2af16035f520cf8070947ce45bdcc8c7d9312eaeebebfafc10362c0d22eaac",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SG.inspection",
@@ -308,7 +321,8 @@
     "sourceUrls": [
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/codes-of-practice/files/code-of-practice-risk-management-third-revision-2021.pdf"
     ],
-    "sha256": "39729696041a760d114e2664daaf07a30a0e8ab1abd01e6437f2a688c9b8378a"
+    "sha256": "40490f24f8e8a0aa55804211f596cdd4be33b31ebf29f017be0735c97cf41497",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:AU.risk_assessment",
@@ -330,7 +344,8 @@
     "sourceUrls": [
       "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
     ],
-    "sha256": "3ca4d241f5d1f6391e77fc70fc24192884fa58ee6fe55f060449d79f81259c58"
+    "sha256": "e7597d8270dff4275c0cb038a1927393e4584ca613bc880c058a8c0a66bc505d",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:AU.method_statement",
@@ -353,7 +368,8 @@
       "https://www.safeworkaustralia.gov.au/system/files/documents/1703/information-sheet-safe-work-method-statement.pdf",
       "https://www.worksafe.vic.gov.au/safe-work-method-statements-swms"
     ],
-    "sha256": "4d0f62e424c434c9c48f6b3c98a01247c098be3e39f8a3c1540c7b6bb1aed839"
+    "sha256": "1218266febedd86658401522616ede1c87ba66561d9c3b5b915b6d2d5c406fb6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:AU.toolbox_talk",
@@ -376,7 +392,8 @@
       "https://www.safeworkaustralia.gov.au/safety-topic/managing-health-and-safety/consultation",
       "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
     ],
-    "sha256": "84988ab752136ff50c90255bee4870a9282ae118d4657e06f11b28e8d5c91af3"
+    "sha256": "271725e865fb1c22d2a47fb1e61d17093ecf0279150f1981f17955302fa87c86",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:AU.inspection",
@@ -398,7 +415,8 @@
     "sourceUrls": [
       "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-how_to_manage_work_health_and_safety_risks-nov24.pdf"
     ],
-    "sha256": "87c151e861ddd8e3b8aa941752dd4d54ea4924fb84f32a987ef38eb9b63c353d"
+    "sha256": "585f58d784c5176b1e5080f9fd1a94d46e2d63de168843c9cb9f3d0cb3cba76e",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:JP.risk_assessment",
@@ -420,7 +438,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/content/11300000/001414377.pdf"
     ],
-    "sha256": "e96bd92c1e788ec8ee1bfa8a9990371aa714d2668f08b127262399a076d21594"
+    "sha256": "73c3c24aef939534262ed85b5ba953a12284650275f37836d785a3cfae153a1a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:JP.toolbox_talk",
@@ -442,7 +461,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/dl/080201c_0014.pdf"
     ],
-    "sha256": "8becb8f9296fbb2c2808fb1bc28fece82c42987504c59bf64b5b8e4cf2c9c059"
+    "sha256": "e84a7a82932165e297083503080c93f84817a4116e0007b8751c23d4f19ea2b1",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:GB.inspection",
@@ -465,7 +485,8 @@
       "https://www.hse.gov.uk/pubns/priced/hsg65.pdf",
       "https://www.hse.gov.uk/involvement/consult/representatives.htm"
     ],
-    "sha256": "eff8e388e81780a6c4fc0661a192ba92fd30533fc6d1b5e088a1dad3ad0db1df"
+    "sha256": "4675438db4dce29e2ab2d20d2a59d797ea0234775bd15dca9f4eac2980b5fa43",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:US.toolbox_talk",
@@ -487,7 +508,8 @@
     "sourceUrls": [
       "https://www.osha.gov/safety-management/education-training"
     ],
-    "sha256": "4153d5d1aec889bf399070c1b6f169e01b806e33f247705a7b3673602199b96e"
+    "sha256": "6ea03b0ce0787b0eb48e14d4744dff71856b9f9eea49277a8d9d12b0579d49ec",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:US.inspection",
@@ -510,7 +532,8 @@
       "https://www.osha.gov/safety-management/hazard-identification",
       "https://www.osha.gov/safety-management/hazard-prevention"
     ],
-    "sha256": "dc98ab1805e6147fe0f63ef120a6e6e3f713369a7f4a9b85e33c45b8d3ee85ea"
+    "sha256": "44efd6d4468f6c73cec3f9a2cffc731a8dfbff5cc50299242210a6aae3d9ef3f",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:JP.method_statement",
@@ -532,7 +555,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/content/000830745.pdf"
     ],
-    "sha256": "ea7bdaebe03378ee62092184ad4c824131b5f4ca98ff108ed3d4106b04121931"
+    "sha256": "7f7a307afeac1d69c5b75abdcc71ce4cdd967bfe1781326b8bad28f2760444bd",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:JP.inspection",
@@ -555,7 +579,8 @@
       "https://www.mhlw.go.jp/file/06-Seisakujouhou-11300000-Roudoukijunkyokuanzeneiseibu/0000067599.pdf",
       "https://www.mhlw.go.jp/content/000830745.pdf"
     ],
-    "sha256": "cb29443653035b0fca906816164fb3b82cb539c919a565cd42bf53feaf7ae7c2"
+    "sha256": "1e413ba21d30c77076c9a9ea4fff7956f83729895cfd67fa66f702443725bc8f",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:US.permit_to_work",
@@ -578,7 +603,8 @@
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146",
       "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252"
     ],
-    "sha256": "247a9313f17fd10fee1c8cf810f119c37131edffe312d8bdb0547cbcb7768833"
+    "sha256": "75fdb498f14da5b2ea5694b477fee92e7cade280c7f098bea7a8b5a4b69bb5b5",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:AU.permit_to_work",
@@ -601,7 +627,8 @@
       "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-confined_spaces-nov24.pdf",
       "https://www.safework.nsw.gov.au/safety-alerts/safety-alerts/hot-work"
     ],
-    "sha256": "282a2d8a77c89b4e645c97959a0399376c1c5188496b0137adf50edc5dbecb7a"
+    "sha256": "c01c2d2d9f181386e06226df3294df70aa5ae4c98bbf51ed8af4432d79b52dd0",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SG.permit_to_work",
@@ -625,7 +652,8 @@
       "https://www.mom.gov.sg/-/media/mom/documents/safety-health/factsheet-on-wahamendmentregulations.pdf",
       "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_manual_for_marine_industries.ashx"
     ],
-    "sha256": "c1c14ac94461e2ecbc92f36cdb9388746aa65daabb3b7becdaad5b6894635707"
+    "sha256": "211e72de4d8fc81b12f79e105cf47ed0e0e5b5ffb03c6929d21799523b32a3d5",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-AB.risk_assessment",
@@ -648,7 +676,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
       "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
     ],
-    "sha256": "1613b3688388074ded54bb2b849284448ff4cea1d4fe5181bace13a796637fca"
+    "sha256": "15da71fca09882bb9498ed8c45b74eea8ee6e30e4ec3f52fabf8be0c7b258d03",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-AB.method_statement",
@@ -671,7 +700,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
       "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html"
     ],
-    "sha256": "c6a869a29a658e72512584e557f954610cdd0dd68cd519a787d6fb7112afae51"
+    "sha256": "db94b3b63feab2b38dbba8b2dbab84a9ecaf7a5555aac52c803edb015962cb6a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-AB.toolbox_talk",
@@ -694,7 +724,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
       "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
     ],
-    "sha256": "63927a32904bb45562078eadb11aa157a485b20f9ead2f40dadcaeb132a29f4e"
+    "sha256": "8d872daf8a8e0930d802589c330c52fad1766241d53a7e46c4fc4e53057817e2",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-AB.inspection",
@@ -717,7 +748,8 @@
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-2-hazard-assessment-elimination-and-control/",
       "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
     ],
-    "sha256": "137752621a84d1221e6f7644c321d9d0533cc1f50f1d2777d9c0279a33df03eb"
+    "sha256": "8b044109313b7aa1c13b2697bbed449b11cbadacad0cf0403831635713da386f",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-BC.risk_assessment",
@@ -740,7 +772,8 @@
       "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
     ],
-    "sha256": "f0ec933123adbbbca74ee2ca984dce3d2a2d90e45886ce46764bd276bccc86f7"
+    "sha256": "0a8f45f004f623dc5c6f52df0c48b3f83cbde025c1904a04ed5c5e59a4dc4a77",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-BC.method_statement",
@@ -763,7 +796,8 @@
       "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-03-rights-and-responsibilities"
     ],
-    "sha256": "81cdfdce0c73453e2eb7775ac7fca454bdc0a35ad2508abb6d93086bdda88587"
+    "sha256": "1bbf6d8aed18ba155b4c81cdec4eb52318f8e211d7c32d4d382a2e5283d01650",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-BC.toolbox_talk",
@@ -787,7 +821,8 @@
       "https://www.worksafebc.com/en/health-safety/create-manage/health-safety-programs/developing-health-safety-program",
       "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html"
     ],
-    "sha256": "e2026526e496d46a2753e8f9539603e181c121cea337c114055e346a7a117c74"
+    "sha256": "25820960ba739a9340d47d9797c07b382d1df3336d6dc30d7a0bd6777ee9646a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-BC.inspection",
@@ -811,7 +846,8 @@
       "https://www.worksafebc.com/en/health-safety/create-manage/workplace-inspections",
       "https://www.ccohs.ca/oshanswers/prevention/effectiv.html"
     ],
-    "sha256": "aeaacde0575138aa7d0419c79451ce43b8bedb8d5df91e6ee420a0d792627ae4"
+    "sha256": "10632685af74cd48190d2b85a88c5cd71e34d89831cd74c0a3348e558a609427",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:DE.risk_assessment",
@@ -834,7 +870,8 @@
       "https://www.gesetze-im-internet.de/arbschg/__5.html",
       "https://www.gesetze-im-internet.de/arbschg/__6.html"
     ],
-    "sha256": "fbfafb4b1a4c54c98d9d304c0a83876bdb6d84f238c12815fc76ea5eaa985540"
+    "sha256": "ea3ec3f67b4792eee16ddbf2a0459f73c1879ac27d1c3e5e539ec17eddb2d170",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:DE.method_statement",
@@ -857,7 +894,8 @@
       "https://aug.dguv.de/arbeitssicherheit/wie-unternehmen-betriebsanweisungen-richtig-nutzen/",
       "https://www.gesetze-im-internet.de/arbschg/__12.html"
     ],
-    "sha256": "5e7a3f82be62bb961b67821c2001a9e9ee204ceed8f65bf3aac04d685f308041"
+    "sha256": "8055f2f9aeb5f0e6006b8f862c4af8c26ef722304ff5d71c1bb769ed1fa3c9ef",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:DE.toolbox_talk",
@@ -880,7 +918,8 @@
       "https://www.gesetze-im-internet.de/arbschg/__12.html",
       "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
     ],
-    "sha256": "48f091f6aafe0aa7b271515e7803c173b3c8e729f45b63cf8f82bb7bb9dc38db"
+    "sha256": "ecfc89cf48e6e312098c2d810f67d7da191ce755e74fd1bb49f233d84b66da1d",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:DE.inspection",
@@ -904,7 +943,8 @@
       "https://www.gesetze-im-internet.de/arbschg/__6.html",
       "https://topeins.dguv.de/arbeitssicherheit/unterweisung-tipps-fuehrungskraefte/"
     ],
-    "sha256": "04e26e8411459c4174933f63dcaf8e9639a40f6a547215f1b40929e60a97df90"
+    "sha256": "ae1f37f20a64a7e61314b0c1747d7ca8f9bbede79d8886850eae3d06bac540d6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:FR.risk_assessment",
@@ -926,7 +966,8 @@
     "sourceUrls": [
       "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
     ],
-    "sha256": "ae393b9bcb30d00c7ad257b37fa44432d47ff0c18b12e2bfc3573a1ebf54b748"
+    "sha256": "35dd6e2626974751bddfab1dea7639a0ee42e9c6a9199c32b4b01a97288db620",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:FR.method_statement",
@@ -949,7 +990,8 @@
       "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html",
       "https://www.inrs.fr/risques/entreprises-exterieures/mesures-prevention-prealables-intervention"
     ],
-    "sha256": "70985a5832a5faefbd9ba64ce09ef478c21af1e9635455fd7f1a4fea36a0846a"
+    "sha256": "3e7585ce7f6fa3cd69e5f25cb024cb5bb7d9a5acda9980051046373386be5952",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:FR.toolbox_talk",
@@ -971,7 +1013,8 @@
     "sourceUrls": [
       "https://www.inrs.fr/demarche/formation-information/ce-qu-il-faut-retenir.html"
     ],
-    "sha256": "54afa94a6f79cc6b4bb79545ab22231e55744598f59f3df96a277d3038790a3f"
+    "sha256": "b6f0935dcc436a67e61fa881bc7cde37e98b7eee29050186674add2c2be5507b",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:FR.inspection",
@@ -994,7 +1037,8 @@
       "https://www.inrs.fr/dam/jcr:d975c3d3-384d-46a8-9054-dfd9b889028e/ed6513.pdf",
       "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"
     ],
-    "sha256": "aa39dc164b0d3b1fd476067f1155ee07a07bdea03491cc1b6dfb81770aec7264"
+    "sha256": "9b694af48b87f9ac8eb8593d4cd1112431374e6f47d6f304c4c0a5032a44d051",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:ES.risk_assessment",
@@ -1017,7 +1061,8 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
       "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
     ],
-    "sha256": "9a338ca9cdc0b82100e8b6cb125f479f5e21053b0236c48596c53b2cfcd0e28c"
+    "sha256": "899ccc96d83a7e0d2243cfd60cda6ee8ea15e1223240f622684b331240810f38",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:ES.method_statement",
@@ -1040,7 +1085,8 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
       "https://www.insst.es/materias/transversales/gestion-prevencion"
     ],
-    "sha256": "5740f01900936f36b9e902e0b7eecf95b6fb6c659e04ce6dda3f08abd4117072"
+    "sha256": "31e796f0a4e7040f277462fd2b563424723c10d18ac32eb8bd5096ed0229f23a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:ES.toolbox_talk",
@@ -1063,7 +1109,8 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
       "https://www.insst.es/materias/transversales/gestion-prevencion"
     ],
-    "sha256": "a2a08014a28def0c0e613564f4eadc0d08846714e74d1ad5bed38aca91369253"
+    "sha256": "02d8a74fa6bce2418242a6c5e60039f9e34c2e44a0d046fbbb53bc823d69c067",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:ES.inspection",
@@ -1086,7 +1133,8 @@
       "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292",
       "https://www.boe.es/buscar/act.php?id=BOE-A-1997-1853"
     ],
-    "sha256": "0d476305687fb31438680ad3484f95a17511a77f940a9dcda63882e6b7c6fcd7"
+    "sha256": "b2333d9ebe1c6e26d564ea185798312437a6222181761680b4ae85534c6aa100",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:IT.risk_assessment",
@@ -1109,7 +1157,8 @@
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/valutare-il-rischio.html",
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
     ],
-    "sha256": "f2be87d621c52ab9deb75f525738dd96d1f9b128e9cc4a689aa15064304e91a4"
+    "sha256": "4a6b2b23ce160814e8f37255f4b7cf0484becb3251ba2745c752163b15a6f950",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:IT.method_statement",
@@ -1132,7 +1181,8 @@
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html",
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
     ],
-    "sha256": "37c7492f6b9a9365b63edbbf14b114aa378a67cb51802e90bed43e07efeb18c2"
+    "sha256": "b5242f3c492730a8a7f8e6470dafe18e66b74d5878dae169461bd817242e71d5",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:IT.toolbox_talk",
@@ -1154,7 +1204,8 @@
     "sourceUrls": [
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/informazione,-formazione-e-addestramento.html"
     ],
-    "sha256": "9b7ea82927d00c16c366b6b99518fc7269a7c657de5432da332abfdd9752e3f0"
+    "sha256": "eef33c02e686cc754b715f9e9361be6d6547caa0e1dd1bedb5f7accc5ec95fda",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:IT.inspection",
@@ -1177,7 +1228,8 @@
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
       "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/la-valutazione-del-rischio-di-un-attrezzatura.html"
     ],
-    "sha256": "b5136df6b56174f77e5f641bc9c60a9cf2a4656d0e243460eeed2a437e4cfba1"
+    "sha256": "af89534c65fc308088b2366a8ca2b810e773eb931326584c393f80d2d04fb917",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:BR.risk_assessment",
@@ -1199,7 +1251,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
     ],
-    "sha256": "ba314dddf6208e725518b3b6c68f1d285c7842ea4debe7101a5b4ff0062bec27"
+    "sha256": "c0602208cae4dd05d7dea58def840ead52cd9b309d45c1aa3c572575276783f2",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:BR.method_statement",
@@ -1221,7 +1274,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
     ],
-    "sha256": "78344f5b38bd123b98b2b68bbbe4bb63c9abcb14864e8bf43407f324740cdd0a"
+    "sha256": "0bf5368874564d8138f60a4476981cfa8bb42ecc0153c671b39c2c474608255a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:BR.toolbox_talk",
@@ -1243,7 +1297,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
     ],
-    "sha256": "253f3afb17405543273ae3ef4f23574a7564fc022d099703447c1f17ed793381"
+    "sha256": "2a1f6b6cfa38eebf5e9db097547e875e18ee9d442a60ace56c78efa1739884d6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:BR.inspection",
@@ -1265,7 +1320,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-3.pdf"
     ],
-    "sha256": "f5e170454347089e3da7133c143855ede0ae9c094249368c1fd464dbbaee94d3"
+    "sha256": "b478e9a7c110d967ec29558397a11e8226af5963904fdca8fc0efd8847566ee8",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-QC.risk_assessment",
@@ -1289,7 +1345,8 @@
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
     ],
-    "sha256": "c7884a83173a114e7e97e4c165448c03f14dfb99e4f583c753717d1e165ccddf"
+    "sha256": "a0ea50aa19f280394c4b4ef5a5f9633925988a96ff6389ef66bf22d001d29439",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-QC.method_statement",
@@ -1313,7 +1370,8 @@
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/controler-risques-milieu-travail",
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
     ],
-    "sha256": "363dbed5cf2f82eb3fe629d4e119b65f671ed90cf27720a5e6f6fbb2c6683c6a"
+    "sha256": "0d51c382dc19109e1c33bd1b42f8a361f5084bdaf827d9b2d31da07610b60ca4",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-QC.toolbox_talk",
@@ -1336,7 +1394,8 @@
       "https://www.cnesst.gouv.qc.ca/fr/conditions-travail/horaire-travail/formation-travailleurs",
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
     ],
-    "sha256": "49725ce7fafdab7895e1553468c4563aa4d8cb257f6e282b1f567611f03f2a1e"
+    "sha256": "53bbdb8b289d1f7856e7bac9148fc4fde25c837ba2e912e7e18ec87a3f037e7c",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-QC.inspection",
@@ -1360,7 +1419,8 @@
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-programme-prevention/contenu-programme-prevention",
       "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/mesures-specifiques-etablissements/appliquer-mecanismes-prevention-participation/mecanismes-prevention/faire-plan-action/plan-action"
     ],
-    "sha256": "addc69bcffe1cb52aae66ca637c9866a54a39e0231f166ec072aeaf835dff09a"
+    "sha256": "55ab9b8b4a4fad7afd7eb379841f7234ce972a805652475a8fc190f481b74ae2",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:KR.risk_assessment",
@@ -1382,7 +1442,8 @@
     "sourceUrls": [
       "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
     ],
-    "sha256": "6be5c69525f0469aa6e7265f37beffea10ed5eb392d3bdb7a1a28b167da0d300"
+    "sha256": "c91feba3eb8916fa17a87f47a85a1eeda25b8bd699dd46d7133edeca39db6aa4",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:KR.permit_to_work",
@@ -1404,7 +1465,8 @@
     "sourceUrls": [
       "https://oshri.kosha.or.kr/kosha/business/PublicInstitution_SafetyManagementRecord.do?articleNo=444292&attachNo=250186&mode=download"
     ],
-    "sha256": "89e49feca04da9322dd8c8aff6b9a9ba3cd58bd979aab6974bfa9a3d34a66fd0"
+    "sha256": "eec4515193df4fb9f690baee0045e040f0726996ab489bf6514720327be8dbeb",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:KR.toolbox_talk",
@@ -1427,7 +1489,8 @@
       "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455",
       "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150"
     ],
-    "sha256": "3a5e12e590bd8d006b268e63acc210f55ab395973427c8309405777b4629f458"
+    "sha256": "38ffc58fadad8a3b8ea3f713c05537c4cc2470fab4254778b2d151fde5cf55e6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:KR.inspection",
@@ -1450,7 +1513,8 @@
       "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20241201150",
       "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230200455"
     ],
-    "sha256": "31261276f33f448717b04c9d30279b84d8ba264c05c20ce8cbd992be0b2690bb"
+    "sha256": "80fe321cb25fcfe59be8dea1bd4d2e03cb047492a64da75fff58e7ce1772118f",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-ON.risk_assessment",
@@ -1473,7 +1537,8 @@
       "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
       "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
     ],
-    "sha256": "a7db1e22b25006f308adaa30ca6e27617622f8e7138114fc79213101066a5c6d"
+    "sha256": "7bac73cf73f6bc4ff8fda29cee83328c581a44a7d293b93b13d0d60ce3d90280",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-ON.method_statement",
@@ -1496,7 +1561,8 @@
       "https://www.ccohs.ca/oshanswers/hsprograms/job-haz.html",
       "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
     ],
-    "sha256": "41de0e4cf2c0832e67adf00bd4e8901c2f4c35c82b35e0d745b220acaf554645"
+    "sha256": "18b3291fe112bdc224c55f165b5e5dcdbf03dd73005b619a651474411061df58",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-ON.permit_to_work",
@@ -1518,7 +1584,8 @@
     "sourceUrls": [
       "https://www.ontario.ca/document/guideline-working-confined-spaces/entry-permit"
     ],
-    "sha256": "c251848182294597ecb05617370683725d153e3b68d45be672cea0222a308a25"
+    "sha256": "6c9f88ce4a4da771967c39002069e769ff5eca818611a7bf05df8f88d6d44352",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-ON.toolbox_talk",
@@ -1541,7 +1608,8 @@
       "https://www.ccohs.ca/oshanswers/hsprograms/safety-talks-how-to.html",
       "https://www.ontario.ca/document/guide-occupational-health-and-safety-act-requirements-basic-awareness-training/general"
     ],
-    "sha256": "7a34f8a25da6204be9f252ed1da0824288f93c3751e89bb5195ee72be95a91dd"
+    "sha256": "2ed019126067ac5eb67355c03688a972f9d4e259aa341c2b9ffb077ae3906f86",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-ON.inspection",
@@ -1564,7 +1632,8 @@
       "https://www.ccohs.ca/oshanswers/prevention/effectiv.html",
       "https://www.ontario.ca/page/guide-health-and-safety-committees-and-representatives"
     ],
-    "sha256": "74dedef3454d6919eefff3389c369b0e5266688f2a268794b2ce507c3a8f1db3"
+    "sha256": "3d794e8051f181ca89412e9e9a68051d9b09731a637ba53fe7d5dc9e1d0c337a",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA.permit_to_work",
@@ -1586,7 +1655,8 @@
     "sourceUrls": [
       "https://www.ccohs.ca/oshanswers/hsprograms/confinedspace/confinedspace_program.html"
     ],
-    "sha256": "8fca61203c706d153bae57a07362d26ecf119e1091cb53947920d610ed13c4cf"
+    "sha256": "dfada1a448ecd9e14b21fcc2ebf6e232c0ca4b7a5e15575d6ae02ad2b45a1990",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-AB.permit_to_work",
@@ -1608,7 +1678,8 @@
     "sourceUrls": [
       "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-5-confined-spaces/"
     ],
-    "sha256": "f9381838e00a7c72675d2b4c5b01ea3077b0fecb206ff1a127c9310defecca3f"
+    "sha256": "9caf7d3a5cb28ec1e80fe70f80e29341eacb1144d4b762f1a3430a665b1d5e62",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-BC.permit_to_work",
@@ -1630,7 +1701,8 @@
     "sourceUrls": [
       "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-09-confined-spaces"
     ],
-    "sha256": "9ceb8b33cb7228688522911d49b48de90330b61e5cb66d1318b029fbd09a49c0"
+    "sha256": "ed5a571bd962e547c728d4828963d6f1f56a00f304d777be39d875708e852b84",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:CA-QC.permit_to_work",
@@ -1652,7 +1724,8 @@
     "sourceUrls": [
       "https://www.cnesst.gouv.qc.ca/sites/default/files/documents/a2-travail-espace-clos.pdf"
     ],
-    "sha256": "a66d0d68317720cce9e1d091ee8eb675294ffe05c6eb19e03817cf411264fb03"
+    "sha256": "43d69786d32f42140cb82b628eff93972c8cb39ff64e15ade84271aff72983c6",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:DE.permit_to_work",
@@ -1674,7 +1747,8 @@
     "sourceUrls": [
       "https://publikationen.dguv.de/widgets/pdf/download/article/915"
     ],
-    "sha256": "adc2192bbabf9f97be7232d80903465c579a58cf3cefc9e06a643e64d3f36dda"
+    "sha256": "193206ce1ae1549739832b804d4b62b95ac13331f269efa6a43fad49996f4abe",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:JP.permit_to_work",
@@ -1696,7 +1770,8 @@
     "sourceUrls": [
       "https://www.mhlw.go.jp/web/t_doc?dataId=00tb2089&dataType=1&pageNo=1"
     ],
-    "sha256": "fcf09e6be0f1a83a42e27d6cb3d036ff9b4dee08549b7dcd05a976fd6eda46ad"
+    "sha256": "25f3ab6ae1559c04356257468aeff12a87fd8da2ebd47a63a8ddcb555141a929",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:FR.permit_to_work",
@@ -1719,7 +1794,8 @@
       "https://www.inrs.fr/risques/espaces-confines/prevenir-risques",
       "https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6030-2.pdf"
     ],
-    "sha256": "e41cc1e3914f12a1f46d6e2aec6e512c7129ac8ae2ffc1fb831664dca7051b2a"
+    "sha256": "d3a559a336cf9df60c8ca8c72f956cef920029e84cca5870eae67d217373fcf3",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:IT.permit_to_work",
@@ -1741,7 +1817,8 @@
     "sourceUrls": [
       "https://www.regione.emilia-romagna.it/sicurezza-nei-luoghi-di-lavoro/documentazione/linee-guida/2012/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/manuale-illustrato-per-lavori-in-ambienti-sospetti-di-inquinamento-o-confinati/@@download/file"
     ],
-    "sha256": "8fa20ac097eeed353d3c9fc08a573ac6f6f36aacbedc9420da80c502ac1f75ed"
+    "sha256": "1d09cd83c9f59e09a69fc01fd46587856ae68dcdd89d5689cfbd899f9d9f02aa",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:ES.permit_to_work",
@@ -1763,7 +1840,8 @@
     "sourceUrls": [
       "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/16-serie-ntp-numeros-541-a-575-ano-2001/ntp-562-sistema-de-gestion-preventiva-autorizaciones-de-trabajos-especiales."
     ],
-    "sha256": "91a54bbda54e8101ad90e651452943389330f2bc2f6968e80a360243ad187860"
+    "sha256": "37d642c99be569855ad6fc51cf74dc897ed1bb7f36f2f3b2af9b9d5d7df1d5d0",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:BR.permit_to_work",
@@ -1785,7 +1863,8 @@
     "sourceUrls": [
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-33-atualizada-2022-_retificada.pdf"
     ],
-    "sha256": "597239208fd46e4d7687b0217f02097094e7f2da731a75411535739b5125cb3c"
+    "sha256": "9b77b9dcd590d09bd369ec22eb3f7d16c96a16778618f3f7658da859d7ef20c3",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SA.risk_assessment",
@@ -1807,7 +1886,8 @@
     "sourceUrls": [
       "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
     ],
-    "sha256": "19b263e8d8b173b51ff9d639e054486be2a3b494413bc05b5480db74431439db"
+    "sha256": "94039df23434e219a74b9efa5a5604896ee447f15c3f19f8a012d4fc5f1dbc9e",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SA.method_statement",
@@ -1829,7 +1909,8 @@
     "sourceUrls": [
       "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
     ],
-    "sha256": "0f3fa68823eaa48cdaf81faf8d87555fc70b25edb7f0f2120da470676948f50b"
+    "sha256": "b52aa059c16c4aaee0aaf7a11ff9ce0575dba8ae8666b742ce06f279d2be734e",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SA.permit_to_work",
@@ -1852,7 +1933,8 @@
       "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
       "https://www.ncosh.gov.sa/media/if1lxppg/rowhro-25-en.pdf"
     ],
-    "sha256": "594eb21223d9b4a09a66756213949784f7deee86ba26c63163f0e46b76079b67"
+    "sha256": "c245afe438a0df97f500eaeb53e34de7e0080d584143e465c4ababa8b050f338",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SA.toolbox_talk",
@@ -1875,7 +1957,8 @@
       "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf",
       "https://www.hrsd.gov.sa/sites/default/files/2023-02/29122022_0.pdf"
     ],
-    "sha256": "b02c5677c40845d7282f3319ae667b2a94c28c44a31eec3a8066b6cc8ee5707a"
+    "sha256": "95f3b34d52f091656fb65ae551120b3d99fc180cdef1289e1480fba6d9fd7da8",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:SA.inspection",
@@ -1897,7 +1980,8 @@
     "sourceUrls": [
       "https://www.hrsd.gov.sa/sites/default/files/2018-06/1%29%20%D9%86%D9%85%D8%A7%D8%B0%D8%AC%20%D9%84%D8%A7%D8%A6%D8%AD%D8%A9%20%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%B5%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89.pdf"
     ],
-    "sha256": "e20cdc81ec847cb796f1eeabf3b7c5696cc1ca92b6799a9468773e6cc8032f8e"
+    "sha256": "182cd216dd5784d7c6a33e130003ede348ceb028cc52c95ac5ae60763ca46d03",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:RU.risk_assessment",
@@ -1919,7 +2003,8 @@
     "sourceUrls": [
       "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
     ],
-    "sha256": "57d53fa7fdde055d2fae8b045aeb0d3d5afb4684528134adeaea8ebddc3627a1"
+    "sha256": "6312edbd6e9883ea139c885a18159fbc144e159717aa043b2c1a9a1ed4ef5119",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:RU.method_statement",
@@ -1942,7 +2027,8 @@
       "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf",
       "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf"
     ],
-    "sha256": "2c8d49e529c4adcaea4ff34ca9a84a4bf3db2b16b1fb06f9fc2a1fa3eaf99e8d"
+    "sha256": "4f91970057443b565aadea4a4c088cc03f4da9458fe84bcd9ffabaad3e686751",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:RU.permit_to_work",
@@ -1965,7 +2051,8 @@
       "https://16.mchs.gov.ru/uploads/resource/2026-02-11/perechen-normativnyh-pravovyh-aktov-v-oblasti-pozharnoy-bezopasnosti_1770816913228588720.pdf",
       "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
     ],
-    "sha256": "0b6216e939a88eac03e11333586036a0c2462ed070bf8741525ec5b84b96d614"
+    "sha256": "6a0abda871ee422078800cb1f3c3564ff1d443266a4fe8023f9f892cfddfd0e9",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:RU.toolbox_talk",
@@ -1987,7 +2074,8 @@
     "sourceUrls": [
       "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
     ],
-    "sha256": "38cb114e4b95f03833cc188ab97aaf028165813044fbba308e36250a7833a1e3"
+    "sha256": "249929511ef035d85a8941cafb439473720dafdb47a656d2a2d5b86138e8977e",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   },
   {
     "id": "form:RU.inspection",
@@ -2010,6 +2098,7 @@
       "https://git04.rostrud.gov.ru/upload/iblock/573/pismo_vkhodyashchee_prikaz_926_ot_28.12.2021_reg._tz_57_iz_mintrud_rossii_ob_utverzhdenii_rekomend_5529728v1_.pdf",
       "https://git61.rostrud.gov.ru/upload/iblock/501/03.2023.pdf"
     ],
-    "sha256": "41334179d6fac2a3734b5bff4c1fc13842f37dd43c1af75b6832a1ffe19053d2"
+    "sha256": "3729b0f4bc19a800c927c862bd4f65af1fecbb07acbc9778d5a45e7da4fcda3d",
+    "rendererValidation": "regional-paper-renderer-validation-20261008.json"
   }
 ]

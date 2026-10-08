@@ -13,6 +13,8 @@ import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { createReportPdf } from '../utils/reportPdf';
+import PaperSizeSelect from '../components/PaperSizeSelect';
+import { normalizePaperSize, paperPreviewWidth } from '../utils/paperFormat';
 
 import { supabase } from '../supabaseClient'; 
 import { extractAutoTagsFromJSA, DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary'; 
@@ -87,6 +89,7 @@ function ExportEditor({ recoveredDraft }) {
   const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || [];
   const savedUserColumns = state.savedUserColumns || recoveredLayout.savedUserColumns || [];
   const savedOrientation = state.savedOrientation || recoveredLayout.savedOrientation || 'landscape';
+  const [paperSize, setPaperSize] = useState(() => normalizePaperSize(state.paperSize || recoveredLayout.paperSize));
   const isModuleSkipped = state.isModuleSkipped ?? recoveredLayout.isModuleSkipped;
   const docTitle = state.docTitle ?? recoveredLayout.docTitle ?? documentT('default.docTitle', '위험성평가표 (JSA)');
   const appr1 = state.appr1 ?? recoveredLayout.appr1 ?? documentT('default.appr1', '작성');
@@ -144,6 +147,7 @@ function ExportEditor({ recoveredDraft }) {
       savedUserColumns,
       savedColumnOverrides,
       savedOrientation,
+      paperSize,
       documentBlocks,
       documentNotes,
       isModuleSkipped, stepPhotos, projectSaveContext: projectTarget
@@ -153,7 +157,7 @@ function ExportEditor({ recoveredDraft }) {
 
   const jsaType = formData.jsaType || '2-step';
   const COLS = savedOrientation === 'landscape' ? 56 : 40; 
-  const PAPER_WIDTH = savedOrientation === 'landscape' ? '1080px' : '750px';
+  const PAPER_WIDTH = `${paperPreviewWidth(paperSize, savedOrientation)}px`;
 
 
   const [activePhotoRow, setActivePhotoRow] = useState(null);
@@ -183,7 +187,7 @@ function ExportEditor({ recoveredDraft }) {
       savedProject = await saveProject({
         mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,
         parentId: mode === 'public' ? (parentId || projectTarget?.id) : parentId,
-        snapshot: { publicationConsent, publicationContext, locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
+        snapshot: { publicationConsent, publicationContext, locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
       });
       if (mode !== 'public') {
         try { await archiveActiveDraft(draftResult.version); }
@@ -204,7 +208,7 @@ function ExportEditor({ recoveredDraft }) {
   const generatePDF = async () => {
     setIsProcessing(true); const paper = document.querySelector('.reportPaper'); if (!paper) return setIsProcessing(false);
     try {
-      const {doc}=await createReportPdf([{element:paper,orientation:savedOrientation}]);
+      const {doc}=await createReportPdf([{element:paper,orientation:savedOrientation,paperSize}]);
       doc.save(`JSA_Report_${formData.projectName || 'final'}.pdf`);
     } catch (error) { console.error(error); alert(t('alert.pdfError')); } finally { setIsProcessing(false); }
   };
@@ -456,6 +460,7 @@ function ExportEditor({ recoveredDraft }) {
               <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>6</div><span style={styles.stepTextActive}>{t('step.finalOutput')}</span></div>
             </nav>
             <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div>
+            <PaperSizeSelect locale={i18n.language} value={paperSize} onChange={setPaperSize} disabled={isProcessing}/>
             <div style={styles.previewArea}>
             {/* 가상의 A4 용지 영역 */}
         <div className="reportPaper theme-paper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
@@ -474,7 +479,7 @@ function ExportEditor({ recoveredDraft }) {
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
+              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('common:saveFlow.saveDocument')}</button>
               <button style={styles.pdfBtn} onClick={handlePdfDownload}>{t('btn.pdfSave')}</button>
               <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={handleCopyToClipboard}>{t('btn.copyTable')}</button>

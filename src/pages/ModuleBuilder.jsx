@@ -26,6 +26,7 @@ export default function ModuleBuilder() {
   const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
+  const paperSize = state.paperSize || recoveredLayout.paperSize;
 
   const existingId = state.existingId ?? recoveredDraft?.source_project_id ?? null;
   const analysisData = state.analysisData || recoveredDraft?.analysis_data || [];
@@ -61,7 +62,7 @@ export default function ModuleBuilder() {
     participants,
     procedures,
     analysisData,
-    layoutData: { savedSignatureRows: signatureRows, docTitle, appr1, appr2, appr3 },
+    layoutData: { savedSignatureRows: signatureRows, docTitle, appr1, appr2, appr3, paperSize },
     sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
   });
 
@@ -81,6 +82,7 @@ export default function ModuleBuilder() {
       state: { 
         ...location.state, 
         savedSignatureRows: signatureRows,
+        paperSize,
         docTitle,
         appr1,
         appr2,
@@ -98,6 +100,7 @@ export default function ModuleBuilder() {
       state: { 
         ...location.state,
         savedSignatureRows: 1,
+        paperSize,
         docTitle: t('default.docTitle', '위험성평가표 (JSA)'),
         appr1: t('default.appr1', '작성'),
         appr2: t('default.appr2', '검토'),

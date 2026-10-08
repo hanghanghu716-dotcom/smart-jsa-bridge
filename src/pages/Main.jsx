@@ -11,7 +11,11 @@ import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 import { AuthContext } from '../contexts/AuthContext';
 import { clearActiveDraft } from '../services/jsaDraftService';
+import { journeyContext, newJourneyState, TASK_GUIDE_LINKS } from '../utils/regionalJourney';
+import { regionalJourneyUi } from '../locales/regionalJourneyUi';
+import { regionalMainCopy } from '../locales/regionalMainCopy';
 import '../styles/case-pagination.css';
+import '../styles/main-entry.css';
 import { getWorkspaceNavUi } from '../locales/workspaceNavUi';
 
 // Compact header copy is kept here so this file can be replaced independently.
@@ -96,6 +100,7 @@ export default function Main() {
   const pathLanguage = location.pathname.split('/')[1];
   const currentLanguage = SUPPORTED_LANGS.includes(pathLanguage)
     ? pathLanguage : (i18n.language || 'ko');
+  const heroCopy = regionalMainCopy(currentLanguage);
   const languages = currentLanguage === 'en-CA'
     ? [{ code: 'en-CA', label: 'English (Canada)' }, ...LANGUAGE_OPTIONS]
     : LANGUAGE_OPTIONS;
@@ -267,7 +272,7 @@ export default function Main() {
   const handleStartClick = () => {
     if (user) {
       clearActiveDraft();
-      navigate('/info', { state: { isMember: true } });
+      navigate('/info', { state: { ...newJourneyState(journeyContext(currentLanguage)), isMember: true } });
     } else {
       setIsStartModalOpen(true);
     }
@@ -315,7 +320,7 @@ export default function Main() {
             </p>
             <div style={styles.modalBtnGroup}>
               <button style={styles.loginBtn} onClick={() => navigate('/login')}>{t('loginBtn')}</button>
-              <button style={styles.guestBtn} onClick={() => { clearActiveDraft(); navigate('/info', { state: { isMember: false } }); }}>{t('guestBtn')}</button>
+              <button style={styles.guestBtn} onClick={() => { clearActiveDraft({ preserveGuest: true }); navigate('/info', { state: { ...newJourneyState(journeyContext(currentLanguage)), isMember: false } }); }}>{t('guestBtn')}</button>
             </div>
             <button style={styles.closeText} onClick={() => setIsStartModalOpen(false)}>{t('cancelBtn')}</button>
           </div>
@@ -485,23 +490,28 @@ export default function Main() {
             </div>
           </aside>
 
-          <main style={styles.centerContent} className="max-lg:!pl-0">
-            <div style={styles.heroContent}>
+          <main style={styles.centerContent} className="max-lg:!pl-0 max-lg:w-full min-w-0">
+            <div className="main-entry-copy" style={styles.heroContent}>
               <h2 className="text-[28px] lg:text-[clamp(2.5rem,5vw,3.8rem)] font-extrabold leading-tight mb-6" style={styles.mainTitle}>
-                {t('heroTitle1')}<br />{t('heroTitle2')}
+                {heroCopy.title}
               </h2>
               <p className="text-[14px] lg:text-[1.2rem]" style={styles.subTitle}>
-                {t('heroSub1')}<br />
-                {t('heroSub2')}
+                {heroCopy.description}
               </p>
 
-            <div style={styles.heroBtnGroup}>
+              <div className="main-entry-actions" style={styles.heroBtnGroup}>
+                <button type="button" className="main-entry-button main-entry-primary" onClick={handleStartClick}>
+                  {t('heroBtn')}
+                </button>
                 <button
+                  type="button" className="main-entry-button main-entry-secondary"
                   onClick={() => { clearActiveDraft(); navigate('/procedure', {
                     state: {
+                      ...newJourneyState(journeyContext(currentLanguage)),
                       isMember: !!user,
                       isFastTrack: true,
                       formData: {
+                        context: journeyContext(currentLanguage),
                         projectName: t('fastTrackDefaultTitle', { defaultValue: '초고속 자동 위험성평가 작업' }),
                         department: '',
                         workLocation: '',
@@ -519,36 +529,14 @@ export default function Main() {
                       participants: Array(14).fill('')
                     }
                   }); }}
-                  style={styles.fastTrackBtn}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#0056b3';
-                    e.currentTarget.style.borderColor = '#0056b3';
-                    e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 123, 255, 0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#007bff';
-                    e.currentTarget.style.borderColor = '#007bff';
-                    e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 123, 255, 0.3)';
-                  }}
                 >
                   {t('heroFastTrackBtn')}
                 </button>
-
-                <button
-                  onClick={handleStartClick}
-                  style={styles.primaryBtn}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
-                    e.currentTarget.style.borderColor = '#ffffff';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(24, 24, 24, 0.6)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                  }}
-                >
-                  {t('heroBtn')}
-                </button>
               </div>
+              <a href="#case-studies" className="main-case-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M12 5v15M3 4h5a4 4 0 0 1 4 2 4 4 0 0 1 4-2h5v15h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3z"/></svg>
+                <span>{regionalJourneyUi(currentLanguage).examples}</span><span className="main-case-arrow" aria-hidden="true">→</span>
+              </a>
             </div>
           </main>
 
@@ -588,7 +576,7 @@ export default function Main() {
         </div>
       </section>
 
-      <section style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }} className="max-lg:!py-20">
+      <section id="task-examples" style={{ ...styles.m3Section, backgroundColor: '#fcfcfc' }} className="max-lg:!py-20">
         <div style={styles.container} className="max-lg:!px-6">
           <div style={styles.m3Header} className="lg:px-0">
             <span style={styles.m3Tag} className="block mb-4">ANALYSIS GUIDES</span>
@@ -596,18 +584,7 @@ export default function Main() {
           </div>
             <div style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0">
             {['01', '02', '03', '04', '05', '06', '07', '08', '09'].map(id => {
-              const guidePaths = {
-                '01': '/guideline/common',
-                '02': '/guideline/construction',
-                '03': '/guideline/manufacturing',
-                '04': '/guideline/chemical',
-                '05': '/guideline/high-risk',
-                '06': '/guideline/general',
-                '07': '/guideline/common',
-                '08': '/guideline/construction',
-                '09': '/guideline/manufacturing'
-              };
-              const targetPath = guidePaths[id] || '/guideline/common';
+              const targetPath = TASK_GUIDE_LINKS[id];
 
               return (
                 <LanguageLink key={id} to={targetPath} style={{ textDecoration: 'none', display: 'block' }}>

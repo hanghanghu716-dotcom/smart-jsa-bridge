@@ -1,3 +1,4 @@
+import { normalizePaperSize } from './paperFormat.js';
 export const DEFAULT_BLOCKS = ['PROJECT_INFO', 'SAFETY', 'PARTICIPANTS', 'JSA_TABLE', 'NOTES'].map(id => ({ id, enabled: id !== 'NOTES' }));
 
 // Keep the earliest former header position, and retain the header if either
@@ -43,6 +44,7 @@ export function templateLayout(data = {}, defaults = {}) {
     savedUserColumns: data.savedUserColumns ?? data.userColumns ?? [],
     savedColumnOverrides: data.savedColumnOverrides ?? {},
     savedOrientation: data.savedOrientation ?? data.orientation ?? 'landscape',
+    paperSize: normalizePaperSize(data.paperSize ?? defaults.paperSize),
     savedSignatureRows: data.savedSignatureRows ?? data.signatureRows ?? defaults.savedSignatureRows ?? 1,
     docTitle: data.docTitle ?? defaults.docTitle ?? '',
     appr1: data.appr1 ?? defaults.appr1 ?? '', appr2: data.appr2 ?? defaults.appr2 ?? '', appr3: data.appr3 ?? defaults.appr3 ?? '',
@@ -53,7 +55,7 @@ export function templateLayout(data = {}, defaults = {}) {
 export function pickDocumentLayout(state = {}, fallback = {}) {
   state = state || {};
   fallback = fallback || {};
-  const keys = ['documentBlocks', 'savedActiveOrder', 'savedUserColumns', 'savedColumnOverrides', 'savedOrientation', 'savedSignatureRows', 'docTitle', 'appr1', 'appr2', 'appr3', 'documentNotes', 'isModuleSkipped', 'stepPhotos', 'projectSaveContext'];
+  const keys = ['documentBlocks', 'savedActiveOrder', 'savedUserColumns', 'savedColumnOverrides', 'savedOrientation', 'paperSize', 'savedSignatureRows', 'docTitle', 'appr1', 'appr2', 'appr3', 'documentNotes', 'isModuleSkipped', 'stepPhotos', 'projectSaveContext'];
   return Object.fromEntries(keys.filter(key => state[key] !== undefined || fallback[key] !== undefined)
     .map(key => [key, state[key] !== undefined ? state[key] : fallback[key]]));
 }
