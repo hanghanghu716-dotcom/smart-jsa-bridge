@@ -13,8 +13,9 @@ export function checkManifest(actual, expected) {
   }
   if (expected && (expected.length !== actual.length || expected.some(g => !actual.some(a => a.route === g.route && a.pdf === g.pdf && a.sha256 === g.sha256)))) throw Error('LIVE_RELEASE_NOT_CURRENT');
 }
-export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', expected, fetcher = fetch, manifestAttempts = 6, retryDelayMs = 5000, sleep = ms => new Promise(resolve => setTimeout(resolve, ms)), onManifestAttempt = () => {} } = {}) {
+export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', expected, fetcher = fetch, manifestAttempts = 6, pdfAttempts = 6, retryDelayMs = 5000, sleep = ms => new Promise(resolve => setTimeout(resolve, ms)), onManifestAttempt = () => {}, onPdfAttempt = () => {} } = {}) {
   if (!Number.isInteger(manifestAttempts) || manifestAttempts < 1 || manifestAttempts > 10 || !Number.isFinite(retryDelayMs) || retryDelayMs < 0 || retryDelayMs > 10000) throw Error('INVALID_MANIFEST_RETRY_OPTIONS');
+  if (!Number.isInteger(pdfAttempts) || pdfAttempts < 1 || pdfAttempts > 10) throw Error('INVALID_PDF_RETRY_OPTIONS');
   // A bad local expectation cannot be repaired by waiting for the production alias.
   if (expected) checkManifest(expected);
   const get = async path => {
@@ -42,8 +43,20 @@ export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', e
       try {
         const html = await (await get(g.route)).text();
         if (!html.includes('id="guide-document"') || !html.includes(`data-guide-locale="${g.locale}"`) || !html.includes(g.pdf) || !html.includes('application/ld+json')) throw Error('INITIAL_HTML_MISSING');
-        const response = await get(g.pdf), pdf = Buffer.from(await response.arrayBuffer());
-        if (!response.headers.get('content-type')?.includes('application/pdf') || pdf.subarray(0,5).toString() !== '%PDF-' || createHash('sha256').update(pdf).digest('hex') !== g.sha256) throw Error('PDF_MISMATCH');
+        for (let attempt = 1; attempt <= pdfAttempts; attempt++) {
+          const response = await get(g.pdf), pdf = Buffer.from(await response.arrayBuffer());
+          const actualSha256 = createHash('sha256').update(pdf).digest('hex');
+          const validPdf = response.headers.get('content-type')?.includes('application/pdf') && pdf.subarray(0,5).toString() === '%PDF-';
+          const matched = validPdf && actualSha256 === g.sha256;
+          onPdfAttempt({ route: g.route, pdf: g.pdf, attempt, observedAt: new Date().toISOString(),
+            expectedSha256: g.sha256, actualSha256, status: response.status,
+            headers: Object.fromEntries(response.headers), matched: Boolean(matched) });
+          if (matched) break;
+          // A production alias may serve a complete old PDF briefly after the manifest switches.
+          // Only hash mismatches of valid PDFs retry; every accepted response must match the build.
+          if (!validPdf || attempt === pdfAttempts) throw Error('PDF_MISMATCH');
+          await sleep(retryDelayMs);
+        }
         verified++;
       } catch (error) { failures.push({route:g.route,error:error.message}); }
     }
@@ -57,10 +70,10 @@ export async function verifyLiveRelease({ base = 'https://smartjsabridge.com', e
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const path = process.argv[2], expected = path ? JSON.parse(fs.readFileSync(path,'utf8')) : undefined;
-  const diagnostic = { startedAt: new Date().toISOString(), expectedPath: path || null, expected, attempts: [] };
+  const diagnostic = { startedAt: new Date().toISOString(), expectedPath: path || null, expected, attempts: [], pdfAttempts: [] };
   const saveDiagnostic = () => { fs.mkdirSync('.cache', { recursive: true }); fs.writeFileSync('.cache/live-release-check.json', JSON.stringify(diagnostic, null, 2)); };
   try {
-    const result = await verifyLiveRelease({expected, onManifestAttempt: attempt => { diagnostic.attempts.push(attempt); saveDiagnostic(); }});
+    const result = await verifyLiveRelease({expected, onManifestAttempt: attempt => { diagnostic.attempts.push(attempt); saveDiagnostic(); }, onPdfAttempt: attempt => { diagnostic.pdfAttempts.push(attempt); saveDiagnostic(); }});
     diagnostic.result = result; saveDiagnostic();
     console.log(JSON.stringify(result,null,2));
     if (result.failures.length) process.exitCode = 1;
