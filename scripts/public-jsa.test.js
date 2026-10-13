@@ -18,7 +18,7 @@ test('engagement metrics normalize legacy values and sort columns use a strict a
   assert.equal(safe.reuse_count, 0);
   assert.equal(safe.scrap_count, 0);
   assert.equal(publicJsaView({ ...row, view_count: 'invalid' }).view_count, 0);
-  for (const [input, expected] of [['latest','created_at'],['popular','scrap_count'],['views','view_count'],['reused','reuse_count'],['constructor','created_at'],['__proto__','created_at'],['unknown','created_at']]) assert.equal(publicSortColumn(input), expected);
+  for (const [input, expected] of [['latest','published_at'],['popular','scrap_count'],['views','view_count'],['reused','reuse_count'],['constructor','published_at'],['__proto__','published_at'],['unknown','published_at']]) assert.equal(publicSortColumn(input), expected);
 });
 function response() { return { headers: {}, setHeader(k,v) { this.headers[k]=v; }, end(body) { this.body=body; } }; }
 test('selected reuse preserves original step attribution and excludes unselected steps',()=>{

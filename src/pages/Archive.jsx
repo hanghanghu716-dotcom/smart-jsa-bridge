@@ -1,3 +1,4 @@
+import { caseListBootstrap } from '../utils/caseListBootstrap.js';
 import { cleanSummary } from '../utils/content.js';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
 import { useState, useEffect } from 'react';
@@ -8,7 +9,7 @@ import SEO from '../components/SEO';
 
 export default function Archive() {
   const { i18n } = useTranslation();
-  const [cases, setCases] = useState([]);
+  const [cases, setCases] = useState(caseListBootstrap);
 
   useEffect(() => {
     const fetchAllCases = async () => {
@@ -48,7 +49,7 @@ export default function Archive() {
             </header>
 
             {/* 카드 리스트 렌더링 영역 */}
-            <div style={styles.listContainer}>
+            <div data-live-case-list="archive" style={styles.listContainer}>
               {cases.map(item => (
                 <article key={item.post_group_id} style={styles.card} className="max-lg:!p-6 max-lg:!rounded-2xl flex flex-col">
                   <div style={styles.cardHeader}>

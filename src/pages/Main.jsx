@@ -1,3 +1,4 @@
+import { caseListBootstrap } from '../utils/caseListBootstrap.js';
 import { caseViewCounts } from '../services/caseStudyMetrics';
 import { sortCases } from '../utils/caseSort';
 import { getPublicUi } from '../locales/publicUi';
@@ -92,7 +93,7 @@ export default function Main() {
   const menuButtonRef = useRef(null);
   const drawerRef = useRef(null);
 
-  const [caseStudies, setCaseStudies] = useState([]);
+  const [caseStudies, setCaseStudies] = useState(caseListBootstrap);
   const [caseSort,setCaseSort]=useState('latest');
   const [caseMetricsError,setCaseMetricsError]=useState(false);
   const caseUi=getPublicUi(i18n.language);
@@ -673,6 +674,7 @@ export default function Main() {
             </select></label>
             {caseMetricsError&&<span role="status">{caseUi.views}: {caseUi.error}</span>}
           </div>
+          <div data-live-case-list="home">
           {currentItems.length > 0 ? (
             <>
               <div id="case-study-results" tabIndex={-1} style={styles.jsaCardGrid} className="max-lg:!flex max-lg:!flex-col max-lg:!gap-0 mt-8 lg:px-0">
@@ -728,6 +730,7 @@ export default function Main() {
               {ui.caseEmpty}
             </div>
           )}
+          </div>
         </div>
       </section>
 
