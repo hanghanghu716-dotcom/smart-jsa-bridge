@@ -1,4 +1,5 @@
 import { PUBLIC_COUNTRIES, exploreCountry, localeCountry, countryLabel } from '../utils/publicCountry';
+import { exploreIndexable } from '../utils/exploreIndexing.js';
 import { getPublicCountryUi } from '../locales/publicCountryUi';
 import { usePublicTranslation } from '../hooks/usePublicTranslation';
 import PublicTranslationNotice from './PublicTranslationNotice';
@@ -97,7 +98,7 @@ export default function PublicExplore() {
   }, [search, sort, tags, page, attempt, selectedCountry]);
   const translation=usePublicTranslation(rows.filter(row=>!selectedCountry||row.public_country===selectedCountry),i18n.language);
   return <div className="jsa-workspace explore-page" dir={i18n.dir()}>
-    <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={exploreSearch({page})} noIndex={Boolean(search || tags.length || sort!=='latest' || country || error || (!loading&&!rows.length))} />
+    <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={exploreSearch({page})} noIndex={!exploreIndexable(rows,query,error)} />
     <header className="jsa-nav explore-nav"><LanguageLink className="explore-brand" to="/"><span className="explore-brand-mark"><ExploreIcon name="library" /></span>Smart JSA Bridge</LanguageLink><ThemeSwitcher compact /></header>
     <main className="jsa-container">
       <section className="explore-hero">

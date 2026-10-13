@@ -1,4 +1,5 @@
 import { exploreCountry, countryLabel } from '../src/utils/publicCountry.js';
+import { exploreIndexable } from '../src/utils/exploreIndexing.js';
 import { readFile } from 'node:fs/promises';
 import { PUBLIC_JSA_FIELDS, publicJsaView, publicSortColumn } from '../src/utils/publicJsa.js';
 import { exploreQuery, exploreSearch } from '../src/utils/discovery.js';
@@ -11,7 +12,7 @@ export const publicKey='sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
 export function renderExploreHtml(shell,result,locale,query,failed=false){
  const e=escapeHtml,ui=getPublicUi(locale),d=getDiscoveryUi(locale),rows=result.rows.map(publicJsaView).filter(Boolean);
  const title=ui.title+' | Smart JSA Bridge',canonical=`https://smartjsabridge.com/${locale}/explore${exploreSearch({page:query.page})}`;
- const noindex=failed||!rows.length||Boolean(query.search||query.tags.length||query.sort!=='latest'||query.country);
+ const noindex=!exploreIndexable(rows,query,failed);
  const link=p=>`/${locale}/explore${exploreSearch({...query,page:p})}`;
  const body=`<main><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section>${rows.map(row=>`<article><h2><a href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></h2><p>${e(countryLabel(row.public_country,locale))}</p><p>${e(ui.steps)}: ${row.analysis_data.length}</p><p>${e(row.analysis_data.map(s=>s.proc.stepTitle).join(' · '))}</p><p>${e(row.tags.join(' · '))}</p><p>${e(ui.views)}: ${row.view_count} · ${e(ui.reuses)}: ${row.reuse_count} · ${e(ui.scraps)}: ${row.scrap_count}</p></article>`).join('')}</section><nav>${query.page>0?`<a rel="prev" href="${e(link(query.page-1))}">${e(d.previous)}</a>`:''}${result.hasMore?`<a rel="next" href="${e(link(query.page+1))}">${e(d.next)}</a>`:''}</nav>`}</main>`;
  const bootstrap=JSON.stringify({locale,query,...result,rows}).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');

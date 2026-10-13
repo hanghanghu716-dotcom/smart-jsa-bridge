@@ -1,4 +1,5 @@
 import { SUPPORTED_LANGS, SEO_LANGUAGES, getSeoLocale, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
+import { staticCanonicalLocale } from '../src/utils/indexing.js';
 
 const baseUrl = 'https://smartjsabridge.com';
 const staticPages = ['', 'about', 'archive', 'explore', 'dictionary', 'jrajsa', 'regulation',
@@ -23,7 +24,7 @@ export async function loadCaseRows(client) {
   }
 }
 
-export function buildSitemap(rows, { includeStatic = true } = {}) {
+export function buildSitemap(rows, { includeStatic = true, exploreLocales = [] } = {}) {
   const entries = [];
   const addEntry = (locale, path, alternates, modified) => {
     const url = code => escapeXml(baseUrl + '/' + code + path);
@@ -34,7 +35,11 @@ export function buildSitemap(rows, { includeStatic = true } = {}) {
     entries.push('  <url>\n    <loc>' + url(locale) + '</loc>' + lastmod + '\n' + links.join('\n') + '\n  </url>');
   };
   for (const page of includeStatic ? staticPages : []) {
-    for (const locale of SUPPORTED_LANGS) addEntry(locale, page ? '/' + page : '', SEO_LANGUAGES);
+    const alternates = page === 'explore' ? SEO_LANGUAGES.filter(code => exploreLocales.includes(getSeoLocale(code))) : SEO_LANGUAGES;
+    for (const locale of SUPPORTED_LANGS) {
+      if (staticCanonicalLocale(locale, page) !== locale || (page === 'explore' && !exploreLocales.includes(locale))) continue;
+      addEntry(locale, page ? '/' + page : '', alternates);
+    }
   }
   const groups = new Map();
   const variants = new Map();

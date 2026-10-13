@@ -1,13 +1,16 @@
 const attributes = tag => Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g)]
   .map(match => [match[1].toLowerCase(), match[2] ?? match[3] ?? match[4]]));
 
+import { staticCanonicalLocale } from '../src/utils/indexing.js';
+
 // Fail before deployment if a captured home page leaked metadata into another route.
 export function verifyStaticMetadata(html, route) {
   const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] || '';
   const tags = [...head.matchAll(/<(?:meta|link)\b(?:[^"'<>]|"[^"]*"|'[^']*')*>/gi)]
     .map(match => attributes(match[0]));
   const canonical = tags.filter(tag => tag.rel === 'canonical');
-  const expected = 'https://smartjsabridge.com' + (route === '/' ? '/en-US' : route.replace(/\/$/, ''));
+  const [, locale, ...parts] = (route === '/' ? '/en-US' : route.replace(/\/$/, '')).split('/');
+  const expected = 'https://smartjsabridge.com/' + staticCanonicalLocale(locale, parts.join('/')) + (parts.length ? '/' + parts.join('/') : '');
   if (canonical.length !== 1 || canonical[0].href !== expected) {
     throw new Error(`Missing, duplicated or mismatched static canonical: ${route}`);
   }

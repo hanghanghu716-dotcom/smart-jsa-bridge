@@ -6,6 +6,21 @@
   "outputDirectory": "dist",
   "redirects": [
     {
+      "source": "/about",
+      "destination": "/en-US/about",
+      "permanent": true
+    },
+    {
+      "source": "/:lng/ppe",
+      "destination": "/:lng/protectiveequipment",
+      "permanent": true
+    },
+    {
+      "source": "/:lng/guide/common",
+      "destination": "/:lng/guideline/common",
+      "permanent": true
+    },
+    {
       "source": "/:lng/guide/manu",
       "destination": "/:lng/guideline/manufacturing",
       "permanent": true
@@ -41,8 +56,8 @@
       "permanent": true
     },
     {
-      "source": "/ja-JP/case-study/jsa-%20roof-truss",
-      "destination": "/ja-JP/case-study/jsa-roof-truss",
+      "source": "/:lng(ja-JP|it-IT)/case-study/jsa-%20roof-truss",
+      "destination": "/:lng/case-study/jsa-roof-truss",
       "permanent": true
     }
   ],
@@ -61,6 +76,10 @@
     }
   },
   "rewrites": [
+    {
+      "source": "/:lng(zh-CN|zh-TW)/:path*",
+      "destination": "/api/retired-locale"
+    },
     {
       "source": "/sitemap.xml",
       "destination": "/api/content-feed?kind=index"
