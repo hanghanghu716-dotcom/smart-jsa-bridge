@@ -41,6 +41,8 @@ jobs:
         run: npx --yes vercel@59.23.2 build --prod --token="$VERCEL_TOKEN"
       - name: Deploy the verified build without rebuilding
         run: npx --yes vercel@59.23.2 deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+      - name: Verify live content discovery and article delivery
+        run: node scripts/verify-live-content.js
       - name: Verify production HTML and every localized PDF
         run: node scripts/verify-live-release.js dist/assets/guides/manifest.json
       - name: Preserve failed release comparison evidence

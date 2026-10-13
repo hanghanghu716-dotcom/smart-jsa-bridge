@@ -66,12 +66,6 @@ export default function CaseStudyDetail() {
           .eq('post_group_id', id).in('language_code', getCaseLanguages(targetLang));
         if (error) throw error;
         let selected = selectLocalizedCases(data || [], targetLang)[0] || null;
-        if (!selected && targetLang !== 'fr-CA-QC') {
-          const fallback = await supabase.from('case_studies').select('*')
-            .eq('post_group_id', id).eq('language_code', 'ko').maybeSingle();
-          if (fallback.error) throw fallback.error;
-          selected = fallback.data;
-        }
         if (!active) return;
         setPost(selected);
         const variants = await supabase.from('case_studies').select('language_code')

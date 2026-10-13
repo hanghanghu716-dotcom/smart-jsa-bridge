@@ -2,9 +2,9 @@ import { validCountry } from './publicCountry.js';
 import { SUPPORTED_LANGS } from '../locales/config.js';
 import { publicProjectSnapshot, projectEditorState } from './projectPersistence.js';
 
-export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,public_country,form_data,analysis_data,custom_layout,tags,created_at,updated_at,scrap_count,view_count,reuse_count,reuse_license,publication_context,license_accepted_at,parent_id,fork_count,assessment';
-const sortColumns = new Map([['latest', 'created_at'], ['popular', 'scrap_count'], ['views', 'view_count'], ['reused', 'reuse_count']]);
-export const publicSortColumn = sort => sortColumns.get(sort) || 'created_at';
+export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,public_country,form_data,analysis_data,custom_layout,tags,created_at,updated_at,published_at,content_updated_at,scrap_count,view_count,reuse_count,reuse_license,publication_context,license_accepted_at,parent_id,fork_count,assessment';
+const sortColumns = new Map([['latest', 'published_at'], ['popular', 'scrap_count'], ['views', 'view_count'], ['reused', 'reuse_count']]);
+export const publicSortColumn = sort => sortColumns.get(sort) || 'published_at';
 export const safeMetric = value => Number.isFinite(Number(value)) ? Math.max(0, Math.floor(Number(value))) : 0;
 export const validProjectId = id => typeof id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 const cleanText = value => typeof value === 'string' ? value.trim() : '';
@@ -41,7 +41,7 @@ export function publicJsaView(row) {
     form_data: clean.formData, analysis_data: clean.analysisData, participants: [],
     custom_layout: { ...clean.layoutData, procedures: clean.procedures },
     tags: Array.isArray(row.tags) ? row.tags.filter(tag => typeof tag === 'string') : [],
-    created_at: row.created_at, updated_at: row.updated_at, scrap_count: safeMetric(row.scrap_count), view_count: safeMetric(row.view_count), reuse_count: safeMetric(row.reuse_count) };
+    created_at: row.created_at, updated_at: row.updated_at, published_at: row.published_at, content_updated_at: row.content_updated_at, scrap_count: safeMetric(row.scrap_count), view_count: safeMetric(row.view_count), reuse_count: safeMetric(row.reuse_count) };
 }
 
 export function publicJsaQuality(row) {
