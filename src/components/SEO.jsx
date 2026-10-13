@@ -1,4 +1,5 @@
 import { cleanSummary } from '../utils/content.js';
+import { staticCanonicalLocale } from '../utils/indexing.js';
 import { SUPPORTED_LANGS, SEO_LANGUAGES, getLanguageTag, getSeoLocale, normalizeLocale } from '../locales/config.js';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -48,7 +49,7 @@ const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, ca
 
   // 3. 현재 URL 동적 조합
   const pathSuffix = purePath ? `/${purePath}` : '';
-  const currentUrl = `${baseUrl}/${currentLang}${pathSuffix}${canonicalSearch}`;
+  const currentUrl = `${baseUrl}/${staticCanonicalLocale(currentLang, purePath)}${pathSuffix}${canonicalSearch}`;
 
   return (
     <Helmet>

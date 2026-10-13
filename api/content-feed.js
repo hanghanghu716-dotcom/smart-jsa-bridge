@@ -1,5 +1,6 @@
 import { SUPPORTED_LANGS, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
+import { indexableExploreLocales } from '../src/utils/exploreIndexing.js';
 import { PUBLIC_JSA_FIELDS, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
 import { buildSitemap } from '../scripts/sitemap-data.js';
 import { CASE_SUMMARY_FIELDS, SITE, casePath, escapeHtml as e, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
@@ -41,7 +42,10 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
         if (documents.map(publicJsaView).some(row => publicJsaQuality(row).indexable)) parts.push('public');
         body = xmlHeader + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + parts.map(part => `<sitemap><loc>${SITE}/sitemap-${part}.xml</loc></sitemap>`).join('') + '</sitemapindex>';
       }
-      if (kind === 'static') body = buildSitemap([], { includeStatic: true });
+      if (kind === 'static') {
+        const documents = await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher);
+        body = buildSitemap([], { includeStatic: true, exploreLocales: indexableExploreLocales(documents.map(publicJsaView)) });
+      }
       if (kind === 'cases') body = buildSitemap(await readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS }, fetcher), { includeStatic: false });
       if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher));
       if (kind === 'rss') {
