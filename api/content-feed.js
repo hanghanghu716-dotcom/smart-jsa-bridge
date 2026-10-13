@@ -33,7 +33,14 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
     if (!['index', 'static', 'cases', 'public', 'rss'].includes(kind) || (kind === 'rss' && !SUPPORTED_LANGS.includes(locale))) { sendContent(req, res, 'Not found', { status: 404 }); return; }
     try {
       let body;
-      if (kind === 'index') body = xmlHeader + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ['static', 'cases', 'public'].map(part => `<sitemap><loc>${SITE}/sitemap-${part}.xml</loc></sitemap>`).join('') + '</sitemapindex>';
+      if (kind === 'index') {
+        const documents = await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher);
+        const parts = ['static', 'cases'];
+        // A urlset requires at least one url. Advertise this section only when
+        // there is an eligible public document; it appears on the next request.
+        if (documents.map(publicJsaView).some(row => publicJsaQuality(row).indexable)) parts.push('public');
+        body = xmlHeader + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + parts.map(part => `<sitemap><loc>${SITE}/sitemap-${part}.xml</loc></sitemap>`).join('') + '</sitemapindex>';
+      }
       if (kind === 'static') body = buildSitemap([], { includeStatic: true });
       if (kind === 'cases') body = buildSitemap(await readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS }, fetcher), { includeStatic: false });
       if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher));

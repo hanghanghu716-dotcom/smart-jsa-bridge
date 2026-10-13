@@ -50,6 +50,13 @@ test('index and sitemap failures never emit empty successful pages',async()=>{
  const fetcher=async()=>{throw Error('offline');};
  for(const [handler,query] of [[createContentFeedHandler({fetcher}),{kind:'cases'}],[createContentIndexHandler({fetcher}),{lng:'ko',kind:'archive'}]]){const res=response();await handler({query},res);assert.equal(res.statusCode,503);}
 });
+test('the sitemap index omits an empty public section until an eligible document is published',async()=>{
+ const row={id:'12345678-1234-4234-8234-123456789012',title:'A real public document',is_public:true,public_locale:'ko',reuse_license:'community-v1',assessment:{checked:true},analysis_data:Array.from({length:3},(_,i)=>({proc:{stepTitle:'Step '+i,stepDetail:'Detailed description of the step '.repeat(4)},risks:[{factor:'Risk',measure:'Control'}]}))};
+ for(const rows of [[],[{...row,title:'TEST_document'}],[row]]){
+  const res=response();await createContentFeedHandler({fetcher:fake(rows)})({query:{kind:'index'}},res);
+  assert.equal(res.statusCode,200);assert.equal(res.body.includes('sitemap-public.xml'),rows[0]===row);
+ }
+});
 test('pagination reads all rows even when the database caps a page below 1000',async()=>{
  const rows=await readAllPublic('case_studies',{select:'id'},async url=>{const p=new URL(url).searchParams;return Response.json(!p.has('id')?[{id:'a'},{id:'b'}]:p.get('id')==='gt.b'?[{id:'c'}]:[]);});assert.equal(rows.length,3);
 });

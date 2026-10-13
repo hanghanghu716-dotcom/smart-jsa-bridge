@@ -17,7 +17,7 @@ function all(node, predicate, out = []) {
 const attr = (node, name) => node.attrs?.find(a => a.name === name)?.value;
 const index = await get('/sitemap.xml');
 assert.match(index.body, /<sitemapindex/);
-for (const kind of ['static', 'cases', 'public']) assert.ok(index.body.includes(`/sitemap-${kind}.xml`));
+for (const kind of ['static', 'cases']) assert.ok(index.body.includes(`/sitemap-${kind}.xml`));
 const cases = await get('/sitemap-cases.xml');
 assert.match(cases.response.headers.get('content-type'), /xml/);
 const paths = [...cases.body.matchAll(/<loc>https:\/\/smartjsabridge\.com([^<]+)<\/loc>/g)].map(match => match[1].replace(/&amp;/g, '&'));
@@ -42,6 +42,8 @@ for (const [locale, route] of samples) {
   assert.match(home.body, /window\.__CASE_LIST__=/, `${locale}: stale home`);
 }
 assert.match((await get('/en-US/feed.xml')).body, /<rss /);
-assert.match((await get('/sitemap-public.xml')).body, /<urlset/);
+const publicMap = (await get('/sitemap-public.xml')).body;
+assert.match(publicMap, /<urlset/);
+assert.equal(index.body.includes('/sitemap-public.xml'), publicMap.includes('<url>'), 'Empty public sitemap must not be advertised');
 await get('/ko/case-study/nonexistent-live-content-verification', 404);
 console.log(`Verified live sitemap, RSS, ${samples.size} locale article/home/archive groups, and missing-article 404.`);
