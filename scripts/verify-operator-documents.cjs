@@ -36,7 +36,7 @@ const {spawn}=require('node:child_process');
   }
   await page.evaluate(()=>{document.documentElement.dataset.theme='light';});
   await page.waitForSelector('.explore-pagination');
-  assert.deepEqual(await page.$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),[1,2]);
+  assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),[1,2]);
   const firstTitle=await page.$eval('.explore-card h2',el=>el.textContent);
   await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
   await page.waitForFunction(()=>new URL(location.href).searchParams.get('page')==='1'&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===12,{timeout:30000});
