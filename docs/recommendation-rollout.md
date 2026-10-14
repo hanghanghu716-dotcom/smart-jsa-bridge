@@ -1,70 +1,46 @@
 # Recommendation data and locale rollout
 
-This change addresses ambiguous recommendation IDs, stale links after input edits, cross-language score propagation and missing analysis/output translations. Percentages remain visible and are labelled text similarity. It also adds read-only data auditing and a draft case-study data workflow. It does not establish that the legacy recommendations are semantically correct or regionally approved.
+Percentages remain text similarity. Ambiguous IDs, cross-language score propagation and stale references are rejected. A percentage is not approval or an accident-prevention probability. Code tests do not establish production semantic accuracy.
 
-## Current behavior
+## Implemented behavior
 
-- Hazard and control references distinguish translation IDs from master IDs. A translation ID is never retried as a master ID or vice versa.
-- Legacy recommendations follow exact translation references in the document's data language. Advanced suggestions must also be linked through the selected hazard and current control. Work-specific semantic suitability still requires reviewed data and evaluation.
-- Editing a hazard or control invalidates dependent references while retaining user text for review. Changing a task or document context hides obsolete dialogs and ignores late recommendation results.
-- Document language determines new recommendation text. Work jurisdiction is retained independently. Shared language datasets are disclosed; they are not certified regional datasets.
-- Legacy scores are not maximized across languages or arbitrarily rescaled. Invalid or conflicting scores are omitted. Zero scores are formatted explicitly. A recommendation percentage is not an approval or accident-prevention probability.
-- Regional datasets are not silently created by translating UI strings. Existing case-study content and its PDFs remain separate from the draft recommendation bank.
+- Master and translation IDs are distinct. Legacy lookups follow the document data language; additional controls retain the original hazard/current-control chain. Invalid/conflicting scores are omitted without maximization or rescaling.
+- Text/context edits invalidate dependent references, confirmation and ratings while retaining user text. Unique exact same-language rematching is supported; ambiguous matches stay unmatched.
+- Case selection goes through steps and required/excluded conditions, Info, Procedure and Analysis. Runtime source-fingerprint checks block changed sources and read errors. Case recommendations never fall back to legacy mappings.
+- Selecting a control does not confirm implementation. Explicit confirmation precedes additional recommendations. Imported ratings stay blank. Assessment criteria and reassessment history are preserved.
+- Language and jurisdiction are independent. Reused content retains its source language. All 18 Locale outputs preserve confirmation markers, PPE/permits, criteria and direction. Search tags inspect authored terms, not JSON keys.
+- Release compilation verifies content/source hashes, technical/regional/translation review, localized applicability labels, score/model/version provenance and compatible control chains. The production bundle currently has no approved candidates; browser recommendations are isolated fixtures.
 
-## Production rollout gate
+## Release gates
 
-**Do not promote this branch solely because unit tests or the frontend build pass.** First audit the production mapping schema and language coverage. Historical exports contain mixed or missing IDs; strict lookup can expose these gaps by returning fewer candidates. Do not reintroduce ambiguous fallback to conceal them.
+1. Inspect actual schema and privileged visibility using the two read-only SQL scripts described in `recommendation-data-corrections.md`. Public counts are neither backups nor proof of genuine missing masters.
+2. Restore-test a consistent backup; resolve missing IDs, invalid Locale and duplicate rows using source evidence, primary keys and dependencies. Preserve historical IDs, scores and documents.
+3. Complete reviews of exact content/source revisions. The 18 regional drafts cover an initial task only; remaining work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval.
+4. Generate separate mappings with pinned models. Compare current, corrected-legacy and new-knowledge systems on independently labelled cases, including high-score errors, omissions, edits, latency and cost. Derive activation thresholds from evidence.
+5. Verify authenticated persistence, real recommendation retrieval and PDF/export against staging data. Activate validated task/jurisdiction groups with prior code/data versions and an atomic rollback path. Do not overwrite saved documents to roll back.
 
-1. Run `scripts/sql/audit-recommendation-schema.sql` on the intended Supabase project. It uses a read-only transaction and rolls back.
-2. Obtain a scoped snapshot of the six tables listed in `AUDIT_TABLES` in `scripts/recommendation-data-audit.js`. Confirm row visibility, capture time and whether concurrent edits affect consistency.
-3. Run `node scripts/recommendation-data-audit.js --input snapshot.json --output report.json`. Input shape: `{ "meta": { "capturedAt": "...", "complete": true, "visibility": "..." }, "tables": { "Hazards_Translations": [], "Current_Measures_Translations": [], "Advanced_Measures_Translations": [], "hazard_measure_mappings": [], "current_advanced_measure_mappings": [], "case_studies": [] } }`.
-4. Alternatively use `--live --output report.json` with `SUPABASE_URL` and a scoped `SUPABASE_READ_KEY` supplied to the process. The script performs only GET requests to the intended Supabase project and does not print credentials or save raw rows. It follows pagination and fails on errors rather than calling failed reads empty data. REST reads are sequential, not a transactional snapshot.
-5. Review dangling IDs, duplicate master/locale pairs, cross-language mappings, actual high-score examples and the 18-Locale coverage matrix. Missing exports remain unknown; zero observed rows do not prove complete production absence when visibility is unverified.
-6. Correct confirmed mappings in a separate version after backing up current data. Evaluate current, corrected-legacy and case-derived candidates on the same independently reviewed examples. Include similar wording with unrelated hazards, manual edits, no candidates and regional applicability failures.
-7. Release code and compatible data together by validated work/jurisdiction groups, with the old code/data version available for rollback. Preserve saved user text and historical IDs.
+## Evaluation input contract
 
-## Country data construction
+`evaluation-incidents.en-US.json` contains three primary-source historical incident contexts and six proposed candidate contrasts reserved by source group for held-out evaluation. All document translations/variants stay together. Labels are pending. The six Russian observations in `evaluation-seed.json` still need original task and canonical-group resolution. Neither file is a measured performance result.
 
-For each supported Locale and work jurisdiction, record supported jobs, required hazards, translated terms, control coverage, local applicability evidence and remaining gaps. Distinguish missing data, missing translation, missing regional requirements, missing links and unreviewed content. Do not count the same article's translations or PDF variants as independent evidence.
+```text
+node scripts/recommendation-comparison.js approved-dataset.json measured-runs.json new-report.json
+```
 
-For each gap, collect applicable official sources and equipment instructions, author the missing task–hazard–control units, check conditions and exclusions, and obtain a recorded technical/locale review before registration and recommendation testing. A country is not complete merely because shared reference data is shown. Complete the remaining 18-Locale coverage and user-flow checks before claiming global completion.
+Dataset: schemaVersion 1, queries and samples. Each query needs id, Locale, jurisdiction, sourceGroupId, task, partition and complete hazard/current-control context. Each sample needs queryId, matching scope/partition, queryContextHash from evaluationQueryHash(query), groupVerified, candidate text, independently judged Boolean relevant and a review with reviewer/date/contentHash from evaluationReviewHash(sample). Changed query context or sample text requires renewed review.
 
-## Draft case-study bank
+Runs: an array of systems with id, version, trainingSourceGroups, tuningSourceGroups and one response per held-out query. Each response has queryId, status (ok/error), predictions ([{sampleId, score}]) and measured latencyMs/costUsd (or null). Empty results use ok with []; failures use error with []. Never invent a run. Returned candidates must belong to the same query; add and independently review previously unjudged candidates before comparison.
 
-`data/recommendation-knowledge/pilot.en-US.json` contains three draft units derived from the public filter, asphalt-milling and aluminum-TIG articles inspected during this task. The source articles disclose AI authorship and no professional approval. These drafts have no invented similarity score and are not imported by the production app.
+The report counts empty/error queries as misses for reviewed positive queries. Precision and bins cover reviewed candidates only. Unknown cost is never treated as zero. Group separation cannot establish independence from pretrained corpora. Three US cases do not represent every country or hazard.
 
-- `node scripts/recommendation-knowledge.js data/recommendation-knowledge/pilot.en-US.json` checks structural completeness.
-- Add `--for-publication` to require reviewed status, recorded technical/regional/translation review, reviewer/date, an exact content review hash and a source fingerprint. This applies to case-derived and guidance-derived units alike. The pilot is expected to fail this gate until real review is complete.
-- `bindKnowledgeSources` binds an exact case/locale export to the existing case content fingerprint. A changed source invalidates prior review. Multiple matching source rows require resolution rather than guessing.
-- Store the future bank with explicit canonical/translation IDs, jurisdiction, applicability, source revision, review state and separate evaluated ranking metadata. Final database schema and migrations depend on the production schema audit; no schema migration is applied by this change.
-- Case controls are candidates, not evidence that the user's site has implemented them. Keep actual checks, risk ratings and approvals unfilled until established by the user/site process.
+## Verified baseline
 
-## Verification scope
+At remote commit `7907c36379157c64ed28595956b868af6dc2fffe`:
 
-The automated fixtures exercise ID collisions, text edits, language-specific scores, invalid/conflicting scores, translated keywords, source revision invalidation and all-Locale output labels. Fixture tests do not measure real production recommendation accuracy. Public DB auditing is complete for the six requested tables under anon/RLS visibility. Privileged schema/backup access, regional technical review, held-out scoring evaluation and verified production-data flows remain release gates. See `recommendation-data-corrections.md` for the concrete correction register and access boundary.
+- Clean-install full JS suite: 346 passed, zero failed. Dedicated suite: 41 JS and seven Python tests passed.
+- All 18 Locale browser cases passed actual Analysis/DocumentDesigner/Export, guest restore, HTML/text clipboard, downloaded application PDF, and legacy Export with English UI plus target document language.
+- All 18 case-selection flows passed required/excluded conditions, Info/Procedure/Analysis, 72% current selection, explicit confirmation, 80% additional selection and changed-source blocking. These scores exist only in fixtures.
+- Modified JSX/utilities passed ESLint; frontend build passed with existing bundle-size/PDF-import warnings. Full RSS/content/prerender CI is separate: its earlier RSS 503 failure was re-run after public DB recovery.
+- Public audit recovered at 2026-10-14 11:23 UTC; see `recommendation-audit-restored-20261014.json`. Public reads do not verify privileged constraints or authenticated accounts.
 
-### Results on 2026-10-14
-
-- 40 related JavaScript tests passed after review/assessment/tag/release changes, plus three evaluation tests and seven Python staging tests. The latest CI result is tracked in PR #25.
-- `node node_modules/vite/bin/vite.js build --configLoader runner` passed. Existing bundle-size and mixed PDF-import warnings remain. This is the frontend build, not the Supabase-dependent sitemap/prerender build.
-- ESLint passed for the new recommendation/audit/knowledge utilities and tests. Analysis.jsx still has two pre-existing `react-hooks/set-state-in-effect` errors in draft recovery and procedure synchronization.
-- The local Chrome DevTools connection was denied with `EACCES`. GitHub CI subsequently passed all 18 Locale browser flows: actual Analysis component extraction, current/advanced selection, explicit confirmation, manual edit, guest draft save/restore, navigation to shared DocumentContent, and A4-landscape PDF generation/text extraction. German, Japanese and Arabic PDF pages were rasterized and visually inspected. The fixture uses isolated data, guest storage and a small output route; authenticated account persistence and the full DocumentDesigner/Export interaction against production data are not covered by this fixture.
-- A full local suite ran 316 passing tests and three module-load failures caused by the copied dependency environment missing `rehype-sanitize`. With a clean `npm ci`, the prior CI head's full `npm run test:all` step passed. Existing site-content prerender checks are separate from the dedicated recommendation job.
-- Public production DB reads were performed; no production DB writes, schema migration, approved new-country publication, merge or deployment was performed.
-
-### Follow-up verification
-
-At remote head `81e4bd6`, all 341 tests in the clean-install full suite and all 18 isolated Analysis/shared-document/PDF browser cases passed. The content job then failed because the Korean RSS candidate returned HTTP 503. The concurrent public DB audit returned HTTP 522 for every table; this failed attempt is retained separately in `recommendation-audit-unavailable-20261014.json` and does not replace the successful 09:51 UTC audit or turn unknown counts into zero.
-
-The public-data audit now has its own CI job and exits unsuccessfully on incomplete reads, independently of the isolated browser/code job. The browser fixture now uses the actual DocumentDesigner and Export routes, copies formatted/text clipboard content, downloads the actual rasterized application PDF, and checks legacy Export with an English UI and each target document language. These expanded checks require the subsequent CI result; the earlier shared-document-only run does not establish their success. Legacy Export now retains the unconfirmed-control marker, blank unassessed ratings, assessment criteria and document language/direction.
-
-## Additional implemented behavior
-
-- Exact unique same-language rematching supports manually edited hazards/current controls; ambiguous text remains unmatched.
-- Selecting a current control never confirms it is implemented. Explicit confirmation is required before advanced recommendations, and unconfirmed current controls remain marked in documents.
-- Unassessed ratings remain blank. Site matrix dimensions, highlight threshold, name and criteria can be saved and printed. Changing criteria retains prior assessment history and requires reassessment.
-- Reused content retains its source language; the library can filter by target document language. User text is not translated or overwritten.
-- Native tag terms and translated tag labels feed search metadata for all 18 Locales. Only authored text is inspected; JSON keys and reference IDs do not generate tags. Short Latin substrings no longer create spurious tags inside unrelated words.
-- Six observed Russian legacy pairs are held for contextual review. Other original similarity values remain unchanged. Selected score/reference/source evidence is preserved with the risk and invalidated on edits.
-- Three case-derived drafts now have exact live source fingerprints. Eighteen regional research drafts, an all-region coverage register, a reviewed release compiler/policy, a leakage-aware evaluation harness and six pending evaluation cases are prepared. None of these drafts is treated as technically approved production knowledge.
-- Both old Python generators now require explicit reviewed/contextual pairs, locale and pinned model revision, and output separate JSON staging files. Korean-only embeddings cannot be selected for Russian inputs. No real corpus has yet been regenerated or measured for accuracy.
+The follow-up adds pending incident labels, empty/error comparison handling, localized condition completeness and DB correction preflight. Current-head CI results are tracked in PR #25; earlier results above are not automatically attributed to later code. Content reviews, actual corpus comparison, authenticated staging, backup/restore and production rollout remain open.

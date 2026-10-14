@@ -44,12 +44,7 @@ const snapshot = { meta: { capturedAt: startedAt, complete: Object.keys(failures
   visibility: 'public_anon_RLS_visible_rows_only', consistency: 'sequential_reads_not_transactional' }, tables };
 const report = { ...auditRecommendationSnapshot(snapshot), completedAt: new Date().toISOString(), failures,
   project: project.hostname, schemaAuthority: 'PostgREST public schema only; database constraints and RLS require privileged read-only audit' };
-try {
-  const response = await fetch(new URL('/rest/v1/', project), { headers: { ...headers, Accept: 'application/openapi+json' }, signal: AbortSignal.timeout(30000) });
-  if (!response.ok) throw Error(`HTTP ${response.status}`);
-  const schema = await response.json();
-  report.publicSchema = Object.fromEntries(AUDIT_TABLES.map(table => [table, schema.definitions?.[table] || null]));
-} catch (error) { report.schemaReadError = error.message; }
+report.schemaInspection = 'Use the separate authorized read-only management audit; public schema discovery previously returned 401 and is not retried by this row audit.';
 const examples = (maps, sources, targets, sourceId, targetId, sourceText, targetText) => {
   if (![maps, sources, targets].every(Array.isArray)) return null;
   const sourceMap = new Map(sources.map(x => [String(x.id), x])), targetMap = new Map(targets.map(x => [String(x.id), x]));
@@ -101,12 +96,20 @@ report.masterReferences = Object.fromEntries(masters.map((table, i) => {
   const translation = [tables.Hazards_Translations, tables.Current_Measures_Translations, tables.Advanced_Measures_Translations][i];
   const key = ['hazard_id', 'measure_id', 'advanced_measure_id'][i];
   const ids = new Set((tables[table] || []).map(row => String(row.id)));
+  const unresolved = tables[table] && translation ? translation.filter(row => row[key] != null && !ids.has(String(row[key]))) : null;
   return [table, { rows: tables[table]?.length ?? null, missingReferencedMaster: tables[table] && translation
-    ? translation.filter(row => row[key] != null && !ids.has(String(row[key]))).length : null }];
+    ? unresolved.length : null,
+    interpretation: 'Absent from public RLS-visible master rows; privileged visibility must distinguish hidden rows from genuine orphans.',
+    missingMasterIds: unresolved ? [...new Set(unresolved.map(row => row[key]))] : null,
+    affectedLocales: unresolved ? Object.fromEntries([...new Set(unresolved.map(row => row.locale))].map(locale => [locale, unresolved.filter(row => row.locale === locale).length])) : null,
+    // Examples are a bounded review aid; all rows above were scanned and counted.
+    examples: unresolved?.slice(0, 5).map(row => ({ translationId: row.id, masterId: row[key], locale: row.locale,
+      text: row.hazard_name || row.measure_text || row.solution_text })) ?? null }];
 }));
 const allowedLocales = new Set(report.coverage.map(row => row.dataLocale));
 report.invalidTranslationLocales = Object.fromEntries(['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations']
-  .map(table => [table, tables[table]?.filter(row => !allowedLocales.has(row.locale)).map(row => ({ id: row.id, locale: row.locale })) ?? null]));
+  .map(table => [table, tables[table]?.filter(row => !allowedLocales.has(row.locale)).map(row => ({ id: row.id, locale: row.locale,
+    masterId: row.hazard_id ?? row.measure_id ?? row.advanced_measure_id, text: row.hazard_name || row.measure_text || row.solution_text })) ?? null]));
 report.duplicateMappingKinds = Object.fromEntries([
   ['hazard_measure_mappings', 'hazard_translation_id', 'measure_translation_id'],
   ['current_advanced_measure_mappings', 'current_measure_translation_id', 'advanced_measure_translation_id'],

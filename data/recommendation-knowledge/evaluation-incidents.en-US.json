@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Actual incident contexts with AI-assisted candidate contrasts awaiting independent relevance review. No model predictions or approved labels.",
+  "createdAt": "2026-10-14",
+  "partitionPolicy": "All three canonical documents and their translations/variants are reserved for held_out. Do not use them for model training, prompt tuning or development. Pretrained corpus independence is unknown.",
+  "limitations": [
+    "Historical investigations are not current jurisdictional legal certification.",
+    "Only three US incident contexts; not representative of all 18 Locales or all hazards.",
+    "Proposed labels and contrast rationales are editorial inferences, not quotations or expert approval."
+  ],
+  "queries": [
+    {
+      "id": "skylight-fall",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "NIOSH-FACE-89-47",
+      "partition": "held_out",
+      "task": "Move insulation boards across a roof near a skylight opening",
+      "hazard": "Worker falls through an unprotected skylight opening",
+      "source": {
+        "url": "https://stacks.cdc.gov/view/cdc/164362",
+        "authority": "NIOSH",
+        "document": "FACE 89-47",
+        "publishedAt": "1989-12-20",
+        "section": "Incident description and recommendations",
+        "doi": "10.26616/NIOSHFACE8947"
+      },
+      "incidentSummary": "A worker moving roofing insulation fell through an opening. The report recommends guards or covers."
+    },
+    {
+      "id": "overhead-line-arc",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "NIOSH-FACE-85-04",
+      "partition": "held_out",
+      "task": "Adjust a conductor grip from an aerial lift during overhead-line work",
+      "hazard": "Electrical contact or arc involving nearby energized or grounding conductors",
+      "source": {
+        "url": "https://stacks.cdc.gov/view/cdc/164606",
+        "authority": "NIOSH",
+        "document": "FACE 85-04",
+        "publishedAt": "1985-01-03",
+        "section": "Incident description and recommendations",
+        "doi": "10.26616/NIOSHFACE8504"
+      },
+      "incidentSummary": "An arc occurred while a worker adjusted a conductor grip from a lift. The report discusses insulating exposed conductors in the work area."
+    },
+    {
+      "id": "nitrogen-manway",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "CSB-2003-10-B",
+      "partition": "held_out",
+      "task": "Clean filters at a manway of a nitrogen-purged hydrogen purification tank",
+      "hazard": "Oxygen-deficient atmosphere at the worker's breathing zone",
+      "source": {
+        "url": "https://www.csb.gov/assets/1/6/nitrogen_asphyxiation_safety_bulletin_(6-11-03).pdf",
+        "authority": "U.S. Chemical Safety Board",
+        "document": "Safety Bulletin 2003-10-B",
+        "publishedAt": "2003-06",
+        "section": "Selected case studies, page 5; good practices, pages 6-8"
+      },
+      "incidentSummary": "A worker leaned through a manway after nitrogen purging and died from oxygen deficiency."
+    }
+  ],
+  "samples": [
+    {
+      "id": "skylight-fall-related",
+      "queryId": "skylight-fall",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "NIOSH-FACE-89-47",
+      "partition": "held_out",
+      "task": "Move insulation boards across a roof near a skylight opening",
+      "groupVerified": true,
+      "groupVerification": {
+        "method": "AI-assisted primary-record identifier check",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://stacks.cdc.gov/view/cdc/164362",
+        "scope": "Canonical document grouping only; not a relevance or technical review"
+      },
+      "candidate": "Guard or securely cover skylight openings before nearby work.",
+      "proposedRelevant": true,
+      "relevant": null,
+      "proposalRationale": "The hazard concerns a person's fall through the opening; weatherproofing concerns water ingress.",
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "source": {
+        "url": "https://stacks.cdc.gov/view/cdc/164362",
+        "authority": "NIOSH",
+        "document": "FACE 89-47",
+        "publishedAt": "1989-12-20",
+        "section": "Incident description and recommendations",
+        "doi": "10.26616/NIOSHFACE8947"
+      },
+      "queryContextHash": "cd4ca95db59edbdbb0790ef3cd2b2361423794fbfbd7bba7be1b05f8df46c191"
+    },
+    {
+      "id": "skylight-fall-unrelated",
+      "queryId": "skylight-fall",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "NIOSH-FACE-89-47",
+      "partition": "held_out",
+      "task": "Move insulation boards across a roof near a skylight opening",
+      "groupVerified": true,
+      "groupVerification": {
+        "method": "AI-assisted primary-record identifier check",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://stacks.cdc.gov/view/cdc/164362",
+        "scope": "Canonical document grouping only; not a relevance or technical review"
+      },
+      "candidate": "Inspect skylight sealant and replace weatherproofing to prevent water leakage.",
+      "proposedRelevant": false,
+      "relevant": null,
+      "proposalRationale": "The hazard concerns a person's fall through the opening; weatherproofing concerns water ingress.",
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "source": {
+        "url": "https://stacks.cdc.gov/view/cdc/164362",
+        "authority": "NIOSH",
+        "document": "FACE 89-47",
+        "publishedAt": "1989-12-20",
+        "section": "Incident description and recommendations",
+        "doi": "10.26616/NIOSHFACE8947"
+      },
+      "queryContextHash": "cd4ca95db59edbdbb0790ef3cd2b2361423794fbfbd7bba7be1b05f8df46c191"
+    },
+    {
+      "id": "overhead-line-arc-related",
+      "queryId": "overhead-line-arc",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "NIOSH-FACE-85-04",
+      "partition": "held_out",
+      "task": "Adjust a conductor grip from an aerial lift during overhead-line work",
+      "groupVerified": true,
+      "groupVerification": {
+        "method": "AI-assisted primary-record identifier check",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://stacks.cdc.gov/view/cdc/164606",
+        "scope": "Canonical document grouping only; not a relevance or technical review"
+      },
+      "candidate": "Have the qualified electrical crew protect relevant conductors with suitable insulating materials under the approved work procedure.",
+      "proposedRelevant": true,
+      "relevant": null,
+      "proposalRationale": "Procurement conformity alone does not control the electrical exposure. The positive is a candidate control, not a complete energized-work authorization.",
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "source": {
+        "url": "https://stacks.cdc.gov/view/cdc/164606",
+        "authority": "NIOSH",
+        "document": "FACE 85-04",
+        "publishedAt": "1985-01-03",
+        "section": "Incident description and recommendations",
+        "doi": "10.26616/NIOSHFACE8504"
+      },
+      "queryContextHash": "174e6f11a9958a55331b76cf08502d9d9ea38cd7f09a379b146982e4f8eb8b29"
+    },
+    {
+      "id": "overhead-line-arc-unrelated",
+      "queryId": "overhead-line-arc",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "NIOSH-FACE-85-04",
+      "partition": "held_out",
+      "task": "Adjust a conductor grip from an aerial lift during overhead-line work",
+      "groupVerified": true,
+      "groupVerification": {
+        "method": "AI-assisted primary-record identifier check",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://stacks.cdc.gov/view/cdc/164606",
+        "scope": "Canonical document grouping only; not a relevance or technical review"
+      },
+      "candidate": "Check that the conductor grip model and dimensions match the purchase order.",
+      "proposedRelevant": false,
+      "relevant": null,
+      "proposalRationale": "Procurement conformity alone does not control the electrical exposure. The positive is a candidate control, not a complete energized-work authorization.",
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "source": {
+        "url": "https://stacks.cdc.gov/view/cdc/164606",
+        "authority": "NIOSH",
+        "document": "FACE 85-04",
+        "publishedAt": "1985-01-03",
+        "section": "Incident description and recommendations",
+        "doi": "10.26616/NIOSHFACE8504"
+      },
+      "queryContextHash": "174e6f11a9958a55331b76cf08502d9d9ea38cd7f09a379b146982e4f8eb8b29"
+    },
+    {
+      "id": "nitrogen-manway-related",
+      "queryId": "nitrogen-manway",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "CSB-2003-10-B",
+      "partition": "held_out",
+      "task": "Clean filters at a manway of a nitrogen-purged hydrogen purification tank",
+      "groupVerified": true,
+      "groupVerification": {
+        "method": "AI-assisted primary-record identifier check",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://www.csb.gov/assets/1/6/nitrogen_asphyxiation_safety_bulletin_(6-11-03).pdf",
+        "scope": "Canonical document grouping only; not a relevance or technical review"
+      },
+      "candidate": "Assess oxygen at the breathing zone and prevent access to an oxygen-deficient area under the site's confined-space procedure.",
+      "proposedRelevant": true,
+      "relevant": null,
+      "proposalRationale": "Product-gas purity does not establish breathable air. Partial entry can expose the breathing zone; this candidate is not a complete entry/rescue plan.",
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "source": {
+        "url": "https://www.csb.gov/assets/1/6/nitrogen_asphyxiation_safety_bulletin_(6-11-03).pdf",
+        "authority": "U.S. Chemical Safety Board",
+        "document": "Safety Bulletin 2003-10-B",
+        "publishedAt": "2003-06",
+        "section": "Selected case studies, page 5; good practices, pages 6-8"
+      },
+      "queryContextHash": "b53f46fc7d775886fe073b155c37ae460ec73fb0dc35bd2763c0b23315aa4799"
+    },
+    {
+      "id": "nitrogen-manway-unrelated",
+      "queryId": "nitrogen-manway",
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "sourceGroupId": "CSB-2003-10-B",
+      "partition": "held_out",
+      "task": "Clean filters at a manway of a nitrogen-purged hydrogen purification tank",
+      "groupVerified": true,
+      "groupVerification": {
+        "method": "AI-assisted primary-record identifier check",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://www.csb.gov/assets/1/6/nitrogen_asphyxiation_safety_bulletin_(6-11-03).pdf",
+        "scope": "Canonical document grouping only; not a relevance or technical review"
+      },
+      "candidate": "Replace the filter element to improve the purity of the process gas.",
+      "proposedRelevant": false,
+      "relevant": null,
+      "proposalRationale": "Product-gas purity does not establish breathable air. Partial entry can expose the breathing zone; this candidate is not a complete entry/rescue plan.",
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "source": {
+        "url": "https://www.csb.gov/assets/1/6/nitrogen_asphyxiation_safety_bulletin_(6-11-03).pdf",
+        "authority": "U.S. Chemical Safety Board",
+        "document": "Safety Bulletin 2003-10-B",
+        "publishedAt": "2003-06",
+        "section": "Selected case studies, page 5; good practices, pages 6-8"
+      },
+      "queryContextHash": "b53f46fc7d775886fe073b155c37ae460ec73fb0dc35bd2763c0b23315aa4799"
+    }
+  ]
+}

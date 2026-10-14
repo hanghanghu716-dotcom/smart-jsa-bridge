@@ -9,7 +9,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -69,7 +69,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-ca-maintenance",
@@ -77,7 +84,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -137,7 +144,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-ca-ab-maintenance",
@@ -145,7 +159,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -205,7 +219,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-ca-on-maintenance",
@@ -213,7 +234,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -273,7 +294,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-ca-bc-maintenance",
@@ -281,7 +309,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -341,7 +369,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-ca-qc-maintenance",
@@ -349,7 +384,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
@@ -409,7 +444,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "La procédure propre à la machine est disponible",
+        "competent-person-assigned": "Une personne compétente est désignée",
+        "live-intervention": "Une intervention sous énergie est nécessaire",
+        "confined-entry": "Le travail implique une entrée en espace clos",
+        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue"
+      }
     },
     {
       "id": "regional-gb-maintenance",
@@ -417,7 +459,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -477,7 +519,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-au-maintenance",
@@ -485,7 +534,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -545,7 +594,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-sg-maintenance",
@@ -553,7 +609,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -613,7 +669,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Equipment-specific procedure is available",
+        "competent-person-assigned": "A competent person is assigned",
+        "live-intervention": "Work requires intervention while energized",
+        "confined-entry": "Work involves confined-space entry",
+        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+      }
     },
     {
       "id": "regional-de-maintenance",
@@ -621,7 +684,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Maschineninstandhaltung",
       "step": "Stillsetzung vorbereiten",
@@ -681,7 +744,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Anlagenspezifische Arbeitsanweisung liegt vor",
+        "competent-person-assigned": "Eine fachkundige Person ist beauftragt",
+        "live-intervention": "Eingriff bei eingeschalteter Energie erforderlich",
+        "confined-entry": "Einstieg in einen engen Raum vorgesehen",
+        "unknown-energy-path": "Energiequelle oder Trennstelle ist ungeklärt"
+      }
     },
     {
       "id": "regional-jp-maintenance",
@@ -689,7 +759,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "機械の整備",
       "step": "停止と再起動防止の準備",
@@ -749,7 +819,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "機械ごとの作業手順を確認しました",
+        "competent-person-assigned": "適切な知識と技能を持つ担当者を配置しました",
+        "live-intervention": "通電・運転状態での作業が必要です",
+        "confined-entry": "閉所への立入りを伴います",
+        "unknown-energy-path": "エネルギー源または隔離範囲が不明です"
+      }
     },
     {
       "id": "regional-fr-maintenance",
@@ -757,7 +834,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
@@ -817,7 +894,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "La procédure propre à la machine est disponible",
+        "competent-person-assigned": "Une personne compétente est désignée",
+        "live-intervention": "Une intervention sous énergie est nécessaire",
+        "confined-entry": "Le travail implique une entrée en espace clos",
+        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue"
+      }
     },
     {
       "id": "regional-it-maintenance",
@@ -825,7 +909,7 @@
       "sourceGroupId": "maintenance-planning",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Manutenzione delle attrezzature",
       "step": "Pianificare manutenzione e controlli",
@@ -884,7 +968,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "È disponibile la procedura specifica della macchina",
+        "competent-person-assigned": "È stata incaricata una persona competente",
+        "live-intervention": "È necessario intervenire con energia presente",
+        "confined-entry": "Il lavoro richiede accesso a uno spazio confinato",
+        "unknown-energy-path": "Una fonte di energia o un limite di isolamento non è noto"
+      }
     },
     {
       "id": "regional-es-maintenance",
@@ -892,7 +983,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Mantenimiento de máquinas",
       "step": "Preparar la consignación",
@@ -952,7 +1043,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Está disponible el procedimiento específico del equipo",
+        "competent-person-assigned": "Se ha designado a una persona competente",
+        "live-intervention": "Es necesario intervenir con energía presente",
+        "confined-entry": "El trabajo implica entrar en un espacio confinado",
+        "unknown-energy-path": "Se desconoce una fuente de energía o el límite de aislamiento"
+      }
     },
     {
       "id": "regional-sa-maintenance",
@@ -960,7 +1058,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "صيانة الآلات",
       "step": "تجهيز عزل الطاقة",
@@ -984,12 +1082,12 @@
       ],
       "sources": [
         {
-          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
           "authority": "EXPRO",
-          "section": "الدليل الإجرائي لعمليات الإغلاق والعزل",
+          "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
           "checkedAt": "2026-10-14",
-          "scope": "يلزم التحقق من النسخة الكاملة ونطاق تطبيق دليل الجهة قبل الاعتماد",
-          "retrieval": "search_excerpt_only"
+          "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
+          "retrieval": "relevant_primary_sections_read"
         }
       ],
       "applicability": {
@@ -1020,7 +1118,24 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "إجراء المعدة المحدد متاح",
+        "competent-person-assigned": "تم تعيين شخص مختص",
+        "live-intervention": "يتطلب العمل تدخلاً مع وجود الطاقة",
+        "confined-entry": "يتضمن العمل دخول حيز مغلق",
+        "unknown-energy-path": "يوجد مصدر طاقة أو حد عزل غير معروف"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary-source comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "تقييم مخاطر العزل وحدوده والتصاريح المرتبطة قبل العمل.",
+          "التحقق من المواد الخطرة والطاقة المخزنة ومن النسخة المعتمدة بالمشروع."
+        ],
+        "approvalGranted": false
+      }
     },
     {
       "id": "regional-br-maintenance",
@@ -1028,7 +1143,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Manutenção de máquinas",
       "step": "Preparar o isolamento",
@@ -1058,6 +1173,14 @@
           "checkedAt": "2026-10-14",
           "scope": "Confirmar texto vigente, escopo e procedimentos específicos antes da publicação",
           "retrieval": "primary_page_or_document"
+        },
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
+          "authority": "Ministério do Trabalho e Emprego",
+          "section": "Índice oficial: última modificação indicada, Portaria MTE 344/2024",
+          "checkedAt": "2026-10-14",
+          "scope": "Índice consultado; leitura do item 12.11 no PDF consolidado atual ainda pendente",
+          "retrieval": "primary_index_read_current_pdf_unavailable"
         }
       ],
       "applicability": {
@@ -1088,7 +1211,24 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "O procedimento específico do equipamento está disponível",
+        "competent-person-assigned": "Uma pessoa competente foi designada",
+        "live-intervention": "É necessário intervir com energia presente",
+        "confined-entry": "O trabalho envolve entrada em espaço confinado",
+        "unknown-energy-path": "Uma fonte de energia ou limite de isolamento é desconhecido"
+      },
+      "sourceCheck": {
+        "status": "current_text_review_pending",
+        "method": "AI-assisted primary-index check",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "A referência anterior de 2022 não basta para certificar o texto atual.",
+          "O índice oficial indica a Portaria MTE 344/2024; o PDF consolidado deve ser conferido."
+        ],
+        "approvalGranted": false
+      }
     },
     {
       "id": "regional-ru-maintenance",
@@ -1096,7 +1236,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Техническое обслуживание машины",
       "step": "Подготовка изоляции энергии",
@@ -1156,7 +1296,14 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Доступна инструкция для конкретной машины",
+        "competent-person-assigned": "Назначен компетентный работник",
+        "live-intervention": "Требуется вмешательство при поданной энергии",
+        "confined-entry": "Работа включает вход в замкнутое пространство",
+        "unknown-energy-path": "Источник энергии или граница отключения не определены"
+      }
     },
     {
       "id": "regional-kr-maintenance",
@@ -1164,14 +1311,14 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "기계 정비",
       "step": "차단 범위 준비",
       "hazard": "예기치 않은 기동 또는 잔류 에너지 방출",
       "cause": "에너지 경로가 남아 있거나 다시 공급됨",
       "consequence": "정비 중 끼임 등 상해",
-      "control": "설비의 에너지 경로를 파악하고 장비별 절차에 따라 차단·잠금·표지를 적용합니다.",
+      "control": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 재기동을 방지합니다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제합니다.",
       "verification": "작업 전 장비별 절차로 차단 상태와 잔류 에너지를 확인합니다.",
       "conditions": [
         "숙련된 담당자와 장비 지침·현장 절차 확보"
@@ -1188,12 +1335,12 @@
       ],
       "sources": [
         {
-          "url": "https://www.moel.go.kr/local/busan/common/downloadFile.do?bbs_id=LOCAL1&bbs_seq=20210500425&file_seq=20210500561",
-          "authority": "고용노동부",
-          "section": "LOTO 작업절차 바로알기",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "authority": "국가법령정보센터",
+          "section": "산업안전보건기준에 관한 규칙 제92조 제1항~제4항",
           "checkedAt": "2026-10-14",
-          "scope": "공식 검색 결과로 자료 확인; 원문 전체와 현행 적용 기준 재검토 필요",
-          "retrieval": "search_excerpt_only"
+          "scope": "기계 정비 등의 운전정지·재기동 방지 및 압축 기체·액체 방출 위험. 기계 구조·작업 방법에 따른 적용 여부는 현장 검토 필요",
+          "retrieval": "relevant_primary_sections_read"
         }
       ],
       "applicability": {
@@ -1224,7 +1371,24 @@
         "reviewer": null,
         "reviewedAt": null
       },
-      "recommendationScore": null
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "장비별 작업 절차를 확보했습니다",
+        "competent-person-assigned": "작업에 적합한 담당자를 지정했습니다",
+        "live-intervention": "에너지가 공급된 상태에서 작업해야 합니다",
+        "confined-entry": "밀폐공간에 들어가는 작업입니다",
+        "unknown-energy-path": "에너지원 또는 차단 경계가 확인되지 않았습니다"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary-source comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "검색 요약 대신 제92조 원문을 대조했습니다.",
+          "재기동 방지와 잔류 압력 통제를 구분했습니다."
+        ],
+        "approvalGranted": false
+      }
     }
   ]
 }

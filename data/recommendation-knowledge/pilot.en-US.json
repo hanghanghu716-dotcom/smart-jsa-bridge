@@ -6,7 +6,7 @@
       "caseGroupId": "jsa-compressed-air-filter-element",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Compressed-air filter element replacement",
       "step": "Isolate and verify the filter boundary",
@@ -40,18 +40,41 @@
       "review": {
         "technicalStatus": "pending",
         "reviewer": null,
-        "reviewedAt": null
+        "reviewedAt": null,
+        "regionalStatus": "pending",
+        "translationStatus": "pending"
       },
       "recommendationScore": null,
       "sourceRowId": "db8e01d0-0b40-492f-aeeb-fbc898ebd41f",
-      "sourceCheckedAt": "2026-10-14T09:51:28.631Z"
+      "sourceCheckedAt": "2026-10-14T09:51:28.631Z",
+      "applicability": {
+        "taskType": "filter-element-replacement",
+        "hazardType": "stored-pressure-release",
+        "targetType": "filter-housing",
+        "conditionsRequired": [
+          "equipment-procedure-available",
+          "all-pressure-paths-identified"
+        ],
+        "excludedConditions": [
+          "pressurized-replacement",
+          "oxygen-or-fuel-gas",
+          "breathing-air-certification"
+        ]
+      },
+      "conditionLabels": {
+        "equipment-procedure-available": "The filter-specific isolation procedure is available",
+        "all-pressure-paths-identified": "Inlet, outlet, bypass and connected drains are identified",
+        "pressurized-replacement": "Replacement requires opening a pressurized housing",
+        "oxygen-or-fuel-gas": "The equipment contains oxygen or fuel gas",
+        "breathing-air-certification": "The task includes breathing-air certification"
+      }
     },
     {
       "id": "asphalt-milling-truck-exchange",
       "caseGroupId": "jsa-asphalt-milling",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Asphalt cold milling and truck loading",
       "step": "Exchange the receiving truck",
@@ -85,18 +108,41 @@
       "review": {
         "technicalStatus": "pending",
         "reviewer": null,
-        "reviewedAt": null
+        "reviewedAt": null,
+        "regionalStatus": "pending",
+        "translationStatus": "pending"
       },
       "recommendationScore": null,
       "sourceRowId": "54db6aef-bf7a-4aad-a132-1a0a167fa8cd",
-      "sourceCheckedAt": "2026-10-14T09:51:28.631Z"
+      "sourceCheckedAt": "2026-10-14T09:51:28.631Z",
+      "applicability": {
+        "taskType": "asphalt-milling",
+        "hazardType": "vehicle-struck-by",
+        "targetType": "truck-conveyor-interface",
+        "conditionsRequired": [
+          "traffic-plan-available",
+          "agreed-signals-established"
+        ],
+        "excludedConditions": [
+          "hot-recycling",
+          "paving-compaction",
+          "buried-services-unverified"
+        ]
+      },
+      "conditionLabels": {
+        "traffic-plan-available": "The site traffic-control plan is available",
+        "agreed-signals-established": "Operators and signaller have agreed the movement and stop signals",
+        "hot-recycling": "The process is hot recycling",
+        "paving-compaction": "The task is paving or compaction",
+        "buried-services-unverified": "Buried-service crossings have not been verified"
+      }
     },
     {
       "id": "aluminum-tig-air-exposure",
       "caseGroupId": "jsa-aluminum-actig",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Aluminum pipe AC TIG welding",
       "step": "Check ventilation and shielding gas arrangements",
@@ -130,11 +176,34 @@
       "review": {
         "technicalStatus": "pending",
         "reviewer": null,
-        "reviewedAt": null
+        "reviewedAt": null,
+        "regionalStatus": "pending",
+        "translationStatus": "pending"
       },
       "recommendationScore": null,
       "sourceRowId": "27da8cf4-2f4c-49aa-9ea9-a56837ad62cd",
-      "sourceCheckedAt": "2026-10-14T09:51:28.631Z"
+      "sourceCheckedAt": "2026-10-14T09:51:28.631Z",
+      "applicability": {
+        "taskType": "aluminum-tig-welding",
+        "hazardType": "welding-inhalation-exposure",
+        "targetType": "welding-work-area",
+        "conditionsRequired": [
+          "welding-procedure-available",
+          "exposure-assessment-available"
+        ],
+        "excludedConditions": [
+          "confined-entry",
+          "live-or-contaminated-process-line",
+          "pressure-test"
+        ]
+      },
+      "conditionLabels": {
+        "welding-procedure-available": "The welding procedure and equipment instructions are available",
+        "exposure-assessment-available": "The work-area atmosphere and exposure assessment is available",
+        "confined-entry": "The task involves confined-space entry",
+        "live-or-contaminated-process-line": "The pipe is a live or contaminated process line",
+        "pressure-test": "The task is a pressure test"
+      }
     }
   ]
 }

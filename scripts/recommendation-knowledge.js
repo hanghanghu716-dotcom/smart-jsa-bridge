@@ -31,6 +31,17 @@ export function validateKnowledgeUnit(unit, { forPublication = false } = {}) {
     } catch { errors.push('source: invalid URL'); }
   }
   if (unit?.recommendationScore != null) errors.push('recommendationScore: keep separate from content review; do not invent a percentage during extraction');
+  if (unit?.applicability || forPublication || unit?.status === 'reviewed') {
+    const scope = unit?.applicability;
+    if (!scope || !['taskType', 'hazardType', 'targetType'].every(key => nonempty(scope[key]))
+      || !Array.isArray(scope.conditionsRequired) || !scope.conditionsRequired.length || !scope.conditionsRequired.every(nonempty)
+      || !Array.isArray(scope.excludedConditions) || !scope.excludedConditions.every(nonempty)) errors.push('applicability: explicit task, hazard, target and conditions required');
+    else {
+      const codes = [...scope.conditionsRequired, ...scope.excludedConditions];
+      if (new Set(codes).size !== codes.length) errors.push('applicability: duplicate or contradictory conditions');
+      if (codes.some(code => !nonempty(unit.conditionLabels?.[code]))) errors.push('conditionLabels: every condition needs localized display text');
+    }
+  }
   if (forPublication || unit?.status === 'reviewed') {
     if (unit?.status !== 'reviewed') errors.push('publication: reviewed status required');
     if (unit?.review?.technicalStatus !== 'approved' || !nonempty(unit.review.reviewer) || !/^\d{4}-\d{2}-\d{2}$/.test(unit.review.reviewedAt || '')) errors.push('publication: recorded technical review required');
@@ -54,7 +65,7 @@ export function bindKnowledgeSources(bank, caseRows) {
     if (matches.length !== 1) throw Error(`Expected one exact source for ${unit.id}; found ${matches.length}.`);
     const sourceFingerprint = contentFingerprint(matches[0]);
     if (sourceFingerprint === unit.sourceFingerprint) return unit;
-    return { ...unit, sourceFingerprint, status: 'draft', review: { technicalStatus: 'pending', reviewer: null, reviewedAt: null } };
+    return { ...unit, sourceFingerprint, status: 'draft', review: { technicalStatus: 'pending', regionalStatus: 'pending', translationStatus: 'pending', reviewer: null, reviewedAt: null } };
   }) };
 }
 
