@@ -17,8 +17,11 @@ test('a recorded review must cover the exact content and source revision', () =>
   unit.sourceFingerprint = 'a'.repeat(64);
   unit.status = 'reviewed';
   // Synthetic fixture: this is not a review of the actual pilot content.
-  unit.review = { technicalStatus: 'approved', reviewer: 'TEST FIXTURE ONLY', reviewedAt: '2026-01-01', contentHash: knowledgeContentHash(unit) };
+  unit.review = { technicalStatus: 'approved', regionalStatus: 'approved', translationStatus: 'approved', reviewer: 'TEST FIXTURE ONLY', reviewedAt: '2026-01-01', contentHash: knowledgeContentHash(unit) };
   assert.deepEqual(validateKnowledgeUnit(unit, { forPublication: true }), []);
+  for (const field of ['regionalStatus', 'translationStatus']) {
+    assert.ok(validateKnowledgeUnit({ ...unit, review: { ...unit.review, [field]: 'pending' } }, { forPublication: true }).some(error => error.includes('regional and translation')));
+  }
   unit.control = 'Different control';
   assert.ok(validateKnowledgeUnit(unit, { forPublication: true }).some(error => error.includes('content revision')));
 });

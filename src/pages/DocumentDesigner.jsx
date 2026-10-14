@@ -521,7 +521,7 @@ function DesignerEditor({ recoveredDraft }) {
             <button type="button" style={styles.secondaryBtn} onClick={goBack}>
               {t('designer.back')}
             </button>
-            <button type="button" style={styles.primaryBtn} onClick={goToExport}>
+            <button type="button" data-designer-next style={styles.primaryBtn} onClick={goToExport}>
               {t('designer.next')}
             </button>
           </div>

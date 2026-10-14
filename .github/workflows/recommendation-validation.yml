@@ -18,6 +18,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  public-data-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read public recommendation data without changing the database
+        run: node scripts/audit-public-recommendations.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recommendation-public-data-audit
+          path: artifacts/recommendations/public-data-audit.json
+          retention-days: 14
   recommendations:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -31,8 +47,6 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Read public recommendation data without changing the database
-        run: node scripts/audit-public-recommendations.js
       - name: Install browser libraries
         run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core poppler-utils
       - name: Verify recommendation and locale logic

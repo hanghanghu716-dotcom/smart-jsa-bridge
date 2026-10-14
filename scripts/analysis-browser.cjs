@@ -33,6 +33,11 @@ const cp = require('node:child_process');
       page.on('dialog', async dialog => { await dialog.dismiss(); });
       const url = `http://127.0.0.1:${port}/scripts/analysis-fixture/index.html?locale=${locale}`;
       try {
+        const downloadDir = path.resolve(`artifacts/recommendations/downloads/${locale}`);
+        await fs.mkdir(downloadDir, { recursive: true });
+        const cdp = await page.target().createCDPSession();
+        await cdp.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadDir });
+        await cdp.send('Browser.grantPermissions', { origin: `http://127.0.0.1:${port}`, permissions: ['clipboardReadWrite', 'clipboardSanitizedWrite'] });
         await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
         await page.waitForSelector('.analysis-candidates label input');
         await page.click('.analysis-candidates label input');
@@ -69,18 +74,38 @@ const cp = require('node:child_process');
         assert.equal(snapshot.analysis_data[0].riskLevel, null);
         assert.equal(snapshot.form_data.context.documentLocale, locale);
         await page.click('[data-analysis-next]');
-        await page.waitForSelector('[data-document-ready] .document-content');
+        await page.waitForSelector('.designer-paper .document-content');
+        await page.click('[data-designer-next]');
+        await page.waitForSelector('.reportPaper .document-content');
         const output = await page.$eval('.document-content', el => ({ text: el.textContent, scroll: el.scrollWidth, width: el.clientWidth }));
         assert.ok(output.text.includes(words[1]) && output.text.includes(words[2]), locale + ': retained controls in document');
         assert.ok(output.scroll <= output.width + 2, locale + ': document overflow');
         assert.equal(await page.$eval('.document-content', el => el.getAttribute('dir')), locale.startsWith('ar') ? 'rtl' : 'ltr');
         assert.equal(await page.$eval('[data-assessment-profile]', el => el.getAttribute('dir')), locale.startsWith('ar') ? 'rtl' : 'ltr');
+        await page.click('[data-export-copy]');
+        await page.waitForFunction(value => navigator.clipboard.readText().then(text => text.includes(value)), {}, words[1]);
+        const copied = await page.evaluate(async () => {
+          const items = await navigator.clipboard.read();
+          return { text: await navigator.clipboard.readText(), html: await (await items[0].getType('text/html')).text() };
+        });
+        assert.ok(copied.text.includes(words[2]) && copied.text.includes('Unrelated manual input'), locale + ': clipboard text');
+        assert.ok(copied.html.includes('<table') && copied.html.includes('data-assessment-profile'), locale + ': clipboard formatted document');
         const pdf = path.resolve(`artifacts/recommendations/${locale}.pdf`);
-        await page.pdf({ path: pdf, format: 'A4', landscape: true, printBackground: true });
+        await page.click('[data-export-pdf]');
+        const downloaded = path.join(downloadDir, 'JSA_Report_Regression fixture.pdf');
+        let ready = false;
+        for (let attempt = 0; attempt < 60; attempt++) {
+          try { ready = (await fs.stat(downloaded)).size > 5000; } catch { /* Wait for the actual download to finish. */ }
+          if (ready) break;
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        assert.ok(ready, locale + ': actual Export PDF download');
+        await fs.copyFile(downloaded, pdf);
         assert.ok((await fs.stat(pdf)).size > 5000, locale + ': PDF emitted');
         if (process.platform === 'linux') {
-          const extracted = cp.execFileSync('pdftotext', [pdf, '-'], { encoding: 'utf8' });
-          assert.ok(extracted.includes('Regression fixture') && extracted.length > 100, locale + ': PDF text extracted');
+          const info = cp.execFileSync('pdfinfo', [pdf], { encoding: 'utf8' });
+          assert.match(info, /Pages:\s+1\b/, locale + ': one-page fixture PDF');
+          assert.match(info, /Page size:\s+841[^\n]+595/, locale + ': A4 landscape PDF');
         }
         if (['ar-SA', 'ja-JP', 'de-DE'].includes(locale)) {
           const screenshot = await page.screenshot({ type: 'jpeg', quality: 60, fullPage: true });
@@ -92,14 +117,27 @@ const cp = require('node:child_process');
           }
         }
         assert.deepEqual(errors, [], locale + ': browser errors');
-        results.push({ locale, extraction: true, recommendations: true, confirmation: true, manualEdit: true, guestSaveRestore: true, document: true, pdf: true });
+        await page.goto(url + '&legacy=1&uiLocale=en-US', { waitUntil: 'networkidle0' });
+        await page.waitForSelector('.reportPaper table');
+        const legacy = await page.$eval('.reportPaper', el => ({ text: el.textContent, dir: el.dir }));
+        const translated = await page.evaluate(async lng => {
+          const { default: i18n } = await import('/src/i18n.js');
+          const t = i18n.getFixedT(lng, 'analysis');
+          return { unconfirmed: t('review.unconfirmed'), profileLabel: t('review.profileLabel') };
+        }, locale);
+        assert.ok(legacy.text.includes(words[1]) && legacy.text.includes(translated.unconfirmed), locale + ': legacy unconfirmed control');
+        assert.ok(legacy.text.includes(translated.profileLabel), locale + ': legacy assessment language');
+        assert.equal(legacy.dir, locale.startsWith('ar') ? 'rtl' : 'ltr');
+        assert.deepEqual(errors, [], locale + ': complete editor/export errors');
+        results.push({ locale, extraction: true, recommendations: true, confirmation: true, manualEdit: true, guestSaveRestore: true,
+          documentDesigner: true, export: true, clipboard: true, pdfDownload: true, legacyExportWithEnglishUi: true });
       } catch (error) {
         await fs.writeFile(`artifacts/recommendations/${locale}-failure.html`, await page.content());
         console.error(JSON.stringify({ locale, errors, failure: error.message, text: (await page.$eval('body', el => el.innerText)).slice(-2500) }));
         throw error;
       } finally { await page.close(); }
     }
-    await fs.writeFile('artifacts/recommendations/browser-results.json', JSON.stringify({ data: 'isolated fixtures, guest storage; not live DB/account testing', results }, null, 2));
+    await fs.writeFile('artifacts/recommendations/browser-results.json', JSON.stringify({ data: 'isolated data, guest storage, real Analysis/DocumentDesigner/Export and PDF/clipboard; not live DB/account testing', results }, null, 2));
     console.log('ANALYSIS_BROWSER_RESULTS ' + JSON.stringify(results));
   } finally { if (browser) await browser.close(); await server.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

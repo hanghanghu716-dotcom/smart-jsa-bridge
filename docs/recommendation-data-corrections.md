@@ -2,6 +2,8 @@
 
 Evidence: `recommendation-audit-20261014.json` is a sequential, public-anon/RLS-visible read. It is not a transaction-consistent database backup or proof of privileged row visibility. `recommendation-regional-coverage.json` separates language coverage, missing links and regional review. No production rows or constraints have been changed.
 
+The subsequent 10:13 UTC audit attempt could not read any table (HTTP 522); its separate report is `recommendation-audit-unavailable-20261014.json`. Master-row counts, invalid-locale row IDs and identical-versus-conflicting duplicate counts from that attempt remain unknown. The earlier successful counts below are preserved with their original observation time.
+
 | Finding | Observed scope | Prepared action | Release dependency |
 | --- | --- | --- | --- |
 | Missing hazard master IDs | 345 es-ES + 345 ru-RU | Preserve translation IDs; create reviewed canonical-ID correspondence from original texts | Actual master-table/schema read; bilingual semantic check; no numeric-offset guessing |

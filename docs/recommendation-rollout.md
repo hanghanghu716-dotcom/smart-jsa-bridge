@@ -34,7 +34,7 @@ For each gap, collect applicable official sources and equipment instructions, au
 `data/recommendation-knowledge/pilot.en-US.json` contains three draft units derived from the public filter, asphalt-milling and aluminum-TIG articles inspected during this task. The source articles disclose AI authorship and no professional approval. These drafts have no invented similarity score and are not imported by the production app.
 
 - `node scripts/recommendation-knowledge.js data/recommendation-knowledge/pilot.en-US.json` checks structural completeness.
-- Add `--for-publication` to require reviewed status, a recorded technical reviewer/date, an exact content review hash and a source fingerprint. The pilot is expected to fail this gate until real review is complete.
+- Add `--for-publication` to require reviewed status, recorded technical/regional/translation review, reviewer/date, an exact content review hash and a source fingerprint. This applies to case-derived and guidance-derived units alike. The pilot is expected to fail this gate until real review is complete.
 - `bindKnowledgeSources` binds an exact case/locale export to the existing case content fingerprint. A changed source invalidates prior review. Multiple matching source rows require resolution rather than guessing.
 - Store the future bank with explicit canonical/translation IDs, jurisdiction, applicability, source revision, review state and separate evaluated ranking metadata. Final database schema and migrations depend on the production schema audit; no schema migration is applied by this change.
 - Case controls are candidates, not evidence that the user's site has implemented them. Keep actual checks, risk ratings and approvals unfilled until established by the user/site process.
@@ -51,6 +51,12 @@ The automated fixtures exercise ID collisions, text edits, language-specific sco
 - The local Chrome DevTools connection was denied with `EACCES`. GitHub CI subsequently passed all 18 Locale browser flows: actual Analysis component extraction, current/advanced selection, explicit confirmation, manual edit, guest draft save/restore, navigation to shared DocumentContent, and A4-landscape PDF generation/text extraction. German, Japanese and Arabic PDF pages were rasterized and visually inspected. The fixture uses isolated data, guest storage and a small output route; authenticated account persistence and the full DocumentDesigner/Export interaction against production data are not covered by this fixture.
 - A full local suite ran 316 passing tests and three module-load failures caused by the copied dependency environment missing `rehype-sanitize`. With a clean `npm ci`, the prior CI head's full `npm run test:all` step passed. Existing site-content prerender checks are separate from the dedicated recommendation job.
 - Public production DB reads were performed; no production DB writes, schema migration, approved new-country publication, merge or deployment was performed.
+
+### Follow-up verification
+
+At remote head `81e4bd6`, all 341 tests in the clean-install full suite and all 18 isolated Analysis/shared-document/PDF browser cases passed. The content job then failed because the Korean RSS candidate returned HTTP 503. The concurrent public DB audit returned HTTP 522 for every table; this failed attempt is retained separately in `recommendation-audit-unavailable-20261014.json` and does not replace the successful 09:51 UTC audit or turn unknown counts into zero.
+
+The public-data audit now has its own CI job and exits unsuccessfully on incomplete reads, independently of the isolated browser/code job. The browser fixture now uses the actual DocumentDesigner and Export routes, copies formatted/text clipboard content, downloads the actual rasterized application PDF, and checks legacy Export with an English UI and each target document language. These expanded checks require the subsequent CI result; the earlier shared-document-only run does not establish their success. Legacy Export now retains the unconfirmed-control marker, blank unassessed ratings, assessment criteria and document language/direction.
 
 ## Additional implemented behavior
 

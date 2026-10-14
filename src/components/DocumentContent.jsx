@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import DocumentSignatures from './DocumentSignatures';
 import { columnPercentages, normalizeDocumentBlocks } from '../utils/documentLayout';
-import { assessmentProfile } from '../utils/analysisAssessment';
+import AssessmentSummary from './AssessmentSummary';
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
@@ -253,13 +253,8 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     if (id === 'NOTES') return renderDesignerNotes();
     return null;
   };
-  const assessment = assessmentProfile(formData.assessment);
-  const dimensions = `${assessment.frequencyMax} × ${assessment.severityMax}`;
   return <div className="document-content" dir={i18n.dir(language)} style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
     {normalizeDocumentBlocks(documentBlocks).filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
-    {formData.assessment && <div data-assessment-profile dir={i18n.dir(language)} style={{ fontSize: '10px', marginTop: '6px', whiteSpace: 'pre-wrap' }}>
-      {t('analysis:review.profileLabel')}: {assessment.name !== dimensions ? `${assessment.name} · ` : ''}{dimensions} · {t('analysis:review.highFrom')}: {assessment.highFrom}
-      {formData.assessment.criteria && <div>{formData.assessment.criteria}</div>}
-    </div>}
+    <AssessmentSummary value={formData.assessment} documentLocale={language} />
   </div>;
 }

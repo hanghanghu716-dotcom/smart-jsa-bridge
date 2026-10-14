@@ -36,7 +36,7 @@ export function validateKnowledgeUnit(unit, { forPublication = false } = {}) {
     if (unit?.review?.technicalStatus !== 'approved' || !nonempty(unit.review.reviewer) || !/^\d{4}-\d{2}-\d{2}$/.test(unit.review.reviewedAt || '')) errors.push('publication: recorded technical review required');
     if (!/^[a-f0-9]{64}$/.test(unit?.sourceFingerprint || '')) errors.push('publication: source revision fingerprint required');
     if (unit?.review?.contentHash !== knowledgeContentHash(unit)) errors.push('publication: review does not cover this content revision');
-    if (unit?.sourceType === 'guidance' && (unit.review?.regionalStatus !== 'approved' || unit.review?.translationStatus !== 'approved')) errors.push('publication: regional and translation review required');
+    if (unit.review?.regionalStatus !== 'approved' || unit.review?.translationStatus !== 'approved') errors.push('publication: regional and translation review required');
   }
   return errors;
 }

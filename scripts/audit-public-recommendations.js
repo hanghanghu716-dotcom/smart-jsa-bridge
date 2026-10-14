@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import { Buffer } from 'node:buffer';
+import process from 'node:process';
 import { createHash } from 'node:crypto';
 import { AUDIT_TABLES, auditRecommendationSnapshot } from './recommendation-data-audit.js';
 import { contentFingerprint } from './case-build-data.js';
@@ -122,3 +124,7 @@ report.duplicateMappingKinds = Object.fromEntries([
 await fs.mkdir('artifacts/recommendations', { recursive: true });
 await fs.writeFile('artifacts/recommendations/public-data-audit.json', JSON.stringify(report, null, 2));
 console.log('RECOMMENDATION_AUDIT_JSON ' + JSON.stringify(report));
+if (!report.snapshotComplete) {
+  console.error('Public DB audit incomplete; failed reads are unknown, not zero rows. See public-data-audit.json.');
+  process.exitCode = 1;
+}
