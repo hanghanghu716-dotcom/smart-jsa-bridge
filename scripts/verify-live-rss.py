@@ -83,7 +83,7 @@ def check(item):
 results = []
 for locale in ('ko', 'en-US'):
     data = pathlib.Path(f'.cache/rss-{locale}.xml').read_bytes() if CANDIDATE else read(f'{SITE}/{locale}/feed.xml')
-    if len(data) >= 9_500_000:
+    if len(data) >= 4_000_000:
         raise ValueError('RSS exceeds size budget')
     root = ET.fromstring(data)  # Strict XML parser, including entity/control-character checks.
     items = root.findall('./channel/item')

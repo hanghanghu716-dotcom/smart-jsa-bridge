@@ -73,6 +73,11 @@ test('RSS handler requests full article text and removes withdrawn documents imm
 test('RSS limits byte size by omitting whole oversized articles instead of truncating bodies', () => {
   const huge = { ...post, id: 'huge', post_group_id: 'oversized', content_md: '한'.repeat(3_200_000), created_at: '2026-10-14T01:00:00Z' };
   const xml = buildFeed([huge, post], [], 'ko');
-  assert.ok(Buffer.byteLength(xml) < 9_500_000); assert.equal(descriptions(xml).length, 1);
+  assert.ok(Buffer.byteLength(xml) < 4_000_000); assert.equal(descriptions(xml).length, 1);
   assert.match(xml, /마지막 본문/); assert.doesNotMatch(xml, /\/case-study\/oversized/);
+});
+
+test('RSS includes more than 100 complete articles when they fit the byte budget', () => {
+  const rows = Array.from({ length: 125 }, (_, i) => ({ ...post, id: `post-${i}`, post_group_id: `article-${i}` }));
+  assert.equal(descriptions(buildFeed(rows, [], 'ko')).length, 125);
 });

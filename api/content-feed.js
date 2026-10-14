@@ -9,6 +9,7 @@ import { buildSitemap } from '../scripts/sitemap-data.js';
 import { CASE_SUMMARY_FIELDS, SITE, casePath, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
 const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
+export const RSS_MAX_BYTES = 4_000_000;
 export const validDate = value => value && Number.isFinite(Date.parse(value)) ? new Date(value).toISOString() : null;
 export function buildPublicSitemap(rows) {
   const urls = rows.map(publicJsaView).filter(row => publicJsaQuality(row).indexable).map(row => {
@@ -32,14 +33,14 @@ export function buildFeed(cases, publicRows, locale) {
   const start = xmlHeader + `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart JSA Bridge</title><link>${SITE}/${locale}/</link><description>Latest Case Studies and public JSA documents</description><atom:link href="${SITE}/${locale}/feed.xml" rel="self" type="application/rss+xml"/>`;
   const end = '</channel></rss>';
   const items = []; let bytes = Buffer.byteLength(start + end);
-  for (const row of entries.slice(0, 100)) {
+  for (const row of entries) {
     const body = row.document ? publicFeedBody(row.document, locale)
       : `<h1>${feedXml(row.title)}</h1><p>${feedXml(cleanSummary(row.post.meta_description))}</p>${renderCaseBody(row.post, row.url)}`;
     const item = `<item><title>${feedXml(row.title)}</title><link>${feedXml(row.url)}</link><guid isPermaLink="true">${feedXml(row.url)}</guid><description>${feedXml(body)}</description>${row.date ? `<pubDate>${new Date(row.date).toUTCString()}</pubDate>` : ''}</item>`;
     const size = Buffer.byteLength(item);
-    // Keep whole articles and stay below Naver's 10 MB submission limit.
+    // Keep whole articles below Vercel's 4.5 MB response limit and Naver's 10 MB limit.
     // The sitemap still lists articles that do not fit in this latest-items feed.
-    if (bytes + size >= 9_500_000) continue;
+    if (bytes + size >= RSS_MAX_BYTES) continue;
     bytes += size; items.push(item);
   }
   return start + items.join('') + end;
