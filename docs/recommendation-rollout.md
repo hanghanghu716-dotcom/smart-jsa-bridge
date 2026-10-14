@@ -15,7 +15,7 @@ Percentages remain text similarity. Ambiguous IDs, cross-language score propagat
 
 1. Inspect actual schema and privileged visibility using the two read-only SQL scripts described in `recommendation-data-corrections.md`. Public counts are neither backups nor proof of genuine missing masters.
 2. Restore-test a consistent backup; resolve missing IDs, invalid Locale and duplicate rows using source evidence, primary keys and dependencies. Preserve historical IDs, scores and documents.
-3. Complete reviews of exact content/source revisions. The 18 regional drafts cover an initial task only; remaining work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval.
+3. Complete reviews of exact content/source revisions. The 54 regional drafts cover three bounded tasks across all 18 Locales; they are not complete country or task coverage. Twelve task/Locale cells still lack a read same-jurisdiction primary reference, and all 54 require regional review. Other work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval. See `recommendation-task-coverage.json` for the generated matrix.
 4. Generate separate mappings with pinned models. Compare current, corrected-legacy and new-knowledge systems on independently labelled cases, including high-score errors, omissions, edits, latency and cost. Derive activation thresholds from evidence.
 5. Verify authenticated persistence, real recommendation retrieval and PDF/export against staging data. Activate validated task/jurisdiction groups with prior code/data versions and an atomic rollback path. Do not overwrite saved documents to roll back.
 

@@ -4,7 +4,7 @@ CaseStudyDetail now offers explicit work-step and site-condition selection. Only
 
 The percentage remains a localized text-similarity score. Reviewed cards show applicability, exclusions, site verification, source links, source revision and review date. They do not claim a probability of safety or statutory compliance.
 
-`src/data/reviewed-recommendations.json` is deliberately empty. The 21 existing knowledge drafts have not received the required technical, regional and translation reviews. Browser tests inject explicitly synthetic releases through a test-only Vite alias; production imports the checked-in empty release.
+`src/data/reviewed-recommendations.json` is deliberately empty. The 57 existing knowledge drafts (54 regional guidance units and three case-derived pilots) have not received the required technical, regional and translation reviews. Browser tests inject explicitly synthetic releases through a test-only Vite alias; production imports the checked-in empty release. Authored-unit coverage is tracked in `recommendation-task-coverage.json` and does not establish publication eligibility.
 
 ## Publication procedure
 
@@ -22,4 +22,4 @@ The browser re-reads the exact case row before every case recommendation. A chan
 
 ## Remaining dependencies
 
-The 2026-10-14 10:44 UTC public-data audit retry failed with HTTP 522 for all nine requested tables. This is an unavailable read, not empty-country coverage. Privileged schema/FK review, data correction, backup/restore, genuine content reviews, reviewed release population, independent relevance evaluation and production rollout remain outstanding. Test fixtures do not satisfy those requirements.
+The 2026-10-14 10:44 UTC public-data audit retry failed with HTTP 522; later read-only audits recovered. The latest CI audit began at 13:38 UTC and completed reads of all nine tables, with aggregate coverage for all 18 Locales. These are sequential public-anon/RLS reads, not privileged schema verification or a consistent backup. Privileged schema/FK review, data correction, backup/restore, genuine content reviews, reviewed release population, independent relevance evaluation and production rollout remain outstanding. Test fixtures do not satisfy those requirements. Current-head CI results are tracked in Draft PR #25.
