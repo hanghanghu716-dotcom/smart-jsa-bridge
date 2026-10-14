@@ -4,6 +4,7 @@ import process from 'node:process';
 import { createHash } from 'node:crypto';
 import { AUDIT_TABLES, auditRecommendationSnapshot } from './recommendation-data-audit.js';
 import { contentFingerprint } from './case-build-data.js';
+import { publicAuditSummary } from './recommendation-audit-summary.js';
 
 // Use only the public anon credential already shipped by this application.
 // No service-role keys, user sessions, writes or privileged schema queries.
@@ -108,8 +109,13 @@ report.masterReferences = Object.fromEntries(masters.map((table, i) => {
 }));
 const allowedLocales = new Set(report.coverage.map(row => row.dataLocale));
 report.invalidTranslationLocales = Object.fromEntries(['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations']
-  .map(table => [table, tables[table]?.filter(row => !allowedLocales.has(row.locale)).map(row => ({ id: row.id, locale: row.locale,
-    masterId: row.hazard_id ?? row.measure_id ?? row.advanced_measure_id, text: row.hazard_name || row.measure_text || row.solution_text })) ?? null]));
+  .map(table => {
+    const masterKey = table === 'Hazards_Translations' ? 'hazard_id' : table === 'Current_Measures_Translations' ? 'measure_id' : 'advanced_measure_id';
+    return [table, tables[table]?.filter(row => !allowedLocales.has(row.locale)).map(row => ({ id: row.id, locale: row.locale,
+      masterId: row[masterKey], text: row.hazard_name || row.measure_text || row.solution_text,
+      sameMasterTranslations: row[masterKey] == null ? [] : tables[table].filter(peer => peer.id !== row.id && peer[masterKey] === row[masterKey])
+        .map(peer => ({ id: peer.id, locale: peer.locale, text: peer.hazard_name || peer.measure_text || peer.solution_text })) })) ?? null];
+  }));
 report.duplicateMappingKinds = Object.fromEntries([
   ['hazard_measure_mappings', 'hazard_translation_id', 'measure_translation_id'],
   ['current_advanced_measure_mappings', 'current_measure_translation_id', 'advanced_measure_translation_id'],
@@ -125,8 +131,9 @@ report.duplicateMappingKinds = Object.fromEntries([
     conflictingScorePairs: duplicate.filter(x => new Set(x).size > 1).length, extraRows: duplicate.reduce((n, x) => n + x.length - 1, 0) }];
 }));
 await fs.mkdir('artifacts/recommendations', { recursive: true });
-await fs.writeFile('artifacts/recommendations/public-data-audit.json', JSON.stringify(report, null, 2));
-console.log('RECOMMENDATION_AUDIT_JSON ' + JSON.stringify(report));
+const sharedSummary = publicAuditSummary(report);
+await fs.writeFile('artifacts/recommendations/public-data-audit.json', JSON.stringify(sharedSummary, null, 2));
+console.log('RECOMMENDATION_AUDIT_JSON ' + JSON.stringify(sharedSummary));
 if (!report.snapshotComplete) {
   console.error('Public DB audit incomplete; failed reads are unknown, not zero rows. See public-data-audit.json.');
   process.exitCode = 1;

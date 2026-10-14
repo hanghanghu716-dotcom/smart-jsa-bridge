@@ -1143,22 +1143,24 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Manutenção de máquinas",
       "step": "Preparar o isolamento",
       "hazard": "Partida inesperada ou liberação de energia residual",
       "cause": "Uma fonte permanece ligada ou pode ser restabelecida",
       "consequence": "Esmagamento durante a intervenção",
-      "control": "Identificar as fontes, isolar e bloquear os dispositivos de corte; sinalizar a intervenção conforme o procedimento da máquina.",
-      "verification": "Verificar a condição segura após o bloqueio e o controle das energias residuais.",
+      "control": "Com a máquina parada, isolar e descarregar as fontes de energia, bloquear os dispositivos contra reenergização e identificar o bloqueio segundo o procedimento específico.",
+      "verification": "Verificar energia residual e riscos após os pontos de corte; prever retenção mecânica para partes que possam retornar ou cair.",
       "conditions": [
-        "Pessoal capacitado; instruções do fabricante e procedimento disponíveis"
+        "Profissionais capacitados, qualificados ou legalmente habilitados e formalmente autorizados; procedimento da máquina disponível"
       ],
       "exclusions": [
         "Intervenção energizada",
         "espaço confinado",
-        "fontes de energia desconhecidas"
+        "fontes de energia desconhecidas",
+        "Modo especial com acesso à zona de perigo",
+        "Exceção por inércia térmica que exige planejamento específico"
       ],
       "keywords": [
         "bloqueio de energias",
@@ -1167,20 +1169,20 @@
       ],
       "sources": [
         {
-          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-12-atualizada-2022-1.pdf",
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
           "authority": "Ministério do Trabalho e Emprego",
-          "section": "NR-12, item 12.11.3",
+          "section": "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21",
           "checkedAt": "2026-10-14",
-          "scope": "Confirmar texto vigente, escopo e procedimentos específicos antes da publicação",
-          "retrieval": "primary_page_or_document"
+          "scope": "Manutenção com máquina parada; intervenções especiais exigem análise separada. A compilação não substitui o DOU.",
+          "retrieval": "primary_pdf_relevant_sections_read"
         },
         {
           "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
           "authority": "Ministério do Trabalho e Emprego",
           "section": "Índice oficial: última modificação indicada, Portaria MTE 344/2024",
           "checkedAt": "2026-10-14",
-          "scope": "Índice consultado; leitura do item 12.11 no PDF consolidado atual ainda pendente",
-          "retrieval": "primary_index_read_current_pdf_unavailable"
+          "scope": "Índice e PDF consolidado conferidos; revisão técnica e regional ainda pendente",
+          "retrieval": "primary_index_and_relevant_pdf_sections_read"
         }
       ],
       "applicability": {
@@ -1194,7 +1196,9 @@
         "excludedConditions": [
           "live-intervention",
           "confined-entry",
-          "unknown-energy-path"
+          "unknown-energy-path",
+          "special-operating-mode",
+          "thermal-inertia-exception"
         ]
       },
       "sourceRevision": "research-2026-10-14",
@@ -1214,18 +1218,20 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "O procedimento específico do equipamento está disponível",
-        "competent-person-assigned": "Uma pessoa competente foi designada",
+        "competent-person-assigned": "Há profissional capacitado, qualificado ou legalmente habilitado e formalmente autorizado",
         "live-intervention": "É necessário intervir com energia presente",
         "confined-entry": "O trabalho envolve entrada em espaço confinado",
-        "unknown-energy-path": "Uma fonte de energia ou limite de isolamento é desconhecido"
+        "unknown-energy-path": "Uma fonte de energia ou limite de isolamento é desconhecido",
+        "special-operating-mode": "É necessário modo especial de operação com acesso à zona de perigo",
+        "thermal-inertia-exception": "A inércia térmica impede as medidas normais e exige planejamento específico"
       },
       "sourceCheck": {
-        "status": "current_text_review_pending",
-        "method": "AI-assisted primary-index check",
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary PDF comparison",
         "checkedAt": "2026-10-14",
         "findings": [
-          "A referência anterior de 2022 não basta para certificar o texto atual.",
-          "O índice oficial indica a Portaria MTE 344/2024; o PDF consolidado deve ser conferido."
+          "O item 12.11.3 trata de isolamento, descarga, bloqueio e identificação com a máquina parada.",
+          "As situações especiais de 12.11.3.1 a 12.11.3.3 ficam fora do escopo deste rascunho."
         ],
         "approvalGranted": false
       }
@@ -1236,7 +1242,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Техническое обслуживание машины",
       "step": "Подготовка изоляции энергии",
@@ -1266,6 +1272,22 @@
           "checkedAt": "2026-10-14",
           "scope": "Технический черновик по зарубежному руководству; действующие требования РФ не подтверждены",
           "retrieval": "primary_page_or_document"
+        },
+        {
+          "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
+          "checkedAt": "2026-10-14",
+          "scope": "Официальная публикация найдена; полный текст недоступен при проверке, применимость не подтверждена",
+          "retrieval": "primary_search_metadata_full_text_timeout"
+        },
+        {
+          "url": "https://publication.pravo.gov.ru/document/0001202505300025",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
+          "checkedAt": "2026-10-14",
+          "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
+          "retrieval": "primary_search_metadata_full_text_timeout"
         }
       ],
       "applicability": {
@@ -1303,6 +1325,16 @@
         "live-intervention": "Требуется вмешательство при поданной энергии",
         "confined-entry": "Работа включает вход в замкнутое пространство",
         "unknown-energy-path": "Источник энергии или граница отключения не определены"
+      },
+      "sourceCheck": {
+        "status": "primary_documents_identified_full_text_pending",
+        "method": "Official publication metadata; full-text requests timed out",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "Order 833н and amendment 287н official publication identifiers located.",
+          "No domestic technical clause or extension date is certified from unread primary text."
+        ],
+        "approvalGranted": false
       }
     },
     {
