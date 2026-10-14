@@ -1,6 +1,18 @@
 import { supabase } from '../supabaseClient';
+import { localeCountry } from '../utils/publicCountry.js';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config';
-export async function discoveryLinks(id=null,kind=null,target=null){const {data,error}=await supabase.rpc('discovery_links',{p_id:id,p_kind:kind,p_target:target});if(error)throw error;return data;}
+export async function discoveryLinks(id=null,kind=null,target=null,locale=null,client=supabase){
+ if(!id){
+  const country=localeCountry(locale);
+  if(!country||!['case','guide'].includes(kind)||!target)return [];
+  const {data,error}=await client.rpc('editorial_jsa_by_country',{p_kind:kind,p_target:target,p_country:country});
+  if(error)throw error;
+  // Fail closed if an incompatible response is ever returned; never fall back globally.
+  return (Array.isArray(data)?data:[]).filter(item=>item.country===country);
+ }
+ const {data,error}=await client.rpc('discovery_links',{p_id:id,p_kind:kind,p_target:target});
+ if(error)throw error;return data;
+}
 export async function discoveryAdmin(action,id=null,payload={}){const {data,error}=await supabase.rpc('discovery_admin',{p_action:action,p_id:id,p_payload:payload});if(error)throw error;return data;}
 export async function editorialTitles(links,locale){
  const ids=[...new Set(links.filter(l=>l.kind==='case').map(l=>l.target))];if(!ids.length)return links;

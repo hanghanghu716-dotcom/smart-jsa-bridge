@@ -17,3 +17,14 @@
 .moderation-detail details { margin-block: 16px; max-height: 420px; overflow-y: auto; }
 .preserve-lines { white-space: pre-wrap; }
 @media(max-width:600px) { .author-list li { flex-wrap: wrap; } .moderation-inbox .jsa-toolbar { flex-wrap: wrap; } }
+
+/* Case/guide related documents form one aligned card, not separate grid columns. */
+.discovery-links--editorial { display:block; max-width:none; margin:28px 0; padding:0; text-align:start; }
+.discovery-links--editorial section { padding:clamp(18px,3vw,24px); background:var(--panel-bg,#fff); }
+.discovery-links--editorial h2 { margin:0; line-height:1.4; font-weight:650; }
+.discovery-links--editorial .discovery-links-intro { margin:10px 0 16px; line-height:1.65; }
+.discovery-links--editorial ul { display:grid; gap:8px; margin:14px 0 0; padding:0; list-style:none; }
+.discovery-links--editorial li { margin:0; min-width:0; }
+.discovery-links--editorial li a { display:block; padding:10px 12px; border-radius:10px; line-height:1.6; overflow-wrap:anywhere; text-decoration:none; background:var(--accent-soft,#f1f6fc); }
+.discovery-links--editorial li a:hover { text-decoration:underline; }
+.discovery-links--editorial li a:focus-visible { outline:2px solid var(--accent,#246bc1); outline-offset:2px; }
