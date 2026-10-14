@@ -1,3 +1,4 @@
+import ExploreSearchInput from './ExploreSearchInput';
 import '../styles/operator-documents.css';
 import { getOperatorUi } from '../locales/operatorUi';
 import { PUBLIC_COUNTRIES, exploreCountry, localeCountry, countryLabel } from '../utils/publicCountry';
@@ -51,8 +52,9 @@ export default function PublicExplore() {
   const countryUi=getPublicCountryUi(i18n.language);
   const selectedCountry=exploreCountry(country,i18n.language);
   const queryRef=useRef(query);
+  const [searchReset, setSearchReset] = useState(0);
   useEffect(()=>{queryRef.current=query;},[query]);
-  const change=patch=>{const next={...queryRef.current,...patch,page:0};queryRef.current=next;setParams(exploreSearch(next).slice(1),{replace:true});};
+  const change=patch=>{if ('search' in patch) setSearchReset(n=>n+1);const next={...queryRef.current,...patch,page:0};queryRef.current=next;setParams(exploreSearch(next).slice(1),{replace:true});};
   const setSearch=search=>change({search}),setSort=sort=>change({sort});
   const setTags=tags=>change({tags:typeof tags==='function'?tags(queryRef.current.tags):tags});
   const [bootstrap]=useState(()=>window.__PUBLIC_EXPLORE__?.locale===i18n.language&&exploreSearch(window.__PUBLIC_EXPLORE__.query)===exploreSearch(query)?window.__PUBLIC_EXPLORE__:null);
@@ -96,7 +98,7 @@ export default function PublicExplore() {
         }
       } catch { if (active) setError(true); }
       finally { if (active) setLoading(false); }
-    }, search ? 250 : 0);
+    }, 0);
     return () => { active = false; clearTimeout(timer); };
   }, [search, sort, tags, page, author, attempt, selectedCountry]);
   const translation=usePublicTranslation(rows.filter(row=>!selectedCountry||row.public_country===selectedCountry),i18n.language);
@@ -110,7 +112,7 @@ export default function PublicExplore() {
       </section>
       <nav className="jsa-toolbar"><LanguageLink to="/explore" aria-current="page">{getSocialUi(i18n.language).all}</LanguageLink><LanguageLink to="/following">{getSocialUi(i18n.language).following}</LanguageLink></nav>
       <div className="explore-searchbar" role="search">
-        <label className="explore-search"><ExploreIcon name="search" /><input aria-label={ui.search} placeholder={ui.search} value={search} onChange={e => { setSearch(e.target.value); }} /></label>
+        <label className="explore-search"><ExploreIcon name="search" /><ExploreSearchInput label={ui.search} value={search} resetKey={params.toString()+":"+searchReset} onSearch={setSearch} /></label>
         <select aria-label={ui.sort} value={sort} onChange={e => { setSort(e.target.value); }}><option value="latest">{ui.latest}</option><option value="popular">{ui.popular}</option><option value="views">{ui.mostViewed}</option><option value="reused">{ui.mostReused}</option></select>
       </div>
       <label className="explore-country">{countryUi.country}<select value={country||'local'} onChange={e=>{setRows([]);setTotal(0);change({country:e.target.value==='local'?undefined:e.target.value});}}>
