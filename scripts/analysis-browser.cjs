@@ -82,13 +82,17 @@ const cp = require('node:child_process');
         assert.ok(output.scroll <= output.width + 2, locale + ': document overflow');
         assert.equal(await page.$eval('.document-content', el => el.getAttribute('dir')), locale.startsWith('ar') ? 'rtl' : 'ltr');
         assert.equal(await page.$eval('[data-assessment-profile]', el => el.getAttribute('dir')), locale.startsWith('ar') ? 'rtl' : 'ltr');
+        const copyFinished = new Promise((resolve, reject) => {
+          const timeout = setTimeout(() => reject(Error('Clipboard action did not finish')), 15000);
+          page.once('dialog', dialog => { clearTimeout(timeout); resolve(dialog.message()); });
+        });
         await page.click('[data-export-copy]');
-        await page.waitForFunction(value => navigator.clipboard.readText().then(text => text.includes(value)), {}, words[1]);
+        const copyMessage = await copyFinished;
         const copied = await page.evaluate(async () => {
           const items = await navigator.clipboard.read();
           return { text: await navigator.clipboard.readText(), html: await (await items[0].getType('text/html')).text() };
         });
-        assert.ok(copied.text.includes(words[2]) && copied.text.includes('Unrelated manual input'), locale + ': clipboard text');
+        assert.ok(copied.text.includes(words[1]) && copied.text.includes(words[2]) && copied.text.includes('Unrelated manual input'), locale + ': clipboard text: ' + copyMessage);
         assert.ok(copied.html.includes('<table') && copied.html.includes('data-assessment-profile'), locale + ': clipboard formatted document');
         const pdf = path.resolve(`artifacts/recommendations/${locale}.pdf`);
         await page.click('[data-export-pdf]');
@@ -123,10 +127,11 @@ const cp = require('node:child_process');
         const translated = await page.evaluate(async lng => {
           const { default: i18n } = await import('/src/i18n.js');
           const t = i18n.getFixedT(lng, 'analysis');
-          return { unconfirmed: t('review.unconfirmed'), profileLabel: t('review.profileLabel') };
+          return { unconfirmed: t('review.unconfirmed'), profileLabel: t('review.profileLabel'), hazardLabel: i18n.getFixedT(lng, 'export')('tags.DATA_HAZARD') };
         }, locale);
         assert.ok(legacy.text.includes(words[1]) && legacy.text.includes(translated.unconfirmed), locale + ': legacy unconfirmed control');
         assert.ok(legacy.text.includes(translated.profileLabel), locale + ': legacy assessment language');
+        assert.ok(legacy.text.includes(translated.hazardLabel), locale + ': legacy column title follows document language');
         assert.equal(legacy.dir, locale.startsWith('ar') ? 'rtl' : 'ltr');
         assert.deepEqual(errors, [], locale + ': complete editor/export errors');
         results.push({ locale, extraction: true, recommendations: true, confirmation: true, manualEdit: true, guestSaveRestore: true,
