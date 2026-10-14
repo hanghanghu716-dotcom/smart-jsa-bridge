@@ -1,6 +1,8 @@
 const text = value => typeof value === 'string' ? value : '';
 const normalized = value => text(value).normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
 const risksOf = step => Array.isArray(step?.risks) ? step.risks.filter(Boolean) : [];
+export const knowledgeLocale = item => item?.locale || item?.form_data?.context?.documentLocale || item?.form_data?.documentLocale || null;
+export const languageDiffers = (source, target) => !source || source !== target;
 
 export function matchesKnowledge(value, query) {
   const needle = normalized(query);
@@ -52,6 +54,8 @@ export function mergeKnowledgeRisks(target, source, { mode = 'full', jsaType = '
       sourceProjectId: sourceMeta.projectId || null,
       sourceStepIndex: Number.isInteger(sourceMeta.stepIndex) ? sourceMeta.stepIndex : null,
       sourceRiskId: risk.id || null,
+      sourceLocale: sourceMeta.locale || risk.sourceLocale || null,
+      contentLocale: sourceMeta.locale || risk.contentLocale || risk.sourceLocale || null,
     });
   }
   return { step: { ...target, risks: [...existing, ...added] }, added: added.length, skipped: incoming.length - added.length };

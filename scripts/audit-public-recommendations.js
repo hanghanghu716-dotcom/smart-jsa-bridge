@@ -22,7 +22,7 @@ for (const table of AUDIT_TABLES) {
     for (let page = 0; ; page++) {
       if (page >= 1000) throw Error('Pagination ceiling reached');
       const endpoint = new URL(`/rest/v1/${table}`, project);
-      endpoint.searchParams.set('select', '*');
+      endpoint.searchParams.set('select', table === 'case_studies' ? 'id,post_group_id,language_code,title,created_at' : '*');
       endpoint.searchParams.set('order', table === 'hazard_measure_mappings' ? 'hazard_translation_id,measure_translation_id'
         : table === 'current_advanced_measure_mappings' ? 'current_measure_translation_id,advanced_measure_translation_id' : 'id');
       const response = await fetch(endpoint, { headers: { ...headers, Range: `${rows.length}-${rows.length + 999}`, Prefer: 'count=exact' }, signal: AbortSignal.timeout(30000) });
@@ -63,8 +63,36 @@ report.highScoreExamples = {
   hazardToControl: examples(tables.hazard_measure_mappings, tables.Hazards_Translations, tables.Current_Measures_Translations, 'hazard_translation_id', 'measure_translation_id', 'hazard_name', 'measure_text'),
   currentToAdditional: examples(tables.current_advanced_measure_mappings, tables.Current_Measures_Translations, tables.Advanced_Measures_Translations, 'current_measure_translation_id', 'advanced_measure_translation_id', 'measure_text', 'solution_text'),
 };
-report.caseSources = (tables.case_studies || []).filter(x => ['jsa-compressed-air-filter-element', 'jsa-asphalt-milling', 'jsa-aluminum-actig'].includes(x.post_group_id))
-  .map(x => ({ id: x.id, group: x.post_group_id, locale: x.language_code, fingerprint: contentFingerprint(x) }));
+try {
+  const endpoint = new URL('/rest/v1/case_studies', project);
+  endpoint.searchParams.set('select', 'id,post_group_id,language_code,title,meta_title,meta_description,content_md,schema_markup,pdf_download_url,pdf_list');
+  endpoint.searchParams.set('post_group_id', 'in.(jsa-compressed-air-filter-element,jsa-asphalt-milling,jsa-aluminum-actig)');
+  endpoint.searchParams.set('language_code', 'eq.en-US');
+  const response = await fetch(endpoint, { headers, signal: AbortSignal.timeout(30000) });
+  if (!response.ok) throw Error(`HTTP ${response.status}`);
+  const cases = await response.json();
+  report.caseSources = cases.map(x => ({ id: x.id, group: x.post_group_id, locale: x.language_code, fingerprint: contentFingerprint(x) }));
+} catch (error) { report.caseSourceReadError = error.message; }
+report.translationLocales = Object.fromEntries(['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations'].map(table => {
+  const rows = tables[table];
+  const master = table === 'Hazards_Translations' ? 'hazard_id' : table === 'Current_Measures_Translations' ? 'measure_id' : 'advanced_measure_id';
+  return [table, rows ? Object.fromEntries([...new Set(rows.map(x => x.locale))].map(locale => {
+    const local = rows.filter(x => x.locale === locale);
+    return [locale, { rows: local.length, missingMaster: local.filter(x => x[master] == null).length,
+      missingKeywords: table === 'Hazards_Translations' ? local.filter(x => !x.keywords || JSON.stringify(x.keywords) === '[]').length : null }];
+  })) : null];
+}));
+report.mappingLocales = Object.fromEntries([['hazard_measure_mappings', 'Hazards_Translations', 'hazard_translation_id'],
+  ['current_advanced_measure_mappings', 'Current_Measures_Translations', 'current_measure_translation_id']].map(([table, source, sourceId]) => {
+  if (!tables[table] || !tables[source]) return [table, null];
+  const locales = new Map(tables[source].map(x => [String(x.id), x.locale]));
+  const groups = {};
+  for (const row of tables[table]) (groups[locales.get(String(row[sourceId])) || 'unknown'] ||= []).push(Number(row.similarity_score));
+  return [table, Object.fromEntries(Object.entries(groups).map(([locale, scores]) => {
+    scores.sort((a, b) => a - b);
+    return [locale, { rows: scores.length, highScore: scores.filter(x => x >= .95).length, min: scores[0], max: scores.at(-1), median: scores[Math.floor(scores.length / 2)] }];
+  }))];
+}));
 report.snapshotDigest = createHash('sha256').update(JSON.stringify(tables)).digest('hex');
 await fs.mkdir('artifacts/recommendations', { recursive: true });
 await fs.writeFile('artifacts/recommendations/public-data-audit.json', JSON.stringify(report, null, 2));

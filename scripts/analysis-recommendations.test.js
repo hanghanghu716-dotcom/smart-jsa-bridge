@@ -12,9 +12,12 @@ function database(tables, failure = '') {
       select() { return query; },
       eq(key, value) { filters.push({ op: 'eq', key, value }); return query; },
       in(key, value) { filters.push({ op: 'in', key, value }); return query; },
+      ilike(key, value) { filters.push({ op: 'ilike', key, value }); return query; },
       then(resolve, reject) {
         const data = (tables[table] || []).filter(row => filters.every(f => f.op === 'eq'
-          ? String(row[f.key]) === String(f.value) : f.value.some(value => String(row[f.key]) === String(value))));
+          ? String(row[f.key]) === String(f.value) : f.op === 'ilike'
+            ? String(row[f.key]).toLowerCase() === f.value.replace(/\\([%_\\])/g, '$1').toLowerCase()
+            : f.value.some(value => String(row[f.key]) === String(value))));
         return Promise.resolve({ data, error: table === failure ? new Error('Database unavailable') : null }).then(resolve, reject);
       }
     };
@@ -53,6 +56,19 @@ function fixture() {
 
 const risk = { id: 'r1', db_id: 7, factor: 'Pressurized line' };
 const context = recommendationContext({}, 'en-US');
+
+test('manual edits rematch only a unique exact hazard/control in the document language', async () => {
+  const db = database(fixture());
+  const edited = { factor: 'pressurized line', current_measure: 'Isolate the line' };
+  const result = await loadMeasureRecommendations(db, { risk: edited, type: 'advanced', context });
+  assert.equal(result[0].display, 'Verify absence of pressure');
+  assert.equal(result[0].evidence.sourceType, 'legacy_mapping');
+  assert.equal(result[0].evidence.regionReviewed, false);
+  const ambiguous = fixture();
+  ambiguous.Hazards_Translations.push({ id: 500, locale: 'en-US', hazard_name: 'Pressurized line' });
+  assert.deepEqual(await loadMeasureRecommendations(database(ambiguous), { risk: edited, context }), []);
+  assert.deepEqual(await loadMeasureRecommendations(db, { risk: { factor: '%', current_measure: 'Isolate the line' }, context }), []);
+});
 
 test('master/translation ID collisions and foreign-language maxima cannot change the selected control or percentage', async () => {
   const db = database(fixture());

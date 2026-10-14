@@ -131,5 +131,25 @@
     "sharedData": "São usados dados de referência compartilhados de {{locale}}. Verifique sua aplicabilidade no local de trabalho.",
     "reviewRequired": "A entrada foi alterada. Revise as medidas e recomendações mantidas.",
     "loadError": "Não foi possível carregar as recomendações. Tente novamente."
+  },
+  "review": {
+    "confirmCurrent": "Confirmo que esta medida está implementada neste local de trabalho",
+    "unconfirmed": "Implementação no local não confirmada",
+    "unknownSource": "Fonte: associação existente; revisão técnica não registrada",
+    "linkedHazard": "Perigo associado",
+    "conditionsUnknown": "Revisar as condições de aplicação e os requisitos regionais",
+    "sourceLanguage": "Idioma original",
+    "targetLanguage": "Idioma do documento",
+    "allLanguages": "Todos os idiomas",
+    "sameLanguage": "Somente o idioma do documento",
+    "unknownLanguage": "Idioma não registrado",
+    "languageChanged": "Revisar os textos preservados para este idioma do documento",
+    "profileLabel": "Critérios de avaliação",
+    "profileHelp": "Padrão: 5 × 5, destaque a partir de 9. Valores configuráveis, não uma norma nacional. Alterar os critérios reinicia as avaliações e preserva o histórico.",
+    "frequencyMax": "Frequência máxima",
+    "severityMax": "Gravidade máxima",
+    "highFrom": "Destacar a partir de",
+    "notAssessed": "Não avaliado",
+    "criteria": "Procedimento do local e definição dos níveis"
   }
 }

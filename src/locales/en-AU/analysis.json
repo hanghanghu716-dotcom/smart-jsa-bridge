@@ -131,5 +131,25 @@
     "sharedData": "Shared {{locale}} reference data is being used. Check its applicability to the work jurisdiction.",
     "reviewRequired": "The input changed. Review the retained controls and recommendations.",
     "loadError": "Could not load recommendation data. Please try again."
+  },
+  "review": {
+    "confirmCurrent": "I confirm this control is in place at this worksite",
+    "unconfirmed": "Not confirmed at the worksite",
+    "unknownSource": "Source: existing mapping; technical review not recorded",
+    "linkedHazard": "Linked hazard",
+    "conditionsUnknown": "Applicability and regional requirements need review",
+    "sourceLanguage": "Source language",
+    "targetLanguage": "Document language",
+    "allLanguages": "All languages",
+    "sameLanguage": "Document language only",
+    "unknownLanguage": "Language not recorded",
+    "languageChanged": "Review the retained text for this document language",
+    "profileLabel": "Assessment criteria",
+    "profileHelp": "Default: 5 × 5, highlighted from 9. These are configurable values, not a national standard. Changing criteria clears current ratings and retains their history.",
+    "frequencyMax": "Frequency maximum",
+    "severityMax": "Severity maximum",
+    "highFrom": "Highlight from",
+    "notAssessed": "Not assessed",
+    "criteria": "Site procedure and rating definitions"
   }
 }

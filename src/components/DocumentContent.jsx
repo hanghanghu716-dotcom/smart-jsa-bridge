@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import DocumentSignatures from './DocumentSignatures';
 import { columnPercentages, normalizeDocumentBlocks } from '../utils/documentLayout';
+import { assessmentProfile } from '../utils/analysisAssessment';
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
@@ -222,7 +223,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}`).join('\n');
+                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${t('analysis:review.unconfirmed')})` : ''}`).join('\n');
                 else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
                 else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity ?? "");
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency ?? "");
@@ -254,5 +255,9 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   };
   return <div className="document-content" style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
     {normalizeDocumentBlocks(documentBlocks).filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
+    {formData.assessment && <div data-assessment-profile dir={i18n.dir(language)} style={{ fontSize: '10px', marginTop: '6px', whiteSpace: 'pre-wrap' }}>
+      {t('analysis:review.profileLabel')}: {assessmentProfile(formData.assessment).name} · {assessmentProfile(formData.assessment).frequencyMax} × {assessmentProfile(formData.assessment).severityMax} · {t('analysis:review.highFrom')}: {assessmentProfile(formData.assessment).highFrom}
+      {formData.assessment.criteria && <div>{formData.assessment.criteria}</div>}
+    </div>}
   </div>;
 }

@@ -131,5 +131,25 @@
     "sharedData": "Des données de référence communes à {{locale}} sont utilisées. Vérifiez leur applicabilité au lieu de travail.",
     "reviewRequired": "La saisie a changé. Réexaminez les mesures et recommandations conservées.",
     "loadError": "Impossible de charger les recommandations. Veuillez réessayer."
+  },
+  "review": {
+    "confirmCurrent": "Je confirme que cette mesure est appliquée sur ce lieu de travail",
+    "unconfirmed": "Application sur le terrain non confirmée",
+    "unknownSource": "Source : correspondance existante ; examen technique non documenté",
+    "linkedHazard": "Danger associé",
+    "conditionsUnknown": "Vérifier les conditions d’application et les exigences régionales",
+    "sourceLanguage": "Langue source",
+    "targetLanguage": "Langue du document",
+    "allLanguages": "Toutes les langues",
+    "sameLanguage": "Langue du document uniquement",
+    "unknownLanguage": "Langue non renseignée",
+    "languageChanged": "Vérifier les textes conservés dans cette langue de document",
+    "profileLabel": "Critères d’évaluation",
+    "profileHelp": "Par défaut : 5 × 5, mise en évidence à partir de 9. Valeurs configurables, pas une norme nationale. Un changement réinitialise les évaluations et conserve leur historique.",
+    "frequencyMax": "Fréquence maximale",
+    "severityMax": "Gravité maximale",
+    "highFrom": "Mettre en évidence à partir de",
+    "notAssessed": "Non évalué",
+    "criteria": "Procédure du site et définition des niveaux"
   }
 }

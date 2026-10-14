@@ -131,5 +131,25 @@
     "sharedData": "Gemeinsame Referenzdaten für {{locale}} werden verwendet. Prüfen Sie deren Anwendbarkeit am Arbeitsort.",
     "reviewRequired": "Die Eingabe wurde geändert. Prüfen Sie die vorhandenen Maßnahmen und Empfehlungen erneut.",
     "loadError": "Die Empfehlungsdaten konnten nicht geladen werden. Versuchen Sie es erneut."
+  },
+  "review": {
+    "confirmCurrent": "Ich bestätige, dass diese Maßnahme am Arbeitsort umgesetzt ist",
+    "unconfirmed": "Umsetzung vor Ort nicht bestätigt",
+    "unknownSource": "Quelle: bestehende Zuordnung; technische Prüfung nicht dokumentiert",
+    "linkedHazard": "Zugeordnete Gefährdung",
+    "conditionsUnknown": "Anwendungsbedingungen und regionale Anforderungen prüfen",
+    "sourceLanguage": "Ausgangssprache",
+    "targetLanguage": "Dokumentsprache",
+    "allLanguages": "Alle Sprachen",
+    "sameLanguage": "Nur Dokumentsprache",
+    "unknownLanguage": "Sprache nicht dokumentiert",
+    "languageChanged": "Übernommene Texte für diese Dokumentsprache prüfen",
+    "profileLabel": "Bewertungskriterien",
+    "profileHelp": "Standard: 5 × 5, Hervorhebung ab 9. Konfigurierbare Werte, keine nationale Norm. Änderungen setzen Bewertungen zurück und bewahren den Verlauf.",
+    "frequencyMax": "Maximale Häufigkeit",
+    "severityMax": "Maximale Schwere",
+    "highFrom": "Hervorhebung ab",
+    "notAssessed": "Nicht bewertet",
+    "criteria": "Betriebliche Verfahren und Bewertungsdefinitionen"
   }
 }

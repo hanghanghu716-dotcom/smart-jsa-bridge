@@ -1,3 +1,8 @@
+import { recommendationContext } from '../../src/utils/analysisRecommendations';
+import { fixtureText } from './text';
+const locale = new URLSearchParams(location.search).get('locale') || 'en-US';
+const { dataLocale } = recommendationContext({}, locale);
+const words = fixtureText[locale.split('-')[0]];
 const tables = {
   Hazards_Translations: [{ id: 101, hazard_id: 7, locale: 'en-US', hazard_name: 'Pressurized line', category: 'Isolation', keywords: '["pressure"]' },
     { id: 102, hazard_id: 7, locale: 'ko-KR', hazard_name: '압력 배관', keywords: '["압력"]' }],
@@ -10,6 +15,12 @@ const tables = {
   Advanced_Measures_Translations: [{ id: 301, advanced_measure_id: 44, locale: 'en-US', solution_text: 'Verify absence of pressure' }],
   current_advanced_measure_mappings: [{ current_measure_translation_id: 201, advanced_measure_translation_id: 301, similarity_score: 0.8 }],
 };
+tables.Hazards_Translations[0] = { id: 101, hazard_id: 7, locale: dataLocale, hazard_name: words[0], keywords: JSON.stringify([words[0]]), category: 'Isolation' };
+tables.Hazards_Translations[1].locale = 'foreign-fixture';
+tables.Current_Measures_Translations[0] = { id: 201, measure_id: 9, locale: dataLocale, measure_text: words[1] };
+tables.Current_Measures_Translations[1].locale = 'foreign-fixture';
+tables.Current_Measures_Translations[2].locale = dataLocale;
+tables.Advanced_Measures_Translations[0] = { id: 301, advanced_measure_id: 44, locale: dataLocale, solution_text: words[2] };
 
 window.analysisFixture = { calls: [], failTable: null };
 export const supabase = {

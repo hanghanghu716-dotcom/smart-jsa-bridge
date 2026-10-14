@@ -131,5 +131,25 @@
     "sharedData": "{{locale}} の共通参考データを使用しています。作業を行う国・地域での適用可否を確認してください。",
     "reviewRequired": "入力が変更されました。残っている対策と推奨事項を再確認してください。",
     "loadError": "推奨データを読み込めませんでした。もう一度お試しください。"
+  },
+  "review": {
+    "confirmCurrent": "この対策が現場で実施されていることを確認しました",
+    "unconfirmed": "現場での実施は未確認",
+    "unknownSource": "出典：既存の関連付けデータ・技術審査の記録なし",
+    "linkedHazard": "関連する危険要因",
+    "conditionsUnknown": "適用条件と地域の要件を確認してください",
+    "sourceLanguage": "原文の言語",
+    "targetLanguage": "文書の言語",
+    "allLanguages": "すべての言語",
+    "sameLanguage": "文書の言語のみ",
+    "unknownLanguage": "言語の記録なし",
+    "languageChanged": "保持された本文が現在の文書言語に適しているか確認してください",
+    "profileLabel": "評価基準",
+    "profileHelp": "初期設定は5 × 5、9以上を強調します。国の標準ではなく変更可能な設定です。基準変更時は履歴を保持し、再評価します。",
+    "frequencyMax": "頻度の最大値",
+    "severityMax": "重篤度の最大値",
+    "highFrom": "強調する点数の下限",
+    "notAssessed": "未評価",
+    "criteria": "現場の手順と各評価段階の定義"
   }
 }

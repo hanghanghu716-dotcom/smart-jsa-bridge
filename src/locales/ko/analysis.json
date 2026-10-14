@@ -131,5 +131,25 @@
     "sharedData": "{{locale}} 공통 참고 자료를 사용합니다. 작업 국가·지역에 적용할 수 있는지 확인하세요.",
     "reviewRequired": "입력이 변경되었습니다. 남아 있는 대책과 권고를 다시 확인하세요.",
     "loadError": "추천 자료를 불러오지 못했습니다. 다시 시도해 주세요."
+  },
+  "review": {
+    "confirmCurrent": "이 대책이 현장에서 실제 시행 중임을 확인했습니다",
+    "unconfirmed": "현장 시행 여부 미확인",
+    "unknownSource": "출처: 기존 연결 데이터 · 기술 검토 기록 없음",
+    "linkedHazard": "연결된 위험요소",
+    "conditionsUnknown": "적용 조건과 지역 요건을 검토해야 합니다",
+    "sourceLanguage": "원문 언어",
+    "targetLanguage": "문서 언어",
+    "allLanguages": "모든 언어",
+    "sameLanguage": "문서 언어만",
+    "unknownLanguage": "언어 기록 없음",
+    "languageChanged": "보존된 문구가 현재 문서 언어에 맞는지 검토하세요",
+    "profileLabel": "평가 기준",
+    "profileHelp": "기본값은 5 × 5, 9 이상 강조입니다. 국가 표준이 아닌 변경 가능한 설정입니다. 기준을 바꾸면 기존 평가를 이력으로 보존하고 재평가합니다.",
+    "frequencyMax": "빈도 최댓값",
+    "severityMax": "강도 최댓값",
+    "highFrom": "강조 시작 점수",
+    "notAssessed": "미평가",
+    "criteria": "현장 절차 및 등급별 정의"
   }
 }

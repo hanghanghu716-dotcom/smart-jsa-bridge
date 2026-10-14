@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-14T09:34:47.286Z",
+  "scope": "Rows visible in the supplied snapshot; counts do not prove regional suitability or complete production visibility.",
+  "snapshotComplete": false,
+  "visibility": "public_anon_RLS_visible_rows_only",
+  "missingTables": [
+    "case_studies"
+  ],
+  "coverage": [
+    {
+      "locale": "en-US",
+      "dataLocale": "en-US",
+      "sharedData": false,
+      "hazards": 395,
+      "controls": 834,
+      "additionalControls": 2111,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA-AB",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA-ON",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA-BC",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "fr-CA-QC",
+      "dataLocale": "fr-FR",
+      "sharedData": true,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-AU",
+      "dataLocale": "en-AU",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1741,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-GB",
+      "dataLocale": "en-GB",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-SG",
+      "dataLocale": "en-US",
+      "sharedData": true,
+      "hazards": 395,
+      "controls": 834,
+      "additionalControls": 2111,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "de-DE",
+      "dataLocale": "de-DE",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 897,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ja-JP",
+      "dataLocale": "ja-JP",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "fr-FR",
+      "dataLocale": "fr-FR",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "it-IT",
+      "dataLocale": "it-IT",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1013,
+      "additionalControls": 2121,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "es-ES",
+      "dataLocale": "es-ES",
+      "sharedData": false,
+      "hazards": 395,
+      "controls": 884,
+      "additionalControls": 1841,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ar-SA",
+      "dataLocale": "ar-SA",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "pt-BR",
+      "dataLocale": "pt-BR",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ru-RU",
+      "dataLocale": "ru-RU",
+      "sharedData": false,
+      "hazards": 395,
+      "controls": 884,
+      "additionalControls": 1840,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ko",
+      "dataLocale": "ko-KR",
+      "sharedData": false,
+      "hazards": 470,
+      "controls": 884,
+      "additionalControls": 2104,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA",
+      "dataLocale": "en-CA",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified"
+    }
+  ],
+  "translations": {
+    "Hazards_Translations": {
+      "status": "observed",
+      "rows": 5343,
+      "missingMaster": 690,
+      "blankText": 0,
+      "missingLocale": 0,
+      "duplicateMasterLocaleRows": 0
+    },
+    "Current_Measures_Translations": {
+      "status": "observed",
+      "rows": 12162,
+      "missingMaster": 0,
+      "blankText": 0,
+      "missingLocale": 0,
+      "duplicateMasterLocaleRows": 0
+    },
+    "Advanced_Measures_Translations": {
+      "status": "observed",
+      "rows": 25472,
+      "missingMaster": 0,
+      "blankText": 0,
+      "missingLocale": 0,
+      "duplicateMasterLocaleRows": 0
+    }
+  },
+  "mappings": {
+    "hazardToControl": {
+      "status": "observed",
+      "rows": 9669,
+      "missingSource": 0,
+      "missingTarget": 0,
+      "crossLocale": 0,
+      "invalidScore": 0,
+      "highScore": 1067,
+      "duplicatePairs": 0
+    },
+    "currentToAdditional": {
+      "status": "observed",
+      "rows": 49172,
+      "missingSource": 0,
+      "missingTarget": 0,
+      "crossLocale": 0,
+      "invalidScore": 0,
+      "highScore": 4853,
+      "duplicatePairs": 2580
+    }
+  },
+  "completedAt": "2026-10-14T09:35:33.843Z",
+  "failures": {
+    "case_studies": "HTTP 500"
+  },
+  "project": "aajvezmhyrdawxxbulqz.supabase.co",
+  "schemaAuthority": "PostgREST public schema only; database constraints and RLS require privileged read-only audit",
+  "schemaReadError": "HTTP 401",
+  "highScoreExamples": {
+    "hazardToControl": {
+      "ru-RU": [
+        {
+          "sourceId": 4129,
+          "targetId": 8286,
+          "source": "Операционные ошибки вследствие несоблюдения протоколов безопасности и инструкций по охране труда.",
+          "target": "Перед подключением проверить соответствие номеров контактов и полярности согласно электрической схеме. После завершения выполнить перекрестную проверку.",
+          "targetLocale": "ru-RU",
+          "score": 0.9941
+        },
+        {
+          "sourceId": 4129,
+          "targetId": 8986,
+          "source": "Операционные ошибки вследствие несоблюдения протоколов безопасности и инструкций по охране труда.",
+          "target": "Выдать каждому работнику индивидуальный шланговый или фильтрующий противогаз и контролировать соблюдение графика замены фильтрующих элементов.",
+          "targetLocale": "ru-RU",
+          "score": 0.9916
+        },
+        {
+          "sourceId": 4129,
+          "targetId": 9284,
+          "source": "Операционные ошибки вследствие несоблюдения протоколов безопасности и инструкций по охране труда.",
+          "target": "В зоне резки установить мощную местную вытяжную вентиляцию и защитные укрытия для предотвращения распространения пыли.",
+          "targetLocale": "ru-RU",
+          "score": 0.9916
+        }
+      ]
+    },
+    "currentToAdditional": {
+      "ru-RU": [
+        {
+          "sourceId": 8156,
+          "targetId": 18318,
+          "source": "Обеспечение путей эвакуации, создание системы экстренной связи и проведение обучения по сценариям реагирования на аварии в соответствии с Планом ликвидации аварий (ПЛА).",
+          "target": "Обустройство стационарных площадок для наблюдения и анкеров для фиксации положения, обязывающих наблюдателя находиться на посту в жилете повышенной видимости.",
+          "targetLocale": "ru-RU",
+          "score": 0.9926
+        },
+        {
+          "sourceId": 8156,
+          "targetId": 19014,
+          "source": "Обеспечение путей эвакуации, создание системы экстренной связи и проведение обучения по сценариям реагирования на аварии в соответствии с Планом ликвидации аварий (ПЛА).",
+          "target": "Сплошная укладка и фиксация полиэтиленовых (ПЭ) гидроизоляционных листов на бровке откоса для механического предотвращения инфильтрации поверхностных вод в грунт.",
+          "targetLocale": "ru-RU",
+          "score": 0.9923
+        },
+        {
+          "sourceId": 8156,
+          "targetId": 19657,
+          "source": "Обеспечение путей эвакуации, создание системы экстренной связи и проведение обучения по сценариям реагирования на аварии в соответствии с Планом ликвидации аварий (ПЛА).",
+          "target": "Внедрение вибропреобразователей (акселерометров) на подшипниковые опоры, сблокированных с системой управления для автоматической остановки двигателя при критическом дисбалансе.",
+          "targetLocale": "ru-RU",
+          "score": 0.9912
+        }
+      ]
+    }
+  },
+  "caseSources": [],
+  "snapshotDigest": "6d01b4664a711b11dcc92cf6e7d8ac67fa7059fbb51d74a2534f4c11e8855dca"
+}

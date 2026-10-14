@@ -33,7 +33,7 @@ jobs:
       - name: Read public recommendation data without changing the database
         run: node scripts/audit-public-recommendations.js
       - name: Install browser libraries
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core
+        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core poppler-utils
       - name: Verify recommendation and locale logic
         run: node --test --test-concurrency=1 scripts/analysis-*.test.js scripts/recommendation-*.test.js
       - name: Verify isolated browser recommendation flow

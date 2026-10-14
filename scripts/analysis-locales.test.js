@@ -17,7 +17,8 @@ test('all 18 locales resolve analysis messages and render every selected PPE/per
       'fastTrackModal.title', 'fastTrackModal.desc', 'fastTrackModal.hazardFactor', 'fastTrackModal.copied',
       'fastTrackModal.safetyMeasure', 'fastTrackModal.measureCopied', 'fastTrackModal.goHome',
       'recommendation.similarity', 'recommendation.scoreHelp', 'recommendation.sharedData',
-      'recommendation.reviewRequired', 'recommendation.loadError'];
+      'recommendation.reviewRequired', 'recommendation.loadError',
+      ...Object.keys(i18n.getResourceBundle('en-US', 'analysis').review).map(key => `review.${key}`)];
     const ppe = ['안전모', '안전화', '보안경', '장갑', '귀마개', '방진복', '방진마스크'];
     const permits = ['일반', '화기', '밀폐', '정전', '굴착', '방사선', '고소', '중량물', '가연성가스'];
     for (const locale of SUPPORTED_LANGS) {
@@ -29,10 +30,11 @@ test('all 18 locales resolve analysis messages and render every selected PPE/per
       }
       const html = renderToStaticMarkup(React.createElement(Content, {
         documentLocale: locale,
-        formData: { ppe, permits, projectName: 'Preserve user text' },
+        formData: { ppe, permits, projectName: 'Preserve user text', assessment: { name: 'Site A', frequencyMax: 5, severityMax: 4, highFrom: 8, criteria: 'User criteria' } },
         layout: { documentBlocks: [{ id: 'PROJECT_INFO', enabled: true }, { id: 'SAFETY', enabled: true }] },
       }));
       assert.ok(html.includes('Preserve user text'));
+      assert.ok(html.includes('Site A') && html.includes('User criteria') && html.includes('data-assessment-profile'));
       if (locale !== 'ko') assert.doesNotMatch(html, /[가-힣]/u, `${locale}: untranslated choice in document`);
       for (const key of ['귀마개', '방진복']) {
         const label = i18n.getFixedT(locale, 'info')(`ppe.${key}`);

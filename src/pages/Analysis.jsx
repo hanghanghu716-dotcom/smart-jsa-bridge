@@ -1,5 +1,6 @@
 import { pickDocumentLayout } from '../utils/documentLayout';
-import { mergeKnowledgeRisks, matchingProjectSteps } from '../utils/analysisKnowledge';
+import { mergeKnowledgeRisks, matchingProjectSteps, knowledgeLocale, languageDiffers } from '../utils/analysisKnowledge';
+import { assessmentProfile, assessedScore, changeAssessmentProfile } from '../utils/analysisAssessment';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { recommendationContext, localizedHazards, matchesHazardKeywords, updateRiskValue, applyControl, formatSimilarity, loadMeasureRecommendations, searchMeasureTranslations } from '../utils/analysisRecommendations.js';
 import React, { useState, useEffect, useRef, useMemo } from 'react';
@@ -30,7 +31,10 @@ export default function Analysis() {
 
   const existingId = state.existingId ?? state.id ?? recoveredDraft?.source_project_id ?? null;
   const procedures = state.procedures || recoveredDraft?.procedures || EMPTY_LIST;
-  const formData = state.formData || recoveredDraft?.form_data || {};
+  const originalFormData = state.formData || recoveredDraft?.form_data || {};
+  const [assessmentOverride, setAssessmentOverride] = useState(null);
+  const assessment = assessmentProfile(assessmentOverride || originalFormData.assessment);
+  const formData = { ...originalFormData, assessment };
   const participants = state.participants || recoveredDraft?.participants || [];
   const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || EMPTY_LIST;
 
@@ -84,6 +88,7 @@ export default function Analysis() {
   const [measureSearchTerm, setMeasureSearchTerm] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [checkedRisks, setCheckedRisks] = useState(new Set());
+  const [knowledgeLanguageFilter, setKnowledgeLanguageFilter] = useState('all');
 
   const [recModal, setRecModal] = useState({
     isOpen: false,
@@ -95,7 +100,7 @@ export default function Analysis() {
   const interactionKey = JSON.stringify([activeIdx, analysisData, documentLocale, dataLocale, jurisdiction]);
   const isSearchOpen = measureSearchModal.isOpen && measureSearchModal.contextKey === interactionKey;
 
-  const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+  const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: null, severity: null, riskLevel: null };
   const recommendations = useMemo(() => {
     const query = searchTerm.toLowerCase();
     const text = [currentStep.proc?.stepTitle, currentStep.proc?.stepDetail].filter(Boolean).join(' ');
@@ -124,7 +129,7 @@ export default function Analysis() {
       current_measure: "",
       recommend_measure: "",
       category: rec.category || t('base.etc'),
-      source: rec.source || 'master'
+      source: rec.source || 'master', contentLocale: documentLocale
     }));
 
     setAnalysisData(prev => {
@@ -143,6 +148,7 @@ export default function Analysis() {
   const handleOpenRecommendation = async (risk, type = 'advanced') => {
     if (!risk.factor) return alert(t('alert.enterFactor'));
     if (type === 'advanced' && !risk.current_measure) return alert(t('alert.selectCurrentMeasure'));
+    if (type === 'advanced' && risk.current_measure_confirmed !== true) return alert(t('review.confirmCurrent'));
     const request = ++recommendationRequest.current;
     setIsLoading(interactionKey);
     try {
@@ -293,8 +299,12 @@ export default function Analysis() {
       return;
     }
 
+    const sourceLocale = sourceMeta.locale || (sourceMeta.workStepId
+      ? knowledgeLocale(savedWorkSteps.find(step => step.id === sourceMeta.workStepId))
+      : knowledgeLocale(myLibraryItems.find(item => item.jsa_projects?.id === sourceMeta.projectId)?.jsa_projects));
     const result = mergeKnowledgeRisks(analysisData[activeIdx], stepData, {
-      mode, jsaType, sourceMeta, category: t('base.etc')
+
+      mode, jsaType, sourceMeta: { ...sourceMeta, locale: sourceLocale }, category: t('base.etc')
     });
     setAnalysisData(prev => prev.map((step, index) => index === activeIdx ? result.step : step));
     if (result.added > 0 && Number.isInteger(sourceMeta.stepIndex)) {
@@ -308,6 +318,7 @@ export default function Analysis() {
   };
 
   const filteredSavedWorkSteps = savedWorkSteps.filter(step => {
+    if (knowledgeLanguageFilter === 'same' && knowledgeLocale(step) !== documentLocale) return false;
     const q = knowledgeSearch.trim().toLowerCase();
     if (!q) return true;
     const text = [
@@ -328,6 +339,7 @@ export default function Analysis() {
 
   const filteredLibraryProjects = myLibraryItems.filter(item => {
     const project = item?.jsa_projects;
+    if (knowledgeLanguageFilter === 'same' && knowledgeLocale(project) !== documentLocale) return false;
     const q = knowledgeSearch.trim().toLowerCase();
     if (!project || !q) return Boolean(project);
     const text = [
@@ -352,7 +364,7 @@ export default function Analysis() {
     if (procedures?.length > 0) {
       setAnalysisData(prevData => procedures.map((newProc, idx) => {
         const existingData = prevData.find(d => d.id === idx) || (incomingAnalysisData || []).find(d => d.id === idx);
-        return existingData ? { ...existingData, proc: newProc } : { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
+        return existingData ? { ...existingData, proc: newProc } : { id: idx, proc: newProc, risks: [], frequency: null, severity: null, riskLevel: null };
       }));
     }
   }, [procedures, incomingAnalysisData]);
@@ -404,7 +416,7 @@ export default function Analysis() {
           factor: rec.risk_factor || rec.factor || "",
           measure: "", current_measure: "", recommend_measure: "",
           category: rec.category || t('base.etc'),
-          source: rec.source || (rec.factor || rec.risk_factor ? 'master' : 'manual')
+          source: rec.source || (rec.factor || rec.risk_factor ? 'master' : 'manual'), contentLocale: documentLocale
         }]
       };
       return newData;
@@ -425,27 +437,33 @@ export default function Analysis() {
   const updateStepRisk = (field, value) => {
     setAnalysisData(prev => {
       const newData = [...prev];
-      const newFreq = field === 'frequency' ? parseInt(value) : newData[activeIdx].frequency;
-      const newSev = field === 'severity' ? parseInt(value) : newData[activeIdx].severity;
+      const newFreq = field === 'frequency' ? value : newData[activeIdx].frequency;
+      const newSev = field === 'severity' ? value : newData[activeIdx].severity;
       newData[activeIdx] = {
         ...newData[activeIdx],
-        [field]: parseInt(value),
-        riskLevel: newFreq * newSev
+        [field]: value === '' ? null : Number(value),
+        riskLevel: assessedScore(newFreq, newSev, assessment)
       };
       return newData;
     });
   };
 
+  const updateAssessment = (field, value) => {
+    const next = assessmentProfile({ ...assessment, [field]: value });
+    setAnalysisData(prev => changeAssessmentProfile(prev, assessment, next));
+    setAssessmentOverride(next);
+  };
+
   // [원상 복귀 완료] 사용자님의 고유 순수 오리지널 스텝 제어 로직 보존
   const handlePrev = () => {
     if (activeIdx === 0) navigate('/procedure', {
-      state: { 
+      state: {
         ...recoveredDraft?.layout_data, ...location.state, // [핵심] 현재 가지고 있는 모든 state를 유지하여 전달
-        id: existingId, 
-        formData, 
-        participants, 
-        procedures, 
-        analysisData 
+        id: existingId,
+        formData,
+        participants,
+        procedures,
+        analysisData
       }
     });
     else { setCheckedRisks(new Set()); setActiveIdx(activeIdx - 1); }
@@ -460,7 +478,7 @@ export default function Analysis() {
 
       {recModal.isOpen && recModal.contextKey === interactionKey && (
         <div style={styles.dialogOverlay} onClick={() => setRecModal({ ...recModal, isOpen: false })}>
-          <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" data-recommendation-dialog style={styles.libModalContent} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
               <h3 style={{ margin: 0 }}>{recModal.type === 'current' ? t('recModal.titleCurrent') : t('recModal.titleAdvanced')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setRecModal({ ...recModal, isOpen: false })}>✕</button>
@@ -471,7 +489,7 @@ export default function Analysis() {
               </p>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{t('recommendation.scoreHelp')}</p>
               {recModal.data.map((item, idx) => (
-                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>
+                <div key={idx} role="button" tabIndex={0} data-recommendation-item data-score={item.similarity_score} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); applyRecommendedMeasure(item); } }}>
                   <div style={{ ...styles.libInfo, flex: 1 }}>
                     <div style={{ color: "var(--text-primary)", fontSize: '0.9rem', lineHeight: '1.4' }}>
                       {formatSimilarity(item.similarity_score, i18n.language) !== null && (
@@ -481,6 +499,9 @@ export default function Analysis() {
                       )}
                       {item.display}
                     </div>
+                    <small>{t('review.linkedHazard')}: {item.evidence?.hazard}</small>
+                    <small>{t('review.unknownSource')}</small>
+                    <small>{t('review.conditionsUnknown')}</small>
                   </div>
                   <span style={{ marginLeft: '10px', color: "var(--accent)" }}>{t('recModal.selectBtn')}</span>
                 </div>
@@ -641,7 +662,7 @@ export default function Analysis() {
                     </span>
                     <div style={{ display: 'flex', gap: '8px' }}>
                       <button style={{ backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
-                      <button style={{ backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
+                      <button data-add-selected style={{ backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>
                   </div>
 
@@ -666,15 +687,22 @@ export default function Analysis() {
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select aria-label={t('result.freq')} style={styles.miniSelect} value={currentStep.frequency ?? ''} onChange={(e) => updateStepRisk('frequency', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.frequencyMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select aria-label={t('result.sev')} style={styles.miniSelect} value={currentStep.severity ?? ''} onChange={(e) => updateStepRisk('severity', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.severityMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
-                      <div style={{ ...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? "var(--danger-action)" : "var(--action-bg)" }}>{currentStep.riskLevel}</div>
+                      <div data-assessed-score style={{ ...styles.riskResultSelect, backgroundColor: assessedScore(currentStep.frequency, currentStep.severity, assessment) >= assessment.highFrom ? "var(--danger-action)" : "var(--action-bg)" }}>{assessedScore(currentStep.frequency, currentStep.severity, assessment) ?? t('review.notAssessed')}</div>
                     </div>
                   </div>
 
                   <div style={styles.selectedListScroll}>
+                    <details style={{ fontSize: '.8rem', marginBottom: '10px', color: 'var(--text-secondary)' }}>
+                      <summary>{t('review.profileLabel')}: {assessment.name} ({assessment.frequencyMax} × {assessment.severityMax}; {t('review.highFrom')} {assessment.highFrom})</summary>
+                      <p>{t('review.profileHelp')}</p>
+                      <label>{t('review.profileLabel')}<input value={assessment.name} onChange={event => updateAssessment('name', event.target.value)} /></label>
+                      {['frequencyMax', 'severityMax', 'highFrom'].map(field => <label key={field} style={{ display: 'block' }}>{t(`review.${field}`)}<input type="number" min="1" max={field === 'highFrom' ? assessment.frequencyMax * assessment.severityMax : 10} value={assessment[field]} onChange={event => updateAssessment(field, Number(event.target.value))} /></label>)}
+                      <label>{t('review.criteria')}<textarea value={assessment.criteria} onChange={event => updateAssessment('criteria', event.target.value)} /></label>
+                    </details>
                     <table style={styles.table}>
                       <thead>
                         <tr>
@@ -707,6 +735,7 @@ export default function Analysis() {
                                 </span>
                                 {r.sourceLabel && <span style={styles.riskSourceText}>{r.sourceLabel}</span>}
                                 {r.recommendation_review_required && <span role="status" style={styles.riskSourceText}>{t('recommendation.reviewRequired')}</span>}
+                                {languageDiffers(r.contentLocale || r.sourceLocale, documentLocale) && <span role="status" style={styles.riskSourceText}>{t('review.languageChanged')} ({r.contentLocale || r.sourceLocale || t('review.unknownLanguage')} → {documentLocale})</span>}
                               </div>
                             </td>
 
@@ -718,7 +747,7 @@ export default function Analysis() {
                                     <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
                                       {t('table.searchBtn')}
                                     </button>
-                                    <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                    <button data-recommend-current style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
                                       {t('table.recMeasureBtn')}
                                     </button>
                                   </div>
@@ -729,11 +758,12 @@ export default function Analysis() {
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
+                                    <label style={{ display: 'flex', gap: '6px', fontSize: '.75rem', color: 'var(--text-secondary)' }}><input data-current-confirmed type="checkbox" checked={r.current_measure_confirmed === true} disabled={!r.current_measure} onChange={event => updateRiskField(r.id, 'current_measure_confirmed', event.target.checked)} />{t('review.confirmCurrent')}</label>
                                     <div style={styles.controlActionRow}>
                                       <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
                                         {t('table.searchBtn')}
                                       </button>
-                                      <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                      <button data-recommend-current style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
                                         {t('table.recMeasureBtn')}
                                       </button>
                                     </div>
@@ -746,7 +776,7 @@ export default function Analysis() {
                                       <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'advanced')}>
                                         {t('table.searchBtn')}
                                       </button>
-                                      <button style={styles.controlAdvancedBtn} onClick={() => handleOpenRecommendation(r, 'advanced')}>
+                                      <button data-recommend-advanced style={styles.controlAdvancedBtn} onClick={() => handleOpenRecommendation(r, 'advanced')}>
                                         {t('table.recAdvancedBtn')}
                                       </button>
                                     </div>
@@ -804,6 +834,11 @@ export default function Analysis() {
                       onChange={(e) => setKnowledgeSearch(e.target.value)}
                       placeholder={t('knowledgeDock.search')}
                     />
+                    <label style={styles.knowledgeMeta}>{t('review.targetLanguage')}: {documentLocale}
+                      <select aria-label={t('review.sourceLanguage')} value={knowledgeLanguageFilter} onChange={event => { setKnowledgeLanguageFilter(event.target.value); setSelectedLibProject(null); }}>
+                        <option value="all">{t('review.allLanguages')}</option><option value="same">{t('review.sameLanguage')}</option>
+                      </select>
+                    </label>
 
                     {knowledgeNotice && (
                       <div role="status" style={styles.knowledgeNotice}>{knowledgeNotice}</div>
@@ -825,6 +860,7 @@ export default function Analysis() {
                               <div style={styles.knowledgeCardHeader}>
                                 <div style={{ minWidth: 0 }}>
                                   <strong style={styles.knowledgeCardTitle}>{step.title}</strong>
+                                  <div style={styles.knowledgeMeta}>{t('review.sourceLanguage')}: {knowledgeLocale(step) || t('review.unknownLanguage')}{languageDiffers(knowledgeLocale(step), documentLocale) && ` — ${t('review.languageChanged')}`}</div>
                                   <div style={styles.knowledgeMeta}>
                                     {step.source_project_title || t('knowledgeDock.independentStep')} · {risks.length} {t('knowledgeDock.hazards')}
                                   </div>
@@ -912,6 +948,7 @@ export default function Analysis() {
                               onClick={() => setSelectedLibProject(project)}
                             >
                               <span style={styles.knowledgeProjectTitle}>{project.title}</span>
+                              <span style={styles.knowledgeProjectMeta}>{t('review.sourceLanguage')}: {knowledgeLocale(project) || t('review.unknownLanguage')}{languageDiffers(knowledgeLocale(project), documentLocale) && ` — ${t('review.languageChanged')}`}</span>
                               <span style={styles.knowledgeProjectMeta}>
                                 {(project.analysis_data || []).length} {t('knowledgeDock.steps')}
                               </span>
@@ -1019,7 +1056,7 @@ export default function Analysis() {
                     <h3 style={{ margin: 0, color: "var(--accent)" }}>⚡ {t('fastTrackModal.title')}</h3>
                     <button style={styles.closeBtnSmall} onClick={() => setIsFastTrackModalOpen(false)}>✕</button>
                   </div>
-                  
+
                   <p style={{ color: "var(--text-secondary)", fontSize: '0.85rem', margin: '0 0 10px 0' }}>
                     {t('fastTrackModal.desc')}
                   </p>
@@ -1032,7 +1069,7 @@ export default function Analysis() {
                       <div style={{ fontSize: '0.9rem', fontWeight: 'bold', color: "var(--text-primary)", marginBottom: '0.8rem', borderBottom: "1px solid var(--border-default)", paddingBottom: '0.5rem' }}>
                         STEP {String(sIdx + 1).padStart(2, '0')}: {step.proc?.stepTitle}
                       </div>
-                      
+
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         {step.risks?.map((r, rIdx) => (
                           <div key={r.id || rIdx} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', position: 'relative' }}>
@@ -1058,25 +1095,25 @@ export default function Analysis() {
 
 
                   </div>
-                  
-                  <button 
-                    style={{ ...styles.nextBtn, padding: '0.8rem', fontSize: '0.95rem', marginTop: '10px' }} 
+
+                  <button
+                    style={{ ...styles.nextBtn, padding: '0.8rem', fontSize: '0.95rem', marginTop: '10px' }}
                     onClick={() => navigate('/')}
                   >
                     {t('fastTrackModal.goHome')}
                   </button>
-                  
 
 
-                  
+
+
                 </div>
               </div>
             )}
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? t('btn.prevStep1') : t('btn.prevStep2')}</button>
-              <button 
-                style={styles.nextBtn} 
+              <button
+                data-analysis-next style={styles.nextBtn}
                 onClick={() => {
                   if (activeIdx < analysisData.length - 1) {
                     setCheckedRisks(new Set());
