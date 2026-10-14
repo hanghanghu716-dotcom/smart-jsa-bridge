@@ -1,3 +1,5 @@
+import { pageWindow } from '../src/utils/pagination.js';
+import { getPaginationUi } from '../src/locales/paginationUi.js';
 import { getOperatorUi } from '../src/locales/operatorUi.js';
 import { exploreCountry, countryLabel } from '../src/utils/publicCountry.js';
 import { exploreIndexable } from '../src/utils/exploreIndexing.js';
@@ -5,17 +7,28 @@ import { readFile } from 'node:fs/promises';
 import { PUBLIC_JSA_FIELDS, publicJsaView, publicSortColumn } from '../src/utils/publicJsa.js';
 import { exploreQuery, exploreSearch } from '../src/utils/discovery.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
-import { getDiscoveryUi } from '../src/locales/discoveryUi.js';
 import { SUPPORTED_LANGS, getLanguageTag } from '../src/locales/config.js';
 export const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const publicBase='https://aajvezmhyrdawxxbulqz.supabase.co';
 export const publicKey='sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
+
+export function renderExplorePagination(total, current, locale, link) {
+ const {page,count,start,end,pages}=pageWindow(current,total),ui=getPaginationUi(locale),e=escapeHtml;
+ if(count<=1)return '';
+ const arrow=(last=false,forward=false)=>`<svg class="pagination-arrow${forward?' is-forward':''}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/>${last?'<path d="M5 5v14"/>':''}</svg>`;
+ const control=(target,label,content,kind,disabled=false)=>{
+  const attrs=`class="list-pagination-control list-pagination-${kind}" aria-label="${e(label)}" aria-controls="explore-results"${kind==='number'&&target===page?' aria-current="page"':''}`;
+  return disabled?`<span ${attrs} aria-disabled="true">${content}</span>`:`<a ${attrs}${target===page-1?' rel="prev"':target===page+1?' rel="next"':''} href="${e(link(target-1))}">${content}</a>`;
+ };
+ return `<nav class="list-pagination explore-pagination" aria-label="${e(ui.label)}" dir="${locale.startsWith('ar')?'rtl':'ltr'}">${control(1,ui.first,arrow(true),'first',page===1)}${control(Math.max(1,start-15),ui.previous,arrow(),'previous',start===1)}<div class="list-pagination-numbers">${pages.map(p=>control(p,ui.page.replace('{page}',p),p,'number')).join('')}</div>${control(end+1,ui.next,arrow(false,true),'next',end===count)}${control(count,ui.last,arrow(true,true),'last',page===count)}</nav>`;
+}
+
 export function renderExploreHtml(shell,result,locale,query,failed=false){
- const e=escapeHtml,ui=getPublicUi(locale),d=getDiscoveryUi(locale),rows=result.rows.map(publicJsaView).filter(Boolean);
+ const e=escapeHtml,ui=getPublicUi(locale),rows=result.rows.map(publicJsaView).filter(Boolean);
  const title=ui.title+' | Smart JSA Bridge',canonical=`https://smartjsabridge.com/${locale}/explore${exploreSearch({page:query.page})}`;
  const noindex=!exploreIndexable(rows,query,failed);
  const link=p=>`/${locale}/explore${exploreSearch({...query,page:p})}`;
- const body=`<main><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section>${rows.map(row=>`<article>${row.is_operator?`<span>${e(getOperatorUi(locale).badge)}</span>`:''}<h2><a href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></h2><p>${e(countryLabel(row.public_country,locale))}</p><p>${e(ui.steps)}: ${row.analysis_data.length}</p><p>${e(row.analysis_data.map(s=>s.proc.stepTitle).join(' · '))}</p><p>${e(row.tags.join(' · '))}</p><p>${e(ui.views)}: ${row.view_count} · ${e(ui.reuses)}: ${row.reuse_count} · ${e(ui.scraps)}: ${row.scrap_count}</p></article>`).join('')}</section><nav>${query.page>0?`<a rel="prev" href="${e(link(query.page-1))}">${e(d.previous)}</a>`:''}${result.hasMore?`<a rel="next" href="${e(link(query.page+1))}">${e(d.next)}</a>`:''}</nav>`}</main>`;
+ const body=`<main><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section id="explore-results">${rows.map(row=>`<article>${row.is_operator?`<span>${e(getOperatorUi(locale).badge)}</span>`:''}<h2><a href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></h2><p>${e(countryLabel(row.public_country,locale))}</p><p>${e(ui.steps)}: ${row.analysis_data.length}</p><p>${e(row.analysis_data.map(s=>s.proc.stepTitle).join(' · '))}</p><p>${e(row.tags.join(' · '))}</p><p>${e(ui.views)}: ${row.view_count} · ${e(ui.reuses)}: ${row.reuse_count} · ${e(ui.scraps)}: ${row.scrap_count}</p></article>`).join('')}</section>${renderExplorePagination(Math.ceil(result.total/24),query.page+1,locale,link)}`}</main>`;
  const bootstrap=JSON.stringify({locale,query,...result,rows}).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
  return shell.replace(/<html[^>]*>/,`<html lang="${e(getLanguageTag(locale))}" dir="${locale.startsWith('ar')?'rtl':'ltr'}">`).replace('</head>',`<title data-rh="true">${e(title)}</title><meta data-rh="true" name="description" content="${e(ui.intro)}"><meta data-rh="true" name="robots" content="${noindex?'noindex':'index'},follow"><link data-rh="true" rel="canonical" href="${e(canonical)}"></head>`).replace('<div id="root"></div>',`<div id="root">${body}</div>`).replace('</body>',`<script>window.__PUBLIC_EXPLORE__=${bootstrap};</script></body>`);
 }
