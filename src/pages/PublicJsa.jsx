@@ -1,5 +1,5 @@
 import '../styles/operator-documents.css';
-import PublicDocumentVariants from '../components/PublicDocumentVariants';
+import PublicDocumentPreview from '../components/PublicDocumentPreview';
 import { getOperatorUi } from '../locales/operatorUi';
 import { usePublicTranslation } from '../hooks/usePublicTranslation';
 import PublicTranslationNotice from '../components/PublicTranslationNotice';
@@ -102,7 +102,7 @@ export default function PublicJsa() {
         <p>{getPublicCountryUi(i18n.language).origin}: {countryLabel(sourceRow.public_country,i18n.language)}</p>
         <PublicTranslationNotice translation={translation} locale={i18n.language}/>
         <AuthorLink id={currentRow.author_id}/>{sourceRow.is_operator&&<span className="operator-badge">{getOperatorUi(i18n.language).badge}</span>}
-        <PublicDocumentVariants key={sourceRow.id} row={sourceRow} locale={i18n.language}/>
+        <PublicDocumentPreview key={sourceRow.id} row={sourceRow} locale={i18n.language}/>
         <p>{ui.steps}: {quality.steps} · {ui.quality}</p><p className="jsa-notice">{ui.notice}</p>
         <p>{ui.views} {currentRow.view_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.reuses} {currentRow.reuse_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.scraps} {currentRow.scrap_count.toLocaleString(getLanguageTag(i18n.language))}</p>
         <details className="jsa-metric-help"><summary>{ui.metricHelp}</summary><p>{ui.metricRules}</p></details>

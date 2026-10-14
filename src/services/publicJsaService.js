@@ -29,13 +29,3 @@ export async function scrapPublicJsa(id, client = supabase) {
   const { error } = await client.from('user_favorites').upsert({ user_id: user.id, project_id: id }, { onConflict: 'user_id,project_id', ignoreDuplicates: true });
   if (error) throw error;
 }
-
-export async function listDocumentVariants(row, client = supabase) {
-  if (!validProjectId(row?.document_group_id) || !validProjectId(row?.author_id)) return [];
-  const { data, error } = await client.from('public_jsa_catalog')
-    .select(PUBLIC_JSA_FIELDS).eq('is_public', true)
-    .eq('document_group_id', row.document_group_id).eq('author_id', row.author_id);
-  if (error) throw error;
-  const order = { handover: 0, technical: 1, basic: 2 };
-  return (data || []).map(publicJsaView).filter(Boolean).sort((a,b) => (order[a.document_variant] ?? 3) - (order[b.document_variant] ?? 3));
-}
