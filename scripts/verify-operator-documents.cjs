@@ -32,7 +32,7 @@ const {spawn}=require('node:child_process');
   let searchRequests=0;
   page.on('request',request=>{
    const url=new URL(request.url());
-   if(url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.has('title'))searchRequests++;
+   if(request.method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.has('title'))searchRequests++;
   });
   await page.focus(searchSelector);
   await page.$eval(searchSelector,input=>{window.__searchInput=input;});
