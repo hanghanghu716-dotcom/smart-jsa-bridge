@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import Markdown from 'react-markdown';
+import Markdown, { defaultUrlTransform } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
@@ -10,6 +10,14 @@ import { cleanSummary, serializeStructuredData } from '../src/utils/content.js';
 import { SITE, casePath, escapeHtml as e, jsonScript, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
 const schema = { ...defaultSchema, attributes: { ...defaultSchema.attributes, td: [...(defaultSchema.attributes.td || []), 'colSpan', 'rowSpan'], th: [...(defaultSchema.attributes.th || []), 'colSpan', 'rowSpan'] } };
+export function renderCaseBody(post, baseUrl) {
+  const urlTransform = baseUrl ? value => {
+    const safe = defaultUrlTransform(value);
+    if (!safe) return safe;
+    try { return new URL(safe, baseUrl).href; } catch { return ''; }
+  } : defaultUrlTransform;
+  return renderToStaticMarkup(React.createElement(Markdown, { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]], urlTransform, children: post.content_md || '' }));
+}
 export function renderCaseHtml(shell, post, locale, availableLocales) {
   const path = casePath(locale, post.post_group_id);
   const title = post.meta_title || `${post.title} | Smart JSA Bridge`;
@@ -17,7 +25,7 @@ export function renderCaseHtml(shell, post, locale, availableLocales) {
   const alternatives = SEO_LANGUAGES.filter(code => availableLocales.some(value => normalizeLocale(value) === getSeoLocale(code)));
   const links = alternatives.map(code => `<link data-rh="true" rel="alternate" hreflang="${e(code)}" href="${e(SITE + casePath(getSeoLocale(code), post.post_group_id))}">`).join('');
   const metadata = `<title data-rh="true">${e(title)}</title><meta data-rh="true" name="description" content="${e(description)}"><meta data-rh="true" name="robots" content="index,follow"><link data-rh="true" rel="canonical" href="${e(SITE + path)}"><meta data-rh="true" property="og:title" content="${e(title)}"><meta data-rh="true" property="og:description" content="${e(description)}"><meta data-rh="true" property="og:url" content="${e(SITE + path)}">${links}${alternatives.includes('en-US') ? `<link data-rh="true" rel="alternate" hreflang="x-default" href="${e(SITE + casePath('en-US', post.post_group_id))}">` : ''}<link rel="alternate" type="application/rss+xml" title="Smart JSA Bridge" href="/${e(locale)}/feed.xml">`;
-  const body = renderToStaticMarkup(React.createElement(Markdown, { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]], children: post.content_md }));
+  const body = renderCaseBody(post);
   const structured = serializeStructuredData(post.schema_markup);
   const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
   const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');

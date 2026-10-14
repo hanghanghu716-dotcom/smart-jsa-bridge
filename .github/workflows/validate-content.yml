@@ -30,6 +30,10 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core
       - name: Verify content and locale logic
         run: npm run test:all
+      - name: Verify complete RSS bodies against public content
+        run: |
+          node scripts/render-rss-check.js
+          python3 scripts/verify-live-rss.py --candidate
       - name: Verify isolated work-package and moderation access controls
         run: |
           npm install --prefix "$RUNNER_TEMP/work-db" --no-save --ignore-scripts @electric-sql/pglite@0.5.8
