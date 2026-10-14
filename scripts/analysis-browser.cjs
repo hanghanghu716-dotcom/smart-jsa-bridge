@@ -84,12 +84,17 @@ const cp = require('node:child_process');
         if (['ar-SA', 'ja-JP', 'de-DE'].includes(locale)) {
           const screenshot = await page.screenshot({ type: 'jpeg', quality: 60, fullPage: true });
           await fs.writeFile(`artifacts/recommendations/${locale}.jpg`, screenshot);
+          if (process.platform === 'linux') {
+            const preview = path.resolve(`artifacts/recommendations/${locale}-pdf`);
+            cp.execFileSync('pdftoppm', ['-f', '1', '-singlefile', '-scale-to', '1200', '-jpeg', pdf, preview]);
+            console.log('PDF_PREVIEW ' + locale + ' ' + (await fs.readFile(preview + '.jpg')).toString('base64'));
+          }
         }
         assert.deepEqual(errors, [], locale + ': browser errors');
         results.push({ locale, extraction: true, recommendations: true, confirmation: true, manualEdit: true, guestSaveRestore: true, document: true, pdf: true });
       } catch (error) {
         await fs.writeFile(`artifacts/recommendations/${locale}-failure.html`, await page.content());
-        console.error(JSON.stringify({ locale, errors, failure: error.message }));
+        console.error(JSON.stringify({ locale, errors, failure: error.message, text: (await page.$eval('body', el => el.innerText)).slice(-2500) }));
         throw error;
       } finally { await page.close(); }
     }

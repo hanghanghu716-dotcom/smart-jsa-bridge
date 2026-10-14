@@ -5,7 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import i18n from '../../src/i18n';
 import Analysis from '../../src/pages/Analysis';
 import DocumentContent from '../../src/components/DocumentContent';
-import { defaultColumns } from '../../src/utils/documentLayout';
+import { defaultColumns, DEFAULT_BLOCKS } from '../../src/utils/documentLayout';
 import { fixtureText } from './text';
 import '../../src/index.css';
 
@@ -21,7 +21,7 @@ function Output() {
   const data = useLocation().state;
   return <div data-document-ready style={{ width: '1050px', padding: '20px', background: 'white' }}>
     <DocumentContent {...data} documentLocale={data.formData.context.documentLocale}
-      layout={{ savedActiveOrder: defaultColumns('3-step'), docTitle: 'Regression fixture' }} />
+      layout={{ documentBlocks: DEFAULT_BLOCKS, savedActiveOrder: defaultColumns('3-step'), docTitle: 'Regression fixture' }} />
   </div>;
 }
 createRoot(document.getElementById('root')).render(
