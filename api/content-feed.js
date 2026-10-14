@@ -1,9 +1,12 @@
 import { SUPPORTED_LANGS, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
+import { renderCaseBody } from './case-study.js';
+import { feedXml, publicFeedBody } from '../server/feed-content.js';
+import { Buffer } from 'node:buffer';
 import { indexableExploreLocales } from '../src/utils/exploreIndexing.js';
 import { PUBLIC_JSA_FIELDS, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
 import { buildSitemap } from '../scripts/sitemap-data.js';
-import { CASE_SUMMARY_FIELDS, SITE, casePath, escapeHtml as e, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
+import { CASE_SUMMARY_FIELDS, SITE, casePath, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
 const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
 export const validDate = value => value && Number.isFinite(Date.parse(value)) ? new Date(value).toISOString() : null;
@@ -17,16 +20,29 @@ export function buildPublicSitemap(rows) {
 }
 export function buildFeed(cases, publicRows, locale) {
   const canonicalCases = cases.filter(row => normalizeLocale(row.language_code) === locale);
-  const entries = selectLocalizedCases(canonicalCases, locale).map(row => ({ title: row.title, description: cleanSummary(row.meta_description),
+  const entries = selectLocalizedCases(canonicalCases, locale).filter(row => row.content_md?.trim()).map(row => ({ title: row.title, post: row,
     url: SITE + casePath(locale, row.post_group_id), date: validDate(row.content_updated_at || row.created_at) }));
   for (const raw of publicRows) {
     const row = publicJsaView(raw);
     if (!publicJsaQuality(row).indexable || row.public_locale !== locale) continue;
-    entries.push({ title: row.title, description: row.analysis_data.map(step => step.proc.stepTitle).join(' · '),
+    entries.push({ title: row.title, document: row,
       url: `${SITE}/${locale}/public-jsa/${row.id}`, date: validDate(row.content_updated_at || row.published_at || row.created_at) });
   }
   entries.sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0) || a.url.localeCompare(b.url));
-  return xmlHeader + `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart JSA Bridge</title><link>${SITE}/${locale}/</link><description>Latest Case Studies and public JSA documents</description><atom:link href="${SITE}/${locale}/feed.xml" rel="self" type="application/rss+xml"/>` + entries.slice(0, 100).map(row => `<item><title>${e(row.title)}</title><link>${e(row.url)}</link><guid isPermaLink="true">${e(row.url)}</guid><description>${e(row.description)}</description>${row.date ? `<pubDate>${new Date(row.date).toUTCString()}</pubDate>` : ''}</item>`).join('') + '</channel></rss>';
+  const start = xmlHeader + `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart JSA Bridge</title><link>${SITE}/${locale}/</link><description>Latest Case Studies and public JSA documents</description><atom:link href="${SITE}/${locale}/feed.xml" rel="self" type="application/rss+xml"/>`;
+  const end = '</channel></rss>';
+  const items = []; let bytes = Buffer.byteLength(start + end);
+  for (const row of entries.slice(0, 100)) {
+    const body = row.document ? publicFeedBody(row.document, locale)
+      : `<h1>${feedXml(row.title)}</h1><p>${feedXml(cleanSummary(row.post.meta_description))}</p>${renderCaseBody(row.post, row.url)}`;
+    const item = `<item><title>${feedXml(row.title)}</title><link>${feedXml(row.url)}</link><guid isPermaLink="true">${feedXml(row.url)}</guid><description>${feedXml(body)}</description>${row.date ? `<pubDate>${new Date(row.date).toUTCString()}</pubDate>` : ''}</item>`;
+    const size = Buffer.byteLength(item);
+    // Keep whole articles and stay below Naver's 10 MB submission limit.
+    // The sitemap still lists articles that do not fit in this latest-items feed.
+    if (bytes + size >= 9_500_000) continue;
+    bytes += size; items.push(item);
+  }
+  return start + items.join('') + end;
 }
 export function createContentFeedHandler({ fetcher = fetch } = {}) {
   return async (req, res) => {
@@ -50,7 +66,7 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
       if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
-          readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS, language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher),
+          readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher),
           readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true', public_locale: 'eq.' + locale }, fetcher),
         ]);
         body = buildFeed(cases, documents, locale);
