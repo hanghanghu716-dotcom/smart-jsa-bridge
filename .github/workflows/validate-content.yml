@@ -38,3 +38,6 @@ jobs:
           node scripts/author-moderation-db.cjs
       - name: Render and verify every current case-study URL
         run: npm run build
+
+      - name: Verify operator documents in the local preview
+        run: node scripts/verify-operator-documents.cjs --local

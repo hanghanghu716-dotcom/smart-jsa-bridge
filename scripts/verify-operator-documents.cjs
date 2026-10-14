@@ -3,12 +3,25 @@ const fs=require('node:fs/promises');
 const os=require('node:os');
 const path=require('node:path');
 const puppeteer=require('puppeteer');
+const {spawn}=require('node:child_process');
 (async()=>{
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'jsa-operator-'));
- const browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-setuid-sandbox']});
+ const local=process.argv.includes('--local');
+ const baseUrl=local?'http://127.0.0.1:4173':'https://smartjsabridge.com';
+ const preview=local?spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4173'],{stdio:'ignore',windowsHide:true}):null;
+ let browser;
  try {
+  if(local){
+   let ready=false;
+   for(let attempt=0;attempt<60;attempt++){
+    try {if((await fetch(baseUrl)).ok){ready=true;break;}} catch {}
+    await new Promise(resolve=>setTimeout(resolve,500));
+   }
+   assert.ok(ready,'Local preview must start');
+  }
+  browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-setuid-sandbox']});
   const page=await browser.newPage();await page.setViewport({width:1440,height:1000});
-  await page.goto('https://smartjsabridge.com/ko/explore?author=operator',{waitUntil:'networkidle2',timeout:60000});
+  await page.goto(baseUrl+'/ko/explore?author=operator',{waitUntil:'networkidle2',timeout:60000});
   await page.waitForFunction(()=>document.querySelectorAll('.explore-card').length>0&&!document.querySelector('.explore-loading'),{timeout:30000});
   assert.equal(await page.$eval('.explore-operator-filter input',el=>el.checked),true);
   assert.equal(await page.$$eval('.explore-card',cards=>cards.every(card=>card.querySelector('.operator-badge')?.textContent==='운영자')),true);
@@ -41,5 +54,5 @@ const puppeteer=require('puppeteer');
   await page.setViewport({width:390,height:844});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),true,'Page must not overflow on mobile');
   console.log(JSON.stringify({operatorFilter:true,operatorBadge:true,versions:details.map(d=>d.label),blankRiskCells:true,pdfDownloads:files.length,mobileWidth:true}));
- } finally {await browser.close();await fs.rm(dir,{recursive:true,force:true});}
+ } finally {if(browser)await browser.close();if(preview)preview.kill();await fs.rm(dir,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});
