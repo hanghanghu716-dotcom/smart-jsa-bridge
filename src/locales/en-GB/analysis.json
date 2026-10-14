@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ Add Blank",
     "addBulkBtn": "✓ Add Selected Items",
     "emptyRec": "No recommended hazards found.",
-    "etc": "Etc"
+    "etc": "Etc",
+    "searching": "Searching…"
   },
   "result": {
     "label": "Evaluation & Control Measures",
@@ -74,7 +75,8 @@
     "prevStep1": "Prev Step (Procedure)",
     "prevStep2": "Prev Task Step",
     "nextComplete": "Complete Analysis & Go to Module Config",
-    "nextStep": "Analyse Next Task Step"
+    "nextStep": "Analyse Next Task Step",
+    "fastTrackComplete": "Complete analysis and copy text"
   },
   "searchModal": {
     "title": "Measure DB Search",
@@ -113,5 +115,21 @@
     "retry": "Retry",
     "close": "Close library",
     "noMatches": "No matching steps or projects."
+  },
+  "fastTrackModal": {
+    "title": "Copy assessment text",
+    "desc": "Copy the hazards and controls into your own form.",
+    "hazardFactor": "Hazard",
+    "copied": "Hazard copied.",
+    "safetyMeasure": "Control measure",
+    "measureCopied": "Control copied.",
+    "goHome": "Return home"
+  },
+  "recommendation": {
+    "similarity": "Text similarity",
+    "scoreHelp": "The percentage measures text similarity, not suitability, approval or accident prevention. Check the work conditions before applying a control.",
+    "sharedData": "Shared {{locale}} reference data is being used. Check its applicability to the work jurisdiction.",
+    "reviewRequired": "The input changed. Review the retained controls and recommendations.",
+    "loadError": "Could not load recommendation data. Please try again."
   }
 }

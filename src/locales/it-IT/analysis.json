@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ Aggiungi Riga Vuota",
     "addBulkBtn": "✓ Inserisci Voci Selezionate",
     "emptyRec": "Nessun pericolo standard suggerito per questa fase.",
-    "etc": "Altro / Varie"
+    "etc": "Altro / Varie",
+    "searching": "Ricerca in corso…"
   },
   "result": {
     "label": "Matrice di Valutazione e Misure",
@@ -74,7 +75,8 @@
     "prevStep1": "Indietro (Fasi Operative)",
     "prevStep2": "Fase Lavorativa Precedente",
     "nextComplete": "Concludi Valutazione e Vai a Moduli",
-    "nextStep": "Analizza Fase Lavorativa Successiva"
+    "nextStep": "Analizza Fase Lavorativa Successiva",
+    "fastTrackComplete": "Completa l’analisi e copia il testo"
   },
   "searchModal": {
     "title": "Ricerca nel Database delle Misure di Prevenzione",
@@ -113,5 +115,21 @@
     "retry": "Riprova",
     "close": "Chiudi libreria",
     "noMatches": "Nessuna fase o progetto corrispondente."
+  },
+  "fastTrackModal": {
+    "title": "Copia il testo della valutazione",
+    "desc": "Copia i pericoli e le misure nel tuo modulo.",
+    "hazardFactor": "Pericolo",
+    "copied": "Pericolo copiato.",
+    "safetyMeasure": "Misura di prevenzione",
+    "measureCopied": "Misura copiata.",
+    "goHome": "Torna alla pagina iniziale"
+  },
+  "recommendation": {
+    "similarity": "Similarità testuale",
+    "scoreHelp": "La percentuale indica la similarità testuale, non l’idoneità, l’approvazione o la probabilità di prevenire incidenti. Verifica le condizioni di lavoro prima di applicare una misura.",
+    "sharedData": "Sono utilizzati dati di riferimento condivisi per {{locale}}. Verificane l’applicabilità nel luogo di lavoro.",
+    "reviewRequired": "Il testo è stato modificato. Riesamina le misure e le raccomandazioni conservate.",
+    "loadError": "Impossibile caricare le raccomandazioni. Riprova."
   }
 }

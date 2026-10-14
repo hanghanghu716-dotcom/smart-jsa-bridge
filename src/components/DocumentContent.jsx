@@ -79,7 +79,9 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     '안전화': t('ppe.shoes'),
     '보안경': t('ppe.glasses'),
     '장갑': t('ppe.gloves'),
-    '방진마스크': t('ppe.mask')
+    '방진마스크': t('ppe.mask'),
+    '귀마개': t('info:ppe.귀마개'),
+    '방진복': t('info:ppe.방진복')
   }[value] || value);
 
   const translatePermit = value => ({
@@ -88,7 +90,10 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     '정전': t('permit.electrical'),
     '고소': t('permit.highElevation'),
     '중량물': t('permit.heavyLifting'),
-    '굴착': t('permit.excavation')
+    '굴착': t('permit.excavation'),
+    '일반': t('info:permit.일반'),
+    '방사선': t('info:permit.방사선'),
+    '가연성가스': t('info:permit.가연성가스')
   }[value] || value);
 
   const renderDesignerSafety = () => {

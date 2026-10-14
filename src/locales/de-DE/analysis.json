@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ Leer hinzufügen",
     "addBulkBtn": "✓ Ausgewählte Elemente hinzufügen",
     "emptyRec": "Keine empfohlenen Gefährdungen gefunden.",
-    "etc": "Sonstiges"
+    "etc": "Sonstiges",
+    "searching": "Suche läuft…"
   },
   "result": {
     "label": "Bewertung & Maßnahmen",
@@ -74,7 +75,8 @@
     "prevStep1": "Vorheriger Schritt (Ablauf)",
     "prevStep2": "Vorheriger Aufgabenschritt",
     "nextComplete": "Analyse abschließen & zur Modul-Konfig",
-    "nextStep": "Nächsten Aufgabenschritt analysieren"
+    "nextStep": "Nächsten Aufgabenschritt analysieren",
+    "fastTrackComplete": "Analyse abschließen und Text kopieren"
   },
   "searchModal": {
     "title": "Maßnahmen-DB-Suche",
@@ -113,5 +115,21 @@
     "retry": "Erneut versuchen",
     "close": "Bibliothek schließen",
     "noMatches": "Keine passenden Schritte oder Projekte."
+  },
+  "fastTrackModal": {
+    "title": "Bewertungstext kopieren",
+    "desc": "Kopieren Sie Gefährdungen und Maßnahmen in Ihr eigenes Formular.",
+    "hazardFactor": "Gefährdung",
+    "copied": "Gefährdung kopiert.",
+    "safetyMeasure": "Schutzmaßnahme",
+    "measureCopied": "Maßnahme kopiert.",
+    "goHome": "Zur Startseite"
+  },
+  "recommendation": {
+    "similarity": "Textähnlichkeit",
+    "scoreHelp": "Der Prozentwert beschreibt die Textähnlichkeit, nicht die Eignung, Freigabe oder Unfallvermeidung. Prüfen Sie vor der Anwendung die Arbeitsbedingungen.",
+    "sharedData": "Gemeinsame Referenzdaten für {{locale}} werden verwendet. Prüfen Sie deren Anwendbarkeit am Arbeitsort.",
+    "reviewRequired": "Die Eingabe wurde geändert. Prüfen Sie die vorhandenen Maßnahmen und Empfehlungen erneut.",
+    "loadError": "Die Empfehlungsdaten konnten nicht geladen werden. Versuchen Sie es erneut."
   }
 }
