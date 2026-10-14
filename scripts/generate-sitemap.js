@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
+import { getPublicSupabaseConfig } from '../server/supabase-config.js';
 import { buildSitemap } from './sitemap-data.js';
 import { readAllCaseStudies } from '../src/pages/caseStudyAdminTools.js';
 import { buildCaseManifest } from './case-build-data.js';
 
 // Public read-only client, matching the existing site's project.
-const supabase = createClient('https://aajvezmhyrdawxxbulqz.supabase.co', 'sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh');
+const { url, key } = getPublicSupabaseConfig();
+const supabase = createClient(url, key);
 
 try {
   const exported = process.env.JSA_CASE_EXPORT

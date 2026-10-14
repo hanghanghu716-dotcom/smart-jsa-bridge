@@ -1,7 +1,8 @@
 import { createHash } from 'node:crypto';
+import { getPublicSupabaseConfig } from './supabase-config.js';
 export const SITE = 'https://smartjsabridge.com';
-const DB = 'https://aajvezmhyrdawxxbulqz.supabase.co/rest/v1/';
-const KEY = 'sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
+const { url, key: KEY } = getPublicSupabaseConfig();
+const DB = `${url}/rest/v1/`;
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const jsonScript = value => JSON.stringify(value).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 export const casePath = (locale, slug) => `/${locale}/case-study/${encodeURIComponent(slug)}`;
