@@ -3,7 +3,7 @@ import { localeCountry } from './publicCountry.js';
 import { SUPPORTED_LANGS } from '../locales/config.js';
 
 export function exploreIndexable(rows, query = {}, failed = false) {
-  return !failed && !query.search && !query.tags?.length && !query.country
+  return !failed && !query.author && !query.search && !query.tags?.length && !query.country
     && (!query.sort || query.sort === 'latest')
     && rows.some(row => publicJsaQuality(row).indexable);
 }

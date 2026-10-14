@@ -219,9 +219,9 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).map(r => `• ${r.factor}`).join('\n');
                 else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}`).join('\n');
                 else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
-                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity || "-");
-                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency || "-");
-                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel || "-");
+                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity ?? "");
+                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency ?? "");
+                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel ?? "");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks?.[0]?.category || "";
                 else if (key.startsWith('USER_')) {
                   const raw = stepData.customFields?.[key];

@@ -45,6 +45,8 @@ jobs:
         run: |
           node scripts/verify-live-content.js
           node scripts/verify-live-exclusions.js
+      - name: Verify operator filter, document previews and PDF downloads
+        run: node scripts/verify-operator-documents.cjs
       - name: Verify production HTML and every localized PDF
         run: node scripts/verify-live-release.js dist/assets/guides/manifest.json
       - name: Preserve failed release comparison evidence
