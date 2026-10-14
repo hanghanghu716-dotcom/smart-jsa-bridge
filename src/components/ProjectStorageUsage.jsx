@@ -1,3 +1,4 @@
+import { getOperatorUi } from '../locales/operatorUi';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getStorageUsage } from '../services/projectStorageService';
@@ -7,6 +8,7 @@ import { getVisibilityUi } from '../locales/visibilityUi';
 import { getWorkspaceNavUi } from '../locales/workspaceNavUi';
 export default function ProjectStorageUsage({ refreshKey, onStatus, variant }) {
  const { i18n }=useTranslation(),ui=getStorageUi(i18n.language);
+ const operatorUi=getOperatorUi(i18n.language);
  const [usage,setUsage]=useState(null),[failed,setFailed]=useState(false),[attempt,setAttempt]=useState(0);
  const callback=useRef(onStatus);
  useEffect(()=>{callback.current=onStatus;},[onStatus]);
@@ -17,6 +19,7 @@ export default function ProjectStorageUsage({ refreshKey, onStatus, variant }) {
   const timer=setInterval(refresh,60000);
   return()=>{active=false;clearInterval(timer);window.removeEventListener('focus',refresh);window.removeEventListener('jsa-storage-changed',refresh);};
  },[refreshKey,attempt]);
+ if(usage?.is_operator) return <section data-storage-usage className="storage-overview" dir={i18n.dir()}><strong>{ui.title} · {operatorUi.badge}</strong><p className="storage-overview-count">{operatorUi.used.replace('{used}',formatStorageCount(usage.used,i18n.language))}</p></section>;
  if(variant==='overview') {
   const nav=getWorkspaceNavUi(i18n.language);
   return <section className="storage-overview" data-storage-usage dir={i18n.dir()} aria-label={ui.title}>

@@ -6,10 +6,10 @@ export function documentStats(row){
 }
 export function exploreQuery(input=''){
  const p=input instanceof URLSearchParams?input:new URLSearchParams(input);
- return {...(p.get('country')==='all'||validCountry(p.get('country'))?{country:p.get('country')}:{}),search:(p.get('q')||'').slice(0,200),sort:['latest','popular','views','reused'].includes(p.get('sort'))?p.get('sort'):'latest',tags:[...new Set(p.getAll('tag').filter(t=>t&&t.length<=100))].slice(0,20),page:Math.max(0,Math.min(10000,Number.parseInt(p.get('page'),10)||0))};
+ return {...(p.get('author')==='operator'?{author:'operator'}:{}),...(p.get('country')==='all'||validCountry(p.get('country'))?{country:p.get('country')}:{}),search:(p.get('q')||'').slice(0,200),sort:['latest','popular','views','reused'].includes(p.get('sort'))?p.get('sort'):'latest',tags:[...new Set(p.getAll('tag').filter(t=>t&&t.length<=100))].slice(0,20),page:Math.max(0,Math.min(10000,Number.parseInt(p.get('page'),10)||0))};
 }
-export function exploreSearch({search='',sort='latest',tags=[],page=0,country}){
- const p=new URLSearchParams();if(country==='all'||validCountry(country))p.set('country',country);if(search)p.set('q',search);if(sort!=='latest')p.set('sort',sort);tags.forEach(t=>p.append('tag',t));if(page)p.set('page',String(page));return p.size?'?'+p.toString():'';
+export function exploreSearch({search='',sort='latest',tags=[],page=0,country,author}){
+ const p=new URLSearchParams();if(author==='operator')p.set('author',author);if(country==='all'||validCountry(country))p.set('country',country);if(search)p.set('q',search);if(sort!=='latest')p.set('sort',sort);tags.forEach(t=>p.append('tag',t));if(page)p.set('page',String(page));return p.size?'?'+p.toString():'';
 }
 export function publicHref(item,locale){return `/${item.locale||locale}/public-jsa/${item.id}`;}
 export function editorialHref(item,locale){return `/${locale}/${item.kind==='guide'?'guideline':'case-study'}/${encodeURIComponent(item.target)}`;}

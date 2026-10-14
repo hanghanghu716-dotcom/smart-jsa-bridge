@@ -2,7 +2,7 @@ import { validCountry } from './publicCountry.js';
 import { SUPPORTED_LANGS } from '../locales/config.js';
 import { publicProjectSnapshot, projectEditorState } from './projectPersistence.js';
 
-export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,public_country,form_data,analysis_data,custom_layout,tags,created_at,updated_at,published_at,content_updated_at,scrap_count,view_count,reuse_count,reuse_license,publication_context,license_accepted_at,parent_id,fork_count,assessment';
+export const PUBLIC_JSA_FIELDS = 'id,title,author_id,is_public,public_locale,public_country,form_data,analysis_data,custom_layout,tags,created_at,updated_at,published_at,content_updated_at,scrap_count,view_count,reuse_count,reuse_license,publication_context,license_accepted_at,parent_id,fork_count,assessment,is_operator,document_group_id,document_variant';
 const sortColumns = new Map([['latest', 'published_at'], ['popular', 'scrap_count'], ['views', 'view_count'], ['reused', 'reuse_count']]);
 export const publicSortColumn = sort => sortColumns.get(sort) || 'published_at';
 export const safeMetric = value => Number.isFinite(Number(value)) ? Math.max(0, Math.floor(Number(value))) : 0;
@@ -31,7 +31,9 @@ export function publicJsaView(row) {
     risks: (Array.isArray(step.risks) ? step.risks : []).filter(risk => risk && typeof risk === 'object').map(risk => ({ ...risk, ...Object.fromEntries(['factor','category','measure','current_measure','recommend_measure'].map(key => [key,cleanText(risk[key])])) })),
   }));
   const clean = publicProjectSnapshot({ formData, analysisData, layoutData: publicLayout(row.custom_layout) });
-  return { id: row.id, author_id: row.author_id, title: cleanText(row.title), is_public: true,
+  return { id: row.id, author_id: row.author_id, is_operator: row.is_operator === true,
+    document_group_id: validProjectId(row.document_group_id) ? row.document_group_id : null,
+    document_variant: ['basic','technical','handover'].includes(row.document_variant) ? row.document_variant : null, title: cleanText(row.title), is_public: true,
     public_country: validCountry(row.public_country) ? row.public_country : null,
     public_locale: SUPPORTED_LANGS.includes(row.public_locale) ? row.public_locale : null,
     assessment: { checked:row.assessment?.checked===true, duplicate_of:validProjectId(row.assessment?.duplicate_of)?row.assessment.duplicate_of:null, review:['approved','rejected','pending','stale'].includes(row.assessment?.review)?row.assessment.review:'pending', revision:cleanText(row.assessment?.revision) },
