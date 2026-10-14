@@ -453,7 +453,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -497,6 +497,16 @@
           "scope": "Canadian technical guidance; not evidence of compliance with each provincial regime.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-26-ventilation-systems/",
+          "authority": "Alberta OHS",
+          "section": "Part 26, sections 386-388; contaminant ventilation design, operation and failure warning",
+          "jurisdiction": "CA-AB",
+          "scope": "General ventilation requirements, not a complete welding specification. Welding-specific standards and exposure duties remain for regional review.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -549,7 +559,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -591,6 +601,16 @@
           "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ontario.ca/laws/regulation/900851",
+          "authority": "Ontario e-Laws",
+          "section": "Industrial Establishments Regulation 851, source lead only",
+          "jurisdiction": "CA-ON",
+          "scope": "Full regulation retrieval failed; pressure-work applicability remains unverified.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "primary_search_metadata_full_text_unavailable",
+          "evidenceRole": "lead"
         }
       ],
       "applicability": {
@@ -639,7 +659,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -683,6 +703,16 @@
           "scope": "Canadian technical guidance; not evidence of compliance with each provincial regime.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ontario.ca/document/guideline-pre-start-health-and-safety-reviews/item-8-hazardous-biological-or-chemical-agents",
+          "authority": "Ontario Ministry of Labour",
+          "section": "Item 8, official source lead only",
+          "jurisdiction": "CA-ON",
+          "scope": "Full page retrieval failed; not used as verified welding technical guidance.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "primary_search_metadata_full_text_unavailable",
+          "evidenceRole": "lead"
         }
       ],
       "applicability": {
@@ -735,7 +765,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -743,12 +773,13 @@
       "cause": "Supply, backfeed or trapped air remains",
       "consequence": "Impact injury from escaping air or parts",
       "control": "Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
-      "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return.",
+      "verification": "Each worker verifies effective lockout before starting; verify retained pressure is released under the equipment procedure and recheck if pressure can return.",
       "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
-        "Compressed-air filter and all pressure paths identified"
+        "Compressed-air filter and all pressure paths identified",
+        "Personal lockout and each worker’s verification are arranged"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -777,6 +808,16 @@
           "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "authority": "WorkSafeBC",
+          "section": "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work",
+          "jurisdiction": "CA-BC",
+          "scope": "British Columbia energy-control requirements; actual filter isolation, pressure-release method and exceptions require equipment-specific review.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -786,7 +827,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "personal-lockout-arranged"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -800,7 +842,8 @@
         "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
         "pressurized-intervention": "Pressurised intervention",
         "confined-entry": "Confined-space entry",
-        "unknown-media-or-isolation": "Unknown contents or isolation boundary"
+        "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+        "personal-lockout-arranged": "Personal lockout and each worker’s verification are arranged"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -825,7 +868,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -839,7 +882,8 @@
         "Authorised person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
-        "Exposure-control procedure available"
+        "Exposure-control procedure available",
+        "A site-specific welding fume exposure control plan is available"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -869,6 +913,16 @@
           "scope": "Canadian technical guidance; not evidence of compliance with each provincial regime.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.worksafebc.com/en/resources/health-safety/risk-advisory/welding-fume-exposure?lang=en",
+          "authority": "WorkSafeBC",
+          "section": "Risk Advisory RA 2015-23; exposure control plan, LEV and respiratory protection",
+          "jurisdiction": "CA-BC",
+          "scope": "British Columbia guidance; requires workplace-specific exposure assessment and review of the applicable OHS Regulation.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -879,7 +933,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "exposure-control-plan-ready"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -896,7 +951,8 @@
         "confined-entry": "Confined-space entry",
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
-        "extraction-unavailable": "Extraction unavailable or ineffective"
+        "extraction-unavailable": "Extraction unavailable or ineffective",
+        "exposure-control-plan-ready": "A site-specific welding fume exposure control plan is available"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -1011,7 +1067,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
@@ -1025,7 +1081,8 @@
         "Personne autorisée désignée",
         "Soudage régulier en intérieur",
         "Acier doux non revêtu et consommables identifiés",
-        "Procédure de maîtrise de l’exposition disponible"
+        "Procédure de maîtrise de l’exposition disponible",
+        "Le soudage est réalisé à un poste fixe"
       ],
       "exclusions": [
         "Entrée en espace confiné",
@@ -1055,6 +1112,16 @@
           "scope": "Canadian technical guidance; not evidence of compliance with each provincial regime.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/ventilation-lieux-travail",
+          "authority": "CNESST",
+          "section": "Ventilation par aspiration à la source; exemple du poste fixe de soudure",
+          "jurisdiction": "CA-QC",
+          "scope": "Guide québécois de ventilation; vérifier la conception du captage et les autres exigences propres au poste.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1065,7 +1132,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "fixed-welding-station"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -1082,7 +1150,8 @@
         "confined-entry": "Entrée en espace confiné",
         "outdoor-welding": "Soudage en extérieur",
         "coated-stainless-or-unknown-metal": "Matériau revêtu, inoxydable ou non identifié",
-        "extraction-unavailable": "Captage absent ou inefficace"
+        "extraction-unavailable": "Captage absent ou inefficace",
+        "fixed-welding-station": "Le soudage est réalisé à un poste fixe"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -1293,7 +1362,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1326,6 +1395,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-managing_the_risks_of_plant_in_the_workplace-nov24.pdf",
+          "authority": "Safe Work Australia",
+          "section": "November 2024 model Code, section 4.5, pages 50-52; stored pneumatic pressure and isolation",
+          "jurisdiction": "AU",
+          "scope": "National model guidance. Failure to restart does not establish absence of stored pressure; confirm state or territory adoption and equipment procedure.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1374,7 +1453,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -1409,6 +1488,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf",
+          "authority": "Safe Work Australia",
+          "section": "Model Code: Welding processes, sections 4.1-4.2, pages 28-33",
+          "jurisdiction": "AU",
+          "scope": "National model guidance, linked by the current official index; legal effect and exposure limits must be confirmed with the state or territory regulator.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1461,7 +1550,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1474,7 +1563,8 @@
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
-        "Compressed-air filter and all pressure paths identified"
+        "Compressed-air filter and all pressure paths identified",
+        "The filter is part of an identified machine pneumatic circuit"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -1494,6 +1584,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_guidelines_on_safe_use_of_machinery.ashx",
+          "authority": "WSH Council",
+          "section": "Safe Use of Machinery, 4.4.3 and 5.3.2, printed pages 29 and 39; pneumatic isolation and stored energy",
+          "jurisdiction": "SG",
+          "scope": "Machinery guidance only. The draft is restricted to a filter in a machine pneumatic circuit; separate pressure-vessel requirements are not verified.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1503,7 +1603,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1517,7 +1618,8 @@
         "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
         "pressurized-intervention": "Pressurised intervention",
         "confined-entry": "Confined-space entry",
-        "unknown-media-or-isolation": "Unknown contents or isolation boundary"
+        "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+        "machine-integrated-filter": "The filter is part of an identified machine pneumatic circuit"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -1710,7 +1812,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Regelmäßiges Schweißen von unbeschichtetem unlegiertem Stahl in Innenräumen",
       "step": "Schweißrauchabsaugung vorbereiten",
@@ -1745,6 +1847,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4398",
+          "authority": "DGUV",
+          "section": "FBHM-077, sections 1-2, pages 1-2; control hierarchy and source capture",
+          "jurisdiction": "DE",
+          "scope": "German technical guidance. TRGS 528 full-text retrieval failed; this is not a completed legal applicability review.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1878,21 +1990,23 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
-      "task": "屋内での無塗装軟鋼の定常的な溶接",
+      "task": "同じ屋内作業場で継続して行う無塗装軟鋼の金属アーク溶接",
       "step": "溶接ヒューム対策の準備",
       "hazard": "溶接ヒュームの吸入",
       "cause": "ヒュームが呼吸域に入る",
       "consequence": "呼吸器疾患",
-      "control": "溶接方法に適した発生源での局所排気を使用し、ばく露評価で必要とされた呼吸用保護具を併用する。",
-      "verification": "溶接前に承認済み作業手順に従い、排気性能とばく露防止対策を確認する。",
-      "coverageLimit": "ヒュームのみを対象とする。火災・光放射・電気・ガスの危険は別途評価する。",
+      "control": "溶接方法に適した局所排気等を使用し、測定結果に応じて選定した有効な呼吸用保護具を着用する。",
+      "verification": "換気と測定結果に基づく保護具の選定・使用を確認する。面体を有する呼吸用保護具は、1年以内ごとのフィットテスト記録を確認する。",
+      "coverageLimit": "ヒュームの管理に限定する。作業主任者、健康診断、火災・光放射・電気・ガス等の要件は別途確認する。",
       "conditions": [
         "権限を持つ担当者が選任されている",
-        "屋内での定常的な溶接",
+        "同じ屋内作業場で継続して行う溶接である",
         "無塗装軟鋼と溶接材料が特定されている",
-        "ばく露防止の作業手順がある"
+        "ばく露防止の作業手順がある",
+        "金属アーク溶接である",
+        "測定結果に応じた呼吸用保護具の選定・管理が整っている"
       ],
       "exclusions": [
         "閉所への立入り",
@@ -1913,6 +2027,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://jsite.mhlw.go.jp/mie-roudoukyoku/tokka_arc.html",
+          "authority": "厚生労働省 三重労働局",
+          "section": "金属アーク溶接等作業: 措置義務 (1)-(3)、測定結果に応じた呼吸用保護具とフィットテスト",
+          "jurisdiction": "JP",
+          "scope": "国の規則改正の解説。継続する屋内金属アーク溶接に限定し、現行条文と現場適用の専門確認が必要。",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1923,7 +2047,9 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "metal-arc-welding",
+          "respiratory-program-ready"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -1934,13 +2060,15 @@
       },
       "conditionLabels": {
         "authorized-person-assigned": "権限を持つ担当者が選任されている",
-        "regular-indoor-welding": "屋内での定常的な溶接",
+        "regular-indoor-welding": "同じ屋内作業場で継続して行う溶接である",
         "uncoated-mild-steel-identified": "無塗装軟鋼と溶接材料が特定されている",
         "exposure-procedure-available": "ばく露防止の作業手順がある",
         "confined-entry": "閉所への立入り",
         "outdoor-welding": "屋外溶接",
         "coated-stainless-or-unknown-metal": "被覆材・ステンレス鋼・不明な材料",
-        "extraction-unavailable": "局所排気がない、または機能していない"
+        "extraction-unavailable": "局所排気がない、または機能していない",
+        "metal-arc-welding": "金属アーク溶接である",
+        "respiratory-program-ready": "測定結果に応じた呼吸用保護具の選定・管理が整っている"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -1965,7 +2093,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
@@ -1998,6 +2126,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.inrs.fr/dam/jcr%3A69feb470-6958-4e76-a6bb-f34f673b2b8c/ed6109.pdf",
+          "authority": "INRS",
+          "section": "ED 6109, section 6.1, consignation fluidique, pages PDF 20-21",
+          "jurisdiction": "FR",
+          "scope": "Isolement, dissipation et vérification des fluides; adapter la purge au fluide et à l’équipement.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2046,7 +2184,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
@@ -2081,6 +2219,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.inrs.fr/risques/fumees-soudage/ce-qu-il-faut-retenir.html",
+          "authority": "INRS",
+          "section": "Prévention: captage à la source, ventilation générale et protection respiratoire",
+          "jurisdiction": "FR",
+          "scope": "Prévention des fumées; vérifier le procédé, la ventilation et les obligations du poste.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2214,7 +2362,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Saldatura regolare al chiuso di acciaio dolce non rivestito",
       "step": "Predisporre il controllo dei fumi",
@@ -2249,6 +2397,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/agenti-cancerogeni-e-mutageni/misure-di-tutela.html",
+          "authority": "INAIL",
+          "section": "Aspirazione localizzata; esempio di torcia aspirante e ventilazione complementare",
+          "jurisdiction": "IT",
+          "scope": "Indicazioni generali sugli agenti cancerogeni, con esempio di saldatura; non una procedura completa di saldatura.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2301,7 +2459,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Mantenimiento de un filtro de aire comprimido",
       "step": "Preparar la apertura de la carcasa",
@@ -2314,7 +2472,8 @@
       "conditions": [
         "Procedimiento de aislamiento específico disponible",
         "Persona autorizada designada",
-        "Filtro de aire comprimido y circuitos de presión identificados"
+        "Filtro de aire comprimido y circuitos de presión identificados",
+        "El filtro forma parte del circuito neumático de una máquina"
       ],
       "exclusions": [
         "Intervención bajo presión",
@@ -2334,6 +2493,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/32-serie-ntp-numeros-1101-a-1135-ano-2018/ntp-1.117-consignacion-de-maquinas",
+          "authority": "INSST",
+          "section": "NTP 1117, disipación de presión residual hidráulica/neumática y verificación",
+          "jurisdiction": "ES",
+          "scope": "Guía de consignación de maquinaria; no es una instrucción completa para cualquier recipiente a presión.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2343,7 +2512,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2357,7 +2527,8 @@
         "compressed-air-filter-identified": "Filtro de aire comprimido y circuitos de presión identificados",
         "pressurized-intervention": "Intervención bajo presión",
         "confined-entry": "Entrada en espacio confinado",
-        "unknown-media-or-isolation": "Contenido o límite de aislamiento desconocido"
+        "unknown-media-or-isolation": "Contenido o límite de aislamiento desconocido",
+        "machine-integrated-filter": "El filtro forma parte del circuito neumático de una máquina"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -2382,7 +2553,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Soldadura habitual en interiores de acero dulce sin recubrimiento",
       "step": "Preparar el control de humos",
@@ -2396,7 +2567,8 @@
         "Persona autorizada designada",
         "Soldadura habitual en interiores",
         "Acero dulce sin recubrimiento y consumibles identificados",
-        "Procedimiento de control de exposición disponible"
+        "Procedimiento de control de exposición disponible",
+        "El proceso es soldadura eléctrica al arco"
       ],
       "exclusions": [
         "Entrada en espacio confinado",
@@ -2417,6 +2589,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/14-serie-ntp-numeros-471-a-505-ano-1999/ntp-494-soldadura-electrica-al-arco-normas-de-seguridad",
+          "authority": "INSST",
+          "section": "NTP 494, Exposición a humos y gases; extracción localizada",
+          "jurisdiction": "ES",
+          "scope": "Guía histórica de buenas prácticas para soldadura eléctrica al arco; vigencia normativa y diseño actual pendientes de revisión.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2427,7 +2609,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "metal-arc-welding"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -2444,7 +2627,8 @@
         "confined-entry": "Entrada en espacio confinado",
         "outdoor-welding": "Soldadura en exteriores",
         "coated-stainless-or-unknown-metal": "Material recubierto, inoxidable o no identificado",
-        "extraction-unavailable": "Extracción ausente o ineficaz"
+        "extraction-unavailable": "Extracción ausente o ineficaz",
+        "metal-arc-welding": "El proceso es soldadura eléctrica al arco"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -2469,7 +2653,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "صيانة مرشح الهواء المضغوط",
       "step": "التحضير لفتح جسم المرشح",
@@ -2482,7 +2666,8 @@
       "conditions": [
         "توفر إجراء عزل خاص بالمعدة",
         "تعيين شخص مخوّل",
-        "تحديد مرشح الهواء المضغوط وجميع مسارات الضغط"
+        "تحديد مرشح الهواء المضغوط وجميع مسارات الضغط",
+        "اعتماد إجراء العزل والإغلاق ضمن إجراءات المشروع"
       ],
       "exclusions": [
         "التدخل أثناء وجود ضغط",
@@ -2502,6 +2687,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
+          "authority": "EXPRO",
+          "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+          "checkedAt": "2026-10-14",
+          "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
+          "retrieval": "relevant_primary_sections_read",
+          "jurisdiction": "SA",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2511,7 +2706,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "project-isolation-procedure-adopted"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2525,7 +2721,8 @@
         "compressed-air-filter-identified": "تحديد مرشح الهواء المضغوط وجميع مسارات الضغط",
         "pressurized-intervention": "التدخل أثناء وجود ضغط",
         "confined-entry": "الدخول إلى حيز محصور",
-        "unknown-media-or-isolation": "محتويات أو حدود عزل غير معروفة"
+        "unknown-media-or-isolation": "محتويات أو حدود عزل غير معروفة",
+        "project-isolation-procedure-adopted": "اعتماد إجراء العزل والإغلاق ضمن إجراءات المشروع"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -2550,7 +2747,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "اللحام المنتظم داخل المباني للفولاذ منخفض الكربون غير المطلي",
       "step": "تجهيز وسائل التحكم في أبخرة اللحام",
@@ -2585,6 +2782,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_1.pdf",
+          "authority": "وزارة الموارد البشرية والتنمية الاجتماعية",
+          "section": "دليل المخاطر، أعمال اللحام بالقوس الكهربائي، صفحة PDF 9 (المطبوعة 10)",
+          "jurisdiction": "SA",
+          "scope": "إرشاد عام للتهوية والحماية من أبخرة اللحام؛ لا يحدد وحده تصميم الشفط أو جميع المتطلبات النظامية.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2637,7 +2844,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Manutenção de filtro de ar comprimido",
       "step": "Preparar a abertura da carcaça",
@@ -2650,7 +2857,8 @@
       "conditions": [
         "Procedimento de isolamento específico disponível",
         "Pessoa autorizada designada",
-        "Filtro de ar comprimido e circuitos de pressão identificados"
+        "Filtro de ar comprimido e circuitos de pressão identificados",
+        "O filtro integra o circuito pneumático de uma máquina"
       ],
       "exclusions": [
         "Intervenção sob pressão",
@@ -2670,6 +2878,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
+          "authority": "Ministério do Trabalho e Emprego",
+          "section": "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21",
+          "checkedAt": "2026-10-14",
+          "scope": "Manutenção com máquina parada; intervenções especiais exigem análise separada. A compilação não substitui o DOU.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "jurisdiction": "BR",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2679,7 +2897,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2693,7 +2912,8 @@
         "compressed-air-filter-identified": "Filtro de ar comprimido e circuitos de pressão identificados",
         "pressurized-intervention": "Intervenção sob pressão",
         "confined-entry": "Entrada em espaço confinado",
-        "unknown-media-or-isolation": "Conteúdo ou limite de isolamento desconhecido"
+        "unknown-media-or-isolation": "Conteúdo ou limite de isolamento desconhecido",
+        "machine-integrated-filter": "O filtro integra o circuito pneumático de uma máquina"
       },
       "sourceRevision": "research-2026-10-14",
       "sourceFingerprint": null,
@@ -2718,7 +2938,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Soldagem regular em ambiente interno de aço carbono sem revestimento",
       "step": "Preparar o controle de fumos",
@@ -2753,6 +2973,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/manuais-e-publicacoes/2026/manual_gro_pgr_da_nr_1.pdf",
+          "authority": "Ministério do Trabalho e Emprego",
+          "section": "Manual GRO/PGR 2026, welding example identified in search only",
+          "jurisdiction": "BR",
+          "scope": "Texto completo não recuperado: limite de tamanho da ferramenta. Não tratado como seção técnica lida.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "primary_search_metadata_full_text_unavailable",
+          "evidenceRole": "lead"
         }
       ],
       "applicability": {
@@ -3063,7 +3293,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "실내에서 반복적으로 수행하는 무도장 연강 용접",
       "step": "용접 흄 제어 준비",
@@ -3098,6 +3328,16 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.law.go.kr/LSW/lumLsLinkPop.do?chrClsCd=010202&lspttninfSeq=154679",
+          "authority": "국가법령정보센터",
+          "section": "산업안전보건기준에 관한 규칙 제617조, 분진작업 호흡용 보호구 및 예외",
+          "jurisdiction": "KR",
+          "scope": "분진작업의 보호구 원칙과 예외에 관한 근거. 국소배기 성능·분진작업 해당 여부 및 다른 의무는 현장별 확인 필요.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {

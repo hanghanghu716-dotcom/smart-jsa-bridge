@@ -49,7 +49,8 @@ export function buildKnowledgeCoverage(banks) {
         publicationEligible, guidanceUnits: guidance.length, caseUnits: units.length - guidance.length,
         primarySourceReferences: evidence,
         missingDraft: units.length === 0,
-        requiresLocalSourceReview: guidance.length > 0 && evidence.sameJurisdiction === 0,
+        missingSameJurisdictionPrimaryReference: guidance.length > 0 && evidence.sameJurisdiction === 0,
+        requiresLocalSourceReview: guidance.some(unit => unit.review?.regionalStatus !== 'approved'),
         needsContentReview: units.length - publicationEligible,
       };
     }),

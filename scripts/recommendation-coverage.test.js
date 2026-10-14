@@ -82,10 +82,15 @@ test('coverage counts exact task and jurisdiction, preserving missing cells and 
   assert.equal(report.totals.cellsWithPublicationEligibleContent, 0);
   const sg = report.coverage.find(row => row.locale === 'en-SG').tasks.find(task => task.taskType === 'welding-exposure');
   assert.equal(sg.primarySourceReferences.foreignReference, 1);
+  assert.equal(sg.missingSameJurisdictionPrimaryReference, true);
   assert.equal(sg.requiresLocalSourceReview, true);
   const alberta = report.coverage.find(row => row.locale === 'en-CA-AB').tasks.find(task => task.taskType === 'pressure-equipment-opening');
   assert.equal(alberta.primarySourceReferences.nationalReference, 1);
   assert.equal(alberta.primarySourceReferences.sameJurisdiction, 0);
+  const japan = report.coverage.find(row => row.locale === 'ja-JP').tasks.find(task => task.taskType === 'welding-exposure');
+  assert.equal(japan.primarySourceReferences.sameJurisdiction, 1);
+  assert.equal(japan.missingSameJurisdictionPrimaryReference, false);
+  assert.equal(japan.requiresLocalSourceReview, true, 'A local source cannot approve its own regional applicability');
 });
 
 test('duplicate revisions are rejected and retirement cannot resurrect an old approved version', () => {

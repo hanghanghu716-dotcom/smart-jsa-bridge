@@ -548,7 +548,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -579,6 +579,16 @@
           "scope": "Victoria guidance; other Australian state and territory requirements remain unreviewed",
           "retrieval": "primary_page_or_document",
           "jurisdiction": "AU-VIC",
+          "evidenceRole": "technical"
+        },
+        {
+          "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-managing_the_risks_of_plant_in_the_workplace-nov24.pdf",
+          "authority": "Safe Work Australia",
+          "section": "November 2024 model Code, section 4.5, pages 50-52; stored pneumatic pressure and isolation",
+          "jurisdiction": "AU",
+          "scope": "National model guidance. Failure to restart does not establish absence of stored pressure; confirm state or territory adoption and equipment procedure.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read",
           "evidenceRole": "technical"
         }
       ],
@@ -1098,7 +1108,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "صيانة الآلات",
       "step": "تجهيز عزل الطاقة",
@@ -1108,7 +1118,9 @@
       "control": "تحديد مصادر الطاقة وتطبيق إجراء المعدة للعزل والقفل الشخصي وبطاقات التحذير قبل التدخل.",
       "verification": "التحقق من العزل والطاقة المتبقية وفق إجراء المعدة قبل العمل.",
       "conditions": [
-        "أفراد مؤهلون وتعليمات المعدة وإجراء الموقع متاحة"
+        "إجراء المعدة المحدد متاح",
+        "تم تعيين شخص مختص",
+        "اعتماد إجراء العزل والإغلاق ضمن إجراءات المشروع"
       ],
       "exclusions": [
         "العمل مع وجود الطاقة",
@@ -1138,7 +1150,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "project-isolation-procedure-adopted"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1166,7 +1179,8 @@
         "competent-person-assigned": "تم تعيين شخص مختص",
         "live-intervention": "يتطلب العمل تدخلاً مع وجود الطاقة",
         "confined-entry": "يتضمن العمل دخول حيز مغلق",
-        "unknown-energy-path": "يوجد مصدر طاقة أو حد عزل غير معروف"
+        "unknown-energy-path": "يوجد مصدر طاقة أو حد عزل غير معروف",
+        "project-isolation-procedure-adopted": "اعتماد إجراء العزل والإغلاق ضمن إجراءات المشروع"
       },
       "sourceCheck": {
         "status": "relevant_sections_checked",
