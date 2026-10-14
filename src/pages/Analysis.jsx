@@ -15,20 +15,30 @@ import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
 import { recordPublicEngagement } from '../services/publicEngagementService';
+import manifest from '../data/reviewed-recommendations.json';
+import { loadCaseRecommendations } from '../utils/caseRecommendations';
+import { reconcileProcedureAnalysis } from '../utils/procedureAnalysis';
+import { caseRecommendationUi } from '../locales/caseRecommendationUi';
+import RecommendationEvidence from '../components/RecommendationEvidence';
 
 const EMPTY_LIST = [];
 
 export default function Analysis() {
+  const location = useLocation();
+  const { t } = useTranslation('common');
+  const shouldRecover = !location.state?.formData && !location.state?.analysisData;
+  const { draft, status } = useJsaDraftRecovery(shouldRecover);
+  if (shouldRecover && !['ready', 'empty', 'error'].includes(status)) return <div className="theme-workspace"><p role="status">{t('draftSave.pending')}</p></div>;
+  return <AnalysisEditor key={location.key} recoveredDraft={draft} />;
+}
+
+function AnalysisEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate();
   const location = useLocation();
   const { t, i18n } = useTranslation(['analysis', 'tags']);
   const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
   const state = location.state || {};
-  const shouldRecoverDraft = !state.formData && !state.analysisData;
-  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
-  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
-
   const existingId = state.existingId ?? state.id ?? recoveredDraft?.source_project_id ?? null;
   const procedures = state.procedures || recoveredDraft?.procedures || EMPTY_LIST;
   const originalFormData = state.formData || recoveredDraft?.form_data || {};
@@ -51,16 +61,11 @@ export default function Analysis() {
   const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');
   const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
-
-  useEffect(() => {
-    if (analysisData.length === 0 && incomingAnalysisData.length > 0) {
-      setAnalysisData(incomingAnalysisData);
-    }
-  }, [incomingAnalysisData, analysisData.length]);
+  const [analysisData, setAnalysisData] = useState(() => procedures.length ? procedures.map((proc, id) =>
+    reconcileProcedureAnalysis(incomingAnalysisData.find(step => step.id === id), proc, id)) : incomingAnalysisData);
 
   const draftSave = useJsaDraftAutosave({
-    enabled: recoverySettled && Boolean(
+    enabled: Boolean(
       formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
     ),
     stage: 'analysis',
@@ -152,9 +157,11 @@ export default function Analysis() {
     const request = ++recommendationRequest.current;
     setIsLoading(interactionKey);
     try {
-      const scored = await loadMeasureRecommendations(supabase, { risk, type, context });
+      const scored = risk.source === 'case'
+        ? await loadCaseRecommendations(supabase, manifest, { risk, type, formData, proc: currentStep.proc })
+        : await loadMeasureRecommendations(supabase, { risk, type, context });
       if (request !== recommendationRequest.current) return;
-      if (!scored.length) return alert(t('alert.noData'));
+      if (!scored.length) return alert(risk.source === 'case' ? caseRecommendationUi(i18n.language).unavailable : t('alert.noData'));
       setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type, contextKey: interactionKey });
     } catch {
       if (request === recommendationRequest.current) alert(t('recommendation.loadError'));
@@ -360,15 +367,6 @@ export default function Analysis() {
     return text.includes(q);
   });
 
-  useEffect(() => {
-    if (procedures?.length > 0) {
-      setAnalysisData(prevData => procedures.map((newProc, idx) => {
-        const existingData = prevData.find(d => d.id === idx) || (incomingAnalysisData || []).find(d => d.id === idx);
-        return existingData ? { ...existingData, proc: newProc } : { id: idx, proc: newProc, risks: [], frequency: null, severity: null, riskLevel: null };
-      }));
-    }
-  }, [procedures, incomingAnalysisData]);
-
   const handleSaveCurrentWorkStep = async () => {
     if (!currentStep?.proc?.stepTitle?.trim()) return;
 
@@ -500,8 +498,9 @@ export default function Analysis() {
                       {item.display}
                     </div>
                     <small>{t('review.linkedHazard')}: {item.evidence?.hazard}</small>
-                    <small>{t('review.unknownSource')}</small>
-                    <small>{t('review.conditionsUnknown')}</small>
+                    {item.evidence?.sourceType === 'reviewed_case'
+                      ? <RecommendationEvidence evidence={item.evidence} locale={i18n.language} />
+                      : <><small>{t('review.unknownSource')}</small><small>{t('review.conditionsUnknown')}</small></>}
                   </div>
                   <span style={{ marginLeft: '10px', color: "var(--accent)" }}>{t('recModal.selectBtn')}</span>
                 </div>

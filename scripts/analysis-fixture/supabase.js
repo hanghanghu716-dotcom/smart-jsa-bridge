@@ -1,9 +1,11 @@
 import { recommendationContext } from '../../src/utils/analysisRecommendations';
 import { fixtureText } from './text';
+import { fixtureCasePost } from './casePost';
 const locale = new URLSearchParams(location.search).get('locale') || 'en-US';
 const { dataLocale } = recommendationContext({}, locale);
 const words = fixtureText[locale.split('-')[0]];
 const tables = {
+  case_studies: [fixtureCasePost(locale)],
   Hazards_Translations: [{ id: 101, hazard_id: 7, locale: 'en-US', hazard_name: 'Pressurized line', category: 'Isolation', keywords: '["pressure"]' },
     { id: 102, hazard_id: 7, locale: 'ko-KR', hazard_name: '압력 배관', keywords: '["압력"]' }],
   Current_Measures_Translations: [{ id: 201, measure_id: 9, locale: 'en-US', measure_text: 'Isolate the line' },
@@ -22,7 +24,7 @@ tables.Current_Measures_Translations[1].locale = 'foreign-fixture';
 tables.Current_Measures_Translations[2].locale = dataLocale;
 tables.Advanced_Measures_Translations[0] = { id: 301, advanced_measure_id: 44, locale: dataLocale, solution_text: words[2] };
 
-window.analysisFixture = { calls: [], failTable: null };
+window.analysisFixture = { calls: [], failTable: null, reviseCase: () => { tables.case_studies[0].content_md += ' CHANGED'; } };
 export const supabase = {
   auth: {
     getUser: async () => ({ data: { user: null }, error: null }),

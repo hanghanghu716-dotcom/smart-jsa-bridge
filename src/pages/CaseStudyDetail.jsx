@@ -240,7 +240,7 @@ export default function CaseStudyDetail() {
           )}
 
           <DiscoveryLinks kind="case" target={id} showReuseHelp/>
-          <RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title}/>
+          <RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/>
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
             dir={isRtl ? 'rtl' : 'ltr'}

@@ -8,10 +8,15 @@ const cp = require('node:child_process');
   const { default: react } = await import('@vitejs/plugin-react');
   const { SUPPORTED_LANGS } = await import('../src/locales/config.js');
   const { fixtureText } = await import('./analysis-fixture/text.js');
+  const { fixtureCaseRelease } = await import('./analysis-fixture/caseRelease.js');
+  const caseReleases = Object.fromEntries(SUPPORTED_LANGS.map(locale => [locale, fixtureCaseRelease(locale).manifest]));
   const puppeteer = require('puppeteer');
   const mock = path.resolve('scripts/analysis-fixture/supabase.js');
   const server = await createServer({ configFile: false, plugins: [
-    { name: 'analysis-fixture-data', enforce: 'pre', resolveId(id) { return /(?:^|\/)supabaseClient(?:\.js)?$/.test(id) ? mock : null; } }, react()
+    { name: 'analysis-fixture-data', enforce: 'pre', resolveId(id) {
+      if (id.endsWith('/reviewed-recommendations.json')) return '\0synthetic-case-release';
+      return /(?:^|\/)supabaseClient(?:\.js)?$/.test(id) ? mock : null;
+    }, load(id) { if (id === '\0synthetic-case-release') return `export default (${JSON.stringify(caseReleases)})[new URLSearchParams(location.search).get('locale') || 'en-US'];`; } }, react()
   ], server: { host: '127.0.0.1', port: 0, hmr: false }, appType: 'spa' });
   let browser;
   const results = [];
@@ -134,8 +139,51 @@ const cp = require('node:child_process');
         assert.ok(legacy.text.includes(translated.hazardLabel), locale + ': legacy column title follows document language');
         assert.equal(legacy.dir, locale.startsWith('ar') ? 'rtl' : 'ltr');
         assert.deepEqual(errors, [], locale + ': complete editor/export errors');
+        await page.goto(url + '&case=1', { waitUntil: 'networkidle0' });
+        await page.waitForSelector('[data-case-step]');
+        assert.equal(await page.$eval('[data-case-start]', el => el.disabled), true);
+        await page.click('[data-case-step]');
+        assert.equal(await page.$eval('[data-case-start]', el => el.disabled), true);
+        await page.click('[data-case-condition="isolated-task"]');
+        assert.equal(await page.$eval('[data-case-start]', el => el.disabled), false);
+        await page.click('[data-case-condition="live-intervention"]');
+        assert.equal(await page.$eval('[data-case-start]', el => el.disabled), true);
+        await page.click('[data-case-condition="live-intervention"]');
+        await page.click('[data-case-start]');
+        await page.waitForSelector('[data-info-next]'); await page.click('[data-info-next]');
+        await page.waitForSelector('[data-procedure-next]'); await page.click('[data-procedure-next]');
+        await page.waitForSelector('[data-analysis-type="3-step"]'); await page.click('[data-analysis-type="3-step"]');
+        await page.waitForSelector('[data-recommend-current]');
+        assert.deepEqual(await controls(), [words[0], '', '']);
+        await page.click('[data-recommend-current]');
+        await page.waitForSelector('[data-reviewed-evidence]');
+        assert.equal(await page.$eval('[data-recommendation-item]', el => el.dataset.score), '0.72');
+        await page.click('[data-recommendation-item]');
+        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
+        await page.click('[data-current-confirmed]'); await page.click('[data-recommend-advanced]');
+        await page.waitForSelector('[data-recommendation-item][data-score="0.8"]'); await page.click('[data-recommendation-item]');
+        assert.deepEqual(await controls(), [words[0], words[1], words[2]]);
+        await page.waitForFunction(() => {
+          const id = sessionStorage.getItem('smartjsa_active_draft_id');
+          const draft = JSON.parse(localStorage.getItem('smartjsa_guest_draft:' + id) || 'null');
+          return draft?.analysis_data?.[0]?.risks?.[0]?.advanced_recommendation?.reference?.kind === 'knowledge';
+        });
+        const caseDraft = await page.evaluate(() => JSON.parse(localStorage.getItem('smartjsa_guest_draft:' + sessionStorage.getItem('smartjsa_active_draft_id'))));
+        assert.equal(caseDraft.analysis_data[0].frequency, null);
+        assert.equal(caseDraft.analysis_data[0].severity, null);
+        assert.equal(caseDraft.analysis_data[0].riskLevel, null);
+        await page.evaluate(() => window.analysisFixture.reviseCase());
+        const staleMessage = new Promise((resolve, reject) => {
+          const timeout = setTimeout(() => reject(Error('Stale source was not blocked')), 10000);
+          page.once('dialog', dialog => { clearTimeout(timeout); resolve(dialog.message()); });
+        });
+        await page.click('[data-recommend-current]'); await staleMessage;
+        assert.equal(await page.$('[data-recommendation-item]'), null);
+        assert.deepEqual(await controls(), [words[0], words[1], words[2]]);
+        assert.deepEqual(errors, [], locale + ': complete case journey errors');
         results.push({ locale, extraction: true, recommendations: true, confirmation: true, manualEdit: true, guestSaveRestore: true,
-          documentDesigner: true, export: true, clipboard: true, pdfDownload: true, legacyExportWithEnglishUi: true });
+          documentDesigner: true, export: true, clipboard: true, pdfDownload: true, legacyExportWithEnglishUi: true,
+          caseSelection: true, requiredAndExcludedConditions: true, infoProcedureAnalysis: true, reviewedRecommendationPercent: true, sourceRevisionInvalidation: true });
       } catch (error) {
         await fs.writeFile(`artifacts/recommendations/${locale}-failure.html`, await page.content());
         console.error(JSON.stringify({ locale, errors, failure: error.message, text: (await page.$eval('body', el => el.innerText)).slice(-2500) }));

@@ -1,6 +1,6 @@
 import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
@@ -10,6 +10,8 @@ import WorkStepWorkbench from '../components/WorkStepWorkbench';
 import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
+import { reconcileProcedureAnalysis } from '../utils/procedureAnalysis';
+import { caseRecommendationUi } from '../locales/caseRecommendationUi';
 
 const DEFAULT_PROCEDURES = Array(8)
   .fill(null)
@@ -17,33 +19,42 @@ const DEFAULT_PROCEDURES = Array(8)
 const EMPTY_PHOTOS = {};
 
 export default function Procedure() {
+  const location = useLocation();
+  const { t } = useTranslation('common');
+  const shouldRecover = !location.state?.formData && !location.state?.procedures;
+  const { draft, status } = useJsaDraftRecovery(shouldRecover);
+  if (shouldRecover && !['ready', 'empty', 'error'].includes(status)) return <div className="theme-workspace"><p role="status">{t('draftSave.pending')}</p></div>;
+  return <ProcedureEditor key={location.key} recoveredDraft={draft} />;
+}
+
+function ProcedureEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 다국어 네비게이트 사용
   const location = useLocation();
-  const { t } = useTranslation(['procedure']); 
+  const { t, i18n } = useTranslation(['procedure']);
 
-  const [procedures, setProcedures] = useState(DEFAULT_PROCEDURES);
+  const [procedures, setProcedures] = useState(() => {
+    const restored = location.state?.procedures || recoveredDraft?.procedures;
+    return restored?.length ? restored : DEFAULT_PROCEDURES;
+  });
   const [isTypeModalOpen, setIsTypeModalOpen] = useState(false);
   const [isWorkbenchOpen, setIsWorkbenchOpen] = useState(false);
   const [composerTouched, setComposerTouched] = useState(false);
   const [composedAnalysisData, setComposedAnalysisData] = useState(null);
   const [composedPhotos, setComposedPhotos] = useState(null);
 
-  const shouldRecoverDraft = !location.state?.formData && !location.state?.procedures;
-  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
-  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
-
   const formData = location.state?.formData || recoveredDraft?.form_data || {};
   const participants = location.state?.participants || recoveredDraft?.participants || [];
   const analysisData = location.state?.analysisData || recoveredDraft?.analysis_data || [];
   const isFastTrack = location.state?.isFastTrack ?? false;
-  const effectiveAnalysisData = composerTouched ? (composedAnalysisData || []) : analysisData;
+  const sourceAnalysisData = composerTouched ? (composedAnalysisData || []) : analysisData;
+  const effectiveAnalysisData = procedures.map((proc, id) => reconcileProcedureAnalysis(sourceAnalysisData[id], proc, id));
   const stepPhotos = composedPhotos ?? location.state?.stepPhotos ?? recoveredDraft?.layout_data?.stepPhotos ?? EMPTY_PHOTOS;
   const hasMeaningfulProcedure = procedures.some(
     proc => proc?.stepTitle?.trim() || proc?.stepDetail?.trim()
   );
 
   const draftSave = useJsaDraftAutosave({
-    enabled: recoverySettled && Boolean(
+    enabled: Boolean(
       formData?.projectName?.trim() || hasMeaningfulProcedure || location.state?.draftId || recoveredDraft?.id
     ),
     layoutData: { ...pickDocumentLayout(location.state, recoveredDraft?.layout_data), stepPhotos },
@@ -55,13 +66,6 @@ export default function Procedure() {
     sourceProjectId: location.state?.existingId || location.state?.id || location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
-  useEffect(() => {
-    const restoredProcedures = location.state?.procedures || recoveredDraft?.procedures;
-    if (restoredProcedures && restoredProcedures.length > 0) {
-      setProcedures(restoredProcedures);
-    }
-  }, [location.state?.procedures, recoveredDraft]);
-
   const handleLogoClick = () => {
     if (window.confirm(t('alert.confirmMain'))) {
       navigate('/'); // ✅ 언어 경로 자동 유지
@@ -69,6 +73,9 @@ export default function Procedure() {
   };
 
   const updateProcedure = (index, field, value) => {
+    const proc = { ...procedures[index], [field]: value };
+    setComposedAnalysisData(effectiveAnalysisData.map((step, id) => id === index ? reconcileProcedureAnalysis(step, proc, id) : step));
+    setComposerTouched(true);
     setProcedures(prev => {
       const next = [...prev];
       next[index] = { ...next[index], [field]: value };
@@ -87,8 +94,8 @@ export default function Procedure() {
       p => p.stepTitle.trim() && p.stepDetail.trim()
     );
 
-    if (validProcs.length < 3) {
-      alert(t('alert.minSteps'));
+    if (validProcs.length < 1) {
+      alert(caseRecommendationUi(i18n.language).minSteps);
       return;
     }
     setIsTypeModalOpen(true);
@@ -100,15 +107,7 @@ const startAnalysis = (jsaType) => {
       .filter(({ proc }) => proc.stepTitle.trim() && proc.stepDetail.trim());
 
     const validProcs = validEntries.map(({ proc }) => proc);
-    const nextAnalysisData = validEntries.map(({ proc, analysis }, index) => ({
-          ...(analysis || {}),
-          id: index,
-          proc,
-          risks: Array.isArray(analysis?.risks) ? analysis.risks : [],
-          frequency: analysis?.frequency ?? 1,
-          severity: analysis?.severity ?? 1,
-          riskLevel: analysis?.riskLevel ?? 1,
-        }));
+    const nextAnalysisData = validEntries.map(({ proc, analysis }, index) => reconcileProcedureAnalysis(analysis, proc, index));
 
     navigate('/analysis', {
       state: {
@@ -138,7 +137,7 @@ const startAnalysis = (jsaType) => {
           participants,
           procedures, 
           stepPhotos,
-          analysisData: composerTouched ? (composedAnalysisData || []) : analysisData,
+          analysisData: effectiveAnalysisData,
           isFork: location.state?.isFork,
           parentId: location.state?.parentId,
           originalAnalysisData: location.state?.originalAnalysisData 
@@ -177,17 +176,17 @@ const startAnalysis = (jsaType) => {
             </div>
 
             <div style={styles.typeGrid}>
-              <div style={styles.typeCard} onClick={() => startAnalysis('2-step')}>
+              <button type="button" data-analysis-type="2-step" style={styles.typeCard} onClick={() => startAnalysis('2-step')}>
                 <div style={styles.typeBadge}>Standard</div>
                 <h4 style={styles.typeLabel}>{t('modal.standardLabel')}</h4>
                 <p style={styles.typeDesc}>{t('modal.standardDesc1')}<br/>{t('modal.standardDesc2')}</p>
-              </div>
+              </button>
               
-              <div style={styles.typeCardHighlight} onClick={() => startAnalysis('3-step')}>
+              <button type="button" data-analysis-type="3-step" style={styles.typeCardHighlight} onClick={() => startAnalysis('3-step')}>
                 <div style={styles.typeBadgeActive}>Advanced</div>
                 <h4 style={styles.typeLabel}>{t('modal.advancedLabel')}</h4>
                 <p style={styles.typeDesc}>{t('modal.advancedDesc1')}<br/>{t('modal.advancedDesc2')}</p>
-              </div>
+              </button>
             </div>
             
             <button style={styles.modalCloseBtn} onClick={() => setIsTypeModalOpen(false)}>{t('modal.closeBtn')}</button>
@@ -257,6 +256,7 @@ const startAnalysis = (jsaType) => {
                     <div style={styles.inputGroup}>
                       <input
                         style={styles.inputTitle}
+                        data-procedure-title
                         value={proc.stepTitle}
                         placeholder={t('form.placeholderTitle')} 
                         maxLength={12}
@@ -264,6 +264,7 @@ const startAnalysis = (jsaType) => {
                       />
                       <input
                         style={styles.inputDetail}
+                        data-procedure-detail
                         value={proc.stepDetail}
                         placeholder={t('form.placeholderDetail')}
                         onChange={(e) => updateProcedure(idx, 'stepDetail', e.target.value)}
@@ -280,7 +281,7 @@ const startAnalysis = (jsaType) => {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{t('btn.prev')}</button>
-              <button style={styles.nextBtn} onClick={handleOpenModal}>{t('btn.next')}</button>
+              <button data-procedure-next style={styles.nextBtn} onClick={handleOpenModal}>{t('btn.next')}</button>
             </div>
           </div>
         </main>

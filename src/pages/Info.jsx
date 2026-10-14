@@ -13,6 +13,7 @@ import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
 import WorkContext from '../components/work/WorkContext';
 import { getSaveVisibility } from '../utils/projectPersistence';
+import { reconcileWorkContextAnalysis } from '../utils/procedureAnalysis';
 
 const DEFAULT_FORM_DATA = {
   projectName: '',
@@ -56,12 +57,14 @@ function InfoEditor({ recoveredDraft }) {
     const loaded = location.state?.isFork ? [] : location.state?.participants || recoveredDraft?.participants || [];
     return Array.from({ length: Math.max(14, loaded.length) }, (_, i) => loaded[i] || '');
   });
+  const analysisData = reconcileWorkContextAnalysis(location.state?.analysisData || recoveredDraft?.analysis_data || [],
+    location.state?.formData || recoveredDraft?.form_data || {}, formData);
   const draftSave = useJsaDraftAutosave({
     enabled: Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
     layoutData: pickDocumentLayout(location.state, recoveredDraft?.layout_data),
     stage: 'info', formData, participants,
     procedures: location.state?.procedures || recoveredDraft?.procedures || [],
-    analysisData: location.state?.analysisData || recoveredDraft?.analysis_data || [],
+    analysisData,
     sourceProjectId: location.state?.existingId || location.state?.id || location.state?.parentId || recoveredDraft?.source_project_id || null,
   });
 
@@ -126,7 +129,7 @@ function InfoEditor({ recoveredDraft }) {
         formData,
         participants,
         procedures: location.state?.procedures || recoveredDraft?.procedures,
-        analysisData: location.state?.analysisData || recoveredDraft?.analysis_data,
+        analysisData,
         isFork: location.state?.isFork,
         parentId: location.state?.parentId, 
         originalAnalysisData: location.state?.originalAnalysisData 
@@ -383,7 +386,7 @@ function InfoEditor({ recoveredDraft }) {
               <button style={styles.prevBtn} onClick={handleLogoClick}>
                 {t('btn.home')}
               </button>
-              <button style={styles.nextBtn} onClick={handleNext}>
+              <button data-info-next style={styles.nextBtn} onClick={handleNext}>
                 {t('btn.next')}
               </button>
             </div>

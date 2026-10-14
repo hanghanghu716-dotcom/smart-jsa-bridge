@@ -6,6 +6,10 @@ import i18n from '../../src/i18n';
 import Analysis from '../../src/pages/Analysis';
 import DocumentDesigner from '../../src/pages/DocumentDesigner';
 import Export from '../../src/pages/Export';
+import Info from '../../src/pages/Info';
+import Procedure from '../../src/pages/Procedure';
+import RegionalStartActions from '../../src/components/RegionalStartActions';
+import { fixtureCasePost } from './casePost';
 import { defaultColumns } from '../../src/utils/documentLayout';
 import { fixtureText } from './text';
 import '../../src/index.css';
@@ -23,7 +27,9 @@ const draft = params.has('legacy') ? JSON.parse(localStorage.getItem('smartjsa_g
 const initialState = draft ? { formData: draft.form_data, analysisData: draft.analysis_data, procedures: draft.procedures,
   savedActiveOrder: defaultColumns('3-step'), documentBlocks: [], docTitle: 'Regression fixture' } : params.has('restore') ? undefined : state;
 createRoot(document.getElementById('root')).render(
-  <HelmetProvider><MemoryRouter initialEntries={[{ pathname: `/${uiLocale}/${draft ? 'export' : 'analysis'}`, state: initialState }]}>
-    <Routes><Route path="/:locale/analysis" element={<Analysis />} /><Route path="/:locale/document-designer" element={<DocumentDesigner />} /><Route path="/:locale/export" element={<Export />} /></Routes>
+  <HelmetProvider><MemoryRouter initialEntries={[{ pathname: `/${uiLocale}/${params.has('case') ? 'case-start' : draft ? 'export' : 'analysis'}`, state: initialState }]}>
+    <Routes><Route path="/:locale/case-start" element={<RegionalStartActions locale={locale} activity={fixtureCasePost(locale).title} casePost={fixtureCasePost(locale)} />} />
+      <Route path="/:locale/info" element={<Info />} /><Route path="/:locale/procedure" element={<Procedure />} />
+      <Route path="/:locale/analysis" element={<Analysis />} /><Route path="/:locale/document-designer" element={<DocumentDesigner />} /><Route path="/:locale/export" element={<Export />} /></Routes>
   </MemoryRouter></HelmetProvider>
 );

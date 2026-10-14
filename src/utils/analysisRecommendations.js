@@ -47,6 +47,7 @@ export function updateRiskValue(risk, field, value) {
       current_measure_reference: null, advanced_measure_db_id: null, advanced_measure_reference: null,
       measure_reference: null, current_measure_confirmed: false, recommendation_score: null,
       recommendation_review_required: Boolean(risk.measure || risk.current_measure || risk.recommend_measure) });
+    next.caseContext = null;
     next.current_recommendation = null; next.advanced_recommendation = null;
   } else if (field === 'current_measure') {
     Object.assign(next, { current_measure_db_id: null, current_measure_reference: null,

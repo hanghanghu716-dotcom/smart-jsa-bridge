@@ -26,3 +26,12 @@
 @media (min-width: 1024px) { .regional-entry-container { width: calc(100% - 400px); padding-inline: 0; } }
 @media (max-width: 700px) { .regional-journey-fields { grid-template-columns: 1fr; } .regional-journey-actions { align-items: stretch; flex-direction: column; } }
 @media print { .regional-journey, .regional-example-start, .regional-paper-select { display: none !important; } }
+
+.case-step-picker { border: 1px solid var(--border-default); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+.case-step-option { margin: .7rem 0; }
+.case-step-picker label { display: block; margin: .5rem 0; }
+.case-step-picker input[type="checkbox"] { width: auto; margin-inline-end: .5rem; }
+.case-step-picker dt { font-weight: 600; margin-top: .4rem; }
+.case-step-picker dd { margin-inline-start: 1rem; overflow-wrap: anywhere; }
+.case-step-picker button { padding: .7rem 1rem; cursor: pointer; }
+.case-step-picker button:disabled { opacity: .5; cursor: not-allowed; }
