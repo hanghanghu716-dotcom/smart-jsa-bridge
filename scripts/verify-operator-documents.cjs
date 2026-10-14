@@ -37,11 +37,11 @@ const {spawn}=require('node:child_process');
   await page.evaluate(()=>{document.documentElement.dataset.theme='light';});
   await page.waitForSelector('.explore-pagination');
   assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),[1,2]);
-  const firstTitle=await page.$eval('.explore-card h2',el=>el.textContent);
+  const firstTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
   await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
   await page.waitForFunction(()=>new URL(location.href).searchParams.get('page')==='1'&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===12,{timeout:30000});
   assert.equal(new URL(page.url()).searchParams.get('author'),'operator');
-  assert.notEqual(await page.$eval('.explore-card h2',el=>el.textContent),firstTitle);
+  assert.notEqual(await page.$eval('.explore-card > h2 > a',el=>el.textContent),firstTitle);
   await page.$eval('.explore-pagination .list-pagination-first',el=>el.click());
   await page.waitForFunction(()=>!new URL(location.href).searchParams.has('page')&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===24,{timeout:30000});
   for(const width of [320,390]){
