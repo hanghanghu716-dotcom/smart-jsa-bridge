@@ -236,7 +236,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                   else content = '';
                 }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => onPhotoClick?.(stepIdx)} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: onPhotoClick ? 'pointer' : 'default', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
-                return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
+                return ( <td key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
               })}
             </tr>
           ))}
@@ -253,10 +253,12 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     if (id === 'NOTES') return renderDesignerNotes();
     return null;
   };
-  return <div className="document-content" style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
+  const assessment = assessmentProfile(formData.assessment);
+  const dimensions = `${assessment.frequencyMax} × ${assessment.severityMax}`;
+  return <div className="document-content" dir={i18n.dir(language)} style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
     {normalizeDocumentBlocks(documentBlocks).filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
     {formData.assessment && <div data-assessment-profile dir={i18n.dir(language)} style={{ fontSize: '10px', marginTop: '6px', whiteSpace: 'pre-wrap' }}>
-      {t('analysis:review.profileLabel')}: {assessmentProfile(formData.assessment).name} · {assessmentProfile(formData.assessment).frequencyMax} × {assessmentProfile(formData.assessment).severityMax} · {t('analysis:review.highFrom')}: {assessmentProfile(formData.assessment).highFrom}
+      {t('analysis:review.profileLabel')}: {assessment.name !== dimensions ? `${assessment.name} · ` : ''}{dimensions} · {t('analysis:review.highFrom')}: {assessment.highFrom}
       {formData.assessment.criteria && <div>{formData.assessment.criteria}</div>}
     </div>}
   </div>;

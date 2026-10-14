@@ -73,6 +73,7 @@ const cp = require('node:child_process');
         const output = await page.$eval('.document-content', el => ({ text: el.textContent, scroll: el.scrollWidth, width: el.clientWidth }));
         assert.ok(output.text.includes(words[1]) && output.text.includes(words[2]), locale + ': retained controls in document');
         assert.ok(output.scroll <= output.width + 2, locale + ': document overflow');
+        assert.equal(await page.$eval('.document-content', el => el.getAttribute('dir')), locale.startsWith('ar') ? 'rtl' : 'ltr');
         assert.equal(await page.$eval('[data-assessment-profile]', el => el.getAttribute('dir')), locale.startsWith('ar') ? 'rtl' : 'ltr');
         const pdf = path.resolve(`artifacts/recommendations/${locale}.pdf`);
         await page.pdf({ path: pdf, format: 'A4', landscape: true, printBackground: true });

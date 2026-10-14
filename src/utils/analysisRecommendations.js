@@ -1,4 +1,5 @@
 import { getDataLocale, getLanguageTag, normalizeLocale, SUPPORTED_LANGS } from '../locales/config.js';
+import { isQuarantinedMapping, LEGACY_QUARANTINE_VERSION } from './recommendationQuarantine.js';
 
 const normalized = value => String(value ?? '').normalize('NFKC').trim().replace(/\s+/gu, ' ').toLowerCase();
 const sameId = (a, b) => a != null && b != null && String(a) === String(b);
@@ -46,13 +47,16 @@ export function updateRiskValue(risk, field, value) {
       current_measure_reference: null, advanced_measure_db_id: null, advanced_measure_reference: null,
       measure_reference: null, current_measure_confirmed: false, recommendation_score: null,
       recommendation_review_required: Boolean(risk.measure || risk.current_measure || risk.recommend_measure) });
+    next.current_recommendation = null; next.advanced_recommendation = null;
   } else if (field === 'current_measure') {
     Object.assign(next, { current_measure_db_id: null, current_measure_reference: null,
       advanced_measure_db_id: null, advanced_measure_reference: null, current_measure_confirmed: false,
       recommendation_score: null, recommendation_review_required: Boolean(risk.recommend_measure) });
+    next.current_recommendation = null; next.advanced_recommendation = null;
   } else if (field === 'recommend_measure' || field === 'measure') {
     Object.assign(next, { advanced_measure_db_id: null, advanced_measure_reference: null,
       measure_reference: null, recommendation_score: null });
+    next.advanced_recommendation = null;
   }
   return next;
 }
@@ -60,11 +64,15 @@ export function updateRiskValue(risk, field, value) {
 export function applyControl(risk, item, { type, jsaType }) {
   const field = jsaType === '2-step' ? 'measure' : type === 'current' ? 'current_measure' : 'recommend_measure';
   const next = updateRiskValue(risk, field, item.display);
+  const provenance = { score: item.similarity_score ?? null, scoreKind: item.score_kind ?? null,
+    reference: item.reference ?? null, evidence: item.evidence ?? null };
   if (field === 'current_measure') return { ...next, current_measure_db_id: item.measure_db_id ?? null,
     current_measure_reference: item.reference, current_measure_confirmed: false,
+    current_recommendation: provenance, advanced_recommendation: null,
     advanced_measure_db_id: null, advanced_measure_reference: null, recommendation_score: null,
     recommendation_review_required: Boolean(risk.recommend_measure) };
   return { ...next, [field === 'measure' ? 'measure_reference' : 'advanced_measure_reference']: item.reference,
+    advanced_recommendation: provenance,
     ...(field === 'recommend_measure' ? { advanced_measure_db_id: item.advanced_db_id ?? null } : {}) };
 }
 
@@ -113,8 +121,9 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
   const locale = context.dataLocale;
   const hazard = await hazardTranslation(client, risk, locale);
   if (!hazard) return [];
-  const mappings = await rows(client.from('hazard_measure_mappings')
-    .select('measure_translation_id,similarity_score').eq('hazard_translation_id', hazard.id));
+  const mappings = (await rows(client.from('hazard_measure_mappings')
+    .select('measure_translation_id,similarity_score').eq('hazard_translation_id', hazard.id)))
+    .filter(row => !isQuarantinedMapping('current', locale, hazard.id, row.measure_translation_id));
   const ids = [...new Set(mappings.map(row => row.measure_translation_id).filter(presentId))];
   if (!ids.length) return [];
   const translations = await rows(client.from('Current_Measures_Translations')
@@ -123,7 +132,7 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
     { target: 'measure_translation_id', master: 'measure_id', text: 'measure_text', locale, type: 'current' });
   const explain = item => ({ ...item, evidence: { hazard: hazard.hazard_name, currentControl: type === 'advanced' ? risk.current_measure : null,
     dataLocale: locale, jurisdiction: context.jurisdiction || null, regionReviewed: false,
-    mappingVersion: 'legacy-unversioned', sourceType: 'legacy_mapping' } });
+    mappingVersion: 'legacy-unversioned', quarantineVersion: LEGACY_QUARANTINE_VERSION, sourceType: 'legacy_mapping' } });
   if (type === 'current') return current.map(explain);
 
   // Supplementary controls must remain linked to this hazard and the actual selected control.
@@ -133,8 +142,9 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
       ? risk.current_measure_reference.locale === locale && sameId(item.reference.id, risk.current_measure_reference.id)
       : presentId(risk.current_measure_db_id) ? sameId(item.measure_db_id, risk.current_measure_db_id) : true);
   if (selected.length !== 1) return [];
-  const advancedMappings = await rows(client.from('current_advanced_measure_mappings')
-    .select('advanced_measure_translation_id,similarity_score').eq('current_measure_translation_id', selected[0].reference.id));
+  const advancedMappings = (await rows(client.from('current_advanced_measure_mappings')
+    .select('advanced_measure_translation_id,similarity_score').eq('current_measure_translation_id', selected[0].reference.id)))
+    .filter(row => !isQuarantinedMapping('advanced', locale, selected[0].reference.id, row.advanced_measure_translation_id));
   const advancedIds = [...new Set(advancedMappings.map(row => row.advanced_measure_translation_id).filter(presentId))];
   if (!advancedIds.length) return [];
   const advanced = await rows(client.from('Advanced_Measures_Translations')

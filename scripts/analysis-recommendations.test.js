@@ -57,6 +57,27 @@ function fixture() {
 const risk = { id: 'r1', db_id: 7, factor: 'Pressurized line' };
 const context = recommendationContext({}, 'en-US');
 
+test('observed high-score mismatches are withheld without altering unrelated scores or user text', async () => {
+  const audit = JSON.parse((await import('node:fs')).readFileSync(new URL('../docs/recommendation-audit-20261014.json', import.meta.url), 'utf8').replace(/^\uFEFF/, ''));
+  const examples = audit.highScoreExamples.currentToAdditional['ru-RU'];
+  const selected = { factor: 'Test hazard', current_measure: examples[0].source, current_measure_confirmed: true };
+  const tables = {
+    Hazards_Translations: [{ id: 99999, locale: 'ru-RU', hazard_name: selected.factor }],
+    hazard_measure_mappings: [{ hazard_translation_id: 99999, measure_translation_id: 8156, similarity_score: .7 }],
+    Current_Measures_Translations: [{ id: 8156, locale: 'ru-RU', measure_text: selected.current_measure }],
+    current_advanced_measure_mappings: examples.map(x => ({ current_measure_translation_id: x.sourceId, advanced_measure_translation_id: x.targetId, similarity_score: x.score })),
+    Advanced_Measures_Translations: examples.map(x => ({ id: x.targetId, locale: 'ru-RU', solution_text: x.target })),
+  };
+  assert.deepEqual(await loadMeasureRecommendations(database(tables), { risk: selected, type: 'advanced', context: recommendationContext({}, 'ru-RU') }), []);
+  assert.equal(selected.current_measure, examples[0].source);
+  const [item] = await loadMeasureRecommendations(database(fixture()), { risk, context });
+  assert.equal(item.similarity_score, .72);
+  const applied = applyControl(risk, item, { type: 'current', jsaType: '3-step' });
+  assert.equal(applied.current_recommendation.score, .72);
+  assert.equal(applied.current_recommendation.evidence.mappingVersion, 'legacy-unversioned');
+  assert.equal(updateRiskValue(applied, 'factor', 'Edited').current_recommendation, null);
+});
+
 test('manual edits rematch only a unique exact hazard/control in the document language', async () => {
   const db = database(fixture());
   const edited = { factor: 'pressurized line', current_measure: 'Isolate the line' };

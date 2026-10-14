@@ -1,5 +1,6 @@
 export const LEGACY_ASSESSMENT = Object.freeze({ version: 1, name: '5 × 5', frequencyMax: 5, severityMax: 5, highFrom: 9 });
 export function assessmentProfile(value = {}) {
+  value = value && typeof value === 'object' ? value : {};
   const integer = (v, fallback, max) => Number.isInteger(Number(v)) && Number(v) >= 1 && Number(v) <= max ? Number(v) : fallback;
   const frequencyMax = integer(value.frequencyMax, 5, 10), severityMax = integer(value.severityMax, 5, 10);
   return { version: 1, name: String(value.name || `${frequencyMax} × ${severityMax}`).trim().slice(0, 100),

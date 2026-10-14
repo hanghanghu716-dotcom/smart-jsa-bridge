@@ -15,14 +15,36 @@
       "consequence": "Unexpected air or fluid release when opening the housing",
       "control": "Identify connected pressure paths, isolate the complete boundary and verify the housing is safely depressurized using the actual equipment procedure before opening",
       "verification": "Record the isolation boundary, verification method and checks for pressure returning",
-      "conditions": ["Confirm the actual filter model and all connected pressure paths"],
-      "exclusions": ["Pressurized replacement", "Oxygen or fuel-gas equipment", "Breathing-air certification"],
-      "keywords": ["compressed air", "filter element", "backfeed", "filter housing"],
-      "sources": [{ "url": "https://smartjsabridge.com/en-US/case-study/jsa-compressed-air-filter-element", "section": "Eight-stage JSA stages 2 and 3; failure mechanisms and scope exclusions" }],
+      "conditions": [
+        "Confirm the actual filter model and all connected pressure paths"
+      ],
+      "exclusions": [
+        "Pressurized replacement",
+        "Oxygen or fuel-gas equipment",
+        "Breathing-air certification"
+      ],
+      "keywords": [
+        "compressed air",
+        "filter element",
+        "backfeed",
+        "filter housing"
+      ],
+      "sources": [
+        {
+          "url": "https://smartjsabridge.com/en-US/case-study/jsa-compressed-air-filter-element",
+          "section": "Eight-stage JSA stages 2 and 3; failure mechanisms and scope exclusions"
+        }
+      ],
       "sourceRevision": "2026-10-14",
-      "sourceFingerprint": null,
-      "review": { "technicalStatus": "pending", "reviewer": null, "reviewedAt": null },
-      "recommendationScore": null
+      "sourceFingerprint": "b760df03db3a1ed81c9d11c0dc2a6ca31c957f06c33e44b2d4a476ac05bf2e79",
+      "review": {
+        "technicalStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "sourceRowId": "db8e01d0-0b40-492f-aeeb-fbc898ebd41f",
+      "sourceCheckedAt": "2026-10-14T09:51:28.631Z"
     },
     {
       "id": "asphalt-milling-truck-exchange",
@@ -38,14 +60,36 @@
       "consequence": "Crushing injury during vehicle movement",
       "control": "Stop discharge for the planned exchange, confirm agreed signals and safe signaller positions, and keep personnel out of the gap and movement path",
       "verification": "Confirm the shared stop signal, personnel locations, visibility and vehicle clearance before movement",
-      "conditions": ["Use the actual traffic-control plan and machine operating instructions"],
-      "exclusions": ["Hot recycling", "Paving and compaction", "Unverified buried-service crossings"],
-      "keywords": ["asphalt milling", "truck exchange", "conveyor", "signaller"],
-      "sources": [{ "url": "https://smartjsabridge.com/en-US/case-study/jsa-asphalt-milling", "section": "Eight-stage JSA stages 5 and 6; hold and proceed decisions" }],
+      "conditions": [
+        "Use the actual traffic-control plan and machine operating instructions"
+      ],
+      "exclusions": [
+        "Hot recycling",
+        "Paving and compaction",
+        "Unverified buried-service crossings"
+      ],
+      "keywords": [
+        "asphalt milling",
+        "truck exchange",
+        "conveyor",
+        "signaller"
+      ],
+      "sources": [
+        {
+          "url": "https://smartjsabridge.com/en-US/case-study/jsa-asphalt-milling",
+          "section": "Eight-stage JSA stages 5 and 6; hold and proceed decisions"
+        }
+      ],
       "sourceRevision": "2026-10-14",
-      "sourceFingerprint": null,
-      "review": { "technicalStatus": "pending", "reviewer": null, "reviewedAt": null },
-      "recommendationScore": null
+      "sourceFingerprint": "03d59ec9ff7e2288951483b576e024e46d1f7f9a310f96cda6da58307907190a",
+      "review": {
+        "technicalStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "sourceRowId": "54db6aef-bf7a-4aad-a132-1a0a167fa8cd",
+      "sourceCheckedAt": "2026-10-14T09:51:28.631Z"
     },
     {
       "id": "aluminum-tig-air-exposure",
@@ -61,14 +105,36 @@
       "consequence": "Harmful exposure during welding",
       "control": "Assess the actual atmosphere and exposure, provide effective extraction, and verify its position does not undermine the required shielding arrangement",
       "verification": "Check the air assessment, extraction position and shielding conditions; reassess if the hood moves",
-      "conditions": ["Confirm the actual welding procedure, equipment and work area"],
-      "exclusions": ["Confined-space entry", "Live or contaminated process lines", "Pressure-test execution"],
-      "keywords": ["aluminum pipe", "TIG welding", "shielding gas", "extraction"],
-      "sources": [{ "url": "https://smartjsabridge.com/en-US/case-study/jsa-aluminum-actig", "section": "Eight-stage JSA stage 4; why the controls matter; scope exclusions" }],
+      "conditions": [
+        "Confirm the actual welding procedure, equipment and work area"
+      ],
+      "exclusions": [
+        "Confined-space entry",
+        "Live or contaminated process lines",
+        "Pressure-test execution"
+      ],
+      "keywords": [
+        "aluminum pipe",
+        "TIG welding",
+        "shielding gas",
+        "extraction"
+      ],
+      "sources": [
+        {
+          "url": "https://smartjsabridge.com/en-US/case-study/jsa-aluminum-actig",
+          "section": "Eight-stage JSA stage 4; why the controls matter; scope exclusions"
+        }
+      ],
       "sourceRevision": "2026-10-14",
-      "sourceFingerprint": null,
-      "review": { "technicalStatus": "pending", "reviewer": null, "reviewedAt": null },
-      "recommendationScore": null
+      "sourceFingerprint": "95732a074a73c329c840838d5d647ef5bfa9255517eb5c07db1538900b8aaaf7",
+      "review": {
+        "technicalStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "sourceRowId": "27da8cf4-2f4c-49aa-9ea9-a56837ad62cd",
+      "sourceCheckedAt": "2026-10-14T09:51:28.631Z"
     }
   ]
 }

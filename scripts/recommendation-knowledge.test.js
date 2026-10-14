@@ -25,10 +25,11 @@ test('a recorded review must cover the exact content and source revision', () =>
 
 test('source changes invalidate approval and ambiguous source rows require resolution', () => {
   const original = { ...bank, units: [bank.units[0]] };
+  const originalFingerprint = original.units[0].sourceFingerprint;
   const row = { id: 1, post_group_id: original.units[0].caseGroupId, language_code: 'en-US', content_md: 'First source edition' };
   const bound = bindKnowledgeSources(original, [row]);
   assert.match(bound.units[0].sourceFingerprint, /^[a-f0-9]{64}$/);
-  assert.equal(original.units[0].sourceFingerprint, null);
+  assert.equal(original.units[0].sourceFingerprint, originalFingerprint);
   bound.units[0].status = 'reviewed';
   const updated = bindKnowledgeSources(bound, [{ ...row, content_md: 'Revised source edition' }]);
   assert.equal(updated.units[0].status, 'draft');

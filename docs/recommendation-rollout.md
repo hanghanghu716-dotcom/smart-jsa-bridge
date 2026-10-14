@@ -41,12 +41,24 @@ For each gap, collect applicable official sources and equipment instructions, au
 
 ## Verification scope
 
-The automated fixtures exercise ID collisions, text edits, language-specific scores, invalid/conflicting scores, translated keywords, source revision invalidation and all-Locale output labels. Fixture tests do not measure real production recommendation accuracy. The remaining release gates are live DB auditing, regional data construction/review, score evaluation and full browser/PDF checks with the verified production data version.
+The automated fixtures exercise ID collisions, text edits, language-specific scores, invalid/conflicting scores, translated keywords, source revision invalidation and all-Locale output labels. Fixture tests do not measure real production recommendation accuracy. Public DB auditing is complete for the six requested tables under anon/RLS visibility. Privileged schema/backup access, regional technical review, held-out scoring evaluation and verified production-data flows remain release gates. See `recommendation-data-corrections.md` for the concrete correction register and access boundary.
 
 ### Results on 2026-10-14
 
-- 44 tests passed with `node --test --test-concurrency=1 scripts/analysis-recommendations.test.js scripts/analysis-knowledge.test.js scripts/locales.test.js scripts/document-layout.test.js scripts/analysis-locales.test.js scripts/recommendation-data-audit.test.js scripts/recommendation-knowledge.test.js`.
+- 40 related JavaScript tests passed after review/assessment/tag/release changes, plus three evaluation tests and seven Python staging tests. The latest CI result is tracked in PR #25.
 - `node node_modules/vite/bin/vite.js build --configLoader runner` passed. Existing bundle-size and mixed PDF-import warnings remain. This is the frontend build, not the Supabase-dependent sitemap/prerender build.
 - ESLint passed for the new recommendation/audit/knowledge utilities and tests. Analysis.jsx still has two pre-existing `react-hooks/set-state-in-effect` errors in draft recovery and procedure synchronization.
-- `scripts/analysis-browser.cjs` provides an isolated local fixture for the selection/edit flow and blocks external requests. Execution could not reach the page: this environment denied the Chrome DevTools connection with `EACCES`. The browser assertions and PDF layout are therefore **unverified**, not passed.
-- No production DB read/write, schema migration, new-country publication, merge or deployment was performed.
+- The local Chrome DevTools connection was denied with `EACCES`. GitHub CI subsequently passed all 18 Locale browser flows: actual Analysis component extraction, current/advanced selection, explicit confirmation, manual edit, guest draft save/restore, navigation to shared DocumentContent, and A4-landscape PDF generation/text extraction. German, Japanese and Arabic PDF pages were rasterized and visually inspected. The fixture uses isolated data, guest storage and a small output route; authenticated account persistence and the full DocumentDesigner/Export interaction against production data are not covered by this fixture.
+- A full local suite ran 316 passing tests and three module-load failures caused by the copied dependency environment missing `rehype-sanitize`. With a clean `npm ci`, the prior CI head's full `npm run test:all` step passed. Existing site-content prerender checks are separate from the dedicated recommendation job.
+- Public production DB reads were performed; no production DB writes, schema migration, approved new-country publication, merge or deployment was performed.
+
+## Additional implemented behavior
+
+- Exact unique same-language rematching supports manually edited hazards/current controls; ambiguous text remains unmatched.
+- Selecting a current control never confirms it is implemented. Explicit confirmation is required before advanced recommendations, and unconfirmed current controls remain marked in documents.
+- Unassessed ratings remain blank. Site matrix dimensions, highlight threshold, name and criteria can be saved and printed. Changing criteria retains prior assessment history and requires reassessment.
+- Reused content retains its source language; the library can filter by target document language. User text is not translated or overwritten.
+- Native tag terms and translated tag labels feed search metadata for all 18 Locales. Only authored text is inspected; JSON keys and reference IDs do not generate tags. Short Latin substrings no longer create spurious tags inside unrelated words.
+- Six observed Russian legacy pairs are held for contextual review. Other original similarity values remain unchanged. Selected score/reference/source evidence is preserved with the risk and invalidated on edits.
+- Three case-derived drafts now have exact live source fingerprints. Eighteen regional research drafts, an all-region coverage register, a reviewed release compiler/policy, a leakage-aware evaluation harness and six pending evaluation cases are prepared. None of these drafts is treated as technically approved production knowledge.
+- Both old Python generators now require explicit reviewed/contextual pairs, locale and pinned model revision, and output separate JSON staging files. Korean-only embeddings cannot be selected for Russian inputs. No real corpus has yet been regenerated or measured for accuracy.

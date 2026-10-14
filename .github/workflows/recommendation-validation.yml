@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/**'
       - 'scripts/**'
+      - 'python/**'
       - 'data/recommendation-knowledge/**'
       - '.github/workflows/recommendation-validation.yml'
   workflow_dispatch:
@@ -36,6 +37,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core poppler-utils
       - name: Verify recommendation and locale logic
         run: node --test --test-concurrency=1 scripts/analysis-*.test.js scripts/recommendation-*.test.js
+      - name: Verify offline mapping safeguards
+        run: python -m unittest discover -s python -p test_recommendation_staging.py
       - name: Verify isolated browser recommendation flow
         run: node scripts/analysis-browser.cjs
       - uses: actions/upload-artifact@v4

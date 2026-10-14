@@ -16,13 +16,14 @@ if (payload.role !== 'anon' || project.protocol !== 'https:' || !/^[a-z0-9-]+\.s
 const headers = { apikey: key, Authorization: `Bearer ${key}` };
 const tables = {}, failures = {};
 const startedAt = new Date().toISOString();
-for (const table of AUDIT_TABLES) {
+const masters = ['Hazards', 'Current_Measures', 'Advanced_Measures'];
+for (const table of [...AUDIT_TABLES, ...masters]) {
   const rows = [];
   try {
     for (let page = 0; ; page++) {
       if (page >= 1000) throw Error('Pagination ceiling reached');
       const endpoint = new URL(`/rest/v1/${table}`, project);
-      endpoint.searchParams.set('select', table === 'case_studies' ? 'id,post_group_id,language_code,title,created_at' : '*');
+      endpoint.searchParams.set('select', masters.includes(table) ? 'id' : table === 'case_studies' ? 'id,post_group_id,language_code,title,created_at' : '*');
       endpoint.searchParams.set('order', table === 'hazard_measure_mappings' ? 'hazard_translation_id,measure_translation_id'
         : table === 'current_advanced_measure_mappings' ? 'current_measure_translation_id,advanced_measure_translation_id' : 'id');
       const response = await fetch(endpoint, { headers: { ...headers, Range: `${rows.length}-${rows.length + 999}`, Prefer: 'count=exact' }, signal: AbortSignal.timeout(30000) });
@@ -94,6 +95,30 @@ report.mappingLocales = Object.fromEntries([['hazard_measure_mappings', 'Hazards
   }))];
 }));
 report.snapshotDigest = createHash('sha256').update(JSON.stringify(tables)).digest('hex');
+report.masterReferences = Object.fromEntries(masters.map((table, i) => {
+  const translation = [tables.Hazards_Translations, tables.Current_Measures_Translations, tables.Advanced_Measures_Translations][i];
+  const key = ['hazard_id', 'measure_id', 'advanced_measure_id'][i];
+  const ids = new Set((tables[table] || []).map(row => String(row.id)));
+  return [table, { rows: tables[table]?.length ?? null, missingReferencedMaster: tables[table] && translation
+    ? translation.filter(row => row[key] != null && !ids.has(String(row[key]))).length : null }];
+}));
+const allowedLocales = new Set(report.coverage.map(row => row.dataLocale));
+report.invalidTranslationLocales = Object.fromEntries(['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations']
+  .map(table => [table, tables[table]?.filter(row => !allowedLocales.has(row.locale)).map(row => ({ id: row.id, locale: row.locale })) ?? null]));
+report.duplicateMappingKinds = Object.fromEntries([
+  ['hazard_measure_mappings', 'hazard_translation_id', 'measure_translation_id'],
+  ['current_advanced_measure_mappings', 'current_measure_translation_id', 'advanced_measure_translation_id'],
+].map(([table, source, target]) => {
+  if (!tables[table]) return [table, null];
+  const pairs = new Map();
+  for (const row of tables[table]) {
+    const key = `${row[source]}:${row[target]}`, values = pairs.get(key) || [];
+    values.push(row.similarity_score); pairs.set(key, values);
+  }
+  const duplicate = [...pairs.values()].filter(x => x.length > 1);
+  return [table, { identicalScorePairs: duplicate.filter(x => new Set(x).size === 1).length,
+    conflictingScorePairs: duplicate.filter(x => new Set(x).size > 1).length, extraRows: duplicate.reduce((n, x) => n + x.length - 1, 0) }];
+}));
 await fs.mkdir('artifacts/recommendations', { recursive: true });
 await fs.writeFile('artifacts/recommendations/public-data-audit.json', JSON.stringify(report, null, 2));
 console.log('RECOMMENDATION_AUDIT_JSON ' + JSON.stringify(report));

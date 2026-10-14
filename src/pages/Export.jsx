@@ -182,7 +182,9 @@ function ExportEditor({ recoveredDraft }) {
     let savedProject = null;
     try {
       const draftResult = await draftSave.flushAndPause();
-      const rawTags = extractAutoTagsFromJSA(formData.projectName || '', analysisData);
+      const rawTags = extractAutoTagsFromJSA(formData.projectName || '', analysisData, {
+        locale: documentLocale, translateTag: i18n.getFixedT(documentLocale, 'tags'),
+      });
       const tags = rawTags.filter(tag => Object.keys(DIMENSIONAL_KEYWORD_MAP).includes(tag));
       savedProject = await saveProject({
         mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,

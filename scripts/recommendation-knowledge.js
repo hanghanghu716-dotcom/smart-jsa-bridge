@@ -7,12 +7,15 @@ import { SUPPORTED_LANGS } from '../src/locales/config.js';
 import { WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
 import { contentFingerprint } from './case-build-data.js';
 
-const requiredText = ['id', 'caseGroupId', 'jurisdiction', 'task', 'step', 'hazard', 'cause', 'consequence', 'control', 'verification', 'sourceRevision'];
+const requiredText = ['id', 'jurisdiction', 'task', 'step', 'hazard', 'cause', 'consequence', 'control', 'verification', 'sourceRevision'];
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
 
 export function validateKnowledgeUnit(unit, { forPublication = false } = {}) {
   const errors = [];
   for (const field of requiredText) if (!nonempty(unit?.[field])) errors.push(`${field}: required`);
+  if (unit?.sourceType === 'guidance') {
+    if (!nonempty(unit.sourceGroupId) || unit.caseGroupId != null) errors.push('guidance: sourceGroupId required; must not invent a caseGroupId');
+  } else if (!nonempty(unit?.caseGroupId)) errors.push('caseGroupId: required');
   if (!SUPPORTED_LANGS.includes(unit?.locale)) errors.push('locale: unsupported');
   if (!WORK_JURISDICTIONS.some(item => item.id === unit?.jurisdiction)) errors.push('jurisdiction: unsupported');
   if (!Number.isInteger(unit?.revision) || unit.revision < 1) errors.push('revision: positive integer required');
@@ -33,6 +36,7 @@ export function validateKnowledgeUnit(unit, { forPublication = false } = {}) {
     if (unit?.review?.technicalStatus !== 'approved' || !nonempty(unit.review.reviewer) || !/^\d{4}-\d{2}-\d{2}$/.test(unit.review.reviewedAt || '')) errors.push('publication: recorded technical review required');
     if (!/^[a-f0-9]{64}$/.test(unit?.sourceFingerprint || '')) errors.push('publication: source revision fingerprint required');
     if (unit?.review?.contentHash !== knowledgeContentHash(unit)) errors.push('publication: review does not cover this content revision');
+    if (unit?.sourceType === 'guidance' && (unit.review?.regionalStatus !== 'approved' || unit.review?.translationStatus !== 'approved')) errors.push('publication: regional and translation review required');
   }
   return errors;
 }
@@ -45,6 +49,7 @@ export function knowledgeContentHash(unit) {
 
 export function bindKnowledgeSources(bank, caseRows) {
   return { ...bank, units: bank.units.map(unit => {
+    if (unit.sourceType === 'guidance') return unit;
     const matches = caseRows.filter(row => row.post_group_id === unit.caseGroupId && row.language_code === unit.locale);
     if (matches.length !== 1) throw Error(`Expected one exact source for ${unit.id}; found ${matches.length}.`);
     const sourceFingerprint = contentFingerprint(matches[0]);

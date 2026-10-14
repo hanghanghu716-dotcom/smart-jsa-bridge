@@ -1,12 +1,10 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-10-14T09:34:47.286Z",
+  "capturedAt": "2026-10-14T09:51:28.631Z",
   "scope": "Rows visible in the supplied snapshot; counts do not prove regional suitability or complete production visibility.",
-  "snapshotComplete": false,
+  "snapshotComplete": true,
   "visibility": "public_anon_RLS_visible_rows_only",
-  "missingTables": [
-    "case_studies"
-  ],
+  "missingTables": [],
   "coverage": [
     {
       "locale": "en-US",
@@ -15,8 +13,8 @@
       "hazards": 395,
       "controls": 834,
       "additionalControls": 2111,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 199,
+      "availableCaseGroups": 199,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -27,8 +25,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 45,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -39,8 +37,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 45,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -51,8 +49,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 45,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -63,8 +61,8 @@
       "hazards": 392,
       "controls": 899,
       "additionalControls": 1742,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 1,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -75,8 +73,8 @@
       "hazards": 392,
       "controls": 899,
       "additionalControls": 1741,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -87,8 +85,8 @@
       "hazards": 392,
       "controls": 899,
       "additionalControls": 1742,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -99,8 +97,8 @@
       "hazards": 395,
       "controls": 834,
       "additionalControls": 2111,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 199,
+      "availableCaseGroups": 199,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -111,8 +109,8 @@
       "hazards": 392,
       "controls": 897,
       "additionalControls": 1742,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -123,8 +121,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -135,8 +133,8 @@
       "hazards": 392,
       "controls": 899,
       "additionalControls": 1742,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -147,8 +145,8 @@
       "hazards": 424,
       "controls": 1013,
       "additionalControls": 2121,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 40,
+      "availableCaseGroups": 40,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -159,8 +157,8 @@
       "hazards": 395,
       "controls": 884,
       "additionalControls": 1841,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -171,8 +169,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -183,8 +181,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -195,8 +193,8 @@
       "hazards": 395,
       "controls": 884,
       "additionalControls": 1840,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -207,8 +205,8 @@
       "hazards": 470,
       "controls": 884,
       "additionalControls": 2104,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 199,
+      "availableCaseGroups": 199,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     },
@@ -219,8 +217,8 @@
       "hazards": 424,
       "controls": 1017,
       "additionalControls": 2122,
-      "exactLocaleCaseGroups": null,
-      "availableCaseGroups": null,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
       "observation": "rows_observed",
       "jurisdictionSuitability": "not_verified"
     }
@@ -273,10 +271,8 @@
       "duplicatePairs": 2580
     }
   },
-  "completedAt": "2026-10-14T09:35:33.843Z",
-  "failures": {
-    "case_studies": "HTTP 500"
-  },
+  "completedAt": "2026-10-14T09:52:13.677Z",
+  "failures": {},
   "project": "aajvezmhyrdawxxbulqz.supabase.co",
   "schemaAuthority": "PostgREST public schema only; database constraints and RLS require privileged read-only audit",
   "schemaReadError": "HTTP 401",
@@ -338,6 +334,351 @@
       ]
     }
   },
-  "caseSources": [],
-  "snapshotDigest": "6d01b4664a711b11dcc92cf6e7d8ac67fa7059fbb51d74a2534f4c11e8855dca"
+  "caseSources": [
+    {
+      "id": "27da8cf4-2f4c-49aa-9ea9-a56837ad62cd",
+      "group": "jsa-aluminum-actig",
+      "locale": "en-US",
+      "fingerprint": "95732a074a73c329c840838d5d647ef5bfa9255517eb5c07db1538900b8aaaf7"
+    },
+    {
+      "id": "54db6aef-bf7a-4aad-a132-1a0a167fa8cd",
+      "group": "jsa-asphalt-milling",
+      "locale": "en-US",
+      "fingerprint": "03d59ec9ff7e2288951483b576e024e46d1f7f9a310f96cda6da58307907190a"
+    },
+    {
+      "id": "db8e01d0-0b40-492f-aeeb-fbc898ebd41f",
+      "group": "jsa-compressed-air-filter-element",
+      "locale": "en-US",
+      "fingerprint": "b760df03db3a1ed81c9d11c0dc2a6ca31c957f06c33e44b2d4a476ac05bf2e79"
+    }
+  ],
+  "translationLocales": {
+    "Hazards_Translations": {
+      "ko-KR": {
+        "rows": 470,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "en-US": {
+        "rows": 395,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "en-GB": {
+        "rows": 392,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "de-DE": {
+        "rows": 392,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "en-AU": {
+        "rows": 392,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "fr-FR": {
+        "rows": 392,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "es-ES": {
+        "rows": 395,
+        "missingMaster": 345,
+        "missingKeywords": 0
+      },
+      "ru-RU": {
+        "rows": 395,
+        "missingMaster": 345,
+        "missingKeywords": 0
+      },
+      "it-IT": {
+        "rows": 424,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "en-CA": {
+        "rows": 424,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "ja-JP": {
+        "rows": 424,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "pt-BR": {
+        "rows": 424,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      },
+      "ar-SA": {
+        "rows": 424,
+        "missingMaster": 0,
+        "missingKeywords": 0
+      }
+    },
+    "Current_Measures_Translations": {
+      "4036": {
+        "rows": 1,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ko-KR": {
+        "rows": 884,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-US": {
+        "rows": 834,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "de-DE": {
+        "rows": 897,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-AU": {
+        "rows": 899,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-GB": {
+        "rows": 899,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "fr-FR": {
+        "rows": 899,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "es-ES": {
+        "rows": 884,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ru-RU": {
+        "rows": 884,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "it-IT": {
+        "rows": 1013,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-CA": {
+        "rows": 1017,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ja-JP": {
+        "rows": 1017,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "pt-BR": {
+        "rows": 1017,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ar-SA": {
+        "rows": 1017,
+        "missingMaster": 0,
+        "missingKeywords": null
+      }
+    },
+    "Advanced_Measures_Translations": {
+      "ko-KR": {
+        "rows": 2104,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-US": {
+        "rows": 2111,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-GB": {
+        "rows": 1742,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-AU": {
+        "rows": 1741,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "fr-FR": {
+        "rows": 1742,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "de-DE": {
+        "rows": 1742,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "es-ES": {
+        "rows": 1841,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ru-RU": {
+        "rows": 1840,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "it-IT": {
+        "rows": 2121,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "en-CA": {
+        "rows": 2122,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ja-JP": {
+        "rows": 2122,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "pt-BR": {
+        "rows": 2122,
+        "missingMaster": 0,
+        "missingKeywords": null
+      },
+      "ar-SA": {
+        "rows": 2122,
+        "missingMaster": 0,
+        "missingKeywords": null
+      }
+    }
+  },
+  "mappingLocales": {
+    "hazard_measure_mappings": {
+      "ko-KR": {
+        "rows": 1410,
+        "highScore": 0,
+        "min": 0.5145,
+        "max": 0.8302,
+        "median": 0.687
+      },
+      "en-US": {
+        "rows": 1185,
+        "highScore": 0,
+        "min": 0.5941,
+        "max": 0.8732,
+        "median": 0.7468
+      },
+      "en-GB": {
+        "rows": 1176,
+        "highScore": 0,
+        "min": 0.6238,
+        "max": 0.8592,
+        "median": 0.7457
+      },
+      "de-DE": {
+        "rows": 1176,
+        "highScore": 0,
+        "min": 0.7353,
+        "max": 0.94,
+        "median": 0.8688
+      },
+      "en-AU": {
+        "rows": 1176,
+        "highScore": 0,
+        "min": 0.6242,
+        "max": 0.8652,
+        "median": 0.752
+      },
+      "fr-FR": {
+        "rows": 1176,
+        "highScore": 0,
+        "min": 0.6653,
+        "max": 0.9194,
+        "median": 0.8267
+      },
+      "es-ES": {
+        "rows": 1185,
+        "highScore": 0,
+        "min": 0.7001,
+        "max": 0.9235,
+        "median": 0.8575
+      },
+      "ru-RU": {
+        "rows": 1185,
+        "highScore": 1067,
+        "min": 0.701,
+        "max": 0.9941,
+        "median": 0.9885
+      }
+    },
+    "current_advanced_measure_mappings": {
+      "ko-KR": {
+        "rows": 7878,
+        "highScore": 0,
+        "min": 0.3754,
+        "max": 0.8673,
+        "median": 0.6806
+      },
+      "en-US": {
+        "rows": 7385,
+        "highScore": 0,
+        "min": 0.524,
+        "max": 0.9357,
+        "median": 0.7775
+      },
+      "de-DE": {
+        "rows": 5006,
+        "highScore": 0,
+        "min": 0.6448,
+        "max": 0.9474,
+        "median": 0.8578
+      },
+      "en-AU": {
+        "rows": 5302,
+        "highScore": 0,
+        "min": 0.5064,
+        "max": 0.8647,
+        "median": 0.7347
+      },
+      "en-GB": {
+        "rows": 5296,
+        "highScore": 0,
+        "min": 0.5488,
+        "max": 0.8638,
+        "median": 0.732
+      },
+      "fr-FR": {
+        "rows": 7857,
+        "highScore": 0,
+        "min": 0.5954,
+        "max": 0.9339,
+        "median": 0.8474
+      },
+      "es-ES": {
+        "rows": 5199,
+        "highScore": 0,
+        "min": 0.7868,
+        "max": 0.9471,
+        "median": 0.8998
+      },
+      "ru-RU": {
+        "rows": 5249,
+        "highScore": 4853,
+        "min": 0.7742,
+        "max": 1,
+        "median": 0.9947
+      }
+    }
+  },
+  "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee"
 }

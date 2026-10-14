@@ -4,6 +4,8 @@ import { createServer } from 'vite';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
+import { extractAutoTagsFromJSA } from '../src/utils/TagDictionary.js';
+import { localizedTagTerms } from '../src/utils/localizedTagTerms.js';
 
 test('all 18 locales resolve analysis messages and render every selected PPE/permit in the document language', async () => {
   const server = await createServer({ server: { middlewareMode: true, hmr: false }, appType: 'custom' });
@@ -22,6 +24,15 @@ test('all 18 locales resolve analysis messages and render every selected PPE/per
     const ppe = ['안전모', '안전화', '보안경', '장갑', '귀마개', '방진복', '방진마스크'];
     const permits = ['일반', '화기', '밀폐', '정전', '굴착', '방사선', '고소', '중량물', '가연성가스'];
     for (const locale of SUPPORTED_LANGS) {
+      const translateTag = i18n.getFixedT(locale, 'tags');
+      for (const [tag, terms] of Object.entries(localizedTagTerms(locale))) {
+        const matches = extractAutoTagsFromJSA(terms[0], [], { locale, translateTag });
+        assert.ok(matches.includes(tag), `${locale}: native tag term ${tag}`);
+      }
+      const tag = '보호구(귀마개)';
+      assert.ok(extractAutoTagsFromJSA(translateTag(tag), [], { locale, translateTag }).includes(tag), `${locale}: translated tag label`);
+      assert.deepEqual(extractAutoTagsFromJSA('', [{ sourceRiskId: 'co', current_measure_confirmed: true, riskLevel: 9 }], { locale, translateTag }), []);
+      assert.ok(!extractAutoTagsFromJSA('company information', [], { locale, translateTag }).includes('독성가스(일산화탄소)'));
       const t = i18n.getFixedT(locale, 'analysis');
       for (const key of keys) {
         const value = t(key, { locale: 'en-US' });
