@@ -1,7 +1,9 @@
 import { parse } from 'parse5';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
+import process from 'node:process';
 import { publicJsaQuality } from '../src/utils/publicJsa.js';
+import { exploreSearch } from '../src/utils/discovery.js';
 
 // Public GET requests only: no credentials, database writes or indexing requests.
 const SITE = 'https://smartjsabridge.com';
@@ -89,7 +91,7 @@ try {
   const documents = new Map(); report.listPages = [];
   let expectedTotal;
   for (let page = 0; page < 100; page++) {
-    const route = `/${locale}/explore${page ? `?page=${page + 1}` : ''}`;
+    const route = `/${locale}/explore${exploreSearch({ page })}`;
     const response = await get(route), meta = metadata(response), data = scriptData(meta.tree, '__PUBLIC_EXPLORE__');
     if (page === 0) expectedTotal = data.total;
     const issues = checks(meta, SITE + route, 'list');
@@ -101,7 +103,7 @@ try {
       documents.set(row.id, { row, url });
     }
     if (!data.hasMore) break;
-    if (!hrefs.has(`/${locale}/explore?page=${page + 2}`)) findings.push({ issue: `Missing next-page HTML link from ${route}` });
+    if (!hrefs.has(`/${locale}/explore${exploreSearch({ page: page + 1 })}`)) findings.push({ issue: `Missing next-page HTML link from ${route}` });
   }
   report.expectedTotal = expectedTotal; report.discoveredDocuments = documents.size; report.documents = [];
   if (documents.size !== expectedTotal) findings.push({ issue: 'Pagination did not expose all listed documents' });
