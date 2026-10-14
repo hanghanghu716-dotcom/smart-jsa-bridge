@@ -14,7 +14,7 @@ The public DB audit recovered at **11:23:23 UTC**. `recommendation-audit-restore
 
 ## Prepared content and application
 
-Three case-derived units retain exact live source fingerprints and now include task/hazard/target scope, required/excluded conditions and display labels. Eighteen regional drafts have localized condition labels. All 21 units remain drafts with technical, regional and translation review pending. An initial maintenance unit per Locale is not complete country coverage; pressure-equipment opening and welding remain gaps.
+Three case-derived units retain exact live source fingerprints and now include task/hazard/target scope, required/excluded conditions and display labels. All regional drafts have localized condition labels. The bank now has 57 draft units: 54 regional guidance units (three bounded task types across 18 Locales) and three case-derived pilots. All require technical, regional and translation review. Pressure work is restricted to compressed-air filter maintenance; welding is restricted to regular indoor uncoated mild-steel work. This is not complete country or task coverage.
 
 Korean section 92 and relevant sections of Saudi EXPRO's project isolation guide were checked against official full sources. The Saudi guide is project guidance, not national legal certification. The Brazilian consolidated PDF was subsequently read at 12.11.3 and its exceptions, and the draft scope was updated. Russian official original/amendment publication identifiers were found, but full-text requests timed out; domestic applicability remains unverified. Victoria guidance does not cover all Australia; Great Britain guidance does not certify Northern Ireland.
 
@@ -41,3 +41,9 @@ Both Python generators require explicit contextual pairs, Locale, reviews, model
 No Supabase management tool or DB-management credential is exposed in this session. Public schema discovery previously returned 401 and Vercel environment metadata returned 403; the row audit no longer retries public schema discovery. This does not mean the user's account lost its connection. Authorization is already given. Management access, independently recorded reviews, actual corpus evaluation, staging and restore rehearsal remain dependencies. No production write, merge or deployment occurred.
 
 Detailed row evidence and a non-executable Locale correction proposal are retained in the local working copy. Automatic approval review blocked remote publication of that detailed payload. Only aggregate counts and code are included in this follow-up. Public audit logs/artifacts now use an allowlisted summary without row IDs, source text, project identifiers or source fingerprints.
+
+## Task coverage follow-up
+
+`node scripts/recommendation-coverage.js --check docs/recommendation-task-coverage.json` verifies that the committed matrix matches every bank. It preserves exact Locale, jurisdiction and task boundaries; distinguishes same-jurisdiction, national, subnational, foreign and unread references; and does not treat a draft or a source match as publication approval. A retired latest revision cannot resurrect an older recommendation. The 54 priority cells have draft content and zero publication-eligible content.
+
+The Italian maintenance unit now uses INAIL production-line energy-control context plus explicitly foreign OSHA verification guidance. The new source metadata remains subject to regional review. HSE’s current distinction between regular and sporadic welding is reflected in the scope; the regular-indoor draft must not be applied to the separate sporadic-work scenario.

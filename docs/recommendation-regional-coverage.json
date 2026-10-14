@@ -18,7 +18,7 @@
       "jurisdiction": "US",
       "currentMappings": 1185,
       "additionalMappings": 7385,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -26,7 +26,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -38,7 +37,12 @@
         "section": "1910.147(d), verification and stored energy",
         "scope": "US general industry; sector and exception scope need review",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-CA",
@@ -54,7 +58,7 @@
       "jurisdiction": "CA",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -62,7 +66,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -75,7 +78,12 @@
         "section": "Basic steps and verification",
         "scope": "Canadian guidance; not a substitute for provincial or federal jurisdiction checks",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-CA-AB",
@@ -91,7 +99,7 @@
       "jurisdiction": "CA-AB",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -99,7 +107,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -112,7 +119,12 @@
         "section": "Part 15, hazardous energy control",
         "scope": "Alberta only; actual energy-isolating and securing method must be checked",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-CA-ON",
@@ -128,7 +140,7 @@
       "jurisdiction": "CA-ON",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -136,7 +148,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -149,7 +160,12 @@
         "section": "Equipment blocking and hazardous energy",
         "scope": "Ontario blocking alert; sector regulation and blocking design need review",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-CA-BC",
@@ -165,7 +181,7 @@
       "jurisdiction": "CA-BC",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -173,7 +189,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -186,7 +201,12 @@
         "section": "Part 10, de-energization and lockout",
         "scope": "British Columbia only; lockout responsibilities and exceptions need review",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "fr-CA-QC",
@@ -202,7 +222,7 @@
       "jurisdiction": "CA-QC",
       "currentMappings": 1176,
       "additionalMappings": 7857,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -210,7 +230,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -222,7 +241,12 @@
         "section": "Cadenassage et zones dangereuses",
         "scope": "Québec; vérifier la méthode et les responsabilités de cadenassage applicables",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-GB",
@@ -238,7 +262,7 @@
       "jurisdiction": "GB",
       "currentMappings": 1176,
       "additionalMappings": 5296,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -246,7 +270,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -258,7 +281,12 @@
         "section": "Safe maintenance; stored energy",
         "scope": "HSE guidance for Great Britain; Northern Ireland applicability not established",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-AU",
@@ -274,7 +302,7 @@
       "jurisdiction": "AU",
       "currentMappings": 1176,
       "additionalMappings": 5302,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -282,7 +310,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -294,7 +321,12 @@
         "section": "Isolation, de-energisation, lockout and tagout",
         "scope": "Victoria guidance; other Australian state and territory requirements remain unreviewed",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "en-SG",
@@ -310,7 +342,7 @@
       "jurisdiction": "SG",
       "currentMappings": 1185,
       "additionalMappings": 7385,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -318,7 +350,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -330,7 +361,12 @@
         "section": "4.4.3 and 5.3.2, LOTO",
         "scope": "Singapore guidance; competent personnel and actual machinery procedure required",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "de-DE",
@@ -346,7 +382,7 @@
       "jurisdiction": "DE",
       "currentMappings": 1176,
       "additionalMappings": 5006,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -354,7 +390,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -366,7 +401,12 @@
         "section": "FBHM-127, Anlagen 1 und 2",
         "scope": "Störungsbeseitigung; betriebliche Gefährdungsbeurteilung und Zuständigkeit prüfen",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "ja-JP",
@@ -382,7 +422,7 @@
       "jurisdiction": "JP",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -390,7 +430,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -403,7 +442,12 @@
         "section": "労働安全衛生規則第107条・第108条",
         "scope": "作業内容に応じた条文と機械別の停止・起動防止方法を確認",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "fr-FR",
@@ -419,7 +463,7 @@
       "jurisdiction": "FR",
       "currentMappings": 1176,
       "additionalMappings": 7857,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -427,7 +471,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -439,7 +482,12 @@
         "section": "ED 6109, consignation et déconsignation",
         "scope": "Guide technique; procédure et habilitations adaptées à la situation à vérifier",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "it-IT",
@@ -455,7 +503,7 @@
       "jurisdiction": "IT",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -463,7 +511,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "maintenance-planning",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -471,12 +518,20 @@
         "technical_review_pending"
       ],
       "source": {
+        "url": "https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/impianti-di-trasformazione--produzione-e-processo/linee-di-produzione.html",
         "authority": "INAIL",
-        "url": "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
-        "section": "Manutenzione, competenza e registrazione",
-        "scope": "Pianificazione e controlli; non costituisce una procedura completa di isolamento",
-        "checkedAt": "2026-10-14"
-      }
+        "section": "Linee di produzione: energie residue, riavvio accidentale e ricerca sulla procedura LOTO",
+        "jurisdiction": "IT",
+        "scope": "Descrizione tecnica della ricerca INAIL; non costituisce un’istruzione operativa completa o una conferma di conformità.",
+        "checkedAt": "2026-10-14",
+        "retrieval": "relevant_primary_sections_read",
+        "evidenceRole": "technical"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "es-ES",
@@ -492,7 +547,7 @@
       "jurisdiction": "ES",
       "currentMappings": 1185,
       "additionalMappings": 5199,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -500,7 +555,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -512,7 +566,12 @@
         "section": "NTP 1117, consignación de máquinas",
         "scope": "Guía técnica; confirmar obligaciones y procedimiento aplicables",
         "checkedAt": "2026-10-14"
-      }
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "ar-SA",
@@ -528,7 +587,7 @@
       "jurisdiction": "SA",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -536,7 +595,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -561,7 +619,12 @@
         ],
         "approvalGranted": false
       },
-      "additionalSources": []
+      "additionalSources": [],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     },
     {
       "locale": "pt-BR",
@@ -577,7 +640,7 @@
       "jurisdiction": "BR",
       "currentMappings": 0,
       "additionalMappings": 0,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -585,7 +648,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "missing_recommendation_links",
         "regional_review_pending",
@@ -619,6 +681,11 @@
           "scope": "Índice e PDF consolidado conferidos; revisão técnica e regional ainda pendente",
           "retrieval": "primary_index_and_relevant_pdf_sections_read"
         }
+      ],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
       ]
     },
     {
@@ -635,7 +702,7 @@
       "jurisdiction": "RU",
       "currentMappings": 1185,
       "additionalMappings": 5249,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -643,7 +710,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -685,6 +751,11 @@
           "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
           "retrieval": "primary_search_metadata_full_text_timeout"
         }
+      ],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
       ]
     },
     {
@@ -701,7 +772,7 @@
       "jurisdiction": "KR",
       "currentMappings": 1410,
       "additionalMappings": 7878,
-      "draftUnits": 1,
+      "draftUnits": 3,
       "reviewedUnits": 0,
       "productionNewUnits": 0,
       "priorityTasks": [
@@ -709,7 +780,6 @@
         "pressure-equipment-opening",
         "welding-exposure"
       ],
-      "draftTask": "machine-maintenance",
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
@@ -733,7 +803,12 @@
         ],
         "approvalGranted": false
       },
-      "additionalSources": []
+      "additionalSources": [],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
     }
   ],
   "sourceCautions": [
@@ -741,7 +816,10 @@
     "Korean section 92, Saudi EXPRO project isolation sections and Brazilian NR-12 12.11.3/exceptions were read from official full sources.",
     "Russia: original/amendment publication records identified, full-text retrieval failed; domestic applicability is unverified.",
     "Saudi guidance is project-scoped; Victoria guidance does not cover all Australia; Great Britain guidance does not certify Northern Ireland.",
-    "Coverage counts retain their original snapshot time. One initial draft per Locale does not establish complete work/hazard coverage."
+    "All 18 Locales now have three bounded priority-task drafts. They are not complete country coverage, validated local compliance, reviewed recommendations or production availability. Detailed geography and review gaps are computed in recommendation-task-coverage.json.",
+    "Database counts retain their original capturedAt snapshot time; authored knowledge counts have a separate update field."
   ],
-  "sourceReviewUpdatedAt": "2026-10-14"
+  "sourceReviewUpdatedAt": "2026-10-14",
+  "knowledgeCoverageReport": "docs/recommendation-task-coverage.json",
+  "knowledgeCoverageUpdatedAt": "2026-10-14"
 }

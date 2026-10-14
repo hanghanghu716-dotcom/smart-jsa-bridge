@@ -38,7 +38,9 @@
           "section": "1910.147(d), verification and stored energy",
           "checkedAt": "2026-10-14",
           "scope": "US general industry; sector and exception scope need review",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "US",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -113,7 +115,9 @@
           "section": "Basic steps and verification",
           "checkedAt": "2026-10-14",
           "scope": "Canadian guidance; not a substitute for provincial or federal jurisdiction checks",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -188,7 +192,9 @@
           "section": "Part 15, hazardous energy control",
           "checkedAt": "2026-10-14",
           "scope": "Alberta only; actual energy-isolating and securing method must be checked",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA-AB",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -263,7 +269,9 @@
           "section": "Equipment blocking and hazardous energy",
           "checkedAt": "2026-10-14",
           "scope": "Ontario blocking alert; sector regulation and blocking design need review",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA-ON",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -338,7 +346,9 @@
           "section": "Part 10, de-energization and lockout",
           "checkedAt": "2026-10-14",
           "scope": "British Columbia only; lockout responsibilities and exceptions need review",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA-BC",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -413,7 +423,9 @@
           "section": "Cadenassage et zones dangereuses",
           "checkedAt": "2026-10-14",
           "scope": "Québec; vérifier la méthode et les responsabilités de cadenassage applicables",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA-QC",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -488,7 +500,9 @@
           "section": "Safe maintenance; stored energy",
           "checkedAt": "2026-10-14",
           "scope": "HSE guidance for Great Britain; Northern Ireland applicability not established",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "GB",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -563,7 +577,9 @@
           "section": "Isolation, de-energisation, lockout and tagout",
           "checkedAt": "2026-10-14",
           "scope": "Victoria guidance; other Australian state and territory requirements remain unreviewed",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "AU-VIC",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -638,7 +654,9 @@
           "section": "4.4.3 and 5.3.2, LOTO",
           "checkedAt": "2026-10-14",
           "scope": "Singapore guidance; competent personnel and actual machinery procedure required",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "SG",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -713,7 +731,9 @@
           "section": "FBHM-127, Anlagen 1 und 2",
           "checkedAt": "2026-10-14",
           "scope": "Störungsbeseitigung; betriebliche Gefährdungsbeurteilung und Zuständigkeit prüfen",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "DE",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -788,7 +808,9 @@
           "section": "労働安全衛生規則第107条・第108条",
           "checkedAt": "2026-10-14",
           "scope": "作業内容に応じた条文と機械別の停止・起動防止方法を確認",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "JP",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -863,7 +885,9 @@
           "section": "ED 6109, consignation et déconsignation",
           "checkedAt": "2026-10-14",
           "scope": "Guide technique; procédure et habilitations adaptées à la situation à vérifier",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "FR",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -906,43 +930,56 @@
     {
       "id": "regional-it-maintenance",
       "sourceType": "guidance",
-      "sourceGroupId": "maintenance-planning",
+      "sourceGroupId": "machine-energy-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
-      "task": "Manutenzione delle attrezzature",
-      "step": "Pianificare manutenzione e controlli",
-      "hazard": "Deterioramento delle condizioni di sicurezza",
-      "cause": "Usura o controlli non adeguati all’attrezzatura",
-      "consequence": "Lesioni durante l’impiego o l’intervento",
-      "control": "Organizzare manutenzione e controlli con personale competente sulla base delle istruzioni del fabbricante.",
-      "verification": "Registrare l’intervento e verificare le condizioni di sicurezza prima del riutilizzo.",
+      "task": "Manutenzione di una macchina ferma",
+      "step": "Preparare l’isolamento delle energie",
+      "hazard": "Riavvio inatteso o rilascio di energia residua",
+      "cause": "Una fonte di energia resta collegata o può riattivarsi",
+      "consequence": "Schiacciamento o altre lesioni durante l’intervento",
+      "control": "Seguire la procedura specifica per isolare e bloccare le fonti di energia della macchina e rendere sicure le energie residue prima dell’accesso.",
+      "verification": "Una persona competente verifica l’isolamento secondo la procedura; ripetere i controlli se può riaccumularsi energia.",
       "conditions": [
-        "Identificazione dell’attrezzatura e istruzioni del fabbricante disponibili"
+        "È disponibile la procedura specifica della macchina",
+        "È stata incaricata una persona competente"
       ],
       "exclusions": [
-        "Verifiche obbligatorie non sostituibili con questa scheda",
-        "interventi sotto energia"
+        "È necessario intervenire con energia presente",
+        "Il lavoro richiede accesso a uno spazio confinato",
+        "Una fonte di energia o un limite di isolamento non è noto"
       ],
       "keywords": [
         "manutenzione",
-        "controlli",
-        "fabbricante"
+        "isolamento",
+        "energia residua"
       ],
       "sources": [
         {
-          "url": "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/attrezzature-di-lavoro/manutenzione,-controllo-e-verifica-di-un-attrezzatura.html",
+          "url": "https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/impianti-di-trasformazione--produzione-e-processo/linee-di-produzione.html",
           "authority": "INAIL",
-          "section": "Manutenzione, competenza e registrazione",
+          "section": "Linee di produzione: energie residue, riavvio accidentale e ricerca sulla procedura LOTO",
+          "jurisdiction": "IT",
+          "scope": "Descrizione tecnica della ricerca INAIL; non costituisce un’istruzione operativa completa o una conferma di conformità.",
           "checkedAt": "2026-10-14",
-          "scope": "Pianificazione e controlli; non costituisce una procedura completa di isolamento",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
+        },
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "Riferimento tecnico statunitense per isolamento e verifica; applicabilità normativa italiana non verificata.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
         }
       ],
       "applicability": {
-        "taskType": "maintenance-planning",
-        "hazardType": "equipment-deterioration",
+        "taskType": "machine-maintenance",
+        "hazardType": "unexpected-energization",
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
@@ -975,7 +1012,8 @@
         "live-intervention": "È necessario intervenire con energia presente",
         "confined-entry": "Il lavoro richiede accesso a uno spazio confinato",
         "unknown-energy-path": "Una fonte di energia o un limite di isolamento non è noto"
-      }
+      },
+      "coverageLimit": "Solo controllo delle energie; non è una procedura completa né una verifica di conformità normativa."
     },
     {
       "id": "regional-es-maintenance",
@@ -1012,7 +1050,9 @@
           "section": "NTP 1117, consignación de máquinas",
           "checkedAt": "2026-10-14",
           "scope": "Guía técnica; confirmar obligaciones y procedimiento aplicables",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "ES",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1087,7 +1127,9 @@
           "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
           "checkedAt": "2026-10-14",
           "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
-          "retrieval": "relevant_primary_sections_read"
+          "retrieval": "relevant_primary_sections_read",
+          "jurisdiction": "SA",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1174,7 +1216,9 @@
           "section": "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21",
           "checkedAt": "2026-10-14",
           "scope": "Manutenção com máquina parada; intervenções especiais exigem análise separada. A compilação não substitui o DOU.",
-          "retrieval": "primary_pdf_relevant_sections_read"
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "jurisdiction": "BR",
+          "evidenceRole": "technical"
         },
         {
           "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
@@ -1182,7 +1226,9 @@
           "section": "Índice oficial: última modificação indicada, Portaria MTE 344/2024",
           "checkedAt": "2026-10-14",
           "scope": "Índice e PDF consolidado conferidos; revisão técnica e regional ainda pendente",
-          "retrieval": "primary_index_and_relevant_pdf_sections_read"
+          "retrieval": "primary_index_and_relevant_pdf_sections_read",
+          "jurisdiction": "BR",
+          "evidenceRole": "index"
         }
       ],
       "applicability": {
@@ -1271,7 +1317,9 @@
           "section": "Basic steps and verification",
           "checkedAt": "2026-10-14",
           "scope": "Технический черновик по зарубежному руководству; действующие требования РФ не подтверждены",
-          "retrieval": "primary_page_or_document"
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA",
+          "evidenceRole": "technical"
         },
         {
           "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
@@ -1279,7 +1327,9 @@
           "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
           "checkedAt": "2026-10-14",
           "scope": "Официальная публикация найдена; полный текст недоступен при проверке, применимость не подтверждена",
-          "retrieval": "primary_search_metadata_full_text_timeout"
+          "retrieval": "primary_search_metadata_full_text_timeout",
+          "jurisdiction": "RU",
+          "evidenceRole": "lead"
         },
         {
           "url": "https://publication.pravo.gov.ru/document/0001202505300025",
@@ -1287,7 +1337,9 @@
           "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
           "checkedAt": "2026-10-14",
           "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
-          "retrieval": "primary_search_metadata_full_text_timeout"
+          "retrieval": "primary_search_metadata_full_text_timeout",
+          "jurisdiction": "RU",
+          "evidenceRole": "lead"
         }
       ],
       "applicability": {
@@ -1372,7 +1424,9 @@
           "section": "산업안전보건기준에 관한 규칙 제92조 제1항~제4항",
           "checkedAt": "2026-10-14",
           "scope": "기계 정비 등의 운전정지·재기동 방지 및 압축 기체·액체 방출 위험. 기계 구조·작업 방법에 따른 적용 여부는 현장 검토 필요",
-          "retrieval": "relevant_primary_sections_read"
+          "retrieval": "relevant_primary_sections_read",
+          "jurisdiction": "KR",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {

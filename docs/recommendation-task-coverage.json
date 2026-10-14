@@ -1,0 +1,1151 @@
+{
+  "schemaVersion": 1,
+  "inputHash": "c9e6b8371c818ce83a59fd68bf02c373d32ff659dde29b85288b09636c12175c",
+  "scope": "Authored knowledge-bank coverage only. Source geography is not legal applicability, review approval, production availability or measured recommendation accuracy.",
+  "totals": {
+    "locales": 18,
+    "priorityCells": 54,
+    "cellsWithDraftOrReviewedContent": 54,
+    "missingCells": 0,
+    "cellsWithPublicationEligibleContent": 0,
+    "activeUnits": 57,
+    "priorityUnits": 54,
+    "nonPriorityUnits": 3
+  },
+  "coverage": [
+    {
+      "locale": "ko",
+      "jurisdiction": "KR",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-GB",
+      "jurisdiction": "GB",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-AU",
+      "jurisdiction": "AU",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 1,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-SG",
+      "jurisdiction": "SG",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-US",
+      "jurisdiction": "US",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-CA",
+      "jurisdiction": "CA",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-CA-AB",
+      "jurisdiction": "CA-AB",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-CA-ON",
+      "jurisdiction": "CA-ON",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "en-CA-BC",
+      "jurisdiction": "CA-BC",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "fr-CA-QC",
+      "jurisdiction": "CA-QC",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 1,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "de-DE",
+      "jurisdiction": "DE",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "ja-JP",
+      "jurisdiction": "JP",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "jurisdiction": "FR",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "it-IT",
+      "jurisdiction": "IT",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "jurisdiction": "ES",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "ar-SA",
+      "jurisdiction": "SA",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "jurisdiction": "BR",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 1,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 0,
+            "unspecified": 0,
+            "unreadOrMetadata": 1
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": false,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    },
+    {
+      "locale": "ru-RU",
+      "jurisdiction": "RU",
+      "tasks": [
+        {
+          "taskType": "machine-maintenance",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 2
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "pressure-equipment-opening",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        },
+        {
+          "taskType": "welding-exposure",
+          "units": 1,
+          "draftUnits": 1,
+          "publicationEligible": 0,
+          "guidanceUnits": 1,
+          "caseUnits": 0,
+          "primarySourceReferences": {
+            "sameJurisdiction": 0,
+            "nationalReference": 0,
+            "subnationalReference": 0,
+            "foreignReference": 1,
+            "unspecified": 0,
+            "unreadOrMetadata": 0
+          },
+          "missingDraft": false,
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
+        }
+      ]
+    }
+  ]
+}

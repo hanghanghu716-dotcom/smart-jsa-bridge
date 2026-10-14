@@ -51,6 +51,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core poppler-utils
       - name: Verify recommendation and locale logic
         run: node --test --test-concurrency=1 scripts/analysis-*.test.js scripts/recommendation-*.test.js
+      - name: Verify knowledge coverage matches the authored input files
+        run: node scripts/recommendation-coverage.js --check docs/recommendation-task-coverage.json
       - name: Verify offline mapping safeguards
         run: python -m unittest discover -s python -p test_recommendation_staging.py
       - name: Verify isolated browser recommendation flow
