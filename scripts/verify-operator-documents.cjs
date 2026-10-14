@@ -25,6 +25,30 @@ const {spawn}=require('node:child_process');
   await page.waitForFunction(()=>document.querySelectorAll('.explore-card').length>0&&!document.querySelector('.explore-loading'),{timeout:30000});
   assert.equal(await page.$eval('.explore-operator-filter input',el=>el.checked),true);
   assert.equal(await page.$$eval('.explore-card',cards=>cards.every(card=>card.querySelector('.operator-badge')?.textContent==='운영자')),true);
+  assert.equal(await page.$('.explore-document-icon'),null,'Remove the decorative document icon');
+  for(const theme of ['light','dark']){
+   const colors=await page.evaluate(theme=>{
+    document.documentElement.dataset.theme=theme;
+    const badge=getComputedStyle(document.querySelector('.operator-badge'));
+    return {background:badge.backgroundColor,color:badge.color};
+   },theme);
+   assert.deepEqual(colors,theme==='light'?{background:'rgb(0, 98, 204)',color:'rgb(255, 255, 255)'}:{background:'rgb(102, 173, 255)',color:'rgb(23, 26, 32)'});
+  }
+  await page.evaluate(()=>{document.documentElement.dataset.theme='light';});
+  await page.waitForSelector('.explore-pagination');
+  assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),[1,2]);
+  const firstTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
+  await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
+  await page.waitForFunction(()=>new URL(location.href).searchParams.get('page')==='1'&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===12,{timeout:30000});
+  assert.equal(new URL(page.url()).searchParams.get('author'),'operator');
+  assert.notEqual(await page.$eval('.explore-card > h2 > a',el=>el.textContent),firstTitle);
+  await page.$eval('.explore-pagination .list-pagination-first',el=>el.click());
+  await page.waitForFunction(()=>!new URL(location.href).searchParams.has('page')&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===24,{timeout:30000});
+  for(const width of [320,390]){
+   await page.setViewport({width,height:844});
+   assert.equal(await page.$eval('.explore-pagination',el=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&el.scrollWidth<=el.clientWidth+1;}),true);
+  }
+  await page.setViewport({width:1440,height:1000});
   // Exercise Chrome's native IME path, not only synthetic React events.
   const searchSelector='.explore-search input';
   const searchSession=await page.target().createCDPSession();
@@ -95,6 +119,7 @@ const {spawn}=require('node:child_process');
   for(const name of files){const bytes=await fs.readFile(path.join(dir,name));assert.equal(bytes.subarray(0,5).toString(),'%PDF-');assert.ok(bytes.length>10000);}
   await page.setViewport({width:390,height:844});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),true,'Page must not overflow on mobile');
-  console.log(JSON.stringify({imeSearch:true,debouncedSearch:true,searchFocus:true,searchReset:true,operatorFilter:true,operatorBadge:true,versions:details.map(d=>d.label),blankRiskCells:true,pdfDownloads:files.length,mobileWidth:true}));
+  await require('./main-pagination-browser.cjs').verifyListPagination(browser,baseUrl);
+  console.log(JSON.stringify({numberedExplore:true,invertedBadge:true,noDecorativeIcon:true,imeSearch:true,debouncedSearch:true,searchFocus:true,searchReset:true,operatorFilter:true,operatorBadge:true,versions:details.map(d=>d.label),blankRiskCells:true,pdfDownloads:files.length,mobileWidth:true}));
  } finally {if(browser)await browser.close();if(preview)preview.kill();await fs.rm(dir,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,3 +1,4 @@
+import ListPagination from './ListPagination';
 import ExploreSearchInput from './ExploreSearchInput';
 import '../styles/operator-documents.css';
 import { getOperatorUi } from '../locales/operatorUi';
@@ -12,7 +13,6 @@ import '../styles/community.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { exploreQuery, exploreSearch } from '../utils/discovery';
-import { getDiscoveryUi } from '../locales/discoveryUi';
 import { useTranslation } from 'react-i18next';
 import { LanguageLink } from '../hooks/useLanguage';
 import { listPublicJsa } from '../services/publicJsaService';
@@ -45,7 +45,6 @@ export default function PublicExplore() {
   const { t, i18n } = useTranslation(['explore', 'tags']);
   const ui = getPublicUi(i18n.language);
   const operatorUi=getOperatorUi(i18n.language);
-  const d=getDiscoveryUi(i18n.language);
   const [params,setParams]=useSearchParams();
   const query=useMemo(()=>exploreQuery(params),[params]);
   const {search,sort,tags,page,country,author}=query;
@@ -133,8 +132,8 @@ export default function PublicExplore() {
       {loading && <div className="explore-loading" role="status" aria-label={ui.title}><span /><span /><span /></div>}
       {!loading && !error && rows.length === 0 && <div className="explore-state"><ExploreIcon name="search" /><p>{selectedCountry?countryUi.empty:ui.empty}</p>{selectedCountry&&<button onClick={()=>change({country:'all'})}>{countryUi.all}</button>}</div>}
       <PublicTranslationNotice translation={translation} locale={i18n.language}/>
-      <div className="jsa-card-grid explore-grid" aria-busy={loading}>{translation.rows.map(row => <article className="jsa-card explore-card" key={row.id}>
-        <div className="explore-card-top">{row.is_operator&&<span className="operator-badge">{operatorUi.badge}</span>}<span className="explore-document-icon"><ExploreIcon name="document" /></span><PublicProjectActions row={row} onChanged={()=>{change({});setAttempt(n=>n+1);}} /></div>
+      <div id="explore-results" className="jsa-card-grid explore-grid" aria-busy={loading}>{translation.rows.map(row => <article className="jsa-card explore-card" key={row.id}>
+        <div className="explore-card-top">{row.is_operator&&<span className="operator-badge">{operatorUi.badge}</span>}<PublicProjectActions row={row} onChanged={()=>{change({});setAttempt(n=>n+1);}} /></div>
         <h2 lang={getLanguageTag(translation.translated?i18n.language:row.public_locale||i18n.language)}><LanguageLink to={'/public-jsa/' + row.id}>{row.title || ui.detail}</LanguageLink></h2>
         <p className="explore-meta"><ExploreIcon name="steps" />{ui.steps}<strong>{row.analysis_data.length}</strong></p>
         <p className="explore-document-meta"><span>{countryLabel(row.public_country,i18n.language)}</span><span>{row.form_data.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}</span><time dateTime={row.created_at}>{new Date(row.created_at).toLocaleDateString(getLanguageTag(i18n.language))}</time></p>
@@ -142,7 +141,9 @@ export default function PublicExplore() {
         <dl className="explore-metrics">{[['eye',ui.views,row.view_count],['reuse',ui.reuses,row.reuse_count],['bookmark',ui.scraps,row.scrap_count]].map(([icon,label,count]) => <div key={icon}><dt><ExploreIcon name={icon} />{label}</dt><dd>{count.toLocaleString(getLanguageTag(i18n.language))}</dd></div>)}</dl>
         <div className="explore-card-footer"><LanguageLink className="explore-detail" to={'/public-jsa/' + row.id}>{ui.detail}<ExploreIcon name="arrow" /></LanguageLink></div>
       </article>)}</div>
-      <nav className="explore-more">{page>0&&<LanguageLink rel="prev" to={'/explore'+exploreSearch({...query,page:page-1})}>{d.previous}</LanguageLink>}{hasMore&&<LanguageLink rel="next" to={'/explore'+exploreSearch({...query,page:page+1})}>{d.next}</LanguageLink>}</nav>
+      <ListPagination className="explore-pagination" current={page+1} total={Math.ceil(total/24)}
+        locale={i18n.language} controls="explore-results" hrefForPage={number=>'/explore'+exploreSearch({...query,page:number-1})}
+        onPageChange={()=>document.querySelector('.explore-results-heading')?.scrollIntoView({behavior:'smooth',block:'start'})} />
     </main><CommunityFooter/>
   </div>;
 }

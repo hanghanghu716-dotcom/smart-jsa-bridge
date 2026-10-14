@@ -3,7 +3,7 @@ import { caseViewCounts } from '../services/caseStudyMetrics';
 import { sortCases } from '../utils/caseSort';
 import { getPublicUi } from '../locales/publicUi';
 import ThemeSettings from '../components/ThemeSettings';
-import CasePageJump from '../components/CasePageJump';
+import ListPagination from '../components/ListPagination';
 import { cleanSummary } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
 import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
@@ -305,9 +305,6 @@ export default function Main() {
   // 필터링된 결과 데이터를 기준으로 페이지네이션 계산 처리
   const totalPages = Math.ceil(filteredCaseStudies.length / ITEMS_PER_PAGE);
   const activePage = Math.min(currentPage, Math.max(1, totalPages));
-  const groupStart = Math.floor((activePage - 1) / 5) * 5 + 1;
-  const groupEnd = Math.min(groupStart + 4, totalPages);
-  const visiblePages = Array.from({ length: Math.max(0, groupEnd - groupStart + 1) }, (_, i) => groupStart + i);
   const indexOfLastItem = activePage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = filteredCaseStudies.slice(indexOfFirstItem, indexOfLastItem);
@@ -698,30 +695,8 @@ export default function Main() {
               </div>
 
               {/* 페이지네이션 인터페이스 제어 요소 */}
-              {totalPages > 1 && (
-                <nav className="case-pagination" aria-label={t('casePagination.label')} dir={i18n.dir()}>
-                  <button type="button" className="case-pagination-previous" disabled={groupStart === 1}
-                    onClick={() => handlePageChange(groupStart - 5)}>{t('casePagination.previousGroup')}</button>
-                  <div className="case-pagination-numbers">
-                  {visiblePages.map((pageNumber) => (
-                    <button
-                      type="button"
-                      key={pageNumber}
-                      onClick={() => handlePageChange(pageNumber)}
-                      aria-label={t('casePagination.page', { page: pageNumber })}
-                      aria-current={activePage === pageNumber ? 'page' : undefined}
-                    >
-                      {pageNumber}
-                    </button>
-                  ))}
-                  </div>
-                  <button type="button" className="case-pagination-next" disabled={groupEnd >= totalPages}
-                    onClick={() => handlePageChange(groupEnd + 1)}>{t('casePagination.nextGroup')}</button>
-                  <span className="case-pagination-status" aria-live="polite">{t('casePagination.status', { current: activePage, total: totalPages })}</span>
-                  <CasePageJump key={`${currentLanguage}:${activePage}:${totalPages}:${searchQuery}`}
-                    current={activePage} total={totalPages} onPageChange={handlePageChange} t={t}/>
-                </nav>
-              )}
+              <ListPagination className="case-pagination" current={activePage} total={totalPages}
+                locale={currentLanguage} controls="case-study-results" onPageChange={handlePageChange} />
 
               <p style={{ marginTop: '24px' }}><LanguageLink to="/archive">{t('footerArchive', { defaultValue: 'Archive' })}</LanguageLink></p>
             </>
