@@ -541,16 +541,27 @@
         "missing_recommendation_links",
         "regional_review_pending",
         "translation_review_pending",
-        "technical_review_pending",
-        "full_source_read_pending"
+        "technical_review_pending"
       ],
       "source": {
+        "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
         "authority": "EXPRO",
-        "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
-        "section": "الدليل الإجرائي لعمليات الإغلاق والعزل",
-        "scope": "يلزم التحقق من النسخة الكاملة ونطاق تطبيق دليل الجهة قبل الاعتماد",
-        "checkedAt": "2026-10-14"
-      }
+        "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+        "checkedAt": "2026-10-14",
+        "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
+        "retrieval": "relevant_primary_sections_read"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary-source comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "تقييم مخاطر العزل وحدوده والتصاريح المرتبطة قبل العمل.",
+          "التحقق من المواد الخطرة والطاقة المخزنة ومن النسخة المعتمدة بالمشروع."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": []
     },
     {
       "locale": "pt-BR",
@@ -582,12 +593,33 @@
         "technical_review_pending"
       ],
       "source": {
+        "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
         "authority": "Ministério do Trabalho e Emprego",
-        "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-12-atualizada-2022-1.pdf",
-        "section": "NR-12, item 12.11.3",
-        "scope": "Confirmar texto vigente, escopo e procedimentos específicos antes da publicação",
-        "checkedAt": "2026-10-14"
-      }
+        "section": "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21",
+        "checkedAt": "2026-10-14",
+        "scope": "Manutenção com máquina parada; intervenções especiais exigem análise separada. A compilação não substitui o DOU.",
+        "retrieval": "primary_pdf_relevant_sections_read"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary PDF comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "O item 12.11.3 trata de isolamento, descarga, bloqueio e identificação com a máquina parada.",
+          "As situações especiais de 12.11.3.1 a 12.11.3.3 ficam fora do escopo deste rascunho."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": [
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
+          "authority": "Ministério do Trabalho e Emprego",
+          "section": "Índice oficial: última modificação indicada, Portaria MTE 344/2024",
+          "checkedAt": "2026-10-14",
+          "scope": "Índice e PDF consolidado conferidos; revisão técnica e regional ainda pendente",
+          "retrieval": "primary_index_and_relevant_pdf_sections_read"
+        }
+      ]
     },
     {
       "locale": "ru-RU",
@@ -619,12 +651,41 @@
         "current_domestic_source_unverified"
       ],
       "source": {
-        "authority": "CCOHS (foreign technical guidance)",
         "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+        "authority": "CCOHS (foreign technical guidance)",
         "section": "Basic steps and verification",
+        "checkedAt": "2026-10-14",
         "scope": "Технический черновик по зарубежному руководству; действующие требования РФ не подтверждены",
-        "checkedAt": "2026-10-14"
-      }
+        "retrieval": "primary_page_or_document"
+      },
+      "sourceCheck": {
+        "status": "primary_documents_identified_full_text_pending",
+        "method": "Official publication metadata; full-text requests timed out",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "Order 833н and amendment 287н official publication identifiers located.",
+          "No domestic technical clause or extension date is certified from unread primary text."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": [
+        {
+          "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
+          "checkedAt": "2026-10-14",
+          "scope": "Официальная публикация найдена; полный текст недоступен при проверке, применимость не подтверждена",
+          "retrieval": "primary_search_metadata_full_text_timeout"
+        },
+        {
+          "url": "https://publication.pravo.gov.ru/document/0001202505300025",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
+          "checkedAt": "2026-10-14",
+          "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
+          "retrieval": "primary_search_metadata_full_text_timeout"
+        }
+      ]
     },
     {
       "locale": "ko",
@@ -652,23 +713,35 @@
       "gaps": [
         "regional_review_pending",
         "translation_review_pending",
-        "technical_review_pending",
-        "full_source_read_pending"
+        "technical_review_pending"
       ],
       "source": {
-        "authority": "고용노동부",
-        "url": "https://www.moel.go.kr/local/busan/common/downloadFile.do?bbs_id=LOCAL1&bbs_seq=20210500425&file_seq=20210500561",
-        "section": "LOTO 작업절차 바로알기",
-        "scope": "공식 검색 결과로 자료 확인; 원문 전체와 현행 적용 기준 재검토 필요",
-        "checkedAt": "2026-10-14"
-      }
+        "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+        "authority": "국가법령정보센터",
+        "section": "산업안전보건기준에 관한 규칙 제92조 제1항~제4항",
+        "checkedAt": "2026-10-14",
+        "scope": "기계 정비 등의 운전정지·재기동 방지 및 압축 기체·액체 방출 위험. 기계 구조·작업 방법에 따른 적용 여부는 현장 검토 필요",
+        "retrieval": "relevant_primary_sections_read"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary-source comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "검색 요약 대신 제92조 원문을 대조했습니다.",
+          "재기동 방지와 잔류 압력 통제를 구분했습니다."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": []
     }
   ],
   "sourceCautions": [
-    {
-      "jurisdiction": "RU",
-      "url": "https://mintrud.gov.ru/docs/mintrud/orders/1730",
-      "observation": "The official landing page still states expiry 2025-12-31. Later amendments and current applicability were not verified. This page is not used as a current regulatory approval."
-    }
-  ]
+    "Sources and relevant sections were checked separately from technical, regional and translation approval. All draft approvals remain pending.",
+    "Korean section 92, Saudi EXPRO project isolation sections and Brazilian NR-12 12.11.3/exceptions were read from official full sources.",
+    "Russia: original/amendment publication records identified, full-text retrieval failed; domestic applicability is unverified.",
+    "Saudi guidance is project-scoped; Victoria guidance does not cover all Australia; Great Britain guidance does not certify Northern Ireland.",
+    "Coverage counts retain their original snapshot time. One initial draft per Locale does not establish complete work/hazard coverage."
+  ],
+  "sourceReviewUpdatedAt": "2026-10-14"
 }

@@ -3,6 +3,8 @@ import { SUPPORTED_LANGS } from '../src/locales/config.js';
 const count = value => Number.isInteger(value) && value >= 0 ? value : null;
 const fields = (object, keys) => Object.fromEntries(keys.map(key => [key, count(object?.[key])]));
 const locales = new Set(SUPPORTED_LANGS);
+// Korean uses `ko` in the UI and `ko-KR` in the existing database.
+const dataLocales = new Set([...SUPPORTED_LANGS, 'ko-KR']);
 const translations = ['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations'];
 const masters = ['Hazards', 'Current_Measures', 'Advanced_Measures'];
 const mappingTables = ['hazard_measure_mappings', 'current_advanced_measure_mappings'];
@@ -27,18 +29,18 @@ export function publicAuditSummary(report) {
       const value = report.masterReferences?.[table];
       return [table, { ...fields(value, ['rows', 'missingReferencedMaster']),
         distinctMissingPublicMasterIds: Array.isArray(value?.missingMasterIds) ? value.missingMasterIds.length : null,
-        affectedLocales: Object.fromEntries(Object.entries(value?.affectedLocales || {}).filter(([locale]) => locales.has(locale)).map(([locale, total]) => [locale, count(total)])) }];
+        affectedLocales: Object.fromEntries(Object.entries(value?.affectedLocales || {}).filter(([locale]) => dataLocales.has(locale)).map(([locale, total]) => [locale, count(total)])) }];
     })),
     invalidTranslationLocales: Object.fromEntries(translations.map(table => {
       const rows = report.invalidTranslationLocales?.[table];
       const peers = rows?.flatMap(row => row.sameMasterTranslations || []);
       return [table, { rows: Array.isArray(rows) ? rows.length : null,
         sameMasterLocaleCounts: Array.isArray(rows) && rows.every(row => Array.isArray(row.sameMasterTranslations))
-          ? Object.fromEntries([...locales].map(locale => [locale, peers.filter(peer => peer.locale === locale).length]).filter(([, total]) => total)) : null }];
+          ? Object.fromEntries([...dataLocales].map(locale => [locale, peers.filter(peer => peer.locale === locale).length]).filter(([, total]) => total)) : null }];
     })),
     duplicateMappingKinds: Object.fromEntries(mappingTables.map(table => [table, fields(report.duplicateMappingKinds?.[table],
       ['identicalScorePairs', 'conflictingScorePairs', 'extraRows'])])),
-    coverage: (report.coverage || []).filter(row => locales.has(row.locale) && locales.has(row.dataLocale)).map(row => ({
+    coverage: (report.coverage || []).filter(row => locales.has(row.locale) && dataLocales.has(row.dataLocale)).map(row => ({
       locale: row.locale, dataLocale: row.dataLocale, sharedData: row.sharedData === true,
       ...fields(row, ['hazards', 'controls', 'additionalControls', 'exactLocaleCaseGroups', 'availableCaseGroups']),
       jurisdictionSuitability: 'not_verified' })),

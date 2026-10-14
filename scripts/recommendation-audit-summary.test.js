@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { publicAuditSummary } from './recommendation-audit-summary.js';
+import { SUPPORTED_LANGS } from '../src/locales/config.js';
 
 test('shared audit output contains only counts and supported Locale names, never raw evidence', () => {
   const sentinel = 'PRIVATE_ROW_OR_PROJECT_SENTINEL';
@@ -27,4 +28,15 @@ test('unavailable evidence is unknown and malformed count fields cannot leak raw
   assert.equal(result.translations.Hazards_Translations.rows, null);
   assert.equal(result.invalidTranslationLocales.Current_Measures_Translations.rows, null);
   assert.equal(JSON.stringify(result).includes('PRIVATE'), false);
+});
+
+test('all 18 UI Locales survive aggregation including the distinct Korean database code', () => {
+  const report = { coverage: SUPPORTED_LANGS.map(locale => ({ locale, dataLocale: locale === 'ko' ? 'ko-KR' : locale, hazards: 1 })),
+    masterReferences: { Hazards: { affectedLocales: { 'ko-KR': 2 } } },
+    invalidTranslationLocales: { Current_Measures_Translations: [{ sameMasterTranslations: [{ locale: 'ko-KR' }] }] } };
+  const summary = publicAuditSummary(report);
+  assert.equal(summary.coverage.length, 18);
+  assert.equal(summary.coverage.find(row => row.locale === 'ko').dataLocale, 'ko-KR');
+  assert.equal(summary.masterReferences.Hazards.affectedLocales['ko-KR'], 2);
+  assert.equal(summary.invalidTranslationLocales.Current_Measures_Translations.sameMasterLocaleCounts['ko-KR'], 1);
 });
