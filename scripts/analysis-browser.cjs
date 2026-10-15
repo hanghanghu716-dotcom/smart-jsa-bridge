@@ -95,6 +95,9 @@ const cp = require('node:child_process');
         });
         await page.click('[data-export-copy]');
         const copyMessage = await copyFinished;
+        // The copy notification dialog can return before Chrome restores tab focus.
+        await page.bringToFront();
+        await page.waitForFunction(() => document.hasFocus());
         const copied = await page.evaluate(async () => {
           const items = await navigator.clipboard.read();
           return { text: await navigator.clipboard.readText(), html: await (await items[0].getType('text/html')).text() };
