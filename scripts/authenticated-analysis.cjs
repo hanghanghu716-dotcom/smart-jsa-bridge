@@ -51,6 +51,15 @@ const { randomUUID } = require('node:crypto');
     assert.equal(result.error, null, result.error?.message);
     return result.data;
   };
+  const waitForDraft = async (id, predicate) => {
+    const deadline = Date.now() + 20000;
+    do {
+      const row = await draftById(owner, id);
+      if (predicate(row)) return row;
+      await new Promise(resolve => setTimeout(resolve, 250));
+    } while (Date.now() < deadline);
+    throw new Error('Cloud draft did not reach the expected state');
+  };
   const rpcArgs = (row, version, title = row.title) => ({ p_id: row.id, p_expected_version: version,
     p_title: title, p_current_stage: row.current_stage, p_form_data: row.form_data,
     p_participants: row.participants, p_procedures: row.procedures, p_analysis_data: row.analysis_data,
@@ -63,7 +72,8 @@ const { randomUUID } = require('node:crypto');
     headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     for (const locale of SUPPORTED_LANGS) {
       const context = await browser.createIncognitoBrowserContext(), page = await context.newPage();
-      const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set();
+      const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [];
+      let stage = 'login';
       await page.setViewport({ width: 1440, height: 1100 });
       await page.setRequestInterception(true);
       page.on('request', request => {
@@ -74,6 +84,13 @@ const { randomUUID } = require('node:crypto');
         else request.abort();
       });
       page.on('pageerror', error => errors.push(error.message));
+      page.on('response', async response => {
+        if (response.url().startsWith(api + '/rest/v1/') && response.status() >= 400) {
+          const failure = await response.json().catch(() => ({}));
+          apiFailures.push({ path: new URL(response.url()).pathname, status: response.status(),
+            code: failure.code, message: failure.message });
+        }
+      });
       page.on('dialog', async dialog => { errors.push(`Unexpected dialog: ${dialog.message()}`); await dialog.dismiss(); });
       const url = `${origin}/scripts/auth-integration/index.html?locale=${locale}`;
       try {
@@ -82,6 +99,7 @@ const { randomUUID } = require('node:crypto');
         await page.type('input[name="email"]', email);
         await page.type('input[name="password"]', password);
         await page.click('button[type="submit"]');
+        stage = 'recommendation selection';
         await page.waitForSelector('.analysis-candidates label input');
         await page.click('.analysis-candidates label input');
         await page.click('[data-add-selected]');
@@ -96,13 +114,11 @@ const { randomUUID } = require('node:crypto');
         await page.click('[data-recommend-advanced]');
         await page.waitForSelector('[data-recommendation-item][data-score="0.8"]');
         await page.click('[data-recommendation-item]');
-        await page.waitForFunction(async expected => {
-          const drafts = await import('/src/services/jsaDraftService.js');
-          const row = await drafts.loadActiveDraft();
-          return row?.analysis_data?.[0]?.risks?.[0]?.recommend_measure === expected;
-        }, { polling: 250, timeout: 15000 }, words[2]);
+        stage = 'cloud autosave';
         const id = await page.evaluate(() => sessionStorage.getItem('smartjsa_active_draft_id'));
-        const saved = await draftById(owner, id), risk = saved.analysis_data[0].risks[0];
+        // Read through a separate real API client; the observer must not mutate browser draft versions.
+        const saved = await waitForDraft(id, row => row?.analysis_data?.[0]?.risks?.[0]?.recommend_measure === words[2]);
+        const risk = saved.analysis_data[0].risks[0];
         assert.equal(saved.user_id, ownerId);
         assert.equal(saved.form_data.context.documentLocale, locale);
         assert.equal(risk.hazard_reference.locale, recommendationContext({}, locale).dataLocale);
@@ -111,6 +127,7 @@ const { randomUUID } = require('node:crypto');
         assert.equal(risk.current_recommendation.scoreKind, 'text_similarity');
         assert.equal(risk.current_measure_confirmed, true);
         assert.equal(await page.evaluate(() => Object.keys(localStorage).some(key => key.startsWith('smartjsa_guest_draft:'))), false);
+        stage = 'cloud restore';
         await page.goto(url + '&restore=1', { waitUntil: 'networkidle0' });
         await page.waitForFunction(text => document.querySelectorAll('.analysis-selected tbody textarea')[2]?.value === text, {}, words[2]);
         assert.deepEqual(await page.$$eval('.analysis-selected tbody textarea', els => els.map(el => el.value)), words);
@@ -120,16 +137,16 @@ const { randomUUID } = require('node:crypto');
         await page.click('.analysis-selected tbody textarea');
         await page.keyboard.down('Control'); await page.keyboard.press('A'); await page.keyboard.up('Control');
         await page.keyboard.type(edited);
-        await page.waitForFunction(async expected => {
-          const { loadActiveDraft } = await import('/src/services/jsaDraftService.js');
-          const risk = (await loadActiveDraft())?.analysis_data?.[0]?.risks?.[0];
-          return risk?.factor === expected && risk.hazard_reference === null && risk.current_measure_confirmed === false;
-        }, { polling: 250, timeout: 15000 }, edited);
-        const editedRow = await draftById(owner, id), editedRisk = editedRow.analysis_data[0].risks[0];
+        stage = 'edited cloud autosave';
+        const editedRow = await waitForDraft(id, row => {
+          const risk = row?.analysis_data?.[0]?.risks?.[0];
+          return risk?.factor === edited && risk.hazard_reference === null && risk.current_measure_confirmed === false;
+        }), editedRisk = editedRow.analysis_data[0].risks[0];
         assert.equal(editedRisk.current_recommendation, null);
         assert.equal(editedRisk.advanced_recommendation, null);
         assert.equal(editedRisk.current_measure, words[1]);
         assert.equal(editedRisk.recommend_measure, words[2]);
+        stage = 'edited cloud restore and document';
         await page.goto(url + '&restore=1', { waitUntil: 'networkidle0' });
         await page.waitForFunction(text => document.querySelector('.analysis-selected tbody textarea')?.value === text, {}, edited);
         assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
@@ -148,6 +165,8 @@ const { randomUUID } = require('node:crypto');
           percentagesPreserved: true, cloudAutosave: true, reloadFromDatabase: true,
           editedReferencesInvalidated: true, documentRendered: true });
         console.log(`PASS authenticated ${locale}: recommendations, percentages, cloud draft, restore, edit invalidation, document`);
+      } catch (error) {
+        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}`);
       } finally { await context.close(); }
     }
 

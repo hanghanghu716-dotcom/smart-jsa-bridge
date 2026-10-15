@@ -28,7 +28,7 @@ enable_signup = true
 enable_confirmations = false
 [studio]
 enabled = false
-[inbucket]
+[local_smtp]
 enabled = false
 [storage]
 enabled = false
