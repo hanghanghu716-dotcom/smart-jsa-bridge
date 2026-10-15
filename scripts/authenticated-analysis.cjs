@@ -157,7 +157,9 @@ const { randomUUID } = require('node:crypto');
         assert.equal(await page.$('[data-current-confirmed]'), null);
         // Editing a restored hazard must invalidate saved recommendation references and confirmation.
         const edited = words[0] + ' — edited';
-        await page.click('.analysis-selected tbody textarea');
+        // Recovery can still reflow as hazard loading finishes; focus the input directly before typing.
+        await page.focus('.analysis-selected tbody textarea');
+        assert.equal(await page.$eval('.analysis-selected tbody textarea', el => el === document.activeElement), true);
         await page.keyboard.down('Control'); await page.keyboard.press('A'); await page.keyboard.up('Control');
         await page.keyboard.type(edited);
         assert.equal(await page.$eval('.analysis-selected tbody textarea', el => el.value), edited, 'Browser input must finish before cloud observation');
