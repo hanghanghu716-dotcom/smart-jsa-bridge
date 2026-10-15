@@ -1227,7 +1227,7 @@
       "hazard": "Libération d’air sous pression résiduelle",
       "cause": "Alimentation, retour ou poche d’air non maîtrisés",
       "consequence": "Blessure par jet d’air ou projection de pièces",
-      "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de consignation propre à l’équipement. Appliquer la procédure propre à la machine : isoler les alimentations, effectuer le cadenassage avec chaque personne accédant à la zone dangereuse et évacuer la pression résiduelle en sécurité avant ouverture.",
+      "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de cadenassage propre à l’équipement. Appliquer la procédure propre à la machine : isoler les alimentations, effectuer le cadenassage avec chaque personne accédant à la zone dangereuse et évacuer la pression résiduelle en sécurité avant ouverture.",
       "verification": "Vérifier l’efficacité du cadenassage et la dépressurisation selon la procédure; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression.",
       "coverageLimit": "Pression d’un filtre intégré à une machine uniquement; évaluer séparément les autres risques et toute méthode autre que le cadenassage.",
       "conditions": [
@@ -2189,7 +2189,7 @@
       "cause": "Zufuhr, Rückströmung oder eingeschlossene Luft bleiben bestehen",
       "consequence": "Verletzung durch Luftstrahl oder herausgeschleuderte Teile",
       "control": "Vor der gerätespezifischen Freischaltung Einlass, Auslass, Bypass und angeschlossene Kondensatleitungen auf mögliche Druckzufuhr oder Rückspeisung prüfen. Nach der gerätespezifischen Anweisung unter Berücksichtigung der Herstellerangaben alle Zuführungen absperren und sichern; eingeschlossenen Druck vor dem Öffnen sicher abbauen.",
-      "verification": "Die fachkundige, beauftragte Person prüft Trennung und Druckfreiheit; bei möglichem Druckaufbau weiter kontrollieren. Bei ungeklärter Absperrgrenze oder nicht nachgewiesener Druckfreiheit das Gehäuse geschlossen halten; es nicht zur Druckprüfung lösen.",
+      "verification": "Die fachkundige, beauftragte Person prüft Trennung und Druckfreiheit; bei möglichem Druckaufbau weiter kontrollieren. Bei ungeklärter Absperrgrenze oder nicht nachgewiesener Druckfreiheit das Gehäuse geschlossen halten; es nicht zur Prüfung der Druckfreiheit lösen.",
       "coverageLimit": "Nur Druckfreisetzung; weitere Wartungsgefahren gesondert beurteilen.",
       "conditions": [
         "Gerätespezifische Freischaltanweisung vorhanden",
@@ -3342,7 +3342,7 @@
       "cause": "بقاء التغذية أو التدفق العكسي أو الهواء المحبوس",
       "consequence": "إصابة بسبب اندفاع الهواء أو تطاير الأجزاء",
       "control": "قبل تطبيق إجراء المعدة، حدد المدخل والمخرج وخط التجاوز وخطوط التصريف المتصلة التي قد تغذي المرشح أو تعيد ضغطه. اتبع إجراء المعدة لعزل جميع مصادر التغذية وتأمينها وتفريغ الضغط المحبوس بأمان قبل الفتح.",
-      "verification": "يتحقق شخص مخوّل من العزل وزوال الضغط؛ وتستمر المراقبة إذا أمكن تراكم الضغط مجددًا. أبقِ جسم المرشح مغلقًا إذا لم تُتحقق حدود العزل وزوال الضغط؛ ولا تُرخِ الجسم لاختبار وجود الضغط.",
+      "verification": "يتحقق شخص مخوّل من العزل وزوال الضغط؛ وتستمر المراقبة إذا أمكن تراكم الضغط مجددًا. أبقِ جسم المرشح مغلقًا إذا لم يتم التحقق من حدود العزل وزوال الضغط؛ ولا تُرخِ الجسم لاختبار وجود الضغط.",
       "coverageLimit": "يقتصر المحتوى على خطر تحرر الضغط؛ وتُقيّم مخاطر الصيانة الأخرى بشكل منفصل.",
       "conditions": [
         "توفر إجراء عزل خاص بالمعدة",
