@@ -1,6 +1,8 @@
 # Recommendation data correction register - 2026-10-14
 
-## Follow-up status - 2026-10-15
+## Historical audit snapshot - 2026-10-15, before subsequent operations
+
+The operational counts and execution status in this section and table describe the earlier audit checkpoint. They are not current DB status or instructions to retry a correction. Subsequent private backup, restoration, application and constraint evidence is recorded in the private operational handover; recheck it before any DB action. This public document tracks source review and application code without publishing new operational payloads.
 
 Management access is restored. Privileged reads confirmed that the 1,254 current-control and 2,948 additional-control translations genuinely lack their referenced masters. The 690 null hazard links remain. Duplicate master-ID groups were also confirmed: 28 current-control groups (13 with conflicting content) and 108 additional-control groups (six with conflicting content). The audit now reports these aggregate key conflicts; identities and source text remain private.
 
@@ -12,7 +14,7 @@ Automatic approval review rejected uploading detailed repair SQL and internal op
 
 The public DB audit recovered at **11:23:23 UTC**. `recommendation-audit-restored-20261014.json` records complete sequential reads of six content/mapping tables and three master tables under public-anon/RLS visibility. Earlier 503/522 attempts remain separate evidence. This is not a consistent backup or proof of privileged visibility. No production data or constraints have changed.
 
-| Finding | Latest evidence | Prepared action and remaining dependency |
+| Finding | Historical evidence | Action considered at that checkpoint |
 | --- | --- | --- |
 | Missing hazard master IDs | 345 es-ES + 345 ru-RU translations | Preserve translation IDs; resolve canonical correspondence from originals and bilingual review, never numeric offsets |
 | Confirmed missing master references | 1,254 control and 2,948 additional-control translations | Privileged reads confirmed genuine absence; resolve originals without deleting translations or inventing master IDs |
@@ -36,7 +38,7 @@ Three official incident contexts (fall, electrical arc, nitrogen asphyxiation) p
 
 1. Run `scripts/sql/audit-recommendation-schema.sql` on the intended project using the authorized management reader. Inspect column types, outgoing/incoming constraints, master/translation RLS and visibility.
 2. After confirming schema compatibility, run `scripts/sql/review-recommendation-corrections.sql`. Its repeatable-read, read-only transaction captures missing references, the unsupported-Locale row and complete duplicate rows, then rolls back. Keep returned evidence privately. This is not a backup.
-3. The private consistent snapshot and two-table copy restoration are complete. Detailed evidence remains private. Off-site backup and separate staging verification remain open; the copy rehearsal does not certify semantic recommendation quality.
+3. Verify current backup and restoration evidence in the private operational handover. A copy rehearsal does not certify semantic recommendation quality or authenticated application behavior; keep detailed evidence private.
 4. Build a reviewed change manifest with original row identity/hash, reason, exact proposed fields, source evidence, reviewer, expected affected-row count and rollback action. Preserve IDs and original scores. Do not use ctid, arbitrary row order, numeric offsets or score maxima.
 5. Apply schema-verified changes to staging, compare counts/references, then run content, Locale and user-flow checks. Prepare an immutable candidate release and previous-version rollback pointer before production activation.
 
@@ -50,9 +52,11 @@ The legacy hazard-ID reconstruction script no longer chooses a canonical ID by m
 
 ## Operational dependencies
 
-Supabase management reads and private snapshot/copy creation now work. Public recommendation row corrections remain unapplied after expired or declined management requests. Independently recorded reviews, actual corpus evaluation, off-site backup, authenticated staging and production application remain open. No main merge or site deployment occurred.
+Independently recorded reviews, actual corpus evaluation, authenticated staging and application rollout remain open. Consult the private operational handover for current DB correction and backup status; the historical counts above must not trigger repeat application. No main merge or site deployment is claimed by this register.
 
 Detailed row evidence and a non-executable Locale correction proposal are retained in the local working copy. Automatic approval review blocked remote publication of that detailed payload. Only aggregate counts and code are included in this follow-up. Public audit logs/artifacts now use an allowlisted summary without row IDs, source text, project identifiers or source fingerprints.
+
+The old batch-translation and JSON-to-SQL commands have also been retired. They now stop before API/file access, with instructions for reviewed drafts, correspondence staging and a separate migration. They cannot assign model-generated IDs, invent compliance codes or silently overwrite duplicate translations. See `recommendation-rollout.md#legacy-import-retirement`.
 
 ## Task coverage follow-up
 
