@@ -56,8 +56,8 @@ const cp = require('node:child_process');
         assert.equal(await page.evaluate(() => document.body.textContent.includes('Unrelated high score')), false);
         await page.click('[data-recommendation-item]');
         await page.waitForFunction(value => document.querySelectorAll('.analysis-selected tbody textarea')[1]?.value === value, {}, words[1]);
-        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
-        await page.click('[data-current-confirmed]');
+        assert.equal(await page.$('[data-current-confirmed]'), null);
+
         await page.click('[data-recommend-advanced]');
         await page.waitForSelector('[data-recommendation-item][data-score="0.8"]');
         assert.equal(await page.$$eval('[data-recommendation-item]', items => items.length), 1, locale + ': broken advanced identities excluded');
@@ -67,7 +67,7 @@ const cp = require('node:child_process');
         await page.keyboard.down('Control'); await page.keyboard.press('A'); await page.keyboard.up('Control');
         await page.keyboard.type('Unrelated manual input');
         assert.deepEqual(await controls(), ['Unrelated manual input', words[1], words[2]]);
-        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
+        assert.equal(await page.$('[data-current-confirmed]'), null);
         await page.waitForFunction(() => {
           const id = sessionStorage.getItem('smartjsa_active_draft_id');
           const data = JSON.parse(localStorage.getItem('smartjsa_guest_draft:' + id) || 'null');
@@ -80,6 +80,26 @@ const cp = require('node:child_process');
         assert.equal(snapshot.analysis_data[0].risks[0].hazard_reference, null);
         assert.equal(snapshot.analysis_data[0].riskLevel, null);
         assert.equal(snapshot.form_data.context.documentLocale, locale);
+        await page.select('[data-assessed-frequency]', '4');
+        await page.select('[data-assessed-severity]', '4');
+        await page.waitForSelector('[data-risk-limit-warning]');
+        if (locale === 'ko') {
+          const screenshot = await (await page.$('.analysis-selected')).screenshot({ type: 'png' });
+          await fs.writeFile('artifacts/recommendations/ko-analysis-risk-limit.png', screenshot);
+          console.log('ANALYSIS_UI_PREVIEW ' + screenshot.toString('base64'));
+        }
+        const limitDialog = new Promise((resolve, reject) => {
+          const timeout = setTimeout(() => reject(Error('Risk limit did not block progression')), 10000);
+          page.once('dialog', dialog => { clearTimeout(timeout); resolve(dialog.message()); });
+        });
+        await page.click('[data-analysis-next]');
+        assert.ok((await limitDialog).includes('16'), locale + ': localized blocking message');
+        assert.equal(await page.$('.designer-paper'), null);
+        assert.ok(await page.$('[data-risk-limit-warning]'));
+        await page.select('[data-assessed-frequency]', '3');
+        await page.select('[data-assessed-severity]', '5');
+        await page.waitForFunction(() => document.querySelector('[data-assessed-score]')?.textContent === '15');
+        assert.equal(await page.$('[data-risk-limit-warning]'), null);
         await page.click('[data-analysis-next]');
         await page.waitForSelector('.designer-paper .document-content');
         await page.click('[data-designer-next]');
@@ -164,8 +184,8 @@ const cp = require('node:child_process');
         await page.waitForSelector('[data-reviewed-evidence]');
         assert.equal(await page.$eval('[data-recommendation-item]', el => el.dataset.score), '0.72');
         await page.click('[data-recommendation-item]');
-        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
-        await page.click('[data-current-confirmed]'); await page.click('[data-recommend-advanced]');
+        assert.equal(await page.$('[data-current-confirmed]'), null);
+        await page.click('[data-recommend-advanced]');
         await page.waitForSelector('[data-recommendation-item][data-score="0.8"]'); await page.click('[data-recommendation-item]');
         assert.deepEqual(await controls(), [words[0], words[1], words[2]]);
         await page.waitForFunction(() => {
@@ -186,13 +206,44 @@ const cp = require('node:child_process');
         assert.equal(await page.$('[data-recommendation-item]'), null);
         assert.deepEqual(await controls(), [words[0], words[1], words[2]]);
         assert.deepEqual(errors, [], locale + ': complete case journey errors');
-        results.push({ locale, extraction: true, recommendations: true, confirmation: true, manualEdit: true, guestSaveRestore: true,
+        results.push({ locale, extraction: true, recommendations: true, confirmationUiRemoved: true, riskLimit16Blocked15Allowed: true, manualEdit: true, guestSaveRestore: true,
           documentDesigner: true, export: true, clipboard: true, pdfDownload: true, legacyExportWithEnglishUi: true,
           caseSelection: true, requiredAndExcludedConditions: true, infoProcedureAnalysis: true, reviewedRecommendationPercent: true, sourceRevisionInvalidation: true });
       } catch (error) {
         await fs.writeFile(`artifacts/recommendations/${locale}-failure.html`, await page.content());
         console.error(JSON.stringify({ locale, errors, failure: error.message, text: (await page.$eval('body', el => el.innerText)).slice(-2500) }));
         throw error;
+      } finally { await page.close(); }
+    }
+    // Check every forward route, including the step shortcut and fast-track completion.
+    for (const fastTrack of [false, true]) {
+      const page = await browser.newPage();
+      await page.setRequestInterception(true);
+      page.on('request', request => /^https?:\/\/(?:127\.0\.0\.1|localhost)(?::|\/)/.test(request.url()) || /^(?:data|blob):/.test(request.url()) ? request.continue() : request.abort());
+      page.on('dialog', dialog => dialog.dismiss());
+      const expectBlocked = async selector => {
+        const message = new Promise((resolve, reject) => {
+          const timer = setTimeout(() => reject(Error('Forward navigation escaped risk gate')), 10000);
+          page.once('dialog', dialog => { clearTimeout(timer); resolve(dialog.message()); });
+        });
+        await page.click(selector); assert.ok((await message).includes('15'));
+        assert.equal(await page.$('.designer-paper'), null);
+      };
+      try {
+        await page.goto('http://127.0.0.1:' + port + '/scripts/analysis-fixture/index.html?locale=ko&riskGate=1&standard=1' + (fastTrack ? '&fastTrack=1' : ''), { waitUntil: 'networkidle0' });
+        await page.select('[data-assessed-frequency]', '4'); await page.select('[data-assessed-severity]', '4');
+        await expectBlocked('[data-analysis-step="1"]');
+        assert.equal(await page.$eval('[aria-current="step"]', el => el.getAttribute('data-analysis-step')), '0');
+        await expectBlocked('[data-analysis-next]');
+        await page.select('[data-assessed-frequency]', '3'); await page.select('[data-assessed-severity]', '5');
+        await page.click('[data-analysis-next]');
+        await page.waitForSelector('[data-analysis-step="1"][aria-current="step"]');
+        await page.select('[data-assessed-frequency]', '5'); await page.select('[data-assessed-severity]', '4');
+        await expectBlocked('[data-analysis-next]');
+        assert.equal(await page.$('[data-fast-track-result]'), null);
+        await page.select('[data-assessed-frequency]', '3'); await page.select('[data-assessed-severity]', '5');
+        await page.click('[data-analysis-next]');
+        await page.waitForSelector(fastTrack ? '[data-fast-track-result]' : '.designer-paper');
       } finally { await page.close(); }
     }
     await fs.writeFile('artifacts/recommendations/browser-results.json', JSON.stringify({ data: 'isolated data, guest storage, real Analysis/DocumentDesigner/Export and PDF/clipboard; not live DB/account testing', results }, null, 2));

@@ -9,7 +9,8 @@
     "confirmMain": "Êtes-vous sûr de vouloir revenir à l'écran principal ? Toutes les données non sauvegardées seront perdues.",
     "loginRequired": "Connexion requise.",
     "stepSaved": "L’étape a été enregistrée dans votre bibliothèque.",
-    "stepSaveFailed": "Impossible d’enregistrer l’étape."
+    "stepSaveFailed": "Impossible d’enregistrer l’étape.",
+    "riskProgressBlocked": "Le score de risque de l’étape {{step}} est de {{score}}, au-dessus du maximum admissible de {{limit}}. Renforcez les mesures et réévaluez cette étape avant de continuer."
   },
   "libModal": {
     "title": "Appeler la bibliothèque d'étapes de tâche",
@@ -145,11 +146,12 @@
     "unknownLanguage": "Langue non renseignée",
     "languageChanged": "Vérifier les textes conservés dans cette langue de document",
     "profileLabel": "Critères d’évaluation",
-    "profileHelp": "Par défaut : 5 × 5, mise en évidence à partir de 9. Valeurs configurables, pas une norme nationale. Un changement réinitialise les évaluations et conserve leur historique.",
+    "profileHelp": "Par défaut : 5 × 5, mise en évidence à partir de 9. Valeurs configurables, pas une norme nationale. Un changement réinitialise les évaluations et conserve leur historique. Dans la matrice 5 × 5, un score supérieur à 15 bloque la progression.",
     "frequencyMax": "Fréquence maximale",
     "severityMax": "Gravité maximale",
     "highFrom": "Mettre en évidence à partir de",
     "notAssessed": "Non évalué",
-    "criteria": "Procédure du site et définition des niveaux"
+    "criteria": "Procédure du site et définition des niveaux",
+    "riskLimitWarning": "Le score de risque de {{score}} dépasse le maximum admissible de {{limit}}. Renforcez les mesures et réévaluez le risque avant de continuer."
   }
 }

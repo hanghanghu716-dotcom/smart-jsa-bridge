@@ -12,6 +12,22 @@ export function assessedScore(frequency, severity, value) {
   const valid = (v, max) => v != null && v !== '' && Number.isInteger(Number(v)) && Number(v) >= 1 && Number(v) <= max;
   return valid(frequency, profile.frequencyMax) && valid(severity, profile.severityMax) ? Number(frequency) * Number(severity) : null;
 }
+// This application's 5 × 5 progression rule is separate from the configurable highlight colour.
+export function unacceptableRiskScore(frequency, severity, value) {
+  const profile = assessmentProfile(value);
+  const score = assessedScore(frequency, severity, profile);
+  return profile.frequencyMax === 5 && profile.severityMax === 5 && score > 15 ? score : null;
+}
+export function riskProgressBlock(steps, activeIndex, value, complete = false) {
+  const indices = complete ? steps.map((_, index) => index) : [activeIndex];
+  for (const index of indices) {
+    const step = steps[index];
+    if (!step) continue;
+    const score = unacceptableRiskScore(step.frequency, step.severity, value);
+    if (score !== null) return { index, score, limit: 15 };
+  }
+  return null;
+}
 export function changeAssessmentProfile(steps, before, after) {
   if (JSON.stringify(assessmentProfile(before)) === JSON.stringify(assessmentProfile(after))) return steps;
   return steps.map(step => ({ ...step, frequency: null, severity: null, riskLevel: null,

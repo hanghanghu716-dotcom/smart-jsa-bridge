@@ -9,7 +9,8 @@
     "confirmMain": "¿Desea ir a la pantalla principal? Los datos en los que está trabajando podrían eliminarse.",
     "loginRequired": "Es necesario iniciar sesión.",
     "stepSaved": "El paso se guardó en su biblioteca.",
-    "stepSaveFailed": "No se pudo guardar el paso."
+    "stepSaveFailed": "No se pudo guardar el paso.",
+    "riskProgressBlocked": "La etapa {{step}} tiene una puntuación de riesgo de {{score}}, superior al máximo permitido de {{limit}}. Mejore las medidas de control y reevalúe esa etapa antes de continuar."
   },
   "libModal": {
     "title": "Llamada a la biblioteca de pasos de trabajo",
@@ -145,11 +146,12 @@
     "unknownLanguage": "Idioma no registrado",
     "languageChanged": "Revisar los textos conservados para este idioma del documento",
     "profileLabel": "Criterios de evaluación",
-    "profileHelp": "Por defecto: 5 × 5, resaltado desde 9. Valores configurables, no una norma nacional. Cambiar los criterios reinicia las evaluaciones y conserva su historial.",
+    "profileHelp": "Por defecto: 5 × 5, resaltado desde 9. Valores configurables, no una norma nacional. Cambiar los criterios reinicia las evaluaciones y conserva su historial. En la matriz 5 × 5, las puntuaciones superiores a 15 impiden continuar.",
     "frequencyMax": "Frecuencia máxima",
     "severityMax": "Gravedad máxima",
     "highFrom": "Resaltar desde",
     "notAssessed": "Sin evaluar",
-    "criteria": "Procedimiento del centro y definición de niveles"
+    "criteria": "Procedimiento del centro y definición de niveles",
+    "riskLimitWarning": "La puntuación de riesgo {{score}} supera el máximo permitido de {{limit}}. Mejore las medidas de control y reevalúe el riesgo antes de continuar."
   }
 }

@@ -9,7 +9,8 @@
     "confirmMain": "Tem certeza de que deseja ir para a tela principal? Todos os dados não salvos poderão ser perdidos.",
     "loginRequired": "O login é obrigatório.",
     "stepSaved": "Etapa salva na biblioteca.",
-    "stepSaveFailed": "Falha ao salvar a etapa."
+    "stepSaveFailed": "Falha ao salvar a etapa.",
+    "riskProgressBlocked": "A etapa {{step}} tem pontuação de risco {{score}}, acima do máximo permitido de {{limit}}. Melhore as medidas de controle e reavalie essa etapa antes de continuar."
   },
   "libModal": {
     "title": "Chamar Biblioteca de Etapas de Tarefas",
@@ -145,11 +146,12 @@
     "unknownLanguage": "Idioma não registrado",
     "languageChanged": "Revisar os textos preservados para este idioma do documento",
     "profileLabel": "Critérios de avaliação",
-    "profileHelp": "Padrão: 5 × 5, destaque a partir de 9. Valores configuráveis, não uma norma nacional. Alterar os critérios reinicia as avaliações e preserva o histórico.",
+    "profileHelp": "Padrão: 5 × 5, destaque a partir de 9. Valores configuráveis, não uma norma nacional. Alterar os critérios reinicia as avaliações e preserva o histórico. Na matriz 5 × 5, pontuações acima de 15 impedem o avanço.",
     "frequencyMax": "Frequência máxima",
     "severityMax": "Gravidade máxima",
     "highFrom": "Destacar a partir de",
     "notAssessed": "Não avaliado",
-    "criteria": "Procedimento do local e definição dos níveis"
+    "criteria": "Procedimento do local e definição dos níveis",
+    "riskLimitWarning": "A pontuação de risco {{score}} excede o máximo permitido de {{limit}}. Melhore as medidas de controle e reavalie o risco antes de continuar."
   }
 }

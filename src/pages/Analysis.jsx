@@ -1,6 +1,6 @@
 import { pickDocumentLayout } from '../utils/documentLayout';
 import { mergeKnowledgeRisks, matchingProjectSteps, knowledgeLocale, languageDiffers } from '../utils/analysisKnowledge';
-import { assessmentProfile, assessedScore, changeAssessmentProfile } from '../utils/analysisAssessment';
+import { assessmentProfile, assessedScore, changeAssessmentProfile, unacceptableRiskScore, riskProgressBlock } from '../utils/analysisAssessment';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { recommendationContext, localizedHazards, matchesHazardKeywords, updateRiskValue, applyControl, formatSimilarity, loadMeasureRecommendations, searchMeasureTranslations } from '../utils/analysisRecommendations.js';
 import React, { useState, useEffect, useRef, useMemo } from 'react';
@@ -106,6 +106,7 @@ function AnalysisEditor({ recoveredDraft }) {
   const isSearchOpen = measureSearchModal.isOpen && measureSearchModal.contextKey === interactionKey;
 
   const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: null, severity: null, riskLevel: null };
+  const unacceptableScore = unacceptableRiskScore(currentStep.frequency, currentStep.severity, assessment);
   const recommendations = useMemo(() => {
     const query = searchTerm.toLowerCase();
     const text = [currentStep.proc?.stepTitle, currentStep.proc?.stepDetail].filter(Boolean).join(' ');
@@ -153,7 +154,6 @@ function AnalysisEditor({ recoveredDraft }) {
   const handleOpenRecommendation = async (risk, type = 'advanced') => {
     if (!risk.factor) return alert(t('alert.enterFactor'));
     if (type === 'advanced' && !risk.current_measure) return alert(t('alert.selectCurrentMeasure'));
-    if (type === 'advanced' && risk.current_measure_confirmed !== true) return alert(t('review.confirmCurrent'));
     const request = ++recommendationRequest.current;
     setIsLoading(interactionKey);
     try {
@@ -452,6 +452,15 @@ function AnalysisEditor({ recoveredDraft }) {
     setAssessmentOverride(next);
   };
 
+  const blockRiskProgress = (complete = false) => {
+    const blocked = riskProgressBlock(analysisData, activeIdx, assessment, complete);
+    if (!blocked) return false;
+    setCheckedRisks(new Set());
+    setActiveIdx(blocked.index);
+    alert(t('alert.riskProgressBlocked', { step: blocked.index + 1, score: blocked.score, limit: blocked.limit }));
+    return true;
+  };
+
   // [원상 복귀 완료] 사용자님의 고유 순수 오리지널 스텝 제어 로직 보존
   const handlePrev = () => {
     if (activeIdx === 0) navigate('/procedure', {
@@ -613,7 +622,8 @@ function AnalysisEditor({ recoveredDraft }) {
                   key={idx}
                   aria-current={idx === activeIdx ? 'step' : undefined}
                   style={idx === activeIdx ? styles.quickStepBtnActive : styles.quickStepBtn}
-                  onClick={() => { setCheckedRisks(new Set()); setActiveIdx(idx); setKnowledgeNotice(''); }}
+                  data-analysis-step={idx}
+                  onClick={() => { if (idx > activeIdx && blockRiskProgress()) return; setCheckedRisks(new Set()); setActiveIdx(idx); setKnowledgeNotice(''); }}
                   title={step.proc?.stepTitle || ''}
                 >
                   <span style={styles.quickStepNo}>{idx + 1}</span>
@@ -686,13 +696,17 @@ function AnalysisEditor({ recoveredDraft }) {
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select aria-label={t('result.freq')} style={styles.miniSelect} value={currentStep.frequency ?? ''} onChange={(e) => updateStepRisk('frequency', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.frequencyMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select data-assessed-frequency aria-label={t('result.freq')} style={styles.miniSelect} value={currentStep.frequency ?? ''} onChange={(e) => updateStepRisk('frequency', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.frequencyMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select aria-label={t('result.sev')} style={styles.miniSelect} value={currentStep.severity ?? ''} onChange={(e) => updateStepRisk('severity', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.severityMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select data-assessed-severity aria-label={t('result.sev')} style={styles.miniSelect} value={currentStep.severity ?? ''} onChange={(e) => updateStepRisk('severity', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.severityMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
                       <div data-assessed-score style={{ ...styles.riskResultSelect, backgroundColor: assessedScore(currentStep.frequency, currentStep.severity, assessment) >= assessment.highFrom ? "var(--danger-action)" : "var(--action-bg)" }}>{assessedScore(currentStep.frequency, currentStep.severity, assessment) ?? t('review.notAssessed')}</div>
                     </div>
                   </div>
+
+                  {unacceptableScore !== null && <div role="alert" data-risk-limit-warning style={{ margin: '10px 0', padding: '10px 12px', border: '1px solid var(--danger-action)', borderRadius: '8px', color: 'var(--danger-action)', fontSize: '.85rem', lineHeight: 1.5 }}>
+                    {t('review.riskLimitWarning', { score: unacceptableScore, limit: 15 })}
+                  </div>}
 
                   <div style={styles.selectedListScroll}>
                     <details style={{ fontSize: '.8rem', marginBottom: '10px', color: 'var(--text-secondary)' }}>
@@ -757,7 +771,6 @@ function AnalysisEditor({ recoveredDraft }) {
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
-                                    <label style={{ display: 'flex', gap: '6px', fontSize: '.75rem', color: 'var(--text-secondary)' }}><input data-current-confirmed type="checkbox" checked={r.current_measure_confirmed === true} disabled={!r.current_measure} onChange={event => updateRiskField(r.id, 'current_measure_confirmed', event.target.checked)} />{t('review.confirmCurrent')}</label>
                                     <div style={styles.controlActionRow}>
                                       <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
                                         {t('table.searchBtn')}
@@ -1049,7 +1062,7 @@ function AnalysisEditor({ recoveredDraft }) {
 
             {/* 패스트트랙 모달 레이아웃 바인딩 */}
             {isFastTrack && isFastTrackModalOpen && (
-              <div style={styles.dialogOverlay} onClick={() => setIsFastTrackModalOpen(false)}>
+              <div data-fast-track-result style={styles.dialogOverlay} onClick={() => setIsFastTrackModalOpen(false)}>
                 <div style={{ ...styles.libModalContent, width: '750px', maxWidth: '95%' }} onClick={e => e.stopPropagation()}>
                   <div style={styles.modalHeader}>
                     <h3 style={{ margin: 0, color: "var(--accent)" }}>⚡ {t('fastTrackModal.title')}</h3>
@@ -1114,6 +1127,7 @@ function AnalysisEditor({ recoveredDraft }) {
               <button
                 data-analysis-next style={styles.nextBtn}
                 onClick={() => {
+                  if (blockRiskProgress(activeIdx === analysisData.length - 1)) return;
                   if (activeIdx < analysisData.length - 1) {
                     setCheckedRisks(new Set());
                     setActiveIdx(activeIdx + 1);
