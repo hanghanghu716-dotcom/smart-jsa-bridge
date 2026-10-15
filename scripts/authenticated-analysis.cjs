@@ -79,6 +79,10 @@ const { randomUUID } = require('node:crypto');
       const context = await browser.createIncognitoBrowserContext(), page = await context.newPage();
       const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [], draftWrites = [];
       let stage = 'login';
+      const navigations = [], browserMessages = [];
+      page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations.push({ stage, path: new URL(frame.url()).pathname }); });
+      page.on('error', error => errors.push(`Browser target: ${error.message}`));
+      page.on('console', message => { if (/\[vite\]|error/i.test(message.text())) browserMessages.push(message.text().slice(0,500)); });
       await page.setViewport({ width: 1440, height: 1100 });
       await page.setRequestInterception(true);
       page.on('request', request => {
@@ -184,8 +188,10 @@ const { randomUUID } = require('node:crypto');
           fields: [...document.querySelectorAll('.analysis-selected tbody textarea')].map(el => el.value),
           status: [...document.querySelectorAll('[role="status"]')].map(el => el.textContent),
           version: sessionStorage.getItem('smartjsa_active_draft_version'),
+          path: location.pathname, title: document.title, ready: document.readyState,
+          body: document.body.textContent.slice(0,1200), forms: document.forms.length,
         })).catch(() => null);
-        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}`);
+        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}; navigations=${JSON.stringify(navigations)}; console=${JSON.stringify(browserMessages)}`);
       } finally { await context.close(); }
     }
 
