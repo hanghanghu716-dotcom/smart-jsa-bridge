@@ -31,18 +31,23 @@ const { randomUUID } = require('node:crypto');
     assert.ok(verified.data.user?.id);
   }
   const ownerId = (await owner.auth.getUser()).data.user.id;
-  const { createServer } = await import('vite');
+  const { build, preview } = await import('vite');
   const { default: react } = await import('@vitejs/plugin-react');
   const { SUPPORTED_LANGS } = await import('../src/locales/config.js');
   const { recommendationContext } = await import('../src/utils/analysisRecommendations.js');
   const { fixtureText } = await import('./analysis-fixture/text.js');
   const realClient = path.resolve('scripts/auth-integration/client.js');
-  const server = await createServer({ configFile: false,
+  // A built fixture has no development websocket or automatic reloads during interaction.
+  const outDir = path.resolve('.cache/auth-integration/browser-dist');
+  await build({ configFile: false, publicDir: false,
     define: { __JSA_AUTH_TEST_CONFIG__: JSON.stringify({ url: api, anonKey }) },
     plugins: [{ name: 'isolated-real-supabase', enforce: 'pre', resolveId(id) {
       return /(?:^|\/)supabaseClient(?:\.js)?$/.test(id) ? realClient : null;
-    } }, react()], server: { host: '127.0.0.1', port: 0, hmr: false }, appType: 'spa',
+    } }, react()], build: { outDir, target: 'esnext',
+      rollupOptions: { input: path.resolve('scripts/auth-integration/index.html') } },
   });
+  const server = await preview({ configFile: false, publicDir: false, build: { outDir },
+    preview: { host: '127.0.0.1', port: 0 }, appType: 'spa' });
   const results = [], checks = {};
   let browser, lastDraft;
   await fs.mkdir('artifacts/recommendations', { recursive: true });
@@ -70,15 +75,22 @@ const { randomUUID } = require('node:crypto');
     p_participants: row.participants, p_procedures: row.procedures, p_analysis_data: row.analysis_data,
     p_layout_data: row.layout_data, p_source_project_id: row.source_project_id });
   try {
-    await server.listen();
     const origin = `http://127.0.0.1:${server.httpServer.address().port}`;
-    browser = await require('puppeteer').launch({ executablePath: process.env.CHROME_PATH ||
+    const { default: puppeteer } = await import('puppeteer-core');
+    browser = await puppeteer.launch({ executablePath: process.env.CHROME_PATH ||
       (process.platform === 'win32' ? 'C:/Program Files/Google/Chrome/Application/chrome.exe' : '/usr/bin/google-chrome'),
     headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     for (const locale of SUPPORTED_LANGS) {
-      const context = await browser.createIncognitoBrowserContext(), page = await context.newPage();
+      const context = await browser.createBrowserContext(), page = await context.newPage();
       const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [], draftWrites = [];
       let stage = 'login';
+      const navigations = [], browserMessages = [], failedRequests = [];
+      page.on('requestfailed', request => { const url = new URL(request.url());
+        if ([origin, api].includes(url.origin)) failedRequests.push({ path: url.pathname, failure: request.failure()?.errorText });
+      });
+      page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations.push({ stage, path: new URL(frame.url()).pathname }); });
+      page.on('error', error => errors.push(`Browser target: ${error.message}`));
+      page.on('console', message => { if (/\[vite\]|error/i.test(message.text())) browserMessages.push(message.text().slice(0,500)); });
       await page.setViewport({ width: 1440, height: 1100 });
       await page.setRequestInterception(true);
       page.on('request', request => {
@@ -95,7 +107,7 @@ const { randomUUID } = require('node:crypto');
       });
       page.on('pageerror', error => errors.push(error.message));
       page.on('response', async response => {
-        if (response.url().startsWith(api + '/rest/v1/') && response.status() >= 400) {
+        if (response.url().startsWith(api + '/') && response.status() >= 400) {
           const failure = await response.json().catch(() => ({}));
           apiFailures.push({ path: new URL(response.url()).pathname, status: response.status(),
             code: failure.code, message: failure.message });
@@ -120,8 +132,8 @@ const { randomUUID } = require('node:crypto');
         assert.equal(await page.evaluate(() => document.body.textContent.includes('Unrelated high score')), false);
         await page.click('[data-recommendation-item]');
         await page.waitForFunction(text => document.querySelectorAll('.analysis-selected tbody textarea')[1]?.value === text, {}, words[1]);
-        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
-        await page.click('[data-current-confirmed]');
+        assert.equal(await page.$('[data-current-confirmed]'), null);
+
         await page.click('[data-recommend-advanced]');
         await page.waitForSelector('[data-recommendation-item][data-score="0.8"]');
         assert.equal(await page.$$eval('[data-recommendation-item]', items => items.length), 1, 'Broken advanced identities excluded');
@@ -137,16 +149,18 @@ const { randomUUID } = require('node:crypto');
         assert.equal(risk.current_recommendation.score, 0.72);
         assert.equal(risk.advanced_recommendation.score, 0.8);
         assert.equal(risk.current_recommendation.scoreKind, 'text_similarity');
-        assert.equal(risk.current_measure_confirmed, true);
+        assert.equal(risk.current_measure_confirmed, false);
         assert.equal(await page.evaluate(() => Object.keys(localStorage).some(key => key.startsWith('smartjsa_guest_draft:'))), false);
         stage = 'cloud restore';
         await page.goto(url + '&restore=1', { waitUntil: 'networkidle0' });
         await page.waitForFunction(text => document.querySelectorAll('.analysis-selected tbody textarea')[2]?.value === text, {}, words[2]);
         assert.deepEqual(await page.$$eval('.analysis-selected tbody textarea', els => els.map(el => el.value)), words);
-        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), true);
+        assert.equal(await page.$('[data-current-confirmed]'), null);
         // Editing a restored hazard must invalidate saved recommendation references and confirmation.
         const edited = words[0] + ' — edited';
-        await page.click('.analysis-selected tbody textarea');
+        // Recovery can still reflow as hazard loading finishes; focus the input directly before typing.
+        await page.focus('.analysis-selected tbody textarea');
+        assert.equal(await page.$eval('.analysis-selected tbody textarea', el => el === document.activeElement), true);
         await page.keyboard.down('Control'); await page.keyboard.press('A'); await page.keyboard.up('Control');
         await page.keyboard.type(edited);
         assert.equal(await page.$eval('.analysis-selected tbody textarea', el => el.value), edited, 'Browser input must finish before cloud observation');
@@ -162,7 +176,7 @@ const { randomUUID } = require('node:crypto');
         stage = 'edited cloud restore and document';
         await page.goto(url + '&restore=1', { waitUntil: 'networkidle0' });
         await page.waitForFunction(text => document.querySelector('.analysis-selected tbody textarea')?.value === text, {}, edited);
-        assert.equal(await page.$eval('[data-current-confirmed]', el => el.checked), false);
+        assert.equal(await page.$('[data-current-confirmed]'), null);
         await page.click('[data-analysis-next]');
         await page.waitForSelector('.designer-paper .document-content');
         const document = await page.$eval('.document-content', el => ({ text: el.textContent, dir: el.dir }));
@@ -174,6 +188,7 @@ const { randomUUID } = require('node:crypto');
           '/rest/v1/Hazards', '/rest/v1/Current_Measures', '/rest/v1/Advanced_Measures',
           '/rest/v1/rpc/save_jsa_draft_snapshot', '/rest/v1/user_jsa_drafts']) assert.ok(apiPaths.has(endpoint), endpoint);
         assert.deepEqual(errors, [], `${locale}: browser errors`);
+        assert.equal(navigations.length, 3, `${locale}: only explicit initial load and two restores may navigate`);
         lastDraft = editedRow;
         results.push({ locale, realAuth: true, realRecommendationRetrieval: true, wrongIdHighScoreExcluded: true,
           percentagesPreserved: true, brokenMasterIdentitiesExcluded: true, cloudAutosave: true, reloadFromDatabase: true,
@@ -184,8 +199,10 @@ const { randomUUID } = require('node:crypto');
           fields: [...document.querySelectorAll('.analysis-selected tbody textarea')].map(el => el.value),
           status: [...document.querySelectorAll('[role="status"]')].map(el => el.textContent),
           version: sessionStorage.getItem('smartjsa_active_draft_version'),
+          path: location.pathname, title: document.title, ready: document.readyState,
+          body: document.body.textContent.slice(0,1200), forms: document.forms.length, sessionPresent: Boolean(localStorage.getItem('jsa-auth-integration')),
         })).catch(() => null);
-        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}`);
+        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}; navigations=${JSON.stringify(navigations)}; console=${JSON.stringify(browserMessages)}; failedRequests=${JSON.stringify(failedRequests)}`);
       } finally { await context.close(); }
     }
 
@@ -223,7 +240,10 @@ const { randomUUID } = require('node:crypto');
     console.log('PASS real Auth/PostgREST: anonymous denial, account isolation, stale-write protection, concurrent save');
   } finally {
     if (browser) await browser.close();
-    await server.close();
+    await new Promise((resolve, reject) => {
+      server.httpServer.close(error => error ? reject(error) : resolve());
+      server.httpServer.closeAllConnections();
+    });
     await fs.writeFile('artifacts/recommendations/authenticated-analysis.json', JSON.stringify({
       schemaVersion: 1, environment: 'disposable-local-supabase', data: 'synthetic',
       productionSchemaParity: false, productionSemanticEvaluation: false,

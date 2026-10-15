@@ -9,7 +9,8 @@
     "confirmMain": "Möchten Sie wirklich zum Hauptbildschirm zurückkehren? Alle ungespeicherten Daten gehen verloren.",
     "loginRequired": "Anmeldung erforderlich.",
     "stepSaved": "Arbeitsschritt wurde in der Bibliothek gespeichert.",
-    "stepSaveFailed": "Arbeitsschritt konnte nicht gespeichert werden."
+    "stepSaveFailed": "Arbeitsschritt konnte nicht gespeichert werden.",
+    "riskProgressBlocked": "Schritt {{step}} hat den Risikowert {{score}} und überschreitet den zulässigen Höchstwert {{limit}}. Verbessern Sie die Schutzmaßnahmen und bewerten Sie diesen Schritt erneut, bevor Sie fortfahren."
   },
   "libModal": {
     "title": "Aufgabenschritt-Bibliothek aufrufen",
@@ -145,11 +146,12 @@
     "unknownLanguage": "Sprache nicht dokumentiert",
     "languageChanged": "Übernommene Texte für diese Dokumentsprache prüfen",
     "profileLabel": "Bewertungskriterien",
-    "profileHelp": "Standard: 5 × 5, Hervorhebung ab 9. Konfigurierbare Werte, keine nationale Norm. Änderungen setzen Bewertungen zurück und bewahren den Verlauf.",
+    "profileHelp": "Standard: 5 × 5, Hervorhebung ab 9. Konfigurierbare Werte, keine nationale Norm. Änderungen setzen Bewertungen zurück und bewahren den Verlauf. In der 5 × 5-Matrix verhindern Werte über 15 das Fortfahren.",
     "frequencyMax": "Maximale Häufigkeit",
     "severityMax": "Maximale Schwere",
     "highFrom": "Hervorhebung ab",
     "notAssessed": "Nicht bewertet",
-    "criteria": "Betriebliche Verfahren und Bewertungsdefinitionen"
+    "criteria": "Betriebliche Verfahren und Bewertungsdefinitionen",
+    "riskLimitWarning": "Der Risikowert {{score}} überschreitet den zulässigen Höchstwert {{limit}}. Verbessern Sie die Schutzmaßnahmen und bewerten Sie das Risiko erneut, bevor Sie fortfahren."
   }
 }

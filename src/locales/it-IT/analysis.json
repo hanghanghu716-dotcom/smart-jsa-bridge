@@ -9,7 +9,8 @@
     "confirmMain": "Tornare alla schermata principale? I dati non salvati andranno definitivamente persi.",
     "loginRequired": "Autenticazione richiesta.",
     "stepSaved": "Fase salvata nella libreria.",
-    "stepSaveFailed": "Impossibile salvare la fase."
+    "stepSaveFailed": "Impossibile salvare la fase.",
+    "riskProgressBlocked": "Il punteggio di rischio della fase {{step}} è {{score}}, superiore al massimo consentito di {{limit}}. Migliora le misure di controllo e rivaluta questa fase prima di continuare."
   },
   "libModal": {
     "title": "Carica Libreria Fasi Lavorative",
@@ -145,11 +146,12 @@
     "unknownLanguage": "Lingua non registrata",
     "languageChanged": "Verificare i testi conservati per questa lingua del documento",
     "profileLabel": "Criteri di valutazione",
-    "profileHelp": "Predefinito: 5 × 5, evidenziazione da 9. Valori configurabili, non uno standard nazionale. La modifica azzera le valutazioni mantenendone la cronologia.",
+    "profileHelp": "Predefinito: 5 × 5, evidenziazione da 9. Valori configurabili, non uno standard nazionale. La modifica azzera le valutazioni mantenendone la cronologia. Nella matrice 5 × 5, i punteggi superiori a 15 impediscono di proseguire.",
     "frequencyMax": "Frequenza massima",
     "severityMax": "Gravità massima",
     "highFrom": "Evidenzia da",
     "notAssessed": "Non valutato",
-    "criteria": "Procedura del sito e definizione dei livelli"
+    "criteria": "Procedura del sito e definizione dei livelli",
+    "riskLimitWarning": "Il punteggio di rischio {{score}} supera il massimo consentito di {{limit}}. Migliora le misure di controllo e rivaluta il rischio prima di continuare."
   }
 }

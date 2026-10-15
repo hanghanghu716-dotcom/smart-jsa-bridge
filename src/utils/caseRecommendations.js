@@ -66,7 +66,7 @@ export function selectCaseRecommendations(manifest, { risk, type, formData, proc
   if (type === 'advanced') {
     const ref = risk.current_measure_reference;
     const current = candidates.find(item => item.id === ref?.id && item.kind === 'current');
-    if (risk.current_measure_confirmed !== true || ref?.kind !== 'knowledge' || ref.releaseId !== manifest.releaseId
+    if (ref?.kind !== 'knowledge' || ref.releaseId !== manifest.releaseId
       || !current || current.control !== risk.current_measure || current.hazard !== anchor.hazard
       || current.task !== anchor.task || current.step !== anchor.step || !sameScope(current.applicability, anchor.applicability)
       || !eligibleCaseUnits(manifest, candidates, context, origin.conditions).includes(current)) return [];

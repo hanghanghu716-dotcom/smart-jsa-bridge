@@ -46,12 +46,11 @@ test('all 18 locales require selected steps and applicable conditions, then keep
   }
 });
 
-test('advanced case recommendations retain the original hazard, task, source and confirmed current-control chain', () => {
+test('advanced case recommendations retain the selected control chain without claiming implementation', () => {
   const { manifest, args } = example();
   const current = selectCaseRecommendations(manifest, args)[0];
   const risk = applyControl(args.risk, current, { type: 'current', jsaType: '3-step' });
-  assert.deepEqual(selectCaseRecommendations(manifest, { ...args, risk, type: 'advanced' }), []);
-  risk.current_measure_confirmed = true;
+  assert.equal(risk.current_measure_confirmed, false);
   assert.equal(selectCaseRecommendations(manifest, { ...args, risk, type: 'advanced' })[0].similarity_score, .8);
   for (const changed of [
     { fingerprint: 'new-source' }, { proc: { ...args.proc, stepDetail: 'Different task' } },

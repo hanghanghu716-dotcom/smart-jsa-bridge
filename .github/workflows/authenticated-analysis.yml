@@ -26,6 +26,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Install current isolated-browser test driver
+        run: npm install --no-save --package-lock=false --ignore-scripts puppeteer-core@25.14.0
       - uses: supabase/setup-cli@v1
         with:
           version: 2.121.0

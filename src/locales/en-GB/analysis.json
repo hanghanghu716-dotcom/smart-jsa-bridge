@@ -9,7 +9,8 @@
     "confirmMain": "Are you sure you want to go to the main screen? All unsaved data may be lost.",
     "loginRequired": "Login is required.",
     "stepSaved": "Current work step saved to your library.",
-    "stepSaveFailed": "Failed to save the work step."
+    "stepSaveFailed": "Failed to save the work step.",
+    "riskProgressBlocked": "Step {{step}} has a risk score of {{score}}, above the allowed maximum of {{limit}}. Improve the controls and reassess that step before continuing."
   },
   "libModal": {
     "title": "Call Task Step Library",
@@ -145,11 +146,12 @@
     "unknownLanguage": "Language not recorded",
     "languageChanged": "Review the retained text for this document language",
     "profileLabel": "Assessment criteria",
-    "profileHelp": "Default: 5 × 5, highlighted from 9. These are configurable values, not a national standard. Changing criteria clears current ratings and retains their history.",
+    "profileHelp": "Default: 5 × 5, highlighted from 9. These are configurable values, not a national standard. Changing criteria clears current ratings and retains their history. In the 5 × 5 matrix, scores above 15 block progression.",
     "frequencyMax": "Frequency maximum",
     "severityMax": "Severity maximum",
     "highFrom": "Highlight from",
     "notAssessed": "Not assessed",
-    "criteria": "Site procedure and rating definitions"
+    "criteria": "Site procedure and rating definitions",
+    "riskLimitWarning": "Risk score {{score}} exceeds the allowed maximum of {{limit}}. Improve the controls and reassess before continuing."
   }
 }
