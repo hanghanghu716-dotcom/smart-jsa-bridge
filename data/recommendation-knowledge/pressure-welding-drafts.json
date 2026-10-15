@@ -1693,21 +1693,23 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
       "hazard": "Inhalation of welding fume",
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
-      "control": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
-      "verification": "Check extraction performance and exposure controls against the approved work procedure before welding.",
-      "coverageLimit": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+      "control": "Use source extraction suited to the welding process and keep it operating throughout the work; provide respiratory protection as determined by the exposure assessment.",
+      "verification": "Verify extraction performance and the site procedure’s ventilation conditions before welding; stop if extraction becomes ineffective.",
+      "coverageLimit": "Metalworking workshop fume exposure only; assess fire, radiation, electrical and gas hazards separately. Other work settings need separate source and applicability review.",
       "conditions": [
         "Authorised person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
-        "Exposure-control procedure available"
+        "Exposure-control procedure available",
+        "Indoor welding takes place in a metalworking workshop using identified welding equipment",
+        "Site hot-work procedure approved and any required permit in place"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -1728,6 +1730,26 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_guidelines_on_safe_use_of_machinery.ashx",
+          "authority": "Workplace Safety and Health Council (WSHC)",
+          "jurisdiction": "SG",
+          "section": "Safe Use of Machinery, section 3.2.5, printed pages 18-19: airborne chemical hazards and extraction",
+          "scope": "Machine-work guidance on ventilation, source extraction for airborne contaminants, procedures and task-specific PPE. It is not a welding-specific ventilation specification or confirmation of current statutory compliance.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://www.tal.sg/wshc/-/media/tal/wshc/campaigns/files/safe-hand/wsh-guidelines-on-managing-safety-and-health-for-smes-in-the-metalworking-industry.ashx",
+          "authority": "WSHC in collaboration with the Ministry of Manpower",
+          "jurisdiction": "SG",
+          "section": "2012 Managing Safety and Health for SMEs in the Metalworking Industry, Annex 5, printed pages 29-31: hot-work permit example and safe work procedure",
+          "scope": "Metalworking technical guidance: the example keeps ventilation/exhaust operating throughout hot work and requires a communicated site procedure. It is a historical example, not a universal permit mandate or a complete welding procedure.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "checkedAt": "2026-10-15"
         }
       ],
       "applicability": {
@@ -1738,7 +1760,9 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "metalworking-workshop",
+          "hot-work-procedure-authorized"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -1755,9 +1779,11 @@
         "confined-entry": "Confined-space entry",
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
-        "extraction-unavailable": "Extraction unavailable or ineffective"
+        "extraction-unavailable": "Extraction unavailable or ineffective",
+        "metalworking-workshop": "Indoor welding takes place in a metalworking workshop using identified welding equipment",
+        "hot-work-procedure-authorized": "Site hot-work procedure approved and any required permit in place"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -3023,21 +3049,23 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Soldagem regular em ambiente interno de aço carbono sem revestimento",
       "step": "Preparar o controle de fumos",
       "hazard": "Inalação de fumos de soldagem",
       "cause": "Fumos atingem a zona respiratória",
       "consequence": "Doença respiratória",
-      "control": "Usar exaustão localizada adequada ao processo, com proteção respiratória complementar quando exigida pela avaliação da exposição.",
-      "verification": "Antes de soldar, verificar a eficácia da exaustão e os controles de exposição conforme o procedimento aprovado.",
+      "control": "Priorizar a captação dos fumos na fonte por exaustão adequada ao processo; quando necessária, usar proteção respiratória selecionada pela avaliação da exposição e pelo programa de proteção respiratória.",
+      "verification": "Verificar a eficácia da exaustão e a avaliação da exposição. Quando houver respirador com vedação facial, confirmar ensaio de vedação com os demais EPIs e verificar o ajuste antes do uso.",
       "coverageLimit": "Somente fumos; avaliar separadamente incêndio, radiação, eletricidade e gases.",
       "conditions": [
         "Pessoa autorizada designada",
         "Soldagem regular em ambiente interno",
         "Aço carbono sem revestimento e consumíveis identificados",
-        "Procedimento de controle da exposição disponível"
+        "Procedimento de controle da exposição disponível",
+        "Plano de controle e avaliação da exposição definido para o processo e os consumíveis",
+        "Necessidade de proteção respiratória avaliada e programa definido quando necessário"
       ],
       "exclusions": [
         "Entrada em espaço confinado",
@@ -3068,6 +3096,26 @@
           "checkedAt": "2026-10-14",
           "retrieval": "primary_search_metadata_full_text_unavailable",
           "evidenceRole": "lead"
+        },
+        {
+          "url": "https://cbic.org.br/fumos-metalicos-riscos-invisiveis-na-atividade-de-soldagem/",
+          "authority": "Câmara Brasileira da Indústria da Construção (CBIC)",
+          "jurisdiction": "BR",
+          "section": "2026-01-30 Fumos Metálicos: engineering controls and exposure-management paragraphs",
+          "scope": "Industry-association technical article supporting source capture and exposure monitoring. Its legal summaries are not used as legal verification; its blanket minimum filter statement is not used for respirator selection.",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://ftp.medicina.ufmg.br/osat/ebook/2016/1-ProgramadeProtecaoRespiratoria-12-08-2016.pdf",
+          "authority": "Fundacentro; original publication hosted by UFMG",
+          "jurisdiction": "BR",
+          "section": "Programa de Proteção Respiratória, 4th edition (2016), section 2.1, sections 8.1-8.3, Annex 7 welding entry",
+          "scope": "Primary technical publication: engineering controls precede respiratory protection; selection needs risk assessment. Face-sealing respirators require fit testing with potentially interfering welding PPE. Welding adds heat, spatter and equipment-compatibility considerations. This is not current legal certification or a universal filter prescription.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "checkedAt": "2026-10-15"
         }
       ],
       "applicability": {
@@ -3078,7 +3126,9 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "exposure-control-plan",
+          "respiratory-program-assessed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -3095,9 +3145,11 @@
         "confined-entry": "Entrada em espaço confinado",
         "outdoor-welding": "Soldagem ao ar livre",
         "coated-stainless-or-unknown-metal": "Material revestido, inoxidável ou não identificado",
-        "extraction-unavailable": "Exaustão ausente ou ineficaz"
+        "extraction-unavailable": "Exaustão ausente ou ineficaz",
+        "exposure-control-plan": "Plano de controle e avaliação da exposição definido para o processo e os consumíveis",
+        "respiratory-program-assessed": "Necessidade de proteção respiratória avaliada e programa definido quando necessário"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -3120,7 +3172,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Обслуживание фильтра сжатого воздуха",
       "step": "Подготовка к открытию корпуса фильтра",
@@ -3153,6 +3205,26 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/24982",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
+          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/55545",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
         }
       ],
       "applicability": {
@@ -3178,7 +3250,7 @@
         "confined-entry": "Вход в замкнутое пространство",
         "unknown-media-or-isolation": "Содержимое или границы изоляции неизвестны"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -3201,7 +3273,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Регулярная сварка стали с низким содержанием углерода без покрытия в помещении",
       "step": "Подготовка удаления сварочного аэрозоля",
@@ -3236,6 +3308,26 @@
           "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/25450",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 884н of 2020-12-11, registration 61904; relevant clauses unread",
+          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/55545",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
         }
       ],
       "applicability": {
@@ -3265,7 +3357,7 @@
         "coated-stainless-or-unknown-metal": "Материал с покрытием, нержавеющий или неизвестный",
         "extraction-unavailable": "Вытяжка отсутствует или неэффективна"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,

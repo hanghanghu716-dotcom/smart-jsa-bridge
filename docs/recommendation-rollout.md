@@ -15,7 +15,7 @@ Percentages remain text similarity. Ambiguous IDs, cross-language score propagat
 
 1. Privileged schema/visibility inspection is complete. Missing masters are confirmed, and duplicate master-ID groups include conflicting content. Aggregate status is recorded in `recommendation-data-corrections.md`; detailed evidence remains private.
 2. A consistent private snapshot and an actual-data copy restoration of the two proposed correction targets are complete. Off-site backup and separate staging remain open. Production row corrections were declined or failed before execution, so duplicate and invalid-Locale counts remain unchanged. Resolve missing and conflicting originals from source evidence and preserve historical IDs, scores and documents.
-3. Complete reviews of exact content/source revisions. The 54 regional drafts cover three bounded tasks across all 18 Locales; they are not complete country or task coverage. Five task/Locale cells still lack a read same-jurisdiction primary reference (SG/BR welding and RU maintenance/pressure/welding), and all 54 require regional review. Narrow machine/construction source scopes remain required conditions. Other work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval. See `recommendation-task-coverage.json` for the generated matrix.
+3. Complete reviews of exact content/source revisions. The 54 regional drafts cover three bounded tasks across all 18 Locales; they are not complete country or task coverage. Three task/Locale cells still lack a read same-jurisdiction primary reference (RU maintenance/pressure/welding), and all 54 require regional review. Narrow machine/construction/workshop source scopes and exposure-programme conditions remain required. Other work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval. See `recommendation-task-coverage.json` for the generated matrix.
 4. Generate separate mappings with pinned models. Compare current, corrected-legacy and new-knowledge systems on independently labelled cases, including high-score errors, omissions, edits, latency and cost. Derive activation thresholds from evidence.
 5. Verify authenticated persistence, real recommendation retrieval and PDF/export against staging data. Activate validated task/jurisdiction groups with prior code/data versions and an atomic rollback path. Do not overwrite saved documents to roll back.
 
@@ -35,13 +35,13 @@ The report counts empty/error queries as misses for reviewed positive queries. P
 
 ## Verified baseline
 
-At remote commit `65c67e7d3565c6052d38e6b5c2b32c3f8a9fcaf4` (the baseline before the next source-only follow-up):
+At remote commit `8ea84b4cd0948b3dc3823b34ed97dff000a0f87e` (the baseline before the Singapore/Brazil source follow-up):
 
 - Clean-install full JS suite: 362 passed, zero failed. Dedicated suite: 57 JS and 14 Python tests passed.
 - All 18 Locale browser cases passed actual Analysis/DocumentDesigner/Export, guest restore, HTML/text clipboard, downloaded application PDF, and legacy Export with English UI plus target document language.
 - All 18 case-selection flows passed required/excluded conditions, Info/Procedure/Analysis, 72% current selection, explicit confirmation, 80% additional selection and changed-source blocking. These scores exist only in fixtures.
-- The dedicated browser workflow and public-data audit succeeded in run `38659295008`; storage concurrency succeeded in run `38659294993`.
-- Full content run `38659294929` passed RSS checks, the production build, 108 localized guide HTML/PDF pairs and public page metadata validation. Earlier RSS/DB failures are not the current result.
+- The dedicated browser workflow and public-data audit succeeded in run `38661599078`; storage concurrency succeeded in run `38661599102`.
+- Full content run `38661599113` passed RSS checks, the production build, 108 localized guide HTML/PDF pairs and public page metadata validation. Earlier RSS/DB failures are not the current result.
 - Public audit recovered at 2026-10-14 11:23 UTC; see `recommendation-audit-restored-20261014.json`. Public reads do not verify privileged constraints or authenticated accounts.
 
-The next source follow-up adds eight references across eight draft revisions and reduces the missing same-jurisdiction source cells from 12 to five. Its 14 targeted local knowledge/coverage/release tests pass; current-head CI results are tracked in PR #25. Baseline results above are not automatically attributed to later code. Content reviews, actual corpus comparison, authenticated staging, off-site backup and production rollout remain open.
+The Singapore/Brazil source follow-up adds four read references across two welding draft revisions and reduces the missing same-jurisdiction source cells from five to three. Russian original/amendment scans are retained as unread leads, not verified technical evidence. Its 14 targeted local knowledge/coverage/release tests pass; current-head CI results are tracked in PR #25. Baseline results above are not automatically attributed to later code. Content reviews, actual corpus comparison, authenticated staging, off-site backup and production rollout remain open.

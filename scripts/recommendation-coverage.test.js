@@ -82,8 +82,13 @@ test('coverage counts exact task and jurisdiction, preserving missing cells and 
   assert.equal(report.totals.cellsWithPublicationEligibleContent, 0);
   const sg = report.coverage.find(row => row.locale === 'en-SG').tasks.find(task => task.taskType === 'welding-exposure');
   assert.equal(sg.primarySourceReferences.foreignReference, 1);
-  assert.equal(sg.missingSameJurisdictionPrimaryReference, true);
+  assert.equal(sg.primarySourceReferences.sameJurisdiction, 2);
+  assert.equal(sg.missingSameJurisdictionPrimaryReference, false);
   assert.equal(sg.requiresLocalSourceReview, true);
+  const russia = report.coverage.find(row => row.locale === 'ru-RU').tasks.find(task => task.taskType === 'welding-exposure');
+  assert.equal(russia.primarySourceReferences.sameJurisdiction, 0);
+  assert.equal(russia.primarySourceReferences.unreadOrMetadata, 2);
+  assert.equal(russia.missingSameJurisdictionPrimaryReference, true, 'Locating an official scan does not mean its technical clauses were read');
   const alberta = report.coverage.find(row => row.locale === 'en-CA-AB').tasks.find(task => task.taskType === 'pressure-equipment-opening');
   assert.equal(alberta.primarySourceReferences.nationalReference, 1);
   assert.equal(alberta.primarySourceReferences.sameJurisdiction, 1);

@@ -1312,7 +1312,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Техническое обслуживание машины",
       "step": "Подготовка изоляции энергии",
@@ -1364,6 +1364,26 @@
           "retrieval": "primary_search_metadata_full_text_timeout",
           "jurisdiction": "RU",
           "evidenceRole": "lead"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/24982",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
+          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/55545",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
         }
       ],
       "applicability": {
@@ -1380,7 +1400,7 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
