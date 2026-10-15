@@ -76,11 +76,12 @@ const { randomUUID } = require('node:crypto');
     p_layout_data: row.layout_data, p_source_project_id: row.source_project_id });
   try {
     const origin = `http://127.0.0.1:${server.httpServer.address().port}`;
-    browser = await require('puppeteer').launch({ executablePath: process.env.CHROME_PATH ||
+    const { default: puppeteer } = await import('puppeteer-core');
+    browser = await puppeteer.launch({ executablePath: process.env.CHROME_PATH ||
       (process.platform === 'win32' ? 'C:/Program Files/Google/Chrome/Application/chrome.exe' : '/usr/bin/google-chrome'),
     headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     for (const locale of SUPPORTED_LANGS) {
-      const context = await browser.createIncognitoBrowserContext(), page = await context.newPage();
+      const context = await browser.createBrowserContext(), page = await context.newPage();
       const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [], draftWrites = [];
       let stage = 'login';
       const navigations = [], browserMessages = [], failedRequests = [];
