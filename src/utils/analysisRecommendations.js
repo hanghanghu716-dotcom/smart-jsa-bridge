@@ -163,14 +163,23 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
 export async function searchMeasureTranslations(client, { term, type, locale }) {
   const current = type === 'current', master = current ? 'measure_id' : 'advanced_measure_id';
   const text = current ? 'measure_text' : 'solution_text';
-  let query = client.from(current ? 'Current_Measures_Translations' : 'Advanced_Measures_Translations')
-    .select(`id,${master},${text},locale`).eq('locale', locale);
   const tokens = String(term || '').trim().split(/\s+/u).filter(Boolean);
   if (!tokens.length) return [];
-  for (const token of tokens) query = query.ilike(text, `%${escapeLike(token)}%`);
-  const valid = await translationsWithValidIdentity(legacyIdentityValidator(client), current ? 'current' : 'advanced',
-    await rows(query.limit(30)), master);
-  return valid.map(row => ({ display: row[text],
+  const validate = legacyIdentityValidator(client), valid = [];
+  let offset = 0;
+  while (valid.length < 30) {
+    let query = client.from(current ? 'Current_Measures_Translations' : 'Advanced_Measures_Translations')
+      .select(`id,${master},${text},locale`, { count: 'exact' }).eq('locale', locale).order('id');
+    for (const token of tokens) query = query.ilike(text, `%${escapeLike(token)}%`);
+    const result = await query.range(offset, offset + 99);
+    if (result.error) throw result.error;
+    if (!Array.isArray(result.data) || !Number.isSafeInteger(result.count)
+      || (!result.data.length && offset < result.count)) throw new Error('Incomplete control search');
+    valid.push(...await translationsWithValidIdentity(validate, current ? 'current' : 'advanced', result.data, master));
+    offset += result.data.length;
+    if (offset >= result.count) break;
+  }
+  return valid.slice(0, 30).map(row => ({ display: row[text],
     ...(current ? { measure_db_id: row[master] ?? null } : { advanced_db_id: row[master] ?? null }),
     reference: { kind: 'translation', id: row.id, masterId: row[master] ?? null, locale } }));
 }

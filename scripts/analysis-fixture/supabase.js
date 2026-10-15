@@ -52,16 +52,20 @@ export const supabase = {
   },
   from(table) {
     const filters = [];
+    let offset = 0, cap = Infinity, sortKey;
     const query = {
       select() { return query; },
       eq(key, value) { filters.push(row => row[key] === value); return query; },
       in(key, values) { filters.push(row => values.some(value => String(value) === String(row[key]))); return query; },
       ilike(key, value) { filters.push(row => String(row[key]).toLowerCase().includes(value.replaceAll('%', '').toLowerCase())); return query; },
-      limit() { return query; },
+      limit(value) { cap = value; return query; },
+      order(key) { sortKey = key; return query; },
+      range(start, end) { offset = start; cap = end - start + 1; return query; },
       then(resolve, reject) {
         window.analysisFixture.calls.push(table);
         const data = (tables[table] || []).filter(row => filters.every(filter => filter(row)));
-        return Promise.resolve({ data, count: data.length,
+        if (sortKey) data.sort((a, b) => Number(a[sortKey]) - Number(b[sortKey]));
+        return Promise.resolve({ data: data.slice(offset, offset + cap), count: data.length,
           error: window.analysisFixture.failTable === table ? { message: 'Fixture read failure' } : null }).then(resolve, reject);
       },
     };

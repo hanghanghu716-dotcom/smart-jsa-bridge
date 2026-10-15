@@ -8,19 +8,22 @@ function database(tables, failure = '') {
   const calls = [];
   return { calls, from(table) {
     const filters = [], call = { table, filters }; calls.push(call);
-    let cap = Infinity;
+    let cap = Infinity, offset = 0, sortKey;
     const query = {
       select() { return query; },
       eq(key, value) { filters.push({ op: 'eq', key, value }); return query; },
       in(key, value) { filters.push({ op: 'in', key, value }); return query; },
       ilike(key, value) { filters.push({ op: 'ilike', key, value }); return query; },
       limit(value) { cap = value; return query; },
+      order(key) { sortKey = key; return query; },
+      range(start, end) { offset = start; cap = end - start + 1; return query; },
       then(resolve, reject) {
         const data = (tables[table] || []).filter(row => filters.every(f => f.op === 'eq'
           ? String(row[f.key]) === String(f.value) : f.op === 'ilike'
             ? new RegExp('^' + f.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/%/g, '.*') + '$', 'iu').test(String(row[f.key]))
             : f.value.some(value => String(row[f.key]) === String(value))));
-        return Promise.resolve({ data: data.slice(0, cap), count: data.length, error: table === failure ? new Error('Database unavailable') : null }).then(resolve, reject);
+        if (sortKey) data.sort((a, b) => Number(a[sortKey]) - Number(b[sortKey]));
+        return Promise.resolve({ data: data.slice(offset, offset + cap), count: data.length, error: table === failure ? new Error('Database unavailable') : null }).then(resolve, reject);
       }
     };
     return query;
@@ -178,6 +181,18 @@ test('saved references cannot silently follow a reassigned master', async () => 
     risk: { ...risk, current_measure: 'Isolate the line', current_measure_reference: {
       kind: 'translation', id: 201, masterId: 88, locale: 'en-US' } }, type: 'advanced', context,
   }), []);
+});
+
+test('control search continues past an excluded page to find a valid later result', async () => {
+  const data = fixture();
+  data.Current_Measures_Translations[0].id = 900;
+  data.Current_Measures_Translations.push(...Array.from({ length: 105 }, (_, index) => ({
+    id: 300 + index, measure_id: 10000 + index, locale: 'en-US', measure_text: 'Isolate an unresolved item',
+  })));
+  const db = database(data);
+  const result = await searchMeasureTranslations(db, { term: 'Isolate', type: 'current', locale: 'en-US' });
+  assert.deepEqual(result.map(row => row.reference.id), [900]);
+  assert.equal(db.calls.filter(call => call.table === 'Current_Measures_Translations').length, 2);
 });
 
 test('identity lookup failures remain errors and a later request rechecks corrected data', async () => {

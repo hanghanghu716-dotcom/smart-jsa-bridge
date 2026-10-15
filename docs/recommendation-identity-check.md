@@ -4,6 +4,8 @@ Legacy recommendation and manual-control search require a present, unique master
 
 The verifier requests exact counts in bounded batches. A truncated response that could hide a duplicate is an error. Ancestors are cached only within one lookup. Saved reference/master consistency is checked, and read failures reach the existing error state.
 
+Manual search continues through ordered pages until it finds up to 30 valid controls or exhausts the matches. Excluding an invalid first page cannot hide valid later results.
+
 Remaining percentages are unchanged and retain their text-similarity label. Structural validity does not establish semantic relevance or regional approval. This code change neither repairs source correspondences nor activates a production release.
 
 Synthetic guest and real local Supabase fixtures include missing masters, duplicate masters and broken ancestors with higher scores than the valid controls. The browser checks require only the valid control in each list. Unit tests also cover response truncation, lookup failure, stale references, batching and correction on a subsequent request.
