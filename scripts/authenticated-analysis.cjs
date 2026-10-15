@@ -31,18 +31,23 @@ const { randomUUID } = require('node:crypto');
     assert.ok(verified.data.user?.id);
   }
   const ownerId = (await owner.auth.getUser()).data.user.id;
-  const { createServer } = await import('vite');
+  const { build, preview } = await import('vite');
   const { default: react } = await import('@vitejs/plugin-react');
   const { SUPPORTED_LANGS } = await import('../src/locales/config.js');
   const { recommendationContext } = await import('../src/utils/analysisRecommendations.js');
   const { fixtureText } = await import('./analysis-fixture/text.js');
   const realClient = path.resolve('scripts/auth-integration/client.js');
-  const server = await createServer({ configFile: false,
+  // A built fixture has no development websocket or automatic reloads during interaction.
+  const outDir = path.resolve('.cache/auth-integration/browser-dist');
+  await build({ configFile: false, publicDir: false,
     define: { __JSA_AUTH_TEST_CONFIG__: JSON.stringify({ url: api, anonKey }) },
     plugins: [{ name: 'isolated-real-supabase', enforce: 'pre', resolveId(id) {
       return /(?:^|\/)supabaseClient(?:\.js)?$/.test(id) ? realClient : null;
-    } }, react()], server: { host: '127.0.0.1', port: 0, hmr: false }, appType: 'spa',
+    } }, react()], build: { outDir, target: 'esnext',
+      rollupOptions: { input: path.resolve('scripts/auth-integration/index.html') } },
   });
+  const server = await preview({ configFile: false, publicDir: false, build: { outDir },
+    preview: { host: '127.0.0.1', port: 0 }, appType: 'spa' });
   const results = [], checks = {};
   let browser, lastDraft;
   await fs.mkdir('artifacts/recommendations', { recursive: true });
@@ -70,7 +75,6 @@ const { randomUUID } = require('node:crypto');
     p_participants: row.participants, p_procedures: row.procedures, p_analysis_data: row.analysis_data,
     p_layout_data: row.layout_data, p_source_project_id: row.source_project_id });
   try {
-    await server.listen();
     const origin = `http://127.0.0.1:${server.httpServer.address().port}`;
     browser = await require('puppeteer').launch({ executablePath: process.env.CHROME_PATH ||
       (process.platform === 'win32' ? 'C:/Program Files/Google/Chrome/Application/chrome.exe' : '/usr/bin/google-chrome'),
@@ -178,6 +182,7 @@ const { randomUUID } = require('node:crypto');
           '/rest/v1/Hazards', '/rest/v1/Current_Measures', '/rest/v1/Advanced_Measures',
           '/rest/v1/rpc/save_jsa_draft_snapshot', '/rest/v1/user_jsa_drafts']) assert.ok(apiPaths.has(endpoint), endpoint);
         assert.deepEqual(errors, [], `${locale}: browser errors`);
+        assert.equal(navigations.length, 3, `${locale}: only explicit initial load and two restores may navigate`);
         lastDraft = editedRow;
         results.push({ locale, realAuth: true, realRecommendationRetrieval: true, wrongIdHighScoreExcluded: true,
           percentagesPreserved: true, brokenMasterIdentitiesExcluded: true, cloudAutosave: true, reloadFromDatabase: true,
@@ -229,7 +234,10 @@ const { randomUUID } = require('node:crypto');
     console.log('PASS real Auth/PostgREST: anonymous denial, account isolation, stale-write protection, concurrent save');
   } finally {
     if (browser) await browser.close();
-    await server.close();
+    await new Promise((resolve, reject) => {
+      server.httpServer.close(error => error ? reject(error) : resolve());
+      server.httpServer.closeAllConnections();
+    });
     await fs.writeFile('artifacts/recommendations/authenticated-analysis.json', JSON.stringify({
       schemaVersion: 1, environment: 'disposable-local-supabase', data: 'synthetic',
       productionSchemaParity: false, productionSemanticEvaluation: false,
