@@ -86,7 +86,9 @@ test('coverage counts exact task and jurisdiction, preserving missing cells and 
   assert.equal(sg.requiresLocalSourceReview, true);
   const alberta = report.coverage.find(row => row.locale === 'en-CA-AB').tasks.find(task => task.taskType === 'pressure-equipment-opening');
   assert.equal(alberta.primarySourceReferences.nationalReference, 1);
-  assert.equal(alberta.primarySourceReferences.sameJurisdiction, 0);
+  assert.equal(alberta.primarySourceReferences.sameJurisdiction, 1);
+  assert.equal(alberta.missingSameJurisdictionPrimaryReference, false);
+  assert.equal(alberta.requiresLocalSourceReview, true);
   const japan = report.coverage.find(row => row.locale === 'ja-JP').tasks.find(task => task.taskType === 'welding-exposure');
   assert.equal(japan.primarySourceReferences.sameJurisdiction, 1);
   assert.equal(japan.missingSameJurisdictionPrimaryReference, false);

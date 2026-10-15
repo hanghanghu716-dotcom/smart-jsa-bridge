@@ -394,15 +394,15 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
       "hazard": "Démarrage imprévu ou libération d’énergie résiduelle",
       "cause": "Une alimentation reste raccordée ou peut être rétablie",
       "consequence": "Écrasement pendant l’intervention",
-      "control": "Identifier les énergies et appliquer la procédure propre à la machine pour les isoler et empêcher leur rétablissement.",
-      "verification": "Vérifier la consignation et les énergies résiduelles avant l’intervention.",
+      "control": "Identifier les énergies et appliquer la procédure propre à la machine pour les isoler; chaque personne accédant à la zone dangereuse effectue le cadenassage.",
+      "verification": "Éliminer ou maîtriser les énergies résiduelles et vérifier l’efficacité du cadenassage avant l’intervention.",
       "conditions": [
         "Personnel compétent; instructions du fabricant et procédure du site disponibles"
       ],
@@ -426,6 +426,16 @@
           "retrieval": "primary_page_or_document",
           "jurisdiction": "CA-QC",
           "evidenceRole": "technical"
+        },
+        {
+          "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
+          "authority": "LégisQuébec",
+          "jurisdiction": "CA-QC",
+          "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
+          "scope": "Machine danger-zone energy control: each entrant participates in lockout, machine-specific procedures address residual energy and verification. Alternative methods and exceptions require their own assessment; this draft uses lockout and does not reproduce those exceptions.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -442,7 +452,7 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,

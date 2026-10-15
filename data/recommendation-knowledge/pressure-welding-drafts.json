@@ -363,7 +363,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -371,7 +371,7 @@
       "cause": "Supply, backfeed or trapped air remains",
       "consequence": "Impact injury from escaping air or parts",
       "control": "Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
-      "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return.",
+      "verification": "Each worker tests and confirms isolation and a safe depressurised state under the equipment procedure before work; recheck if pressure can return.",
       "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
       "conditions": [
         "Equipment-specific isolation procedure available",
@@ -405,6 +405,16 @@
           "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "authority": "Alberta Occupational Health and Safety",
+          "jurisdiction": "CA-AB",
+          "section": "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods",
+          "scope": "Machinery/equipment hazardous-energy control. Each worker must test and confirm a safe state; individual and group lockout methods differ. This is not a complete pressure-equipment opening procedure.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -430,7 +440,7 @@
         "confined-entry": "Confined-space entry",
         "unknown-media-or-isolation": "Unknown contents or isolation boundary"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -559,7 +569,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -568,11 +578,12 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
       "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+      "coverageLimit": "Pressure-release hazard of a machine-integrated filter only; other maintenance hazards and industrial-establishment legal applicability need separate assessment.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
-        "Compressed-air filter and all pressure paths identified"
+        "Compressed-air filter and all pressure paths identified",
+        "Filter is integrated into a machine; its danger zone and energy paths are identified"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -611,6 +622,16 @@
           "checkedAt": "2026-10-14",
           "retrieval": "primary_search_metadata_full_text_unavailable",
           "evidenceRole": "lead"
+        },
+        {
+          "url": "https://www.wsps.ca/resource-hub/articles/left-hand-rule",
+          "authority": "Workplace Safety & Prevention Services (WSPS)",
+          "jurisdiction": "CA-ON",
+          "section": "2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment",
+          "scope": "Ontario association technical guidance, read through the publisher’s embedded article. Supports identifying pneumatic energy and equipment-specific isolation and dissipation. Electrical switching advice is outside this draft; this is not legislation.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -620,7 +641,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -634,9 +656,10 @@
         "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
         "pressurized-intervention": "Pressurised intervention",
         "confined-entry": "Confined-space entry",
-        "unknown-media-or-isolation": "Unknown contents or isolation boundary"
+        "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+        "machine-integrated-filter": "Filter is integrated into a machine; its danger zone and energy paths are identified"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -659,7 +682,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -668,12 +691,13 @@
       "consequence": "Respiratory illness",
       "control": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
       "verification": "Check extraction performance and exposure controls against the approved work procedure before welding.",
-      "coverageLimit": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+      "coverageLimit": "Construction welding fume exposure only; fire, radiation, electrical and gas hazards need separate assessment. Other industries require separate review.",
       "conditions": [
         "Authorised person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
-        "Exposure-control procedure available"
+        "Exposure-control procedure available",
+        "Welding is part of construction work covered by the site procedure"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -713,6 +737,16 @@
           "checkedAt": "2026-10-14",
           "retrieval": "primary_search_metadata_full_text_unavailable",
           "evidenceRole": "lead"
+        },
+        {
+          "url": "https://www.ihsa.ca/rtf/health_safety_manual/pdfs/tools_and_techniques/Welding_and_Cutting.pdf",
+          "authority": "Infrastructure Health & Safety Association (IHSA)",
+          "jurisdiction": "CA-ON",
+          "section": "Construction Health and Safety Manual, chapter 41, printed pages 41-6 to 41-7: ventilation and respiratory protection",
+          "scope": "Ontario construction technical guidance on source extraction, hood position and exposure assessment. Historical standard references are not treated as current CSA or legal certification; other industries require separate review.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -723,7 +757,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "construction-work"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -740,9 +775,10 @@
         "confined-entry": "Confined-space entry",
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
-        "extraction-unavailable": "Extraction unavailable or ineffective"
+        "extraction-unavailable": "Extraction unavailable or ineffective",
+        "construction-work": "Welding is part of construction work covered by the site procedure"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -977,20 +1013,21 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
       "hazard": "Libération d’air sous pression résiduelle",
       "cause": "Alimentation, retour ou poche d’air non maîtrisés",
       "consequence": "Blessure par jet d’air ou projection de pièces",
-      "control": "Selon la procédure de l’équipement, isoler et condamner les alimentations puis évacuer la pression résiduelle en sécurité avant ouverture.",
-      "verification": "Une personne autorisée vérifie l’isolement et la dépressurisation; poursuivre les contrôles si la pression peut revenir.",
-      "coverageLimit": "Risque de pression uniquement; évaluer séparément les autres risques d’entretien.",
+      "control": "Appliquer la procédure propre à la machine : isoler les alimentations, effectuer le cadenassage avec chaque personne accédant à la zone dangereuse et évacuer la pression résiduelle en sécurité avant ouverture.",
+      "verification": "Vérifier l’efficacité du cadenassage et la dépressurisation selon la procédure; poursuivre les contrôles si la pression peut revenir.",
+      "coverageLimit": "Pression d’un filtre intégré à une machine uniquement; évaluer séparément les autres risques et toute méthode autre que le cadenassage.",
       "conditions": [
         "Procédure de consignation propre à l’équipement disponible",
         "Personne autorisée désignée",
-        "Filtre à air comprimé et circuits de pression identifiés"
+        "Filtre à air comprimé et circuits de pression identifiés",
+        "Filtre intégré à une machine; zone dangereuse et circuits d’énergie identifiés"
       ],
       "exclusions": [
         "Intervention sous pression",
@@ -1019,6 +1056,16 @@
           "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
+          "authority": "LégisQuébec",
+          "jurisdiction": "CA-QC",
+          "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
+          "scope": "Machine danger-zone energy control: each entrant participates in lockout, machine-specific procedures address residual energy and verification. Alternative methods and exceptions require their own assessment; this draft uses lockout and does not reproduce those exceptions.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1028,7 +1075,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1042,9 +1090,10 @@
         "compressed-air-filter-identified": "Filtre à air comprimé et circuits de pression identifiés",
         "pressurized-intervention": "Intervention sous pression",
         "confined-entry": "Entrée en espace confiné",
-        "unknown-media-or-isolation": "Contenu ou périmètre d’isolement inconnu"
+        "unknown-media-or-isolation": "Contenu ou périmètre d’isolement inconnu",
+        "machine-integrated-filter": "Filtre intégré à une machine; zone dangereuse et circuits d’énergie identifiés"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -1731,19 +1780,19 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Wartung eines Druckluftfilters",
       "step": "Öffnung des Filtergehäuses vorbereiten",
       "hazard": "Freisetzung von Restdruck",
       "cause": "Zufuhr, Rückströmung oder eingeschlossene Luft bleiben bestehen",
       "consequence": "Verletzung durch Luftstrahl oder herausgeschleuderte Teile",
-      "control": "Nach der gerätespezifischen Anweisung alle Zuführungen absperren und sichern; eingeschlossenen Druck vor dem Öffnen sicher abbauen.",
-      "verification": "Eine befugte Person prüft Trennung und Druckfreiheit; bei möglichem Druckaufbau weiter kontrollieren.",
+      "control": "Nach der gerätespezifischen Anweisung unter Berücksichtigung der Herstellerangaben alle Zuführungen absperren und sichern; eingeschlossenen Druck vor dem Öffnen sicher abbauen.",
+      "verification": "Die fachkundige, beauftragte Person prüft Trennung und Druckfreiheit; bei möglichem Druckaufbau weiter kontrollieren.",
       "coverageLimit": "Nur Druckfreisetzung; weitere Wartungsgefahren gesondert beurteilen.",
       "conditions": [
         "Gerätespezifische Freischaltanweisung vorhanden",
-        "Befugte Person benannt",
+        "Fachkundige, beauftragte und unterwiesene Person benannt",
         "Druckluftfilter und sämtliche Druckpfade bekannt"
       ],
       "exclusions": [
@@ -1764,6 +1813,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.gesetze-im-internet.de/betrsichv_2015/BJNR004910015.html",
+          "authority": "Bundesministerium der Justiz / Bundesamt für Justiz",
+          "jurisdiction": "DE",
+          "section": "Betriebssicherheitsverordnung § 10(1)-(3), especially (3)6-7",
+          "scope": "Maintenance of work equipment: manufacturer information, competent appointed/instructed personnel, hazardous energy and stored-energy dissipation. It does not supply a complete filter-opening procedure or pressure-system inspection approval.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1783,13 +1842,13 @@
       },
       "conditionLabels": {
         "equipment-procedure-available": "Gerätespezifische Freischaltanweisung vorhanden",
-        "authorized-person-assigned": "Befugte Person benannt",
+        "authorized-person-assigned": "Fachkundige, beauftragte und unterwiesene Person benannt",
         "compressed-air-filter-identified": "Druckluftfilter und sämtliche Druckpfade bekannt",
         "pressurized-intervention": "Eingriff unter Druck",
         "confined-entry": "Einstieg in einen engen Raum",
         "unknown-media-or-isolation": "Inhalt oder Absperrgrenze unbekannt"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -1909,7 +1968,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "圧縮空気フィルターの保守",
       "step": "フィルター容器の開放準備",
@@ -1918,11 +1977,12 @@
       "consequence": "噴出空気や部品による負傷",
       "control": "設備固有の手順で全供給源を遮断・固定し、開放前に残圧を安全に除去する。",
       "verification": "権限を持つ担当者が隔離と無圧状態を確認し、再加圧のおそれがあれば継続して確認する。",
-      "coverageLimit": "圧力放出のみを対象とする。他の保守作業の危険は別途評価する。",
+      "coverageLimit": "機械に組み込まれたフィルターの圧力放出のみを対象とする。設備固有の作業手順と他の危険の評価が必要。",
       "conditions": [
         "設備固有の隔離手順がある",
         "権限を持つ担当者が選任されている",
-        "圧縮空気フィルターと全圧力経路が特定されている"
+        "圧縮空気フィルターと全圧力経路が特定されている",
+        "機械に組み込まれたフィルターで、危険区域とエネルギー経路が特定されている"
       ],
       "exclusions": [
         "加圧状態での作業",
@@ -1942,6 +2002,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb3488&dataType=1&pageNo=1",
+          "authority": "厚生労働省",
+          "jurisdiction": "JP",
+          "section": "2007-07-31 基安安発第0731004号, 別表第4 3(1)-(4): energy isolation and residual energy",
+          "scope": "Machinery design/protective-measure guidance, including pneumatic machinery, on identifiable isolation means, locking where needed and safe residual-energy removal. It is not an equipment-specific filter-opening instruction or proof of current legal compliance.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -1951,7 +2021,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1965,9 +2036,10 @@
         "compressed-air-filter-identified": "圧縮空気フィルターと全圧力経路が特定されている",
         "pressurized-intervention": "加圧状態での作業",
         "confined-entry": "閉所への立入り",
-        "unknown-media-or-isolation": "内容物または隔離範囲が不明"
+        "unknown-media-or-isolation": "内容物または隔離範囲が不明",
+        "machine-integrated-filter": "機械に組み込まれたフィルターで、危険区域とエネルギー経路が特定されている"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,
@@ -2281,7 +2353,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Manutenzione di un filtro per aria compressa",
       "step": "Preparare l’apertura del corpo del filtro",
@@ -2290,11 +2362,12 @@
       "consequence": "Lesioni da getto d’aria o proiezione di parti",
       "control": "Seguire la procedura dell’attrezzatura per isolare e bloccare tutte le alimentazioni e scaricare in sicurezza la pressione prima dell’apertura.",
       "verification": "Una persona autorizzata verifica isolamento e depressurizzazione; proseguire i controlli se la pressione può riaccumularsi.",
-      "coverageLimit": "Solo rilascio di pressione; valutare separatamente gli altri rischi di manutenzione.",
+      "coverageLimit": "Solo pressione di un filtro integrato in una macchina; valutare separatamente gli altri rischi e l’applicabilità delle norme vigenti.",
       "conditions": [
         "Procedura di isolamento specifica disponibile",
         "Persona autorizzata incaricata",
-        "Filtro ad aria compressa e circuiti di pressione identificati"
+        "Filtro ad aria compressa e circuiti di pressione identificati",
+        "Filtro integrato in una macchina; zona pericolosa e percorsi dell’energia identificati"
       ],
       "exclusions": [
         "Intervento sotto pressione",
@@ -2314,6 +2387,16 @@
           "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
           "checkedAt": "2026-10-14",
           "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2020/12/1%20Presentazione%20Amaro%20rev.1.pdf",
+          "authority": "INAIL",
+          "jurisdiction": "IT",
+          "section": "2020-12-02 presentation, slides 19-21, intervention A-3.4: machine LOTO sequence",
+          "scope": "Historical INAIL technical presentation on machine energy control, including compressed air, personal isolation devices, verification and residual energy. It references OSHA; it is not current Italian law, a complete pressure-opening procedure or current incentive eligibility.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -2323,7 +2406,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "authorized-person-assigned",
-          "compressed-air-filter-identified"
+          "compressed-air-filter-identified",
+          "machine-integrated-filter"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2337,9 +2421,10 @@
         "compressed-air-filter-identified": "Filtro ad aria compressa e circuiti di pressione identificati",
         "pressurized-intervention": "Intervento sotto pressione",
         "confined-entry": "Accesso a spazio confinato",
-        "unknown-media-or-isolation": "Contenuto o limite di isolamento sconosciuto"
+        "unknown-media-or-isolation": "Contenuto o limite di isolamento sconosciuto",
+        "machine-integrated-filter": "Filtro integrato in una macchina; zona pericolosa e percorsi dell’energia identificati"
       },
-      "sourceRevision": "research-2026-10-14",
+      "sourceRevision": "research-2026-10-15",
       "sourceFingerprint": null,
       "origin": {
         "aiAssisted": true,

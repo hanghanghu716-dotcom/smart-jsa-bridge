@@ -62,4 +62,18 @@ The Italian maintenance unit now uses INAIL production-line energy-control conte
 
 Regional source follow-up adds 19 primary-source references across the authored units, including national model guidance and explicitly limited technical guidance. Japan now requires a measured-exposure respiratory protection program for the bounded indoor metal-arc task; the generic conditional-respirator sentence was removed. BC requires an exposure control plan, Québec a fixed welding station, Spain metal-arc welding, and SG/BR/ES pressure drafts an identified machine-integrated filter. Saudi project guidance requires adoption of the project isolation procedure. These source checks do not grant technical, regional or translation approval. The matrix reports missing same-jurisdiction references separately from regional review still required.
 
-BC pressure-work verification explicitly requires each worker’s lockout check. Three unread Ontario/Brazil source leads are retained as leads, not verified local technical evidence. Twelve task/Locale cells still lack a read same-jurisdiction primary reference; all 54 still require regional review.
+BC pressure-work verification explicitly requires each worker’s lockout check. Three unread Ontario/Brazil source leads are retained as leads, not verified local technical evidence.
+
+The 2026-10-15 follow-up adds eight read source references across eight draft revisions, closing seven task/Locale source gaps. Alberta pressure work now requires each worker to test and confirm a safe state. Ontario, Québec, Japan and Italy pressure units require a machine-integrated filter. Ontario welding requires construction work because the IHSA source is a construction manual. Québec maintenance and pressure drafts reflect machine-specific cadenassage, worker participation, residual energy and verification; German pressure work names competent, appointed/instructed personnel and manufacturer information. All changed units remain unapproved drafts with null scores and fingerprints.
+
+Source scope remains explicit: Ontario WSPS/IHSA publications are technical guidance, Japan's source concerns machinery design/protective measures, and the 2020 INAIL presentation is historical technical context. None establishes a complete filter-opening procedure or current legal compliance. Five task/Locale cells still lack a read same-jurisdiction primary reference; all 54 still require regional review:
+
+| Locale | Task | Remaining evidence gap |
+| --- | --- | --- |
+| en-SG | Welding exposure | Full applicable welding-control source still needed; disease guidance alone does not establish the extraction procedure |
+| pt-BR | Welding exposure | Official manual exceeds the retrieval size limit; no full relevant section has been verified |
+| ru-RU | Machine maintenance | Original and amendment leads exist; relevant full clauses and current applicability remain unverified |
+| ru-RU | Pressure-equipment opening | Applicable domestic pressure-isolation clauses remain unverified |
+| ru-RU | Welding exposure | Official welding order and appendix require full-text and amendment review |
+
+Fourteen targeted knowledge, coverage and release tests pass after this source update. The synthetic 99% test checks every required/excluded condition in all 36 pressure/welding drafts, including the new machine/construction restrictions. The generated report still has 54 populated priority cells, 57 active drafts and zero publication-eligible cells.
