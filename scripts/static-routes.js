@@ -1,4 +1,5 @@
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
+import { isIndexableStaticPage } from '../src/utils/indexing.js';
 
 const publicPages = ['', 'about', 'dictionary', 'jrajsa', 'regulation',
   'riskclassification', 'protectiveequipment', 'guideline/common',
@@ -8,6 +9,6 @@ const publicPages = ['', 'about', 'dictionary', 'jrajsa', 'regulation',
 // react-snap 1.23 ignores the legacy `exclude` setting. Disable link crawling
 // and enumerate stable public routes so user-owned data is never snapshotted.
 export function staticRoutes(manifest) {
-  return [...new Set(['/', ...SUPPORTED_LANGS.flatMap(locale => publicPages.map(page => `/${locale}/${page}`)),
+  return [...new Set(['/', ...SUPPORTED_LANGS.flatMap(locale => publicPages.filter(page => isIndexableStaticPage(locale, page)).map(page => `/${locale}/${page}`)),
     ...manifest.map(item => item.route).filter(route => /^\/[^/]+\/case-study\/[^/]+$/.test(route))])];
 }

@@ -1,5 +1,5 @@
 import { SUPPORTED_LANGS, SEO_LANGUAGES, getSeoLocale, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
-import { staticCanonicalLocale } from '../src/utils/indexing.js';
+import { staticCanonicalLocale, isIndexableStaticPage } from '../src/utils/indexing.js';
 
 const baseUrl = 'https://smartjsabridge.com';
 const staticPages = ['', 'about', 'archive', 'explore', 'dictionary', 'jrajsa', 'regulation',
@@ -35,9 +35,10 @@ export function buildSitemap(rows, { includeStatic = true, exploreLocales = [] }
     entries.push('  <url>\n    <loc>' + url(locale) + '</loc>' + lastmod + '\n' + links.join('\n') + '\n  </url>');
   };
   for (const page of includeStatic ? staticPages : []) {
-    const alternates = page === 'explore' ? SEO_LANGUAGES.filter(code => exploreLocales.includes(getSeoLocale(code))) : SEO_LANGUAGES;
+    const alternates = SEO_LANGUAGES.filter(code => isIndexableStaticPage(getSeoLocale(code), page)
+      && (page !== 'explore' || exploreLocales.includes(getSeoLocale(code))));
     for (const locale of SUPPORTED_LANGS) {
-      if (staticCanonicalLocale(locale, page) !== locale || (page === 'explore' && !exploreLocales.includes(locale))) continue;
+      if (!isIndexableStaticPage(locale, page) || staticCanonicalLocale(locale, page) !== locale || (page === 'explore' && !exploreLocales.includes(locale))) continue;
       addEntry(locale, page ? '/' + page : '', alternates);
     }
   }
