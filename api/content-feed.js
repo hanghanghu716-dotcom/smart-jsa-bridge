@@ -67,7 +67,7 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
       if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
-          readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher),
+          readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher, { pageSize: 25 }),
           readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true', public_locale: 'eq.' + locale }, fetcher),
         ]);
         body = buildFeed(cases, documents, locale);
