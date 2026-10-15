@@ -19,6 +19,14 @@ Percentages remain text similarity. Ambiguous IDs, cross-language score propagat
 4. Generate separate mappings with pinned models. Compare current, corrected-legacy and new-knowledge systems on independently labelled cases, including high-score errors, omissions, edits, latency and cost. Derive activation thresholds from evidence.
 5. Verify authenticated persistence, real recommendation retrieval and PDF/export against staging data. Activate validated task/jurisdiction groups with prior code/data versions and an atomic rollback path. Do not overwrite saved documents to roll back.
 
+## Authenticated local integration
+
+`authenticated-analysis.yml` runs a pinned Supabase CLI stack in a disposable CI runner. It uses real GoTrue sessions, PostgREST queries and PostgreSQL RLS, with two synthetic users and public, synthetic recommendation fixtures. The actual Analysis editor reads recommendations, preserves their 72%/80% fixture scores as text similarity, saves to the database, restores after navigation, invalidates edited references and renders the document in all 18 UI Locales. Direct API checks cover anonymous access, another user's reads/writes/deletes/RPC, stale revisions and simultaneous saves.
+
+The test-only client is substituted by the isolated Vite server; it accepts only the loopback fixture URL. No application runtime connection, hosted project, production data or private schema export is used. The draft tables, ownership policies and locking function come from three unmodified public migrations. The recommendation tables and minimal project prerequisite are synthetic contracts derived from existing public client queries, not a reconstruction of production DDL. Thus a successful run establishes this integration boundary, not full production-schema parity, semantic relevance, account onboarding, final project persistence or production PDF/export. Those staging and rollout gates remain open. Results are recorded per run in `authenticated-analysis-results`.
+
+To reproduce with Docker and Supabase CLI 2.121.0: run `node scripts/auth-integration/prepare.js`, start the stack with `--workdir .cache/auth-integration` on a loopback-bound Docker network, write `supabase status --output json` for that workdir to `.cache/auth-integration/status.json`, then run `node scripts/authenticated-analysis.cjs`. Stop that workdir with `--no-backup` afterwards. Never substitute hosted credentials or upload the status file.
+
 ## Legacy import retirement
 
 `python/advanced_batch_translate.py` and `python/json_to_sql.py` are retired. The former asked a model to assign IDs and supply regional compliance content, then wrote SQL; the latter silently kept the last duplicate translation. Existing CLI commands now exit with status 2, and imported functions raise `RuntimeError` before file or API access. They never generate partial SQL or overwrite operator files. These are offline utilities, not application runtime code.
