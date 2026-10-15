@@ -55,3 +55,20 @@ test('project title search keeps its steps visible and hazard search keeps origi
   assert.deepEqual(matchingProjectSteps(p, 'absent'), []);
   assert.deepEqual(matchingProjectSteps(null, ''), []);
 });
+
+test('import preserves typed references without carrying site confirmation or old scores', () => {
+  const risk = { factor: 'Pressure', current_measure: 'Isolate', current_measure_confirmed: true,
+    hazard_reference: { kind: 'translation', id: 101, masterId: null, locale: 'en-US' },
+    current_measure_reference: { kind: 'translation', id: 201, masterId: null, locale: 'en-US' },
+    current_measure_score: 0.99 };
+  const imported = mergeKnowledgeRisks({ risks: [] }, { risks: [risk] }, { jsaType: '3-step' }).step.risks[0];
+  assert.deepEqual(imported.hazard_reference, risk.hazard_reference);
+  assert.deepEqual(imported.current_measure_reference, risk.current_measure_reference);
+  assert.notEqual(imported.hazard_reference, risk.hazard_reference);
+  assert.equal(imported.current_measure_confirmed, false);
+  assert.equal(imported.current_measure_score, undefined);
+  assert.equal(imported.recommendation_review_required, true);
+  const hazardsOnly = mergeKnowledgeRisks({ risks: [] }, { risks: [risk] }, { mode: 'hazards' }).step.risks[0];
+  assert.equal(hazardsOnly.current_measure_reference, null);
+  assert.equal(hazardsOnly.recommendation_review_required, false);
+});

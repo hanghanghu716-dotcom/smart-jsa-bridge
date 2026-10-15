@@ -9,9 +9,10 @@ import { defaultColumns } from '../utils/documentLayout';
 import { regionalJourneyUi } from '../locales/regionalJourneyUi';
 import PaperSizeSelect from './PaperSizeSelect';
 import DocumentContent from './DocumentContent';
+import CaseStepPicker from './CaseStepPicker';
 import '../styles/regional-journey.css';
 
-export default function RegionalStartActions({ locale, activity = '' }) {
+export default function RegionalStartActions({ locale, activity = '', casePost = null }) {
   const { i18n } = useTranslation();
   const navigate = useLanguageNavigate();
   const [context, setContext] = useState(() => journeyContext(locale, activity));
@@ -47,6 +48,8 @@ export default function RegionalStartActions({ locale, activity = '' }) {
       <label>{regionUi.language}<select value={context.documentLocale} onChange={event => setContext(current => workContext({ ...current, documentLocale: event.target.value }))}>{WORK_DOCUMENT_LANGUAGES.map(l => <option key={l} value={l}>{documentLanguageLabel(l)}</option>)}</select></label>
       <PaperSizeSelect value={paperSize} onChange={setPaperSize} locale={locale}/>
     </fieldset>
+    {casePost && <CaseStepPicker post={casePost} context={context} paperSize={paperSize} locale={locale}
+      onStart={selectedState => { clearActiveDraft({ preserveGuest: true }); navigate('/info', { state: selectedState }); }} />}
     <div className="regional-journey-actions">
       <button type="button" className="regional-journey-primary" disabled={busy} onClick={() => { clearActiveDraft({ preserveGuest: true }); navigate('/info', { state }); }}>{ui.start} →</button>
       <button type="button" disabled={busy} onClick={downloadBlank}>{busy ? ui.creating : ui.blankPdf} ↓</button>

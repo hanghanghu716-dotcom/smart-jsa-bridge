@@ -9,6 +9,7 @@ import { saveProject } from '../services/projectPersistenceService';
 import DocumentSignatures from '../components/DocumentSignatures';
 import { normalizeDocumentBlocks } from '../utils/documentLayout';
 import DocumentContent from '../components/DocumentContent';
+import AssessmentSummary from '../components/AssessmentSummary';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
@@ -182,7 +183,9 @@ function ExportEditor({ recoveredDraft }) {
     let savedProject = null;
     try {
       const draftResult = await draftSave.flushAndPause();
-      const rawTags = extractAutoTagsFromJSA(formData.projectName || '', analysisData);
+      const rawTags = extractAutoTagsFromJSA(formData.projectName || '', analysisData, {
+        locale: documentLocale, translateTag: i18n.getFixedT(documentLocale, 'tags'),
+      });
       const tags = rawTags.filter(tag => Object.keys(DIMENSIONAL_KEYWORD_MAP).includes(tag));
       savedProject = await saveProject({
         mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,
@@ -315,7 +318,7 @@ function ExportEditor({ recoveredDraft }) {
   const getColumnLabel = (key, meta) => {
     if (key.startsWith('USER_')) return meta?.label || key;
     if (savedColumnOverrides[key]?.label) return savedColumnOverrides[key].label;
-    return t(`tags.${key}`, meta?.label || key);
+    return documentT(`tags.${key}`, meta?.label || key);
   };
 
   const renderDataTable = () => {
@@ -418,11 +421,11 @@ function ExportEditor({ recoveredDraft }) {
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = stepData.risks.map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = stepData.risks.map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}`).join('\n');
+                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = stepData.risks.map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${documentT('analysis:review.unconfirmed')})` : ''}`).join('\n');
                 else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = stepData.risks.map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
-                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity || "-");
-                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency || "-");
-                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel || "-");
+                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity ?? "");
+                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency ?? "");
+                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel ?? "");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks[0]?.category || "";
                 else if (key.startsWith('USER_')) {
                   const raw = stepData.customFields?.[key];
@@ -431,7 +434,7 @@ function ExportEditor({ recoveredDraft }) {
                   else content = '';
                 }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
-                return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
+                return ( <td key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
               })}
             </tr>
           ))}
@@ -463,7 +466,7 @@ function ExportEditor({ recoveredDraft }) {
             <PaperSizeSelect locale={i18n.language} value={paperSize} onChange={setPaperSize} disabled={isProcessing}/>
             <div style={styles.previewArea}>
             {/* 가상의 A4 용지 영역 */}
-        <div className="reportPaper theme-paper" style={{...styles.reportPaper, width: PAPER_WIDTH}}>
+        <div className="reportPaper theme-paper" dir={i18n.dir(documentLocale)} lang={documentLocale} style={{...styles.reportPaper, width: PAPER_WIDTH}}>
           {hasDesignerLayout ? (
             <DocumentContent documentLocale={documentLocale} formData={formData} participants={participants} analysisData={analysisData}
               layout={{ documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes }}
@@ -474,6 +477,7 @@ function ExportEditor({ recoveredDraft }) {
               {!isModuleSkipped && renderUnifiedHeader()}
               {!isModuleSkipped && renderSignatureTable()}
               {renderDataTable()}
+              <AssessmentSummary value={formData.assessment} documentLocale={documentLocale} />
             </>
           )}        
         </div>
@@ -481,8 +485,8 @@ function ExportEditor({ recoveredDraft }) {
             <div style={styles.btnArea} className="no-print">
               <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('common:saveFlow.saveDocument')}</button>
-              <button style={styles.pdfBtn} onClick={handlePdfDownload}>{t('btn.pdfSave')}</button>
-              <button style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={handleCopyToClipboard}>{t('btn.copyTable')}</button>
+              <button data-export-pdf style={styles.pdfBtn} onClick={handlePdfDownload}>{t('btn.pdfSave')}</button>
+              <button data-export-copy style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={handleCopyToClipboard}>{t('btn.copyTable')}</button>
 
             </div>
           </div>

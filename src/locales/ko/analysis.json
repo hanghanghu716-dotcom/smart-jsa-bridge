@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ 빈칸 추가",
     "addBulkBtn": "✓ 선택 항목 일괄 추가",
     "emptyRec": "추천된 위험요인이 없습니다.",
-    "etc": "기타"
+    "etc": "기타",
+    "searching": "검색 중…"
   },
   "result": {
     "label": "평가 결과 및 대책",
@@ -74,7 +75,8 @@
     "prevStep1": "이전 단계(작업 절차)",
     "prevStep2": "이전 작업 단계",
     "nextComplete": "분석 완료 및 모듈 설정으로 이동",
-    "nextStep": "다음 작업 단계 분석"
+    "nextStep": "다음 작업 단계 분석",
+    "fastTrackComplete": "분석 완료 및 내용 복사"
   },
   "searchModal": {
     "title": "대책 DB 검색",
@@ -113,5 +115,41 @@
     "retry": "다시 시도",
     "close": "라이브러리 닫기",
     "noMatches": "검색 결과가 없습니다."
+  },
+  "fastTrackModal": {
+    "title": "평가 내용 복사",
+    "desc": "위험요소와 대책을 복사하여 사용 중인 서식에 붙여넣으세요.",
+    "hazardFactor": "위험요소",
+    "copied": "위험요소를 복사했습니다.",
+    "safetyMeasure": "대책",
+    "measureCopied": "대책을 복사했습니다.",
+    "goHome": "홈으로 이동"
+  },
+  "recommendation": {
+    "similarity": "문장 유사도",
+    "scoreHelp": "%는 문장 유사도이며 적합성, 승인 또는 사고 예방 확률이 아닙니다. 작업 조건을 확인한 뒤 대책을 적용하세요.",
+    "sharedData": "{{locale}} 공통 참고 자료를 사용합니다. 작업 국가·지역에 적용할 수 있는지 확인하세요.",
+    "reviewRequired": "입력이 변경되었습니다. 남아 있는 대책과 권고를 다시 확인하세요.",
+    "loadError": "추천 자료를 불러오지 못했습니다. 다시 시도해 주세요."
+  },
+  "review": {
+    "confirmCurrent": "이 대책이 현장에서 실제 시행 중임을 확인했습니다",
+    "unconfirmed": "현장 시행 여부 미확인",
+    "unknownSource": "출처: 기존 연결 데이터 · 기술 검토 기록 없음",
+    "linkedHazard": "연결된 위험요소",
+    "conditionsUnknown": "적용 조건과 지역 요건을 검토해야 합니다",
+    "sourceLanguage": "원문 언어",
+    "targetLanguage": "문서 언어",
+    "allLanguages": "모든 언어",
+    "sameLanguage": "문서 언어만",
+    "unknownLanguage": "언어 기록 없음",
+    "languageChanged": "보존된 문구가 현재 문서 언어에 맞는지 검토하세요",
+    "profileLabel": "평가 기준",
+    "profileHelp": "기본값은 5 × 5, 9 이상 강조입니다. 국가 표준이 아닌 변경 가능한 설정입니다. 기준을 바꾸면 기존 평가를 이력으로 보존하고 재평가합니다.",
+    "frequencyMax": "빈도 최댓값",
+    "severityMax": "강도 최댓값",
+    "highFrom": "강조 시작 점수",
+    "notAssessed": "미평가",
+    "criteria": "현장 절차 및 등급별 정의"
   }
 }

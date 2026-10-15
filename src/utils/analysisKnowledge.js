@@ -1,6 +1,8 @@
 const text = value => typeof value === 'string' ? value : '';
 const normalized = value => text(value).normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase();
 const risksOf = step => Array.isArray(step?.risks) ? step.risks.filter(Boolean) : [];
+export const knowledgeLocale = item => item?.locale || item?.form_data?.context?.documentLocale || item?.form_data?.documentLocale || null;
+export const languageDiffers = (source, target) => !source || source !== target;
 
 export function matchesKnowledge(value, query) {
   const needle = normalized(query);
@@ -36,17 +38,24 @@ export function mergeKnowledgeRisks(target, source, { mode = 'full', jsaType = '
     const twoStep = text(risk.measure) || [...new Set([text(risk.current_measure), text(risk.recommend_measure)].filter(Boolean))].join('\n');
     added.push({
       id: makeId(), db_id: risk.db_id, factor,
+      hazard_reference: risk.hazard_reference ? { ...risk.hazard_reference } : null,
       measure: full && jsaType === '2-step' ? twoStep : '',
       current_measure: full && jsaType === '3-step' ? text(risk.current_measure || risk.measure) : '',
       recommend_measure: full && jsaType === '3-step' ? text(risk.recommend_measure) : '',
       current_measure_db_id: full ? risk.current_measure_db_id : undefined,
       advanced_measure_db_id: full && jsaType === '3-step' ? risk.advanced_measure_db_id : undefined,
+      current_measure_reference: full && risk.current_measure_reference ? { ...risk.current_measure_reference } : null,
+      advanced_measure_reference: full && jsaType === '3-step' && risk.advanced_measure_reference ? { ...risk.advanced_measure_reference } : null,
+      current_measure_confirmed: false,
+      recommendation_review_required: full && Boolean(twoStep),
       category: risk.category || category,
       source: sourceMeta.type || 'library', sourceLabel: sourceMeta.label || '',
       sourceWorkStepId: sourceMeta.workStepId || null,
       sourceProjectId: sourceMeta.projectId || null,
       sourceStepIndex: Number.isInteger(sourceMeta.stepIndex) ? sourceMeta.stepIndex : null,
       sourceRiskId: risk.id || null,
+      sourceLocale: sourceMeta.locale || risk.sourceLocale || null,
+      contentLocale: sourceMeta.locale || risk.contentLocale || risk.sourceLocale || null,
     });
   }
   return { step: { ...target, risks: [...existing, ...added] }, added: added.length, skipped: incoming.length - added.length };

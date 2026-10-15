@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ 空白追加",
     "addBulkBtn": "✓ 選択項目を追加",
     "emptyRec": "推奨される危険要因が見つかりません。",
-    "etc": "その他"
+    "etc": "その他",
+    "searching": "検索中…"
   },
   "result": {
     "label": "評価と対策",
@@ -74,7 +75,8 @@
     "prevStep1": "前のステップ（作業手順）",
     "prevStep2": "前の作業ステップ",
     "nextComplete": "分析完了＆モジュール設定へ",
-    "nextStep": "次の作業ステップを分析"
+    "nextStep": "次の作業ステップを分析",
+    "fastTrackComplete": "分析を完了して内容をコピー"
   },
   "searchModal": {
     "title": "対策データベース検索",
@@ -113,5 +115,41 @@
     "retry": "再試行",
     "close": "ライブラリを閉じる",
     "noMatches": "一致する作業やプロジェクトがありません。"
+  },
+  "fastTrackModal": {
+    "title": "評価内容をコピー",
+    "desc": "危険要因と対策をコピーして、お使いの様式に貼り付けてください。",
+    "hazardFactor": "危険要因",
+    "copied": "危険要因をコピーしました。",
+    "safetyMeasure": "対策",
+    "measureCopied": "対策をコピーしました。",
+    "goHome": "ホームに戻る"
+  },
+  "recommendation": {
+    "similarity": "文章の類似度",
+    "scoreHelp": "割合は文章の類似度を示すもので、適合性、承認、事故防止の確率ではありません。作業条件を確認してから対策を適用してください。",
+    "sharedData": "{{locale}} の共通参考データを使用しています。作業を行う国・地域での適用可否を確認してください。",
+    "reviewRequired": "入力が変更されました。残っている対策と推奨事項を再確認してください。",
+    "loadError": "推奨データを読み込めませんでした。もう一度お試しください。"
+  },
+  "review": {
+    "confirmCurrent": "この対策が現場で実施されていることを確認しました",
+    "unconfirmed": "現場での実施は未確認",
+    "unknownSource": "出典：既存の関連付けデータ・技術審査の記録なし",
+    "linkedHazard": "関連する危険要因",
+    "conditionsUnknown": "適用条件と地域の要件を確認してください",
+    "sourceLanguage": "原文の言語",
+    "targetLanguage": "文書の言語",
+    "allLanguages": "すべての言語",
+    "sameLanguage": "文書の言語のみ",
+    "unknownLanguage": "言語の記録なし",
+    "languageChanged": "保持された本文が現在の文書言語に適しているか確認してください",
+    "profileLabel": "評価基準",
+    "profileHelp": "初期設定は5 × 5、9以上を強調します。国の標準ではなく変更可能な設定です。基準変更時は履歴を保持し、再評価します。",
+    "frequencyMax": "頻度の最大値",
+    "severityMax": "重篤度の最大値",
+    "highFrom": "強調する点数の下限",
+    "notAssessed": "未評価",
+    "criteria": "現場の手順と各評価段階の定義"
   }
 }

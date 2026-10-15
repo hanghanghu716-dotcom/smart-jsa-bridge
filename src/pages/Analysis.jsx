@@ -1,8 +1,9 @@
 import { pickDocumentLayout } from '../utils/documentLayout';
-import { mergeKnowledgeRisks, matchingProjectSteps } from '../utils/analysisKnowledge';
+import { mergeKnowledgeRisks, matchingProjectSteps, knowledgeLocale, languageDiffers } from '../utils/analysisKnowledge';
+import { assessmentProfile, assessedScore, changeAssessmentProfile } from '../utils/analysisAssessment';
 import ThemeSwitcher from '../components/ThemeSwitcher';
-import { getDataLocale } from '../locales/config.js';
-import React, { useState, useEffect } from 'react';
+import { recommendationContext, localizedHazards, matchesHazardKeywords, updateRiskValue, applyControl, formatSimilarity, loadMeasureRecommendations, searchMeasureTranslations } from '../utils/analysisRecommendations.js';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
@@ -14,27 +15,43 @@ import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 import DraftSaveStatus from '../components/DraftSaveStatus';
 import { saveWorkStep, listWorkSteps } from '../services/workStepLibraryService';
 import { recordPublicEngagement } from '../services/publicEngagementService';
+import manifest from '../data/reviewed-recommendations.json';
+import { loadCaseRecommendations } from '../utils/caseRecommendations';
+import { reconcileProcedureAnalysis } from '../utils/procedureAnalysis';
+import { caseRecommendationUi } from '../locales/caseRecommendationUi';
+import RecommendationEvidence from '../components/RecommendationEvidence';
 
 const EMPTY_LIST = [];
 
 export default function Analysis() {
+  const location = useLocation();
+  const { t } = useTranslation('common');
+  const shouldRecover = !location.state?.formData && !location.state?.analysisData;
+  const { draft, status } = useJsaDraftRecovery(shouldRecover);
+  if (shouldRecover && !['ready', 'empty', 'error'].includes(status)) return <div className="theme-workspace"><p role="status">{t('draftSave.pending')}</p></div>;
+  return <AnalysisEditor key={location.key} recoveredDraft={draft} />;
+}
+
+function AnalysisEditor({ recoveredDraft }) {
   const navigate = useLanguageNavigate();
   const location = useLocation();
   const { t, i18n } = useTranslation(['analysis', 'tags']);
   const [isFastTrackModalOpen, setIsFastTrackModalOpen] = useState(false);
 
   const state = location.state || {};
-  const shouldRecoverDraft = !state.formData && !state.analysisData;
-  const { draft: recoveredDraft, status: recoveryStatus } = useJsaDraftRecovery(shouldRecoverDraft);
-  const recoverySettled = !shouldRecoverDraft || ['ready', 'empty', 'error'].includes(recoveryStatus);
-
   const existingId = state.existingId ?? state.id ?? recoveredDraft?.source_project_id ?? null;
   const procedures = state.procedures || recoveredDraft?.procedures || EMPTY_LIST;
-  const formData = state.formData || recoveredDraft?.form_data || {};
+  const originalFormData = state.formData || recoveredDraft?.form_data || {};
+  const [assessmentOverride, setAssessmentOverride] = useState(null);
+  const assessment = assessmentProfile(assessmentOverride || originalFormData.assessment);
+  const formData = { ...originalFormData, assessment };
   const participants = state.participants || recoveredDraft?.participants || [];
   const incomingAnalysisData = state.analysisData || recoveredDraft?.analysis_data || EMPTY_LIST;
 
   const jsaType = formData.jsaType || '2-step';
+  const context = recommendationContext(formData, i18n.language);
+  const { documentLocale, dataLocale, jurisdiction } = context;
+  const recommendationRequest = useRef(0);
   useEffect(() => {
     if (state.isFastTrack !== undefined) {
       localStorage.setItem('jsa_isFastTrack', JSON.stringify(state.isFastTrack));
@@ -44,16 +61,11 @@ export default function Analysis() {
   const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');
   const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [analysisData, setAnalysisData] = useState(incomingAnalysisData || []);
-
-  useEffect(() => {
-    if (analysisData.length === 0 && incomingAnalysisData.length > 0) {
-      setAnalysisData(incomingAnalysisData);
-    }
-  }, [incomingAnalysisData, analysisData.length]);
+  const [analysisData, setAnalysisData] = useState(() => procedures.length ? procedures.map((proc, id) =>
+    reconcileProcedureAnalysis(incomingAnalysisData.find(step => step.id === id), proc, id)) : incomingAnalysisData);
 
   const draftSave = useJsaDraftAutosave({
-    enabled: recoverySettled && Boolean(
+    enabled: Boolean(
       formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
     ),
     stage: 'analysis',
@@ -65,8 +77,10 @@ export default function Analysis() {
     sourceProjectId: state.parentId || recoveredDraft?.source_project_id || existingId || null,
   });
   const [activeIdx, setActiveIdx] = useState(0);
-  const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isHazardsLoading, setIsHazardsLoading] = useState(false);
+  const [hazardsError, setHazardsError] = useState(false);
+  const [hazardsAttempt, setHazardsAttempt] = useState(0);
   const [selectedHighRisk, setSelectedHighRisk] = useState("");
   const [isSavingWorkStep, setIsSavingWorkStep] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,6 +93,7 @@ export default function Analysis() {
   const [measureSearchTerm, setMeasureSearchTerm] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [checkedRisks, setCheckedRisks] = useState(new Set());
+  const [knowledgeLanguageFilter, setKnowledgeLanguageFilter] = useState('all');
 
   const [recModal, setRecModal] = useState({
     isOpen: false,
@@ -86,6 +101,19 @@ export default function Analysis() {
     targetRiskId: null,
     type: 'advanced'
   });
+
+  const interactionKey = JSON.stringify([activeIdx, analysisData, documentLocale, dataLocale, jurisdiction]);
+  const isSearchOpen = measureSearchModal.isOpen && measureSearchModal.contextKey === interactionKey;
+
+  const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: null, severity: null, riskLevel: null };
+  const recommendations = useMemo(() => {
+    const query = searchTerm.toLowerCase();
+    const text = [currentStep.proc?.stepTitle, currentStep.proc?.stepDetail].filter(Boolean).join(' ');
+    const filtered = dbRisks.filter(risk => query
+      ? risk.risk_factor.toLowerCase().includes(query) || risk.category.toLowerCase().includes(query)
+      : selectedHighRisk ? risk.category === selectedHighRisk : matchesHazardKeywords(risk, text));
+    return [...new Map(filtered.map(item => [item.risk_factor, item])).values()];
+  }, [currentStep.proc, selectedHighRisk, searchTerm, dbRisks]);
 
   const toggleCheck = (rec) => {
     const newSet = new Set(checkedRisks);
@@ -95,16 +123,18 @@ export default function Analysis() {
   };
 
   const handleBulkAdd = () => {
-    if (checkedRisks.size === 0) return alert(t('alert.selectItem'));
-    const newRisks = Array.from(checkedRisks).map((rec) => ({
+    const selected = recommendations.filter(rec => checkedRisks.has(rec));
+    if (selected.length === 0) return alert(t('alert.selectItem'));
+    const newRisks = selected.map((rec) => ({
       id: `risk-bulk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      db_id: rec.id,
+      db_id: rec.db_id ?? null,
+      hazard_reference: rec.hazard_reference ?? null,
       factor: rec.risk_factor || rec.factor || "",
       measure: "",
       current_measure: "",
       recommend_measure: "",
       category: rec.category || t('base.etc'),
-      source: rec.source || 'master'
+      source: rec.source || 'master', contentLocale: documentLocale
     }));
 
     setAnalysisData(prev => {
@@ -118,286 +148,68 @@ export default function Analysis() {
     setCheckedRisks(new Set());
   };
 
+  useEffect(() => () => { recommendationRequest.current += 1; }, [interactionKey]);
+
   const handleOpenRecommendation = async (risk, type = 'advanced') => {
-    if (type === 'current' && !risk.factor) return alert(t('alert.enterFactor'));
+    if (!risk.factor) return alert(t('alert.enterFactor'));
     if (type === 'advanced' && !risk.current_measure) return alert(t('alert.selectCurrentMeasure'));
-
-    setIsLoading(true);
-    let scored = [];
-
-  const localeMap = {
-      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 
-      'en-US': 'en-US', 'en-CA': 'en-CA', 'en-AU': 'en-AU', 'en-GB': 'en-GB', 
-      'de': 'de-DE', 'de-DE': 'de-DE', 'ja': 'ja-JP', 'ja-JP': 'ja-JP', 
-      'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'it': 'it-IT', 'it-IT': 'it-IT',
-      'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
-      'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
-    };
-    const dbLocale = localeMap[getDataLocale(i18n.language)] || 'en-US';
-
+    if (type === 'advanced' && risk.current_measure_confirmed !== true) return alert(t('review.confirmCurrent'));
+    const request = ++recommendationRequest.current;
+    setIsLoading(interactionKey);
     try {
-      if (type === 'current') {
-        if (!risk.db_id) {
-          setIsLoading(false);
-          return alert(t('alert.manualFactor'));
-        }
-
-        const { data: hazardTrans } = await supabase
-          .from('Hazards_Translations')
-          .select('id')
-          .eq('hazard_id', risk.db_id);
-
-        let hazardSearchIds = [risk.db_id];
-        if (hazardTrans) {
-          hazardSearchIds.push(...hazardTrans.map(t => t.id));
-        }
-
-        const { data: mapData } = await supabase
-          .from('hazard_measure_mappings')
-          .select('measure_translation_id, similarity_score')
-          .in('hazard_translation_id', hazardSearchIds)
-          .order('similarity_score', { ascending: false });
-
-        if (mapData && mapData.length > 0) {
-          const mappedIds = [...new Set(mapData.map(m => m.measure_translation_id))];
-          const { data: transById } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('id', mappedIds);
-          const { data: transByMaster } = await supabase.from('Current_Measures_Translations').select('id, measure_id').in('measure_id', mappedIds);
-
-          const masterIdScoreMap = {};
-          let masterIds = [];
-          let directTransIds = [];
-
-          for (const m of mapData) {
-            const mId = m.measure_translation_id;
-            const score = m.similarity_score;
-
-            const foundById = transById?.find(t => t.id === mId);
-            if (foundById) {
-              if (foundById.measure_id) {
-                masterIds.push(foundById.measure_id);
-                if (!masterIdScoreMap[foundById.measure_id] || masterIdScoreMap[foundById.measure_id] < score) masterIdScoreMap[foundById.measure_id] = score;
-              } else {
-                directTransIds.push(mId);
-                if (!masterIdScoreMap[mId] || masterIdScoreMap[mId] < score) masterIdScoreMap[mId] = score;
-              }
-            } else {
-              const foundByMaster = transByMaster?.find(t => t.measure_id === mId);
-              if (foundByMaster && foundByMaster.measure_id) {
-                masterIds.push(foundByMaster.measure_id);
-                if (!masterIdScoreMap[foundByMaster.measure_id] || masterIdScoreMap[foundByMaster.measure_id] < score) masterIdScoreMap[foundByMaster.measure_id] = score;
-              }
-            }
-          }
-
-          masterIds = [...new Set(masterIds)].filter(Boolean);
-          directTransIds = [...new Set(directTransIds)].filter(Boolean);
-
-          let finalMeasures = [];
-          if (masterIds.length > 0) {
-            const { data: masterMeasures } = await supabase.from('Current_Measures_Translations').select('*').in('measure_id', masterIds).eq('locale', dbLocale);
-            if (masterMeasures) finalMeasures.push(...masterMeasures);
-          }
-          if (directTransIds.length > 0) {
-            const { data: directMeasures } = await supabase.from('Current_Measures_Translations').select('*').in('id', directTransIds).eq('locale', dbLocale);
-            if (directMeasures) finalMeasures.push(...directMeasures);
-          }
-
-          if (finalMeasures.length > 0) {
-            const uniqueMeasuresMap = new Map();
-            finalMeasures.forEach(trans => {
-              const mapId = trans.measure_id || trans.id;
-              if (!uniqueMeasuresMap.has(trans.id)) {
-                uniqueMeasuresMap.set(trans.id, {
-                  display: trans.measure_text,
-                  measure_db_id: mapId,
-                  similarity_score: masterIdScoreMap[mapId] || 0
-                });
-              }
-            });
-            scored = Array.from(uniqueMeasuresMap.values()).sort((a, b) => b.similarity_score - a.similarity_score);
-          }
-        }
-      } else {
-        if (!risk.current_measure_db_id) {
-          setIsLoading(false);
-          return alert(t('alert.needCurrentMeasure'));
-        }
-
-        const { data: currTrans } = await supabase.from('Current_Measures_Translations').select('id').eq('measure_id', risk.current_measure_db_id);
-        let currSearchIds = [risk.current_measure_db_id];
-        if (currTrans) {
-          currSearchIds.push(...currTrans.map(t => t.id));
-        }
-
-        const { data: mapData } = await supabase
-          .from('current_advanced_measure_mappings')
-          .select('advanced_measure_translation_id, similarity_score')
-          .in('current_measure_translation_id', currSearchIds)
-          .order('similarity_score', { ascending: false });
-
-        if (mapData && mapData.length > 0) {
-          const mappedIds = [...new Set(mapData.map(m => m.advanced_measure_translation_id))];
-          const { data: transById } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('id', mappedIds);
-          const { data: transByMaster } = await supabase.from('Advanced_Measures_Translations').select('id, advanced_measure_id').in('advanced_measure_id', mappedIds);
-
-          const masterIdScoreMap = {};
-          let masterIds = [];
-          let directTransIds = [];
-
-          for (const m of mapData) {
-            const mId = m.advanced_measure_translation_id;
-            const score = m.similarity_score;
-
-            const foundById = transById?.find(t => t.id === mId);
-            if (foundById) {
-              if (foundById.advanced_measure_id) {
-                masterIds.push(foundById.advanced_measure_id);
-                if (!masterIdScoreMap[foundById.advanced_measure_id] || masterIdScoreMap[foundById.advanced_measure_id] < score) masterIdScoreMap[foundById.advanced_measure_id] = score;
-              } else {
-                directTransIds.push(mId);
-                if (!masterIdScoreMap[mId] || masterIdScoreMap[mId] < score) masterIdScoreMap[mId] = score;
-              }
-            } else {
-              const foundByMaster = transByMaster?.find(t => t.advanced_measure_id === mId);
-              if (foundByMaster && foundByMaster.advanced_measure_id) {
-                masterIds.push(foundByMaster.advanced_measure_id);
-                if (!masterIdScoreMap[foundByMaster.advanced_measure_id] || masterIdScoreMap[foundByMaster.advanced_measure_id] < score) masterIdScoreMap[foundByMaster.advanced_measure_id] = score;
-              }
-            }
-          }
-
-          masterIds = [...new Set(masterIds)].filter(Boolean);
-          directTransIds = [...new Set(directTransIds)].filter(Boolean);
-
-          let finalAdvMeasures = [];
-          if (masterIds.length > 0) {
-            const { data: masterMeasures } = await supabase.from('Advanced_Measures_Translations').select('*').in('advanced_measure_id', masterIds).eq('locale', dbLocale);
-            if (masterMeasures) finalAdvMeasures.push(...masterMeasures);
-          }
-          if (directTransIds.length > 0) {
-            const { data: directMeasures } = await supabase.from('Advanced_Measures_Translations').select('*').in('id', directTransIds).eq('locale', dbLocale);
-            if (directMeasures) finalAdvMeasures.push(...directMeasures);
-          }
-
-          if (finalAdvMeasures.length > 0) {
-            const uniqueAdvMap = new Map();
-            finalAdvMeasures.forEach(trans => {
-              const mapId = trans.advanced_measure_id || trans.id;
-              if (!uniqueAdvMap.has(trans.id)) {
-                uniqueAdvMap.set(trans.id, {
-                  display: trans.solution_text,
-                  advanced_db_id: mapId,
-                  similarity_score: masterIdScoreMap[mapId] || 0
-                });
-              }
-            });
-            scored = Array.from(uniqueAdvMap.values()).sort((a, b) => b.similarity_score - a.similarity_score).slice(0, 3);
-          }
-        }
-      }
-    } catch (err) {
-      console.error("Critical Error in handleOpenRecommendation:", err);
+      const scored = risk.source === 'case'
+        ? await loadCaseRecommendations(supabase, manifest, { risk, type, formData, proc: currentStep.proc })
+        : await loadMeasureRecommendations(supabase, { risk, type, context });
+      if (request !== recommendationRequest.current) return;
+      if (!scored.length) return alert(risk.source === 'case' ? caseRecommendationUi(i18n.language).unavailable : t('alert.noData'));
+      setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type, contextKey: interactionKey });
+    } catch {
+      if (request === recommendationRequest.current) alert(t('recommendation.loadError'));
     } finally {
-      setIsLoading(false);
+      if (request === recommendationRequest.current) setIsLoading(false);
     }
-    if (scored.length === 0) return alert(t('alert.noData'));
-    setRecModal({ isOpen: true, data: scored, targetRiskId: risk.id, type });
   };
 
-  const applyRecommendedMeasure = (item) => {
-    if (jsaType === '2-step') {
-      updateRiskField(recModal.targetRiskId, 'measure', item.display);
-    } else if (recModal.type === 'current') {
-      updateRiskField(recModal.targetRiskId, 'current_measure', item.display);
-      updateRiskField(recModal.targetRiskId, 'current_measure_db_id', item.measure_db_id);
-    } else {
-      updateRiskField(recModal.targetRiskId, 'recommend_measure', item.display);
-    }
+  const applyRecommendedMeasure = item => {
+    setAnalysisData(prev => prev.map((step, index) => index !== activeIdx ? step : {
+      ...step, risks: step.risks.map(risk => risk.id === recModal.targetRiskId
+        ? applyControl(risk, item, { type: recModal.type, jsaType }) : risk)
+    }));
     setRecModal({ isOpen: false, data: [], targetRiskId: null, type: 'advanced' });
   };
 
   const openMeasureSearch = (risk, type) => {
-    setMeasureSearchModal({ isOpen: true, data: [], targetRiskId: risk.id, type });
+    setMeasureSearchModal({ isOpen: true, data: [], targetRiskId: risk.id, type, contextKey: interactionKey });
     setMeasureSearchTerm("");
-  };
-
-  const executeMeasureSearch = async (term) => {
-    if (!term.trim()) {
-      setMeasureSearchModal(prev => ({ ...prev, data: [] }));
-      return;
-    }
-    setIsSearchLoading(true);
-
-  const localeMap = {
-        'ko': 'ko-KR', 'ko-KR': 'ko-KR', 
-        'en-US': 'en-US', 'en-CA': 'en-CA', 'en-AU': 'en-AU', 'en-GB': 'en-GB', 
-        'de': 'de-DE', 'de-DE': 'de-DE', 'ja': 'ja-JP', 'ja-JP': 'ja-JP', 
-        'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'it': 'it-IT', 'it-IT': 'it-IT',
-        'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
-        'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
-      };
-      const dbLocale = localeMap[getDataLocale(i18n.language)] || 'en-US';
-
-    let results = [];
-    const tokens = term.trim().split(/\s+/).filter(t => t.length > 0);
-
-    if (measureSearchModal.type === 'current') {
-      let query = supabase
-        .from('Current_Measures_Translations')
-        .select('id, measure_id, measure_text')
-        .eq('locale', dbLocale);
-
-      tokens.forEach(token => {
-        query = query.ilike('measure_text', `%${token}%`);
-      });
-
-      const { data, error } = await query.limit(30);
-      if (!error && data) {
-        results = data.map(d => ({ display: d.measure_text, db_id: d.measure_id || d.id }));
-      }
-    } else {
-      let query = supabase
-        .from('Advanced_Measures_Translations')
-        .select('id, advanced_measure_id, solution_text')
-        .eq('locale', dbLocale);
-
-      tokens.forEach(token => {
-        query = query.ilike('solution_text', `%${token}%`);
-      });
-
-      const { data, error } = await query.limit(30);
-      if (!error && data) {
-        results = data.map(d => ({ display: d.solution_text, db_id: d.advanced_measure_id || d.id }));
-      }
-    }
-
     setIsSearchLoading(false);
-    setMeasureSearchModal(prev => ({ ...prev, data: results }));
   };
 
-  const applySearchedMeasure = (item) => {
-    if (jsaType === '2-step') {
-      updateRiskField(measureSearchModal.targetRiskId, 'measure', item.display);
-    } else if (measureSearchModal.type === 'current') {
-      updateRiskField(measureSearchModal.targetRiskId, 'current_measure', item.display);
-      updateRiskField(measureSearchModal.targetRiskId, 'current_measure_db_id', item.db_id);
-    } else {
-      updateRiskField(measureSearchModal.targetRiskId, 'recommend_measure', item.display);
-    }
-
+  const applySearchedMeasure = item => {
+    setAnalysisData(prev => prev.map((step, index) => index !== activeIdx ? step : {
+      ...step, risks: step.risks.map(risk => risk.id === measureSearchModal.targetRiskId
+        ? applyControl(risk, item, { type: measureSearchModal.type, jsaType }) : risk)
+    }));
     setMeasureSearchModal({ isOpen: false, data: [], targetRiskId: null, type: 'current' });
-    setMeasureSearchTerm("");
+    setMeasureSearchTerm('');
   };
 
   useEffect(() => {
-    if (!measureSearchModal.isOpen) return;
-
-    const delayDebounceFn = setTimeout(() => {
-      executeMeasureSearch(measureSearchTerm);
+    if (!isSearchOpen) return;
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      try {
+        const data = await searchMeasureTranslations(supabase, {
+          term: measureSearchTerm, type: measureSearchModal.type, locale: dataLocale
+        });
+        if (!cancelled) setMeasureSearchModal(prev => ({ ...prev, data }));
+      } catch {
+        if (!cancelled) alert(t('recommendation.loadError'));
+      } finally {
+        if (!cancelled) setIsSearchLoading(false);
+      }
     }, 300);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [measureSearchTerm, measureSearchModal.isOpen, i18n.language]);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [measureSearchTerm, isSearchOpen, measureSearchModal.type, dataLocale, t]);
 
   const [isKnowledgeDockOpen, setIsKnowledgeDockOpen] = useState(false);
   const [knowledgeTab, setKnowledgeTab] = useState('steps');
@@ -410,44 +222,31 @@ export default function Analysis() {
   const [knowledgeError, setKnowledgeError] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
     const fetchHazards = async () => {
-      setIsLoading(true);
-      const localeMap = {
-      'ko': 'ko-KR', 'ko-KR': 'ko-KR', 
-      'en-US': 'en-US', 'en-CA': 'en-CA', 'en-AU': 'en-AU', 'en-GB': 'en-GB', 
-      'de': 'de-DE', 'de-DE': 'de-DE', 'ja': 'ja-JP', 'ja-JP': 'ja-JP', 
-      'fr': 'fr-FR', 'fr-FR': 'fr-FR', 'it': 'it-IT', 'it-IT': 'it-IT',
-      'es': 'es-ES', 'es-ES': 'es-ES', 'ar': 'ar-SA', 'ar-SA': 'ar-SA', 
-      'pt': 'pt-BR', 'pt-BR': 'pt-BR', 'ru': 'ru-RU', 'ru-RU': 'ru-RU'
-    };
-    const dbLocale = localeMap[getDataLocale(i18n.language)] || 'en-US';
-      setSelectedHighRisk("");
-
-      const [{ data: origHazards, error: origErr }, { data: transHazards, error: transErr }] = await Promise.all([
-        supabase.from('Hazards').select('*'),
-        supabase.from('Hazards_Translations').select('*').eq('locale', dbLocale)
-      ]);
-
-      if (!origErr && !transErr && origHazards && transHazards) {
-        const mappedData = transHazards.map(trans => {
-          const orig = origHazards.find(o => o.id === trans.hazard_id) || {};
-          return {
-            ...orig,
-            id: trans.hazard_id || trans.id,
-            risk_factor: trans.hazard_name,
-            category: trans.category || orig.category,
-            source: 'master'
-          };
-        });
-        // [정정 조치 완료] 함수 호출 구문을 명확하게 정정하여 무한 로딩 요인 제거
-        setDbRisks(mappedData);
-        const uniqueCats = [...new Set(mappedData.map(item => item.category))].filter(Boolean);
-        setCategories(uniqueCats);
+      setIsHazardsLoading(true);
+      setHazardsError(false);
+      setDbRisks([]);
+      setCategories([]);
+      setCheckedRisks(new Set());
+      setSelectedHighRisk('');
+      try {
+        const { data, error } = await supabase.from('Hazards_Translations').select('*').eq('locale', dataLocale);
+        if (error) throw error;
+        if (!cancelled) {
+          const mapped = localizedHazards(data || []);
+          setDbRisks(mapped);
+          setCategories([...new Set(mapped.map(item => item.category).filter(Boolean))]);
+        }
+      } catch {
+        if (!cancelled) setHazardsError(true);
+      } finally {
+        if (!cancelled) setIsHazardsLoading(false);
       }
-      setIsLoading(false);
     };
-    fetchHazards();
-  }, [i18n.language]);
+    void fetchHazards();
+    return () => { cancelled = true; };
+  }, [dataLocale, hazardsAttempt]);
 
   const handleLogoClick = () => {
     if (window.confirm(t('alert.confirmMain'))) navigate('/');
@@ -507,8 +306,12 @@ export default function Analysis() {
       return;
     }
 
+    const sourceLocale = sourceMeta.locale || (sourceMeta.workStepId
+      ? knowledgeLocale(savedWorkSteps.find(step => step.id === sourceMeta.workStepId))
+      : knowledgeLocale(myLibraryItems.find(item => item.jsa_projects?.id === sourceMeta.projectId)?.jsa_projects));
     const result = mergeKnowledgeRisks(analysisData[activeIdx], stepData, {
-      mode, jsaType, sourceMeta, category: t('base.etc')
+
+      mode, jsaType, sourceMeta: { ...sourceMeta, locale: sourceLocale }, category: t('base.etc')
     });
     setAnalysisData(prev => prev.map((step, index) => index === activeIdx ? result.step : step));
     if (result.added > 0 && Number.isInteger(sourceMeta.stepIndex)) {
@@ -522,6 +325,7 @@ export default function Analysis() {
   };
 
   const filteredSavedWorkSteps = savedWorkSteps.filter(step => {
+    if (knowledgeLanguageFilter === 'same' && knowledgeLocale(step) !== documentLocale) return false;
     const q = knowledgeSearch.trim().toLowerCase();
     if (!q) return true;
     const text = [
@@ -542,6 +346,7 @@ export default function Analysis() {
 
   const filteredLibraryProjects = myLibraryItems.filter(item => {
     const project = item?.jsa_projects;
+    if (knowledgeLanguageFilter === 'same' && knowledgeLocale(project) !== documentLocale) return false;
     const q = knowledgeSearch.trim().toLowerCase();
     if (!project || !q) return Boolean(project);
     const text = [
@@ -562,34 +367,6 @@ export default function Analysis() {
     return text.includes(q);
   });
 
-  const getRisksFromDBByTokens = async (title = "", detail = "") => {
-    const combinedText = `${title} ${detail}`.trim();
-    if (!combinedText) return [];
-    const tokens = combinedText.split(/[\s,./]+/).filter(t => t.trim().length >= 2);
-    const uniqueTokens = [...new Set(tokens.map(t => t.toLowerCase()))];
-    let matchedRisks = [];
-    const seenFactors = new Set();
-    dbRisks.forEach(item => {
-      const isMatched = item.keywords?.some(kw => uniqueTokens.some(token => token.includes(kw.toLowerCase())));
-      if (isMatched && !seenFactors.has(item.risk_factor)) {
-        matchedRisks.push({ ...item, source: 'master' });
-        seenFactors.add(item.risk_factor);
-      }
-    });
-    return matchedRisks;
-  };
-
-  useEffect(() => {
-    if (procedures?.length > 0) {
-      setAnalysisData(prevData => procedures.map((newProc, idx) => {
-        const existingData = prevData.find(d => d.id === idx) || (incomingAnalysisData || []).find(d => d.id === idx);
-        return existingData ? { ...existingData, proc: newProc } : { id: idx, proc: newProc, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
-      }));
-    }
-  }, [procedures, incomingAnalysisData]);
-
-  const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: 1, severity: 1, riskLevel: 1 };
-
   const handleSaveCurrentWorkStep = async () => {
     if (!currentStep?.proc?.stepTitle?.trim()) return;
 
@@ -609,7 +386,7 @@ export default function Analysis() {
             : []
         },
         tags: formData?.tags || [],
-        locale: i18n.language || 'en-US',
+        locale: documentLocale,
         sourceProjectId: currentStep.proc.sourceProjectId || existingId || null,
         sourceProjectTitle: currentStep.proc.sourceProjectTitle || formData?.projectName || '',
         sourceStepIndex: Number.isInteger(currentStep.proc.sourceStepIndex)
@@ -625,28 +402,6 @@ export default function Analysis() {
     }
   };
 
-  useEffect(() => {
-    const updateRecommendations = async () => {
-      let matched = [];
-      if (searchTerm) {
-        const filtered = dbRisks.filter(r =>
-          r.risk_factor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          r.category?.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
-      } else if (selectedHighRisk) {
-        const filtered = dbRisks.filter(r => r.category === selectedHighRisk);
-        matched = Array.from(new Map(filtered.map(item => [item.risk_factor, item])).values());
-      } else {
-        const rawMatched = await getRisksFromDBByTokens(currentStep.proc?.stepTitle || "", currentStep.proc?.stepDetail || "");
-        matched = Array.from(new Map(rawMatched.map(item => [item.risk_factor, item])).values());
-      }
-      setRecommendations(matched);
-      setCheckedRisks(new Set());
-    };
-    updateRecommendations();
-  }, [activeIdx, currentStep.proc, selectedHighRisk, searchTerm, dbRisks]);
-
   const addRisk = (rec) => {
     setAnalysisData(prev => {
       const newData = [...prev];
@@ -654,11 +409,12 @@ export default function Analysis() {
         ...newData[activeIdx],
         risks: [...newData[activeIdx].risks, {
           id: `risk-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          db_id: rec.id,
+          db_id: rec.db_id ?? null,
+          hazard_reference: rec.hazard_reference ?? null,
           factor: rec.risk_factor || rec.factor || "",
           measure: "", current_measure: "", recommend_measure: "",
           category: rec.category || t('base.etc'),
-          source: rec.source || (rec.factor || rec.risk_factor ? 'master' : 'manual')
+          source: rec.source || (rec.factor || rec.risk_factor ? 'master' : 'manual'), contentLocale: documentLocale
         }]
       };
       return newData;
@@ -670,7 +426,7 @@ export default function Analysis() {
       const newData = [...prev];
       newData[activeIdx] = {
         ...newData[activeIdx],
-        risks: newData[activeIdx].risks.map(r => r.id === riskId ? { ...r, [field]: value } : r)
+        risks: newData[activeIdx].risks.map(r => r.id === riskId ? updateRiskValue(r, field, value) : r)
       };
       return newData;
     });
@@ -679,42 +435,48 @@ export default function Analysis() {
   const updateStepRisk = (field, value) => {
     setAnalysisData(prev => {
       const newData = [...prev];
-      const newFreq = field === 'frequency' ? parseInt(value) : newData[activeIdx].frequency;
-      const newSev = field === 'severity' ? parseInt(value) : newData[activeIdx].severity;
+      const newFreq = field === 'frequency' ? value : newData[activeIdx].frequency;
+      const newSev = field === 'severity' ? value : newData[activeIdx].severity;
       newData[activeIdx] = {
         ...newData[activeIdx],
-        [field]: parseInt(value),
-        riskLevel: newFreq * newSev
+        [field]: value === '' ? null : Number(value),
+        riskLevel: assessedScore(newFreq, newSev, assessment)
       };
       return newData;
     });
   };
 
+  const updateAssessment = (field, value) => {
+    const next = assessmentProfile({ ...assessment, [field]: value });
+    setAnalysisData(prev => changeAssessmentProfile(prev, assessment, next));
+    setAssessmentOverride(next);
+  };
+
   // [원상 복귀 완료] 사용자님의 고유 순수 오리지널 스텝 제어 로직 보존
   const handlePrev = () => {
     if (activeIdx === 0) navigate('/procedure', {
-      state: { 
+      state: {
         ...recoveredDraft?.layout_data, ...location.state, // [핵심] 현재 가지고 있는 모든 state를 유지하여 전달
-        id: existingId, 
-        formData, 
-        participants, 
-        procedures, 
-        analysisData 
+        id: existingId,
+        formData,
+        participants,
+        procedures,
+        analysisData
       }
     });
-    else setActiveIdx(activeIdx - 1);
+    else { setCheckedRisks(new Set()); setActiveIdx(activeIdx - 1); }
   };
 
   return (
     <div className="theme-workspace analysis-workspace" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} />
-      {isLoading && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
+      {(isLoading === interactionKey || isHazardsLoading) && <div style={styles.dialogOverlay}><div style={styles.spinner} /></div>}
 
 
-      {recModal.isOpen && (
+      {recModal.isOpen && recModal.contextKey === interactionKey && (
         <div style={styles.dialogOverlay} onClick={() => setRecModal({ ...recModal, isOpen: false })}>
-          <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" data-recommendation-dialog style={styles.libModalContent} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
               <h3 style={{ margin: 0 }}>{recModal.type === 'current' ? t('recModal.titleCurrent') : t('recModal.titleAdvanced')}</h3>
               <button style={styles.closeBtnSmall} onClick={() => setRecModal({ ...recModal, isOpen: false })}>✕</button>
@@ -723,17 +485,22 @@ export default function Analysis() {
               <p style={{ color: "var(--text-muted)", fontSize: '0.85rem', marginBottom: '10px' }}>
                 {recModal.type === 'current' ? t('recModal.descCurrent') : t('recModal.descAdvanced')}
               </p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{t('recommendation.scoreHelp')}</p>
               {recModal.data.map((item, idx) => (
-                <div key={idx} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)}>
+                <div key={idx} role="button" tabIndex={0} data-recommendation-item data-score={item.similarity_score} style={styles.libItem} onClick={() => applyRecommendedMeasure(item)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); applyRecommendedMeasure(item); } }}>
                   <div style={{ ...styles.libInfo, flex: 1 }}>
                     <div style={{ color: "var(--text-primary)", fontSize: '0.9rem', lineHeight: '1.4' }}>
-                      {item.similarity_score && (
+                      {formatSimilarity(item.similarity_score, i18n.language) !== null && (
                         <span style={{ color: "var(--accent)", marginRight: '8px', fontWeight: 'bold' }}>
-                          [{parseFloat(item.similarity_score * 100).toFixed(1)}%]
+                          {t('recommendation.similarity')} {formatSimilarity(item.similarity_score, i18n.language)}
                         </span>
                       )}
                       {item.display}
                     </div>
+                    <small>{t('review.linkedHazard')}: {item.evidence?.hazard}</small>
+                    {item.evidence?.sourceType === 'reviewed_case'
+                      ? <RecommendationEvidence evidence={item.evidence} locale={i18n.language} />
+                      : <><small>{t('review.unknownSource')}</small><small>{t('review.conditionsUnknown')}</small></>}
                   </div>
                   <span style={{ marginLeft: '10px', color: "var(--accent)" }}>{t('recModal.selectBtn')}</span>
                 </div>
@@ -743,7 +510,7 @@ export default function Analysis() {
         </div>
       )}
 
-      {measureSearchModal.isOpen && (
+      {isSearchOpen && (
         <div style={styles.dialogOverlay} onClick={() => setMeasureSearchModal({ ...measureSearchModal, isOpen: false })}>
           <div style={styles.libModalContent} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
@@ -756,13 +523,17 @@ export default function Analysis() {
                 style={styles.searchInput}
                 placeholder={t('searchModal.placeholder')}
                 value={measureSearchTerm}
-                onChange={(e) => setMeasureSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  setMeasureSearchTerm(e.target.value);
+                  setIsSearchLoading(Boolean(e.target.value.trim()));
+                  setMeasureSearchModal(prev => ({ ...prev, data: [] }));
+                }}
               />
             </div>
 
             <div style={{ ...styles.libList, height: '400px' }}>
               {isSearchLoading ? (
-                <p style={styles.emptyText}>{t('base.searching', '검색 중...')}</p>
+                <p style={styles.emptyText}>{t('base.searching')}</p>
               ) : measureSearchTerm && measureSearchModal.data.length === 0 ? (
                 <p style={styles.emptyText}>{t('base.emptyRec')}</p>
               ) : (
@@ -842,7 +613,7 @@ export default function Analysis() {
                   key={idx}
                   aria-current={idx === activeIdx ? 'step' : undefined}
                   style={idx === activeIdx ? styles.quickStepBtnActive : styles.quickStepBtn}
-                  onClick={() => { setActiveIdx(idx); setKnowledgeNotice(''); }}
+                  onClick={() => { setCheckedRisks(new Set()); setActiveIdx(idx); setKnowledgeNotice(''); }}
                   title={step.proc?.stepTitle || ''}
                 >
                   <span style={styles.quickStepNo}>{idx + 1}</span>
@@ -858,10 +629,12 @@ export default function Analysis() {
                 style={{ ...styles.analysisGrid, ...(isKnowledgeDockOpen ? styles.analysisGridWithDock : {}) }}
               >
                 <section className="analysis-candidates" style={styles.leftPanel}>
+                  {context.sharedLanguage && <p role="status" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{t('recommendation.sharedData', { locale: dataLocale })}</p>}
+                  {hazardsError && <p role="alert">{t('recommendation.loadError')} <button type="button" onClick={() => setHazardsAttempt(n => n + 1)}>{t('knowledgeDock.retry')}</button></p>}
                   <div style={styles.filterArea}>
                     <input
                       type="text"
-                      placeholder={t('filter.searchPlaceholder') || "위험요소 검색..."}
+                      placeholder={t('filter.searchPlaceholder')}
                       style={styles.searchInput}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -888,7 +661,7 @@ export default function Analysis() {
                     </span>
                     <div style={{ display: 'flex', gap: '8px' }}>
                       <button style={{ backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
-                      <button style={{ backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
+                      <button data-add-selected style={{ backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>
                   </div>
 
@@ -913,15 +686,22 @@ export default function Analysis() {
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select style={styles.miniSelect} value={currentStep.frequency} onChange={(e) => updateStepRisk('frequency', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select aria-label={t('result.freq')} style={styles.miniSelect} value={currentStep.frequency ?? ''} onChange={(e) => updateStepRisk('frequency', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.frequencyMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select style={styles.miniSelect} value={currentStep.severity} onChange={(e) => updateStepRisk('severity', e.target.value)}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select aria-label={t('result.sev')} style={styles.miniSelect} value={currentStep.severity ?? ''} onChange={(e) => updateStepRisk('severity', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.severityMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
-                      <div style={{ ...styles.riskResultSelect, backgroundColor: currentStep.riskLevel >= 9 ? "var(--danger-action)" : "var(--action-bg)" }}>{currentStep.riskLevel}</div>
+                      <div data-assessed-score style={{ ...styles.riskResultSelect, backgroundColor: assessedScore(currentStep.frequency, currentStep.severity, assessment) >= assessment.highFrom ? "var(--danger-action)" : "var(--action-bg)" }}>{assessedScore(currentStep.frequency, currentStep.severity, assessment) ?? t('review.notAssessed')}</div>
                     </div>
                   </div>
 
                   <div style={styles.selectedListScroll}>
+                    <details style={{ fontSize: '.8rem', marginBottom: '10px', color: 'var(--text-secondary)' }}>
+                      <summary>{t('review.profileLabel')}: {assessment.name} ({assessment.frequencyMax} × {assessment.severityMax}; {t('review.highFrom')} {assessment.highFrom})</summary>
+                      <p>{t('review.profileHelp')}</p>
+                      <label>{t('review.profileLabel')}<input value={assessment.name} onChange={event => updateAssessment('name', event.target.value)} /></label>
+                      {['frequencyMax', 'severityMax', 'highFrom'].map(field => <label key={field} style={{ display: 'block' }}>{t(`review.${field}`)}<input type="number" min="1" max={field === 'highFrom' ? assessment.frequencyMax * assessment.severityMax : 10} value={assessment[field]} onChange={event => updateAssessment(field, Number(event.target.value))} /></label>)}
+                      <label>{t('review.criteria')}<textarea value={assessment.criteria} onChange={event => updateAssessment('criteria', event.target.value)} /></label>
+                    </details>
                     <table style={styles.table}>
                       <thead>
                         <tr>
@@ -953,6 +733,8 @@ export default function Analysis() {
                                         : t('knowledgeDock.sourceLibrary')}
                                 </span>
                                 {r.sourceLabel && <span style={styles.riskSourceText}>{r.sourceLabel}</span>}
+                                {r.recommendation_review_required && <span role="status" style={styles.riskSourceText}>{t('recommendation.reviewRequired')}</span>}
+                                {languageDiffers(r.contentLocale || r.sourceLocale, documentLocale) && <span role="status" style={styles.riskSourceText}>{t('review.languageChanged')} ({r.contentLocale || r.sourceLocale || t('review.unknownLanguage')} → {documentLocale})</span>}
                               </div>
                             </td>
 
@@ -964,7 +746,7 @@ export default function Analysis() {
                                     <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
                                       {t('table.searchBtn')}
                                     </button>
-                                    <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                    <button data-recommend-current style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
                                       {t('table.recMeasureBtn')}
                                     </button>
                                   </div>
@@ -975,11 +757,12 @@ export default function Analysis() {
                                 <td style={styles.td}>
                                   <div style={{ position: 'relative', width: '100%' }}>
                                     <textarea style={styles.inlineInput} value={r.current_measure} onChange={(e) => updateRiskField(r.id, 'current_measure', e.target.value)} rows={3} />
+                                    <label style={{ display: 'flex', gap: '6px', fontSize: '.75rem', color: 'var(--text-secondary)' }}><input data-current-confirmed type="checkbox" checked={r.current_measure_confirmed === true} disabled={!r.current_measure} onChange={event => updateRiskField(r.id, 'current_measure_confirmed', event.target.checked)} />{t('review.confirmCurrent')}</label>
                                     <div style={styles.controlActionRow}>
                                       <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'current')}>
                                         {t('table.searchBtn')}
                                       </button>
-                                      <button style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
+                                      <button data-recommend-current style={styles.controlRecommendBtn} onClick={() => handleOpenRecommendation(r, 'current')}>
                                         {t('table.recMeasureBtn')}
                                       </button>
                                     </div>
@@ -992,7 +775,7 @@ export default function Analysis() {
                                       <button style={styles.controlSearchBtn} onClick={() => openMeasureSearch(r, 'advanced')}>
                                         {t('table.searchBtn')}
                                       </button>
-                                      <button style={styles.controlAdvancedBtn} onClick={() => handleOpenRecommendation(r, 'advanced')}>
+                                      <button data-recommend-advanced style={styles.controlAdvancedBtn} onClick={() => handleOpenRecommendation(r, 'advanced')}>
                                         {t('table.recAdvancedBtn')}
                                       </button>
                                     </div>
@@ -1050,6 +833,11 @@ export default function Analysis() {
                       onChange={(e) => setKnowledgeSearch(e.target.value)}
                       placeholder={t('knowledgeDock.search')}
                     />
+                    <label style={styles.knowledgeMeta}>{t('review.targetLanguage')}: {documentLocale}
+                      <select aria-label={t('review.sourceLanguage')} value={knowledgeLanguageFilter} onChange={event => { setKnowledgeLanguageFilter(event.target.value); setSelectedLibProject(null); }}>
+                        <option value="all">{t('review.allLanguages')}</option><option value="same">{t('review.sameLanguage')}</option>
+                      </select>
+                    </label>
 
                     {knowledgeNotice && (
                       <div role="status" style={styles.knowledgeNotice}>{knowledgeNotice}</div>
@@ -1071,6 +859,7 @@ export default function Analysis() {
                               <div style={styles.knowledgeCardHeader}>
                                 <div style={{ minWidth: 0 }}>
                                   <strong style={styles.knowledgeCardTitle}>{step.title}</strong>
+                                  <div style={styles.knowledgeMeta}>{t('review.sourceLanguage')}: {knowledgeLocale(step) || t('review.unknownLanguage')}{languageDiffers(knowledgeLocale(step), documentLocale) && ` — ${t('review.languageChanged')}`}</div>
                                   <div style={styles.knowledgeMeta}>
                                     {step.source_project_title || t('knowledgeDock.independentStep')} · {risks.length} {t('knowledgeDock.hazards')}
                                   </div>
@@ -1158,6 +947,7 @@ export default function Analysis() {
                               onClick={() => setSelectedLibProject(project)}
                             >
                               <span style={styles.knowledgeProjectTitle}>{project.title}</span>
+                              <span style={styles.knowledgeProjectMeta}>{t('review.sourceLanguage')}: {knowledgeLocale(project) || t('review.unknownLanguage')}{languageDiffers(knowledgeLocale(project), documentLocale) && ` — ${t('review.languageChanged')}`}</span>
                               <span style={styles.knowledgeProjectMeta}>
                                 {(project.analysis_data || []).length} {t('knowledgeDock.steps')}
                               </span>
@@ -1262,12 +1052,12 @@ export default function Analysis() {
               <div style={styles.dialogOverlay} onClick={() => setIsFastTrackModalOpen(false)}>
                 <div style={{ ...styles.libModalContent, width: '750px', maxWidth: '95%' }} onClick={e => e.stopPropagation()}>
                   <div style={styles.modalHeader}>
-                    <h3 style={{ margin: 0, color: "var(--accent)" }}>⚡ {t('fastTrackModal.title', '초고속 텍스트 복사 툴킷')}</h3>
+                    <h3 style={{ margin: 0, color: "var(--accent)" }}>⚡ {t('fastTrackModal.title')}</h3>
                     <button style={styles.closeBtnSmall} onClick={() => setIsFastTrackModalOpen(false)}>✕</button>
                   </div>
-                  
+
                   <p style={{ color: "var(--text-secondary)", fontSize: '0.85rem', margin: '0 0 10px 0' }}>
-                    {t('fastTrackModal.desc', '작성된 위험성평가 본문 데이터입니다. 우측 상단의 복사 버튼을 눌러 소중한 서식에 자유롭게 붙여넣으십시오.')}
+                    {t('fastTrackModal.desc')}
                   </p>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxHeight: '500px', overflowY: 'auto', paddingRight: '5px' }}>
@@ -1278,7 +1068,7 @@ export default function Analysis() {
                       <div style={{ fontSize: '0.9rem', fontWeight: 'bold', color: "var(--text-primary)", marginBottom: '0.8rem', borderBottom: "1px solid var(--border-default)", paddingBottom: '0.5rem' }}>
                         STEP {String(sIdx + 1).padStart(2, '0')}: {step.proc?.stepTitle}
                       </div>
-                      
+
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         {step.risks?.map((r, rIdx) => (
                           <div key={r.id || rIdx} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', position: 'relative' }}>
@@ -1304,27 +1094,28 @@ export default function Analysis() {
 
 
                   </div>
-                  
-                  <button 
-                    style={{ ...styles.nextBtn, padding: '0.8rem', fontSize: '0.95rem', marginTop: '10px' }} 
+
+                  <button
+                    style={{ ...styles.nextBtn, padding: '0.8rem', fontSize: '0.95rem', marginTop: '10px' }}
                     onClick={() => navigate('/')}
                   >
-                    {t('fastTrackModal.goHome', '복사 완료 후 홈으로 이동')}
+                    {t('fastTrackModal.goHome')}
                   </button>
-                  
 
 
-                  
+
+
                 </div>
               </div>
             )}
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={handlePrev}>{activeIdx === 0 ? t('btn.prevStep1') : t('btn.prevStep2')}</button>
-              <button 
-                style={styles.nextBtn} 
+              <button
+                data-analysis-next style={styles.nextBtn}
                 onClick={() => {
                   if (activeIdx < analysisData.length - 1) {
+                    setCheckedRisks(new Set());
                     setActiveIdx(activeIdx + 1);
                   } else {
                     if (isFastTrack) {
@@ -1340,7 +1131,7 @@ export default function Analysis() {
                   }
                 }}
               >
-                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete', '분석 완료 및 텍스트 복사') : t('common:designer.title')) : t('btn.nextStep')}
+                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete') : t('common:designer.title')) : t('btn.nextStep')}
               </button>
             </div>
 

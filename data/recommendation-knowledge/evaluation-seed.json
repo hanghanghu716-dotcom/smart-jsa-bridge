@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Observed cases for independent review, not ground-truth labels or a representative accuracy benchmark.",
+  "samples": [
+    {
+      "id": "hazardToControl-ru-RU-4129-8286",
+      "sourceGroupId": "legacy-hazardToControl-ru-RU-4129",
+      "groupVerified": false,
+      "locale": "ru-RU",
+      "kind": "hazardToControl",
+      "task": null,
+      "sourceTranslationId": 4129,
+      "targetTranslationId": 8286,
+      "sourceText": "Операционные ошибки вследствие несоблюдения протоколов безопасности и инструкций по охране труда.",
+      "targetText": "Перед подключением проверить соответствие номеров контактов и полярности согласно электрической схеме. После завершения выполнить перекрестную проверку.",
+      "originalScore": 0.9941,
+      "capturedAt": "2026-10-14T09:51:28.631Z",
+      "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee",
+      "relevant": null,
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "reviewQuestion": "Confirm original task, hazard, target and regional applicability independently of the similarity score; resolve canonical source group before evaluation.",
+      "queryId": "legacy-hazardToControl-ru-RU-4129"
+    },
+    {
+      "id": "hazardToControl-ru-RU-4129-8986",
+      "sourceGroupId": "legacy-hazardToControl-ru-RU-4129",
+      "groupVerified": false,
+      "locale": "ru-RU",
+      "kind": "hazardToControl",
+      "task": null,
+      "sourceTranslationId": 4129,
+      "targetTranslationId": 8986,
+      "sourceText": "Операционные ошибки вследствие несоблюдения протоколов безопасности и инструкций по охране труда.",
+      "targetText": "Выдать каждому работнику индивидуальный шланговый или фильтрующий противогаз и контролировать соблюдение графика замены фильтрующих элементов.",
+      "originalScore": 0.9916,
+      "capturedAt": "2026-10-14T09:51:28.631Z",
+      "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee",
+      "relevant": null,
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "reviewQuestion": "Confirm original task, hazard, target and regional applicability independently of the similarity score; resolve canonical source group before evaluation.",
+      "queryId": "legacy-hazardToControl-ru-RU-4129"
+    },
+    {
+      "id": "hazardToControl-ru-RU-4129-9284",
+      "sourceGroupId": "legacy-hazardToControl-ru-RU-4129",
+      "groupVerified": false,
+      "locale": "ru-RU",
+      "kind": "hazardToControl",
+      "task": null,
+      "sourceTranslationId": 4129,
+      "targetTranslationId": 9284,
+      "sourceText": "Операционные ошибки вследствие несоблюдения протоколов безопасности и инструкций по охране труда.",
+      "targetText": "В зоне резки установить мощную местную вытяжную вентиляцию и защитные укрытия для предотвращения распространения пыли.",
+      "originalScore": 0.9916,
+      "capturedAt": "2026-10-14T09:51:28.631Z",
+      "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee",
+      "relevant": null,
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "reviewQuestion": "Confirm original task, hazard, target and regional applicability independently of the similarity score; resolve canonical source group before evaluation.",
+      "queryId": "legacy-hazardToControl-ru-RU-4129"
+    },
+    {
+      "id": "currentToAdditional-ru-RU-8156-18318",
+      "sourceGroupId": "legacy-currentToAdditional-ru-RU-8156",
+      "groupVerified": false,
+      "locale": "ru-RU",
+      "kind": "currentToAdditional",
+      "task": null,
+      "sourceTranslationId": 8156,
+      "targetTranslationId": 18318,
+      "sourceText": "Обеспечение путей эвакуации, создание системы экстренной связи и проведение обучения по сценариям реагирования на аварии в соответствии с Планом ликвидации аварий (ПЛА).",
+      "targetText": "Обустройство стационарных площадок для наблюдения и анкеров для фиксации положения, обязывающих наблюдателя находиться на посту в жилете повышенной видимости.",
+      "originalScore": 0.9926,
+      "capturedAt": "2026-10-14T09:51:28.631Z",
+      "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee",
+      "relevant": null,
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "reviewQuestion": "Confirm original task, hazard, target and regional applicability independently of the similarity score; resolve canonical source group before evaluation.",
+      "queryId": "legacy-currentToAdditional-ru-RU-8156"
+    },
+    {
+      "id": "currentToAdditional-ru-RU-8156-19014",
+      "sourceGroupId": "legacy-currentToAdditional-ru-RU-8156",
+      "groupVerified": false,
+      "locale": "ru-RU",
+      "kind": "currentToAdditional",
+      "task": null,
+      "sourceTranslationId": 8156,
+      "targetTranslationId": 19014,
+      "sourceText": "Обеспечение путей эвакуации, создание системы экстренной связи и проведение обучения по сценариям реагирования на аварии в соответствии с Планом ликвидации аварий (ПЛА).",
+      "targetText": "Сплошная укладка и фиксация полиэтиленовых (ПЭ) гидроизоляционных листов на бровке откоса для механического предотвращения инфильтрации поверхностных вод в грунт.",
+      "originalScore": 0.9923,
+      "capturedAt": "2026-10-14T09:51:28.631Z",
+      "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee",
+      "relevant": null,
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "reviewQuestion": "Confirm original task, hazard, target and regional applicability independently of the similarity score; resolve canonical source group before evaluation.",
+      "queryId": "legacy-currentToAdditional-ru-RU-8156"
+    },
+    {
+      "id": "currentToAdditional-ru-RU-8156-19657",
+      "sourceGroupId": "legacy-currentToAdditional-ru-RU-8156",
+      "groupVerified": false,
+      "locale": "ru-RU",
+      "kind": "currentToAdditional",
+      "task": null,
+      "sourceTranslationId": 8156,
+      "targetTranslationId": 19657,
+      "sourceText": "Обеспечение путей эвакуации, создание системы экстренной связи и проведение обучения по сценариям реагирования на аварии в соответствии с Планом ликвидации аварий (ПЛА).",
+      "targetText": "Внедрение вибропреобразователей (акселерометров) на подшипниковые опоры, сблокированных с системой управления для автоматической остановки двигателя при критическом дисбалансе.",
+      "originalScore": 0.9912,
+      "capturedAt": "2026-10-14T09:51:28.631Z",
+      "snapshotDigest": "c04b17dab2168e6b781a51ed96285c17ebd9447f3a1099d5e297fe19edcb75ee",
+      "relevant": null,
+      "review": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "reviewQuestion": "Confirm original task, hazard, target and regional applicability independently of the similarity score; resolve canonical source group before evaluation.",
+      "queryId": "legacy-currentToAdditional-ru-RU-8156"
+    }
+  ]
+}

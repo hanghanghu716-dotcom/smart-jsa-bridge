@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ Añadir espacio en blanco",
     "addBulkBtn": "✓ Añadir selección en bloque",
     "emptyRec": "No hay factores de riesgo recomendados.",
-    "etc": "Otros"
+    "etc": "Otros",
+    "searching": "Buscando…"
   },
   "result": {
     "label": "Resultado de Evaluación y Medidas",
@@ -74,7 +75,8 @@
     "prevStep1": "Paso Anterior (Procedimiento)",
     "prevStep2": "Paso de Trabajo Anterior",
     "nextComplete": "Finalizar Análisis e ir a Configuración",
-    "nextStep": "Analizar Siguiente Paso de Trabajo"
+    "nextStep": "Analizar Siguiente Paso de Trabajo",
+    "fastTrackComplete": "Completar el análisis y copiar el texto"
   },
   "searchModal": {
     "title": "Búsqueda en DB de Medidas",
@@ -113,5 +115,41 @@
     "retry": "Reintentar",
     "close": "Cerrar biblioteca",
     "noMatches": "No hay pasos ni proyectos coincidentes."
+  },
+  "fastTrackModal": {
+    "title": "Copiar el texto de la evaluación",
+    "desc": "Copie los peligros y las medidas en su propio formulario.",
+    "hazardFactor": "Peligro",
+    "copied": "Peligro copiado.",
+    "safetyMeasure": "Medida preventiva",
+    "measureCopied": "Medida copiada.",
+    "goHome": "Volver al inicio"
+  },
+  "recommendation": {
+    "similarity": "Similitud textual",
+    "scoreHelp": "El porcentaje indica similitud textual, no idoneidad, aprobación ni probabilidad de prevenir accidentes. Compruebe las condiciones de trabajo antes de aplicar una medida.",
+    "sharedData": "Se utilizan datos de referencia compartidos de {{locale}}. Compruebe su aplicabilidad en el lugar de trabajo.",
+    "reviewRequired": "La entrada ha cambiado. Revise las medidas y recomendaciones conservadas.",
+    "loadError": "No se pudieron cargar las recomendaciones. Inténtelo de nuevo."
+  },
+  "review": {
+    "confirmCurrent": "Confirmo que esta medida se aplica en este lugar de trabajo",
+    "unconfirmed": "Aplicación en el lugar de trabajo no confirmada",
+    "unknownSource": "Fuente: asociación existente; revisión técnica no registrada",
+    "linkedHazard": "Peligro asociado",
+    "conditionsUnknown": "Revisar las condiciones de aplicación y los requisitos regionales",
+    "sourceLanguage": "Idioma original",
+    "targetLanguage": "Idioma del documento",
+    "allLanguages": "Todos los idiomas",
+    "sameLanguage": "Solo el idioma del documento",
+    "unknownLanguage": "Idioma no registrado",
+    "languageChanged": "Revisar los textos conservados para este idioma del documento",
+    "profileLabel": "Criterios de evaluación",
+    "profileHelp": "Por defecto: 5 × 5, resaltado desde 9. Valores configurables, no una norma nacional. Cambiar los criterios reinicia las evaluaciones y conserva su historial.",
+    "frequencyMax": "Frecuencia máxima",
+    "severityMax": "Gravedad máxima",
+    "highFrom": "Resaltar desde",
+    "notAssessed": "Sin evaluar",
+    "criteria": "Procedimiento del centro y definición de niveles"
   }
 }

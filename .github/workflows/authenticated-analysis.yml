@@ -1,0 +1,51 @@
+name: Authenticated analysis integration
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'supabase/migrations/**'
+      - '.github/workflows/authenticated-analysis.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: authenticated-analysis-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  local-supabase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+      CHROME_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.121.0
+      - name: Prepare disposable synthetic data and public draft migrations
+        run: node scripts/auth-integration/prepare.js
+      - name: Start real local Auth, PostgREST and PostgreSQL
+        run: |
+          supabase start --help
+          supabase status --help
+          docker network create -o 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1' jsa-auth-local
+          supabase start --workdir .cache/auth-integration --network-id jsa-auth-local
+          supabase status --workdir .cache/auth-integration --output json > .cache/auth-integration/status.json
+      - name: Check authenticated recommendations, persistence and account isolation
+        run: node scripts/authenticated-analysis.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: authenticated-analysis-results
+          path: artifacts/recommendations/authenticated-analysis.json
+          retention-days: 14
+      - name: Stop disposable stack
+        if: always()
+        run: supabase stop --workdir .cache/auth-integration --no-backup

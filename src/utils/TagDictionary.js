@@ -1,8 +1,7 @@
-/**
- * Smart JSA Bridge - Dimensional Tag Dictionary
- * 구성: 7대 차원, 약 300종의 세부 태그 및 복합 매칭 룰셋
- * 적용 기준: KOSHA Guide, OSHA Standard, ISO 45001 안전공학 체계
- */
+import { matchesHazardKeywords } from './analysisRecommendations.js';
+import { localizedTagTerms } from './localizedTagTerms.js';
+
+/** Search metadata with stable Korean tag IDs. Keyword matches are not safety judgments. */
 
 export const DIMENSIONAL_KEYWORD_MAP = {
   // --- [1. 산업 및 공정 특성 세분화 - 25종] ---
@@ -293,105 +292,16 @@ export const DIMENSIONAL_KEYWORD_MAP = {
 
 }
 
-/**
- * [Batch 7] 고도화된 의미론적(Semantic) 분석 알고리즘
- * 목적: 다국어 지원 및 안전공학적 문맥 추론 기능 강화
- */
-const applyComplexSemanticRules = (text, tags) => {
-  const lowText = text.toLowerCase();
-
-  // 1. 호흡용 보호구 및 보건 (Health & Respiratory)
-  // 키워드: 석면, 분진, 흄, 유기용제, 흡입, 질식 + 마스크, 착용
-  if (/(세라크울|석면|분진|흄|fume|유기용제|흡입|질식|유해가스|화학물질|페인트|도장|asbestos|dust|toxic|gas|solvent|inhalation)/.test(lowText) && 
-      /(보호구|마스크|방독면|착용|지급|mask|respirator|wear|ppe)/.test(lowText)) {
-    tags.add("보호구(방진마스크)");
-    tags.add("보호구(방독마스크)");
-  }
-
-  // 2. 고소 추락 방지 (Fall Protection)
-  // 키워드: 고소, 단부, 비계, 지붕, 개구부, 사다리 + 안전대, 생명줄, 체결
-  if (/(고소|단부|비계|지붕|개구부|추락|떨어짐|높은곳|ladder|scaffold|roof|height|edge|opening|fall)/.test(lowText) && 
-      /(보호구|안전대|생명줄|안전블록|착용|체결|harness|lanyard|lifeline|tie-off)/.test(lowText)) {
-    tags.add("보호구(안전대)");
-  }
-
-  // 3. 화기 작업 및 소방 (Hot Work & Fire Safety)
-  // 키워드: 용접, 절단, 그라인딩, 불티 + 소화기, 불꽃, 감시자
-  if (/(용접|절단|용단|그라인딩|불티|아크|welding|cutting|grinding|spark|arc|hot work)/.test(lowText) && 
-      /(소화기|불꽃방지|비산방지|감시자|fire extinguisher|fire watch|blanket)/.test(lowText)) {
-    tags.add("준비(감시자배치)");
-    tags.add("사고(화재)");
-  }
-
-  // 4. 에너지 차단 (LOTO / Energy Isolation)
-  // 키워드: 정전, 전원차단, 밸브차단 + 잠금, 시건, 표지판
-  if (/(정전|전원 차단|밸브 차단|동력 차단|유압 차단|power off|de-energize|valve close|isolation)/.test(lowText) && 
-      /(잠금|시건|표지판|tag|loto|lockout|padlock)/.test(lowText)) {
-    tags.add("준비(에너지차단)");
-  }
-
-  // 5. 밀폐공간 및 산소 측정 (Confined Space & Gas Testing)
-  // 키워드: 탱크, 맨홀, 핏트, 질식 + 농도측정, 환기
-  if (/(탱크|맨홀|핏트|용기내부|밀폐|confined|tank|manhole|pit|vessel)/.test(lowText) && 
-      /(농도|측정|검지|환기|송풍|testing|ventilation|monitoring|oxygen)/.test(lowText)) {
-    tags.add("준비(가스측정)");
-    tags.add("준비(환기시설)");
-  }
-
-  // 6. 기계적 끼임 방지 (Machine Guarding)
-  // 키워드: 회전부, 컨베이어, 롤러 + 방호덮개, 인터록, 비상정지
-  if (/(회전부|컨베이어|롤러|구동부|끼임|협착|rotating|conveyor|roller|moving part|crush|pinch)/.test(lowText) && 
-      /(방호|덮개|울타리|인터록|비상정지|guard|fence|interlock|e-stop)/.test(lowText)) {
-    tags.add("설비(방호장치)");
-    tags.add("설비(비상정지장치)");
-  }
-
-  // 7. 중량물 양중 및 줄걸이 (Lifting & Rigging)
-  // 키워드: 크레인, 양중, 인양 + 줄걸이, 샤클, 신호수
-  if (/(크레인|양중|인양|중량물|crane|lifting|hoisting|heavy load)/.test(lowText) && 
-      /(줄걸이|슬링|샤클|와이어|신호수|유도자|rigging|sling|shackle|signalman|spotter)/.test(lowText)) {
-    tags.add("준비(신호수배치)");
-    tags.add("줄걸이작업");
-  }
-
-  // 8. 전기 감전 방지 (Electrical Safety)
-  // 키워드: 배전반, 케이블, 전선 + 접지, 절연, 차단기
-  if (/(전기|배전반|판넬|케이블|전선|전격|electrical|panel|cable|wiring|shock)/.test(lowText) && 
-      /(접지|절연|차단기|검전기|grounding|insulation|breaker|detector)/.test(lowText)) {
-    tags.add("준비(접지확인)");
-    tags.add("설비(배전반/분전반)");
-  }
-
-  // 9. 사전 안전 예방 (Pre-task Safety)
-  // 키워드: 작업 전, 시작 전, 투입 전 + 교육, TBM, 회의
-  if (/(작업 전|시작 전|투입 전|사전|pre-job|before work|start of shift)/.test(lowText) && 
-      /(교육|조회|미팅|회의|공유|전파|tbm|training|briefing|meeting)/.test(lowText)) {
-    tags.add("관리(작업전TBM)");
-  }
-
-  // 10. 작업 마무리 및 환경 (Housekeeping)
-  // 키워드: 작업 후, 종료 후, 마무리 + 정리, 청소, 수거
-  if (/(작업 후|종료 후|마무리|완료|after work|completion|finish)/.test(lowText) && 
-      /(정리|정돈|청소|수거|폐기물|housekeeping|cleaning|waste|removal)/.test(lowText)) {
-    tags.add("마무리(정리정돈)");
-  }
-};
-
-// ✅ [메인 함수] 텍스트 기반 자동 태그 추출기
-export const extractAutoTagsFromJSA = (projectName, analysisData) => {
-  // 전처리: 텍스트 병합 및 정규화
-  const combinedContent = (projectName + " " + JSON.stringify(analysisData)).toLowerCase();
-  const tags = new Set();
-
-  // 1단계: 300종 키워드 맵 순회 매칭
-  Object.entries(DIMENSIONAL_KEYWORD_MAP).forEach(([tag, keywords]) => {
-    if (keywords.some(kw => combinedContent.includes(kw))) {
-      tags.add(tag);
-    }
-  });
-
-  // 2단계: 복합 매칭 룰셋 적용
-  applyComplexSemanticRules(combinedContent, tags);
-
-  return Array.from(tags);
+// Match authored content only. JSON property names, IDs and stored tags are not evidence.
+export const extractAutoTagsFromJSA = (projectName, analysisData, { locale = 'en-US', translateTag } = {}) => {
+  const content = [typeof projectName === 'string' ? projectName : '',
+    ...(Array.isArray(analysisData) ? analysisData : []).flatMap(step => [step?.proc?.stepTitle, step?.proc?.stepDetail,
+      ...(Array.isArray(step?.risks) ? step.risks : []).flatMap(risk => [risk?.factor, risk?.risk_factor, risk?.measure, risk?.current_measure, risk?.recommend_measure])])]
+    .filter(value => typeof value === 'string').join('\n');
+  const native = localizedTagTerms(locale);
+  return Object.entries(DIMENSIONAL_KEYWORD_MAP).filter(([tag, original]) => {
+    const label = translateTag?.(tag);
+    const terms = [...original, ...(native[tag] || []), ...(typeof label === 'string' && label !== tag ? [label] : [])];
+    return matchesHazardKeywords({ keywords: terms }, content);
+  }).map(([tag]) => tag);
 };

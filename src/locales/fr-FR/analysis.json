@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ Ajouter vide",
     "addBulkBtn": "✓ Ajouter les éléments sélectionnés",
     "emptyRec": "Aucun danger recommandé trouvé.",
-    "etc": "Divers"
+    "etc": "Divers",
+    "searching": "Recherche en cours…"
   },
   "result": {
     "label": "Évaluation et mesures",
@@ -74,7 +75,8 @@
     "prevStep1": "Étape préc. (Procédure)",
     "prevStep2": "Étape de tâche préc.",
     "nextComplete": "Terminer l'analyse et configurer le module",
-    "nextStep": "Analyser l'étape de tâche suivante"
+    "nextStep": "Analyser l'étape de tâche suivante",
+    "fastTrackComplete": "Terminer l’analyse et copier le texte"
   },
   "searchModal": {
     "title": "Recherche dans la base de données",
@@ -113,5 +115,41 @@
     "retry": "Réessayer",
     "close": "Fermer la bibliothèque",
     "noMatches": "Aucune étape ni aucun projet correspondant."
+  },
+  "fastTrackModal": {
+    "title": "Copier le texte de l’évaluation",
+    "desc": "Copiez les dangers et les mesures dans votre propre formulaire.",
+    "hazardFactor": "Danger",
+    "copied": "Danger copié.",
+    "safetyMeasure": "Mesure de prévention",
+    "measureCopied": "Mesure copiée.",
+    "goHome": "Retour à l’accueil"
+  },
+  "recommendation": {
+    "similarity": "Similarité textuelle",
+    "scoreHelp": "Le pourcentage indique une similarité textuelle, et non une adéquation, une approbation ou une probabilité de prévention des accidents. Vérifiez les conditions de travail avant d’appliquer une mesure.",
+    "sharedData": "Des données de référence communes à {{locale}} sont utilisées. Vérifiez leur applicabilité au lieu de travail.",
+    "reviewRequired": "La saisie a changé. Réexaminez les mesures et recommandations conservées.",
+    "loadError": "Impossible de charger les recommandations. Veuillez réessayer."
+  },
+  "review": {
+    "confirmCurrent": "Je confirme que cette mesure est appliquée sur ce lieu de travail",
+    "unconfirmed": "Application sur le terrain non confirmée",
+    "unknownSource": "Source : correspondance existante ; examen technique non documenté",
+    "linkedHazard": "Danger associé",
+    "conditionsUnknown": "Vérifier les conditions d’application et les exigences régionales",
+    "sourceLanguage": "Langue source",
+    "targetLanguage": "Langue du document",
+    "allLanguages": "Toutes les langues",
+    "sameLanguage": "Langue du document uniquement",
+    "unknownLanguage": "Langue non renseignée",
+    "languageChanged": "Vérifier les textes conservés dans cette langue de document",
+    "profileLabel": "Critères d’évaluation",
+    "profileHelp": "Par défaut : 5 × 5, mise en évidence à partir de 9. Valeurs configurables, pas une norme nationale. Un changement réinitialise les évaluations et conserve leur historique.",
+    "frequencyMax": "Fréquence maximale",
+    "severityMax": "Gravité maximale",
+    "highFrom": "Mettre en évidence à partir de",
+    "notAssessed": "Non évalué",
+    "criteria": "Procédure du site et définition des niveaux"
   }
 }

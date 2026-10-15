@@ -1,0 +1,825 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-14T09:51:28.631Z",
+  "scope": "Rows visible in the supplied snapshot; counts do not prove regional suitability or complete production visibility.",
+  "visibility": "public_anon_RLS_visible_rows_only",
+  "coverage": [
+    {
+      "locale": "en-US",
+      "dataLocale": "en-US",
+      "sharedData": false,
+      "hazards": 395,
+      "controls": 834,
+      "additionalControls": 2111,
+      "exactLocaleCaseGroups": 199,
+      "availableCaseGroups": 199,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "US",
+      "currentMappings": 1185,
+      "additionalMappings": 7385,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "OSHA",
+        "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+        "section": "1910.147(d), verification and stored energy",
+        "scope": "US general industry; sector and exception scope need review",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-CA",
+      "dataLocale": "en-CA",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "CA",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "CCOHS",
+        "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+        "section": "Basic steps and verification",
+        "scope": "Canadian guidance; not a substitute for provincial or federal jurisdiction checks",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-CA-AB",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 45,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "CA-AB",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "Alberta OHS",
+        "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+        "section": "Part 15, hazardous energy control",
+        "scope": "Alberta only; actual energy-isolating and securing method must be checked",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-CA-ON",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 45,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "CA-ON",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "Ontario Ministry of Labour",
+        "url": "https://www.ontario.ca/page/alert-equipment-blocking",
+        "section": "Equipment blocking and hazardous energy",
+        "scope": "Ontario blocking alert; sector regulation and blocking design need review",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-CA-BC",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 45,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "CA-BC",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "WorkSafeBC",
+        "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+        "section": "Part 10, de-energization and lockout",
+        "scope": "British Columbia only; lockout responsibilities and exceptions need review",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "fr-CA-QC",
+      "dataLocale": "fr-FR",
+      "sharedData": true,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": 1,
+      "availableCaseGroups": 1,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "CA-QC",
+      "currentMappings": 1176,
+      "additionalMappings": 7857,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "CNESST",
+        "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine",
+        "section": "Cadenassage et zones dangereuses",
+        "scope": "Québec; vérifier la méthode et les responsabilités de cadenassage applicables",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-GB",
+      "dataLocale": "en-GB",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "GB",
+      "currentMappings": 1176,
+      "additionalMappings": 5296,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "HSE",
+        "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+        "section": "Safe maintenance; stored energy",
+        "scope": "HSE guidance for Great Britain; Northern Ireland applicability not established",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-AU",
+      "dataLocale": "en-AU",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1741,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "AU",
+      "currentMappings": 1176,
+      "additionalMappings": 5302,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "WorkSafe Victoria",
+        "url": "https://www.worksafe.vic.gov.au/isolate-de-energise-lockout-and-tagout-plant",
+        "section": "Isolation, de-energisation, lockout and tagout",
+        "scope": "Victoria guidance; other Australian state and territory requirements remain unreviewed",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "en-SG",
+      "dataLocale": "en-US",
+      "sharedData": true,
+      "hazards": 395,
+      "controls": 834,
+      "additionalControls": 2111,
+      "exactLocaleCaseGroups": 199,
+      "availableCaseGroups": 199,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "SG",
+      "currentMappings": 1185,
+      "additionalMappings": 7385,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "WSH Council",
+        "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_guidelines_on_safe_use_of_machinery.ashx",
+        "section": "4.4.3 and 5.3.2, LOTO",
+        "scope": "Singapore guidance; competent personnel and actual machinery procedure required",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "de-DE",
+      "dataLocale": "de-DE",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 897,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": 44,
+      "availableCaseGroups": 44,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "DE",
+      "currentMappings": 1176,
+      "additionalMappings": 5006,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "DGUV",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4529",
+        "section": "FBHM-127, Anlagen 1 und 2",
+        "scope": "Störungsbeseitigung; betriebliche Gefährdungsbeurteilung und Zuständigkeit prüfen",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "ja-JP",
+      "dataLocale": "ja-JP",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "JP",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "厚生労働省",
+        "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=4",
+        "section": "労働安全衛生規則第107条・第108条",
+        "scope": "作業内容に応じた条文と機械別の停止・起動防止方法を確認",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "dataLocale": "fr-FR",
+      "sharedData": false,
+      "hazards": 392,
+      "controls": 899,
+      "additionalControls": 1742,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "FR",
+      "currentMappings": 1176,
+      "additionalMappings": 7857,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "INRS",
+        "url": "https://www.inrs.fr/media.html?refINRS=ED+6109",
+        "section": "ED 6109, consignation et déconsignation",
+        "scope": "Guide technique; procédure et habilitations adaptées à la situation à vérifier",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "it-IT",
+      "dataLocale": "it-IT",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1013,
+      "additionalControls": 2121,
+      "exactLocaleCaseGroups": 40,
+      "availableCaseGroups": 40,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "IT",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "url": "https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/impianti-di-trasformazione--produzione-e-processo/linee-di-produzione.html",
+        "authority": "INAIL",
+        "section": "Linee di produzione: energie residue, riavvio accidentale e ricerca sulla procedura LOTO",
+        "jurisdiction": "IT",
+        "scope": "Descrizione tecnica della ricerca INAIL; non costituisce un’istruzione operativa completa o una conferma di conformità.",
+        "checkedAt": "2026-10-14",
+        "retrieval": "relevant_primary_sections_read",
+        "evidenceRole": "technical"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "dataLocale": "es-ES",
+      "sharedData": false,
+      "hazards": 395,
+      "controls": 884,
+      "additionalControls": 1841,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "ES",
+      "currentMappings": 1185,
+      "additionalMappings": 5199,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "authority": "INSST",
+        "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/32-serie-ntp-numeros-1101-a-1135-ano-2018/ntp-1.117-consignacion-de-maquinas",
+        "section": "NTP 1117, consignación de máquinas",
+        "scope": "Guía técnica; confirmar obligaciones y procedimiento aplicables",
+        "checkedAt": "2026-10-14"
+      },
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "ar-SA",
+      "dataLocale": "ar-SA",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "SA",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
+        "authority": "EXPRO",
+        "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+        "checkedAt": "2026-10-14",
+        "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
+        "retrieval": "relevant_primary_sections_read"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary-source comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "تقييم مخاطر العزل وحدوده والتصاريح المرتبطة قبل العمل.",
+          "التحقق من المواد الخطرة والطاقة المخزنة ومن النسخة المعتمدة بالمشروع."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": [],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "dataLocale": "pt-BR",
+      "sharedData": false,
+      "hazards": 424,
+      "controls": 1017,
+      "additionalControls": 2122,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "BR",
+      "currentMappings": 0,
+      "additionalMappings": 0,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "missing_recommendation_links",
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
+        "authority": "Ministério do Trabalho e Emprego",
+        "section": "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21",
+        "checkedAt": "2026-10-14",
+        "scope": "Manutenção com máquina parada; intervenções especiais exigem análise separada. A compilação não substitui o DOU.",
+        "retrieval": "primary_pdf_relevant_sections_read"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary PDF comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "O item 12.11.3 trata de isolamento, descarga, bloqueio e identificação com a máquina parada.",
+          "As situações especiais de 12.11.3.1 a 12.11.3.3 ficam fora do escopo deste rascunho."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": [
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
+          "authority": "Ministério do Trabalho e Emprego",
+          "section": "Índice oficial: última modificação indicada, Portaria MTE 344/2024",
+          "checkedAt": "2026-10-14",
+          "scope": "Índice e PDF consolidado conferidos; revisão técnica e regional ainda pendente",
+          "retrieval": "primary_index_and_relevant_pdf_sections_read"
+        }
+      ],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "ru-RU",
+      "dataLocale": "ru-RU",
+      "sharedData": false,
+      "hazards": 395,
+      "controls": 884,
+      "additionalControls": 1840,
+      "exactLocaleCaseGroups": 43,
+      "availableCaseGroups": 43,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "RU",
+      "currentMappings": 1185,
+      "additionalMappings": 5249,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending",
+        "current_domestic_source_unverified"
+      ],
+      "source": {
+        "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+        "authority": "CCOHS (foreign technical guidance)",
+        "section": "Basic steps and verification",
+        "checkedAt": "2026-10-14",
+        "scope": "Технический черновик по зарубежному руководству; действующие требования РФ не подтверждены",
+        "retrieval": "primary_page_or_document"
+      },
+      "sourceCheck": {
+        "status": "primary_documents_identified_full_text_pending",
+        "method": "Official publication metadata; full-text requests timed out",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "Order 833н and amendment 287н official publication identifiers located.",
+          "No domestic technical clause or extension date is certified from unread primary text."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": [
+        {
+          "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
+          "checkedAt": "2026-10-14",
+          "scope": "Официальная публикация найдена; полный текст недоступен при проверке, применимость не подтверждена",
+          "retrieval": "primary_search_metadata_full_text_timeout"
+        },
+        {
+          "url": "https://publication.pravo.gov.ru/document/0001202505300025",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
+          "checkedAt": "2026-10-14",
+          "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
+          "retrieval": "primary_search_metadata_full_text_timeout"
+        }
+      ],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    },
+    {
+      "locale": "ko",
+      "dataLocale": "ko-KR",
+      "sharedData": false,
+      "hazards": 470,
+      "controls": 884,
+      "additionalControls": 2104,
+      "exactLocaleCaseGroups": 199,
+      "availableCaseGroups": 199,
+      "observation": "rows_observed",
+      "jurisdictionSuitability": "not_verified",
+      "jurisdiction": "KR",
+      "currentMappings": 1410,
+      "additionalMappings": 7878,
+      "draftUnits": 3,
+      "reviewedUnits": 0,
+      "productionNewUnits": 0,
+      "priorityTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ],
+      "gaps": [
+        "regional_review_pending",
+        "translation_review_pending",
+        "technical_review_pending"
+      ],
+      "source": {
+        "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+        "authority": "국가법령정보센터",
+        "section": "산업안전보건기준에 관한 규칙 제92조 제1항~제4항",
+        "checkedAt": "2026-10-14",
+        "scope": "기계 정비 등의 운전정지·재기동 방지 및 압축 기체·액체 방출 위험. 기계 구조·작업 방법에 따른 적용 여부는 현장 검토 필요",
+        "retrieval": "relevant_primary_sections_read"
+      },
+      "sourceCheck": {
+        "status": "relevant_sections_checked",
+        "method": "AI-assisted primary-source comparison",
+        "checkedAt": "2026-10-14",
+        "findings": [
+          "검색 요약 대신 제92조 원문을 대조했습니다.",
+          "재기동 방지와 잔류 압력 통제를 구분했습니다."
+        ],
+        "approvalGranted": false
+      },
+      "additionalSources": [],
+      "draftTasks": [
+        "machine-maintenance",
+        "pressure-equipment-opening",
+        "welding-exposure"
+      ]
+    }
+  ],
+  "sourceCautions": [
+    "Sources and relevant sections were checked separately from technical, regional and translation approval. All draft approvals remain pending.",
+    "Korean section 92, Saudi EXPRO project isolation sections and Brazilian NR-12 12.11.3/exceptions were read from official full sources.",
+    "Russia: original/amendment publication records identified, full-text retrieval failed; domestic applicability is unverified.",
+    "Saudi guidance is project-scoped; Victoria guidance does not cover all Australia; Great Britain guidance does not certify Northern Ireland.",
+    "All 18 Locales now have three bounded priority-task drafts. They are not complete country coverage, validated local compliance, reviewed recommendations or production availability. Detailed geography and review gaps are computed in recommendation-task-coverage.json.",
+    "Database counts retain their original capturedAt snapshot time; authored knowledge counts have a separate update field."
+  ],
+  "sourceReviewUpdatedAt": "2026-10-14",
+  "knowledgeCoverageReport": "docs/recommendation-task-coverage.json",
+  "knowledgeCoverageUpdatedAt": "2026-10-14"
+}

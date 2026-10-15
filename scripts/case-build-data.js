@@ -2,13 +2,11 @@ import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
+import { caseSourceContent } from '../src/utils/caseSource.js';
 
 export const caseRoute = row => `/${row.language_code}/case-study/${encodeURIComponent(row.post_group_id)}`;
-const fields = ['id', 'post_group_id', 'language_code', 'title', 'meta_title', 'meta_description',
-  'content_md', 'schema_markup', 'pdf_download_url', 'pdf_list'];
-
 export function contentFingerprint(post) {
-  return createHash('sha256').update(JSON.stringify(fields.map(key => post[key] ?? null))).digest('hex');
+  return createHash('sha256').update(caseSourceContent(post)).digest('hex');
 }
 
 export function buildCaseManifest(rows) {

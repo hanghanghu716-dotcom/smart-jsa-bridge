@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-14T10:13:19.271Z",
+  "scope": "Rows visible in the supplied snapshot; counts do not prove regional suitability or complete production visibility.",
+  "snapshotComplete": false,
+  "visibility": "public_anon_RLS_visible_rows_only",
+  "missingTables": [
+    "Hazards_Translations",
+    "Current_Measures_Translations",
+    "Advanced_Measures_Translations",
+    "hazard_measure_mappings",
+    "current_advanced_measure_mappings",
+    "case_studies"
+  ],
+  "coverage": [
+    {
+      "locale": "en-US",
+      "dataLocale": "en-US",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA-AB",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA-ON",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA-BC",
+      "dataLocale": "en-CA",
+      "sharedData": true,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "fr-CA-QC",
+      "dataLocale": "fr-FR",
+      "sharedData": true,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-AU",
+      "dataLocale": "en-AU",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-GB",
+      "dataLocale": "en-GB",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-SG",
+      "dataLocale": "en-US",
+      "sharedData": true,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "de-DE",
+      "dataLocale": "de-DE",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ja-JP",
+      "dataLocale": "ja-JP",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "fr-FR",
+      "dataLocale": "fr-FR",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "it-IT",
+      "dataLocale": "it-IT",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "es-ES",
+      "dataLocale": "es-ES",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ar-SA",
+      "dataLocale": "ar-SA",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "pt-BR",
+      "dataLocale": "pt-BR",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ru-RU",
+      "dataLocale": "ru-RU",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "ko",
+      "dataLocale": "ko-KR",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    },
+    {
+      "locale": "en-CA",
+      "dataLocale": "en-CA",
+      "sharedData": false,
+      "hazards": null,
+      "controls": null,
+      "additionalControls": null,
+      "exactLocaleCaseGroups": null,
+      "availableCaseGroups": null,
+      "observation": "not_loaded",
+      "jurisdictionSuitability": "not_verified"
+    }
+  ],
+  "translations": {
+    "Hazards_Translations": {
+      "status": "not_loaded"
+    },
+    "Current_Measures_Translations": {
+      "status": "not_loaded"
+    },
+    "Advanced_Measures_Translations": {
+      "status": "not_loaded"
+    }
+  },
+  "mappings": {
+    "hazardToControl": {
+      "status": "not_loaded"
+    },
+    "currentToAdditional": {
+      "status": "not_loaded"
+    }
+  },
+  "completedAt": "2026-10-14T10:16:15.943Z",
+  "failures": {
+    "Hazards_Translations": "HTTP 522",
+    "Current_Measures_Translations": "HTTP 522",
+    "Advanced_Measures_Translations": "HTTP 522",
+    "hazard_measure_mappings": "HTTP 522",
+    "current_advanced_measure_mappings": "HTTP 522",
+    "case_studies": "HTTP 522",
+    "Hazards": "HTTP 522",
+    "Current_Measures": "HTTP 522",
+    "Advanced_Measures": "HTTP 522"
+  },
+  "project": "aajvezmhyrdawxxbulqz.supabase.co",
+  "schemaAuthority": "PostgREST public schema only; database constraints and RLS require privileged read-only audit",
+  "schemaReadError": "HTTP 401",
+  "highScoreExamples": {
+    "hazardToControl": null,
+    "currentToAdditional": null
+  },
+  "caseSourceReadError": "HTTP 522",
+  "translationLocales": {
+    "Hazards_Translations": null,
+    "Current_Measures_Translations": null,
+    "Advanced_Measures_Translations": null
+  },
+  "mappingLocales": {
+    "hazard_measure_mappings": null,
+    "current_advanced_measure_mappings": null
+  },
+  "snapshotDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "masterReferences": {
+    "Hazards": {
+      "rows": null,
+      "missingReferencedMaster": null
+    },
+    "Current_Measures": {
+      "rows": null,
+      "missingReferencedMaster": null
+    },
+    "Advanced_Measures": {
+      "rows": null,
+      "missingReferencedMaster": null
+    }
+  },
+  "invalidTranslationLocales": {
+    "Hazards_Translations": null,
+    "Current_Measures_Translations": null,
+    "Advanced_Measures_Translations": null
+  },
+  "duplicateMappingKinds": {
+    "hazard_measure_mappings": null,
+    "current_advanced_measure_mappings": null
+  }
+}

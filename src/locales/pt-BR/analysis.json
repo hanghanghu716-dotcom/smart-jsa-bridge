@@ -53,7 +53,8 @@
     "addEmptyBtn": "+ Adicionar em Branco",
     "addBulkBtn": "✓ Adicionar Itens Selecionados",
     "emptyRec": "Nenhum perigo recomendado encontrado.",
-    "etc": "Outros"
+    "etc": "Outros",
+    "searching": "Pesquisando…"
   },
   "result": {
     "label": "Avaliação e Medidas",
@@ -74,7 +75,8 @@
     "prevStep1": "Etapa Anterior (Procedimento)",
     "prevStep2": "Etapa de Tarefa Anterior",
     "nextComplete": "Concluir Análise e Ir para Configuração do Módulo",
-    "nextStep": "Analisar a Próxima Etapa da Tarefa"
+    "nextStep": "Analisar a Próxima Etapa da Tarefa",
+    "fastTrackComplete": "Concluir a análise e copiar o texto"
   },
   "searchModal": {
     "title": "Pesquisa no BD de Medidas",
@@ -113,5 +115,41 @@
     "retry": "Tentar novamente",
     "close": "Fechar biblioteca",
     "noMatches": "Nenhuma etapa ou projeto correspondente."
+  },
+  "fastTrackModal": {
+    "title": "Copiar o texto da avaliação",
+    "desc": "Copie os perigos e as medidas para o seu formulário.",
+    "hazardFactor": "Perigo",
+    "copied": "Perigo copiado.",
+    "safetyMeasure": "Medida de controle",
+    "measureCopied": "Medida copiada.",
+    "goHome": "Voltar ao início"
+  },
+  "recommendation": {
+    "similarity": "Similaridade textual",
+    "scoreHelp": "A porcentagem indica similaridade textual, não adequação, aprovação ou probabilidade de prevenir acidentes. Verifique as condições de trabalho antes de aplicar uma medida.",
+    "sharedData": "São usados dados de referência compartilhados de {{locale}}. Verifique sua aplicabilidade no local de trabalho.",
+    "reviewRequired": "A entrada foi alterada. Revise as medidas e recomendações mantidas.",
+    "loadError": "Não foi possível carregar as recomendações. Tente novamente."
+  },
+  "review": {
+    "confirmCurrent": "Confirmo que esta medida está implementada neste local de trabalho",
+    "unconfirmed": "Implementação no local não confirmada",
+    "unknownSource": "Fonte: associação existente; revisão técnica não registrada",
+    "linkedHazard": "Perigo associado",
+    "conditionsUnknown": "Revisar as condições de aplicação e os requisitos regionais",
+    "sourceLanguage": "Idioma original",
+    "targetLanguage": "Idioma do documento",
+    "allLanguages": "Todos os idiomas",
+    "sameLanguage": "Somente o idioma do documento",
+    "unknownLanguage": "Idioma não registrado",
+    "languageChanged": "Revisar os textos preservados para este idioma do documento",
+    "profileLabel": "Critérios de avaliação",
+    "profileHelp": "Padrão: 5 × 5, destaque a partir de 9. Valores configuráveis, não uma norma nacional. Alterar os critérios reinicia as avaliações e preserva o histórico.",
+    "frequencyMax": "Frequência máxima",
+    "severityMax": "Gravidade máxima",
+    "highFrom": "Destacar a partir de",
+    "notAssessed": "Não avaliado",
+    "criteria": "Procedimento do local e definição dos níveis"
   }
 }

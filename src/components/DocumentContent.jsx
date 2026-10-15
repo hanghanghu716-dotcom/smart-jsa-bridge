@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import DocumentSignatures from './DocumentSignatures';
 import { columnPercentages, normalizeDocumentBlocks } from '../utils/documentLayout';
+import AssessmentSummary from './AssessmentSummary';
 const TAG_META = {
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
@@ -79,7 +80,9 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     '안전화': t('ppe.shoes'),
     '보안경': t('ppe.glasses'),
     '장갑': t('ppe.gloves'),
-    '방진마스크': t('ppe.mask')
+    '방진마스크': t('ppe.mask'),
+    '귀마개': t('info:ppe.귀마개'),
+    '방진복': t('info:ppe.방진복')
   }[value] || value);
 
   const translatePermit = value => ({
@@ -88,7 +91,10 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     '정전': t('permit.electrical'),
     '고소': t('permit.highElevation'),
     '중량물': t('permit.heavyLifting'),
-    '굴착': t('permit.excavation')
+    '굴착': t('permit.excavation'),
+    '일반': t('info:permit.일반'),
+    '방사선': t('info:permit.방사선'),
+    '가연성가스': t('info:permit.가연성가스')
   }[value] || value);
 
   const renderDesignerSafety = () => {
@@ -217,7 +223,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                 if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}`).join('\n');
+                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${t('analysis:review.unconfirmed')})` : ''}`).join('\n');
                 else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
                 else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity ?? "");
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency ?? "");
@@ -230,7 +236,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                   else content = '';
                 }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => onPhotoClick?.(stepIdx)} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: onPhotoClick ? 'pointer' : 'default', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
-                return ( <td key={`td-${key}-${stepIdx}`} style={{ ...commonTdStyle, textAlign: meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
+                return ( <td key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
               })}
             </tr>
           ))}
@@ -247,7 +253,8 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     if (id === 'NOTES') return renderDesignerNotes();
     return null;
   };
-  return <div className="document-content" style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
+  return <div className="document-content" dir={i18n.dir(language)} style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
     {normalizeDocumentBlocks(documentBlocks).filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
+    <AssessmentSummary value={formData.assessment} documentLocale={language} />
   </div>;
 }
