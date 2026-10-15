@@ -116,6 +116,7 @@ const { randomUUID } = require('node:crypto');
         await page.waitForSelector('.analysis-selected tbody textarea');
         await page.click('[data-recommend-current]');
         await page.waitForSelector('[data-recommendation-item][data-score="0.72"]');
+        assert.equal(await page.$$eval('[data-recommendation-item]', items => items.length), 1, 'Broken current identities excluded');
         assert.equal(await page.evaluate(() => document.body.textContent.includes('Unrelated high score')), false);
         await page.click('[data-recommendation-item]');
         await page.waitForFunction(text => document.querySelectorAll('.analysis-selected tbody textarea')[1]?.value === text, {}, words[1]);
@@ -123,6 +124,7 @@ const { randomUUID } = require('node:crypto');
         await page.click('[data-current-confirmed]');
         await page.click('[data-recommend-advanced]');
         await page.waitForSelector('[data-recommendation-item][data-score="0.8"]');
+        assert.equal(await page.$$eval('[data-recommendation-item]', items => items.length), 1, 'Broken advanced identities excluded');
         await page.click('[data-recommendation-item]');
         stage = 'cloud autosave';
         const id = await page.evaluate(() => sessionStorage.getItem('smartjsa_active_draft_id'));
@@ -169,11 +171,12 @@ const { randomUUID } = require('node:crypto');
         for (const endpoint of ['/auth/v1/token', '/auth/v1/user', '/rest/v1/Hazards_Translations',
           '/rest/v1/hazard_measure_mappings', '/rest/v1/Current_Measures_Translations',
           '/rest/v1/current_advanced_measure_mappings', '/rest/v1/Advanced_Measures_Translations',
+          '/rest/v1/Hazards', '/rest/v1/Current_Measures', '/rest/v1/Advanced_Measures',
           '/rest/v1/rpc/save_jsa_draft_snapshot', '/rest/v1/user_jsa_drafts']) assert.ok(apiPaths.has(endpoint), endpoint);
         assert.deepEqual(errors, [], `${locale}: browser errors`);
         lastDraft = editedRow;
         results.push({ locale, realAuth: true, realRecommendationRetrieval: true, wrongIdHighScoreExcluded: true,
-          percentagesPreserved: true, cloudAutosave: true, reloadFromDatabase: true,
+          percentagesPreserved: true, brokenMasterIdentitiesExcluded: true, cloudAutosave: true, reloadFromDatabase: true,
           editedReferencesInvalidated: true, documentRendered: true });
         console.log(`PASS authenticated ${locale}: recommendations, percentages, cloud draft, restore, edit invalidation, document`);
       } catch (error) {

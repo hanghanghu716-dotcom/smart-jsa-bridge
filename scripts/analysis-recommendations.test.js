@@ -2,23 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
 import { recommendationContext, normalizeKeywords, localizedHazards, matchesHazardKeywords,
-  updateRiskValue, applyControl, formatSimilarity, loadMeasureRecommendations } from '../src/utils/analysisRecommendations.js';
+  updateRiskValue, applyControl, formatSimilarity, loadMeasureRecommendations, searchMeasureTranslations } from '../src/utils/analysisRecommendations.js';
 
 function database(tables, failure = '') {
   const calls = [];
   return { calls, from(table) {
     const filters = [], call = { table, filters }; calls.push(call);
+    let cap = Infinity;
     const query = {
       select() { return query; },
       eq(key, value) { filters.push({ op: 'eq', key, value }); return query; },
       in(key, value) { filters.push({ op: 'in', key, value }); return query; },
       ilike(key, value) { filters.push({ op: 'ilike', key, value }); return query; },
+      limit(value) { cap = value; return query; },
       then(resolve, reject) {
         const data = (tables[table] || []).filter(row => filters.every(f => f.op === 'eq'
           ? String(row[f.key]) === String(f.value) : f.op === 'ilike'
-            ? String(row[f.key]).toLowerCase() === f.value.replace(/\\([%_\\])/g, '$1').toLowerCase()
+            ? new RegExp('^' + f.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/%/g, '.*') + '$', 'iu').test(String(row[f.key]))
             : f.value.some(value => String(row[f.key]) === String(value))));
-        return Promise.resolve({ data, error: table === failure ? new Error('Database unavailable') : null }).then(resolve, reject);
+        return Promise.resolve({ data: data.slice(0, cap), count: data.length, error: table === failure ? new Error('Database unavailable') : null }).then(resolve, reject);
       }
     };
     return query;
@@ -27,6 +29,9 @@ function database(tables, failure = '') {
 
 function fixture() {
   return {
+    Hazards: [{ id: 7 }, { id: 999 }],
+    Current_Measures: [{ id: 9, hazard_id: 7 }, { id: 444, hazard_id: 999 }, { id: 88, hazard_id: 999 }],
+    Advanced_Measures: [{ id: 33, measure_id: 9 }, { id: 44, measure_id: 88 }],
     Hazards_Translations: [
       { id: 101, hazard_id: 7, locale: 'en-US', hazard_name: 'Pressurized line' },
       { id: 7, hazard_id: 999, locale: 'en-US', hazard_name: 'Noise' },
@@ -62,11 +67,14 @@ test('observed high-score mismatches are withheld without altering unrelated sco
   const examples = audit.highScoreExamples.currentToAdditional['ru-RU'];
   const selected = { factor: 'Test hazard', current_measure: examples[0].source, current_measure_confirmed: true };
   const tables = {
-    Hazards_Translations: [{ id: 99999, locale: 'ru-RU', hazard_name: selected.factor }],
+    Hazards: [{ id: 1 }],
+    Current_Measures: [{ id: 2, hazard_id: 1 }],
+    Advanced_Measures: examples.map(x => ({ id: x.targetId, measure_id: 2 })),
+    Hazards_Translations: [{ id: 99999, hazard_id: 1, locale: 'ru-RU', hazard_name: selected.factor }],
     hazard_measure_mappings: [{ hazard_translation_id: 99999, measure_translation_id: 8156, similarity_score: .7 }],
-    Current_Measures_Translations: [{ id: 8156, locale: 'ru-RU', measure_text: selected.current_measure }],
+    Current_Measures_Translations: [{ id: 8156, measure_id: 2, locale: 'ru-RU', measure_text: selected.current_measure }],
     current_advanced_measure_mappings: examples.map(x => ({ current_measure_translation_id: x.sourceId, advanced_measure_translation_id: x.targetId, similarity_score: x.score })),
-    Advanced_Measures_Translations: examples.map(x => ({ id: x.targetId, locale: 'ru-RU', solution_text: x.target })),
+    Advanced_Measures_Translations: examples.map(x => ({ id: x.targetId, advanced_measure_id: x.targetId, locale: 'ru-RU', solution_text: x.target })),
   };
   assert.deepEqual(await loadMeasureRecommendations(database(tables), { risk: selected, type: 'advanced', context: recommendationContext({}, 'ru-RU') }), []);
   assert.equal(selected.current_measure, examples[0].source);
@@ -108,13 +116,83 @@ test('a mapping target cannot fall back to a coincident master ID', async () => 
   assert.deepEqual(await loadMeasureRecommendations(database(data), { risk, context }), []);
 });
 
-test('orphan translations retain an explicit translation reference without disguising it as a master ID', async () => {
+test('orphan hazard text remains editable but cannot produce a scored recommendation', async () => {
   const data = fixture();
   data.Hazards_Translations[0].hazard_id = null;
   const hazard = localizedHazards(data.Hazards_Translations)[0];
   assert.equal(hazard.db_id, null);
   const result = await loadMeasureRecommendations(database(data), { risk: { ...hazard, factor: hazard.risk_factor }, context });
-  assert.equal(result[0].reference.id, 201);
+  assert.equal(hazard.hazard_reference.id, 101);
+  assert.deepEqual(result, []);
+});
+
+test('missing and duplicate master IDs are excluded even when their translations have high scores', async () => {
+  const changes = [
+    data => { data.Hazards = []; },
+    data => { data.Hazards.push({ id: 7 }); },
+    data => { data.Current_Measures = []; },
+    data => { data.Current_Measures.push({ id: 9, hazard_id: 999 }); },
+    data => { data.Current_Measures[0].hazard_id = null; },
+    data => { data.Current_Measures[0].hazard_id = 12345; },
+  ];
+  for (const change of changes) {
+    const data = fixture();
+    data.hazard_measure_mappings[0].similarity_score = .999;
+    change(data);
+    assert.deepEqual(await loadMeasureRecommendations(database(data), { risk, context }), []);
+  }
+});
+
+test('additional controls require an unambiguous complete parent chain', async () => {
+  const selected = { ...risk, current_measure: 'Isolate the line', current_measure_db_id: 9 };
+  const changes = [
+    data => { data.Advanced_Measures = []; },
+    data => { data.Advanced_Measures.push({ id: 33, measure_id: 88 }); },
+    data => { data.Advanced_Measures[0].measure_id = 12345; },
+    data => { data.Advanced_Measures[0].measure_id = 88; data.Current_Measures[2].hazard_id = null; },
+    data => { data.Advanced_Measures[0].measure_id = 88; data.Current_Measures.push({ id: 88, hazard_id: 7 }); },
+  ];
+  for (const change of changes) {
+    const data = fixture(); change(data);
+    assert.deepEqual(await loadMeasureRecommendations(database(data), { risk: selected, type: 'advanced', context }), []);
+    const [current] = await loadMeasureRecommendations(database(data), { risk, context });
+    assert.equal(current.similarity_score, .72);
+  }
+});
+
+test('manual control search also withholds broken identities without changing stored user text', async () => {
+  const data = fixture();
+  data.Current_Measures.push({ id: 9, hazard_id: 999 });
+  assert.deepEqual(await searchMeasureTranslations(database(data), { term: 'Isolate', type: 'current', locale: 'en-US' }), []);
+  assert.deepEqual(await searchMeasureTranslations(database(data), { term: 'Verify', type: 'advanced', locale: 'en-US' }), []);
+  const [result] = await searchMeasureTranslations(database(fixture()), { term: 'Isolate', type: 'current', locale: 'en-US' });
+  assert.equal(result.reference.masterId, 9);
+  assert.equal(Object.hasOwn(result, 'similarity_score'), false);
+});
+
+test('saved references cannot silently follow a reassigned master', async () => {
+  assert.deepEqual(await loadMeasureRecommendations(database(fixture()), {
+    risk: { ...risk, hazard_reference: { kind: 'translation', id: 101, masterId: 999, locale: 'en-US' } }, context,
+  }), []);
+  assert.deepEqual(await loadMeasureRecommendations(database(fixture()), {
+    risk: { ...risk, current_measure: 'Isolate the line', current_measure_reference: {
+      kind: 'translation', id: 201, masterId: 88, locale: 'en-US' } }, type: 'advanced', context,
+  }), []);
+});
+
+test('identity lookup failures remain errors and a later request rechecks corrected data', async () => {
+  for (const table of ['Hazards', 'Current_Measures', 'Advanced_Measures']) {
+    await assert.rejects(loadMeasureRecommendations(database(fixture(), table), {
+      risk: { ...risk, current_measure: 'Isolate the line' }, type: 'advanced', context,
+    }), /unavailable/);
+  }
+  const data = fixture(), db = database(data);
+  data.Current_Measures.push({ id: 9, hazard_id: 999 });
+  assert.deepEqual(await loadMeasureRecommendations(db, { risk, context }), []);
+  data.Current_Measures.pop();
+  const [restored] = await loadMeasureRecommendations(db, { risk, context });
+  assert.equal(restored.similarity_score, .72);
+  assert.equal(restored.evidence.identityCheck, 'unique-parent-chain-v1');
 });
 
 test('advanced lookup verifies the original hazard and selected current control before following its translation ID', async () => {

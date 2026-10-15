@@ -5,6 +5,9 @@ const locale = new URLSearchParams(location.search).get('locale') || 'en-US';
 const { dataLocale } = recommendationContext({}, locale);
 const words = fixtureText[locale.split('-')[0]];
 const tables = {
+  Hazards: [{ id: 7 }],
+  Current_Measures: [{ id: 9, hazard_id: 7 }, { id: 33, hazard_id: 7 }],
+  Advanced_Measures: [{ id: 44, measure_id: 9 }],
   case_studies: [fixtureCasePost(locale)],
   Hazards_Translations: [{ id: 101, hazard_id: 7, locale: 'en-US', hazard_name: 'Pressurized line', category: 'Isolation', keywords: '["pressure"]' },
     { id: 102, hazard_id: 7, locale: 'ko-KR', hazard_name: '압력 배관', keywords: '["압력"]' }],
@@ -24,6 +27,22 @@ tables.Current_Measures_Translations[1].locale = 'foreign-fixture';
 tables.Current_Measures_Translations[2].locale = dataLocale;
 tables.Advanced_Measures_Translations[0] = { id: 301, advanced_measure_id: 44, locale: dataLocale, solution_text: words[2] };
 
+// Higher scores with broken identities must never displace the valid 72%/80% controls.
+tables.Current_Measures.push({ id: 66, hazard_id: 7 }, { id: 66, hazard_id: null }, { id: 67, hazard_id: 999999 });
+tables.Current_Measures_Translations.push(...[999999, 66, 67].map((id, i) => ({
+  id: 210 + i, measure_id: id, locale: dataLocale, measure_text: 'Broken identity fixture',
+})));
+tables.hazard_measure_mappings.push(...[210, 211, 212].map(id => ({
+  hazard_translation_id: 101, measure_translation_id: id, similarity_score: .999,
+})));
+tables.Advanced_Measures.push({ id: 77, measure_id: 9 }, { id: 77, measure_id: null }, { id: 78, measure_id: 67 });
+tables.Advanced_Measures_Translations.push(...[999999, 77, 78].map((id, i) => ({
+  id: 310 + i, advanced_measure_id: id, locale: dataLocale, solution_text: 'Broken identity fixture',
+})));
+tables.current_advanced_measure_mappings.push(...[310, 311, 312].map(id => ({
+  current_measure_translation_id: 201, advanced_measure_translation_id: id, similarity_score: .999,
+})));
+
 window.analysisFixture = { calls: [], failTable: null, reviseCase: () => { tables.case_studies[0].content_md += ' CHANGED'; } };
 export const supabase = {
   auth: {
@@ -41,7 +60,8 @@ export const supabase = {
       limit() { return query; },
       then(resolve, reject) {
         window.analysisFixture.calls.push(table);
-        return Promise.resolve({ data: (tables[table] || []).filter(row => filters.every(filter => filter(row))),
+        const data = (tables[table] || []).filter(row => filters.every(filter => filter(row)));
+        return Promise.resolve({ data, count: data.length,
           error: window.analysisFixture.failTable === table ? { message: 'Fixture read failure' } : null }).then(resolve, reject);
       },
     };

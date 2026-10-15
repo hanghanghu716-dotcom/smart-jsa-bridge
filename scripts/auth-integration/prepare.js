@@ -42,6 +42,9 @@ enabled = false
 
 const quote = value => "'" + String(value).replaceAll("'", "''") + "'";
 const tables = {
+  Hazards: 'id integer primary key',
+  Current_Measures: 'id integer, hazard_id integer',
+  Advanced_Measures: 'id integer, measure_id integer',
   Hazards_Translations: 'id integer primary key, hazard_id integer, locale text, hazard_name text, category text, keywords text',
   Current_Measures_Translations: 'id integer primary key, measure_id integer, locale text, measure_text text',
   Advanced_Measures_Translations: 'id integer primary key, advanced_measure_id integer, locale text, solution_text text',
@@ -65,11 +68,27 @@ for (const [index, locale] of dataLocales.entries()) {
   const [hazard, current, advanced] = fixtureText[locale.split('-')[0]];
   const base = 10000 + index * 100, h = base + 1, c = base + 2, a = base + 3;
   // Master IDs deliberately differ from translation IDs; a 99.9% wrong-ID row must stay absent.
-  sql += `insert into public."Hazards_Translations" values(${h},${base + 50},${quote(locale)},${quote(hazard)},'Isolation',${quote(JSON.stringify([hazard]))});
+  sql += `insert into public."Hazards" values(${base + 50});
+insert into public."Current_Measures" values(${base + 51},${base + 50}),(${base + 52},${base + 50});
+insert into public."Advanced_Measures" values(${base + 53},${base + 51});
+insert into public."Hazards_Translations" values(${h},${base + 50},${quote(locale)},${quote(hazard)},'Isolation',${quote(JSON.stringify([hazard]))});
 insert into public."Current_Measures_Translations" values(${c},${base + 51},${quote(locale)},${quote(current)}),(${base + 4},${base + 52},${quote(locale)},'Unrelated high score');
 insert into public."Advanced_Measures_Translations" values(${a},${base + 53},${quote(locale)},${quote(advanced)});
 insert into public.hazard_measure_mappings values(${h},${c},0.72),(${base + 50},${base + 4},0.999);
 insert into public.current_advanced_measure_mappings values(${c},${a},0.8);
+-- Invalid but high-scoring candidates exercise the real API identity gate.
+insert into public."Current_Measures" values(${base + 61},${base + 50}),(${base + 61},null),(${base + 62},99999999);
+insert into public."Advanced_Measures" values(${base + 71},${base + 51}),(${base + 71},null),(${base + 72},${base + 62});
+insert into public."Current_Measures_Translations" values
+(${base + 10},99999999,${quote(locale)},'Missing master fixture'),
+(${base + 11},${base + 61},${quote(locale)},'Conflicting master fixture'),
+(${base + 12},${base + 62},${quote(locale)},'Broken ancestor fixture');
+insert into public."Advanced_Measures_Translations" values
+(${base + 20},99999999,${quote(locale)},'Missing master fixture'),
+(${base + 21},${base + 71},${quote(locale)},'Conflicting master fixture'),
+(${base + 22},${base + 72},${quote(locale)},'Broken ancestor fixture');
+insert into public.hazard_measure_mappings values(${h},${base + 10},0.999),(${h},${base + 11},0.999),(${h},${base + 12},0.999);
+insert into public.current_advanced_measure_mappings values(${c},${base + 20},0.999),(${c},${base + 21},0.999),(${c},${base + 22},0.999);
 `;
 }
 // Unmodified public migrations: actual ownership policies and optimistic-lock RPC.

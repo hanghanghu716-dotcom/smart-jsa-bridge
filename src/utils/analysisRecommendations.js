@@ -1,5 +1,6 @@
 import { getDataLocale, getLanguageTag, normalizeLocale, SUPPORTED_LANGS } from '../locales/config.js';
 import { isQuarantinedMapping, LEGACY_QUARANTINE_VERSION } from './recommendationQuarantine.js';
+import { legacyIdentityValidator, translationsWithValidIdentity } from './legacyRecommendationIntegrity.js';
 
 const normalized = value => String(value ?? '').normalize('NFKC').trim().replace(/\s+/gu, ' ').toLowerCase();
 const sameId = (a, b) => a != null && b != null && String(a) === String(b);
@@ -122,18 +123,22 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
   const locale = context.dataLocale;
   const hazard = await hazardTranslation(client, risk, locale);
   if (!hazard) return [];
+  const validate = legacyIdentityValidator(client);
+  if (!(await validate('hazard', [hazard.hazard_id])).has(String(hazard.hazard_id))) return [];
+  if (risk.hazard_reference?.masterId != null && !sameId(risk.hazard_reference.masterId, hazard.hazard_id)) return [];
   const mappings = (await rows(client.from('hazard_measure_mappings')
     .select('measure_translation_id,similarity_score').eq('hazard_translation_id', hazard.id)))
     .filter(row => !isQuarantinedMapping('current', locale, hazard.id, row.measure_translation_id));
   const ids = [...new Set(mappings.map(row => row.measure_translation_id).filter(presentId))];
   if (!ids.length) return [];
-  const translations = await rows(client.from('Current_Measures_Translations')
-    .select('id,measure_id,measure_text,locale').in('id', ids).eq('locale', locale));
+  const translations = await translationsWithValidIdentity(validate, 'current', await rows(client.from('Current_Measures_Translations')
+    .select('id,measure_id,measure_text,locale').in('id', ids).eq('locale', locale)), 'measure_id');
   const current = scoredCandidates(mappings, translations,
     { target: 'measure_translation_id', master: 'measure_id', text: 'measure_text', locale, type: 'current' });
   const explain = item => ({ ...item, evidence: { hazard: hazard.hazard_name, currentControl: type === 'advanced' ? risk.current_measure : null,
     dataLocale: locale, jurisdiction: context.jurisdiction || null, regionReviewed: false,
-    mappingVersion: 'legacy-unversioned', quarantineVersion: LEGACY_QUARANTINE_VERSION, sourceType: 'legacy_mapping' } });
+    mappingVersion: 'legacy-unversioned', quarantineVersion: LEGACY_QUARANTINE_VERSION, sourceType: 'legacy_mapping',
+    identityCheck: 'unique-parent-chain-v1' } });
   if (type === 'current') return current.map(explain);
 
   // Supplementary controls must remain linked to this hazard and the actual selected control.
@@ -141,6 +146,7 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
   const selected = current.filter(item => normalized(item.display) === normalized(risk.current_measure))
     .filter(item => risk.current_measure_reference?.kind === 'translation'
       ? risk.current_measure_reference.locale === locale && sameId(item.reference.id, risk.current_measure_reference.id)
+        && (risk.current_measure_reference.masterId == null || sameId(item.measure_db_id, risk.current_measure_reference.masterId))
       : presentId(risk.current_measure_db_id) ? sameId(item.measure_db_id, risk.current_measure_db_id) : true);
   if (selected.length !== 1) return [];
   const advancedMappings = (await rows(client.from('current_advanced_measure_mappings')
@@ -148,8 +154,8 @@ export async function loadMeasureRecommendations(client, { risk, type = 'current
     .filter(row => !isQuarantinedMapping('advanced', locale, selected[0].reference.id, row.advanced_measure_translation_id));
   const advancedIds = [...new Set(advancedMappings.map(row => row.advanced_measure_translation_id).filter(presentId))];
   if (!advancedIds.length) return [];
-  const advanced = await rows(client.from('Advanced_Measures_Translations')
-    .select('id,advanced_measure_id,solution_text,locale').in('id', advancedIds).eq('locale', locale));
+  const advanced = await translationsWithValidIdentity(validate, 'advanced', await rows(client.from('Advanced_Measures_Translations')
+    .select('id,advanced_measure_id,solution_text,locale').in('id', advancedIds).eq('locale', locale)), 'advanced_measure_id');
   return scoredCandidates(advancedMappings, advanced,
     { target: 'advanced_measure_translation_id', master: 'advanced_measure_id', text: 'solution_text', locale, type: 'advanced' }).map(explain);
 }
@@ -162,7 +168,9 @@ export async function searchMeasureTranslations(client, { term, type, locale }) 
   const tokens = String(term || '').trim().split(/\s+/u).filter(Boolean);
   if (!tokens.length) return [];
   for (const token of tokens) query = query.ilike(text, `%${escapeLike(token)}%`);
-  return (await rows(query.limit(30))).map(row => ({ display: row[text],
+  const valid = await translationsWithValidIdentity(legacyIdentityValidator(client), current ? 'current' : 'advanced',
+    await rows(query.limit(30)), master);
+  return valid.map(row => ({ display: row[text],
     ...(current ? { measure_db_id: row[master] ?? null } : { advanced_db_id: row[master] ?? null }),
     reference: { kind: 'translation', id: row.id, masterId: row[master] ?? null, locale } }));
 }
