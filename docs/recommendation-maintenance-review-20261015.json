@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-15",
+  "method": "AI-assisted draft content review",
+  "scope": "Narrow check of the 18 machine-maintenance drafts: does a stated stored-energy hazard have an explicit mitigation and verification? This is not a complete technical, legal, regional or translation approval.",
+  "approvalGranted": false,
+  "assessed": 18,
+  "revised": 13,
+  "existingExplicitAction": 5,
+  "sourceFollowupPending": 0,
+  "items": [
+    {
+      "id": "regional-us-maintenance",
+      "locale": "en-US",
+      "revision": 3,
+      "contentHash": "63ca7bfcd41c599ba7059ca413c33a08ba5f291b999251bdebe73ad48d74e1c5",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "944d363bafeedc5f2e1241c75d454baa0f64363edb731d7fe525797ac93b0de7",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-ca-maintenance",
+      "locale": "en-CA",
+      "revision": 3,
+      "contentHash": "95b9758d260ebd440a9e5431ab9b9c7576311e7bef6354dcfe6cd6a3261b4528",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "cf8e4ca2292dbf2588dda05bdef7ce8937531cc656eff1cb364c8f06d1c1fc78",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-ca-ab-maintenance",
+      "locale": "en-CA-AB",
+      "revision": 3,
+      "contentHash": "bf5098ec0f96f89073722253b6c41d95011c108727744cb114713f7498f19907",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "f2bad6f224b6ad5fce015c86c7f0e7bd7f25b1d4841cfc4181aa270f18894804",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-ca-on-maintenance",
+      "locale": "en-CA-ON",
+      "revision": 3,
+      "contentHash": "12ab1163d4b0c90c43f91d3687862c0c4d6456fab3fe75d6c256b06b7fd4a131",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "82a67535c5d66cd610639e3c913b71198f65036eabdbc53651ab4bb3e31728e3",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-ca-bc-maintenance",
+      "locale": "en-CA-BC",
+      "revision": 3,
+      "contentHash": "107e8bd44dae615e2b9e2c8d206dd41262899f8d90d2f35e37153558ac83131b",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "f847c8580d17f56ccd8463aeaca97d817a445e98ec8bf68ca9a80992270d2cd7",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-ca-qc-maintenance",
+      "locale": "fr-CA-QC",
+      "revision": 3,
+      "contentHash": "c1e85ae0e6ceb1f20b2655f77768ec03db26fee0d785852eeb3be76629ba81b8",
+      "outcome": "existing_explicit_action",
+      "finding": "Existing verification already explicitly requires residual energy elimination or control; no text change for this narrow issue.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-gb-maintenance",
+      "locale": "en-GB",
+      "revision": 3,
+      "contentHash": "973bfab23cd369d1cdfe6ad8a08ff09cbbf06b09486d468e97d9aaac0283ba15",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "d006f8b23a0fec22f571f7ae52dd4431e1a91ea145b7f1722a7775e9ddff91ce",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-au-maintenance",
+      "locale": "en-AU",
+      "revision": 4,
+      "contentHash": "5d1578cdca3779121f13c4fae9ffa707db38fda5bed1d34a96d053ea011b294d",
+      "outcome": "draft_revised",
+      "previousRevision": 3,
+      "previousContentHash": "3f3be2b7d4f37d2489aa33aa15fd60fa259c71d98a4a8333344075436b013388",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-sg-maintenance",
+      "locale": "en-SG",
+      "revision": 3,
+      "contentHash": "fe03f9f8292748b5422aa67f010c7cdbea8cd89c23a7ebcf70c033302bafdfd1",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "2f1a9f2ece5a0a5f224be3faadcd8132e5bf8af675989c7919d06434115d6ef1",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-de-maintenance",
+      "locale": "de-DE",
+      "revision": 3,
+      "contentHash": "09d7056dcac8567ff9634b819272a71463d88bc0c607f9b6b05023b29b58cec8",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "e72eb681db9fa6589b9a3335d22a002dc4b6032211ae1aeb15219020b1e79626",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-jp-maintenance",
+      "locale": "ja-JP",
+      "revision": 3,
+      "contentHash": "4fa78d9ed1375d1217f55294f38f52df5cb66393b96ef7fb7433a85f72462e4d",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "07f3a6398bde81df44cbddc00c97699eb6fe0d7904bad83c38841a856832dfb2",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-fr-maintenance",
+      "locale": "fr-FR",
+      "revision": 3,
+      "contentHash": "4a6c7948319b51680791aa9a57a7cbf60d6c1391b814d56b4f5ca570c81a3703",
+      "outcome": "draft_revised",
+      "previousRevision": 2,
+      "previousContentHash": "69062152745c4ba343f07d8f3098f153d8526bd1eb4263b07d56f8c7a0d0d649",
+      "finding": "Made stored-energy mitigation and verification explicit; source scope remains subject to the existing publication reviews.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-it-maintenance",
+      "locale": "it-IT",
+      "revision": 3,
+      "contentHash": "69511d8d31d470bda349c60b4fe4a71521856648a4fee8b1acae2781851b747f",
+      "outcome": "existing_explicit_action",
+      "finding": "Existing control already makes residual energy safe and verification covers reaccumulation; no text change for this narrow issue.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-es-maintenance",
+      "locale": "es-ES",
+      "revision": 2,
+      "contentHash": "d75f40309e08ec459608be301ba64f1141d88b65252048d8daa727aeb0fb1665",
+      "outcome": "existing_explicit_action",
+      "finding": "Existing control already addresses residual energy; no text change for this narrow issue.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-sa-maintenance",
+      "locale": "ar-SA",
+      "revision": 4,
+      "contentHash": "55a51aa04b77b04d2c37c21532b5cd794f86cc68bf4d1a2404d7ce5e11d12bf0",
+      "outcome": "draft_revised",
+      "finding": "Added explicit stored-pressure relief using the separately identified EOM facilities guidance. The EPM project manual timed out on follow-up; the two manuals are not treated as interchangeable or as national legal approval.",
+      "publicationApproved": false,
+      "previousRevision": 3,
+      "previousContentHash": "e6a972c01a79297e3c8de28053e8edce7f09de28da16216042760ec71a39a772"
+    },
+    {
+      "id": "regional-br-maintenance",
+      "locale": "pt-BR",
+      "revision": 3,
+      "contentHash": "ceb37b9c206fb6e751fe400b45dcac4a1048d9568488145bbf17c5bbe43634b1",
+      "outcome": "existing_explicit_action",
+      "finding": "Existing control includes energy discharge and verification includes mechanical retention; no text change for this narrow issue.",
+      "publicationApproved": false
+    },
+    {
+      "id": "regional-ru-maintenance",
+      "locale": "ru-RU",
+      "revision": 6,
+      "contentHash": "0d0dd26de2ee97ec87ab6a7ece98a0f0dc5a7b8021a2d534d569fc3410ced505",
+      "outcome": "draft_revised",
+      "finding": "Added explicit stored-pressure relief and procedure-defined control of accumulated energy. The supplementary primary source is an operator procedure with limited scope, not a Russian regulation; its unseen appendices are not evidence.",
+      "publicationApproved": false,
+      "previousRevision": 5,
+      "previousContentHash": "35e5c50344e5cb25f397d550267a2ae1c281c7f1f8bb8b437ff370e49334ab72"
+    },
+    {
+      "id": "regional-kr-maintenance",
+      "locale": "ko",
+      "revision": 2,
+      "contentHash": "608d04afd4a3f3efc4cdf31ecf0cd79b9a82b44efcbff8c505e4ae83deb9c6fe",
+      "outcome": "existing_explicit_action",
+      "finding": "Existing control already addresses release of retained compressed gas/liquid; no text change for this narrow issue.",
+      "publicationApproved": false
+    }
+  ],
+  "limitations": [
+    "All 18 still require the existing technical, regional and translation publication reviews.",
+    "Closing this narrow wording follow-up does not resolve equipment-specific energy-control completeness or certify source currency and legal applicability."
+  ]
+}

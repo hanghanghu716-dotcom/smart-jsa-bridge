@@ -27,6 +27,8 @@ Use the versioned drafts in `data/recommendation-knowledge` for authored content
 
 ## Evaluation input contract
 
+The 2026-10-15 maintenance wording follow-up checked all 18 machine-maintenance drafts for an explicit response to their stated stored-energy hazard. Thirteen drafts now state mitigation and verification more clearly; five already contained the action. `recommendation-maintenance-review-20261015.json` binds the narrow findings to the exact revisions. This AI-assisted pass grants no publication approval. New references distinguish Japanese design guidance, French restart guidance, Saudi facilities guidance and a Russian operator procedure from equipment instructions or national legal approval. The operator PDF is partial, and its unseen appendices were not checked. All 57 drafts still require the existing publication reviews and independent evaluation.
+
 `evaluation-incidents.en-US.json` contains three primary-source historical incident contexts and six proposed candidate contrasts reserved by source group for held-out evaluation. All document translations/variants stay together. Labels are pending. The six Russian observations in `evaluation-seed.json` still need original task and canonical-group resolution. Neither file is a measured performance result.
 
 ```text

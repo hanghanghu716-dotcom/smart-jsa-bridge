@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputHash": "9ec90874f96391056d341cc445c05310dcc506891e80c77a37204fe7aedebb30",
+  "inputHash": "e90448416bb5d140c60c7b39da1acc8006c8c815292568cefd720ff636e6655d",
   "scope": "Authored knowledge-bank coverage only. Source geography is not legal applicability, review approval, production availability or measured recommendation accuracy.",
   "totals": {
     "locales": 18,
@@ -422,7 +422,7 @@
           "caseUnits": 0,
           "primarySourceReferences": {
             "sameJurisdiction": 1,
-            "nationalReference": 0,
+            "nationalReference": 1,
             "subnationalReference": 0,
             "foreignReference": 0,
             "unspecified": 0,
@@ -488,7 +488,7 @@
           "caseUnits": 0,
           "primarySourceReferences": {
             "sameJurisdiction": 1,
-            "nationalReference": 0,
+            "nationalReference": 1,
             "subnationalReference": 0,
             "foreignReference": 0,
             "unspecified": 0,
@@ -554,7 +554,7 @@
           "caseUnits": 0,
           "primarySourceReferences": {
             "sameJurisdiction": 1,
-            "nationalReference": 0,
+            "nationalReference": 1,
             "subnationalReference": 0,
             "foreignReference": 0,
             "unspecified": 0,
@@ -751,7 +751,7 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 1,
+            "sameJurisdiction": 2,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 0,
@@ -817,7 +817,7 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 1,
+            "sameJurisdiction": 2,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 0,
@@ -1015,7 +1015,7 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 1,
+            "sameJurisdiction": 2,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 0,
@@ -1147,7 +1147,7 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 1,
+            "sameJurisdiction": 2,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 1,
