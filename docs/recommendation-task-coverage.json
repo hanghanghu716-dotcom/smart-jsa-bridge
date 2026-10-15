@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputHash": "c94f1bc9e2f3474fdc19094c85caf81fa8b908358f27d993f8ae71b6b35ac966",
+  "inputHash": "9ec90874f96391056d341cc445c05310dcc506891e80c77a37204fe7aedebb30",
   "scope": "Authored knowledge-bank coverage only. Source geography is not legal applicability, review approval, production availability or measured recommendation accuracy.",
   "totals": {
     "locales": 18,
@@ -1147,15 +1147,15 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 4
+            "unreadOrMetadata": 5
           },
           "missingDraft": false,
-          "missingSameJurisdictionPrimaryReference": true,
+          "missingSameJurisdictionPrimaryReference": false,
           "requiresLocalSourceReview": true,
           "needsContentReview": 1
         },
@@ -1167,15 +1167,15 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 2
+            "unreadOrMetadata": 3
           },
           "missingDraft": false,
-          "missingSameJurisdictionPrimaryReference": true,
+          "missingSameJurisdictionPrimaryReference": false,
           "requiresLocalSourceReview": true,
           "needsContentReview": 1
         },
@@ -1187,15 +1187,15 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 2
+            "unreadOrMetadata": 3
           },
           "missingDraft": false,
-          "missingSameJurisdictionPrimaryReference": true,
+          "missingSameJurisdictionPrimaryReference": false,
           "requiresLocalSourceReview": true,
           "needsContentReview": 1
         }

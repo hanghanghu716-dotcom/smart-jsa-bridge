@@ -15,7 +15,7 @@ Percentages remain text similarity. Ambiguous IDs, cross-language score propagat
 
 1. Privileged schema/visibility inspection is complete. Missing masters are confirmed, and duplicate master-ID groups include conflicting content. Aggregate status is recorded in `recommendation-data-corrections.md`; detailed evidence remains private.
 2. A consistent private snapshot and an actual-data copy restoration of the two proposed correction targets are complete. Off-site backup and separate staging remain open. Production row corrections were declined or failed before execution, so duplicate and invalid-Locale counts remain unchanged. Resolve missing and conflicting originals from source evidence and preserve historical IDs, scores and documents.
-3. Complete reviews of exact content/source revisions. The 54 regional drafts cover three bounded tasks across all 18 Locales; they are not complete country or task coverage. Three task/Locale cells still lack a read same-jurisdiction primary reference (RU maintenance/pressure/welding), and all 54 require regional review. Narrow machine/construction/workshop source scopes and exposure-programme conditions remain required. Other work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval. See `recommendation-task-coverage.json` for the generated matrix.
+3. Complete reviews of exact content/source revisions. The 54 regional drafts cover three bounded tasks across all 18 Locales; they are not complete country or task coverage. All 54 now have a read same-jurisdiction technical reference, and all 54 still require regional review. Russian normative reproductions and unread issuer-hosted scans are identified separately; a duration amendment is metadata, not task-control evidence. Narrow machine/construction/workshop source scopes and exposure-programme conditions remain required. Other work/hazard groups need applicable official/equipment sources and authored units. Shared language is not regional approval. See `recommendation-task-coverage.json` for the generated matrix.
 4. Generate separate mappings with pinned models. Compare current, corrected-legacy and new-knowledge systems on independently labelled cases, including high-score errors, omissions, edits, latency and cost. Derive activation thresholds from evidence.
 5. Verify authenticated persistence, real recommendation retrieval and PDF/export against staging data. Activate validated task/jurisdiction groups with prior code/data versions and an atomic rollback path. Do not overwrite saved documents to roll back.
 
@@ -33,15 +33,26 @@ Runs: an array of systems with id, version, trainingSourceGroups, tuningSourceGr
 
 The report counts empty/error queries as misses for reviewed positive queries. Precision and bins cover reviewed candidates only. Unknown cost is never treated as zero. Group separation cannot establish independence from pretrained corpora. Three US cases do not represent every country or hazard.
 
+## Prepare and receive independent relevance reviews
+
+The committed `data/recommendation-knowledge/evaluation-review-packet.en-US.json` is ready to copy for a reviewer. All six decisions remain null. Supply only the packet and its referenced source documents, without original proposed answers or model outputs. The packet retains task, hazard, current-control context when present, jurisdiction and sources, but hides scores, hints and IDs that reveal the proposed answer. It contains the existing three US incidents, not a representative multilingual benchmark.
+
+```text
+node scripts/recommendation-review-packet.js export data/recommendation-knowledge/evaluation-incidents.en-US.json new-review-packet.json
+node scripts/recommendation-review-packet.js import data/recommendation-knowledge/evaluation-incidents.en-US.json completed-review-packet.json new-reviewed-dataset.json
+```
+
+The reviewer must record each Boolean relevance decision, rationale, reviewer/date and explicit source-check and independence declarations. These are attestations, not external verification of the reviewer. Import checks the frozen dataset and unchanged context, requires all candidates exactly once, binds accepted labels with the existing content hashes, and creates a new output without overwriting source files. It does not create model runs, rescore data, approve knowledge-bank content, or write to the DB. Actual independent review and real-system measurements remain required.
+
 ## Verified baseline
 
-At remote commit `8ea84b4cd0948b3dc3823b34ed97dff000a0f87e` (the baseline before the Singapore/Brazil source follow-up):
+At remote commit `343e95a846f432d5a06cc775ee706bd4bb23cf4a` (the baseline before the Russian-source/review-packet follow-up):
 
 - Clean-install full JS suite: 362 passed, zero failed. Dedicated suite: 57 JS and 14 Python tests passed.
 - All 18 Locale browser cases passed actual Analysis/DocumentDesigner/Export, guest restore, HTML/text clipboard, downloaded application PDF, and legacy Export with English UI plus target document language.
 - All 18 case-selection flows passed required/excluded conditions, Info/Procedure/Analysis, 72% current selection, explicit confirmation, 80% additional selection and changed-source blocking. These scores exist only in fixtures.
-- The dedicated browser workflow and public-data audit succeeded in run `38661599078`; storage concurrency succeeded in run `38661599102`.
-- Full content run `38661599113` passed RSS checks, the production build, 108 localized guide HTML/PDF pairs and public page metadata validation. Earlier RSS/DB failures are not the current result.
+- The dedicated browser workflow and public-data audit succeeded in run `38663042042`; storage concurrency succeeded in run `38663042049`.
+- Full content run `38663042127` passed RSS checks, the production build, 108 localized guide HTML/PDF pairs and public page metadata validation. Earlier RSS/DB failures are not the current result.
 - Public audit recovered at 2026-10-14 11:23 UTC; see `recommendation-audit-restored-20261014.json`. Public reads do not verify privileged constraints or authenticated accounts.
 
-The Singapore/Brazil source follow-up adds four read references across two welding draft revisions and reduces the missing same-jurisdiction source cells from five to three. Russian original/amendment scans are retained as unread leads, not verified technical evidence. Its 14 targeted local knowledge/coverage/release tests pass; current-head CI results are tracked in PR #25. Baseline results above are not automatically attributed to later code. Content reviews, actual corpus comparison, authenticated staging, off-site backup and production rollout remain open.
+The Russian-source follow-up fills the three remaining technical-source gaps using identified normative reproductions and preserves the unread issuer-hosted scan leads. Duration metadata alone cannot satisfy technical coverage. The independent review packet is prepared with no decisions filled. Its 23 targeted local comparison/knowledge/coverage/release tests pass; current-head CI results are tracked in PR #25. Baseline results above are not automatically attributed to later code. Content reviews, actual corpus comparison, authenticated staging, off-site backup and production rollout remain open.

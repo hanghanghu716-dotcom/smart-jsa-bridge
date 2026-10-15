@@ -47,7 +47,21 @@ test('source geography does not turn foreign, national or unread references into
   assert.equal(sourceRelationship({ ...source, jurisdiction: 'AU-VIC' }, 'AU'), 'subnationalReference');
   assert.equal(sourceRelationship({ ...source, jurisdiction: undefined }, 'CA'), 'unspecified');
   assert.equal(sourceRelationship({ ...source, evidenceRole: 'lead' }, 'CA'), 'unreadOrMetadata');
+  assert.equal(sourceRelationship({ ...source, evidenceRole: 'legal-status' }, 'CA'), 'unreadOrMetadata');
   assert.equal(sourceRelationship({ ...source, retrieval: 'primary_search_metadata_full_text_timeout' }, 'CA'), 'unreadOrMetadata');
+});
+
+test('a read duration amendment cannot replace a Russian task-control source', () => {
+  const temporalOnly = structuredClone(bank);
+  for (const unit of temporalOnly.units.filter(unit => unit.locale === 'ru-RU')) {
+    unit.sources = unit.sources.filter(source => !(source.jurisdiction === 'RU' && source.evidenceRole === 'technical'));
+  }
+  const tasks = buildKnowledgeCoverage([temporalOnly]).coverage.find(row => row.locale === 'ru-RU').tasks;
+  for (const task of tasks.filter(task => task.guidanceUnits > 0)) {
+    assert.equal(task.primarySourceReferences.sameJurisdiction, 0);
+    assert.equal(task.missingSameJurisdictionPrimaryReference, true);
+    assert.equal(task.requiresLocalSourceReview, true);
+  }
 });
 
 test('a synthetic 99% score cannot bypass any new task exclusion or required condition in any Locale', () => {
@@ -86,9 +100,10 @@ test('coverage counts exact task and jurisdiction, preserving missing cells and 
   assert.equal(sg.missingSameJurisdictionPrimaryReference, false);
   assert.equal(sg.requiresLocalSourceReview, true);
   const russia = report.coverage.find(row => row.locale === 'ru-RU').tasks.find(task => task.taskType === 'welding-exposure');
-  assert.equal(russia.primarySourceReferences.sameJurisdiction, 0);
-  assert.equal(russia.primarySourceReferences.unreadOrMetadata, 2);
-  assert.equal(russia.missingSameJurisdictionPrimaryReference, true, 'Locating an official scan does not mean its technical clauses were read');
+  assert.equal(russia.primarySourceReferences.sameJurisdiction, 1);
+  assert.equal(russia.primarySourceReferences.unreadOrMetadata, 3);
+  assert.equal(russia.missingSameJurisdictionPrimaryReference, false);
+  assert.equal(russia.requiresLocalSourceReview, true);
   const alberta = report.coverage.find(row => row.locale === 'en-CA-AB').tasks.find(task => task.taskType === 'pressure-equipment-opening');
   assert.equal(alberta.primarySourceReferences.nationalReference, 1);
   assert.equal(alberta.primarySourceReferences.sameJurisdiction, 1);

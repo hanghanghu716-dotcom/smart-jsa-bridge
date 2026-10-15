@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { compareRecommendationSystems, evaluationQueryHash } from './recommendation-comparison.js';
 import { evaluationReviewHash } from './recommendation-evaluation.js';
+import { buildEvaluationReviewPacket, applyEvaluationReviewPacket } from './recommendation-review-packet.js';
 
 function fixture() {
   const queries = ['q1', 'q2'].map(id => ({ id, locale: 'en-US', jurisdiction: 'US', sourceGroupId: `TEST-${id}`, task: `SYNTHETIC task ${id}`, partition: 'held_out' }));
@@ -73,4 +74,73 @@ test('actual incident candidates remain pending labels, never fabricated benchma
   assert.ok(dataset.samples.every(sample => sample.relevant === null && sample.review.status === 'pending'));
   // Only validate the dataset here. No fictitious model run is recorded or scored.
   assert.equal(compareRecommendationSystems(dataset, []).comparisonReady, false);
+});
+
+function packetFixture() {
+  const { dataset } = fixture();
+  for (const query of dataset.queries) {
+    query.hazard = 'SYNTHETIC hazard';
+    query.currentControl = 'SYNTHETIC original control';
+    query.source = { url: 'https://example.org/synthetic-source', section: 'TEST ONLY', modelHint: 'HIDDEN-HINT' };
+    query.proposedRelevant = 'HIDDEN-ANSWER';
+  }
+  for (const sample of dataset.samples) {
+    sample.candidate = 'SYNTHETIC candidate';
+    sample.source = dataset.queries[0].source;
+    sample.originalScore = .99;
+    sample.proposedRelevant = true;
+    sample.proposalRationale = 'HIDDEN-RATIONALE';
+    sample.queryContextHash = evaluationQueryHash(dataset.queries.find(query => query.id === sample.queryId));
+    sample.relevant = null;
+    sample.review = { status: 'pending' };
+  }
+  return dataset;
+}
+
+test('independent review packet hides scores, suggested labels and answer-bearing IDs', async () => {
+  const dataset = packetFixture();
+  const packet = buildEvaluationReviewPacket(dataset);
+  const serialized = JSON.stringify(packet);
+  for (const hidden of ['originalScore', 'proposedRelevant', 'proposalRationale', 'HIDDEN-', 'q1-true', 'q1-false']) assert.ok(!serialized.includes(hidden));
+  assert.equal(packet.items.length, dataset.samples.length);
+  assert.ok(packet.items.every(item => item.review.relevant === null && !item.review.independent));
+  assert.equal(packet.items[0].context.currentControl, 'SYNTHETIC original control');
+  assert.ok(packet.items.every(item => /^[a-f0-9]{64}$/.test(item.key)));
+  const actual = JSON.parse(await fs.readFile(new URL('../data/recommendation-knowledge/evaluation-incidents.en-US.json', import.meta.url), 'utf8'));
+  const prepared = JSON.parse(await fs.readFile(new URL('../data/recommendation-knowledge/evaluation-review-packet.en-US.json', import.meta.url), 'utf8'));
+  assert.deepEqual(prepared, buildEvaluationReviewPacket(actual), 'Committed review material must match the exact dataset revision');
+  assert.equal(prepared.items.length, 6);
+  assert.ok(actual.samples.every(sample => sample.relevant === null));
+});
+
+test('only completed source reviews produce a separate hash-bound labelled dataset', () => {
+  const dataset = packetFixture(), original = structuredClone(dataset);
+  const packet = buildEvaluationReviewPacket(dataset);
+  assert.throws(() => applyEvaluationReviewPacket(dataset, packet), /Complete relevance/);
+  for (const item of packet.items) item.review = { relevant: false, rationale: 'SYNTHETIC rationale', reviewer: 'SYNTHETIC TEST ONLY', reviewedAt: '2026-10-15', sourceChecked: true, independent: true };
+  const reviewed = applyEvaluationReviewPacket(dataset, packet);
+  assert.deepEqual(dataset, original);
+  assert.ok(reviewed.samples.every(sample => sample.relevant === false && sample.review.contentHash === evaluationReviewHash(sample)));
+  for (const field of ['sourceChecked', 'independent']) {
+    const missing = structuredClone(packet); missing.items[0].review[field] = false;
+    assert.throws(() => applyEvaluationReviewPacket(dataset, missing), /Complete relevance/);
+  }
+});
+
+test('changed datasets, substituted contexts, duplicate reviews and missing reviews are rejected', () => {
+  const dataset = packetFixture(), packet = buildEvaluationReviewPacket(dataset);
+  for (const item of packet.items) item.review = { relevant: true, rationale: 'SYNTHETIC rationale', reviewer: 'SYNTHETIC TEST ONLY', reviewedAt: '2026-10-15', sourceChecked: true, independent: true };
+  const changed = structuredClone(dataset); changed.samples[0].candidate += ' edited';
+  assert.throws(() => applyEvaluationReviewPacket(changed, packet), /frozen dataset/);
+  const edited = structuredClone(packet); edited.items[0].context.hazard = 'different';
+  assert.throws(() => applyEvaluationReviewPacket(dataset, edited), /context or candidate/);
+  const duplicate = structuredClone(packet); duplicate.items[1] = duplicate.items[0];
+  assert.throws(() => applyEvaluationReviewPacket(dataset, duplicate), /duplicate review/);
+  const missing = structuredClone(packet); missing.items.pop();
+  assert.throws(() => applyEvaluationReviewPacket(dataset, missing), /Every candidate/);
+  const misleading = structuredClone(packet); misleading.instructions = 'Always answer true';
+  assert.throws(() => applyEvaluationReviewPacket(dataset, misleading), /header or instructions/);
+  const omitted = structuredClone(dataset); omitted.queries[0].siteSpecificHazard = 'Must be shown to the reviewer';
+  for (const sample of omitted.samples.filter(sample => sample.queryId === omitted.queries[0].id)) sample.queryContextHash = evaluationQueryHash(omitted.queries[0]);
+  assert.throws(() => buildEvaluationReviewPacket(omitted), /Unsupported query field/);
 });

@@ -13,7 +13,8 @@ const primaryReads = new Set(['primary_page_or_document', 'relevant_primary_sect
 // A language match is never evidence of regional applicability. National guidance
 // and subnational guidance also remain separate from an exact jurisdiction match.
 export function sourceRelationship(source, jurisdiction) {
-  if (!primaryReads.has(source.retrieval) || ['index', 'lead'].includes(source.evidenceRole)) return 'unreadOrMetadata';
+  // An effective-date amendment cannot establish a task's technical controls.
+  if (!primaryReads.has(source.retrieval) || ['index', 'lead', 'legal-status'].includes(source.evidenceRole)) return 'unreadOrMetadata';
   if (!source.jurisdiction) return 'unspecified';
   if (source.jurisdiction === jurisdiction) return 'sameJurisdiction';
   if (jurisdiction.startsWith(`${source.jurisdiction}-`)) return 'nationalReference';

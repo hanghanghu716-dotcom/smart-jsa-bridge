@@ -1312,22 +1312,25 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Техническое обслуживание машины",
       "step": "Подготовка изоляции энергии",
       "hazard": "Неожиданный пуск или высвобождение остаточной энергии",
       "cause": "Источник остаётся подключённым или может быть восстановлен",
       "consequence": "Защемление при вмешательстве",
-      "control": "Определить источники энергии и выполнить изоляцию и блокировку по инструкции конкретной машины.",
-      "verification": "До работы проверить изоляцию и остаточную энергию по процедуре оборудования.",
+      "control": "По инструкции машины отключить источники энергии, заблокировать восстановление подачи и обозначить запрет пуска; отсоединение коммуникаций выполнять по утверждённой технологии ремонта.",
+      "verification": "Проверить отключение и остаточную энергию до вмешательства; исключить ошибочный пуск по процедуре конкретного оборудования.",
       "conditions": [
-        "Компетентный персонал; инструкция оборудования; отдельная проверка применимости в РФ"
+        "Доступна инструкция для конкретной машины",
+        "Назначен компетентный работник",
+        "Обслуживается стационарная машина, используемая в промышленном производстве",
+        "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены"
       ],
       "exclusions": [
-        "Работа под энергией",
-        "замкнутые пространства",
-        "неизвестные источники энергии"
+        "Требуется вмешательство при поданной энергии",
+        "Работа включает вход в замкнутое пространство",
+        "Источник энергии или граница отключения не определены"
       ],
       "keywords": [
         "изоляция энергии",
@@ -1384,6 +1387,30 @@
           "retrieval": "primary_scan_located_text_unavailable",
           "evidenceRole": "lead",
           "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
+          "authority": "Минтруд России; order scan reproduced by the Krasnoyarsk railway trade union",
+          "jurisdiction": "RU",
+          "section": "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14",
+          "scope": "Stationary industrial equipment; approved repair procedures, supply isolation and prevention of unintended starting. Not a complete filter-opening procedure.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/24982",
+          "reproduction": "Original-act scan with an extracted text layer; issuer and registration matched to the publication record. Hosting organisation is not the issuer.",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "authority": "Минтруд России; normative text reproduced on the official Kuytun District administration site",
+          "jurisdiction": "RU",
+          "section": "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5",
+          "scope": "Effective 2025-09-01, extends orders 833н and 884н to 2031-09-01. Temporal context only; not task-control evidence or complete legal certification.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "legal-status",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/55545",
+          "reproduction": "ConsultantPlus transcription of the normative act hosted by a local government. The signed Ministry of Justice scan remains unread.",
+          "checkedAt": "2026-10-15"
         }
       ],
       "applicability": {
@@ -1392,7 +1419,9 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "stationary-industrial-machine",
+          "maintenance-authorization-complete"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1420,18 +1449,21 @@
         "competent-person-assigned": "Назначен компетентный работник",
         "live-intervention": "Требуется вмешательство при поданной энергии",
         "confined-entry": "Работа включает вход в замкнутое пространство",
-        "unknown-energy-path": "Источник энергии или граница отключения не определены"
+        "unknown-energy-path": "Источник энергии или граница отключения не определены",
+        "stationary-industrial-machine": "Обслуживается стационарная машина, используемая в промышленном производстве",
+        "maintenance-authorization-complete": "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены"
       },
       "sourceCheck": {
-        "status": "primary_documents_identified_full_text_pending",
-        "method": "Official publication metadata; full-text requests timed out",
-        "checkedAt": "2026-10-14",
+        "status": "reproduced_primary_sections_read_reviews_pending",
+        "method": "Read normative clauses in identified reproductions; matched act numbers and registration metadata",
+        "checkedAt": "2026-10-15",
         "findings": [
-          "Order 833н and amendment 287н official publication identifiers located.",
-          "No domestic technical clause or extension date is certified from unread primary text."
+          "Technical scope and the 2025 duration amendment were checked in the recorded reproductions.",
+          "Issuer-hosted signed scans and complete current legal applicability are not certified."
         ],
         "approvalGranted": false
-      }
+      },
+      "coverageLimit": "Стационарное промышленное оборудование; особые режимы промышленной безопасности и требования изготовителя проверяются отдельно."
     },
     {
       "id": "regional-kr-maintenance",
