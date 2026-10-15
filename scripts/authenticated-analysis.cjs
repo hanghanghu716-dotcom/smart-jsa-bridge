@@ -53,12 +53,17 @@ const { randomUUID } = require('node:crypto');
   };
   const waitForDraft = async (id, predicate) => {
     const deadline = Date.now() + 20000;
+    let row;
     do {
-      const row = await draftById(owner, id);
+      row = await draftById(owner, id);
       if (predicate(row)) return row;
       await new Promise(resolve => setTimeout(resolve, 250));
     } while (Date.now() < deadline);
-    throw new Error('Cloud draft did not reach the expected state');
+    const risk = row?.analysis_data?.[0]?.risks?.[0];
+    throw new Error('Cloud draft did not reach the expected state: ' + JSON.stringify({
+      version: row?.version, factor: risk?.factor, hazard_reference: risk?.hazard_reference,
+      confirmed: risk?.current_measure_confirmed,
+    }));
   };
   const rpcArgs = (row, version, title = row.title) => ({ p_id: row.id, p_expected_version: version,
     p_title: title, p_current_stage: row.current_stage, p_form_data: row.form_data,
@@ -72,13 +77,18 @@ const { randomUUID } = require('node:crypto');
     headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     for (const locale of SUPPORTED_LANGS) {
       const context = await browser.createIncognitoBrowserContext(), page = await context.newPage();
-      const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [];
+      const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [], draftWrites = [];
       let stage = 'login';
       await page.setViewport({ width: 1440, height: 1100 });
       await page.setRequestInterception(true);
       page.on('request', request => {
         const url = new URL(request.url());
         if (url.origin === api) apiPaths.add(url.pathname);
+        if (url.origin === api && url.pathname === '/rest/v1/rpc/save_jsa_draft_snapshot' && request.postData()) {
+          const payload = JSON.parse(request.postData());
+          draftWrites.push({ expectedVersion: payload.p_expected_version,
+            factor: payload.p_analysis_data?.[0]?.risks?.[0]?.factor });
+        }
         // Never supply a mocked response. Permit only this Vite server and the local API.
         if ([origin, api].includes(url.origin) || ['data:', 'blob:'].includes(url.protocol)) request.continue();
         else request.abort();
@@ -137,6 +147,7 @@ const { randomUUID } = require('node:crypto');
         await page.click('.analysis-selected tbody textarea');
         await page.keyboard.down('Control'); await page.keyboard.press('A'); await page.keyboard.up('Control');
         await page.keyboard.type(edited);
+        assert.equal(await page.$eval('.analysis-selected tbody textarea', el => el.value), edited, 'Browser input must finish before cloud observation');
         stage = 'edited cloud autosave';
         const editedRow = await waitForDraft(id, row => {
           const risk = row?.analysis_data?.[0]?.risks?.[0];
@@ -166,7 +177,12 @@ const { randomUUID } = require('node:crypto');
           editedReferencesInvalidated: true, documentRendered: true });
         console.log(`PASS authenticated ${locale}: recommendations, percentages, cloud draft, restore, edit invalidation, document`);
       } catch (error) {
-        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}`);
+        const ui = await page.evaluate(() => ({
+          fields: [...document.querySelectorAll('.analysis-selected tbody textarea')].map(el => el.value),
+          status: [...document.querySelectorAll('[role="status"]')].map(el => el.textContent),
+          version: sessionStorage.getItem('smartjsa_active_draft_version'),
+        })).catch(() => null);
+        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}`);
       } finally { await context.close(); }
     }
 
