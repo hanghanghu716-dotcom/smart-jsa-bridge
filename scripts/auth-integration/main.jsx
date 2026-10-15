@@ -20,7 +20,12 @@ const state = params.has('restore') ? undefined : {
   procedures, participants: ['Synthetic worker'],
   analysisData: procedures.map((proc, id) => ({ id, proc, risks: [], frequency: null, severity: null, riskLevel: null })),
 };
-const { data: { user } } = await supabase.auth.getUser();
+// Surface failed session recovery instead of silently presenting the login form.
+const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+if (sessionError) throw sessionError;
+const { data: { user }, error: userError } = session
+  ? await supabase.auth.getUser() : { data: { user: null } };
+if (userError) throw userError;
 function App() {
   const [authenticated, setAuthenticated] = useState(Boolean(user));
   const [error, setError] = useState('');

@@ -83,7 +83,10 @@ const { randomUUID } = require('node:crypto');
       const context = await browser.createIncognitoBrowserContext(), page = await context.newPage();
       const words = fixtureText[locale.split('-')[0]], errors = [], apiPaths = new Set(), apiFailures = [], draftWrites = [];
       let stage = 'login';
-      const navigations = [], browserMessages = [];
+      const navigations = [], browserMessages = [], failedRequests = [];
+      page.on('requestfailed', request => { const url = new URL(request.url());
+        if ([origin, api].includes(url.origin)) failedRequests.push({ path: url.pathname, failure: request.failure()?.errorText });
+      });
       page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations.push({ stage, path: new URL(frame.url()).pathname }); });
       page.on('error', error => errors.push(`Browser target: ${error.message}`));
       page.on('console', message => { if (/\[vite\]|error/i.test(message.text())) browserMessages.push(message.text().slice(0,500)); });
@@ -103,7 +106,7 @@ const { randomUUID } = require('node:crypto');
       });
       page.on('pageerror', error => errors.push(error.message));
       page.on('response', async response => {
-        if (response.url().startsWith(api + '/rest/v1/') && response.status() >= 400) {
+        if (response.url().startsWith(api + '/') && response.status() >= 400) {
           const failure = await response.json().catch(() => ({}));
           apiFailures.push({ path: new URL(response.url()).pathname, status: response.status(),
             code: failure.code, message: failure.message });
@@ -194,9 +197,9 @@ const { randomUUID } = require('node:crypto');
           status: [...document.querySelectorAll('[role="status"]')].map(el => el.textContent),
           version: sessionStorage.getItem('smartjsa_active_draft_version'),
           path: location.pathname, title: document.title, ready: document.readyState,
-          body: document.body.textContent.slice(0,1200), forms: document.forms.length,
+          body: document.body.textContent.slice(0,1200), forms: document.forms.length, sessionPresent: Boolean(localStorage.getItem('jsa-auth-integration')),
         })).catch(() => null);
-        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}; navigations=${JSON.stringify(navigations)}; console=${JSON.stringify(browserMessages)}`);
+        throw new Error(`${locale} / ${stage}: ${error.message}; browser=${JSON.stringify(errors)}; API=${JSON.stringify(apiFailures)}; writes=${JSON.stringify(draftWrites)}; ui=${JSON.stringify(ui)}; navigations=${JSON.stringify(navigations)}; console=${JSON.stringify(browserMessages)}; failedRequests=${JSON.stringify(failedRequests)}`);
       } finally { await context.close(); }
     }
 
