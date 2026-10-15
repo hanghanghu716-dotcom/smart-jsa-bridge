@@ -54,7 +54,7 @@ jobs:
       - name: Verify knowledge coverage matches the authored input files
         run: node scripts/recommendation-coverage.js --check docs/recommendation-task-coverage.json
       - name: Verify offline mapping safeguards
-        run: python -m unittest discover -s python -p test_recommendation_staging.py
+        run: python -m unittest discover -s python -p 'test_*.py'
       - name: Verify isolated browser recommendation flow
         run: node scripts/analysis-browser.cjs
       - uses: actions/upload-artifact@v4

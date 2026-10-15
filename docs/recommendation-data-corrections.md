@@ -44,6 +44,8 @@ Three official incident contexts (fall, electrical arc, nitrogen asphyxiation) p
 
 Both Python generators require explicit contextual pairs, Locale, reviews, model and pinned revision. They output new staging JSON, not production SQL. Additional controls retain the task and original hazard. Korean-only embeddings are rejected for Russian inputs. No real corpus has been rescored and no model winner is claimed.
 
+The legacy hazard-ID reconstruction script no longer chooses a canonical ID by maximum embedding similarity or emits update SQL. It accepts only explicitly reviewed source correspondences, bound to exact translation and master hashes and an unchanged Locale. Duplicate IDs, existing links, stale content, unnamed/undated reviews, source overwrites and SQL outputs are rejected. Unresolved rows remain unresolved. Its versioned JSON output still requires live-data preflight, backup and a separately reviewed migration; it does not approve regional applicability or alter percentages.
+
 `recommendation-comparison.js` compares explicit outputs on frozen queries, including empty/error responses. Labels bind full query context and sample content by hashes. Source groups cannot overlap development/tuning/held-out partitions. Unreviewed labels and unmeasured costs/timings remain unknown. The report includes reviewed top-three relevance, high-score errors, omissions, latency and cost, not safety probabilities. See the rollout document for its input contract.
 
 ## Operational dependencies

@@ -1,84 +1,97 @@
+"""Build reviewed hazard-link staging data. Never infer identity from embeddings or emit SQL."""
+import argparse
+import hashlib
 import json
-import math
-import requests
+from datetime import datetime
+from pathlib import Path
 
-# OpenAI API 키 입력
-OPENAI_API_KEY = 'sk-YOUR_API_KEY'
 
-def get_embeddings(texts):
-    """OpenAI API를 호출하여 텍스트 배열의 임베딩 벡터를 반환합니다."""
-    url = 'https://api.openai.com/v1/embeddings'
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {OPENAI_API_KEY}'
+def fingerprint(row):
+    payload = json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def index_rows(rows, label):
+    if not isinstance(rows, list):
+        raise ValueError(f"{label}: expected an array")
+    result = {}
+    for row in rows:
+        if not isinstance(row, dict) or type(row.get("id")) is not int or row["id"] <= 0:
+            raise ValueError(f"{label}: a positive integer ID is required")
+        if row["id"] in result:
+            raise ValueError(f"{label}: duplicate IDs require source review")
+        result[row["id"]] = row
+    return result
+
+
+def stage_reviewed_links(translations, masters, manifest):
+    source = index_rows(translations, "translations")
+    canonical = index_rows(masters, "masters")
+    if not isinstance(manifest, dict) or manifest.get("schemaVersion") != 1 or not isinstance(manifest.get("links"), list):
+        raise ValueError("A schemaVersion 1 reviewed-links manifest is required")
+    staged, seen = [], set()
+    for link in manifest["links"]:
+        if not isinstance(link, dict):
+            raise ValueError("Each link must be an object")
+        tid, mid = link.get("translationId"), link.get("masterId")
+        if type(tid) is not int or type(mid) is not int or tid not in source or mid not in canonical or tid in seen:
+            raise ValueError("Missing, repeated or invalid reviewed identity")
+        seen.add(tid)
+        row, master = source[tid], canonical[mid]
+        if row.get("hazard_id") is not None:
+            raise ValueError("Existing non-null links cannot be reassigned by this repair")
+        locale = row.get("locale")
+        if not isinstance(locale, str) or not locale.strip() or link.get("locale") != locale:
+            raise ValueError("Exact source Locale is required")
+        if not isinstance(row.get("hazard_name"), str) or not row["hazard_name"].strip():
+            raise ValueError("Translation text is required")
+        if not isinstance(master.get("hazard_name"), str) or not master["hazard_name"].strip():
+            raise ValueError("Canonical source text is required")
+        if link.get("translationHash") != fingerprint(row) or link.get("masterHash") != fingerprint(master):
+            raise ValueError("Source content changed; renew the bilingual/source review")
+        review = link.get("review")
+        if not isinstance(review, dict) or review.get("approved") is not True or review.get("independent") is not True:
+            raise ValueError("Independent source correspondence approval is required")
+        for key in ("reviewer", "sourceEvidence"):
+            if not isinstance(review.get(key), str) or not review[key].strip():
+                raise ValueError("Named reviewer and original source evidence are required")
+        try:
+            reviewed_at = datetime.fromisoformat(review["reviewedAt"].replace("Z", "+00:00"))
+            if reviewed_at.tzinfo is None:
+                raise ValueError("Timezone required")
+        except (KeyError, TypeError, AttributeError, ValueError) as exc:
+            raise ValueError("A dated review with timezone is required") from exc
+        staged.append({
+            "translationId": tid, "locale": locale, "previousMasterId": None, "proposedMasterId": mid,
+            "translationHash": fingerprint(row), "masterHash": fingerprint(master),
+            "review": dict(review), "status": "reviewed_correspondence_pending_database_preflight",
+        })
+    return {
+        "schemaVersion": 1, "kind": "hazard_link_staging", "productionReady": False,
+        "unresolvedCount": sum(row.get("hazard_id") is None and tid not in seen for tid, row in source.items()),
+        "links": staged,
+        "notice": "No SQL, DB writes, percentage changes or regional applicability approval. Recheck live source hashes, uniqueness, backup and rollback before a separate migration.",
     }
-    data = {
-        'input': texts,
-        'model': 'text-embedding-3-small'
-    }
-    
-    response = requests.post(url, headers=headers, json=data)
-    response.raise_for_status()  # HTTP 에러 발생 시 예외 처리
-    res_json = response.json()
-    
-    return [item['embedding'] for item in res_json['data']]
 
-def cosine_similarity(vec_a, vec_b):
-    """두 벡터 간의 코사인 유사도를 수학적으로 계산합니다."""
-    dot_product = sum(a * b for a, b in zip(vec_a, vec_b))
-    norm_a = math.sqrt(sum(a * a for a in vec_a))
-    norm_b = math.sqrt(sum(b * b for b in vec_b))
-    return dot_product / (norm_a * norm_b)
 
-def process_translations():
-    print('[1] 데이터 로드 및 파싱 시작')
-    
-    # 원본 및 다국어 JSON 파일 로드 (UTF-8 인코딩 명시)
-    with open('Hazards_Translations_rows_ko.json', 'r', encoding='utf-8') as f:
-        ko_data = json.load(f)
-    with open('Hazards_Translations_rows_es.json', 'r', encoding='utf-8') as f:
-        es_data = json.load(f)
-    with open('Hazards_Translations_rows_ru.json', 'r', encoding='utf-8') as f:
-        ru_data = json.load(f)
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    for arg in ("translations", "masters", "reviews", "output"):
+        parser.add_argument("--" + arg, required=True)
+    args = parser.parse_args()
+    inputs = [Path(args.translations), Path(args.masters), Path(args.reviews)]
+    output = Path(args.output)
+    if output.suffix.lower() != ".json" or output.resolve() in [item.resolve() for item in inputs]:
+        parser.error("Use a new staging .json path; input files and SQL outputs are forbidden")
+    if output.exists():
+        parser.error("Output already exists; use a new versioned staging filename")
+    values = [json.loads(item.read_text(encoding="utf-8-sig")) for item in inputs]
+    result = stage_reviewed_links(*values)
+    with output.open("x", encoding="utf-8") as stream:
+        json.dump(result, stream, ensure_ascii=False, indent=2, allow_nan=False)
+        stream.write("\n")
+    print(json.dumps({"stagedLinks": len(result["links"]), "unresolvedCount": result["unresolvedCount"], "productionReady": False}))
 
-    ko_texts = [item['hazard_name'] for item in ko_data]
-    print(f'[2] ko-KR 원본 임베딩 추출 ({len(ko_texts)}건)')
-    ko_embeddings = get_embeddings(ko_texts)
 
-    sql_statements = "-- Smart JSA Bridge: es-ES 및 ru-RU hazard_id 복구 SQL\n"
-
-    def process_language(target_data, locale):
-        nonlocal sql_statements
-        target_texts = [item['hazard_name'] for item in target_data]
-        
-        print(f'[3] {locale} 번역본 임베딩 추출 ({len(target_texts)}건)')
-        target_embeddings = get_embeddings(target_texts)
-
-        print(f'[4] Cosine Similarity 연산 및 hazard_id 매핑 ({locale})')
-        for index, item in enumerate(target_data):
-            target_vec = target_embeddings[index]
-            max_sim = -1
-            best_match_id = None
-
-            # 번역본 노드와 모든 ko-KR 노드 간의 거리 계산 후 최고점(Argmax) 탐색
-            for ko_index, ko_vec in enumerate(ko_embeddings):
-                sim = cosine_similarity(target_vec, ko_vec)
-                if sim > max_sim:
-                    max_sim = sim
-                    best_match_id = ko_data[ko_index].get('hazard_id')
-
-            if best_match_id is not None:
-                sql_statements += f"UPDATE \"Hazards_Translations\" SET hazard_id = {best_match_id} WHERE id = {item['id']};\n"
-
-    # 스페인어 및 러시아어 데이터 순차 처리
-    process_language(es_data, 'es-ES')
-    process_language(ru_data, 'ru-RU')
-
-    # 최종 산출물(SQL 쿼리) 파일 쓰기
-    with open('update_hazard_ids.sql', 'w', encoding='utf-8') as f:
-        f.write(sql_statements)
-        
-    print('[5] SQL 쿼리 생성 완료: update_hazard_ids.sql 확인 요망')
-
-if __name__ == '__main__':
-    process_translations()
+if __name__ == "__main__":
+    main()
