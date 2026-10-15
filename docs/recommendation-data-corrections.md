@@ -1,11 +1,21 @@
 # Recommendation data correction register - 2026-10-14
 
+## Follow-up status - 2026-10-15
+
+Management access is restored. Privileged reads confirmed that the 1,254 current-control and 2,948 additional-control translations genuinely lack their referenced masters. The 690 null hazard links remain. Duplicate master-ID groups were also confirmed: 28 current-control groups (13 with conflicting content) and 108 additional-control groups (six with conflicting content). The audit now reports these aggregate key conflicts; identities and source text remain private.
+
+A consistent private snapshot of eight recommendation tables contains 105,452 rows. An actual-data copy rehearsal excluded 2,580 later duplicate mappings and corrected one Locale only in a copy. Both affected tables were then reconstructed in separate copies; full-row counts and digests matched the snapshot, and retained score bits were unchanged. This is an in-database restore rehearsal, not an off-site backup or a separate staging-project test.
+
+Production corrections remain unapplied. Combined correction requests failed with an expired request state; a separate one-row metadata correction was declined by the management tool. Final reads still show 49,172 live mapping rows, 2,580 duplicate pairs and one invalid Locale. No further row-write retry is scheduled. Source-reviewed master resolution, production application and broader rollout remain open.
+
+Automatic approval review rejected uploading detailed repair SQL and internal operational metadata to the public repository. Those materials remain private. This follow-up publishes only aggregate status, audit code and synthetic unit tests. It does not publish detailed evidence or claim that repair SQL ran in public CI.
+
 The public DB audit recovered at **11:23:23 UTC**. `recommendation-audit-restored-20261014.json` records complete sequential reads of six content/mapping tables and three master tables under public-anon/RLS visibility. Earlier 503/522 attempts remain separate evidence. This is not a consistent backup or proof of privileged visibility. No production data or constraints have changed.
 
 | Finding | Latest evidence | Prepared action and remaining dependency |
 | --- | --- | --- |
 | Missing hazard master IDs | 345 es-ES + 345 ru-RU translations | Preserve translation IDs; resolve canonical correspondence from originals and bilingual review, never numeric offsets |
-| Public master visibility mismatch | 1,254 control and 2,948 additional-control translations reference absent public masters | Management read must distinguish hidden rows from actual orphans; do not delete based on public absence |
+| Confirmed missing master references | 1,254 control and 2,948 additional-control translations | Privileged reads confirmed genuine absence; resolve originals without deleting translations or inventing master IDs |
 | Duplicate current-to-advanced mappings | 2,580 identical-score pairs, 2,580 extra rows, zero conflicting-score pairs | Inspect full rows, metadata, primary keys and inbound dependencies after a restorable backup; never select the maximum score |
 | Invalid control Locale | One translation has an unsupported Locale | Review original text, source history, master relation and possible target-Locale collisions before correction |
 | Missing mappings | it-IT, en-CA, ja-JP, pt-BR, ar-SA; English Canadian provinces share en-CA | Author applicable units, review them, generate separate mappings with a compatible model, then evaluate |
@@ -26,7 +36,7 @@ Three official incident contexts (fall, electrical arc, nitrogen asphyxiation) p
 
 1. Run `scripts/sql/audit-recommendation-schema.sql` on the intended project using the authorized management reader. Inspect column types, outgoing/incoming constraints, master/translation RLS and visibility.
 2. After confirming schema compatibility, run `scripts/sql/review-recommendation-corrections.sql`. Its repeatable-read, read-only transaction captures missing references, the unsupported-Locale row and complete duplicate rows, then rolls back. Keep returned evidence privately. This is not a backup.
-3. Create and restore-test a consistent backup of affected tables and dependencies. Privately record project, timestamp, schema version, counts, backup location, digest and rehearsal result. No such backup is claimed here.
+3. The private consistent snapshot and two-table copy restoration are complete. Detailed evidence remains private. Off-site backup and separate staging verification remain open; the copy rehearsal does not certify semantic recommendation quality.
 4. Build a reviewed change manifest with original row identity/hash, reason, exact proposed fields, source evidence, reviewer, expected affected-row count and rollback action. Preserve IDs and original scores. Do not use ctid, arbitrary row order, numeric offsets or score maxima.
 5. Apply schema-verified changes to staging, compare counts/references, then run content, Locale and user-flow checks. Prepare an immutable candidate release and previous-version rollback pointer before production activation.
 
@@ -38,7 +48,7 @@ Both Python generators require explicit contextual pairs, Locale, reviews, model
 
 ## Operational dependencies
 
-No Supabase management tool or DB-management credential is exposed in this session. Public schema discovery previously returned 401 and Vercel environment metadata returned 403; the row audit no longer retries public schema discovery. This does not mean the user's account lost its connection. Authorization is already given. Management access, independently recorded reviews, actual corpus evaluation, staging and restore rehearsal remain dependencies. No production write, merge or deployment occurred.
+Supabase management reads and private snapshot/copy creation now work. Public recommendation row corrections remain unapplied after expired or declined management requests. Independently recorded reviews, actual corpus evaluation, off-site backup, authenticated staging and production application remain open. No main merge or site deployment occurred.
 
 Detailed row evidence and a non-executable Locale correction proposal are retained in the local working copy. Automatic approval review blocked remote publication of that detailed payload. Only aggregate counts and code are included in this follow-up. Public audit logs/artifacts now use an allowlisted summary without row IDs, source text, project identifiers or source fingerprints.
 

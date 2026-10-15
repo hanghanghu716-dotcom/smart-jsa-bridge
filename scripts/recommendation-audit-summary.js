@@ -23,6 +23,8 @@ export function publicAuditSummary(report) {
     failedTables: knownTables.filter(table => Object.hasOwn(report.failures || {}, table)),
     translations: Object.fromEntries(translations.map(table => [table, fields(report.translations?.[table],
       ['rows', 'missingMaster', 'blankText', 'missingLocale', 'duplicateMasterLocaleRows'])])),
+    masterKeys: Object.fromEntries(masters.map(table => [table, fields(report.masterKeys?.[table],
+      ['rows', 'nullIdRows', 'duplicateIdGroups', 'extraDuplicateIdRows', 'conflictingIdGroups'])])),
     mappings: Object.fromEntries(['hazardToControl', 'currentToAdditional'].map(kind => [kind, fields(report.mappings?.[kind],
       ['rows', 'missingSource', 'missingTarget', 'crossLocale', 'invalidScore', 'highScore', 'duplicatePairs'])])),
     masterReferences: Object.fromEntries(masters.map(table => {

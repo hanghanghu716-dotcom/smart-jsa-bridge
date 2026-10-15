@@ -26,7 +26,7 @@ for (const table of [...AUDIT_TABLES, ...masters]) {
     for (let page = 0; ; page++) {
       if (page >= 1000) throw Error('Pagination ceiling reached');
       const endpoint = new URL(`/rest/v1/${table}`, project);
-      endpoint.searchParams.set('select', masters.includes(table) ? 'id' : table === 'case_studies' ? 'id,post_group_id,language_code,title,created_at' : '*');
+      endpoint.searchParams.set('select', table === 'case_studies' ? 'id,post_group_id,language_code,title,created_at' : '*');
       endpoint.searchParams.set('order', table === 'hazard_measure_mappings' ? 'hazard_translation_id,measure_translation_id'
         : table === 'current_advanced_measure_mappings' ? 'current_measure_translation_id,advanced_measure_translation_id' : 'id');
       const response = await fetch(endpoint, { headers: { ...headers, Range: `${rows.length}-${rows.length + 999}`, Prefer: 'count=exact' }, signal: AbortSignal.timeout(30000) });

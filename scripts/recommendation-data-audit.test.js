@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditRecommendationSnapshot, readRecommendationSnapshot, AUDIT_TABLES } from './recommendation-data-audit.js';
+import { auditRecommendationSnapshot, readRecommendationSnapshot, auditMasterKeys, AUDIT_TABLES } from './recommendation-data-audit.js';
+
+test('master ID duplicates distinguish identical copies, conflicting content and unavailable fields', () => {
+  const rows = [{ id: 1, text: 'One', parent: 5 }, { parent: 5, text: 'One', id: '1' },
+    { id: 2, text: 'Two', parent: 5 }, { id: 2, text: 'Different', parent: 8 }, { id: null, text: 'Missing' }];
+  assert.deepEqual(auditMasterKeys(rows), { status: 'observed', rows: 5, nullIdRows: 1,
+    duplicateIdGroups: 2, extraDuplicateIdRows: 2, conflictingIdGroups: 1 });
+  assert.equal(auditMasterKeys([{ id: 1 }, { id: 1 }]).conflictingIdGroups, null);
+  assert.equal(auditMasterKeys(undefined).status, 'not_loaded');
+  assert.equal(auditRecommendationSnapshot({ tables: { Current_Measures: rows } }).masterKeys.Current_Measures.conflictingIdGroups, 1);
+});
 
 test('missing exports remain unknown rather than creating false zero-country coverage', () => {
   const report = auditRecommendationSnapshot({ tables: { Hazards_Translations: [] } });

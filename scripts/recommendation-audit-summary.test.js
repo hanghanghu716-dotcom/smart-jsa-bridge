@@ -7,6 +7,7 @@ test('shared audit output contains only counts and supported Locale names, never
   const sentinel = 'PRIVATE_ROW_OR_PROJECT_SENTINEL';
   const report = { capturedAt: '2026-10-14T11:40:48.258Z', snapshotComplete: true, project: sentinel,
     snapshotDigest: sentinel, futureUnknownField: sentinel, highScoreExamples: { text: sentinel },
+    masterKeys: { Current_Measures: { rows: 5, duplicateIdGroups: 2, conflictingIdGroups: 1, examples: [sentinel] } },
     failures: { Hazards: sentinel },
     translations: { Hazards_Translations: { rows: 10, missingMaster: 2, extraText: sentinel } },
     masterReferences: { Hazards: { rows: 5, missingReferencedMaster: 2, missingMasterIds: [sentinel],
@@ -17,6 +18,7 @@ test('shared audit output contains only counts and supported Locale names, never
   const result = publicAuditSummary(report);
   assert.equal(JSON.stringify(result).includes(sentinel), false);
   assert.equal(result.masterReferences.Hazards.distinctMissingPublicMasterIds, 1);
+  assert.equal(result.masterKeys.Current_Measures.conflictingIdGroups, 1);
   assert.equal(result.translations.Hazards_Translations.rows, 10);
   assert.deepEqual(result.invalidTranslationLocales.Current_Measures_Translations.sameMasterLocaleCounts, { 'de-DE': 1 });
   assert.deepEqual(result.failedTables, ['Hazards']);

@@ -9,6 +9,25 @@ export const AUDIT_TABLES = ['Hazards_Translations', 'Current_Measures_Translati
 
 const id = value => value == null ? null : String(value);
 const blank = value => typeof value !== 'string' || !value.trim();
+const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
+  ? Object.fromEntries(Object.keys(value).sort().map(key => [key, canonical(value[key])])) : value;
+
+export function auditMasterKeys(rows) {
+  if (!Array.isArray(rows)) return { status: 'not_loaded' };
+  const groups = new Map();
+  let nullIdRows = 0;
+  for (const row of rows) {
+    if (row.id == null) { nullIdRows++; continue; }
+    const key = id(row.id), group = groups.get(key) || [];
+    group.push(JSON.stringify(canonical({ ...row, id: key })));
+    groups.set(key, group);
+  }
+  const duplicates = [...groups.values()].filter(group => group.length > 1);
+  return { status: 'observed', rows: rows.length, nullIdRows, duplicateIdGroups: duplicates.length,
+    extraDuplicateIdRows: duplicates.reduce((sum, group) => sum + group.length - 1, 0),
+    conflictingIdGroups: rows.every(row => Object.keys(row).some(key => key !== 'id'))
+      ? duplicates.filter(group => new Set(group).size > 1).length : null };
+}
 const validScore = score => score !== null && score !== '' && score !== undefined && Number.isFinite(Number(score)) && Number(score) >= -1 && Number(score) <= 1;
 
 function mappingAudit(mappings, sources, targets, sourceKey, targetKey) {
@@ -60,6 +79,7 @@ export function auditRecommendationSnapshot(snapshot) {
     scope: 'Rows visible in the supplied snapshot; counts do not prove regional suitability or complete production visibility.',
     snapshotComplete: snapshot.meta?.complete === true, visibility: snapshot.meta?.visibility || 'not_verified',
     missingTables: AUDIT_TABLES.filter(table => !Array.isArray(tables[table])), coverage, translations,
+    masterKeys: Object.fromEntries(['Hazards', 'Current_Measures', 'Advanced_Measures'].map(table => [table, auditMasterKeys(tables[table])])),
     mappings: {
       hazardToControl: mappingAudit(tables.hazard_measure_mappings, tables.Hazards_Translations,
         tables.Current_Measures_Translations, 'hazard_translation_id', 'measure_translation_id'),
