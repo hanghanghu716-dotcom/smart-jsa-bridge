@@ -15,11 +15,12 @@ export async function readPublic(table, params, fetcher = fetch) {
   return rows;
 }
 // Keyset pagination also works when PostgREST caps results below our requested size.
-export async function readAllPublic(table, params, fetcher = fetch) {
+export async function readAllPublic(table, params, fetcher = fetch, { pageSize = 1000 } = {}) {
+  if (!Number.isSafeInteger(pageSize) || pageSize < 1 || pageSize > 1000) throw new Error('INVALID_PUBLIC_PAGE_SIZE');
   const all = [];
   let last = '';
-  for (let page = 0; page < 1000; page++) {
-    const rows = await readPublic(table, { ...params, order: 'id.asc', limit: '1000', ...(last ? { id: 'gt.' + last } : {}) }, fetcher);
+  for (let page = 0; page < Math.ceil(1_000_000 / pageSize); page++) {
+    const rows = await readPublic(table, { ...params, order: 'id.asc', limit: String(pageSize), ...(last ? { id: 'gt.' + last } : {}) }, fetcher);
     if (!rows.length) return all;
     const next = rows.at(-1).id;
     if (typeof next !== 'string' || next <= last) throw new Error('INVALID_PUBLIC_PAGINATION');

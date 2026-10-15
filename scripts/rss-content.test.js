@@ -61,6 +61,7 @@ test('RSS handler requests full article text and removes withdrawn documents imm
   let documents = [doc]; const selected = [];
   const handler = createContentFeedHandler({ fetcher: async value => {
     const url = new URL(value); selected.push(url.searchParams.get('select'));
+    if (url.pathname.endsWith('/case_studies')) assert.equal(url.searchParams.get('limit'), '25');
     return Response.json(url.searchParams.has('id') ? [] : url.pathname.endsWith('/case_studies') ? [post] : documents);
   } });
   const call = async () => { const res = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } }; await handler({ query: { kind: 'rss', lng: 'ko' }, headers: {} }, res); return res; };

@@ -11,7 +11,7 @@ try {
   const exported = process.env.JSA_CASE_EXPORT
     ? JSON.parse(fs.readFileSync(process.env.JSA_CASE_EXPORT, 'utf8')) : null;
   const rows = exported ? (Array.isArray(exported) ? exported : exported.posts)
-    : await readAllCaseStudies(supabase);
+    : await readAllCaseStudies(supabase, { pageSize: 25 });
   if (!Array.isArray(rows) || rows.length === 0) throw new Error('No case-study records available.');
   if (exported?.row_count != null && exported.row_count !== rows.length) throw new Error('Export row count mismatch.');
   const manifest = buildCaseManifest(rows);
