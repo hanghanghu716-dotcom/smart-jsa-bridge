@@ -122,7 +122,7 @@ test('duplicate revisions are rejected and retirement cannot resurrect an old ap
   unit.review = { technicalStatus: 'approved', regionalStatus: 'approved', translationStatus: 'approved', reviewer: 'SYNTHETIC TEST ONLY', reviewedAt: '2026-10-14', contentHash: knowledgeContentHash(unit) };
   const approved = { schemaVersion: 1, units: [unit] };
   assert.equal(buildKnowledgeCoverage([approved]).totals.cellsWithPublicationEligibleContent, 1);
-  const retired = { ...structuredClone(unit), revision: 2, status: 'retired' };
+  const retired = { ...structuredClone(unit), revision: unit.revision + 1, status: 'retired' };
   assert.equal(buildKnowledgeCoverage([approved, { schemaVersion: 1, units: [retired] }]).totals.activeUnits, 0);
   unit.control += ' changed';
   assert.throws(() => buildKnowledgeCoverage([approved]), /content revision/);

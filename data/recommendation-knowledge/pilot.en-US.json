@@ -6,22 +6,29 @@
       "caseGroupId": "jsa-compressed-air-filter-element",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Compressed-air filter element replacement",
       "step": "Isolate and verify the filter boundary",
       "hazard": "Pressure can return to the housing from connected pipework",
       "cause": "Closing the inlet alone leaves an outlet header, bypass or shared drain connected",
       "consequence": "Unexpected air or fluid release when opening the housing",
-      "control": "Identify connected pressure paths, isolate the complete boundary and verify the housing is safely depressurized using the actual equipment procedure before opening",
-      "verification": "Record the isolation boundary, verification method and checks for pressure returning",
+      "control": "Trace inlet, outlet, bypass and connected drains, isolate and secure the complete pressure boundary, then use the actual equipment procedure to relieve retained pressure safely before opening.",
+      "verification": "Verify depressurization at the housing using the prescribed method and check for pressure returning. Keep the housing closed if the boundary or drain communication is uncertain; silence at the drain is not proof, and loosening the bowl is not a pressure test.",
       "conditions": [
-        "Confirm the actual filter model and all connected pressure paths"
+        "The filter-specific isolation procedure is available",
+        "Inlet, outlet, bypass and connected drains are identified",
+        "The actual filter procedure specifies safe pressure relief and a way to verify housing depressurisation before opening",
+        "The servicing falls within the cited general-industry scope and applicable Federal OSHA or State Plan requirements have been checked"
       ],
       "exclusions": [
-        "Pressurized replacement",
-        "Oxygen or fuel-gas equipment",
-        "Breathing-air certification"
+        "Replacement requires opening a pressurized housing",
+        "The equipment contains oxygen or fuel gas",
+        "The task includes breathing-air certification",
+        "The work includes repairing the pressure housing",
+        "The work includes entry into a receiver or other confined space",
+        "The work includes changing dryer media",
+        "The filter handles a gas other than compressed air"
       ],
       "keywords": [
         "compressed air",
@@ -32,7 +39,15 @@
       "sources": [
         {
           "url": "https://smartjsabridge.com/en-US/case-study/jsa-compressed-air-filter-element",
-          "section": "Eight-stage JSA stages 2 and 3; failure mechanisms and scope exclusions"
+          "section": "Eight-stage JSA stages 2-3; scope exclusions; silent-drain hold and opening FAQ"
+        },
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(3)-(6): isolation, energy control, reaccumulation and verification",
+          "checkedAt": "2026-10-15",
+          "jurisdiction": "US",
+          "scope": "General-industry servicing; the filter-specific pressure paths and no-opening decision are taken from the cited case, not a universal equipment instruction."
         }
       ],
       "sourceRevision": "2026-10-14",
@@ -53,12 +68,18 @@
         "targetType": "filter-housing",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "all-pressure-paths-identified"
+          "all-pressure-paths-identified",
+          "safe-depressurization-method-available",
+          "general-industry-scope-confirmed"
         ],
         "excludedConditions": [
           "pressurized-replacement",
           "oxygen-or-fuel-gas",
-          "breathing-air-certification"
+          "breathing-air-certification",
+          "housing-repair",
+          "confined-entry",
+          "dryer-media-change",
+          "non-air-service"
         ]
       },
       "conditionLabels": {
@@ -66,7 +87,38 @@
         "all-pressure-paths-identified": "Inlet, outlet, bypass and connected drains are identified",
         "pressurized-replacement": "Replacement requires opening a pressurized housing",
         "oxygen-or-fuel-gas": "The equipment contains oxygen or fuel gas",
-        "breathing-air-certification": "The task includes breathing-air certification"
+        "breathing-air-certification": "The task includes breathing-air certification",
+        "safe-depressurization-method-available": "The actual filter procedure specifies safe pressure relief and a way to verify housing depressurisation before opening",
+        "housing-repair": "The work includes repairing the pressure housing",
+        "confined-entry": "The work includes entry into a receiver or other confined space",
+        "dryer-media-change": "The work includes changing dryer media",
+        "non-air-service": "The filter handles a gas other than compressed air",
+        "general-industry-scope-confirmed": "The servicing falls within the cited general-industry scope and applicable Federal OSHA or State Plan requirements have been checked"
+      },
+      "coverageLimit": "Only pressure isolation before filter opening. Parts selection, housing support, assembly, leak testing and downstream air-quality release need their own controls.",
+      "origin": {
+        "aiAssisted": true,
+        "sourceAiAssisted": true,
+        "fictionalCase": true,
+        "contentType": "case-derived-guidance-draft",
+        "sourceProfessionalApproval": false
+      },
+      "sourceCheck": {
+        "status": "case_extraction_conditions_reconciled_publication_pending",
+        "method": "AI-assisted comparison against the current exact-language case source and its stated limits; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Restored source-specific hold points, omitted exclusions and explicit coverage limits.",
+          "The source includes fictional educational examples and explicitly states no professional technical approval."
+        ],
+        "approvalGranted": false,
+        "supportingReferences": [
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Equipment-specific example only; actual filter instructions are required."
+          }
+        ]
       }
     },
     {
@@ -74,22 +126,26 @@
       "caseGroupId": "jsa-asphalt-milling",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Asphalt cold milling and truck loading",
       "step": "Exchange the receiving truck",
       "hazard": "A person may be struck or trapped between the truck and conveyor",
       "cause": "Uncoordinated movement, poor sight lines or entry into the vehicle gap",
       "consequence": "Crushing injury during vehicle movement",
-      "control": "Stop discharge for the planned exchange, confirm agreed signals and safe signaller positions, and keep personnel out of the gap and movement path",
-      "verification": "Confirm the shared stop signal, personnel locations, visibility and vehicle clearance before movement",
+      "control": "Stop discharge for the exchange, coordinate both drivers and the signaller, keep the vehicle gap and conveyor sweep clear, and use the agreed movement sequence from a safe signalling position with an escape route.",
+      "verification": "Before movement, confirm the shared stop signal, each driver’s sight lines, personnel locations and overhead clearance. Hold discharge and vehicle movement if signals or visibility are lost or anyone enters the gap; resume only after the shared safe sequence is restored.",
       "conditions": [
-        "Use the actual traffic-control plan and machine operating instructions"
+        "The site traffic-control plan is available",
+        "Operators and signaller have agreed the movement and stop signals",
+        "The milling machine and truck operating instructions are available",
+        "Both drivers and the signaller have a planned signalling position, sight lines and escape route"
       ],
       "exclusions": [
-        "Hot recycling",
-        "Paving and compaction",
-        "Unverified buried-service crossings"
+        "The process is hot recycling",
+        "The task is paving or compaction",
+        "Buried-service crossings have not been verified",
+        "The work is separate processing of reclaimed asphalt material"
       ],
       "keywords": [
         "asphalt milling",
@@ -100,7 +156,7 @@
       "sources": [
         {
           "url": "https://smartjsabridge.com/en-US/case-study/jsa-asphalt-milling",
-          "section": "Eight-stage JSA stages 5 and 6; hold and proceed decisions"
+          "section": "Eight-stage JSA stages 2, 5 and 6; lost-visibility scenario; stop and proceed decisions"
         }
       ],
       "sourceRevision": "2026-10-14",
@@ -121,12 +177,15 @@
         "targetType": "truck-conveyor-interface",
         "conditionsRequired": [
           "traffic-plan-available",
-          "agreed-signals-established"
+          "agreed-signals-established",
+          "machine-instructions-available",
+          "safe-signalling-arrangement-planned"
         ],
         "excludedConditions": [
           "hot-recycling",
           "paving-compaction",
-          "buried-services-unverified"
+          "buried-services-unverified",
+          "reclaimed-material-processing"
         ]
       },
       "conditionLabels": {
@@ -134,7 +193,28 @@
         "agreed-signals-established": "Operators and signaller have agreed the movement and stop signals",
         "hot-recycling": "The process is hot recycling",
         "paving-compaction": "The task is paving or compaction",
-        "buried-services-unverified": "Buried-service crossings have not been verified"
+        "buried-services-unverified": "Buried-service crossings have not been verified",
+        "machine-instructions-available": "The milling machine and truck operating instructions are available",
+        "safe-signalling-arrangement-planned": "Both drivers and the signaller have a planned signalling position, sight lines and escape route",
+        "reclaimed-material-processing": "The work is separate processing of reclaimed asphalt material"
+      },
+      "coverageLimit": "Only the truck-exchange interface during asphalt cold milling. Silica, cutting depth, buried services, plant maintenance and road reopening require separate controls.",
+      "origin": {
+        "aiAssisted": true,
+        "sourceAiAssisted": true,
+        "fictionalCase": true,
+        "contentType": "case-derived-guidance-draft",
+        "sourceProfessionalApproval": false
+      },
+      "sourceCheck": {
+        "status": "case_extraction_conditions_reconciled_publication_pending",
+        "method": "AI-assisted comparison against the current exact-language case source and its stated limits; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Restored source-specific hold points, omitted exclusions and explicit coverage limits.",
+          "The source includes fictional educational examples and explicitly states no professional technical approval."
+        ],
+        "approvalGranted": false
       }
     },
     {
@@ -142,22 +222,25 @@
       "caseGroupId": "jsa-aluminum-actig",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Aluminum pipe AC TIG welding",
       "step": "Check ventilation and shielding gas arrangements",
       "hazard": "Welding exposure or oxygen depletion may remain despite little visible smoke",
       "cause": "Ineffective extraction or accumulation of shielding gas",
-      "consequence": "Harmful exposure during welding",
-      "control": "Assess the actual atmosphere and exposure, provide effective extraction, and verify its position does not undermine the required shielding arrangement",
-      "verification": "Check the air assessment, extraction position and shielding conditions; reassess if the hood moves",
+      "consequence": "Harmful inhalation exposure or oxygen-deficiency injury",
+      "control": "Assess ozone exposure and shielding-gas accumulation, provide effective extraction and ventilation, and position the hood so that fume and gas controls do not undermine the welding procedure’s shielding arrangement.",
+      "verification": "Check the exposure and atmosphere assessment, extraction performance and shielding conditions. If the hood or work conditions change, hold welding and recheck both air control and shielding before resuming; little visible smoke does not demonstrate safe air.",
       "conditions": [
-        "Confirm the actual welding procedure, equipment and work area"
+        "The welding procedure and equipment instructions are available",
+        "The work-area atmosphere and exposure assessment is available"
       ],
       "exclusions": [
-        "Confined-space entry",
-        "Live or contaminated process lines",
-        "Pressure-test execution"
+        "The task involves confined-space entry",
+        "The pipe is a live or contaminated process line",
+        "The task is a pressure test",
+        "The task uses a welding process other than aluminum AC TIG",
+        "The required extraction or ventilation is unavailable or ineffective"
       ],
       "keywords": [
         "aluminum pipe",
@@ -168,7 +251,15 @@
       "sources": [
         {
           "url": "https://smartjsabridge.com/en-US/case-study/jsa-aluminum-actig",
-          "section": "Eight-stage JSA stage 4; why the controls matter; scope exclusions"
+          "section": "Eight-stage JSA stage 4; ozone and argon explanation; hood-moved hold; scope exclusions"
+        },
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "authority": "OSHA",
+          "section": "1910.252(c)(1)-(3): inhalation exposure and ventilation",
+          "checkedAt": "2026-10-15",
+          "jurisdiction": "US",
+          "scope": "General-industry baseline only. Applicable construction provisions, State Plan rules and the actual exposure-control design require separate confirmation."
         }
       ],
       "sourceRevision": "2026-10-14",
@@ -194,7 +285,9 @@
         "excludedConditions": [
           "confined-entry",
           "live-or-contaminated-process-line",
-          "pressure-test"
+          "pressure-test",
+          "other-welding-process",
+          "ineffective-ventilation"
         ]
       },
       "conditionLabels": {
@@ -202,7 +295,27 @@
         "exposure-assessment-available": "The work-area atmosphere and exposure assessment is available",
         "confined-entry": "The task involves confined-space entry",
         "live-or-contaminated-process-line": "The pipe is a live or contaminated process line",
-        "pressure-test": "The task is a pressure test"
+        "pressure-test": "The task is a pressure test",
+        "other-welding-process": "The task uses a welding process other than aluminum AC TIG",
+        "ineffective-ventilation": "The required extraction or ventilation is unavailable or ineffective"
+      },
+      "coverageLimit": "Only inhalation and shielding-gas accumulation during aluminum AC TIG welding. Electrical, fire, radiation, joint quality and pressure testing require separate controls.",
+      "origin": {
+        "aiAssisted": true,
+        "sourceAiAssisted": true,
+        "fictionalCase": true,
+        "contentType": "case-derived-guidance-draft",
+        "sourceProfessionalApproval": false
+      },
+      "sourceCheck": {
+        "status": "case_extraction_conditions_reconciled_publication_pending",
+        "method": "AI-assisted comparison against the current exact-language case source and its stated limits; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Restored source-specific hold points, omitted exclusions and explicit coverage limits.",
+          "The source includes fictional educational examples and explicitly states no professional technical approval."
+        ],
+        "approvalGranted": false
       }
     }
   ]
