@@ -1,0 +1,54 @@
+{
+  "val": {
+    "nickBadWord": "Acest pseudonim nu poate fi folosit.",
+    "nickNoSpecial": "Nu folosiți caractere speciale.",
+    "nickInUse": "Acest pseudonim este deja utilizat.",
+    "nickAvailable": "✓ Pseudonim disponibil.",
+    "pwSafe": "✓ Parola îndeplinește cerințele",
+    "pwRule": "Minimum 8 caractere: litere, cifre și simboluri",
+    "pwMatch": "✓ Parolele coincid",
+    "pwMismatch": "Parolele nu coincid"
+  },
+  "alert": {
+    "resetSent": "A fost trimis un link de resetare a parolei.",
+    "checkInput": "Verificați informațiile introduse.",
+    "signupSuccess": "Pentru a finaliza înregistrarea, deschideți linkul de confirmare trimis prin e-mail."
+  },
+  "ui": {
+    "titleSignup": "Creați un cont",
+    "titleReset": "Resetați parola",
+    "titleLogin": "Autentificare",
+    "guideSignup": "Introduceți informațiile necesare pentru înregistrare.",
+    "guideReset": "Veți primi prin e-mail un link de resetare.",
+    "guideLogin": "Autentificați-vă cu contul înregistrat.",
+    "labelEmail": "Adresă de e-mail",
+    "labelNickname": "Pseudonim public",
+    "placeholderNickname": "Pseudonim",
+    "labelSector": "Sector de activitate",
+    "selectDefault": "Selectați",
+    "labelPassword": "Parolă",
+    "placeholderPassword": "Minimum 8 caractere: litere, cifre și simboluri",
+    "labelPasswordConfirm": "Confirmați parola",
+    "placeholderPasswordConfirm": "Introduceți din nou aceeași parolă",
+    "placeholderPasswordLogin": "Parolă",
+    "btnForgotPw": "Ați uitat parola?",
+    "btnProcessing": "Se procesează...",
+    "btnSubmitSignup": "Creați contul",
+    "btnSubmitReset": "Trimiteți e-mailul de resetare",
+    "btnSubmitLogin": "Autentificați-vă",
+    "dividerOr": "SAU",
+    "btnGoogleLogin": "Continuați cu Google",
+    "btnSwitchSignup": "Înregistrați un cont nou",
+    "btnSwitchLogin": "Autentificați-vă cu un cont existent"
+  },
+  "sector": {
+    "construction": "Construcții / lucrări civile / arhitectură",
+    "manufacturing": "Producție / instalații industriale / chimie",
+    "energy": "Energie / electricitate / gaze",
+    "logistics": "Transport / logistică / depozitare",
+    "safety": "Management SSM / consultanță",
+    "it": "IT / sisteme / inginerie",
+    "public": "Sector public / educație / sănătate",
+    "others": "Alte sectoare"
+  }
+}

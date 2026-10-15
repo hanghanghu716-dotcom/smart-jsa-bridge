@@ -1,3 +1,4 @@
+import { romanianUi } from '../locales/romanianUi.js';
 import { SUPPORTED_LANGS, LANGUAGE_OPTIONS, normalizeLocale, getLanguageTag } from '../locales/config.js';
 import { regionalUiTranslations } from '../locales/regionalWorkText.js';
 // Work jurisdiction is independent of the language used to navigate the app.
@@ -14,8 +15,11 @@ export const WORK_JURISDICTIONS = [
   { id: 'CA-QC', country: 'CA', subdivision: 'Québec', locale: 'fr-CA-QC' },
   { id: 'DE', locale: 'de-DE' }, { id: 'JP', locale: 'ja-JP' }, { id: 'FR', locale: 'fr-FR' },
   { id: 'IT', locale: 'it-IT' }, { id: 'ES', locale: 'es-ES' }, { id: 'SA', locale: 'ar-SA' },
-  { id: 'BR', locale: 'pt-BR' }, { id: 'RU', locale: 'ru-RU' },
+  { id: 'BR', locale: 'pt-BR' }, { id: 'RU', locale: 'ru-RU' }, { id: 'RO', locale: 'ro-RO' },
 ];
+// UI support does not imply reviewed regional starter forms.
+export const REGIONAL_FORM_JURISDICTIONS = WORK_JURISDICTIONS.filter(j => j.id !== 'RO');
+export const REGIONAL_FORM_LANGUAGES = SUPPORTED_LANGS.filter(locale => locale !== 'ro-RO');
 export const WORK_DOCUMENT_LANGUAGES = [...SUPPORTED_LANGS];
 export function jurisdictionLabel(j, locale = 'en-US') {
   const name = new Intl.DisplayNames([getLanguageTag(locale)], { type: 'region' }).of(j.country || j.id);
@@ -41,6 +45,7 @@ export function sameWorkContext(a, b) {
   return JSON.stringify(workContext(a)) === JSON.stringify(workContext(b));
 }
 export function workContextUi(locale = 'en-US') {
+  if (locale?.startsWith('ro')) return romanianUi.workContext;
   const translated = regionalUiTranslations[locale.split('-')[0]];
   if (translated) return translated;
   return locale.startsWith('ko') ? {

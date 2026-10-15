@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { workPackageTranslations } from './workPackageText.js';
 import { REGIONAL_CATALOG } from '../utils/regionalCatalog.js';
 const en = {
@@ -356,6 +357,7 @@ const ko = {
   next: "다음",
 };
 export function getWorkPackageUi(locale = "en-US") {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.workPackageUi;
   const lang = locale.split('-')[0];
   const base = lang === 'ko' ? ko : lang === 'en' ? en : workPackageTranslations[lang] || en;
   const region = ({'en-US':'US','en-CA':'CA','en-CA-AB':'CA-AB','en-CA-ON':'CA-ON','en-CA-BC':'CA-BC','fr-CA-QC':'CA-QC','fr-CA':'CA-QC','de-DE':'DE','ja-JP':'JP','fr-FR':'FR','it-IT':'IT','es-ES':'ES','ar-SA':'SA','pt-BR':'BR','ru-RU':'RU'})[locale];

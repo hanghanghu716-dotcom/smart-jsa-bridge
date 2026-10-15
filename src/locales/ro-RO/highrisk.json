@@ -1,0 +1,68 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTĂ] Exemplu generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Evaluarea trebuie realizată pentru condițiile efective ale lucrării.",
+    "text2": "Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul la legislația aplicabilă în România, echipamente, condiții reale și procedurile aprobate ale amplasamentului."
+  },
+  "ui": {
+    "category": "ACTIVITĂȚI SPECIALE CU RISC RIDICAT",
+    "mainTitle1": "JSA pentru activități cu risc ridicat",
+    "mainTitle2": "Ghid de exemple (7 tipuri)",
+    "description1": "Exemple pentru lucrări cu posibile consecințe grave.",
+    "description2": "Verificați condițiile de începere, oprire și salvare înainte de lucru.",
+    "labelRed": "⚠ Pericole principale",
+    "labelBlue": "🛡 Măsuri de prevenire și protecție",
+    "previewLabel": "Previzualizarea documentului JSA",
+    "downloadBtn": "Descărcați PDF-ul complet"
+  },
+  "list": [
+    {
+      "id": "HR-01",
+      "title": "Înlocuirea conductelor vechi și repararea prin sudare",
+      "hazard": "Explozia gazelor reziduale, aprindere din scântei",
+      "measure": "Izolați și verificați atmosfera conform procedurii; eliminați combustibilii și organizați supravegherea incendiilor",
+      "pages": 1
+    },
+    {
+      "id": "HR-02",
+      "title": "Inspecția celulelor de înaltă tensiune și înlocuirea cablurilor",
+      "hazard": "Electrocutare prin manevră greșită, arc electric și sarcini reziduale",
+      "measure": "Realizați manevrele prin personal competent; izolați, preveniți reconectarea și verificați lipsa tensiunii și măsurile de legare la pământ aplicabile",
+      "pages": 1
+    },
+    {
+      "id": "HR-03",
+      "title": "Săpături și montarea sprijinirilor pentru conducte îngropate",
+      "hazard": "Avarierea rețelelor, îngropare prin surpare",
+      "measure": "Localizați rețelele, verificați terenul și instalați sprijiniri potrivite; urmăriți deplasările și apa",
+      "pages": 1
+    },
+    {
+      "id": "HR-04",
+      "title": "Control radiografic al sudurilor conductelor noi",
+      "hazard": "Expunere la radiații, acces neautorizat în zona controlată",
+      "measure": "Stabiliți zona și măsurile prin personal competent în radioprotecție; controlați accesul și verificați nivelurile cu aparatură adecvată",
+      "pages": 1
+    },
+    {
+      "id": "HR-05",
+      "title": "Inspecția interioară și îndepărtarea reziduurilor din rezervoare inertizate cu azot",
+      "hazard": "Asfixiere din deficit de oxigen, imposibilitatea evacuării",
+      "measure": "Izolați și ventilați, verificați continuu condițiile atmosferice potrivit evaluării și asigurați supraveghere externă și salvare pregătită",
+      "pages": 1
+    },
+    {
+      "id": "HR-06",
+      "title": "Ridicarea și poziționarea echipamentelor grele cu macaraua",
+      "hazard": "Răsturnare prin cedarea terenului, strivire prin căderea sarcinii",
+      "measure": "Verificați planul de ridicare, reazemele, accesoriile și echilibrarea sarcinii; interziceți prezența sub sarcină",
+      "pages": 1
+    },
+    {
+      "id": "HR-07",
+      "title": "Repararea panourilor de acoperiș și utilizarea platformelor mobile",
+      "hazard": "Cădere prin panouri fragile, contact cu linii electrice",
+      "measure": "Verificați capacitatea acoperișului și mijlocul de acces; instalați protecții și mențineți distanțele stabilite pentru liniile electrice",
+      "pages": 1
+    }
+  ]
+}

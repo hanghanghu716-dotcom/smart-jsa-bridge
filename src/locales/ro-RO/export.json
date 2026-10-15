@@ -1,0 +1,123 @@
+{
+  "default": {
+    "docTitle": "Analiza securității muncii pe etape (JSA)",
+    "appr1": "Întocmit de",
+    "appr2": "Verificat de",
+    "appr3": "Aprobat de"
+  },
+  "alert": {
+    "copySuccess": "Tabelul a fost copiat. Apăsați [Ctrl+V] pentru a-l lipi în document.",
+    "copyError": "Copierea a eșuat. Verificați permisiunile browserului.",
+    "needLogin": "Autentificați-vă pentru a continua.",
+    "savePublic": "Publicat în Explorează.",
+    "savePrivate": "Salvat în biblioteca privată.",
+    "saveError": "Eroare la salvarea lucrării: ",
+    "pdfError": "PDF-ul nu a putut fi generat."
+  },
+  "header": {
+    "projectName": "Denumirea lucrării",
+    "approval": "Aprobare",
+    "workLocation": "Locul lucrării",
+    "department": "Departament",
+    "workDate": "Data aplicării",
+    "ppe": "EIP necesare",
+    "highRiskWork": "Activități cu risc ridicat"
+  },
+  "ppe": {
+    "helmet": "Cască de protecție",
+    "shoes": "Încălțăminte de protecție",
+    "glasses": "Ochelari de protecție",
+    "safetyBelt": "Protecție împotriva căderilor",
+    "mask": "Protecție respiratorie",
+    "gloves": "Mănuși de protecție",
+    "etc": "Altele"
+  },
+  "permit": {
+    "hotWork": "Lucrări cu foc deschis",
+    "confinedSpace": "Spațiu închis",
+    "electrical": "Izolarea energiilor electrice",
+    "highElevation": "Lucru la înălțime",
+    "heavyLifting": "Ridicarea sarcinilor",
+    "excavation": "Săpături",
+    "etc": "Altele"
+  },
+  "signature": {
+    "participants": "Echipa de lucru",
+    "sign": "(Semnătură)"
+  },
+  "groups": {
+    "hazard": "Identificarea pericolelor",
+    "risk": "Evaluarea riscurilor"
+  },
+  "tags": {
+    "DATA_STEP_NO": "Nr. etapei",
+    "DATA_STEP_TITLE": "Etapele lucrării",
+    "DATA_PHOTO": "Foto de referință",
+    "DATA_HAZARD": "Pericole potențiale",
+    "DATA_CURRENT_MEASURE": "Măsuri existente",
+    "DATA_RECOMMEND_MEASURE": "Măsuri recomandate",
+    "DATA_FREQUENCY": "Probabilitate",
+    "DATA_SEVERITY": "Gravitate",
+    "DATA_RISK": "Nivel de risc",
+    "DATA_KRAS_STEP": "Descrierea detaliată a activității",
+    "DATA_KRAS_HAZARD_CLASS": "Categoria pericolului",
+    "DATA_KRAS_HAZARD_DETAIL": "Scenariul de pericol și consecința",
+    "DATA_KRAS_BASIS": "Temei legal / referință tehnică",
+    "DATA_KRAS_CURRENT": "Măsuri existente",
+    "DATA_KRAS_RECOMMEND": "Măsuri de reducere a riscului",
+    "DATA_KRAS_AFTER": "Risc rezidual",
+    "DATA_KRAS_SCHED": "Termen planificat",
+    "DATA_KRAS_COMP": "Data realizării",
+    "DATA_KRAS_MANAGER": "Responsabil"
+  },
+  "preview": {
+    "freqBreak": "Probabilitate\n(Prob.)",
+    "sevBreak": "Gravitate\n(Consec.)",
+    "afterBreak": "Risc\nrezidual",
+    "schedBreak": "Termen\nplanificat"
+  },
+  "table": {
+    "addPhoto": "Fotografie"
+  },
+  "ui": {
+    "processing": "Se procesează datele..."
+  },
+  "step": {
+    "basicInfo": "Pasul 1: Date generale",
+    "procedure": "Pasul 2: Etapele lucrării",
+    "riskAnalysis": "Pasul 3: Analiza riscurilor",
+    "moduleConfig": "Pasul 4: Configurarea modulelor",
+    "tableConfig": "Pasul 5: Configurarea tabelului",
+    "finalOutput": "Pasul 6: Document final"
+  },
+  "title": {
+    "main": "| 06. Document final"
+  },
+  "btn": {
+    "prev": "Modificați tabelul",
+    "cloudSave": "Salvați în cloud (alegeți vizibilitatea)",
+    "pdfSave": "Generați și salvați PDF-ul",
+    "copyTable": "Copiați în Word / document"
+  },
+  "modal": {
+    "pdfTitle": "Generați documentul PDF",
+    "pdfSub": "Documentul final este convertit într-un fișier PDF pentru descărcare.",
+    "pdfBtnLabel": "Descărcați documentul",
+    "pdfBtnDesc": "Se generează un PDF de înaltă rezoluție.<br/>Așteptați puțin.",
+    "close": "Închideți (anulați)",
+    "pubTitle": "Setările salvării în cloud",
+    "pubWarning": "⚠️ În copia publică, departamentul, locul,\ndata și numele participanților vor rămâne necompletate.",
+    "pubSub": "Alegeți vizibilitatea documentului salvat.",
+    "pubBadgeLimited": "Public (cu restricții)",
+    "pubPublicLabel": "Publicați în Explorează",
+    "copyTitle": "Copiați în clipboard (Word / document)",
+    "copySub": "Copiază structura tabelului pentru utilizare în Word sau în alte editoare.",
+    "copyBtnLabel": "Copiați",
+    "copyBtnDesc": "Se optimizează structura tabelului.<br/>După copiere, apăsați [Ctrl+V] în editor.",
+    "pubForkLimit": "Necesită etape suplimentare<br/>sau cel puțin 2 pericole în plus<br/>față de versiunea originală.",
+    "pubRiskLimit": "Documentați cel puțin 3 pericole<br/>și măsurile aferente pentru partajare.",
+    "pubPublicDesc": "Vizibil tuturor utilizatorilor,<br/>pentru schimbul de cunoștințe.",
+    "pubPrivateLabel": "Salvați în biblioteca privată",
+    "pubPrivateDesc": "Vizibil numai autorului<br/>și gestionat ca document personal."
+  }
+}

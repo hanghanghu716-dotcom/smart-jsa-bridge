@@ -286,6 +286,7 @@ export default function AdminPostUpload() {
         <div style={fieldGroupStyle}>
           <label style={labelStyle}>언어 선택</label>
           <select name="language_code" value={formData.language_code} onChange={handleChange} style={inputStyle}>
+            <option value="ro-RO">Română (România) (ro-RO)</option>
             <option value="en-US">English (en-US)</option>
             <option value="en-CA">English (Canada — shared)</option>
             {CANADIAN_PROVINCES.map(({ code, label }) => <option key={code} value={code}>{label}</option>)}

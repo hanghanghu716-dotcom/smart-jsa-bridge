@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { getCommunityPolicy } from './communityPolicy.js';
 const keys = ['title','intro','detail','reuse','scrap','saved','share','copied','unavailable','error','retry','more','empty','community','notice','steps','search','latest','popular','back','login','quality','report','reason','submit','reported'];
 const labels = {
@@ -26,6 +27,7 @@ const metricLabels = {
   ar: ['المشاهدات','الخطوات المعاد استخدامها','المحفوظات','الأكثر مشاهدة','الأكثر استخداماً','الترتيب حسب','طريقة الاحتساب','تُحتسب مشاهدة واحدة لكل مستند وحساب أو متصفح يومياً بتوقيت UTC. وتُحتسب كل خطوة مستوردة مرة لكل حساب مسجل يومياً. يُستثنى المؤلف. مشاهدات الزوار تقديرية حسب المتصفح، وتبدأ الأعداد عند تفعيل الميزة.'],
 };
 export function getPublicUi(locale = 'en-US') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.publicUi;
   const values = labels[locale.split('-')[0]] || labels.en;
   const metrics = metricLabels[locale.split('-')[0]] || metricLabels.en;
   const actions = { en: 'Document actions', ko: '문서 메뉴', de: 'Dokumentaktionen', fr: 'Actions du document', ja: '文書メニュー', es: 'Acciones del documento', it: 'Azioni del documento', pt: 'Ações do documento', ru: 'Действия с документом', ar: 'إجراءات المستند' };

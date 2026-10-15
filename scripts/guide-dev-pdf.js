@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { renderGuides } from './render-guides.js';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
-import { GUIDE_CATEGORIES, GUIDE_VERSION } from '../src/utils/guideContent.js';
+import { GUIDE_CATEGORIES, guideVersion } from '../src/utils/guideContent.js';
 
 // A fresh checkout must also have working PDFs under `npm run dev`.
 // Generate only the requested edition and cache it outside Vite's watched public directory.
@@ -16,7 +16,7 @@ export function guideDevPdf(){
    const match=new URL(req.url,'http://localhost').pathname.match(/^\/assets\/guides\/([^/]+)\/([a-z-]+)-(\d{4}-\d{2}-\d{2})\.pdf$/);
    if(!match||!['GET','HEAD'].includes(req.method))return next();
    const [,locale,category,version]=match;
-   if(!SUPPORTED_LANGS.includes(locale)||!GUIDE_CATEGORIES[category]||version!==GUIDE_VERSION){res.statusCode=404;return res.end();}
+   if(!SUPPORTED_LANGS.includes(locale)||!GUIDE_CATEGORIES[category]||version!==guideVersion(locale)){res.statusCode=404;return res.end();}
    const relative=`assets/guides/${locale}/${category}-${version}.pdf`,publicFile=path.resolve('public',relative),cacheRoot=path.resolve('.cache/guide-preview'),cachedFile=path.join(cacheRoot,relative);
    let file=[publicFile,cachedFile].find(f=>fs.existsSync(f)&&fs.statSync(f).mtimeMs>=stamp);
    try{

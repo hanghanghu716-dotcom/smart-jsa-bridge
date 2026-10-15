@@ -1,0 +1,76 @@
+{
+  "ui": {
+    "heroTag": "GHID ORIENTATIV DE EVALUARE",
+    "mainTitle1": "Clasificarea riscurilor și",
+    "mainTitle2": "matricea de evaluare",
+    "subTitle1": "Definiți criterii potrivite activității și amplasamentului.",
+    "subTitle2": "Exemplele și pragurile afișate nu reprezintă un standard legal românesc.",
+    "section1": "1. Activități și condiții de lucru",
+    "section2": "2. Exemplu de matrice a riscurilor",
+    "section3": "3. Nouă categorii de activități care necesită atenție"
+  },
+  "def": {
+    "generalTitle": "Activități obișnuite",
+    "generalContent": "Activități repetate, cu pericole cunoscute. Caracterul repetitiv nu înseamnă risc redus; verificați măsurile și schimbările.",
+    "highTitle": "Activități cu risc ridicat",
+    "highContent": "Activități în care energia, substanțele sau condițiile de lucru pot produce consecințe grave. Clasificarea depinde de evaluarea concretă, nu numai de denumirea lucrării."
+  },
+  "matrix": {
+    "title": "Matrice orientativă (5 niveluri de probabilitate × 4 de gravitate)",
+    "axisX": "Gravitate",
+    "axisY": "Probabilitate",
+    "f5": "Foarte probabil",
+    "f4": "Probabil",
+    "f3": "Posibil",
+    "f2": "Puțin probabil",
+    "f1": "Foarte puțin probabil",
+    "s1": "Consecințe reduse",
+    "s2": "Consecințe moderate",
+    "s3": "Consecințe grave",
+    "s4": "Consecințe catastrofale",
+    "l1": "Inacceptabil conform criteriilor alese",
+    "l2": "Risc ridicat",
+    "l3": "Risc mediu",
+    "l4": "Risc scăzut",
+    "l5": "Risc minor",
+    "l6": "Risc foarte redus"
+  },
+  "tasks": [
+    {
+      "t": "Lucru la înălțime",
+      "c": "Există posibilitatea căderii de la un nivel la altul. Stabiliți protecția după evaluare și cerințele aplicabile; nu importați pragurile numerice din alte țări."
+    },
+    {
+      "t": "Acces în spații închise",
+      "c": "Acces dificil, atmosferă periculoasă, deficit de oxigen sau salvare dificilă; evaluați condițiile înainte de intrare."
+    },
+    {
+      "t": "Lucrări cu foc deschis",
+      "c": "Sudare, tăiere sau alte activități care produc flăcări, scântei ori suprafețe fierbinți."
+    },
+    {
+      "t": "Ridicarea sarcinilor",
+      "c": "Legarea, ridicarea și deplasarea sarcinilor cu echipamente adecvate; verificați stabilitatea și zona de excludere."
+    },
+    {
+      "t": "Lucrări electrice",
+      "c": "Expunere la energie electrică sau arc electric; verificați izolarea și competențele cerute pentru lucrare."
+    },
+    {
+      "t": "Săpături și șanțuri",
+      "c": "Riscuri de surpare, cădere, inundare și avariere a rețelelor subterane."
+    },
+    {
+      "t": "Radiații ionizante",
+      "c": "Activități de radiografie sau control nedistructiv supuse cerințelor specifice de radioprotecție."
+    },
+    {
+      "t": "Substanțe periculoase",
+      "c": "Transferul și utilizarea substanțelor toxice, inflamabile sau reactive; consultați fișa cu date de securitate."
+    },
+    {
+      "t": "Izolarea energiilor / mentenanță",
+      "c": "Preveniți pornirea neașteptată și eliberarea energiilor reziduale în timpul intervențiilor."
+    }
+  ]
+}

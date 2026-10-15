@@ -1,3 +1,4 @@
+import { SUPPORTED_LANGS } from '../src/locales/config.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditRecommendationSnapshot, readRecommendationSnapshot, auditMasterKeys, AUDIT_TABLES } from './recommendation-data-audit.js';
@@ -14,7 +15,7 @@ test('master ID duplicates distinguish identical copies, conflicting content and
 
 test('missing exports remain unknown rather than creating false zero-country coverage', () => {
   const report = auditRecommendationSnapshot({ tables: { Hazards_Translations: [] } });
-  assert.equal(report.coverage.length, 18);
+  assert.equal(report.coverage.length, SUPPORTED_LANGS.length);
   assert.equal(report.snapshotComplete, false);
   assert.equal(report.coverage.find(row => row.locale === 'ko').hazards, 0);
   assert.equal(report.coverage.find(row => row.locale === 'ko').controls, null);

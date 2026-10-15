@@ -32,7 +32,8 @@ const names = {
 };
 export function regionalTemplates(value) {
   const c = workContext(value);
-  if (!c.jurisdiction || !c.documentLocale) return [];
+  // Romanian language support does not imply a reviewed statutory form catalogue.
+  if (!c.jurisdiction || !c.documentLocale || c.jurisdiction === 'RO' || c.documentLocale === 'ro-RO') return [];
   const p = REGIONAL_CATALOG[c.jurisdiction];
   const general = { risk_assessment: ['위험성평가', 'Risk Assessment'], method_statement: ['안전작업절차서', 'Safe Work Procedure'], permit_to_work: ['작업허가서', 'Permit to Work'], toolbox_talk: ['작업 전 안전회의', 'Toolbox Talk'], inspection: ['안전점검표', 'Inspection Checklist'] };
   return Object.entries(p ? p.titles : names[c.jurisdiction]).map(([kind, title]) => ({

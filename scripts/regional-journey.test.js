@@ -21,7 +21,10 @@ test('every supported regional entry uses the existing country and native assess
     const context = journeyContext(locale);
     assert.equal(context.jurisdiction, WORK_JURISDICTIONS.find(j => j.locale === locale).id);
     assert.equal(context.documentLocale, locale);
-    assert.equal(journeyDocumentTitle(context), regionalTemplates(context).find(t => t.kind === 'risk_assessment').title);
+    if (locale === 'ro-RO') {
+      assert.equal(journeyDocumentTitle(context), 'Analiza securității muncii pe etape (JSA)');
+      assert.deepEqual(regionalTemplates(context), []);
+    } else assert.equal(journeyDocumentTitle(context), regionalTemplates(context).find(t => t.kind === 'risk_assessment').title);
     const ui = regionalJourneyUi(locale);
     assert.equal(Object.keys(ui).length, 13);
     assert.ok(Object.values(ui).every(s => typeof s === 'string' && s.trim()));

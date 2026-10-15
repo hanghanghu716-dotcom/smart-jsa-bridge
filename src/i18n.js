@@ -640,6 +640,63 @@ const resources = {
   }
 };
 
+import roROAbout from './locales/ro-RO/about.json';
+import roROAnalysis from './locales/ro-RO/analysis.json';
+import roROChem from './locales/ro-RO/chem.json';
+import roROCommon from './locales/ro-RO/common.json';
+import roROConst from './locales/ro-RO/const.json';
+import roRODictionary from './locales/ro-RO/dictionary.json';
+import roROExplore from './locales/ro-RO/explore.json';
+import roROExport from './locales/ro-RO/export.json';
+import roROFactordictionary from './locales/ro-RO/factordictionary.json';
+import roROGeneral from './locales/ro-RO/general.json';
+import roROHighrisk from './locales/ro-RO/highrisk.json';
+import roROInfo from './locales/ro-RO/info.json';
+import roROJrajsa from './locales/ro-RO/jrajsa.json';
+import roROLogin from './locales/ro-RO/login.json';
+import roROMain from './locales/ro-RO/main.json';
+import roROManu from './locales/ro-RO/manu.json';
+import roROModulebuilder from './locales/ro-RO/modulebuilder.json';
+import roROMylibrary from './locales/ro-RO/mylibrary.json';
+import roROPpe from './locales/ro-RO/ppe.json';
+import roROPrivacy from './locales/ro-RO/privacy.json';
+import roROProcedure from './locales/ro-RO/procedure.json';
+import roROProfile from './locales/ro-RO/profile.json';
+import roRORegulation from './locales/ro-RO/regulation.json';
+import roRORisk from './locales/ro-RO/risk.json';
+import roROTablebuilder from './locales/ro-RO/tablebuilder.json';
+import roROTags from './locales/ro-RO/tags.json';
+import roROTerms from './locales/ro-RO/terms.json';
+resources['ro-RO'] = {
+    about: roROAbout,
+    analysis: roROAnalysis,
+    chem: roROChem,
+    common: roROCommon,
+    const: roROConst,
+    dictionary: roRODictionary,
+    explore: roROExplore,
+    export: roROExport,
+    factordictionary: roROFactordictionary,
+    general: roROGeneral,
+    highrisk: roROHighrisk,
+    info: roROInfo,
+    jrajsa: roROJrajsa,
+    login: roROLogin,
+    main: roROMain,
+    manu: roROManu,
+    modulebuilder: roROModulebuilder,
+    library: roROMylibrary,
+    ppe: roROPpe,
+    privacy: roROPrivacy,
+    procedure: roROProcedure,
+    profile: roROProfile,
+    regulation: roRORegulation,
+    risk: roRORisk,
+    tablebuilder: roROTablebuilder,
+    tags: roROTags,
+    terms: roROTerms,
+};
+
 const provinceOverrides = { 'en-CA-AB': enCAABOverrides, 'en-CA-ON': enCAONOverrides, 'en-CA-BC': enCABCOverrides, 'fr-CA-QC': frCAQCOverrides };
 resources['en-SG'] = enSGOverrides;
 for (const { code } of CANADIAN_PROVINCES) resources[code] = provinceOverrides[code];

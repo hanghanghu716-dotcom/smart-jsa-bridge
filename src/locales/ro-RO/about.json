@@ -1,0 +1,51 @@
+{
+  "pageTag": "BIBLIOTECA DE SECURITATE A MUNCII",
+  "mainHeading": {
+    "line1": "Reunim cunoștințele despre securitatea muncii",
+    "line2": "într-o bibliotecă accesibilă"
+  },
+  "section1": {
+    "title": "O bibliotecă pentru cei implicați în SSM",
+    "content": "Smart JSA Bridge reunește exemple și documente JSA într-un <strong>spațiu în care utilizatorii pot organiza și partaja experiența lor</strong>.<br />Materialele sunt puncte de plecare pentru analiza lucrării, nu dovezi ale unei verificări tehnice sau ale conformității legale."
+  },
+  "section2": {
+    "title": "Principiile noastre",
+    "item1": {
+      "bold": "Informații cu origine transparentă:",
+      "desc": "Exemplele pot proveni de la utilizatori sau pot fi redactate cu ajutorul AI. Verificați sursa și starea de revizuire înainte de utilizare."
+    },
+    "item2": {
+      "bold": "Reutilizare și contribuție:",
+      "desc": "Adaptați documentele la propriul amplasament și partajați îmbunătățirile atunci când aveți dreptul de a le publica."
+    },
+    "item3": {
+      "bold": "Exemple pentru activități cu risc ridicat:",
+      "desc": "Biblioteca include scenarii organizate pe sectoare și echipamente, inclusiv nouă categorii de activități cu risc ridicat."
+    }
+  },
+  "section3": {
+    "title": "Cum funcționează",
+    "subtitle": "Comunitatea poate sprijini schimbul de experiență privind securitatea muncii.",
+    "step1": {
+      "bold": "Explorați biblioteca:",
+      "desc": "Căutați un exemplu JSA potrivit activității planificate."
+    },
+    "step2": {
+      "bold": "Selectați și adaptați:",
+      "desc": "Verificați aplicabilitatea și modificați conținutul în funcție de echipamente, personal și condiții reale."
+    },
+    "step3": {
+      "bold": "Exportați și partajați:",
+      "desc": "După verificarea de către persoanele competente, exportați documentul pentru utilizare și partajați numai informații care pot fi publicate."
+    },
+    "step4": {
+      "bold": "Îmbunătățire continuă:",
+      "desc": "Observațiile utilizatorilor pot îmbunătăți exemplele. Popularitatea sau numărul de reutilizări nu constituie certificare ori aprobare tehnică."
+    }
+  },
+  "section4": {
+    "title": "Date personale și partajare",
+    "content": "Verificați datele înainte de publicare. <br />Folosiți <strong>salvarea privată și opțiunile de vizibilitate</strong> conform necesităților. Copiile publice exclud anumite câmpuri, însă titlurile și textele introduse trebuie verificate de autor; nu includeți date personale sau confidențiale."
+  },
+  "imageCaption": "Smart JSA Bridge: experiență partajată pentru pregătirea documentelor de securitate a muncii"
+}

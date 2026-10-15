@@ -1,3 +1,5 @@
+import { romanianUi } from '../locales/romanianUi.js';
+import { getLanguageTag } from '../locales/config.js';
 import { caseListBootstrap } from '../utils/caseListBootstrap.js';
 import { cleanSummary } from '../utils/content.js';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
@@ -9,6 +11,7 @@ import SEO from '../components/SEO';
 
 export default function Archive() {
   const { i18n } = useTranslation();
+  const ro = i18n.language === 'ro-RO' ? romanianUi.editorial : null;
   const [cases, setCases] = useState(caseListBootstrap);
 
   useEffect(() => {
@@ -27,7 +30,7 @@ export default function Archive() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO pageTitle="Case Studies Archive | Smart JSA Bridge" />
+      <SEO pageTitle={`${ro?.archiveTitle || 'Case Studies Archive'} | Smart JSA Bridge`} pageDescription={ro?.archiveIntro} />
 
       <main style={styles.mainLayout}>
         <div style={styles.centerContent}>
@@ -36,15 +39,15 @@ export default function Archive() {
             {/* SEO 및 텍스트 비율 확보용 헤더 영역 */}
             <header style={styles.headerBox}>
               <span style={styles.categoryTag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">
-                DATABASE
+                {ro?.database || 'DATABASE'}
               </span>
               <h1 style={{...styles.title, fontSize: undefined}} className="text-[24px] lg:text-[2.5rem] font-extrabold leading-tight mb-6">
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">Case Studies</span>
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">Archive</span>
+                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.cases || 'Case Studies'}</span>
+                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.archive || 'Archive'}</span>
               </h1>
               <p style={styles.description} className="text-[14px] lg:text-[1.1rem]">
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">Explore comprehensive Job Safety Analysis (JSA) and Risk Assessment (JRA) records across various industrial operations.</span>
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">Each case study strictly details specific hazard factors, regulatory compliance measures, and engineering controls designed to prevent critical incidents, ensure workplace safety, and maintain OSHA compliance.</span>
+                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.archiveIntro || 'Explore comprehensive Job Safety Analysis (JSA) and Risk Assessment (JRA) records across various industrial operations.'}</span>
+                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.archiveNotice || 'Each case study strictly details specific hazard factors, regulatory compliance measures, and engineering controls designed to prevent critical incidents, ensure workplace safety, and maintain OSHA compliance.'}</span>
               </p>
             </header>
 
@@ -66,20 +69,20 @@ export default function Archive() {
 
                   {/* meta_description 텍스트 데이터 노출부 */}
                   <div style={styles.infoBox} className="max-lg:!p-4">
-                    <strong style={styles.labelBlue}>Case Study Summary</strong>
+                    <strong style={styles.labelBlue}>{ro?.summary || 'Case Study Summary'}</strong>
                     <p style={styles.infoText}>{cleanSummary(item.meta_description)}</p>
                   </div>
 
                   <div style={styles.cardFooter} className="max-lg:flex-col max-lg:gap-4">
                     <span style={styles.dateText}>
-                      Published: {new Date(item.created_at).toLocaleDateString()}
+                      {ro?.published || 'Published'}: {new Date(item.created_at).toLocaleDateString(getLanguageTag(i18n.language))}
                     </span>
                     <LanguageLink 
                       to={`/case-study/${item.post_group_id}`} 
                       style={styles.readMoreBtn} 
                       className="max-lg:!w-full max-lg:!text-sm"
                     >
-                      Read Case Study
+                      {ro?.read || 'Read Case Study'}
                     </LanguageLink>
                   </div>
                 </article>

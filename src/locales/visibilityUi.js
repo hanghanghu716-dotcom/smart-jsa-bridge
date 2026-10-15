@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { phase6Language } from './phase6Ui.js';
 const messages = {
   "ko": {
@@ -191,4 +192,4 @@ const messages = {
     "legacySharing": "مستندات سابقة بانتظار تأكيد المشاركة العامة"
   }
 };
-export const getVisibilityUi = (locale) => messages[phase6Language(locale)] || messages.en;
+export const getVisibilityUi = (locale) => locale?.split('-')[0] === 'ro' ? romanianUi.visibilityUi : messages[phase6Language(locale)] || messages.en;

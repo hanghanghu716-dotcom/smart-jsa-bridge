@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { getPlansUi } from './plansUi.js';
 import { getPhase6Ui, phase6Language } from './phase6Ui.js';
 const en = {
@@ -22,6 +23,7 @@ const ko = {
 };
 const businessCache=new Map();
 export function getBusinessUi(locale='en-US') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.businessUi;
  const language=phase6Language(locale),base=getPhase6Ui('business',locale)||(language==='ko'?ko:en),plans=getPlansUi(locale);
  if(!businessCache.has(base))businessCache.set(base,{...base,title:plans.title,intro:plans.intro,start:plans.start,trialIncludes:plans.trialIncludes,expired:plans.expired});
  return businessCache.get(base);

@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 const keys = ['country','local','all','origin','empty'];
 const labels = {
   ko: ['자료의 작업 국가','현재 지역','전체 국가','작업 국가','선택한 국가의 자료가 없습니다. 전체 국가의 자료도 확인해 보세요.'],
@@ -11,4 +12,4 @@ const labels = {
   ru: ['Страна выполнения работ','Текущий регион','Все страны','Страна работ','Документов из этой страны нет. Можно посмотреть все страны.'],
   ar: ['بلد العمل في المستند','المنطقة الحالية','جميع البلدان','بلد العمل','لا توجد مستندات من هذا البلد. يمكنك استعراض جميع البلدان.'],
 };
-export const getPublicCountryUi = locale => Object.fromEntries(keys.map((key,i)=>[key,(labels[locale.split('-')[0]]||labels.en)[i]]));
+export const getPublicCountryUi = locale => locale?.split('-')[0] === 'ro' ? romanianUi.publicCountryUi : Object.fromEntries(keys.map((key,i)=>[key,(labels[locale.split('-')[0]]||labels.en)[i]]));

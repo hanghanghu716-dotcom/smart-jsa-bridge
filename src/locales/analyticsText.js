@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 const rows = {
  ko: ['공개 페이지 방문 분석', 'Google Analytics의 쿠키를 사용해 공개 페이지의 방문 통계를 자동으로 수집합니다. 광고는 꺼져 있습니다. 공개 페이지의 제목과 유입 사이트 도메인도 수집합니다.', '비공개 작업 공간·문서 내용·URL 검색값·인증 토큰은 전송하지 않습니다. 이 페이지에서 이 브라우저의 분석을 중지할 수 있습니다. 중지해도 이미 Google에 전송한 통계는 삭제되지 않습니다.', '방문 분석 사용', '이 브라우저의 방문 분석 중지', '현재: 방문 분석 사용 중', '현재: 방문 분석 중지됨', '설정을 저장하지 못했습니다. 브라우저 저장소 설정을 확인해 주세요.'],
  en: ['Public-page analytics', 'Google Analytics uses cookies to collect public-page visit statistics automatically. Advertising is disabled. Public page titles and referring site domains are also collected.', 'Private workspaces, document content, URL query values and authentication tokens are not sent. You can stop analytics for this browser on this page. Stopping does not delete statistics already sent to Google.', 'Enable analytics', 'Stop analytics in this browser', 'Current: analytics enabled', 'Current: analytics stopped', 'The setting could not be saved. Check your browser storage settings.'],
@@ -11,5 +12,6 @@ const rows = {
  ar: ['تحليلات الصفحات العامة', 'يستخدم Google Analytics ملفات تعريف الارتباط لجمع إحصاءات زيارات الصفحات العامة تلقائياً. الإعلانات معطّلة. تُجمع أيضاً عناوين الصفحات العامة ونطاقات المواقع المُحيلة.', 'لا تُرسل مساحات العمل الخاصة أو محتويات المستندات أو قيم استعلام الرابط أو رموز المصادقة. يمكنك إيقاف التحليلات لهذا المتصفح هنا. الإيقاف لا يحذف الإحصاءات المرسلة سابقاً إلى Google.', 'تشغيل التحليلات', 'إيقاف التحليلات لهذا المتصفح', 'حالياً: التحليلات مفعّلة', 'حالياً: التحليلات متوقفة', 'تعذّر حفظ الإعداد. تحقّق من تخزين المتصفح.'],
 };
 export function getAnalyticsText(locale = 'en-US') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.analyticsText;
  return Object.fromEntries(['title','body','detail','allow','deny','allowed','denied','error'].map((key,index)=>[key,(rows[locale.split('-')[0]]||rows.en)[index]]));
 }

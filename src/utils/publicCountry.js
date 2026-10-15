@@ -1,6 +1,6 @@
 import { SUPPORTED_LANGS, getLanguageTag } from '../locales/config.js';
 
-export const PUBLIC_COUNTRIES = ['KR','US','CA','GB','AU','SG','DE','JP','FR','IT','ES','SA','BR','RU'];
+export const PUBLIC_COUNTRIES = ['KR','US','CA','GB','AU','SG','DE','JP','FR','IT','ES','SA','BR','RU','RO'];
 export const validCountry = value => PUBLIC_COUNTRIES.includes(value);
 export function localeCountry(locale) {
   if (locale === 'ko') return 'KR';

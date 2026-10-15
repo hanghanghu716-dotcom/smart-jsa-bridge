@@ -1,0 +1,63 @@
+{
+  "pageTag": "CONDIȚII DE UTILIZARE (BIBLIOTECĂ INTERNAȚIONALĂ)",
+  "heading": "Condiții de utilizare",
+  "subHeading": "Smart JSA Bridge este o platformă de colaborare pentru partajarea și dezvoltarea cunoștințelor practice privind securitatea muncii.",
+  "effectiveDate": "Data intrării în vigoare: 19 martie 2026",
+  "section1": {
+    "title": "01. Acceptarea condițiilor",
+    "content": "Prin crearea unui cont Smart JSA Bridge, acceptați aceste condiții și regulile comunității. Serviciul urmărește să faciliteze schimbul de cunoștințe privind securitatea muncii."
+  },
+  "section2": {
+    "title": "02. Descrierea serviciului",
+    "content": "Serviciul oferă o <strong>bibliotecă de cunoștințe privind securitatea muncii</strong> pentru stocarea, partajarea, modificarea și utilizarea modelelor de analiză JSA."
+  },
+  "section3": {
+    "title": "03. Responsabilitățile utilizatorului",
+    "item1": {
+      "bold": "Securitatea contului:",
+      "desc": "Utilizatorii răspund de protejarea datelor propriului cont, gestionat prin Supabase."
+    },
+    "item2": {
+      "bold": "Verificarea datelor înainte de publicare:",
+      "desc": "Înainte de partajarea unei JSA în biblioteca publică, eliminați informațiile personale, confidențiale sau de identificare, inclusiv numele persoanelor și identificatorii amplasamentelor ori echipamentelor."
+    }
+  },
+  "section4": {
+    "title": "04. Exactitatea conținutului",
+    "content": "Biblioteca poate include contribuții ale utilizatorilor și materiale redactate cu ajutorul AI; verificați originea și starea de revizuire a fiecărui material.",
+    "item1": {
+      "desc": "Platforma nu garantează exactitatea absolută sau adecvarea conținutului la un anumit amplasament."
+    },
+    "item2": {
+      "desc": "Materialele sunt referințe, nu permise de lucru aprobate. O persoană competentă trebuie să verifice condițiile reale, legislația aplicabilă și măsurile înainte de lucru."
+    }
+  },
+  "section5": {
+    "title": "05. Licență și proprietate intelectuală",
+    "item1": {
+      "bold": "Drepturile platformei:",
+      "desc": "Drepturile asupra arhitecturii serviciului, interfeței și bazei de date logice aparțin companiei."
+    },
+    "item2": {
+      "bold": "Conținut partajat:",
+      "desc": "Community reuse v1: autorul își păstrează drepturile. Permisiunea acoperă copierea, adaptarea și republicarea pentru activități profesionale, cu legătură către sursă și menționarea modificărilor. Nu acordă drepturi asupra materialelor terților și nu certifică siguranța. Eliminarea paginii publice nu retrage copiile deja obținute. Drepturile legale obligatorii rămân neafectate."
+    }
+  },
+  "section6": {
+    "title": "06. Utilizări interzise",
+    "content": "Este interzisă colectarea masivă a contribuțiilor altor utilizatori pentru construirea unui serviciu plătit separat sau exploatarea lor în scopuri fără legătură cu securitatea muncii."
+  },
+  "section7": {
+    "title": "07. Aplicabilitatea locală",
+    "content": "Pentru lucrări în România, verificați legislația română aplicabilă, cerințele specifice activității și procedurile amplasamentului. Referințele din alte țări nu devin obligații legale românești prin traducere. Modelele, sugestiile și exportul PDF nu certifică respectarea legii."
+  },
+  "section8": {
+    "title": "08. Restricționarea accesului",
+    "content": "În cazul publicării de date necorespunzătoare sau al încălcării regulilor comunității, platforma își rezervă dreptul de a elimina conținutul ori de a restricționa accesul contului fără notificare prealabilă."
+  },
+  "section9": {
+    "title": "09. Legea aplicabilă condițiilor serviciului",
+    "content": "Aceste condiții sunt guvernate de legislația Republicii Coreea și prevăd respectarea procedurilor internaționale de soluționare a litigiilor."
+  },
+  "footer": "© 2026 Smart JSA Bridge. Toate drepturile rezervate."
+}

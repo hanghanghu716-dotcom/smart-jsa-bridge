@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "menu": "MENIU",
+    "close": "✕ ÎNCHIDEȚI"
+  },
+  "drawer": {
+    "contents": "CUPRINS",
+    "regulation": "Evaluarea riscurilor în România",
+    "jrajsa": "Procesul practic JRA/JSA",
+    "protectiveEquipment": "Echipamente individuale de protecție",
+    "riskClassification": "Clasificarea activităților după risc",
+    "dictionary": "Dicționar de pericole și măsuri"
+  },
+  "hero": {
+    "tag": "BAZA DE DATE PENTRU SECURITATEA MUNCII",
+    "titleLine1": "Pericole și factori de risc,",
+    "titleLine2": "cu măsuri de prevenire și protecție",
+    "seoText1": "Baza de pericole și măsuri în limba română nu este încă disponibilă. Interfața românească nu transformă datele pentru alte țări în cerințe legale românești. Puteți introduce manual informații verificate pentru lucrarea dumneavoastră.",
+    "seoText2": "Studiile de caz în limba română sunt disponibile separat, în limita materialelor publicate. Orice exemplu trebuie verificat de un specialist competent și adaptat legislației aplicabile în România, echipamentelor și condițiilor reale de lucru."
+  },
+  "filter": {
+    "allCategories": "Toate categoriile",
+    "searchPlaceholder": "Căutați pericole sau măsuri...",
+    "searchBtn": "Căutați",
+    "resultPrefix": "Total ",
+    "resultSuffix": " rezultate"
+  },
+  "data": {
+    "loading": "Se încarcă datele...",
+    "empty": "Nu există rezultate în limba română. Nu se substituie automat date din alte țări.",
+    "riskFactorLabel": "Pericol / factor de risc",
+    "currentMeasureLabel": "Măsură existentă",
+    "advancedMeasureLabel": "Măsură suplimentară"
+  },
+  "pagination": {
+    "prev": "Înapoi",
+    "next": "Înainte"
+  }
+}

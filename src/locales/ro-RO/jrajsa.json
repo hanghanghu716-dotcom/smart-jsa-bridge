@@ -1,0 +1,135 @@
+{
+  "nav": {
+    "regulation": "Evaluarea riscurilor în România",
+    "jrajsa": "Procesul practic JRA/JSA",
+    "ppe": "Echipamente individuale de protecție",
+    "riskClass": "Lucrări obișnuite și cu risc ridicat"
+  },
+  "hero": {
+    "tag": "PREGĂTIREA LUCRĂRII",
+    "title1": "Procesul practic JRA/JSA",
+    "title2": "și verificarea aplicabilității locale",
+    "subTitle1": "Structură orientativă pentru analiza riscurilor pe etape,",
+    "subTitle2": "care trebuie adaptată de persoane competente la lucrarea reală."
+  },
+  "section3": {
+    "title": "3. Exemplu de proces JSA în 9 etape",
+    "process": {
+      "step1": {
+        "idx": "01",
+        "title": "Stabiliți procedura",
+        "desc": "Definiți modul de pregătire și folosire a JSA în cadrul procedurilor amplasamentului."
+      },
+      "step2": {
+        "idx": "02",
+        "title": "Formați echipa",
+        "desc": "Implicați responsabilii lucrării, specialiștii competenți și lucrătorii cu experiență."
+      },
+      "step3": {
+        "idx": "03",
+        "title": "Alegeți activitățile",
+        "desc": "Prioritizați lucrările cu consecințe grave, neobișnuite sau modificate."
+      },
+      "step4": {
+        "idx": "04",
+        "title": "Analizați lucrarea",
+        "desc": "Descrieți etapele, identificați pericolele și stabiliți măsurile necesare."
+      },
+      "step5": {
+        "idx": "05",
+        "title": "Verificați și aprobați intern",
+        "desc": "Verificați aplicabilitatea în teren și urmați circuitul real de aprobare al amplasamentului; aplicația nu acordă aprobarea."
+      },
+      "step6": {
+        "idx": "06",
+        "title": "Realizați măsurile",
+        "desc": "Puneți în aplicare măsurile tehnice și organizatorice înainte de expunere."
+      },
+      "step7": {
+        "idx": "07",
+        "title": "Înregistrați și instruiți",
+        "desc": "Păstrați analiza și comunicați instrucțiunile celor implicați."
+      },
+      "step8": {
+        "idx": "08",
+        "title": "Aplicați pe teren",
+        "desc": "Confirmați condițiile de începere și respectați procedurile aprobate."
+      },
+      "step9": {
+        "idx": "09",
+        "title": "Verificați eficacitatea",
+        "desc": "Urmăriți aplicarea măsurilor și revedeți analiza când condițiile se schimbă."
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Elemente utile în procedura internă",
+    "rules": {
+      "item1": {
+        "title": "Scop și metodă",
+        "desc": "Obiective și tehnici adecvate locului de muncă."
+      },
+      "item2": {
+        "title": "Organizare și responsabilități",
+        "desc": "Roluri clare pentru conducere, coordonatori și lucrători."
+      },
+      "item3": {
+        "title": "Domeniul analizei",
+        "desc": "Lista activităților, persoanelor expuse și echipamentelor."
+      },
+      "item4": {
+        "title": "Momentele evaluării",
+        "desc": "Pregătire, revizuiri planificate și revizuiri determinate de schimbări sau evenimente."
+      },
+      "item5": {
+        "title": "Criterii de risc",
+        "desc": "Definiții documentate pentru nivelurile folosite; punctajele aplicației nu sunt un standard național."
+      },
+      "item6": {
+        "title": "Păstrarea documentelor",
+        "desc": "Formulare și termene potrivit cerințelor aplicabile și procedurilor organizației."
+      }
+    }
+  },
+  "section5": {
+    "title": "5. JRA și JSA în această aplicație",
+    "table": {
+      "header": {
+        "col1": "Aspect",
+        "col2": "JRA — evaluarea riscurilor lucrării",
+        "col3": "JSA — analiza securității muncii pe etape"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Domeniu",
+          "col2": "Lucrarea și interacțiunile cu instalațiile și mediul",
+          "col3": "Activități concrete, ordinea etapelor și pericolele asociate"
+        },
+        "row2": {
+          "col1": "Participanți",
+          "col2": "Responsabili și specialiști competenți",
+          "col3": "Lucrătorii implicați, coordonatorii și specialiștii competenți"
+        }
+      }
+    }
+  },
+  "section6": {
+    "title": "6. Întrebări pentru prioritizarea analizei JSA",
+    "checklist": {
+      "item1": "Procedura de lucru lipsește sau este neclară?",
+      "item2": "Au existat incidente sau situații periculoase la această activitate?",
+      "item3": "Lucrătorii au experiență insuficientă pentru sarcină?",
+      "item4": "Activitatea necesită competențe ori instruire specială?"
+    }
+  },
+  "section7": {
+    "title": "7. Exemplu de calcul al scorului de risc",
+    "math": {
+      "risk": "Risc",
+      "frequency": "Probabilitate",
+      "severity": "Gravitate",
+      "caption": "Scor orientativ = probabilitatea producerii × gravitatea consecinței. Metoda și pragurile trebuie definite pentru amplasament; scorul nu certifică siguranța."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Design: <strong>yizuno</strong>"
+}

@@ -1,0 +1,68 @@
+{
+  "default": {
+    "docTitle": "Analiza securității muncii pe etape (JSA)",
+    "appr1": "Întocmit de",
+    "appr2": "Verificat de",
+    "appr3": "Aprobat de"
+  },
+  "table": {
+    "projectName": "Denumirea lucrării / contractului",
+    "approval": "Aprobare",
+    "workLocation": "Locul lucrării",
+    "department": "Unitate / departament",
+    "workDate": "Data aplicării",
+    "ppe": "EIP necesare",
+    "highRiskWork": "Activități cu risc ridicat",
+    "participants": "Membrii echipei",
+    "signature": "(Semnătură)"
+  },
+  "ppe": {
+    "helmet": "Cască de protecție",
+    "shoes": "Încălțăminte de protecție",
+    "glasses": "Protecția ochilor și a feței",
+    "safetyBelt": "Sistem individual de protecție împotriva căderilor",
+    "mask": "Protecție respiratorie",
+    "gloves": "Mănuși de protecție",
+    "etc": "Alte EIP"
+  },
+  "permit": {
+    "hotWork": "Lucrări cu foc deschis",
+    "confinedSpace": "Acces în spațiu închis",
+    "electrical": "Izolarea și blocarea energiilor",
+    "highElevation": "Lucru la înălțime",
+    "heavyLifting": "Plan de ridicare",
+    "excavation": "Săpături și șanțuri",
+    "etc": "Alte permise aplicabile"
+  },
+  "preview": {
+    "header": "Previzualizarea structurii JSA — model de lucru",
+    "tableAreaTitle": "[Zona de analiză a pericolelor]",
+    "tableAreaDesc": "Pericolele și măsurile de prevenire și protecție se completează automat aici."
+  },
+  "step": {
+    "basicInfo": "Pasul 1: Date generale",
+    "procedure": "Pasul 2: Etapele lucrării",
+    "riskAnalysis": "Pasul 3: Analiza riscurilor",
+    "moduleConfig": "Pasul 4: Configurarea modulelor",
+    "tableConfig": "Pasul 5: Configurarea tabelului",
+    "finalOutput": "Pasul 6: Document final"
+  },
+  "header": {
+    "title": "| 04. Configurarea modulelor documentului",
+    "subtitle": "Configurați antetul JSA și elementele de permis necesare potrivit evaluării și procedurilor aplicabile. Modelul nu este un formular legal universal."
+  },
+  "toolbar": {
+    "headerTextSetting": "Configurarea antetului JSA",
+    "docTitle": "Titlul documentului",
+    "appr1": "Rubrica întocmirii",
+    "appr2": "Rubrica verificării",
+    "appr3": "Rubrica aprobării",
+    "signatureSetting": "Semnături",
+    "addSignatureRow": "Adăugați un rând de participanți (8 locuri)"
+  },
+  "btn": {
+    "prev": "Înapoi la analiza riscurilor",
+    "next": "Continuați cu tabelul",
+    "skipModule": "Omiteți configurarea modulelor"
+  }
+}

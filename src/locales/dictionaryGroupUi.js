@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { phase6Language } from './phase6Ui.js';
 const values = {
   "ko": {
@@ -121,4 +122,4 @@ const values = {
     "pageLabel": "صفحات قاموس المخاطر"
   }
 };
-export const getDictionaryGroupUi = locale => values[phase6Language(locale)] || values.en;
+export const getDictionaryGroupUi = locale => locale?.split('-')[0] === 'ro' ? romanianUi.dictionaryGroupUi : values[phase6Language(locale)] || values.en;

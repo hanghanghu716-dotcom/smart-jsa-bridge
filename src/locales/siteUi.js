@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 // Shared interface labels; regional variants use their base language.
 const keys = ['caseSearch', 'caseEmpty', 'sectorGuides', 'loadError', 'retry', 'googlePrivacy', 'adSettings'];
 const translations = {
@@ -13,6 +14,7 @@ const translations = {
   ru: ['Поиск примеров…', 'Подходящие примеры не найдены.', 'Отраслевые руководства (50)', 'Не удалось загрузить данные. Повторите попытку.', 'Повторить', 'Как Google использует данные', 'Персонализация рекламы Google'],
 };
 export function getSiteUi(locale = 'en-US') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.siteUi;
   const values = translations[locale.split('-')[0]] || translations.en;
   return Object.fromEntries(keys.map((key, index) => [key, values[index]]));
 }

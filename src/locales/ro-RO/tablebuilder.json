@@ -1,0 +1,82 @@
+{
+  "alert": {
+    "enterName": "IntroduceÈ›i un nume pentru È™ablon.",
+    "needLogin": "AutentificaÈ›i-vÄƒ pentru a salva.",
+    "saveError": "A apÄƒrut o eroare la salvarea È™ablonului.",
+    "saveSuccess": "ConfiguraÈ›ia completÄƒ a fost salvatÄƒ.",
+    "exceedWidth": "LÄƒÈ›imea totalÄƒ a coloanelor proprii nu poate depÄƒÈ™i limita maximÄƒ."
+  },
+  "tags": {
+    "DATA_STEP_NO": "Nr. etapei",
+    "DATA_STEP_TITLE": "Etapele lucrÄƒrii",
+    "DATA_PHOTO": "Fotografie de referinÈ›Äƒ",
+    "DATA_HAZARD": "Pericole potenÈ›iale",
+    "DATA_CURRENT_MEASURE": "MÄƒsuri existente",
+    "DATA_RECOMMEND_MEASURE": "MÄƒsuri recomandate",
+    "DATA_FREQUENCY": "Probabilitate",
+    "DATA_SEVERITY": "Gravitate",
+    "DATA_RISK": "Nivel de risc",
+    "DATA_KRAS_STEP": "Descrierea detaliatÄƒ a activitÄƒÈ›ii",
+    "DATA_KRAS_HAZARD_CLASS": "Categoria pericolului",
+    "DATA_KRAS_HAZARD_DETAIL": "Scenariul de pericol È™i consecinÈ›a",
+    "DATA_KRAS_BASIS": "Temei legal / referinÈ›Äƒ tehnicÄƒ",
+    "DATA_KRAS_CURRENT": "MÄƒsuri existente",
+    "DATA_KRAS_RECOMMEND": "MÄƒsuri de reducere a riscului",
+    "DATA_KRAS_AFTER": "Risc rezidual",
+    "DATA_KRAS_SCHED": "Termen planificat",
+    "DATA_KRAS_COMP": "Data realizÄƒrii",
+    "DATA_KRAS_MANAGER": "Responsabil"
+  },
+  "groups": {
+    "hazard": "Identificarea pericolelor",
+    "risk": "Evaluarea riscurilor"
+  },
+  "preview": {
+    "freqBreak": "Probabilitate\n(Prob.)",
+    "sevBreak": "Gravitate\n(Consec.)",
+    "afterBreak": "Risc\nrezidual",
+    "schedBreak": "Termen\nplanificat",
+    "example": "(Date exemplificative)",
+    "dataArea": "... Zona datelor efective de evaluare ...",
+    "docHeader": "[Antetul documentului]",
+    "signatureArea": "[SemnÄƒturile participanÈ›ilor]"
+  },
+  "step": {
+    "basicInfo": "Pasul 1: Date generale",
+    "procedure": "Pasul 2: Etapele lucrÄƒrii",
+    "riskAnalysis": "Pasul 3: Analiza riscurilor",
+    "moduleConfig": "Pasul 4: Configurarea modulelor",
+    "tableConfig": "Pasul 5: Configurarea tabelului",
+    "finalOutput": "Pasul 6: Document final"
+  },
+  "header": {
+    "title": "| 05. Configurarea tabelului",
+    "subtitle": "AjustaÈ›i ordinea È™i lÄƒÈ›imea coloanelor tabelului de evaluare."
+  },
+  "toolbar": {
+    "saveTitle": "SalvaÈ›i configuraÈ›ia completÄƒ",
+    "saveBtn": "SalvaÈ›i toate setÄƒrile curente",
+    "saveDesc": "* Include setÄƒrile modulelor de la pasul 4 È™i setÄƒrile tabelului curent.",
+    "orientationTitle": "Orientarea tabelului",
+    "landscape": "Peisaj (recomandat)",
+    "portrait": "Portret",
+    "zoom": "MÄƒrirea previzualizÄƒrii",
+    "columnConfig": "Configurarea coloanelor (prin tragere)",
+    "riskToggle": "Evaluarea riscurilor (grupatÄƒ)",
+    "riskGroupLabel": "Evaluare (probabilitate Â· gravitate Â· nivel)",
+    "newItem": "ColoanÄƒ nouÄƒ",
+    "width": "LÄƒÈ›ime",
+    "addCustom": "+ AdÄƒugaÈ›i o coloanÄƒ proprie"
+  },
+  "btn": {
+    "prev": "ÃŽnapoi: module (pasul 4)",
+    "next": "ContinuaÈ›i: document final (pasul 6)"
+  },
+  "modal": {
+    "title": "SalvaÈ›i ca È™ablon propriu",
+    "desc": "SetÄƒrile modulelor de la pasul 4 È™i configuraÈ›ia tabelului vor fi salvate Ã®mpreunÄƒ.",
+    "placeholder": "IntroduceÈ›i numele È™ablonului",
+    "cancel": "AnulaÈ›i",
+    "save": "SalvaÈ›i"
+  }
+}

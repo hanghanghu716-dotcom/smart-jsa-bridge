@@ -24,7 +24,7 @@ import { COUNTRY_FORM_ROWS } from '../src/locales/regionalCountryFormText2026100
 import fs from 'node:fs';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
+import { REGIONAL_FORM_JURISDICTIONS as WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
 import { regionalTemplates } from '../src/utils/regionalWorkTemplates.js';
 import { TASK_TYPES, taskReview } from '../src/utils/regionalTaskReview.js';
 import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT } from '../src/locales/taskSafetyText.js';

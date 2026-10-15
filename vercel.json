@@ -101,7 +101,7 @@
       "destination": "/api/content-index?lng=:lng&kind=archive"
     },
     {
-      "source": "/:lng(en-US|en-AU|ar-SA|en-GB|ja-JP|ru-RU|it-IT|es-ES|de-DE|fr-FR|pt-BR|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-SG|ko)",
+      "source": "/:lng(en-US|en-AU|ar-SA|en-GB|ja-JP|ru-RU|it-IT|es-ES|de-DE|fr-FR|pt-BR|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-SG|ro-RO|ko)",
       "destination": "/api/content-index?lng=:lng&kind=home"
     },
     {

@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Contul și activitatea mea",
+    "statsLabel": "Statistici privind contribuțiile și utilizarea",
+    "myCount": "JSA create",
+    "scraps": "Total salvări",
+    "nickname": "Pseudonim",
+    "sector": "Sectorul principal de activitate",
+    "company": "Denumirea companiei (opțional)",
+    "bio": "Prezentare profesională și mesaj de profil",
+    "bioPlaceholder": "Introduceți domeniul de experiență sau abordarea privind securitatea muncii.",
+    "presetTitle": "Valori implicite pentru documente",
+    "department": "Departament implicit",
+    "manager": "Persoană implicită pentru verificare / aprobare",
+    "autoPublicity": "Permiteți partajarea automată în biblioteca publică (Explorează)",
+    "signatureLabel": "Imaginea semnăturii",
+    "noSignature": "Nu există o semnătură înregistrată.",
+    "uploadSignature": "Încărcați imaginea semnăturii",
+    "securityLabel": "Securitate și sesiuni",
+    "remoteLogout": "Deconectați celelalte dispozitive",
+    "openWithdraw": "Doriți să închideți contul?",
+    "closeWithdraw": "Închideți panoul de ștergere",
+    "withdrawWarning": "⚠️ Închiderea contului șterge datele create și înregistrările salvate; acțiunea nu poate fi anulată.",
+    "withdrawPlaceholder": "Introduceți textul de confirmare.",
+    "withdrawSubmit": "Închideți contul",
+    "goMain": "Pagina principală",
+    "saveProfile": "Actualizați profilul"
+  },
+  "sectors": {
+    "default": "Selectați sectorul de activitate",
+    "construction": "Construcții / lucrări civile / arhitectură",
+    "manufacturing": "Producție / instalații industriale / chimie",
+    "energy": "Energie / electricitate / gaze",
+    "logistics": "Transport / logistică / depozitare",
+    "safety": "Management SSM / consultanță",
+    "it": "IT / sisteme / inginerie",
+    "public": "Sector public / educație / sănătate",
+    "etc": "Alte sectoare"
+  },
+  "messages": {
+    "updateSuccess": "Profilul a fost actualizat.",
+    "signatureSuccess": "Imaginea semnăturii a fost înregistrată.",
+    "confirmRemoteLogout": "Închideți toate sesiunile, cu excepția celei de pe dispozitivul curent?",
+    "confirmWithdrawal": "Închideți contul? Această acțiune nu poate fi anulată.",
+    "withdrawConsentText": "Confirm închiderea",
+    "withdrawMismatch": "Textul de confirmare nu coincide.",
+    "confirmGoMain": "Modificările se pot pierde. Reveniți la pagina principală?"
+  }
+}

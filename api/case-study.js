@@ -1,3 +1,4 @@
+import { romanianUi } from '../src/locales/romanianUi.js';
 import { readFile } from 'node:fs/promises';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -19,6 +20,7 @@ export function renderCaseBody(post, baseUrl) {
   return renderToStaticMarkup(React.createElement(Markdown, { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]], urlTransform, children: post.content_md || '' }));
 }
 export function renderCaseHtml(shell, post, locale, availableLocales) {
+  const ro = locale === 'ro-RO' ? romanianUi.editorial : null;
   const path = casePath(locale, post.post_group_id);
   const title = post.meta_title || `${post.title} | Smart JSA Bridge`;
   const description = cleanSummary(String(post.meta_description || '').replace(/<[^>]*>/g, ' '));
@@ -29,7 +31,7 @@ export function renderCaseHtml(shell, post, locale, availableLocales) {
   const structured = serializeStructuredData(post.schema_markup);
   const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
   const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');
-  const article = `<main style="max-width:1100px;margin:0 auto;padding:32px 24px"><nav><a href="/${e(locale)}/">Smart JSA Bridge</a> · <a href="/${e(locale)}/archive">Case Studies</a> · <a href="/${e(locale)}/explore">Explore</a></nav><h1>${e(post.title)}</h1><p>${e(description)}</p><article class="toastui-editor-contents" data-case-study-id="${e(post.id)}">${body}</article>${downloads ? `<ul>${downloads}</ul>` : ''}</main>`;
+  const article = `<main style="max-width:1100px;margin:0 auto;padding:32px 24px"><nav><a href="/${e(locale)}/">Smart JSA Bridge</a> · <a href="/${e(locale)}/archive">${e(ro?.cases || 'Case Studies')}</a> · <a href="/${e(locale)}/explore">${e(ro?.explore || 'Explore')}</a></nav><h1>${e(post.title)}</h1><p>${e(description)}</p><article class="toastui-editor-contents" data-case-study-id="${e(post.id)}">${body}</article>${downloads ? `<ul>${downloads}</ul>` : ''}</main>`;
   return shell.replace(/<html[^>]*>/, `<html lang="${e(getLanguageTag(locale))}" dir="${locale.startsWith('ar') ? 'rtl' : 'ltr'}">`)
     .replace('</head>', metadata + '</head>').replace('<div id="root"></div>', `<div id="root">${article}${structured ? `<script type="application/ld+json">${structured}</script>` : ''}<script id="jsa-case-bootstrap" type="application/json">${jsonScript({ path, post, availableLocales })}</script></div>`);
 }

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import puppeteer from 'puppeteer';
 import { SUPPORTED_LANGS, getLanguageTag } from '../src/locales/config.js';
-import { GUIDE_CATEGORIES, GUIDE_VERSION } from '../src/utils/guideContent.js';
+import { GUIDE_CATEGORIES, guideVersion } from '../src/utils/guideContent.js';
 import { guideText } from '../src/locales/guideText.js';
 
 // Chromium keeps Korean/Japanese/Arabic shaping and searchable text identical to HTML.
@@ -36,6 +36,7 @@ export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_
   page.on('request',req=>{const u=req.url();return u.startsWith(baseUrl)||u.startsWith('data:')||u.startsWith('blob:')?req.continue():req.abort();});
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   for(const locale of locales){
+   const version = guideVersion(locale);
    for(const category of categories){
     const route=`/${locale}/guideline/${category}`;
     await page.goto(baseUrl+route,{waitUntil:'networkidle0'});
@@ -48,13 +49,13 @@ export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_
      const directory=path.join(outputRoot,locale,'guideline',category);fs.mkdirSync(directory,{recursive:true});
      fs.writeFileSync(path.join(directory,'index.html'),await page.content());
     }
-    const relative=`assets/guides/${locale}/${category}-${GUIDE_VERSION}.pdf`,target=path.join(outputRoot,relative);
+    const relative=`assets/guides/${locale}/${category}-${version}.pdf`,target=path.join(outputRoot,relative);
     fs.mkdirSync(path.dirname(target),{recursive:true});
     await page.pdf({path:target,format:'A4',printBackground:true,preferCSSPageSize:true,displayHeaderFooter:true,
-     headerTemplate:'<div></div>',footerTemplate:`<div style="font-family:Arial,sans-serif;font-size:8px;width:100%;margin:0 16mm;display:flex;justify-content:space-between;color:#607084"><span>Smart JSA Bridge · ${locale} · ${GUIDE_VERSION}</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
+     headerTemplate:'<div></div>',footerTemplate:`<div style="font-family:Arial,sans-serif;font-size:8px;width:100%;margin:0 16mm;display:flex;justify-content:space-between;color:#607084"><span>Smart JSA Bridge · ${locale} · ${version}</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
      margin:{top:'16mm',bottom:'18mm',left:'16mm',right:'16mm'}});
     const bytes=fs.readFileSync(target);if(bytes.subarray(0,5).toString()!=='%PDF-'||bytes.length<10000)throw new Error(`Invalid PDF: ${route}`);
-    manifest.push({locale,category,route,pdf:`/${relative}`,version:GUIDE_VERSION,title:guideText(locale,category),examples:state.examples,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});
+    manifest.push({locale,category,route,pdf:`/${relative}`,version,title:guideText(locale,category),examples:state.examples,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});
    }
    console.log(`Guides ready: ${locale} (${categories.length} HTML/PDF pairs)`);
   }

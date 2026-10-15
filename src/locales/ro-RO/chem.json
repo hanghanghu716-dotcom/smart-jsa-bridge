@@ -1,0 +1,89 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTĂ] Exemplu generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Evaluarea trebuie realizată pentru condițiile efective ale lucrării.",
+    "text2": "Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul la legislația aplicabilă în România, echipamente, condiții reale și procedurile aprobate ale amplasamentului."
+  },
+  "ui": {
+    "category": "SECURITATEA LUCRĂRILOR CU SUBSTANȚE CHIMICE ȘI GAZE",
+    "mainTitle1": "JSA pentru lucrări chimice și gaze",
+    "mainTitle2": "Ghid de exemple (10 tipuri)",
+    "description1": "Exemple de analiză pentru gaze sub presiune",
+    "description2": "și substanțe periculoase; verificați aplicabilitatea fiecărei măsuri.",
+    "labelRed": "⚠ Pericole principale",
+    "labelBlue": "🛡 Măsuri de prevenire și protecție",
+    "previewLabel": "Previzualizarea documentului JSA",
+    "downloadBtn": "Descărcați PDF-ul complet"
+  },
+  "list": [
+    {
+      "id": "CHEM-01",
+      "title": "Inspecția și curățarea cu jet de apă a schimbătorului de căldură tubular",
+      "hazard": "Leziuni prin injectare cu jet de apă, arsuri chimice din fluide reziduale",
+      "measure": "Izolați, depresurizați și drenați controlat; delimitați zona și folosiți echipamentul de protecție specific jetului",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-02",
+      "title": "Înlocuirea garniturilor unui compresor de hidrogen sub presiune",
+      "hazard": "Explozie la scăpări de hidrogen, asfixiere din azotul de purjare",
+      "measure": "Izolați instalația, verificați atmosfera cu detector adecvat și eliminați sursele de aprindere; controlul oxigenului se face separat",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-03",
+      "title": "Înlocuirea ventilelor și garniturilor la conducte cu substanțe toxice",
+      "hazard": "Stropire cu lichid rezidual la desfacerea flanșelor, inhalare de gaze toxice",
+      "measure": "Confirmați izolarea, drenarea și lipsa presiunii; alegeți protecția chimică și respiratorie după substanță și expunere",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-04",
+      "title": "Înlocuirea vârfului faclei și mentenanța aprinderii",
+      "hazard": "Cădere la vânt puternic, aprinderea gazelor reziduale",
+      "measure": "Verificați izolarea procesului, protecția împotriva căderii și limitele meteo din planul de lucru și instrucțiunile echipamentelor",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-05",
+      "title": "Verificarea funcțională a echipamentelor de intervenție",
+      "hazard": "Lovire la desprinderea furtunului sub presiune, inhalare de gaze",
+      "measure": "Verificați racordurile, asigurați furtunurile și delimitați zona; stabiliți poziții sigure și procedura de încercare",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-06",
+      "title": "Inspecția ventilului automat de la baza unui adsorber PSA",
+      "hazard": "Strivire la acționare neașteptată, expunere la praful adsorbantului",
+      "measure": "Izolați energiile, eliminați presiunea reziduală și alegeți protecția respiratorie potrivit prafului",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-07",
+      "title": "Inspecția interioară și controlul nedistructiv al rezervoarelor de hidrogen",
+      "hazard": "Asfixiere în spațiu închis, aprindere de la echipamente electrice neadecvate",
+      "measure": "Verificați atmosfera în zone reprezentative, ventilați și pregătiți salvarea; folosiți echipamente adecvate zonei clasificate",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-08",
+      "title": "Conectarea și descărcarea unei cisterne de hidrogen",
+      "hazard": "Deplasarea necontrolată a vehiculului, aprindere prin descărcare electrostatică",
+      "measure": "Imobilizați vehiculul și verificați conectarea, legarea echipotențială și etanșeitatea conform instalației și procedurii",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-09",
+      "title": "Verificarea panourilor DCS/PLC și calibrarea traductoarelor",
+      "hazard": "Modificarea necontrolată a interblocărilor, contact cu piese sub tensiune",
+      "measure": "Autorizați și înregistrați orice ocolire temporară; controlați energia și confirmați revenirea la configurația normală",
+      "pages": 1
+    },
+    {
+      "id": "CHEM-10",
+      "title": "Completarea biocidului și inhibitorului de coroziune în circuitul de răcire",
+      "hazard": "Reacții periculoase la amestecare, stropire la deschiderea recipientelor",
+      "measure": "Verificați etichetele și fișele cu date de securitate, separați produsele incompatibile și utilizați transferul și EIP adecvate",
+      "pages": 1
+    }
+  ]
+}

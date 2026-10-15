@@ -4,7 +4,7 @@ import { terminologyText, terminologyHash } from './regional-terminology-fingerp
 import { REGIONAL_CATALOG } from '../src/utils/regionalCatalog.js';
 import { createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
 import { TASK_SAFETY_LANGUAGES, taskSafetyText } from '../src/locales/taskSafetyText.js';
-import { WORK_DOCUMENT_LANGUAGES, WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
+import { REGIONAL_FORM_LANGUAGES as WORK_DOCUMENT_LANGUAGES, REGIONAL_FORM_JURISDICTIONS as WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
 import { cleanPackage, startWork, duplicatePackage } from '../src/utils/workPackages.js';
 
 test('title review hashes cover changed native names even when the interface language differs', () => {

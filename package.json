@@ -84,7 +84,8 @@
       "/ar-SA/",
       "/pt-BR/",
       "/ru-RU/",
-      "/ko/"
+      "/ko/",
+      "/ro-RO/"
     ],
     "exclude": [
       "\\/explore",

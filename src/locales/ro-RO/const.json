@@ -1,0 +1,89 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTĂ] Exemplu generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Evaluarea trebuie realizată pentru condițiile efective ale lucrării.",
+    "text2": "Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul la legislația aplicabilă în România, echipamente, condiții reale și procedurile aprobate ale amplasamentului."
+  },
+  "ui": {
+    "category": "EXEMPLE JSA PENTRU CONSTRUCȚII",
+    "mainTitle1": "JSA pentru construcții",
+    "mainTitle2": "Ghid de exemple (10 tipuri)",
+    "description1": "Verificați pericolele și măsurile pentru fiecare etapă.",
+    "description2": "Exemplele și PDF-urile se adaptează șantierului concret.",
+    "labelRed": "⚠ Pericole principale",
+    "labelBlue": "🛡 Măsuri de prevenire și protecție",
+    "previewLabel": "Previzualizarea exemplului",
+    "downloadBtn": "Descărcați exemplul PDF"
+  },
+  "list": [
+    {
+      "id": "CONST-01",
+      "title": "Montarea structurii de plafon și a plăcilor de gips-carton",
+      "hazard": "Cădere de pe mijlocul de acces instabil, rănire cu scula de fixare",
+      "measure": "Alegeți o platformă adecvată, verificați blocările și folosiți protecția ochilor și mâinilor potrivit sarcinii",
+      "pages": 1
+    },
+    {
+      "id": "CONST-02",
+      "title": "Sudarea conductelor principale și montarea pompelor în camera tehnică",
+      "hazard": "Incendiu din scântei, rupere la încercarea sub presiune",
+      "measure": "Organizați supravegherea incendiilor și încercarea după un plan aprobat, cu presiuni stabilite pentru instalația concretă",
+      "pages": 1
+    },
+    {
+      "id": "CONST-03",
+      "title": "Săpături și umpluturi pentru drenaj",
+      "hazard": "Avarierea rețelelor subterane, îngropare prin surpare",
+      "measure": "Localizați rețelele și confirmați traseele prin metode sigure; stabiliți sprijinirile și stabilitatea taluzurilor",
+      "pages": 1
+    },
+    {
+      "id": "CONST-04",
+      "title": "Hidroizolarea acoperișului și vopsirea fațadei",
+      "hazard": "Cădere de la margine, expunere la vapori de solvent",
+      "measure": "Instalați protecții colective și ventilație adecvată; verificați fișa produsului și sistemul anticădere când este necesar",
+      "pages": 1
+    },
+    {
+      "id": "CONST-05",
+      "title": "Mentenanța fațadelor și montarea echipamentelor la înălțime",
+      "hazard": "Cădere prin cedarea sistemului de acces, strivire la platforma mobilă",
+      "measure": "Verificați sistemul de acces, ancorajele și dispozitivele de protecție; delimitați zona și pregătiți salvarea",
+      "pages": 1
+    },
+    {
+      "id": "CONST-06",
+      "title": "Montarea și demontarea schelei pentru lucrări exterioare",
+      "hazard": "Prăbușirea structurii, lovire prin căderea componentelor",
+      "measure": "Urmați configurația și instrucțiunile de montaj, verificați ancorările și excludeți accesul sub lucrare",
+      "pages": 1
+    },
+    {
+      "id": "CONST-07",
+      "title": "Prelucrarea armăturilor și ridicarea cu macaraua",
+      "hazard": "Căderea materialului prin cedarea legării, antrenare în utilajul de prelucrare",
+      "measure": "Stabiliți legarea după sarcină și accesorii; păstrați apărătorile și folosiți dispozitive de alimentare adecvate",
+      "pages": 1
+    },
+    {
+      "id": "CONST-08",
+      "title": "Turnarea betonului în plăci și grinzi",
+      "hazard": "Răsturnarea pompei, lovire la desprinderea sau mișcarea furtunului",
+      "measure": "Verificați reazemele, capacitatea terenului și racordurile; controlați zona furtunului",
+      "pages": 1
+    },
+    {
+      "id": "CONST-09",
+      "title": "Demolarea construcțiilor joase vechi și evacuarea deșeurilor",
+      "hazard": "Prăbușire neașteptată, posibilă expunere la azbest",
+      "measure": "Respectați proiectul și succesiunea demolării; identificați materialele periculoase înainte de intervenție",
+      "pages": 1
+    },
+    {
+      "id": "CONST-10",
+      "title": "Cablare la plafon și montarea instalațiilor de securitate la incendiu",
+      "hazard": "Electrocutare, cădere prin întindere excesivă de pe scară",
+      "measure": "Izolați alimentarea și verificați lipsa tensiunii; alegeți un mijloc de acces stabil și adecvat",
+      "pages": 1
+    }
+  ]
+}

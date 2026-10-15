@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 const languages = ['ko','en','de','ja','fr','it','es','ar','pt','ru'];
 const rows = `
 files|파일|Files|Dateien|ファイル|Fichiers|File|Archivos|الملفات|Arquivos|Файлы
@@ -23,4 +24,4 @@ export const WORK_RECOVERY_TEXT = Object.fromEntries(rows.trim().split('\n').map
   if (values.length !== languages.length || values.some(v => !v)) throw Error(`Missing recovery translation: ${key}`);
   return [key, Object.fromEntries(languages.map((lang, i) => [lang, values[i]]))];
 }));
-export const recoveryUi = locale => Object.fromEntries(Object.entries(WORK_RECOVERY_TEXT).map(([key, values]) => [key, values[locale.split('-')[0]] || values.en]));
+export const recoveryUi = locale => locale?.split('-')[0] === 'ro' ? romanianUi.workRecoveryUi : Object.fromEntries(Object.entries(WORK_RECOVERY_TEXT).map(([key, values]) => [key, values[locale.split('-')[0]] || values.en]));

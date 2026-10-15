@@ -37,7 +37,7 @@ test('all 18 UI Locales survive aggregation including the distinct Korean databa
     masterReferences: { Hazards: { affectedLocales: { 'ko-KR': 2 } } },
     invalidTranslationLocales: { Current_Measures_Translations: [{ sameMasterTranslations: [{ locale: 'ko-KR' }] }] } };
   const summary = publicAuditSummary(report);
-  assert.equal(summary.coverage.length, 18);
+  assert.equal(summary.coverage.length, SUPPORTED_LANGS.length);
   assert.equal(summary.coverage.find(row => row.locale === 'ko').dataLocale, 'ko-KR');
   assert.equal(summary.masterReferences.Hazards.affectedLocales['ko-KR'], 2);
   assert.equal(summary.invalidTranslationLocales.Current_Measures_Translations.sameMasterLocaleCounts['ko-KR'], 1);

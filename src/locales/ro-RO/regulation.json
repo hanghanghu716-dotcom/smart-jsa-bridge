@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "tag": "GHID ORIENTATIV PENTRU ROMÂNIA",
+    "mainTitle": "Evaluarea riscurilor profesionale<br />și organizarea prevenirii",
+    "subTitle": "Repere pentru securitatea și sănătatea în muncă (SSM). Material generat cu ajutorul AI, fără aprobare tehnică; un specialist competent trebuie să verifice legislația în vigoare și aplicabilitatea la locul de muncă."
+  },
+  "section1": {
+    "title": "1. Rolul evaluării riscurilor",
+    "para": "Legea nr. 319/2006 prevede <strong>evaluarea riscurilor și măsuri de prevenire și protecție</strong>. JSA poate ajuta la analiza pe etape a unei lucrări, dar nu înlocuiește evaluarea profesională, instrucțiunile proprii sau documentele cerute pentru activitatea concretă.",
+    "infoTitle": "Pentru ce se folosesc documentele interne",
+    "infoList": {
+      "item1": "Clarificarea responsabilităților în organizarea prevenirii.",
+      "item2": "Aplicarea consecventă a metodei de evaluare alese.",
+      "item3": "Identificarea pericolelor prin observarea lucrării și consultarea lucrătorilor.",
+      "item4": "Păstrarea rezultatelor, a măsurilor stabilite și a dovezilor privind realizarea lor."
+    }
+  },
+  "section2": {
+    "title": "2. Elemente utile pentru organizarea evaluării",
+    "para": "Lista de mai jos este o structură de lucru propusă, nu un formular obligatoriu unic și nici o enumerare exhaustivă a obligațiilor legale:",
+    "items": {
+      "item1": {
+        "title": "Scop și metodă",
+        "content": "Definiți obiectivele și alegeți metoda potrivită activității și datelor disponibile."
+      },
+      "item2": {
+        "title": "Responsabilități",
+        "content": "Stabiliți cine coordonează, cine participă și cine verifică măsurile."
+      },
+      "item3": {
+        "title": "Domeniu",
+        "content": "Includeți activitățile obișnuite și neobișnuite, echipamentele, persoanele expuse și interacțiunile cu alte lucrări."
+      },
+      "item4": {
+        "title": "Momente de revizuire",
+        "content": "Planificați verificarea după modificări, evenimente sau identificarea unor pericole noi."
+      },
+      "item5": {
+        "title": "Identificarea pericolelor",
+        "content": "Folosiți inspecții, discuții cu lucrătorii, documentația echipamentelor și informațiile despre incidente."
+      },
+      "item6": {
+        "title": "Aprecierea riscurilor",
+        "content": "Definiți clar probabilitatea și gravitatea. Matricea aplicației este configurabilă, nu un standard legal românesc."
+      },
+      "item7": {
+        "title": "Măsuri",
+        "content": "Alegeți măsuri potrivite pericolului și verificați realizarea și eficacitatea lor."
+      },
+      "item8": {
+        "title": "Participarea lucrătorilor",
+        "content": "Integrați observațiile celor care execută lucrarea și comunicați schimbările."
+      },
+      "item9": {
+        "title": "Documente și evidențe",
+        "content": "Stabiliți versiunea, responsabilul și perioada de păstrare potrivit cerințelor aplicabile; nu presupuneți un termen universal."
+      },
+      "item10": {
+        "title": "Instruire și comunicare",
+        "content": "Explicați riscurile, măsurile și condițiile de oprire persoanelor implicate."
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Când se verifică evaluarea",
+    "table": {
+      "header": {
+        "col1": "Situație",
+        "col2": "Moment și condiții",
+        "col3": "Observații"
+      },
+      "rows": {
+        "row1": {
+          "col1": "Pregătirea activității",
+          "col2": "Evaluați riscurile și organizați măsurile înainte de expunerea lucrătorilor.",
+          "col3": "Documentați măsurile și verificați condițiile reale ale lucrării."
+        },
+        "row2": {
+          "col1": "Verificarea planificată",
+          "col2": "Stabiliți verificări potrivit activității, schimbărilor și cerințelor specifice.",
+          "col3": "Consemnați criteriile și responsabilul revizuirii."
+        },
+        "row3": {
+          "col1": "Schimbare sau eveniment",
+          "col2": "Verificați necesitatea revizuirii la modificări, evenimente, riscuri omise ori noi, grupuri sensibile și lucrări speciale, potrivit formei aplicabile a normelor HG nr. 1425/2006.",
+          "col3": "Verificați textul actualizat și efectele asupra măsurilor existente."
+        }
+      }
+    }
+  },
+  "section4": {
+    "title": "4. Surse oficiale și limitele ghidului",
+    "para": "Consultați Portalul Legislativ și Inspecția Muncii. Verificarea editorială a acestor repere nu este consultanță juridică, certificare sau aprobare a unei lucrări.",
+    "legalList": {
+      "item1": "<strong>Cadrul general:</strong> Legea nr. 319/2006, în special art. 7, 12 și 13, și normele aprobate prin HG nr. 1425/2006. Consultați forma actualizată pentru obligațiile concrete.",
+      "item2": "<strong>Echipamente și șantiere:</strong> HG nr. 1146/2006 privește utilizarea echipamentelor de muncă; HG nr. 300/2006 privește șantierele temporare sau mobile. Aplicabilitatea depinde de activitate.",
+      "item3": "<strong>Utilizarea materialului:</strong> Înainte de lucru, un specialist competent trebuie să verifice legislația aplicabilă în România, echipamentele, condițiile reale și procedurile aprobate pentru amplasament. Nu sunt oferite garanții de conformitate."
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Design: <strong>yizuno</strong>"
+}

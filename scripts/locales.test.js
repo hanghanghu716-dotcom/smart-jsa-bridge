@@ -11,7 +11,7 @@ import {
 } from '../src/locales/config.js';
 
 test('province routes, browser detection and standards-based formatting', () => {
-  assert.equal(LANGUAGE_OPTIONS.length, 17);
+  assert.equal(LANGUAGE_OPTIONS.length, 18);
   assert.equal(detectLanguage('en-CA'), 'en-CA');
   assert.equal(detectLanguage('en-ca'), 'en-CA');
   assert.equal(detectLanguage('ko-KR'), 'ko');

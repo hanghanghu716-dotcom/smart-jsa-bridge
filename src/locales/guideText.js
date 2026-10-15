@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 // Shared editorial copy. Country-specific guidance is kept separately from language.
 export const GUIDE_LANGUAGES = ['ko','en','de','ja','fr','it','es','ar','pt','ru'];
 const rows = `
@@ -58,4 +59,4 @@ export const GUIDE_TEXT = Object.fromEntries(rows.trim().split('\n').map(line =>
   if(values.length!==10 || values.some(v=>!v)) throw new Error(`Incomplete guide translation: ${key}`);
   return [key,Object.fromEntries(GUIDE_LANGUAGES.map((lang,i)=>[lang,values[i]]))];
 }));
-export function guideText(locale,key) { return GUIDE_TEXT[key]?.[locale.split('-')[0]] || GUIDE_TEXT[key]?.en || key; }
+export function guideText(locale,key) { if (locale?.split('-')[0] === 'ro') return romanianUi.guideText[key] || key; return GUIDE_TEXT[key]?.[locale.split('-')[0]] || GUIDE_TEXT[key]?.en || key; }

@@ -1,3 +1,4 @@
+import { romanianUi } from '../locales/romanianUi.js';
 import { caseViewCounts, recordCaseView } from '../services/caseStudyMetrics';
 import { getPublicUi } from '../locales/publicUi';
 import DiscoveryLinks from '../components/DiscoveryLinks';
@@ -40,6 +41,7 @@ export default function CaseStudyDetail() {
     return()=>{active=false;clearTimeout(timer);document.removeEventListener('visibilitychange',schedule);};
   },[metricId]);
   const ui = getSiteUi(i18n.language);
+  const ro = i18n.language === 'ro-RO' ? romanianUi.editorial : null;
   const journeyUi = regionalJourneyUi(i18n.language);
 
   const PUBLISHER_ID = 'ca-pub-9791625990220699';
@@ -87,9 +89,9 @@ export default function CaseStudyDetail() {
     viewerRef.current?.getInstance().setMarkdown(post?.content_md || '');
   }, [post?.content_md]);
 
-  if (loading) return <div style={styles.loading}><SEO />Loading...</div>;
+  if (loading) return <div style={styles.loading}><SEO />{ro?.loading || 'Loading...'}</div>;
   if (loadError) return <div style={styles.error} role="alert"><SEO noIndex />{ui.loadError} <button onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>;
-  if (!post) return <div style={styles.error}><SEO noIndex />{ui.caseEmpty} <LanguageLink to="/archive">Archive</LanguageLink></div>;
+  if (!post) return <div style={styles.error}><SEO noIndex />{ui.caseEmpty} <LanguageLink to="/archive">{ro?.archive || 'Archive'}</LanguageLink></div>;
   const structuredData = serializeStructuredData(post.schema_markup);
 
   return (
@@ -169,7 +171,7 @@ export default function CaseStudyDetail() {
         className="max-lg:!py-20 max-lg:!px-6"
       >
         <div style={styles.container}>
-          <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">CASE STUDY</span>
+          <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.caseStudy || 'CASE STUDY'}</span>
           <h1 style={styles.mainTitle} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
             {post.title}
           </h1>
@@ -251,7 +253,7 @@ export default function CaseStudyDetail() {
           </div>
 
           <div style={styles.adSection}>
-            <span style={styles.adLabel}>ADVERTISEMENT</span>
+            <span style={styles.adLabel}>{ro?.advertisement || 'ADVERTISEMENT'}</span>
             <AdSenseUnit client={PUBLISHER_ID} slot={ARTICLE_BOTTOM_SLOT_ID} format="auto" />
           </div>
           
@@ -261,12 +263,12 @@ export default function CaseStudyDetail() {
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <div style={styles.footerFlex}>
-            <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
+            <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. {ro ? 'Design:' : 'Designed by'} <strong>yizuno</strong></p>
             <div style={styles.footerLinks}>
-              <LanguageLink to="/" style={styles.fLink}>Home</LanguageLink>
-              <LanguageLink to="/privacy" style={styles.fLink}>Privacy Policy</LanguageLink>
-              <LanguageLink to="/terms" style={styles.fLink}>Terms of Service</LanguageLink>
-              <LanguageLink to="/about" style={styles.fLink}>About Us</LanguageLink>
+              <LanguageLink to="/" style={styles.fLink}>{ro?.home || 'Home'}</LanguageLink>
+              <LanguageLink to="/privacy" style={styles.fLink}>{ro?.privacy || 'Privacy Policy'}</LanguageLink>
+              <LanguageLink to="/terms" style={styles.fLink}>{ro?.terms || 'Terms of Service'}</LanguageLink>
+              <LanguageLink to="/about" style={styles.fLink}>{ro?.about || 'About Us'}</LanguageLink>
             </div>
           </div>
         </div>

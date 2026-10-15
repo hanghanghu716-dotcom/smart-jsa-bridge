@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { SA_EVIDENCE_ROWS } from './regionalSaEvidenceText20261006.js';
 import { QC_WELDING_ROWS } from './regionalQcWeldingText20261006.js';
 import { CLOSEOUT_ROWS } from './regionalCloseoutText20261006.js';
@@ -85,5 +86,6 @@ export const TASK_SAFETY_TEXT = Object.fromEntries([rows, REQUIREMENT_REVIEW_ROW
   return [key, Object.fromEntries(TASK_SAFETY_LANGUAGES.map((l,i) => [l, values[i]]))];
 }));
 export function taskSafetyText(locale, key) {
+  if (locale?.split('-')[0] === 'ro' && romanianUi.taskSafetyText[key]) return romanianUi.taskSafetyText[key];
   return TASK_SAFETY_TEXT[key]?.[String(locale || 'en').split('-')[0]] || TASK_SAFETY_TEXT[key]?.en || key;
 }

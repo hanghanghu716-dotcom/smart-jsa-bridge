@@ -1,0 +1,157 @@
+{
+  "alert": {
+    "selectItem": "Selectați elementele de adăugat.",
+    "enterFactor": "Introduceți mai întâi un pericol.",
+    "selectCurrentMeasure": "Selectați mai întâi o măsură existentă.",
+    "manualFactor": "Pericolul a fost introdus manual. Introduceți direct măsura.",
+    "needCurrentMeasure": "Selectați mai întâi o măsură existentă din sugestii.",
+    "noData": "Nu există date asociate. Introduceți informațiile manual.",
+    "confirmMain": "Reveniți la pagina principală? Datele nesalvate se pot pierde.",
+    "loginRequired": "Este necesară autentificarea.",
+    "stepSaved": "Etapa curentă a fost salvată în bibliotecă.",
+    "stepSaveFailed": "Etapa nu a putut fi salvată.",
+    "riskProgressBlocked": "Etapa {{step}} are scorul de risc {{score}}, peste limita configurată de {{limit}}. Îmbunătățiți măsurile și reevaluați etapa înainte de continuare."
+  },
+  "libModal": {
+    "title": "Deschideți biblioteca de etape",
+    "empty": "Nu există o bibliotecă salvată.",
+    "unclassified": "Neclasificat",
+    "backBtn": "⬅️ Înapoi la listă",
+    "step": "Etapă",
+    "riskCount": " pericole incluse"
+  },
+  "recModal": {
+    "titleCurrent": "Măsură existentă",
+    "titleAdvanced": "Sugestie suplimentară",
+    "descCurrent": "Măsuri înregistrate pentru acest pericol; necesită verificarea aplicabilității.",
+    "descAdvanced": "Sugestii pentru completarea măsurilor existente.",
+    "selectBtn": "Selectați"
+  },
+  "step": {
+    "basicInfo": "Date generale",
+    "procedure": "Etapele lucrării",
+    "riskAnalysis": "Analiza riscurilor",
+    "moduleConfig": "Configurarea modulelor",
+    "tableConfig": "Configurarea tabelului",
+    "finalOutput": "Document final"
+  },
+  "form": {
+    "title": "03. Identificarea pericolelor și analiza riscurilor",
+    "typeStandard": "(Simplă)",
+    "typeAdvanced": "(Detaliată)",
+    "currentStep": "Etapa curentă"
+  },
+  "filter": {
+    "label": "⚠️ Filtru pentru risc ridicat",
+    "auto": "(Sugestie automată)",
+    "loadLibBtn": "📂",
+    "searchPlaceholder": "Căutați pericole...",
+    "saveStepBtn": "Salvați etapa",
+    "savingStepBtn": "Se salvează..."
+  },
+  "base": {
+    "label": "Baza de cunoștințe (identificarea pericolelor)",
+    "addEmptyBtn": "+ Adăugați un rând gol",
+    "addBulkBtn": "✓ Adăugați selecția",
+    "emptyRec": "Nu există sugestii în limba documentului. Introduceți pericolele și măsurile după evaluarea lucrării; baza românească nu este încă disponibilă.",
+    "etc": "Altele",
+    "searching": "Se caută…"
+  },
+  "result": {
+    "label": "Evaluare și măsuri",
+    "freq": "Prob.",
+    "sev": "Grav."
+  },
+  "table": {
+    "factor": "Pericol / factor de risc",
+    "measure": "Măsură de prevenire și protecție",
+    "currentMeasure": "Măsură existentă",
+    "advancedMeasure": "Măsură suplimentară",
+    "delete": "Ștergeți",
+    "recMeasureBtn": "Sugestii",
+    "recAdvancedBtn": "Suplimentare",
+    "searchBtn": "Căutați"
+  },
+  "btn": {
+    "prevStep1": "Înapoi la etapele lucrării",
+    "prevStep2": "Etapa de lucru anterioară",
+    "nextComplete": "Finalizați analiza și configurați modulele",
+    "nextStep": "Analizați etapa următoare",
+    "fastTrackComplete": "Finalizați analiza și copiați textul"
+  },
+  "searchModal": {
+    "title": "Căutare în baza de măsuri",
+    "placeholder": "Introduceți termenii de căutare..."
+  },
+  "knowledgeDock": {
+    "openBtn": "Biblioteca de cunoștințe",
+    "opened": "Biblioteca este deschisă",
+    "untitledStep": "Etapă fără titlu",
+    "sourceManual": "Introducere manuală",
+    "sourceDatabase": "Baza de pericole",
+    "sourceLibrary": "Experiență anterioară",
+    "eyebrow": "BIBLIOTECA DE CUNOȘTINȚE",
+    "title": "Cunoștințe din lucrări anterioare",
+    "savedSteps": "Etape salvate",
+    "projects": "Lucrări",
+    "search": "Căutați activități, pericole sau măsuri",
+    "emptySteps": "Nu există etape salvate.",
+    "independentStep": "Etapă independentă",
+    "hazards": "pericole",
+    "noControl": "Fără măsură",
+    "mergeHazards": "Doar pericolele",
+    "mergeFull": "Combinați cu măsurile",
+    "emptyProjects": "Nu există lucrări salvate sau marcate.",
+    "steps": "etape",
+    "backProjects": "Lista lucrărilor",
+    "sourceCurrent": "JSA curentă",
+    "analysisIncluded": "Include analiza",
+    "stepOnly": "Doar etapa",
+    "mergeOneHazard": "+ Pericol",
+    "mergeOneFull": "+ Complet",
+    "mergeResult": "{{added}} adăugate · {{skipped}} duplicate omise",
+    "noRisksToMerge": "Nu există pericole de combinat.",
+    "loading": "Se încarcă biblioteca…",
+    "loadError": "Biblioteca nu a putut fi încărcată. Încercați din nou.",
+    "retry": "Reîncercați",
+    "close": "Închideți biblioteca",
+    "noMatches": "Nu există etape sau lucrări corespunzătoare."
+  },
+  "fastTrackModal": {
+    "title": "Copiați textul evaluării",
+    "desc": "Copiați pericolele și măsurile în formularul propriu.",
+    "hazardFactor": "Pericol",
+    "copied": "Pericol copiat.",
+    "safetyMeasure": "Măsură de prevenire și protecție",
+    "measureCopied": "Măsură copiată.",
+    "goHome": "Pagina principală"
+  },
+  "recommendation": {
+    "similarity": "Similaritate textuală",
+    "scoreHelp": "Procentul exprimă similaritatea textelor, nu adecvarea, aprobarea sau prevenirea accidentelor. Verificați condițiile lucrării înainte de aplicarea măsurii.",
+    "sharedData": "Se folosesc date de referință în limba {{locale}}. Verificați aplicabilitatea lor în țara în care se desfășoară lucrarea.",
+    "reviewRequired": "Datele au fost modificate. Revedeți măsurile păstrate și sugestiile.",
+    "loadError": "Sugestiile nu au putut fi încărcate. Încercați din nou."
+  },
+  "review": {
+    "confirmCurrent": "Confirm că această măsură este aplicată la locul de muncă",
+    "unconfirmed": "Neconfirmată la locul de muncă",
+    "unknownSource": "Sursă: asociere existentă; verificarea tehnică nu este înregistrată",
+    "linkedHazard": "Pericol asociat",
+    "conditionsUnknown": "Aplicabilitatea și cerințele locale necesită verificare",
+    "sourceLanguage": "Limba sursei",
+    "targetLanguage": "Limba documentului",
+    "allLanguages": "Toate limbile",
+    "sameLanguage": "Doar limba documentului",
+    "unknownLanguage": "Limbă neînregistrată",
+    "languageChanged": "Revedeți textul păstrat pentru limba acestui document",
+    "profileLabel": "Criterii de evaluare",
+    "profileHelp": "Implicit: 5 × 5, evidențiere de la 9. Valorile sunt configurabile și nu reprezintă un standard național. Schimbarea criteriilor șterge evaluările curente și păstrează istoricul. În matricea 5 × 5, scorurile peste 15 blochează continuarea în aplicație.",
+    "frequencyMax": "Valoarea maximă a probabilității",
+    "severityMax": "Valoarea maximă a gravității",
+    "highFrom": "Evidențiați de la",
+    "notAssessed": "Neevaluat",
+    "criteria": "Procedura locului de muncă și definițiile nivelurilor",
+    "riskLimitWarning": "Scorul {{score}} depășește limita configurată de {{limit}}. Îmbunătățiți măsurile și reevaluați înainte de continuare."
+  }
+}

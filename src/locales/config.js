@@ -19,12 +19,13 @@ export const LANGUAGE_OPTIONS = [
   { code: 'ar-SA', label: 'العربية' },
   { code: 'pt-BR', label: 'Português (BR)' },
   { code: 'ru-RU', label: 'Русский' },
+  { code: 'ro-RO', label: 'Română (România)' },
   { code: 'ko', label: '한국어' },
 ];
 // Keep generic Canada URLs and existing content available without choosing a province for users.
 export const SUPPORTED_LANGS = [...LANGUAGE_OPTIONS.map(({ code }) => code), 'en-CA'];
 export const isCanadianProvince = code => CANADIAN_PROVINCES.some(province => province.code === code);
-export const normalizeLocale = code => ['en-CA-QC', 'fr-CA'].includes(code) ? 'fr-CA-QC' : code;
+export const normalizeLocale = code => ['en-CA-QC', 'fr-CA'].includes(code) ? 'fr-CA-QC' : /^ro(?:-ro)?$/i.test(code || '') ? 'ro-RO' : code;
 export const getLanguageTag = code => normalizeLocale(code) === 'fr-CA-QC' ? 'fr-CA' : (isCanadianProvince(code) ? 'en-CA' : code);
 // Provincial hazard/measure datasets have not been supplied yet.
 // Reuse existing French hazard/measure translations until a Quebec dataset is provided.
@@ -33,7 +34,7 @@ export const getDataLocale = code => code === 'en-SG' ? 'en-US' : normalizeLocal
 export const getTranslationFallbacks = code => normalizeLocale(code) === 'fr-CA-QC'
   ? ['fr-FR'] : (isCanadianProvince(code) ? ['en-CA', 'en-US'] : ['en-US']);
 export const getSeoLocale = code => code === 'fr-CA' ? 'fr-CA-QC' : code;
-export const SEO_LANGUAGES = ['en-US', 'en-CA', 'fr-CA', 'en-AU', 'en-GB', 'en-SG', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ko'];
+export const SEO_LANGUAGES = ['en-US', 'en-CA', 'fr-CA', 'en-AU', 'en-GB', 'en-SG', 'de-DE', 'ja-JP', 'fr-FR', 'it-IT', 'es-ES', 'ar-SA', 'pt-BR', 'ru-RU', 'ro-RO', 'ko'];
 export const hasLanguagePrefix = path => SUPPORTED_LANGS.includes(normalizeLocale(path.split(/[/?#]/)[1]));
 export function detectLanguage(browserLanguage = '') {
   if (browserLanguage.toLowerCase() === 'fr-ca') return 'fr-CA-QC';

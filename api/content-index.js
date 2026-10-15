@@ -1,3 +1,4 @@
+import { romanianUi } from '../src/locales/romanianUi.js';
 import { readFile } from 'node:fs/promises';
 import { parse, parseFragment, serialize } from 'parse5';
 import { SUPPORTED_LANGS, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
@@ -9,13 +10,14 @@ function find(node, predicate) {
   for (const child of node.childNodes || []) { const match = find(child, predicate); if (match) return match; }
 }
 export function renderIndexHtml(template, rows, locale, kind) {
+  const ro = locale === 'ro-RO' ? romanianUi.editorial : null;
   const tree = parse(template);
   const slot = find(tree, node => node.attrs?.some(attr => attr.name === 'data-live-case-list'));
   const body = find(tree, node => node.tagName === 'body');
   if (!slot || !body) throw new Error('LIVE_CASE_SLOT_MISSING');
   const selected = selectLocalizedCases(rows, locale);
-  const cards = (kind === 'home' ? selected.slice(0, 6) : selected).map(row => `<article style="padding:24px;border:1px solid #e2e8f0;border-radius:16px;margin:12px 0"><h2><a href="${e(casePath(normalizeLocale(row.language_code), row.post_group_id))}">${e(row.title)}</a></h2><p>${e(cleanSummary(row.meta_description))}</p><time datetime="${e(row.created_at)}">${e(String(row.created_at || '').slice(0, 10))}</time></article>`).join('');
-  slot.childNodes = parseFragment(cards + `<nav><a href="/${e(locale)}/archive">Case Studies</a> · <a href="/${e(locale)}/explore">Explore</a> · <a href="/${e(locale)}/feed.xml">RSS</a></nav>`).childNodes;
+  const cards = (kind === 'home' ? selected.slice(0, 6) : selected).map(row => `<article style="padding:24px;border:1px solid #e2e8f0;border-radius:16px;margin:12px 0"><h2><a href="${e(casePath(normalizeLocale(row.language_code), row.post_group_id))}">${e(row.title)}</a></h2><p>${e(cleanSummary(row.meta_description))}</p><time datetime="${e(row.created_at)}">${e(locale === 'ro-RO' && Number.isFinite(Date.parse(row.created_at)) ? new Intl.DateTimeFormat('ro-RO', { timeZone: 'UTC' }).format(new Date(row.created_at)) : String(row.created_at || '').slice(0, 10))}</time></article>`).join('');
+  slot.childNodes = parseFragment(cards + `<nav><a href="/${e(locale)}/archive">${e(ro?.cases || 'Case Studies')}</a> · <a href="/${e(locale)}/explore">${e(ro?.explore || 'Explore')}</a> · <a href="/${e(locale)}/feed.xml">RSS</a></nav>`).childNodes;
   for (const child of slot.childNodes) child.parentNode = slot;
   const script = parseFragment(`<script>window.__CASE_LIST__=${jsonScript({ locale, rows: selected })};</script>`).childNodes[0];
   script.parentNode = body; body.childNodes.push(script);

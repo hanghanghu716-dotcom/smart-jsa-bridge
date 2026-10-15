@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 const copy = {
   ko: ['내 작업 공간', '작업별 서류 묶음', '플랜·팀 관리', '서류와 도면을 묶어 준비하고 한 번에 출력하세요.', 'Community 무료 · Professional 무료 베타', '묶음 관리', '플랜 및 팀 확인', '저장 기준 안내', '무료 베타 사용 중'],
   en: ['My workspace', 'Work packages', 'Plans & teams', 'Prepare documents and drawings together, then print in one go.', 'Community free · Professional free beta', 'Manage packages', 'View plans & teams', 'Storage details', 'Free beta active'],
@@ -12,6 +13,7 @@ const copy = {
 };
 const keys = ['workspace', 'packages', 'plans', 'packagesDescription', 'plansDescription', 'openPackages', 'openPlans', 'storageDetails', 'beta'];
 export function getWorkspaceNavUi(locale = 'en-US') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.workspaceNavUi;
   const values = copy[locale.split('-')[0]] || copy.en;
   return Object.fromEntries(keys.map((key, index) => [key, values[index]]));
 }

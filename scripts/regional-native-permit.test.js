@@ -6,7 +6,7 @@ import { TASK_LOCAL_TERMS, TASK_TYPES } from '../src/utils/regionalTaskReview.js
 import { createRegionalTemplate, regionalTemplates } from '../src/utils/regionalWorkTemplates.js';
 import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT } from '../src/locales/taskSafetyText.js';
 import { regionalFieldTranslations } from '../src/locales/regionalWorkText.js';
-import { WORK_DOCUMENT_LANGUAGES } from '../src/utils/workJurisdiction.js';
+import { REGIONAL_FORM_LANGUAGES as WORK_DOCUMENT_LANGUAGES } from '../src/utils/workJurisdiction.js';
 import { startWork } from '../src/utils/workPackages.js';
 
 test('native terminology fingerprints detect changes to either original roles or translated framing', () => {

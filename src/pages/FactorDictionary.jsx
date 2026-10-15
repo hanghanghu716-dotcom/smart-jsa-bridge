@@ -45,6 +45,7 @@ export default function FactorDictionary() {
     if (lang.includes('de')) return 'de-DE';
     if (lang.includes('es')) return 'es-ES';
     if (lang.includes('ru')) return 'ru-RU';
+    if (lang === 'ro-RO') return 'ro-RO';
     if (lang.includes('ja')) return 'ja-JP';
     if (lang.includes('pt')) return 'pt-BR';
     if (lang.includes('ar')) return 'ar-SA';
@@ -262,7 +263,7 @@ export default function FactorDictionary() {
 
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
-          <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
+          <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. {i18n.language === 'ro-RO' ? 'Design:' : 'Designed by'} <strong>yizuno</strong></p>
         </div>
       </footer>
     </div>

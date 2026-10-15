@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 const copy = {
   ko: ['페이지 선택', '첫 페이지', '이전 페이지 묶음', '다음 페이지 묶음', '마지막 페이지', '{page}페이지'],
   en: ['Pagination', 'First page', 'Previous page group', 'Next page group', 'Last page', 'Page {page}'],
@@ -11,6 +12,7 @@ const copy = {
   ar: ['اختيار الصفحة', 'الصفحة الأولى', 'مجموعة الصفحات السابقة', 'مجموعة الصفحات التالية', 'الصفحة الأخيرة', 'الصفحة {page}'],
 };
 export function getPaginationUi(locale = 'en') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.paginationUi;
   const values = copy[locale.split('-')[0]] || copy.en;
   return Object.fromEntries(['label', 'first', 'previous', 'next', 'last', 'page'].map((key, i) => [key, values[i]]));
 }

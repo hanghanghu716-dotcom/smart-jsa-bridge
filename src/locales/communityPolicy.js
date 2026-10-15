@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import { getAnalyticsText } from './analyticsText.js';
 const rows={
  en:['General inquiry','Suggestion','Support & rights','Requests are private. The operator can review them; replies appear here. Do not include passwords, identity documents or confidential site details.','Community reuse v1: ownership stays with the author. Permission covers copying, adapting and republishing for work, with a link to the source and a note of changes. It does not grant rights to third-party material or certify safety. Removing a public page does not recall copies already obtained. Mandatory legal rights remain unaffected.','Shared material is a reference, not an approved work permit. A competent person must check site conditions, local rules and controls before work.','Advertising and external visitor analytics are currently disabled. Public views count signed-in visits; reuse counts recorded actions, not unique people or proof of use on site.','Operator identity and a non-member contact channel are awaiting verification. This beta request form currently requires sign-in.'],
@@ -12,6 +13,7 @@ const rows={
  ar:['استفسار عام','اقتراح','الدعم والحقوق','الطلبات خاصة ويراجعها المشغّل. تظهر الردود هنا. لا تدخل كلمات مرور أو وثائق هوية أو أسرار الموقع.','إعادة الاستخدام v1: تبقى الحقوق للمؤلف. يسمح بالنسخ والتعديل وإعادة النشر للعمل مع رابط المصدر وبيان التغييرات. لا يمنح حقوق الغير أو شهادة سلامة. حذف الصفحة لا يسترجع النسخ السابقة. لا تتأثر الحقوق القانونية الإلزامية.','المحتوى مرجع وليس تصريح عمل معتمداً. يجب على مختص مراجعة ظروف الموقع والقواعد المحلية والتدابير قبل العمل.','الإعلانات والتحليلات الخارجية معطلة. المشاهدات تحصي الزيارات المسجلة والاستخدام يحصي الإجراءات، لا الأشخاص الفريدين أو العمل الفعلي بالموقع.','هوية المشغّل وقناة غير الأعضاء قيد التحقق. تتطلب طلبات النسخة التجريبية تسجيل الدخول.'],
 };
 export function getCommunityPolicy(locale='en-US') {
+  if (locale?.split('-')[0] === 'ro') return romanianUi.communityPolicy;
  const row=rows[locale.split('-')[0]]||rows.en;
  const policy=Object.fromEntries(['general','suggestion','support','privateHelp','reuseTerms','safetyHelp','measurement','pendingContact'].map((k,i)=>[k,row[i]]));
  // Replace the historical disabled-analytics sentence, retaining the explanation of public counters.

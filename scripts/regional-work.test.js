@@ -5,7 +5,7 @@ import { createRegionalTemplate, regionalTemplates, regionalContextMismatch, jsa
 import { cleanPackage, duplicatePackage, startWork, importJsa, outputReady } from '../src/utils/workPackages.js';
 import { publicProjectSnapshot } from '../src/utils/projectPersistence.js';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
-import { WORK_JURISDICTIONS, WORK_DOCUMENT_LANGUAGES, workContextUi, documentDirection } from '../src/utils/workJurisdiction.js';
+import { REGIONAL_FORM_JURISDICTIONS, WORK_JURISDICTIONS, WORK_DOCUMENT_LANGUAGES, workContextUi, documentDirection } from '../src/utils/workJurisdiction.js';
 import { getWorkPackageUi } from '../src/locales/workPackageUi.js';
 import { regionalFieldTranslations, regionalUiTranslations } from '../src/locales/regionalWorkText.js';
 import { REGIONAL_CATALOG } from '../src/utils/regionalCatalog.js';
@@ -87,7 +87,7 @@ test('regional documents have distinct structures and Korean or English labels i
 test('every supported route has its own selectable jurisdiction and preserves its document locale', () => {
   assert.deepEqual([...WORK_DOCUMENT_LANGUAGES].sort(), [...SUPPORTED_LANGS].sort());
   assert.deepEqual(WORK_JURISDICTIONS.map(j => j.locale).sort(), [...SUPPORTED_LANGS].sort());
-  for (const j of WORK_JURISDICTIONS) {
+  for (const j of REGIONAL_FORM_JURISDICTIONS) {
     const c = workContext({ jurisdiction: j.id, documentLocale: j.locale, highRiskConstruction: 'yes' });
     const definitions = regionalTemplates(c);
     assert.ok(definitions.length >= 4, j.locale);
@@ -133,7 +133,7 @@ test('Arabic document direction follows the document, not the interface or work 
 });
 
 test('reviewed assessments retain evidence but never reuse dated reviews, consultation or approvals', () => {
-  for (const j of WORK_JURISDICTIONS) {
+  for (const j of REGIONAL_FORM_JURISDICTIONS) {
     const doc = createRegionalTemplate('risk_assessment', { jurisdiction: j.id, documentLocale: j.locale }, source);
     const fields = Object.fromEntries(doc.blocks.filter(b => b.field).map(b => [b.field.key, b.field]));
     for (const key of ['assessmentDate','reviewPlan','consultationRecord','controlReview']) {
@@ -154,7 +154,7 @@ test('country review fields do not confuse enterprise documents or apply SG inte
   const form = jurisdiction => createRegionalTemplate('risk_assessment', { jurisdiction, documentLocale: 'en-US' });
   const fields = jurisdiction => Object.fromEntries(form(jurisdiction).blocks.filter(b => b.field).map(b => [b.field.key, b.field.label]));
   assert.match(fields('SG').reviewPlan, /3 years/);
-  for (const j of WORK_JURISDICTIONS.filter(j => j.id !== 'SG')) assert.doesNotMatch(fields(j.id).reviewPlan, /3 years/);
+  for (const j of REGIONAL_FORM_JURISDICTIONS.filter(j => j.id !== 'SG')) assert.doesNotMatch(fields(j.id).reviewPlan, /3 years/);
   assert.match(fields('IT').organisationRecord, /DVR$/);
   assert.match(fields('IT').interferenceRecord, /DUVRI/);
   assert.ok(fields('CA-QC').preventionProgramme);
@@ -164,7 +164,7 @@ test('country review fields do not confuse enterprise documents or apply SG inte
 });
 
 test('permit roles and lifecycle stay separate and unsigned in every profile', () => {
-  for (const j of WORK_JURISDICTIONS) {
+  for (const j of REGIONAL_FORM_JURISDICTIONS) {
     const doc = createRegionalTemplate('permit_to_work', { jurisdiction: j.id, documentLocale: j.locale });
     const fields = Object.fromEntries(doc.blocks.filter(b => b.field).map(b => [b.field.key, b.field]));
     for (const key of ['applicant','siteVerifier','issue','acceptance','handover']) {
@@ -177,7 +177,7 @@ test('permit roles and lifecycle stay separate and unsigned in every profile', (
 });
 
 test('new review fields have native labels, and source-score reference semantics stay unchanged', () => {
-  for (const j of WORK_JURISDICTIONS.filter(j => !j.locale.startsWith('en'))) {
+  for (const j of REGIONAL_FORM_JURISDICTIONS.filter(j => !j.locale.startsWith('en'))) {
     const doc = createRegionalTemplate('risk_assessment', { jurisdiction: j.id, documentLocale: j.locale }, source);
     const english = createRegionalTemplate('risk_assessment', { jurisdiction: j.id, documentLocale: 'en-US' }, source);
     for (const key of ['assessmentDate','reviewPlan','consultationRecord','controlReview']) {

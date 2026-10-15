@@ -1,0 +1,67 @@
+{
+  "alert": {
+    "confirmMain": "Reveniți la pagina principală? Datele nesalvate se pot pierde.",
+    "projectNameRequired": "Denumirea lucrării este obligatorie. Introduceți numele activității."
+  },
+  "step": {
+    "basicInfo": "Date generale",
+    "procedure": "Etapele lucrării",
+    "riskAnalysis": "Analiza riscurilor",
+    "moduleConfig": "Configurarea modulelor",
+    "tableConfig": "Configurarea tabelului",
+    "finalOutput": "Document final"
+  },
+  "form": {
+    "title": "01. Datele lucrării și cerințele de securitate",
+    "projectName": "Denumirea lucrării",
+    "required": "(Obligatoriu)",
+    "department": "Departament",
+    "workLocation": "Locul lucrării",
+    "workDate": "Data planificată",
+    "managerName": "Responsabil de lucrare",
+    "weather": "Condiții meteo",
+    "hasNewWorker": "Participă lucrători noi sau fără experiență",
+    "participants": "Participanți la evaluare",
+    "ppe": "Echipamente individuale de protecție (EIP)",
+    "permits": "Lucrări supuse permisului conform procedurilor aplicabile",
+    "equipment": "Echipamente necesare",
+    "additionalItems": "Cerințe suplimentare"
+  },
+  "warning": {
+    "title": "Notă:",
+    "text": "Documentele partajate pot fi vizibile altor utilizatori conform politicii serviciului. Conținutul inexact, fals sau necorespunzător poate fi eliminat, iar contul poate fi avertizat sau restricționat. Verificați datele înainte de publicare."
+  },
+  "weather": {
+    "sunny": "Senin",
+    "cloudy": "Înnorat",
+    "rain": "Ploaie",
+    "snow": "Ninsoare",
+    "wind": "Vânt puternic",
+    "heatwave": "Caniculă / temperatură ridicată",
+    "coldwave": "Ger / temperatură scăzută"
+  },
+  "ppe": {
+    "안전모": "Cască de protecție",
+    "안전화": "Încălțăminte de protecție",
+    "보안경": "Ochelari de protecție",
+    "장갑": "Mănuși de protecție",
+    "귀마개": "Antifoane interne",
+    "방진복": "Îmbrăcăminte de protecție împotriva prafului",
+    "방진마스크": "Protecție respiratorie împotriva particulelor"
+  },
+  "permit": {
+    "일반": "General",
+    "화기": "Lucrări cu foc deschis",
+    "밀폐": "Spațiu închis",
+    "정전": "Scoatere de sub tensiune",
+    "굴착": "Săpături",
+    "방사선": "Radiații",
+    "고소": "Lucru la înălțime",
+    "중량물": "Ridicarea sarcinilor",
+    "가연성가스": "Gaze inflamabile"
+  },
+  "btn": {
+    "home": "Pagina principală",
+    "next": "Continuați cu etapele lucrării"
+  }
+}

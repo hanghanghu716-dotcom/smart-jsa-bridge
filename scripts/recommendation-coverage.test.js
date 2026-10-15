@@ -7,13 +7,15 @@ import { validateKnowledgeBank, knowledgeContentHash } from './recommendation-kn
 import { compileRecommendationRelease, mappingContentHash } from './recommendation-release.js';
 import { selectReviewedRecommendations } from '../src/utils/reviewedRecommendationPolicy.js';
 
+// Existing authored banks predate the Romanian UI release; missing content stays visible.
+const authoredLocales = SUPPORTED_LANGS.filter(locale => locale !== 'ro-RO');
 const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/pressure-welding-drafts.json', import.meta.url)));
 
 test('pressure and welding have exact-locale drafts, explicit limitations and no releasable scores', () => {
-  assert.equal(bank.units.length, SUPPORTED_LANGS.length * 2);
+  assert.equal(bank.units.length, authoredLocales.length * 2);
   assert.deepEqual(validateKnowledgeBank(bank), []);
   assert.equal(validateKnowledgeBank(bank, { forPublication: true }).length, bank.units.length);
-  for (const locale of SUPPORTED_LANGS) {
+  for (const locale of authoredLocales) {
     const units = bank.units.filter(unit => unit.locale === locale);
     assert.deepEqual(units.map(unit => unit.applicability.taskType).sort(), ['pressure-equipment-opening', 'welding-exposure']);
     for (const unit of units) {
@@ -90,9 +92,9 @@ test('a synthetic 99% score cannot bypass any new task exclusion or required con
 
 test('coverage counts exact task and jurisdiction, preserving missing cells and review gaps', () => {
   const report = buildKnowledgeCoverage([bank]);
-  assert.equal(report.totals.locales, 18);
-  assert.equal(report.totals.priorityCells, 54);
-  assert.equal(report.totals.missingCells, 18);
+  assert.equal(report.totals.locales, SUPPORTED_LANGS.length);
+  assert.equal(report.totals.priorityCells, SUPPORTED_LANGS.length * 3);
+  assert.equal(report.totals.missingCells, SUPPORTED_LANGS.length * 3 - bank.units.length);
   assert.equal(report.totals.cellsWithPublicationEligibleContent, 0);
   const sg = report.coverage.find(row => row.locale === 'en-SG').tasks.find(task => task.taskType === 'welding-exposure');
   assert.equal(sg.primarySourceReferences.foreignReference, 1);

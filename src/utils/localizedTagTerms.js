@@ -1,6 +1,7 @@
 // Search metadata only: these terms do not assess a risk or prescribe controls.
 const categories = ['사고(추락)', '사고(감전)', '사고(질식)', '준비(에너지차단)', '용접흄', '왕복동/끼임위험'];
 const vocabulary = {
+  ro: ['cădere de la înălțime', 'electrocutare|șoc electric', 'asfixiere|deficit de oxigen', 'izolarea energiei|blocarea energiei', 'fum de sudură|fumuri de sudură', 'prindere|strivire'],
   ko: ['추락|떨어짐', '감전', '질식|산소결핍', '에너지 차단|잠금장치', '용접 흄|용접흄', '끼임|협착'],
   en: ['fall from height|falling from height', 'electric shock|electrocution', 'asphyxiation|oxygen deficiency', 'lockout|tagout|energy isolation', 'welding fumes|welding fume', 'entanglement|pinch point|crushing'],
   fr: ['chute de hauteur', 'électrocution|choc électrique', 'asphyxie|manque d’oxygène', 'consignation|cadenassage', 'fumées de soudage', 'coincement|écrasement'],

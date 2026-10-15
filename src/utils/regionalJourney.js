@@ -11,6 +11,7 @@ export function journeyContext(locale, activity = '') {
 }
 // Reuse the existing regional catalogue; do not present RAMS/SWMS as a generic JSA.
 export function journeyDocumentTitle(context) {
+  if (context.jurisdiction === 'RO') return context.documentLocale?.startsWith('ro') ? 'Analiza securității muncii pe etape (JSA)' : 'Job Safety Analysis (JSA) · România';
   const profile = REGIONAL_CATALOG[context.jurisdiction];
   const localTitle = profile?.titles.risk_assessment
     || ({ KR: '위험성평가', GB: 'Risk Assessment', AU: 'Risk Assessment', SG: 'Risk Assessment (RA)' })[context.jurisdiction]

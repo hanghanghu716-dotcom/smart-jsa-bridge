@@ -1,3 +1,4 @@
+import { romanianUi } from './romanianUi.js';
 import {phase6Language} from './phase6Ui.js';
 const values={
   "en": {
@@ -121,4 +122,4 @@ const values={
     "storageError": "تعذر الحفظ الآن. تم الاحتفاظ بالمسودة. حدّث حالة التخزين وأعد المحاولة؛ يمكن تحرير المستندات الحالية وتصديرها."
   }
 };
-export const getPlansUi=locale=>values[phase6Language(locale)]||values.en;
+export const getPlansUi=locale=>locale?.split('-')[0] === 'ro' ? romanianUi.plansUi : values[phase6Language(locale)]||values.en;

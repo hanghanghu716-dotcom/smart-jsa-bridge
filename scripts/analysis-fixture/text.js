@@ -1,4 +1,5 @@
 export const fixtureText = {
+  ro: ['Conductă sub presiune', 'Izolați conducta', 'Verificați absența presiunii'],
   en: ['Pressurized line', 'Isolate the line', 'Verify absence of pressure'],
   ko: ['가압 배관', '배관을 격리합니다', '압력이 없는지 확인합니다'],
   de: ['Druckbeaufschlagte Leitung', 'Leitung absperren', 'Druckfreiheit prüfen'],

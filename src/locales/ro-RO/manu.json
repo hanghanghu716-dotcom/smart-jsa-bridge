@@ -1,0 +1,89 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTĂ] Exemplu generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Evaluarea trebuie realizată pentru condițiile efective ale lucrării.",
+    "text2": "Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul la legislația aplicabilă în România, echipamente, condiții reale și procedurile aprobate ale amplasamentului."
+  },
+  "ui": {
+    "category": "EXEMPLE JSA PENTRU PRODUCȚIE",
+    "mainTitle1": "JSA pentru producție",
+    "mainTitle2": "Ghid de exemple (10 tipuri)",
+    "description1": "Analizați riscurile de antrenare în utilaje,",
+    "description2": "arsuri și expunere chimică pentru fiecare intervenție.",
+    "labelRed": "⚠ Pericole principale",
+    "labelBlue": "🛡 Măsuri de prevenire și protecție",
+    "previewLabel": "Previzualizarea exemplului",
+    "downloadBtn": "Descărcați exemplul PDF"
+  },
+  "list": [
+    {
+      "id": "MANUF-01",
+      "title": "Completarea băilor de galvanizare și decaparea suprafețelor metalice",
+      "hazard": "Inhalarea vaporilor acizi, arsuri prin stropire",
+      "measure": "Verificați captarea locală, compatibilitatea produselor și EIP pentru substanțele folosite",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-02",
+      "title": "Deblocarea duzei de injecție și îndepărtarea depunerilor",
+      "hazard": "Arsuri prin ejectarea rășinii fierbinți, strivire la deplasarea ansamblului",
+      "measure": "Izolați energiile și controlați presiunea și temperatura; urmați metoda producătorului și folosiți protecție termică",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-03",
+      "title": "Debitarea și prelucrarea lemnului cu ferăstrăul circular",
+      "hazard": "Antrenare în disc, reculul piesei",
+      "measure": "Păstrați apărătorile și dispozitivele de alimentare; evitați îmbrăcămintea largă și elementele care pot fi antrenate",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-04",
+      "title": "Mentenanța transmisiei transportorului cu bandă",
+      "hazard": "Prindere între role, pornire neașteptată",
+      "measure": "Izolați toate sursele și verificați starea fără energie; efectuați intervenția cu utilajul oprit și asigurat",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-05",
+      "title": "Încărcarea cuptorului și turnarea metalului topit",
+      "hazard": "Proiecții prin contact cu umezeala, arsuri de la radiație termică",
+      "measure": "Verificați uscarea materialelor și sculelor, delimitați zona și folosiți EIP potrivite metalului topit",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-06",
+      "title": "Mentenanța robotului de sudare și înlocuirea electrozilor",
+      "hazard": "Lovire prin mișcarea robotului, arsuri de la electrod",
+      "measure": "Controlați accesul în celulă, izolați energiile și verificați răcirea; utilizați sculele prevăzute",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-07",
+      "title": "Schimbarea și reglarea matriței la presă",
+      "hazard": "Strivire la coborârea matriței, lovire în timpul ridicării",
+      "measure": "Izolați energiile, instalați blocările mecanice adecvate și aplicați planul de manipulare al matriței",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-08",
+      "title": "Operarea liniei SMT și mentenanța cuptorului de retopire",
+      "hazard": "Arsuri de la elemente fierbinți, expunere la substanțe din lipire și flux",
+      "measure": "Izolați și răciți echipamentul; controlați emisiile prin captare și alegeți EIP după evaluarea expunerii",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-09",
+      "title": "Curățarea și dezinfecția interioară a malaxoarelor alimentare",
+      "hazard": "Atmosferă periculoasă, strivire prin rotirea neașteptată a paletelor",
+      "measure": "Izolați energiile și imobilizați mecanismele; evaluați accesul în spațiu închis, atmosfera și salvarea",
+      "pages": 1
+    },
+    {
+      "id": "MANUF-10",
+      "title": "Inspecția rolelor unei prese offset și curățarea cu solvent",
+      "hazard": "Prinderea degetelor între role, incendiu din vapori",
+      "measure": "Curățați în stare oprită și izolată conform instrucțiunilor; controlați vaporii și sursele de aprindere",
+      "pages": 1
+    }
+  ]
+}

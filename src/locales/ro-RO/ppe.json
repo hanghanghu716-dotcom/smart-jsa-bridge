@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "regulation": "Evaluarea riscurilor în România",
+    "jrajsa": "Procesul practic JRA/JSA",
+    "ppe": "Echipamente individuale de protecție",
+    "riskClass": "Lucrări obișnuite și cu risc ridicat"
+  },
+  "hero": {
+    "tag": "ECHIPAMENTE INDIVIDUALE DE PROTECȚIE",
+    "title1": "Alegerea EIP",
+    "title2": "pentru riscurile reale ale lucrării",
+    "subTitle1": "Alegeți EIP potrivit evaluării, compatibilității și instrucțiunilor producătorului.",
+    "subTitle2": "Verificați cerințele aplicabile utilizării și punerii pe piață;",
+    "subTitle3": "marcajul singur nu dovedește adecvarea la orice lucrare."
+  },
+  "section1": {
+    "title": "1. Categorii și exemple de EIP",
+    "types": {
+      "item1": {
+        "num": "01",
+        "title": "Protecția capului",
+        "desc": "Reduce efectele anumitor lovituri; protecția electrică există numai dacă este prevăzută pentru modelul ales.",
+        "tags": [
+          "Căști de protecție",
+          "Caracteristici potrivite riscului"
+        ]
+      },
+      "item2": {
+        "num": "02",
+        "title": "Protecția ochilor și a feței",
+        "desc": "Protejează împotriva particulelor, stropilor sau radiațiilor optice în limitele produsului.",
+        "tags": [
+          "Ochelari de protecție",
+          "Ochelari etanși",
+          "Viziere"
+        ]
+      },
+      "item3": {
+        "num": "03",
+        "title": "Protecția auzului",
+        "desc": "Reduce expunerea la zgomot dacă este aleasă, ajustată și purtată corect.",
+        "tags": [
+          "Antifoane interne",
+          "Antifoane externe",
+          "Atenuare adecvată expunerii"
+        ]
+      },
+      "item4": {
+        "num": "04",
+        "title": "Protecția respiratorie",
+        "desc": "Se alege pentru contaminanții și concentrațiile evaluate. Filtrele nu furnizează oxigen și nu se folosesc ca soluție pentru atmosfere cu deficit de oxigen.",
+        "tags": [
+          "Filtre pentru particule",
+          "Filtre specifice gazelor",
+          "Aparate cu alimentare cu aer"
+        ]
+      },
+      "item5": {
+        "num": "05",
+        "title": "Protecția mâinilor",
+        "desc": "Alegeți mănuși pentru riscul efectiv: tăiere, căldură, substanțe chimice sau electricitate. Mănușile pot crea pericol de antrenare lângă piese rotative.",
+        "tags": [
+          "Rezistență la tăiere",
+          "Protecție electrică adecvată",
+          "Compatibilitate chimică"
+        ]
+      },
+      "item6": {
+        "num": "06",
+        "title": "Protecția picioarelor",
+        "desc": "Reduce riscurile de impact, perforare sau alunecare potrivit caracteristicilor produsului.",
+        "tags": [
+          "Încălțăminte de protecție",
+          "Proprietăți electrostatice adecvate"
+        ]
+      },
+      "item7": {
+        "num": "07",
+        "title": "Protecția împotriva căderilor",
+        "desc": "Sistemul se proiectează în ansamblu: ancoraj, conectare, spațiu liber și salvare. Prioritizați protecția colectivă.",
+        "tags": [
+          "Ham anticădere",
+          "Mijloace de legătură",
+          "Linii de ancorare"
+        ]
+      },
+      "item8": {
+        "num": "08",
+        "title": "Îmbrăcăminte de protecție",
+        "desc": "Protecția depinde de material, tipul expunerii, compatibilitate și limitele declarate de producător.",
+        "tags": [
+          "Protecție chimică",
+          "Protecție termică",
+          "Protecție la arc electric"
+        ]
+      }
+    }
+  },
+  "section3": {
+    "title": "3. Întrebări despre alegerea și verificarea EIP",
+    "faq": {
+      "item1": {
+        "q": "Ce diferență există între cerințele de utilizare și cele pentru produs?",
+        "a": "HG nr. 1048/2006 privește utilizarea EIP la locul de muncă. Regulamentul (UE) 2016/425 privește EIP introduse pe piață. Verificați ambele domenii, în forma aplicabilă."
+      },
+      "item2": {
+        "q": "Este suficient marcajul CE pentru alegerea EIP?",
+        "a": "Nu. Verificați declarația UE de conformitate, instrucțiunile și protecția declarată, apoi compatibilitatea cu riscurile și celelalte echipamente folosite."
+      },
+      "item3": {
+        "q": "Când se înlocuiește un EIP?",
+        "a": "Urmați instrucțiunile producătorului și rezultatele verificărilor. Deteriorarea, contaminarea ori un eveniment pot impune scoaterea din uz înainte de limita de utilizare."
+      },
+      "item4": {
+        "q": "Ce documente și marcaje se verifică?",
+        "a": "Identificarea produsului, marcajele aplicabile, instrucțiunile și declarația de conformitate. Nu se afirmă conformitatea cu standarde tehnice fără verificarea produsului și a documentației."
+      }
+    }
+  },
+  "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Design: <strong>yizuno</strong>"
+}

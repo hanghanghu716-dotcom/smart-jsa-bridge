@@ -1,0 +1,51 @@
+{
+  "pageTag": "POLITICA DE CONFIDENȚIALITATE",
+  "heading": {
+    "line1": "Politica de confidențialitate",
+    "line2": "Informații pentru utilizatori"
+  },
+  "section1": {
+    "title": "1. Scopul colectării și utilizării",
+    "content": "Smart JSA Bridge colectează date personale necesare pentru <strong>furnizarea și îmbunătățirea serviciului și asistența utilizatorilor</strong>."
+  },
+  "section2": {
+    "title": "2. Date personale colectate",
+    "item1": {
+      "bold": "Date obligatorii:",
+      "desc": "Adresa de e-mail, înregistrări de utilizare, jurnale de acces, cookie-uri și adresa IP"
+    },
+    "item2": {
+      "bold": "Date opționale:",
+      "desc": "Limba preferată și informații despre regiune"
+    },
+    "item3": {
+      "bold": "Modul de colectare:",
+      "desc": "Date furnizate sau generate automat în timpul utilizării site-ului"
+    }
+  },
+  "section3": {
+    "title": "3. Perioada de păstrare și utilizare",
+    "subtitle": "Perioadele de păstrare, persoanele împuternicite și transferurile internaționale sunt în curs de verificare pentru versiunea beta. Ștergerea automată la expirare nu este disponibilă. Solicitați accesul, corectarea sau ștergerea prin Asistență.",
+    "step1": {
+      "bold": "Înregistrări de vizitare:",
+      "desc": "Perioadele de păstrare, persoanele împuternicite și transferurile internaționale sunt în curs de verificare pentru versiunea beta. Ștergerea automată la expirare nu este disponibilă. Solicitați accesul, corectarea sau ștergerea prin Asistență."
+    },
+    "step2": {
+      "bold": "Solicitări de asistență:",
+      "desc": "Perioadele de păstrare, persoanele împuternicite și transferurile internaționale sunt în curs de verificare pentru versiunea beta. Ștergerea automată la expirare nu este disponibilă. Solicitați accesul, corectarea sau ștergerea prin Asistență."
+    },
+    "step3": {
+      "bold": "Cerințe aplicabile:",
+      "desc": "Perioadele de păstrare, persoanele împuternicite și transferurile internaționale sunt în curs de verificare pentru versiunea beta. Ștergerea automată la expirare nu este disponibilă. Solicitați accesul, corectarea sau ștergerea prin Asistență."
+    },
+    "step4": {
+      "bold": "Procedura de ștergere:",
+      "desc": "Perioadele de păstrare, persoanele împuternicite și transferurile internaționale sunt în curs de verificare pentru versiunea beta. Ștergerea automată la expirare nu este disponibilă. Solicitați accesul, corectarea sau ștergerea prin Asistență."
+    }
+  },
+  "section4": {
+    "title": "4. Terți și prelucrarea datelor",
+    "content": "Google Analytics folosește cookie-uri pentru colectarea automată a statisticilor de vizitare a paginilor publice. Publicitatea este dezactivată. Se colectează și titlurile paginilor publice și domeniile site-urilor de proveniență. Vizualizările publice numără vizitele autentificate; reutilizarea numără acțiuni înregistrate, nu persoane unice sau dovezi de utilizare pe teren. Identitatea operatorului și un canal de contact fără cont așteaptă verificarea. Formularul de solicitări din versiunea beta necesită în prezent autentificare."
+  },
+  "imageCaption": "Smart JSA Bridge — informații privind gestionarea datelor."
+}

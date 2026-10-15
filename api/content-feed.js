@@ -1,4 +1,5 @@
-import { SUPPORTED_LANGS, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
+import { romanianUi } from '../src/locales/romanianUi.js';
+import { SUPPORTED_LANGS, getLanguageTag, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
 import { renderCaseBody } from './case-study.js';
 import { feedXml, publicFeedBody } from '../server/feed-content.js';
@@ -30,7 +31,7 @@ export function buildFeed(cases, publicRows, locale) {
       url: `${SITE}/${locale}/public-jsa/${row.id}`, date: validDate(row.content_updated_at || row.published_at || row.created_at) });
   }
   entries.sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0) || a.url.localeCompare(b.url));
-  const start = xmlHeader + `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart JSA Bridge</title><link>${SITE}/${locale}/</link><description>Latest Case Studies and public JSA documents</description><atom:link href="${SITE}/${locale}/feed.xml" rel="self" type="application/rss+xml"/>`;
+  const start = xmlHeader + `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart JSA Bridge</title><link>${SITE}/${locale}/</link><description>${feedXml(locale === 'ro-RO' ? romanianUi.editorial.feedDescription : 'Latest Case Studies and public JSA documents')}</description><language>${feedXml(getLanguageTag(locale))}</language><atom:link href="${SITE}/${locale}/feed.xml" rel="self" type="application/rss+xml"/>`;
   const end = '</channel></rss>';
   const items = []; let bytes = Buffer.byteLength(start + end);
   for (const row of entries) {

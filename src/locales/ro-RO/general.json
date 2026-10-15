@@ -1,0 +1,89 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTĂ] Exemplu generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Evaluarea trebuie realizată pentru condițiile efective ale lucrării.",
+    "text2": "Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul la legislația aplicabilă în România, echipamente, condiții reale și procedurile aprobate ale amplasamentului."
+  },
+  "ui": {
+    "category": "SECURITATE GENERALĂ ȘI ADMINISTRAREA CLĂDIRILOR",
+    "mainTitle1": "JSA pentru activități generale",
+    "mainTitle2": "Ghid de exemple (10 tipuri)",
+    "description1": "Exemple pentru administrarea clădirilor, logistică",
+    "description2": "și activități de îngrijire; verificați condițiile specifice.",
+    "labelRed": "⚠ Pericole principale",
+    "labelBlue": "🛡 Măsuri de prevenire și protecție",
+    "previewLabel": "Previzualizarea documentului JSA",
+    "downloadBtn": "Descărcați exemplul PDF"
+  },
+  "list": [
+    {
+      "id": "GEN-01",
+      "title": "Încărcarea paleților și transportul cu stivuitorul în depozit",
+      "hazard": "Răsturnare în viraj, lovirea pietonilor când vizibilitatea este redusă",
+      "measure": "Separați traseele și stabiliți viteza potrivit amplasamentului; verificați stabilitatea sarcinii și vizibilitatea",
+      "pages": 1
+    },
+    {
+      "id": "GEN-02",
+      "title": "Ajutor la deplasarea pacienților și gestionarea deșeurilor medicale",
+      "hazard": "Căderea pacientului, infectare prin înțepare cu ace",
+      "measure": "Blocați roțile, folosiți ajutoare de transfer și depuneți obiectele ascuțite direct în recipiente adecvate",
+      "pages": 1
+    },
+    {
+      "id": "GEN-03",
+      "title": "Cosirea ierbii și toaletarea arborilor",
+      "hazard": "Proiectarea resturilor, contact cu linii electrice aeriene",
+      "measure": "Verificați unealta, folosiți protecția feței și delimitați zona; distanțele față de linii se stabilesc cu operatorul competent",
+      "pages": 1
+    },
+    {
+      "id": "GEN-04",
+      "title": "Patrulare și dirijarea circulației",
+      "hazard": "Lovire de către vehicule, agresiune în timpul patrulării",
+      "measure": "Asigurați vizibilitatea, comunicarea și procedura de solicitare a ajutorului; evitați confruntările",
+      "pages": 1
+    },
+    {
+      "id": "GEN-05",
+      "title": "Pregătirea reactivilor și utilizarea aparaturii de laborator",
+      "hazard": "Expunere la vapori din captare insuficientă, stropire chimică",
+      "measure": "Verificați hota, consultați fișele cu date de securitate și alegeți EIP adecvate",
+      "pages": 1
+    },
+    {
+      "id": "GEN-06",
+      "title": "Curățarea parcării subterane cu apă sub presiune",
+      "hazard": "Lovire de vehicule, electrocutare în mediu umed",
+      "measure": "Separați circulația, protejați alimentarea electrică și utilizați echipamente adecvate mediului umed",
+      "pages": 1
+    },
+    {
+      "id": "GEN-07",
+      "title": "Operarea tocătorului de deșeuri și deblocarea alimentării",
+      "hazard": "Antrenare la gura de alimentare, pornire neașteptată",
+      "measure": "Opriți, izolați și verificați energiile; folosiți metoda de deblocare prevăzută de producător, fără introducerea mâinilor",
+      "pages": 1
+    },
+    {
+      "id": "GEN-08",
+      "title": "Curățarea geamurilor exterioare cu acces suspendat",
+      "hazard": "Cădere prin cedarea corzilor, lovirea pietonilor cu unelte",
+      "measure": "Verificați sistemele de lucru și de securitate, ancorajele, salvarea și delimitarea zonei inferioare",
+      "pages": 1
+    },
+    {
+      "id": "GEN-09",
+      "title": "Pregătirea alimentelor și gătirea în recipiente mari",
+      "hazard": "Alunecare pe pardoseală umedă, arsuri de la ulei sau abur",
+      "measure": "Păstrați pardoseala curată, folosiți încălțăminte antiderapantă și echipamente de stingere potrivite uleiurilor de gătit",
+      "pages": 1
+    },
+    {
+      "id": "GEN-10",
+      "title": "Montarea rackurilor și a traseelor de cabluri în centre de date",
+      "hazard": "Strivire la deplasarea rackului, cădere în timpul lucrului la înălțime",
+      "measure": "Stabiliți echipa și mijloacele de manipulare după masă și traseu; asigurați un acces stabil",
+      "pages": 1
+    }
+  ]
+}

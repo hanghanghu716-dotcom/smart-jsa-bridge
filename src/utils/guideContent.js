@@ -1,3 +1,4 @@
+import { ROMANIAN_SOURCES, ROMANIAN_GUIDE_NOTE } from '../locales/romanianSources.js';
 import { guideText } from '../locales/guideText.js';
 import { SUPPORTED_LANGS, getDataLocale, getLanguageTag } from '../locales/config.js';
 import { WORK_JURISDICTIONS, jurisdictionLabel } from './workJurisdiction.js';
@@ -5,9 +6,11 @@ import { REGIONAL_SOURCES, regionalTemplates } from './regionalWorkTemplates.js'
 import { taskSafetyText } from '../locales/taskSafetyText.js';
 
 export const GUIDE_VERSION='2026-10-03';
+export const guideVersion = locale => locale === 'ro-RO' ? '2026-10-15' : GUIDE_VERSION;
 export const GUIDE_CATEGORIES={common:'common',construction:'const',manufacturing:'manu',chemical:'chem','high-risk':'highrisk',general:'general'};
 // These short regional notes explain the document system, not legal certification.
 export const GUIDE_REGIONS={
+ RO: ROMANIAN_GUIDE_NOTE,
  KR:'한국에서는 작업별 위험성평가 결과를 작업 전 안전점검회의(TBM)와 연결하고, 해당 작업에 필요한 작업허가서·점검표를 함께 준비합니다. 작업자와 현장의 위험요인을 확인하고 대책의 이행 여부를 기록하세요. 이 가이드의 작업 예시가 사업장의 평가·허가 절차를 대신하지는 않습니다.',
  GB:'For Great Britain, connect the Risk Assessment with the Method Statement to explain both hazards and the safe sequence of work (often called RAMS). Use a PTW when the activity and site procedure require it; it does not replace the assessment. Brief the crew through a Toolbox Talk. Northern Ireland has a separate regulatory context: consult HSENI before applying these references there.',
  AU:'Use a Risk Assessment for the task and check whether it is high risk construction work before selecting a SWMS. A SWMS is not the name for every Australian JSA. Confirm the relevant state or territory requirements and regulator guidance, including Victoria where applicable. Connect the plan with a Pre-start / Toolbox discussion and the permits required for the actual work.',
@@ -55,13 +58,14 @@ export function makeGuide(locale,category,resource){
   checks:maps[category][i].map(group=>groups[group]?groups[group].map(k=>taskSafetyText(locale,k)).join('; ')+'.':ui(group)),
  }));
  const context={jurisdiction:jurisdiction.id,documentLocale:locale,highRiskConstruction:'yes'};
- let sources=REGIONAL_SOURCES[jurisdiction.id].filter(s=>s.url.startsWith('https://'));
+ let sources=(jurisdiction.id === 'RO' ? ROMANIAN_SOURCES : REGIONAL_SOURCES[jurisdiction.id]).filter(s=>s.url.startsWith('https://'));
  // Prefer the current source landing page, and use a construction-specific TBM reference for Korea.
  if(jurisdiction.id==='KR') sources=[{title:'고용노동부 · 새로운 위험성평가 안내서 (2023)',url:'https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230501085'},{title:'고용노동부 · 건설현장 TBM 실천 가이드',url:'https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20230301670'},...sources.filter(s=>!s.url.includes('bbs_seq='))];
  if(jurisdiction.id==='IT') sources=[{title:'INAIL · Valutare il rischio',url:'https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/valutare-il-rischio.html'},...sources.slice(1)];
  const title=ui(category),region=jurisdictionLabel(jurisdiction,locale);
- return {locale,language:getLanguageTag(locale),category,title,region,jurisdiction:jurisdiction.id,version:GUIDE_VERSION,description:`${title} · ${region}. ${ui('intro')}`,
-  url:`https://smartjsabridge.com/${locale}/guideline/${category}`,pdfUrl:`/assets/guides/${locale}/${category}-${GUIDE_VERSION}.pdf`,
+ const version = guideVersion(locale);
+ return {locale,language:getLanguageTag(locale),category,title,region,jurisdiction:jurisdiction.id,version,description:`${title} · ${region}. ${ui('intro')}`,
+  url:`https://smartjsabridge.com/${locale}/guideline/${category}`,pdfUrl:`/assets/guides/${locale}/${category}-${version}.pdf`,
   localNote:GUIDE_REGIONS[jurisdiction.id],documents:regionalTemplates(context).map(t=>t.title),examples,sources,
   workflow:[1,2,3].map(n=>({title:ui(`step${n}`),body:ui(`step${n}Body`)})),
  };

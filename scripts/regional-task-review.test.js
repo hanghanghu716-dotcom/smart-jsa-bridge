@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
+import { REGIONAL_FORM_JURISDICTIONS as WORK_JURISDICTIONS } from '../src/utils/workJurisdiction.js';
 import { createRegionalTemplate } from '../src/utils/regionalWorkTemplates.js';
 import { TASK_TYPES, taskReview, taskLabel } from '../src/utils/regionalTaskReview.js';
 import { TASK_SAFETY_LANGUAGES, TASK_SAFETY_TEXT, taskSafetyText } from '../src/locales/taskSafetyText.js';

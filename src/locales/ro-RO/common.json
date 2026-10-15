@@ -1,0 +1,173 @@
+{
+  "disclaimer": {
+    "text1": "⚠️ [NOTĂ] Exemplu orientativ generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Evaluarea trebuie să pornească de la inspecția efectivă a locului de muncă și de la condițiile reale.",
+    "text2": "Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul la legislația aplicabilă în România, echipamente, condiții de lucru și procedurile aprobate pentru amplasament. Materialul nu certifică siguranța sau conformitatea."
+  },
+  "ui": {
+    "category": "SECURITATE GENERALĂ",
+    "mainTitle1": "Organizarea securității la locul de muncă",
+    "mainTitle2": "și ghidul JSA",
+    "description1": "Exemple pentru 10 activități comune",
+    "description2": "și pregătirea lucrărilor cu risc ridicat.",
+    "jsaId": "COMMON-01",
+    "jsaTitle1": "Securitatea întregului amplasament și",
+    "jsaTitle2": "pregătirea activităților cu risc ridicat",
+    "summaryTitle": "Etape principale și pericole",
+    "previewLabel": "Previzualizarea documentului JSA",
+    "downloadBtn": "Descărcați PDF-ul original"
+  },
+  "steps": [
+    {
+      "step": "01",
+      "task": "Informare înainte de lucru și verificarea EIP",
+      "hazard": "Sarcină neclară, utilizarea necorespunzătoare a EIP"
+    },
+    {
+      "step": "02",
+      "task": "Protecție împotriva căderilor de la înălțime",
+      "hazard": "Cedarea ancorajului, alunecare din cauza vremii"
+    },
+    {
+      "step": "03",
+      "task": "Izolarea combustibililor și supravegherea incendiilor",
+      "hazard": "Scântei, explozia gazelor reziduale"
+    },
+    {
+      "step": "04",
+      "task": "Pregătirea legării și ridicării sarcinii",
+      "hazard": "Teren instabil, cedarea chingilor sau cablurilor"
+    },
+    {
+      "step": "05",
+      "task": "Verificarea atmosferei și ventilare",
+      "hazard": "Deficit de oxigen, inhalarea gazelor toxice"
+    },
+    {
+      "step": "06",
+      "task": "Securitatea săpăturilor și șanțurilor",
+      "hazard": "Avarierea rețelelor, surparea pereților săpăturii"
+    },
+    {
+      "step": "07",
+      "task": "Izolarea energiilor și verificarea stării fără energie",
+      "hazard": "Realimentare accidentală, energie reziduală"
+    },
+    {
+      "step": "08",
+      "task": "Delimitarea zonei și protecție radiologică",
+      "hazard": "Acces neautorizat, expunere la radiații ionizante"
+    },
+    {
+      "step": "09",
+      "task": "Punere în funcțiune și verificarea circuitelor",
+      "hazard": "Interblocări ocolite, scurgeri sub presiune"
+    },
+    {
+      "step": "10",
+      "task": "Curățarea zonei și restabilirea controlată a alimentării",
+      "hazard": "Unelte sau resturi uitate, risc de scurtcircuit"
+    }
+  ],
+  "draftSave": {
+    "pending": "Se salvează",
+    "saved": "Salvat",
+    "error": "Eroare la salvare",
+    "conflict": "O ciornă mai recentă a fost salvată în altă filă · reîncărcați pagina"
+  },
+  "appearance": {
+    "title": "Aspect",
+    "system": "Sistem",
+    "light": "Luminos",
+    "dark": "Întunecat",
+    "active": "Activ"
+  },
+  "designer": {
+    "defaultTitle": "Analiza securității muncii pe etape (JSA)",
+    "appr1": "Întocmit",
+    "appr2": "Verificat",
+    "appr3": "Aprobat",
+    "eyebrow": "CONFIGURAREA DOCUMENTULUI",
+    "title": "Configurarea documentului",
+    "subtitle": "Configurați blocurile documentului și tabelul JSA în același spațiu.",
+    "back": "Înapoi la analiză",
+    "next": "Document final",
+    "blocksTitle": "Blocurile documentului",
+    "blocksHint": "Trageți blocurile pentru a le reordona; bifați pentru a le afișa sau ascunde.",
+    "blocks": {
+      "PROJECT_INFO": "Antetul documentului",
+      "SAFETY": "EIP / Permise",
+      "JSA_TABLE": "Tabel JSA",
+      "PARTICIPANTS": "Semnăturile participanților",
+      "APPROVAL": "Aprobare",
+      "NOTES": "Note"
+    },
+    "enabled": "Afișat",
+    "disabled": "Ascuns",
+    "documentTitle": "Titlul documentului",
+    "orientation": "Orientare",
+    "landscape": "Peisaj",
+    "portrait": "Portret",
+    "tableSettings": "Setările tabelului",
+    "addColumn": "Adăugați o coloană proprie",
+    "newColumn": "Coloană nouă",
+    "customColumn": "Coloană proprie",
+    "systemColumn": "Coloană de sistem",
+    "reset": "Resetați",
+    "columnLabel": "Denumirea coloanei",
+    "columnWidth": "Lățimea coloanei",
+    "fieldTypes": {
+      "text": "Text",
+      "number": "Număr",
+      "date": "Dată",
+      "checkbox": "Casetă de bifare",
+      "dropdown": "Listă de selecție"
+    },
+    "dropdownOptions": "Opțiuni separate prin virgulă",
+    "participantSettings": "Setările semnăturilor participanților",
+    "approvalSettings": "Setările aprobării",
+    "notesSettings": "Setările notelor",
+    "notesPlaceholder": "Note pentru amplasament sau instrucțiuni suplimentare",
+    "notesEmpty": "Fără note",
+    "blockSettings": "Setările blocului",
+    "blockSettingsHint": "Acest bloc se completează automat din datele JSA curente.",
+    "projectFallback": "Lucrare",
+    "ppeLabel": "EIP:",
+    "permitLabel": "Permise:",
+    "signatureRows": "{{count}} rând(uri) pentru semnături",
+    "templates": "Șabloane de documente",
+    "chooseTemplate": "Încărcați un șablon salvat",
+    "templateName": "Numele șablonului",
+    "saveTemplate": "Salvați",
+    "savingTemplate": "Se salvează...",
+    "templateSaved": "Șablonul a fost salvat.",
+    "templateSaveError": "Șablonul nu a putut fi salvat.",
+    "loginRequired": "Este necesară autentificarea.",
+    "fieldValues": "Valori pentru fiecare etapă",
+    "noWorkSteps": "Nu există etape de lucru.",
+    "stepFallback": "Etapa {{number}}"
+  },
+  "saveFlow": {
+    "library": "Biblioteca mea",
+    "saveDocument": "Salvați documentul",
+    "privateHint": "Copiile private păstrează toate informațiile introduse, participanții și fotografiile.",
+    "publicHint": "Copiile publice omit datele, locul, departamentul, responsabilul, echipamentele, participanții, notele, fotografiile și valorile câmpurilor proprii. Verificați personal titlul și textul analizei.",
+    "publicConfirm": "Creați o copie publică? Verificați ca titlul și analiza să nu conțină date personale sau confidențiale. Originalul privat rămâne privat.",
+    "archiveWarning": "Documentul a fost salvat, dar ciorna nu a putut fi arhivată. Aceasta rămâne disponibilă.",
+    "changed": "Documentul s-a modificat sau nu poate fi actualizat. Redeschideți-l ori salvați o copie privată nouă.",
+    "failed": "Salvarea a eșuat. Ciorna rămâne disponibilă; încercați din nou.",
+    "publicCopy": "Creați o copie publică",
+    "newPrivate": "Salvați o copie privată nouă",
+    "updatePrivate": "Actualizați documentul privat existent",
+    "templatesHint": "Șabloanele păstrează setările de aranjare reutilizabile. Documentele se salvează separat.",
+    "templateError": "Șabloanele nu au putut fi încărcate sau salvate. Verificați autentificarea și conexiunea, apoi reîncărcați.",
+    "confirmUpdate": "Înlocuiți șablonul cu configurația curentă?",
+    "confirmDelete": "Ștergeți șablonul? Documentele existente nu se vor modifica.",
+    "newTemplate": "Salvați ca șablon nou",
+    "rename": "Redenumiți",
+    "updateTemplate": "Actualizați din configurația curentă",
+    "clearDefault": "Eliminați alegerea implicită",
+    "makeDefault": "Setați ca implicit",
+    "deleteTemplate": "Ștergeți șablonul",
+    "defaultHint": "Șablonul implicit se aplică numai documentelor noi și nu înlocuiește configurațiile existente."
+  }
+}

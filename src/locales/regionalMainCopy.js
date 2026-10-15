@@ -2,6 +2,10 @@ import { normalizeLocale } from './config.js';
 
 // Keep country/province copy explicit: a shared language does not imply shared documents.
 export const REGIONAL_MAIN_COPY = {
+  'ro-RO': {
+    title: 'Experiență din teren.\nDocumente pentru lucrarea dumneavoastră.',
+    description: 'Consultați studiile de caz și combinați etape din JSA publice.\nPregătiți analiza riscurilor, informațiile pentru echipă și desenele; adăugați documentele necesare activității și exportați în PDF.\nMaterialele necesită verificarea și adaptarea de către un specialist competent.',
+  },
   ko: {
     title: '현장의 경험을 모아,\n우리 작업에 맞는 안전 문서로.',
     description: '현장 사례를 참고하고 공개 JSA의 작업단계를 조합하세요.\n위험성평가·작업허가서·TBM·도면을 작업에 맞게 묶어, 필요한 언어로 준비하고 PDF로 출력하세요.',

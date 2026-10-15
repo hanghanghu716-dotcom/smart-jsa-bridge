@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "Smart JSA Bridge | Analiza securității muncii pe etape",
+    "description": "Creați documente JSA și evaluări ale riscurilor adaptate activității. Materiale de referință pentru construcții, industrie și lucrări cu substanțe chimice; necesită verificare la locul de muncă.",
+    "ogTitle": "Smart JSA Bridge — Documente pentru securitatea muncii"
+  },
+  "mobileAlert": "Această funcție este optimizată pentru calculator. Pentru redactarea detaliată, folosiți versiunea web pe un ecran mare.",
+  "modalTitle": "Începeți analiza securității muncii",
+  "modalSub1": "Doriți să păstrați datele în cloud și să le partajați?",
+  "modalSub2": "Funcțiile de organizare a bibliotecii sunt disponibile după autentificare.",
+  "loginBtn": "Autentificare / Înregistrare",
+  "guestBtn": "Începeți fără cont",
+  "cancelBtn": "Anulați",
+  "navExplore": "Explorați exemplele",
+  "navLibrary": "Biblioteca mea",
+  "welcomeSuffix1": ",",
+  "welcomeSuffix2": "Bine ați revenit.",
+  "logout": "Deconectare",
+  "profileEdit": "Profil și statistici",
+  "loginSignup": "Autentificare / Înregistrare",
+  "navRegulation": "Ghid privind evaluarea riscurilor în România",
+  "navProcess": "Procesul practic JRA/JSA",
+  "navPPE": "Echipamente individuale de protecție",
+  "navRiskClass": "Lucrări obișnuite și lucrări cu risc ridicat",
+  "navDB": "Baza de date cu pericole și măsuri",
+  "navGuideCommon": "Exemple de evaluare înainte de lucru",
+  "navGuideConstruction": "JSA pentru construcții (10 tipuri)",
+  "navGuideHighRisk": "JSA pentru lucrări speciale cu risc ridicat (10 tipuri)",
+  "navGuideManufacturing": "JSA pentru producție (10 tipuri)",
+  "navGuideChemical": "JSA pentru lucrări cu substanțe chimice și gaze (10 tipuri)",
+  "navGuideGeneral": "JSA pentru alte activități (10 tipuri)",
+  "heroTitle1": "Experiența din teren,",
+  "heroTitle2": "în sprijinul securității muncii",
+  "heroSub1": "Corelați observațiile de la locul de muncă cu informațiile disponibile",
+  "heroSub2": "pentru a identifica pericolele care pot trece neobservate.",
+  "heroBtn": "Creați o evaluare a riscurilor",
+  "heroFastTrackBtn": "JSA rapidă",
+  "fastTrackDefaultTitle": "Ciornă de evaluare rapidă a riscurilor",
+  "coreValueTitle1": "Sprijin pentru analiza securității muncii",
+  "coreValueTitle2": "și identificarea pericolelor",
+  "coreValueSubtitle": "Corelarea informațiilor",
+  "coreValueDesc": "Sugestiile folosesc scenarii de lucru din baza de date. Verificați relevanța lor pentru activitatea reală.",
+  "analysisGuideTitle": "Ghid de analiză pentru 9 categorii de activități",
+  "hazardFactor": "Pericol / factor de risc",
+  "reductionMeasure": "Măsură de prevenire și protecție",
+  "footerPrivacy": "Politica de confidențialitate",
+  "footerTerms": "Condiții de utilizare",
+  "footerAbout": "Despre serviciu",
+  "navCaseStudy": "Studii de caz",
+  "caseStudySectionTag": "STUDII DE CAZ RECENTE",
+  "caseStudySectionTitle": "Exemple pentru activitatea din teren",
+  "jsaCard": {
+    "01": {
+      "title": "Securitate generală",
+      "f": "Stare de sănătate sau capacitate de lucru incompatibilă cu sarcina",
+      "m": "Clarificați aptitudinea și condițiile de lucru prin procedurile aplicabile, cu respectarea confidențialității medicale"
+    },
+    "02": {
+      "title": "Lucrul la înălțime",
+      "f": "Cădere de la marginea platformei sau prin goluri",
+      "m": "Prioritizați protecția colectivă; alegeți sistemul anticădere și planul de salvare după evaluare"
+    },
+    "03": {
+      "title": "Lucrări cu foc deschis",
+      "f": "Aprinderea materialelor combustibile de către scântei",
+      "m": "Îndepărtați combustibilii, protejați zona și organizați supravegherea împotriva incendiilor"
+    },
+    "04": {
+      "title": "Spații închise",
+      "f": "Asfixiere sau intoxicație din cauza atmosferei periculoase",
+      "m": "Evaluați atmosfera, asigurați ventilarea și pregătiți salvarea înainte de acces"
+    },
+    "05": {
+      "title": "Lucrări electrice",
+      "f": "Electrocutare prin realimentare necontrolată",
+      "m": "Izolați sursele, împiedicați reconectarea și verificați lipsa tensiunii prin personal competent"
+    },
+    "06": {
+      "title": "Săpături",
+      "f": "Surparea terenului, îngroparea lucrătorilor sau răsturnarea utilajelor",
+      "m": "Stabiliți sprijinirile și taluzarea în funcție de teren; verificați stabilitatea"
+    },
+    "07": {
+      "title": "Utilaje mobile",
+      "f": "Lovire sau strivire în unghiurile fără vizibilitate",
+      "m": "Separați pietonii de utilaje și organizați dirijarea manevrelor"
+    },
+    "08": {
+      "title": "Manipularea sarcinilor",
+      "f": "Căderea sarcinii prin cedarea accesoriilor de ridicare",
+      "m": "Verificați accesoriile și delimitați zona de ridicare; ghidați sarcina dintr-o poziție sigură"
+    },
+    "09": {
+      "title": "Gaze inflamabile",
+      "f": "Aprinderea gazului eliberat la încercarea conductelor",
+      "m": "Controlați sursele de aprindere, verificați etanșeitatea și folosiți detectoare adecvate"
+    }
+  },
+  "casePagination": {
+    "label": "Pagini de studii de caz",
+    "previousGroup": "Cele 5 anterioare",
+    "nextGroup": "Următoarele 5",
+    "page": "Pagina {{page}}",
+    "status": "{{current}} / {{total}}",
+    "jumpLabel": "Mergeți la pagina",
+    "jumpButton": "Mergeți",
+    "jumpError": "Introduceți un număr întreg între 1 și {{total}}."
+  },
+  "header": {
+    "regulation": "Reglementări",
+    "process": "Procesul JSA",
+    "database": "Baza de pericole",
+    "explore": "Explorează",
+    "cases": "Studii de caz",
+    "library": "Biblioteca mea",
+    "language": "Limbă și regiune",
+    "menu": "Meniu",
+    "close": "Închideți"
+  }
+}

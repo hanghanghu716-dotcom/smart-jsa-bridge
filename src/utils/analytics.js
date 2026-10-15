@@ -5,7 +5,7 @@ export const CONSENT_KEY = 'smartjsa_analytics_consent_v1';
 export const OPT_OUT_KEY = 'smartjsa_analytics_opt_out';
 export const ANALYTICS_CHANGE_EVENT = 'smartjsa:analytics-preference';
 const COOKIE_AGE = 180 * 24 * 60 * 60;
-const locales = 'ko|en-US|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-AU|en-GB|en-SG|de-DE|ja-JP|fr-FR|it-IT|es-ES|ar-SA|pt-BR|ru-RU';
+const locales = 'ko|en-US|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-AU|en-GB|en-SG|de-DE|ja-JP|fr-FR|it-IT|es-ES|ar-SA|pt-BR|ru-RU|ro-RO';
 const publicRoute = new RegExp(`^/(${locales})(?:/(about|explore|dictionary|jrajsa|regulation|riskclassification|protectiveequipment|terms|privacy|archive)|/(guideline)/(common|construction|manufacturing|chemical|high-risk|general)|/(case-study)/[a-zA-Z0-9_-]+|/(public-jsa)/[a-fA-F0-9-]{36})?/?$`);
 export function publicAnalyticsPath(path) {
   // Never include query strings, fragments or private user content.
