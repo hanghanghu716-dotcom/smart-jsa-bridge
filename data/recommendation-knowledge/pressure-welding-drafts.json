@@ -1792,7 +1792,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1872,8 +1872,8 @@
         "breathing-air-certification": "The task includes breathing-air certification",
         "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "5d6dbf7f6c1ec83ab3dba953952c329a304494dc1701d3b85ce2bb1a3ffa664b",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1916,7 +1916,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -1956,7 +1956,7 @@
         {
           "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf",
           "authority": "Safe Work Australia",
-          "section": "Model Code: Welding processes, sections 4.1-4.2, pages 28-33",
+          "section": "July 2020 Model Code: Welding processes, section 4.1 and selected 4.2 PPE/respiratory provisions, printed pages 28-34",
           "jurisdiction": "AU",
           "scope": "National model guidance, linked by the current official index; legal effect and exposure limits must be confirmed with the state or territory regulator.",
           "checkedAt": "2026-10-14",
@@ -1993,8 +1993,8 @@
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "9dbe952d80ce94966375e918d2aba6a754b31e72b62f0a4c11bee45355e0f0f1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2025,7 +2025,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -2066,7 +2066,7 @@
         {
           "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_guidelines_on_safe_use_of_machinery.ashx",
           "authority": "WSH Council",
-          "section": "Safe Use of Machinery, 4.4.3 and 5.3.2, printed pages 29 and 39; pneumatic isolation and stored energy",
+          "section": "Safe Use of Machinery, 4.4.3 and 5.3.2, printed pages 27 and 37-38 (PDF pages 30 and 40-41); pneumatic isolation and stored energy",
           "jurisdiction": "SG",
           "scope": "Machinery guidance only. The draft is restricted to a filter in a machine pneumatic circuit; separate pressure-vessel requirements are not verified.",
           "checkedAt": "2026-10-14",
@@ -2105,8 +2105,8 @@
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "e711ea96db577bd1e30957466186e03b85a9472f68ec69b1fef32076f2b01ca0",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2149,7 +2149,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -2239,8 +2239,8 @@
         "metalworking-workshop": "Indoor welding takes place in a metalworking workshop using identified welding equipment",
         "hot-work-procedure-authorized": "Site hot-work procedure approved and any required permit in place"
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "33463d6f7b710beaa990a09792e00605f8e31e0d6baf8df3fb5329bbd1982810",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2498,7 +2498,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "圧縮空気フィルターの保守",
       "step": "フィルター容器の開放準備",
@@ -2578,8 +2578,8 @@
         "non-air-service": "圧縮空気以外のガスを扱うフィルターである",
         "breathing-air-certification": "呼吸用空気の認証を含む作業である"
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2622,7 +2622,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "同じ屋内作業場で継続して行う無塗装軟鋼の金属アーク溶接",
       "step": "溶接ヒューム対策の準備",
@@ -2702,8 +2702,8 @@
         "metal-arc-welding": "金属アーク溶接である",
         "respiratory-program-ready": "測定結果に応じた呼吸用保護具の選定・管理が整っている"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "c00b7975423d30243b431a5fa0043613626f1a231e61b873d92a67d182d5bebf",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

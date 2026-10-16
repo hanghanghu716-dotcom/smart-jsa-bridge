@@ -724,7 +724,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -785,8 +785,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "77024af840e0f4a86b0e2389a1171e5a454e398d679f728c70c1a3be189e6341",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -825,7 +825,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -874,8 +874,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "11a716143a3c26cb65ecbd92113d3a600e1f7ff77b7486b048b4c05bb91adb66",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1001,7 +1001,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "機械の整備",
       "step": "停止と再起動防止の準備",
@@ -1060,8 +1060,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

@@ -444,6 +444,252 @@
       "retrievedOn": "2026-10-16",
       "representation": "web-extracted-text-v1",
       "coverage": "selected-sections"
+    },
+    {
+      "id": "au-vic-isolation-20261016",
+      "edition": "WorkSafe Victoria; reviewed 10/05/2023",
+      "scopeLimit": "Victoria guidance only; not an approval of other Australian jurisdictions or equipment-specific procedures.",
+      "retrievalRef": "turn29view0",
+      "fragments": [
+        {
+          "selector": "turn29view0: extracted lines 17-28",
+          "sha256": "5b772bf3aa58cf823ef507e0fae942108787fc646a7e167bbd052b42e4880b37",
+          "utf8Bytes": 1740
+        },
+        {
+          "selector": "turn29view0: extracted lines 48-197",
+          "sha256": "8ce8eca379180ad2089c6363253e8c665f090348c58f3f24368506380f83fc22",
+          "utf8Bytes": 12979
+        },
+        {
+          "selector": "turn29view0: extracted lines 223-223",
+          "sha256": "37f8ea035806cac58e49071f9e692370a5acb04d5ea25f5362ab6a02305a40be",
+          "utf8Bytes": 22
+        }
+      ],
+      "url": "https://www.worksafe.vic.gov.au/isolate-de-energise-lockout-and-tagout-plant",
+      "attribution": "WorkSafe Victoria",
+      "coveredSections": [
+        "Isolation, de-energisation, lockout and tagout"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "au-plant-nov2024-20261016",
+      "edition": "November 2024 model Code",
+      "scopeLimit": "Model guidance; state/territory adoption and site applicability remain unreviewed. Failed restart alone does not prove pressure is absent.",
+      "retrievalRef": "turn33view0",
+      "fragments": [
+        {
+          "selector": "turn29view1: extracted lines 0-17",
+          "sha256": "ed4508cd7f5f40e41fd384c72cff98dfac81b7bdb05ff56a6eaf079ec68f94e2",
+          "utf8Bytes": 1253
+        },
+        {
+          "selector": "turn33view0: extracted lines 1519-1576",
+          "sha256": "407079e2a992a0c3c3e59aea22bd25e037a5ed8e14ed8fa2b957e40ae6d42d08",
+          "utf8Bytes": 3768
+        }
+      ],
+      "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2024-11/model_code_of_practice-managing_the_risks_of_plant_in_the_workplace-nov24.pdf",
+      "attribution": "Safe Work Australia",
+      "coveredSections": [
+        "November 2024 model Code, section 4.5, pages 50-52; stored pneumatic pressure and isolation"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "au-welding-jul2020-20261016",
+      "edition": "July 2020 model Code",
+      "scopeLimit": "Selected ventilation and PPE text only; current exposure limits, referenced standards and state/territory adoption require separate review.",
+      "retrievalRef": "turn31view1",
+      "fragments": [
+        {
+          "selector": "turn31view1: extracted lines 985-1023",
+          "sha256": "5d45ed30fa2f57daf1e7f257d003a31c094e4d536b017b80162f43e8671839d3",
+          "utf8Bytes": 2413
+        },
+        {
+          "selector": "turn33view1: extracted lines 1027-1068",
+          "sha256": "111a008afa3d536326970456441fa4f7597d443696c033ccde4d1caeea5f4923",
+          "utf8Bytes": 2669
+        },
+        {
+          "selector": "turn34view4: extracted lines 1167-1189",
+          "sha256": "e74a10f34e5e23f9c2dc62b7a0d673d045918a2b0993d0334947a5b81435f196",
+          "utf8Bytes": 730
+        },
+        {
+          "selector": "turn36view2: extracted lines 0-14",
+          "sha256": "df52c5a17cd04e1a8f3f237b6f0e81f0a0a13221bf4ddbee40505295329d9689",
+          "utf8Bytes": 1159
+        }
+      ],
+      "url": "https://www.safeworkaustralia.gov.au/sites/default/files/2020-07/model_code_of_practice_welding_processes.pdf",
+      "attribution": "Safe Work Australia",
+      "coveredSections": [
+        "July 2020 Model Code: Welding processes, section 4.1 and selected 4.2 PPE/respiratory provisions, printed pages 28-34"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "sg-machinery-20261016",
+      "edition": "72-page WSH Council Safe Use of Machinery PDF; publication date not established from extracted text",
+      "scopeLimit": "Machinery guidance, not a pressure-vessel or welding design specification. Current legal applicability remains unreviewed.",
+      "retrievalRef": "turn31view3",
+      "fragments": [
+        {
+          "selector": "turn31view3: extracted lines 1324-1361",
+          "sha256": "7daf80e75ac42fae9729e76aabc5ac9227ca58936d43650ad6b72b10ed7b7390",
+          "utf8Bytes": 2300
+        },
+        {
+          "selector": "turn30view7: extracted lines 941-947",
+          "sha256": "5d12b133ddc8ff3bea378d62e0c303afe116cb653f4ddee1e08956ff8180fc9d",
+          "utf8Bytes": 496
+        },
+        {
+          "selector": "turn31view4: extracted lines 599-619",
+          "sha256": "8d00a8109bd0f5eef562a76a8447d9a46b35285ec7c872cec8161cd16826058f",
+          "utf8Bytes": 1552
+        },
+        {
+          "selector": "turn33view2: extracted lines 638-674",
+          "sha256": "f51f33beccf41d95862c2f3f8fea034e1d835926177d08897bc307a1f4b27cd3",
+          "utf8Bytes": 2368
+        }
+      ],
+      "url": "https://www.tal.sg/wshc/-/media/tal/wshc/resources/publications/wsh-guidelines/files/wsh_guidelines_on_safe_use_of_machinery.ashx",
+      "attribution": "WSH Council",
+      "coveredSections": [
+        "5.3.2, LOTO steps 3-5, PDF pages 40-41: stored-energy dissipation, locks and verification",
+        "Safe Use of Machinery, 4.4.3 and 5.3.2, printed pages 27 and 37-38 (PDF pages 30 and 40-41); pneumatic isolation and stored energy",
+        "Safe Use of Machinery, section 3.2.5, printed pages 18-19: airborne chemical hazards and extraction"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "sg-metalworking-2012-20261016",
+      "edition": "October 2012",
+      "scopeLimit": "Historical metalworking guidance and example permit; not a universal permit obligation or complete welding procedure.",
+      "retrievalRef": "turn33view3",
+      "fragments": [
+        {
+          "selector": "turn34view6: extracted lines 0-16",
+          "sha256": "06fbefef5491eacd55e1269eb0183fb2f8b3f3234802eb7635ef23f7acca95b4",
+          "utf8Bytes": 774
+        },
+        {
+          "selector": "turn33view3: extracted lines 906-961",
+          "sha256": "b198b7ab3e0ef6a4c7ca6452b365e3e617b701d991e50ebf87b563f94fabe2e2",
+          "utf8Bytes": 3133
+        }
+      ],
+      "url": "https://www.tal.sg/wshc/-/media/tal/wshc/campaigns/files/safe-hand/wsh-guidelines-on-managing-safety-and-health-for-smes-in-the-metalworking-industry.ashx",
+      "attribution": "WSHC in collaboration with the Ministry of Manpower",
+      "coveredSections": [
+        "2012 Managing Safety and Health for SMEs in the Metalworking Industry, Annex 5, printed pages 29-31: hot-work permit example and safe work procedure"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "jp-rule107-108-20261016",
+      "edition": "MHLW displayed rule text retrieved 2026-10-16; article 108 annotation includes 2021 amendment",
+      "scopeLimit": "Selected machinery stop/restart prevention provisions. Complete current consolidation and machine-specific requirements remain unreviewed.",
+      "retrievalRef": "turn34view0",
+      "fragments": [
+        {
+          "selector": "turn34view0: extracted lines 635-652",
+          "sha256": "066663a0023a984a283e57497683c48ae47238c73f4f69b64895d12eb534113e",
+          "utf8Bytes": 1995
+        }
+      ],
+      "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=4",
+      "attribution": "厚生労働省",
+      "coveredSections": [
+        "労働安全衛生規則第107条・第108条"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "jp-machinery-manual-2010-20261016",
+      "edition": "March 2010; FY2009 MHLW commissioned manufacturer manual",
+      "scopeLimit": "Historical manufacturer technical guidance only, not present legal certification or operating instruction.",
+      "retrievalRef": "turn32view6",
+      "fragments": [
+        {
+          "selector": "turn32view6: extracted lines 3155-3176",
+          "sha256": "84e3635153d581d1eef73afb9c1f5c41e594366e1d3daeee5a9018d530438eaf",
+          "utf8Bytes": 1380
+        },
+        {
+          "selector": "turn36view3: extracted lines 3965-3973",
+          "sha256": "5110de3df8d0c89151149b9c0b66cffb3542a8949248948547ba592eafd58464",
+          "utf8Bytes": 524
+        }
+      ],
+      "url": "https://www.mhlw.go.jp/content/11300000/001403315.pdf",
+      "attribution": "厚生労働省・中央労働災害防止協会",
+      "coveredSections": [
+        "機械設備のリスクアセスメントマニュアル（製造者用）、4-5-2、印刷86頁（PDF92頁）"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "jp-machinery-guideline-2007-20261016",
+      "edition": "2007-07-31 基安安発第0731004号",
+      "scopeLimit": "Selected additional protective measures for machinery; not an equipment-specific filter opening instruction.",
+      "retrievalRef": "turn35view0",
+      "fragments": [
+        {
+          "selector": "turn35view0: extracted lines 926-948",
+          "sha256": "d6eaf8a4013dde40c4a042f7e109a72c4cd1f50350f8130d547f643dbab0a4f1",
+          "utf8Bytes": 1832
+        }
+      ],
+      "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb3488&dataType=1&pageNo=1",
+      "attribution": "厚生労働省",
+      "coveredSections": [
+        "2007-07-31 基安安発第0731004号, 別表第4 3(1)-(4): energy isolation and residual energy"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "jp-mie-welding-20261016",
+      "edition": "Mie Labour Bureau explanation of 2021-2022 implementation",
+      "scopeLimit": "Selected metal-arc welding measures; transitional dates are historical. Current law and site applicability remain unreviewed.",
+      "retrievalRef": "turn36view0",
+      "fragments": [
+        {
+          "selector": "turn36view0: extracted lines 194-230",
+          "sha256": "1ede1539f70ba8d7cd6d6f4d06ab0c755434d3169fb691086eb48c5bc823a54a",
+          "utf8Bytes": 3574
+        }
+      ],
+      "url": "https://jsite.mhlw.go.jp/mie-roudoukyoku/tokka_arc.html",
+      "attribution": "厚生労働省 三重労働局",
+      "coveredSections": [
+        "金属アーク溶接等作業: 措置義務 (1)-(3)、測定結果に応じた呼吸用保護具とフィットテスト"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
     }
   ]
 }

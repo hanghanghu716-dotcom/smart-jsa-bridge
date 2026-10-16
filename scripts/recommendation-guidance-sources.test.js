@@ -120,12 +120,12 @@ test('retired guidance stays retired and case units are untouched', () => {
   assert.deepEqual(result.bank.units[1],bank.units[1]);
 });
 
-test('checked-in captures bind twenty-two drafts while incomplete Canadian sources stay unbound', () => {
+test('checked-in captures bind thirty-one drafts while incomplete Canadian sources stay unbound', () => {
   const read=name=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`,import.meta.url),'utf8'));
   const manifest=read('guidance-source-captures.json');
   const bank={schemaVersion:1,units:[...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units]};
   assert.equal(bank.units.length,57);
-  assert.equal(bank.units.filter(u=>u.sourceFingerprint).length,22);
+  assert.equal(bank.units.filter(u=>u.sourceFingerprint).length,31);
   const romanian=bank.units.filter(u=>u.locale==='ro-RO');
   assert.equal(romanian.length,3);
   assert.ok(romanian.every(u=>u.sourceFingerprint && u.status==='draft'));
