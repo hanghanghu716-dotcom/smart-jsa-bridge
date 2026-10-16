@@ -1407,14 +1407,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
       "hazard": "Inhalation de fumées de soudage",
       "cause": "Les fumées atteignent la zone respiratoire",
       "consequence": "Affection respiratoire",
-      "control": "Utiliser un captage à la source adapté au procédé, complété par une protection respiratoire si l’évaluation de l’exposition l’exige.",
+      "control": "Au poste fixe, utiliser un captage local adapté au procédé et une ventilation générale avec apport d’air neuf suffisant. Placer le captage pour éloigner les fumées de la zone respiratoire et éviter de se tenir entre le foyer et le captage; compléter par la protection respiratoire requise contre l’exposition résiduelle.",
       "verification": "Contrôler la position du captage et son efficacité selon la procédure; recommencer après déplacement du captage ou modification du travail. Arrêter le soudage si le captage est inefficace.",
       "coverageLimit": "Fumées uniquement; évaluer séparément incendie, rayonnements, électricité et gaz.",
       "conditions": [
@@ -1427,7 +1427,7 @@
       "exclusions": [
         "Entrée en espace confiné",
         "Soudage en extérieur",
-        "Matériau revêtu, inoxydable ou non identifié",
+        "Métal de base revêtu, acier inoxydable ou métal de base non identifié",
         "Captage absent ou inefficace"
       ],
       "keywords": [
@@ -1489,7 +1489,7 @@
         "exposure-procedure-available": "Procédure de maîtrise de l’exposition disponible",
         "confined-entry": "Entrée en espace confiné",
         "outdoor-welding": "Soudage en extérieur",
-        "coated-stainless-or-unknown-metal": "Matériau revêtu, inoxydable ou non identifié",
+        "coated-stainless-or-unknown-metal": "Métal de base revêtu, acier inoxydable ou métal de base non identifié",
         "extraction-unavailable": "Captage absent ou inefficace",
         "fixed-welding-station": "Le soudage est réalisé à un poste fixe"
       },
@@ -1764,15 +1764,15 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
       "hazard": "Release of retained air pressure",
       "cause": "Supply, backfeed or trapped air remains",
       "consequence": "Impact injury from escaping air or parts",
-      "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
-      "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
+      "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Follow the actual equipment procedure to isolate all pressure sources, apply personal locks and identification tags under the applicable lockout arrangement, and safely relieve retained pressure before opening.",
+      "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test. Failure to restart does not prove absence of trapped pressure.",
       "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
       "conditions": [
         "Equipment-specific isolation procedure available",
@@ -1888,14 +1888,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
       "hazard": "Inhalation of welding fume",
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
-      "control": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
+      "control": "Consider a lower-emission process or consumable where practicable. Use local exhaust ventilation suited to the welding process, with safe discharge outside away from other people and air intakes; do not recirculate captured welding contaminants into the workplace. Provide suitable respiratory protection where the exposure assessment identifies remaining risk.",
       "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
       "coverageLimit": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
       "conditions": [
@@ -1908,7 +1908,7 @@
       "exclusions": [
         "Confined-space entry",
         "Outdoor welding",
-        "Coated, stainless or unidentified material",
+        "Coated or plated base metal, stainless steel, or unidentified base metal",
         "Extraction unavailable or ineffective"
       ],
       "keywords": [
@@ -1961,7 +1961,7 @@
         "exposure-procedure-available": "Exposure-control procedure available",
         "confined-entry": "Confined-space entry",
         "outdoor-welding": "Outdoor welding",
-        "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+        "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
       },
@@ -1997,15 +1997,15 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
       "hazard": "Release of retained air pressure",
       "cause": "Supply, backfeed or trapped air remains",
       "consequence": "Impact injury from escaping air or parts",
-      "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
-      "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
+      "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Follow the actual equipment procedure to isolate all pressure sources, apply personal locks and identification tags under the applicable lockout arrangement, and safely relieve retained pressure before opening.",
+      "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test. A warning tag alone does not isolate pressure.",
       "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
       "conditions": [
         "Equipment-specific isolation procedure available",
@@ -2121,14 +2121,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
       "hazard": "Inhalation of welding fume",
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
-      "control": "Use source extraction suited to the welding process and keep it operating throughout the work; provide respiratory protection as determined by the exposure assessment.",
+      "control": "Use local exhaust ventilation suited to the welding process and keep it operating throughout the work. Provide suitable respiratory protection when ventilation does not adequately control exposure, as determined by the exposure assessment.",
       "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
       "coverageLimit": "Metalworking workshop fume exposure only; assess fire, radiation, electrical and gas hazards separately. Other work settings need separate source and applicability review.",
       "conditions": [
@@ -2142,7 +2142,7 @@
       "exclusions": [
         "Confined-space entry",
         "Outdoor welding",
-        "Coated, stainless or unidentified material",
+        "Coated or plated base metal, stainless steel, or unidentified base metal",
         "Extraction unavailable or ineffective"
       ],
       "keywords": [
@@ -2206,7 +2206,7 @@
         "exposure-procedure-available": "Exposure-control procedure available",
         "confined-entry": "Confined-space entry",
         "outdoor-welding": "Outdoor welding",
-        "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+        "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "metalworking-workshop": "Indoor welding takes place in a metalworking workshop using identified welding equipment",
         "hot-work-procedure-authorized": "Site hot-work procedure approved and any required permit in place"
@@ -2243,14 +2243,14 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Wartung eines Druckluftfilters",
       "step": "Öffnung des Filtergehäuses vorbereiten",
       "hazard": "Freisetzung von Restdruck",
       "cause": "Zufuhr, Rückströmung oder eingeschlossene Luft bleiben bestehen",
       "consequence": "Verletzung durch Luftstrahl oder herausgeschleuderte Teile",
-      "control": "Vor der gerätespezifischen Freischaltung Einlass, Auslass, Bypass und angeschlossene Kondensatleitungen auf mögliche Druckzufuhr oder Rückspeisung prüfen. Nach der gerätespezifischen Anweisung unter Berücksichtigung der Herstellerangaben alle Zuführungen absperren und sichern; eingeschlossenen Druck vor dem Öffnen sicher abbauen.",
+      "control": "Vor der gerätespezifischen Freischaltung Einlass, Auslass, Bypass und angeschlossene Kondensatleitungen auf mögliche Druckzufuhr oder Rückspeisung prüfen. Nach der gerätespezifischen Anweisung unter Berücksichtigung der Herstellerangaben alle Zuführungen absperren und gegen erneute Druckbeaufschlagung sichern; eingeschlossenen Druck vor dem Öffnen sicher abbauen.",
       "verification": "Die fachkundige, beauftragte Person prüft Trennung und Druckfreiheit; bei möglichem Druckaufbau weiter kontrollieren. Bei ungeklärter Absperrgrenze oder nicht nachgewiesener Druckfreiheit das Gehäuse geschlossen halten; es nicht zur Prüfung der Druckfreiheit lösen.",
       "coverageLimit": "Nur Druckfreisetzung; weitere Wartungsgefahren gesondert beurteilen.",
       "conditions": [
@@ -2364,14 +2364,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Regelmäßiges Schweißen von unbeschichtetem unlegiertem Stahl in Innenräumen",
       "step": "Schweißrauchabsaugung vorbereiten",
       "hazard": "Einatmen von Schweißrauch",
       "cause": "Rauch gelangt in den Atembereich",
       "consequence": "Atemwegserkrankung",
-      "control": "Eine zum Verfahren passende Absaugung an der Entstehungsstelle einsetzen; Atemschutz ergänzen, soweit die Expositionsbeurteilung dies verlangt.",
+      "control": "Zunächst ein emissionsärmeres Verfahren oder einen weniger gefährlichen Zusatzwerkstoff prüfen. Verbleibende Emissionen mit geeigneter Absaugung an der Entstehungsstelle erfassen und für ausreichende Raumlüftung sorgen; erforderlichen Atemschutz für verbleibende Expositionen ergänzen.",
       "verification": "Haubenposition und vorgeschriebene Absaugleistung prüfen; nach Versetzen der Haube oder Änderung der Arbeit erneut prüfen. Bei unwirksamer Absaugung das Schweißen einstellen.",
       "coverageLimit": "Nur Rauchbelastung; Brand, Strahlung, elektrische Gefahren und Gase gesondert beurteilen.",
       "conditions": [
@@ -2383,7 +2383,7 @@
       "exclusions": [
         "Einstieg in einen engen Raum",
         "Schweißen im Freien",
-        "Beschichteter, nichtrostender oder unbekannter Werkstoff",
+        "Beschichteter Grundwerkstoff, nichtrostender Stahl oder unbekannter Grundwerkstoff",
         "Absaugung fehlt oder ist unwirksam"
       ],
       "keywords": [
@@ -2435,7 +2435,7 @@
         "exposure-procedure-available": "Anweisung zum Expositionsschutz vorhanden",
         "confined-entry": "Einstieg in einen engen Raum",
         "outdoor-welding": "Schweißen im Freien",
-        "coated-stainless-or-unknown-metal": "Beschichteter, nichtrostender oder unbekannter Werkstoff",
+        "coated-stainless-or-unknown-metal": "Beschichteter Grundwerkstoff, nichtrostender Stahl oder unbekannter Grundwerkstoff",
         "extraction-unavailable": "Absaugung fehlt oder ist unwirksam"
       },
       "sourceRevision": "captured-sections-2026-10-16",
@@ -2706,15 +2706,15 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
       "hazard": "Libération d’air sous pression résiduelle",
       "cause": "Alimentation, retour ou poche d’air non maîtrisés",
       "consequence": "Blessure par jet d’air ou projection de pièces",
-      "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de consignation propre à l’équipement. Selon la procédure de l’équipement, isoler et condamner les alimentations puis évacuer la pression résiduelle en sécurité avant ouverture.",
-      "verification": "Une personne autorisée vérifie l’isolement et la dépressurisation; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression.",
+      "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de consignation propre à l’équipement. Selon la procédure de l’équipement, isoler et condamner les alimentations puis évacuer la pression résiduelle en sécurité avant ouverture. Utiliser le chemin de purge sûr prévu par la procédure et le maintenir dans la position prescrite pour prévenir toute remise en pression.",
+      "verification": "Une personne autorisée vérifie l’isolement et la dépressurisation; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression. L’absence de bruit ou d’écoulement ne prouve pas qu’une purge est libre: vérifier son efficacité par la méthode prévue.",
       "coverageLimit": "Risque de pression uniquement; évaluer séparément les autres risques d’entretien.",
       "conditions": [
         "Procédure de consignation propre à l’équipement disponible",
@@ -2827,14 +2827,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
       "hazard": "Inhalation de fumées de soudage",
       "cause": "Les fumées atteignent la zone respiratoire",
       "consequence": "Affection respiratoire",
-      "control": "Utiliser un captage à la source adapté au procédé, complété par une protection respiratoire si l’évaluation de l’exposition l’exige.",
+      "control": "Rechercher d’abord un procédé ou un consommable moins émissif. Capter les fumées au plus près de leur émission et compléter par une ventilation générale adaptée. Rejeter l’air extrait à l’extérieur, loin des prises d’air neuf, sans le recycler dans le local; prévoir la protection respiratoire nécessaire contre l’exposition résiduelle.",
       "verification": "Contrôler la position du captage et son efficacité selon la procédure; recommencer après déplacement du captage ou modification du travail. Arrêter le soudage si le captage est inefficace.",
       "coverageLimit": "Fumées uniquement; évaluer séparément incendie, rayonnements, électricité et gaz.",
       "conditions": [
@@ -2846,7 +2846,7 @@
       "exclusions": [
         "Entrée en espace confiné",
         "Soudage en extérieur",
-        "Matériau revêtu, inoxydable ou non identifié",
+        "Métal de base revêtu, acier inoxydable ou métal de base non identifié",
         "Captage absent ou inefficace"
       ],
       "keywords": [
@@ -2898,7 +2898,7 @@
         "exposure-procedure-available": "Procédure de maîtrise de l’exposition disponible",
         "confined-entry": "Entrée en espace confiné",
         "outdoor-welding": "Soudage en extérieur",
-        "coated-stainless-or-unknown-metal": "Matériau revêtu, inoxydable ou non identifié",
+        "coated-stainless-or-unknown-metal": "Métal de base revêtu, acier inoxydable ou métal de base non identifié",
         "extraction-unavailable": "Captage absent ou inefficace"
       },
       "sourceRevision": "captured-sections-2026-10-16",
@@ -3063,14 +3063,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Saldatura regolare al chiuso di acciaio dolce non rivestito",
       "step": "Predisporre il controllo dei fumi",
       "hazard": "Inalazione di fumi di saldatura",
       "cause": "I fumi raggiungono la zona respiratoria",
       "consequence": "Malattia respiratoria",
-      "control": "Usare aspirazione alla fonte adatta al processo, integrando protezione respiratoria quando richiesta dalla valutazione dell’esposizione.",
+      "control": "Valutare prima l’eliminazione o la sostituzione del processo o del materiale pericoloso e, ove tecnicamente possibile, un sistema chiuso. Per il lavoro residuo usare aspirazione localizzata alla fonte e ventilazione generale adeguata; integrare la protezione respiratoria necessaria contro l’esposizione residua, con formazione e addestramento.",
       "verification": "Controllare posizione della cappa e prestazioni previste dell’aspirazione; ripetere dopo spostamenti o modifiche del lavoro. Interrompere la saldatura se l’aspirazione è inefficace.",
       "coverageLimit": "Solo fumi; valutare separatamente incendio, radiazioni, elettricità e gas.",
       "conditions": [
@@ -3082,7 +3082,7 @@
       "exclusions": [
         "Accesso a spazio confinato",
         "Saldatura all’aperto",
-        "Materiale rivestito, inossidabile o non identificato",
+        "Metallo base rivestito, acciaio inossidabile o metallo base non identificato",
         "Aspirazione assente o inefficace"
       ],
       "keywords": [
@@ -3134,7 +3134,7 @@
         "exposure-procedure-available": "Procedura di controllo dell’esposizione disponibile",
         "confined-entry": "Accesso a spazio confinato",
         "outdoor-welding": "Saldatura all’aperto",
-        "coated-stainless-or-unknown-metal": "Materiale rivestito, inossidabile o non identificato",
+        "coated-stainless-or-unknown-metal": "Metallo base rivestito, acciaio inossidabile o metallo base non identificato",
         "extraction-unavailable": "Aspirazione assente o inefficace"
       },
       "sourceRevision": "captured-sections-2026-10-16",
@@ -3293,14 +3293,14 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Soldadura habitual en interiores de acero dulce sin recubrimiento",
       "step": "Preparar el control de humos",
       "hazard": "Inhalación de humos de soldadura",
       "cause": "Los humos alcanzan la zona respiratoria",
       "consequence": "Enfermedad respiratoria",
-      "control": "Utilizar extracción localizada adecuada al proceso y añadir protección respiratoria cuando lo requiera la evaluación de la exposición.",
+      "control": "Utilizar extracción localizada adecuada a la soldadura eléctrica al arco, con la captación próxima al foco y descarga alejada de las tomas de aire limpio. Añadir la protección respiratoria que requiera la evaluación de la exposición residual.",
       "verification": "Comprobar la posición de la campana y el funcionamiento de la extracción según el procedimiento; repetir tras moverla o cambiar el trabajo. Detener la soldadura si la extracción es ineficaz.",
       "coverageLimit": "Solo humos; evaluar por separado incendio, radiación, electricidad y gases.",
       "conditions": [
@@ -3313,7 +3313,7 @@
       "exclusions": [
         "Entrada en espacio confinado",
         "Soldadura en exteriores",
-        "Material recubierto, inoxidable o no identificado",
+        "Metal base recubierto, acero inoxidable o metal base no identificado",
         "Extracción ausente o ineficaz"
       ],
       "keywords": [
@@ -3366,7 +3366,7 @@
         "exposure-procedure-available": "Procedimiento de control de exposición disponible",
         "confined-entry": "Entrada en espacio confinado",
         "outdoor-welding": "Soldadura en exteriores",
-        "coated-stainless-or-unknown-metal": "Material recubierto, inoxidable o no identificado",
+        "coated-stainless-or-unknown-metal": "Metal base recubierto, acero inoxidable o metal base no identificado",
         "extraction-unavailable": "Extracción ausente o ineficaz",
         "metal-arc-welding": "El proceso es soldadura eléctrica al arco"
       },
@@ -4411,14 +4411,14 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ro-RO",
       "jurisdiction": "RO",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Deschiderea unui filtru de aer comprimat",
       "step": "Izolarea și depresurizarea înainte de deschidere",
       "hazard": "Eliberare de aer comprimat sau proiectarea componentelor",
       "cause": "Presiune rămasă în carcasă ori realimentare prin circuite conectate",
       "consequence": "Lovire și alte leziuni provocate de eliberarea presiunii",
-      "control": "Identificați alimentarea, ieșirea, derivațiile și drenajele conectate prin care filtrul poate fi realimentat. Aplicați procedura echipamentului pentru izolarea tuturor surselor, prevenirea realimentării și evacuarea în siguranță a presiunii înainte de deschidere.",
+      "control": "Identificați intrarea, ieșirea, derivațiile și drenajele conectate prin care filtrul poate fi realimentat. Conform procedurii echipamentului, izolați toate sursele și blocați fizic realimentarea, folosind lacăt personal și etichetă de identificare. Evacuați presiunea în siguranță înainte de deschidere; eticheta singură nu izolează presiunea.",
       "verification": "Persoana desemnată verifică izolarea și depresurizarea prin metoda prevăzută de procedură; repetă verificările dacă presiunea poate reveni. Mențineți carcasa închisă dacă izolarea sau depresurizarea nu poate fi confirmată. Nu slăbiți carcasa pentru a testa presiunea.",
       "coverageLimit": "Numai riscul de presiune al filtrului de aer comprimat identificat. Nu este o procedură universală pentru recipiente sau conducte sub presiune. Verificați separat regimul aplicabil echipamentului și celelalte riscuri.",
       "conditions": [
@@ -4429,7 +4429,7 @@
       ],
       "exclusions": [
         "Intervenție cu echipamentul sub presiune",
-        "Intrare într-un spațiu închis",
+        "Intrare într-un spațiu confinat, de exemplu un rezervor",
         "Conținutul sau limita izolării nu este cunoscută",
         "Filtrul conține un alt gaz decât aer comprimat",
         "Sarcina include certificarea aerului respirabil"
@@ -4493,7 +4493,7 @@
         "compressed-air-filter-identified": "Filtrul de aer comprimat și toate circuitele de presiune sunt identificate",
         "safe-depressurization-method-available": "Procedura prevede evacuarea sigură a presiunii și verificarea depresurizării carcasei înainte de deschidere",
         "pressurized-intervention": "Intervenție cu echipamentul sub presiune",
-        "confined-entry": "Intrare într-un spațiu închis",
+        "confined-entry": "Intrare într-un spațiu confinat, de exemplu un rezervor",
         "unknown-media-or-isolation": "Conținutul sau limita izolării nu este cunoscută",
         "non-air-service": "Filtrul conține un alt gaz decât aer comprimat",
         "breathing-air-certification": "Sarcina include certificarea aerului respirabil"
@@ -4546,7 +4546,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ro-RO",
       "jurisdiction": "RO",
-      "revision": 1,
+      "revision": 2,
       "status": "draft",
       "task": "Sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri",
       "step": "Pregătirea captării fumului de sudură",
@@ -4554,7 +4554,7 @@
       "cause": "Fumul ajunge în zona de respirație",
       "consequence": "Afecțiuni respiratorii și alte efecte asupra sănătății",
       "control": "Evaluați mai întâi eliminarea sau înlocuirea procesului care produce fum. Dacă sudarea rămâne necesară, utilizați captare locală adecvată la sursă și protecție respiratorie atunci când evaluarea expunerii o impune.",
-      "verification": "Verificați poziția dispozitivului de captare și performanța prevăzută de procedură; repetați verificarea după deplasare sau modificarea lucrării. Opriți sudarea dacă extracția este ineficientă.",
+      "verification": "Verificați poziția dispozitivului de captare și performanța prevăzută de procedură; repetați verificarea după deplasare sau modificarea lucrării. Opriți sudarea dacă extracția este ineficientă. Reevaluați expunerea când modificarea procesului sau a condițiilor poate schimba riscul; funcționarea captării singură nu dovedește controlul expunerii.",
       "coverageLimit": "Numai expunerea la fum la sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri. Incendiul, radiațiile, electricitatea, gazele și celelalte riscuri necesită evaluare separată.",
       "conditions": [
         "Este desemnată o persoană instruită și autorizată pentru sarcină",
@@ -4563,9 +4563,9 @@
         "Evaluarea expunerii și procedura de control sunt disponibile"
       ],
       "exclusions": [
-        "Intrare într-un spațiu închis",
+        "Intrare într-un spațiu confinat, de exemplu un rezervor",
         "Sudare în exterior",
-        "Material acoperit, oțel inoxidabil sau material neidentificat",
+        "Metal de bază acoperit, oțel inoxidabil sau metal de bază neidentificat",
         "Captarea lipsește sau este ineficientă"
       ],
       "keywords": [
@@ -4625,9 +4625,9 @@
         "regular-indoor-welding": "Sudare regulată în interior",
         "uncoated-mild-steel-identified": "Oțelul cu conținut scăzut de carbon, fără acoperiri și consumabilele sunt identificate",
         "exposure-procedure-available": "Evaluarea expunerii și procedura de control sunt disponibile",
-        "confined-entry": "Intrare într-un spațiu închis",
+        "confined-entry": "Intrare într-un spațiu confinat, de exemplu un rezervor",
         "outdoor-welding": "Sudare în exterior",
-        "coated-stainless-or-unknown-metal": "Material acoperit, oțel inoxidabil sau material neidentificat",
+        "coated-stainless-or-unknown-metal": "Metal de bază acoperit, oțel inoxidabil sau metal de bază neidentificat",
         "extraction-unavailable": "Captarea lipsește sau este ineficientă"
       },
       "sourceRevision": "research-2026-10-16",
