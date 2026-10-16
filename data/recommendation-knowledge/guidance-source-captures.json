@@ -392,6 +392,58 @@
       "retrievedOn": "2026-10-16",
       "representation": "web-extracted-text-v1",
       "coverage": "selected-sections"
+    },
+    {
+      "id": "kr-rule92-20261016",
+      "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+      "coveredSections": [
+        "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+      ],
+      "scopeLimit": "기계 정비 등의 운전정지·재기동 방지 및 압축 기체·액체 방출 위험에 관한 인용 조문. 구체적인 설비 절차나 모든 관련 법령의 적용 승인을 대신하지 않는다.",
+      "fragments": [
+        {
+          "selector": "turn28view0: extracted lines 6-7",
+          "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+          "utf8Bytes": 120
+        },
+        {
+          "selector": "turn28view0: extracted lines 102-107",
+          "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+          "utf8Bytes": 1383
+        }
+      ],
+      "retrievalRef": "turn28view0",
+      "edition": "고용노동부령 제450호, 2025-09-01 일부개정; 2026-03-02 시행본",
+      "attribution": "대한민국 고용노동부 / 국가법령정보센터",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "kr-rule617-20261016",
+      "url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024004927",
+      "coveredSections": [
+        "산업안전보건기준에 관한 규칙 제617조 제1항~제3항, 2026-03-02 시행본"
+      ],
+      "scopeLimit": "분진작업 호흡용 보호구의 원칙과 단서 조건만을 수집했다. 분진작업 해당 여부, 국소배기 및 다른 적용 조항의 검토를 대신하지 않으며 단순 노출평가만으로 예외를 승인하지 않는다.",
+      "fragments": [
+        {
+          "selector": "turn28view1: extracted lines 6-7",
+          "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+          "utf8Bytes": 120
+        },
+        {
+          "selector": "turn28view1: extracted lines 14-18",
+          "sha256": "76449527ce07d4cb36c795580b577f9ac91d48b9e903d52a7b8a646c79c2516e",
+          "utf8Bytes": 852
+        }
+      ],
+      "retrievalRef": "turn28view1",
+      "edition": "고용노동부령 제450호, 2025-09-01 일부개정; 2026-03-02 시행본",
+      "attribution": "대한민국 고용노동부 / 국가법령정보센터",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
     }
   ]
 }

@@ -4223,7 +4223,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "압축공기 필터 정비",
       "step": "필터 하우징 개방 준비",
@@ -4299,8 +4299,8 @@
         "non-air-service": "압축공기가 아닌 다른 가스를 취급하는 필터임",
         "breathing-air-certification": "호흡용 공기의 품질 인증을 포함하는 작업임"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "1b7ea071d387b40ccef1163d99cf6b8fabfefa0c572ea631b1f20d5b176ee045",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -4343,7 +4343,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "실내에서 반복적으로 수행하는 무도장 연강 용접",
       "step": "용접 흄 제어 준비",
@@ -4420,8 +4420,8 @@
         "extraction-unavailable": "배기장치가 없거나 성능이 불충분함",
         "respiratory-requirements-reviewed": "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

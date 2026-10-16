@@ -1756,7 +1756,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "기계 정비",
       "step": "차단 범위 준비",
@@ -1805,8 +1805,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
