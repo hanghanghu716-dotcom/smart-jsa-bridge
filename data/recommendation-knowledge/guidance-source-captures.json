@@ -1152,6 +1152,182 @@
       "retrievedOn": "2026-10-16",
       "representation": "web-extracted-text-v1",
       "coverage": "selected-sections"
+    },
+    {
+      "id": "ca-on-wsps-energy-20261016",
+      "edition": "WSPS article published 2024-10-16; publisher-linked embedded representation",
+      "scopeLimit": "Selected hazardous-energy and machine-specific assessment paragraphs only. Electrical switching advice is excluded. Association guidance, not legislation; other Ontario citations remain uncaptured.",
+      "retrievalUrl": "https://read.uberflip.com/resource-hub/articles/left-hand-rule?embedded=1&hideBanner=1&hideFooter=1&hideHeader=1&hidePriNav=1&hideSecNav=1&hub_id=111303",
+      "fragments": [
+        {
+          "selector": "turn62view2:L40-L47",
+          "sha256": "030433a22a0c8f93fdde6516909bc2ac534082f502f32c04ecb7cc46219ed9b5",
+          "utf8Bytes": 1185
+        },
+        {
+          "selector": "turn62view2:L55-L77",
+          "sha256": "de0288ab1a6a0dd86d40e50d8bad90daa79db23051ca17ad0f6ae5c09ef3c819",
+          "utf8Bytes": 3858
+        }
+      ],
+      "url": "https://www.wsps.ca/resource-hub/articles/left-hand-rule",
+      "attribution": "Workplace Safety & Prevention Services (WSPS)",
+      "coveredSections": [
+        "2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment"
+      ],
+      "retrievalRef": "turn62view2",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "ru-833n-reproduction-20261016",
+      "edition": "Order 833n of 2020-11-27; original-act reproduction with extracted text layer",
+      "scopeLimit": "Rules 1,3,30-36,73-75 only; text-layer artifacts retained. Trade-union host is not the issuer. Does not verify the separately cited official scan, current consolidation or task applicability.",
+      "fragments": [
+        {
+          "selector": "turn78view0:L37-L57",
+          "sha256": "012b736dc3812452e8c23a062c6ce278b921cc8341794707e8c6a9f06224a715",
+          "utf8Bytes": 2605
+        },
+        {
+          "selector": "turn78view0:L250-L316",
+          "sha256": "12a11b0d327756b84f5a1f626b25fb10d9f93d37873d3d8dd36e54c6a9f7c75c",
+          "utf8Bytes": 6798
+        },
+        {
+          "selector": "turn80view0:L317-L335",
+          "sha256": "42bf67baa311054722a1ceb0f78eec82a753c49d2812e39be6c95a9bf76c8b69",
+          "utf8Bytes": 2298
+        },
+        {
+          "selector": "turn80view1:L549-L583",
+          "sha256": "1e5545f1ff6b5a01e87c8bbc13285bd49599edeb1684aa031bde72b472b63c6a",
+          "utf8Bytes": 4170
+        }
+      ],
+      "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
+      "attribution": "Минтруд России; order scan reproduced by the Krasnoyarsk railway trade union",
+      "coveredSections": [
+        "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14"
+      ],
+      "retrievalRef": "turn78view0, turn80view0, turn80view1",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "ru-287n-reproduction-20261016",
+      "edition": "Order 287n of 2025-04-29, registration 82424; ConsultantPlus transcription hosted by Kuytun District",
+      "scopeLimit": "Operative paragraph 2 and amendment items 15/30 only. Temporal context, not technical task-control evidence. Does not verify the separately cited signed Ministry scan or subsequent amendments.",
+      "fragments": [
+        {
+          "selector": "turn80view2:L8-L28",
+          "sha256": "459971cff34d4c44857a8b9a1ab72275c3089e9a3af860a33e1f36ad6d0a0adb",
+          "utf8Bytes": 1634
+        },
+        {
+          "selector": "turn79view1:L117-L121",
+          "sha256": "686b03f474b11817e9b5cb39b389ca5858c2f4c7bf5db6a30125ba62d38f4476",
+          "utf8Bytes": 735
+        },
+        {
+          "selector": "turn80view3:L208-L212",
+          "sha256": "9a48a3840378e2c6d48aec3f68a3186cbc2090b380403a984eb992ec79a38c55",
+          "utf8Bytes": 670
+        }
+      ],
+      "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+      "attribution": "Минтруд России; normative text reproduced on the official Kuytun District administration site",
+      "coveredSections": [
+        "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5"
+      ],
+      "retrievalRef": "turn80view2, turn79view1, turn80view3",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "ru-cpc-loto-20261016",
+      "edition": "CPC LOTO procedure, Revision 1; retrieved PDF has 27 pages with internal numbering of 69",
+      "scopeLimit": "Scope 2.1-2.2, steps 3-4, clauses 5.2.3-5.2.5. Operator procedure for CPC and its contractors, not a nationwide rule. Appendices and equipment-specific applicability unverified.",
+      "fragments": [
+        {
+          "selector": "turn82view0:L26-L40",
+          "sha256": "336ba6d07adb7866918a33c44611cd44603e2f4992d5259fc4838876031b6ac8",
+          "utf8Bytes": 1710
+        },
+        {
+          "selector": "turn81view1:L376-L391",
+          "sha256": "b3d4e220aabf9be6d9388e3008c8a2271d803ab6d9fb842347772a60e48b0677",
+          "utf8Bytes": 1137
+        },
+        {
+          "selector": "turn79view2:L419-L428",
+          "sha256": "e365da2658bc0cc3e98fb60e3a83ff8b5f319d4f26b564790f22ccd3cc3cec57",
+          "utf8Bytes": 1195
+        }
+      ],
+      "url": "https://www.cpc.ru/HSEDocuments_standards/Положение%20о%20системе%20блокировки%20и%20маркировки%20(LOTO).pdf",
+      "attribution": "Каспийский Трубопроводный Консорциум",
+      "coveredSections": [
+        "Редакция № 1; scope 2.1-2.2, steps 3-4 and clauses 5.2.3-5.2.5; PDF pages 3 and 10"
+      ],
+      "retrievalRef": "turn82view0, turn81view1, turn79view2",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "ru-884n-reproduction-20261016",
+      "edition": "Order 884n of 2020-12-11; ConsultantPlus transcription saved 2021-01-04, hosted by Bryansk department",
+      "scopeLimit": "Rules 2-8,12-14,23-30. Original signed scan remains uncaptured. Rule 8 exclusions and ventilation exceptions need regional review; this capture grants no legal or publication approval.",
+      "fragments": [
+        {
+          "selector": "turn81view2:L51-L106",
+          "sha256": "9cc49ec8f3364d9d92e5c218cad78cdd86e989206d4adabcf69e7510c5081c11",
+          "utf8Bytes": 6470
+        },
+        {
+          "selector": "turn82view1:L107-L116",
+          "sha256": "6f6c61128acdfa52aa1773cfded1d066300e09e937bb632906dddabbfc05f5dd",
+          "utf8Bytes": 1437
+        },
+        {
+          "selector": "turn82view1:L137-L155",
+          "sha256": "6c2500aa8110a73e9a2f855b27dc1465bae7db09e3255db95e19eeef772de620",
+          "utf8Bytes": 2552
+        },
+        {
+          "selector": "turn82view2:L156-L156",
+          "sha256": "d0b81353a4fbe83c634eed36f7d1aed056ce64e7b837a4c0f9d055421a12e263",
+          "utf8Bytes": 63
+        },
+        {
+          "selector": "turn79view3:L231-L239",
+          "sha256": "dae293534945a19b915e43155722ff1ede61af3d1442f71ddac5c78817ad1911",
+          "utf8Bytes": 1202
+        },
+        {
+          "selector": "turn81view3:L240-L300",
+          "sha256": "5146ea9e912c5a69fb3c1c33082771db72973a7b09be8367de40b81e0f0c525f",
+          "utf8Bytes": 6823
+        },
+        {
+          "selector": "turn82view3:L301-L311",
+          "sha256": "b40c5dc2caf13387821201384f5183dab72fc4cdb699b2e41656a8ded5efb317",
+          "utf8Bytes": 1558
+        }
+      ],
+      "url": "https://rabota-bryanskobl.ru/cms_data/usercontent/regionaleditor/%D1%84%D0%B0%D0%B9%D0%BB%D1%8B/%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B0%20%D1%82%D1%80%D1%83%D0%B4%D0%B0/%D1%84%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D0%BE%20%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%20%D1%82%D1%80%D1%83%D0%B4%D0%B0/29-%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%BC%D0%B8%D0%BD%D1%82%D1%80%D1%83%D0%B4%D0%B0%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8%20%D0%BE%D1%82%2011.12.2020%20n%20884%D0%BD.pdf",
+      "attribution": "Минтруд России; normative text reproduced by the Bryansk social policy and employment department",
+      "coveredSections": [
+        "Order 884н, rules 2-8, 12-14 and 23-30; PDF pages 3-9"
+      ],
+      "retrievalRef": "turn81view2, turn82view1, turn82view2, turn79view3, turn81view3, turn82view3",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
     }
   ]
 }
