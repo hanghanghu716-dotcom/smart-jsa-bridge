@@ -1,7 +1,50 @@
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditRecommendationSnapshot, readRecommendationSnapshot, auditMasterKeys, AUDIT_TABLES } from './recommendation-data-audit.js';
+import { auditRecommendationSnapshot, readRecommendationSnapshot, auditMasterKeys, auditMasterReferences, AUDIT_TABLES, MASTER_TABLES } from './recommendation-data-audit.js';
+
+test('master references distinguish null, absent, ambiguous and unique identities without guessing', () => {
+  const rows = [{ measure_id: null }, { measure_id: 99, locale: 'en-US' },
+    { measure_id: '99', locale: 'ko-KR' }, { measure_id: 2 }, { measure_id: '1' }];
+  const masters = [{ id: 1 }, { id: 2, text: 'A' }, { id: '2', text: 'A' }];
+  const report = auditMasterReferences(rows, masters, 'measure_id');
+  assert.equal(report.nullMasterReferences, 1);
+  assert.equal(report.missingReferencedMaster, 2);
+  assert.equal(report.distinctMissingMasterIds, 1);
+  assert.equal(report.ambiguousMasterReferences, 1);
+  assert.equal(report.distinctAmbiguousMasterIds, 1);
+  assert.equal(report.uniqueMasterReferences, 1);
+  assert.deepEqual(report.affectedLocales, { 'en-US': 1, 'ko-KR': 1 });
+  assert.equal(report.translationRows, report.nullMasterReferences + report.missingReferencedMaster
+    + report.ambiguousMasterReferences + report.uniqueMasterReferences);
+  const snapshot = auditRecommendationSnapshot({ tables: { Current_Measures: masters, Current_Measures_Translations: rows } });
+  assert.deepEqual(snapshot.masterReferences.Current_Measures, report);
+});
+
+test('unavailable masters stay unknown while an explicitly empty export yields absent references', () => {
+  const rows = [{ hazard_id: 7 }, { hazard_id: null }];
+  const unknown = auditMasterReferences(rows, undefined, 'hazard_id');
+  assert.equal(unknown.status, 'not_loaded');
+  assert.equal(unknown.missingReferencedMaster, null);
+  assert.equal(unknown.ambiguousMasterReferences, null);
+  assert.equal(unknown.nullMasterReferences, 1);
+  assert.equal(auditMasterReferences(rows, [], 'hazard_id').missingReferencedMaster, 1);
+  assert.equal(auditMasterReferences(undefined, [], 'hazard_id').missingReferencedMaster, null);
+});
+
+test('optional master export reads all three tables and propagates permission failures', async () => {
+  const calls = [];
+  const snapshot = await readRecommendationSnapshot({ url: 'https://test-project.supabase.co', key: 'test', includeMasters: true,
+    fetcher: async url => {
+      calls.push(url.pathname.split('/').at(-1));
+      return { ok: true, headers: new Headers({ 'content-range': '*/0' }), json: async () => [] };
+    } });
+  assert.deepEqual(calls, [...AUDIT_TABLES, ...MASTER_TABLES]);
+  assert.ok(MASTER_TABLES.every(table => Array.isArray(snapshot.tables[table])));
+  await assert.rejects(readRecommendationSnapshot({ url: 'https://test-project.supabase.co', key: 'test', includeMasters: true,
+    fetcher: async url => url.pathname.endsWith('/Hazards') ? { ok: false, status: 403 }
+      : { ok: true, headers: new Headers({ 'content-range': '*/0' }), json: async () => [] } }), /Hazards.*403/);
+});
 
 test('master ID duplicates distinguish identical copies, conflicting content and unavailable fields', () => {
   const rows = [{ id: 1, text: 'One', parent: 5 }, { parent: 5, text: 'One', id: '1' },
@@ -75,3 +118,4 @@ test('read errors and unintended credential destinations fail without inventing 
   await assert.rejects(readRecommendationSnapshot({ url: 'https://test-project.supabase.co', key: 'secret',
     fetcher: async () => ({ ok: false, status: 403 }) }), /HTTP 403/);
 });
+

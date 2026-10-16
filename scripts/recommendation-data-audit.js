@@ -7,6 +7,8 @@ import { SUPPORTED_LANGS, getDataLocale, getCaseLanguages } from '../src/locales
 export const AUDIT_TABLES = ['Hazards_Translations', 'Current_Measures_Translations',
   'Advanced_Measures_Translations', 'hazard_measure_mappings', 'current_advanced_measure_mappings', 'case_studies'];
 
+export const MASTER_TABLES = ['Hazards', 'Current_Measures', 'Advanced_Measures'];
+
 const id = value => value == null ? null : String(value);
 const blank = value => typeof value !== 'string' || !value.trim();
 const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
@@ -28,6 +30,39 @@ export function auditMasterKeys(rows) {
     conflictingIdGroups: rows.every(row => Object.keys(row).some(key => key !== 'id'))
       ? duplicates.filter(group => new Set(group).size > 1).length : null };
 }
+
+export function auditMasterReferences(translations, masters, masterKey) {
+  const loaded = Array.isArray(translations) && Array.isArray(masters);
+  const result = { status: loaded ? 'observed' : 'not_loaded',
+    rows: Array.isArray(masters) ? masters.length : null,
+    translationRows: Array.isArray(translations) ? translations.length : null,
+    nullMasterReferences: Array.isArray(translations) ? translations.filter(row => row[masterKey] == null).length : null,
+    missingReferencedMaster: null, distinctMissingMasterIds: null,
+    ambiguousMasterReferences: null, distinctAmbiguousMasterIds: null,
+    uniqueMasterReferences: null, affectedLocales: null,
+    interpretation: 'References are checked only against supplied rows. Missing masters may be hidden by RLS; a unique identity does not verify meaning or regional suitability.' };
+  if (!loaded) return result;
+  const counts = new Map();
+  for (const row of masters) {
+    if (row.id != null) counts.set(id(row.id), (counts.get(id(row.id)) || 0) + 1);
+  }
+  const missing = new Set(), ambiguous = new Set(), affectedLocales = new Map();
+  let missingRows = 0, ambiguousRows = 0, uniqueRows = 0;
+  for (const row of translations) {
+    if (row[masterKey] == null) continue;
+    const key = id(row[masterKey]), matches = counts.get(key) || 0;
+    if (!matches) {
+      missingRows++; missing.add(key);
+      if (typeof row.locale === 'string') affectedLocales.set(row.locale, (affectedLocales.get(row.locale) || 0) + 1);
+    } else if (matches > 1) {
+      ambiguousRows++; ambiguous.add(key);
+    } else uniqueRows++;
+  }
+  return { ...result, missingReferencedMaster: missingRows, distinctMissingMasterIds: missing.size,
+    ambiguousMasterReferences: ambiguousRows, distinctAmbiguousMasterIds: ambiguous.size,
+    uniqueMasterReferences: uniqueRows, affectedLocales: Object.fromEntries(affectedLocales) };
+}
+
 const validScore = score => score !== null && score !== '' && score !== undefined && Number.isFinite(Number(score)) && Number(score) >= -1 && Number(score) <= 1;
 
 function mappingAudit(mappings, sources, targets, sourceKey, targetKey) {
@@ -80,6 +115,9 @@ export function auditRecommendationSnapshot(snapshot) {
     snapshotComplete: snapshot.meta?.complete === true, visibility: snapshot.meta?.visibility || 'not_verified',
     missingTables: AUDIT_TABLES.filter(table => !Array.isArray(tables[table])), coverage, translations,
     masterKeys: Object.fromEntries(['Hazards', 'Current_Measures', 'Advanced_Measures'].map(table => [table, auditMasterKeys(tables[table])])),
+    masterReferences: Object.fromEntries(MASTER_TABLES.map((table, index) => [table,
+      auditMasterReferences(tables[['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations'][index]],
+        tables[table], ['hazard_id', 'measure_id', 'advanced_measure_id'][index])])),
     mappings: {
       hazardToControl: mappingAudit(tables.hazard_measure_mappings, tables.Hazards_Translations,
         tables.Current_Measures_Translations, 'hazard_translation_id', 'measure_translation_id'),
@@ -88,14 +126,14 @@ export function auditRecommendationSnapshot(snapshot) {
     } };
 }
 
-export async function readRecommendationSnapshot({ url, key, fetcher = fetch, pageSize = 1000 }) {
+export async function readRecommendationSnapshot({ url, key, fetcher = fetch, pageSize = 1000, includeMasters = false }) {
   const endpoint = new URL(url);
   if (endpoint.protocol !== 'https:' || !/^[a-z0-9-]+\.supabase\.co$/i.test(endpoint.hostname) || endpoint.username || endpoint.password) {
     throw Error('Use the intended HTTPS Supabase project URL.');
   }
   if (!key) throw Error('A scoped Supabase read credential is required.');
   const tables = {};
-  for (const table of AUDIT_TABLES) {
+  for (const table of [...AUDIT_TABLES, ...(includeMasters ? MASTER_TABLES : [])]) {
     const collected = [];
     for (let page = 0; ; page++) {
       if (page === 1000) throw Error(`Pagination limit reached for ${table}; no complete snapshot was produced.`);
@@ -126,9 +164,9 @@ export async function readRecommendationSnapshot({ url, key, fetcher = fetch, pa
 async function main(args) {
   const option = name => args.includes(name) ? args[args.indexOf(name) + 1] : undefined;
   const input = option('--input'), output = option('--output');
-  if (!output || (!input && !args.includes('--live'))) throw Error('Usage: node scripts/recommendation-data-audit.js --input snapshot.json --output report.json (or --live with SUPABASE_URL and SUPABASE_READ_KEY)');
+  if (!output || (!input && !args.includes('--live'))) throw Error('Usage: node scripts/recommendation-data-audit.js --input snapshot.json --output report.json (or --live [--include-masters] with SUPABASE_URL and SUPABASE_READ_KEY)');
   const snapshot = input ? JSON.parse(await fs.readFile(input, 'utf8'))
-    : await readRecommendationSnapshot({ url: process.env.SUPABASE_URL, key: process.env.SUPABASE_READ_KEY });
+    : await readRecommendationSnapshot({ url: process.env.SUPABASE_URL, key: process.env.SUPABASE_READ_KEY, includeMasters: args.includes('--include-masters') });
   const report = auditRecommendationSnapshot(snapshot);
   await fs.mkdir(path.dirname(path.resolve(output)), { recursive: true });
   await fs.writeFile(output, JSON.stringify(report, null, 2) + '\n');
@@ -138,3 +176,4 @@ async function main(args) {
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   main(process.argv.slice(2)).catch(error => { console.error(error.message); process.exitCode = 1; });
 }
+
