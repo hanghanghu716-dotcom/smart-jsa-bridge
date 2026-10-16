@@ -103,14 +103,14 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Follow the equipment-specific procedure to shut down the machine, identify and isolate its energy sources, and apply each exposed worker's personal lock under the applicable lockout procedure. Safely release or restrain stored energy, including parts that could fall or move, before access.",
       "verification": "Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
@@ -195,7 +195,7 @@
           ]
         }
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Canadian technical guidance for energy isolation before maintenance, conditional on the identified federal, provincial or territorial regime. Group arrangements, lock removal, access, repairs, guards and return to service require the applicable separate procedures; CCOHS guidance alone does not establish legal compliance."
     },
     {
       "id": "regional-ca-ab-maintenance",
@@ -203,14 +203,14 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Bring the machine to a complete stop and isolate all hazardous energy using the equipment-specific procedure. Use the applicable individual or group securing procedure with identified personal locks; safely release or restrain stored energy before access. Each worker retains the duty to test and confirm a safe state.",
       "verification": "Each worker tests and confirms that the equipment is stopped and the hazardous energy is isolated or made safe before work. Keep the danger zone closed if this cannot be verified.",
       "conditions": [
         "Equipment-specific procedure is available",
@@ -303,7 +303,7 @@
           ]
         }
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Preparation for maintenance under the applicable Alberta machinery energy-control procedure only. Individual, group and complex-group arrangements have different requirements. Live-work exceptions, remotely controlled systems, shift transfers, lock removal, piping and return to service are not authorized by this card; confirm their separate requirements where relevant."
     },
     {
       "id": "regional-ca-on-maintenance",
@@ -414,18 +414,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Shut down the machine, secure parts and attachments against unintended movement, and isolate its energy sources. Under the written lockout procedure, each exposed worker applies an identified personal lock and keeps immediate control of its key; where the Part 10.9 group procedure applies, each worker locks the key-securing system. Safely release or restrain stored energy before access.",
       "verification": "Before starting, each worker verifies that every energy source is effectively locked out and that stored energy has been made safe under the equipment procedure. Keep the danger zone closed if this cannot be verified.",
       "conditions": [
         "Equipment-specific procedure is available",
-        "A competent person is assigned"
+        "A competent person is assigned",
+        "The workplace falls within the British Columbia OHS Regulation"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -465,7 +466,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "bc-regime-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -493,7 +495,8 @@
         "competent-person-assigned": "A competent person is assigned",
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
-        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+        "unknown-energy-path": "An energy source or isolation boundary is unknown",
+        "bc-regime-confirmed": "The workplace falls within the British Columbia OHS Regulation"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -514,7 +517,7 @@
           ]
         }
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Pre-maintenance isolation within the British Columbia OHS Regulation only. Combination locks are excluded. Group lockout requires the complete Part 10.9 procedure, including two qualified workers and the posted checklist. Shift transfer, removal and restart require separate procedures; alternative control, no-lock exceptions and energized work under 10.10-10.12 are outside this card."
     },
     {
       "id": "regional-ca-qc-maintenance",

@@ -7,7 +7,7 @@
     "requiredBoundDraftsBeforeMoreContentReview": 57,
     "completedBoundDrafts": 57,
     "contentReviewPaused": false,
-    "existingReviewAreas": 53
+    "existingReviewAreas": 72
   },
   "counts": {
     "boundDrafts": 57,
@@ -305,12 +305,12 @@
     "scope": "Historical missing citations for superseded draft revisions; retained for audit. These source URLs remain unverified, and active drafts no longer claim their authority or edition."
   },
   "reviewProgress": {
-    "completed": 53,
+    "completed": 72,
     "total": 180,
-    "technical": 27,
-    "regional": 2,
-    "translation": 24,
-    "partialRegionalAssessmentsNotCounted": 22,
+    "technical": 36,
+    "regional": 3,
+    "translation": 33,
+    "partialRegionalAssessmentsNotCounted": 30,
     "publicationApprovals": 0
   }
 }
