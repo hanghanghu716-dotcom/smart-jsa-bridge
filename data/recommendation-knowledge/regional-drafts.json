@@ -1483,7 +1483,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Manutenção de máquinas",
       "step": "Preparar o isolamento",
@@ -1546,8 +1546,8 @@
           "thermal-inertia-exception"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "6d48d72a95b7b238dea668e747dc9ccdaf81511d9dd78d633e22c136016b76b1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

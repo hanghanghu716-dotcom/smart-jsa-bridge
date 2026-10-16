@@ -3548,7 +3548,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "اللحام المنتظم داخل المباني للفولاذ منخفض الكربون غير المطلي",
       "step": "تجهيز وسائل التحكم في أبخرة اللحام",
@@ -3622,8 +3622,8 @@
         "coated-stainless-or-unknown-metal": "مادة مطلية أو مقاومة للصدأ أو غير معروفة",
         "extraction-unavailable": "غياب الشفط أو عدم فعاليته"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "1cdc40818e2f9b8dcafb382dd1d65579b8a16430ff340e64784032effbbeba1a",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -3654,7 +3654,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Manutenção de filtro de ar comprimido",
       "step": "Preparar a abertura da carcaça",
@@ -3734,8 +3734,8 @@
         "non-air-service": "O filtro contém gás diferente de ar comprimido",
         "breathing-air-certification": "A tarefa inclui a certificação de ar respirável"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "5a952fb1171552bf1611c4d143cab9dee313aaf16d33e3396c06fbaeecd4639e",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

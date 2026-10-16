@@ -1007,6 +1007,151 @@
       "retrievedOn": "2026-10-16",
       "representation": "web-extracted-text-v1",
       "coverage": "selected-sections"
+    },
+    {
+      "id": "sa-eom-20261016",
+      "edition": "EOM-KSS-PR-000028-AR Rev 000, 2020-03-31",
+      "scopeLimit": "Government facilities and projects operation/maintenance guidance. Project authorization, equipment-specific isolation and current revision require review; not universal Saudi legislation.",
+      "fragments": [
+        {
+          "selector": "turn60view1: extracted lines 0-16",
+          "sha256": "880c47f1e7620671059fea1da4ea9f1bf8dd277051794d8eb23d40a915bbde5b",
+          "utf8Bytes": 1660
+        },
+        {
+          "selector": "turn48view2: extracted lines 102-112",
+          "sha256": "3510a0d4370a506e408a2680413a6427769d6b7ed7f9e65b070e2e902286eb4d",
+          "utf8Bytes": 2022
+        },
+        {
+          "selector": "turn60view0: extracted lines 322-368",
+          "sha256": "e7e3b9c40667b1092b08651de0b93e03e91c8fff8793192c65e7e7e2413f8f0c",
+          "utf8Bytes": 6961
+        },
+        {
+          "selector": "turn48view1: extracted lines 445-474",
+          "sha256": "b09cb96923f19126e8992f8dcf0dcec299c1c9751cf064832ba81ecd65a7aead",
+          "utf8Bytes": 5723
+        }
+      ],
+      "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
+      "attribution": "هيئة كفاءة الإنفاق والمشروعات الحكومية",
+      "coveredSections": [
+        "EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)"
+      ],
+      "retrievalRef": "turn60view1, turn48view2, turn60view0, turn48view1",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "br-nr12-20261016",
+      "edition": "Publisher file named updated 2025; amendment list through Portaria MTE 344 of 2024-03-21",
+      "scopeLimit": "Selected NR-12 machinery maintenance clauses and exceptions. Publisher compilation does not replace the DOU; current legal and equipment-specific applicability are unreviewed.",
+      "fragments": [
+        {
+          "selector": "turn48view3: extracted lines 0-29",
+          "sha256": "f6871bf71a47df46d8c7327152c21b593b46736283dc52febc20824da563c3a3",
+          "utf8Bytes": 1651
+        },
+        {
+          "selector": "turn47view3: extracted lines 715-755",
+          "sha256": "270d2e3cba32cc20767b62afbdd24a5d4c0b5b113be64c81ee830a27f9f64204",
+          "utf8Bytes": 3103
+        }
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
+      "attribution": "Ministério do Trabalho e Emprego",
+      "coveredSections": [
+        "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21"
+      ],
+      "retrievalRef": "turn48view3, turn47view3",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "br-nr12-index-20261016",
+      "edition": "Live publisher index retrieved 2026-10-16; last modification listed 2024-03-21",
+      "scopeLimit": "Publication index metadata only; does not itself establish current legal applicability.",
+      "fragments": [
+        {
+          "selector": "turn51view1: extracted lines 340-341",
+          "sha256": "526e3f615921cd00dbbbe048e361d0656338ff31a72fc5241c2bbc1a63f893a0",
+          "utf8Bytes": 122
+        }
+      ],
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
+      "attribution": "Ministério do Trabalho e Emprego",
+      "coveredSections": [
+        "Índice oficial: última modificação indicada, Portaria MTE 344/2024"
+      ],
+      "retrievalRef": "turn51view1",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "sa-hrsd-welding-20261016",
+      "edition": "Undated 17-page publisher PDF; arc-welding table on PDF page 9, printed page 10",
+      "scopeLimit": "General hazard-control table for arc welding. It does not specify LEV design or a complete respiratory-protection or legal compliance program.",
+      "fragments": [
+        {
+          "selector": "turn47view4: extracted lines 255-288",
+          "sha256": "af1f4496f9fa69b0c65a76de14ae776e6d803afba50ff46ba4aac7e622b84058",
+          "utf8Bytes": 1378
+        }
+      ],
+      "url": "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_1.pdf",
+      "attribution": "وزارة الموارد البشرية والتنمية الاجتماعية",
+      "coveredSections": [
+        "دليل المخاطر، أعمال اللحام بالقوس الكهربائي، صفحة PDF 9 (المطبوعة 10)"
+      ],
+      "retrievalRef": "turn47view4",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "br-fundacentro-ppr-2016-20261016",
+      "edition": "Fundacentro, 4th edition, 2016; ISBN 978-85-98117-86-7; UFMG-hosted copy",
+      "scopeLimit": "Historical respiratory-protection guidance reproduced by UFMG. Selected hierarchy, fit-test and welding-compatibility sections; not current legal certification. Welding draft remains unbound until its other citations are captured.",
+      "fragments": [
+        {
+          "selector": "turn60view2: extracted lines 15-37",
+          "sha256": "9fe7592f3b1800a16f1ee162c0cd2a8b8fca706b7ee8e064aa9107f5bd011f17",
+          "utf8Bytes": 986
+        },
+        {
+          "selector": "turn53view3: extracted lines 253-272",
+          "sha256": "f0226e8bd9226a4d765a78c0295707269f5a72bb0c44d53d1ffa756456af0a7a",
+          "utf8Bytes": 1596
+        },
+        {
+          "selector": "turn53view4: extracted lines 1197-1259",
+          "sha256": "dd22c55133900915a3a39d50c558964b52762437fc67cc491adc7066311e1949",
+          "utf8Bytes": 5098
+        },
+        {
+          "selector": "turn51view3: extracted lines 1260-1304",
+          "sha256": "87c5d718cc84d62a7ad1eb272eb5d1e22287013eb4ac1a82efdc05efd03ba7ba",
+          "utf8Bytes": 4203
+        },
+        {
+          "selector": "turn50view6: extracted lines 4094-4100",
+          "sha256": "09f8d6b817f44bc05a7afd9d7e89f1c756bdd1185dcddf85f22172edcd78a3dd",
+          "utf8Bytes": 554
+        }
+      ],
+      "url": "https://ftp.medicina.ufmg.br/osat/ebook/2016/1-ProgramadeProtecaoRespiratoria-12-08-2016.pdf",
+      "attribution": "Fundacentro; original publication hosted by UFMG",
+      "coveredSections": [
+        "Programa de Proteção Respiratória, 4th edition (2016), section 2.1, sections 8.1-8.3, Annex 7 welding entry"
+      ],
+      "retrievalRef": "turn60view2, turn53view3, turn53view4, turn51view3, turn50view6",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
     }
   ]
 }

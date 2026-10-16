@@ -120,12 +120,12 @@ test('retired guidance stays retired and case units are untouched', () => {
   assert.deepEqual(result.bank.units[1],bank.units[1]);
 });
 
-test('checked-in captures bind forty-two drafts while incomplete Canadian sources stay unbound', () => {
+test('checked-in captures bind forty-five drafts while incomplete citations stay unbound', () => {
   const read=name=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`,import.meta.url),'utf8'));
   const manifest=read('guidance-source-captures.json');
   const bank={schemaVersion:1,units:[...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units]};
   assert.equal(bank.units.length,57);
-  assert.equal(bank.units.filter(u=>u.sourceFingerprint).length,42);
+  assert.equal(bank.units.filter(u=>u.sourceFingerprint).length,45);
   const romanian=bank.units.filter(u=>u.locale==='ro-RO');
   assert.equal(romanian.length,3);
   assert.ok(romanian.every(u=>u.sourceFingerprint && u.status==='draft'));
@@ -133,6 +133,12 @@ test('checked-in captures bind forty-two drafts while incomplete Canadian source
   assert.equal(canadian.length,15);
   assert.equal(canadian.filter(u=>u.sourceFingerprint).length,10);
   for(const id of ['regional-ca-on-maintenance','regional-ca-on-pressure-filter','regional-ca-on-welding-fume','regional-ca-qc-maintenance','regional-ca-qc-pressure-filter']) {
+    assert.equal(bank.units.find(u=>u.id===id).sourceFingerprint,null,id);
+  }
+  for(const id of ['regional-br-maintenance','regional-br-pressure-filter','regional-sa-welding-fume']) {
+    assert.match(bank.units.find(u=>u.id===id).sourceFingerprint,/^[a-f0-9]{64}$/,id);
+  }
+  for(const id of ['regional-sa-maintenance','regional-br-welding-fume']) {
     assert.equal(bank.units.find(u=>u.id===id).sourceFingerprint,null,id);
   }
   assert.deepEqual(verifyGuidanceBindings(bank,manifest),[]);
