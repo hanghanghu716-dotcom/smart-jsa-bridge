@@ -1,16 +1,16 @@
-# 남은 12개 초안의 근거 자료 재작성
+# 12개 초안의 근거 자료와 검수 반영본
 
-기존 자료 접근 실패를 해소했다고 주장하지 않습니다. 아래는 확보한 원문에 맞춰 내용과 적용 범위를 다시 작성한 12개 자료입니다. 정식 내용 검수와 배포 승인은 아직 없습니다.
+확보한 원문에 맞춰 재작성한 12개 초안의 현재 내용입니다. 이후 기술·번역 검수에서 5개를 수정했으며, 이전 내용은 dossier의 subsequentRevisions 및 Git 기록에 보존했습니다. 지역 검수와 배포 승인은 완료되지 않았습니다.
 
 ## regional-ca-on-maintenance
 
-개정: 5 → 6
+개정: 5 → 7
 
 The inaccessible Ontario alert is replaced by actual Canadian technical guidance covering gravity blocking, residual energy and verification. No provincial statutory claim is retained.
 
 **작업·단계:** Machine maintenance / Prepare the isolation boundary
 
-**대책:** Identify every hazardous energy source using the equipment-specific procedure; isolate and secure the supplies, safely release or restrain stored energy, and block components against gravity or unintended movement before access.
+**대책:** Identify every hazardous energy source using the equipment-specific procedure; authorised workers isolate the supplies and secure the isolation devices with personally controlled locks. Safely release or restrain stored energy and block components against gravity or unintended movement before access.
 
 **확인:** Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.
 
@@ -21,17 +21,17 @@ The inaccessible Ontario alert is replaced by actual Canadian technical guidance
 - [ccohs-lockout-20261016](https://www.ccohs.ca/oshanswers/hsprograms/lockout.html) — Lockout steps 4-7: energy isolation, dissipation or restraint, and verification
 - [ca-on-wsps-energy-20261016](https://www.wsps.ca/resource-hub/articles/left-hand-rule) — 2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ca-on-pressure-filter
 
-개정: 5 → 6
+개정: 5 → 7
 
 Regulation 851 was only an unread lead. This revision uses the WSPS pneumatic-energy assessment and CCOHS guidance with explicitly foreign OSHA and manufacturer examples; it makes no Regulation 851 compliance claim.
 
 **작업·단계:** Compressed-air filter maintenance / Prepare to open the filter housing
 
-**대책:** Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.
+**대책:** Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use that procedure to isolate all supplies, secure the isolation devices with personally controlled locks, and safely relieve trapped pressure before opening.
 
 **확인:** An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.
 
@@ -44,7 +44,7 @@ Regulation 851 was only an unread lead. This revision uses the WSPS pneumatic-en
 - [ca-on-wsps-energy-20261016](https://www.wsps.ca/resource-hub/articles/left-hand-rule) — 2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment
 - [parker-oil-x](https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf) — Printed pages 5 and 10
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ca-on-welding-fume
 
@@ -66,7 +66,7 @@ Unread pre-start review Item 8 is replaced by the captured IHSA construction-wel
 - [ccohs-welding-ventilation-20261016](https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html) — Ventilation selection, local exhaust and respiratory protection
 - [ihsa-welding-20261016](https://www.ihsa.ca/rtf/health_safety_manual/pdfs/tools_and_techniques/Welding_and_Cutting.pdf) — Construction Health and Safety Manual, chapter 41, printed pages 41-6 to 41-7: ventilation and respiratory protection
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ca-qc-maintenance
 
@@ -87,17 +87,17 @@ Replace the unavailable 2026 RSST consolidation with the captured CNESST machine
 - [cnesst-lockout-20261016](https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine) — Cadenassage et zones dangereuses
 - [ccohs-lockout-20261016](https://www.ccohs.ca/oshanswers/hsprograms/lockout.html) — Lockout steps 4-7: energy isolation, dissipation or restraint, and verification
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ca-qc-pressure-filter
 
-개정: 4 → 5
+개정: 4 → 6
 
 Use CNESST guidance for each entrant’s lock and machine-specific procedures, CCOHS/OSHA for stored pressure and verification, and the retained Parker example. No claim of reading the 2026 RSST consolidation is retained.
 
 **작업·단계:** Entretien d’un filtre à air comprimé / Préparer l’ouverture du corps du filtre
 
-**대책:** Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de cadenassage propre à l’équipement. Appliquer la procédure propre à la machine : isoler les alimentations, effectuer le cadenassage avec chaque personne accédant à la zone dangereuse et évacuer la pression résiduelle en sécurité avant ouverture.
+**대책:** Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de cadenassage propre à l’équipement. Isoler les alimentations selon cette procédure; chaque personne accédant à la zone dangereuse appose son cadenas. Évacuer la pression résiduelle en sécurité et vérifier la dépressurisation avant l’ouverture.
 
 **확인:** Vérifier l’efficacité du cadenassage et la dépressurisation selon la procédure; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression.
 
@@ -110,7 +110,7 @@ Use CNESST guidance for each entrant’s lock and machine-specific procedures, C
 - [cnesst-lockout-20261016](https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine) — Cadenassage et zones dangereuses
 - [parker-oil-x](https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf) — Printed pages 5 and 10
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-it-pressure-filter
 
@@ -132,7 +132,7 @@ Replace the inaccessible 2020 presentation with the captured 2023 INAIL research
 - [it-production-lines-20261016](https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/impianti-di-trasformazione--produzione-e-processo/linee-di-produzione.html) — Linee di produzione: energie residue, riavvio accidentale e ricerca sulla procedura LOTO
 - [parker-oil-x](https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf) — Printed pages 5 and 10
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-sa-maintenance
 
@@ -152,7 +152,7 @@ Replace the unread EPM construction-project procedure with the actually captured
 
 - [sa-eom-20261016](https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf) — EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-sa-pressure-filter
 
@@ -174,11 +174,11 @@ Use the captured EOM O&M isolation/permit sections instead of the unread EPM pro
 - [sa-eom-20261016](https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf) — EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)
 - [parker-oil-x](https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf) — Printed pages 5 and 10
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-br-welding-fume
 
-개정: 4 → 5
+개정: 4 → 6
 
 Replace the unread 2026 GRO/PGR lead and unavailable CBIC article with the captured Fundacentro primary publication and explicitly foreign OSHA/HSE technical guidance. Preserve fit testing, welding-PPE compatibility and engineering-control priority; make no GRO/PGR legal compliance claim.
 
@@ -186,7 +186,7 @@ Replace the unread 2026 GRO/PGR lead and unavailable CBIC article with the captu
 
 **대책:** Avaliar primeiro a possibilidade de eliminar ou reduzir a geração de fumos; aplicar captação na fonte adequada ao processo e ventilação complementar quando indicada. Quando necessária, usar proteção respiratória selecionada pela avaliação da exposição e pelo programa de proteção respiratória.
 
-**확인:** Verificar a eficácia da exaustão e a avaliação da exposição. Quando houver respirador com vedação facial, confirmar ensaio de vedação com os demais EPIs e verificar o ajuste antes do uso. Conferir a posição do captor e o desempenho de exaustão previsto no procedimento; repetir após deslocamento ou mudança no trabalho. Parar a soldagem se a exaustão for ineficaz.
+**확인:** Verificar a eficácia da exaustão e a avaliação da exposição. Quando houver respirador com vedação facial, confirmar o ensaio de vedação com os demais EPIs que possam interferir na vedação. O usuário deve realizar a verificação de vedação antes de entrar na área de risco e após reajustar o respirador; essa verificação não substitui o ensaio de vedação. Conferir a posição do captor e o desempenho de exaustão previsto no procedimento; repetir após deslocamento ou mudança no trabalho. Parar a soldagem se a exaustão for ineficaz.
 
 **범위:** Somente controle de fumos na soldagem regular interna de aço carbono sem revestimento. Base técnica: Fundacentro, 4ª edição de 2016, com referências estrangeiras OSHA/HSE. A vigência dos requisitos brasileiros, o GRO/PGR e os limites de exposição precisam de revisão regional. Incêndio, radiação, eletricidade e gases são avaliados separadamente.
 
@@ -196,7 +196,7 @@ Replace the unread 2026 GRO/PGR lead and unavailable CBIC article with the captu
 - [br-fundacentro-ppr-2016-20261016](https://ftp.medicina.ufmg.br/osat/ebook/2016/1-ProgramadeProtecaoRespiratoria-12-08-2016.pdf) — Programa de Proteção Respiratória, 4th edition (2016), section 2.1, sections 8.1-8.3, Annex 7 welding entry
 - [hse-welding](https://www.hse.gov.uk/welding/welding-controls.htm) — Regular versus sporadic welding; assessment and control hierarchy
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ru-maintenance
 
@@ -219,7 +219,7 @@ Separate inaccessible publication records/scans from active evidence. Use the ca
 - [ru-287n-reproduction-20261016](https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf) — Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5
 - [ru-cpc-loto-20261016](https://www.cpc.ru/HSEDocuments_standards/Положение%20о%20системе%20блокировки%20и%20маркировки%20(LOTO).pdf) — Редакция № 1; scope 2.1-2.2, steps 3-4 and clauses 5.2.3-5.2.5; PDF pages 3 and 10
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ru-pressure-filter
 
@@ -242,11 +242,11 @@ Replace unread signed-scan leads with the captured act reproductions already cit
 - [ru-287n-reproduction-20261016](https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf) — Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5
 - [parker-oil-x](https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf) — Printed pages 5 and 10
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.
 
 ## regional-ru-welding-fume
 
-개정: 4 → 5
+개정: 4 → 6
 
 Use the captured 884n reproduction for fixed-station ventilation and exclusions, retain 287n solely as temporal context, and use foreign OSHA/HSE for fume-control guidance. Do not assert that rule 8 applicability has already been checked at a real site.
 
@@ -254,7 +254,7 @@ Use the captured 884n reproduction for fixed-station ventilation and exclusions,
 
 **대책:** На стационарном рабочем месте использовать местную вытяжку и предусмотренную для сварочного участка общеобменную вентиляцию; защиту органов дыхания выбирать по оценке воздействия.
 
-**확인:** Проверить положение вытяжного устройства и его работу по установленным критериям; повторить проверку после перемещения устройства или изменения работы. При неэффективной вытяжке прекратить сварку.
+**확인:** Проверить работу предусмотренной общеобменной вентиляции, положение местного вытяжного устройства и его работу по установленным критериям; повторить проверку после перемещения устройства или изменения работы. При неэффективной местной вытяжке или неработающей предусмотренной общеобменной вентиляции прекратить сварку.
 
 **범위:** Только сварочный аэрозоль на стационарном посту. Применимость исключений пункта 8 должна быть подтверждена для конкретного объекта. Использованы воспроизведения приказов и зарубежные технические руководства; подлинные сканы и действующая редакция не сверены. Пожар, излучение, электрические и газовые риски оцениваются отдельно.
 
@@ -265,4 +265,4 @@ Use the captured 884n reproduction for fixed-station ventilation and exclusions,
 - [ru-287n-reproduction-20261016](https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf) — Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5
 - [hse-welding](https://www.hse.gov.uk/welding/welding-controls.htm) — Regular versus sporadic welding; assessment and control hierarchy
 
-기존 인용과 구간별 해시·대응표: `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId.
+검수 결과: 기술·번역 AI 검토 완료, 지역 검토 미완료. 문장별 근거와 이전 내용은 `data/recommendation-knowledge/guidance-evidence-dossiers.json`의 동일 unitId에서 확인할 수 있습니다.

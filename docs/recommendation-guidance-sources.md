@@ -6,7 +6,7 @@ All **57/57 current guidance draft revisions** have fingerprints binding every a
 
 `guidance-evidence-dossiers.json` contains the twelve authored evidence dossiers: exact draft content and hash, source/section/fragment mapping, replacement rationale, prior sources and scope, and outstanding review limits. These dossiers are authoring records, not primary authorities or review approvals. `guidance-source-retrieval-status.json` preserves the earlier 12-draft retrieval blockage as history and marks the current revisions complete.
 
-The existing three AI technical desk reviews remain **3/180**. All 60 units remain drafts, all publication review statuses remain pending, all scores remain null and publication eligibility is zero. No additional content review was performed during source reauthoring. Source binding is now complete, so the next workstream is technical/regional/translation review. No merge, deployment or production DB write is included.
+Content desk-review progress is **27/180**: 15 technical (including the three prior records), 12 translation/terminology and zero completed regional reviews. The twelve reauthored drafts received direct technical and semantic review; five were corrected. Twelve regional assessments remain pending required evidence and are not counted. `content-review-records.json` records the new results and corrections; `recommendation-content-review-20261016.md` explains the findings. These are AI self-reviews by the drafting assistant, not independent professional approvals. All 60 units remain drafts, publication statuses remain pending, scores remain null and publication eligibility is zero. Workstream 3 remains active; no merge, deployment or production DB write is included.
 
 ## Evidence changes
 

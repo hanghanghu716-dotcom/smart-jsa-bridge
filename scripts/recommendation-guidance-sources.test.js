@@ -157,7 +157,11 @@ test('replacement dossiers bind exact draft claims and preserve prior source pro
     const u=units.find(u=>u.id===d.unitId);
     assert.equal(d.contentHash,knowledgeContentHash(u));
     assert.equal(d.sourceFingerprint,u.sourceFingerprint);
-    assert.equal(d.revision,d.previousRevision+1);
+    assert.equal(d.revision,d.previousRevision+1+(d.subsequentRevisions?.length||0));
+    for (const [i, revision] of (d.subsequentRevisions||[]).entries()) {
+      assert.equal(revision.revision,d.previousRevision+1+i);
+      assert.ok(revision.reason && revision.contentHash && revision.content);
+    }
     assert.notEqual(d.previousContentHash,d.contentHash);
     assert.ok(d.previousSources.length>0 && d.reason.length>0);
     assert.equal(d.approvalGranted,false);
