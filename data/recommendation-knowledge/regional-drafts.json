@@ -913,7 +913,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Maschineninstandhaltung",
       "step": "Stillsetzung vorbereiten",
@@ -940,7 +940,7 @@
         {
           "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4529",
           "authority": "DGUV",
-          "section": "FBHM-127, section 2 and Annex 1, PDF pages 2 and 8: residual energy and secured linked machinery",
+          "section": "FBHM-127, section 2 and Annex 2, PDF pages 2 and 8: residual energy and secured linked machinery",
           "checkedAt": "2026-10-15",
           "scope": "Störungsbeseitigung; betriebliche Gefährdungsbeurteilung und Zuständigkeit prüfen",
           "retrieval": "primary_page_or_document",
@@ -962,8 +962,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "9300fcc4baaf73d3cc7bae828b2db32aeae3b106f46df6ea6dafeadfdb302e1f",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1099,7 +1099,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
@@ -1124,9 +1124,9 @@
       ],
       "sources": [
         {
-          "url": "https://www.inrs.fr/media.html?refINRS=ED+6109",
+          "url": "https://www.inrs.fr/dam/jcr%3A69feb470-6958-4e76-a6bb-f34f673b2b8c/ed6109.pdf",
           "authority": "INRS",
-          "section": "ED 6109, consignation et déconsignation",
+          "section": "ED 6109, October 2020, definitions and section 4.1, printed pages 8-9 and 11 (PDF pages 10-11 and 13)",
           "checkedAt": "2026-10-14",
           "scope": "Guide technique; procédure et habilitations adaptées à la situation à vérifier",
           "retrieval": "primary_page_or_document",
@@ -1137,7 +1137,7 @@
           "url": "https://www.inrs.fr/demarche/conception-utilisation-equipements-travail/machines-remise-service",
           "authority": "INRS",
           "jurisdiction": "FR",
-          "section": "Énergies des machines; mise à jour du 12/10/2022",
+          "section": "Énergies des machines: dissipation and suspended loads; retrieved 2026-10-16",
           "scope": "Conseils de remise en service après arrêt prolongé: définition de la dissipation et contrôle des masses suspendues. Complément technique, pas une procédure complète de maintenance ni une validation réglementaire.",
           "checkedAt": "2026-10-15",
           "retrieval": "relevant_primary_sections_read",
@@ -1158,8 +1158,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "a70b94f14ed7f6c8ea315c058659f90031caba33281a58c2539edeff9dc56806",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1197,7 +1197,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Manutenzione di una macchina ferma",
       "step": "Preparare l’isolamento delle energie",
@@ -1255,8 +1255,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "672c683dbfed78c52beebc2551d59441345196ddddf8325b80e4bf10256aa044",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1294,7 +1294,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Mantenimiento de máquinas",
       "step": "Preparar la consignación",
@@ -1321,7 +1321,7 @@
         {
           "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/32-serie-ntp-numeros-1101-a-1135-ano-2018/ntp-1.117-consignacion-de-maquinas",
           "authority": "INSST",
-          "section": "NTP 1117, consignación de máquinas",
+          "section": "NTP 1117 (2018), selected sections 2-3: energy sources, separation, locking, dissipation and verification",
           "checkedAt": "2026-10-14",
           "scope": "Guía técnica; confirmar obligaciones y procedimiento aplicables",
           "retrieval": "primary_page_or_document",
@@ -1343,8 +1343,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "7ea63d5385e77ac60c0c82d08b516064e6f4325ccf57bbd5fe87499a2d4170e1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

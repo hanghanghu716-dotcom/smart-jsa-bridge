@@ -690,6 +690,323 @@
       "retrievedOn": "2026-10-16",
       "representation": "web-extracted-text-v1",
       "coverage": "selected-sections"
+    },
+    {
+      "id": "de-dguv127-20261016",
+      "edition": "26 May 2022",
+      "scopeLimit": "Troubleshooting guidance; equipment procedures and current legal applicability remain unreviewed.",
+      "retrievalRef": "turn37view0",
+      "fragments": [
+        {
+          "selector": "turn37view0: extracted lines 0-4",
+          "sha256": "7ef238b0fec8bd5caabe886765ca193f4db0506e24cf5a29b0bc1ae5fcbe0723",
+          "utf8Bytes": 162
+        },
+        {
+          "selector": "turn37view0: extracted lines 65-105",
+          "sha256": "bac87de1e64c5064d1fe698dc95a90e3869f536f667986184009ab949e717d82",
+          "utf8Bytes": 1871
+        },
+        {
+          "selector": "turn37view0: extracted lines 434-450",
+          "sha256": "7461823b6c7882b617998e91999956d0075e82e5abcb42212741382d07415a5c",
+          "utf8Bytes": 824
+        }
+      ],
+      "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4529",
+      "attribution": "DGUV",
+      "coveredSections": [
+        "FBHM-127, section 2 and Annex 2, PDF pages 2 and 8: residual energy and secured linked machinery"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "de-betrsichv10-20261016",
+      "edition": "Publisher consolidation: amended by Article 27, Act of 18 December 2025",
+      "scopeLimit": "Selected section 10(1)-(3); not a complete pressure-system inspection or filter-opening procedure.",
+      "retrievalRef": "turn44view2",
+      "fragments": [
+        {
+          "selector": "turn44view2: extracted lines 7-14",
+          "sha256": "67bd8d0be11de80027bec10622ace50c91ac4c7d95fd9b3b501826e62add141c",
+          "utf8Bytes": 398
+        },
+        {
+          "selector": "turn40view0: extracted lines 509-568",
+          "sha256": "44a3afac5c138ce9c007d692f8d667fcb2ef14a88f68ee141514b9af7a386bc2",
+          "utf8Bytes": 2589
+        }
+      ],
+      "url": "https://www.gesetze-im-internet.de/betrsichv_2015/BJNR004910015.html",
+      "attribution": "Bundesministerium der Justiz / Bundesamt für Justiz",
+      "coveredSections": [
+        "Betriebssicherheitsverordnung § 10(1)-(3), especially (3)6-7"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "de-dguv077-20261016",
+      "edition": "25 October 2021",
+      "scopeLimit": "Technical guidance sections 1-2; current TRGS and other legal applicability remain unreviewed.",
+      "retrievalRef": "turn39view1",
+      "fragments": [
+        {
+          "selector": "turn39view1: extracted lines 0-5",
+          "sha256": "49688d91a93e66fa89369bf637bf30057a598d89ad4e7eab3647d57fb3aa3673",
+          "utf8Bytes": 151
+        },
+        {
+          "selector": "turn40view1: extracted lines 28-100",
+          "sha256": "b94a13bf9ef6c097c51775d01f491d6d6acae36e70b2d00ed0a231de3a8d1c8d",
+          "utf8Bytes": 3455
+        }
+      ],
+      "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4398",
+      "attribution": "DGUV",
+      "coveredSections": [
+        "FBHM-077, sections 1-2, pages 1-2; control hierarchy and source capture"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "fr-ed6109-20261016",
+      "edition": "October 2020",
+      "scopeLimit": "Selected definitions, procedure and fluid-isolation passages. Equipment-specific sequencing and current law require review; no piping example is transferred as a universal procedure.",
+      "retrievalRef": "turn44view3",
+      "fragments": [
+        {
+          "selector": "turn44view3: extracted lines 43-48",
+          "sha256": "bd22876c2c01360852a625141e8ceb921399c12d8dd0f378f5c5ddd163f2d20d",
+          "utf8Bytes": 279
+        },
+        {
+          "selector": "turn43view0: extracted lines 155-206",
+          "sha256": "17b2279208b67037d55f884a6a8f72880241a9fb25c55010872324a18664bcdf",
+          "utf8Bytes": 3117
+        },
+        {
+          "selector": "turn44view0: extracted lines 207-211",
+          "sha256": "1120f248944b9deb0eb584b7e5c2958981f2b4a6a75106c47e85d72962735355",
+          "utf8Bytes": 408
+        },
+        {
+          "selector": "turn44view0: extracted lines 235-302",
+          "sha256": "603bd4a76d5ed5208cec59cfe4153881338bb03b9f893a841d18737b95413187",
+          "utf8Bytes": 3327
+        },
+        {
+          "selector": "turn39view5: extracted lines 581-602",
+          "sha256": "b55dc329cc617e6c2384d513d9fe91214ec77e0af85ff0a075b0e85cc9fca65f",
+          "utf8Bytes": 1052
+        },
+        {
+          "selector": "turn42view0: extracted lines 603-658",
+          "sha256": "e9f7c64920105344d6e716ad7e92971f96639b9224465af97e6cccb2195dbd43",
+          "utf8Bytes": 2983
+        },
+        {
+          "selector": "turn43view1: extracted lines 756-759",
+          "sha256": "e9e8cc829f222722465e39d03ea25ad2e146ceb12e1bfc4d04978209b6540317",
+          "utf8Bytes": 216
+        },
+        {
+          "selector": "turn43view1: extracted lines 778-836",
+          "sha256": "41c89b52a7fc9efedf02a991b69c657afaaeb8ba5219451db9b3a6bd33c60cfd",
+          "utf8Bytes": 3032
+        }
+      ],
+      "url": "https://www.inrs.fr/dam/jcr%3A69feb470-6958-4e76-a6bb-f34f673b2b8c/ed6109.pdf",
+      "attribution": "INRS",
+      "coveredSections": [
+        "ED 6109, October 2020, definitions and section 4.1, printed pages 8-9 and 11 (PDF pages 10-11 and 13)",
+        "ED 6109, October 2020, selected section 6.1: separation, purge, locking and verification; printed pages 18-19 and 23-24 (PDF pages 20-21 and 25-26)"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "fr-machine-restart-20261016",
+      "edition": "Retrieved 2026-10-16; original citation identifies update 12/10/2022, not reconfirmed in extraction",
+      "scopeLimit": "Restart-after-shutdown guidance; energy dissipation and suspended loads only, not a complete maintenance procedure.",
+      "retrievalRef": "turn43view3",
+      "fragments": [
+        {
+          "selector": "turn43view3: extracted lines 74-86",
+          "sha256": "f00674385893218fc67cbcebf7667ea79c834521999c0d36a663be0daee74927",
+          "utf8Bytes": 1370
+        }
+      ],
+      "url": "https://www.inrs.fr/demarche/conception-utilisation-equipements-travail/machines-remise-service",
+      "attribution": "INRS",
+      "coveredSections": [
+        "Énergies des machines: dissipation and suspended loads; retrieved 2026-10-16"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "fr-welding-20261016",
+      "edition": "Retrieved 2026-10-16; page contains historical 2023 transition values",
+      "scopeLimit": "Selected prevention text; historical exposure values not treated as current limits. Respiratory protection does not replace the scoped routine extraction requirement.",
+      "retrievalRef": "turn43view2",
+      "fragments": [
+        {
+          "selector": "turn43view2: extracted lines 84-89",
+          "sha256": "7582618a15d8d94e2a2af83939e2f3eecf0ca072022a99eaa53d0311bdb2d02d",
+          "utf8Bytes": 1982
+        },
+        {
+          "selector": "turn43view2: extracted lines 100-123",
+          "sha256": "28d0bcca2e2a806eb0c59dbcc364304e96b9b46fa453f54e443aa051ad50487e",
+          "utf8Bytes": 3433
+        },
+        {
+          "selector": "turn44view1: extracted lines 124-141",
+          "sha256": "682d2a2ebe5b678c84c947acb69b099692cdb9d4193048a29527182168d299b7",
+          "utf8Bytes": 2519
+        }
+      ],
+      "url": "https://www.inrs.fr/risques/fumees-soudage/ce-qu-il-faut-retenir.html",
+      "attribution": "INRS",
+      "coveredSections": [
+        "Prévention: captage à la source, ventilation générale et protection respiratoire"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "it-production-lines-20261016",
+      "edition": "Published/updated 28 June 2023",
+      "scopeLimit": "INAIL research description only; does not prescribe a complete operating procedure or establish legal compliance.",
+      "retrievalRef": "turn40view2",
+      "fragments": [
+        {
+          "selector": "turn40view2: extracted lines 101-107",
+          "sha256": "c97873739694a6fe2c091991353aca63316d3b324c6807b323287659a0502059",
+          "utf8Bytes": 2059
+        },
+        {
+          "selector": "turn40view2: extracted lines 115-121",
+          "sha256": "5867694bee21ff37f77e773d22a242824d7dc1de5867af291d69d72d97cde877",
+          "utf8Bytes": 73
+        }
+      ],
+      "url": "https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/impianti-di-trasformazione--produzione-e-processo/linee-di-produzione.html",
+      "attribution": "INAIL",
+      "coveredSections": [
+        "Linee di produzione: energie residue, riavvio accidentale e ricerca sulla procedura LOTO"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "it-protection-20261016",
+      "edition": "Published/updated 20 June 2017",
+      "scopeLimit": "Historical general carcinogen-protection guidance with welding example; current law and exposure limits remain unreviewed.",
+      "retrievalRef": "turn40view3",
+      "fragments": [
+        {
+          "selector": "turn40view3: extracted lines 121-143",
+          "sha256": "cfc8ef36a3d696afe7fcb77fb5b472b4f1e82e9bbabc9af9ec5ee448363e2cd7",
+          "utf8Bytes": 2371
+        },
+        {
+          "selector": "turn41view0: extracted lines 153-163",
+          "sha256": "6402eaf924d496fefee26f5d94d6039a7417d636c17a934dc2766e686915983e",
+          "utf8Bytes": 1272
+        },
+        {
+          "selector": "turn45view2: extracted lines 215-221",
+          "sha256": "c2d3ceec90fd84c6f24d2460da7e78d48d26f7261561c3a175631714af3e8424",
+          "utf8Bytes": 73
+        }
+      ],
+      "url": "https://www.inail.it/portale/prevenzione-e-sicurezza/it/come-fare-per/conoscere-il-rischio/agenti-cancerogeni-e-mutageni/misure-di-tutela.html",
+      "attribution": "INAIL",
+      "coveredSections": [
+        "Aspirazione localizzata; esempio di torcia aspirante e ventilazione complementare"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "es-ntp1117-20261016",
+      "edition": "NTP 1117, 2018",
+      "scopeLimit": "INSST publisher HTML text of selected sections 2-3. Good-practice guidance, not current law or a complete pressure-vessel procedure.",
+      "retrievalRef": "turn41view2",
+      "fragments": [
+        {
+          "selector": "turn41view2: extracted lines 405-407",
+          "sha256": "97cbb61d32e3728ce95caae9bccaa4e45d7091e02b61208875ad8d4098adf2d8",
+          "utf8Bytes": 86
+        },
+        {
+          "selector": "turn41view2: extracted lines 481-481",
+          "sha256": "8bf081711a1f6121747b54ecc4a97c7707a529c3ac522f8091900b0692f55222",
+          "utf8Bytes": 286
+        },
+        {
+          "selector": "turn41view2: extracted lines 502-524",
+          "sha256": "36e7bbc2f9bf09ce99b5f6d85ed34aca0d9830cc7492667cc20483b422bf8347",
+          "utf8Bytes": 1910
+        },
+        {
+          "selector": "turn45view0: extracted lines 525-569",
+          "sha256": "47989a1a0881f70453387f4f7ca74390bae954f17d6477c42f9baae838c869bb",
+          "utf8Bytes": 8130
+        },
+        {
+          "selector": "turn42view1: extracted lines 570-604",
+          "sha256": "8bd79740ee7424d93196c6d20c7efbbb8af98db1aff59e9d19337cf1948b7bb7",
+          "utf8Bytes": 2639
+        }
+      ],
+      "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/32-serie-ntp-numeros-1101-a-1135-ano-2018/ntp-1.117-consignacion-de-maquinas",
+      "attribution": "INSST",
+      "coveredSections": [
+        "NTP 1117 (2018), selected sections 2-3: energy sources, separation, locking, dissipation and verification",
+        "NTP 1117, disipación de presión residual hidráulica/neumática y verificación"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "es-ntp494-20261016",
+      "edition": "NTP 494, 1999; NIPO 211-99-034-8",
+      "scopeLimit": "Historical arc-welding guidance, selected fume/gas extraction text. Numerical examples and current standards require separate review; confined entry remains excluded.",
+      "retrievalRef": "turn39view6",
+      "fragments": [
+        {
+          "selector": "turn39view6: extracted lines 405-412",
+          "sha256": "5bcb693595296f06631cbbd5cee276f35c640dfb50633908ba3696d33a711a5f",
+          "utf8Bytes": 890
+        },
+        {
+          "selector": "turn41view3: extracted lines 512-536",
+          "sha256": "8869dbec7af5584019401db73243752fb705ec348ff051a7147e1d8276dcf6f5",
+          "utf8Bytes": 2391
+        }
+      ],
+      "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/14-serie-ntp-numeros-471-a-505-ano-1999/ntp-494-soldadura-electrica-al-arco-normas-de-seguridad",
+      "attribution": "INSST",
+      "coveredSections": [
+        "NTP 494, Exposición a humos y gases; extracción localizada"
+      ],
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
     }
   ]
 }

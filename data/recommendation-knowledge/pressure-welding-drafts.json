@@ -2271,7 +2271,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Wartung eines Druckluftfilters",
       "step": "Öffnung des Filtergehäuses vorbereiten",
@@ -2348,8 +2348,8 @@
         "non-air-service": "Der Filter führt ein anderes Gas als Druckluft",
         "breathing-air-certification": "Die Aufgabe umfasst die Zertifizierung von Atemluft"
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "824c536dfa6b855f2c2a008333d28606bf1dd48baa03beae4b2f191e2e855bed",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2392,7 +2392,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Regelmäßiges Schweißen von unbeschichtetem unlegiertem Stahl in Innenräumen",
       "step": "Schweißrauchabsaugung vorbereiten",
@@ -2466,8 +2466,8 @@
         "coated-stainless-or-unknown-metal": "Beschichteter, nichtrostender oder unbekannter Werkstoff",
         "extraction-unavailable": "Absaugung fehlt oder ist unwirksam"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "a3992e5580d988e1791a70eafb6b3080bc8e4870b692014f31dc4eceebf84aea",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2734,7 +2734,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
@@ -2774,7 +2774,7 @@
         {
           "url": "https://www.inrs.fr/dam/jcr%3A69feb470-6958-4e76-a6bb-f34f673b2b8c/ed6109.pdf",
           "authority": "INRS",
-          "section": "ED 6109, section 6.1, consignation fluidique, pages PDF 20-21",
+          "section": "ED 6109, October 2020, selected section 6.1: separation, purge, locking and verification; printed pages 18-19 and 23-24 (PDF pages 20-21 and 25-26)",
           "jurisdiction": "FR",
           "scope": "Isolement, dissipation et vérification des fluides; adapter la purge au fluide et à l’équipement.",
           "checkedAt": "2026-10-14",
@@ -2811,8 +2811,8 @@
         "non-air-service": "Le filtre contient un gaz autre que de l’air comprimé",
         "breathing-air-certification": "La tâche comprend la certification d’air respirable"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "8c0d09b698b04cddab965ce5c6b721cdcb44772e516458727dc0ea2aa2cc19d6",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -2855,7 +2855,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
@@ -2929,8 +2929,8 @@
         "coated-stainless-or-unknown-metal": "Matériau revêtu, inoxydable ou non identifié",
         "extraction-unavailable": "Captage absent ou inefficace"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "5a52b4d393ecaf08faca4765b3e6f5629fc7fd4ebe6ac25c71ce4083f7e14179",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -3085,7 +3085,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Saldatura regolare al chiuso di acciaio dolce non rivestito",
       "step": "Predisporre il controllo dei fumi",
@@ -3159,8 +3159,8 @@
         "coated-stainless-or-unknown-metal": "Materiale rivestito, inossidabile o non identificato",
         "extraction-unavailable": "Aspirazione assente o inefficace"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "4d2ee4a741138410d6b54ad727be1ebcdd01fd9428cefa73396616103141b444",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -3191,7 +3191,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Mantenimiento de un filtro de aire comprimido",
       "step": "Preparar la apertura de la carcasa",
@@ -3271,8 +3271,8 @@
         "non-air-service": "El filtro contiene un gas distinto del aire comprimido",
         "breathing-air-certification": "La tarea incluye la certificación de aire respirable"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "8c3fab45a8ef8e1569f9c861420ee5c7cd56c2632430ca9a07cd5751fab71435",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -3315,7 +3315,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Soldadura habitual en interiores de acero dulce sin recubrimiento",
       "step": "Preparar el control de humos",
@@ -3392,8 +3392,8 @@
         "extraction-unavailable": "Extracción ausente o ineficaz",
         "metal-arc-welding": "El proceso es soldadura eléctrica al arco"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "7216524d1dd90d0023129074623bfeb5c2364fb289cddff25002183e15738403",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
