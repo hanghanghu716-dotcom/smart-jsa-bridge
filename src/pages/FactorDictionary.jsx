@@ -245,7 +245,7 @@ export default function FactorDictionary() {
                         </div>
                       </li>)}
                     </ol>
-                    {hazard.keywords.length > 0 && <div style={styles.keywordWrap}>{hazard.keywords.map(keyword => <span key={keyword} style={styles.keywordBadge}>#{keyword}</span>)}</div>}
+                    {hazard.keywords.length > 0 && <div style={styles.keywordWrap}>{(currentLocale === 'ro-RO' ? hazard.keywords.slice(0, 6) : hazard.keywords).map(keyword => <span key={keyword} style={styles.keywordBadge}>#{keyword}</span>)}</div>}
                   </article>
                 ))}
               </div>
