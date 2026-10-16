@@ -6,22 +6,24 @@ import { buildKnowledgeCoverage, sourceRelationship, readKnowledgeCoverage } fro
 import { validateKnowledgeBank, knowledgeContentHash } from './recommendation-knowledge.js';
 import { compileRecommendationRelease, mappingContentHash } from './recommendation-release.js';
 import { selectReviewedRecommendations } from '../src/utils/reviewedRecommendationPolicy.js';
+import { verifyGuidanceBindings } from './recommendation-guidance-sources.js';
 
 // Existing authored banks predate the Romanian UI release; missing content stays visible.
 const authoredLocales = SUPPORTED_LANGS.filter(locale => locale !== 'ro-RO');
 const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/pressure-welding-drafts.json', import.meta.url)));
+const captures = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/guidance-source-captures.json', import.meta.url)));
 
 test('pressure and welding have exact-locale drafts, explicit limitations and no releasable scores', () => {
   assert.equal(bank.units.length, authoredLocales.length * 2);
   assert.deepEqual(validateKnowledgeBank(bank), []);
   assert.equal(validateKnowledgeBank(bank, { forPublication: true }).length, bank.units.length);
+  assert.deepEqual(verifyGuidanceBindings(bank, captures), []);
   for (const locale of authoredLocales) {
     const units = bank.units.filter(unit => unit.locale === locale);
     assert.deepEqual(units.map(unit => unit.applicability.taskType).sort(), ['pressure-equipment-opening', 'welding-exposure']);
     for (const unit of units) {
       assert.ok(unit.coverageLimit.length > 10);
       assert.equal(unit.recommendationScore, null);
-      assert.equal(unit.sourceFingerprint, null);
       assert.equal(unit.review.technicalStatus, 'pending');
       assert.equal(unit.review.regionalStatus, 'pending');
       assert.equal(unit.review.translationStatus, 'pending');
