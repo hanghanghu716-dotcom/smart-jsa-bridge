@@ -14,7 +14,8 @@
       "coveredSections": [
         "1910.147(d)(1)-(6), isolation, stored energy and verification",
         "1910.147(d)(3)-(6)",
-        "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification"
+        "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+        "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
       ],
       "fragments": [
         {

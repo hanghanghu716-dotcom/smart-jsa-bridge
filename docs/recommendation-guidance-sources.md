@@ -6,7 +6,7 @@ All **57/57 current guidance draft revisions** have fingerprints binding every a
 
 `guidance-evidence-dossiers.json` contains the twelve authored evidence dossiers: exact draft content and hash, source/section/fragment mapping, replacement rationale, prior sources and scope, and outstanding review limits. These dossiers are authoring records, not primary authorities or review approvals. `guidance-source-retrieval-status.json` preserves the earlier 12-draft retrieval blockage as history and marks the current revisions complete.
 
-Content desk-review progress is **27/180**: 15 technical (including the three prior records), 12 translation/terminology and zero completed regional reviews. The twelve reauthored drafts received direct technical and semantic review; five were corrected. Twelve regional assessments remain pending required evidence and are not counted. `content-review-records.json` records the new results and corrections; `recommendation-content-review-20261016.md` explains the findings. These are AI self-reviews by the drafting assistant, not independent professional approvals. All 60 units remain drafts, publication statuses remain pending, scores remain null and publication eligibility is zero. Workstream 3 remains active; no merge, deployment or production DB write is included.
+Content desk-review progress is **53/180**: 27 technical, 2 bounded regional and 24 translation/terminology reviews. Twenty-two partial regional assessments are not counted. Records are split across `technical-review-records.json` (3), `content-review-records.json` (24) and `content-review-batch13.json` (26). The latest findings are in `recommendation-content-review-batch13-20261016.md`. All are AI desk reviews by the drafting assistant, not independent professional or publication approvals. All 60 units remain drafts, publication statuses remain pending and scores remain null. Workstream 3 is active; no merge, deployment or production DB write is included.
 
 ## Evidence changes
 
@@ -20,7 +20,7 @@ Content desk-review progress is **27/180**: 15 technical (including the three pr
 | Brazil welding (1) | Fundacentro 2016 primary publication plus explicitly foreign OSHA/HSE guidance. Added elimination/reduction before extraction and respiratory protection; no claim of current GRO/PGR verification. |
 | Russia maintenance/filter/welding (3) | Captured reproductions of 833n/884n and operator/foreign technical guidance. 287n is duration context only. Signed-source equivalence and current legal applicability remain unreviewed; no actual site is claimed to have passed rule 8 exclusions. |
 
-The unread references are retained in the dossier's prior source records, including full citation scopes and retrieval status. The previous revisions remain in Git history. This is a documented change to authored evidence and scope, not recovery of the old inaccessible sources. The 45 previously bound guidance units and all three existing review records were preserved exactly.
+The unread references are retained in the dossier's prior source records, including full citation scopes and retrieval status. The previous revisions remain in Git history. This is a documented change to authored evidence and scope, not recovery of the old inaccessible sources. During phase 11 source reauthoring, the 45 already bound units and the three earlier review records were preserved. Later content-review corrections are recorded separately with prior content and hashes.
 
 ## Representation and limits
 
@@ -43,3 +43,7 @@ The bind command checks the actual supplied fragment text against each digest an
 ## Attribution
 
 OSHA sources are US federal regulatory text. HSE content is licensed under the Open Government Licence v3.0: https://www.hse.gov.uk/help/copyright.htm . Contains public sector information published by the Health and Safety Executive and licensed under the Open Government Licence. Publisher identities and reproduction hosts are retained in source metadata. No third-party document full text is redistributed here.
+
+## Additive source-section indexing
+
+Batch 13 explicitly indexes OSHA 1910.147(c)(2)-(3) together with (d)(1)-(6) for the two revised US isolation drafts. Those paragraphs were already present in the verified capture bytes. No source text or fragment digest changed. The two new citation meanings receive new source fingerprints; previous reviews retain their original section lists and exact fragment hashes.

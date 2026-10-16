@@ -9,14 +9,14 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Follow the machine-specific procedure to shut down, isolate and secure each energy source using the required lockout or tagout system, then safely release or restrain stored energy before access.",
+      "control": "Follow the machine-specific procedure to shut down and isolate each energy source. Use lockout for lockable energy-isolating devices. Tagout is permitted only under the equipment energy-control programme meeting the applicable OSHA tagout requirements, including demonstrated full employee protection when used instead of lockout on a lockable device. Safely release or restrain stored energy before access.",
       "verification": "An authorized employee verifies isolation and control of stored energy before work; continue verification while hazardous energy could accumulate again. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
@@ -38,7 +38,7 @@
         {
           "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
           "authority": "OSHA",
-          "section": "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+          "section": "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification",
           "checkedAt": "2026-10-15",
           "scope": "US general industry; sector and exception scope need review",
           "retrieval": "primary_page_or_document",
@@ -63,7 +63,7 @@
         ]
       },
       "sourceRevision": "captured-sections-2026-10-16",
-      "sourceFingerprint": "9a5b5dcf5bee4c62aef4afa9c6fa9f95398f28192bc11b8fc03ad2290ad3b3b9",
+      "sourceFingerprint": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -95,7 +95,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures. Federal general-industry baseline only; applicable State Plan and sector-specific requirements must be checked before use."
     },
     {
       "id": "regional-ca-maintenance",
@@ -625,14 +625,14 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Stop moving plant and identify and isolate its energy sources. Lock off against accidental reconnection and safely release or restrain stored energy, including supporting parts that could fall, using the equipment-specific procedure before access.",
       "verification": "Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
@@ -708,7 +708,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Great Britain energy isolation before maintenance only, within the cited HSE work-equipment guidance. Northern Ireland and shipboard equipment outside that scope are not covered. Other applicable equipment regimes, access, repair, guards and return to service require separate assessment and procedures."
     },
     {
       "id": "regional-au-maintenance",
@@ -993,7 +993,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "機械の整備",
       "step": "停止と再起動防止の準備",
@@ -1003,12 +1003,12 @@
       "control": "機械を停止し、機械ごとの手順に従ってエネルギー源を遮断し、施錠等により再供給を防ぐ。作業前に残圧などの蓄積エネルギーを安全に除去し、必要な部分を機械的に保持する。",
       "verification": "作業開始前に、エネルギー源の遮断、再供給防止、蓄積エネルギーの除去と必要な保持措置を機械別の手順で確認する。 遮断や蓄積エネルギーの安全な処置を確認できない場合は、危険区域に立ち入らない。",
       "conditions": [
-        "機械ごとの作業手順を確認しました",
-        "適切な知識と技能を持つ担当者を配置しました"
+        "機械ごとの作業手順が利用できる",
+        "適切な知識と技能を持つ担当者が配置されている"
       ],
       "exclusions": [
         "通電・運転状態での作業が必要です",
-        "閉所への立入りを伴います",
+        "閉鎖空間（タンク内部等）への立入りを伴う",
         "エネルギー源または隔離範囲が不明です"
       ],
       "keywords": [
@@ -1068,10 +1068,10 @@
       },
       "recommendationScore": null,
       "conditionLabels": {
-        "equipment-procedure-available": "機械ごとの作業手順を確認しました",
-        "competent-person-assigned": "適切な知識と技能を持つ担当者を配置しました",
+        "equipment-procedure-available": "機械ごとの作業手順が利用できる",
+        "competent-person-assigned": "適切な知識と技能を持つ担当者が配置されている",
         "live-intervention": "通電・運転状態での作業が必要です",
-        "confined-entry": "閉所への立入りを伴います",
+        "confined-entry": "閉鎖空間（タンク内部等）への立入りを伴う",
         "unknown-energy-path": "エネルギー源または隔離範囲が不明です"
       },
       "sourceCheck": {
@@ -1083,7 +1083,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "保守前のエネルギー遮断のみを対象とする。立入り、修理作業、防護装置、再稼働は別途評価し、手順を定める。"
+      "coverageLimit": "保守前のエネルギー遮断のみを対象とする。第107条・第108条の作業区分と現行の適用要件を別途確認する。立入り、修理作業、防護装置、再稼働は別途評価し、手順を定める。"
     },
     {
       "id": "regional-fr-maintenance",
@@ -1708,18 +1708,18 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "기계 정비",
       "step": "차단 범위 준비",
       "hazard": "예기치 않은 기동 또는 잔류 에너지 방출",
       "cause": "에너지 경로가 남아 있거나 다시 공급됨",
       "consequence": "정비 중 끼임 등 상해",
-      "control": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 재기동을 방지한다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제한다.",
+      "control": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 기동장치의 잠금·열쇠 관리 등 필요한 방호 조치로 다른 사람의 재기동을 방지한다. 부적절한 작업방법으로 갑자기 가동될 우려가 있으면 작업지휘자 배치 등 필요한 조치를 한다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제한다.",
       "verification": "작업 전 장비별 절차로 차단과 잔류 에너지의 안전한 처리 상태를 확인한다. 이를 확인할 수 없으면 위험구역에 들어가지 않는다.",
       "conditions": [
-        "장비별 작업 절차를 확보했습니다",
-        "작업에 적합한 담당자를 지정했습니다"
+        "장비별 작업 절차가 있음",
+        "작업에 적합한 담당자가 지정되어 있음"
       ],
       "exclusions": [
         "에너지가 공급된 상태에서 작업해야 합니다",
@@ -1773,8 +1773,8 @@
       },
       "recommendationScore": null,
       "conditionLabels": {
-        "equipment-procedure-available": "장비별 작업 절차를 확보했습니다",
-        "competent-person-assigned": "작업에 적합한 담당자를 지정했습니다",
+        "equipment-procedure-available": "장비별 작업 절차가 있음",
+        "competent-person-assigned": "작업에 적합한 담당자가 지정되어 있음",
         "live-intervention": "에너지가 공급된 상태에서 작업해야 합니다",
         "confined-entry": "밀폐공간에 들어가는 작업입니다",
         "unknown-energy-path": "에너지원 또는 차단 경계가 확인되지 않았습니다"
@@ -1788,7 +1788,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "정비 전 에너지 차단만을 다룬다. 출입, 실제 수리, 방호장치 및 재가동은 별도로 평가하고 절차를 정한다."
+      "coverageLimit": "동력기계 정비 전 운전정지·재기동 방지와 잔류 압축 기체·액체 위험 통제를 다룬다. 제92조의 구조상 예외를 자동 적용하지 않는다. 출입, 실제 수리, 방호장치, 그 밖의 에너지원 및 재가동은 장비별로 별도 평가하고 절차를 정한다."
     },
     {
       "id": "regional-ro-maintenance",

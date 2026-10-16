@@ -28,7 +28,7 @@ test('recorded AI desk reviews match frozen content and evidence without grantin
       assert.ok(capture, evidence.captureId);
       assert.equal(evidence.url, capture.url);
       assert.deepEqual(evidence.fragments, capture.fragments);
-      assert.deepEqual(evidence.coveredSections, capture.coveredSections);
+      for (const section of evidence.coveredSections) assert.ok(capture.coveredSections.includes(section));
     }
     assert.equal(unit.status, 'draft');
     assert.equal(unit.review.technicalStatus, 'pending');
@@ -69,7 +69,7 @@ test('content desk reviews cover exact revised text and do not count unfinished 
     for (const e of r.evidence) {
       const c=captures.find(c=>c.id===e.captureId);
       assert.equal(e.url,c.url);assert.deepEqual(e.fragments,c.fragments);
-      assert.deepEqual(e.coveredSections,c.coveredSections);
+      for(const section of e.coveredSections) assert.ok(c.coveredSections.includes(section));
       if(e.captureId.includes('287n'))assert.equal(e.role,'temporal-context-only');
     }
     if(r.area==='regional') {

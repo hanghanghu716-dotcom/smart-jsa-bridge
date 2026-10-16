@@ -1,0 +1,3140 @@
+{
+  "schemaVersion": 1,
+  "kind": "ai-content-desk-reviews",
+  "batch": 13,
+  "releaseApproval": false,
+  "reviewedBaseCommit": "cd8e8978fd948cb67e8942cc5cad7eae3617cd06",
+  "completedReviewAreas": 26,
+  "totalCompletedReviewAreasIncludingPrior": 53,
+  "publicationApprovals": 0,
+  "scope": "US, GB, JP and KR guidance: 12 technical and 12 semantic/terminology reviews, plus bounded regional reviews for GB and KR maintenance. Ten regional assessments remain incomplete.",
+  "reviews": [
+    {
+      "unitId": "regional-us-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "b8df90829aea71ea637fe68abaeff15cd78cababae733f90e8b8510bb62500f2",
+      "sourceFingerprint": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Shutdown, isolation, stored-energy control and repeated verification form a consistent sequence. The revision removes the apparent free choice between lockout and tagout; only the applicable qualified tagout route is retained.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Shutdown, isolation, stored-energy control and repeated verification form a consistent sequence. The revision removes the apparent free choice between lockout and tagout; only the applicable qualified tagout route is retained."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "Federal 1910.147 scope/exceptions are read, but State Plan and sector applicability have not been resolved for a target jurisdiction. Keep regional review pending."
+      ],
+      "correctionIds": [
+        "regional-us-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-us-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "b8df90829aea71ea637fe68abaeff15cd78cababae733f90e8b8510bb62500f2",
+      "sourceFingerprint": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "Authorized employee and the no-entry hold are preserved. The source is English, so this is same-language terminology and obligation review; lockout and tagout are no longer presented as equivalent labels.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Authorized employee and the no-entry hold are preserved. The source is English, so this is same-language terminology and obligation review; lockout and tagout are no longer presented as equivalent labels."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Authorized employee and the no-entry hold are preserved. The source is English, so this is same-language terminology and obligation review; lockout and tagout are no longer presented as equivalent labels.",
+      "correctionIds": [
+        "regional-us-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-us-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "34527c5a9080e5856198903c1189b603f47c1b24baee4995e27ccfcba6e13a25",
+      "sourceFingerprint": "911ccf57f18335836b94c9e09d737abd3d886e59b39526f99cddd156c5983f8e",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Supply/backfeed and residual pressure remain separate hazards. The conditional tagout clarification does not change the no-opening/no-loosening hold or the continued checks on pressure return. Parker remains a model example.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Supply/backfeed and residual pressure remain separate hazards. The conditional tagout clarification does not change the no-opening/no-loosening hold or the continued checks on pressure return. Parker remains a model example."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "Federal scope is conditional. State Plan requirements and any separate pressure-equipment duties are still unresolved."
+      ],
+      "correctionIds": [
+        "regional-us-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-us-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "34527c5a9080e5856198903c1189b603f47c1b24baee4995e27ccfcba6e13a25",
+      "sourceFingerprint": "911ccf57f18335836b94c9e09d737abd3d886e59b39526f99cddd156c5983f8e",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "Authorized, depressurization and pressurized now use en-US spelling. Backfeed and trapped air retain different meanings; neither verification nor the breathing-air exclusion was softened.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Authorized, depressurization and pressurized now use en-US spelling. Backfeed and trapped air retain different meanings; neither verification nor the breathing-air exclusion was softened."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Authorized, depressurization and pressurized now use en-US spelling. Backfeed and trapped air retain different meanings; neither verification nor the breathing-air exclusion was softened.",
+      "correctionIds": [
+        "regional-us-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-us-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "755264e080e1888b18661a3905020d163391a9ceb6f44720bf65331235555cff",
+      "sourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Source capture and rechecking after hood movement are coherent for the bounded indoor task. Source extraction is a selected conservative control; the draft does not misstate 1910.252 as prescribing it universally.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Source capture and rechecking after hood movement are coherent for the bounded indoor task. Source extraction is a selected conservative control; the draft does not misstate 1910.252 as prescribing it universally."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "Current federal ventilation text is read; State Plan differences, applicable exposure limits and the respiratory-protection programme remain to be reconciled."
+      ],
+      "correctionIds": [
+        "regional-us-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-us-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "755264e080e1888b18661a3905020d163391a9ceb6f44720bf65331235555cff",
+      "sourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "Authorized is corrected to en-US usage. Uncoated mild steel, ineffective extraction and stop welding retain material restriction, failure condition and obligation.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Authorized is corrected to en-US usage. Uncoated mild steel, ineffective extraction and stop welding retain material restriction, failure condition and obligation."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Authorized is corrected to en-US usage. Uncoated mild steel, ineffective extraction and stop welding retain material restriction, failure condition and obligation.",
+      "correctionIds": [
+        "regional-us-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-gb-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "0d552f2b1b3bed3336fd9707bd21233493a095dae67145666cc4f130d76524cc",
+      "sourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "hse-maintenance",
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "coveredSections": [
+            "Safe isolation; stored compressed air and pressure",
+            "Safe maintenance; stored energy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 80-125",
+              "sha256": "7da5fde38391f313185265d3a57a3024f89067ae69e688506e0d5c8a66de6403",
+              "utf8Bytes": 4309
+            },
+            {
+              "selector": "web-extracted lines 141-148",
+              "sha256": "156b9e5a5409b22183842b1f6b4096868648cd84fb447d9363d32094226590c1",
+              "utf8Bytes": 816
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The revision expressly locks off and supports parts against gravity. The check-before-entry and stopped-work scope are consistent with the captured HSE maintenance guidance.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The revision expressly locks off and supports parts against gravity. The check-before-entry and stopped-work scope are consistent with the captured HSE maintenance guidance."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "The current HSE maintenance page and PUWER overview support this bounded Great Britain maintenance-isolation card. Northern Ireland and out-of-scope shipboard equipment are expressly excluded; other equipment regimes remain outside this card."
+      ],
+      "correctionIds": [
+        "regional-gb-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-gb-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "0d552f2b1b3bed3336fd9707bd21233493a095dae67145666cc4f130d76524cc",
+      "sourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "hse-maintenance",
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "coveredSections": [
+            "Safe isolation; stored compressed air and pressure",
+            "Safe maintenance; stored energy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 80-125",
+              "sha256": "7da5fde38391f313185265d3a57a3024f89067ae69e688506e0d5c8a66de6403",
+              "utf8Bytes": 4309
+            },
+            {
+              "selector": "web-extracted lines 141-148",
+              "sha256": "156b9e5a5409b22183842b1f6b4096868648cd84fb447d9363d32094226590c1",
+              "utf8Bytes": 816
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "British terminology is consistent. Stop moving plant is distinct from isolate power; release or restrain retains the choice appropriate to the energy rather than demanding unsafe release.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "British terminology is consistent. Stop moving plant is distinct from isolate power; release or restrain retains the choice appropriate to the energy rather than demanding unsafe release."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "British terminology is consistent. Stop moving plant is distinct from isolate power; release or restrain retains the choice appropriate to the energy rather than demanding unsafe release.",
+      "correctionIds": [
+        "regional-gb-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-gb-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "0d552f2b1b3bed3336fd9707bd21233493a095dae67145666cc4f130d76524cc",
+      "sourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "hse-maintenance",
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "coveredSections": [
+            "Safe isolation; stored compressed air and pressure",
+            "Safe maintenance; stored energy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 80-125",
+              "sha256": "7da5fde38391f313185265d3a57a3024f89067ae69e688506e0d5c8a66de6403",
+              "utf8Bytes": 4309
+            },
+            {
+              "selector": "web-extracted lines 141-148",
+              "sha256": "156b9e5a5409b22183842b1f6b4096868648cd84fb447d9363d32094226590c1",
+              "utf8Bytes": 816
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Compare the exact bounded card with the named current official material, including applicability and exceptions; no site compliance certification.",
+      "rationale": "The current HSE maintenance page and PUWER overview support this bounded Great Britain maintenance-isolation card. Northern Ireland and out-of-scope shipboard equipment are expressly excluded; other equipment regimes remain outside this card.",
+      "checks": [
+        {
+          "field": "regional",
+          "finding": "The current HSE maintenance page and PUWER overview support this bounded Great Britain maintenance-isolation card. Northern Ireland and out-of-scope shipboard equipment are expressly excluded; other equipment regimes remain outside this card."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Site-specific classification, other equipment regimes and competent professional implementation remain required."
+      ],
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "retrievalRef": "turn87view6",
+          "sections": "Safe isolation and stored energy",
+          "observedOn": "2026-10-16"
+        },
+        {
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/puwer-overview.htm",
+          "retrievalRef": "turn89view0",
+          "sections": "What you must do; other equipment regimes; ship equipment exclusion",
+          "pageUpdated": "2024-11-21",
+          "observedOn": "2026-10-16"
+        }
+      ],
+      "correctionIds": [
+        "regional-gb-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-gb-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "b759b7b066910d85488ae67693e0a9473ae2cced8a36d69a720bdffb35431183",
+      "sourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "hse-maintenance",
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "coveredSections": [
+            "Safe isolation; stored compressed air and pressure",
+            "Safe maintenance; stored energy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 80-125",
+              "sha256": "7da5fde38391f313185265d3a57a3024f89067ae69e688506e0d5c8a66de6403",
+              "utf8Bytes": 4309
+            },
+            {
+              "selector": "web-extracted lines 141-148",
+              "sha256": "156b9e5a5409b22183842b1f6b4096868648cd84fb447d9363d32094226590c1",
+              "utf8Bytes": 816
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Lock-off, safe pressure relief and a continuing check on reaccumulation are coherent; the pressure housing remains closed under uncertainty. No manufacturer-specific valve order is generalized.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Lock-off, safe pressure relief and a continuing check on reaccumulation are coherent; the pressure housing remains closed under uncertainty. No manufacturer-specific valve order is generalized."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "The HSE PUWER overview identifies a separate pressure-system regime. Its applicability to the particular filter/system has not been established; regional review stays pending."
+      ],
+      "correctionIds": [
+        "regional-gb-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-gb-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "b759b7b066910d85488ae67693e0a9473ae2cced8a36d69a720bdffb35431183",
+      "sourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "hse-maintenance",
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "coveredSections": [
+            "Safe isolation; stored compressed air and pressure",
+            "Safe maintenance; stored energy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 80-125",
+              "sha256": "7da5fde38391f313185265d3a57a3024f89067ae69e688506e0d5c8a66de6403",
+              "utf8Bytes": 4309
+            },
+            {
+              "selector": "web-extracted lines 141-148",
+              "sha256": "156b9e5a5409b22183842b1f6b4096868648cd84fb447d9363d32094226590c1",
+              "utf8Bytes": 816
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "Authorised and depressurisation match en-GB. Lock off makes secure specific; the no-loosening pressure-test prohibition and non-air exclusion remain intact.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Authorised and depressurisation match en-GB. Lock off makes secure specific; the no-loosening pressure-test prohibition and non-air exclusion remain intact."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Authorised and depressurisation match en-GB. Lock off makes secure specific; the no-loosening pressure-test prohibition and non-air exclusion remain intact.",
+      "correctionIds": [
+        "regional-gb-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-gb-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "dd8d2c0c9b4b83fb2ec985991de42aa7f7aae96fc070b3267c574bfea0cd1d99",
+      "sourceFingerprint": "4f758fa8a21c9aa608694e4d1a85e8d008eb08d4b2579e9e3211f1082daa28c0",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "hse-welding",
+          "url": "https://www.hse.gov.uk/welding/welding-controls.htm",
+          "coveredSections": [
+            "Regular versus sporadic welding; assessment and control hierarchy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 49-131",
+              "sha256": "5a6e19b4e00070b1cd5493071ffd688eefdb3820af3f085f168544b3a2eb16e6",
+              "utf8Bytes": 7373
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The corrected control considers elimination/reduction before extraction, and respiratory protection for residual exposure. Hood movement checks and the stop condition remain. The occasional-work example is not applied.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The corrected control considers elimination/reduction before extraction, and respiratory protection for residual exposure. Hood movement checks and the stop condition remain. The occasional-work example is not applied."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "HSE guidance is current and relevant, but COSHH examination/maintenance, exposure-assessment and respiratory programme requirements need further reconciliation before regional closure."
+      ],
+      "correctionIds": [
+        "regional-gb-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-gb-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "dd8d2c0c9b4b83fb2ec985991de42aa7f7aae96fc070b3267c574bfea0cd1d99",
+      "sourceFingerprint": "4f758fa8a21c9aa608694e4d1a85e8d008eb08d4b2579e9e3211f1082daa28c0",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "hse-welding",
+          "url": "https://www.hse.gov.uk/welding/welding-controls.htm",
+          "coveredSections": [
+            "Regular versus sporadic welding; assessment and control hierarchy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 49-131",
+              "sha256": "5a6e19b4e00070b1cd5493071ffd688eefdb3820af3f085f168544b3a2eb16e6",
+              "utf8Bytes": 7373
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "British respiratory protection terminology and the conditional residual-exposure wording preserve the hierarchy. Regular indoor welding does not become occasional or outdoor work.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "British respiratory protection terminology and the conditional residual-exposure wording preserve the hierarchy. Regular indoor welding does not become occasional or outdoor work."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "British respiratory protection terminology and the conditional residual-exposure wording preserve the hierarchy. Regular indoor welding does not become occasional or outdoor work.",
+      "correctionIds": [
+        "regional-gb-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-jp-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "ef688df1ff76280a3bef24ac46f12fc415bff49c74aa70c02bd6533d43b49c7a",
+      "sourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "jp-rule107-108-20261016",
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=4",
+          "coveredSections": [
+            "労働安全衛生規則第107条・第108条"
+          ],
+          "fragments": [
+            {
+              "selector": "turn34view0: extracted lines 635-652",
+              "sha256": "066663a0023a984a283e57497683c48ae47238c73f4f69b64895d12eb534113e",
+              "utf8Bytes": 1995
+            }
+          ]
+        },
+        {
+          "captureId": "jp-machinery-manual-2010-20261016",
+          "url": "https://www.mhlw.go.jp/content/11300000/001403315.pdf",
+          "coveredSections": [
+            "機械設備のリスクアセスメントマニュアル（製造者用）、4-5-2、印刷86頁（PDF92頁）"
+          ],
+          "fragments": [
+            {
+              "selector": "turn32view6: extracted lines 3155-3176",
+              "sha256": "84e3635153d581d1eef73afb9c1f5c41e594366e1d3daeee5a9018d530438eaf",
+              "utf8Bytes": 1380
+            },
+            {
+              "selector": "turn36view3: extracted lines 3965-3973",
+              "sha256": "5110de3df8d0c89151149b9c0b66cffb3542a8949248948547ba592eafd58464",
+              "utf8Bytes": 524
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The statutory stop/restart-prevention provisions and the manufacturer manual support the bounded chain. Stored energy and mechanical holding are not equated with pressing a stop button.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The statutory stop/restart-prevention provisions and the manufacturer manual support the bounded chain. Stored energy and mechanical holding are not equated with pressing a stop button."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "The legal articles and 2007/2010 guidance have different purposes. A current consolidated-law comparison of work categories and exceptions remains outstanding."
+      ],
+      "correctionIds": [
+        "regional-jp-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-jp-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "ef688df1ff76280a3bef24ac46f12fc415bff49c74aa70c02bd6533d43b49c7a",
+      "sourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "jp-rule107-108-20261016",
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=4",
+          "coveredSections": [
+            "労働安全衛生規則第107条・第108条"
+          ],
+          "fragments": [
+            {
+              "selector": "turn34view0: extracted lines 635-652",
+              "sha256": "066663a0023a984a283e57497683c48ae47238c73f4f69b64895d12eb534113e",
+              "utf8Bytes": 1995
+            }
+          ]
+        },
+        {
+          "captureId": "jp-machinery-manual-2010-20261016",
+          "url": "https://www.mhlw.go.jp/content/11300000/001403315.pdf",
+          "coveredSections": [
+            "機械設備のリスクアセスメントマニュアル（製造者用）、4-5-2、印刷86頁（PDF92頁）"
+          ],
+          "fragments": [
+            {
+              "selector": "turn32view6: extracted lines 3155-3176",
+              "sha256": "84e3635153d581d1eef73afb9c1f5c41e594366e1d3daeee5a9018d530438eaf",
+              "utf8Bytes": 1380
+            },
+            {
+              "selector": "turn36view3: extracted lines 3965-3973",
+              "sha256": "5110de3df8d0c89151149b9c0b66cffb3542a8949248948547ba592eafd58464",
+              "utf8Bytes": 524
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "First-person completed assertions were replaced by neutral applicability conditions. 閉鎖空間（タンク内部等） avoids confusing a confined space with any indoor room. The no-entry prohibition remains.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "First-person completed assertions were replaced by neutral applicability conditions. 閉鎖空間（タンク内部等） avoids confusing a confined space with any indoor room. The no-entry prohibition remains."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "First-person completed assertions were replaced by neutral applicability conditions. 閉鎖空間（タンク内部等） avoids confusing a confined space with any indoor room. The no-entry prohibition remains.",
+      "correctionIds": [
+        "regional-jp-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-jp-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "434323ad96db6d3099e70a05c2a6396a5cc4f58e6b1cee6045900e6d34fd246d",
+      "sourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "jp-machinery-guideline-2007-20261016",
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb3488&dataType=1&pageNo=1",
+          "coveredSections": [
+            "2007-07-31 基安安発第0731004号, 別表第4 3(1)-(4): energy isolation and residual energy"
+          ],
+          "fragments": [
+            {
+              "selector": "turn35view0: extracted lines 926-948",
+              "sha256": "d6eaf8a4013dde40c4a042f7e109a72c4cd1f50350f8130d547f643dbab0a4f1",
+              "utf8Bytes": 1832
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The revision replaces ambiguous fixing with prevention of re-supply using isolation-device locking as specified by the equipment procedure. Residual-pressure verification and no-loosening holds remain.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The revision replaces ambiguous fixing with prevention of re-supply using isolation-device locking as specified by the equipment procedure. Residual-pressure verification and no-loosening holds remain."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "The 2007 machinery design guideline is not a current filter-maintenance legal specification; pressure-equipment applicability and current requirements remain pending."
+      ],
+      "correctionIds": [
+        "regional-jp-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-jp-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "434323ad96db6d3099e70a05c2a6396a5cc4f58e6b1cee6045900e6d34fd246d",
+      "sourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "jp-machinery-guideline-2007-20261016",
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb3488&dataType=1&pageNo=1",
+          "coveredSections": [
+            "2007-07-31 基安安発第0731004号, 別表第4 3(1)-(4): energy isolation and residual energy"
+          ],
+          "fragments": [
+            {
+              "selector": "turn35view0: extracted lines 926-948",
+              "sha256": "d6eaf8a4013dde40c4a042f7e109a72c4cd1f50350f8130d547f643dbab0a4f1",
+              "utf8Bytes": 1832
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "遮断, 再供給防止 and 残圧 distinguish isolation, prevention of restoration and residual pressure. The confined-space exclusion is clearer; no zero-pressure assurance is inferred from a shut valve.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "遮断, 再供給防止 and 残圧 distinguish isolation, prevention of restoration and residual pressure. The confined-space exclusion is clearer; no zero-pressure assurance is inferred from a shut valve."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "遮断, 再供給防止 and 残圧 distinguish isolation, prevention of restoration and residual pressure. The confined-space exclusion is clearer; no zero-pressure assurance is inferred from a shut valve.",
+      "correctionIds": [
+        "regional-jp-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-jp-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "3b0490680521436fab9302d3436e1cf90e9436c70b8306d6bb3896c152b41b7d",
+      "sourceFingerprint": "c00b7975423d30243b431a5fa0043613626f1a231e61b873d92a67d182d5bebf",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "jp-mie-welding-20261016",
+          "url": "https://jsite.mhlw.go.jp/mie-roudoukyoku/tokka_arc.html",
+          "coveredSections": [
+            "金属アーク溶接等作業: 措置義務 (1)-(3)、測定結果に応じた呼吸用保護具とフィットテスト"
+          ],
+          "fragments": [
+            {
+              "selector": "turn36view0: extracted lines 194-230",
+              "sha256": "1ede1539f70ba8d7cd6d6f4d06ab0c755434d3169fb691086eb48c5bc823a54a",
+              "utf8Bytes": 3574
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The fixed indoor metal-arc scope retains measurement-based respirator selection and the captured annual facepiece fit-test requirement. The revision distinguishes significant-change exposure measurements from routine hood checks.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The fixed indoor metal-arc scope retains measurement-based respirator selection and the captured annual facepiece fit-test requirement. The revision distinguishes significant-change exposure measurements from routine hood checks."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "The stored Mie passage supplies technical detail, but the current retrieved page did not expose those accordion clauses. Current underlying regulations and programme duties are not reconciled; regional review remains pending."
+      ],
+      "correctionIds": [
+        "regional-jp-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-jp-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "3b0490680521436fab9302d3436e1cf90e9436c70b8306d6bb3896c152b41b7d",
+      "sourceFingerprint": "c00b7975423d30243b431a5fa0043613626f1a231e61b873d92a67d182d5bebf",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "jp-mie-welding-20261016",
+          "url": "https://jsite.mhlw.go.jp/mie-roudoukyoku/tokka_arc.html",
+          "coveredSections": [
+            "金属アーク溶接等作業: 措置義務 (1)-(3)、測定結果に応じた呼吸用保護具とフィットテスト"
+          ],
+          "fragments": [
+            {
+              "selector": "turn36view0: extracted lines 194-230",
+              "sha256": "1ede1539f70ba8d7cd6d6f4d06ab0c755434d3169fb691086eb48c5bc823a54a",
+              "utf8Bytes": 3574
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "The coated-material exclusion now clearly refers to base metal, avoiding a possible reading that bans coated electrodes. Material/consumable identification and the no-extraction exclusion remain consistent.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "The coated-material exclusion now clearly refers to base metal, avoiding a possible reading that bans coated electrodes. Material/consumable identification and the no-extraction exclusion remain consistent."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "The coated-material exclusion now clearly refers to base metal, avoiding a possible reading that bans coated electrodes. Material/consumable identification and the no-extraction exclusion remain consistent.",
+      "correctionIds": [
+        "regional-jp-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-kr-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "5a79d4931c5a2f12e1ad34cc00e73087832cf58602cb01c3fe37712e97d51b2d",
+      "sourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "kr-rule92-20261016",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view0: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view0: extracted lines 102-107",
+              "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+              "utf8Bytes": 1383
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The revised control includes re-start protection and the conditional work-supervision measure from article 92. Stored compressed media are addressed; other energies are expressly reserved for equipment-specific assessment.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The revised control includes re-start protection and the conditional work-supervision measure from article 92. Stored compressed media are addressed; other energies are expressly reserved for equipment-specific assessment."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "Official article 92(1)-(4), displayed effective 2026-03-02, was compared with the exact card. The conditional supervisor duty and pressure-release duty are retained; the structural exception is not treated as automatic permission."
+      ],
+      "correctionIds": [
+        "regional-kr-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-kr-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "5a79d4931c5a2f12e1ad34cc00e73087832cf58602cb01c3fe37712e97d51b2d",
+      "sourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "kr-rule92-20261016",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view0: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view0: extracted lines 102-107",
+              "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+              "utf8Bytes": 1383
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "기동장치, 재기동 and 잔류 압축 기체·액체 retain the source distinctions. Applicability labels no longer assert that someone already completed the checks; the no-entry instruction is unchanged.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "기동장치, 재기동 and 잔류 압축 기체·액체 retain the source distinctions. Applicability labels no longer assert that someone already completed the checks; the no-entry instruction is unchanged."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "기동장치, 재기동 and 잔류 압축 기체·액체 retain the source distinctions. Applicability labels no longer assert that someone already completed the checks; the no-entry instruction is unchanged.",
+      "correctionIds": [
+        "regional-kr-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-kr-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "5a79d4931c5a2f12e1ad34cc00e73087832cf58602cb01c3fe37712e97d51b2d",
+      "sourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "kr-rule92-20261016",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view0: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view0: extracted lines 102-107",
+              "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+              "utf8Bytes": 1383
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Compare the exact bounded card with the named current official material, including applicability and exceptions; no site compliance certification.",
+      "rationale": "Official article 92(1)-(4), displayed effective 2026-03-02, was compared with the exact card. The conditional supervisor duty and pressure-release duty are retained; the structural exception is not treated as automatic permission.",
+      "checks": [
+        {
+          "field": "regional",
+          "finding": "Official article 92(1)-(4), displayed effective 2026-03-02, was compared with the exact card. The conditional supervisor duty and pressure-release duty are retained; the structural exception is not treated as automatic permission."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Site-specific classification, other equipment regimes and competent professional implementation remain required."
+      ],
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "retrievalRef": "turn88view5",
+          "sections": "제92조 제1항~제4항",
+          "displayedEffectiveDate": "2026-03-02",
+          "observedOn": "2026-10-16"
+        }
+      ],
+      "correctionIds": [
+        "regional-kr-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-kr-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "251117f6bf4b7b9d3c87b29e998fd439517321d0920996a82cb00923c2cd19bc",
+      "sourceFingerprint": "1b7ea071d387b40ccef1163d99cf6b8fabfefa0c572ea631b1f20d5b176ee045",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "kr-rule92-20261016",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view0: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view0: extracted lines 102-107",
+              "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+              "utf8Bytes": 1383
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Tracing supply/return paths, isolation/locking, safe relief and a no-opening hold form a consistent pressure-control chain. Continued checks cover reaccumulation; opening as a pressure test is prohibited.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Tracing supply/return paths, isolation/locking, safe relief and a no-opening hold form a consistent pressure-control chain. Continued checks cover reaccumulation; opening as a pressure test is prohibited."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "Article 92 supports the energy-control context but does not resolve every Korean pressure-equipment duty or the legal classification of the specific filter/system."
+      ],
+      "correctionIds": []
+    },
+    {
+      "unitId": "regional-kr-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "251117f6bf4b7b9d3c87b29e998fd439517321d0920996a82cb00923c2cd19bc",
+      "sourceFingerprint": "1b7ea071d387b40ccef1163d99cf6b8fabfefa0c572ea631b1f20d5b176ee045",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "kr-rule92-20261016",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view0: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view0: extracted lines 102-107",
+              "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+              "utf8Bytes": 1383
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "격리·잠금, 무압 상태 and 역류 retain distinct meanings. The housing is the object whose safe pressure state must be confirmed; non-air service and breathing-air certification remain excluded.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "격리·잠금, 무압 상태 and 역류 retain distinct meanings. The housing is the object whose safe pressure state must be confirmed; non-air service and breathing-air certification remain excluded."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "격리·잠금, 무압 상태 and 역류 retain distinct meanings. The housing is the object whose safe pressure state must be confirmed; non-air service and breathing-air certification remain excluded.",
+      "correctionIds": []
+    },
+    {
+      "unitId": "regional-kr-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "2a0d61a5ce2e4142904bbc4ab7527b2adcc27a2e53fcf76dcb0340465a7ffa85",
+      "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "kr-rule617-20261016",
+          "url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024004927",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제617조 제1항~제3항, 2026-03-02 시행본"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view1: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view1: extracted lines 14-18",
+              "sha256": "76449527ce07d4cb36c795580b577f9ac91d48b9e903d52a7b8a646c79c2516e",
+              "utf8Bytes": 852
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Direct source-to-draft reading of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The card preserves article 617’s provision/wearing principle and does not use exposure assessment alone to invoke its exception. Personal issue and contamination prevention are retained alongside extraction checks.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The card preserves article 617’s provision/wearing principle and does not use exposure assessment alone to invoke its exception. Personal issue and contamination prevention are retained alongside extraction checks."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "Actual isolation devices, safe pressure relief, exposure/performance criteria and execution require competent equipment/site-specific assessment.",
+        "Article 617 was re-read, but dust-work classification, other applicable ventilation/chemical provisions and current exposure requirements remain unverified."
+      ],
+      "correctionIds": []
+    },
+    {
+      "unitId": "regional-kr-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "2a0d61a5ce2e4142904bbc4ab7527b2adcc27a2e53fcf76dcb0340465a7ffa85",
+      "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "kr-rule617-20261016",
+          "url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024004927",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제617조 제1항~제3항, 2026-03-02 시행본"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view1: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view1: extracted lines 14-18",
+              "sha256": "76449527ce07d4cb36c795580b577f9ac91d48b9e903d52a7b8a646c79c2516e",
+              "utf8Bytes": 852
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T11:59:45.582Z",
+      "reviewMethod": "Read all localized fields against source meanings and applicability codes, including actors, negation and condition/exclusion labels; same-language terminology review for English and Korean.",
+      "rationale": "국소배기, 호흡용 보호구 and 개인전용 지급 match the source meaning. The exception is conditional on actual measures, not merely a checkbox; stop welding remains explicit.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "국소배기, 호흡용 보호구 and 개인전용 지급 match the source meaning. The exception is conditional on actual measures, not merely a checkbox; stop welding remains explicit."
+        },
+        {
+          "field": "scope and current content",
+          "finding": "Review applies only to the exact content and source hashes recorded here; no publication status was changed."
+        }
+      ],
+      "remainingIssues": [
+        "AI semantic/terminology review is not independent native-language certification; UI rendering and field usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "국소배기, 호흡용 보호구 and 개인전용 지급 match the source meaning. The exception is conditional on actual measures, not merely a checkbox; stop welding remains explicit.",
+      "correctionIds": []
+    }
+  ],
+  "pendingRegionalReviews": [
+    {
+      "unitId": "regional-us-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "b8df90829aea71ea637fe68abaeff15cd78cababae733f90e8b8510bb62500f2",
+      "sourceFingerprint": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "Federal 1910.147 scope/exceptions are read, but State Plan and sector applicability have not been resolved for a target jurisdiction. Keep regional review pending."
+      ],
+      "requiredToComplete": "Federal 1910.147 scope/exceptions are read, but State Plan and sector applicability have not been resolved for a target jurisdiction. Keep regional review pending."
+    },
+    {
+      "unitId": "regional-us-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "34527c5a9080e5856198903c1189b603f47c1b24baee4995e27ccfcba6e13a25",
+      "sourceFingerprint": "911ccf57f18335836b94c9e09d737abd3d886e59b39526f99cddd156c5983f8e",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "Federal scope is conditional. State Plan requirements and any separate pressure-equipment duties are still unresolved."
+      ],
+      "requiredToComplete": "Federal scope is conditional. State Plan requirements and any separate pressure-equipment duties are still unresolved."
+    },
+    {
+      "unitId": "regional-us-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "755264e080e1888b18661a3905020d163391a9ceb6f44720bf65331235555cff",
+      "sourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "Current federal ventilation text is read; State Plan differences, applicable exposure limits and the respiratory-protection programme remain to be reconciled."
+      ],
+      "requiredToComplete": "Current federal ventilation text is read; State Plan differences, applicable exposure limits and the respiratory-protection programme remain to be reconciled."
+    },
+    {
+      "unitId": "regional-gb-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "b759b7b066910d85488ae67693e0a9473ae2cced8a36d69a720bdffb35431183",
+      "sourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "hse-maintenance",
+          "url": "https://www.hse.gov.uk/work-equipment-machinery/maintenance.htm",
+          "coveredSections": [
+            "Safe isolation; stored compressed air and pressure",
+            "Safe maintenance; stored energy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 80-125",
+              "sha256": "7da5fde38391f313185265d3a57a3024f89067ae69e688506e0d5c8a66de6403",
+              "utf8Bytes": 4309
+            },
+            {
+              "selector": "web-extracted lines 141-148",
+              "sha256": "156b9e5a5409b22183842b1f6b4096868648cd84fb447d9363d32094226590c1",
+              "utf8Bytes": 816
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "The HSE PUWER overview identifies a separate pressure-system regime. Its applicability to the particular filter/system has not been established; regional review stays pending."
+      ],
+      "requiredToComplete": "The HSE PUWER overview identifies a separate pressure-system regime. Its applicability to the particular filter/system has not been established; regional review stays pending."
+    },
+    {
+      "unitId": "regional-gb-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "dd8d2c0c9b4b83fb2ec985991de42aa7f7aae96fc070b3267c574bfea0cd1d99",
+      "sourceFingerprint": "4f758fa8a21c9aa608694e4d1a85e8d008eb08d4b2579e9e3211f1082daa28c0",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "hse-welding",
+          "url": "https://www.hse.gov.uk/welding/welding-controls.htm",
+          "coveredSections": [
+            "Regular versus sporadic welding; assessment and control hierarchy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 49-131",
+              "sha256": "5a6e19b4e00070b1cd5493071ffd688eefdb3820af3f085f168544b3a2eb16e6",
+              "utf8Bytes": 7373
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "HSE guidance is current and relevant, but COSHH examination/maintenance, exposure-assessment and respiratory programme requirements need further reconciliation before regional closure."
+      ],
+      "requiredToComplete": "HSE guidance is current and relevant, but COSHH examination/maintenance, exposure-assessment and respiratory programme requirements need further reconciliation before regional closure."
+    },
+    {
+      "unitId": "regional-jp-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "ef688df1ff76280a3bef24ac46f12fc415bff49c74aa70c02bd6533d43b49c7a",
+      "sourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "jp-rule107-108-20261016",
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=74003000&dataType=0&pageNo=4",
+          "coveredSections": [
+            "労働安全衛生規則第107条・第108条"
+          ],
+          "fragments": [
+            {
+              "selector": "turn34view0: extracted lines 635-652",
+              "sha256": "066663a0023a984a283e57497683c48ae47238c73f4f69b64895d12eb534113e",
+              "utf8Bytes": 1995
+            }
+          ]
+        },
+        {
+          "captureId": "jp-machinery-manual-2010-20261016",
+          "url": "https://www.mhlw.go.jp/content/11300000/001403315.pdf",
+          "coveredSections": [
+            "機械設備のリスクアセスメントマニュアル（製造者用）、4-5-2、印刷86頁（PDF92頁）"
+          ],
+          "fragments": [
+            {
+              "selector": "turn32view6: extracted lines 3155-3176",
+              "sha256": "84e3635153d581d1eef73afb9c1f5c41e594366e1d3daeee5a9018d530438eaf",
+              "utf8Bytes": 1380
+            },
+            {
+              "selector": "turn36view3: extracted lines 3965-3973",
+              "sha256": "5110de3df8d0c89151149b9c0b66cffb3542a8949248948547ba592eafd58464",
+              "utf8Bytes": 524
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "The legal articles and 2007/2010 guidance have different purposes. A current consolidated-law comparison of work categories and exceptions remains outstanding."
+      ],
+      "requiredToComplete": "The legal articles and 2007/2010 guidance have different purposes. A current consolidated-law comparison of work categories and exceptions remains outstanding."
+    },
+    {
+      "unitId": "regional-jp-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "434323ad96db6d3099e70a05c2a6396a5cc4f58e6b1cee6045900e6d34fd246d",
+      "sourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "jp-machinery-guideline-2007-20261016",
+          "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb3488&dataType=1&pageNo=1",
+          "coveredSections": [
+            "2007-07-31 基安安発第0731004号, 別表第4 3(1)-(4): energy isolation and residual energy"
+          ],
+          "fragments": [
+            {
+              "selector": "turn35view0: extracted lines 926-948",
+              "sha256": "d6eaf8a4013dde40c4a042f7e109a72c4cd1f50350f8130d547f643dbab0a4f1",
+              "utf8Bytes": 1832
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "The 2007 machinery design guideline is not a current filter-maintenance legal specification; pressure-equipment applicability and current requirements remain pending."
+      ],
+      "requiredToComplete": "The 2007 machinery design guideline is not a current filter-maintenance legal specification; pressure-equipment applicability and current requirements remain pending."
+    },
+    {
+      "unitId": "regional-jp-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "3b0490680521436fab9302d3436e1cf90e9436c70b8306d6bb3896c152b41b7d",
+      "sourceFingerprint": "c00b7975423d30243b431a5fa0043613626f1a231e61b873d92a67d182d5bebf",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "jp-mie-welding-20261016",
+          "url": "https://jsite.mhlw.go.jp/mie-roudoukyoku/tokka_arc.html",
+          "coveredSections": [
+            "金属アーク溶接等作業: 措置義務 (1)-(3)、測定結果に応じた呼吸用保護具とフィットテスト"
+          ],
+          "fragments": [
+            {
+              "selector": "turn36view0: extracted lines 194-230",
+              "sha256": "1ede1539f70ba8d7cd6d6f4d06ab0c755434d3169fb691086eb48c5bc823a54a",
+              "utf8Bytes": 3574
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "The stored Mie passage supplies technical detail, but the current retrieved page did not expose those accordion clauses. Current underlying regulations and programme duties are not reconciled; regional review remains pending."
+      ],
+      "requiredToComplete": "The stored Mie passage supplies technical detail, but the current retrieved page did not expose those accordion clauses. Current underlying regulations and programme duties are not reconciled; regional review remains pending."
+    },
+    {
+      "unitId": "regional-kr-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "251117f6bf4b7b9d3c87b29e998fd439517321d0920996a82cb00923c2cd19bc",
+      "sourceFingerprint": "1b7ea071d387b40ccef1163d99cf6b8fabfefa0c572ea631b1f20d5b176ee045",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "kr-rule92-20261016",
+          "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?lsJoLnkSeq=1029039581",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제92조 제1항~제4항"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view0: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view0: extracted lines 102-107",
+              "sha256": "a7812c178bb4dab3f05ed78d49673081560f64b535094e388100809f4d894f77",
+              "utf8Bytes": 1383
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "Article 92 supports the energy-control context but does not resolve every Korean pressure-equipment duty or the legal classification of the specific filter/system."
+      ],
+      "requiredToComplete": "Article 92 supports the energy-control context but does not resolve every Korean pressure-equipment duty or the legal classification of the specific filter/system."
+    },
+    {
+      "unitId": "regional-kr-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "2a0d61a5ce2e4142904bbc4ab7527b2adcc27a2e53fcf76dcb0340465a7ffa85",
+      "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "kr-rule617-20261016",
+          "url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024004927",
+          "coveredSections": [
+            "산업안전보건기준에 관한 규칙 제617조 제1항~제3항, 2026-03-02 시행본"
+          ],
+          "fragments": [
+            {
+              "selector": "turn28view1: extracted lines 6-7",
+              "sha256": "bd79f0c1fdc07683f13e6f1accd7000bd252a0144fc6f1e09499c32d89a5ecc8",
+              "utf8Bytes": 120
+            },
+            {
+              "selector": "turn28view1: extracted lines 14-18",
+              "sha256": "76449527ce07d4cb36c795580b577f9ac91d48b9e903d52a7b8a646c79c2516e",
+              "utf8Bytes": 852
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T11:59:45.582Z",
+      "findings": [
+        "Article 617 was re-read, but dust-work classification, other applicable ventilation/chemical provisions and current exposure requirements remain unverified."
+      ],
+      "requiredToComplete": "Article 617 was re-read, but dust-work classification, other applicable ventilation/chemical provisions and current exposure requirements remain unverified."
+    }
+  ],
+  "corrections": [
+    {
+      "unitId": "regional-us-maintenance",
+      "reason": "Clarify conditional tagout instead of implying free choice; align US spelling and retain jurisdiction limits.",
+      "captureIds": [
+        "osha-1910-147"
+      ],
+      "previousRevision": 5,
+      "revision": 6,
+      "previousContentHash": "0912016285ead90ad58435f82abd77c6141676453a85df518a1911b3b75103d6",
+      "previousSourceFingerprint": "9a5b5dcf5bee4c62aef4afa9c6fa9f95398f28192bc11b8fc03ad2290ad3b3b9",
+      "changes": {
+        "revision": {
+          "before": 5,
+          "after": 6
+        },
+        "control": {
+          "before": "Follow the machine-specific procedure to shut down, isolate and secure each energy source using the required lockout or tagout system, then safely release or restrain stored energy before access.",
+          "after": "Follow the machine-specific procedure to shut down and isolate each energy source. Use lockout for lockable energy-isolating devices. Tagout is permitted only under the equipment energy-control programme meeting the applicable OSHA tagout requirements, including demonstrated full employee protection when used instead of lockout on a lockable device. Safely release or restrain stored energy before access."
+        },
+        "sources": {
+          "before": [
+            {
+              "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+              "authority": "OSHA",
+              "section": "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+              "checkedAt": "2026-10-15",
+              "scope": "US general industry; sector and exception scope need review",
+              "retrieval": "primary_page_or_document",
+              "jurisdiction": "US",
+              "evidenceRole": "technical"
+            }
+          ],
+          "after": [
+            {
+              "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+              "authority": "OSHA",
+              "section": "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification",
+              "checkedAt": "2026-10-15",
+              "scope": "US general industry; sector and exception scope need review",
+              "retrieval": "primary_page_or_document",
+              "jurisdiction": "US",
+              "evidenceRole": "technical"
+            }
+          ]
+        },
+        "coverageLimit": {
+          "before": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures.",
+          "after": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures. Federal general-industry baseline only; applicable State Plan and sector-specific requirements must be checked before use."
+        },
+        "sourceFingerprint": {
+          "before": "9a5b5dcf5bee4c62aef4afa9c6fa9f95398f28192bc11b8fc03ad2290ad3b3b9",
+          "after": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0"
+        }
+      },
+      "contentHash": "b8df90829aea71ea637fe68abaeff15cd78cababae733f90e8b8510bb62500f2",
+      "sourceFingerprint": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0"
+    },
+    {
+      "unitId": "regional-us-pressure-filter",
+      "reason": "Clarify conditional tagout instead of implying free choice; align US spelling and retain jurisdiction limits.",
+      "captureIds": [
+        "osha-1910-147"
+      ],
+      "previousRevision": 3,
+      "revision": 4,
+      "previousContentHash": "2f38c4d53432911c461fa348208d9bbed6ff05fa19e95bc51895f15ae9eea563",
+      "previousSourceFingerprint": "da4ecbd8f27438c6dd156b084db6e16484827bc9801af05f3be592b2c9c5c4a5",
+      "changes": {
+        "revision": {
+          "before": 3,
+          "after": 4
+        },
+        "control": {
+          "before": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
+          "after": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Apply the equipment-specific isolation procedure. Use lockout for lockable energy-isolating devices. Tagout is permitted only under the equipment energy-control programme meeting the applicable OSHA tagout requirements, including demonstrated full employee protection when used instead of lockout on a lockable device. Safely relieve trapped pressure before opening."
+        },
+        "coverageLimit": {
+          "before": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+          "after": "Pressure-release hazard only; other maintenance hazards need separate assessment. Federal general-industry baseline only; applicable State Plan and sector-specific requirements must be checked before use."
+        },
+        "conditions": {
+          "before": [
+            "Equipment-specific isolation procedure available",
+            "Authorised person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+            "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          ],
+          "after": [
+            "Equipment-specific isolation procedure available",
+            "Authorized person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+            "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Pressurised intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ],
+          "after": [
+            "Pressurized intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ]
+        },
+        "sources": {
+          "before": [
+            {
+              "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+              "authority": "OSHA",
+              "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+              "jurisdiction": "US",
+              "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+              "checkedAt": "2026-10-14",
+              "retrieval": "relevant_primary_sections_read"
+            }
+          ],
+          "after": [
+            {
+              "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+              "authority": "OSHA",
+              "section": "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification",
+              "jurisdiction": "US",
+              "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+              "checkedAt": "2026-10-14",
+              "retrieval": "relevant_primary_sections_read"
+            }
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorised person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurised intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification",
+            "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          },
+          "after": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorized person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurized intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification",
+            "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          }
+        },
+        "sourceFingerprint": {
+          "before": "da4ecbd8f27438c6dd156b084db6e16484827bc9801af05f3be592b2c9c5c4a5",
+          "after": "911ccf57f18335836b94c9e09d737abd3d886e59b39526f99cddd156c5983f8e"
+        }
+      },
+      "contentHash": "34527c5a9080e5856198903c1189b603f47c1b24baee4995e27ccfcba6e13a25",
+      "sourceFingerprint": "911ccf57f18335836b94c9e09d737abd3d886e59b39526f99cddd156c5983f8e"
+    },
+    {
+      "unitId": "regional-us-welding-fume",
+      "reason": "Use US terminology and distinguish the selected extraction control from a universal legal mandate.",
+      "captureIds": [
+        "osha-1910-252"
+      ],
+      "previousRevision": 3,
+      "revision": 4,
+      "previousContentHash": "20d65c25570de46449525ec8e7c8fb21f3d09f5c2c437daa4c43815e08576e6c",
+      "previousSourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3",
+      "changes": {
+        "revision": {
+          "before": 3,
+          "after": 4
+        },
+        "coverageLimit": {
+          "before": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+          "after": "Fume exposure only; source extraction is the selected control for this bounded draft, not a claim that OSHA universally requires this exact arrangement. Federal/State Plan exposure and respiratory-protection duties must be checked; fire, radiation, electrical and gas hazards need separate assessment."
+        },
+        "conditions": {
+          "before": [
+            "Authorised person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available",
+            "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          ],
+          "after": [
+            "Authorized person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available",
+            "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "authorized-person-assigned": "Authorised person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+            "extraction-unavailable": "Extraction unavailable or ineffective",
+            "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          },
+          "after": {
+            "authorized-person-assigned": "Authorized person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+            "extraction-unavailable": "Extraction unavailable or ineffective",
+            "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+          }
+        }
+      },
+      "contentHash": "755264e080e1888b18661a3905020d163391a9ceb6f44720bf65331235555cff",
+      "sourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3"
+    },
+    {
+      "unitId": "regional-gb-maintenance",
+      "reason": "Make locking and gravity support explicit and disclose the territorial and equipment-scope boundary.",
+      "captureIds": [
+        "hse-maintenance"
+      ],
+      "previousRevision": 5,
+      "revision": 6,
+      "previousContentHash": "31c9200998792d1851afcc8fd4fb008ecf2c3cae7ee909eddede9590e4f1684d",
+      "previousSourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67",
+      "changes": {
+        "revision": {
+          "before": 5,
+          "after": 6
+        },
+        "control": {
+          "before": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+          "after": "Stop moving plant and identify and isolate its energy sources. Lock off against accidental reconnection and safely release or restrain stored energy, including supporting parts that could fall, using the equipment-specific procedure before access."
+        },
+        "coverageLimit": {
+          "before": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures.",
+          "after": "Great Britain energy isolation before maintenance only, within the cited HSE work-equipment guidance. Northern Ireland and shipboard equipment outside that scope are not covered. Other applicable equipment regimes, access, repair, guards and return to service require separate assessment and procedures."
+        }
+      },
+      "contentHash": "0d552f2b1b3bed3336fd9707bd21233493a095dae67145666cc4f130d76524cc",
+      "sourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67"
+    },
+    {
+      "unitId": "regional-gb-pressure-filter",
+      "reason": "Replace vague securing with lock-off and retain unresolved pressure-system applicability.",
+      "captureIds": [
+        "hse-maintenance",
+        "osha-1910-147",
+        "parker-oil-x"
+      ],
+      "previousRevision": 3,
+      "revision": 4,
+      "previousContentHash": "2c83946c03fe249977ce1713d594b17cac9c7963f5a77f1b03bfed03c70efcc7",
+      "previousSourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40",
+      "changes": {
+        "revision": {
+          "before": 3,
+          "after": 4
+        },
+        "control": {
+          "before": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
+          "after": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Use the equipment-specific procedure to isolate all supplies, lock off the isolating devices and safely relieve trapped pressure before opening."
+        },
+        "coverageLimit": {
+          "before": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+          "after": "Pressure-release hazard only, within Great Britain. The actual equipment procedure and any applicable pressure-system duties require separate checking; the foreign OSHA and Parker examples do not establish those duties."
+        }
+      },
+      "contentHash": "b759b7b066910d85488ae67693e0a9473ae2cced8a36d69a720bdffb35431183",
+      "sourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40"
+    },
+    {
+      "unitId": "regional-gb-welding-fume",
+      "reason": "Restore the HSE control hierarchy and clarify residual exposure without borrowing the sporadic-welding example.",
+      "captureIds": [
+        "hse-welding"
+      ],
+      "previousRevision": 3,
+      "revision": 4,
+      "previousContentHash": "f6e888ff20794ab3e821c520ca1576cb749d345de5662be966b15811674db473",
+      "previousSourceFingerprint": "4f758fa8a21c9aa608694e4d1a85e8d008eb08d4b2579e9e3211f1082daa28c0",
+      "changes": {
+        "revision": {
+          "before": 3,
+          "after": 4
+        },
+        "control": {
+          "before": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
+          "after": "First assess whether welding can be eliminated or fume generation reduced. For the remaining task, use suitable source extraction positioned and operated for the process; provide suitable respiratory protection where extraction alone does not adequately control exposure."
+        },
+        "coverageLimit": {
+          "before": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+          "after": "Regular indoor uncoated mild-steel welding fume control in Great Britain only. Exposure assessment, LEV examination/maintenance, respiratory-protection arrangements and protection of nearby workers must be addressed in the site procedure. Other welding hazards require separate assessment."
+        }
+      },
+      "contentHash": "dd8d2c0c9b4b83fb2ec985991de42aa7f7aae96fc070b3267c574bfea0cd1d99",
+      "sourceFingerprint": "4f758fa8a21c9aa608694e4d1a85e8d008eb08d4b2579e9e3211f1082daa28c0"
+    },
+    {
+      "unitId": "regional-jp-maintenance",
+      "reason": "Express applicability as conditions rather than a completed first-person confirmation; clarify confined-space and article scope.",
+      "captureIds": [
+        "jp-rule107-108-20261016",
+        "jp-machinery-manual-2010-20261016"
+      ],
+      "previousRevision": 5,
+      "revision": 6,
+      "previousContentHash": "1033cf446ed179ff98affaf53ad7d67b38f0ea62ef44c3d8145a2a620feeac5f",
+      "previousSourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe",
+      "changes": {
+        "revision": {
+          "before": 5,
+          "after": 6
+        },
+        "conditions": {
+          "before": [
+            "機械ごとの作業手順を確認しました",
+            "適切な知識と技能を持つ担当者を配置しました"
+          ],
+          "after": [
+            "機械ごとの作業手順が利用できる",
+            "適切な知識と技能を持つ担当者が配置されている"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "通電・運転状態での作業が必要です",
+            "閉所への立入りを伴います",
+            "エネルギー源または隔離範囲が不明です"
+          ],
+          "after": [
+            "通電・運転状態での作業が必要です",
+            "閉鎖空間（タンク内部等）への立入りを伴う",
+            "エネルギー源または隔離範囲が不明です"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "機械ごとの作業手順を確認しました",
+            "competent-person-assigned": "適切な知識と技能を持つ担当者を配置しました",
+            "live-intervention": "通電・運転状態での作業が必要です",
+            "confined-entry": "閉所への立入りを伴います",
+            "unknown-energy-path": "エネルギー源または隔離範囲が不明です"
+          },
+          "after": {
+            "equipment-procedure-available": "機械ごとの作業手順が利用できる",
+            "competent-person-assigned": "適切な知識と技能を持つ担当者が配置されている",
+            "live-intervention": "通電・運転状態での作業が必要です",
+            "confined-entry": "閉鎖空間（タンク内部等）への立入りを伴う",
+            "unknown-energy-path": "エネルギー源または隔離範囲が不明です"
+          }
+        },
+        "coverageLimit": {
+          "before": "保守前のエネルギー遮断のみを対象とする。立入り、修理作業、防護装置、再稼働は別途評価し、手順を定める。",
+          "after": "保守前のエネルギー遮断のみを対象とする。第107条・第108条の作業区分と現行の適用要件を別途確認する。立入り、修理作業、防護装置、再稼働は別途評価し、手順を定める。"
+        }
+      },
+      "contentHash": "ef688df1ff76280a3bef24ac46f12fc415bff49c74aa70c02bd6533d43b49c7a",
+      "sourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe"
+    },
+    {
+      "unitId": "regional-jp-pressure-filter",
+      "reason": "Replace ambiguous fixing with prevention of energy restoration and clarify the confined-space exclusion.",
+      "captureIds": [
+        "jp-machinery-guideline-2007-20261016",
+        "osha-1910-147"
+      ],
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "addb85d2755f5580012a883303050a877ef3c2c461011f0195358cb428ad8042",
+      "previousSourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "control": {
+          "before": "設備固有の遮断手順を適用する前に、入口・出口・バイパス・接続ドレンからの供給や逆流の経路を確認する。 設備固有の手順で全供給源を遮断・固定し、開放前に残圧を安全に除去する。",
+          "after": "設備固有の遮断手順を適用する前に、入口・出口・バイパス・接続ドレンからの供給や逆流の経路を確認する。設備固有の手順で全供給源を遮断し、遮断装置の施錠等により再供給を防ぐ。開放前に残圧を安全に除去する。"
+        },
+        "exclusions": {
+          "before": [
+            "加圧状態での作業",
+            "閉所への立入り",
+            "内容物または隔離範囲が不明",
+            "圧縮空気以外のガスを扱うフィルターである",
+            "呼吸用空気の認証を含む作業である"
+          ],
+          "after": [
+            "加圧状態での作業",
+            "閉鎖空間（タンク内部等）への立入り",
+            "内容物または隔離範囲が不明",
+            "圧縮空気以外のガスを扱うフィルターである",
+            "呼吸用空気の認証を含む作業である"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "設備固有の隔離手順がある",
+            "authorized-person-assigned": "権限を持つ担当者が選任されている",
+            "compressed-air-filter-identified": "圧縮空気フィルターと全圧力経路が特定されている",
+            "pressurized-intervention": "加圧状態での作業",
+            "confined-entry": "閉所への立入り",
+            "unknown-media-or-isolation": "内容物または隔離範囲が不明",
+            "machine-integrated-filter": "機械に組み込まれたフィルターで、危険区域とエネルギー経路が特定されている",
+            "safe-depressurization-method-available": "開放前に安全に減圧し、ハウジングの無圧状態を確認する方法が設備の手順に定められている",
+            "non-air-service": "圧縮空気以外のガスを扱うフィルターである",
+            "breathing-air-certification": "呼吸用空気の認証を含む作業である"
+          },
+          "after": {
+            "equipment-procedure-available": "設備固有の隔離手順がある",
+            "authorized-person-assigned": "権限を持つ担当者が選任されている",
+            "compressed-air-filter-identified": "圧縮空気フィルターと全圧力経路が特定されている",
+            "pressurized-intervention": "加圧状態での作業",
+            "confined-entry": "閉鎖空間（タンク内部等）への立入り",
+            "unknown-media-or-isolation": "内容物または隔離範囲が不明",
+            "machine-integrated-filter": "機械に組み込まれたフィルターで、危険区域とエネルギー経路が特定されている",
+            "safe-depressurization-method-available": "開放前に安全に減圧し、ハウジングの無圧状態を確認する方法が設備の手順に定められている",
+            "non-air-service": "圧縮空気以外のガスを扱うフィルターである",
+            "breathing-air-certification": "呼吸用空気の認証を含む作業である"
+          }
+        }
+      },
+      "contentHash": "434323ad96db6d3099e70a05c2a6396a5cc4f58e6b1cee6045900e6d34fd246d",
+      "sourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7"
+    },
+    {
+      "unitId": "regional-jp-welding-fume",
+      "reason": "Distinguish coated base metal from coated electrodes and separate exposure-measurement triggers from hood checks.",
+      "captureIds": [
+        "jp-mie-welding-20261016",
+        "osha-1910-252"
+      ],
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "4f3aba62c45ed1024b27f8101c26fde06af4de70f3978ab0657bb7709a627fc3",
+      "previousSourceFingerprint": "c00b7975423d30243b431a5fa0043613626f1a231e61b873d92a67d182d5bebf",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "verification": {
+          "before": "換気と測定結果に基づく保護具の選定・使用を確認する。面体を有する呼吸用保護具は、1年以内ごとのフィットテスト記録を確認する。 フード位置と手順で定めた排気性能を確認し、位置や作業条件の変更後に再確認する。排気が機能しない場合は溶接を中止する。",
+          "after": "換気と測定結果に基づく保護具の選定・使用を確認する。面体を有する呼吸用保護具は、1年以内ごとのフィットテスト記録を確認する。溶接方法、材料又は作業場所の変更がヒューム濃度に大きく影響する場合は、必要な濃度測定と、その結果に基づく措置・保護具選定を確認する。フード位置と手順で定めた排気性能を確認し、位置や作業条件の変更後に再確認する。排気が機能しない場合は溶接を中止する。"
+        },
+        "coverageLimit": {
+          "before": "ヒュームの管理に限定する。作業主任者、健康診断、火災・光放射・電気・ガス等の要件は別途確認する。",
+          "after": "同じ屋内作業場で継続して行う金属アーク溶接のヒューム管理に限定し、このカードでは局所排気を採用する。すべての溶接方法に局所排気を一律に義務付ける説明ではない。現行法令、作業主任者、健康診断、火災・光放射・電気・ガス等の要件は別途確認する。"
+        },
+        "exclusions": {
+          "before": [
+            "閉所への立入り",
+            "屋外溶接",
+            "被覆材・ステンレス鋼・不明な材料",
+            "局所排気がない、または機能していない"
+          ],
+          "after": [
+            "閉鎖空間（タンク内部等）への立入り",
+            "屋外溶接",
+            "塗装・めっき等の被覆がある母材、ステンレス鋼又は材質不明の母材",
+            "局所排気がない、または機能していない"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "authorized-person-assigned": "権限を持つ担当者が選任されている",
+            "regular-indoor-welding": "同じ屋内作業場で継続して行う溶接である",
+            "uncoated-mild-steel-identified": "無塗装軟鋼と溶接材料が特定されている",
+            "exposure-procedure-available": "ばく露防止の作業手順がある",
+            "confined-entry": "閉所への立入り",
+            "outdoor-welding": "屋外溶接",
+            "coated-stainless-or-unknown-metal": "被覆材・ステンレス鋼・不明な材料",
+            "extraction-unavailable": "局所排気がない、または機能していない",
+            "metal-arc-welding": "金属アーク溶接である",
+            "respiratory-program-ready": "測定結果に応じた呼吸用保護具の選定・管理が整っている"
+          },
+          "after": {
+            "authorized-person-assigned": "権限を持つ担当者が選任されている",
+            "regular-indoor-welding": "同じ屋内作業場で継続して行う溶接である",
+            "uncoated-mild-steel-identified": "無塗装軟鋼と溶接材料が特定されている",
+            "exposure-procedure-available": "ばく露防止の作業手順がある",
+            "confined-entry": "閉鎖空間（タンク内部等）への立入り",
+            "outdoor-welding": "屋外溶接",
+            "coated-stainless-or-unknown-metal": "塗装・めっき等の被覆がある母材、ステンレス鋼又は材質不明の母材",
+            "extraction-unavailable": "局所排気がない、または機能していない",
+            "metal-arc-welding": "金属アーク溶接である",
+            "respiratory-program-ready": "測定結果に応じた呼吸用保護具の選定・管理が整っている"
+          }
+        }
+      },
+      "contentHash": "3b0490680521436fab9302d3436e1cf90e9436c70b8306d6bb3896c152b41b7d",
+      "sourceFingerprint": "c00b7975423d30243b431a5fa0043613626f1a231e61b873d92a67d182d5bebf"
+    },
+    {
+      "unitId": "regional-kr-maintenance",
+      "reason": "Include the conditional work-supervision duty and avoid pre-filled completion wording.",
+      "captureIds": [
+        "kr-rule92-20261016"
+      ],
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "1ed1dbbb95216bac508b25b3853b38f7c265451e4df0b8f10e1de394d9b52a35",
+      "previousSourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "control": {
+          "before": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 재기동을 방지한다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제한다.",
+          "after": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 기동장치의 잠금·열쇠 관리 등 필요한 방호 조치로 다른 사람의 재기동을 방지한다. 부적절한 작업방법으로 갑자기 가동될 우려가 있으면 작업지휘자 배치 등 필요한 조치를 한다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제한다."
+        },
+        "conditions": {
+          "before": [
+            "장비별 작업 절차를 확보했습니다",
+            "작업에 적합한 담당자를 지정했습니다"
+          ],
+          "after": [
+            "장비별 작업 절차가 있음",
+            "작업에 적합한 담당자가 지정되어 있음"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "장비별 작업 절차를 확보했습니다",
+            "competent-person-assigned": "작업에 적합한 담당자를 지정했습니다",
+            "live-intervention": "에너지가 공급된 상태에서 작업해야 합니다",
+            "confined-entry": "밀폐공간에 들어가는 작업입니다",
+            "unknown-energy-path": "에너지원 또는 차단 경계가 확인되지 않았습니다"
+          },
+          "after": {
+            "equipment-procedure-available": "장비별 작업 절차가 있음",
+            "competent-person-assigned": "작업에 적합한 담당자가 지정되어 있음",
+            "live-intervention": "에너지가 공급된 상태에서 작업해야 합니다",
+            "confined-entry": "밀폐공간에 들어가는 작업입니다",
+            "unknown-energy-path": "에너지원 또는 차단 경계가 확인되지 않았습니다"
+          }
+        },
+        "coverageLimit": {
+          "before": "정비 전 에너지 차단만을 다룬다. 출입, 실제 수리, 방호장치 및 재가동은 별도로 평가하고 절차를 정한다.",
+          "after": "동력기계 정비 전 운전정지·재기동 방지와 잔류 압축 기체·액체 위험 통제를 다룬다. 제92조의 구조상 예외를 자동 적용하지 않는다. 출입, 실제 수리, 방호장치, 그 밖의 에너지원 및 재가동은 장비별로 별도 평가하고 절차를 정한다."
+        }
+      },
+      "contentHash": "5a79d4931c5a2f12e1ad34cc00e73087832cf58602cb01c3fe37712e97d51b2d",
+      "sourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347"
+    }
+  ],
+  "sourceMetadataExpansion": {
+    "captureId": "osha-1910-147",
+    "previousCoveredSections": [
+      "1910.147(d)(1)-(6), isolation, stored energy and verification",
+      "1910.147(d)(3)-(6)",
+      "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification"
+    ],
+    "addedCoveredSection": "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification",
+    "fragmentBytesChanged": false,
+    "reason": "The already verified source fragment includes c(2)-(3); make the newly cited lockout/tagout scope explicit. Existing citations and fragment hashes remain unchanged."
+  }
+}
