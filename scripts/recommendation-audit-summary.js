@@ -29,8 +29,8 @@ export function publicAuditSummary(report) {
       ['rows', 'missingSource', 'missingTarget', 'crossLocale', 'invalidScore', 'highScore', 'duplicatePairs'])])),
     masterReferences: Object.fromEntries(masters.map(table => {
       const value = report.masterReferences?.[table];
-      return [table, { ...fields(value, ['rows', 'missingReferencedMaster']),
-        distinctMissingPublicMasterIds: Array.isArray(value?.missingMasterIds) ? value.missingMasterIds.length : null,
+      return [table, { ...fields(value, ['rows', 'translationRows', 'nullMasterReferences', 'missingReferencedMaster', 'ambiguousMasterReferences', 'distinctAmbiguousMasterIds', 'uniqueMasterReferences']),
+        distinctMissingPublicMasterIds: count(value?.distinctMissingMasterIds) ?? (Array.isArray(value?.missingMasterIds) ? value.missingMasterIds.length : null),
         affectedLocales: Object.fromEntries(Object.entries(value?.affectedLocales || {}).filter(([locale]) => dataLocales.has(locale)).map(([locale, total]) => [locale, count(total)])) }];
     })),
     invalidTranslationLocales: Object.fromEntries(translations.map(table => {
@@ -49,3 +49,4 @@ export function publicAuditSummary(report) {
     interpretation: 'Missing public masters may be hidden by RLS. Management inspection, review and backup are required before corrections.'
   };
 }
+

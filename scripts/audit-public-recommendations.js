@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import { Buffer } from 'node:buffer';
 import process from 'node:process';
 import { createHash } from 'node:crypto';
-import { AUDIT_TABLES, auditRecommendationSnapshot } from './recommendation-data-audit.js';
+import { AUDIT_TABLES, MASTER_TABLES, auditRecommendationSnapshot } from './recommendation-data-audit.js';
 import { contentFingerprint } from './case-build-data.js';
 import { publicAuditSummary } from './recommendation-audit-summary.js';
 
@@ -19,7 +19,7 @@ if (payload.role !== 'anon' || project.protocol !== 'https:' || !/^[a-z0-9-]+\.s
 const headers = { apikey: key, Authorization: `Bearer ${key}` };
 const tables = {}, failures = {};
 const startedAt = new Date().toISOString();
-const masters = ['Hazards', 'Current_Measures', 'Advanced_Measures'];
+const masters = MASTER_TABLES;
 for (const table of [...AUDIT_TABLES, ...masters]) {
   const rows = [];
   try {
@@ -93,20 +93,6 @@ report.mappingLocales = Object.fromEntries([['hazard_measure_mappings', 'Hazards
   }))];
 }));
 report.snapshotDigest = createHash('sha256').update(JSON.stringify(tables)).digest('hex');
-report.masterReferences = Object.fromEntries(masters.map((table, i) => {
-  const translation = [tables.Hazards_Translations, tables.Current_Measures_Translations, tables.Advanced_Measures_Translations][i];
-  const key = ['hazard_id', 'measure_id', 'advanced_measure_id'][i];
-  const ids = new Set((tables[table] || []).map(row => String(row.id)));
-  const unresolved = tables[table] && translation ? translation.filter(row => row[key] != null && !ids.has(String(row[key]))) : null;
-  return [table, { rows: tables[table]?.length ?? null, missingReferencedMaster: tables[table] && translation
-    ? unresolved.length : null,
-    interpretation: 'Absent from public RLS-visible master rows; privileged visibility must distinguish hidden rows from genuine orphans.',
-    missingMasterIds: unresolved ? [...new Set(unresolved.map(row => row[key]))] : null,
-    affectedLocales: unresolved ? Object.fromEntries([...new Set(unresolved.map(row => row.locale))].map(locale => [locale, unresolved.filter(row => row.locale === locale).length])) : null,
-    // Examples are a bounded review aid; all rows above were scanned and counted.
-    examples: unresolved?.slice(0, 5).map(row => ({ translationId: row.id, masterId: row[key], locale: row.locale,
-      text: row.hazard_name || row.measure_text || row.solution_text })) ?? null }];
-}));
 const allowedLocales = new Set(report.coverage.map(row => row.dataLocale));
 report.invalidTranslationLocales = Object.fromEntries(['Hazards_Translations', 'Current_Measures_Translations', 'Advanced_Measures_Translations']
   .map(table => {
@@ -138,3 +124,4 @@ if (!report.snapshotComplete) {
   console.error('Public DB audit incomplete; failed reads are unknown, not zero rows. See public-data-audit.json.');
   process.exitCode = 1;
 }
+

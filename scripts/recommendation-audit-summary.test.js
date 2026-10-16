@@ -2,6 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { publicAuditSummary } from './recommendation-audit-summary.js';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
+import { auditRecommendationSnapshot } from './recommendation-data-audit.js';
+
+test('shared reference audit exposes aggregate absence and ambiguity without source identities', () => {
+  const report = auditRecommendationSnapshot({ tables: {
+    Current_Measures: [{ id: 1 }, { id: 2 }, { id: 2 }],
+    Current_Measures_Translations: [{ id: 'PRIVATE', measure_id: 1 }, { measure_id: 2 },
+      { measure_id: 99, locale: 'en-US' }, { measure_id: null }],
+  } });
+  const output = publicAuditSummary(report);
+  const counts = output.masterReferences.Current_Measures;
+  assert.equal(counts.distinctMissingPublicMasterIds, 1);
+  assert.equal(counts.missingReferencedMaster, 1);
+  assert.equal(counts.ambiguousMasterReferences, 1);
+  assert.equal(counts.distinctAmbiguousMasterIds, 1);
+  assert.equal(counts.nullMasterReferences, 1);
+  assert.equal(counts.uniqueMasterReferences, 1);
+  assert.equal(output.masterReferences.Hazards.missingReferencedMaster, null);
+  assert.equal(JSON.stringify(output).includes('PRIVATE'), false);
+});
 
 test('shared audit output contains only counts and supported Locale names, never raw evidence', () => {
   const sentinel = 'PRIVATE_ROW_OR_PROJECT_SENTINEL';
@@ -42,3 +61,4 @@ test('all 18 UI Locales survive aggregation including the distinct Korean databa
   assert.equal(summary.masterReferences.Hazards.affectedLocales['ko-KR'], 2);
   assert.equal(summary.invalidTranslationLocales.Current_Measures_Translations.sameMasterLocaleCounts['ko-KR'], 1);
 });
+

@@ -27,6 +27,12 @@ The test-only client is substituted by the isolated Vite server; it accepts only
 
 To reproduce with Docker and Supabase CLI 2.121.0: run `node scripts/auth-integration/prepare.js`, start the stack with `--workdir .cache/auth-integration` on a loopback-bound Docker network, write `supabase status --output json` for that workdir to `.cache/auth-integration/status.json`, then run `node scripts/authenticated-analysis.cjs`. Stop that workdir with `--no-backup` afterwards. Never substitute hosted credentials or upload the status file.
 
+## Shared master-reference audit
+
+`recommendation-data-audit.js` and the public CI audit now use the same master-reference checks. They distinguish null references, IDs absent from the supplied master rows, references to duplicate master IDs (including identical copies), and references with exactly one matching master. Counts describe the supplied visibility scope; uniqueness does not establish semantic correspondence or an intact ancestor chain.
+
+For an authorized scoped read, `node scripts/recommendation-data-audit.js --live --include-masters --output private-report.json` reads the three master tables as well as the standard audit tables. Without master exports, reference counts stay unknown. A failed master read fails the export. An offline snapshot can supply these same tables via `--input`. Reads remain sequential rather than transactionally consistent. Keep detailed snapshots private; shared CI continues to publish only allowlisted aggregates.
+
 ## Legacy import retirement
 
 `batch_translate_script.py`, `python/advanced_batch_translate.py` and `python/json_to_sql.py` are retired. The two translation commands asked a model to assign IDs and supply regional compliance content, then wrote SQL; the JSON exporter silently kept the last duplicate translation. Existing CLI commands now exit with status 2, and imported functions raise `RuntimeError` before file or API access. They never generate partial SQL or overwrite operator files. These are offline utilities, not application runtime code.
@@ -72,3 +78,4 @@ At remote commit `343e95a846f432d5a06cc775ee706bd4bb23cf4a` (the baseline before
 - Public audit recovered at 2026-10-14 11:23 UTC; see `recommendation-audit-restored-20261014.json`. Public reads do not verify privileged constraints or authenticated accounts.
 
 The Russian-source follow-up fills the three remaining technical-source gaps using identified normative reproductions and preserves the unread issuer-hosted scan leads. Duration metadata alone cannot satisfy technical coverage. The independent review packet is prepared with no decisions filled. Its 23 targeted local comparison/knowledge/coverage/release tests pass; current-head CI results are tracked in PR #25. Baseline results above are not automatically attributed to later code. Content reviews, actual corpus comparison, authenticated staging and application rollout remain open. Consult the private operational handover for current backup and DB correction status.
+
