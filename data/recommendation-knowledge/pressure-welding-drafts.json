@@ -4446,6 +4446,261 @@
         ],
         "approvalGranted": false
       }
+    },
+    {
+      "id": "regional-ro-pressure-filter",
+      "sourceType": "guidance",
+      "sourceGroupId": "compressed-air-filter-pressure-isolation",
+      "locale": "ro-RO",
+      "jurisdiction": "RO",
+      "revision": 1,
+      "status": "draft",
+      "task": "Deschiderea unui filtru de aer comprimat",
+      "step": "Izolarea și depresurizarea înainte de deschidere",
+      "hazard": "Eliberare de aer comprimat sau proiectarea componentelor",
+      "cause": "Presiune rămasă în carcasă ori realimentare prin circuite conectate",
+      "consequence": "Lovire și alte leziuni provocate de eliberarea presiunii",
+      "control": "Identificați alimentarea, ieșirea, derivațiile și drenajele conectate prin care filtrul poate fi realimentat. Aplicați procedura echipamentului pentru izolarea tuturor surselor, prevenirea realimentării și evacuarea în siguranță a presiunii înainte de deschidere.",
+      "verification": "Persoana desemnată verifică izolarea și depresurizarea prin metoda prevăzută de procedură; repetă verificările dacă presiunea poate reveni. Mențineți carcasa închisă dacă izolarea sau depresurizarea nu poate fi confirmată. Nu slăbiți carcasa pentru a testa presiunea.",
+      "coverageLimit": "Numai riscul de presiune al filtrului de aer comprimat identificat. Nu este o procedură universală pentru recipiente sau conducte sub presiune. Verificați separat regimul aplicabil echipamentului și celelalte riscuri.",
+      "conditions": [
+        "Procedura de izolare specifică echipamentului este disponibilă",
+        "Este desemnată o persoană instruită și autorizată pentru sarcină",
+        "Filtrul de aer comprimat și toate circuitele de presiune sunt identificate",
+        "Procedura prevede evacuarea sigură a presiunii și verificarea depresurizării carcasei înainte de deschidere"
+      ],
+      "exclusions": [
+        "Intervenție cu echipamentul sub presiune",
+        "Intrare într-un spațiu închis",
+        "Conținutul sau limita izolării nu este cunoscută",
+        "Filtrul conține un alt gaz decât aer comprimat",
+        "Sarcina include certificarea aerului respirabil"
+      ],
+      "keywords": [
+        "filtru de aer comprimat",
+        "depresurizare",
+        "presiune reziduală"
+      ],
+      "sources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Written equipment procedure; residual energy and verification",
+          "jurisdiction": "CA",
+          "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/99488/ROU-99488.pdf",
+          "authority": "Government of Romania; ILO NATLEX archived copy",
+          "jurisdiction": "RO",
+          "section": "HG 1146/2006, Annex 1, points 2.13-2.14: stopped maintenance and separation from energy sources",
+          "checkedAt": "2026-10-16",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Archived primary legal text. Current consolidation and site applicability remain unverified; this is not a pressure-filter opening procedure."
+        }
+      ],
+      "applicability": {
+        "taskType": "pressure-equipment-opening",
+        "hazardType": "stored-pressure-release",
+        "targetType": "compressed-air-filter",
+        "conditionsRequired": [
+          "equipment-procedure-available",
+          "authorized-person-assigned",
+          "compressed-air-filter-identified",
+          "safe-depressurization-method-available"
+        ],
+        "excludedConditions": [
+          "pressurized-intervention",
+          "confined-entry",
+          "unknown-media-or-isolation",
+          "non-air-service",
+          "breathing-air-certification"
+        ]
+      },
+      "conditionLabels": {
+        "equipment-procedure-available": "Procedura de izolare specifică echipamentului este disponibilă",
+        "authorized-person-assigned": "Este desemnată o persoană instruită și autorizată pentru sarcină",
+        "compressed-air-filter-identified": "Filtrul de aer comprimat și toate circuitele de presiune sunt identificate",
+        "safe-depressurization-method-available": "Procedura prevede evacuarea sigură a presiunii și verificarea depresurizării carcasei înainte de deschidere",
+        "pressurized-intervention": "Intervenție cu echipamentul sub presiune",
+        "confined-entry": "Intrare într-un spațiu închis",
+        "unknown-media-or-isolation": "Conținutul sau limita izolării nu este cunoscută",
+        "non-air-service": "Filtrul conține un alt gaz decât aer comprimat",
+        "breathing-air-certification": "Sarcina include certificarea aerului respirabil"
+      },
+      "sourceRevision": "research-2026-10-16",
+      "sourceFingerprint": "7028bda3e5a78c41b3143cdc1e047023a68df4839e39893f0293dabe31d0fa49",
+      "origin": {
+        "aiAssisted": true,
+        "fictionalCase": false,
+        "contentType": "paraphrased-guidance-draft",
+        "translationGroupId": "pressure-filter-20261014"
+      },
+      "review": {
+        "technicalStatus": "pending",
+        "regionalStatus": "pending",
+        "translationStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "sourceCheck": {
+        "status": "draft_sources_read_review_pending",
+        "checkedAt": "2026-10-16",
+        "method": "AI-assisted Romanian drafting from bounded technical guidance and identified Romanian legal text; not independent approval",
+        "approvalGranted": false,
+        "findings": [
+          "Local-language hazard, control, verification, conditions and exclusions authored. Foreign technical sources retain their original jurisdiction; they are not Romanian legal authority."
+        ],
+        "remainingIssues": [
+          "Technical, regional and Romanian-language reviews are pending. Current legal applicability and site-specific procedures require verification.",
+          "HG 1146/2006 publisher page was unavailable. The cited ILO-hosted archived text was read, but current consolidation remains unverified."
+        ],
+        "supportingReferences": [
+          {
+            "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+            "section": "1910.147(d)(3)-(6)",
+            "role": "Technical comparison for complete energy paths and verification; not local legal authority outside its scope."
+          },
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
+          }
+        ]
+      }
+    },
+    {
+      "id": "regional-ro-welding-fume",
+      "sourceType": "guidance",
+      "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
+      "locale": "ro-RO",
+      "jurisdiction": "RO",
+      "revision": 1,
+      "status": "draft",
+      "task": "Sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri",
+      "step": "Pregătirea captării fumului de sudură",
+      "hazard": "Inhalarea fumului de sudură",
+      "cause": "Fumul ajunge în zona de respirație",
+      "consequence": "Afecțiuni respiratorii și alte efecte asupra sănătății",
+      "control": "Evaluați mai întâi eliminarea sau înlocuirea procesului care produce fum. Dacă sudarea rămâne necesară, utilizați captare locală adecvată la sursă și protecție respiratorie atunci când evaluarea expunerii o impune.",
+      "verification": "Verificați poziția dispozitivului de captare și performanța prevăzută de procedură; repetați verificarea după deplasare sau modificarea lucrării. Opriți sudarea dacă extracția este ineficientă.",
+      "coverageLimit": "Numai expunerea la fum la sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri. Incendiul, radiațiile, electricitatea, gazele și celelalte riscuri necesită evaluare separată.",
+      "conditions": [
+        "Este desemnată o persoană instruită și autorizată pentru sarcină",
+        "Sudare regulată în interior",
+        "Oțelul cu conținut scăzut de carbon, fără acoperiri și consumabilele sunt identificate",
+        "Evaluarea expunerii și procedura de control sunt disponibile"
+      ],
+      "exclusions": [
+        "Intrare într-un spațiu închis",
+        "Sudare în exterior",
+        "Material acoperit, oțel inoxidabil sau material neidentificat",
+        "Captarea lipsește sau este ineficientă"
+      ],
+      "keywords": [
+        "sudare",
+        "fum de sudură",
+        "captare locală"
+      ],
+      "sources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "authority": "OSHA",
+          "section": "1910.252(c)(1)-(3), ventilation and local exhaust",
+          "jurisdiction": "US",
+          "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "authority": "CCOHS",
+          "section": "Ventilation selection, local exhaust and respiratory protection",
+          "jurisdiction": "CA",
+          "scope": "Canadian technical guidance; not evidence of compliance with each provincial regime.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://legislatie.just.ro/public/DetaliiDocument/75978",
+          "authority": "Government of Romania, Portal Legislativ",
+          "jurisdiction": "RO",
+          "section": "HG 1218/2006, articles 13-14 and 18-22: exposure assessment, control hierarchy and effectiveness",
+          "checkedAt": "2026-10-16",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "scope": "General chemical-agent duties and control hierarchy; welding-specific exposure assessment, additional carcinogen rules and site applicability require review."
+        }
+      ],
+      "applicability": {
+        "taskType": "welding-exposure",
+        "hazardType": "welding-fume-inhalation",
+        "targetType": "uncoated-mild-steel-weld",
+        "conditionsRequired": [
+          "authorized-person-assigned",
+          "regular-indoor-welding",
+          "uncoated-mild-steel-identified",
+          "exposure-procedure-available"
+        ],
+        "excludedConditions": [
+          "confined-entry",
+          "outdoor-welding",
+          "coated-stainless-or-unknown-metal",
+          "extraction-unavailable"
+        ]
+      },
+      "conditionLabels": {
+        "authorized-person-assigned": "Este desemnată o persoană instruită și autorizată pentru sarcină",
+        "regular-indoor-welding": "Sudare regulată în interior",
+        "uncoated-mild-steel-identified": "Oțelul cu conținut scăzut de carbon, fără acoperiri și consumabilele sunt identificate",
+        "exposure-procedure-available": "Evaluarea expunerii și procedura de control sunt disponibile",
+        "confined-entry": "Intrare într-un spațiu închis",
+        "outdoor-welding": "Sudare în exterior",
+        "coated-stainless-or-unknown-metal": "Material acoperit, oțel inoxidabil sau material neidentificat",
+        "extraction-unavailable": "Captarea lipsește sau este ineficientă"
+      },
+      "sourceRevision": "research-2026-10-16",
+      "sourceFingerprint": "15198c67a0fecd834513517112726f7df91ac71c346e7be9f70f127f56b4c54a",
+      "origin": {
+        "aiAssisted": true,
+        "fictionalCase": false,
+        "contentType": "paraphrased-guidance-draft",
+        "translationGroupId": "indoor-welding-20261014"
+      },
+      "review": {
+        "technicalStatus": "pending",
+        "regionalStatus": "pending",
+        "translationStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "sourceCheck": {
+        "status": "draft_sources_read_review_pending",
+        "checkedAt": "2026-10-16",
+        "method": "AI-assisted Romanian drafting from bounded technical guidance and identified Romanian legal text; not independent approval",
+        "approvalGranted": false,
+        "findings": [
+          "Local-language hazard, control, verification, conditions and exclusions authored. Foreign technical sources retain their original jurisdiction; they are not Romanian legal authority."
+        ],
+        "remainingIssues": [
+          "Technical, regional and Romanian-language reviews are pending. Current legal applicability and site-specific procedures require verification.",
+          "Confirm the applicability of additional carcinogen rules, exposure limits and respiratory-protection requirements for the actual process."
+        ]
+      }
     }
   ]
 }

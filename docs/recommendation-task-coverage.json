@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "inputHash": "bf22782f40f3866d2ad1b969020a9533fb21e960004f81c95ac05d239487cf79",
+  "inputHash": "c28e3e6bfc88cc1cf5942d3212dafd180ff3ab03d89ba6ddc0819abab348a17f",
   "scope": "Authored knowledge-bank coverage only. Source geography is not legal applicability, review approval, production availability or measured recommendation accuracy.",
   "totals": {
     "locales": 19,
     "priorityCells": 57,
-    "cellsWithDraftOrReviewedContent": 54,
-    "missingCells": 3,
+    "cellsWithDraftOrReviewedContent": 57,
+    "missingCells": 0,
     "cellsWithPublicationEligibleContent": 0,
-    "activeUnits": 57,
-    "priorityUnits": 54,
+    "activeUnits": 60,
+    "priorityUnits": 57,
     "nonPriorityUnits": 3
   },
   "coverage": [
@@ -1207,63 +1207,63 @@
       "tasks": [
         {
           "taskType": "machine-maintenance",
-          "units": 0,
-          "draftUnits": 0,
+          "units": 1,
+          "draftUnits": 1,
           "publicationEligible": 0,
-          "guidanceUnits": 0,
+          "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 0,
+            "foreignReference": 1,
             "unspecified": 0,
             "unreadOrMetadata": 0
           },
-          "missingDraft": true,
+          "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
-          "requiresLocalSourceReview": false,
-          "needsContentReview": 0
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
         },
         {
           "taskType": "pressure-equipment-opening",
-          "units": 0,
-          "draftUnits": 0,
+          "units": 1,
+          "draftUnits": 1,
           "publicationEligible": 0,
-          "guidanceUnits": 0,
+          "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 0,
+            "foreignReference": 2,
             "unspecified": 0,
             "unreadOrMetadata": 0
           },
-          "missingDraft": true,
+          "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
-          "requiresLocalSourceReview": false,
-          "needsContentReview": 0
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
         },
         {
           "taskType": "welding-exposure",
-          "units": 0,
-          "draftUnits": 0,
+          "units": 1,
+          "draftUnits": 1,
           "publicationEligible": 0,
-          "guidanceUnits": 0,
+          "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 0,
+            "foreignReference": 2,
             "unspecified": 0,
             "unreadOrMetadata": 0
           },
-          "missingDraft": true,
+          "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
-          "requiresLocalSourceReview": false,
-          "needsContentReview": 0
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
         }
       ]
     }

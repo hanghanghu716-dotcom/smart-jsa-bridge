@@ -50,9 +50,9 @@ test('extraction cannot manufacture scores or erase applicability conditions', (
 
 test('regional drafts have complete condition labels but cannot be published without reviews', () => {
   const regional = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/regional-drafts.json', import.meta.url)));
-  assert.equal(regional.units.length, 18);
+  assert.equal(regional.units.length, 19);
   assert.deepEqual(validateKnowledgeBank(regional), []);
-  assert.equal(validateKnowledgeBank(regional, { forPublication: true }).length, 18);
+  assert.equal(validateKnowledgeBank(regional, { forPublication: true }).length, 19);
   const unit = structuredClone(bank.units[0]);
   delete unit.conditionLabels[unit.applicability.conditionsRequired[0]];
   assert.ok(validateKnowledgeUnit(unit).some(error => error.startsWith('conditionLabels')));

@@ -8,8 +8,7 @@ import { compileRecommendationRelease, mappingContentHash } from './recommendati
 import { selectReviewedRecommendations } from '../src/utils/reviewedRecommendationPolicy.js';
 import { verifyGuidanceBindings } from './recommendation-guidance-sources.js';
 
-// Existing authored banks predate the Romanian UI release; missing content stays visible.
-const authoredLocales = SUPPORTED_LANGS.filter(locale => locale !== 'ro-RO');
+const authoredLocales = SUPPORTED_LANGS;
 const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/pressure-welding-drafts.json', import.meta.url)));
 const captures = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/guidance-source-captures.json', import.meta.url)));
 
@@ -137,4 +136,15 @@ test('committed coverage stays synchronized with all authored knowledge banks', 
   const stored = JSON.parse(fs.readFileSync(new URL('../docs/recommendation-task-coverage.json', import.meta.url)));
   assert.deepEqual(stored, expected);
   assert.equal(expected.totals.cellsWithPublicationEligibleContent, 0);
+  assert.equal(expected.totals.cellsWithDraftOrReviewedContent,57);
+  assert.equal(expected.totals.missingCells,0);
+  const romanian=expected.coverage.find(row=>row.locale==='ro-RO');
+  assert.equal(romanian.jurisdiction,'RO');
+  assert.equal(romanian.tasks.length,3);
+  for(const task of romanian.tasks) {
+    assert.equal(task.units,1);
+    assert.equal(task.primarySourceReferences.sameJurisdiction,1);
+    assert.equal(task.requiresLocalSourceReview,true);
+    assert.equal(task.publicationEligible,0);
+  }
 });

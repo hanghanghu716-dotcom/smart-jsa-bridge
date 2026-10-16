@@ -1837,6 +1837,108 @@
         "approvalGranted": false
       },
       "coverageLimit": "정비 전 에너지 차단만을 다룬다. 출입, 실제 수리, 방호장치 및 재가동은 별도로 평가하고 절차를 정한다."
+    },
+    {
+      "id": "regional-ro-maintenance",
+      "sourceType": "guidance",
+      "sourceGroupId": "machine-energy-isolation",
+      "locale": "ro-RO",
+      "jurisdiction": "RO",
+      "revision": 1,
+      "status": "draft",
+      "task": "Întreținerea utilajului",
+      "step": "Pregătirea izolării surselor de energie",
+      "hazard": "Pornire neașteptată sau eliberare de energie acumulată",
+      "cause": "O sursă de energie rămâne conectată ori poate fi reconectată",
+      "consequence": "Strivire sau alte leziuni în timpul intervenției",
+      "control": "Identificați sursele de energie și izolați-le conform procedurii specifice utilajului. Împiedicați reconectarea și eliminați sau controlați în siguranță energia acumulată înainte de acces.",
+      "verification": "Verificați eficacitatea izolării și controlul energiei acumulate prin metoda prevăzută de procedură. Dacă starea sigură nu poate fi confirmată, nu permiteți accesul în zona periculoasă.",
+      "conditions": [
+        "Procedura specifică utilajului este disponibilă",
+        "Este desemnată o persoană competentă"
+      ],
+      "exclusions": [
+        "Este necesară o intervenție cu echipamentul sub energie",
+        "Lucrarea implică intrarea într-un spațiu închis",
+        "O sursă de energie sau limita izolării nu este cunoscută"
+      ],
+      "keywords": [
+        "întreținere",
+        "izolarea energiei",
+        "energie acumulată"
+      ],
+      "sources": [
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+          "jurisdiction": "CA",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Canadian technical guidance on stored energy; provincial requirements and the equipment procedure still need separate review."
+        },
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/99488/ROU-99488.pdf",
+          "authority": "Government of Romania; ILO NATLEX archived copy",
+          "jurisdiction": "RO",
+          "section": "HG 1146/2006, Annex 1, points 2.13-2.14: stopped maintenance and separation from energy sources",
+          "checkedAt": "2026-10-16",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Archived primary legal text. Current consolidation and site applicability remain unverified; this is not a pressure-filter opening procedure."
+        }
+      ],
+      "applicability": {
+        "taskType": "machine-maintenance",
+        "hazardType": "unexpected-energization",
+        "targetType": "machine",
+        "conditionsRequired": [
+          "equipment-procedure-available",
+          "competent-person-assigned"
+        ],
+        "excludedConditions": [
+          "live-intervention",
+          "confined-entry",
+          "unknown-energy-path"
+        ]
+      },
+      "sourceRevision": "research-2026-10-16",
+      "sourceFingerprint": "961a3b0f2fa213a36c7fe892f96973d3b8ab7abc6794eb4b7ef8f6b3d70e2f56",
+      "origin": {
+        "aiAssisted": true,
+        "fictionalCase": false,
+        "contentType": "paraphrased-guidance-draft"
+      },
+      "review": {
+        "technicalStatus": "pending",
+        "regionalStatus": "pending",
+        "translationStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Procedura specifică utilajului este disponibilă",
+        "competent-person-assigned": "Este desemnată o persoană competentă",
+        "live-intervention": "Este necesară o intervenție cu echipamentul sub energie",
+        "confined-entry": "Lucrarea implică intrarea într-un spațiu închis",
+        "unknown-energy-path": "O sursă de energie sau limita izolării nu este cunoscută"
+      },
+      "sourceCheck": {
+        "status": "draft_sources_read_review_pending",
+        "checkedAt": "2026-10-16",
+        "method": "AI-assisted Romanian drafting from bounded technical guidance and identified Romanian legal text; not independent approval",
+        "approvalGranted": false,
+        "findings": [
+          "Local-language hazard, control, verification, conditions and exclusions authored. Foreign technical sources retain their original jurisdiction; they are not Romanian legal authority."
+        ],
+        "remainingIssues": [
+          "Technical, regional and Romanian-language reviews are pending. Current legal applicability and site-specific procedures require verification.",
+          "HG 1146/2006 publisher page was unavailable. The cited ILO-hosted archived text was read, but current consolidation remains unverified."
+        ]
+      },
+      "coverageLimit": "Numai izolarea energiei înainte de întreținere. Reparația, accesul, apărătorile și repunerea în funcțiune necesită evaluări și proceduri separate."
     }
   ]
 }

@@ -345,6 +345,53 @@
           "utf8Bytes": 7092
         }
       ]
+    },
+    {
+      "id": "ro-hg1146-ilo-20261016",
+      "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/99488/ROU-99488.pdf",
+      "edition": "HG 1146/2006, Monitorul Oficial 815/2006; archived Romanian OSHA-network copy hosted by ILO NATLEX",
+      "attribution": "Government of Romania; archived copy hosted by ILO NATLEX",
+      "scopeLimit": "Archived primary legal text, not a verified current consolidation. Equipment isolation clauses do not constitute a filter-opening procedure or pressure-equipment certification.",
+      "coveredSections": [
+        "HG 1146/2006, Annex 1, points 2.13-2.14: stopped maintenance and separation from energy sources"
+      ],
+      "fragments": [
+        {
+          "selector": "turn27view0: extracted lines 8-20",
+          "sha256": "0fc26a7397f7e6e34036bb37d10cab8f3f378e201a31cbb6824b971d56f96b28",
+          "utf8Bytes": 824
+        },
+        {
+          "selector": "turn26view1: extracted lines 251-258",
+          "sha256": "f0494d2301e39e26f52c76a4e9cd035b7e07dc5923ab6e9318782e6df3911f49",
+          "utf8Bytes": 666
+        }
+      ],
+      "retrievalRef": "turn27view0, turn26view1",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
+    },
+    {
+      "id": "ro-hg1218-20261016",
+      "url": "https://legislatie.just.ro/public/DetaliiDocument/75978",
+      "edition": "HG 1218/2006 republished 2021; Portal Legislativ representation retrieved 2026-10-16, displaying amendments through 2026",
+      "attribution": "Government of Romania, Portal Legislativ",
+      "scopeLimit": "General chemical-agent assessment and prevention hierarchy. Does not establish welding-specific exposure limits, respirator selection, full compliance or applicability of additional carcinogen rules.",
+      "coveredSections": [
+        "HG 1218/2006, articles 13-14 and 18-22: exposure assessment, control hierarchy and effectiveness"
+      ],
+      "fragments": [
+        {
+          "selector": "turn25view1: extracted lines 156-167",
+          "sha256": "3d03ef03eba54239d03660bd64ba945bca335047f8bbfe90547de53f133b1337",
+          "utf8Bytes": 6878
+        }
+      ],
+      "retrievalRef": "turn25view1",
+      "retrievedOn": "2026-10-16",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections"
     }
   ]
 }

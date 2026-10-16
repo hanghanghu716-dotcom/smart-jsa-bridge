@@ -4,9 +4,9 @@ Guidance drafts previously retained source URLs without a fingerprint. Their sup
 
 ## Current evidence
 
-On 2026-10-16, fourteen source representations were collected. The initial five cover OSHA 1910.147 and 1910.252, HSE maintenance and welding guidance, and the Parker OIL-X user guide (17 118 6204, 07/21 Rev -). Nine additional captures cover CCOHS lockout and ventilation, Alberta Parts 15 and 26, WorkSafeBC lockout and welding, CNESST machinery and ventilation, and IHSA construction welding pages.
+On 2026-10-16, sixteen source representations were collected. The initial five cover OSHA 1910.147 and 1910.252, HSE maintenance and welding guidance, and the Parker OIL-X user guide (17 118 6204, 07/21 Rev -). Nine Canadian captures cover CCOHS lockout and ventilation, Alberta Parts 15 and 26, WorkSafeBC lockout and welding, CNESST machinery and ventilation, and IHSA construction welding pages. Two Romanian captures cover an ILO-hosted archived HG 1146/2006 text and the Portal Legislativ representation of HG 1218/2006.
 
-All cited sections of sixteen drafts are bound: six US/GB drafts and ten Canadian drafts. The other 38 guidance drafts retain null fingerprints. All 54 guidance drafts and the three case drafts remain unpublished and await actual content reviews. Source binding is preparation and does not increment the 0/171 technical, regional and translation reviews.
+All cited sections of nineteen drafts are bound: six US/GB drafts, ten Canadian drafts and three new Romanian drafts. The other 38 guidance drafts retain null fingerprints. All 57 guidance drafts and the three case drafts remain unpublished and await actual content reviews. Source binding is preparation and does not increment content-review decisions. Adding the Romanian maintenance, pressure-filter and welding drafts fills all 57 priority cells; it expands the source-binding denominator from 54 to 57 and the technical/regional/translation review denominator from 171 to 180.
 
 Five Canadian drafts remain unbound: all three Ontario drafts and Quebec maintenance/pressure-filter drafts. Ontario government content was unavailable; the WSPS extraction did not contain the cited article. The Quebec RSST PDF edition metadata was retrieved, but the cited articles could not be recaptured after a 502 response. Neither an error response nor navigation or edition metadata counts as captured technical content.
 
@@ -28,6 +28,8 @@ Third-party source text is supplied separately for digest verification. It is no
 - WorkSafeBC's welding advisory identifies the need for a site exposure-control plan. Its lockout text supports worker verification; neither replaces site-specific assessment.
 - CNESST ventilation guidance includes fixed welding stations. Its machinery guidance does not substitute for the separately cited, currently uncaptured RSST articles.
 - IHSA's construction text includes historical CSA references. Those references have not been verified as current standards and do not establish applicability to other industries.
+- Romanian HG 1146/2006 was read from an ILO NATLEX archived copy because the publisher page was unavailable. Its current consolidation is unverified. Its maintenance/isolation clauses do not supply pressure-filter opening instructions or establish the applicable pressure-equipment regime.
+- Romanian HG 1218/2006 supports risk assessment and the prevention hierarchy. The welding draft includes consideration of elimination/substitution before source extraction and respiratory protection. Additional carcinogen duties, current exposure limits and local-language suitability still require review. Foreign technical references are identified as foreign; they are not treated as Romanian law.
 
 These are AI-assisted source comparisons, not technical, regional or translation approvals. No reviewer identities or decisions have been generated.
 
