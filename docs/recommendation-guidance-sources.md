@@ -41,7 +41,7 @@ The next five captures cover Brazilian NR-12 clauses 12.11.3 through 12.11.3.3 a
 
 The remaining 12 are Ontario 3, Quebec 2, Italy 1, Saudi maintenance/filter 2, Brazilian welding 1 and Russia 3. Recapture encountered Ontario/Quebec retrieval errors, an INAIL timeout, an EXPRO project-procedure timeout, an oversized Brazilian GRO/PGR PDF, a CBIC access failure and unread Russian official scans. These failures and partial captures are not counted as completed bindings.
 
-These are AI-assisted source comparisons, not technical, regional or translation approvals. No reviewer identities or decisions have been generated.
+Source capture does not generate reviewer identities or approval decisions. Separately, `data/recommendation-knowledge/technical-review-records.json` records three completed AI technical desk reviews for Brazilian maintenance/filter and Saudi welding. Each records the exact content/source hashes, source-fragment digests, field-level findings and outstanding limits. These are 3/180 completed review areas, not three fully approved units. They are not independent professional approvals and do not change any unit's pending publication-review statuses. Regional and translation reviews remain pending.
 
 ## Commands
 

@@ -5,6 +5,37 @@ import { validateKnowledgeBank, validateKnowledgeUnit, knowledgeContentHash, bin
 
 const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/pilot.en-US.json', import.meta.url)));
 
+test('recorded AI desk reviews match frozen content and evidence without granting publication approval', () => {
+  const read = name => JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`, import.meta.url)));
+  const records = read('technical-review-records.json');
+  const units = [...read('regional-drafts.json').units, ...read('pressure-welding-drafts.json').units];
+  const captures = read('guidance-source-captures.json').captures;
+  assert.equal(records.releaseApproval, false);
+  assert.equal(records.completedReviewAreas, records.reviews.length);
+  assert.equal(records.publicationApprovals, 0);
+  assert.equal(new Set(records.reviews.map(r => `${r.unitId}:${r.area}`)).size, records.reviews.length);
+  for (const review of records.reviews) {
+    const unit = units.find(u => u.id === review.unitId);
+    assert.ok(unit, review.unitId);
+    assert.equal(review.contentHash, knowledgeContentHash(unit), review.unitId);
+    assert.equal(review.sourceFingerprint, unit.sourceFingerprint, review.unitId);
+    assert.equal(review.approvalGranted, false);
+    assert.match(review.reviewer, /AI/);
+    assert.ok(review.rationale && review.reviewedAt && review.checks.length && review.remainingIssues.length);
+    assert.ok(review.evidence.length);
+    for (const evidence of review.evidence) {
+      const capture = captures.find(c => c.id === evidence.captureId);
+      assert.ok(capture, evidence.captureId);
+      assert.equal(evidence.url, capture.url);
+      assert.deepEqual(evidence.fragments, capture.fragments);
+      assert.deepEqual(evidence.coveredSections, capture.coveredSections);
+    }
+    assert.equal(unit.status, 'draft');
+    assert.equal(unit.review.technicalStatus, 'pending');
+    assert.ok(validateKnowledgeUnit(unit, { forPublication: true }).length);
+  }
+});
+
 test('three pilot records are valid drafts and none can pass publication validation', () => {
   assert.equal(bank.units.length, 3);
   assert.deepEqual(validateKnowledgeBank(bank), []);
