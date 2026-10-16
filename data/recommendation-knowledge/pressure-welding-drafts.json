@@ -9,7 +9,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -79,8 +79,8 @@
         "breathing-air-certification": "The task includes breathing-air certification",
         "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "da4ecbd8f27438c6dd156b084db6e16484827bc9801af05f3be592b2c9c5c4a5",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -123,7 +123,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -190,8 +190,8 @@
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1471,7 +1471,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1550,8 +1550,8 @@
         "breathing-air-certification": "The task includes breathing-air certification",
         "great-britain-scope-confirmed": "The work is in Great Britain and falls within the cited HSE guidance scope"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1594,7 +1594,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -1670,8 +1670,8 @@
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "great-britain-scope-confirmed": "The work is in Great Britain and falls within the cited HSE guidance scope"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "4f758fa8a21c9aa608694e4d1a85e8d008eb08d4b2579e9e3211f1082daa28c0",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

@@ -9,7 +9,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -62,8 +62,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "9a5b5dcf5bee4c62aef4afa9c6fa9f95398f28192bc11b8fc03ad2290ad3b3b9",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -588,7 +588,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -639,8 +639,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,

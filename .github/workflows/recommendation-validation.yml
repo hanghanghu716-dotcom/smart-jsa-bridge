@@ -53,6 +53,10 @@ jobs:
         run: node --test --test-concurrency=1 scripts/analysis-*.test.js scripts/recommendation-*.test.js
       - name: Verify knowledge coverage matches the authored input files
         run: node scripts/recommendation-coverage.js --check docs/recommendation-task-coverage.json
+      - name: Verify guidance source bindings
+        run: |
+          node scripts/recommendation-guidance-sources.js --check data/recommendation-knowledge/regional-drafts.json data/recommendation-knowledge/guidance-source-captures.json
+          node scripts/recommendation-guidance-sources.js --check data/recommendation-knowledge/pressure-welding-drafts.json data/recommendation-knowledge/guidance-source-captures.json
       - name: Verify offline mapping safeguards
         run: python -m unittest discover -s python -p 'test_*.py'
       - name: Verify isolated browser recommendation flow
