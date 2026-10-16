@@ -222,7 +222,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -301,8 +301,8 @@
         "breathing-air-certification": "The task includes breathing-air certification",
         "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -336,7 +336,16 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Federal/provincial/territorial applicability remains a prerequisite; CCOHS does not establish local legal compliance."
+          ]
+        }
       }
     },
     {
@@ -345,7 +354,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -421,8 +430,8 @@
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -444,7 +453,16 @@
         "findings": [
           "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Federal/provincial/territorial applicability remains a prerequisite; CCOHS does not establish local legal compliance."
+          ]
+        }
       }
     },
     {
@@ -453,7 +471,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -462,7 +480,7 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
       "verification": "Each worker tests and confirms isolation and a safe depressurised state under the equipment procedure before work; recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+      "coverageLimit": "Pressure-release hazard of the identified compressed-air filter only. This is not a piping or pipeline isolation procedure; determine whether the separate piping requirements apply. Other maintenance hazards need separate assessment.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
@@ -539,8 +557,8 @@
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification"
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -574,7 +592,17 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Publisher disclaimer states current to March 2023. Verify subsequent amendments against the current official consolidation before regional approval.",
+            "Part 15 sections 215.4-215.5 separately address piping/pipelines. Determine equipment classification and the applicable isolation method before approval; sections 212-215 alone are insufficient for piping work."
+          ]
+        }
       }
     },
     {
@@ -583,7 +611,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -666,8 +694,8 @@
         "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
         "extraction-unavailable": "Extraction unavailable or ineffective"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -689,7 +717,16 @@
         "findings": [
           "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Publisher disclaimer states current to March 2023. Verify subsequent amendments against the current official consolidation before regional approval."
+          ]
+        }
       }
     },
     {
@@ -698,7 +735,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -832,7 +869,16 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Regulation 851 returned HTTP 403; WSPS extraction contained navigation but not the cited article. Neither was accepted as source evidence."
+          ]
+        }
       }
     },
     {
@@ -841,7 +887,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -960,7 +1006,16 @@
         "findings": [
           "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Item 8 could not be retrieved. IHSA construction pages were captured, but this does not fill the missing Ontario source lead or verify current CSA references."
+          ]
+        }
       }
     },
     {
@@ -969,7 +1024,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1058,8 +1113,8 @@
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1093,7 +1148,16 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "WorkSafeBC publisher text was captured; site-specific applicability and regulatory requirements still need regional review."
+          ]
+        }
       }
     },
     {
@@ -1102,7 +1166,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -1188,8 +1252,8 @@
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "exposure-control-plan-ready": "A site-specific welding fume exposure control plan is available"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1211,7 +1275,16 @@
         "findings": [
           "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "WorkSafeBC publisher text was captured; site-specific applicability and regulatory requirements still need regional review."
+          ]
+        }
       }
     },
     {
@@ -1220,7 +1293,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
@@ -1344,7 +1417,16 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "RSST PDF edition metadata was retrieved, but the cited articles 195-201 could not be recaptured after a 502 response. No fingerprint is assigned for those articles."
+          ]
+        }
       }
     },
     {
@@ -1353,7 +1435,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
@@ -1439,8 +1521,8 @@
         "extraction-unavailable": "Captage absent ou inefficace",
         "fixed-welding-station": "Le soudage est réalisé à un poste fixe"
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "613e5c4b57d5f22dd1df37e61d6c68cf6a55244672991e942848506e81d1b8aa",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1462,7 +1544,15 @@
         "findings": [
           "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval."
+          ]
+        }
       }
     },
     {

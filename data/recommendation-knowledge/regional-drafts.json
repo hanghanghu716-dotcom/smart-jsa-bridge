@@ -103,7 +103,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -154,8 +154,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -184,7 +184,16 @@
         "findings": [
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Federal/provincial/territorial applicability remains a prerequisite; CCOHS does not establish local legal compliance."
+          ]
+        }
       },
       "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
     },
@@ -194,7 +203,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -253,8 +262,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -283,7 +292,16 @@
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions.",
           "Restored verification by each worker under Alberta Part 15."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Publisher disclaimer states current to March 2023. Verify subsequent amendments against the current official consolidation before regional approval."
+          ]
+        }
       },
       "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
     },
@@ -293,7 +311,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -381,7 +399,16 @@
         "findings": [
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Equipment-blocking alert returned HTTP 403; its cited content was not recaptured."
+          ]
+        }
       },
       "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
     },
@@ -391,7 +418,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -450,8 +477,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -480,7 +507,16 @@
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions.",
           "Restored verification by each worker under WorkSafeBC 10.6."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "WorkSafeBC publisher text was captured; site-specific applicability and regulatory requirements still need regional review."
+          ]
+        }
       },
       "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
     },
@@ -490,7 +526,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
@@ -579,7 +615,16 @@
         "findings": [
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "RSST PDF edition metadata was retrieved, but the cited articles 195-201 could not be recaptured after a 502 response. No fingerprint is assigned for those articles."
+          ]
+        }
       }
     },
     {

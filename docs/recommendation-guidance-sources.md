@@ -4,7 +4,11 @@ Guidance drafts previously retained source URLs without a fingerprint. Their sup
 
 ## Current evidence
 
-On 2026-10-16, five source representations were collected: OSHA 1910.147 and 1910.252, HSE maintenance and welding guidance, and the Parker OIL-X user guide (17 118 6204, 07/21 Rev -). All cited sections of six US/GB drafts are covered. The other 48 guidance drafts retain null fingerprints. All 54 guidance drafts and the three case drafts remain unpublished and await actual content reviews.
+On 2026-10-16, fourteen source representations were collected. The initial five cover OSHA 1910.147 and 1910.252, HSE maintenance and welding guidance, and the Parker OIL-X user guide (17 118 6204, 07/21 Rev -). Nine additional captures cover CCOHS lockout and ventilation, Alberta Parts 15 and 26, WorkSafeBC lockout and welding, CNESST machinery and ventilation, and IHSA construction welding pages.
+
+All cited sections of sixteen drafts are bound: six US/GB drafts and ten Canadian drafts. The other 38 guidance drafts retain null fingerprints. All 54 guidance drafts and the three case drafts remain unpublished and await actual content reviews. Source binding is preparation and does not increment the 0/171 technical, regional and translation reviews.
+
+Five Canadian drafts remain unbound: all three Ontario drafts and Quebec maintenance/pressure-filter drafts. Ontario government content was unavailable; the WSPS extraction did not contain the cited article. The Quebec RSST PDF edition metadata was retrieved, but the cited articles could not be recaptured after a 502 response. Neither an error response nor navigation or edition metadata counts as captured technical content.
 
 `data/recommendation-knowledge/guidance-source-captures.json` stores URLs, observed editions, scopes, exact covered citation strings, selected extraction ranges and SHA-256 digests. It does not store complete original HTML/PDF bytes. A digest identifies the selected extracted text, not the entire document, legal applicability, or currentness of a live website. Changes outside the selected ranges are not detected. A new retrieval and comparison are needed to check upstream changes.
 
@@ -19,6 +23,11 @@ Third-party source text is supplied separately for digest verification. It is no
 - HSE maintenance guidance describes isolation, prevention of reconnection and control of stored energy. Great Britain scope is retained; Northern Ireland applicability has not been established.
 - HSE welding guidance distinguishes regular and sporadic work. The current drafts cover regular indoor work; the sporadic-work example must not be generalized to it.
 - The Parker manual gives model-specific reverse-flow precautions and depressurisation guidance. It is a manufacturer example, not a universal procedure or local legislation. Valve sequences, waiting times and torque values are not transferred to other equipment.
+- Alberta's publisher disclaimer states current to March 2023. Capturing that representation does not establish current legal requirements. Later amendments remain a regional-review blocker for all three Alberta drafts.
+- Alberta Part 15 separately addresses piping/pipelines in sections 215.4-215.5. The pressure-filter draft now states that it is not a piping-isolation procedure and requires a separate applicability determination.
+- WorkSafeBC's welding advisory identifies the need for a site exposure-control plan. Its lockout text supports worker verification; neither replaces site-specific assessment.
+- CNESST ventilation guidance includes fixed welding stations. Its machinery guidance does not substitute for the separately cited, currently uncaptured RSST articles.
+- IHSA's construction text includes historical CSA references. Those references have not been verified as current standards and do not establish applicability to other industries.
 
 These are AI-assisted source comparisons, not technical, regional or translation approvals. No reviewer identities or decisions have been generated.
 

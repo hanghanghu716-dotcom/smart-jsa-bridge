@@ -133,6 +133,218 @@
           "utf8Bytes": 553
         }
       ]
+    },
+    {
+      "id": "ccohs-lockout-20261016",
+      "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "CCOHS fact sheet revised 2021-11-23",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn9view0",
+      "scopeLimit": "Canadian technical guidance only; equipment procedures and the applicable workplace regime require separate review. Flange breaking is not a filter-opening pressure test.",
+      "attribution": "CCOHS",
+      "coveredSections": [
+        "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+        "Written equipment procedure; residual energy and verification"
+      ],
+      "fragments": [
+        {
+          "selector": "turn9view0: extracted lines 118-132",
+          "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+          "utf8Bytes": 1061
+        },
+        {
+          "selector": "turn9view0: extracted lines 165-216",
+          "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+          "utf8Bytes": 5284
+        },
+        {
+          "selector": "turn9view0: extracted lines 234-234",
+          "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+          "utf8Bytes": 39
+        }
+      ]
+    },
+    {
+      "id": "ccohs-welding-ventilation-20261016",
+      "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "CCOHS fact sheet revised 2024-08-23",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn8view0",
+      "scopeLimit": "Technical guidance, not provincial compliance approval. Referenced CSA/ANSI standards were not independently captured.",
+      "attribution": "CCOHS",
+      "coveredSections": [
+        "Ventilation selection, local exhaust and respiratory protection"
+      ],
+      "fragments": [
+        {
+          "selector": "turn8view0: extracted lines 34-101",
+          "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+          "utf8Bytes": 4569
+        }
+      ]
+    },
+    {
+      "id": "alberta-energy-20261016",
+      "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "Alberta publisher page retrieved 2026-10-16; site disclaimer says current to March 2023",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn19view0",
+      "scopeLimit": "Historical publisher consolidation; current amendments and applicability require verification. Piping provisions 215.4-215.5 are distinct from machinery lockout. No legal approval.",
+      "attribution": "Government of Alberta / Alberta King’s Printer",
+      "coveredSections": [
+        "Part 15, hazardous energy control",
+        "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+      ],
+      "fragments": [
+        {
+          "selector": "turn19view0: extracted lines 1142-1423",
+          "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+          "utf8Bytes": 15917
+        }
+      ]
+    },
+    {
+      "id": "alberta-ventilation-20261016",
+      "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-26-ventilation-systems/",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "Alberta publisher page retrieved 2026-10-16; site disclaimer says current to March 2023",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn20view0",
+      "scopeLimit": "Historical publisher consolidation; current amendments remain unverified. General ventilation provisions, not a complete welding specification.",
+      "attribution": "Government of Alberta / Alberta King’s Printer",
+      "coveredSections": [
+        "Part 26, sections 386-388; contaminant ventilation design, operation and failure warning"
+      ],
+      "fragments": [
+        {
+          "selector": "turn20view0: extracted lines 1118-1168",
+          "sha256": "9bab8a4a35e691d1d41e426744d28ac84449d4f7831ca8dccfd511fded8ffd74",
+          "utf8Bytes": 1926
+        },
+        {
+          "selector": "turn20view0: extracted lines 1179-1183",
+          "sha256": "c43d3e65e159a102ac1871ab0b7ffa9fc0ed60217f9a84a6def715ce57a5b444",
+          "utf8Bytes": 1506
+        }
+      ]
+    },
+    {
+      "id": "worksafebc-lockout-20261016",
+      "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "WorkSafeBC Part 10 publisher representation retrieved 2026-10-16",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn13view0",
+      "scopeLimit": "Publisher electronic representation, not a certified statutory edition. Equipment applicability, exceptions and current legal requirements need review.",
+      "attribution": "WorkSafeBC",
+      "coveredSections": [
+        "Part 10, de-energization and lockout",
+        "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+      ],
+      "fragments": [
+        {
+          "selector": "turn13view0: extracted lines 321-440",
+          "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+          "utf8Bytes": 8658
+        }
+      ]
+    },
+    {
+      "id": "worksafebc-welding-20261016",
+      "url": "https://www.worksafebc.com/en/resources/health-safety/risk-advisory/welding-fume-exposure?lang=en",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "Risk Advisory RA 2015-23; publication date March 2022",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn18view0",
+      "scopeLimit": "Welding-fume technical guidance requiring site exposure assessment, ECP and relevant regulatory review.",
+      "attribution": "WorkSafeBC",
+      "coveredSections": [
+        "Risk Advisory RA 2015-23; exposure control plan, LEV and respiratory protection"
+      ],
+      "fragments": [
+        {
+          "selector": "turn18view0: extracted lines 130-186",
+          "sha256": "4749cedb9dec359ca4bf41751e627dac99295e615f4720ae69f8b8ec2f189d37",
+          "utf8Bytes": 6552
+        },
+        {
+          "selector": "turn18view0: extracted lines 196-196",
+          "sha256": "6366a96ce35c31c7546cc91317d3cd7c4239fb9ad8d3595aa07c86547e94c81e",
+          "utf8Bytes": 74
+        }
+      ]
+    },
+    {
+      "id": "cnesst-lockout-20261016",
+      "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "CNESST publisher page retrieved 2026-10-16; revision not stated",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn12view0",
+      "scopeLimit": "Guidance only. The separately cited RSST articles are not captured by this page.",
+      "attribution": "CNESST",
+      "coveredSections": [
+        "Cadenassage et zones dangereuses"
+      ],
+      "fragments": [
+        {
+          "selector": "turn12view0: extracted lines 54-144",
+          "sha256": "f37787efe5d618d967bdc387ab5e8871e5cef2ba1d512e5f0d09d2666ce7b758",
+          "utf8Bytes": 6186
+        }
+      ]
+    },
+    {
+      "id": "cnesst-ventilation-20261016",
+      "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/ventilation-lieux-travail",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "CNESST publisher page retrieved 2026-10-16; revision not stated",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn23view0",
+      "scopeLimit": "Guidance including fixed welding stations, not a legal or ventilation-design approval.",
+      "attribution": "CNESST",
+      "coveredSections": [
+        "Ventilation par aspiration à la source; exemple du poste fixe de soudure"
+      ],
+      "fragments": [
+        {
+          "selector": "turn23view0: extracted lines 44-104",
+          "sha256": "6e4f8860be82534ccad1b4849787f069a69a700b59caf579189c8b673e7124b6",
+          "utf8Bytes": 5541
+        }
+      ]
+    },
+    {
+      "id": "ihsa-welding-20261016",
+      "url": "https://www.ihsa.ca/rtf/health_safety_manual/pdfs/tools_and_techniques/Welding_and_Cutting.pdf",
+      "representation": "web-extracted-text-v1",
+      "coverage": "selected-sections",
+      "edition": "IHSA Construction Health and Safety Manual chapter 41, printed pages 41-6 to 41-7; retrieved 2026-10-16",
+      "retrievedOn": "2026-10-16",
+      "retrievalRef": "turn22view0",
+      "scopeLimit": "Construction guidance. Historical CSA W117.2-12 references are not current certification; respirator selection requires exposure assessment.",
+      "attribution": "Infrastructure Health & Safety Association",
+      "coveredSections": [
+        "Construction Health and Safety Manual, chapter 41, printed pages 41-6 to 41-7: ventilation and respiratory protection"
+      ],
+      "fragments": [
+        {
+          "selector": "turn22view0: extracted lines 514-676",
+          "sha256": "77940b9dbee74d7a8e93ea9574ae9f9f6e8f3952ae209d849f80703fc0233cae",
+          "utf8Bytes": 7092
+        }
+      ]
     }
   ]
 }
