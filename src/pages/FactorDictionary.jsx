@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { findDictionaryHazards, readDictionaryGroups, romanianDictionarySource } from '../utils/dictionaryGroups';
 import romanianSources from '../data/romanian-dictionary-sources.json';
+import contextSources from '../data/context-dictionary-sources.json';
+import { CONTEXT_DICTIONARIES, scopeDictionary, contextDictionarySource, contextDictionaryUi } from '../utils/contextDictionary.js';
 import { getDictionaryGroupUi } from '../locales/dictionaryGroupUi';
 import '../styles/dictionary-groups.css';
 import { getSiteUi } from '../locales/siteUi.js';
@@ -24,7 +26,8 @@ export default function FactorDictionary() {
   const [searchParams, setSearchParams] = useSearchParams();
   const indexCache = useRef(null);
   const [loadedKey, setLoadedKey] = useState(null);
-  const groupUi = getDictionaryGroupUi(i18n.language);
+  const contextUi = contextDictionaryUi(i18n.language);
+  const groupUi = { ...getDictionaryGroupUi(i18n.language), ...(contextUi || {}) };
   const [loadError, setLoadError] = useState(false);
   const [retry, setRetry] = useState(0);
   const ui = getSiteUi(i18n.language);
@@ -56,7 +59,7 @@ export default function FactorDictionary() {
 
     return 'ko-KR'; 
   };
-  const currentLocale = getDbLocale(getDataLocale(i18n.language));
+  const currentLocale = CONTEXT_DICTIONARIES[i18n.language] ? i18n.language : getDbLocale(getDataLocale(i18n.language));
   const submittedSearch = (searchParams.get('q') || '').trim();
   const searchTerm = draftSearch.locale === currentLocale && draftSearch.baseSearch === submittedSearch ? draftSearch.value : submittedSearch;
   const categories = categoryData.locale === currentLocale ? categoryData.values : [];
@@ -79,8 +82,8 @@ export default function FactorDictionary() {
       const result = [];
       const size = 1000;
       for (let from = 0; active; from += size) {
-        const { data: rows, error } = await supabase.from('Hazards_Translations')
-          .select('category').eq('locale', currentLocale)
+        const { data: rows, error } = await scopeDictionary(supabase.from('Hazards_Translations')
+          .select('category').eq('locale', currentLocale), currentLocale)
           .order('category', { ascending: true }).range(from, from + size - 1);
         if (error) { console.error('Category lookup failed:', error.message); return; }
         result.push(...(rows || []));
@@ -235,17 +238,18 @@ export default function FactorDictionary() {
                     <strong style={styles.boxLabelRed}>{t('data.riskFactorLabel')}</strong>
                     <h3>{hazard.name || 'ID ' + hazard.id}</h3>
                     {currentLocale === 'ro-RO' && romanianDictionarySource(hazard.id, romanianSources) && <p><a href={romanianDictionarySource(hazard.id, romanianSources).url}>Studiul de caz și referințele aplicabile</a></p>}
+                    {contextUi && contextDictionarySource(currentLocale, hazard.id, contextSources) && <p><a href={contextDictionarySource(currentLocale, hazard.id, contextSources).url}>{contextUi.sourceLabel}</a></p>}
                     <ol className="dictionary-measures">
                       {hazard.measures.map((measure, index) => <li key={index} className="dictionary-measure">
-                        <h4>{t('data.currentMeasureLabel')} · {index + 1}</h4>
+                        <h4>{contextUi?.controlLabel || t('data.currentMeasureLabel')} · {index + 1}</h4>
                         <p>{measure.text || groupUi.missingMeasure}</p>
                         <div className="dictionary-solutions">
-                          <strong>{t('data.advancedMeasureLabel')}</strong>
+                          <strong>{contextUi?.checkLabel || t('data.advancedMeasureLabel')}</strong>
                           {measure.solutions.length ? <ul>{measure.solutions.map(solution => <li key={solution}>{solution}</li>)}</ul> : <p>{groupUi.missingSolutions}</p>}
                         </div>
                       </li>)}
                     </ol>
-                    {hazard.keywords.length > 0 && <div style={styles.keywordWrap}>{(currentLocale === 'ro-RO' ? hazard.keywords.slice(0, 6) : hazard.keywords).map(keyword => <span key={keyword} style={styles.keywordBadge}>#{keyword}</span>)}</div>}
+                    {hazard.keywords.length > 0 && <div style={styles.keywordWrap}>{(currentLocale === 'ro-RO' || contextUi ? hazard.keywords.slice(0, 6) : hazard.keywords).map(keyword => <span key={keyword} style={styles.keywordBadge}>#{keyword}</span>)}</div>}
                   </article>
                 ))}
               </div>

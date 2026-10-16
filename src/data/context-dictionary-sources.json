@@ -1,0 +1,3602 @@
+{
+  "en-US": {
+    "firstId": 1100001,
+    "stepsPerArticle": 8,
+    "articles": [
+      {
+        "id": "028cfa40-2ca6-409b-92b1-d462893eacd7",
+        "url": "https://smartjsabridge.com/en-US/case-study/%20jsa-form-work",
+        "title": "JSA Risk Assessment Preview: Formwork Assembly and Stripping Operations",
+        "body_sha256": "58722ccb1975abd832e7cbf0e16146e98e42710ff5074f685ad10ea0034147c1"
+      },
+      {
+        "id": "e4233653-4a27-42e1-8c14-cbed9a09f464",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-MEWP-working",
+        "title": "JSA Risk Assessment Preview: Exterior Wall Panel Installation using a Vehicle-Mounted Elevating Work Platform (Boom Lift)",
+        "body_sha256": "ecadc0b428358bb7c09fde077d22f570eedc141d188abf896b31a48793a91e91"
+      },
+      {
+        "id": "4e8f10e7-8627-4fc2-b915-3f2dd441231f",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-aerial-lift",
+        "title": "OSHA Standard Job Safety Analysis (JSA): Overhead Ceiling Maintenance Using Mobile Elevating Work Platforms (MEWPs / Scissor Lifts)",
+        "body_sha256": "178eb56138d3638b44e7aa6740730ffa8aa520d7e997a1fefc7dc85f9f49a42e"
+      },
+      {
+        "id": "74c2932d-ed08-4508-a5b3-1e42d12e177d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-ahu-ducting",
+        "title": "Air Handler Lifting and Duct Connection JSA",
+        "body_sha256": "a49293a480205edc664b5082db362b837250dce46e60062614c1b3f6bcb127e6"
+      },
+      {
+        "id": "31d39de9-7959-4ff6-b4e9-d7a28d0cb059",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-ahu-filter-replacement",
+        "title": "Air-Handler Filter Replacement JSA: Isolation, Fit and Restart Checks",
+        "body_sha256": "4838c8e794e2936e067c46a39a299518071c8c4a3348f35ae46f415f9a74b592"
+      },
+      {
+        "id": "89aa19f8-f1bc-4e8e-a925-4a588b1fa8b8",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-airless-gun-tip-filter-cleaning",
+        "title": "Airless spray gun tip and filter cleaning JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "0179582d6ae9e1019a1e12b57a19b1e77279e7f928dead1ed73a9a175ddd1682"
+      },
+      {
+        "id": "5acc6e99-437f-4903-8813-a3e7e51b729d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-airreceiver-installation",
+        "title": "Air Receiver Installation and Drain Connection JSA",
+        "body_sha256": "c42cd9bc2b60f98adb9bb52d1980b4c16878b737c74ec9692c204278f1660016"
+      },
+      {
+        "id": "27da8cf4-2f4c-49aa-9ea9-a56837ad62cd",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-aluminum-actig",
+        "title": "Aluminum Pipe AC TIG Welding JSA",
+        "body_sha256": "f36888ff7d07c43b53fef4c3d49e71afee2e498f3c6359df572b57cbccb746c9"
+      },
+      {
+        "id": "c9a0fea5-cc3a-4863-b712-97c4b36adebc",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-anchor-installation",
+        "title": "JSA Risk Assessment Preview: Tower Crane Foundation Anchor Installation Operations",
+        "body_sha256": "c2d71fa086334aac914ab50fce2a1e72130fbf9f8738d92acb644bff96e7153c"
+      },
+      {
+        "id": "76da1e0f-0839-4ccb-8f55-92bc3fcf3b20",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-anchor-stressing",
+        "title": "Ground Anchor Drilling and Stressing JSA",
+        "body_sha256": "46ef9d68b17c4f73fe6249a604609e993002f553d3b6dad4109229d3a1b30e13"
+      },
+      {
+        "id": "c0de0648-11f4-4600-9880-62ff1737e503",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-angle-grinder-metal-cutting",
+        "title": "Angle-Grinder Metal Cutting JSA: Wheel Selection, Kickback and Spark Control",
+        "body_sha256": "dca985b529b7c169e20a8d89d772bd37a0ca3670c3691cb55aae80e661416883"
+      },
+      {
+        "id": "841e02a8-4883-4a0d-bfd4-c9c1e141a062",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-aqueous-metal-parts-cleaning",
+        "title": "Manual aqueous cleaning of metal parts JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "3bfa52c4bc9ff1854b41a210072add3adeedf41bd29b399ab660e98f91162c8e"
+      },
+      {
+        "id": "260f9511-c9a3-4721-9543-15c6bae9bce1",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-argon-cylinder-regulator-change",
+        "title": "Argon Cylinder Regulator Replacement JSA",
+        "body_sha256": "6caef2738b72fd784ef9c90e80fc5993163438bd53265930f79a5d1ef118bc9f"
+      },
+      {
+        "id": "54db6aef-bf7a-4aad-a132-1a0a167fa8cd",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-asphalt-milling",
+        "title": "Asphalt Milling JSA: Silica Controls, Truck Exchanges and Drum Isolation",
+        "body_sha256": "8cca64c77468e85e604a6d2ce68fa7ccb1cea645eb3e9b21903eb8b8a96fa6c6"
+      },
+      {
+        "id": "9d13a78c-dab7-43a4-adfd-e2765b13691c",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-automatic-feed-mechanical-press",
+        "title": "Automatic-Feed Mechanical Press JSA",
+        "body_sha256": "60d4ac732d3320607fbf9d75294be195cbb31b5979a874915e776a0da40d0688"
+      },
+      {
+        "id": "5f5706f1-c13d-40ef-bc6b-15602a3071c6",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-barricade-installation",
+        "title": "JSA Risk Assessment Preview: Temporary Road Barricade and Fence Installation",
+        "body_sha256": "c4c4d633267650d39b850f51e4d6816983e133f9e0abcb344d7c66d438547f4b"
+      },
+      {
+        "id": "db3c3a7e-8842-4f8b-a203-b611d4dc8114",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-bathroom-waterbased-waterproof-coating",
+        "title": "Bathroom Water-Based Waterproofing JSA: Substrate, Coating and Cure Controls",
+        "body_sha256": "a8ea98c7cd10c0f51586b9eec4b19504fb4dd2c7ebb8cea9facd6be189647d22"
+      },
+      {
+        "id": "7642e137-a43c-45c6-8b71-6be7ceec46ac",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-battery-brushcutter-grass",
+        "title": "Battery brushcutter grass cutting JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "cdd7af1f9736c0780cbeaf4baa8c62153616e9b811372d57127c99de54d53aef"
+      },
+      {
+        "id": "4b3ce291-b521-4c8e-b77a-7132a2bea341",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-battery-hedge-trimmer",
+        "title": "Cordless Hedge Trimming JSA",
+        "body_sha256": "37ddf94818c2b20e39ace0b78bb50a59a74ca5132d4d4e32686b60fb31967e43"
+      },
+      {
+        "id": "e469b5b0-a89d-4bdd-8686-c533dd02d000",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-battery-plastic-strapping",
+        "title": "Battery-tool PET and PP package strapping JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5ae9739f1acc1821b79353321eeca424f9cd167e56f78e479ac52f1e8693536b"
+      },
+      {
+        "id": "7c05eed9-9961-4877-9973-7677eafe264e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-beam-work",
+        "title": "JSA Risk Assessment Preview: Steel Column and Beam Erection",
+        "body_sha256": "c3cdef32e9b024ed3c7e7e250cfee64639c7be10888ec404498d1fee0a4e7f0d"
+      },
+      {
+        "id": "918b3d9f-2b76-4419-8b9c-ffc8208f7dcb",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-bearing-hydraulic-press-fit",
+        "title": "Hydraulic Press Bearing Installation JSA",
+        "body_sha256": "27c453a94b76e0bf5282f0ac551da3700533651de09506f821f54cbebdf80691"
+      },
+      {
+        "id": "3399d5f2-a5ae-4bee-92a7-160234638ea9",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-bearing-replacement",
+        "title": "Bridge Bearing Replacement JSA: Jacking, Temporary Support and Load Transfer",
+        "body_sha256": "cc5f2def5df47ff7c9799616340bf17dd0be2ed08e078a239c31d1831324c2da"
+      },
+      {
+        "id": "20ea2d09-76bc-4222-b5b3-ea7e4420e111",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-bench-grinder-wheel-change",
+        "title": "Bench grinder wheel replacement and dressing JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "3b2eceb409c3d6118f985b2a9885b64094e5a636b6fb72e5ad6a5f6f9715a92a"
+      },
+      {
+        "id": "652cf443-1cc7-465d-a83c-e37ecb7c6257",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-boiler-positioning",
+        "title": "Boiler Lifting and Positioning JSA",
+        "body_sha256": "a4e2e8ca90f2205fbee8f04cc3349d295d385d7e6b2c41333702767f923f9d33"
+      },
+      {
+        "id": "98778787-96a3-4d77-8092-a1c370ce9103",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-bulldozer-grading",
+        "title": "Crawler Bulldozer Grading JSA",
+        "body_sha256": "1f00bb491af63be269af90945333168cb27b118d40d579425c347e21e661d820"
+      },
+      {
+        "id": "5834962e-e714-408f-9b14-5593172236fc",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cabletray-installation",
+        "title": "Cable Tray Installation and Support Welding JSA",
+        "body_sha256": "e50377f6d1eaed47ed1b33b542702608dd1368aa94b21a612d26c13e0f9ccab0"
+      },
+      {
+        "id": "67ba5158-a7e2-466e-a0f5-75adb043006b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cargo-lashing-release",
+        "title": "Cargo Ratchet-Strap Release JSA: Shifted Loads, Recoil and Unloading Handover",
+        "body_sha256": "969f5671b465eb5e49ecb43641fa435a78f1334a50955e83697bba82dd3fd056"
+      },
+      {
+        "id": "f5495207-7633-4c0f-9ac3-c76bbe301450",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cement-mortar-wall-plastering",
+        "title": "Cement mortar wall plastering JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "090be2475c35ad5be58b3886345446f37e8801f04dc08e746a20ff52742ab340"
+      },
+      {
+        "id": "daf04349-0523-4e76-b09c-6e327a5a7fd2",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-chainblock-positioning",
+        "title": "Manual Chain Hoist Positioning JSA",
+        "body_sha256": "96a2f24b3a1301a2bc904e170b3e56e58da74fe31de8900f9cae3f997b003cc1"
+      },
+      {
+        "id": "7d174cf8-685a-426a-961a-de010d00eb52",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cleanroom-wall-panel-installation",
+        "title": "Cleanroom Wall Panel Handling and Installation JSA",
+        "body_sha256": "4d177eea967bfd79c192fe03fcfcf47ce6bcb8232d433ecbc4d46d8d8ed8f3f8"
+      },
+      {
+        "id": "b0a61551-e423-4557-95b2-0dc3bfac46c5",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-co2-gmaw",
+        "title": "CO2-Shielded GMAW Welding JSA",
+        "body_sha256": "c66ad4253186477c650f0cd0cf9a87666abbcc711cda6b9b101710418fe02eda"
+      },
+      {
+        "id": "e7d196f9-31a6-42eb-9584-38c39b7f4531",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cold-room-goods-handling",
+        "title": "Walk-In Cold-Room JSA: Door Release, Cold Exposure and Worker Accountability",
+        "body_sha256": "3d3d5a41a8cdbefeff71ec6ed532fe6b83865c2ce10745bbbcd413a9e3d3d6a4"
+      },
+      {
+        "id": "ea8a23c1-65f1-4432-9401-99a37e797198",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cold-saw-sections",
+        "title": "Cold-saw cutting of steel sections JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "d52f10e7225a7cbb0c259e3c614b35f91c1af94cf7a35e8e32c46162d6ec01e2"
+      },
+      {
+        "id": "6c4a2ff4-500a-41f2-b74f-fec725afd982",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-commercial-heatpump-laundry-drying",
+        "title": "Commercial Heat-Pump Laundry Drying JSA",
+        "body_sha256": "7255de25996c2475561d019ac5f1f8ac573f52e749633695b6656c8080ea3a75"
+      },
+      {
+        "id": "db8e01d0-0b40-492f-aeeb-fbc898ebd41f",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-compressed-air-filter-element",
+        "title": "Air-Filter Element Replacement JSA: Backfeed, Bowl Pressure and Seal Integrity",
+        "body_sha256": "30b7ce507c91bfbabf42582d8e7cc52a4af386f622b1213fcb91844719fe42ee"
+      },
+      {
+        "id": "bf56266b-a895-4fc7-bc3b-e0d4d22924e2",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-compressor-leveling",
+        "title": "Compressor Installation and Leveling JSA",
+        "body_sha256": "dd536a2b5d8f5ea39a4e8af4dfaa4e6e6a416ddb57d4c79417d675bbd2826642"
+      },
+      {
+        "id": "73ec25de-7ec2-4ca0-aba1-5ef5c9e02510",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-concrete-placing",
+        "title": "JSA Risk Assessment Preview: Concrete Pouring Operations Using Concrete Pump Trucks",
+        "body_sha256": "fd7aec3076407953623d9e8b941dcb5e166d31113073586e56fb53b39468e535"
+      },
+      {
+        "id": "a11f88a7-6804-4c2d-81e6-10e42782a38b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-concrete-troweling",
+        "title": "Electric Power-Trowel JSA: Slab Capacity, Reaction Forces and Wet-Area Power",
+        "body_sha256": "5e9875c1183ea08a09eff4db64339294c1f87d56e689f5682668fd42ee79001c"
+      },
+      {
+        "id": "7759fb9c-1ffb-45e9-81d7-a7561e271525",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-concrete-wall-dust-extraction-grinding",
+        "title": "Concrete wall grinding with dust extraction JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5389c73b29f73822a8b4599df7427d5c176a060b7c6055fd7310a4c16be287c8"
+      },
+      {
+        "id": "d730af82-6760-415a-964f-ef1b67f09dfb",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-confined-space",
+        "title": "JSA Risk Assessment Preview for Pipe Confined Space Entry and Gas Testing Operations",
+        "body_sha256": "62a991d26fb4c505f128e3913e9955a3caaf0a90c2d67e28d65c263af43fd5e8"
+      },
+      {
+        "id": "66fb3ad4-f515-4fd4-b021-390d5e5642d8",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-construction-goods-hoist-loading",
+        "title": "Construction Material Hoist Loading and Unloading JSA",
+        "body_sha256": "b7ae404e98b83861420fb960d3c42234e5b6f257f9299d1b2df3c9398608d463"
+      },
+      {
+        "id": "97119699-3397-48d7-93a4-b7b74c92dec6",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-construction-waste",
+        "title": "JSA Risk Assessment Preview: Construction Waste Loading and Removal Operations",
+        "body_sha256": "a510e575a2ed12716846288eecd5f03bb66ba9f627d9a2335270570f2d0dd151"
+      },
+      {
+        "id": "9ce7d0c0-dd39-4767-8ffe-3c90ee4a0c5b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-controls-network",
+        "title": "DCS and PLC control-network cable work JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "111896cbc63baa48b3ec388d7683a2faa7f549e36c33e4542736b38247b97642"
+      },
+      {
+        "id": "6a349c9c-1248-41df-8cb4-59fc878ba4e5",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-conveyor-maintenance",
+        "title": "Conveyor Drive Repair and Roller Replacement JSA",
+        "body_sha256": "3b5de30d02d61ae65a202cee64514411db409609d70d78cae67b93b42b87e2e0"
+      },
+      {
+        "id": "9ce91381-5296-4ad1-9ff3-f9bbecb00d89",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-conveyor-package-sorting",
+        "title": "Conveyor Sorting JSA: Nip-Point Guards, Downstream Capacity and Jam Handover",
+        "body_sha256": "dcd81a2dca9cbdc25c53f33b615128c987c77b56f6b0ba0adc30bfd0af2f9c49"
+      },
+      {
+        "id": "54b5247c-1f52-43e4-8951-6611f1f45dca",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-coolingtower-assembly",
+        "title": "Cooling tower module assembly JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5cefe487c0f20268b6a8ffc640352c7427c733675bb055c97a7cc8cf6c8b333c"
+      },
+      {
+        "id": "ba39dade-9ce7-4ab9-82fe-f10ed52d37ab",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cordless-drilldriver-fastening",
+        "title": "Cordless Drill-Driver Screw Fastening JSA",
+        "body_sha256": "e9b7345695ac8a3d62a599237ef8493a730ac74a73a1843ecd36c66823290938"
+      },
+      {
+        "id": "0feb2334-4ca3-4678-9561-bb36cf965815",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-crane-jib",
+        "title": "Tower Crane Jib Assembly & Disassembly JSA: OSHA 1926 Safety Guide",
+        "body_sha256": "d0c59b7472ca1087bc022aa4dd8a299f209164797d038482cba57e51d3d9e090"
+      },
+      {
+        "id": "67efc544-b231-4eb5-bb45-141e4c481cb3",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-crane-operation",
+        "title": "OSHA 29 CFR 1926 Subpart CC & ASME B30.5 Job Safety Analysis (JSA): Heavy Lift Operations Using Mobile Cranes and Rigging Gear",
+        "body_sha256": "2c97d4c574413a0a271b2807147e2e806305036278b4ecf8bde682f1cf3ea5a8"
+      },
+      {
+        "id": "f46b0e80-2a9e-4b5b-b1ab-f5dd7908e689",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-crane-telescoping",
+        "title": "OSHA 29 CFR 1926 Tower Crane Climbing (Telescoping) JSA and High-Risk Work Permit Guide",
+        "body_sha256": "0697170c851079d9b4c50df5db32e9b9e48162b78e53aa78939b46e38b3f6c66"
+      },
+      {
+        "id": "c5f53ce6-84c7-4e7c-a9f6-d5b0efa53f34",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-cranerail-installation",
+        "title": "Overhead Crane Runway Rail Installation JSA",
+        "body_sha256": "34f01d666eae03b9f0744f40b2965a208b6e16e23ba0f9fbddc3e4a2ce63eb0b"
+      },
+      {
+        "id": "359b1518-c169-4023-9483-028ca487e9f8",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-culvert-installation",
+        "title": "Precast Box Culvert Installation JSA",
+        "body_sha256": "1ad989dfce6de92a40cc70233e059132088745740ac982eead6a9e6fd62d0f2a"
+      },
+      {
+        "id": "7fe4d569-6be1-4ade-b5ed-f3a6d19afb63",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-curingheater-ignition",
+        "title": "Concrete-Curing Heater JSA: Solid-Fuel Prohibition, CO Controls and Safe Handover",
+        "body_sha256": "e4605d6ce47e718bf28658189a9f18412fa25f5c0391f5b4dae777e3900ad5f1"
+      },
+      {
+        "id": "562dbeac-9188-418b-af53-d7e6c4708578",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-dcm-mixing",
+        "title": "Wet deep cement mixing on land JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "f4ff9447f225a8c6741a2b96efb40b264cd96cca11141f19a2e770c0e4b7e7df"
+      },
+      {
+        "id": "85f5edb4-499c-4d90-b0c8-23599397eaff",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-deckplate-placement",
+        "title": "Steel Deck Bundle Lifting and Placement JSA",
+        "body_sha256": "977f5e2a593ab07e8ae8a1be038801d8389240c698be14d731290b541844e01d"
+      },
+      {
+        "id": "3668341c-48ea-43f5-a41c-40793e949410",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-deckstud-welding",
+        "title": "Steel Deck Shear Stud Welding JSA",
+        "body_sha256": "139b93bfc228b18ac3df42f8b45bd6318f7834dc228749d1e3071f166659edc1"
+      },
+      {
+        "id": "8bf38487-0c9e-488a-ba16-5c8173d4bb7e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-distributionboard-wiring",
+        "title": "Panelboard Breaker Assembly and Wiring JSA",
+        "body_sha256": "a86fd7f04793e54c710716e6af3733d2b3ed41e9d93c29e16201766eeba5c6a1"
+      },
+      {
+        "id": "d5b866bc-0e13-4298-af74-20367c0e0d93",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-dock-leveler-loading",
+        "title": "Dock-Leveler JSA: Vehicle Restraint, Lip Support and Departure Control",
+        "body_sha256": "302ba2b34255ec2261b7cb089e684f3c85add67ca8db9310223ef23dd580c1f6"
+      },
+      {
+        "id": "816a8700-5dd6-4730-a364-dae3c130e706",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-drillpress-metalplate",
+        "title": "Drill-press holemaking in metal plate JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "9380f5170ca5701e15e25696beab5447ad72ca6b23fb63a45fb6fa30e166f31d"
+      },
+      {
+        "id": "6099f6dd-2ff8-4625-a9ef-8eac1f1e6cce",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-drum-trolley-transfer",
+        "title": "Manual Drum Truck Transfer JSA",
+        "body_sha256": "9d1c5bd88011d681dd01b89d0df5b7c501aaade940e205ebcca6839af6a33949"
+      },
+      {
+        "id": "1ee8ebd5-0e38-434a-b0fa-591f9c896430",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-duct-external-insulation-vapor-barrier",
+        "title": "Duct Insulation JSA: Dry Substrates, Fiber Dust and Vapor-Retarder Continuity",
+        "body_sha256": "80c11985db4841a219e13db245f22536574cd22a2eda4eb414d82562a05de9e5"
+      },
+      {
+        "id": "8a055824-7ea8-4883-bbb7-f4097ea49781",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-electric-fryer-oil-draining",
+        "title": "Manual Oil Draining and Transfer from an Electric Fryer JSA",
+        "body_sha256": "3f3758798fa844ef8724fd091d419aa90d39ff5d247059defff5d44a74948f36"
+      },
+      {
+        "id": "9079d057-3269-4957-a652-6bc2e98d9585",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-electric-pressure-washer-floor",
+        "title": "Electric Pressure-Washer JSA: Injection Injury, Wet Electrical Supply and Residual Pressure",
+        "body_sha256": "d7473ca616b756fa3c8050c92435c2e56089e196dd488578ffffe4a2ad3738c4"
+      },
+      {
+        "id": "31eb7d86-29a5-47c1-9443-c11e0763d518",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-electrical-safety",
+        "title": "OSHA 29 CFR 1926 Subpart K & NFPA 70E Job Safety Analysis (JSA): Temporary Electrical Distribution Board Installation, Overhead Cable Routing & Energization Testing",
+        "body_sha256": "3af9b4c3ba17a7e0e7de0c2be467276036ef4dc5b1762233b5b70033d5e2bc72"
+      },
+      {
+        "id": "615bfa84-215f-418c-8aae-c435a8622d65",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-elevator-pit",
+        "title": "Elevator Pit Work & LOTO JSA Risk Assessment Guide",
+        "body_sha256": "78e6895033d2003e698220fc1e2f90a3cb9e44f6bcf94a77014627b900cacd9b"
+      },
+      {
+        "id": "fae7b393-fe15-4f20-b148-245656afb178",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-erecting-scaffolding",
+        "title": "JSA Risk Assessment Preview: System Scaffold Assembly and Installation",
+        "body_sha256": "40274bf695499957a8889ae05bf41f1a6dac56e18260cc5f06e4f73176d77697"
+      },
+      {
+        "id": "ead0e505-26c5-407f-8fe9-8b85324b29b8",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-excavation-works",
+        "title": "OSHA 29 CFR 1926 Subpart P & CGA Best Practices Job Safety Analysis (JSA): Mechanical Excavation Near Underground Utilities, 811 Tolerance Zone Hand-Digging & Trench Protective Systems",
+        "body_sha256": "2ff44f4f5748292bb5873c2a5434138dee48ac179bad699944090e9924bbd2f4"
+      },
+      {
+        "id": "cbd8c656-b088-4a2e-be20-6c1628eedd59",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-exequipment-gland",
+        "title": "Hazardous-location equipment and cable gland installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "1e096f5072ee4e48f9f5ca213db46f6eaf1452bb7cd62c9cb1c561eab1134521"
+      },
+      {
+        "id": "31477c47-7775-4363-851c-0303727da524",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-fan-vbelt-replacement",
+        "title": "Fan V-Belt Replacement and Tension Adjustment JSA",
+        "body_sha256": "b02c25fd28ab63be18f49bb8aa626c6b2a831bbbf617ec79c8da4b8ee1fe9b8f"
+      },
+      {
+        "id": "0e13713b-c219-4354-9f9b-a118a2bd5b63",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-feedercable-pulling",
+        "title": "Feeder cable pulling and securing JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "9ada6924907bfcc4b9f11806cff90ddd6bc46a79e349a9f780b4b84c75aa71e3"
+      },
+      {
+        "id": "a73b2303-a689-4014-a47b-1de9f6e8db90",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-firealarm-devices",
+        "title": "Fire Detector and Visual Alarm Device Installation JSA",
+        "body_sha256": "396467fb1dbcbcd4c379b9e0b91ddee996ea5c2e8e1324bab587c4505f359ef5"
+      },
+      {
+        "id": "e058473d-bea2-4ee2-9454-df2f4461b7fe",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-flour-bag-hopper-loading",
+        "title": "Flour Hopper JSA: Dust Capture, Bag Handling and Guarded Feed",
+        "body_sha256": "c20ced62f4c957d250b26a288e6aefce3e396fc51d5708df8541f3fedf7b65db"
+      },
+      {
+        "id": "afd31857-b6ac-4dad-8705-b4c810b0cca3",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-food-slicer-cleaning",
+        "title": "Cleaning a fixed-blade food slicer JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "b282c9409e96662dccd6b3ec35052c969f800114b932762cad97d5a98cdc50bf"
+      },
+      {
+        "id": "629399cf-bb60-4e5d-9a08-5917cd90dbd3",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-forklift-handling%2Cko",
+        "title": "Forklift On-Site Pallet Transport and Stacking JSA",
+        "body_sha256": "b78108af9ab424426333c9b30cd264a4777d44526ce27eab3a1e60a8549dcd7d"
+      },
+      {
+        "id": "abde9ce5-7753-4120-afc0-8261e0071a7d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-forklift-leadacid-charging",
+        "title": "Forklift Flooded Lead-Acid Battery Charging JSA",
+        "body_sha256": "32b3f6a5dc683b768b35ee366590a48c73e928b7a7e8a776ea484a81ad01bb96"
+      },
+      {
+        "id": "c6af2b6f-8bff-45ed-9c04-70800623c694",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-gantry-transport",
+        "title": "Rail-Mounted Gantry Crane Yard Transport JSA",
+        "body_sha256": "4a0eda4734daa4f4e7210fbe0d0708e9b99a3a2ca71be38574ff170779e77a15"
+      },
+      {
+        "id": "d8201096-3f99-4514-ba39-eab42efe5c71",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-gasoline-plate-compactor",
+        "title": "Gasoline Plate-Compactor JSA: Ground Support, Exhaust and Controlled Passes",
+        "body_sha256": "d794ccf19e552c330a5e65571e03b2c3aaf77ce41246c71cb86de4e787313013"
+      },
+      {
+        "id": "1760a2f3-8d19-457f-be97-7c0e994e5a17",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-general-waste-bag-collection",
+        "title": "Indoor general-waste bag collection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "754b68b693a14cc769d9eceae64e60ba0ed53d275c0a1f9ddea43a3c38c98dab"
+      },
+      {
+        "id": "279250e1-acb0-4846-aa99-8de767896e73",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-generator-installation",
+        "title": "Generator Installation and Exhaust Connection JSA",
+        "body_sha256": "42e4c459bd0520aa099c09438c4aa33a8f95abcc03224ddb4e6c412b04f18f36"
+      },
+      {
+        "id": "5ccf2a82-79b9-443b-b6d1-ac7ba8fa3e44",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-girder-erection",
+        "title": "Precast Concrete Bridge Girder Lifting and Erection JSA",
+        "body_sha256": "da1074fbbf1c045d6a9f971e0b68c40eb22e124e24376556c5e1952aae771423"
+      },
+      {
+        "id": "1e3e810f-b5ab-4585-9b20-bda89c9cb6e9",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-gondola-caulking",
+        "title": "Suspended Scaffold & Glass Caulking JSA: OSHA 1926 Safety Guide",
+        "body_sha256": "e79060858c3cdca348175165d478e4297b6b37449232182af717e0daefba5b8b"
+      },
+      {
+        "id": "06ab182a-4427-42e4-9151-6d81c3d8337e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-grader-leveling",
+        "title": "Motor Grader Roadbed Leveling JSA",
+        "body_sha256": "e6650c085eac5b7f1b767e828ffc977794ebdd8c352a7b0ff7549c12f984ec5b"
+      },
+      {
+        "id": "9d6d551b-ca41-4612-b9e1-d89fb2e7108f",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-grinder-weldfinish",
+        "title": "Weld-Finish Grinding JSA: Wheel Suitability, Kickback and Remaining Weld Dimensions",
+        "body_sha256": "a7daceaab514fad931102fae05bae884493afd20419735ce968d1adf34929217"
+      },
+      {
+        "id": "e01faf21-633f-4f15-9fb2-c8a6a4d0aaec",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-ground-exoweld",
+        "title": "Grounding electrode installation and exothermic bonding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "8235bcd28a297101ed8cd0598473c067e5bb4433dda2cfad8039278a523f1d70"
+      },
+      {
+        "id": "77a2fd74-27d9-4821-9439-f465ec9678fb",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-gypsum-joint-compound-dust-sanding",
+        "title": "Drywall Joint Compound and Dust-Controlled Sanding JSA",
+        "body_sha256": "cb8aa9ba72b9e60da086ab7c6c5a91c47ae7be3928fbf9ad42b8d321f37266b1"
+      },
+      {
+        "id": "fa6ace7f-7f14-4bb3-aaaa-a7b91a020cfc",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hammer-drill-anchor-holes",
+        "title": "Anchor-Hole Drilling JSA: Hidden Services, Silica Capture and Hole Acceptance",
+        "body_sha256": "b18787e2434020adfb5773549bba1b43002d4c9bf5cf9cd39aef52897edc36ae"
+      },
+      {
+        "id": "b190ffd4-2e4b-471a-97a6-248e878c40aa",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hand-belt-sander-wood",
+        "title": "Handheld Belt Sanding of Bare Wood JSA",
+        "body_sha256": "1e3f9b5a828f232bf2685fd9f91351c8b3815b5d79c5b67a9a6fa2965ddde040"
+      },
+      {
+        "id": "e8cee98a-0d78-4856-be2a-4028caa886da",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hand-router-wood-edge",
+        "title": "Handheld Wood-Router JSA: Feed Direction, Collet Fit and Full-Path Base Support",
+        "body_sha256": "e2972b324b39351ec88e6c5adcbb51541508c463a14146b1b0db0f4d95a794e3"
+      },
+      {
+        "id": "c3c2a0e4-4f47-4a8f-87b7-23984e506757",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-highbolt-tightening",
+        "title": "Structural high-strength bolt tightening and inspection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "9131d90def98b5043b9c1c255de5ce7100a31e623c50eaab4f0ac857ebd1c677"
+      },
+      {
+        "id": "0def280e-3a15-43ec-9a5a-f981e3e3f33c",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hoist-mast",
+        "title": "Construction Hoist Mast Erection and Extension JSA",
+        "body_sha256": "810a877ffbd3d60773f021ce58e92f5a0ec135ce171c7f4ffc1786902555881e"
+      },
+      {
+        "id": "108b11c1-a7e9-4f0c-9da3-54e7c9e7ae03",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hood-dishwasher-rack-operation",
+        "title": "Hood-type commercial dishwasher rack operation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5758a393fbaeb25efd94f94b77bd85c6cc20cb505e4ed26a4080fb253cfd4717"
+      },
+      {
+        "id": "0b68b8e0-6585-4220-8e73-8ea5ac155914",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hot-food-container-serving",
+        "title": "Hot Food Container Transport and Serving JSA",
+        "body_sha256": "616be343c6d3d5ee1f710e111ad679c352a4ba663d9a8612eb374524216d2dc6"
+      },
+      {
+        "id": "a034a194-6024-433b-91b2-1771a1e180e1",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hot-melt-carton-sealing",
+        "title": "Hot-Melt Carton-Sealing JSA: Burns, Backmelt and Controlled Cooling",
+        "body_sha256": "027594784b5d5388e1405b026bac878f6ea0a8317b024d29092585e8c7932680"
+      },
+      {
+        "id": "5f399f6c-0f1b-4204-becf-a2d3eaed472a",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hpile-installation",
+        "title": "Drilled-hole soldier pile installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "bfc01a800952692800ba6136f32716b3a301ef2b8f072deb8030beb5115926d9"
+      },
+      {
+        "id": "7c7e940e-e9c7-463e-bd90-cef5e6e0eb96",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hvswitchgear-positioning",
+        "title": "Medium-Voltage Switchgear Positioning JSA",
+        "body_sha256": "7ac385f866fd2df69bd4761c68e885b99cafbe54aa29ca8c5374f2bf1e734af3"
+      },
+      {
+        "id": "1bcf5151-01c5-4103-98ec-fb66f118bd6b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hydraulic-hose-replacement",
+        "title": "Hydraulic Hose Replacement on Isolated Equipment JSA",
+        "body_sha256": "e16a25c19f8ba6f743d681ec2b385b63e574ffbd8660373b605d02b53fcdd295"
+      },
+      {
+        "id": "67da5ec7-7e36-44a2-a795-d3a4a979ea94",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-hydro-testing",
+        "title": "ASME B31.3 & OSHA 29 CFR 1926 Job Safety Analysis (JSA): Temporary High-Volume Hydrotest Filling Lines, Whip Check Restraints & Water Hammer Surge Controls",
+        "body_sha256": "03f5431a1f1e2b90d09fd3f23b74f16b49baf9b0e0266c2845608fdcf9bcc458"
+      },
+      {
+        "id": "d61f56d4-1d16-4fc6-91ed-2c3ed5cdaa13",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-impact-wrench-bolt-removal",
+        "title": "Cordless Impact Wrench Bolt Removal and Preliminary Assembly JSA",
+        "body_sha256": "2ffbc51458e6f5274afa92d1ba3f52cd134f4daba93d08c9e1af41e052f8fab4"
+      },
+      {
+        "id": "f219b794-233c-4eb5-8928-360154840d70",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-impulse-tubing",
+        "title": "Impulse-Tubing JSA: Residual Pressure, Fitting Compatibility and Functional Restoration",
+        "body_sha256": "2461647d25851d9100328d8011a42e2523b70921a7227c61b15cef1fd27bca0d"
+      },
+      {
+        "id": "e0ff7b30-e939-4ba2-ad89-1921640e038e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-indoor-floor-tile-wet-cut-laying",
+        "title": "Indoor ceramic tile wet cutting and laying JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "ecf0fde3856dd4bfe3bf1640aed04d79f6a7cb01870eea53b2e6479e1a06bec5"
+      },
+      {
+        "id": "d69792cd-ad84-4602-b79f-12e6e0f2bf98",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-indoor-pvc-drain-solvent-joint",
+        "title": "Indoor PVC Drain Solvent-Weld Jointing JSA",
+        "body_sha256": "d9922b42a5d6a666afd19d4b140c895055feb2f6455d39510ddd11a2e3536080"
+      },
+      {
+        "id": "b7cdd0ba-78e8-4201-8eef-6b7ec0b3678b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-industrial-lockstitch-sewing",
+        "title": "Industrial Single-Needle Lockstitch Sewing JSA",
+        "body_sha256": "5ad55481ec4a9bc65c8a3078535280a75b894045c8413b6360f7477644f8fab4"
+      },
+      {
+        "id": "5ff4b574-2fe0-4bea-964b-b96a0ea26947",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-inverter-dcwiring",
+        "title": "Solar Inverter Installation and DC Wiring JSA",
+        "body_sha256": "71dc345e5128dd8bb0a98d8058f7861bd53608c3cdce2e26f4c25c6938fb27ee"
+      },
+      {
+        "id": "67439e13-38a7-4b15-b04b-90187761c209",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-jointer-wood-face",
+        "title": "Wood-Jointer JSA: Automatic Guards, Push-Block Grip and Safe Workpiece Limits",
+        "body_sha256": "212419fb984e8a6ad60eab8561c09accf883ff61fefac00fe07d374abc50bfeb"
+      },
+      {
+        "id": "7532be79-f2ae-4ec1-b5d4-1affc76a0a93",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-kitchen-knife-food-preparation",
+        "title": "Manual kitchen-knife food preparation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "ad653739aa65a7cffd2db545f36f9b90338450bf92547c79bec71c6558619541"
+      },
+      {
+        "id": "090895b5-9b1c-4313-8800-ee7389ca5840",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-largepump-positioning",
+        "title": "Large Pump Package Positioning JSA",
+        "body_sha256": "4f3e9e02ea2bc195fbeed5c716ee5b226ad37e4b3dd5cbf414611e57b7bcff3a"
+      },
+      {
+        "id": "fc856962-9597-41bc-a890-4ec4d30aa91f",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-lathe-bar-turning",
+        "title": "Lathe Bar-Turning JSA: Workholding, Entanglement and Stopped Measurement",
+        "body_sha256": "01b47058e94267025b284aec8ea003753d341ce30f02893677719b0319304513"
+      },
+      {
+        "id": "d53c7694-054c-472c-8b72-a32fa0204d4e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-leak-testing",
+        "title": "JSA Risk Assessment Preview for Piping System Inert Gas Purging and Leak Testing Operations",
+        "body_sha256": "601f1b890b6bffc6b67dafe03bf51fd4ff8a5cfdd97feae4ac453049ebc8b341"
+      },
+      {
+        "id": "22d0cbce-83d9-44ab-8e1e-93ffb8093bf2",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-lfl-ins",
+        "title": "Lifeline and Fall Protection Anchorage Installation JSA",
+        "body_sha256": "3b6723dc112131c934cb10d07c0ad6d1a0a10104dcbb3a227fb67833848c0f99"
+      },
+      {
+        "id": "4c647b49-a52d-4e23-9eeb-f4ba6a703e86",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-lightning-downlead",
+        "title": "Lightning-Protection Installation JSA: Route Changes, Bonding and Independent Fall Protection",
+        "body_sha256": "d14d4aa920d3e681209822c11a026482c000b5bd497a30d0456e7dc31e244766"
+      },
+      {
+        "id": "cb5155b0-2c6b-4b68-b6d9-67d70d8c6b3a",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-loader-loading",
+        "title": "Wheel-loader aggregate loading JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "cde6575cdd0f78fe220eccbb2a05444b71591b891e6cae472fe982c67b1017ad"
+      },
+      {
+        "id": "fa058218-22a7-4279-8b9f-e118c82a0a32",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-lowvoltage-livecheck",
+        "title": "Low-Voltage Electrical Condition Inspection JSA",
+        "body_sha256": "75d199de894f2444b405c1c53ba1719e59d557c2e179a0dcb04f8a2984121f86"
+      },
+      {
+        "id": "39bc9c93-d79e-45a8-8924-822f4013fae9",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-magnetic-drill-steel",
+        "title": "Magnetic-drill hole cutting in horizontal steel plate JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "2dfd33eac49e87d3ed8386e6b3aa16f089ad94f96af1c7f3128b91377300cdb1"
+      },
+      {
+        "id": "291e08f7-89b7-4dcc-b2aa-622fd706aa52",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manhole-assembly",
+        "title": "Precast Manhole Assembly and Interior Finishing JSA",
+        "body_sha256": "7a8fcf0d64d98a5316e91e8ffb9bd9b2890f7ffaedcec4cd415e63d9d1559e35"
+      },
+      {
+        "id": "c7f2309f-8082-4d95-9896-2aeacce145af",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manhole-cablesplice",
+        "title": "Manhole Cable-Splice JSA: Independent Air, Isolation and Reentry Checks",
+        "body_sha256": "0b1105b300c23ab3342754a3e3f158ae41a1144f9a7391df2b9ecf204f3d82ae"
+      },
+      {
+        "id": "519b8f5e-03f2-42dd-a9d9-2459d6573dbf",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manual-box-lifting-stacking",
+        "title": "Manual box lifting, lowering and stacking JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "6d231205e74d6d3f68d90debac41d2a701303f5d5ae095ccd8125023f506d20f"
+      },
+      {
+        "id": "5c8a76d0-3bbd-40d3-89a2-285f61ef7491",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manual-dishwashing",
+        "title": "Manual Dishwashing Worker Safety JSA",
+        "body_sha256": "25c3f3cfb92a03fb4b135c5bbddcc9dfaa3fd20f012218f35de0b87c119f028f"
+      },
+      {
+        "id": "364cce68-828d-45cf-b310-b77a5a1bac05",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manual-floor-stair-cleaning",
+        "title": "Manual Floor and Stair Cleaning JSA",
+        "body_sha256": "d21499c1c22ccd36b26f5376d8885891b51c14a59d1ed624672964dce386aa09"
+      },
+      {
+        "id": "1c7aacb9-dfd2-46f7-b55f-0473239c4c75",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manual-pallet-stretch-wrapping",
+        "title": "Manual Pallet Stretch Wrapping JSA",
+        "body_sha256": "feff1cd1f0e717d2763c407aabccdfc9f70e9faa72f0f3e1dd61a388309170bc"
+      },
+      {
+        "id": "fce6f35f-73d8-4459-af85-ede1e35d2936",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-manual-pallet-truck",
+        "title": "Manual Pallet-Truck JSA: Starting Force, Wheel Obstructions and Controlled Lowering",
+        "body_sha256": "49390488eb477afd3cb634c8a3f30a8ce1490313270df04f852fe8ef6aff2e44"
+      },
+      {
+        "id": "58a99708-cead-463f-b60d-8a98ea421f53",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-mccpanel-wiring",
+        "title": "Deenergized MCC power and control wiring JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "ab213b835cc21f7c3a30a4fd162be876d011db9a1e0e3f49f7bf53052cfe3ffd"
+      },
+      {
+        "id": "39a1db84-71b2-4d06-9ca8-7102533e07f0",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-mechanical-bearing-puller",
+        "title": "Mechanical Bearing Puller Removal JSA",
+        "body_sha256": "c921b750cd24ac05ebc0ff6f6b4e299eec195e2471fd0cdd1c33c11b8b28bffe"
+      },
+      {
+        "id": "591a8fa9-c025-4902-a405-dae6c179f661",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-metal-bandsaw-blade-change",
+        "title": "Horizontal Metal Bandsaw Blade Replacement JSA",
+        "body_sha256": "3a10ac5c11acce173cb5239cb272d101670c23cec6007f252bb351a3984f016d"
+      },
+      {
+        "id": "9793fbc4-74af-4c11-8ac6-08b0fe421440",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-metal-conduit-cut-bend-install",
+        "title": "Manual Metal Conduit Cutting, Bending and Installation JSA",
+        "body_sha256": "44bba673bbe0ac8c8b572d13b36011939643507ba9920c998c773b010435dcc6"
+      },
+      {
+        "id": "7894c6be-f851-4070-8698-3dc5d4d88584",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-metal-stud-gypsum-partition",
+        "title": "Gypsum-Partition JSA: Panel Stability, Sharp Edges and Inspection Before Closure",
+        "body_sha256": "f497f79a8f4daac7bc49b246adb32649d1e1a29c61b09c619d3609bcd46423da"
+      },
+      {
+        "id": "5fe7a90f-acd6-4d0d-9e6e-60e718fe4fac",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-metal-window-frame-installation",
+        "title": "Bare metal window-frame installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "8982629862eedae0d6e1a18be1e44345d23210e7bc93cd7eb21bee6a2ccaf720"
+      },
+      {
+        "id": "53779903-e415-4051-a5e3-fe6e547ecaac",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-milling-flat-block",
+        "title": "Manual Milling of a Metal Block Face JSA",
+        "body_sha256": "9836304ee0161faa1c9d82ce5965e836209ba78594ae8624536f178178e38bdf"
+      },
+      {
+        "id": "5ec81494-46a0-4937-9c6e-17002b6e8a5a",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-mixer-unloading",
+        "title": "Ready-Mix Unloading JSA: Reversing, Chute Pinch Points and Blockage Holds",
+        "body_sha256": "3ac1ddfa3e30dc280d2dbcb2e831bfc3303573b03e4d0db37969892b238d1ef3"
+      },
+      {
+        "id": "030dc376-21ba-4eb1-bfd8-a83f48d5ee2d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-nonloadbearing-concrete-block-wall",
+        "title": "Interior Nonloadbearing Concrete Block Wall Construction JSA",
+        "body_sha256": "0c3abf12fe2d3a3235a2706351c3439b1360ed14a6ea4552bacf1d0c79264273"
+      },
+      {
+        "id": "f29a6312-5013-4665-83a5-2c975870663d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-opening-covers",
+        "title": "OSHA Floor Hole Cover Installation & JSA Risk Assessment Guide",
+        "body_sha256": "8f418b88921318fcc0c4db792f4498fa26e97e26e76e4707b6a103b63150735f"
+      },
+      {
+        "id": "154e19b8-4636-4851-a11f-6a586bbc5bc8",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-overhead-crane-load-transfer",
+        "title": "Overhead-Crane JSA: Rigging Balance, Control Direction and Stable Landing",
+        "body_sha256": "c71b3be216c10a2c5a824d7c485b4ccc6cceadb578bd892c1bd9ce56dad0d96c"
+      },
+      {
+        "id": "75d8548f-7444-454e-b5ea-5843f959874b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-overhead-insulator",
+        "title": "Deenergized overhead-line insulator replacement JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "13d3e1c4dced7d9c61d5875c6ba89910f1b5959889510598e77b42eae6852311"
+      },
+      {
+        "id": "a0cd7481-697a-4217-8ee9-81441dd424dd",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-oxyacetylene-cutting",
+        "title": "Oxyacetylene Cutting JSA",
+        "body_sha256": "6e7b46e3aa4c2ce7ce78545d14adf65d397acc050d6c8a8e26adc15b829553ed"
+      },
+      {
+        "id": "98aab527-2270-4297-ad79-4c9a0c62f079",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-penetration-firestop-installation",
+        "title": "Listed penetration firestop installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "e8f4a2f03c68559dc79ee52ad3bb02fa79cb9433e8eaf39a5a27aeeccfb22302"
+      },
+      {
+        "id": "2ba89089-b9af-4c6c-913b-33c25fe6c9d4",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pile-driving",
+        "title": "JSA Risk Assessment Preview: Foundation Piling and Drilling Operations Using a Piling Rig",
+        "body_sha256": "5118833315f41e56f9832b8aa4fbadbfd52322d5030fe20257ca0fe3bf915794"
+      },
+      {
+        "id": "9047df5d-228b-454a-b623-39643d1e5c87",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pipe-disassembly",
+        "title": "JSA Risk Assessment Preview for Pipe Flange Disassembly and Gasket Replacement",
+        "body_sha256": "f921bbe54711a9efea6d647707f8f0114e8603bcdc8414e8cf2afd9df8845b62"
+      },
+      {
+        "id": "4a9fd50a-9748-40c4-8ffc-ae1277be7366",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pipe-flushing",
+        "title": "JSA Risk Assessment Preview for Pipe Flushing and High-Pressure Hydro-Jetting Operations",
+        "body_sha256": "619dadb154428518553d716c07922cad76d1efde714f0cd13856668a08b862de"
+      },
+      {
+        "id": "14b4f94e-c7e1-4ff4-a5e4-b2d633d3d800",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pipe-threading-machine",
+        "title": "Stationary Pipe Threading Machine JSA",
+        "body_sha256": "c1d2a89e31a316040148a01a3249d8746471bcdc20c3c65b4eb54ba4abe98ec5"
+      },
+      {
+        "id": "527927cb-7abc-49e7-a789-047556af29b4",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pipehanger-installation",
+        "title": "Pipe-Hanger JSA: Test-Water Loads, Anchor Evidence and Staged Support Transfer",
+        "body_sha256": "5ae9191494754238aec7fc5a983ab3728241e3aeafbbcfc303a95227fb436349"
+      },
+      {
+        "id": "7f2583b8-8a9f-4032-bc28-df9faa18c450",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pipeline-installation",
+        "title": "Water and sewer pipeline installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "972d1490b461de3cc4e4ebf47aa3428dca9c2502dbc85dcee0502123da26fbb1"
+      },
+      {
+        "id": "355ec5af-175a-4efb-ad2c-55fce739ca20",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-planetary-mixer-cleaning",
+        "title": "Planetary Mixer Bowl and Agitator Cleaning JSA",
+        "body_sha256": "42b5065b9d0942eb97e98dd290bab6a958e708e603eb0bf5bf7d4634b64a3b11"
+      },
+      {
+        "id": "ea93e67a-5c63-4362-a551-858f9637601d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-plasma-platecut",
+        "title": "Handheld Plasma Cutting of Steel Plate JSA",
+        "body_sha256": "2361bcb102d57232619e8bc26fa939744ad832977c62659f28d26b38267a6618"
+      },
+      {
+        "id": "81620f8e-8b34-4014-a348-f01e9d7c0023",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-platform-trolley-transfer",
+        "title": "Manual Platform Cart Material Transfer JSA",
+        "body_sha256": "348a5b5f1208e7a6edfa298365f9365f209e45b124dc693ab845cc63fd5acac0"
+      },
+      {
+        "id": "5e77e10e-8083-48dc-b8fb-79c0b5d9c594",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pneumatic-calibration",
+        "title": "Pneumatic-Calibration JSA: Stored Forces, Full-Stroke Tests and Re-isolation",
+        "body_sha256": "b97aee6240bb54e78fba90c55957a1214e51af7009bbaa2bcdcfe7f3caad3c57"
+      },
+      {
+        "id": "65b2f60b-18b9-43e3-b2cf-72a15e53f367",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pneumatic-nailer-pallet-repair",
+        "title": "Pneumatic nailer pallet-board repair JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "9d08e9104af8755f54fc7cfaaffca56e8e276df10dd6f424fde9cc205a5ceacf"
+      },
+      {
+        "id": "10ce9649-2e8f-4c38-b817-2a3be6968e1b",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-portable-circular-saw-wood-crosscut",
+        "title": "Portable Circular Saw Wood Crosscutting JSA",
+        "body_sha256": "8ea2e6e786517a4678c819c88225fdb1e21962c785ccfe05e39f8f9f9c7f6768"
+      },
+      {
+        "id": "a72993ce-2c9d-41e8-bf84-0c01120d4348",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-portable-generator-tools",
+        "title": "Portable Gasoline Generator Supply to Power Tools JSA",
+        "body_sha256": "77b213925bb88839a47f6bd54b2c12033604f4a5e239d3c187d91a74d2d7e515"
+      },
+      {
+        "id": "70ce32bc-bdb6-48f1-90d0-07052e4dbfd5",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-portable-planer-wood",
+        "title": "Portable Electric Wood Planer JSA",
+        "body_sha256": "3a507fd0c1f2f6e85527672430825d6e1879726eeb61d7c4cae972b19ad3f01e"
+      },
+      {
+        "id": "af462f55-4845-4a86-b5e7-07b4ad0ff3d5",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-prefab-scaffold",
+        "title": "Mobile Scaffold Erection & Use JSA Risk Assessment Guide",
+        "body_sha256": "b5ce299b5d21a8c949f952862c2baa30b94033b8921fe6fc4399903cfa9baa6a"
+      },
+      {
+        "id": "8e633728-c8b4-4799-84ed-a3185ffe6785",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pump-installation",
+        "title": "JSA Risk Assessment Preview: High-Pressure Plunger Pump Installation & Power Connection",
+        "body_sha256": "c07c6953ea47c618466d356e547a174ce293534764b5d652a2aef77c0b7b7c2d"
+      },
+      {
+        "id": "a5339cfe-eab8-47ba-871a-af7e9edd29d6",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-pumpseal-replacement",
+        "title": "Pump-Seal Replacement JSA: Auxiliary Pressure, Seal Settings and Safe Startup",
+        "body_sha256": "6aef8601f22be5cafc14c68266abdd674d2bf61aa0dfc1c78fd5736e47797365"
+      },
+      {
+        "id": "616dd675-ed63-4f2f-a590-24a7c9ee3eab",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-radiographic-testing",
+        "title": "JSA Risk Assessment Preview for Piping System Radiographic Testing (RT) and Air Drying Operations",
+        "body_sha256": "9943ea154177080d2b9e0a9a0d78e77a6d358c0c822916beba719f56b086b25d"
+      },
+      {
+        "id": "8259270d-5012-4ac2-bcee-d65e9051ac72",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-raised-access-floor-installation",
+        "title": "Raised access-floor system installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "2fff03b94c0b23da39a4a1b8760f2d389b973fd1bdb47722e6ea8a7f13c0f688"
+      },
+      {
+        "id": "1278dbfd-b326-4900-a9cf-cca205a1b0e3",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-rebar-work",
+        "title": "JSA Risk Assessment Preview: Rebar Processing and On-Site Assembly Operations",
+        "body_sha256": "5be7dcc13ca0461c72924a7f4b5f7dfee1efd3ff2d6c804104a301cf6ff69064"
+      },
+      {
+        "id": "ee252e41-3d29-401c-9cd5-0c7e67d14b39",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-rectangular-duct-section-assembly",
+        "title": "Rectangular Duct Section Assembly JSA",
+        "body_sha256": "8151977e37cbcc346b3c5c0abac4af20f35b698567354f045484a37bb3863848"
+      },
+      {
+        "id": "0734f608-fb32-432e-bfd7-5c5949d91a74",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-restroom-cleaner-use",
+        "title": "Restroom-Cleaner JSA: Product Identity, Incompatible Residues and Safe Reentry",
+        "body_sha256": "02378b7fe6aed3ba70c9fcd48c99b05231027a23ce4d5ec984fe14643c32ad37"
+      },
+      {
+        "id": "baae6b4e-f12c-42c0-8417-9c62b482a4af",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-retainingwall-construction",
+        "title": "Reinforced Soil Segmental Retaining Wall Construction JSA",
+        "body_sha256": "5330d4e6a0d10e46efd58313764d7b8f4f60a5e8603e508fa004b9d83221a1b1"
+      },
+      {
+        "id": "2cdf5e13-4866-403e-b5b0-7541a92a7e3d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-road-pavement",
+        "title": "JSA Risk Assessment Preview: Asphalt Paving Operations Using Asphalt Pavers",
+        "body_sha256": "addb9a79ac4cce4b493209b5c0d1f49e1d5c2e3d3137bae63ff3e11f17e84ea0"
+      },
+      {
+        "id": "58a2dd57-3ce4-4bfc-a8ce-a8c7df9ea808",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-robotcell-setup",
+        "title": "Robot-Cell Setup JSA: Stored Energy, Enabling Control and Verified Restart",
+        "body_sha256": "f0dff167d1b523e12d3f219f9b65bd89a9643e18bcdb638e1b44011a4af80d61"
+      },
+      {
+        "id": "ae33e370-2f41-4d7c-9fe7-1d2ef295ed45",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-rockfallmesh-installation",
+        "title": "Anchored slope rockfall-mesh installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "705f265f6ecaa9dc5317d70fe2c2199a62f4fd9ac5c569cd43b7d6a7c4c0891b"
+      },
+      {
+        "id": "741a5eab-032c-4ff8-9024-47ba1eba2a6e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-roller-compaction",
+        "title": "Ride-On Roller Asphalt Compaction JSA",
+        "body_sha256": "c3e21c7cff60fca2aea0ad768e5802af4d1db41357bb0dafa7c9519216172ed3"
+      },
+      {
+        "id": "8d9ff967-9bd8-4d44-99ae-c88d93b21656",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-roof-slate",
+        "title": "JSA Risk Assessment Preview: Asbestos Roof Slate Removal and Replacement",
+        "body_sha256": "8b069f578d8e7bf613a424a663717d29b6635289165b783b49e3cfa6f3e79f90"
+      },
+      {
+        "id": "42bbeeeb-3aed-459c-9c68-6af197327461",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-roof-truss",
+        "title": "OSHA 29 CFR 1926 Subpart R & Subpart M Job Safety Analysis (JSA): Structural Steel Roof Truss Erection, Temporary Bracing & Sheeting Operations",
+        "body_sha256": "34956a558f6f97e8a75a464d2c4476bd5c6de59edc8d251c33758100d9b59d12"
+      },
+      {
+        "id": "7066f8d4-1144-447c-9d3d-382406b1f5f2",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-safety-cutter-unpacking",
+        "title": "Safety-cutter carton opening and unpacking JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5e4a6f230d7b384f3a38dbdc2d21ddc5f67f399438d488025c3f3e570d0b628c"
+      },
+      {
+        "id": "e7945cd5-e188-4105-afed-67ccac0a93ae",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-safety-net",
+        "title": "OSHA Safety Net Systems JSA: Installation, Drop-Test & Rigging Guide",
+        "body_sha256": "5f40a56510165adce5b0a843c10a0bb15e74ec3703391eab67d886218e3eda4b"
+      },
+      {
+        "id": "0369c0fc-8edc-4e3a-9ac3-15b099b52dfb",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-sanddrain-installation",
+        "title": "Vertical Sand Drain Installation JSA",
+        "body_sha256": "de7ddd259320aa97d0c456230e7a08dd3f57aa425756ad8adf710049e835ce1c"
+      },
+      {
+        "id": "f3f16f5b-8f6e-4fce-b220-bb03b79dd56e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-scaffolding-dismantling",
+        "title": "OSHA 29 CFR 1926 Subpart L & ANSI/ASSP A10.8 Job Safety Analysis (JSA): Tube and Coupler Scaffold Dismantling, Progressive Top-Down Wall Tie Removal & 100% PFAS Tie-Off Protocols",
+        "body_sha256": "676a70187dc8493a3ca3b6649e2acda3c21cd5849ae0d272bd7f93ee4c70c8ca"
+      },
+      {
+        "id": "efa725ee-1689-4022-9147-a334188afaa1",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-scaffolding-erection",
+        "title": "OSHA 29 CFR 1926 Subpart L & ANSI/ASSP A10.8 Job Safety Analysis (JSA): Supported Scaffolding Erection, Plank Installation & Tie-in Operations",
+        "body_sha256": "45f92035c4e26bd645768f1033988f9be512652450e785c261842d5142aaf271"
+      },
+      {
+        "id": "314f9b3b-e83a-4382-9ea4-68cc61553832",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-scissor-lift",
+        "title": "JSA Risk Assessment Preview: Overhead Equipment Installation using a MEWP (Scissor Lift)",
+        "body_sha256": "2e95dd00cf4ca0dedb5127982500754b755b12893399bc3b0f3b7b41fd780cb8"
+      },
+      {
+        "id": "64122360-793a-4cea-be27-3752eb7028ff",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-shaft-alignment",
+        "title": "Shaft-Alignment JSA: Soft Foot, Repeatable Measurements and Final Piping State",
+        "body_sha256": "6845b6a5d6f8b071e785a3e7b7754c613ccc8b44b168f2618b49344f03aaa55e"
+      },
+      {
+        "id": "90d4d0b0-049a-4622-bc7d-3640c8845e2a",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-shotcrete-reinforcement",
+        "title": "OSHA 29 CFR 1926 Subpart S & Z Job Safety Analysis (JSA): Tunnel Shotcrete Application and Rock Reinforcement Operations",
+        "body_sha256": "5b49cb7fa94ea84dc39c04583aff6bcfb1a99eb26a58c7423de2c33a588fbcc2"
+      },
+      {
+        "id": "b1a45ecc-42e7-417e-8625-fa6f68455aa0",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-signgantry-erection",
+        "title": "Steel highway sign-gantry erection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "307d355aa686eff5e1a98b1e9eddf14c08193e271be3833b7f179804a620555d"
+      },
+      {
+        "id": "2a3ff6fe-08b3-4ddc-a2ce-1674f6bdd1cf",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-slung-scaffold",
+        "title": "Slung Scaffold (Under-hung) Erection & Dismantling JSA Guide",
+        "body_sha256": "61655c1b16d0a6625d7f6a6633eeeaa876fd0c79f4e68416073bfe1ad7e194e6"
+      },
+      {
+        "id": "b3e71c1b-0cc7-4bf5-8125-d10732e8169a",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-soil-transtport",
+        "title": "JSA Risk Assessment Preview: Dump Truck Soil Transport and Unloading Operations",
+        "body_sha256": "67c640876d6897c6162edfe09815746296c636c919c56049da86d7f7ba57c800"
+      },
+      {
+        "id": "a87cf980-1a69-46bf-afce-a99489e440df",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-solar-rooflift",
+        "title": "Solar Module Roof Lifting and Mounting JSA",
+        "body_sha256": "a7c218f536bc47749f32123f3073ab535d1cf3eef730d27e0ecff02a5a706d05"
+      },
+      {
+        "id": "04aecd16-3e56-4a5e-b526-b01319e7ed19",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-sprinkler-grooved-coupling-assembly",
+        "title": "Sprinkler Grooved Coupling Assembly JSA",
+        "body_sha256": "9b5481343b824bc77595791d2eadb064ac0a5b9aeb2a62a3c3f862d19a184bde"
+      },
+      {
+        "id": "757237bf-1f0f-401a-846e-6d62d60c51f0",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-steampipe-welding",
+        "title": "Isolated Steam Pipe Welding and Insulation Restoration JSA",
+        "body_sha256": "9b745be2104554362b4f379d0519ecc0aa7de53f31d70d1c36656fe1b348fc62"
+      },
+      {
+        "id": "58d3c505-a8a9-4327-a152-3a3ce5856fce",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-steel-heatbending",
+        "title": "Steel Heat-Forming JSA: Temperature Gaps, Restraint Forces and Material Release",
+        "body_sha256": "814a6eec83677b1163091f99b625a0d6d1ce9481a3033a922fa72079447b4ea2"
+      },
+      {
+        "id": "1f0f298e-b032-438a-844b-8297827b148d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-steel-smaw",
+        "title": "Structural-steel shielded metal arc welding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "f8fb3e54e6df25a48dcaf211b4f1bb901f6cb7deeb07586da022084e6c41a9ca"
+      },
+      {
+        "id": "4cc5332f-e519-4a19-a986-813353e07767",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-stepladder-work",
+        "title": "JSA Risk Assessment Preview for Lamp and Fixture Replacement Using Portable Stepladder",
+        "body_sha256": "8c7b72e63eb2263237733e45dde41967afea90a6f325ae0a414ef0f87a3c6e14"
+      },
+      {
+        "id": "7e9f05c9-7ff6-4ac1-8028-9fc42247f4b3",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-stretch-wrapper-film-change",
+        "title": "Stretch Wrapper Film Roll Change JSA",
+        "body_sha256": "76e2b7129aea3eabe52c444a5372123cd02b1b6a2b85b849f9178cbeedcf89b4"
+      },
+      {
+        "id": "e9e4b422-4eef-43b3-9ad4-abef0f39bc18",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-structure-demolition",
+        "title": "JSA Risk Assessment Preview: Concrete Structure Demolition Operations Using a Hydraulic Breaker",
+        "body_sha256": "748b98159bae31d30164ed9bd365246d026b323421598dc5d328a3bec9edc48a"
+      },
+      {
+        "id": "3d090d21-f9dc-4e03-8221-cd915907b24e",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-submerged-arc",
+        "title": "Submerged Arc Welding with Rail Carriage JSA",
+        "body_sha256": "012c8091a349c65782b5c2d51c5b2a290bfe66c1a639a273c74d1c4c1b187b20"
+      },
+      {
+        "id": "67139097-b3f1-4a41-a7f3-c7470adba0d0",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-suspended-ceiling-grid-tile-install",
+        "title": "Suspended Ceiling Grid and Mineral Fiber Tile Installation JSA",
+        "body_sha256": "2db772322c295b8a98528fc176ecfca8e6f574903307d4c90862c4d1a4561cd7"
+      },
+      {
+        "id": "4c9c5f4a-9207-4e98-b2c8-bcda514a6272",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-suspended-scaffold",
+        "title": "OSHA 29 CFR 1926 Subpart L & ANSI/ASSP A10.8 Job Safety Analysis (JSA): Bosun's Chair Suspended Scaffold Operations, Dual Independent 5,000 lbs Anchorages & 100% Parapet Edge Protection Protocols",
+        "body_sha256": "35d2db54d42fa1d700a6f3118cd10b77f424e22b578ff2568e0e0bf88f0b440b"
+      },
+      {
+        "id": "e465080b-0ed2-4d27-89d2-0ae0bf141984",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-table-saw-wood-ripping",
+        "title": "Table-Saw Ripping JSA: Spreader, Kickback Protection and Full-Path Support",
+        "body_sha256": "93a6433cdb864c117d3a81e6b3e04a771fc570d9e4a3f8f71c899d8c24378282"
+      },
+      {
+        "id": "1be8bcea-b3bc-478f-85cf-de5929d980db",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-tank-cleaning",
+        "title": "OSHA Standard Job Safety Analysis (JSA): Confined Space (Storage Tank, Manhole) Cleaning & Maintenance Operations",
+        "body_sha256": "fa435d6135dffc6f9134c8c881975380d39de39dadf98846daa0e4c0badcc09c"
+      },
+      {
+        "id": "59b19a16-25b6-4441-ac9e-74dd7a178d06",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-tankbottom-welding",
+        "title": "New storage-tank bottom plate welding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "39484867ba83b7550aaad37d0ec1380c3ae64cb0eb093dc4691bb8288d6716b6"
+      },
+      {
+        "id": "b47cba52-87d2-4902-9273-741d8b360dc6",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-tbm-excavation",
+        "title": "Earth Pressure Balance TBM Excavation JSA",
+        "body_sha256": "99d9fda360d250a9a7dbecf2a7669678d33b373ffe604afbfb631aad1d04121d"
+      },
+      {
+        "id": "191b057b-f1a9-4bc9-bc2e-b45dbcb0c27f",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-timbering-installation",
+        "title": "US OSHA 29 CFR 1926 Subpart P: H-Beam Excavation Shoring Installation JSA and High-Risk Work Permit Guide",
+        "body_sha256": "ddb61cddf42b928f7bea8e3d02f2db8b88793ad031db0f87220a003c43684d09"
+      },
+      {
+        "id": "5b3791d3-cd77-4ae6-adec-db67200c303a",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-transformer-installation",
+        "title": "Transformer Installation JSA: Secondary Backfeed, Bushing Loads and Test Handover",
+        "body_sha256": "361e79cd436662654bf49e5d5dcd0d857fdedd43b0c1ebec1cfea4f37d9fa1a7"
+      },
+      {
+        "id": "923a13d7-9edd-4b2f-bc91-e0c10ef11643",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-tunnel-drilling",
+        "title": "US OSHA 29 CFR 1926 Underground Tunnel Drilling and Blasting JSA and High-Risk Work Permit Guide",
+        "body_sha256": "74b1231a6798686682ad3b1df97a77247797a30751a5febc1154ef4cbcddedaf"
+      },
+      {
+        "id": "63af4f55-2533-4348-8e3c-0f9ab0e5d714",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-walkbehind-floor-scrubber",
+        "title": "Battery Walk-Behind Floor Scrubber JSA",
+        "body_sha256": "d3c65c022a10d7a556b28742f4d3d4a541490f7da63b7f83cc76b37d348e9683"
+      },
+      {
+        "id": "bf0ab2b2-ff76-4426-892b-6a1d5c419dbf",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-walkie-electric-pallet-truck",
+        "title": "Walkie Electric Pallet-Truck JSA: Braking, Power-Unit Swing and Pedestrian Clearance",
+        "body_sha256": "ee2b338cb2dd5eab457fdf5b5bbaac20a4bf59e46c931a7cd3c64f24a3d0e801"
+      },
+      {
+        "id": "7122c90f-15ff-423c-bb3d-97638203d018",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-wall-form",
+        "title": "JSA Risk Assessment Preview: Retaining Wall Formwork Assembly and Stripping Operations",
+        "body_sha256": "47479ff8a0a3542b0b298d5579fb57ddcf1f705e16e6a658ab344e4c3dfec2fd"
+      },
+      {
+        "id": "3a075442-1265-4cc3-ab89-fbde09959ca2",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-waterbased-paint-roller-wall",
+        "title": "Water-based wall painting from floor level JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "7c69191cfa436b421b939e331606999158e723117dd74b2aa1295366de1e054e"
+      },
+      {
+        "id": "ad820fed-71a1-4673-aa6d-fe47c8ca4a9d",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-wet-wall-core-drilling",
+        "title": "Wet Horizontal Wall Core Drilling JSA",
+        "body_sha256": "8b17d67614f306ea217ab0b95f26fcee8d2e35af4da371cde1428ef8e1febae2"
+      },
+      {
+        "id": "c728ba2b-35bb-4c6b-a10d-22170dcd2fb1",
+        "url": "https://smartjsabridge.com/en-US/case-study/jsa-winch-lifting",
+        "title": "Lifting-rated winch material handling JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "96b76ce51f41b9405b989aeb7ec37d4448215db1dc2cfa946e126344b29e8643"
+      }
+    ]
+  },
+  "en-SG": {
+    "firstId": 1200001,
+    "stepsPerArticle": 8,
+    "articles": [
+      {
+        "id": "1f811fe1-26dd-48b4-a008-39b17b163356",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-MEWP-working",
+        "title": "JSA Risk Assessment Preview: Exterior Wall Panel Installation using a Vehicle-Mounted Elevating Work Platform (Boom Lift)",
+        "body_sha256": "bbf5d73ac6d73f4e5aeba510df050fdc65f83eb7f009e528027468a3c7d9a058"
+      },
+      {
+        "id": "8c0b3d30-b75f-463d-907a-d494aa43d2a9",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-aerial-lift",
+        "title": "Singapore JSA: Ceiling Equipment Maintenance Using Mobile Elevating Work Platforms",
+        "body_sha256": "51fea51af53324a4c89d23ce8350e77c3cd87b3eae2122545cfea3065d496e62"
+      },
+      {
+        "id": "46a4b37a-85e0-464e-a8d8-fb0ebcf59008",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-ahu-ducting",
+        "title": "Air Handler Lifting and Duct Connection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "44a0f73bdbca1f01f043375798995a225ef01a9253b39cf97f1a57fa02f26c77"
+      },
+      {
+        "id": "cc045c89-5580-480f-9eb9-df80aed774f8",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-ahu-filter-replacement",
+        "title": "Air-Handling Unit Filter Replacement JSA",
+        "body_sha256": "0157965fca6449341dc462fb96d9f71acaa0c9671ba9c8bfb3c86ff13ecb36d6"
+      },
+      {
+        "id": "1d52a62a-e494-4121-b0c6-6d718bd65257",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-airless-gun-tip-filter-cleaning",
+        "title": "Airless spray gun tip and filter cleaning JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "2ba84dce9ac21ce0a809d381889b4eb267ff0894d5067caebfd50dd803fb59fc"
+      },
+      {
+        "id": "1cddbd7f-122a-49db-9b76-2e7e7225f243",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-airreceiver-installation",
+        "title": "Singapore JSA: Air Receiver Installation and Drain Connection",
+        "body_sha256": "c8cc68bd49b2f96c300541ff474ba5a536609de7ada825ba6996c2d483f4a8f1"
+      },
+      {
+        "id": "3f1e1cd9-2483-4173-9e98-270d072f1d6a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-aluminum-actig",
+        "title": "Aluminium Pipe AC TIG Welding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "0acceeb7d97eac2fecb54508f42ef85994694edc90af25f2d0adb8e7d9526ac2"
+      },
+      {
+        "id": "656cfb8b-917a-4575-a8ba-6b9f0ac68738",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-anchor-installation",
+        "title": "Tower Crane Foundation Anchor Installation JSA",
+        "body_sha256": "ae4cbf2d317526330f5a294c64939be02634fc287cf17332f55e675882f0e482"
+      },
+      {
+        "id": "2b2e0294-15c4-470f-a4d7-7fe290be51f4",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-anchor-stressing",
+        "title": "Ground Anchor Drilling and Stressing JSA",
+        "body_sha256": "cf3fa806eac8375d3961ff1a7b23338fc046e660edd4f4806eb4c5998d424f0b"
+      },
+      {
+        "id": "63a47bf7-4fb8-4705-bfaa-c7fbac1560b0",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-angle-grinder-metal-cutting",
+        "title": "Singapore JSA: Portable Grinder Metal Cutting",
+        "body_sha256": "d823f65fd9318af7f83b49a4d536f0d25c3b3db8b5488a4e4ac21a0f664b7065"
+      },
+      {
+        "id": "cedde8dc-72a2-4191-a5b7-03205a15d7a7",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-aqueous-metal-parts-cleaning",
+        "title": "Manual aqueous cleaning of metal parts JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "3570bb4d5c9e91f2833ac7d6b9f5828148de383d8b1882a867fd1bfc47ca58c2"
+      },
+      {
+        "id": "69e250eb-f5d9-4977-8cbe-4e24cc6c7859",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-argon-cylinder-regulator-change",
+        "title": "Argon Cylinder Regulator Replacement JSA",
+        "body_sha256": "d54919a8ae1141c567f470299c417bca6ee5f61c414d05c50c49dfe66408c7bd"
+      },
+      {
+        "id": "7e05a61c-ef40-4aed-ba09-7401be892b24",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-asphalt-milling",
+        "title": "Asphalt Milling JSA: Silica Controls, Truck Exchanges and Drum Isolation",
+        "body_sha256": "53b07f20f5bae5b2befb37bcd5833c6e1a27481dbd0843832d0800f7c06e0727"
+      },
+      {
+        "id": "df1e82bc-ea1d-4e99-b3c8-59edbe439326",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-automatic-feed-mechanical-press",
+        "title": "Singapore JSA: Automatic Feed Mechanical Press Operation",
+        "body_sha256": "0336d0e40aa07eccb30f240d12f7992ebcc60c4f5fb7a440ffa0f27b507d6451"
+      },
+      {
+        "id": "8be8b381-b567-46fe-a551-6943205a309d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-barricade-installation",
+        "title": "Temporary Road Barricade and Fence Installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5cfceae721a9ab627d0fa5670d3e4dca0ab0ac0ab7ef6abb9dc43a88d3d95d10"
+      },
+      {
+        "id": "34063d71-c68f-430b-985d-9f70bbdd31f5",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-bathroom-waterbased-waterproof-coating",
+        "title": "Bathroom Water-Based Waterproofing JSA: Substrate, Coating and Cure Controls",
+        "body_sha256": "5a1e82fccd3f3a8e59f84235984a279e356601c1155333b0e4eab6ba8fa9ea8e"
+      },
+      {
+        "id": "bf770591-2e74-4b6a-9b0f-5536f8885f50",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-battery-brushcutter-grass",
+        "title": "Battery brushcutter grass cutting JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "11a7adc3929cec5b362605647e34f68439f55e7dc424be6a904fd753315cf610"
+      },
+      {
+        "id": "759fa297-fd7f-4fa4-b4ca-92154a12f02e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-battery-hedge-trimmer",
+        "title": "Singapore JSA: Cordless Hedge Trimming",
+        "body_sha256": "6a269effc5684f607a0dba71873a895dd2812bd88bb71eca79c002a5dc1ff256"
+      },
+      {
+        "id": "1257a285-c0c8-4d56-a0c7-f52060f01753",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-battery-plastic-strapping",
+        "title": "Battery-tool PET and PP package strapping JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "a5bbd5ebbdda54f046f1c91afcf3867eb009d9644dd9b56dca27257923794f0d"
+      },
+      {
+        "id": "1b36bf5e-e446-4d1e-967a-ccd40c58dff9",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-beam-work",
+        "title": "Steel Column and Beam Erection JSA",
+        "body_sha256": "afebd02e9857abf2a2198b4a3ad8bbd32533841dd3c69a9e1abd01a7adf2eead"
+      },
+      {
+        "id": "3370f33c-dae4-4be5-986d-3c494d10db3a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-bearing-hydraulic-press-fit",
+        "title": "Hydraulic Press Bearing Installation JSA",
+        "body_sha256": "9f78904b39e88bf0c2b14c03d3ac24ae424eaf3d7ee358e19acfe6a2ad2ec053"
+      },
+      {
+        "id": "b326befc-9255-45e6-a415-39a52eb54ad9",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-bearing-replacement",
+        "title": "Singapore JSA: Bridge Bearing Replacement",
+        "body_sha256": "2ff956baccd7b2930c9882b1c6104549936f04cd0d348b106d5024582cbc3f4e"
+      },
+      {
+        "id": "a3588d19-621d-4bd0-b40a-2d27d94437dc",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-bench-grinder-wheel-change",
+        "title": "Bench grinder wheel replacement and dressing JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "0a02edb83b59a1f1196a4b6c48bc8534c904b080a05947aa970ff27adacc2f47"
+      },
+      {
+        "id": "05c55801-68ef-4988-a5ca-51dac37802fe",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-boiler-positioning",
+        "title": "Boiler Lifting and Positioning JSA",
+        "body_sha256": "fff8c944244809575435a6aa287c28b2ee7d51c08ff584a77d5f3aebb87ff089"
+      },
+      {
+        "id": "a122a59a-01f5-4c20-b8ab-573b135f39b2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-bulldozer-grading",
+        "title": "Crawler Bulldozer Grading JSA",
+        "body_sha256": "bf90e39c29548017d49a2487245ee315e2763ceab5a2966798cb0fe0aed4b0d8"
+      },
+      {
+        "id": "57ae3b82-e891-4edf-8c22-8980181760b6",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cabletray-installation",
+        "title": "Singapore JSA: Cable Tray Installation",
+        "body_sha256": "8154a84e6b37928ca6de12c78df83b7ca2770b84a5d2c7d41822742ffb126c48"
+      },
+      {
+        "id": "73449484-5265-4a1e-8d2b-0b7c30e72e31",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cargo-lashing-release",
+        "title": "Lorry Cargo Ratchet-Strap Release JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5feeeb5c0f1935cdd72c443ea47a3992817ba47951103fb1d221f5ad1e55a4b8"
+      },
+      {
+        "id": "328f5a8b-7f58-4c56-bf4d-4a4e1bea3593",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cement-mortar-wall-plastering",
+        "title": "Cement Mortar Mixing and Wall Plastering JSA",
+        "body_sha256": "8474bd45ed9e18b8f54bcc5392ddfc15b149d7c693af0af7f11014d84bac9a00"
+      },
+      {
+        "id": "0d8f213e-a0e0-45af-bc71-ac1685ca8b0d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-chainblock-positioning",
+        "title": "Manual Chain Hoist Positioning JSA",
+        "body_sha256": "7d654d15252606d5aeee302e5c322876d5b0757175cf274c5e23fc2b755fd5d1"
+      },
+      {
+        "id": "84cc3ce6-0698-4aed-948a-58543bab0b4a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cleanroom-wall-panel-installation",
+        "title": "Singapore JSA: Cleanroom Wall Panel Installation",
+        "body_sha256": "c0ce433c4d0efba11fb6ae8e88650a20bb8cfd29526ac22691694208e2e245f6"
+      },
+      {
+        "id": "28bb549b-957a-4e41-91ef-621d0e95c8a9",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-co2-gmaw",
+        "title": "CO2-Shielded GMAW Welding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "2cd6827e1748f9a55343a7b7837c0026d47e34a4329402bc1606070328f35a29"
+      },
+      {
+        "id": "14a0f549-e704-440b-95e0-1081a73cd59f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cold-room-goods-handling",
+        "title": "Walk-In Cold-Room JSA: Door Release, Cold Exposure and Worker Accountability",
+        "body_sha256": "e879422c939bae03af3df61da892eaa84a64ae862937f6362cd3365d249c42cb"
+      },
+      {
+        "id": "571592f0-9528-41da-805b-06ccc6079fd1",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cold-saw-sections",
+        "title": "Cold-saw cutting of steel sections JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "c60c9d4221a30367c04d727214d9286732433f93c71292dbbba2f778a61f8c5a"
+      },
+      {
+        "id": "42c897d7-eb83-442e-9407-6689316432ea",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-commercial-heatpump-laundry-drying",
+        "title": "Singapore JSA: Commercial Heat Pump Laundry Drying",
+        "body_sha256": "66ee170878fa72429ba440fff4980c14286536f3dfb8299abacef98a334b666a"
+      },
+      {
+        "id": "031a85de-f030-434a-91a4-32fae461cf6f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-compressed-air-filter-element",
+        "title": "Compressed-Air Filter Element Replacement JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "77c67bd09e51627f1239ff84c80abe3d1ceed181c01f06f621111087f8e544a1"
+      },
+      {
+        "id": "a582d389-4461-4693-b8e1-9d13ab84933a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-compressor-leveling",
+        "title": "Compressor Installation and Levelling JSA",
+        "body_sha256": "2de160ae44fba658ebf351346fac621821b8dc1c299bd654338b1f3e8edc062b"
+      },
+      {
+        "id": "9bb0c3f5-a67d-4682-ba7f-c985ff8d1443",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-concrete-placing",
+        "title": "JSA Risk Assessment Preview: Concrete Pouring Operations Using Concrete Pump Trucks",
+        "body_sha256": "8b68f052cb184def13daf7345bf12c4c1f9d7d1f42379bb38a706c412833b702"
+      },
+      {
+        "id": "73574be6-aa95-497c-8cb9-4b058ab44d5f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-concrete-troweling",
+        "title": "Singapore JSA: Electric Walk-behind Concrete Trowelling",
+        "body_sha256": "60de35be1fab53985dbfb87699e7d760721b5dd96a2875d49e24f3f280f8bffa"
+      },
+      {
+        "id": "ca029480-86ac-415c-948a-bb629558128d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-concrete-wall-dust-extraction-grinding",
+        "title": "Concrete wall grinding with dust extraction JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "5ac510584725c6c18216f48edee94e8d335b139e7c502cb426e7cf8e34e0063e"
+      },
+      {
+        "id": "cce1b17f-3154-4f9b-8fb7-828df1a4a0ba",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-confined-space",
+        "title": "Pipe Confined-Space Entry and Gas Testing JSA",
+        "body_sha256": "4bf66df299982fbb4ba107491d7f39e8934c7809a48cd54267144ad24d5377cb"
+      },
+      {
+        "id": "db168f20-33ed-479a-b209-45f567c69d7d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-construction-goods-hoist-loading",
+        "title": "Construction Material Hoist Loading and Unloading JSA",
+        "body_sha256": "145a1bd0afcdc43b2fee294142200de3cdd87e1e935d87d278f8298ad0ebefdf"
+      },
+      {
+        "id": "3d4c09e9-7cce-4673-ae64-aec53eb62efa",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-construction-waste",
+        "title": "Singapore JSA: Construction Waste Loading and Removal",
+        "body_sha256": "1174f4f79ee2a5d6dcc1eb092784722460037ff5a6cd7e860370418f534933ef"
+      },
+      {
+        "id": "72d78ed2-7403-4feb-8e52-240618a003cc",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-controls-network",
+        "title": "DCS and PLC control-network cable work JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "81a15fca673a711a5955ce2fce66ed1ab8376074c5bf1913d142b92eb766bf8a"
+      },
+      {
+        "id": "6ba78793-234f-41f1-8033-ed9751a2da8f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-conveyor-maintenance",
+        "title": "Conveyor Drive Repair and Roller Replacement JSA",
+        "body_sha256": "32963cf5919b1f5187651a370793834ddd0bfa89a600cc11b11cd0457729c4ad"
+      },
+      {
+        "id": "5a3071c7-17f5-4165-b131-830dfce5af5e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-conveyor-package-sorting",
+        "title": "Conveyor Sorting JSA: Nip-Point Guards, Downstream Capacity and Jam Handover",
+        "body_sha256": "31a5c04d2437165278c34b78dc44a2f42301a99731054770537160c736e2ae7f"
+      },
+      {
+        "id": "bd92a787-c729-41e9-bfef-4de5d37bdc93",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-coolingtower-assembly",
+        "title": "Singapore JSA: Cooling Tower Module Assembly",
+        "body_sha256": "60662baf6b1ddff1f1f27126b470d58c3975e44083c08f383240c73ebbaf3775"
+      },
+      {
+        "id": "aa8cb232-5354-4fee-8c96-3ab4f4f1b5d1",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cordless-drilldriver-fastening",
+        "title": "Cordless Drill/Driver Screw Fastening JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "556d4ffb77a38972690e44c64918fd3e85068acdbd6185e44827d121fa274a79"
+      },
+      {
+        "id": "64156f5f-80c3-4926-9a81-5700e720cf49",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-crane-jib",
+        "title": "Tower Crane Jib Assembly and Dismantling JSA",
+        "body_sha256": "33a808787fd19dd03fafa87ce1f32010a02887f8bb6939c78c9ec47258969526"
+      },
+      {
+        "id": "d747fead-c064-41f2-91d8-aec5232976bf",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-crane-operation",
+        "title": "Mobile Crane Lifting and Rigging JSA",
+        "body_sha256": "e798394b3f6cb2e248eeace429d212ee1addf8481e4d34ef6fc7f8ab454f0044"
+      },
+      {
+        "id": "87d55705-1bbb-469c-a394-b8838c4a1638",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-crane-telescoping",
+        "title": "Singapore JSA: Tower Crane Climbing and Mast Insertion",
+        "body_sha256": "12d34b051cf297e9e0d302df442659cb72d1daae2bd825e18dd411ea8afb73a8"
+      },
+      {
+        "id": "82f30fe1-2ce6-461f-93c7-8e8d9b973c32",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-cranerail-installation",
+        "title": "Crane Runway Rail Installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "685d2414848ade17cf55086db7e415f6b0049157bac1b4815e9fbf0c23cfe7e4"
+      },
+      {
+        "id": "d9376d25-05e2-4806-900c-395ff29e9f18",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-culvert-installation",
+        "title": "Precast Box Culvert Installation JSA",
+        "body_sha256": "e3f4195bb14dd3c2cd877b1b96d2f50b1ccd490199052666aa1864f6f9c4e414"
+      },
+      {
+        "id": "c805e561-a2da-4047-a003-a3f8de91a1ea",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-curingheater-ignition",
+        "title": "Concrete-Curing Heat Source and CO Control JSA",
+        "body_sha256": "5b772ea79a25f571c62e8f1a3859626f47064e4ce9e0ade8322c5b0ce7411e19"
+      },
+      {
+        "id": "242dfc82-b74e-4e18-ac67-17bb1a286e07",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-dcm-mixing",
+        "title": "Singapore JSA: Wet Deep Cement Mixing",
+        "body_sha256": "880458d6d4a30901415cb3e2bfc77ffaad6c4122bf864ec9ce7a76c473401d32"
+      },
+      {
+        "id": "9a4da28d-34c1-4fb2-9450-cc6c28c74173",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-deckplate-placement",
+        "title": "Steel Deck Plate Placement JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "ce59bccaa511f2184cc2ef2be2c3832908c011eed1bd142e34b9ba53a547688c"
+      },
+      {
+        "id": "9f3489f3-3a15-4e82-ace8-e5ed160e3a34",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-deckstud-welding",
+        "title": "Steel Deck Shear Stud Welding JSA",
+        "body_sha256": "5ebc1d34eb1899fdb35eea7ab116c54a7105bd69c092dff9e887c8ea306ef8b6"
+      },
+      {
+        "id": "7b25b6f1-cf02-42a5-b5c0-dff1448961ec",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-distributionboard-wiring",
+        "title": "Distribution Board Breaker Assembly and Wiring JSA",
+        "body_sha256": "05e8a2996908469169573979127fd9ca3d1eabc6f7f0044f44b67772cc6ee4fc"
+      },
+      {
+        "id": "1ec1c92a-9fdf-4e4c-ad74-b95936b5b3d3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-dock-leveler-loading",
+        "title": "Singapore JSA: Dock Leveller Loading and Unloading",
+        "body_sha256": "ce1b353c7dcf84e07dd3c7e7c453dd217dc6556541624b7f7789d02d3dacbf94"
+      },
+      {
+        "id": "4811b0cc-495e-49e6-b2a7-800125dde0a6",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-drillpress-metalplate",
+        "title": "Drill-press holemaking in metal plate JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "64f4ef7d7304d1f88df71f1af61b7d0205086f8146ef317b9f1b2ca1985e9354"
+      },
+      {
+        "id": "dcc04907-850d-422c-9e79-ae4200be0c07",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-drum-trolley-transfer",
+        "title": "Manual Drum Truck Transfer JSA",
+        "body_sha256": "ca65384f07e7e258c20bf7c3551d1aa32dceae88ab55a5f95472495a0ad8e62e"
+      },
+      {
+        "id": "67ebca3d-0b5d-445b-bed4-5ab0d80cb1ec",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-duct-external-insulation-vapor-barrier",
+        "title": "Duct External Insulation and Vapour Barrier JSA",
+        "body_sha256": "02ade2d7d0f9e045c5873e8131c1b742a4b7db5e61a6bc7c5604c4d0db33af9a"
+      },
+      {
+        "id": "1fcd7d39-a919-4b02-8338-434944f3852a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-electric-fryer-oil-draining",
+        "title": "Singapore JSA: Electric Fryer Manual Oil Draining",
+        "body_sha256": "a070cfbb1d96d591488a49917f2c92335e605c6c8b99ea7893dd3e40f0771c51"
+      },
+      {
+        "id": "4ce64727-72b1-4964-9326-129d7379a968",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-electric-pressure-washer-floor",
+        "title": "Electric Cold-Water Pressure Washing of Floors JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "07ff67f4695a3d12166e663c8f06a22a0fc3160f4332928ac582b5011215bbdf"
+      },
+      {
+        "id": "bb1b3cf7-46d4-4f5a-aa5c-a162f84bc330",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-electrical-safety",
+        "title": "Temporary Electrical Distribution and Energisation Testing JSA",
+        "body_sha256": "4f3b901c086a4be12e3ba04e9137c167cb15fc3438084b8f47d4e6854a83c076"
+      },
+      {
+        "id": "949a72c1-8b5f-4fc2-ac50-049c995f779a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-elevator-pit",
+        "title": "Lift Pit Inspection, Isolation and Handover JSA",
+        "body_sha256": "e6a8694445c66075a90434dc2cbde7bb6c182b34110797df90dd5fb29b7a6c94"
+      },
+      {
+        "id": "d0b88da2-c127-4575-8906-efb43f5229f7",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-erecting-scaffolding",
+        "title": "Singapore JSA: Modular Scaffold Erection and Handover",
+        "body_sha256": "fdf43a33c222dab2a6106a1ddf08bfaf8473b1f5752257e3781449529d90c3cf"
+      },
+      {
+        "id": "d51102e1-e9f0-47c0-99e6-e835e45b3be7",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-excavation-works",
+        "title": "Excavation near Buried Services JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "8d86e22dd256712e8cf631f70ebde94bde2c23f19f71691c756c796f0da1ae6f"
+      },
+      {
+        "id": "44cafcaf-6b5e-43a6-a0cd-d763f7480f53",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-exequipment-gland",
+        "title": "Ex Electrical Equipment and Cable Gland Installation JSA",
+        "body_sha256": "797191b3890e7dd4dcd3935fdce227f84ae89f366a01f5d766ffb0455e35db61"
+      },
+      {
+        "id": "b0331461-9e0a-4a3d-ba72-44cbbf79d468",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-fan-vbelt-replacement",
+        "title": "Fan V-Belt Replacement and Tension Adjustment JSA",
+        "body_sha256": "a8ae9bea2023d3c0dd3235c32edbe96ce24b6cd6495413dce6e1c45a46e30f92"
+      },
+      {
+        "id": "dd53e797-c9ef-43af-867a-d42bb0cc7416",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-feedercable-pulling",
+        "title": "Singapore JSA: Feeder Cable Pulling",
+        "body_sha256": "6726872675e130af1a25ca7faf5bbe9e70970ac3c7406b56e612ce683438ddf1"
+      },
+      {
+        "id": "bbef80df-e49d-4977-a5b4-d97d46e03910",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-firealarm-devices",
+        "title": "Fire Detector and Visual Alarm Device Installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "21463b75e23c8ca3f0e40acc70c0b5f971531342b844802876d7e90f0b40144d"
+      },
+      {
+        "id": "6c1f0c0d-ec51-4d00-b87d-7abca2849734",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-flour-bag-hopper-loading",
+        "title": "Flour Hopper JSA: Dust Capture, Bag Handling and Guarded Feed",
+        "body_sha256": "0c0dafc8e15e9201a5dd608eb8d1b6053f5bbd58b2218020cb12e2ac7f259270"
+      },
+      {
+        "id": "ec3bf3ea-b512-4735-8261-4b4819b98e87",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-food-slicer-cleaning",
+        "title": "Cleaning a fixed-blade food slicer JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "f8cde3e0a86e0a7a640ece08aa7eb04f2bfd23d74fe875e964c8773ee7b89b15"
+      },
+      {
+        "id": "31eed209-f6bb-4e60-aec4-1c1f865acfc0",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-forklift-handling%2Cko",
+        "title": "Singapore JSA: Forklift Pallet Handling and Rack Placement",
+        "body_sha256": "b40ab42197122428b324b72e3203c4659516db052d7fa0ffb0aa7e3342f416fd"
+      },
+      {
+        "id": "05c20e2b-5e5d-4bd3-8e68-d9dd8835218d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-forklift-leadacid-charging",
+        "title": "Forklift Flooded Lead-Acid Battery Charging JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "7d83a242163c2184051a3a241a134303b4c7ef1522bff3b71bdab685cca99a65"
+      },
+      {
+        "id": "9f084f37-2ada-45d8-9d2f-06e06f678b51",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-form-work",
+        "title": "Formwork Assembly and Stripping JSA",
+        "body_sha256": "a5c4a10af2badf30fb1e8dcdcfdac094f1c76ea4c1401e7f4a729820e9b2fd46"
+      },
+      {
+        "id": "bdca764b-f54e-4fd0-bf36-2c85f5c42576",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-gantry-transport",
+        "title": "Rail-Mounted Gantry Crane Yard Transport JSA",
+        "body_sha256": "f949cc31ea1ce8acf2bdf0bed7b3129924d56f0e3ce01a074a0431913be72fdf"
+      },
+      {
+        "id": "a49bb6f3-2e28-4867-b71d-6b011ef23bd3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-gasoline-plate-compactor",
+        "title": "Singapore JSA: Petrol Plate Compactor on Level Ground",
+        "body_sha256": "d030f8c373b4708e5b9ed4610ee82ee616d6bbd189b05ac77296dd343aee6103"
+      },
+      {
+        "id": "1ab50de6-b794-4e24-95cb-c9bc0b3359a3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-general-waste-bag-collection",
+        "title": "Indoor general-waste bag collection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "80a5da3917cac9e17bca4fc3bba943052be5ec36be56ebf751f1e65433de9e1a"
+      },
+      {
+        "id": "e23fc1dd-df54-43b0-8d13-e38bc8e31ce3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-generator-installation",
+        "title": "Generator Installation and Exhaust Connection JSA",
+        "body_sha256": "66832ba480b3a37d6d599925972d19cf75070cd6dbb9729d586139d0bba19c6b"
+      },
+      {
+        "id": "e34e1483-8047-4b78-8eb1-7374ec597441",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-girder-erection",
+        "title": "Precast Concrete Bridge Girder Lifting and Erection JSA",
+        "body_sha256": "ac3fc04e92bc713a046b010981cd83f602c7bb00f6008524cd345e166fda606e"
+      },
+      {
+        "id": "14f80883-e748-42f3-a47f-929ff7753377",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-gondola-caulking",
+        "title": "Singapore JSA: Gondola Access and Glass Joint Sealing",
+        "body_sha256": "add6ec82bee45c70b1b0e12ec710a0b8d5319c09f203c3904f9a9aa3fec89658"
+      },
+      {
+        "id": "ee452039-a718-414a-88d4-d822f8bf756a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-grader-leveling",
+        "title": "Motor Grader Roadbed Levelling JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "8142210897616062f23b15b040de3701265c2dfb9ed5b4aecde19dab43c567f9"
+      },
+      {
+        "id": "3cbbdd76-60ce-4e55-ab43-062886f5afdd",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-grinder-weldfinish",
+        "title": "Weld-Finish Grinding JSA",
+        "body_sha256": "68cc0a1cb5c7ac66880cfa5decc4ca3ff538baabe20283c13885c380012093a0"
+      },
+      {
+        "id": "7eef4255-080c-4ced-821f-4ea28bf329d2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-ground-exoweld",
+        "title": "Earthing Electrode Installation and Exothermic Bonding JSA",
+        "body_sha256": "f1f375e4dae96b5ff2105742f3548d278c9fc46a9abfb7fb4e07e348ebfc3a0d"
+      },
+      {
+        "id": "92ba461b-6438-4685-94d3-92f05b7c5b1e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-gypsum-joint-compound-dust-sanding",
+        "title": "Singapore JSA: Gypsum Joint Finishing and Dust-Controlled Sanding",
+        "body_sha256": "a4c0bdd90a26374d042ac96059fed81aaa203852ecb46d743b01b612bf2e5e3e"
+      },
+      {
+        "id": "412b618a-b553-4711-8e75-b2ba08ee7b76",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hammer-drill-anchor-holes",
+        "title": "Hammer Drill Anchor Holes JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "b225c73ded4325ddce93fb54fa8504c707772929776fe45e97bf577af2dba83a"
+      },
+      {
+        "id": "8742f148-a732-47e5-809b-6dbc8e351880",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hand-belt-sander-wood",
+        "title": "Handheld Belt Sanding of Bare Wood JSA",
+        "body_sha256": "8c60e13b1e69182d7af0abcf8a1760d96e0641339a085fe1499b6943f6e69bab"
+      },
+      {
+        "id": "2d0e211a-e3ba-433c-ab6f-205f4e89a89e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hand-router-wood-edge",
+        "title": "Handheld Wood-Router JSA: Feed Direction, Collet Fit and Full-Path Base Support",
+        "body_sha256": "2d6ef24d4d93fc3a555711c05c9b570aa3718bb2f1c062f7051fdebc0b5b5b67"
+      },
+      {
+        "id": "d3e304bf-b28e-44a8-913b-30ee780523ef",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-highbolt-tightening",
+        "title": "Singapore JSA: Structural High-Strength Bolt Tightening",
+        "body_sha256": "2b9e63d1a2dfa6b427140cc6fdc10c02403e879e5b525ed65c1320eb8812676e"
+      },
+      {
+        "id": "7352394f-4df2-42b8-86b4-10b0e04663f3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hoist-mast",
+        "title": "Construction Hoist Mast Erection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "82f320eea65537afb813989802ec435379650ede6c9263cec2e842a0eb994f79"
+      },
+      {
+        "id": "7e90c161-bfcb-44b6-919c-406e290e9806",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hood-dishwasher-rack-operation",
+        "title": "Hood-Type Commercial Dishwasher Rack Operation JSA",
+        "body_sha256": "4fe315787b551e21eb35261f349435de0d899dce23038f718feac98b5b03947f"
+      },
+      {
+        "id": "de9122d6-7c88-4563-b5ec-db032c1569fe",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hot-food-container-serving",
+        "title": "Hot Food Container Transport and Serving JSA",
+        "body_sha256": "0c7adaa284aee95157a91587b001f656668040e54de4164836f0d8c2e0fbfc11"
+      },
+      {
+        "id": "625895a3-ff0f-475b-974a-007e8cf36b19",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hot-melt-carton-sealing",
+        "title": "Singapore JSA: Electric Hot-Melt Carton Sealing",
+        "body_sha256": "8be458e6a5f0740b3102c7cb35912ac293d5a8bc8de6219425947ec0e718f547"
+      },
+      {
+        "id": "82358951-b505-4ed4-b0dd-6b39c0b05ea6",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hpile-installation",
+        "title": "Drilled H-Pile Installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "e5e74874eecb109ec478ab9548980a0fc2ccdf453bb9be1982e3831add90470f"
+      },
+      {
+        "id": "32cdac41-4a0d-4c38-b9db-1f081c1598ea",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hvswitchgear-positioning",
+        "title": "High-Voltage Switchgear Lifting and Positioning JSA",
+        "body_sha256": "a3ce62526452f1c42566cf6bd91b1efa625b70c7b5a5e9f9aaf66e9823db42f9"
+      },
+      {
+        "id": "3a4d0b60-723c-466f-a1c9-a264d712a892",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hydraulic-hose-replacement",
+        "title": "Hydraulic Hose Replacement on Isolated Equipment JSA",
+        "body_sha256": "630111038f160dc086d76e064c3fc466aef7d5c67da54a3956e6f419439bf395"
+      },
+      {
+        "id": "6fd434e7-47b0-4b06-aa7b-8f87c2d199a6",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-hydro-testing",
+        "title": "Singapore JSA: Temporary Pipework and Hydrotest Water Filling",
+        "body_sha256": "747b1abcc8bd069c6efdc2e30c32868843c7807009917872c8cf8fdae156a5c0"
+      },
+      {
+        "id": "36ba0a36-3e7f-42c5-9d47-fca05985c500",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-impact-wrench-bolt-removal",
+        "title": "Cordless Impact Wrench Bolt Removal and Preliminary Assembly JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "84b751a005f46634d3ee62a21fc96cba45c490618edd7bc55a9ac1050c5aba18"
+      },
+      {
+        "id": "39d0668a-2916-4c55-bd50-3b70affaf820",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-impulse-tubing",
+        "title": "Process-Instrument Impulse Tubing JSA",
+        "body_sha256": "7cb116b25ffa84f4160a7f13cd171bc354e3ca57546dc3df8384f6491af89520"
+      },
+      {
+        "id": "3b703001-d4d3-43c3-a355-0ff078da2698",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-indoor-floor-tile-wet-cut-laying",
+        "title": "Indoor ceramic tile wet cutting and laying JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "3c8772a0b9e452a50197cbe14e4975c8b3e61eea4417c736612b159c28d92223"
+      },
+      {
+        "id": "3dfb06ce-e6c8-41df-8a73-633516a28fec",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-indoor-pvc-drain-solvent-joint",
+        "title": "Singapore JSA: Indoor Nonpressure PVC Drain Solvent Jointing",
+        "body_sha256": "6805f24f1488d4e9c0dc625b2c576ef061ebe1f7d5df8885ec3d7ca7003ad234"
+      },
+      {
+        "id": "4fb72965-7dc9-4fd2-b8a8-54a22b461e44",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-industrial-lockstitch-sewing",
+        "title": "Industrial Single-Needle Lockstitch Sewing JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "74818da3e6631059c46721afb467142ef4acee6e300fd7324660372235944ca4"
+      },
+      {
+        "id": "7c210694-9909-44b6-86fe-c20f656baa25",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-inverter-dcwiring",
+        "title": "Solar Inverter Installation and DC Wiring JSA",
+        "body_sha256": "c4ba82fd2b440fed8670624190af9e6c959e8f9372faaa79865c06e0c780ff4c"
+      },
+      {
+        "id": "788b8f0a-60d3-40f9-ad1c-92053a223866",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-jointer-wood-face",
+        "title": "Wood-Jointer JSA: Automatic Guards, Push-Block Grip and Safe Workpiece Limits",
+        "body_sha256": "e8e70f5f28677d6705586abba2b4495161c67fbff6f6243a0fbcd0f39f1e4dd5"
+      },
+      {
+        "id": "ede843aa-2e6c-460c-9574-e887614e9075",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-kitchen-knife-food-preparation",
+        "title": "Singapore JSA: Kitchen Knife Food Preparation",
+        "body_sha256": "291bd8340b7293a8358913055cb5ae595dae534a3bc4e054bdb743cd354e6dee"
+      },
+      {
+        "id": "fe734feb-9341-416c-b4ee-6a3413466e54",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-largepump-positioning",
+        "title": "Large Pump Package Positioning JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "a6493bb467caab362e0c56b2f845c288f47e44a2d1279ab2ef272ccbd553c2a4"
+      },
+      {
+        "id": "194141d2-31cb-485d-bbde-3f192e5de118",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-lathe-bar-turning",
+        "title": "Lathe Bar-Turning JSA: Workholding, Entanglement and Stopped Measurement",
+        "body_sha256": "de6fdfa3c811eb6f831d1138ec6c37ecb850027a9cdb1fa5d374cbb3c5828d93"
+      },
+      {
+        "id": "511adbbe-7e23-448f-a7f1-42125b33afa5",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-leak-testing",
+        "title": "Inert-Gas Purging and Pneumatic Leak Testing JSA",
+        "body_sha256": "77c544cbf79eb017c0ad211db752f78839ace9eacc44fac83bc5a00451685a8b"
+      },
+      {
+        "id": "06c7aa4f-df2c-477b-943d-435e0ce83ba3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-lfl-ins",
+        "title": "Singapore JSA: Lifeline and Fall-Protection Anchorage Installation",
+        "body_sha256": "2b750aa8f5d8fb4b287ff9b324ace88683b787c640da8ec88af4afd6c54ff10d"
+      },
+      {
+        "id": "0de2ff59-3696-4ea1-9f31-5f813437a23e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-lightning-downlead",
+        "title": "Lightning Air Terminals and Downconductors JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "c704e11101efd19923eea3ed9082fbc4bd28b218f3423af8935851678e55f274"
+      },
+      {
+        "id": "119b49ef-1a80-4b0a-a547-1548a9caf741",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-loader-loading",
+        "title": "Wheel-Loader Aggregate Loading JSA",
+        "body_sha256": "1dc1fe985829bf6c7823a1383a297729f9319d369187ca95493addba37d7188c"
+      },
+      {
+        "id": "220166a2-f203-4efd-8f01-3362b958161e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-lowvoltage-livecheck",
+        "title": "Low-Voltage Electrical Condition Inspection JSA",
+        "body_sha256": "d3fd377054480e25230382d42919792e55278140adf007f200d93d4888b218de"
+      },
+      {
+        "id": "d9394dd1-72a7-4d47-88e3-14b404a5d473",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-magnetic-drill-steel",
+        "title": "Singapore JSA: Magnetic Drilling of Horizontal Steel Plate",
+        "body_sha256": "d9e27bfb275b3926aa9bd8bbd26d4aa990cc18c53fa676270c99baa6892ea296"
+      },
+      {
+        "id": "336741ce-79c9-4800-a344-5ffe186c4660",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manhole-assembly",
+        "title": "Precast Manhole Assembly and Interior Finishing JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "2efdb2f934757354e99129a594b5e63ec90538a035f0496cbbeb4ca82085be69"
+      },
+      {
+        "id": "d948a07a-6aec-411c-95d6-98547d130a0b",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manhole-cablesplice",
+        "title": "Manhole Cable-Splice JSA: Independent Air, Isolation and Reentry Checks",
+        "body_sha256": "4606b21c10d9b12688a5dbaefb91c74c00dce82b4545689dc0dac62903c856b9"
+      },
+      {
+        "id": "3f6a4d29-d56d-4ef9-8daa-6a79a208f1c2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manual-box-lifting-stacking",
+        "title": "Manual box lifting, lowering and stacking JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "4b88037a68853c5558384a25bef6b8bf8649bf41fe09a4ec9f6467dec94c26b9"
+      },
+      {
+        "id": "9e8a6311-2576-4bef-8a6d-4bf357c0c9e7",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manual-dishwashing",
+        "title": "Singapore JSA: Manual Dishwashing and Safe Sink Handover",
+        "body_sha256": "3c473543ee7d650cec6cbc6e365b7e81f3948a0a7df91abdcbd9f3ce80f98978"
+      },
+      {
+        "id": "0b570bac-0596-4752-ba52-af8751d4b66c",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manual-floor-stair-cleaning",
+        "title": "Manual Floor and Stair Cleaning JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "4765c82ffe826bd3ca0c450f916967904eaa7b7575a6a7350e75f2b994a56656"
+      },
+      {
+        "id": "29617b28-84d7-4b6b-84a1-d78adefbb491",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manual-pallet-stretch-wrapping",
+        "title": "Manual Pallet Stretch Wrapping JSA",
+        "body_sha256": "fd3c4408536406a521a105a6edb2c80cf8936ef7154bedf3697220aa174aa7ab"
+      },
+      {
+        "id": "518ccc11-16b8-402e-91b0-694ee9489490",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-manual-pallet-truck",
+        "title": "Manual Pallet-Truck JSA: Starting Force, Wheel Obstructions and Controlled Lowering",
+        "body_sha256": "29c8dc1610df9d4ce3d1ad837b866143f162c4df3d74a94a81ef783d7cf011f9"
+      },
+      {
+        "id": "7f9959c4-8943-42a4-88cf-3c7ad2cd1479",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-mccpanel-wiring",
+        "title": "Singapore JSA: MCC Power and Control Wiring",
+        "body_sha256": "b760e98345928165e5abffb97ebf45597d5136a1dd556d5ccc09b0a4a0534287"
+      },
+      {
+        "id": "e5e08723-3c89-41eb-9cca-15dcb2ab1233",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-mechanical-bearing-puller",
+        "title": "Manual Mechanical Bearing Puller JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "ddefcc29cb754f223b93065e461f0cbd9c72ebca7d159d4e949a29eea3a2d83a"
+      },
+      {
+        "id": "837c6542-96ae-40ee-8870-b76bfd798d99",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-metal-bandsaw-blade-change",
+        "title": "Horizontal Metal Bandsaw Blade Replacement JSA",
+        "body_sha256": "9e73cb8d43fa717d8be7a71e47ed097f7d6070178a3ab927575543df0eaba3b9"
+      },
+      {
+        "id": "20391d6f-3e24-4db2-a2b9-4de545cf77c9",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-metal-conduit-cut-bend-install",
+        "title": "Manual Metal Conduit Cutting, Bending and Installation JSA",
+        "body_sha256": "24bf1430618e90ba288bdceafb385441aadae055b43f620f67539d7b0ebdfe61"
+      },
+      {
+        "id": "a045efa5-f0d3-44de-8825-46a57b8f1a72",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-metal-stud-gypsum-partition",
+        "title": "Singapore JSA: Metal-Stud Gypsum Partition Installation",
+        "body_sha256": "cf235928cbb6a8d45b7dd0130532cd91da74871c41590e487094b347af5e39d4"
+      },
+      {
+        "id": "05cc0d92-eb4a-4b93-8afe-8c697c2981d4",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-metal-window-frame-installation",
+        "title": "Bare metal window-frame installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "c0243d015be2b8a6ed4170fd94c3a21ab32bc6d1e348a0c33be50207a29a9a24"
+      },
+      {
+        "id": "bc22ac6b-267e-4385-97aa-6d8b6ac046bf",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-milling-flat-block",
+        "title": "Manual Milling of a Metal Block Face JSA",
+        "body_sha256": "883d8d4a23117b7f5a61a955b8224d40edeb815b6d69c82fa925053124396a80"
+      },
+      {
+        "id": "f4860d18-fc89-4205-bdb7-cfb03911b03b",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-mixer-unloading",
+        "title": "Ready-Mix Unloading JSA: Reversing, Chute Pinch Points and Blockage Holds",
+        "body_sha256": "9e8bd66d4f1368bc3d54eac36b459611b3b45df9d8171643d9632d273dd85873"
+      },
+      {
+        "id": "33e4f2e4-2554-4e1c-8d5a-c66e1fea65e2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-nonloadbearing-concrete-block-wall",
+        "title": "Singapore JSA: Non-Load-Bearing Concrete Block Wall",
+        "body_sha256": "c0e3f3317dfbe3f5cbed564314c5ac83b2fe2a7eed6758b0407dcb1da701c36c"
+      },
+      {
+        "id": "95c30b90-b831-40ec-b209-5a65b7e72ff7",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-opening-covers",
+        "title": "Floor Opening Covers JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "2f29c1ae476158a6806bb94bd1b347b7d911b080282028e3b876efc95d23066c"
+      },
+      {
+        "id": "c27a17b5-cf06-4b8f-8be8-f73218271a44",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-overhead-crane-load-transfer",
+        "title": "Overhead-Crane JSA: Rigging Balance, Control Direction and Stable Landing",
+        "body_sha256": "7db9566fb3829068033c5fb82612ba35c0f7b701309076a20c52420b99b16ada"
+      },
+      {
+        "id": "d562fe6c-6696-4233-b882-0ad0dc62b872",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-overhead-insulator",
+        "title": "De-energised Overhead-Line Insulator Replacement JSA",
+        "body_sha256": "a48fa3bae2c7152c2b5a870f031fb4514c6135de4a357020cdb5693181139584"
+      },
+      {
+        "id": "55f9f195-e1f5-41ee-bcde-9f91cc9d3eb2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-oxyacetylene-cutting",
+        "title": "Singapore JSA: Oxygen-Acetylene Cutting",
+        "body_sha256": "87644989e0bf352d27c6254de968c1ae787fd382cc70fa938f3c6704db03a23c"
+      },
+      {
+        "id": "848d5d5e-9725-4297-af52-a8f1a63b5f88",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-penetration-firestop-installation",
+        "title": "Listed penetration firestop installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "a0105dbf161e355a31503b0e7e198eae6e65da2a561383fc4fa08119e686634d"
+      },
+      {
+        "id": "1f190afd-52fa-4b2a-9f61-fc41a9c5ffe5",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pile-driving",
+        "title": "Piling and Associated Drilling JSA",
+        "body_sha256": "1ccbe2692fd2c19b692c42219d9a56a64bf515d8d9e82ecd82e014bc0073cc91"
+      },
+      {
+        "id": "74cda5cd-be92-482c-a09d-95b47d12f943",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pipe-disassembly",
+        "title": "JSA Risk Assessment Preview for Pipe Flange Disassembly and Gasket Replacement",
+        "body_sha256": "1f3fcf7fcdf3be18bc156da392242e09ce1893a6a7156cf9b4e136df5b60d9a3"
+      },
+      {
+        "id": "f6869948-4764-4fa1-af37-342414bf9af0",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pipe-flushing",
+        "title": "Singapore JSA: Pipe Flushing and Assessed Pipe Jetting",
+        "body_sha256": "d7324e0cc600129a4615283b03ce91eb3dbe2fa3d364ed820bc861ef8200dc44"
+      },
+      {
+        "id": "a4183e9c-497e-48e3-b9d2-0a8c1d34d792",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pipe-threading-machine",
+        "title": "Stationary Pipe Threading Machine JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "c1654b6e70e5c7e8df7a042cb78c8bf8f9a1009e3622142146e1e8cfcbc9178a"
+      },
+      {
+        "id": "68fe4ef4-a3c7-44eb-9ff1-fe8600eb365d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pipehanger-installation",
+        "title": "Pipe-Hanger JSA: Test-Water Loads, Anchor Evidence and Staged Support Transfer",
+        "body_sha256": "5b3f2abb80f41104612720cc667bae668292021b7bff60d5f3671297eee86033"
+      },
+      {
+        "id": "f6f2951d-bdba-45b3-8a3d-695f899f15e3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pipeline-installation",
+        "title": "Water and sewer pipeline installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "22a8c96f3fc08efdf80e8460b21724da43986cfbc2fd718578ddd7f9daa9e957"
+      },
+      {
+        "id": "fd9ba05b-5a68-4abd-844a-15fc16a4e642",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-planetary-mixer-cleaning",
+        "title": "Singapore JSA: Planetary Mixer Bowl and Agitator Cleaning",
+        "body_sha256": "20e1db105a5239c88909aa518b1c1c985c201ad07ff7649fa75c024b69b57091"
+      },
+      {
+        "id": "53494076-76b4-4c74-b4d9-784a1993a77a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-plasma-platecut",
+        "title": "Handheld Plasma Plate Cutting JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "7461548b25931b68af6f6a3d12dcfa64504ea71f51fad46afc1e5112f998ec21"
+      },
+      {
+        "id": "6a7f7484-f27f-4124-a610-9b6e1050e2a8",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-platform-trolley-transfer",
+        "title": "Manual Platform Trolley Material Transfer JSA",
+        "body_sha256": "6744e9ce4d007031ae894a23ac3286ba03ca2f8a1c0e643f0a78a2c73f4a7e18"
+      },
+      {
+        "id": "5cad4243-150c-41a6-9e5a-753eb7ae0e9a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pneumatic-calibration",
+        "title": "Pneumatic-Calibration JSA: Stored Forces, Full-Stroke Tests and Re-isolation",
+        "body_sha256": "0e27c439f68b8c1f7d769d2fdfe3f6c255e313aabc77daffd96e721dab9f3ce5"
+      },
+      {
+        "id": "b61862bc-0f4a-4f05-bc35-7bda67ea8d45",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pneumatic-nailer-pallet-repair",
+        "title": "Singapore JSA: Pneumatic Nailer Pallet Repair",
+        "body_sha256": "777ae7409f478f6c2221c0cd9de70fd7729da2718725f7a2bdafe76aebc10ea5"
+      },
+      {
+        "id": "a41250b9-c27d-4fed-b5ad-3d37250416ba",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-portable-circular-saw-wood-crosscut",
+        "title": "Portable Circular Saw Wood Crosscut JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "e6ab925c66aa9621c276ef4bd3a75bfec4865718ed87ba7f7e3a3f7767bb05ce"
+      },
+      {
+        "id": "5da2cf28-ef9c-439a-b170-e88980da292e",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-portable-generator-tools",
+        "title": "Portable Petrol Generator Power-Tool Supply JSA",
+        "body_sha256": "cd27003987bcd7bc3bb84a08fbde35702c5b5223d3d8f994b51c2334fbedd261"
+      },
+      {
+        "id": "8d340490-abf4-4036-b8cf-dad12ae3653f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-portable-planer-wood",
+        "title": "Portable Electric Wood Planer JSA",
+        "body_sha256": "658d2860907c3f371d342f961427cc7814c4c50d73f3ec3e0a87d750d1a99826"
+      },
+      {
+        "id": "afc3c46c-e321-42d0-a93c-1fd7d5eac3a6",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-prefab-scaffold",
+        "title": "Singapore JSA: Prefabricated Mobile Access Tower",
+        "body_sha256": "34d129c3131fb2ef10e225144848223f81963627a1a3281df0cbb5d81d6cb0f4"
+      },
+      {
+        "id": "3ee1ee4a-3a4f-4893-b181-eb00ddd03b6b",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pump-installation",
+        "title": "High-Pressure Plunger Pump Installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "1c547e456e89f0b5ec7b88aa113fc359df4b1b1fb065dc4b63b9b14c5260a28e"
+      },
+      {
+        "id": "553b2d67-382e-4d5c-8c2b-05f33cb92c62",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-pumpseal-replacement",
+        "title": "Pump-Seal Replacement JSA: Auxiliary Pressure, Seal Settings and Safe Startup",
+        "body_sha256": "1ec6ea4e2bca098f05e03b534b0a79b7688ea8bbabd0f595802a81a601fb78f4"
+      },
+      {
+        "id": "5d2fb009-09d7-47e8-83fe-2e504b3166bb",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-radiographic-testing",
+        "title": "Industrial Radiography and Subsequent Gas Drying JSA",
+        "body_sha256": "87dc9aa3ec54047cdd429f214fedc5bb97fe7747b00b7ff01ab68bac6af87bf3"
+      },
+      {
+        "id": "4805d3f8-64f7-48c7-971f-8ca6e9370532",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-raised-access-floor-installation",
+        "title": "Singapore JSA: Raised Access Floor Installation",
+        "body_sha256": "2d609e3cfd294515db4c5b1587d2c783c425d4e194afc94eff73225607c5fe32"
+      },
+      {
+        "id": "b34d070c-f678-42aa-9135-94e33f23ab86",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-rebar-work",
+        "title": "Reinforcement Bar Work JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "6fd74ad0a75cb304f853be194a7ac1ee817745cff76b6ce8cc26cd1f2044e2a8"
+      },
+      {
+        "id": "8f511576-d234-4194-9e41-e8941f7ca80d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-rectangular-duct-section-assembly",
+        "title": "Rectangular Duct Section Lifting and Assembly JSA",
+        "body_sha256": "51d9605591c89aecabc794265b23364c78f74ff7c65654ad15d2b89889010458"
+      },
+      {
+        "id": "3786d93e-601c-4074-af4a-230b566ca50c",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-restroom-cleaner-use",
+        "title": "Toilet Cleaning Chemicals JSA: Product Identity and Safe Re-entry",
+        "body_sha256": "c4880851dd966a19fbec99be9382d032da389352bf4f6d5f3b5d39000d5a3721"
+      },
+      {
+        "id": "09506a98-4066-457c-9756-fef1a2c41994",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-retainingwall-construction",
+        "title": "Singapore JSA: Reinforced Segmental Retaining Wall",
+        "body_sha256": "14e8d7dc5eb1d8e7b2ea6cbfa6f0f2147a88514733d7dc4136ff4db0cbd5aa14"
+      },
+      {
+        "id": "c1af7726-9fd9-48bc-83d1-1c3eee365650",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-road-pavement",
+        "title": "Road Asphalt Paving JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "901b9a4c276d5ce7ffdeabd2186c288e48320ad08186366110a777c3cfafa7d7"
+      },
+      {
+        "id": "c50c9c1a-4a72-432f-8dae-14704e065b9a",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-robotcell-setup",
+        "title": "Robot-Cell Setup JSA: Stored Energy, Enabling Control and Verified Restart",
+        "body_sha256": "3f147d6e89bb96968dde670822b7bbbb960668ad2a99a2eb55527c54add4300a"
+      },
+      {
+        "id": "346c1b7a-3c79-4407-8fe7-1c2109670ec4",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-rockfallmesh-installation",
+        "title": "Anchored slope rockfall-mesh installation JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "d45f00608691d298db3de97acc98cb7c758e7698f81abae139919b315cf8a7b6"
+      },
+      {
+        "id": "55fb5e53-75e5-4bc6-9c84-de925721d8ca",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-roller-compaction",
+        "title": "Singapore JSA: Ride-On Roller Asphalt Compaction",
+        "body_sha256": "8172bec32f128a931c4c42620227783830501d4851223d84c1f4c93f3dd788e1"
+      },
+      {
+        "id": "9a8b717d-68e5-4a0d-b134-f150d29a58d3",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-roof-slate",
+        "title": "Singapore JSA: Asbestos-Cement Roof Removal and Replacement",
+        "body_sha256": "c5ae4587592f2fb22f23b5d365928ab6d5f9716fb0e22789363560cb038a1637"
+      },
+      {
+        "id": "01bbe34c-6d5a-4f39-b232-d2a1481bf34f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-roof-truss",
+        "title": "Roof Truss Erection, Temporary Bracing and Sheeting JSA",
+        "body_sha256": "cac407db2ed52ff4eeb02c5cadc8e4740e023d8f139bd5d2381008993c499217"
+      },
+      {
+        "id": "462cf9f9-3ada-4416-a9b0-94e7fcf64b61",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-safety-cutter-unpacking",
+        "title": "Safety-cutter carton opening and unpacking JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "8eed990148fe14515d7b1cbfefe2732e02ae9725f9e9c3e86acf49f6ad7ed12c"
+      },
+      {
+        "id": "bd6cd981-47ad-4609-8cc8-c89db25c30c4",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-safety-net",
+        "title": "Singapore JSA: Personnel Safety Net Installation and Removal",
+        "body_sha256": "084ea50f177a843ee41eb875597edacf7501a5e790ccd9fde3788e4b869f3c3f"
+      },
+      {
+        "id": "a1bcd65b-d891-4928-bc93-4794142a17d2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-sanddrain-installation",
+        "title": "Singapore JSA: Drainage Sand Column Installation",
+        "body_sha256": "1bfe4b70faf4d1f7ee254d5b59ca35e0b48f565925e14aa9eec2ef21e001bc9e"
+      },
+      {
+        "id": "cf226270-764f-41e0-ab4f-66c154ddb8e0",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-scaffolding-dismantling",
+        "title": "Tube-and-Coupler Scaffold Dismantling and Remaining-Structure JSA",
+        "body_sha256": "1ece66dbf72450b41c49a01522b5d58afcc0a153a2635d789b1c432dfc2b7adf"
+      },
+      {
+        "id": "19f3ce92-c6c6-48d0-abe9-5adb78333a70",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-scaffolding-erection",
+        "title": "Supported Facade Scaffold Erection, Platforms and Ties JSA",
+        "body_sha256": "943744bf158e6811d2490509977b4d2ccbca7cf922bfacddda2ab154cda89142"
+      },
+      {
+        "id": "718ba538-6160-4a04-992b-53a0251e3052",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-scissor-lift",
+        "title": "Singapore JSA: Scissor Lift Building-Service Installation",
+        "body_sha256": "f0c7ddca3890f5764a56f0a74097f77c0e403e858a4b22ccdd65c5982dff9bac"
+      },
+      {
+        "id": "e6fc0697-d4e4-4edc-8074-188000409f9c",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-shaft-alignment",
+        "title": "Singapore JSA: Isolated Motor and Pump Shaft Alignment",
+        "body_sha256": "73976b9315c01dde5804b221c6fa0174599c584c434c1993d9c661f3464bf047"
+      },
+      {
+        "id": "516ffe43-26cb-4458-9afd-26b0969ee175",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-shotcrete-reinforcement",
+        "title": "Tunnel Shotcrete and Rock Reinforcement JSA",
+        "body_sha256": "979297b0122c969d9befa6ffef664b38db524b23d51fe220096cb8687fdcae1e"
+      },
+      {
+        "id": "bf609f64-a467-4140-a114-2b30d90f7049",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-signgantry-erection",
+        "title": "Steel highway sign-gantry erection JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "8585d462d6db104a339c02c39d11ba4560ccbf5cb8cffaf13f22d6d4ba2ab192"
+      },
+      {
+        "id": "d67e9eb4-e77b-4de5-bcad-fad17eadf4f4",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-slung-scaffold",
+        "title": "Singapore JSA: Fixed Slung or Hanging Scaffold",
+        "body_sha256": "342492fb027f0f3f0c1dd49c1aa26d44638c764833b99b6879b01b88955d2ef6"
+      },
+      {
+        "id": "4c477c76-3084-4fcb-8ef3-500d971ac1ae",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-soil-transtport",
+        "title": "Singapore JSA: Soil Tipper Loading and Haulage",
+        "body_sha256": "36c4ddc77b3d663a5fb082ac7fa22e75196a6c017a925d37bca02b74a90382f9"
+      },
+      {
+        "id": "8f5632c7-2ce3-44ca-9932-0864891e39cb",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-solar-rooflift",
+        "title": "Solar Module Roof Lifting and Mounting JSA",
+        "body_sha256": "15dfe4f9874dad0920eb1741e213ef305b2c0fd6bcf49ff6b0c06b27b32fa5a4"
+      },
+      {
+        "id": "9fd53a9f-b858-42ed-b5c5-b71053411dcc",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-sprinkler-grooved-coupling-assembly",
+        "title": "Sprinkler Grooved Coupling Assembly JSA",
+        "body_sha256": "53d252d650264a22d34dfc3393a1ea7df0b69d6425a7e87da92a1ef97448b917"
+      },
+      {
+        "id": "c6507b03-3b37-4bdf-832a-8a2bbffe30f5",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-steampipe-welding",
+        "title": "Singapore JSA: Isolated Steam Pipe Welding and Insulation",
+        "body_sha256": "1ddf6b22980421b11960797f71edc178be4a07dd8d489ba2c7fcba348aae4e42"
+      },
+      {
+        "id": "0284688d-bb4c-46c4-9295-4ca9a3be00a2",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-steel-heatbending",
+        "title": "Singapore JSA: Controlled Steel Heat Forming",
+        "body_sha256": "a905338bcc009fa43c5ffcd7e362a294eed2d988e770a51d133d8ba52b136204"
+      },
+      {
+        "id": "83aed454-9144-4e3f-aaec-e660da027259",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-steel-smaw",
+        "title": "Structural-steel shielded metal arc welding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "72f3c0e290059d315105b57964d4e80f3409f7226244e6c0175a205b814afc0d"
+      },
+      {
+        "id": "b8c1e3fe-f92f-40cb-933a-aac395a1bd35",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-stepladder-work",
+        "title": "JSA Risk Assessment Preview for Lamp and Fixture Replacement Using Portable Stepladder",
+        "body_sha256": "31a826db5510dfb3916bf4be7108a0518685ce91593369ac2124c8ce4a175b73"
+      },
+      {
+        "id": "d86fef77-beb5-43b3-b9e5-cd03d7683cc0",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-stretch-wrapper-film-change",
+        "title": "Singapore JSA: Stretch Wrapper Film Roll Change",
+        "body_sha256": "a0aa826ffac3bc2d57412064f29de6bf4c2f2403c1a1118434ee6776001ccb95"
+      },
+      {
+        "id": "7c7c2873-c2ae-4423-bdb3-4bd546257ffb",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-structure-demolition",
+        "title": "Singapore JSA: Mechanical Concrete Demolition",
+        "body_sha256": "db0d70df1453b1ebaa879272732306b7ab395247ea39fdbbc157af31f3a076c2"
+      },
+      {
+        "id": "6ae4418f-df60-41dc-86b8-cfc53949412f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-submerged-arc",
+        "title": "Submerged Arc Welding with Rail Carriage JSA",
+        "body_sha256": "9a97e3517e7ff5719e8030cea6355908bf148b6d16d2a76306de37d5043cc772"
+      },
+      {
+        "id": "ba313577-376c-41cb-9d20-37729ef702e6",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-suspended-ceiling-grid-tile-install",
+        "title": "Suspended Ceiling Grid and Mineral Fibre Tile Installation JSA",
+        "body_sha256": "1b0397604a04b3908608d41adf4ee3cc83fc579e1040df95caf95d2930c7c54b"
+      },
+      {
+        "id": "acb99885-8df9-42f3-8cb0-bc1df13059a8",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-suspended-scaffold",
+        "title": "Singapore JSA: Single-Person Suspended Chair Facade Work",
+        "body_sha256": "47644c53dfc6719b510562eed7106897ed3b9940b65dda2a4eb07b0ad4e5375d"
+      },
+      {
+        "id": "b8ba1739-1a50-4611-ab27-0054c2c55cab",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-table-saw-wood-ripping",
+        "title": "Singapore JSA: Table Saw Through Ripping of Wood",
+        "body_sha256": "da6260851ea38d790590dc927227492bab1eafb74fec5ab99bb9c5dd3fba1859"
+      },
+      {
+        "id": "4eaab681-a548-42a3-821f-952b05c23065",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-tank-cleaning",
+        "title": "Confined-Space Tank Cleaning and Controlled Re-entry JSA",
+        "body_sha256": "3028d5ad58896dc732ed5032c52af63f54973f1d3bd120baa8e07703295f9027"
+      },
+      {
+        "id": "8d1927a2-72a1-47c5-9166-d46b497e51b5",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-tankbottom-welding",
+        "title": "New storage-tank bottom plate welding JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "75fa84338716deed76e1c11ff7dc487a3404e9427bfc2f0f48cae561927f7434"
+      },
+      {
+        "id": "fbff0615-5164-4c43-841e-10735252628f",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-tbm-excavation",
+        "title": "Singapore JSA: Earth Pressure Balance TBM Excavation",
+        "body_sha256": "fa9c4d3d6f986f823cebe59602bba2cdafb31d5709b1f1b0c5f0f9a72b99db3a"
+      },
+      {
+        "id": "4aa09ce2-9036-4d96-b7ea-3d4a022120de",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-timbering-installation",
+        "title": "Singapore JSA: Excavation Waler and Strut Installation",
+        "body_sha256": "8c1ba65365d9ea8db614bd4bc0953359c66a858706dea842afdaad9a1a5383c2"
+      },
+      {
+        "id": "d90387e5-d7f9-4f5b-8b35-066f1c7f1628",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-transformer-installation",
+        "title": "Transformer Installation JSA: Secondary Backfeed, Bushing Loads and Test Handover",
+        "body_sha256": "f89f38db46f3eb4ec05200f984b1512aed636877285966a42a97a30b70518bb7"
+      },
+      {
+        "id": "6c9043db-bab1-4a81-b084-31f600774530",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-tunnel-drilling",
+        "title": "Tunnel Drilling and Specialist Blasting Interface JSA — Singapore",
+        "body_sha256": "1c653481ffd6e27eb5ace668a19b7b18cbc893637053f70a821104770ba81498"
+      },
+      {
+        "id": "d5871b10-0f25-4bed-8325-fc01f52d4328",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-walkbehind-floor-scrubber",
+        "title": "Singapore JSA: Walk-Behind Floor Scrubber Cleaning",
+        "body_sha256": "c9aa3f194bc5685ab0a1b2f443d7fd1090579d6d5038c3e159fdaead6fcefd8b"
+      },
+      {
+        "id": "c418b5f9-f0b8-4439-82ba-ac3df2db3a4d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-walkie-electric-pallet-truck",
+        "title": "Singapore JSA: Walkie Electric Pallet Truck Transport",
+        "body_sha256": "dfda78bb6cd1ba7122dca663390e83955fc8cfe3375734b5b8969ad423a80042"
+      },
+      {
+        "id": "c1f86ce0-49be-4585-8d24-a63da2a5fdc9",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-wall-form",
+        "title": "JSA Risk Assessment Preview: Retaining Wall Formwork Assembly and Stripping Operations",
+        "body_sha256": "86b855e9659e2e80a1e96011f4e6ca9740ac812ea90d4e05f6b571520d830456"
+      },
+      {
+        "id": "47af33f3-c771-4445-9292-7d27fc85b12b",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-waterbased-paint-roller-wall",
+        "title": "Water-based wall painting from floor level JSA: Controls, Stop Criteria and Checklist",
+        "body_sha256": "4b46fbc87560a571590bf7a82818b97a2b1483ead2f001249a1e83bb345c17cd"
+      },
+      {
+        "id": "c060ed43-0f9d-40fa-8977-055b6e654fec",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-wet-wall-core-drilling",
+        "title": "Singapore JSA: Wet Horizontal Wall Core Drilling",
+        "body_sha256": "83db821117013919624db920337ee5e082b00af9c9d77fa5d35063dfdb8b8ed0"
+      },
+      {
+        "id": "ec2d04f0-869a-414b-b849-1127b87bf39d",
+        "url": "https://smartjsabridge.com/en-SG/case-study/jsa-winch-lifting",
+        "title": "Singapore JSA: Material Lifting with a Rated Winch",
+        "body_sha256": "6f134c851960a68ca144da7cd1c67d05731a41317704f32e0dc8bf30947e284d"
+      }
+    ]
+  },
+  "ja-JP": {
+    "firstId": 1300001,
+    "stepsPerArticle": 8,
+    "articles": [
+      {
+        "id": "44630687-b06e-43d2-acba-1ae27da48fc2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/%20jsa-form-work",
+        "title": "型枠支保工・壁型枠組立、打設監視および解体作業のJSAリスクアセスメント",
+        "body_sha256": "1c62fa1caa0baae72e2a5ee2b37edbf10533d5f88da7e588aeb2ebb59263f702"
+      },
+      {
+        "id": "77b26a9d-9f74-4700-829d-586a17e6e457",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-MEWP-working",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：トラック搭載型ブーム式高所作業車を用いた外壁パネル（サンドイッチパネル・サイディング）建込据付作業",
+        "body_sha256": "031be3c5c0d41489b257cb896347c594ccaee6c74d965ddce76e122654414261"
+      },
+      {
+        "id": "b10ec92e-84ee-4930-993f-05617a05d105",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-aerial-lift",
+        "title": "安衛法＆高所作業車構造規格準拠 職務安全分析（JSA）：高所作業車（シザース式テーブルリフト）を用いた天井設備・配管・照明保守点検作業",
+        "body_sha256": "bc1faf64ce4fb04cf5fa43783f2066515c276f83e1ea5f2c207aa86823ca9b8a"
+      },
+      {
+        "id": "aa75a084-5433-442e-b383-2010a6498382",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-ahu-ducting",
+        "title": "空調機の揚重・据付けとダクト接続のJSA・リスクアセスメント",
+        "body_sha256": "da599fd44dafb664091c76f2d849f8a7f7fdada251918b193b8e3df15f05a479"
+      },
+      {
+        "id": "36ab032d-0cf1-408d-a54d-8d2e14298a61",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-ahu-filter-replacement",
+        "title": "空調機フィルター交換 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "21762022da605dd304007717596dc52f1297f201c6bc65a6dc3c9a3706f9f385"
+      },
+      {
+        "id": "51e73b09-7afc-475a-bae3-65cc57690a17",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-airless-gun-tip-filter-cleaning",
+        "title": "エアレス塗装ガンのチップ・フィルター清掃 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "c1d01f493ef0d4670992120235029fc746ec786eddf79c8d845b66fdc603dbdd"
+      },
+      {
+        "id": "4417e887-50ad-4d13-bff0-99f4b8e235ba",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-airreceiver-installation",
+        "title": "空気タンクの据付・ドレン配管接続 JSA・リスクアセスメント",
+        "body_sha256": "e0fc3655d54135c14f09da6c019ef61342e5cfc76a7f8e691da36e7748e0ed25"
+      },
+      {
+        "id": "0efd7e7b-5b37-4b9c-bc3d-ab2f27af7087",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-aluminum-actig",
+        "title": "アルミニウム配管の交流TIG溶接のJSA・リスクアセスメント",
+        "body_sha256": "7faa2105ecfd0c33c378693f38ae5ce24cb40c6c0bf356ed5e4e05ac6eea863a"
+      },
+      {
+        "id": "f9448b60-3359-4ab3-b0d9-1e781bd3e59d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-anchor-installation",
+        "title": "タワークレーン基礎アンカーフレーム据付・仮控え固定およびコンクリート打設監視作業のJSAリスクアセスメント",
+        "body_sha256": "2c14083c21003dd7518c9451ba4175d4c9ca5ecf4bc6e2d7b829f7ac6eb02bab"
+      },
+      {
+        "id": "77e01387-f13c-4608-84f2-519b182650f9",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-anchor-stressing",
+        "title": "グラウンドアンカー削孔・緊張 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "72bfe0218069db88492747fcffd8226158a31e0632934b1cac94ad3b6feeb606"
+      },
+      {
+        "id": "0364f619-1487-4067-b382-0bb159f4280b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-angle-grinder-metal-cutting",
+        "title": "ディスクグラインダーによる金属切断 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "3d9a0a05cdc5f09ec93597c5d061a8c20c0074eacc790100e2d75ec111285939"
+      },
+      {
+        "id": "bb125fc7-dafc-43b7-9360-c99f4e07d4db",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-aqueous-metal-parts-cleaning",
+        "title": "水性洗浄剤による金属部品の手洗浄 JSA",
+        "body_sha256": "04554211b83ce6e8028ecdcd5c3607f8827a279e9593b41c60422aad692bb24f"
+      },
+      {
+        "id": "88a0e1f3-8f3b-4ded-8134-ee3d4192fd86",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-argon-cylinder-regulator-change",
+        "title": "アルゴン容器の圧力調整器交換のJSA・リスクアセスメント",
+        "body_sha256": "721d5194afa59f880fab40c8900aa4bdba040c8f234fa9df7fac9d26ce9ea0a1"
+      },
+      {
+        "id": "45049725-1afc-4688-af4a-cfcdaf6fc7d0",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-asphalt-milling",
+        "title": "アスファルト舗装の路面切削 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "b97b3ced56ca14f3c15ea94a2e9953e2028bc6da3d80d4820862f5657f65c483"
+      },
+      {
+        "id": "0aa47dee-5613-45d9-9f7d-d25328d2ed93",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-automatic-feed-mechanical-press",
+        "title": "自動送り機械プレスの通常運転 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "668e35255ce15483dd36f79aa276dd261c7bc355921bdcadce41a359d16f3cb4"
+      },
+      {
+        "id": "4f6daf17-08f9-4080-830e-e355ecd586f1",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-barricade-installation",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：道路工事用仮設防護柵・仮囲い（フェンス・バリケード）設置および撤去作業",
+        "body_sha256": "f1730a475ae25b1d607d3288605d895392b85df12e71edfcbb4ed4d1faa958c0"
+      },
+      {
+        "id": "86543b14-6e8a-4200-af4e-2157b79d0c7a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-bathroom-waterbased-waterproof-coating",
+        "title": "浴室の水性塗膜防水施工 JSA・リスクアセスメント",
+        "body_sha256": "9959061e66e214c760266c61567c1373fa74afc13eb4009a43520c54b91e2aa8"
+      },
+      {
+        "id": "e2957437-61a2-4c55-b86b-c0a6adb1ff3c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-battery-brushcutter-grass",
+        "title": "充電式刈払機による草刈りのJSA・リスクアセスメント",
+        "body_sha256": "e5106f7ebf4ce2fb6f68363df6c86a4da186fb9139071f21e94ed98a7324dc3e"
+      },
+      {
+        "id": "20bb9e72-0710-4440-b242-46202f4fba7b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-battery-hedge-trimmer",
+        "title": "充電式ヘッジトリマの刈込み JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "977801be8370cf96510236c7724ba5a396eb8d0b09cc12f7fce5a6f592b31c0d"
+      },
+      {
+        "id": "79b56d3f-aafc-425c-b81a-b622c90c6945",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-battery-plastic-strapping",
+        "title": "充電式結束機による樹脂バンド結束 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "eec603125511a084958f00bfdcc169b02ce78fc79fa5a688609b0ed370a7d62b"
+      },
+      {
+        "id": "9bf4a11f-b8cd-4a91-b65e-b8ab8a035b47",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-beam-work",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：鉄骨柱・梁建方組立（建起し・仮ボルト締結）、水平親綱展張、デッキプレート敷設および現場溶接作業",
+        "body_sha256": "b0882730109881765979f2236644d70c8e06c9190f5feb1f77654a72e756528e"
+      },
+      {
+        "id": "e6fc1c06-4604-4b25-ae3c-477a3eaaef52",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-bearing-hydraulic-press-fit",
+        "title": "油圧プレスによる軸受の圧入 JSA・リスクアセスメント",
+        "body_sha256": "57f6afd6cb04ff3e6c01840386e84bc989c36306092c212516c3e5d7a9f25383"
+      },
+      {
+        "id": "6cfb9da7-5949-4f2e-9bd9-0e582f1cf90a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-bearing-replacement",
+        "title": "橋梁支承の取替え・ジャッキアップのJSA・リスクアセスメント",
+        "body_sha256": "7459c9c67bbda2134ec21b4a2f4cc844b2e93e47a8dcfddc3d813c6f45a89eec"
+      },
+      {
+        "id": "8eeb05bf-1a1c-4bb3-863a-15e03eba9b4d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-bench-grinder-wheel-change",
+        "title": "卓上両頭研削盤の砥石交換 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "525019d9072bba9c84b1701108de0b4570c42251fe4cc4fc67f00a9a1a08ab17"
+      },
+      {
+        "id": "0459ebab-cb43-456e-bb58-fb8c40350ca2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-boiler-positioning",
+        "title": "ボイラー本体の揚重・据付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "dbce7f254efa97b425ba7eb58ef41dd2ef0182a631737c1ab0a9f6e90e56c7eb"
+      },
+      {
+        "id": "28a4efdd-5933-4fd4-ad4d-d2f385346df1",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-bulldozer-grading",
+        "title": "クローラ式ブルドーザーによる整地 JSA",
+        "body_sha256": "703688c539befa63a5a57151d765c937e2fcd2d1c3fe54e0094de9de565423ec"
+      },
+      {
+        "id": "ca959725-9498-43bc-a632-9f749b77e24d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cabletray-installation",
+        "title": "ケーブルラックの設置・支持金物溶接のJSA・リスクアセスメント",
+        "body_sha256": "e9514cd8d362790d45d8af8463f1d7163d52e2b5ada2f9403602fbfc3530e287"
+      },
+      {
+        "id": "2159edfe-6060-4139-a976-5df846643f20",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cargo-lashing-release",
+        "title": "トラック荷締めベルトの解放 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "e391d7982cc5c55ab3855baedee34da8567e463a68b62467f90eeed5a1c9473a"
+      },
+      {
+        "id": "7b9c2d3a-e9bf-46ff-a3ad-96af2b834990",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cement-mortar-wall-plastering",
+        "title": "セメントモルタルの混合・壁塗り JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "f815da0804ae47be7212b1230c28824b039ced009a5e4e3fc3cf46fa1947d555"
+      },
+      {
+        "id": "22926e65-a6a2-49cd-8164-ae9f783ee003",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-chainblock-positioning",
+        "title": "手動チェーンブロックによる設備の位置調整 JSA",
+        "body_sha256": "28de6bb98e27bd3884cd3e07810b65f9726340bc1f607b8b1b0336dad8cbf899"
+      },
+      {
+        "id": "cb4b6369-322c-4a41-a1d8-d8343948e25d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cleanroom-wall-panel-installation",
+        "title": "クリーンルーム壁パネルの搬入・建起こしのJSA・リスクアセスメント",
+        "body_sha256": "e12803769afd4ddc3af974e905691b4511cf2cf6d4718ce849b87f168a4e0f65"
+      },
+      {
+        "id": "25f2f78a-671b-45f4-8824-1984c8d53974",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-co2-gmaw",
+        "title": "CO2シールド半自動アーク溶接 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "250807b10ad92818a9ea2dfea9c3bc3f9c3ca68b1a6be7c73992e4c36d41d4f4"
+      },
+      {
+        "id": "7453e3be-6f0c-45e5-bc0f-1fd0968f911a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cold-room-goods-handling",
+        "title": "冷蔵・冷凍庫での包装商品の入出庫 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "4e89ba6b70269c5552b977ba16ffeb496210e0ebe57e8545adb95eb7db3aed99"
+      },
+      {
+        "id": "462ba616-a31a-4b09-b929-fdb4483b9a40",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cold-saw-sections",
+        "title": "金属用冷間丸のこ盤による形鋼切断 JSA",
+        "body_sha256": "f128622ff62a88cf1d6b43b7645e19a3054e0f82f6cd699136e2524bde2597a5"
+      },
+      {
+        "id": "59ee9561-7a61-4bf2-be88-53d798ba12d0",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-commercial-heatpump-laundry-drying",
+        "title": "業務用ヒートポンプ乾燥機の洗濯物乾燥JSA・リスクアセスメント",
+        "body_sha256": "416e22d40be3675b899995d2d11f898553145ea988a3ca490a5ff859398f927b"
+      },
+      {
+        "id": "900389e2-cf50-418c-bbb2-d85a93b24398",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-compressed-air-filter-element",
+        "title": "圧縮空気フィルターのエレメント交換 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "8e6689d2fe51b3d26f3a08788104536bae5affc3344c8ae9fc766de27cd67a48"
+      },
+      {
+        "id": "1241c9fd-762d-40aa-a5b2-b5683e5c095d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-compressor-leveling",
+        "title": "圧縮機の据付け・水平調整 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "b97a081ff26548c6dc82713ddaf7c105e26f8fade4171174b93377dbccfaaf82"
+      },
+      {
+        "id": "05a38d37-0623-46eb-8dba-294bb05c1af5",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-concrete-placing",
+        "title": "コンクリートポンプ車を用いたコンクリート打設作業のJSAリスクアセスメント",
+        "body_sha256": "90e3395e285c54496d2e3f818f67aaff9cf69e261a5b3a42d57b2fe6fb1d8d89"
+      },
+      {
+        "id": "b3839193-f6c6-4410-8beb-897a61faf7fa",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-concrete-troweling",
+        "title": "歩行式電動トロウェルによるコンクリート仕上げ JSA",
+        "body_sha256": "ae73345aec3fa2797f31f8baa95576acfa283259fef00de92ecff0ba1b966e31"
+      },
+      {
+        "id": "21276c6c-1904-4560-9893-74a4bdb10743",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-concrete-wall-dust-extraction-grinding",
+        "title": "集じん式コンクリート壁面研削のJSA・リスクアセスメント",
+        "body_sha256": "e0cfdaed483b2dafb9dd390166b722c0e193f7ef074f6c9f423f8f0d7dd1477b"
+      },
+      {
+        "id": "c927c5c3-b145-4084-8389-911bd0aed0a1",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-confined-space",
+        "title": "配管内暗渠・閉鎖空間（特定化学物質等・酸素欠乏危険場所）進入および多点ガス検知作業のJSAリスクアセスメント",
+        "body_sha256": "2ebf655a5a01d53f001fdcb04c94d7ce2ea98b52e8eed95b89cb6d50ee53cd8b"
+      },
+      {
+        "id": "9df9de6e-3728-4eb8-bf0b-6760734f5204",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-construction-goods-hoist-loading",
+        "title": "建設用リフトへの資材積み下ろし JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "43358cb818400b40ae7e59dfaaf1013e66aef76e8a6de00d009187db573efa21"
+      },
+      {
+        "id": "a65cb009-c746-4910-b10a-273f9bf0ac10",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-construction-waste",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：建設副産物・産業廃棄物積込みおよび場外搬出作業（バックホウ積込み・ダンプトラック運搬）",
+        "body_sha256": "76a231eb6673926ca77b5dfcdb843e9c9a986aa468b741157ebff56508aaecae"
+      },
+      {
+        "id": "2e9d7074-1d20-4faa-94ba-d5793176ca40",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-controls-network",
+        "title": "DCS・PLC制御盤内の通信線接続 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "e89f0ec4cafce55dd1840b87c4ac6073ef4ec6564c77b8606b7dfc694ede98ae"
+      },
+      {
+        "id": "e9fa2fe0-ed34-48ae-8f30-3a4141579fc7",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-conveyor-maintenance",
+        "title": "ベルトコンベヤーの駆動部整備・ローラー交換 JSA",
+        "body_sha256": "a445164e5b3d902a82c3401b148c0cc18f743f90e8c1e029cce9b8856c33963a"
+      },
+      {
+        "id": "240eaf8c-ba69-477b-b50f-695af6bcb860",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-conveyor-package-sorting",
+        "title": "コンベヤーでの包装物投入・仕分けのJSA・リスクアセスメント",
+        "body_sha256": "a45f00329d38dd006c50cf28495766de9517824d7676db161ba5adc94ea59912"
+      },
+      {
+        "id": "a87743d0-b537-45fd-9266-cc105cba5fd6",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-coolingtower-assembly",
+        "title": "冷却塔の組立て・据付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "2b926569d914237fd4ed426f46a830cba55204555cb417a2aeb94e32174491bc"
+      },
+      {
+        "id": "c6f72911-a50f-4807-a5a5-f4b4a2d1dcbe",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cordless-drilldriver-fastening",
+        "title": "充電式ドライバドリルによるねじ締め JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "acc628a313a63c60fd3b2581d4c380e72b922e591bf224cb75494ed89f4de308"
+      },
+      {
+        "id": "12a4fd5c-ed4a-4cca-a534-f040cbe8f67f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-crane-jib",
+        "title": "タワークレーンのジブ組立て・解体 JSA",
+        "body_sha256": "7c9a02f22778850ce2691800cef2a681219e2df37e4996813eed823b1a3b9e8d"
+      },
+      {
+        "id": "ac913eb9-ead0-4a68-ad26-8abb5fd34099",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-crane-operation",
+        "title": "クレーン等安全規則＆JIS規格準拠 職務安全分析（JSA / 揚重計画）：移動式クレーンおよび玉掛け用具を用いた重量物揚重・旋回・据付作業",
+        "body_sha256": "594af1280608eec60719d06c8cce2b4f957757058788428627d3b33e7e8914b2"
+      },
+      {
+        "id": "9eb1cd90-7aef-4092-9949-3ae80e9ac22b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-crane-telescoping",
+        "title": "労働安全衛生法・クレーン等安全規則対応 タワークレーンマストクライミング（テレスコーピング）JSA・作業許可ガイド",
+        "body_sha256": "83158063a6619a2fe212af090b790af88827eaf9e288590574e8e74f5f98515a"
+      },
+      {
+        "id": "a6f64d72-b758-40f4-9be5-00aaab16ea47",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-cranerail-installation",
+        "title": "天井クレーン走行レール設置のJSA・リスクアセスメント",
+        "body_sha256": "37aa07fe1f9e980d3bb368d4e0e8b301fffd0ed817f227d94ea73b40372ba674"
+      },
+      {
+        "id": "87dad963-4d00-4ac2-8a70-cb0e4973256f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-culvert-installation",
+        "title": "プレキャストボックスカルバート据付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "89079e3c1fc35be60dc6e88b1225b51d132332cdc01528c4a208a601be97fe45"
+      },
+      {
+        "id": "04e9ecdb-e9d4-4000-bcb9-d5b9e9a69b1f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-curingheater-ignition",
+        "title": "コンクリート養生用加熱器の使用判断・着火管理 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "51e54d3f540ba5736ee2f72d6dcb5fcc65348a97210d86dbb433615cfcbeb76c"
+      },
+      {
+        "id": "0f06551c-69ba-4e58-b083-ed422cf67d43",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-dcm-mixing",
+        "title": "湿式深層混合処理工法の施工 JSA",
+        "body_sha256": "596d369fd0164dcdf58fde0e6e6df2d636abab615a17f5fd1a72d086b338dda8"
+      },
+      {
+        "id": "4524c77e-4329-498e-9963-26575e2d38b5",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-deckplate-placement",
+        "title": "デッキプレートの揚重・敷込みのJSA・リスクアセスメント",
+        "body_sha256": "c9bed576181145838dc915c9ce2edfa97c0a39eb57da31e85e7fd1f05495c656"
+      },
+      {
+        "id": "c5f1416c-6c48-4cc7-937e-7c6338446d21",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-deckstud-welding",
+        "title": "デッキプレート上のスタッド溶接 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "2fa148f6d6d9506f7b2a034ddf3fb90adeb12f2a0126f8ec3d16182335e0470c"
+      },
+      {
+        "id": "4cba32f4-7d78-4988-b2fb-1469a6ca4f22",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-distributionboard-wiring",
+        "title": "低圧分電盤の遮断器取付け・内部結線 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "ffd09410b86b9de381ef4c52562bb0c2fafc3eb90af669bf9ca48f22cecefcb7"
+      },
+      {
+        "id": "0039db56-f163-4865-ba7d-17fa481d8137",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-dock-leveler-loading",
+        "title": "ドックレベラーを用いた荷役作業 JSA",
+        "body_sha256": "2e8fd6a8983d8b45916a318f3dd456aa38c7f35d51753f5e74ba1f23df2498bc"
+      },
+      {
+        "id": "b2085d71-7721-4de7-8bce-ba6bd42a83e3",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-drillpress-metalplate",
+        "title": "卓上・直立ボール盤による金属板穴あけのJSA・リスクアセスメント",
+        "body_sha256": "e99743d4e849e2d8819e51aed413068a5d98f7ce9bf895944fc9807b55bd825e"
+      },
+      {
+        "id": "609a0276-cefa-407f-974e-cf1d38ae9765",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-drum-trolley-transfer",
+        "title": "ドラム運搬台車による移動 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "1c02ab8526d0b6ca5b3874895aaa6bf7300a588febdf86fac62e7eae22c3181b"
+      },
+      {
+        "id": "e6b74ae4-431b-4f45-95e8-3bd0908ea741",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-duct-external-insulation-vapor-barrier",
+        "title": "空調ダクト外面の断熱・防湿層施工 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "3a3756a765dd87df9f03cc4a5e887a213707c735868a0dbcc4e872826ff8de23"
+      },
+      {
+        "id": "0d63d5de-1fe5-4b43-b032-1974a48c3054",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-electric-fryer-oil-draining",
+        "title": "電気フライヤーの食用油の手動排出・運搬 JSA",
+        "body_sha256": "77e2389dbcc8fa548fa2b1bcee9e57c78de80f504e78559f6aeeb2380fc2dc52"
+      },
+      {
+        "id": "b3a4d4de-b17d-4af1-aee2-061e84d355f8",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-electric-pressure-washer-floor",
+        "title": "電動冷水高圧洗浄機による床洗浄のJSA・リスクアセスメント",
+        "body_sha256": "132f47a06ee94821052b71f2fbce5472cd218cd76d905cea098c8f81af486cd0"
+      },
+      {
+        "id": "af1af170-7054-43f0-bbe5-a20c8a1b5b4e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-electrical-safety",
+        "title": "労働安全衛生規則（電気危険防止）& 内線規程 JSAリスクアセスメント（作業手順安全計画書）: 仮設分電盤設置、幹線高所横断配선および通電試験作業",
+        "body_sha256": "cf936d1ce3a13a740cb7d36b3f5f80be07f957c8b85c354ca46c8745a987b3e0"
+      },
+      {
+        "id": "b8701241-ca56-4479-a133-da4071f516f9",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-elevator-pit",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：エレベーター昇降路ピット内作業および動力遮断（LOTO）、機械的挟まれ・圧死防止用安全支柱設置、開口部墜落防止対策（安衛則第107条およびJIS A 4302準拠）",
+        "body_sha256": "25fd6f1ef5dc39f1727cc82c84bd7f7fcf5f36d6eb88ac6e1024d747de909b5f"
+      },
+      {
+        "id": "31705ec1-184f-4e5f-b412-5ecc00fb5c64",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-erecting-scaffolding",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：くさび緊結式システム足場（本足場）組立・解体および壁つなぎ設置作業",
+        "body_sha256": "1a97b4ee7e477be30e79efdcbeddef14ba0f859a729acd1d43ada253cebd19ea"
+      },
+      {
+        "id": "707eb2d1-5dd3-4293-bf9c-ca943a919c2d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-excavation-works",
+        "title": "安衛則第361条・第362条 & JIS A 8340 JSAリスクアセスメント（安全施工手順書）: バックホウ（油圧ショベル）による地下埋設物近接開削掘削作業、離隔1m手掘り探査・土止め支保工先行建込みおよび載荷遮断管理基準",
+        "body_sha256": "acd3c46b414e6799695aad2d876b8a7e0ae9a45751383f8a4e12103b72f07ffa"
+      },
+      {
+        "id": "2b7d6bf3-3219-49d8-861b-942ec040b3e7",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-exequipment-gland",
+        "title": "防爆電気機器の設置・ケーブルグランド施工 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "4d8308720d66cb547c226badbea956c5a7fc0e592bf194dc471c66b7f62bd68c"
+      },
+      {
+        "id": "46f2871e-0a87-4702-8bcd-693bd80f2ead",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-fan-vbelt-replacement",
+        "title": "送風機Vベルトの交換・張力調整 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "cba2de859057a2731b48ab4785fd1e846a70cf1492437ed9c8d8a3808ff0f305"
+      },
+      {
+        "id": "68193518-6d4d-4fdb-b920-6e6dbb415328",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-feedercable-pulling",
+        "title": "幹線ケーブルの引入れ・布設 JSA",
+        "body_sha256": "45b246246fed5464f35ee74441a3756c39979fc52c7eb85b76601f19fb4ca372"
+      },
+      {
+        "id": "93ba3190-7354-44ad-8c32-6c7e42ae304b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-firealarm-devices",
+        "title": "火災感知器・光警報装置設置のJSA・リスクアセスメント",
+        "body_sha256": "ea31d4d3bcd8c51e20fe5087cef6d5c11f5ac2d9bd99cb62adfe451bfec9abcd"
+      },
+      {
+        "id": "506c9435-6570-4356-a575-2e0dfb1f404a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-flour-bag-hopper-loading",
+        "title": "小麦粉袋の開封・ホッパー投入 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "c090d5e0a4d97135baeb051c7d3129eeba65ba663e5a0dba8f9695f0e2b9c4c3"
+      },
+      {
+        "id": "9972aec6-15db-4c08-b630-092195a031bb",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-food-slicer-cleaning",
+        "title": "食品スライサーの固定円形刃の清掃 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "37ff928e8fd68434e4f8f663d5f434f9e1d6489cfdd32544855cab49ff9e9fd6"
+      },
+      {
+        "id": "6172d1ad-6222-4a71-9772-7999b5b84006",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-forklift-handling%2Cko",
+        "title": "フォークリフトによるパレット荷役・運搬 JSA",
+        "body_sha256": "3a26010abf567bc2c0cbf8a4e6ae0e8f06489eab7e9a3f6481fd6fb2a677ceb4"
+      },
+      {
+        "id": "78e1691c-f80f-454c-8f18-4cf2a8d8faea",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-forklift-leadacid-charging",
+        "title": "フォークリフト開放形鉛蓄電池充電のJSA・リスクアセスメント",
+        "body_sha256": "d35ca8c9dc6de30cfec3fde96d9c0873a14d2e17c006b4223a6a4f9ac9c7b617"
+      },
+      {
+        "id": "5e4d521f-6ddc-4cf4-938d-6f836114254c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-gantry-transport",
+        "title": "軌道式門形クレーンによる運搬 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "052e339992650530f0c00ff8e31c46cd18374fd274b952fe9b89ff0aa1a23839"
+      },
+      {
+        "id": "8fa84b3f-9f29-4f28-b84a-0abb0e99f8e6",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-gasoline-plate-compactor",
+        "title": "ガソリン式プレートコンパクターによる締固め JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "005eb517c58a5169329b15df4afb5eb7d11a2dd4fa8ffe5efaf346f7eade9d1e"
+      },
+      {
+        "id": "bab2828f-1ad1-49a4-8b0f-7f1393f2bada",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-general-waste-bag-collection",
+        "title": "建物内の一般ごみ袋の回収・集積 JSA",
+        "body_sha256": "7bb69053ae4bba30667f0087beb02c3bbe30bf5b13f11f426f08570bc9ce5875"
+      },
+      {
+        "id": "7723f5e6-f9ff-4621-ba70-1f8a9966ae7d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-generator-installation",
+        "title": "発電機据付け・排気接続のJSA・リスクアセスメント",
+        "body_sha256": "73c0df6bdd5dc0ee2bf3e48a434f3ec03b123e96ca1f18ff8851c3999528a995"
+      },
+      {
+        "id": "7ddec927-266e-4dd0-8724-cb887dd3b1cb",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-girder-erection",
+        "title": "プレキャストコンクリート橋桁の架設 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "8f61a30e00659f48547738d619810ce4b6f3ce692e0dc072795f28e47c654d39"
+      },
+      {
+        "id": "36327f42-0137-40cf-a246-f36297b0a258",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-gondola-caulking",
+        "title": "ゴンドラ外壁ガラスシーリング作業 JSA：安衛則準拠安全ガイド",
+        "body_sha256": "385b7e7d4dccf742dd20c365bec1f34b81e258c01a067fa1169ed19bcebae8a4"
+      },
+      {
+        "id": "6dc3c811-3bd1-4d40-b1ca-ec85c67a1b0f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-grader-leveling",
+        "title": "モーターグレーダーによる路盤整形 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "1a436dcd5a8d80138f5640e86aef57fa32e8aaaf2a03764975ff39bb756a723f"
+      },
+      {
+        "id": "955d2ee2-9feb-4bef-a2d5-eafe48f55bb5",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-grinder-weldfinish",
+        "title": "携帯グラインダーによる溶接部仕上げ JSA",
+        "body_sha256": "0f6b16d495328d26774653e0ee450cbc3a6adbc56e78001c1aeba602c998d1a6"
+      },
+      {
+        "id": "5544537b-08cf-4740-beb6-b2ce4f7be66a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-ground-exoweld",
+        "title": "接地極埋設・発熱接続のJSA・リスクアセスメント",
+        "body_sha256": "f9bc3d967351b37f4175d403db10a1d7d8d016349edefe023db61754e2ba4b7b"
+      },
+      {
+        "id": "fb40df4f-bd31-47c8-99ed-7b9816428ab7",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-gypsum-joint-compound-dust-sanding",
+        "title": "石膏ボードの目地処理・集じん研磨 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "b9db28a28e5e8059a2a2836fb786e43abf01f7295c1825a665418696f263b57b"
+      },
+      {
+        "id": "4e973884-b756-447e-b60c-5aaf51beff85",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hammer-drill-anchor-holes",
+        "title": "ハンマドリルによるコンクリートアンカー孔の穿孔 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "ff9ef6f7c5fa284a148aa3c95d0aa273547be733bd5c3a3152e579b06dc777a9"
+      },
+      {
+        "id": "40eff432-5947-417a-89d2-d7e5925c7e45",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hand-belt-sander-wood",
+        "title": "携帯ベルトサンダーによる木材研磨 JSA",
+        "body_sha256": "2f68a8e1bd43a667013c9f291e4986475766d20f3f087705cc473765654fdfab"
+      },
+      {
+        "id": "9afdc89f-7c82-42c9-8ef7-b79fbe7a1ea4",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hand-router-wood-edge",
+        "title": "携帯木工ルーターによる外周加工のJSA・リスクアセスメント",
+        "body_sha256": "5575d38c2edbea5d4f49d1a72f8183ff408a6616ea0005eab2f49383967f7b74"
+      },
+      {
+        "id": "09b4b801-92b7-4446-9f5a-4d907886df40",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-highbolt-tightening",
+        "title": "高力ボルトの締付け・検査 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "758d5e5880e74a569802f6e8c5c0606c169fcceea790d1a87ac4736531f71948"
+      },
+      {
+        "id": "224de246-28a0-4fb8-98d8-38601889e1d2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hoist-mast",
+        "title": "建設用リフトのマスト組立て・継足し JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "bb73a7259a25cff5602fde2e9cf9241a87237e0ea810babf805c256c2e1f06e9"
+      },
+      {
+        "id": "6226185f-811a-42fd-b778-0fdf8a6fca7b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hood-dishwasher-rack-operation",
+        "title": "フードタイプ食器洗浄機のラック運転 JSA",
+        "body_sha256": "91320510f8f6509cb078c4da19a61df66f61d526e21d119881682cc08f36fff8"
+      },
+      {
+        "id": "5a209b2c-f45d-41ed-9f2a-25121e598379",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hot-food-container-serving",
+        "title": "給食の熱い食品容器運搬・配膳のJSA・リスクアセスメント",
+        "body_sha256": "7195373e134ddd59b2cdefb383a9119f3193f8c9112258935690ca29457a4936"
+      },
+      {
+        "id": "bea60e4e-d04e-4c49-a288-de0146bcd33e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hot-melt-carton-sealing",
+        "title": "電気式ホットメルトによる箱の接着 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "6a7926462ed68016aba5bca352a2f9b97ff5e667616ff7cce57eb18610056a30"
+      },
+      {
+        "id": "d09308cf-8ada-43f1-ba11-e72c3a9e218c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hpile-installation",
+        "title": "土留め用H形鋼杭の先行削孔・建込み JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "4c8e23e0f32efbd18ae27865155bafcd4022b7fe3d6f77573fc8916f3dd37636"
+      },
+      {
+        "id": "80b617df-66ac-40fc-83d4-dfc189364bc2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hvswitchgear-positioning",
+        "title": "高圧受配電盤の搬入・据付け JSA",
+        "body_sha256": "5e4f7483ab96de400bc0eaa619aeb88c6bbde1aa18754700ee40a299fc5d5bd1"
+      },
+      {
+        "id": "b4cf7298-c8fc-470f-b0a4-b255cc1127fe",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hydraulic-hose-replacement",
+        "title": "停止設備の油圧ホース交換のJSA・リスクアセスメント",
+        "body_sha256": "f4c6c6071da577a553cdd47f94a5d090cb9fb796b568fa74751cf58094e7c783"
+      },
+      {
+        "id": "f43e289e-33f9-4bf8-ac1d-1c25dd3c0d69",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-hydro-testing",
+        "title": "労働安全衛生規則 & JIS B 8265 JSAリスクアセスメント（作業手順安全計画書）: 耐圧水圧試験用大容量注水仮設配管敷設、ホース離脱防止（ウィップチェック）および水撃圧制御作業",
+        "body_sha256": "88471f14ca8edab83d8643611cb83682fd209828c93fd79017fcee7689ad2a80"
+      },
+      {
+        "id": "77e4d746-227b-49ca-bf9a-de2fabd8dd6a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-impact-wrench-bolt-removal",
+        "title": "充電式インパクトレンチでの取外し・仮締め JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "d02be0dd4aeb678099d8a7552f4fe332c181cd9b1f6583b00ef3ef387da3925f"
+      },
+      {
+        "id": "30e70745-38f9-4f8d-83bf-97bda5679c52",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-impulse-tubing",
+        "title": "計装用導圧管の製作・接続・試験 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "da9eb12b548091049945e7e1da58875dba6641bae05e0d1fa2255774e00fe043"
+      },
+      {
+        "id": "777cbdd8-86d9-415e-9317-16b0456fd71a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-indoor-floor-tile-wet-cut-laying",
+        "title": "室内床タイルの湿式切断・張付け JSA",
+        "body_sha256": "fd1ab751af79fa2bab7234e01d37fe1a2a64d61be4a5aa4f3829a551b5f7bb6c"
+      },
+      {
+        "id": "c52b3b5f-4c4b-4d98-aa08-02bdb400bb2e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-indoor-pvc-drain-solvent-joint",
+        "title": "屋内PVC排水管の切断・接着接合のJSA・リスクアセスメント",
+        "body_sha256": "d370320b8e163d411cbb254b0cf02dfde1baaf6ed2359ae12b080e57989c2393"
+      },
+      {
+        "id": "da7a2dc6-d670-48dc-adbc-84af7cf8ebf3",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-industrial-lockstitch-sewing",
+        "title": "工業用一本針本縫ミシンでの縫製 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "4f93d588ef0e1ddc316d3d4d89472a309dabf2dd7f18a006c57d9dbf82e708b9"
+      },
+      {
+        "id": "1cfb41bf-75b5-4f41-8166-445ab0519900",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-inverter-dcwiring",
+        "title": "太陽光パワーコンディショナ設置・直流結線 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "7e1db098179747ee600ec66d511977fec94325979b7c1820619312c096605521"
+      },
+      {
+        "id": "1f5384b6-8641-4e0f-9178-eaf20ef9c83f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-jointer-wood-face",
+        "title": "手押しかんな盤による木材の基準面加工 JSA",
+        "body_sha256": "1d7717dc3a079a426299ee0f7697cdd234d20882fafb619e26126c7bc6eb0b6c"
+      },
+      {
+        "id": "6607fcf4-ddf8-4e49-b9c6-4c49fd66e6e2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-kitchen-knife-food-preparation",
+        "title": "厨房の包丁による食材下処理のJSA・リスクアセスメント",
+        "body_sha256": "4c1120c9ba1ff11f7fa7802f6de195f44ec8ebb574a18d65e34c86c8fb03dd02"
+      },
+      {
+        "id": "7ec7dbf3-2baa-4783-b1ec-b0eb8be387a2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-largepump-positioning",
+        "title": "大型ポンプ一式の搬入・基礎への据付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "788ba243fc26e66afff802c1283ac9d39639f3147aa60fd7adffb03b394b80d6"
+      },
+      {
+        "id": "b871700f-b3b8-4773-90d0-87c03e87cdcf",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-lathe-bar-turning",
+        "title": "汎用旋盤による金属丸棒の外径切削 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "26e01bfb4ce062ab6e51a85004493b264888620b5e5fdb6d5758b5ef2ee60b0f"
+      },
+      {
+        "id": "ac46c76a-6f29-45bb-8b4e-2fe786b97ceb",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-leak-testing",
+        "title": "配管系統の不活性ガス置換（パージ）および気密漏れ試験（リークテスト）作業のJSAリスクアセスメント",
+        "body_sha256": "45db548c105854b08a6d60e9be27006908fe7a9b84418e9e50b4cc7dd375774a"
+      },
+      {
+        "id": "cf6a71c0-3684-4fa2-9315-0eea81b4ef30",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-lfl-ins",
+        "title": "親綱・墜落制止用器具取付設備の設置 JSA",
+        "body_sha256": "98bf3b2e3a3f5d14d5caddf06ebd6fac657c7a1b3af31c43143da76b08e23900"
+      },
+      {
+        "id": "1a44ef5b-6182-4f1f-94df-1f06ae8bb452",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-lightning-downlead",
+        "title": "受雷部・引下げ導線取付けのJSA・リスクアセスメント",
+        "body_sha256": "11686f708d0d050835f0a50647a0638d3c44cd199026f6a0416eced562318475"
+      },
+      {
+        "id": "e967f810-32ba-4f7a-bcf4-d4b8e14b5008",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-loader-loading",
+        "title": "ホイールローダーによる骨材の積込み JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "9c20a50ba14476b11a932429c85202214bb1337cafa090d8beea6a8fa10cc720"
+      },
+      {
+        "id": "5331cf4e-c954-44f4-80d2-5e7b80d7c4d7",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-lowvoltage-livecheck",
+        "title": "低圧盤の通電状態での状態点検 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "d75565d6ca794893591419a5d95797ea90b199b9c7aa87639cfddcfc2bf26c1a"
+      },
+      {
+        "id": "ff0a2582-7493-4d0c-94fb-8d282a090a61",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-magnetic-drill-steel",
+        "title": "磁気ボール盤による鋼板の穴あけ JSA",
+        "body_sha256": "be31aa4089142f17bc4d6af87f04415649f8f61f162d565b37ae727918dccd8e"
+      },
+      {
+        "id": "c5e51742-a127-4f1a-8ccf-4a069a3191ea",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manhole-assembly",
+        "title": "プレキャストマンホール組立て・内部仕上げのJSA・リスクアセスメント",
+        "body_sha256": "f1eb60b431192b6ac417e80e9778ce04d53ea6ca7bc4e23b1358016a86101f80"
+      },
+      {
+        "id": "f6d2578f-9adf-4075-bbab-5b4ae81d4d9b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manhole-cablesplice",
+        "title": "マンホール内の停電ケーブル接続 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "215555c5597bd3d3d5544704117ec0aa422d9989b0d16daacf86c69abc4b544c"
+      },
+      {
+        "id": "4503a654-e6cb-4304-80cc-a199b77c4fcd",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manual-box-lifting-stacking",
+        "title": "箱の人力持上げ・下ろし・積付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "b56c9253ff54c0bbc582054230d2d9935f7c7544fbce466c4fd8ab5debd95bb3"
+      },
+      {
+        "id": "138c32f2-fdb8-4aa9-9577-b458f6168b56",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manual-dishwashing",
+        "title": "給食・飲食施設の食器手洗い JSA",
+        "body_sha256": "e7465d02b67bb8da79922a7271700df9d48ba41dd4763a91ac02dc1f94074d5d"
+      },
+      {
+        "id": "678607ef-8d4d-450f-a4f7-6e6f8da2c612",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manual-floor-stair-cleaning",
+        "title": "屋内床・階段の手作業清掃のJSA・リスクアセスメント",
+        "body_sha256": "b4ef7cc86f4aaf0ce3ad0bfe9c8848475befac7ab91f9e637379b202b1b65d4a"
+      },
+      {
+        "id": "c537b727-07b7-4b4e-a9a1-472dfd4401d2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manual-pallet-stretch-wrapping",
+        "title": "パレット積載物の手巻きストレッチ包装 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "301e107658c27a65e101975b672a19e59642467e28ed709646f18825fce0a3cb"
+      },
+      {
+        "id": "696aba80-4cc4-46a0-adfc-a8d4ce49fb44",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-manual-pallet-truck",
+        "title": "手動ハンドパレットトラックによる搬送 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "5db3a47bb37db29f1e517ebbb87a4657f3fca8b4dbd428f0dab22b8341ca0d5a"
+      },
+      {
+        "id": "eb3472c8-d8b3-4ed8-a9ed-bf4f71ca4427",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-mccpanel-wiring",
+        "title": "MCCの電力・制御・接地結線 JSA",
+        "body_sha256": "f8a52d2f9d2bfbeeb243e19b4c82a7fde17b1dd328f67168402b542abcfa35a4"
+      },
+      {
+        "id": "8bfc99b6-54ba-4088-94c9-f94788e4187e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-mechanical-bearing-puller",
+        "title": "手動ねじ式プーラーによる軸受取外しのJSA・リスクアセスメント",
+        "body_sha256": "2da9c70dbd6243fadee10ffa454ae02006d644163b63fde770649dc7e38f46f5"
+      },
+      {
+        "id": "902e92dc-2e1d-4cb1-a3fd-265e1d853659",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-metal-bandsaw-blade-change",
+        "title": "金属用横形バンドソーののこ刃交換 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "44d676c88bad3a53a45ce07985c1a63a800f036940158c086821a4a549d6752a"
+      },
+      {
+        "id": "de459651-5eed-48a3-9e05-6943e5dc088e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-metal-conduit-cut-bend-install",
+        "title": "金属電線管の切断・曲げ・取付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "6451495127869e1a038409730098d24dd3ea4075bdac24bed632ec26308bfa8a"
+      },
+      {
+        "id": "5ea67136-b8a8-4b49-8bd6-d44d39339561",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-metal-stud-gypsum-partition",
+        "title": "軽量鉄骨下地・せっこうボード間仕切り施工 JSA",
+        "body_sha256": "9b98ace99319e6ddd137bd7d97381674e770ee39ee1b7a9fe47857950feaecb4"
+      },
+      {
+        "id": "3138765f-2b9d-42de-bfb1-fcae6f06904b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-metal-window-frame-installation",
+        "title": "金属製窓枠の搬入・仮支持・固定のJSA・リスクアセスメント",
+        "body_sha256": "3d22fb33918958784293314e6d709df53b5ea166ff0363c53fdcdea34fb7ce9a"
+      },
+      {
+        "id": "b7fde711-24b9-49b1-b536-772ebac9957c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-milling-flat-block",
+        "title": "汎用フライス盤による金属ブロックの平面切削 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "f8e783b2b6bfca8a4496feec64d8cd4cc7f6e0cb0d9c60bc4c4c4497fb715b67"
+      },
+      {
+        "id": "32de8c8b-85d3-4e3a-bf94-a0a90c1c2a98",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-mixer-unloading",
+        "title": "生コン車の荷卸し・外部シュート洗浄 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "e7c22bfed76d552d5a69e8563ffe6c7bd8e013a4a85d97f86200054b17e5285f"
+      },
+      {
+        "id": "61554f4a-463d-4cae-857c-76db78c8e600",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-nonloadbearing-concrete-block-wall",
+        "title": "室内非耐力コンクリートブロック間仕切り施工 JSA",
+        "body_sha256": "56495df677c3da078b851de405cae2bdc7654794a0323ab324a721cf187a897d"
+      },
+      {
+        "id": "726155db-df8e-4087-991c-9b9fb117f2e3",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-opening-covers",
+        "title": "床開口部養生蓋設置・補修作業 JSA統合リスクアセスメントガイド",
+        "body_sha256": "5811d7071ea21c036b716e6e179634717bed3ff1cd15fd5f9713c421da004460"
+      },
+      {
+        "id": "678dbc46-378c-4b90-85ad-92051cabc7f7",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-overhead-crane-load-transfer",
+        "title": "天井クレーンによる吊上げ・移動・着床のJSA・リスクアセスメント",
+        "body_sha256": "2b9e57b494fe0d61a3eb0674a7d5fab0b02864eb70248faa0374d6adbadc0fc7"
+      },
+      {
+        "id": "817e3427-bcc0-4347-9e35-a7ce2057c838",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-overhead-insulator",
+        "title": "停電した架空電線路のがいし交換 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "c6b0a61595f8804924649deb392b6a1fda19b140ed9f3c233da97010eb7e9b55"
+      },
+      {
+        "id": "ca17cb4b-ac24-4a5d-9fd3-a1c16ddc80b5",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-oxyacetylene-cutting",
+        "title": "酸素・アセチレンによるガス切断 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "a33de73165d4e915637576c9db311bb9020f4ffffdeb2e892c5f0f6f1f035fd2"
+      },
+      {
+        "id": "540192cc-55e7-4b8c-adc8-aa90d8e65675",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-penetration-firestop-installation",
+        "title": "防火区画の配管・ケーブル貫通部処理 JSA",
+        "body_sha256": "2c3cc54fa01eff540d15978e9f1b4b7c7b44e0255951d4a4a283dba694007fce"
+      },
+      {
+        "id": "5ca5648a-1a33-4eef-94e7-c0380a501a3a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pile-driving",
+        "title": "杭打機（パイルドライバ）を用いた基礎杭打設およびオーガ削孔作業のJSAリスクアセスメント",
+        "body_sha256": "c9f9dbe4abc46d5bc858ac2691a81e90f697f56d067e47a5cd9c5e47d72364c7"
+      },
+      {
+        "id": "ddc20ff4-baf3-4b60-97f5-b8f75022443f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pipe-disassembly",
+        "title": "配管フランジ開放およびガスケット交換作業のJSAリスクアセスメント",
+        "body_sha256": "abda67df9e1f38a80cb9910bda3c9197e2ba4713c68774bce673ab556461929c"
+      },
+      {
+        "id": "8a81a376-bb17-4024-94af-a8b750f4f95e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pipe-flushing",
+        "title": "配管フラッシングおよび高圧水ジェッティング洗浄作業のJSAリスクアセスメント",
+        "body_sha256": "2527bff9be497a4a061e75d5bb7b73c7717fbecb1f0516d9b2723e7e270a6811"
+      },
+      {
+        "id": "0bb233c0-2d85-47d6-a967-f5c5b9b3181d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pipe-threading-machine",
+        "title": "据置式ねじ切り機による鋼管加工のJSA・リスクアセスメント",
+        "body_sha256": "5cd846517fdbe4d410b5335a18730ed9ea0c323655aaf38f5d157733d05b4b97"
+      },
+      {
+        "id": "f150d149-e1ff-43b6-957d-f29798f37c13",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pipehanger-installation",
+        "title": "工場ユーティリティ配管のハンガー・支持材取付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "78c4b89bb6b990a360386ae1c8567dd0ef6adb893c138d05e5059fac7df787f7"
+      },
+      {
+        "id": "18a14f86-92d8-4024-91eb-391a056510be",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pipeline-installation",
+        "title": "上下水道管の布設 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "a616466884dd79a3d8ef31de6764d88d906db927c5c63e8c34f12df420efa042"
+      },
+      {
+        "id": "cde4c458-6921-4646-9b7a-e42559124da4",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-planetary-mixer-cleaning",
+        "title": "食品用プラネタリーミキサーのボウル・攪拌具清掃 JSA",
+        "body_sha256": "1a2fea075a2ef5c55fb7ad02155c04a4c4cb1e8c705c0e9cbdf4dcf07da39827"
+      },
+      {
+        "id": "db590d83-741e-4269-a848-844671dd8afc",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-plasma-platecut",
+        "title": "手持ちプラズマによる鋼板切断のJSA・リスクアセスメント",
+        "body_sha256": "1598e107ee831d4edc9751e51e36cf94925929137808bc7b7b9676fce2c57b6e"
+      },
+      {
+        "id": "6c666d85-cb1f-44ec-b52c-1c2427c11f60",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-platform-trolley-transfer",
+        "title": "手押し平台車による資材運搬 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "ef41a7768f9532fe8fda883ed25fc728c9dd7052f93b816217595fc284a4fa37"
+      },
+      {
+        "id": "b2183bf1-4ed7-4da0-a54a-1c211de90119",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pneumatic-calibration",
+        "title": "空気圧弁のチューブ接続・校正 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "383347f02ed739e3b6e7a1b978a843a707746f28b00fda6fe069ec7dbb691521"
+      },
+      {
+        "id": "6e089a8f-ebdc-4414-a9ca-6839d1925c7f",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pneumatic-nailer-pallet-repair",
+        "title": "空気式釘打機による木製パレット補修 JSA",
+        "body_sha256": "f63802d2f502240d9118788381caf1fcedf26e27a21b61168a63756973ab9a4c"
+      },
+      {
+        "id": "b0be25e5-6fd5-449f-b81d-520de2707dd4",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-portable-circular-saw-wood-crosscut",
+        "title": "携帯用丸のこ盤による木材横切りのJSA・リスクアセスメント",
+        "body_sha256": "90636d328a9977a6428f3748e65bfb5151d2c1c0f6b14c06199f5724a4dfac48"
+      },
+      {
+        "id": "bd76e811-84b1-4395-b35a-823dfaaedd56",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-portable-generator-tools",
+        "title": "携帯ガソリン発電機から電動工具への仮設給電 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "eb7dbabbc54c79f018367fc16c560bb6fb6fb28879fb0b94074ba97e95ec0392"
+      },
+      {
+        "id": "a4b1acb1-9510-46d0-ac7e-d2ff7e02ea07",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-portable-planer-wood",
+        "title": "携帯式電気カンナによる木材表面加工 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "d4e3ba9e6b29354ef0eeaab1ce769e926f41dd3264fcdd93cf407472ddb94c6e"
+      },
+      {
+        "id": "e1b46235-df0b-4017-a2e3-2ce28488c47c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-prefab-scaffold",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：移動式足場（ローリングタワー）組立・使用・解体作業、アウトリガー設置基準および墜落・転倒防止対策",
+        "body_sha256": "816697c37d0ffbcdacec221907261548bf0a1cc2057e30418bfd6ce14e0c3abb"
+      },
+      {
+        "id": "e2fb04d9-3029-4aae-a10b-f9e37a4282af",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pump-installation",
+        "title": "高圧プランジャーポンプ設置および仮設電源接続作業のJSAリスクアセスメント",
+        "body_sha256": "e1be88e3732856d673f58818f074bb478c7ea16c142cab55717bd45dfce3701d"
+      },
+      {
+        "id": "4bd4042a-fe0d-441e-8bb5-ac58367e6ca1",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-pumpseal-replacement",
+        "title": "遠心ポンプのメカニカルシール交換 JSA",
+        "body_sha256": "60392f62dcdaf873eb38be92788ea8a2d6bd4f3662a8dfff557e4df6cd31f95e"
+      },
+      {
+        "id": "6319c3b8-83cd-48ba-bafe-9904962f11a3",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-radiographic-testing",
+        "title": "配管系統の放射線透過試験（RT）および高圧ドライエア乾燥作業のJSAリスクアセスメント",
+        "body_sha256": "3a87cda93e2d4c1ac15c1f7c67bca0a7668b1faa5ccc3c7eabb5c646bae2395f"
+      },
+      {
+        "id": "5a3f042f-0299-45fd-80e7-fc0511694f5c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-raised-access-floor-installation",
+        "title": "フリーアクセスフロアの支持脚・パネル設置のJSA・リスクアセスメント",
+        "body_sha256": "8d03d87e7c467fbf6811f7e1077b22314d05ab811a94e4bd0a8db50d41724d7d"
+      },
+      {
+        "id": "31bb96de-4a93-4975-a9cc-2941ade04ba2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-rebar-work",
+        "title": "鉄筋加工および現場組立作業のJSAリスクアセスメント",
+        "body_sha256": "5d773c948e88f8e6c585fa65c344094d44d31023b4899616ee7d9a7ef6708d03"
+      },
+      {
+        "id": "26d61101-dac3-47f0-b84d-b28ad4e1d8f2",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-rectangular-duct-section-assembly",
+        "title": "天井内の角ダクト区間の揚重・組立て JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "f276592cd10b041c3bcce28f3ac7fd78c7c5e40b678490f4dd296f4028069415"
+      },
+      {
+        "id": "f7145130-5c14-47f6-9e4d-3b77a199bdbd",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-restroom-cleaner-use",
+        "title": "トイレ用洗浄剤の使用・清掃 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "fea94005a3271f196a720b4d205fbece81bdc37fd1d43189827dfe609c51b185"
+      },
+      {
+        "id": "50c8a43f-813c-4cbe-bbf2-2501fb7b3bb7",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-retainingwall-construction",
+        "title": "ブロック式補強土壁の施工 JSA",
+        "body_sha256": "0f33df75aed79691fc466022b94886458ac98d23b03b6f4a85b55a5abd5fe188"
+      },
+      {
+        "id": "29de7c0e-cfbe-4d87-8ea4-b80d60ad12c9",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-road-pavement",
+        "title": "アスファルトフィニッシャを用いたアスファルト舗装工のJSAリスクアセスメント",
+        "body_sha256": "55dcc63f57e23bec95d22087ba3133454f3b5d49a8f91f4cd92f47429af8cef3"
+      },
+      {
+        "id": "9ddb61d5-815c-4feb-ad4b-573f418a7d16",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-robotcell-setup",
+        "title": "産業用ロボットセルの柵設置・教示・検証のJSA・リスクアセスメント",
+        "body_sha256": "f2657a42239a4db4510d468ba0850eae5b245a0c8bb25e69ffcf79ef5b7ddea6"
+      },
+      {
+        "id": "fda2d13d-9cba-4a4f-950a-65b4e35da866",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-rockfallmesh-installation",
+        "title": "アンカー固定式の落石防止網の施工 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "614dd86fc6d04f9e373c7c4f1ac0bd2a0a215268c0da0812bdd02549b5731a8f"
+      },
+      {
+        "id": "3dacb145-b567-479a-b1de-d183360ceda1",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-roller-compaction",
+        "title": "乗用ローラーによるアスファルト締固め JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "9dbc5d505e7317fd68acf0b5b6d634b9dc12f3f2394ad6663dae65e8969ef21e"
+      },
+      {
+        "id": "d6d34ac5-9e97-4af6-b27a-bc3b04c24360",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-roof-slate",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：石綿（アスベスト）含有スレート屋根材撤去・踏み抜き防止歩み板設置および金属折板屋根更新作業",
+        "body_sha256": "20bbd885b39f96ae565b9cee4f95537e3aed4e80df7626b5847ad1a406664c4d"
+      },
+      {
+        "id": "c8e17e64-8d9a-4b50-8e3d-b1af21f15366",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-roof-truss",
+        "title": "労働安全衛生規則（鉄骨建方・墜落防止）& JASS 6 JSAリスクアセスメント（作業手順安全計画書）: 屋根トラス揚重建方、水平・垂直ブレース先行締結およびサンドイッチパネル敷設作業",
+        "body_sha256": "d5f87905fd22b0f50d948c3637f2dbae84836089e83c19016d8071d73579127d"
+      },
+      {
+        "id": "40e86b37-2830-4f31-9305-259f1d5a2c50",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-safety-cutter-unpacking",
+        "title": "安全カッターによる段ボール箱の開梱 JSA",
+        "body_sha256": "41434da9b3b52c1b3e63746db89ea7efce962708f15531b3268a72e09c32da6d"
+      },
+      {
+        "id": "7df7a473-4e1d-4475-9adb-82fe3b6cc174",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-safety-net",
+        "title": "安全ネット（墜落防護工）設置・解体作業 JSA統合リスクアセスメントガイ",
+        "body_sha256": "42ec00e9152578fe90da97416fded84411fae92524b8258b5e1881294907fc85"
+      },
+      {
+        "id": "6088f685-15c8-4470-9259-2861a05c4a75",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-sanddrain-installation",
+        "title": "サンドドレーン施工のJSA・リスクアセスメント",
+        "body_sha256": "4e4bfe3a3d1ad1eb4a5a1b6c4e0cd5fc59602d99005de71db9a4911690dfb465"
+      },
+      {
+        "id": "26505ccc-f919-4788-8a9a-d19a98fe6650",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-scaffolding-dismantling",
+        "title": "労働安全衛生規則 & 仮設工業会技術基準 JSAリスクアセスメント（作業手順安全計画書）: 単管足場解体工事、最上層からの壁つなぎ順次解体およびフルハーネス型墜落制止用器具100%掛止作業",
+        "body_sha256": "4fde4010a6e3f4ad57623f5aa51ac90ef9df35d7aaea1e9c51b3785c3f5ae8d7"
+      },
+      {
+        "id": "111a0707-ac1a-4f5b-8ed1-08c5c657c08c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-scaffolding-erection",
+        "title": "労働安全衛生規則（足場則）& 手すり先行工法ガイドライン JSAリスクアセスメント（作業手順安全計画書）: 外部枠組・単管足場組立、作業床敷設および壁つなぎ緊結作業",
+        "body_sha256": "1ae979bf0e2c6793423bf917a10ee2bc541b67418e8523fb8bee5692cb84e5c3"
+      },
+      {
+        "id": "c35112cd-90e5-4d8b-9e99-de9d2ab06a49",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-scissor-lift",
+        "title": "作業安全分析（JSA / リスクアセスメント）プレビュー：シザース式高所作業車（テーブルリフト）を用いた天井・上部設備設置および電気・配管敷設作業",
+        "body_sha256": "184f8f9fa737e18b67040ac644e7a11b33cc7ac57c30835212e9a3a1dd3e6153"
+      },
+      {
+        "id": "a6a848c7-7740-48d3-bf63-6031d20263b4",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-shaft-alignment",
+        "title": "停止・隔離した回転機器の軸芯出し JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "f71dd67ebb528fed9594cf8f2a9fdae3f8f9f78883c502c44b982aec1198710e"
+      },
+      {
+        "id": "6663d74f-ba0a-416c-aacb-a10874824808",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-shotcrete-reinforcement",
+        "title": "労働安全衛生規則（トンネル等掘削）＆ 粉じん障害防止規則準拠 作業安全分析（JSA）：吹付けコンクリート・支保工",
+        "body_sha256": "1af640253e7eb58dd0e84c9958ff87edf29df40d7d0192371ff426bed5abfdd4"
+      },
+      {
+        "id": "7b3128c4-1f9f-464c-8339-763b774fb879",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-signgantry-erection",
+        "title": "門型道路標識の架設 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "7786a913bcfe39ffe052c6d9df2c8ea534dd623448d4d8ab678a3bcd479d3e3d"
+      },
+      {
+        "id": "4d67b186-e8a4-4378-88cf-ef8022d2a782",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-slung-scaffold",
+        "title": "吊り足場（アンダーハング・吊り棚足場）組立・解体作業安全分析（JSA）リスクアセスメントガイド：ワイヤグリップ締結基準、独立親綱展張および橋梁補修・塗装墜落倒壊防止対策（安衛則・仮設工業会基準準拠）",
+        "body_sha256": "c209d512aebdb666606d81435eec0cdbf4fb1a872c70dc9a7e1e09be5388dcc8"
+      },
+      {
+        "id": "4ca0d715-2ba0-4eec-b9f8-9e8004ab864d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-soil-transtport",
+        "title": "ダンプトラックによる土砂運搬および荷下ろし（ダンプ排出）作業のJSAリスクアセスメント",
+        "body_sha256": "4e6cf9569cc6f0206887b43adead02d6dcb1f8390bfb59b09aaa34de7f780dc9"
+      },
+      {
+        "id": "c8f7e3eb-8c8b-4973-96e7-813058a32b20",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-solar-rooflift",
+        "title": "太陽電池モジュールの屋根への揚重・取付け JSA",
+        "body_sha256": "4eebf6d50b6e6ecb2e18d923648725589a4178884369c8b063acd4da47c9b448"
+      },
+      {
+        "id": "05c45b1e-1d04-4d82-a973-6a4c40236049",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-sprinkler-grooved-coupling-assembly",
+        "title": "スプリンクラー鋼管の溝形継手組立てのJSA・リスクアセスメント",
+        "body_sha256": "37c4f6ed9c979310270ec199e881696cad6fe6b9d0321844996b7b136371b3d3"
+      },
+      {
+        "id": "d310e71b-b7bc-4874-93fe-a6d770da395c",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-steampipe-welding",
+        "title": "隔離した蒸気配管の溶接と保温復旧 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "a1fb63084c34d3172a632910ffe33377e11557fe4258bca677f48d7dff0a5570"
+      },
+      {
+        "id": "c803b49c-1f14-4666-a14f-f135fe21b158",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-steel-heatbending",
+        "title": "鋼製梁のガス加熱・曲げ加工 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "7c2d8c9972c70c4985c420ecd35c79fc2458358a69219c33f7545b0d8bfaaff6"
+      },
+      {
+        "id": "44f65700-05cd-4521-be16-aeaf5301d104",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-steel-smaw",
+        "title": "鉄骨部材の被覆アーク溶接 JSA",
+        "body_sha256": "2d46718cbcd653146273950e616ae250b1b32f29ca7572f1d3d89c1be4148379"
+      },
+      {
+        "id": "99607290-002a-4fb4-bf43-701c83c17a48",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-stepladder-work",
+        "title": "労働安全衛生規則＆厚労省通達準拠 職務安全分析（JSA）：可搬式脚立（はしご兼用脚立）を用いた天井照明器具・蛍光灯・LED交換保守作業",
+        "body_sha256": "121e05c8ae9608715f207b7877ac68c71e3f6d491871de4b4fd847d728c67f5b"
+      },
+      {
+        "id": "7ec11c98-6169-40c8-adcc-74ceda404f95",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-stretch-wrapper-film-change",
+        "title": "自動ストレッチ包装機のフィルム交換のJSA・リスクアセスメント",
+        "body_sha256": "b11803c07831fb9a0a5e8eddfc6fc1c131b0947292b5d97007b08842395438f2"
+      },
+      {
+        "id": "5d535507-93e8-477a-8724-f9273225501a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-structure-demolition",
+        "title": "油圧ブレーカ装着バックホウによるコンクリート構造物解体工事のJSAリスクアセスメント",
+        "body_sha256": "0e9061c6178ac7fa0eda62745c6b1fa372513a23d3cfc9641c7730094fe686e7"
+      },
+      {
+        "id": "9b0ceda6-c67e-4334-a1db-f3600628627b",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-submerged-arc",
+        "title": "走行台車式サブマージアーク溶接 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "4d5d1fdd8e750f0a927e153fca2b90f0d2516da214979383a5c79f6b744035c8"
+      },
+      {
+        "id": "f3cfb925-d3e8-4f25-b52c-8b4238bbc724",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-suspended-ceiling-grid-tile-install",
+        "title": "Tバー下地・置敷き天井板の取付け JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "4dcdb1b17aed6a913d2620e81a775c3b6b618c27ccd8bf2408ecc994370768f0"
+      },
+      {
+        "id": "1c71237f-8007-4ab9-b14a-098395553955",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-suspended-scaffold",
+        "title": "安衛則第539条の2〜9 & JIS T 8165 JSAリスクアセスメント（作業手順安全計画書）: ロープ高所作業（ブランコ足場）外壁塗装・補修工事、独立2系統アンカー支持およびパラペット当て物100%設置作業",
+        "body_sha256": "eb6627666350b98c0ad966aef81570ec7ce76eb41daaf26368e5e672f3fe7b07"
+      },
+      {
+        "id": "03fcdcb0-dfe2-49a5-8849-79e95b35943d",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-table-saw-wood-ripping",
+        "title": "テーブルソーによる木材の縦びき JSA",
+        "body_sha256": "e9102e43bc6df28d75fac7bb2563913ba378f9d4fdedb57aa541afb335c2eefa"
+      },
+      {
+        "id": "1d5ddc80-3ffa-4c12-9bc5-a586d36ccb0e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-tank-cleaning",
+        "title": "酸素欠乏症等防止規則＆安衛法準拠 職務安全分析（JSA）：酸素欠乏・硫化水素危険場所（タンク・ピット・マンホール）清掃・保守点検作業",
+        "body_sha256": "ddc8ded3ff9254165934af8883328e4c385d3fc64914ed46bf37201a27fadbac"
+      },
+      {
+        "id": "83c38025-da04-473f-8fb6-71422646b2ff",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-tankbottom-welding",
+        "title": "新設大型タンクの底板配置・溶接のJSA・リスクアセスメント",
+        "body_sha256": "8cf09f388e3415880ce3de3a3d2fbce2c439a033e5a6facdc90c889bbbbcf9c1"
+      },
+      {
+        "id": "f153fe1e-fe98-4ee3-b248-0f39947e141e",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-tbm-excavation",
+        "title": "土圧式シールドの組立て・掘進とリング施工 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "8cc1416c4d60677d97f3cb598417bb5e6f36e85f6848aa020939f5591ba662da"
+      },
+      {
+        "id": "f1c8ecb6-5a20-4b6d-9060-b4de9aa199b5",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-timbering-installation",
+        "title": "日本の労働安全衛生規則・クレーン等安全規則に基づく山留め支保工架設のJSA・リスクアセスメントと高リスク作業許可ガイド",
+        "body_sha256": "9ac6f8de2e80f7e4d62e42ed772032dbd7e07aec41ef7896ea3de6b92e47fbb3"
+      },
+      {
+        "id": "7ae20794-354b-43cf-a4c7-199ed7fef059",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-transformer-installation",
+        "title": "変圧器の搬入・据付け・停電結線 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "a1f93587c9000609e569af8c9790aebff2909311c7707775975eb07cee610602"
+      },
+      {
+        "id": "0e774e1d-ecb3-40ae-8740-8832ba3cb0dc",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-tunnel-drilling",
+        "title": "日本の労働安全衛生規則・火薬類取締法に基づく山岳トンネル発破・削孔作業のJSA／リスクアセスメントと高リスク作業許可ガイド",
+        "body_sha256": "45317aee10606db7049be31cc3278dc4d37e7036ab1940e6d022f08d2d9da259"
+      },
+      {
+        "id": "b1df6d06-9115-4897-8137-56e68b6af6fe",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-walkbehind-floor-scrubber",
+        "title": "歩行式バッテリー床洗浄機による清掃 JSA",
+        "body_sha256": "bdfaa2127b7f01f24afb28489fa7bc1e68e0c91e2db7b02b98f05f7fa17c06d7"
+      },
+      {
+        "id": "2e8e8c11-d892-4c66-9b00-a00830c96768",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-walkie-electric-pallet-truck",
+        "title": "歩行式電動パレットトラック運搬のJSA・リスクアセスメント",
+        "body_sha256": "002f521fd2e5bae10d8fa84dc3a085c60d67363b719e3155f52cf0a1a14da492"
+      },
+      {
+        "id": "0d55f027-027c-4f38-871c-2f6fb0d3b545",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-wall-form",
+        "title": "擁壁型枠組立、コンクリート打設側圧監視および解体作業のJSAリスクアセスメント",
+        "body_sha256": "987889fc4db59b9cfda799c94de4d2b893dd853afdd131b37041f7b216750ccf"
+      },
+      {
+        "id": "2556ddc1-60ad-4eff-ac4a-3f1d49c15d2a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-waterbased-paint-roller-wall",
+        "title": "床上からの水性塗料による壁面ローラー塗装 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "b6b788660926bafe047d40df99d5589bf03d284ac06a9e1851a654e4c4c43d08"
+      },
+      {
+        "id": "d868d517-2a4e-472d-b493-9c0be3ce62b3",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-wet-wall-core-drilling",
+        "title": "コンクリート壁の湿式コア穿孔 JSA｜リスクアセスメント・中止基準・確認表",
+        "body_sha256": "9bff9bf595556a40797cd0add11eb5907c7ab419044b0abf754204fb01b8a146"
+      },
+      {
+        "id": "ec20d123-721b-47f0-acf4-7c42c2e5b24a",
+        "url": "https://smartjsabridge.com/ja-JP/case-study/jsa-winch-lifting",
+        "title": "巻上げ機（ウインチ）による資材揚重 JSA",
+        "body_sha256": "23bc2cbef9ecdc456060919ad1a83819c7d02c482d1b62f5a0ad6418cc3c29cf"
+      }
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 import { dictionarySearchFilter, parseKeywords } from './content.js';
+import { CONTEXT_DICTIONARIES, scopeDictionary, contextDictionaryFilter } from './contextDictionary.js';
 
 const text = value => typeof value === 'string' ? value.trim() : '';
 const key = value => text(value).replace(/\s+/g, ' ');
@@ -41,9 +42,9 @@ export async function findDictionaryHazards(client, { locale, category = '', sea
   const ids = [];
   let last;
   while (true) {
-    let query = client.from('factor_dictionary_view').select('hazard_id').eq('locale', locale);
+    let query = scopeDictionary(client.from('factor_dictionary_view').select('hazard_id').eq('locale', locale), locale);
     if (category) query = query.eq('category', category);
-    if (search) query = query.or(locale === 'ro-RO' ? romanianDictionaryFilter(search) : dictionarySearchFilter(search));
+    if (search) query = query.or(locale === 'ro-RO' ? romanianDictionaryFilter(search) : CONTEXT_DICTIONARIES[locale] ? contextDictionaryFilter(search) : dictionarySearchFilter(search));
     if (last !== undefined) query = query.gt('hazard_id', last);
     if (signal) query = query.abortSignal(signal);
     const { data, error } = await query.order('hazard_id', { ascending: true }).range(0, 499);
@@ -58,6 +59,8 @@ export async function findDictionaryHazards(client, { locale, category = '', sea
 
 export async function readDictionaryGroups(client, { locale, ids, signal }) {
   if (!ids.length) return [];
+  const scope = CONTEXT_DICTIONARIES[locale];
+  if (scope && ids.some(id => id < scope.firstId || id > scope.lastId)) throw new Error('DICTIONARY_SCOPE_MISMATCH');
   const rows = [];
   let total;
   do {
