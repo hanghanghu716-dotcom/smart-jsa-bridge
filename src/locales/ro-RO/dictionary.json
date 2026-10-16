@@ -15,7 +15,7 @@
     "tag": "BAZA DE DATE PENTRU SECURITATEA MUNCII",
     "titleLine1": "Pericole și factori de risc,",
     "titleLine2": "cu măsuri de prevenire și protecție",
-    "seoText1": "Baza de pericole și măsuri în limba română nu este încă disponibilă. Interfața românească nu transformă datele pentru alte țări în cerințe legale românești. Puteți introduce manual informații verificate pentru lucrarea dumneavoastră.",
+    "seoText1": "Pericole, măsuri propuse și verificări din 199 de studii de caz în limba română, organizate pe etape de lucru și legate de cazul-sursă.",
     "seoText2": "Studiile de caz în limba română sunt disponibile separat, în limita materialelor publicate. Orice exemplu trebuie verificat de un specialist competent și adaptat legislației aplicabile în România, echipamentelor și condițiilor reale de lucru."
   },
   "filter": {
@@ -27,10 +27,10 @@
   },
   "data": {
     "loading": "Se încarcă datele...",
-    "empty": "Nu există rezultate în limba română. Nu se substituie automat date din alte țări.",
+    "empty": "Nu există rezultate pentru această căutare. Încercați alt termen sau altă categorie; nu se substituie automat date din alte țări.",
     "riskFactorLabel": "Pericol / factor de risc",
-    "currentMeasureLabel": "Măsură existentă",
-    "advancedMeasureLabel": "Măsură suplimentară"
+    "currentMeasureLabel": "Măsuri propuse pentru etapă",
+    "advancedMeasureLabel": "Verificări și cauze de prevenit"
   },
   "pagination": {
     "prev": "Înapoi",

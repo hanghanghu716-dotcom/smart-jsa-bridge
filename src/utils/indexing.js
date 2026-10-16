@@ -6,8 +6,7 @@ export function staticCanonicalLocale(locale, page) {
     ? 'en-CA' : locale;
 }
 
-// Romanian hazard/measure translations are not populated yet. Keep the empty
-// dictionary available as a live, noindex page until that separate dataset ships.
-export function isIndexableStaticPage(locale, page) {
-  return !(locale === 'ro-RO' && page === 'dictionary');
+// The Romanian dictionary now contains contextual groups from 199 published cases.
+export function isIndexableStaticPage() {
+  return true;
 }

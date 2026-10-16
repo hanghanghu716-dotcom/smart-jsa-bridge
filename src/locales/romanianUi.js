@@ -238,15 +238,15 @@ export const romanianUi = {
     "reason": "Corespunde lucrării, pericolului și condițiilor selectate"
   },
   "dictionaryGroupUi": {
-    "intro": "Baza românească de pericole și măsuri nu este încă disponibilă. Consultați separat studiile de caz și introduceți informații verificate pentru lucrarea reală.",
-    "howTo": "Comparați pericolele cu condițiile lucrării și verificați măsurile existente și suplimentare înainte de aplicare.",
-    "count": "{{count}} pericole",
-    "groupHint": "Căutarea afișează pericolele corespunzătoare și măsurile asociate fiecăruia.",
+    "intro": "Pericole, măsuri propuse și verificări extrase din 199 de studii de caz în limba română. Fiecare grup păstrează contextul unei etape de lucru și legătura către cazul-sursă.",
+    "howTo": "Căutați după lucrare, pericol sau măsură, cu sau fără diacritice. Consultați cazul-sursă pentru domeniul de aplicare, condițiile de oprire și referințele românești. Măsurile propuse nu confirmă că sunt deja aplicate pe teren.",
+    "count": "{{count}} grupuri de pericole pe etape",
+    "groupHint": "Rezultatele păstrează împreună pericolele, măsurile și verificările aceleiași etape. Nu sunt instrucțiuni complete pentru executarea lucrării.",
     "missingMeasure": "Măsură existentă neprecizată",
     "missingSolutions": "Nu au fost furnizate măsuri suplimentare asociate.",
     "guide": "Ghid de evaluare",
     "cases": "Consultați studiile de caz",
-    "reference": "Material de referință; nu înlocuiește evaluarea și verificarea pentru amplasamentul concret.",
+    "reference": "Material generat cu ajutorul AI, fără verificare sau aprobare tehnică de către un specialist. Înainte de utilizare, un specialist competent trebuie să verifice și să adapteze materialul legislației aplicabile în România, echipamentelor și condițiilor reale.",
     "pageLabel": "Paginile dicționarului de pericole"
   },
   "workRecoveryUi": {

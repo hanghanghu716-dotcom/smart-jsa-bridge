@@ -3,6 +3,17 @@ import { dictionarySearchFilter, parseKeywords } from './content.js';
 const text = value => typeof value === 'string' ? value.trim() : '';
 const key = value => text(value).replace(/\s+/g, ' ');
 
+export function romanianDictionaryFilter(search) {
+  const tokens = [...new Set(String(search).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().match(/[\p{L}\p{N}]{3,}/gu) || [])];
+  return dictionarySearchFilter(search) + (tokens.length ? ',keywords.cs.{' + tokens.map(token => JSON.stringify(token)).join(',') + '}' : '');
+}
+
+export function romanianDictionarySource(id, index) {
+  const offset = Number(id) - index.firstId;
+  if (!Number.isSafeInteger(offset) || offset < 0 || offset >= index.articles.length * index.stepsPerArticle) return null;
+  return index.articles[Math.floor(offset / index.stepsPerArticle)];
+}
+
 // Group only within a hazard and its measure: never cross-link unrelated solutions.
 export function groupDictionaryRows(rows) {
   const hazards = new Map();
@@ -32,7 +43,7 @@ export async function findDictionaryHazards(client, { locale, category = '', sea
   while (true) {
     let query = client.from('factor_dictionary_view').select('hazard_id').eq('locale', locale);
     if (category) query = query.eq('category', category);
-    if (search) query = query.or(dictionarySearchFilter(search));
+    if (search) query = query.or(locale === 'ro-RO' ? romanianDictionaryFilter(search) : dictionarySearchFilter(search));
     if (last !== undefined) query = query.gt('hazard_id', last);
     if (signal) query = query.abortSignal(signal);
     const { data, error } = await query.order('hazard_id', { ascending: true }).range(0, 499);

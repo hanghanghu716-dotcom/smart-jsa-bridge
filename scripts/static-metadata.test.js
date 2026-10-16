@@ -20,12 +20,12 @@ test('missing or duplicated metadata and accidental noindex fail before deployme
   assert.throws(() => verifyStaticMetadata(html.replace('index,follow', 'noindex,follow'), '/'), /noindex/);
 });
 
-test('empty Romanian dictionary stays live and noindex without blocking case publication', () => {
+test('populated Romanian dictionary is included in static routes and sitemap', () => {
   const routes = staticRoutes([{ route: '/ro-RO/case-study/example' }]);
-  assert.ok(!routes.includes('/ro-RO/dictionary'));
+  assert.ok(routes.includes('/ro-RO/dictionary'));
   for (const route of ['/en-US/dictionary', '/ko/dictionary', '/ro-RO/archive', '/ro-RO/case-study/example']) assert.ok(routes.includes(route));
   const sitemap = buildSitemap([{ post_group_id: 'example', language_code: 'ro-RO' }]);
-  assert.ok(!sitemap.includes('https://smartjsabridge.com/ro-RO/dictionary'));
+  assert.ok(sitemap.includes('https://smartjsabridge.com/ro-RO/dictionary'));
   assert.ok(sitemap.includes('https://smartjsabridge.com/en-US/dictionary'));
   assert.ok(sitemap.includes('https://smartjsabridge.com/ro-RO/case-study/example'));
   // The indexability gate remains strict for every page that is snapshotted.

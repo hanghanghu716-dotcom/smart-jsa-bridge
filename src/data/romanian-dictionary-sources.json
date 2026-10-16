@@ -1,0 +1,802 @@
+{
+  "firstId": 1000001,
+  "stepsPerArticle": 8,
+  "articles": [
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-MEWP-working",
+      "title": "Montarea panourilor de fațadă din nacelă: JSA și verificări"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-airless-gun-tip-filter-cleaning",
+      "title": "Curățarea duzei și filtrului pistolului airless: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-anchor-stressing",
+      "title": "Forarea și tensionarea ancorajelor în teren: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-asphalt-milling",
+      "title": "Frezarea asfaltului: JSA pentru utilaj, praf și schimbarea camioanelor"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-battery-brushcutter-grass",
+      "title": "Cosirea ierbii cu motocoasă cu acumulator: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-bearing-hydraulic-press-fit",
+      "title": "Montarea rulmenților cu presă hidraulică: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-bulldozer-grading",
+      "title": "Nivelarea terenului cu buldozer pe șenile: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-chainblock-positioning",
+      "title": "Poziționarea sarcinilor cu palan manual cu lanț: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cold-saw-sections",
+      "title": "Debitarea profilelor metalice cu ferăstrău circular la rece: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-concrete-placing",
+      "title": "Turnarea betonului cu autopompă: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-construction-goods-hoist-loading",
+      "title": "Încărcarea și descărcarea liftului de șantier pentru materiale: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-conveyor-package-sorting",
+      "title": "Sortarea coletelor la transportor: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-crane-operation",
+      "title": "Operarea automacaralei pentru ridicări planificate: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-curingheater-ignition",
+      "title": "Încălzirea pentru întărirea betonului: verificarea înainte de aprindere — JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-distributionboard-wiring",
+      "title": "Montarea aparatajului și cablarea tabloului de joasă tensiune: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-duct-external-insulation-vapor-barrier",
+      "title": "Izolarea exterioară a tubulaturii și bariera de vapori: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-elevator-pit",
+      "title": "Lucrări în groapa puțului ascensorului: JSA și controlul energiilor"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-fan-vbelt-replacement",
+      "title": "Înlocuirea și tensionarea curelelor trapezoidale ale ventilatorului: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-food-slicer-cleaning",
+      "title": "Curățarea feliatorului alimentar cu lamă circulară fixă: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-gantry-transport",
+      "title": "Transportul cu macaraua portal pe șine: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-girder-erection",
+      "title": "Montarea grinzilor prefabricate de pod: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-ground-exoweld",
+      "title": "Împământare și conexiuni prin sudură exotermică: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hand-router-wood-edge",
+      "title": "Frezarea muchiilor de lemn cu freză manuală: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hot-food-container-serving",
+      "title": "Transportul și servirea alimentelor fierbinți în recipiente: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hydraulic-hose-replacement",
+      "title": "Înlocuirea furtunului hidraulic la utilaj izolat: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-indoor-floor-tile-wet-cut-laying",
+      "title": "Tăierea umedă și montarea gresiei la interior: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-jointer-wood-face",
+      "title": "Îndreptarea feței lemnului la mașina de rindeluit: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-leak-testing",
+      "title": "Inertizarea și verificarea etanșeității conductelor: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-lowvoltage-livecheck",
+      "title": "Verificarea stării instalației de joasă tensiune: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manual-box-lifting-stacking",
+      "title": "Ridicarea și stivuirea manuală a cutiilor: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manual-pallet-truck",
+      "title": "Transportul cu transpaleta manuală: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-metal-conduit-cut-bend-install",
+      "title": "Tăierea, îndoirea și montarea tuburilor metalice pentru cabluri: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-mixer-unloading",
+      "title": "Descărcarea autobetonierei și spălarea jgheabului: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-overhead-insulator",
+      "title": "Înlocuirea izolatorului unei linii aeriene scoase de sub tensiune: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pipe-disassembly",
+      "title": "Desfacerea flanșei și înlocuirea garniturii de conductă: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pipeline-installation",
+      "title": "Pozarea și îmbinarea conductelor de apă și canalizare: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pneumatic-calibration",
+      "title": "Tubulatura pneumatică și calibrarea cursei unei vane: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-portable-planer-wood",
+      "title": "Rindeluirea lemnului cu rindeaua electrică portabilă: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-radiographic-testing",
+      "title": "Control radiografic al conductelor și uscare cu gaz: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-restroom-cleaner-use",
+      "title": "Curățarea grupurilor sanitare cu produse chimice: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-rockfallmesh-installation",
+      "title": "Montarea plasei ancorate pe versant: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-safety-cutter-unpacking",
+      "title": "Desfacerea ambalajelor cu un cutter de siguranță: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-scaffolding-erection",
+      "title": "Montarea schelei de fațadă din țevi și cuple: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-signgantry-erection",
+      "title": "Ridicarea portalului pentru indicatoare rutiere: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-sprinkler-grooved-coupling-assembly",
+      "title": "Asamblarea cuplajelor canelate pentru sprinklere: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-stepladder-work",
+      "title": "Înlocuirea iluminatului de pe scară dublă: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-suspended-ceiling-grid-tile-install",
+      "title": "Montarea plafonului suspendat cu profile T și plăci: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-tankbottom-welding",
+      "title": "Așezarea și sudarea tablelor de fund ale unui rezervor nou: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-tunnel-drilling",
+      "title": "Forajul în tunel și coordonarea etapelor de pușcare: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-waterbased-paint-roller-wall",
+      "title": "Vopsirea pereților cu vopsea pe bază de apă, de la sol: JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-aerial-lift",
+      "title": "Lucrări la tavan cu platformă ridicătoare — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-airreceiver-installation",
+      "title": "Instalarea rezervorului de aer și a drenajului — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-angle-grinder-metal-cutting",
+      "title": "Debitarea metalului cu polizorul unghiular — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-automatic-feed-mechanical-press",
+      "title": "Formare la presa mecanică cu avans automat — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-battery-hedge-trimmer",
+      "title": "Tunderea gardului viu cu foarfecă cu acumulator — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-bearing-replacement",
+      "title": "Înlocuirea aparatelor de reazem ale podului — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cabletray-installation",
+      "title": "Montarea paturilor de cabluri și sudarea suporturilor — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cleanroom-wall-panel-installation",
+      "title": "Manipularea și montarea panourilor de perete pentru camere curate — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-commercial-heatpump-laundry-drying",
+      "title": "Uscarea rufelor în uscător profesional cu pompă de căldură — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-concrete-troweling",
+      "title": "Finisarea mecanizată a betonului cu mașină electrică de elicopterizat — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-construction-waste",
+      "title": "Încărcarea și evacuarea deșeurilor din construcții — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-coolingtower-assembly",
+      "title": "Asamblarea turnului de răcire — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-crane-telescoping",
+      "title": "Înălțarea prin telescopare a macaralei turn — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-dcm-mixing",
+      "title": "Amestecarea umedă în adâncime pentru îmbunătățirea terenului — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-dock-leveler-loading",
+      "title": "Încărcarea și descărcarea cu nivelator de rampă — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-electric-fryer-oil-draining",
+      "title": "Golirea manuală și transferul uleiului din friteuza electrică — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-erecting-scaffolding",
+      "title": "Montarea și instalarea schelei modulare — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-feedercable-pulling",
+      "title": "Tragerea și fixarea cablurilor de alimentare — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-forklift-handling%2Cko",
+      "title": "Transportul și stivuirea paleților cu stivuitorul — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-gasoline-plate-compactor",
+      "title": "Compactarea cu placa vibrantă pe benzină — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-gondola-caulking",
+      "title": "Etanșarea vitrajelor de pe platformă suspendată — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-gypsum-joint-compound-dust-sanding",
+      "title": "Rostuirea și șlefuirea gips-cartonului cu aspirare — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-highbolt-tightening",
+      "title": "Strângerea și verificarea șuruburilor de înaltă rezistență — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hot-melt-carton-sealing",
+      "title": "Închiderea cutiilor cu pistol electric de adeziv termofuzibil — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hydro-testing",
+      "title": "Montarea conductelor provizorii și umplerea pentru proba hidraulică — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-indoor-pvc-drain-solvent-joint",
+      "title": "Îmbinarea cu adeziv pe bază de solvent a țevilor PVC de canalizare interioară — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-kitchen-knife-food-preparation",
+      "title": "Pregătirea alimentelor cu un cuțit manual de bucătărie — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-lfl-ins",
+      "title": "Instalarea liniilor de viață și a ancorajelor pentru protecția la cădere — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-magnetic-drill-steel",
+      "title": "Găurirea tablei orizontale de oțel cu mașină cu talpă magnetică — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manual-dishwashing",
+      "title": "Spălarea manuală a veselei în bucătăria colectivă — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-mccpanel-wiring",
+      "title": "Conectarea circuitelor de putere și comandă în tabloul MCC — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-metal-stud-gypsum-partition",
+      "title": "Montarea pereților nestructurali din gips-carton pe profile metalice — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-nonloadbearing-concrete-block-wall",
+      "title": "Executarea pereților interiori nestructurali din blocuri de beton — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-oxyacetylene-cutting",
+      "title": "Debitarea oxiacetilenică cu echipament alimentat din butelii — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pipe-flushing",
+      "title": "Spălarea conductelor prin circulație sau cu jet de apă sub presiune — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-planetary-mixer-cleaning",
+      "title": "Curățarea mixerului planetar cu bol și agitator demontabile — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pneumatic-nailer-pallet-repair",
+      "title": "Repararea paleților din lemn cu pistol pneumatic de bătut cuie — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-prefab-scaffold",
+      "title": "Montarea, utilizarea și mutarea schelei mobile prefabricate — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-raised-access-floor-installation",
+      "title": "Montarea pardoselii supraînălțate cu ploturi, traverse și panouri — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-retainingwall-construction",
+      "title": "Execuția zidului de sprijin din pământ armat cu blocuri de parament — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-roller-compaction",
+      "title": "Compactarea stratului asfaltic cu cilindru compactor cu operator la bord — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-safety-net",
+      "title": "Montarea, utilizarea și demontarea plaselor de siguranță pentru oprirea căderii persoanelor — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-scissor-lift",
+      "title": "Montarea instalațiilor la tavan de pe o platformă ridicătoare tip foarfecă — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-slung-scaffold",
+      "title": "Montarea și demontarea unei schele fixe suspendate sub structură — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-steampipe-welding",
+      "title": "Sudarea conductei de abur izolate și refacerea termoizolației — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-stretch-wrapper-film-change",
+      "title": "Schimbarea și introducerea rolei de folie la mașina automată de înfoliat paleți — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-suspended-scaffold",
+      "title": "Lucrări ușoare la fațadă din scaun suspendat: ancorare, coborâre și recuperare — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-tbm-excavation",
+      "title": "Asamblarea și avansul unui scut TBM cu echilibrarea presiunii pământului — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-walkbehind-floor-scrubber",
+      "title": "Curățarea pardoselilor cu mașină de spălat și aspirat condusă de operator pedestru — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-wet-wall-core-drilling",
+      "title": "Carotarea umedă orizontală a pereților din beton cu stativ ancorat — JSA, riscuri și condiții de oprire"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-ahu-ducting",
+      "title": "Ridicarea centralei de tratare a aerului și racordarea tubulaturii - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-aluminum-actig",
+      "title": "Sudarea TIG AC a țevilor din aluminiu - JSA și evaluarea riscurilor"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-aqueous-metal-parts-cleaning",
+      "title": "Curățarea pieselor metalice cu soluție apoasă - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-barricade-installation",
+      "title": "Montarea și demontarea barierelor temporare - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-battery-plastic-strapping",
+      "title": "Legarea ambalajelor cu bandă PET/PP - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-bench-grinder-wheel-change",
+      "title": "Înlocuirea și redresarea pietrei abrazive - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cargo-lashing-release",
+      "title": "Eliberarea chingilor cu clichet de pe camion - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-co2-gmaw",
+      "title": "Sudarea MAG cu dioxid de carbon - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-compressed-air-filter-element",
+      "title": "Înlocuirea cartușului filtrului de aer comprimat - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-concrete-wall-dust-extraction-grinding",
+      "title": "Șlefuirea pereților din beton cu aspirarea prafului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-controls-network",
+      "title": "Cablarea și verificarea rețelei de control DCS / PLC - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cordless-drilldriver-fastening",
+      "title": "Înșurubare cu mașină de găurit și înșurubat cu acumulator - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cranerail-installation",
+      "title": "Montarea șinelor căii de rulare pentru poduri rulante - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-deckplate-placement",
+      "title": "Montarea tablei cutate pentru planșeu pe structură metalică - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-drillpress-metalplate",
+      "title": "Găurirea unei plăci metalice la mașina de găurit fixă - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-electric-pressure-washer-floor",
+      "title": "Spălarea pardoselii cu aparat electric de înaltă presiune - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-excavation-works",
+      "title": "Săpături lângă rețele îngropate: localizare, sprijinire și acces - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-firealarm-devices",
+      "title": "Montarea detectoarelor și dispozitivelor de alarmare la incendiu - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-forklift-leadacid-charging",
+      "title": "Încărcarea bateriei plumb-acid cu electrolit lichid a stivuitorului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-general-waste-bag-collection",
+      "title": "Colectarea sacilor cu deșeuri generale din clădiri - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-grader-leveling",
+      "title": "Nivelarea platformei cu autogrederul - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hammer-drill-anchor-holes",
+      "title": "Găuri pentru ancore în beton cu rotopercutorul - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hoist-mast",
+      "title": "Montarea și înălțarea catargului ascensorului de șantier - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hpile-installation",
+      "title": "Forare și introducerea profilelor H pentru sprijiniri - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-impact-wrench-bolt-removal",
+      "title": "Desfacerea șuruburilor și preasamblarea cu cheia cu impact - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-industrial-lockstitch-sewing",
+      "title": "Coaserea la mașina industrială cu un ac și cusătură de suveică - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-largepump-positioning",
+      "title": "Recepția, ridicarea și poziționarea ansamblului pompă-motor pe fundație - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-lightning-downlead",
+      "title": "Montarea captatoarelor și conductoarelor de coborâre pentru protecția la trăsnet - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manhole-assembly",
+      "title": "Montarea căminelor prefabricate și lucrări de finisare în interior - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manual-floor-stair-cleaning",
+      "title": "Curățarea manuală a pardoselilor și scărilor interioare - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-mechanical-bearing-puller",
+      "title": "Extragerea rulmenților de pe arbore cu extractor mecanic manual - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-metal-window-frame-installation",
+      "title": "Montarea ramelor metalice de fereastră fără geam - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-opening-covers",
+      "title": "Montarea și înlocuirea capacelor pentru goluri în planșeu - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-penetration-firestop-installation",
+      "title": "Etanșarea antifoc a trecerilor de conducte și cabluri - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pipe-threading-machine",
+      "title": "Tăierea, debavurarea și filetarea țevilor de oțel pe mașină - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-plasma-platecut",
+      "title": "Debitarea tablei de oțel cu plasmă - sprijin, retur și controlul incendiului"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-portable-circular-saw-wood-crosscut",
+      "title": "Tăierea transversală a lemnului cu ferăstrău circular portabil - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pump-installation",
+      "title": "Montarea pompei volumice de înaltă presiune și predarea pentru probă - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-rebar-work",
+      "title": "Lucrări de armare: fasonare, ridicare și stabilitate temporară - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-road-pavement",
+      "title": "Pavarea cu mixtură asfaltică: alimentare, compactare și acces controlat - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-roof-slate",
+      "title": "Plăci de acoperiș: azbest, suprafețe fragile și predarea către montatori - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-sanddrain-installation",
+      "title": "Drenuri verticale de nisip: continuitate, platformă și încărcare etapizată - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-shaft-alignment",
+      "title": "Alinierea arborilor: sprijinul picioarelor, repetabilitate și starea finală - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-soil-transtport",
+      "title": "Autobasculante pentru pământ: încărcare, suport la descărcare și plecare - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-steel-heatbending",
+      "title": "Grinzi din oțel încălzite cu flacără: trasabilitate, temperatură și reazeme - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-structure-demolition",
+      "title": "Demolare cu picon hidraulic: structură rămasă, încărcări și evacuarea molozului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-table-saw-wood-ripping",
+      "title": "Circular de masă: tăiere longitudinală, recul și controlul ieșirii piesei - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-timbering-installation",
+      "title": "Sprijiniri metalice ale excavațiilor: montaj, preîncărcare și reluarea săpăturii - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-walkie-electric-pallet-truck",
+      "title": "Transpalet electric fără catarg: frânare, viraj și spațiul operatorului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-winch-lifting",
+      "title": "Ridicare cu troliu: ancorare, role de deviere, cablu și frână - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-ahu-filter-replacement",
+      "title": "Înlocuirea filtrelor unei centrale de tratare a aerului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-anchor-installation",
+      "title": "Montarea ancorelor fundației unei macarale turn - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-argon-cylinder-regulator-change",
+      "title": "Înlocuirea reductorului unei butelii de argon - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-bathroom-waterbased-waterproof-coating",
+      "title": "Hidroizolarea băii cu membrană lichidă pe bază de apă - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-beam-work",
+      "title": "Montarea stâlpilor și grinzilor metalice - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-boiler-positioning",
+      "title": "Ridicarea și poziționarea cazanului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cement-mortar-wall-plastering",
+      "title": "Amestecarea mortarului și tencuirea pereților - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-cold-room-goods-handling",
+      "title": "Manipularea mărfurilor în camere frigorifice - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-compressor-leveling",
+      "title": "Instalarea și nivelarea compresorului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-confined-space",
+      "title": "Intrarea în conducte și verificarea atmosferei - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-conveyor-maintenance",
+      "title": "Repararea acționării și schimbarea rolelor transportorului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-crane-jib",
+      "title": "Montarea și demontarea brațului macaralei turn - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-culvert-installation",
+      "title": "Montarea elementelor casetate prefabricate pentru podețe - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-deckstud-welding",
+      "title": "Sudarea conectorilor de forfecare pe tablă profilată - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-drum-trolley-transfer",
+      "title": "Transportul unui butoi cu cărucior manual dedicat - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-electrical-safety",
+      "title": "Tablouri electrice temporare, cabluri și probe de punere sub tensiune - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-exequipment-gland",
+      "title": "Montarea echipamentelor Ex și a presetupelor de cablu - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-flour-bag-hopper-loading",
+      "title": "Deschiderea sacilor de făină și alimentarea buncărului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-form-work",
+      "title": "Montarea, betonarea și decofrarea cofrajelor cu susțineri - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-generator-installation",
+      "title": "Instalarea grupului electrogen și a evacuării gazelor - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-grinder-weldfinish",
+      "title": "Polizarea de finisare a sudurilor cu polizor portabil - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hand-belt-sander-wood",
+      "title": "Șlefuirea lemnului cu șlefuitor portabil cu bandă - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hood-dishwasher-rack-operation",
+      "title": "Operarea mașinii de spălat vase cu capotă și coș - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-hvswitchgear-positioning",
+      "title": "Poziționarea celulelor de medie tensiune - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-impulse-tubing",
+      "title": "Montarea tuburilor de impuls pentru instrumentație - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-inverter-dcwiring",
+      "title": "Instalarea invertorului fotovoltaic și conexiunile DC - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-lathe-bar-turning",
+      "title": "Strunjirea exterioară a unei bare metalice - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-loader-loading",
+      "title": "Încărcarea agregatelor cu încărcător frontal - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manhole-cablesplice",
+      "title": "Îmbinarea cablurilor într-un cămin subteran - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-manual-pallet-stretch-wrapping",
+      "title": "Înfolierea manuală cu folie stretch a paleților - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-metal-bandsaw-blade-change",
+      "title": "Schimbarea pânzei la ferăstrăul panglică pentru metal - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-milling-flat-block",
+      "title": "Frezarea unei fețe plane pe un bloc metalic mic - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-overhead-crane-load-transfer",
+      "title": "Ridicare, deplasare și așezare cu podul rulant - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pile-driving",
+      "title": "Baterea piloților și forajul de fundații cu instalație pentru piloți - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pipehanger-installation",
+      "title": "Montarea suporturilor și suspensiilor pentru conducte - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-platform-trolley-transfer",
+      "title": "Transportul materialelor cu un cărucior manual cu platformă - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-portable-generator-tools",
+      "title": "Alimentarea sculelor cu un generator portabil pe benzină - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-pumpseal-replacement",
+      "title": "Înlocuirea etanșării mecanice a unei pompe - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-rectangular-duct-section-assembly",
+      "title": "Ridicarea și îmbinarea tronsoanelor de tubulatură rectangulară - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-robotcell-setup",
+      "title": "Instalarea împrejmuirii și reglarea unei celule robotizate - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-roof-truss",
+      "title": "Montarea fermelor metalice de acoperiș, contravântuirilor și panourilor - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-scaffolding-dismantling",
+      "title": "Demontarea etapizată a schelei din țevi și cuple - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-shotcrete-reinforcement",
+      "title": "Beton torcretat în tunel: sprijinire și reluarea lucrului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-solar-rooflift",
+      "title": "Ridicarea și montarea modulelor fotovoltaice pe acoperiș - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-steel-smaw",
+      "title": "Sudarea manuală cu electrozi înveliți a structurii din oțel - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-submerged-arc",
+      "title": "Sudarea sub strat de flux cu cărucior pe șină - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-tank-cleaning",
+      "title": "Curățarea interioară a unui rezervor în spațiu închis - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-transformer-installation",
+      "title": "Poziționarea și conectarea fără tensiune a transformatorului - JSA"
+    },
+    {
+      "url": "https://smartjsabridge.com/ro-RO/case-study/jsa-wall-form",
+      "title": "Montarea și decofrarea cofrajelor pentru ziduri de sprijin - JSA"
+    }
+  ]
+}

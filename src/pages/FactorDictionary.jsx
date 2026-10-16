@@ -1,7 +1,8 @@
 import { getDataLocale } from '../locales/config.js';
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { findDictionaryHazards, readDictionaryGroups } from '../utils/dictionaryGroups';
+import { findDictionaryHazards, readDictionaryGroups, romanianDictionarySource } from '../utils/dictionaryGroups';
+import romanianSources from '../data/romanian-dictionary-sources.json';
 import { getDictionaryGroupUi } from '../locales/dictionaryGroupUi';
 import '../styles/dictionary-groups.css';
 import { getSiteUi } from '../locales/siteUi.js';
@@ -233,6 +234,7 @@ export default function FactorDictionary() {
                     <span style={styles.cardCategory}>{hazard.category}</span>
                     <strong style={styles.boxLabelRed}>{t('data.riskFactorLabel')}</strong>
                     <h3>{hazard.name || 'ID ' + hazard.id}</h3>
+                    {currentLocale === 'ro-RO' && romanianDictionarySource(hazard.id, romanianSources) && <p><a href={romanianDictionarySource(hazard.id, romanianSources).url}>Studiul de caz și referințele aplicabile</a></p>}
                     <ol className="dictionary-measures">
                       {hazard.measures.map((measure, index) => <li key={index} className="dictionary-measure">
                         <h4>{t('data.currentMeasureLabel')} · {index + 1}</h4>
