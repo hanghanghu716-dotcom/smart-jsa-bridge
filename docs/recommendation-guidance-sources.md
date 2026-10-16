@@ -1,77 +1,45 @@
 # Guidance source capture and review binding
 
-Guidance drafts previously retained source URLs without a fingerprint. Their supporting references were also absent from the capture inventory. The new capture manifest records selected source representations and binds every primary and supporting citation before assigning a unit fingerprint.
+## Current state — 2026-10-16
 
-## Current evidence
+All **57/57 current guidance draft revisions** have fingerprints binding every active primary and supporting citation to captured source sections. There are **47** selected source representations. Twelve previously incomplete drafts were reauthored from material already captured; their inaccessible original URLs were not recovered, silently marked read, or replaced with AI-invented sources.
 
-On 2026-10-16, forty-seven source representations were collected. The initial five cover OSHA 1910.147 and 1910.252, HSE maintenance and welding guidance, and the Parker OIL-X user guide (17 118 6204, 07/21 Rev -). Nine Canadian captures cover CCOHS lockout and ventilation, Alberta Parts 15 and 26, WorkSafeBC lockout and welding, CNESST machinery and ventilation, and IHSA construction welding pages. Two Romanian captures cover an ILO-hosted archived HG 1146/2006 text and the Portal Legislativ representation of HG 1218/2006.
+`guidance-evidence-dossiers.json` contains the twelve authored evidence dossiers: exact draft content and hash, source/section/fragment mapping, replacement rationale, prior sources and scope, and outstanding review limits. These dossiers are authoring records, not primary authorities or review approvals. `guidance-source-retrieval-status.json` preserves the earlier 12-draft retrieval blockage as history and marks the current revisions complete.
 
-All cited sections of forty-five drafts are bound: six US/GB drafts, ten Canadian drafts, three Romanian drafts, three Korean drafts, three Australian drafts, three Singapore drafts and three Japanese drafts, three German drafts, three French drafts, three Spanish drafts two Italian drafts, two Brazilian drafts and one Saudi draft. The other 12 guidance drafts retain null fingerprints. All 57 guidance drafts and the three case drafts remain unpublished and await actual content reviews. Source binding is preparation and does not increment content-review decisions. Adding the Romanian maintenance, pressure-filter and welding drafts fills all 57 priority cells; it expands the source-binding denominator from 54 to 57 and the technical/regional/translation review denominator from 171 to 180.
+The existing three AI technical desk reviews remain **3/180**. All 60 units remain drafts, all publication review statuses remain pending, all scores remain null and publication eligibility is zero. No additional content review was performed during source reauthoring. Source binding is now complete, so the next workstream is technical/regional/translation review. No merge, deployment or production DB write is included.
 
-Five Canadian drafts remain unbound: all three Ontario drafts and Quebec maintenance/pressure-filter drafts. Ontario government content was unavailable; the WSPS article is now captured through its publisher-linked embedded representation. The Quebec RSST PDF edition metadata was retrieved, but the cited articles could not be recaptured after a 502 response. Neither an error response nor navigation or edition metadata counts as captured technical content.
+## Evidence changes
 
-`data/recommendation-knowledge/guidance-source-captures.json` stores URLs, observed editions, scopes, exact covered citation strings, selected extraction ranges and SHA-256 digests. It does not store complete original HTML/PDF bytes. A digest identifies the selected extracted text, not the entire document, legal applicability, or currentness of a live website. Changes outside the selected ranges are not detected. A new retrieval and comparison are needed to check upstream changes.
+| Reauthored drafts | Captured basis and limits |
+| --- | --- |
+| Ontario maintenance/filter (2) | CCOHS and WSPS technical guidance; foreign OSHA and manufacturer references where cited. No assertion of reading the blocking alert or Regulation 851, and no provincial compliance certification. |
+| Ontario welding (1) | IHSA construction-welding, CCOHS and OSHA. Construction scope retained; pre-start review Item 8 and current CSA obligations unverified. |
+| Quebec maintenance/filter (2) | CNESST machinery guidance and CCOHS; filter also retains OSHA/Parker. No claim to have read the 2026 RSST consolidation; the 2023 Gazette is not substituted as an equivalent consolidation. |
+| Italy filter (1) | INAIL 2023 research description supplies residual-energy context; OSHA/Parker supply technical examples. The INAIL research page is not represented as an operating procedure or Italian law. |
+| Saudi maintenance/filter (2) | EXPRO EOM Rev 000 (2020-03-31); scope narrowed to government facilities/projects operation and maintenance with an adopted equipment procedure. Independent checking retained. Unread EPM construction procedure retired from active citations. |
+| Brazil welding (1) | Fundacentro 2016 primary publication plus explicitly foreign OSHA/HSE guidance. Added elimination/reduction before extraction and respiratory protection; no claim of current GRO/PGR verification. |
+| Russia maintenance/filter/welding (3) | Captured reproductions of 833n/884n and operator/foreign technical guidance. 287n is duration context only. Signed-source equivalence and current legal applicability remain unreviewed; no actual site is claimed to have passed rule 8 exclusions. |
 
-The extraction procedure removes line/page prefixes and converts retrieval link markers to visible link text, preserving other text and joining lines with LF. The selectors refer to the recorded extraction, not stable publisher line numbers. Future collectors must read the cited sections, record their new selectors and regenerate the manifest; a changed representation conservatively requires review again. Retrieval dates alone do not invalidate identical evidence.
+The unread references are retained in the dossier's prior source records, including full citation scopes and retrieval status. The previous revisions remain in Git history. This is a documented change to authored evidence and scope, not recovery of the old inaccessible sources. The 45 previously bound guidance units and all three existing review records were preserved exactly.
 
-Third-party source text is supplied separately for digest verification. It is not included in the repository or recommendation release. Do not substitute a summary or URL for captured source content. Preserve authorized source evidence privately under the applicable reproduction terms, or re-fetch it when needed.
+## Representation and limits
 
-## Scope findings requiring professional review
+`guidance-source-captures.json` stores URLs, observed editions, scope limits, exact covered citation strings, selected extraction ranges and SHA-256 digests. It does not store full HTML/PDF bytes. Captures reflect their collection-time scope; historical descriptions of incomplete drafts do not confer authority on later revisions. A digest identifies selected extracted text, not a whole document, current law or applicability. Changes outside the selected ranges are not detected.
 
-- OSHA 1910.147 supports the energy-control concepts within its stated scope. It does not supply a complete filter-opening procedure.
-- OSHA 1910.252(c)(1)-(3) contains several ventilation arrangements and conditions. A conservative source-extraction recommendation must not be presented as a universal federal requirement for every welding situation.
-- HSE maintenance guidance describes isolation, prevention of reconnection and control of stored energy. Great Britain scope is retained; Northern Ireland applicability has not been established.
-- HSE welding guidance distinguishes regular and sporadic work. The current drafts cover regular indoor work; the sporadic-work example must not be generalized to it.
-- The Parker manual gives model-specific reverse-flow precautions and depressurisation guidance. It is a manufacturer example, not a universal procedure or local legislation. Valve sequences, waiting times and torque values are not transferred to other equipment.
-- Alberta's publisher disclaimer states current to March 2023. Capturing that representation does not establish current legal requirements. Later amendments remain a regional-review blocker for all three Alberta drafts.
-- Alberta Part 15 separately addresses piping/pipelines in sections 215.4-215.5. The pressure-filter draft now states that it is not a piping-isolation procedure and requires a separate applicability determination.
-- WorkSafeBC's welding advisory identifies the need for a site exposure-control plan. Its lockout text supports worker verification; neither replaces site-specific assessment.
-- CNESST ventilation guidance includes fixed welding stations. Its machinery guidance does not substitute for the separately cited, currently uncaptured RSST articles.
-- IHSA's construction text includes historical CSA references. Those references have not been verified as current standards and do not establish applicability to other industries.
-- Romanian HG 1146/2006 was read from an ILO NATLEX archived copy because the publisher page was unavailable. Its current consolidation is unverified. Its maintenance/isolation clauses do not supply pressure-filter opening instructions or establish the applicable pressure-equipment regime.
-- Romanian HG 1218/2006 supports risk assessment and the prevention hierarchy. The welding draft includes consideration of elimination/substitution before source extraction and respiratory protection. Additional carcinogen duties, current exposure limits and local-language suitability still require review. Foreign technical references are identified as foreign; they are not treated as Romanian law.
+Extraction removes line/page prefixes and converts retrieval links to visible text, preserving other text and joining lines with LF. The selectors refer to retrieval output, not permanent publisher line numbers. Source bodies are verified privately and are not redistributed in the repository or generated dossier. Changed evidence or citation meaning requires a new fingerprint and review. A retrieval date alone does not invalidate identical evidence.
 
-- Australian captures retain the WorkSafe Victoria reviewed date (10/05/2023), the November 2024 plant model Code and July 2020 welding model Code. State/territory adoption and current exposure limits remain unreviewed. The welding citation now includes the respiratory-protection passage on printed page 34.
-- Singapore machinery citations distinguish printed pages 27 and 37-38 from PDF pages 30 and 40-41. The machinery publication date was not established from extracted text. The metalworking permit example is explicitly October 2012 guidance, not a universal legal permit requirement.
-- Japanese captures cover rules 107-108, the March 2010 manufacturer manual, the 2007 machinery guideline and Mie Labour Bureau metal-arc welding guidance. The latter describes 2021-2022 implementation; its historical transition dates are not current deadlines. Current legal consolidation and equipment-specific applicability remain unreviewed.
-
-- European captures add DGUV FBHM-127 (May 2022), FBHM-077 (October 2021), BetrSichV section 10 (publisher consolidation amended December 2025), INRS ED 6109 (October 2020), INRS restart/welding pages, INAIL production-line research (June 2023) and protection guidance (June 2017), and INSST NTP 1117 (2018)/494 (1999). German maintenance now correctly cites Annex 2. French maintenance cites actual ED 6109 PDF sections rather than its landing page; fluid-isolation citations include the later purge and verification text. Historical limits and guidance do not establish current legal applicability. The Italian pressure-filter presentation could not be recaptured and its draft remains unbound.
-
-The next five captures cover Brazilian NR-12 clauses 12.11.3 through 12.11.3.3 and its publisher index, the Saudi HRSD arc-welding table, EXPRO EOM-KSS-PR-000028-AR Rev 000 (2020-03-31), and Fundacentro respiratory guidance (fourth edition, 2016). Only Brazilian maintenance/filter and Saudi welding become fully bound. Saudi maintenance and Brazilian welding remain unbound because other citations are missing. Historical respiratory guidance and a general ventilation table do not establish current requirements or a complete welding-control specification.
-
-The remaining 12 are Ontario 3, Quebec 2, Italy 1, Saudi maintenance/filter 2, Brazilian welding 1 and Russia 3. Recapture encountered Ontario/Quebec retrieval errors, an INAIL timeout, an EXPRO project-procedure timeout, an oversized Brazilian GRO/PGR PDF, a CBIC access failure and unread Russian official scans. These failures and partial captures are not counted as completed bindings.
-
-Source capture does not generate reviewer identities or approval decisions. Separately, `data/recommendation-knowledge/technical-review-records.json` records three completed AI technical desk reviews for Brazilian maintenance/filter and Saudi welding. Each records the exact content/source hashes, source-fragment digests, field-level findings and outstanding limits. These are 3/180 completed review areas, not three fully approved units. They are not independent professional approvals and do not change any unit's pending publication-review statuses. Regional and translation reviews remain pending.
-
-## Serial work order and unresolved sources
-
-Workstream 2 remains at **45/57**, with **12** incomplete drafts. It must reach **57/57 before any additional workstream 3 review**. The three existing AI technical desk reviews remain recorded; this collection adds no review decisions.
-
-Five further captures cover the WSPS energy article, original-act reproductions of Russian orders 833n/287n/884n, and the CPC operator LOTO procedure. They improve partial evidence only: **zero newly completed drafts**. No unread citation was removed, no source edition was substituted, and no recommendation content or source fingerprint changed. Reproductions do not attest separately cited official scans.
-
-`data/recommendation-knowledge/guidance-source-retrieval-status.json` records all twelve affected drafts and their exact missing URLs/sections, retrieval failures and the serial-work constraint. Ontario/CBIC return 403, Quebec returns 502, INAIL/EXPRO time out or are inaccessible, and the Brazilian manual exceeds the retrieval size limit. Russian screenshot calls supplied a text placeholder without image data, so no scan was visually read or OCR-verified. The readable 2023 Quebec Gazette has not been substituted for the cited 2026 consolidation. These are retrieval blockers, not completed reviews or permission requests.
+Historical editions, foreign guidance and operator-specific procedures are never treated as universal local legislation. Pressure-filter opening always depends on the actual equipment procedure; no model-specific timing, torque or valve sequence is generalized. Welding scope remains regular indoor uncoated mild steel; numerical ventilation design and universal respirator specifications are not authored. Professional regional and technical review is still required before release.
 
 ## Commands
-
-Check committed metadata against the exact references in a bank:
 
 ```sh
 node scripts/recommendation-guidance-sources.js --check data/recommendation-knowledge/regional-drafts.json data/recommendation-knowledge/guidance-source-captures.json
 node scripts/recommendation-guidance-sources.js --check data/recommendation-knowledge/pressure-welding-drafts.json data/recommendation-knowledge/guidance-source-captures.json
-```
-
-Bind newly captured evidence into a separate output for review:
-
-```sh
 node scripts/recommendation-guidance-sources.js --bind bank.json manifest.json private-evidence.json next-bank.json
 ```
 
-Evidence input has `schemaVersion: 1` and `captures`, each with an `id`, exact `url`, and ordered `fragments` containing `selector` and `text`. Each fragment must match the manifest SHA-256 and UTF-8 length. A missing citation, missing covered section or changed fingerprint clears prior approval and content-review hash. Retired units stay retired. Revisions should be incremented when accepting a changed bound bank.
-
-The check command runs in recommendation CI. It checks consistency with recorded captures, without network retrieval. The bind command verifies the supplied extracted text but cannot attest its origin independently; reviewers must inspect provenance and content. A matching hash is not approval. The existing case-based release CLI still rejects guidance compilation; this change prepares reviewable drafts and does not enable guidance publication or alter the production DB, mappings or scores.
+The bind command checks the actual supplied fragment text against each digest and byte length; the check command checks committed metadata consistency without network retrieval. Neither independently attests source provenance or grants approval. The existing release CLI rejects guidance compilation; this work does not enable production publication.
 
 ## Attribution
 
-OSHA sources are US federal regulatory text. HSE source material is licensed under the Open Government Licence v3.0: https://www.hse.gov.uk/help/copyright.htm . Contains public sector information published by the Health and Safety Executive and licensed under the Open Government Licence. Parker source metadata identifies the copyrighted manufacturer manual; no manual text is redistributed here.
-
-Korean captures identify Rules on Occupational Safety and Health Standards articles 92(1)-(4) and 617(1)-(3), effective 2026-03-02. They bind existing maintenance, filter and welding drafts without changing their control text or granting review approval. Article 617's exception conditions must not be reduced to a generic exposure-assessment exemption.
+OSHA sources are US federal regulatory text. HSE content is licensed under the Open Government Licence v3.0: https://www.hse.gov.uk/help/copyright.htm . Contains public sector information published by the Health and Safety Executive and licensed under the Open Government Licence. Publisher identities and reproduction hosts are retained in source metadata. No third-party document full text is redistributed here.

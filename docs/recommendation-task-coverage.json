@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "inputHash": "c460a54885c3bb31dd66dafa049ac820fb86d42e01218371c3284c402f16ecaf",
+  "inputHash": "eb4234a7c3199583c696992ab7b8f09de82a184eb88c0c7c9187dd89b30fcdc2",
   "scope": "Authored knowledge-bank coverage only. Source geography is not legal applicability, review approval, production availability or measured recommendation accuracy.",
   "totals": {
     "locales": 19,
@@ -512,7 +512,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 1
+            "unreadOrMetadata": 0
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -532,7 +532,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 1
+            "unreadOrMetadata": 0
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -619,8 +619,8 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 2,
-            "nationalReference": 0,
+            "sameJurisdiction": 1,
+            "nationalReference": 1,
             "subnationalReference": 0,
             "foreignReference": 0,
             "unspecified": 0,
@@ -1015,7 +1015,7 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 2,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 0,
@@ -1121,12 +1121,12 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 2,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 1,
+            "foreignReference": 2,
             "unspecified": 0,
-            "unreadOrMetadata": 1
+            "unreadOrMetadata": 0
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1152,7 +1152,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 5
+            "unreadOrMetadata": 1
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1172,7 +1172,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 3
+            "unreadOrMetadata": 1
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1190,9 +1190,9 @@
             "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 1,
+            "foreignReference": 2,
             "unspecified": 0,
-            "unreadOrMetadata": 3
+            "unreadOrMetadata": 1
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,

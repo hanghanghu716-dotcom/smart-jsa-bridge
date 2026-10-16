@@ -1,0 +1,2786 @@
+{
+  "schemaVersion": 1,
+  "kind": "authored-source-replacement-material",
+  "sourceMaterialInvented": false,
+  "formalReviewDecisionsAdded": 0,
+  "authorization": "User requested production of materials to complete the remaining twelve source bindings on 2026-10-16; replacement basis and prior sources are preserved.",
+  "dossiers": [
+    {
+      "unitId": "regional-ca-on-maintenance",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "The inaccessible Ontario alert is replaced by actual Canadian technical guidance covering gravity blocking, residual energy and verification. No provincial statutory claim is retained.",
+      "previousRevision": 5,
+      "previousContentHash": "243361461777cf3bdfb3ca9471b69f1cd439b54cf5e71ed79c3c277e21e95036",
+      "previousSources": [
+        {
+          "url": "https://www.ontario.ca/page/alert-equipment-blocking",
+          "authority": "Ontario Ministry of Labour",
+          "section": "Equipment blocking and hazardous energy",
+          "checkedAt": "2026-10-14",
+          "scope": "Ontario blocking alert; sector regulation and blocking design need review",
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA-ON",
+          "evidenceRole": "technical"
+        },
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+          "jurisdiction": "CA",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Canadian technical guidance on stored energy; provincial requirements and the equipment procedure still need separate review."
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+        ],
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Equipment-blocking alert returned HTTP 403; its cited content was not recaptured."
+          ]
+        }
+      },
+      "previousCoverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures.",
+      "activeCaptureIds": [
+        "ccohs-lockout-20261016",
+        "ca-on-wsps-energy-20261016"
+      ],
+      "revision": 6,
+      "contentHash": "7b2f45ed95bf9a951455556306edb351134991fd688d3c884b0fad039984c3b0",
+      "sourceFingerprint": "1f8bdf2da84e15ada54b7f213896b6fa90d50aed5cf2fae3b91f4e404adba8aa",
+      "content": {
+        "task": "Machine maintenance",
+        "step": "Prepare the isolation boundary",
+        "hazard": "Unexpected motion or stored-energy release",
+        "cause": "An energy path remains connected or can be restored",
+        "consequence": "Crushing or other injury during intervention",
+        "control": "Identify every hazardous energy source using the equipment-specific procedure; isolate and secure the supplies, safely release or restrain stored energy, and block components against gravity or unintended movement before access.",
+        "verification": "Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
+        "coverageLimit": "Energy isolation before machine maintenance only, based on Canadian technical guidance. Ontario sector rules, blocking design and equipment-specific applicability require regional review; this is not a compliance finding. Access, repair, guards and return to service require separate procedures.",
+        "conditions": [
+          "Equipment-specific procedure is available",
+          "A competent person is assigned"
+        ],
+        "exclusions": [
+          "Work requires intervention while energized",
+          "Work involves confined-space entry",
+          "An energy source or isolation boundary is unknown"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "edition": "CCOHS fact sheet revised 2021-11-23",
+          "scopeLimit": "Canadian technical guidance only; equipment procedures and the applicable workplace regime require separate review. Flange breaking is not a filter-opening pressure test.",
+          "citedSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "ca-on-wsps-energy-20261016",
+          "url": "https://www.wsps.ca/resource-hub/articles/left-hand-rule",
+          "edition": "WSPS article published 2024-10-16; publisher-linked embedded representation",
+          "scopeLimit": "Selected hazardous-energy and machine-specific assessment paragraphs only. Electrical switching advice is excluded. Association guidance, not legislation; other Ontario citations remain uncaptured.",
+          "citedSections": [
+            "2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment"
+          ],
+          "fragments": [
+            {
+              "selector": "turn62view2:L40-L47",
+              "sha256": "030433a22a0c8f93fdde6516909bc2ac534082f502f32c04ecb7cc46219ed9b5",
+              "utf8Bytes": 1185
+            },
+            {
+              "selector": "turn62view2:L55-L77",
+              "sha256": "de0288ab1a6a0dd86d40e50d8bad90daa79db23051ca17ad0f6ae5c09ef3c819",
+              "utf8Bytes": 3858
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ca-on-pressure-filter",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Regulation 851 was only an unread lead. This revision uses the WSPS pneumatic-energy assessment and CCOHS guidance with explicitly foreign OSHA and manufacturer examples; it makes no Regulation 851 compliance claim.",
+      "previousRevision": 5,
+      "previousContentHash": "615a866f40b6e83f1f3d4605e2af4ae80832f6b459526956ba4834e744433222",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Written equipment procedure; residual energy and verification",
+          "jurisdiction": "CA",
+          "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ontario.ca/laws/regulation/900851",
+          "authority": "Ontario e-Laws",
+          "section": "Industrial Establishments Regulation 851, source lead only",
+          "jurisdiction": "CA-ON",
+          "scope": "Full regulation retrieval failed; pressure-work applicability remains unverified.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "primary_search_metadata_full_text_unavailable",
+          "evidenceRole": "lead"
+        },
+        {
+          "url": "https://www.wsps.ca/resource-hub/articles/left-hand-rule",
+          "authority": "Workplace Safety & Prevention Services (WSPS)",
+          "jurisdiction": "CA-ON",
+          "section": "2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment",
+          "scope": "Ontario association technical guidance, read through the publisher’s embedded article. Supports identifying pneumatic energy and equipment-specific isolation and dissipation. Electrical switching advice is outside this draft; this is not legislation.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made possible backfeed paths, a pre-opening verification method and the no-opening hold explicit; excluded other gases and breathing-air certification."
+        ],
+        "approvalGranted": false,
+        "supportingReferences": [
+          {
+            "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+            "section": "1910.147(d)(3)-(6)",
+            "role": "Technical comparison for complete energy paths and verification; not local legal authority outside its scope."
+          },
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
+          }
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Regulation 851 returned HTTP 403; WSPS extraction contained navigation but not the cited article. Neither was accepted as source evidence."
+          ]
+        }
+      },
+      "previousCoverageLimit": "Pressure-release hazard of a machine-integrated filter only; other maintenance hazards and industrial-establishment legal applicability need separate assessment.",
+      "activeCaptureIds": [
+        "osha-1910-147",
+        "ccohs-lockout-20261016",
+        "ca-on-wsps-energy-20261016",
+        "parker-oil-x"
+      ],
+      "revision": 6,
+      "contentHash": "c20971769319a899e6460333e963160581f563b73a4bb53d9c5f5f8cbb1a13d1",
+      "sourceFingerprint": "954285350b2a2d1dfc24fea027db1bf1d9a0b8cc37dbdc62acab7360757e36c9",
+      "content": {
+        "task": "Compressed-air filter maintenance",
+        "step": "Prepare to open the filter housing",
+        "hazard": "Release of retained air pressure",
+        "cause": "Supply, backfeed or trapped air remains",
+        "consequence": "Impact injury from escaping air or parts",
+        "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
+        "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
+        "coverageLimit": "Compressed-air filter pressure isolation only. WSPS and CCOHS supply technical guidance; OSHA is a foreign comparison and Parker is a model-specific example. Ontario pressure-equipment and sector requirements remain unverified. Use the actual equipment procedure; no universal valve sequence or torque is prescribed.",
+        "conditions": [
+          "Equipment-specific isolation procedure available",
+          "Authorised person assigned",
+          "Compressed-air filter and all pressure paths identified",
+          "Filter is integrated into a machine; its danger zone and energy paths are identified",
+          "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening"
+        ],
+        "exclusions": [
+          "Pressurised intervention",
+          "Confined-space entry",
+          "Unknown contents or isolation boundary",
+          "The filter handles a gas other than compressed air",
+          "The task includes breathing-air certification"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "edition": "OSHA 29 CFR 1910.147; official page retrieved 2026-10-16",
+          "scopeLimit": "US general-industry energy-control requirements and selected exclusions. Not a full standard or a filter-specific opening procedure.",
+          "citedSections": [
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(d)(3)-(6)"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "edition": "CCOHS fact sheet revised 2021-11-23",
+          "scopeLimit": "Canadian technical guidance only; equipment procedures and the applicable workplace regime require separate review. Flange breaking is not a filter-opening pressure test.",
+          "citedSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "ca-on-wsps-energy-20261016",
+          "url": "https://www.wsps.ca/resource-hub/articles/left-hand-rule",
+          "edition": "WSPS article published 2024-10-16; publisher-linked embedded representation",
+          "scopeLimit": "Selected hazardous-energy and machine-specific assessment paragraphs only. Electrical switching advice is excluded. Association guidance, not legislation; other Ontario citations remain uncaptured.",
+          "citedSections": [
+            "2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment"
+          ],
+          "fragments": [
+            {
+              "selector": "turn62view2:L40-L47",
+              "sha256": "030433a22a0c8f93fdde6516909bc2ac534082f502f32c04ecb7cc46219ed9b5",
+              "utf8Bytes": 1185
+            },
+            {
+              "selector": "turn62view2:L55-L77",
+              "sha256": "de0288ab1a6a0dd86d40e50d8bad90daa79db23051ca17ad0f6ae5c09ef3c819",
+              "utf8Bytes": 3858
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "edition": "Parker OIL-X User Guide 17 118 6204, 07/21 Rev -; retrieved 2026-10-16",
+          "scopeLimit": "Manufacturer example for PX010-PX055 only. Reverse flow and depressurisation concepts do not transfer model-specific valve sequence, waiting times, torque or verification methods to other equipment.",
+          "citedSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "ca-on-wsps-energy-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ca-on-welding-fume",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Unread pre-start review Item 8 is replaced by the captured IHSA construction-welding and CCOHS ventilation passages. This draft no longer suggests that pre-start-review obligations were checked.",
+      "previousRevision": 5,
+      "previousContentHash": "532f94c74bc7de040f9d980c2528c5d041fe234aca2a3136723edf34dd078c1f",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "authority": "OSHA",
+          "section": "1910.252(c)(1)-(3), ventilation and local exhaust",
+          "jurisdiction": "US",
+          "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "authority": "CCOHS",
+          "section": "Ventilation selection, local exhaust and respiratory protection",
+          "jurisdiction": "CA",
+          "scope": "Canadian technical guidance; not evidence of compliance with each provincial regime.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ontario.ca/document/guideline-pre-start-health-and-safety-reviews/item-8-hazardous-biological-or-chemical-agents",
+          "authority": "Ontario Ministry of Labour",
+          "section": "Item 8, official source lead only",
+          "jurisdiction": "CA-ON",
+          "scope": "Full page retrieval failed; not used as verified welding technical guidance.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "primary_search_metadata_full_text_unavailable",
+          "evidenceRole": "lead"
+        },
+        {
+          "url": "https://www.ihsa.ca/rtf/health_safety_manual/pdfs/tools_and_techniques/Welding_and_Cutting.pdf",
+          "authority": "Infrastructure Health & Safety Association (IHSA)",
+          "jurisdiction": "CA-ON",
+          "section": "Construction Health and Safety Manual, chapter 41, printed pages 41-6 to 41-7: ventilation and respiratory protection",
+          "scope": "Ontario construction technical guidance on source extraction, hood position and exposure assessment. Historical standard references are not treated as current CSA or legal certification; other industries require separate review.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
+        ],
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Item 8 could not be retrieved. IHSA construction pages were captured, but this does not fill the missing Ontario source lead or verify current CSA references."
+          ]
+        }
+      },
+      "previousCoverageLimit": "Construction welding fume exposure only; fire, radiation, electrical and gas hazards need separate assessment. Other industries require separate review.",
+      "activeCaptureIds": [
+        "osha-1910-252",
+        "ccohs-welding-ventilation-20261016",
+        "ihsa-welding-20261016"
+      ],
+      "revision": 6,
+      "contentHash": "715d0c280cd08be9b695e1ef12d0fdfe1ba89dfe6ef1dab03e19f55e60d9a739",
+      "sourceFingerprint": "f66bcc54f5e9f111d7bea13fa87c4c978697327425eb9452cd6cc58ce88e41c8",
+      "content": {
+        "task": "Regular indoor welding of uncoated mild steel",
+        "step": "Set up fume control",
+        "hazard": "Inhalation of welding fume",
+        "cause": "Fume reaches the breathing zone",
+        "consequence": "Respiratory illness",
+        "control": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
+        "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
+        "coverageLimit": "Construction welding fume exposure only, using IHSA/CCOHS technical guidance. Ontario pre-start-review duties and current CSA references have not been verified. Fire, radiation, electrical and gas hazards and other industries require separate assessment.",
+        "conditions": [
+          "Authorised person assigned",
+          "Routine indoor welding",
+          "Uncoated mild steel and consumables identified",
+          "Exposure-control procedure available",
+          "Welding is part of construction work covered by the site procedure"
+        ],
+        "exclusions": [
+          "Confined-space entry",
+          "Outdoor welding",
+          "Coated, stainless or unidentified material",
+          "Extraction unavailable or ineffective"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "edition": "OSHA 29 CFR 1910.252(c)(1)-(3); official page retrieved 2026-10-16",
+          "scopeLimit": "Selected ventilation provisions only. Local extraction is not a universal federal requirement for every welding scenario; assess applicable scope and exposure limits.",
+          "citedSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "edition": "CCOHS fact sheet revised 2024-08-23",
+          "scopeLimit": "Technical guidance, not provincial compliance approval. Referenced CSA/ANSI standards were not independently captured.",
+          "citedSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "ihsa-welding-20261016",
+          "url": "https://www.ihsa.ca/rtf/health_safety_manual/pdfs/tools_and_techniques/Welding_and_Cutting.pdf",
+          "edition": "IHSA Construction Health and Safety Manual chapter 41, printed pages 41-6 to 41-7; retrieved 2026-10-16",
+          "scopeLimit": "Construction guidance. Historical CSA W117.2-12 references are not current certification; respirator selection requires exposure assessment.",
+          "citedSections": [
+            "Construction Health and Safety Manual, chapter 41, printed pages 41-6 to 41-7: ventilation and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn22view0: extracted lines 514-676",
+              "sha256": "77940b9dbee74d7a8e93ea9574ae9f9f6e8f3952ae209d849f80703fc0233cae",
+              "utf8Bytes": 7092
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ccohs-welding-ventilation-20261016",
+            "ihsa-welding-20261016"
+          ],
+          "basis": "Captured ventilation and respiratory-protection guidance describes inhalation exposure; no incident probability or outcome rate is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ccohs-welding-ventilation-20261016",
+            "ihsa-welding-20261016"
+          ],
+          "basis": "Source extraction and assessment-led respiratory protection; Fundacentro/HSE hierarchy is retained where cited. No airflow value or universal respirator is authored."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ccohs-welding-ventilation-20261016",
+            "ihsa-welding-20261016"
+          ],
+          "basis": "Check source-capture effectiveness; stop/recheck after changes is a conservative authoring restriction. Respirator fit compatibility is attributed to Fundacentro where present."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ccohs-welding-ventilation-20261016",
+            "ihsa-welding-20261016"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ca-qc-maintenance",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Replace the unavailable 2026 RSST consolidation with the captured CNESST machine-safety guidance and CCOHS isolation/verification passages. Do not substitute the 2023 Gazette as a verified 2026 consolidation.",
+      "previousRevision": 5,
+      "previousContentHash": "4663db85955e59241bab23ec83894c6345bb5b9014fcd250a871873d38d0f785",
+      "previousSources": [
+        {
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine",
+          "authority": "CNESST",
+          "section": "Cadenassage et zones dangereuses",
+          "checkedAt": "2026-10-14",
+          "scope": "Québec; vérifier la méthode et les responsabilités de cadenassage applicables",
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA-QC",
+          "evidenceRole": "technical"
+        },
+        {
+          "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
+          "authority": "LégisQuébec",
+          "jurisdiction": "CA-QC",
+          "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
+          "scope": "Machine danger-zone energy control: each entrant participates in lockout, machine-specific procedures address residual energy and verification. Alternative methods and exceptions require their own assessment; this draft uses lockout and does not reproduce those exceptions.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+        ],
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "RSST PDF edition metadata was retrieved, but the cited articles 195-201 could not be recaptured after a 502 response. No fingerprint is assigned for those articles."
+          ]
+        }
+      },
+      "previousCoverageLimit": "Cette fiche couvre uniquement la maîtrise des énergies avant la maintenance. L’accès, la réparation, les protecteurs et la remise en service nécessitent une évaluation et des procédures distinctes.",
+      "activeCaptureIds": [
+        "cnesst-lockout-20261016",
+        "ccohs-lockout-20261016"
+      ],
+      "revision": 6,
+      "contentHash": "b85887698519097b25b42052854b2908e72d537b10ec33518a289f37b8f38bef",
+      "sourceFingerprint": "48d7b383d3121122aab85ff0d014f0851414afaf61a53c7b986ca54ef39b5331",
+      "content": {
+        "task": "Maintenance de machine",
+        "step": "Préparer la consignation",
+        "hazard": "Démarrage imprévu ou libération d’énergie résiduelle",
+        "cause": "Une alimentation reste raccordée ou peut être rétablie",
+        "consequence": "Écrasement pendant l’intervention",
+        "control": "Identifier les énergies et appliquer la procédure propre à la machine pour les isoler; chaque personne accédant à la zone dangereuse effectue le cadenassage.",
+        "verification": "Selon la procédure propre à la machine, éliminer ou maîtriser les énergies résiduelles et vérifier l’isolement avant l’intervention. Chaque personne accédant à la zone dangereuse appose son cadenas. Si l’isolement ou l’état sûr ne peut être confirmé, interdire l’accès.",
+        "coverageLimit": "Maîtrise des énergies avant la maintenance selon les orientations CNESST et CCOHS. La version consolidée du RSST et son applicabilité actuelle restent à vérifier; cette fiche ne certifie pas la conformité. L’accès, la réparation, les protecteurs et la remise en service nécessitent des procédures distinctes.",
+        "conditions": [
+          "La procédure propre à la machine est disponible",
+          "Une personne compétente est désignée"
+        ],
+        "exclusions": [
+          "Une intervention sous énergie est nécessaire",
+          "Le travail implique une entrée en espace clos",
+          "Une source d’énergie ou une limite d’isolement est inconnue"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "cnesst-lockout-20261016",
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine",
+          "edition": "CNESST publisher page retrieved 2026-10-16; revision not stated",
+          "scopeLimit": "Guidance only. The separately cited RSST articles are not captured by this page.",
+          "citedSections": [
+            "Cadenassage et zones dangereuses"
+          ],
+          "fragments": [
+            {
+              "selector": "turn12view0: extracted lines 54-144",
+              "sha256": "f37787efe5d618d967bdc387ab5e8871e5cef2ba1d512e5f0d09d2666ce7b758",
+              "utf8Bytes": 6186
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "edition": "CCOHS fact sheet revised 2021-11-23",
+          "scopeLimit": "Canadian technical guidance only; equipment procedures and the applicable workplace regime require separate review. Flange breaking is not a filter-opening pressure test.",
+          "citedSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "cnesst-lockout-20261016",
+            "ccohs-lockout-20261016"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "cnesst-lockout-20261016",
+            "ccohs-lockout-20261016"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ca-qc-pressure-filter",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Use CNESST guidance for each entrant’s lock and machine-specific procedures, CCOHS/OSHA for stored pressure and verification, and the retained Parker example. No claim of reading the 2026 RSST consolidation is retained.",
+      "previousRevision": 4,
+      "previousContentHash": "67dd51f6f280dab585f4ce5dd3e48dd8b763de26141499e0f871023041284fc0",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Written equipment procedure; residual energy and verification",
+          "jurisdiction": "CA",
+          "scope": "Canadian technical guidance; provincial and federal applicability still needs review.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
+          "authority": "LégisQuébec",
+          "jurisdiction": "CA-QC",
+          "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
+          "scope": "Machine danger-zone energy control: each entrant participates in lockout, machine-specific procedures address residual energy and verification. Alternative methods and exceptions require their own assessment; this draft uses lockout and does not reproduce those exceptions.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made possible backfeed paths, a pre-opening verification method and the no-opening hold explicit; excluded other gases and breathing-air certification."
+        ],
+        "approvalGranted": false,
+        "supportingReferences": [
+          {
+            "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+            "section": "1910.147(d)(3)-(6)",
+            "role": "Technical comparison for complete energy paths and verification; not local legal authority outside its scope."
+          },
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
+          }
+        ],
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "RSST PDF edition metadata was retrieved, but the cited articles 195-201 could not be recaptured after a 502 response. No fingerprint is assigned for those articles."
+          ]
+        }
+      },
+      "previousCoverageLimit": "Pression d’un filtre intégré à une machine uniquement; évaluer séparément les autres risques et toute méthode autre que le cadenassage.",
+      "activeCaptureIds": [
+        "osha-1910-147",
+        "ccohs-lockout-20261016",
+        "cnesst-lockout-20261016",
+        "parker-oil-x"
+      ],
+      "revision": 5,
+      "contentHash": "b6e475a2a5ca47adc70971fe21885f93f5cab8246ab72b97f71e63b7d2b0cae9",
+      "sourceFingerprint": "afa233f85a2adfba289ede6d45417812787d210519bc62c45b5177523433484d",
+      "content": {
+        "task": "Entretien d’un filtre à air comprimé",
+        "step": "Préparer l’ouverture du corps du filtre",
+        "hazard": "Libération d’air sous pression résiduelle",
+        "cause": "Alimentation, retour ou poche d’air non maîtrisés",
+        "consequence": "Blessure par jet d’air ou projection de pièces",
+        "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de cadenassage propre à l’équipement. Appliquer la procédure propre à la machine : isoler les alimentations, effectuer le cadenassage avec chaque personne accédant à la zone dangereuse et évacuer la pression résiduelle en sécurité avant ouverture.",
+        "verification": "Vérifier l’efficacité du cadenassage et la dépressurisation selon la procédure; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression.",
+        "coverageLimit": "Pression d’un filtre à air comprimé intégré à une machine; orientations CNESST et CCOHS, comparaison technique OSHA et exemple constructeur. Le RSST consolidé, le régime des équipements sous pression et toute méthode autre que le cadenassage doivent être vérifiés séparément.",
+        "conditions": [
+          "Procédure de consignation propre à l’équipement disponible",
+          "Personne autorisée désignée",
+          "Filtre à air comprimé et circuits de pression identifiés",
+          "Filtre intégré à une machine; zone dangereuse et circuits d’énergie identifiés",
+          "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture"
+        ],
+        "exclusions": [
+          "Intervention sous pression",
+          "Entrée en espace confiné",
+          "Contenu ou périmètre d’isolement inconnu",
+          "Le filtre contient un gaz autre que de l’air comprimé",
+          "La tâche comprend la certification d’air respirable"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "edition": "OSHA 29 CFR 1910.147; official page retrieved 2026-10-16",
+          "scopeLimit": "US general-industry energy-control requirements and selected exclusions. Not a full standard or a filter-specific opening procedure.",
+          "citedSections": [
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(d)(3)-(6)"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "edition": "CCOHS fact sheet revised 2021-11-23",
+          "scopeLimit": "Canadian technical guidance only; equipment procedures and the applicable workplace regime require separate review. Flange breaking is not a filter-opening pressure test.",
+          "citedSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "cnesst-lockout-20261016",
+          "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine",
+          "edition": "CNESST publisher page retrieved 2026-10-16; revision not stated",
+          "scopeLimit": "Guidance only. The separately cited RSST articles are not captured by this page.",
+          "citedSections": [
+            "Cadenassage et zones dangereuses"
+          ],
+          "fragments": [
+            {
+              "selector": "turn12view0: extracted lines 54-144",
+              "sha256": "f37787efe5d618d967bdc387ab5e8871e5cef2ba1d512e5f0d09d2666ce7b758",
+              "utf8Bytes": 6186
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "edition": "Parker OIL-X User Guide 17 118 6204, 07/21 Rev -; retrieved 2026-10-16",
+          "scopeLimit": "Manufacturer example for PX010-PX055 only. Reverse flow and depressurisation concepts do not transfer model-specific valve sequence, waiting times, torque or verification methods to other equipment.",
+          "citedSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "cnesst-lockout-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ccohs-lockout-20261016",
+            "cnesst-lockout-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-it-pressure-filter",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Replace the inaccessible 2020 presentation with the captured 2023 INAIL research description for residual-energy context. It does not supply operating steps: those are attributed to OSHA and the retained Parker example, not to Italian law.",
+      "previousRevision": 3,
+      "previousContentHash": "0234f229674bbd437e01b37f8e3861da8205f972bed403880ad710633f777b7c",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2020/12/1%20Presentazione%20Amaro%20rev.1.pdf",
+          "authority": "INAIL",
+          "jurisdiction": "IT",
+          "section": "2020-12-02 presentation, slides 19-21, intervention A-3.4: machine LOTO sequence",
+          "scope": "Historical INAIL technical presentation on machine energy control, including compressed air, personal isolation devices, verification and residual energy. It references OSHA; it is not current Italian law, a complete pressure-opening procedure or current incentive eligibility.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made possible backfeed paths, a pre-opening verification method and the no-opening hold explicit; excluded other gases and breathing-air certification."
+        ],
+        "approvalGranted": false,
+        "supportingReferences": [
+          {
+            "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+            "section": "1910.147(d)(3)-(6)",
+            "role": "Technical comparison for complete energy paths and verification; not local legal authority outside its scope."
+          },
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
+          }
+        ]
+      },
+      "previousCoverageLimit": "Solo pressione di un filtro integrato in una macchina; valutare separatamente gli altri rischi e l’applicabilità delle norme vigenti.",
+      "activeCaptureIds": [
+        "osha-1910-147",
+        "it-production-lines-20261016",
+        "parker-oil-x"
+      ],
+      "revision": 4,
+      "contentHash": "6984fd31a0988e323e376a37706875ff8e0042f2aeadfa3d7cce93774f0774c6",
+      "sourceFingerprint": "43bf64792c30a1249880e25eada0a6a25b3b47aa41e80615aaefcbd7f8f7622b",
+      "content": {
+        "task": "Manutenzione di un filtro per aria compressa",
+        "step": "Preparare l’apertura del corpo del filtro",
+        "hazard": "Rilascio della pressione residua",
+        "cause": "Alimentazione, riflusso o aria intrappolata persistono",
+        "consequence": "Lesioni da getto d’aria o proiezione di parti",
+        "control": "Prima di applicare la procedura dell’attrezzatura, individuare ingresso, uscita, bypass e scarichi collegati che possono alimentare o ripressurizzare il filtro. Seguire la procedura dell’attrezzatura per isolare e bloccare tutte le alimentazioni e scaricare in sicurezza la pressione prima dell’apertura.",
+        "verification": "Una persona autorizzata verifica isolamento e depressurizzazione; proseguire i controlli se la pressione può riaccumularsi. Non aprire il corpo del filtro se non sono verificati i limiti dell’isolamento e l’assenza di pressione; non allentarlo per verificare la pressione.",
+        "coverageLimit": "Solo isolamento della pressione di un filtro ad aria compressa integrato in una macchina. INAIL descrive il contesto delle energie residue; OSHA e il manuale Parker sono riferimenti tecnici con ambito proprio. La procedura deve essere specifica dell’attrezzatura; conformità italiana e requisiti sulle attrezzature a pressione restano da verificare.",
+        "conditions": [
+          "Procedura di isolamento specifica disponibile",
+          "Persona autorizzata incaricata",
+          "Filtro ad aria compressa e circuiti di pressione identificati",
+          "Filtro integrato in una macchina; zona pericolosa e percorsi dell’energia identificati",
+          "La procedura dell’attrezzatura definisce lo scarico sicuro della pressione e la verifica della depressurizzazione prima dell’apertura"
+        ],
+        "exclusions": [
+          "Intervento sotto pressione",
+          "Accesso a spazio confinato",
+          "Contenuto o limite di isolamento sconosciuto",
+          "Il filtro contiene un gas diverso dall’aria compressa",
+          "L’attività comprende la certificazione dell’aria respirabile"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "edition": "OSHA 29 CFR 1910.147; official page retrieved 2026-10-16",
+          "scopeLimit": "US general-industry energy-control requirements and selected exclusions. Not a full standard or a filter-specific opening procedure.",
+          "citedSections": [
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(d)(3)-(6)"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "it-production-lines-20261016",
+          "url": "https://www.inail.it/portale/ricerca-e-tecnologia/it/ambiti-di-ricerca/area-sicurezza-sul-lavoro/impianti-di-trasformazione--produzione-e-processo/linee-di-produzione.html",
+          "edition": "Published/updated 28 June 2023",
+          "scopeLimit": "INAIL research description only; does not prescribe a complete operating procedure or establish legal compliance.",
+          "citedSections": [
+            "Linee di produzione: energie residue, riavvio accidentale e ricerca sulla procedura LOTO"
+          ],
+          "fragments": [
+            {
+              "selector": "turn40view2: extracted lines 101-107",
+              "sha256": "c97873739694a6fe2c091991353aca63316d3b324c6807b323287659a0502059",
+              "utf8Bytes": 2059
+            },
+            {
+              "selector": "turn40view2: extracted lines 115-121",
+              "sha256": "5867694bee21ff37f77e773d22a242824d7dc1de5867af291d69d72d97cde877",
+              "utf8Bytes": 73
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "edition": "Parker OIL-X User Guide 17 118 6204, 07/21 Rev -; retrieved 2026-10-16",
+          "scopeLimit": "Manufacturer example for PX010-PX055 only. Reverse flow and depressurisation concepts do not transfer model-specific valve sequence, waiting times, torque or verification methods to other equipment.",
+          "citedSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "it-production-lines-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "parker-oil-x"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "parker-oil-x"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "it-production-lines-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-sa-maintenance",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Replace the unread EPM construction-project procedure with the actually captured EOM operation/maintenance procedure, Rev 000 (2020-03-31). Narrow the draft to government facilities/projects O&M with a locally adopted equipment procedure and independent isolation verification.",
+      "previousRevision": 5,
+      "previousContentHash": "a26c21650bdab76539e5118c731ec44951bdde3fa206ddfa91aa2eae62b25ed5",
+      "previousSources": [
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
+          "authority": "EXPRO",
+          "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+          "checkedAt": "2026-10-14",
+          "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
+          "retrieval": "relevant_primary_sections_read",
+          "jurisdiction": "SA",
+          "evidenceRole": "technical"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
+          "authority": "هيئة كفاءة الإنفاق والمشروعات الحكومية",
+          "jurisdiction": "SA",
+          "section": "EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)",
+          "scope": "دليل التشغيل والصيانة للمرافق والمشروعات الحكومية: يدعم تخفيف الضغط والتحقق من العزل. يُستخدم هنا كمرجع تقني مكمل؛ لا يحل محل إجراء المشروع المعتمد ولا يثبت انطباقًا قانونيًا عامًا.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+        ],
+        "approvalGranted": false
+      },
+      "previousCoverageLimit": "تقتصر هذه البطاقة على التحكم في الطاقة قبل الصيانة. يتطلب الدخول والإصلاح والحواجز وإعادة التشغيل تقييمًا وإجراءات منفصلة.",
+      "activeCaptureIds": [
+        "sa-eom-20261016"
+      ],
+      "revision": 6,
+      "contentHash": "4428b9f0a8110651ad2dfe29e8c19edf1a8a6f528b2872c2db9cba7d0b6393fc",
+      "sourceFingerprint": "0e97357de24d1f9d8012cba6d6ae18a567a719e478fa30cb8d762e606b6c98e1",
+      "content": {
+        "task": "صيانة الآلات",
+        "step": "تجهيز عزل الطاقة",
+        "hazard": "بدء تشغيل غير متوقع أو إطلاق طاقة مخزنة",
+        "cause": "بقاء مصدر طاقة متصلاً أو إمكان إعادة توصيله",
+        "consequence": "إصابة أو سحق أثناء التدخل",
+        "control": "تحديد مصادر الطاقة وتطبيق إجراء المعدة للعزل والقفل الشخصي وبطاقات التحذير؛ وتفريغ الضغط المخزن بأمان وتأمين بقية مصادر الطاقة المحددة في الإجراء قبل التدخل.",
+        "verification": "التحقق وفق إجراء المعدة من فعالية العزل وزوال الضغط المخزن واستيفاء تدابير تأمين الطاقة قبل بدء العمل. إذا تعذر التحقق من العزل وتأمين الطاقة المخزنة، يُمنع الدخول إلى منطقة الخطر. يجب أن يتحقق عامل مخوّل مستقل عن منفذ العزل من نقاط العزل وفق الإجراء المعتمد قبل السماح بالعمل.",
+        "coverageLimit": "تقتصر البطاقة على عزل الطاقة قبل الصيانة ضمن تشغيل وصيانة المرافق والمشروعات الحكومية، استنادًا إلى دليل EOM الإصدار 000. يجب التحقق من النسخة المعتمدة وإجراء المعدة. لا تثبت البطاقة امتثالًا قانونيًا عامًا ولا تستخدم دليل EPM الخاص بإنشاء المشاريع. الدخول والإصلاح وإعادة التشغيل تتطلب إجراءات منفصلة.",
+        "conditions": [
+          "إجراء المعدة المحدد متاح",
+          "تم تعيين شخص مختص",
+          "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM"
+        ],
+        "exclusions": [
+          "يتطلب العمل تدخلاً مع وجود الطاقة",
+          "يتضمن العمل دخول حيز مغلق",
+          "يوجد مصدر طاقة أو حد عزل غير معروف"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "sa-eom-20261016",
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
+          "edition": "EOM-KSS-PR-000028-AR Rev 000, 2020-03-31",
+          "scopeLimit": "Government facilities and projects operation/maintenance guidance. Project authorization, equipment-specific isolation and current revision require review; not universal Saudi legislation.",
+          "citedSections": [
+            "EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)"
+          ],
+          "fragments": [
+            {
+              "selector": "turn60view1: extracted lines 0-16",
+              "sha256": "880c47f1e7620671059fea1da4ea9f1bf8dd277051794d8eb23d40a915bbde5b",
+              "utf8Bytes": 1660
+            },
+            {
+              "selector": "turn48view2: extracted lines 102-112",
+              "sha256": "3510a0d4370a506e408a2680413a6427769d6b7ed7f9e65b070e2e902286eb4d",
+              "utf8Bytes": 2022
+            },
+            {
+              "selector": "turn60view0: extracted lines 322-368",
+              "sha256": "e7e3b9c40667b1092b08651de0b93e03e91c8fff8793192c65e7e7e2413f8f0c",
+              "utf8Bytes": 6961
+            },
+            {
+              "selector": "turn48view1: extracted lines 445-474",
+              "sha256": "b09cb96923f19126e8992f8dcf0dcec299c1c9751cf064832ba81ecd65a7aead",
+              "utf8Bytes": 5723
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "sa-eom-20261016"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "sa-eom-20261016"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "sa-eom-20261016"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "sa-eom-20261016"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-sa-pressure-filter",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Use the captured EOM O&M isolation/permit sections instead of the unread EPM project procedure. Limit application to government O&M; pressure-path details rely on the captured OSHA/Parker technical references and the actual equipment procedure.",
+      "previousRevision": 3,
+      "previousContentHash": "254325258522cc94f73d53a7506d5ea3683bb0528fdc16184ef41dc3bd71d13a",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
+          "authority": "EXPRO",
+          "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+          "checkedAt": "2026-10-14",
+          "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
+          "retrieval": "relevant_primary_sections_read",
+          "jurisdiction": "SA",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made possible backfeed paths, a pre-opening verification method and the no-opening hold explicit; excluded other gases and breathing-air certification."
+        ],
+        "approvalGranted": false,
+        "supportingReferences": [
+          {
+            "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+            "section": "1910.147(d)(3)-(6)",
+            "role": "Technical comparison for complete energy paths and verification; not local legal authority outside its scope."
+          },
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
+          }
+        ]
+      },
+      "previousCoverageLimit": "يقتصر المحتوى على خطر تحرر الضغط؛ وتُقيّم مخاطر الصيانة الأخرى بشكل منفصل.",
+      "activeCaptureIds": [
+        "osha-1910-147",
+        "sa-eom-20261016",
+        "parker-oil-x"
+      ],
+      "revision": 4,
+      "contentHash": "8a78e3c59ae29ebe22ed91802dce4e330ffdc0261ccc94dae865cf4636bd6228",
+      "sourceFingerprint": "9dd09d1e186fc712795981fe27f5b0b796b35c12cdcac3935f1a5cd99f6923bf",
+      "content": {
+        "task": "صيانة مرشح الهواء المضغوط",
+        "step": "التحضير لفتح جسم المرشح",
+        "hazard": "تحرر ضغط الهواء المتبقي",
+        "cause": "بقاء التغذية أو التدفق العكسي أو الهواء المحبوس",
+        "consequence": "إصابة بسبب اندفاع الهواء أو تطاير الأجزاء",
+        "control": "قبل تطبيق إجراء المعدة، حدد المدخل والمخرج وخط التجاوز وخطوط التصريف المتصلة التي قد تغذي المرشح أو تعيد ضغطه. اتبع إجراء المعدة لعزل جميع مصادر التغذية وتأمينها وتفريغ الضغط المحبوس بأمان قبل الفتح.",
+        "verification": "يتحقق شخص مخوّل من العزل وزوال الضغط؛ وتستمر المراقبة إذا أمكن تراكم الضغط مجددًا. أبقِ جسم المرشح مغلقًا إذا لم يتم التحقق من حدود العزل وزوال الضغط؛ ولا تُرخِ الجسم لاختبار وجود الضغط. يجب أن يتحقق عامل مخوّل مستقل عن منفذ العزل من نقاط العزل وفق الإجراء المعتمد قبل السماح بالعمل.",
+        "coverageLimit": "عزل ضغط مرشح الهواء المضغوط ضمن تشغيل وصيانة المرافق والمشروعات الحكومية فقط. دليل EOM مرجع إرشادي، وOSHA وParker مراجع تقنية ذات نطاق محدد. لا تُعمم ترتيبات عزل الأنابيب أو ترتيب الصمامات على كل مرشح؛ يجب اعتماد إجراء المعدة والتحقق من النسخة والمتطلبات المطبقة.",
+        "conditions": [
+          "توفر إجراء عزل خاص بالمعدة",
+          "تعيين شخص مخوّل",
+          "تحديد مرشح الهواء المضغوط وجميع مسارات الضغط",
+          "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM",
+          "يحدد إجراء المعدة طريقة آمنة لتفريغ الضغط والتحقق من زواله داخل جسم المرشح قبل فتحه"
+        ],
+        "exclusions": [
+          "التدخل أثناء وجود ضغط",
+          "الدخول إلى حيز محصور",
+          "محتويات أو حدود عزل غير معروفة",
+          "يحتوي المرشح على غاز غير الهواء المضغوط",
+          "تشمل المهمة اعتماد جودة هواء التنفس"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "edition": "OSHA 29 CFR 1910.147; official page retrieved 2026-10-16",
+          "scopeLimit": "US general-industry energy-control requirements and selected exclusions. Not a full standard or a filter-specific opening procedure.",
+          "citedSections": [
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(d)(3)-(6)"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "sa-eom-20261016",
+          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
+          "edition": "EOM-KSS-PR-000028-AR Rev 000, 2020-03-31",
+          "scopeLimit": "Government facilities and projects operation/maintenance guidance. Project authorization, equipment-specific isolation and current revision require review; not universal Saudi legislation.",
+          "citedSections": [
+            "EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)"
+          ],
+          "fragments": [
+            {
+              "selector": "turn60view1: extracted lines 0-16",
+              "sha256": "880c47f1e7620671059fea1da4ea9f1bf8dd277051794d8eb23d40a915bbde5b",
+              "utf8Bytes": 1660
+            },
+            {
+              "selector": "turn48view2: extracted lines 102-112",
+              "sha256": "3510a0d4370a506e408a2680413a6427769d6b7ed7f9e65b070e2e902286eb4d",
+              "utf8Bytes": 2022
+            },
+            {
+              "selector": "turn60view0: extracted lines 322-368",
+              "sha256": "e7e3b9c40667b1092b08651de0b93e03e91c8fff8793192c65e7e7e2413f8f0c",
+              "utf8Bytes": 6961
+            },
+            {
+              "selector": "turn48view1: extracted lines 445-474",
+              "sha256": "b09cb96923f19126e8992f8dcf0dcec299c1c9751cf064832ba81ecd65a7aead",
+              "utf8Bytes": 5723
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "edition": "Parker OIL-X User Guide 17 118 6204, 07/21 Rev -; retrieved 2026-10-16",
+          "scopeLimit": "Manufacturer example for PX010-PX055 only. Reverse flow and depressurisation concepts do not transfer model-specific valve sequence, waiting times, torque or verification methods to other equipment.",
+          "citedSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "sa-eom-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "sa-eom-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "sa-eom-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "sa-eom-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-br-welding-fume",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Replace the unread 2026 GRO/PGR lead and unavailable CBIC article with the captured Fundacentro primary publication and explicitly foreign OSHA/HSE technical guidance. Preserve fit testing, welding-PPE compatibility and engineering-control priority; make no GRO/PGR legal compliance claim.",
+      "previousRevision": 4,
+      "previousContentHash": "0cd8c3c7c2f700442f8b16d4b156eec6ce0eacb52514d37944098c8fa828d11b",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "authority": "OSHA",
+          "section": "1910.252(c)(1)-(3), ventilation and local exhaust",
+          "jurisdiction": "US",
+          "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/manuais-e-publicacoes/2026/manual_gro_pgr_da_nr_1.pdf",
+          "authority": "Ministério do Trabalho e Emprego",
+          "section": "Manual GRO/PGR 2026, welding example identified in search only",
+          "jurisdiction": "BR",
+          "scope": "Texto completo não recuperado: limite de tamanho da ferramenta. Não tratado como seção técnica lida.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "primary_search_metadata_full_text_unavailable",
+          "evidenceRole": "lead"
+        },
+        {
+          "url": "https://cbic.org.br/fumos-metalicos-riscos-invisiveis-na-atividade-de-soldagem/",
+          "authority": "Câmara Brasileira da Indústria da Construção (CBIC)",
+          "jurisdiction": "BR",
+          "section": "2026-01-30 Fumos Metálicos: engineering controls and exposure-management paragraphs",
+          "scope": "Industry-association technical article supporting source capture and exposure monitoring. Its legal summaries are not used as legal verification; its blanket minimum filter statement is not used for respirator selection.",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://ftp.medicina.ufmg.br/osat/ebook/2016/1-ProgramadeProtecaoRespiratoria-12-08-2016.pdf",
+          "authority": "Fundacentro; original publication hosted by UFMG",
+          "jurisdiction": "BR",
+          "section": "Programa de Proteção Respiratória, 4th edition (2016), section 2.1, sections 8.1-8.3, Annex 7 welding entry",
+          "scope": "Primary technical publication: engineering controls precede respiratory protection; selection needs risk assessment. Face-sealing respirators require fit testing with potentially interfering welding PPE. Welding adds heat, spatter and equipment-compatibility considerations. This is not current legal certification or a universal filter prescription.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "checkedAt": "2026-10-15"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
+        ],
+        "approvalGranted": false
+      },
+      "previousCoverageLimit": "Somente fumos; avaliar separadamente incêndio, radiação, eletricidade e gases.",
+      "activeCaptureIds": [
+        "osha-1910-252",
+        "br-fundacentro-ppr-2016-20261016",
+        "hse-welding"
+      ],
+      "revision": 5,
+      "contentHash": "5fb2d4f87923705a83037427c13d13f70dc156bd025f7f989bbc4b5a1d42f57c",
+      "sourceFingerprint": "c8ee0975af2ee20c4aecd532fc5a4929574b4c397d4824e1a030526c38501a0e",
+      "content": {
+        "task": "Soldagem regular em ambiente interno de aço carbono sem revestimento",
+        "step": "Preparar o controle de fumos",
+        "hazard": "Inalação de fumos de soldagem",
+        "cause": "Fumos atingem a zona respiratória",
+        "consequence": "Doença respiratória",
+        "control": "Avaliar primeiro a possibilidade de eliminar ou reduzir a geração de fumos; aplicar captação na fonte adequada ao processo e ventilação complementar quando indicada. Quando necessária, usar proteção respiratória selecionada pela avaliação da exposição e pelo programa de proteção respiratória.",
+        "verification": "Verificar a eficácia da exaustão e a avaliação da exposição. Quando houver respirador com vedação facial, confirmar ensaio de vedação com os demais EPIs e verificar o ajuste antes do uso. Conferir a posição do captor e o desempenho de exaustão previsto no procedimento; repetir após deslocamento ou mudança no trabalho. Parar a soldagem se a exaustão for ineficaz.",
+        "coverageLimit": "Somente controle de fumos na soldagem regular interna de aço carbono sem revestimento. Base técnica: Fundacentro, 4ª edição de 2016, com referências estrangeiras OSHA/HSE. A vigência dos requisitos brasileiros, o GRO/PGR e os limites de exposição precisam de revisão regional. Incêndio, radiação, eletricidade e gases são avaliados separadamente.",
+        "conditions": [
+          "Pessoa autorizada designada",
+          "Soldagem regular em ambiente interno",
+          "Aço carbono sem revestimento e consumíveis identificados",
+          "Procedimento de controle da exposição disponível",
+          "Plano de controle e avaliação da exposição definido para o processo e os consumíveis",
+          "Necessidade de proteção respiratória avaliada e programa definido quando necessário"
+        ],
+        "exclusions": [
+          "Entrada em espaço confinado",
+          "Soldagem ao ar livre",
+          "Material revestido, inoxidável ou não identificado",
+          "Exaustão ausente ou ineficaz"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "edition": "OSHA 29 CFR 1910.252(c)(1)-(3); official page retrieved 2026-10-16",
+          "scopeLimit": "Selected ventilation provisions only. Local extraction is not a universal federal requirement for every welding scenario; assess applicable scope and exposure limits.",
+          "citedSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "br-fundacentro-ppr-2016-20261016",
+          "url": "https://ftp.medicina.ufmg.br/osat/ebook/2016/1-ProgramadeProtecaoRespiratoria-12-08-2016.pdf",
+          "edition": "Fundacentro, 4th edition, 2016; ISBN 978-85-98117-86-7; UFMG-hosted copy",
+          "scopeLimit": "Historical respiratory-protection guidance reproduced by UFMG. Selected hierarchy, fit-test and welding-compatibility sections; not current legal certification. Welding draft remains unbound until its other citations are captured.",
+          "citedSections": [
+            "Programa de Proteção Respiratória, 4th edition (2016), section 2.1, sections 8.1-8.3, Annex 7 welding entry"
+          ],
+          "fragments": [
+            {
+              "selector": "turn60view2: extracted lines 15-37",
+              "sha256": "9fe7592f3b1800a16f1ee162c0cd2a8b8fca706b7ee8e064aa9107f5bd011f17",
+              "utf8Bytes": 986
+            },
+            {
+              "selector": "turn53view3: extracted lines 253-272",
+              "sha256": "f0226e8bd9226a4d765a78c0295707269f5a72bb0c44d53d1ffa756456af0a7a",
+              "utf8Bytes": 1596
+            },
+            {
+              "selector": "turn53view4: extracted lines 1197-1259",
+              "sha256": "dd22c55133900915a3a39d50c558964b52762437fc67cc491adc7066311e1949",
+              "utf8Bytes": 5098
+            },
+            {
+              "selector": "turn51view3: extracted lines 1260-1304",
+              "sha256": "87c5d718cc84d62a7ad1eb272eb5d1e22287013eb4ac1a82efdc05efd03ba7ba",
+              "utf8Bytes": 4203
+            },
+            {
+              "selector": "turn50view6: extracted lines 4094-4100",
+              "sha256": "09f8d6b817f44bc05a7afd9d7e89f1c756bdd1185dcddf85f22172edcd78a3dd",
+              "utf8Bytes": 554
+            }
+          ]
+        },
+        {
+          "captureId": "hse-welding",
+          "url": "https://www.hse.gov.uk/welding/welding-controls.htm",
+          "edition": "HSE page updated 2026-06-09; retrieved 2026-10-16",
+          "scopeLimit": "Great Britain welding guidance. Regular and sporadic welding have different control examples. Not a complete welding safety assessment.",
+          "citedSections": [
+            "Regular versus sporadic welding; assessment and control hierarchy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 49-131",
+              "sha256": "5a6e19b4e00070b1cd5493071ffd688eefdb3820af3f085f168544b3a2eb16e6",
+              "utf8Bytes": 7373
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "br-fundacentro-ppr-2016-20261016",
+            "hse-welding"
+          ],
+          "basis": "Captured ventilation and respiratory-protection guidance describes inhalation exposure; no incident probability or outcome rate is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "br-fundacentro-ppr-2016-20261016",
+            "hse-welding"
+          ],
+          "basis": "Source extraction and assessment-led respiratory protection; Fundacentro/HSE hierarchy is retained where cited. No airflow value or universal respirator is authored."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "br-fundacentro-ppr-2016-20261016",
+            "hse-welding"
+          ],
+          "basis": "Check source-capture effectiveness; stop/recheck after changes is a conservative authoring restriction. Respirator fit compatibility is attributed to Fundacentro where present."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "br-fundacentro-ppr-2016-20261016",
+            "hse-welding"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ru-maintenance",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Separate inaccessible publication records/scans from active evidence. Use the captured 833n original-act reproduction for equipment/repair scope, CPC for technical pressure-isolation examples and the actually captured CCOHS steps 4-7. The 287n transcription supplies temporal context only; signed-source equivalence/currentness remains unresolved.",
+      "previousRevision": 7,
+      "previousContentHash": "bdcd915208d9c6bfb247415805e6ed84ef727e7810ab5a9d5d0f1914c70dff2e",
+      "previousSources": [
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS (foreign technical guidance)",
+          "section": "Basic steps and verification",
+          "checkedAt": "2026-10-14",
+          "scope": "Технический черновик по зарубежному руководству; действующие требования РФ не подтверждены",
+          "retrieval": "primary_page_or_document",
+          "jurisdiction": "CA",
+          "evidenceRole": "technical"
+        },
+        {
+          "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
+          "checkedAt": "2026-10-14",
+          "scope": "Официальная публикация найдена; полный текст недоступен при проверке, применимость не подтверждена",
+          "retrieval": "primary_search_metadata_full_text_timeout",
+          "jurisdiction": "RU",
+          "evidenceRole": "lead"
+        },
+        {
+          "url": "https://publication.pravo.gov.ru/document/0001202505300025",
+          "authority": "Официальное опубликование правовых актов",
+          "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
+          "checkedAt": "2026-10-14",
+          "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
+          "retrieval": "primary_search_metadata_full_text_timeout",
+          "jurisdiction": "RU",
+          "evidenceRole": "lead"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/24982",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
+          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/55545",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
+          "authority": "Минтруд России; order scan reproduced by the Krasnoyarsk railway trade union",
+          "jurisdiction": "RU",
+          "section": "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14",
+          "scope": "Stationary industrial equipment; approved repair procedures, supply isolation and prevention of unintended starting. Not a complete filter-opening procedure.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/24982",
+          "reproduction": "Original-act scan with an extracted text layer; issuer and registration matched to the publication record. Hosting organisation is not the issuer.",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "authority": "Минтруд России; normative text reproduced on the official Kuytun District administration site",
+          "jurisdiction": "RU",
+          "section": "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5",
+          "scope": "Effective 2025-09-01, extends orders 833н and 884н to 2031-09-01. Temporal context only; not task-control evidence or complete legal certification.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "legal-status",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/55545",
+          "reproduction": "ConsultantPlus transcription of the normative act hosted by a local government. The signed Ministry of Justice scan remains unread.",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://www.cpc.ru/HSEDocuments_standards/Положение%20о%20системе%20блокировки%20и%20маркировки%20(LOTO).pdf",
+          "authority": "Каспийский Трубопроводный Консорциум",
+          "authorityType": "operator-procedure",
+          "jurisdiction": "RU",
+          "section": "Редакция № 1; scope 2.1-2.2, steps 3-4 and clauses 5.2.3-5.2.5; PDF pages 3 and 10",
+          "scope": "Корпоративный документ КТК для собственных объектов и подрядчиков, не общероссийская норма. Использован только как технический пример сброса остаточной энергии и проверки; применимость к конкретной машине требует отдельной оценки. Доступный PDF содержит 27 страниц при внутренней нумерации из 69; приложения не проверены.",
+          "checkedAt": "2026-10-15",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+        ],
+        "approvalGranted": false
+      },
+      "previousCoverageLimit": "Только управление энергией перед обслуживанием. Доступ, ремонт, защитные ограждения и ввод в работу требуют отдельной оценки и процедур.",
+      "activeCaptureIds": [
+        "ccohs-lockout-20261016",
+        "ru-833n-reproduction-20261016",
+        "ru-287n-reproduction-20261016",
+        "ru-cpc-loto-20261016"
+      ],
+      "revision": 8,
+      "contentHash": "24280a6dc64306477e49e79260d7e46f0cd428ef8d59bee72abe81f144b86747",
+      "sourceFingerprint": "64aeb377cf05ea0090ba4c896518d5a9b2c7dc5b23a767e056f57bc21be92bd9",
+      "content": {
+        "task": "Техническое обслуживание машины",
+        "step": "Подготовка изоляции энергии",
+        "hazard": "Неожиданный пуск или высвобождение остаточной энергии",
+        "cause": "Источник остаётся подключённым или может быть восстановлен",
+        "consequence": "Защемление при вмешательстве",
+        "control": "По инструкции машины отключить источники энергии, заблокировать восстановление подачи и обозначить запрет пуска; безопасно снять остаточное давление и выполнить предусмотренные процедурой меры контроля накопленной энергии до вмешательства. Отсоединение коммуникаций выполнять по утверждённой технологии ремонта.",
+        "verification": "По утверждённой процедуре проверить отключение, снятие остаточного давления и выполнение мер контроля накопленной энергии; исключить ошибочный пуск и воздействие смежного оборудования. Если отключение и безопасное состояние накопленной энергии не подтверждены, не допускать людей в опасную зону.",
+        "coverageLimit": "Только управление энергией стационарной промышленной машины перед обслуживанием. Использованы доступные воспроизведения приказов, зарубежное руководство CCOHS и корпоративный пример КТК. Подлинные сканы и действующая редакция не сверены; документ не подтверждает правовое соответствие. Доступ, ремонт и ввод в работу требуют отдельных процедур.",
+        "conditions": [
+          "Доступна инструкция для конкретной машины",
+          "Назначен компетентный работник",
+          "Обслуживается стационарная машина, используемая в промышленном производстве",
+          "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены"
+        ],
+        "exclusions": [
+          "Требуется вмешательство при поданной энергии",
+          "Работа включает вход в замкнутое пространство",
+          "Источник энергии или граница отключения не определены"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "edition": "CCOHS fact sheet revised 2021-11-23",
+          "scopeLimit": "Canadian technical guidance only; equipment procedures and the applicable workplace regime require separate review. Flange breaking is not a filter-opening pressure test.",
+          "citedSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "ru-833n-reproduction-20261016",
+          "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
+          "edition": "Order 833n of 2020-11-27; original-act reproduction with extracted text layer",
+          "scopeLimit": "Rules 1,3,30-36,73-75 only; text-layer artifacts retained. Trade-union host is not the issuer. Does not verify the separately cited official scan, current consolidation or task applicability.",
+          "citedSections": [
+            "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14"
+          ],
+          "fragments": [
+            {
+              "selector": "turn78view0:L37-L57",
+              "sha256": "012b736dc3812452e8c23a062c6ce278b921cc8341794707e8c6a9f06224a715",
+              "utf8Bytes": 2605
+            },
+            {
+              "selector": "turn78view0:L250-L316",
+              "sha256": "12a11b0d327756b84f5a1f626b25fb10d9f93d37873d3d8dd36e54c6a9f7c75c",
+              "utf8Bytes": 6798
+            },
+            {
+              "selector": "turn80view0:L317-L335",
+              "sha256": "42bf67baa311054722a1ceb0f78eec82a753c49d2812e39be6c95a9bf76c8b69",
+              "utf8Bytes": 2298
+            },
+            {
+              "selector": "turn80view1:L549-L583",
+              "sha256": "1e5545f1ff6b5a01e87c8bbc13285bd49599edeb1684aa031bde72b472b63c6a",
+              "utf8Bytes": 4170
+            }
+          ]
+        },
+        {
+          "captureId": "ru-287n-reproduction-20261016",
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "edition": "Order 287n of 2025-04-29, registration 82424; ConsultantPlus transcription hosted by Kuytun District",
+          "scopeLimit": "Operative paragraph 2 and amendment items 15/30 only. Temporal context, not technical task-control evidence. Does not verify the separately cited signed Ministry scan or subsequent amendments.",
+          "citedSections": [
+            "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5"
+          ],
+          "fragments": [
+            {
+              "selector": "turn80view2:L8-L28",
+              "sha256": "459971cff34d4c44857a8b9a1ab72275c3089e9a3af860a33e1f36ad6d0a0adb",
+              "utf8Bytes": 1634
+            },
+            {
+              "selector": "turn79view1:L117-L121",
+              "sha256": "686b03f474b11817e9b5cb39b389ca5858c2f4c7bf5db6a30125ba62d38f4476",
+              "utf8Bytes": 735
+            },
+            {
+              "selector": "turn80view3:L208-L212",
+              "sha256": "9a48a3840378e2c6d48aec3f68a3186cbc2090b380403a984eb992ec79a38c55",
+              "utf8Bytes": 670
+            }
+          ]
+        },
+        {
+          "captureId": "ru-cpc-loto-20261016",
+          "url": "https://www.cpc.ru/HSEDocuments_standards/Положение%20о%20системе%20блокировки%20и%20маркировки%20(LOTO).pdf",
+          "edition": "CPC LOTO procedure, Revision 1; retrieved PDF has 27 pages with internal numbering of 69",
+          "scopeLimit": "Scope 2.1-2.2, steps 3-4, clauses 5.2.3-5.2.5. Operator procedure for CPC and its contractors, not a nationwide rule. Appendices and equipment-specific applicability unverified.",
+          "citedSections": [
+            "Редакция № 1; scope 2.1-2.2, steps 3-4 and clauses 5.2.3-5.2.5; PDF pages 3 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "turn82view0:L26-L40",
+              "sha256": "336ba6d07adb7866918a33c44611cd44603e2f4992d5259fc4838876031b6ac8",
+              "utf8Bytes": 1710
+            },
+            {
+              "selector": "turn81view1:L376-L391",
+              "sha256": "b3d4e220aabf9be6d9388e3008c8a2271d803ab6d9fb842347772a60e48b0677",
+              "utf8Bytes": 1137
+            },
+            {
+              "selector": "turn79view2:L419-L428",
+              "sha256": "e365da2658bc0cc3e98fb60e3a83ff8b5f319d4f26b564790f22ccd3cc3cec57",
+              "utf8Bytes": 1195
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ru-833n-reproduction-20261016",
+            "ru-cpc-loto-20261016"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ru-833n-reproduction-20261016",
+            "ru-cpc-loto-20261016"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ru-833n-reproduction-20261016",
+            "ru-cpc-loto-20261016"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "ccohs-lockout-20261016",
+            "ru-833n-reproduction-20261016",
+            "ru-cpc-loto-20261016"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "temporalContext": {
+        "captureId": "ru-287n-reproduction-20261016",
+        "role": "Duration amendment only; not task-control or proof of current consolidated law."
+      },
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ru-pressure-filter",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Replace unread signed-scan leads with the captured act reproductions already cited, retaining foreign OSHA and manufacturer evidence for pressure controls. Do not represent an amendment to duration as task-control evidence or claim signed-scan verification.",
+      "previousRevision": 4,
+      "previousContentHash": "74cb8033eac34aac8016a0481a3348256618f7a439c9eeb445f5954a18b7ad5a",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "authority": "OSHA",
+          "section": "1910.147(d)(1)-(6), isolation, stored energy and verification",
+          "jurisdiction": "US",
+          "scope": "US general-industry energy control; not a complete filter-opening instruction or a law applicable worldwide.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/24982",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
+          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/55545",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
+          "authority": "Минтруд России; order scan reproduced by the Krasnoyarsk railway trade union",
+          "jurisdiction": "RU",
+          "section": "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14",
+          "scope": "Stationary industrial equipment; approved repair procedures, supply isolation and prevention of unintended starting. Not a complete filter-opening procedure.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/24982",
+          "reproduction": "Original-act scan with an extracted text layer; issuer and registration matched to the publication record. Hosting organisation is not the issuer.",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "authority": "Минтруд России; normative text reproduced on the official Kuytun District administration site",
+          "jurisdiction": "RU",
+          "section": "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5",
+          "scope": "Effective 2025-09-01, extends orders 833н and 884н to 2031-09-01. Temporal context only; not task-control evidence or complete legal certification.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "legal-status",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/55545",
+          "reproduction": "ConsultantPlus transcription of the normative act hosted by a local government. The signed Ministry of Justice scan remains unread.",
+          "checkedAt": "2026-10-15"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made possible backfeed paths, a pre-opening verification method and the no-opening hold explicit; excluded other gases and breathing-air certification."
+        ],
+        "approvalGranted": false,
+        "supportingReferences": [
+          {
+            "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+            "section": "1910.147(d)(3)-(6)",
+            "role": "Technical comparison for complete energy paths and verification; not local legal authority outside its scope."
+          },
+          {
+            "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+            "section": "Printed pages 5 and 10",
+            "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
+          }
+        ]
+      },
+      "previousCoverageLimit": "Фильтр в составе стационарного промышленного оборудования; порядок открытия определяется изготовителем. Самостоятельные сосуды и специальные режимы промышленной безопасности требуют отдельной проверки.",
+      "activeCaptureIds": [
+        "osha-1910-147",
+        "ru-833n-reproduction-20261016",
+        "ru-287n-reproduction-20261016",
+        "parker-oil-x"
+      ],
+      "revision": 5,
+      "contentHash": "95f845efb5b5442c849cd121842def3362fcb524a8a403cf46fa13b778e85f1e",
+      "sourceFingerprint": "98504ed1a01cd651530f1d0a79d8da67cca06f4e5d911b214dd0fcabe35507f2",
+      "content": {
+        "task": "Обслуживание фильтра сжатого воздуха",
+        "step": "Подготовка к открытию корпуса фильтра",
+        "hazard": "Выброс воздуха под остаточным давлением",
+        "cause": "Сохраняется подача, обратный поток или запертый воздух",
+        "consequence": "Травма от струи воздуха или выброшенных деталей",
+        "control": "До выполнения изоляции по инструкции определить вход, выход, байпас и подключённые дренажи, через которые возможна подача или обратное поступление давления. По инструкции оборудования изолировать и заблокировать все источники подачи; до открытия безопасно сбросить остаточное давление.",
+        "verification": "Уполномоченный работник проверяет изоляцию и отсутствие давления; при возможности его повторного накопления продолжать проверки. Не открывать корпус, если границы изоляции или отсутствие давления не подтверждены; не ослаблять корпус для проверки давления.",
+        "coverageLimit": "Фильтр сжатого воздуха в составе стационарного промышленного оборудования. Технические меры опираются на OSHA и пример изготовителя; воспроизведение приказа 833н задаёт контекст ремонта. Подлинные сканы, действующая редакция и специальные режимы промышленной безопасности не сверены. Порядок открытия определяется изготовителем.",
+        "conditions": [
+          "Имеется инструкция по изоляции конкретного оборудования",
+          "Назначен уполномоченный работник",
+          "Определены фильтр сжатого воздуха и все пути давления",
+          "Фильтр входит в стационарное технологическое оборудование промышленного производства",
+          "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
+          "Инструкция оборудования определяет безопасный сброс давления и проверку отсутствия давления в корпусе до открытия"
+        ],
+        "exclusions": [
+          "Работа под давлением",
+          "Вход в замкнутое пространство",
+          "Содержимое или границы изоляции неизвестны",
+          "В фильтре находится газ, отличный от сжатого воздуха",
+          "Задача включает подтверждение качества воздуха для дыхания"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "edition": "OSHA 29 CFR 1910.147; official page retrieved 2026-10-16",
+          "scopeLimit": "US general-industry energy-control requirements and selected exclusions. Not a full standard or a filter-specific opening procedure.",
+          "citedSections": [
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(d)(3)-(6)"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ru-833n-reproduction-20261016",
+          "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
+          "edition": "Order 833n of 2020-11-27; original-act reproduction with extracted text layer",
+          "scopeLimit": "Rules 1,3,30-36,73-75 only; text-layer artifacts retained. Trade-union host is not the issuer. Does not verify the separately cited official scan, current consolidation or task applicability.",
+          "citedSections": [
+            "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14"
+          ],
+          "fragments": [
+            {
+              "selector": "turn78view0:L37-L57",
+              "sha256": "012b736dc3812452e8c23a062c6ce278b921cc8341794707e8c6a9f06224a715",
+              "utf8Bytes": 2605
+            },
+            {
+              "selector": "turn78view0:L250-L316",
+              "sha256": "12a11b0d327756b84f5a1f626b25fb10d9f93d37873d3d8dd36e54c6a9f7c75c",
+              "utf8Bytes": 6798
+            },
+            {
+              "selector": "turn80view0:L317-L335",
+              "sha256": "42bf67baa311054722a1ceb0f78eec82a753c49d2812e39be6c95a9bf76c8b69",
+              "utf8Bytes": 2298
+            },
+            {
+              "selector": "turn80view1:L549-L583",
+              "sha256": "1e5545f1ff6b5a01e87c8bbc13285bd49599edeb1684aa031bde72b472b63c6a",
+              "utf8Bytes": 4170
+            }
+          ]
+        },
+        {
+          "captureId": "ru-287n-reproduction-20261016",
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "edition": "Order 287n of 2025-04-29, registration 82424; ConsultantPlus transcription hosted by Kuytun District",
+          "scopeLimit": "Operative paragraph 2 and amendment items 15/30 only. Temporal context, not technical task-control evidence. Does not verify the separately cited signed Ministry scan or subsequent amendments.",
+          "citedSections": [
+            "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5"
+          ],
+          "fragments": [
+            {
+              "selector": "turn80view2:L8-L28",
+              "sha256": "459971cff34d4c44857a8b9a1ab72275c3089e9a3af860a33e1f36ad6d0a0adb",
+              "utf8Bytes": 1634
+            },
+            {
+              "selector": "turn79view1:L117-L121",
+              "sha256": "686b03f474b11817e9b5cb39b389ca5858c2f4c7bf5db6a30125ba62d38f4476",
+              "utf8Bytes": 735
+            },
+            {
+              "selector": "turn80view3:L208-L212",
+              "sha256": "9a48a3840378e2c6d48aec3f68a3186cbc2090b380403a984eb992ec79a38c55",
+              "utf8Bytes": 670
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "edition": "Parker OIL-X User Guide 17 118 6204, 07/21 Rev -; retrieved 2026-10-16",
+          "scopeLimit": "Manufacturer example for PX010-PX055 only. Reverse flow and depressurisation concepts do not transfer model-specific valve sequence, waiting times, torque or verification methods to other equipment.",
+          "citedSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ru-833n-reproduction-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Captured isolation/stored-energy passages describe unexpected movement or pressure release; no risk probability is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ru-833n-reproduction-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Isolation, restraint/release of residual energy and verification are based on the selected technical sections. Pressure opening additionally retains the Parker example, without generalising its sequence, torque or timing."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ru-833n-reproduction-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "Follow the actual equipment procedure and verify the safe state before access. EOM independent checking is retained where used. No loosening of a filter housing to test pressure is permitted."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-147",
+            "ru-833n-reproduction-20261016",
+            "parker-oil-x"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "temporalContext": {
+        "captureId": "ru-287n-reproduction-20261016",
+        "role": "Duration amendment only; not task-control or proof of current consolidated law."
+      },
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    },
+    {
+      "unitId": "regional-ru-welding-fume",
+      "kind": "authored-evidence-dossier",
+      "author": "OpenAI assistant",
+      "authoredOn": "2026-10-16",
+      "reviewDecision": null,
+      "approvalGranted": false,
+      "reason": "Use the captured 884n reproduction for fixed-station ventilation and exclusions, retain 287n solely as temporal context, and use foreign OSHA/HSE for fume-control guidance. Do not assert that rule 8 applicability has already been checked at a real site.",
+      "previousRevision": 4,
+      "previousContentHash": "345a2d738df0833bc5714a1eae19fdc9daa74baab347079b50456f781e21cbef",
+      "previousSources": [
+        {
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "authority": "OSHA",
+          "section": "1910.252(c)(1)-(3), ventilation and local exhaust",
+          "jurisdiction": "US",
+          "scope": "US general industry; this draft is deliberately restricted to routine indoor uncoated mild-steel work and does not reproduce a full compliance specification.",
+          "checkedAt": "2026-10-14",
+          "retrieval": "relevant_primary_sections_read"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/25450",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 884н of 2020-12-11, registration 61904; relevant clauses unread",
+          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://minjust.consultant.ru/files/55545",
+          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
+          "jurisdiction": "RU",
+          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
+          "retrieval": "primary_scan_located_text_unavailable",
+          "evidenceRole": "lead",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://rabota-bryanskobl.ru/cms_data/usercontent/regionaleditor/%D1%84%D0%B0%D0%B9%D0%BB%D1%8B/%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B0%20%D1%82%D1%80%D1%83%D0%B4%D0%B0/%D1%84%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D0%BE%20%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%20%D1%82%D1%80%D1%83%D0%B4%D0%B0/29-%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%BC%D0%B8%D0%BD%D1%82%D1%80%D1%83%D0%B4%D0%B0%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8%20%D0%BE%D1%82%2011.12.2020%20n%20884%D0%BD.pdf",
+          "authority": "Минтруд России; normative text reproduced by the Bryansk social policy and employment department",
+          "jurisdiction": "RU",
+          "section": "Order 884н, rules 2-8, 12-14 and 23-30; PDF pages 3-9",
+          "scope": "Fixed welding stations with local and general ventilation; excludes rule 8 hazardous-substance facilities. The draft does not invoke the below-limit ventilation exception or prescribe numerical airflow or a universal respirator.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/25450",
+          "reproduction": "ConsultantPlus transcription saved 2021-01-04, hosted by a regional government department; read with the separate 2025 amendment. The signed Ministry of Justice scan remains unread.",
+          "checkedAt": "2026-10-15"
+        },
+        {
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "authority": "Минтруд России; normative text reproduced on the official Kuytun District administration site",
+          "jurisdiction": "RU",
+          "section": "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5",
+          "scope": "Effective 2025-09-01, extends orders 833н and 884н to 2031-09-01. Temporal context only; not task-control evidence or complete legal certification.",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "legal-status",
+          "publicationRecordUrl": "https://minjust.consultant.ru/documents/55545",
+          "reproduction": "ConsultantPlus transcription of the normative act hosted by a local government. The signed Ministry of Justice scan remains unread.",
+          "checkedAt": "2026-10-15"
+        }
+      ],
+      "previousSourceCheck": {
+        "status": "content_and_condition_review_completed_publication_pending",
+        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
+        "checkedAt": "2026-10-15",
+        "findings": [
+          "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
+        ],
+        "approvalGranted": false
+      },
+      "previousCoverageLimit": "Только аэрозоль на стационарном посту; исключения пункта 8 проверены. Пожар, излучение, электрические и газовые риски оцениваются отдельно.",
+      "activeCaptureIds": [
+        "osha-1910-252",
+        "ru-884n-reproduction-20261016",
+        "ru-287n-reproduction-20261016",
+        "hse-welding"
+      ],
+      "revision": 5,
+      "contentHash": "26c83923b9c65555403857d23c5f8cd06afa903e53d544d3ee6747ba63291925",
+      "sourceFingerprint": "dbf09af89a0db6c19b3f06ac7b40739c0a2bf4abab2f22f013103747b0c5c0c2",
+      "content": {
+        "task": "Регулярная сварка стали с низким содержанием углерода без покрытия в помещении",
+        "step": "Подготовка удаления сварочного аэрозоля",
+        "hazard": "Вдыхание сварочного аэрозоля",
+        "cause": "Аэрозоль попадает в зону дыхания",
+        "consequence": "Заболевание органов дыхания",
+        "control": "На стационарном рабочем месте использовать местную вытяжку и предусмотренную для сварочного участка общеобменную вентиляцию; защиту органов дыхания выбирать по оценке воздействия.",
+        "verification": "Проверить положение вытяжного устройства и его работу по установленным критериям; повторить проверку после перемещения устройства или изменения работы. При неэффективной вытяжке прекратить сварку.",
+        "coverageLimit": "Только сварочный аэрозоль на стационарном посту. Применимость исключений пункта 8 должна быть подтверждена для конкретного объекта. Использованы воспроизведения приказов и зарубежные технические руководства; подлинные сканы и действующая редакция не сверены. Пожар, излучение, электрические и газовые риски оцениваются отдельно.",
+        "conditions": [
+          "Назначен уполномоченный работник",
+          "Регулярная сварка в помещении",
+          "Определены низкоуглеродистая сталь без покрытия и расходные материалы",
+          "Имеется инструкция по контролю воздействия",
+          "Сварка выполняется на стационарном рабочем месте",
+          "Подтверждено отсутствие исключений для опасных производственных объектов с опасными веществами",
+          "Утверждена инструкция; необходимость наряда-допуска проверена и требования допуска выполнены"
+        ],
+        "exclusions": [
+          "Вход в замкнутое пространство",
+          "Сварка на открытом воздухе",
+          "Материал с покрытием, нержавеющий или неизвестный",
+          "Вытяжка отсутствует или неэффективна",
+          "Опасный производственный объект с опасными веществами по пункту 8 Правил № 884н"
+        ]
+      },
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "edition": "OSHA 29 CFR 1910.252(c)(1)-(3); official page retrieved 2026-10-16",
+          "scopeLimit": "Selected ventilation provisions only. Local extraction is not a universal federal requirement for every welding scenario; assess applicable scope and exposure limits.",
+          "citedSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ru-884n-reproduction-20261016",
+          "url": "https://rabota-bryanskobl.ru/cms_data/usercontent/regionaleditor/%D1%84%D0%B0%D0%B9%D0%BB%D1%8B/%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B0%20%D1%82%D1%80%D1%83%D0%B4%D0%B0/%D1%84%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D0%BE%20%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%20%D1%82%D1%80%D1%83%D0%B4%D0%B0/29-%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%BC%D0%B8%D0%BD%D1%82%D1%80%D1%83%D0%B4%D0%B0%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8%20%D0%BE%D1%82%2011.12.2020%20n%20884%D0%BD.pdf",
+          "edition": "Order 884n of 2020-12-11; ConsultantPlus transcription saved 2021-01-04, hosted by Bryansk department",
+          "scopeLimit": "Rules 2-8,12-14,23-30. Original signed scan remains uncaptured. Rule 8 exclusions and ventilation exceptions need regional review; this capture grants no legal or publication approval.",
+          "citedSections": [
+            "Order 884н, rules 2-8, 12-14 and 23-30; PDF pages 3-9"
+          ],
+          "fragments": [
+            {
+              "selector": "turn81view2:L51-L106",
+              "sha256": "9cc49ec8f3364d9d92e5c218cad78cdd86e989206d4adabcf69e7510c5081c11",
+              "utf8Bytes": 6470
+            },
+            {
+              "selector": "turn82view1:L107-L116",
+              "sha256": "6f6c61128acdfa52aa1773cfded1d066300e09e937bb632906dddabbfc05f5dd",
+              "utf8Bytes": 1437
+            },
+            {
+              "selector": "turn82view1:L137-L155",
+              "sha256": "6c2500aa8110a73e9a2f855b27dc1465bae7db09e3255db95e19eeef772de620",
+              "utf8Bytes": 2552
+            },
+            {
+              "selector": "turn82view2:L156-L156",
+              "sha256": "d0b81353a4fbe83c634eed36f7d1aed056ce64e7b837a4c0f9d055421a12e263",
+              "utf8Bytes": 63
+            },
+            {
+              "selector": "turn79view3:L231-L239",
+              "sha256": "dae293534945a19b915e43155722ff1ede61af3d1442f71ddac5c78817ad1911",
+              "utf8Bytes": 1202
+            },
+            {
+              "selector": "turn81view3:L240-L300",
+              "sha256": "5146ea9e912c5a69fb3c1c33082771db72973a7b09be8367de40b81e0f0c525f",
+              "utf8Bytes": 6823
+            },
+            {
+              "selector": "turn82view3:L301-L311",
+              "sha256": "b40c5dc2caf13387821201384f5183dab72fc4cdb699b2e41656a8ded5efb317",
+              "utf8Bytes": 1558
+            }
+          ]
+        },
+        {
+          "captureId": "ru-287n-reproduction-20261016",
+          "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
+          "edition": "Order 287n of 2025-04-29, registration 82424; ConsultantPlus transcription hosted by Kuytun District",
+          "scopeLimit": "Operative paragraph 2 and amendment items 15/30 only. Temporal context, not technical task-control evidence. Does not verify the separately cited signed Ministry scan or subsequent amendments.",
+          "citedSections": [
+            "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5"
+          ],
+          "fragments": [
+            {
+              "selector": "turn80view2:L8-L28",
+              "sha256": "459971cff34d4c44857a8b9a1ab72275c3089e9a3af860a33e1f36ad6d0a0adb",
+              "utf8Bytes": 1634
+            },
+            {
+              "selector": "turn79view1:L117-L121",
+              "sha256": "686b03f474b11817e9b5cb39b389ca5858c2f4c7bf5db6a30125ba62d38f4476",
+              "utf8Bytes": 735
+            },
+            {
+              "selector": "turn80view3:L208-L212",
+              "sha256": "9a48a3840378e2c6d48aec3f68a3186cbc2090b380403a984eb992ec79a38c55",
+              "utf8Bytes": 670
+            }
+          ]
+        },
+        {
+          "captureId": "hse-welding",
+          "url": "https://www.hse.gov.uk/welding/welding-controls.htm",
+          "edition": "HSE page updated 2026-06-09; retrieved 2026-10-16",
+          "scopeLimit": "Great Britain welding guidance. Regular and sporadic welding have different control examples. Not a complete welding safety assessment.",
+          "citedSections": [
+            "Regular versus sporadic welding; assessment and control hierarchy"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 49-131",
+              "sha256": "5a6e19b4e00070b1cd5493071ffd688eefdb3820af3f085f168544b3a2eb16e6",
+              "utf8Bytes": 7373
+            }
+          ]
+        }
+      ],
+      "claimMap": [
+        {
+          "fields": [
+            "hazard",
+            "cause",
+            "consequence"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ru-884n-reproduction-20261016",
+            "hse-welding"
+          ],
+          "basis": "Captured ventilation and respiratory-protection guidance describes inhalation exposure; no incident probability or outcome rate is inferred."
+        },
+        {
+          "fields": [
+            "control"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ru-884n-reproduction-20261016",
+            "hse-welding"
+          ],
+          "basis": "Source extraction and assessment-led respiratory protection; Fundacentro/HSE hierarchy is retained where cited. No airflow value or universal respirator is authored."
+        },
+        {
+          "fields": [
+            "verification"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ru-884n-reproduction-20261016",
+            "hse-welding"
+          ],
+          "basis": "Check source-capture effectiveness; stop/recheck after changes is a conservative authoring restriction. Respirator fit compatibility is attributed to Fundacentro where present."
+        },
+        {
+          "fields": [
+            "conditions",
+            "exclusions",
+            "coverageLimit"
+          ],
+          "captureIds": [
+            "osha-1910-252",
+            "ru-884n-reproduction-20261016",
+            "hse-welding"
+          ],
+          "basis": "These bound the authored draft; they are not a claim that every exclusion is a quoted legal requirement or that any site has already passed the conditions. Foreign guidance, operator procedures, historical editions and reproductions retain their stated limits."
+        }
+      ],
+      "temporalContext": {
+        "captureId": "ru-287n-reproduction-20261016",
+        "role": "Duration amendment only; not task-control or proof of current consolidated law."
+      },
+      "outstandingReview": [
+        "Technical accuracy and equipment-specific applicability",
+        "Current regional law/standards and reproduction equivalence",
+        "Localized language and terminology"
+      ]
+    }
+  ]
+}

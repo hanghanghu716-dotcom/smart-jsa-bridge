@@ -120,28 +120,63 @@ test('retired guidance stays retired and case units are untouched', () => {
   assert.deepEqual(result.bank.units[1],bank.units[1]);
 });
 
-test('checked-in captures bind forty-five drafts while incomplete citations stay unbound', () => {
+test('checked-in captures bind all fifty-seven current draft revisions', () => {
   const read=name=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`,import.meta.url),'utf8'));
   const manifest=read('guidance-source-captures.json');
   const bank={schemaVersion:1,units:[...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units]};
   assert.equal(bank.units.length,57);
-  assert.equal(bank.units.filter(u=>u.sourceFingerprint).length,45);
+  assert.equal(bank.units.filter(u=>u.sourceFingerprint).length,57);
   const romanian=bank.units.filter(u=>u.locale==='ro-RO');
   assert.equal(romanian.length,3);
   assert.ok(romanian.every(u=>u.sourceFingerprint && u.status==='draft'));
   const canadian=bank.units.filter(u=>u.jurisdiction.startsWith('CA'));
   assert.equal(canadian.length,15);
-  assert.equal(canadian.filter(u=>u.sourceFingerprint).length,10);
+  assert.equal(canadian.filter(u=>u.sourceFingerprint).length,15);
   for(const id of ['regional-ca-on-maintenance','regional-ca-on-pressure-filter','regional-ca-on-welding-fume','regional-ca-qc-maintenance','regional-ca-qc-pressure-filter']) {
-    assert.equal(bank.units.find(u=>u.id===id).sourceFingerprint,null,id);
+    assert.match(bank.units.find(u=>u.id===id).sourceFingerprint,/^[a-f0-9]{64}$/,id);
   }
   for(const id of ['regional-br-maintenance','regional-br-pressure-filter','regional-sa-welding-fume']) {
     assert.match(bank.units.find(u=>u.id===id).sourceFingerprint,/^[a-f0-9]{64}$/,id);
   }
   for(const id of ['regional-sa-maintenance','regional-br-welding-fume']) {
-    assert.equal(bank.units.find(u=>u.id===id).sourceFingerprint,null,id);
+    assert.match(bank.units.find(u=>u.id===id).sourceFingerprint,/^[a-f0-9]{64}$/,id);
   }
   assert.deepEqual(verifyGuidanceBindings(bank,manifest),[]);
   assert.deepEqual(validateKnowledgeBank(bank),[]);
   assert.equal(validateKnowledgeBank(bank,{forPublication:true}).length,57);
+});
+
+test('replacement dossiers bind exact draft claims and preserve prior source provenance without approval', () => {
+  const read=name=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`,import.meta.url),'utf8'));
+  const dossiers=read('guidance-evidence-dossiers.json');
+  const units=[...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units];
+  const manifest=read('guidance-source-captures.json');
+  assert.equal(dossiers.dossiers.length,12);
+  assert.equal(dossiers.formalReviewDecisionsAdded,0);
+  for(const d of dossiers.dossiers){
+    const u=units.find(u=>u.id===d.unitId);
+    assert.equal(d.contentHash,knowledgeContentHash(u));
+    assert.equal(d.sourceFingerprint,u.sourceFingerprint);
+    assert.equal(d.revision,d.previousRevision+1);
+    assert.notEqual(d.previousContentHash,d.contentHash);
+    assert.ok(d.previousSources.length>0 && d.reason.length>0);
+    assert.equal(d.approvalGranted,false);
+    assert.equal(d.reviewDecision,null);
+    assert.equal(u.status,'draft');
+    assert.deepEqual(Object.fromEntries(Object.keys(d.content).map(k=>[k,u[k]])),d.content);
+    for(const e of d.evidence){
+      const capture=manifest.captures.find(c=>c.id===e.captureId);
+      assert.equal(e.url,capture.url);
+      assert.deepEqual(e.fragments,capture.fragments);
+      for(const section of e.citedSections)assert.ok(capture.coveredSections.includes(section));
+    }
+    const citations=guidanceCitations(u);
+    for(const c of citations)assert.ok(d.evidence.some(e=>e.url===c.url&&e.citedSections.includes(c.section)));
+    for(const claim of d.claimMap){
+      assert.ok(claim.captureIds.length && claim.basis);
+      for(const id of claim.captureIds)assert.ok(d.evidence.some(e=>e.captureId===id));
+      assert.ok(!claim.captureIds.includes('ru-287n-reproduction-20261016'),'Temporal amendment is not task-control evidence');
+    }
+    for(const field of ['hazard','cause','consequence','control','verification','conditions','exclusions','coverageLimit'])assert.ok(d.claimMap.some(c=>c.fields.includes(field)));
+  }
 });
