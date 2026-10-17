@@ -55,7 +55,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     if (key.startsWith('USER_')) return meta?.label || key;
     if (savedColumnOverrides[key]?.label) return savedColumnOverrides[key].label;
     if (key === 'DATA_RECOMMEND_MEASURE' && jsaType === '2-step' && savedActiveOrder.includes('DATA_ADDITIONAL_CONTROLS')) return t('analysis:table.measure');
-    return actionColumnLabel(key, getActionPlanUi(language)) || t(`tags.${key}`, meta?.label || key);
+    return actionColumnLabel(key, getActionPlanUi(language), true) || t(`tags.${key}`, meta?.label || key);
   };
 
   const renderDesignerProjectInfo = () => {

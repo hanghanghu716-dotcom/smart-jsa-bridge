@@ -259,7 +259,7 @@ const renderDataTablePreview = () => {
               } else {
                 const key = group.keys[0];
                 const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-                let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label));
+                let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language), true) || t(`tags.${key}`, meta.label));
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                 return <DocumentTableHeading lang={formData.context?.documentLocale || i18n.language} key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</DocumentTableHeading>;
@@ -271,7 +271,7 @@ const renderDataTablePreview = () => {
               {layoutGroups.filter(g => g.isGroup).flatMap(group =>
                 group.keys.map(key => {
                   const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-                  let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label));
+                  let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language), true) || t(`tags.${key}`, meta.label));
                   if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
                   if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
                   return <DocumentTableHeading lang={formData.context?.documentLocale || i18n.language} key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</DocumentTableHeading>;

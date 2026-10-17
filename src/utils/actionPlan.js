@@ -36,13 +36,14 @@ export function reconcileActionPlans(before, after) {
 }
 export const ACTION_COLUMNS = {
   DATA_ADDITIONAL_CONTROLS: { width: 10, align: 'left', actionKey: 'additionalControls' },
-  DATA_ACTION_OWNER: { width: 5, align: 'left', actionKey: 'ownerDue' },
+  DATA_ACTION_OWNER: { width: 4, align: 'left', actionKey: 'ownerDue' },
   DATA_ACTION_CHECK: { width: 7, align: 'left', actionKey: 'implementationVerification' },
   DATA_RESIDUAL_RISK: { width: 5, align: 'center', actionKey: 'residualRisk' },
 };
-export function actionColumnLabel(key, ui) {
+export function actionColumnLabel(key, ui, multiline = false) {
   const aliases = { DATA_KRAS_AFTER: 'residualRisk', DATA_KRAS_SCHED: 'dueDate', DATA_KRAS_COMP: 'completedOn', DATA_KRAS_MANAGER: 'owner' };
-  return ui[ACTION_COLUMNS[key]?.actionKey || aliases[key]];
+  const label = ui[ACTION_COLUMNS[key]?.actionKey || aliases[key]];
+  return multiline && key === 'DATA_ACTION_OWNER' ? label?.replace(' / ', ' /\n') : label;
 }
 export function actionColumnValue(key, step, ui, score) {
   const p = actionPlan(step.actionPlan);
