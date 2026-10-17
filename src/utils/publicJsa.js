@@ -16,7 +16,12 @@ function publicLayout(value) {
   if ('documentBlocks' in layout) layout.documentBlocks = (Array.isArray(layout.documentBlocks) ? layout.documentBlocks : []).filter(block => typeof block?.id === 'string').map(block => ({ id: block.id, enabled: Boolean(block.enabled) }));
   if ('savedActiveOrder' in layout) layout.savedActiveOrder = strings(layout.savedActiveOrder);
   if ('savedUserColumns' in layout) layout.savedUserColumns = (Array.isArray(layout.savedUserColumns) ? layout.savedUserColumns : []).filter(column => typeof column?.id === 'string').map(column => ({ id: column.id, label: cleanText(column.label), align: ['left','right','center'].includes(column.align) ? column.align : 'left', width: Number(column.width) || 5, fieldType: cleanText(column.fieldType), options: strings(column.options) }));
-  layout.savedColumnOverrides = Object.fromEntries(Object.entries(object(layout.savedColumnOverrides)).map(([key, column]) => [key, { label: cleanText(column?.label), width: Number(column?.width) || undefined, align: ['left','right','center'].includes(column?.align) ? column.align : undefined }]));
+  // Missing overrides must stay absent: spreading align: undefined over a
+  // standard column erases its default alignment in the document renderer.
+  layout.savedColumnOverrides = Object.fromEntries(Object.entries(object(layout.savedColumnOverrides)).map(([key, column]) => [key,
+    Object.fromEntries(Object.entries({ label: cleanText(column?.label), width: Number(column?.width) || undefined,
+      align: ['left','right','center'].includes(column?.align) ? column.align : undefined }).filter(([, value]) => value !== undefined))
+  ]));
   if ('savedSignatureRows' in layout) layout.savedSignatureRows = Math.max(1, Math.min(8, Number(layout.savedSignatureRows) || 1));
   return layout;
 }

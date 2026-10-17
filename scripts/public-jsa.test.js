@@ -12,6 +12,23 @@ const row = { assessment:{checked:true,review:'pending'}, id, author_id: 'author
   analysis_data: ['Prepare', 'Lift', 'Inspect'].map(stepTitle => ({ proc: { stepTitle, stepDetail: 'Inspect the access route, equipment and work area before starting the task.' }, risks: [{ factor: 'Falling objects and collision', measure: 'Isolate the work area with barriers and inspect lifting equipment before use.' }], customFields: { NAME: 'private' } })),
   custom_layout: { documentNotes: 'private', stepPhotos: { 0: 'private' } } };
 const shell = '<!doctype html><html><head></head><body><div id="root"></div></body></html>';
+
+test('public width-only and label-only overrides preserve default alignment and width', () => {
+  const source = { ...row, custom_layout: { savedColumnOverrides: {
+    DATA_HAZARD: { width: 6 }, DATA_CURRENT_MEASURE: { label: 'Source status' },
+    DATA_RECOMMEND_MEASURE: { width: 12, align: 'center' }, DATA_STEP_TITLE: { align: 'invalid' },
+  } } };
+  const overrides = publicJsaView(source).custom_layout.savedColumnOverrides;
+  for (const key of ['DATA_HAZARD', 'DATA_CURRENT_MEASURE', 'DATA_STEP_TITLE']) {
+    assert.equal(Object.hasOwn(overrides[key], 'align'), false);
+    assert.equal({ align: 'left', ...overrides[key] }.align, 'left');
+  }
+  assert.equal(Object.hasOwn(overrides.DATA_CURRENT_MEASURE, 'width'), false);
+  assert.equal(overrides.DATA_HAZARD.width, 6);
+  assert.equal(overrides.DATA_CURRENT_MEASURE.label, 'Source status');
+  assert.equal(overrides.DATA_RECOMMEND_MEASURE.align, 'center');
+  assert.deepEqual(publicJsaView(publicJsaView(source)).custom_layout.savedColumnOverrides, overrides);
+});
 test('engagement metrics normalize legacy values and sort columns use a strict allowlist', () => {
   const safe = publicJsaView({ ...row, view_count: '1234', reuse_count: -4, scrap_count: null });
   assert.equal(safe.view_count, 1234);
