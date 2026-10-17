@@ -1,3 +1,4 @@
+import DocumentTableHeading from '../components/DocumentTableHeading';
 import { defaultColumns } from '../utils/documentLayout';
 import { ACTION_COLUMNS, actionColumnLabel } from '../utils/actionPlan';
 import { getActionPlanUi } from '../locales/actionPlanUi';
@@ -254,14 +255,14 @@ const renderDataTablePreview = () => {
             {layoutGroups.map((group, idx) => {
               if (group.isGroup) {
                 const groupLabel = group.label === '유해 위험요인 파악' ? t('groups.hazard') : t('groups.risk');
-                return <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '10px' : '11px', lineHeight: '1.2', wordBreak: 'break-word', overflowWrap: 'break-word', textAlign: 'center', color: '#000' }}>{groupLabel}</th>;
+                return <DocumentTableHeading lang={formData.context?.documentLocale || i18n.language} key={`th-group-${idx}`} colSpan={group.keys.length} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '10px' : '11px', lineHeight: '1.2', wordBreak: 'break-word', overflowWrap: 'break-word', textAlign: 'center', color: '#000' }}>{groupLabel}</DocumentTableHeading>;
               } else {
                 const key = group.keys[0];
                 const meta = TAG_META[key] || userColumns.find(u => u.id === key);
                 let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label));
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
-                return <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
+                return <DocumentTableHeading lang={formData.context?.documentLocale || i18n.language} key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</DocumentTableHeading>;
               }
             })}
           </tr>
@@ -273,7 +274,7 @@ const renderDataTablePreview = () => {
                   let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label));
                   if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
                   if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
-                  return <th key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
+                  return <DocumentTableHeading lang={formData.context?.documentLocale || i18n.language} key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</DocumentTableHeading>;
                 })
               )}
             </tr>

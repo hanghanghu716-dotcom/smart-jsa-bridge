@@ -1,3 +1,4 @@
+import DocumentTableHeading from './DocumentTableHeading';
 import { ACTION_COLUMNS, actionColumnLabel, actionColumnValue, actionPlan } from '../utils/actionPlan';
 import { getActionPlanUi } from '../locales/actionPlanUi';
 import { assessedScore } from '../utils/analysisAssessment';
@@ -174,7 +175,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
           <tr>{groups.map((group, idx) => {
               if (group.isGroup) {
                 const groupLabel = group.label === '유해 위험요인 파악' ? t('groups.hazard') : t('groups.risk');
-                return ( <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{groupLabel}</th> );
+                return ( <DocumentTableHeading lang={language} key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{groupLabel}</DocumentTableHeading> );
               }
               else {
                 const key = group.keys[0]; const meta = getColumnMeta(key);
@@ -183,7 +184,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                 if (!savedColumnOverrides[key]?.label && key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                 if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_AFTER') label = getActionPlanUi(language).residualRisk;
                 if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_SCHED') label = getActionPlanUi(language).dueDate;
-                return ( <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>{label}</th> );
+                return ( <DocumentTableHeading lang={language} key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>{label}</DocumentTableHeading> );
               }
             })}</tr>
           {hasGroups && (
@@ -197,7 +198,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                   if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_AFTER') label = getActionPlanUi(language).residualRisk;
                   if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_SCHED') label = getActionPlanUi(language).dueDate;
                 return (
-                    <th key={`th-sub-${key}`} style={{
+                    <DocumentTableHeading lang={language} key={`th-sub-${key}`} style={{
                       ...commonTdStyle,
                       backgroundColor: '#f9f9f9',
                       textAlign: 'center',
@@ -206,7 +207,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                       wordBreak: 'keep-all',
                       fontSize: isEuroLang ? '8px' : '10.5px'                    }}>
                       {label}
-                    </th>
+                    </DocumentTableHeading>
                   );
                 })
               )}
