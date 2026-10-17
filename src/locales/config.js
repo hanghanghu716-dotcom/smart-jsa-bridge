@@ -43,12 +43,14 @@ export function detectLanguage(browserLanguage = '') {
     || SUPPORTED_LANGS.filter(code => !isCanadianProvince(code)).find(code => code.split('-')[0] === browserLanguage.split('-')[0].toLowerCase())
     || 'en-US';
 }
-export const getCaseLanguages = code => normalizeLocale(code) === 'fr-CA-QC'
-  ? ['fr-CA-QC', 'fr-CA'] : (isCanadianProvince(code) ? [code, 'en-CA'] : [code]);
-// Prefer a province-specific article to the common Canadian article for the same group.
+// Each province has its own legal context; generic Canadian articles are not fallbacks.
+// Legacy en-CA URLs remain directly accessible for preserved records.
+export const getCaseLanguages = code => [normalizeLocale(code)];
 export function selectLocalizedCases(rows, code) {
+  code = normalizeLocale(code);
   const selected = new Map();
   for (const row of rows) {
+    if (isCanadianProvince(code) && row.language_code !== code) continue;
     const key = row.post_group_id || row.id;
     const previous = selected.get(key);
     const preferred = row.language_code === code;

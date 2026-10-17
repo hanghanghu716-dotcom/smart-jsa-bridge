@@ -33,7 +33,7 @@ test('province routes, browser detection and standards-based formatting', () => 
     assert.equal(getDataLocale(code), code === 'fr-CA-QC' ? 'fr-FR' : 'en-CA');
     assert.equal(getLanguageTag(code), code === 'fr-CA-QC' ? 'fr-CA' : 'en-CA');
     assert.doesNotThrow(() => new Date().toLocaleDateString(getLanguageTag(code)));
-    assert.deepEqual(getCaseLanguages(code), [code, code === 'fr-CA-QC' ? 'fr-CA' : 'en-CA']);
+    assert.deepEqual(getCaseLanguages(code), [code]);
   }
   assert.ok(!hasLanguagePrefix('/en-CA-invalid'));
   for (const code of SEO_LANGUAGES) assert.doesNotThrow(() => Intl.getCanonicalLocales(code));
@@ -58,12 +58,21 @@ test('Singapore routes, data fallback and sitemap keep their regional identity',
   assert.ok(reactSnap.include.includes('/en-SG/'));
 });
 
-test('case studies prefer provincial content and retain shared articles', () => {
+test('provincial case studies exclude generic and other-province articles', () => {
   const shared = { post_group_id: 'one', language_code: 'en-CA', created_at: '2026-01-03' };
   const province = { post_group_id: 'one', language_code: 'en-CA-ON', created_at: '2026-01-01' };
   const sharedOnly = { post_group_id: 'two', language_code: 'en-CA', created_at: '2026-01-02' };
-  assert.deepEqual(selectLocalizedCases([shared, province, sharedOnly], 'en-CA-ON'), [sharedOnly, province]);
-  assert.deepEqual(selectLocalizedCases([province, sharedOnly, shared], 'en-CA-ON'), [sharedOnly, province]);
+  assert.deepEqual(selectLocalizedCases([shared, province, sharedOnly], 'en-CA-ON'), [province]);
+  assert.deepEqual(selectLocalizedCases([province, sharedOnly, shared], 'en-CA-ON'), [province]);
+  for (const {code} of CANADIAN_PROVINCES) {
+    const own = {...province, language_code:code};
+    const other = {...sharedOnly, language_code:code === 'en-CA-AB' ? 'en-CA-BC' : 'en-CA-AB'};
+    assert.deepEqual(selectLocalizedCases([shared, own, other, sharedOnly], code), [own]);
+    assert.deepEqual(selectLocalizedCases([shared, other], code), []);
+  }
+  assert.deepEqual(getCaseLanguages('fr-CA'), ['fr-CA-QC']);
+  assert.deepEqual(getCaseLanguages('en-CA'), ['en-CA']);
+  assert.deepEqual(selectLocalizedCases([shared,sharedOnly], 'en-CA'), [shared,sharedOnly]);
   assert.deepEqual(selectLocalizedCases([], 'en-CA-ON'), []);
   assert.deepEqual(getCaseLanguages('en-US'), ['en-US']);
 });
