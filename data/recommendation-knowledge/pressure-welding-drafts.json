@@ -9,7 +9,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -18,13 +18,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Apply the equipment-specific isolation procedure. Use lockout for lockable energy-isolating devices. Tagout is permitted only under the equipment energy-control programme meeting the applicable OSHA tagout requirements, including demonstrated full employee protection when used instead of lockout on a lockable device. Safely relieve trapped pressure before opening.",
       "verification": "An authorized person verifies isolation and depressurization; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. Federal general-industry baseline only; applicable State Plan and sector-specific requirements must be checked before use.",
+      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. Federal general-industry baseline only; applicable State Plan and sector-specific requirements must be checked before use. US federal general-industry technical baseline only. Federal versus State Plan coverage must be established before use; construction, agriculture, maritime, utility installations and the other exclusions of the cited provision cannot be inferred covered. This card does not establish compliance with all applicable standards.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorized person assigned",
         "Compressed-air filter and all pressure paths identified",
         "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
-        "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+        "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked",
+        "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       ],
       "exclusions": [
         "Pressurized intervention",
@@ -57,7 +58,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "safe-depressurization-method-available",
-          "general-industry-scope-confirmed"
+          "general-industry-scope-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -77,7 +79,8 @@
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification",
-        "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+        "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked",
+        "regional-applicability-confirmed": "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "911ccf57f18335836b94c9e09d737abd3d886e59b39526f99cddd156c5983f8e",
@@ -123,7 +126,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -132,13 +135,14 @@
       "consequence": "Respiratory illness",
       "control": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
       "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
-      "coverageLimit": "Fume exposure only; source extraction is the selected control for this bounded draft, not a claim that OSHA universally requires this exact arrangement. Federal/State Plan exposure and respiratory-protection duties must be checked; fire, radiation, electrical and gas hazards need separate assessment.",
+      "coverageLimit": "Fume exposure only; source extraction is the selected control for this bounded draft, not a claim that OSHA universally requires this exact arrangement. Federal/State Plan exposure and respiratory-protection duties must be checked; fire, radiation, electrical and gas hazards need separate assessment. US federal general-industry technical baseline only. Federal versus State Plan coverage must be established before use; construction, agriculture, maritime, utility installations and the other exclusions of the cited provision cannot be inferred covered. This card does not establish compliance with all applicable standards.",
       "conditions": [
         "Authorized person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
         "Exposure-control procedure available",
-        "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+        "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked",
+        "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -170,7 +174,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "general-industry-scope-confirmed"
+          "general-industry-scope-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -188,7 +193,8 @@
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
         "extraction-unavailable": "Extraction unavailable or ineffective",
-        "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+        "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked",
+        "regional-applicability-confirmed": "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "f56e8d1281af37292a57420cea5ef45c00cc1215386c802869e0763a8d0715d3",
@@ -222,7 +228,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -231,13 +237,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Identify supply and backfeed through the inlet, outlet, bypass and connected drain lines. Apply personal lockout under the equipment procedure and the identified Canadian workplace regime. Isolate all supplies and safely relieve retained pressure before opening, following the actual filter procedure.",
       "verification": "An authorized person verifies isolation and depressurization; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. The identified federal, provincial or territorial regime controls applicability. The Parker manual is a model-specific example, not the operating procedure for every filter.",
+      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. The identified federal, provincial or territorial regime controls applicability. The Parker manual is a model-specific example, not the operating procedure for every filter. Canadian technical guidance from CCOHS. It is not a single nationwide legal procedure: the applicable federal, provincial or territorial regime must be resolved before use. Referenced CSA standards were not reviewed in full and this card does not certify compliance with them.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorized person assigned",
         "Compressed-air filter and all pressure paths identified",
         "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
-        "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+        "The applicable federal, provincial or territorial workplace regime has been identified and checked",
+        "The applicable Canadian federal, provincial or territorial regime and site procedure have been checked for this task"
       ],
       "exclusions": [
         "Pressurized intervention",
@@ -279,7 +286,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "safe-depressurization-method-available",
-          "canadian-regime-confirmed"
+          "canadian-regime-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -299,7 +307,8 @@
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification",
-        "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+        "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked",
+        "regional-applicability-confirmed": "The applicable Canadian federal, provincial or territorial regime and site procedure have been checked for this task"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
@@ -354,7 +363,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -363,13 +372,14 @@
       "consequence": "Respiratory illness",
       "control": "Use suitable local exhaust ventilation positioned and operated for the process. Where ventilation does not adequately control exposure, provide and use suitable respiratory protection selected for the hazards and applicable requirements.",
       "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
-      "coverageLimit": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. Local exhaust is the selected technical control; the applicable Canadian workplace regime and respiratory programme must be checked. Fire, radiation, electrical and gas hazards require separate assessment.",
+      "coverageLimit": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. Local exhaust is the selected technical control; the applicable Canadian workplace regime and respiratory programme must be checked. Fire, radiation, electrical and gas hazards require separate assessment. Canadian technical guidance from CCOHS. It is not a single nationwide legal procedure: the applicable federal, provincial or territorial regime must be resolved before use. Referenced CSA standards were not reviewed in full and this card does not certify compliance with them.",
       "conditions": [
         "Authorized person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
         "Exposure-control procedure available",
-        "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+        "The applicable federal, provincial or territorial workplace regime has been identified and checked",
+        "The applicable Canadian federal, provincial or territorial regime and site procedure have been checked for this task"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -410,7 +420,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "canadian-regime-confirmed"
+          "canadian-regime-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -428,7 +439,8 @@
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
         "extraction-unavailable": "Extraction unavailable or ineffective",
-        "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+        "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked",
+        "regional-applicability-confirmed": "The applicable Canadian federal, provincial or territorial regime and site procedure have been checked for this task"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
@@ -471,7 +483,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -480,12 +492,13 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Identify supply and backfeed through the inlet, outlet, bypass and connected drain lines. Apply the equipment-specific individual or group isolation procedure with identified personal locks; each worker tests and confirms the safe state. Isolate all supplies and safely relieve retained pressure before opening, following the actual filter procedure.",
       "verification": "Each worker tests and confirms isolation and a safe depressurized state under the equipment procedure before work; recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Pressure-release hazard of the identified compressed-air filter only. This is not a piping or pipeline isolation procedure; determine whether the separate piping requirements apply. Other maintenance hazards need separate assessment. The applicable provincial regime and separate pressure-equipment requirements must be confirmed. The Parker manual is a model-specific example, not the operating procedure for every filter.",
+      "coverageLimit": "Pressure-release hazard of the identified compressed-air filter only. This is not a piping or pipeline isolation procedure; determine whether the separate piping requirements apply. Other maintenance hazards need separate assessment. The applicable provincial regime and separate pressure-equipment requirements must be confirmed. The Parker manual is a model-specific example, not the operating procedure for every filter. Pressure isolation before opening an identified compressed-air filter only. Alberta Code scope exclusions and the distinction between machinery securing and piping work must be checked. Sections 215.4–215.5 piping arrangements are not generalized to every filter. Group or complex securing requires the complete applicable procedure and every worker’s verification; this card is not that procedure.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorized person assigned",
         "Compressed-air filter and all pressure paths identified",
-        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening"
+        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+        "The task is within Alberta OHS Code scope and the applicable machinery, piping and pressure-equipment procedures have been identified"
       ],
       "exclusions": [
         "Pressurized intervention",
@@ -536,7 +549,8 @@
           "equipment-procedure-available",
           "authorized-person-assigned",
           "compressed-air-filter-identified",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -555,7 +569,8 @@
         "unknown-media-or-isolation": "Unknown contents or isolation boundary",
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
-        "breathing-air-certification": "The task includes breathing-air certification"
+        "breathing-air-certification": "The task includes breathing-air certification",
+        "regional-applicability-confirmed": "The task is within Alberta OHS Code scope and the applicable machinery, piping and pressure-equipment procedures have been identified"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
@@ -738,7 +753,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 7,
+      "revision": 8,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -747,13 +762,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use that procedure to isolate all supplies, secure the isolation devices with personally controlled locks, and safely relieve trapped pressure before opening.",
       "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Compressed-air filter pressure isolation only. WSPS and CCOHS supply technical guidance; OSHA is a foreign comparison and Parker is a model-specific example. Ontario pressure-equipment and sector requirements remain unverified. Use the actual equipment procedure; no universal valve sequence or torque is prescribed.",
+      "coverageLimit": "Compressed-air filter pressure isolation only. WSPS and CCOHS supply technical guidance; OSHA is a foreign comparison and Parker is a model-specific example. Ontario pressure-equipment and sector requirements remain unverified. Use the actual equipment procedure; no universal valve sequence or torque is prescribed. Ontario technical guidance within the stated task and sector only. The responsible person must identify the applicable sector rules and any equipment review duties before use. A construction welding source does not establish industrial-establishment duties, and an industrial machinery provision does not govern every Ontario task. Full CSA standards and site compliance are outside this review.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
         "Compressed-air filter and all pressure paths identified",
         "Filter is integrated into a machine; its danger zone and energy paths are identified",
-        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening"
+        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+        "The Ontario sector and applicable legal requirements have been identified in the approved site procedure"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -807,7 +823,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -827,7 +844,8 @@
         "machine-integrated-filter": "Filter is integrated into a machine; its danger zone and energy paths are identified",
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
-        "breathing-air-certification": "The task includes breathing-air certification"
+        "breathing-air-certification": "The task includes breathing-air certification",
+        "regional-applicability-confirmed": "The Ontario sector and applicable legal requirements have been identified in the approved site procedure"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "954285350b2a2d1dfc24fea027db1bf1d9a0b8cc37dbdc62acab7360757e36c9",
@@ -878,7 +896,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -887,13 +905,14 @@
       "consequence": "Respiratory illness",
       "control": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
       "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
-      "coverageLimit": "Construction welding fume exposure only, using IHSA/CCOHS technical guidance. Ontario pre-start-review duties and current CSA references have not been verified. Fire, radiation, electrical and gas hazards and other industries require separate assessment.",
+      "coverageLimit": "Construction welding fume guidance from IHSA/CCOHS. The construction scope remains required; industrial-establishment pre-start-review provisions are not assumed to apply. Current applicable exposure and respiratory duties, incorporated standards and site controls must be checked. Fire, radiation, electrical and gas hazards require separate assessment. Ontario technical guidance within the stated task and sector only. The responsible person must identify the applicable sector rules and any equipment review duties before use. A construction welding source does not establish industrial-establishment duties, and an industrial machinery provision does not govern every Ontario task. Full CSA standards and site compliance are outside this review.",
       "conditions": [
         "Authorised person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
         "Exposure-control procedure available",
-        "Welding is part of construction work covered by the site procedure"
+        "Welding is part of construction work covered by the site procedure",
+        "The Ontario sector and applicable legal requirements have been identified in the approved site procedure"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -944,7 +963,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "construction-work"
+          "construction-work",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -962,7 +982,8 @@
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
         "extraction-unavailable": "Extraction unavailable or ineffective",
-        "construction-work": "Welding is part of construction work covered by the site procedure"
+        "construction-work": "Welding is part of construction work covered by the site procedure",
+        "regional-applicability-confirmed": "The Ontario sector and applicable legal requirements have been identified in the approved site procedure"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "f66bcc54f5e9f111d7bea13fa87c4c978697327425eb9452cd6cc58ce88e41c8",
@@ -1001,7 +1022,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1010,13 +1031,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Identify supply and backfeed through the inlet, outlet, bypass and connected drain lines. Use the written equipment lockout procedure with each worker's personal lock and verification; group lockout requires the complete Part 10.9 procedure. Isolate all supplies and safely relieve retained pressure before opening, following the actual filter procedure.",
       "verification": "Each worker verifies effective lockout before starting; verify retained pressure is released under the equipment procedure and recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. The applicable provincial regime and separate pressure-equipment requirements must be confirmed. The Parker manual is a model-specific example, not the operating procedure for every filter.",
+      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. The applicable provincial regime and separate pressure-equipment requirements must be confirmed. The Parker manual is a model-specific example, not the operating procedure for every filter. BC pressure isolation guidance subject to OHS Regulation coverage. Individual and group lockout remain distinct; a group key-securing arrangement does not dispense with each worker’s required protection and verification. This is not a pressure-vessel classification, registration, inspection or repair procedure.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorized person assigned",
         "Compressed-air filter and all pressure paths identified",
         "Personal lockout and each worker’s verification are arranged",
-        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening"
+        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+        "BC OHS Regulation coverage, the equipment procedure and any applicable pressure-equipment requirements have been checked"
       ],
       "exclusions": [
         "Pressurized intervention",
@@ -1068,7 +1090,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "personal-lockout-arranged",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1088,7 +1111,8 @@
         "personal-lockout-arranged": "Personal lockout and each worker’s verification are arranged",
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
-        "breathing-air-certification": "The task includes breathing-air certification"
+        "breathing-air-certification": "The task includes breathing-air certification",
+        "regional-applicability-confirmed": "BC OHS Regulation coverage, the equipment procedure and any applicable pressure-equipment requirements have been checked"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
@@ -1273,7 +1297,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
@@ -1282,13 +1306,14 @@
       "consequence": "Blessure par jet d’air ou projection de pièces",
       "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de cadenassage propre à l’équipement. Isoler les alimentations selon cette procédure; chaque personne accédant à la zone dangereuse appose son cadenas. Évacuer la pression résiduelle en sécurité et vérifier la dépressurisation avant l’ouverture.",
       "verification": "Vérifier l’efficacité du cadenassage et la dépressurisation selon la procédure; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression.",
-      "coverageLimit": "Pression d’un filtre à air comprimé intégré à une machine; orientations CNESST et CCOHS, comparaison technique OSHA et exemple constructeur. Le RSST consolidé, le régime des équipements sous pression et toute méthode autre que le cadenassage doivent être vérifiés séparément.",
+      "coverageLimit": "Pression d’un filtre à air comprimé intégré à une machine; orientations CNESST et CCOHS, comparaison technique OSHA et exemple constructeur. Le RSST consolidé, le régime des équipements sous pression et toute méthode autre que le cadenassage doivent être vérifiés séparément. Isolement avant ouverture d’un filtre à air comprimé, selon la procédure applicable. Le cadenassage de la machine, les travaux sur tuyauterie et les obligations relatives aux équipements sous pression ne sont pas interchangeables. La fiche ne constitue ni une classification réglementaire ni une autorisation de réparation; les méthodes alternatives et les situations hors champ exigent une procédure distincte.",
       "conditions": [
         "Procédure de cadenassage propre à l’équipement disponible",
         "Personne autorisée désignée",
         "Filtre à air comprimé et circuits de pression identifiés",
         "Filtre intégré à une machine; zone dangereuse et circuits d’énergie identifiés",
-        "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture"
+        "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture",
+        "Le régime québécois applicable, la procédure de cadenassage et les exigences relatives aux équipements sous pression ont été vérifiés"
       ],
       "exclusions": [
         "Intervention sous pression",
@@ -1342,7 +1367,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1362,7 +1388,8 @@
         "machine-integrated-filter": "Filtre intégré à une machine; zone dangereuse et circuits d’énergie identifiés",
         "safe-depressurization-method-available": "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture",
         "non-air-service": "Le filtre contient un gaz autre que de l’air comprimé",
-        "breathing-air-certification": "La tâche comprend la certification d’air respirable"
+        "breathing-air-certification": "La tâche comprend la certification d’air respirable",
+        "regional-applicability-confirmed": "Le régime québécois applicable, la procédure de cadenassage et les exigences relatives aux équipements sous pression ont été vérifiés"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "afa233f85a2adfba289ede6d45417812787d210519bc62c45b5177523433484d",
@@ -1542,7 +1569,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1551,13 +1578,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Use the equipment-specific procedure to isolate all supplies, lock off the isolating devices and safely relieve trapped pressure before opening.",
       "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
-      "coverageLimit": "Pressure-release hazard only, within Great Britain. The actual equipment procedure and any applicable pressure-system duties require separate checking; the foreign OSHA and Parker examples do not establish those duties.",
+      "coverageLimit": "Pressure-release hazard only, within Great Britain. The actual equipment procedure and any applicable pressure-system duties require separate checking; the foreign OSHA and Parker examples do not establish those duties. Great Britain guidance for pressure isolation before filter opening. It does not establish Northern Ireland applicability or decide whether PSSR applies to a particular assembly. Classification, written schemes, examinations, repairs and return to service require their own applicable arrangements. A manufacturer example does not supply the procedure for an unidentified model.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
         "Compressed-air filter and all pressure paths identified",
         "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
-        "The work is in Great Britain and falls within the cited HSE guidance scope"
+        "The work is in Great Britain and falls within the cited HSE guidance scope",
+        "Great Britain jurisdiction, the equipment procedure and any applicable pressure-system duties have been checked"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -1599,7 +1627,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "safe-depressurization-method-available",
-          "great-britain-scope-confirmed"
+          "great-britain-scope-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1619,7 +1648,8 @@
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification",
-        "great-britain-scope-confirmed": "The work is in Great Britain and falls within the cited HSE guidance scope"
+        "great-britain-scope-confirmed": "The work is in Great Britain and falls within the cited HSE guidance scope",
+        "regional-applicability-confirmed": "Great Britain jurisdiction, the equipment procedure and any applicable pressure-system duties have been checked"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "e012325974780da8c9bdf48261a95ac80b326d8d9ac726003986468e9f4adb40",
@@ -1773,7 +1803,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -1782,13 +1812,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Follow the actual equipment procedure to isolate all pressure sources, apply personal locks and identification tags under the applicable lockout arrangement, and safely relieve retained pressure before opening.",
       "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test. Failure to restart does not prove absence of trapped pressure.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. Australian technical guidance. Safe Work Australia model codes acquire legal effect through jurisdictional approval; Victorian guidance has its own jurisdiction. The applicable state or territory requirements must be checked before use. This card does not certify model-code adoption, a pressure-equipment classification or compliance with an entire code.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
         "Compressed-air filter and all pressure paths identified",
         "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
-        "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
+        "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked",
+        "The Australian state or territory, adopted requirements and applicable equipment/site procedure have been checked"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -1831,7 +1862,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "safe-depressurization-method-available",
-          "state-territory-requirements-checked"
+          "state-territory-requirements-checked",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -1851,7 +1883,8 @@
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification",
-        "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
+        "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked",
+        "regional-applicability-confirmed": "The Australian state or territory, adopted requirements and applicable equipment/site procedure have been checked"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "5d6dbf7f6c1ec83ab3dba953952c329a304494dc1701d3b85ce2bb1a3ffa664b",
@@ -1897,7 +1930,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -1906,13 +1939,14 @@
       "consequence": "Respiratory illness",
       "control": "Consider a lower-emission process or consumable where practicable. Use local exhaust ventilation suited to the welding process, with safe discharge outside away from other people and air intakes; do not recirculate captured welding contaminants into the workplace. Provide suitable respiratory protection where the exposure assessment identifies remaining risk.",
       "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
-      "coverageLimit": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+      "coverageLimit": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment. Australian technical guidance. Safe Work Australia model codes acquire legal effect through jurisdictional approval; Victorian guidance has its own jurisdiction. The applicable state or territory requirements must be checked before use. This card does not certify model-code adoption, a pressure-equipment classification or compliance with an entire code.",
       "conditions": [
         "Authorised person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
         "Exposure-control procedure available",
-        "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
+        "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked",
+        "The Australian state or territory, adopted requirements and applicable equipment/site procedure have been checked"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -1954,7 +1988,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "state-territory-requirements-checked"
+          "state-territory-requirements-checked",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -1972,7 +2007,8 @@
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
         "extraction-unavailable": "Extraction unavailable or ineffective",
-        "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
+        "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked",
+        "regional-applicability-confirmed": "The Australian state or territory, adopted requirements and applicable equipment/site procedure have been checked"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "9dbe952d80ce94966375e918d2aba6a754b31e72b62f0a4c11bee45355e0f0f1",
@@ -2006,7 +2042,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -2015,13 +2051,14 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Follow the actual equipment procedure to isolate all pressure sources, apply personal locks and identification tags under the applicable lockout arrangement, and safely relieve retained pressure before opening.",
       "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test. A warning tag alone does not isolate pressure.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. Singapore WSH Council guidance within the specified machinery or metalworking scope. The 2012 SME publication is an edition-specific guide and sample procedure, not proof of current law. Current complete statutory provisions, exposure limits and any pressure-equipment duties were not fully verified in this review and must be checked before use.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
         "Compressed-air filter and all pressure paths identified",
         "The filter is part of an identified machine pneumatic circuit",
-        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening"
+        "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -2064,7 +2101,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2084,7 +2122,8 @@
         "machine-integrated-filter": "The filter is part of an identified machine pneumatic circuit",
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
-        "breathing-air-certification": "The task includes breathing-air certification"
+        "breathing-air-certification": "The task includes breathing-air certification",
+        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "e711ea96db577bd1e30957466186e03b85a9472f68ec69b1fef32076f2b01ca0",
@@ -2130,23 +2169,24 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
       "hazard": "Inhalation of welding fume",
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
-      "control": "Use local exhaust ventilation suited to the welding process and keep it operating throughout the work. Provide suitable respiratory protection when ventilation does not adequately control exposure, as determined by the exposure assessment.",
-      "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
-      "coverageLimit": "Metalworking workshop fume exposure only; assess fire, radiation, electrical and gas hazards separately. Other work settings need separate source and applicability review.",
+      "control": "First assess eliminating or substituting the hazardous process or material. For the remaining work, use suitable source extraction and adequate general ventilation, together with the approved safe work procedure. Provide suitable respiratory protection when the exposure assessment requires it; it does not replace feasible engineering controls.",
+      "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective. Verify constituent exposure and the required respiratory-protection arrangements; airflow alone does not establish adequate exposure control.",
+      "coverageLimit": "Metalworking workshop fume exposure only; assess fire, radiation, electrical and gas hazards separately. Other work settings need separate source and applicability review. Singapore WSH Council guidance within the specified machinery or metalworking scope. The 2012 SME publication is an edition-specific guide and sample procedure, not proof of current law. Current complete statutory provisions, exposure limits and any pressure-equipment duties were not fully verified in this review and must be checked before use.",
       "conditions": [
         "Authorised person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
         "Exposure-control procedure available",
         "Indoor welding takes place in a metalworking workshop using identified welding equipment",
-        "Site hot-work procedure approved and any required permit in place"
+        "Site hot-work procedure approved and any required permit in place",
+        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -2199,7 +2239,8 @@
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
           "metalworking-workshop",
-          "hot-work-procedure-authorized"
+          "hot-work-procedure-authorized",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -2218,7 +2259,8 @@
         "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "metalworking-workshop": "Indoor welding takes place in a metalworking workshop using identified welding equipment",
-        "hot-work-procedure-authorized": "Site hot-work procedure approved and any required permit in place"
+        "hot-work-procedure-authorized": "Site hot-work procedure approved and any required permit in place",
+        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "33463d6f7b710beaa990a09792e00605f8e31e0d6baf8df3fb5329bbd1982810",
@@ -2252,7 +2294,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Wartung eines Druckluftfilters",
       "step": "Öffnung des Filtergehäuses vorbereiten",
@@ -2261,12 +2303,13 @@
       "consequence": "Verletzung durch Luftstrahl oder herausgeschleuderte Teile",
       "control": "Vor der gerätespezifischen Freischaltung Einlass, Auslass, Bypass und angeschlossene Kondensatleitungen auf mögliche Druckzufuhr oder Rückspeisung prüfen. Nach der gerätespezifischen Anweisung unter Berücksichtigung der Herstellerangaben alle Zuführungen absperren und gegen erneute Druckbeaufschlagung sichern; eingeschlossenen Druck vor dem Öffnen sicher abbauen.",
       "verification": "Die fachkundige, beauftragte Person prüft Trennung und Druckfreiheit; bei möglichem Druckaufbau weiter kontrollieren. Bei ungeklärter Absperrgrenze oder nicht nachgewiesener Druckfreiheit das Gehäuse geschlossen halten; es nicht zur Prüfung der Druckfreiheit lösen.",
-      "coverageLimit": "Nur Druckfreisetzung; weitere Wartungsgefahren gesondert beurteilen.",
+      "coverageLimit": "Nur Druckfreisetzung; weitere Wartungsgefahren gesondert beurteilen. Begrenzte technische Anleitung für die genannte Tätigkeit. Gefährdungsbeurteilung und Betriebsanweisung müssen den konkreten Anwendungsbereich bestimmen. Die Karte ersetzt weder Prüfungen von Druckanlagen noch eine vollständige Bewertung von Gefahrstoffen oder eine Freigabe der Anlage.",
       "conditions": [
         "Gerätespezifische Freischaltanweisung vorhanden",
         "Fachkundige, beauftragte und unterwiesene Person benannt",
         "Druckluftfilter und sämtliche Druckpfade bekannt",
-        "Die Geräteanweisung legt einen sicheren Druckabbau und die Prüfung der Druckfreiheit vor dem Öffnen fest"
+        "Die Geräteanweisung legt einen sicheren Druckabbau und die Prüfung der Druckfreiheit vor dem Öffnen fest",
+        "Der Anwendungsbereich und die geltenden betrieblichen Anforderungen sind für die konkrete Tätigkeit geprüft"
       ],
       "exclusions": [
         "Eingriff unter Druck",
@@ -2308,7 +2351,8 @@
           "equipment-procedure-available",
           "authorized-person-assigned",
           "compressed-air-filter-identified",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2327,7 +2371,8 @@
         "unknown-media-or-isolation": "Inhalt oder Absperrgrenze unbekannt",
         "safe-depressurization-method-available": "Die Geräteanweisung legt einen sicheren Druckabbau und die Prüfung der Druckfreiheit vor dem Öffnen fest",
         "non-air-service": "Der Filter führt ein anderes Gas als Druckluft",
-        "breathing-air-certification": "Die Aufgabe umfasst die Zertifizierung von Atemluft"
+        "breathing-air-certification": "Die Aufgabe umfasst die Zertifizierung von Atemluft",
+        "regional-applicability-confirmed": "Der Anwendungsbereich und die geltenden betrieblichen Anforderungen sind für die konkrete Tätigkeit geprüft"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "824c536dfa6b855f2c2a008333d28606bf1dd48baa03beae4b2f191e2e855bed",
@@ -2373,21 +2418,22 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Regelmäßiges Schweißen von unbeschichtetem unlegiertem Stahl in Innenräumen",
       "step": "Schweißrauchabsaugung vorbereiten",
       "hazard": "Einatmen von Schweißrauch",
       "cause": "Rauch gelangt in den Atembereich",
       "consequence": "Atemwegserkrankung",
-      "control": "Zunächst ein emissionsärmeres Verfahren oder einen weniger gefährlichen Zusatzwerkstoff prüfen. Verbleibende Emissionen mit geeigneter Absaugung an der Entstehungsstelle erfassen und für ausreichende Raumlüftung sorgen; erforderlichen Atemschutz für verbleibende Expositionen ergänzen.",
-      "verification": "Haubenposition und vorgeschriebene Absaugleistung prüfen; nach Versetzen der Haube oder Änderung der Arbeit erneut prüfen. Bei unwirksamer Absaugung das Schweißen einstellen.",
-      "coverageLimit": "Nur Rauchbelastung; Brand, Strahlung, elektrische Gefahren und Gase gesondert beurteilen.",
+      "control": "Zunächst Vermeidung der Tätigkeit, ein emissionsärmeres Verfahren oder weniger gefährliche Werkstoffe prüfen. Verbleibende Emissionen an der Entstehungsstelle absaugen und für ausreichende Raumlüftung sorgen; organisatorische Maßnahmen und erforderlichen Atemschutz ergänzen. Andere Beschäftigte dürfen den Emissionen nicht ungeschützt ausgesetzt sein.",
+      "verification": "Haubenposition und vorgeschriebene Absaugleistung prüfen; nach Versetzen der Haube oder Änderung der Arbeit erneut prüfen. Bei unwirksamer Absaugung das Schweißen einstellen. Die Wirksamkeit und die Exposition gegenüber den relevanten Stoffen vor Aufnahme, regelmäßig und nach Änderungen nach dem festgelegten Verfahren beurteilen. Der Luftvolumenstrom allein belegt keine sichere Exposition.",
+      "coverageLimit": "Regelmäßiges Schweißen von unbeschichtetem unlegiertem Stahl in Innenräumen. Vergleich mit TRGS528, Ausgabe2020 mit Änderung vom07.08.2020, Abschnitte1,4 und5. Diese Karte sieht keine Rückführung der abgesaugten Luft vor; dies ist eine Bereichsbegrenzung, keine allgemeine gesetzliche Verbotsbehauptung. Atemschutz, Grenzwerte und Stoffeinstufung sind im Verfahren zu klären; Brand, Strahlung, Elektrizität und Gase sind gesondert zu beurteilen. Begrenzte technische Anleitung für die genannte Tätigkeit. Gefährdungsbeurteilung und Betriebsanweisung müssen den konkreten Anwendungsbereich bestimmen. Die Karte ersetzt weder Prüfungen von Druckanlagen noch eine vollständige Bewertung von Gefahrstoffen oder eine Freigabe der Anlage.",
       "conditions": [
         "Befugte Person benannt",
         "Regelmäßiges Schweißen in Innenräumen",
         "Unbeschichteter unlegierter Stahl und Zusatzwerkstoffe bekannt",
-        "Anweisung zum Expositionsschutz vorhanden"
+        "Anweisung zum Expositionsschutz vorhanden",
+        "Der Anwendungsbereich und die geltenden betrieblichen Anforderungen sind für die konkrete Tätigkeit geprüft"
       ],
       "exclusions": [
         "Einstieg in einen engen Raum",
@@ -2428,7 +2474,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -2445,7 +2492,8 @@
         "confined-entry": "Einstieg in einen engen Raum",
         "outdoor-welding": "Schweißen im Freien",
         "coated-stainless-or-unknown-metal": "Beschichteter Grundwerkstoff, nichtrostender Stahl oder unbekannter Grundwerkstoff",
-        "extraction-unavailable": "Absaugung fehlt oder ist unwirksam"
+        "extraction-unavailable": "Absaugung fehlt oder ist unwirksam",
+        "regional-applicability-confirmed": "Der Anwendungsbereich und die geltenden betrieblichen Anforderungen sind für die konkrete Tätigkeit geprüft"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "a3992e5580d988e1791a70eafb6b3080bc8e4870b692014f31dc4eceebf84aea",
@@ -2479,7 +2527,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "圧縮空気フィルターの保守",
       "step": "フィルター容器の開放準備",
@@ -2488,13 +2536,14 @@
       "consequence": "噴出空気や部品による負傷",
       "control": "設備固有の遮断手順を適用する前に、入口・出口・バイパス・接続ドレンからの供給や逆流の経路を確認する。設備固有の手順で全供給源を遮断し、遮断装置の施錠等により再供給を防ぐ。開放前に残圧を安全に除去する。",
       "verification": "権限を持つ担当者が隔離と無圧状態を確認し、再加圧のおそれがあれば継続して確認する。 遮断範囲または無圧状態を確認できない場合はハウジングを開けない。圧力確認のためにハウジングを緩めない。",
-      "coverageLimit": "機械に組み込まれたフィルターの圧力放出のみを対象とする。設備固有の作業手順と他の危険の評価が必要。",
+      "coverageLimit": "機械に組み込まれたフィルターの圧力放出のみを対象とする。設備固有の作業手順と他の危険の評価が必要。 圧縮空気フィルタの開放前の圧力隔離のみを扱う。厚生労働省の機械安全指針は技術的な設計・リスク低減の根拠であり、個別設備の開放手順や法令適合の証明ではない。圧力設備の分類、検査、修理および再稼働は別途確認する。",
       "conditions": [
         "設備固有の隔離手順がある",
         "権限を持つ担当者が選任されている",
         "圧縮空気フィルターと全圧力経路が特定されている",
         "機械に組み込まれたフィルターで、危険区域とエネルギー経路が特定されている",
-        "開放前に安全に減圧し、ハウジングの無圧状態を確認する方法が設備の手順に定められている"
+        "開放前に安全に減圧し、ハウジングの無圧状態を確認する方法が設備の手順に定められている",
+        "対象設備と作業に適用される法令、作業手順および圧力設備の要件が確認されている"
       ],
       "exclusions": [
         "加圧状態での作業",
@@ -2537,7 +2586,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2557,7 +2607,8 @@
         "machine-integrated-filter": "機械に組み込まれたフィルターで、危険区域とエネルギー経路が特定されている",
         "safe-depressurization-method-available": "開放前に安全に減圧し、ハウジングの無圧状態を確認する方法が設備の手順に定められている",
         "non-air-service": "圧縮空気以外のガスを扱うフィルターである",
-        "breathing-air-certification": "呼吸用空気の認証を含む作業である"
+        "breathing-air-certification": "呼吸用空気の認証を含む作業である",
+        "regional-applicability-confirmed": "対象設備と作業に適用される法令、作業手順および圧力設備の要件が確認されている"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "0ae2c18ac821f5aa8c87e7804b951f6dd6461d7bbe409149882a23cc26c1e6f7",
@@ -2715,7 +2766,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Entretien d’un filtre à air comprimé",
       "step": "Préparer l’ouverture du corps du filtre",
@@ -2724,12 +2775,13 @@
       "consequence": "Blessure par jet d’air ou projection de pièces",
       "control": "Repérer les circuits d’entrée, de sortie, de dérivation et les purges raccordées susceptibles de réalimenter le filtre avant d’appliquer la procédure de consignation propre à l’équipement. Selon la procédure de l’équipement, isoler et condamner les alimentations puis évacuer la pression résiduelle en sécurité avant ouverture. Utiliser le chemin de purge sûr prévu par la procédure et le maintenir dans la position prescrite pour prévenir toute remise en pression.",
       "verification": "Une personne autorisée vérifie l’isolement et la dépressurisation; poursuivre les contrôles si la pression peut revenir. Ne pas ouvrir le corps du filtre si le périmètre d’isolement ou la dépressurisation ne peut être vérifié; ne pas desserrer le corps pour tester la pression. L’absence de bruit ou d’écoulement ne prouve pas qu’une purge est libre: vérifier son efficacité par la méthode prévue.",
-      "coverageLimit": "Risque de pression uniquement; évaluer séparément les autres risques d’entretien.",
+      "coverageLimit": "Risque de pression uniquement; évaluer séparément les autres risques d’entretien. Consignation avant ouverture d’un filtre à air comprimé uniquement. La procédure doit définir la séparation, la condamnation, la dépressurisation et sa vérification. La fiche ne détermine pas le régime des équipements sous pression et ne couvre ni leur inspection, ni leur réparation, ni la remise en service.",
       "conditions": [
         "Procédure de consignation propre à l’équipement disponible",
         "Personne autorisée désignée",
         "Filtre à air comprimé et circuits de pression identifiés",
-        "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture"
+        "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture",
+        "Le champ légal, la procédure de consignation et les obligations relatives aux équipements sous pression ont été vérifiés"
       ],
       "exclusions": [
         "Intervention sous pression",
@@ -2771,7 +2823,8 @@
           "equipment-procedure-available",
           "authorized-person-assigned",
           "compressed-air-filter-identified",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2790,7 +2843,8 @@
         "unknown-media-or-isolation": "Contenu ou périmètre d’isolement inconnu",
         "safe-depressurization-method-available": "La procédure de l’équipement définit une dépressurisation sûre et sa vérification avant ouverture",
         "non-air-service": "Le filtre contient un gaz autre que de l’air comprimé",
-        "breathing-air-certification": "La tâche comprend la certification d’air respirable"
+        "breathing-air-certification": "La tâche comprend la certification d’air respirable",
+        "regional-applicability-confirmed": "Le champ légal, la procédure de consignation et les obligations relatives aux équipements sous pression ont été vérifiés"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "8c0d09b698b04cddab965ce5c6b721cdcb44772e516458727dc0ea2aa2cc19d6",
@@ -2945,7 +2999,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Manutenzione di un filtro per aria compressa",
       "step": "Preparare l’apertura del corpo del filtro",
@@ -2954,13 +3008,14 @@
       "consequence": "Lesioni da getto d’aria o proiezione di parti",
       "control": "Prima di applicare la procedura dell’attrezzatura, individuare ingresso, uscita, bypass e scarichi collegati che possono alimentare o ripressurizzare il filtro. Seguire la procedura dell’attrezzatura per isolare e bloccare tutte le alimentazioni e scaricare in sicurezza la pressione prima dell’apertura.",
       "verification": "Una persona autorizzata verifica isolamento e depressurizzazione; proseguire i controlli se la pressione può riaccumularsi. Non aprire il corpo del filtro se non sono verificati i limiti dell’isolamento e l’assenza di pressione; non allentarlo per verificare la pressione.",
-      "coverageLimit": "Solo isolamento della pressione di un filtro ad aria compressa integrato in una macchina. INAIL descrive il contesto delle energie residue; OSHA e il manuale Parker sono riferimenti tecnici con ambito proprio. La procedura deve essere specifica dell’attrezzatura; conformità italiana e requisiti sulle attrezzature a pressione restano da verificare.",
+      "coverageLimit": "Solo isolamento della pressione di un filtro ad aria compressa integrato in una macchina. INAIL descrive il contesto delle energie residue; OSHA e il manuale Parker sono riferimenti tecnici con ambito proprio. La procedura deve essere specifica dell’attrezzatura; conformità italiana e requisiti sulle attrezzature a pressione restano da verificare. Guida tecnica limitata alla lavorazione indicata. I testi INAIL letti descrivono il contesto tecnico e le misure di prevenzione; i riferimenti OSHA mantengono il proprio ambito statunitense. La versione vigente completa del d.lgs.81/2008 e gli eventuali obblighi per attrezzature a pressione non sono stati verificati in questa revisione e devono essere controllati prima dell’uso.",
       "conditions": [
         "Procedura di isolamento specifica disponibile",
         "Persona autorizzata incaricata",
         "Filtro ad aria compressa e circuiti di pressione identificati",
         "Filtro integrato in una macchina; zona pericolosa e percorsi dell’energia identificati",
-        "La procedura dell’attrezzatura definisce lo scarico sicuro della pressione e la verifica della depressurizzazione prima dell’apertura"
+        "La procedura dell’attrezzatura definisce lo scarico sicuro della pressione e la verifica della depressurizzazione prima dell’apertura",
+        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
       ],
       "exclusions": [
         "Intervento sotto pressione",
@@ -3004,7 +3059,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -3024,7 +3080,8 @@
         "machine-integrated-filter": "Filtro integrato in una macchina; zona pericolosa e percorsi dell’energia identificati",
         "safe-depressurization-method-available": "La procedura dell’attrezzatura definisce lo scarico sicuro della pressione e la verifica della depressurizzazione prima dell’apertura",
         "non-air-service": "Il filtro contiene un gas diverso dall’aria compressa",
-        "breathing-air-certification": "L’attività comprende la certificazione dell’aria respirabile"
+        "breathing-air-certification": "L’attività comprende la certificazione dell’aria respirabile",
+        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "43bf64792c30a1249880e25eada0a6a25b3b47aa41e80615aaefcbd7f8f7622b",
@@ -3075,7 +3132,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Saldatura regolare al chiuso di acciaio dolce non rivestito",
       "step": "Predisporre il controllo dei fumi",
@@ -3083,13 +3140,14 @@
       "cause": "I fumi raggiungono la zona respiratoria",
       "consequence": "Malattia respiratoria",
       "control": "Valutare prima l’eliminazione o la sostituzione del processo o del materiale pericoloso e, ove tecnicamente possibile, un sistema chiuso. Per il lavoro residuo usare aspirazione localizzata alla fonte e ventilazione generale adeguata; integrare la protezione respiratoria necessaria contro l’esposizione residua, con formazione e addestramento.",
-      "verification": "Controllare posizione della cappa e prestazioni previste dell’aspirazione; ripetere dopo spostamenti o modifiche del lavoro. Interrompere la saldatura se l’aspirazione è inefficace.",
-      "coverageLimit": "Solo fumi; valutare separatamente incendio, radiazioni, elettricità e gas.",
+      "verification": "Controllare posizione della cappa e prestazioni previste dell’aspirazione; ripetere dopo spostamenti o modifiche del lavoro. Interrompere la saldatura se l’aspirazione è inefficace. Verificare l’esposizione ai costituenti pertinenti e l’adeguatezza della protezione respiratoria e dell’addestramento; la sola portata d’aria non dimostra il controllo dell’esposizione.",
+      "coverageLimit": "Solo fumi; valutare separatamente incendio, radiazioni, elettricità e gas. Guida tecnica limitata alla lavorazione indicata. I testi INAIL letti descrivono il contesto tecnico e le misure di prevenzione; i riferimenti OSHA mantengono il proprio ambito statunitense. La versione vigente completa del d.lgs.81/2008 e gli eventuali obblighi per attrezzature a pressione non sono stati verificati in questa revisione e devono essere controllati prima dell’uso.",
       "conditions": [
         "Persona autorizzata incaricata",
         "Saldatura regolare al chiuso",
         "Acciaio dolce non rivestito e consumabili identificati",
-        "Procedura di controllo dell’esposizione disponibile"
+        "Procedura di controllo dell’esposizione disponibile",
+        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
       ],
       "exclusions": [
         "Accesso a spazio confinato",
@@ -3130,7 +3188,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -3147,7 +3206,8 @@
         "confined-entry": "Accesso a spazio confinato",
         "outdoor-welding": "Saldatura all’aperto",
         "coated-stainless-or-unknown-metal": "Metallo base rivestito, acciaio inossidabile o metallo base non identificato",
-        "extraction-unavailable": "Aspirazione assente o inefficace"
+        "extraction-unavailable": "Aspirazione assente o inefficace",
+        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "4d2ee4a741138410d6b54ad727be1ebcdd01fd9428cefa73396616103141b444",
@@ -3181,7 +3241,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Mantenimiento de un filtro de aire comprimido",
       "step": "Preparar la apertura de la carcasa",
@@ -3190,13 +3250,14 @@
       "consequence": "Lesiones por chorro de aire o proyección de piezas",
       "control": "Antes de aplicar el procedimiento del equipo, identificar entrada, salida, derivación y drenajes conectados que puedan alimentar o volver a presurizar el filtro. Aplicar el procedimiento del equipo para aislar y bloquear todas las alimentaciones y descargar de forma segura la presión antes de abrir.",
       "verification": "Una persona autorizada verifica aislamiento y despresurización; mantener las comprobaciones si puede reaparecer la presión. Mantener cerrada la carcasa si no se verifican el límite de aislamiento y la ausencia de presión; no aflojarla para comprobar la presión.",
-      "coverageLimit": "Solo liberación de presión; evaluar por separado los demás riesgos de mantenimiento.",
+      "coverageLimit": "Solo liberación de presión; evaluar por separado los demás riesgos de mantenimiento. Consignación antes de abrir un filtro de aire comprimido integrado en una máquina. La NTP1117 es orientación técnica y no sustituye el procedimiento del equipo ni determina su clasificación reglamentaria. Inspecciones, reparaciones y puesta en servicio de equipos a presión requieren comprobaciones separadas.",
       "conditions": [
         "Procedimiento de aislamiento específico disponible",
         "Persona autorizada designada",
         "Filtro de aire comprimido y circuitos de presión identificados",
         "El filtro forma parte del circuito neumático de una máquina",
-        "El procedimiento del equipo define una descarga segura y la verificación de la despresurización antes de abrir"
+        "El procedimiento del equipo define una descarga segura y la verificación de la despresurización antes de abrir",
+        "Se han comprobado el ámbito normativo, el procedimiento del equipo y los requisitos aplicables a los equipos a presión"
       ],
       "exclusions": [
         "Intervención bajo presión",
@@ -3239,7 +3300,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -3259,7 +3321,8 @@
         "machine-integrated-filter": "El filtro forma parte del circuito neumático de una máquina",
         "safe-depressurization-method-available": "El procedimiento del equipo define una descarga segura y la verificación de la despresurización antes de abrir",
         "non-air-service": "El filtro contiene un gas distinto del aire comprimido",
-        "breathing-air-certification": "La tarea incluye la certificación de aire respirable"
+        "breathing-air-certification": "La tarea incluye la certificación de aire respirable",
+        "regional-applicability-confirmed": "Se han comprobado el ámbito normativo, el procedimiento del equipo y los requisitos aplicables a los equipos a presión"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "8c3fab45a8ef8e1569f9c861420ee5c7cd56c2632430ca9a07cd5751fab71435",
@@ -3417,7 +3480,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "صيانة مرشح الهواء المضغوط",
       "step": "التحضير لفتح جسم المرشح",
@@ -3426,13 +3489,14 @@
       "consequence": "إصابة بسبب اندفاع الهواء أو تطاير الأجزاء",
       "control": "قبل تطبيق إجراء المعدة، حدد المدخل والمخرج وخط التجاوز وخطوط التصريف المتصلة التي قد تغذي المرشح أو تعيد ضغطه. اتبع إجراء المعدة لعزل جميع مصادر التغذية وتأمينها وتفريغ الضغط المحبوس بأمان قبل الفتح.",
       "verification": "يتحقق شخص مخوّل من العزل وزوال الضغط؛ وتستمر المراقبة إذا أمكن تراكم الضغط مجددًا. أبقِ جسم المرشح مغلقًا إذا لم يتم التحقق من حدود العزل وزوال الضغط؛ ولا تُرخِ الجسم لاختبار وجود الضغط. يجب أن يتحقق عامل مخوّل مستقل عن منفذ العزل من نقاط العزل وفق الإجراء المعتمد قبل السماح بالعمل.",
-      "coverageLimit": "عزل ضغط مرشح الهواء المضغوط ضمن تشغيل وصيانة المرافق والمشروعات الحكومية فقط. دليل EOM مرجع إرشادي، وOSHA وParker مراجع تقنية ذات نطاق محدد. لا تُعمم ترتيبات عزل الأنابيب أو ترتيب الصمامات على كل مرشح؛ يجب اعتماد إجراء المعدة والتحقق من النسخة والمتطلبات المطبقة.",
+      "coverageLimit": "عزل ضغط مرشح الهواء المضغوط ضمن تشغيل وصيانة المرافق والمشروعات الحكومية فقط. دليل EOM مرجع إرشادي، وOSHA وParker مراجع تقنية ذات نطاق محدد. لا تُعمم ترتيبات عزل الأنابيب أو ترتيب الصمامات على كل مرشح؛ يجب اعتماد إجراء المعدة والتحقق من النسخة والمتطلبات المطبقة. إرشاد تقني محدود بالمهمة المذكورة. دليل EOM الإصدار 000 يخص تشغيل وصيانة المرافق والمشروعات الحكومية، ولا يعمم على جميع المنشآت؛ ودليل الوزارة للحام ليس إجراء امتثال كاملًا. يلزم التحقق من النسخة المعتمدة والمتطلبات النظامية الحالية وإجراء الموقع قبل الاستخدام، ولم تعتمد هذه المراجعة امتثال موقع فعلي.",
       "conditions": [
         "توفر إجراء عزل خاص بالمعدة",
         "تعيين شخص مخوّل",
         "تحديد مرشح الهواء المضغوط وجميع مسارات الضغط",
         "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM",
-        "يحدد إجراء المعدة طريقة آمنة لتفريغ الضغط والتحقق من زواله داخل جسم المرشح قبل فتحه"
+        "يحدد إجراء المعدة طريقة آمنة لتفريغ الضغط والتحقق من زواله داخل جسم المرشح قبل فتحه",
+        "تم التحقق قبل الاستخدام من المتطلبات السعودية السارية ونطاق العمل والإجراء المعتمد في الموقع"
       ],
       "exclusions": [
         "التدخل أثناء وجود ضغط",
@@ -3476,7 +3540,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "government-om-isolation-procedure-adopted",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -3496,7 +3561,8 @@
         "safe-depressurization-method-available": "يحدد إجراء المعدة طريقة آمنة لتفريغ الضغط والتحقق من زواله داخل جسم المرشح قبل فتحه",
         "non-air-service": "يحتوي المرشح على غاز غير الهواء المضغوط",
         "breathing-air-certification": "تشمل المهمة اعتماد جودة هواء التنفس",
-        "government-om-isolation-procedure-adopted": "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM"
+        "government-om-isolation-procedure-adopted": "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM",
+        "regional-applicability-confirmed": "تم التحقق قبل الاستخدام من المتطلبات السعودية السارية ونطاق العمل والإجراء المعتمد في الموقع"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "9dd09d1e186fc712795981fe27f5b0b796b35c12cdcac3935f1a5cd99f6923bf",
@@ -3547,7 +3613,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "اللحام المنتظم داخل المباني للفولاذ منخفض الكربون غير المطلي",
       "step": "تجهيز وسائل التحكم في أبخرة اللحام",
@@ -3556,12 +3622,13 @@
       "consequence": "مرض تنفسي",
       "control": "استخدم شفطًا موضعيًا مناسبًا للعملية عند المصدر، مع حماية تنفسية إضافية إذا تطلب تقييم التعرض ذلك.",
       "verification": "تحقق من موضع غطاء الشفط وأدائه المحدد في الإجراء، وأعد الفحص بعد تحريكه أو تغيير ظروف العمل. أوقف اللحام إذا أصبح الشفط غير فعال.",
-      "coverageLimit": "يقتصر المحتوى على الأبخرة؛ وتُقيّم مخاطر الحريق والإشعاع والكهرباء والغازات بشكل منفصل.",
+      "coverageLimit": "يقتصر المحتوى على الأبخرة؛ وتُقيّم مخاطر الحريق والإشعاع والكهرباء والغازات بشكل منفصل. إرشاد تقني محدود بالمهمة المذكورة. دليل EOM الإصدار 000 يخص تشغيل وصيانة المرافق والمشروعات الحكومية، ولا يعمم على جميع المنشآت؛ ودليل الوزارة للحام ليس إجراء امتثال كاملًا. يلزم التحقق من النسخة المعتمدة والمتطلبات النظامية الحالية وإجراء الموقع قبل الاستخدام، ولم تعتمد هذه المراجعة امتثال موقع فعلي.",
       "conditions": [
         "تعيين شخص مخوّل",
         "لحام منتظم داخل المباني",
         "تحديد الفولاذ منخفض الكربون غير المطلي ومواد اللحام",
-        "توفر إجراء للتحكم في التعرض"
+        "توفر إجراء للتحكم في التعرض",
+        "تم التحقق قبل الاستخدام من المتطلبات السعودية السارية ونطاق العمل والإجراء المعتمد في الموقع"
       ],
       "exclusions": [
         "الدخول إلى حيز محصور",
@@ -3602,7 +3669,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -3619,7 +3687,8 @@
         "confined-entry": "الدخول إلى حيز محصور",
         "outdoor-welding": "لحام في الهواء الطلق",
         "coated-stainless-or-unknown-metal": "مادة مطلية أو مقاومة للصدأ أو غير معروفة",
-        "extraction-unavailable": "غياب الشفط أو عدم فعاليته"
+        "extraction-unavailable": "غياب الشفط أو عدم فعاليته",
+        "regional-applicability-confirmed": "تم التحقق قبل الاستخدام من المتطلبات السعودية السارية ونطاق العمل والإجراء المعتمد في الموقع"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "1cdc40818e2f9b8dcafb382dd1d65579b8a16430ff340e64784032effbbeba1a",
@@ -3653,7 +3722,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Manutenção de filtro de ar comprimido",
       "step": "Preparar a abertura da carcaça",
@@ -3662,13 +3731,14 @@
       "consequence": "Lesão por jato de ar ou projeção de peças",
       "control": "Antes de aplicar o procedimento do equipamento, identificar entrada, saída, desvio e drenos conectados que possam alimentar ou repressurizar o filtro. Conforme o procedimento do equipamento, isolar e bloquear todas as alimentações e aliviar com segurança a pressão antes da abertura.",
       "verification": "Uma pessoa autorizada verifica o isolamento e a despressurização; manter as verificações se houver possibilidade de novo acúmulo de pressão. Manter o corpo do filtro fechado se os limites de isolamento e a ausência de pressão não forem verificados; não afrouxar o corpo para testar a pressão.",
-      "coverageLimit": "Somente liberação de pressão; avaliar separadamente os demais riscos da manutenção.",
+      "coverageLimit": "Somente liberação de pressão; avaliar separadamente os demais riscos da manutenção. Orientação limitada à tarefa indicada. Para filtros, a NR12 só é usada no contexto da máquina; ela não determina o enquadramento na NR13 nem substitui inspeções ou procedimentos de equipamentos sob pressão. Para fumos, a avaliação de agentes e limites deve integrar o inventário de riscos e o plano de ação do PGR; a seleção de EPI deve atender à NR6. A ficha não certifica o PGR de um estabelecimento.",
       "conditions": [
         "Procedimento de isolamento específico disponível",
         "Pessoa autorizada designada",
         "Filtro de ar comprimido e circuitos de pressão identificados",
         "O filtro integra o circuito pneumático de uma máquina",
-        "O procedimento do equipamento define alívio seguro e verificação da despressurização do corpo antes da abertura"
+        "O procedimento do equipamento define alívio seguro e verificação da despressurização do corpo antes da abertura",
+        "O enquadramento da tarefa, as NRs aplicáveis e o procedimento do estabelecimento foram verificados"
       ],
       "exclusions": [
         "Intervenção sob pressão",
@@ -3711,7 +3781,8 @@
           "authorized-person-assigned",
           "compressed-air-filter-identified",
           "machine-integrated-filter",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -3731,7 +3802,8 @@
         "machine-integrated-filter": "O filtro integra o circuito pneumático de uma máquina",
         "safe-depressurization-method-available": "O procedimento do equipamento define alívio seguro e verificação da despressurização do corpo antes da abertura",
         "non-air-service": "O filtro contém gás diferente de ar comprimido",
-        "breathing-air-certification": "A tarefa inclui a certificação de ar respirável"
+        "breathing-air-certification": "A tarefa inclui a certificação de ar respirável",
+        "regional-applicability-confirmed": "O enquadramento da tarefa, as NRs aplicáveis e o procedimento do estabelecimento foram verificados"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "5a952fb1171552bf1611c4d143cab9dee313aaf16d33e3396c06fbaeecd4639e",
@@ -3777,23 +3849,24 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Soldagem regular em ambiente interno de aço carbono sem revestimento",
       "step": "Preparar o controle de fumos",
       "hazard": "Inalação de fumos de soldagem",
       "cause": "Fumos atingem a zona respiratória",
       "consequence": "Doença respiratória",
-      "control": "Avaliar primeiro a possibilidade de eliminar ou reduzir a geração de fumos; aplicar captação na fonte adequada ao processo e ventilação complementar quando indicada. Quando necessária, usar proteção respiratória selecionada pela avaliação da exposição e pelo programa de proteção respiratória.",
+      "control": "Avaliar primeiro a eliminação do perigo e a substituição por processo ou material menos perigoso. Para o trabalho restante, aplicar captação na fonte e ventilação adequada, medidas de organização e proteção respiratória quando necessária, selecionada pela avaliação da exposição e pelo programa de proteção respiratória.",
       "verification": "Verificar a eficácia da exaustão e a avaliação da exposição. Quando houver respirador com vedação facial, confirmar o ensaio de vedação com os demais EPIs que possam interferir na vedação. O usuário deve realizar a verificação de vedação antes de entrar na área de risco e após reajustar o respirador; essa verificação não substitui o ensaio de vedação. Conferir a posição do captor e o desempenho de exaustão previsto no procedimento; repetir após deslocamento ou mudança no trabalho. Parar a soldagem se a exaustão for ineficaz.",
-      "coverageLimit": "Somente controle de fumos na soldagem regular interna de aço carbono sem revestimento. Base técnica: Fundacentro, 4ª edição de 2016, com referências estrangeiras OSHA/HSE. A vigência dos requisitos brasileiros, o GRO/PGR e os limites de exposição precisam de revisão regional. Incêndio, radiação, eletricidade e gases são avaliados separadamente.",
+      "coverageLimit": "Controle de fumos na soldagem regular interna de aço carbono sem revestimento. NR1, NR9 e os critérios e limites aplicáveis da NR15 orientam a avaliação registrada no PGR; NR6 orienta a seleção de EPI aprovado e adequado. Na ausência de limite na NR15, verificar o critério previsto na NR9. Não se presume um único limite seguro para toda mistura de fumos. Incêndio, radiação, eletricidade e gases exigem avaliação separada. Orientação limitada à tarefa indicada. Para filtros, a NR12 só é usada no contexto da máquina; ela não determina o enquadramento na NR13 nem substitui inspeções ou procedimentos de equipamentos sob pressão. Para fumos, a avaliação de agentes e limites deve integrar o inventário de riscos e o plano de ação do PGR; a seleção de EPI deve atender à NR6. A ficha não certifica o PGR de um estabelecimento.",
       "conditions": [
         "Pessoa autorizada designada",
         "Soldagem regular em ambiente interno",
         "Aço carbono sem revestimento e consumíveis identificados",
         "Procedimento de controle da exposição disponível",
         "Plano de controle e avaliação da exposição definido para o processo e os consumíveis",
-        "Necessidade de proteção respiratória avaliada e programa definido quando necessário"
+        "Necessidade de proteção respiratória avaliada e programa definido quando necessário",
+        "O enquadramento da tarefa, as NRs aplicáveis e o procedimento do estabelecimento foram verificados"
       ],
       "exclusions": [
         "Entrada em espaço confinado",
@@ -3845,7 +3918,8 @@
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
           "exposure-control-plan",
-          "respiratory-program-assessed"
+          "respiratory-program-assessed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -3864,7 +3938,8 @@
         "coated-stainless-or-unknown-metal": "Material revestido, inoxidável ou não identificado",
         "extraction-unavailable": "Exaustão ausente ou ineficaz",
         "exposure-control-plan": "Plano de controle e avaliação da exposição definido para o processo e os consumíveis",
-        "respiratory-program-assessed": "Necessidade de proteção respiratória avaliada e programa definido quando necessário"
+        "respiratory-program-assessed": "Necessidade de proteção respiratória avaliada e programa definido quando necessário",
+        "regional-applicability-confirmed": "O enquadramento da tarefa, as NRs aplicáveis e o procedimento do estabelecimento foram verificados"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "c8ee0975af2ee20c4aecd532fc5a4929574b4c397d4824e1a030526c38501a0e",
@@ -3903,7 +3978,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Обслуживание фильтра сжатого воздуха",
       "step": "Подготовка к открытию корпуса фильтра",
@@ -3912,14 +3987,15 @@
       "consequence": "Травма от струи воздуха или выброшенных деталей",
       "control": "До выполнения изоляции по инструкции определить вход, выход, байпас и подключённые дренажи, через которые возможна подача или обратное поступление давления. По инструкции оборудования изолировать и заблокировать все источники подачи; до открытия безопасно сбросить остаточное давление.",
       "verification": "Уполномоченный работник проверяет изоляцию и отсутствие давления; при возможности его повторного накопления продолжать проверки. Не открывать корпус, если границы изоляции или отсутствие давления не подтверждены; не ослаблять корпус для проверки давления.",
-      "coverageLimit": "Фильтр сжатого воздуха в составе стационарного промышленного оборудования. Технические меры опираются на OSHA и пример изготовителя; воспроизведение приказа 833н задаёт контекст ремонта. Подлинные сканы, действующая редакция и специальные режимы промышленной безопасности не сверены. Порядок открытия определяется изготовителем.",
+      "coverageLimit": "Фильтр сжатого воздуха в составе стационарного промышленного оборудования. Технические меры опираются на OSHA и пример изготовителя; воспроизведение приказа 833н задаёт контекст ремонта. Подлинные сканы, действующая редакция и специальные режимы промышленной безопасности не сверены. Порядок открытия определяется изготовителем. Ограниченная техническая памятка для указанной работы. Использованы обозначенные воспроизведения приказов833н и884н и текста продления287н от29.04.2025; это не сверка всех последующих изменений. Корпоративный пример КТК и зарубежные материалы не являются общероссийскими нормами. Действующие требования, допуск и специальные режимы промышленной безопасности проверяются до применения.",
       "conditions": [
         "Имеется инструкция по изоляции конкретного оборудования",
         "Назначен уполномоченный работник",
         "Определены фильтр сжатого воздуха и все пути давления",
         "Фильтр входит в стационарное технологическое оборудование промышленного производства",
         "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
-        "Инструкция оборудования определяет безопасный сброс давления и проверку отсутствия давления в корпусе до открытия"
+        "Инструкция оборудования определяет безопасный сброс давления и проверку отсутствия давления в корпусе до открытия",
+        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
       ],
       "exclusions": [
         "Работа под давлением",
@@ -3978,7 +4054,8 @@
           "compressed-air-filter-identified",
           "machine-integrated-filter",
           "maintenance-authorization-complete",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -3999,7 +4076,8 @@
         "maintenance-authorization-complete": "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
         "safe-depressurization-method-available": "Инструкция оборудования определяет безопасный сброс давления и проверку отсутствия давления в корпусе до открытия",
         "non-air-service": "В фильтре находится газ, отличный от сжатого воздуха",
-        "breathing-air-certification": "Задача включает подтверждение качества воздуха для дыхания"
+        "breathing-air-certification": "Задача включает подтверждение качества воздуха для дыхания",
+        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "98504ed1a01cd651530f1d0a79d8da67cca06f4e5d911b214dd0fcabe35507f2",
@@ -4050,7 +4128,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Регулярная сварка стали с низким содержанием углерода без покрытия в помещении",
       "step": "Подготовка удаления сварочного аэрозоля",
@@ -4059,7 +4137,7 @@
       "consequence": "Заболевание органов дыхания",
       "control": "На стационарном рабочем месте использовать местную вытяжку и предусмотренную для сварочного участка общеобменную вентиляцию; защиту органов дыхания выбирать по оценке воздействия.",
       "verification": "Проверить работу предусмотренной общеобменной вентиляции, положение местного вытяжного устройства и его работу по установленным критериям; повторить проверку после перемещения устройства или изменения работы. При неэффективной местной вытяжке или неработающей предусмотренной общеобменной вентиляции прекратить сварку.",
-      "coverageLimit": "Только сварочный аэрозоль на стационарном посту. Применимость исключений пункта 8 должна быть подтверждена для конкретного объекта. Использованы воспроизведения приказов и зарубежные технические руководства; подлинные сканы и действующая редакция не сверены. Пожар, излучение, электрические и газовые риски оцениваются отдельно.",
+      "coverageLimit": "Только сварочный аэрозоль на стационарном посту. Применимость исключений пункта 8 должна быть подтверждена для конкретного объекта. Использованы воспроизведения приказов и зарубежные технические руководства; подлинные сканы и действующая редакция не сверены. Пожар, излучение, электрические и газовые риски оцениваются отдельно. Ограниченная техническая памятка для указанной работы. Использованы обозначенные воспроизведения приказов833н и884н и текста продления287н от29.04.2025; это не сверка всех последующих изменений. Корпоративный пример КТК и зарубежные материалы не являются общероссийскими нормами. Действующие требования, допуск и специальные режимы промышленной безопасности проверяются до применения.",
       "conditions": [
         "Назначен уполномоченный работник",
         "Регулярная сварка в помещении",
@@ -4067,7 +4145,8 @@
         "Имеется инструкция по контролю воздействия",
         "Сварка выполняется на стационарном рабочем месте",
         "Подтверждено отсутствие исключений для опасных производственных объектов с опасными веществами",
-        "Утверждена инструкция; необходимость наряда-допуска проверена и требования допуска выполнены"
+        "Утверждена инструкция; необходимость наряда-допуска проверена и требования допуска выполнены",
+        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
       ],
       "exclusions": [
         "Вход в замкнутое пространство",
@@ -4135,7 +4214,8 @@
           "exposure-procedure-available",
           "fixed-welding-station",
           "site-scope-confirmed",
-          "welding-authorization-complete"
+          "welding-authorization-complete",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -4157,7 +4237,8 @@
         "fixed-welding-station": "Сварка выполняется на стационарном рабочем месте",
         "site-scope-confirmed": "Подтверждено отсутствие исключений для опасных производственных объектов с опасными веществами",
         "welding-authorization-complete": "Утверждена инструкция; необходимость наряда-допуска проверена и требования допуска выполнены",
-        "hazardous-substance-industrial-facility": "Опасный производственный объект с опасными веществами по пункту 8 Правил № 884н"
+        "hazardous-substance-industrial-facility": "Опасный производственный объект с опасными веществами по пункту 8 Правил № 884н",
+        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "dbf09af89a0db6c19b3f06ac7b40739c0a2bf4abab2f22f013103747b0c5c0c2",
@@ -4196,7 +4277,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 3,
+      "revision": 4,
       "status": "draft",
       "task": "압축공기 필터 정비",
       "step": "필터 하우징 개방 준비",
@@ -4205,12 +4286,13 @@
       "consequence": "분출 공기나 튀어나온 부품에 의한 부상",
       "control": "설비별 차단 절차를 적용하기 전에 입구·출구·우회배관·연결된 드레인에서 압력이 공급되거나 역류할 수 있는 경로를 확인한다. 설비별 절차에 따라 모든 공급원을 격리·잠금하고, 하우징을 열기 전에 잔압을 안전하게 제거한다.",
       "verification": "권한 있는 담당자가 격리와 무압 상태를 확인하고, 압력이 다시 쌓일 수 있으면 계속 확인한다. 차단 범위와 하우징의 무압 상태를 확인할 수 없으면 열지 않는다. 압력 확인을 위해 하우징을 느슨하게 풀지 않는다.",
-      "coverageLimit": "압력 방출 위험만 다룬다. 그 밖의 정비 위험은 별도로 평가한다.",
+      "coverageLimit": "압력 방출 위험만 다룬다. 그 밖의 정비 위험은 별도로 평가한다. 명시한 작업의 에너지 또는 흄 노출 관리만 다룬다. 필터는 기계에 연결된 압축공기 회로의 격리 범위이며 압력용기 분류·검사·수리 승인이 아니다. 용접의 분진작업 분류와 국소배기·호흡보호구 의무는 실제 공정과 현행 조문·별표에 따라 확인해야 한다. 이 검수로 특정 현장의 법적 적합성을 확인한 것은 아니다.",
       "conditions": [
         "설비별 격리 절차가 있음",
         "권한 있는 담당자가 지정됨",
         "압축공기 필터와 모든 압력 경로가 확인됨",
-        "개방 전에 안전하게 압력을 제거하고 하우징의 무압 상태를 확인하는 방법이 설비 절차에 정해져 있음"
+        "개방 전에 안전하게 압력을 제거하고 하우징의 무압 상태를 확인하는 방법이 설비 절차에 정해져 있음",
+        "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함"
       ],
       "exclusions": [
         "압력이 있는 상태에서 작업",
@@ -4251,7 +4333,8 @@
           "equipment-procedure-available",
           "authorized-person-assigned",
           "compressed-air-filter-identified",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -4270,7 +4353,8 @@
         "unknown-media-or-isolation": "내용물 또는 격리 범위가 불명확함",
         "safe-depressurization-method-available": "개방 전에 안전하게 압력을 제거하고 하우징의 무압 상태를 확인하는 방법이 설비 절차에 정해져 있음",
         "non-air-service": "압축공기가 아닌 다른 가스를 취급하는 필터임",
-        "breathing-air-certification": "호흡용 공기의 품질 인증을 포함하는 작업임"
+        "breathing-air-certification": "호흡용 공기의 품질 인증을 포함하는 작업임",
+        "regional-applicability-confirmed": "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "1b7ea071d387b40ccef1163d99cf6b8fabfefa0c572ea631b1f20d5b176ee045",
@@ -4316,7 +4400,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "실내에서 반복적으로 수행하는 무도장 연강 용접",
       "step": "용접 흄 제어 준비",
@@ -4324,14 +4408,15 @@
       "cause": "흄이 작업자의 호흡영역에 도달함",
       "consequence": "호흡기 질환",
       "control": "용접 공정에 맞는 발생원 국소배기를 가동하고, 분진작업에는 제617조의 지급·착용 원칙에 따라 적절한 호흡용 보호구를 사용한다. 같은 조 단서의 예외를 적용하려면 필요한 설비와 가동 등 요건이 실제로 충족되는지 확인한다.",
-      "verification": "후드 위치와 절차에 정한 배기 성능을 확인하고, 후드를 옮기거나 작업 조건이 바뀌면 다시 확인한다. 배기가 불충분하면 용접을 중지한다. 보호구의 적합성·개인전용 지급·착용·오염 방지 상태를 확인하고, 예외 적용 시 확인 근거를 남긴다.",
-      "coverageLimit": "흄 노출 위험만 다룬다. 화재·광선·전기·가스 위험은 별도로 평가한다.",
+      "verification": "후드 위치와 절차에 정한 배기 성능을 확인하고, 후드를 옮기거나 작업 조건이 바뀌면 다시 확인한다. 배기가 불충분하면 용접을 중지한다. 보호구의 적합성·개인전용 지급·착용·오염 방지 상태를 확인하고, 예외 적용 시 확인 근거를 남긴다. 흄 성분과 해당 노출기준을 확인하고 필요한 노출 평가를 수행한다. 배기 풍량이나 눈에 보이는 흄의 양만으로 노출 관리가 충분하다고 판정하지 않는다.",
+      "coverageLimit": "흄 노출 위험만 다룬다. 화재·광선·전기·가스 위험은 별도로 평가한다. 명시한 작업의 에너지 또는 흄 노출 관리만 다룬다. 필터는 기계에 연결된 압축공기 회로의 격리 범위이며 압력용기 분류·검사·수리 승인이 아니다. 용접의 분진작업 분류와 국소배기·호흡보호구 의무는 실제 공정과 현행 조문·별표에 따라 확인해야 한다. 이 검수로 특정 현장의 법적 적합성을 확인한 것은 아니다.",
       "conditions": [
         "권한 있는 담당자가 지정됨",
         "실내에서 반복적으로 수행하는 용접",
         "무도장 연강과 용접 재료가 확인됨",
         "노출 방지 작업절차가 있음",
-        "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음"
+        "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음",
+        "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함"
       ],
       "exclusions": [
         "밀폐공간 진입",
@@ -4373,7 +4458,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "respiratory-requirements-reviewed"
+          "respiratory-requirements-reviewed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -4391,7 +4477,8 @@
         "outdoor-welding": "옥외 용접",
         "coated-stainless-or-unknown-metal": "도장·도금 재료, 스테인리스 또는 미확인 재질",
         "extraction-unavailable": "배기장치가 없거나 성능이 불충분함",
-        "respiratory-requirements-reviewed": "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음"
+        "respiratory-requirements-reviewed": "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음",
+        "regional-applicability-confirmed": "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
@@ -4426,7 +4513,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ro-RO",
       "jurisdiction": "RO",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Deschiderea unui filtru de aer comprimat",
       "step": "Izolarea și depresurizarea înainte de deschidere",
@@ -4435,12 +4522,13 @@
       "consequence": "Lovire și alte leziuni provocate de eliberarea presiunii",
       "control": "Identificați intrarea, ieșirea, derivațiile și drenajele conectate prin care filtrul poate fi realimentat. Conform procedurii echipamentului, izolați toate sursele și blocați fizic realimentarea, folosind lacăt personal și etichetă de identificare. Evacuați presiunea în siguranță înainte de deschidere; eticheta singură nu izolează presiunea.",
       "verification": "Persoana desemnată verifică izolarea și depresurizarea prin metoda prevăzută de procedură; repetă verificările dacă presiunea poate reveni. Mențineți carcasa închisă dacă izolarea sau depresurizarea nu poate fi confirmată. Nu slăbiți carcasa pentru a testa presiunea.",
-      "coverageLimit": "Numai riscul de presiune al filtrului de aer comprimat identificat. Nu este o procedură universală pentru recipiente sau conducte sub presiune. Verificați separat regimul aplicabil echipamentului și celelalte riscuri.",
+      "coverageLimit": "Numai riscul de presiune al filtrului de aer comprimat identificat. Nu este o procedură universală pentru recipiente sau conducte sub presiune. Verificați separat regimul aplicabil echipamentului și celelalte riscuri. Ghid tehnic limitat la lucrarea indicată. HG1146/2006 susține întreținerea cu echipamentul oprit și separarea surselor; alternativa pentru intervenții fără oprire nu este acoperită. HG1218/2006 susține evaluarea și ierarhia măsurilor pentru agenți chimici. Clasificarea echipamentelor sub presiune și obligațiile suplimentare pentru agenți cancerigeni, mutageni sau toxici pentru reproducere necesită verificări distincte înainte de utilizare.",
       "conditions": [
         "Procedura de izolare specifică echipamentului este disponibilă",
         "Este desemnată o persoană instruită și autorizată pentru sarcină",
         "Filtrul de aer comprimat și toate circuitele de presiune sunt identificate",
-        "Procedura prevede evacuarea sigură a presiunii și verificarea depresurizării carcasei înainte de deschidere"
+        "Procedura prevede evacuarea sigură a presiunii și verificarea depresurizării carcasei înainte de deschidere",
+        "Înainte de utilizare sunt verificate domeniul legal aplicabil și procedura aprobată pentru lucrare"
       ],
       "exclusions": [
         "Intervenție cu echipamentul sub presiune",
@@ -4492,7 +4580,8 @@
           "equipment-procedure-available",
           "authorized-person-assigned",
           "compressed-air-filter-identified",
-          "safe-depressurization-method-available"
+          "safe-depressurization-method-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -4511,7 +4600,8 @@
         "confined-entry": "Intrare într-un spațiu confinat, de exemplu un rezervor",
         "unknown-media-or-isolation": "Conținutul sau limita izolării nu este cunoscută",
         "non-air-service": "Filtrul conține un alt gaz decât aer comprimat",
-        "breathing-air-certification": "Sarcina include certificarea aerului respirabil"
+        "breathing-air-certification": "Sarcina include certificarea aerului respirabil",
+        "regional-applicability-confirmed": "Înainte de utilizare sunt verificate domeniul legal aplicabil și procedura aprobată pentru lucrare"
       },
       "sourceRevision": "research-2026-10-16",
       "sourceFingerprint": "7028bda3e5a78c41b3143cdc1e047023a68df4839e39893f0293dabe31d0fa49",
@@ -4561,21 +4651,22 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ro-RO",
       "jurisdiction": "RO",
-      "revision": 2,
+      "revision": 3,
       "status": "draft",
       "task": "Sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri",
       "step": "Pregătirea captării fumului de sudură",
       "hazard": "Inhalarea fumului de sudură",
       "cause": "Fumul ajunge în zona de respirație",
       "consequence": "Afecțiuni respiratorii și alte efecte asupra sănătății",
-      "control": "Evaluați mai întâi eliminarea sau înlocuirea procesului care produce fum. Dacă sudarea rămâne necesară, utilizați captare locală adecvată la sursă și protecție respiratorie atunci când evaluarea expunerii o impune.",
-      "verification": "Verificați poziția dispozitivului de captare și performanța prevăzută de procedură; repetați verificarea după deplasare sau modificarea lucrării. Opriți sudarea dacă extracția este ineficientă. Reevaluați expunerea când modificarea procesului sau a condițiilor poate schimba riscul; funcționarea captării singură nu dovedește controlul expunerii.",
-      "coverageLimit": "Numai expunerea la fum la sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri. Incendiul, radiațiile, electricitatea, gazele și celelalte riscuri necesită evaluare separată.",
+      "control": "Evaluați mai întâi eliminarea sau substituirea procesului ori a materialului periculos. Pentru lucrul rămas, utilizați control tehnic și captare locală adecvată la sursă, ventilație și măsuri de organizare; completați cu protecția respiratorie necesară pentru expunerea reziduală.",
+      "verification": "Verificați poziția dispozitivului de captare și performanța prevăzută de procedură; repetați verificarea după deplasare sau modificarea lucrării. Opriți sudarea dacă extracția este ineficientă. Reevaluați expunerea când modificarea procesului sau a condițiilor poate schimba riscul; funcționarea captării singură nu dovedește controlul expunerii. Luați în considerare agenții în combinație, limitele aplicabile și măsurările necesare sau alte mijloace adecvate de evaluare. Cerințele suplimentare pentru agenți cancerigeni, mutageni sau toxici pentru reproducere se verifică separat.",
+      "coverageLimit": "Numai expunerea la fum la sudarea regulată în interior a oțelului cu conținut scăzut de carbon, fără acoperiri. Incendiul, radiațiile, electricitatea, gazele și celelalte riscuri necesită evaluare separată. Ghid tehnic limitat la lucrarea indicată. HG1146/2006 susține întreținerea cu echipamentul oprit și separarea surselor; alternativa pentru intervenții fără oprire nu este acoperită. HG1218/2006 susține evaluarea și ierarhia măsurilor pentru agenți chimici. Clasificarea echipamentelor sub presiune și obligațiile suplimentare pentru agenți cancerigeni, mutageni sau toxici pentru reproducere necesită verificări distincte înainte de utilizare.",
       "conditions": [
         "Este desemnată o persoană instruită și autorizată pentru sarcină",
         "Sudare regulată în interior",
         "Oțelul cu conținut scăzut de carbon, fără acoperiri și consumabilele sunt identificate",
-        "Evaluarea expunerii și procedura de control sunt disponibile"
+        "Evaluarea expunerii și procedura de control sunt disponibile",
+        "Înainte de utilizare sunt verificate domeniul legal aplicabil și procedura aprobată pentru lucrare"
       ],
       "exclusions": [
         "Intrare într-un spațiu confinat, de exemplu un rezervor",
@@ -4626,7 +4717,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -4643,7 +4735,8 @@
         "confined-entry": "Intrare într-un spațiu confinat, de exemplu un rezervor",
         "outdoor-welding": "Sudare în exterior",
         "coated-stainless-or-unknown-metal": "Metal de bază acoperit, oțel inoxidabil sau metal de bază neidentificat",
-        "extraction-unavailable": "Captarea lipsește sau este ineficientă"
+        "extraction-unavailable": "Captarea lipsește sau este ineficientă",
+        "regional-applicability-confirmed": "Înainte de utilizare sunt verificate domeniul legal aplicabil și procedura aprobată pentru lucrare"
       },
       "sourceRevision": "research-2026-10-16",
       "sourceFingerprint": "15198c67a0fecd834513517112726f7df91ac71c346e7be9f70f127f56b4c54a",

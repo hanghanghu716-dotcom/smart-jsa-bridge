@@ -6,7 +6,7 @@
       "caseGroupId": "jsa-compressed-air-filter-element",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Compressed-air filter element replacement",
       "step": "Isolate and verify the filter boundary",
@@ -19,7 +19,8 @@
         "The filter-specific isolation procedure is available",
         "Inlet, outlet, bypass and connected drains are identified",
         "The actual filter procedure specifies safe pressure relief and a way to verify housing depressurization before opening",
-        "The servicing falls within the cited general-industry scope and applicable Federal OSHA or State Plan requirements have been checked"
+        "The servicing falls within the cited general-industry scope and applicable Federal OSHA or State Plan requirements have been checked",
+        "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       ],
       "exclusions": [
         "Replacement requires opening a pressurized housing",
@@ -70,7 +71,8 @@
           "equipment-procedure-available",
           "all-pressure-paths-identified",
           "safe-depressurization-method-available",
-          "general-industry-scope-confirmed"
+          "general-industry-scope-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "pressurized-replacement",
@@ -93,9 +95,10 @@
         "confined-entry": "The work includes entry into a receiver or other confined space",
         "dryer-media-change": "The work includes changing dryer media",
         "non-air-service": "The filter handles a gas other than compressed air",
-        "general-industry-scope-confirmed": "The servicing falls within the cited general-industry scope and applicable Federal OSHA or State Plan requirements have been checked"
+        "general-industry-scope-confirmed": "The servicing falls within the cited general-industry scope and applicable Federal OSHA or State Plan requirements have been checked",
+        "regional-applicability-confirmed": "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       },
-      "coverageLimit": "Only pressure isolation before filter opening. Parts selection, housing support, assembly, leak testing and downstream air-quality release need their own controls.",
+      "coverageLimit": "Only pressure isolation before filter opening. Parts selection, housing support, assembly, leak testing and downstream air-quality release need their own controls. US general-industry pressure-isolation example from an explicitly AI-authored fictional case. The DB text is corroboration of provenance, not independent field evidence. Housing repair, non-air service and breathing-air certification remain excluded; actual model instructions and any pressure-system duties must be checked before use.",
       "origin": {
         "aiAssisted": true,
         "sourceAiAssisted": true,
@@ -126,7 +129,7 @@
       "caseGroupId": "jsa-asphalt-milling",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Asphalt cold milling and truck loading",
       "step": "Exchange the receiving truck",
@@ -139,7 +142,8 @@
         "The site traffic-control plan is available",
         "Operators and spotter have agreed the movement and stop signals",
         "The milling machine and truck operating instructions are available",
-        "Both drivers and the spotter have a planned signaling position, sight lines and escape route"
+        "Both drivers and the spotter have a planned signaling position, sight lines and escape route",
+        "The applicable Federal OSHA or State Plan construction requirements and the approved site traffic-control plan have been checked"
       ],
       "exclusions": [
         "The process is hot recycling",
@@ -179,7 +183,8 @@
           "traffic-plan-available",
           "agreed-signals-established",
           "machine-instructions-available",
-          "safe-signalling-arrangement-planned"
+          "safe-signalling-arrangement-planned",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "hot-recycling",
@@ -196,9 +201,10 @@
         "buried-services-unverified": "Buried-service crossings have not been verified",
         "machine-instructions-available": "The milling machine and truck operating instructions are available",
         "safe-signalling-arrangement-planned": "Both drivers and the spotter have a planned signaling position, sight lines and escape route",
-        "reclaimed-material-processing": "The work is separate processing of reclaimed asphalt material"
+        "reclaimed-material-processing": "The work is separate processing of reclaimed asphalt material",
+        "regional-applicability-confirmed": "The applicable Federal OSHA or State Plan construction requirements and the approved site traffic-control plan have been checked"
       },
-      "coverageLimit": "Only the truck-exchange interface during asphalt cold milling. Silica, cutting depth, buried services, plant maintenance and road reopening require separate controls.",
+      "coverageLimit": "Only the truck-exchange interface during asphalt cold milling. Silica, cutting depth, buried services, plant maintenance and road reopening require separate controls. US construction truck-exchange interface only. Applicable Federal OSHA or State Plan construction requirements and the site traffic plan must be checked before use. The source is an AI-authored fictional case, not evidence that a real site implemented these controls. The spotter, both drivers and the stop/hold sequence remain essential; this card is not a complete roadway traffic-control plan.",
       "origin": {
         "aiAssisted": true,
         "sourceAiAssisted": true,
@@ -229,7 +235,7 @@
       "caseGroupId": "jsa-aluminum-actig",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 5,
       "status": "draft",
       "task": "Aluminum pipe AC TIG welding",
       "step": "Check ventilation and shielding gas arrangements",
@@ -240,7 +246,8 @@
       "verification": "Check the exposure and atmosphere assessment, extraction performance and shielding conditions. If the hood or work conditions change, hold welding and recheck both air control and shielding before resuming; little visible smoke does not demonstrate safe air.",
       "conditions": [
         "The welding procedure and equipment instructions are available",
-        "The work-area atmosphere and exposure assessment is available"
+        "The work-area atmosphere and exposure assessment is available",
+        "General-industry versus construction scope, the applicable Federal OSHA or State Plan regime and exposure requirements have been checked"
       ],
       "exclusions": [
         "The task involves confined-space entry",
@@ -287,7 +294,8 @@
         "targetType": "welding-work-area",
         "conditionsRequired": [
           "welding-procedure-available",
-          "exposure-assessment-available"
+          "exposure-assessment-available",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -304,9 +312,10 @@
         "live-or-contaminated-process-line": "The pipe is a live or contaminated process line",
         "pressure-test": "The task is a pressure test",
         "other-welding-process": "The task uses a welding process other than aluminum AC TIG",
-        "ineffective-ventilation": "The required extraction or ventilation is unavailable or ineffective"
+        "ineffective-ventilation": "The required extraction or ventilation is unavailable or ineffective",
+        "regional-applicability-confirmed": "General-industry versus construction scope, the applicable Federal OSHA or State Plan regime and exposure requirements have been checked"
       },
-      "coverageLimit": "Only inhalation and shielding-gas accumulation during aluminum AC TIG welding. Electrical, fire, radiation, joint quality and pressure testing require separate controls.",
+      "coverageLimit": "Only inhalation and shielding-gas accumulation during aluminum AC TIG welding. Electrical, fire, radiation, joint quality and pressure testing require separate controls. US aluminum AC TIG inhalation example from an AI-authored fictional case. The workplace must determine whether general-industry or construction provisions apply and check the relevant exposure and respiratory requirements. Ozone and shielding-gas accumulation require assessment even with little visible smoke; confined-space entry remains excluded.",
       "origin": {
         "aiAssisted": true,
         "sourceAiAssisted": true,
