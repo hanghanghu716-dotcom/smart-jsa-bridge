@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Review evidence hashes are calculated from these exact UTF-8/LF snapshots.
+data/recommendation-knowledge/review-evidence/*.txt text eol=lf
