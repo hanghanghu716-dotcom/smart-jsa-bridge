@@ -59,7 +59,7 @@ test('shared document renders ordered enabled blocks, renamed grouped headers, v
   const server = await createServer({server:{middlewareMode:true},appType:'custom'});
   const previousDocument = global.document;
   try {
-    global.document = {documentElement:{}};
+    global.document = {cookie:'',documentElement:{getAttribute:()=>null}};
     const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
     await i18n.changeLanguage('en-US');
     const {default:Content} = await server.ssrLoadModule('/src/components/DocumentContent.jsx');
@@ -80,7 +80,7 @@ test('unconfirmed controls use one shared note, retain markers and show public a
   const server = await createServer({server:{middlewareMode:true},appType:'custom'});
   const previousDocument = global.document;
   try {
-    global.document = {documentElement:{}};
+    global.document = {cookie:'',documentElement:{getAttribute:()=>null}};
     const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
     await i18n.changeLanguage('en-US');
     const {default:Content} = await server.ssrLoadModule('/src/components/DocumentContent.jsx');
