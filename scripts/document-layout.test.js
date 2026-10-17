@@ -59,8 +59,8 @@ test('shared document renders ordered enabled blocks, renamed grouped headers, v
   const server = await createServer({server:{middlewareMode:true},appType:'custom'});
   const previousDocument = global.document;
   try {
-    const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
     global.document = {documentElement:{}};
+    const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
     await i18n.changeLanguage('en-US');
     const {default:Content} = await server.ssrLoadModule('/src/components/DocumentContent.jsx');
     const layout = {documentBlocks:[{id:'NOTES',enabled:true},{id:'PROJECT_INFO',enabled:false},{id:'JSA_TABLE',enabled:true},{id:'PARTICIPANTS',enabled:true}],
@@ -71,7 +71,7 @@ test('shared document renders ordered enabled blocks, renamed grouped headers, v
     assert.ok(html.indexOf('data-document-block="NOTES"') < html.indexOf('data-document-block="JSA_TABLE"'));
     assert.ok(!html.includes('data-document-block="PROJECT_INFO"'));
     assert.ok(html.includes('Likelihood override')); assert.ok(html.includes('Fall &lt;risk&gt;'));
-    assert.ok(html.includes('Person14')); assert.ok(html.includes('>0</td>')); assert.ok(html.includes('☐'));
+    assert.ok(html.includes('Person14')); assert.match(html, /<td[^>]*><span[^>]*>0<\/span><\/td>/); assert.ok(html.includes('☐'));
     assert.ok(!html.includes('NaN')); assert.ok(!html.includes('undefined'));
   } finally { global.document = previousDocument; await server.close(); }
 });
@@ -80,8 +80,8 @@ test('unconfirmed controls use one shared note, retain markers and show public a
   const server = await createServer({server:{middlewareMode:true},appType:'custom'});
   const previousDocument = global.document;
   try {
-    const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
     global.document = {documentElement:{}};
+    const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
     await i18n.changeLanguage('en-US');
     const {default:Content} = await server.ssrLoadModule('/src/components/DocumentContent.jsx');
     const steps=[{proc:{stepTitle:'Inspect'},risks:[
