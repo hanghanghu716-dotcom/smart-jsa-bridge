@@ -2042,7 +2042,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Compressed-air filter maintenance",
       "step": "Prepare to open the filter housing",
@@ -2051,14 +2051,15 @@
       "consequence": "Impact injury from escaping air or parts",
       "control": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed. Follow the actual equipment procedure to isolate all pressure sources, apply personal locks and identification tags under the applicable lockout arrangement, and safely relieve retained pressure before opening.",
       "verification": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test. A warning tag alone does not isolate pressure.",
-      "coverageLimit": "Pressure-release hazard only; other maintenance hazards need separate assessment. Singapore WSH Council guidance within the specified machinery or metalworking scope. The 2012 SME publication is an edition-specific guide and sample procedure, not proof of current law. Current complete statutory provisions, exposure limits and any pressure-equipment duties were not fully verified in this review and must be checked before use.",
+      "coverageLimit": "Pressure-release hazard before opening a compressed-air filter in an identified machine pneumatic circuit only. This does not determine pressure-vessel classification, examination or repair duties; these must be resolved in the approved equipment procedure. The WSH Council guidance is compared with General Provisions regulation 16. This is a conditional draft review, not approval of an installation or every applicable statutory duty.",
       "conditions": [
         "Equipment-specific isolation procedure available",
         "Authorised person assigned",
         "Compressed-air filter and all pressure paths identified",
         "The filter is part of an identified machine pneumatic circuit",
         "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
-        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
+        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "Every person performing the work has been fully instructed in the task-specific lock-out procedure before starting"
       ],
       "exclusions": [
         "Pressurised intervention",
@@ -2102,7 +2103,8 @@
           "compressed-air-filter-identified",
           "machine-integrated-filter",
           "safe-depressurization-method-available",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "lockout-instruction-completed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -2123,7 +2125,8 @@
         "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
         "non-air-service": "The filter handles a gas other than compressed air",
         "breathing-air-certification": "The task includes breathing-air certification",
-        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
+        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "lockout-instruction-completed": "Every person performing the work has been fully instructed in the task-specific lock-out procedure before starting"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "e711ea96db577bd1e30957466186e03b85a9472f68ec69b1fef32076f2b01ca0",
@@ -2169,7 +2172,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -2177,8 +2180,8 @@
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
       "control": "First assess eliminating or substituting the hazardous process or material. For the remaining work, use suitable source extraction and adequate general ventilation, together with the approved safe work procedure. Provide suitable respiratory protection when the exposure assessment requires it; it does not replace feasible engineering controls.",
-      "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective. Verify constituent exposure and the required respiratory-protection arrangements; airflow alone does not establish adequate exposure control.",
-      "coverageLimit": "Metalworking workshop fume exposure only; assess fire, radiation, electrical and gas hazards separately. Other work settings need separate source and applicability review. Singapore WSH Council guidance within the specified machinery or metalworking scope. The 2012 SME publication is an edition-specific guide and sample procedure, not proof of current law. Current complete statutory provisions, exposure limits and any pressure-equipment duties were not fully verified in this review and must be checked before use.",
+      "verification": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective. Verify constituent exposure and the required respiratory-protection arrangements; airflow alone does not establish adequate exposure control. Arrange testing by a competent person at suitable intervals and assess the identified constituents against the applicable First Schedule limits, including relevant short-term and combined-exposure rules. Retain the test results for at least five years, or another period specified in writing by the Commissioner.",
+      "coverageLimit": "Routine indoor uncoated mild-steel welding in a metalworking workshop: fume control only. Fire, radiation, electrical and gas hazards require separate assessment. Regulations 39 and 40 were compared with the selected extraction, ventilation, monitoring and respiratory-protection arrangement. The regulation 39(9) exception is outside this card: unavailable or ineffective extraction still stops this work. Individual First Schedule values and the actual exposure assessment must be established for the identified constituents before use. The 2012 hot-work example is not a universal permit mandate.",
       "conditions": [
         "Authorised person assigned",
         "Routine indoor welding",
@@ -2186,7 +2189,8 @@
         "Exposure-control procedure available",
         "Indoor welding takes place in a metalworking workshop using identified welding equipment",
         "Site hot-work procedure approved and any required permit in place",
-        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
+        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "A competent person has defined the exposure-testing programme, applicable limits and test-record arrangements"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -2240,7 +2244,8 @@
           "exposure-procedure-available",
           "metalworking-workshop",
           "hot-work-procedure-authorized",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "competent-exposure-testing-arranged"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -2260,7 +2265,8 @@
         "extraction-unavailable": "Extraction unavailable or ineffective",
         "metalworking-workshop": "Indoor welding takes place in a metalworking workshop using identified welding equipment",
         "hot-work-procedure-authorized": "Site hot-work procedure approved and any required permit in place",
-        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
+        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "competent-exposure-testing-arranged": "A competent person has defined the exposure-testing programme, applicable limits and test-record arrangements"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "33463d6f7b710beaa990a09792e00605f8e31e0d6baf8df3fb5329bbd1982810",

@@ -838,7 +838,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 7,
+      "revision": 8,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -850,7 +850,8 @@
       "conditions": [
         "Equipment-specific procedure is available",
         "A competent person is assigned",
-        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
+        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "Every person performing the work has been fully instructed in the task-specific lock-out procedure before starting"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -881,7 +882,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "competent-person-assigned",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "lockout-instruction-completed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -910,7 +912,8 @@
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
         "unknown-energy-path": "An energy source or isolation boundary is unknown",
-        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use"
+        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "lockout-instruction-completed": "Every person performing the work has been fully instructed in the task-specific lock-out procedure before starting"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -921,7 +924,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures. Singapore WSH Council guidance within the specified machinery or metalworking scope. The 2012 SME publication is an edition-specific guide and sample procedure, not proof of current law. Current complete statutory provisions, exposure limits and any pressure-equipment duties were not fully verified in this review and must be checked before use."
+      "coverageLimit": "Energy isolation before machinery maintenance only. Access, repair, guarding and return to service require their own assessment and procedures. The WSH Council guidance is compared with General Provisions regulation 16. This is a conditional draft review, not approval of an installation or every applicable statutory duty."
     },
     {
       "id": "regional-de-maintenance",
