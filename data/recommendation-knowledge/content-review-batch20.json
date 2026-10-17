@@ -1,0 +1,662 @@
+{
+  "schemaVersion": 1,
+  "kind": "ai-content-desk-reviews",
+  "batch": 20,
+  "releaseApproval": false,
+  "reviewedBaseCommit": "b17e503a9275160ecd5ea077070f008eb1a5b5db",
+  "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+  "reviewTimezone": "Etc/UTC",
+  "attemptedRegionalReviewAreas": 10,
+  "completedReviewAreas": 0,
+  "revalidatedReviewAreas": 0,
+  "totalCompletedReviewAreasIncludingPrior": 170,
+  "publicationApprovals": 0,
+  "scope": "Evidence continuation for ten pending regional reviews. Korean annex/chapter subchecks advanced; all ten regional completion gates remain open. No authored-unit changes.",
+  "reviews": [],
+  "corrections": [],
+  "pendingRegionalReviews": [
+    {
+      "unitId": "regional-it-maintenance",
+      "area": "regional",
+      "contentHash": "7a03ff85465dff4f5ea2ddfa11a3cd2f1e843e36f7a91957c229cb704d11c5e4",
+      "sourceFingerprint": "672c683dbfed78c52beebc2551d59441345196ddddf8325b80e4bf10256aa044",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-it-maintenance",
+        "area": "regional",
+        "contentHash": "7a03ff85465dff4f5ea2ddfa11a3cd2f1e843e36f7a91957c229cb704d11c5e4"
+      },
+      "rationale": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.ispettorato.gov.it/files/2026/10/TU-81-08-Ed.-Ottobre-2026.pdf",
+          "observedOn": "2026-10-17",
+          "scope": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text."
+        },
+        {
+          "url": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.codiceRedazionale=008G0104&atto.dataPubblicazioneGazzetta=2008-04-30&tipoDettaglio=vigente",
+          "observedOn": "2026-10-17",
+          "scope": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence.",
+      "requiredToComplete": "Read current article71 and applicable AnnexVI provisions for maintenance/filter; identify any equipment-classification duties. Read current chemical-risk articles223/225/235 and applicable constituent/annex duties for welding, including applicability of235. Compare the selected obligations and amendments with each exact draft; preserve physical safeguards and review any content changes.",
+      "requiredInputs": [
+        "Read current article71 and applicable AnnexVI provisions for maintenance/filter; identify any equipment-classification duties.",
+        "Read current chemical-risk articles223/225/235 and applicable constituent/annex duties for welding, including applicability of235.",
+        "Compare the selected obligations and amendments with each exact draft; preserve physical safeguards and review any content changes."
+      ],
+      "remainingIssues": [
+        "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-sa-maintenance",
+      "area": "regional",
+      "contentHash": "624db8583ca57353c4eaf8467dfc0d72faee815b7f2ae0ec8f821a14d2f57e0e",
+      "sourceFingerprint": "0e97357de24d1f9d8012cba6d6ae18a567a719e478fa30cb8d762e606b6c98e1",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-sa-maintenance",
+        "area": "regional",
+        "contentHash": "624db8583ca57353c4eaf8467dfc0d72faee815b7f2ae0ec8f821a14d2f57e0e"
+      },
+      "rationale": "The official EOM-Z00-GL-000001 User's Guide is Rev001 dated18/08/2021; its revision is distinct from the previously captured Rev000 task procedures. It describes government asset/facility scope, entity procedures and consultation of ECMS/EXPRO for current requirements. This does not establish the latest controlled task-procedure edition or universal legal applicability.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://expro.gov.sa/api/uploads/National%20Manual%20of%20Assets%20and%20Facilities%20Management%20Users%20Guide.pdf",
+          "observedOn": "2026-10-17",
+          "scope": "The official EOM-Z00-GL-000001 User's Guide is Rev001 dated18/08/2021; its revision is distinct from the previously captured Rev000 task procedures. It describes government asset/facility scope, entity procedures and consultation of ECMS/EXPRO for current requirements. This does not establish the latest controlled task-procedure edition or universal legal applicability."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified.",
+      "requiredToComplete": "Obtain a current controlled-revision register or issuer confirmation for the applicable EOM task procedures and adoption scope. Reconcile the bounded maintenance/filter/welding tasks with current Saudi equipment, exposure, respiratory and other applicable obligations.",
+      "requiredInputs": [
+        "Obtain a current controlled-revision register or issuer confirmation for the applicable EOM task procedures and adoption scope.",
+        "Reconcile the bounded maintenance/filter/welding tasks with current Saudi equipment, exposure, respiratory and other applicable obligations."
+      ],
+      "remainingIssues": [
+        "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-ru-maintenance",
+      "area": "regional",
+      "contentHash": "b2fe69a5ff930c2dc91d9de218690fc6c023ccf7f7fbf9ca44625eeee7b752bf",
+      "sourceFingerprint": "64aeb377cf05ea0090ba4c896518d5a9b2c7dc5b23a767e056f57bc21be92bd9",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-ru-maintenance",
+        "area": "regional",
+        "contentHash": "b2fe69a5ff930c2dc91d9de218690fc6c023ccf7f7fbf9ca44625eeee7b752bf"
+      },
+      "rationale": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://mintrud.gov.ru/docs/mintrud/orders/1727",
+          "observedOn": "2026-10-17",
+          "scope": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source."
+        },
+        {
+          "url": "https://mintrud.gov.ru/docs/mintrud/orders/1817",
+          "observedOn": "2026-10-17",
+          "scope": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified.",
+      "requiredToComplete": "Retrieve and read the issuer's complete833н/884н attachments or equivalent original official publication. Read original287н amendment and reconcile subsequent amendments and effective dates with the exact task provisions.",
+      "requiredInputs": [
+        "Retrieve and read the issuer's complete833н/884н attachments or equivalent original official publication.",
+        "Read original287н amendment and reconcile subsequent amendments and effective dates with the exact task provisions."
+      ],
+      "remainingIssues": [
+        "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-it-pressure-filter",
+      "area": "regional",
+      "contentHash": "0e575e50aa704858bc145730c4fe41e2961c56a641d594cd44b0dc85aff059cd",
+      "sourceFingerprint": "43bf64792c30a1249880e25eada0a6a25b3b47aa41e80615aaefcbd7f8f7622b",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-it-pressure-filter",
+        "area": "regional",
+        "contentHash": "0e575e50aa704858bc145730c4fe41e2961c56a641d594cd44b0dc85aff059cd"
+      },
+      "rationale": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.ispettorato.gov.it/files/2026/10/TU-81-08-Ed.-Ottobre-2026.pdf",
+          "observedOn": "2026-10-17",
+          "scope": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text."
+        },
+        {
+          "url": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.codiceRedazionale=008G0104&atto.dataPubblicazioneGazzetta=2008-04-30&tipoDettaglio=vigente",
+          "observedOn": "2026-10-17",
+          "scope": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence.",
+      "requiredToComplete": "Read current article71 and applicable AnnexVI provisions for maintenance/filter; identify any equipment-classification duties. Read current chemical-risk articles223/225/235 and applicable constituent/annex duties for welding, including applicability of235. Compare the selected obligations and amendments with each exact draft; preserve physical safeguards and review any content changes.",
+      "requiredInputs": [
+        "Read current article71 and applicable AnnexVI provisions for maintenance/filter; identify any equipment-classification duties.",
+        "Read current chemical-risk articles223/225/235 and applicable constituent/annex duties for welding, including applicability of235.",
+        "Compare the selected obligations and amendments with each exact draft; preserve physical safeguards and review any content changes."
+      ],
+      "remainingIssues": [
+        "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-it-welding-fume",
+      "area": "regional",
+      "contentHash": "555d4a27a307fa1147ed60428e6fd55fb7b04fc64e3b3c94432afe0370f7b24d",
+      "sourceFingerprint": "4d2ee4a741138410d6b54ad727be1ebcdd01fd9428cefa73396616103141b444",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-it-welding-fume",
+        "area": "regional",
+        "contentHash": "555d4a27a307fa1147ed60428e6fd55fb7b04fc64e3b3c94432afe0370f7b24d"
+      },
+      "rationale": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.ispettorato.gov.it/files/2026/10/TU-81-08-Ed.-Ottobre-2026.pdf",
+          "observedOn": "2026-10-17",
+          "scope": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text."
+        },
+        {
+          "url": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.codiceRedazionale=008G0104&atto.dataPubblicazioneGazzetta=2008-04-30&tipoDettaglio=vigente",
+          "observedOn": "2026-10-17",
+          "scope": "INL advertises October2026 compilation, but the PDF response exceeded the retrieval tool's size limit. Normattiva metadata displayed vigente12/10/2026 and last act update23/03/2026; article/full-act retrieval did not provide the required text."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence.",
+      "requiredToComplete": "Read current article71 and applicable AnnexVI provisions for maintenance/filter; identify any equipment-classification duties. Read current chemical-risk articles223/225/235 and applicable constituent/annex duties for welding, including applicability of235. Compare the selected obligations and amendments with each exact draft; preserve physical safeguards and review any content changes.",
+      "requiredInputs": [
+        "Read current article71 and applicable AnnexVI provisions for maintenance/filter; identify any equipment-classification duties.",
+        "Read current chemical-risk articles223/225/235 and applicable constituent/annex duties for welding, including applicability of235.",
+        "Compare the selected obligations and amendments with each exact draft; preserve physical safeguards and review any content changes."
+      ],
+      "remainingIssues": [
+        "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-sa-pressure-filter",
+      "area": "regional",
+      "contentHash": "fdc50b3a5956c8186b0bbbcb0f1f277be93a11d2a43003d01e58eaa4ac3ab4fe",
+      "sourceFingerprint": "9dd09d1e186fc712795981fe27f5b0b796b35c12cdcac3935f1a5cd99f6923bf",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-sa-pressure-filter",
+        "area": "regional",
+        "contentHash": "fdc50b3a5956c8186b0bbbcb0f1f277be93a11d2a43003d01e58eaa4ac3ab4fe"
+      },
+      "rationale": "The official EOM-Z00-GL-000001 User's Guide is Rev001 dated18/08/2021; its revision is distinct from the previously captured Rev000 task procedures. It describes government asset/facility scope, entity procedures and consultation of ECMS/EXPRO for current requirements. This does not establish the latest controlled task-procedure edition or universal legal applicability.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://expro.gov.sa/api/uploads/National%20Manual%20of%20Assets%20and%20Facilities%20Management%20Users%20Guide.pdf",
+          "observedOn": "2026-10-17",
+          "scope": "The official EOM-Z00-GL-000001 User's Guide is Rev001 dated18/08/2021; its revision is distinct from the previously captured Rev000 task procedures. It describes government asset/facility scope, entity procedures and consultation of ECMS/EXPRO for current requirements. This does not establish the latest controlled task-procedure edition or universal legal applicability."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified.",
+      "requiredToComplete": "Obtain a current controlled-revision register or issuer confirmation for the applicable EOM task procedures and adoption scope. Reconcile the bounded maintenance/filter/welding tasks with current Saudi equipment, exposure, respiratory and other applicable obligations.",
+      "requiredInputs": [
+        "Obtain a current controlled-revision register or issuer confirmation for the applicable EOM task procedures and adoption scope.",
+        "Reconcile the bounded maintenance/filter/welding tasks with current Saudi equipment, exposure, respiratory and other applicable obligations."
+      ],
+      "remainingIssues": [
+        "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-sa-welding-fume",
+      "area": "regional",
+      "contentHash": "a4a9aaa469987c3b2d7a9621d57937e5a2ac829b737b0a253b184c9a78606079",
+      "sourceFingerprint": "1cdc40818e2f9b8dcafb382dd1d65579b8a16430ff340e64784032effbbeba1a",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-sa-welding-fume",
+        "area": "regional",
+        "contentHash": "a4a9aaa469987c3b2d7a9621d57937e5a2ac829b737b0a253b184c9a78606079"
+      },
+      "rationale": "The official EOM-Z00-GL-000001 User's Guide is Rev001 dated18/08/2021; its revision is distinct from the previously captured Rev000 task procedures. It describes government asset/facility scope, entity procedures and consultation of ECMS/EXPRO for current requirements. This does not establish the latest controlled task-procedure edition or universal legal applicability.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://expro.gov.sa/api/uploads/National%20Manual%20of%20Assets%20and%20Facilities%20Management%20Users%20Guide.pdf",
+          "observedOn": "2026-10-17",
+          "scope": "The official EOM-Z00-GL-000001 User's Guide is Rev001 dated18/08/2021; its revision is distinct from the previously captured Rev000 task procedures. It describes government asset/facility scope, entity procedures and consultation of ECMS/EXPRO for current requirements. This does not establish the latest controlled task-procedure edition or universal legal applicability."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified.",
+      "requiredToComplete": "Obtain a current controlled-revision register or issuer confirmation for the applicable EOM task procedures and adoption scope. Reconcile the bounded maintenance/filter/welding tasks with current Saudi equipment, exposure, respiratory and other applicable obligations.",
+      "requiredInputs": [
+        "Obtain a current controlled-revision register or issuer confirmation for the applicable EOM task procedures and adoption scope.",
+        "Reconcile the bounded maintenance/filter/welding tasks with current Saudi equipment, exposure, respiratory and other applicable obligations."
+      ],
+      "remainingIssues": [
+        "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-ru-pressure-filter",
+      "area": "regional",
+      "contentHash": "af17e06b1d2f088c3392762a8b22210a22a7c6f7336902acfd0b14430884da4e",
+      "sourceFingerprint": "98504ed1a01cd651530f1d0a79d8da67cca06f4e5d911b214dd0fcabe35507f2",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-ru-pressure-filter",
+        "area": "regional",
+        "contentHash": "af17e06b1d2f088c3392762a8b22210a22a7c6f7336902acfd0b14430884da4e"
+      },
+      "rationale": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://mintrud.gov.ru/docs/mintrud/orders/1727",
+          "observedOn": "2026-10-17",
+          "scope": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source."
+        },
+        {
+          "url": "https://mintrud.gov.ru/docs/mintrud/orders/1817",
+          "observedOn": "2026-10-17",
+          "scope": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified.",
+      "requiredToComplete": "Retrieve and read the issuer's complete833н/884н attachments or equivalent original official publication. Read original287н amendment and reconcile subsequent amendments and effective dates with the exact task provisions.",
+      "requiredInputs": [
+        "Retrieve and read the issuer's complete833н/884н attachments or equivalent original official publication.",
+        "Read original287н amendment and reconcile subsequent amendments and effective dates with the exact task provisions."
+      ],
+      "remainingIssues": [
+        "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-ru-welding-fume",
+      "area": "regional",
+      "contentHash": "1410eb14499f22f7f3a254311f12851dfe8aed245d257d8eded3cce0c1a31655",
+      "sourceFingerprint": "dbf09af89a0db6c19b3f06ac7b40739c0a2bf4abab2f22f013103747b0c5c0c2",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-ru-welding-fume",
+        "area": "regional",
+        "contentHash": "1410eb14499f22f7f3a254311f12851dfe8aed245d257d8eded3cce0c1a31655"
+      },
+      "rationale": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://mintrud.gov.ru/docs/mintrud/orders/1727",
+          "observedOn": "2026-10-17",
+          "scope": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source."
+        },
+        {
+          "url": "https://mintrud.gov.ru/docs/mintrud/orders/1817",
+          "observedOn": "2026-10-17",
+          "scope": "Issuer pages identify833н (registered61413) and884н (registered61904), and expose DOCX/DOC attachment URLs. Their page text still shows the original31/12/2025 expiry, so these pages cannot certify2026 currency. Attachment decoding/retrieval remains unresolved; the prior reproduced extension is not upgraded to an original signed source."
+        }
+      ],
+      "resolvedSubchecks": [],
+      "unresolvedLegalCheck": "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified.",
+      "requiredToComplete": "Retrieve and read the issuer's complete833н/884н attachments or equivalent original official publication. Read original287н amendment and reconcile subsequent amendments and effective dates with the exact task provisions.",
+      "requiredInputs": [
+        "Retrieve and read the issuer's complete833н/884н attachments or equivalent original official publication.",
+        "Read original287н amendment and reconcile subsequent amendments and effective dates with the exact task provisions."
+      ],
+      "remainingIssues": [
+        "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    },
+    {
+      "unitId": "regional-kr-welding-fume",
+      "area": "regional",
+      "contentHash": "3a3369d74344647016e0d54183ea45a96eb3fe88aaf319c885089595412b55e9",
+      "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional or native-language certification)",
+      "reviewedAtUtc": "2026-10-17T07:22:55.768Z",
+      "reviewTimezone": "Etc/UTC",
+      "decision": null,
+      "countedComplete": false,
+      "newCompletion": false,
+      "approvalGranted": false,
+      "legalComplianceApproved": false,
+      "legalCurrencyVerified": false,
+      "reviewOutcome": "incomplete_regional_review",
+      "previousAssessment": {
+        "batch": 19,
+        "unitId": "regional-kr-welding-fume",
+        "area": "regional",
+        "contentHash": "3a3369d74344647016e0d54183ea45a96eb3fe88aaf319c885089595412b55e9"
+      },
+      "rationale": "Item19 classifies indoor metal welding. Articles607/609 and Annex17 establish the selected extraction framework. This is partial evidence progress, not regional completion. The current exposure-notice landing page identifies2020-48; the official HWP and Annex1 endpoint did not yield readable full content.",
+      "reviewMethod": "Read official selected text or issuer metadata; distinguish readable content from blocked attachment/currency evidence. Preserve the completion gate.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=155899351&gubun=",
+          "observedOn": "2026-10-17",
+          "scope": "Item19 classifies indoor metal welding. Articles607/609 and Annex17 establish the selected extraction framework. This is partial evidence progress, not regional completion. The current exposure-notice landing page identifies2020-48; the official HWP and Annex1 endpoint did not yield readable full content."
+        },
+        {
+          "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=155899359&gubun=",
+          "observedOn": "2026-10-17",
+          "scope": "Item19 classifies indoor metal welding. Articles607/609 and Annex17 establish the selected extraction framework. This is partial evidence progress, not regional completion. The current exposure-notice landing page identifies2020-48; the official HWP and Annex1 endpoint did not yield readable full content."
+        },
+        {
+          "url": "https://www.law.go.kr/LSW/lsInfoR.do?efYd=20260302&lsiSeq=273603",
+          "observedOn": "2026-10-17",
+          "scope": "Item19 classifies indoor metal welding. Articles607/609 and Annex17 establish the selected extraction framework. This is partial evidence progress, not regional completion. The current exposure-notice landing page identifies2020-48; the official HWP and Annex1 endpoint did not yield readable full content."
+        },
+        {
+          "url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000186058",
+          "observedOn": "2026-10-17",
+          "scope": "Item19 classifies indoor metal welding. Articles607/609 and Annex17 establish the selected extraction framework. This is partial evidence progress, not regional completion. The current exposure-notice landing page identifies2020-48; the official HWP and Annex1 endpoint did not yield readable full content."
+        },
+        {
+          "url": "https://www.moel.go.kr/info/lawinfo/instruction/view.do?bbs_seq=20200100629",
+          "observedOn": "2026-10-17",
+          "scope": "Item19 classifies indoor metal welding. Articles607/609 and Annex17 establish the selected extraction framework. This is partial evidence progress, not regional completion. The current exposure-notice landing page identifies2020-48; the official HWP and Annex1 endpoint did not yield readable full content."
+        }
+      ],
+      "resolvedSubchecks": [
+        "Annex16 item19 classification",
+        "Annex17 hood categories and measurement positions",
+        "Selected dust chapter605–617"
+      ],
+      "unresolvedLegalCheck": "Annex16/17 and the dust chapter have been read; the complete current constituent-specific exposure and applicable chemical-control framework remains unverified.",
+      "requiredToComplete": "Read the complete current exposure notice2020-48 or its successor, including chemical entries, averaging/short-term and mixture rules relevant to identified welding constituents. Reconcile applicable managed-hazardous-substance provisions/Annex12 and work-environment measurement requirements for the bounded task. Then update the draft's inspection/performance wording and remove irrelevant maintenance/filter wording from its coverage limit; revalidate technical/translation hashes if edited.",
+      "requiredInputs": [
+        "Read the complete current exposure notice2020-48 or its successor, including chemical entries, averaging/short-term and mixture rules relevant to identified welding constituents.",
+        "Reconcile applicable managed-hazardous-substance provisions/Annex12 and work-environment measurement requirements for the bounded task.",
+        "Then update the draft's inspection/performance wording and remove irrelevant maintenance/filter wording from its coverage limit; revalidate technical/translation hashes if edited."
+      ],
+      "remainingIssues": [
+        "Annex16/17 and the dust chapter have been read; the complete current constituent-specific exposure and applicable chemical-control framework remains unverified.",
+        "No publication, independent certification or actual workplace approval."
+      ]
+    }
+  ],
+  "unresolvedLegalChecks": [
+    {
+      "unitId": "regional-it-maintenance",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence."
+    },
+    {
+      "unitId": "regional-sa-maintenance",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified."
+    },
+    {
+      "unitId": "regional-ru-maintenance",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified."
+    },
+    {
+      "unitId": "regional-it-pressure-filter",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence."
+    },
+    {
+      "unitId": "regional-it-welding-fume",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Current task-specific D.Lgs81/2008 article and annex text and amendment reconciliation remain unread. The official catalogue is not article evidence."
+    },
+    {
+      "unitId": "regional-sa-pressure-filter",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified."
+    },
+    {
+      "unitId": "regional-sa-welding-fume",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Controlled current EOM revision, applicable adoption scope and complete Saudi task-specific pressure/exposure requirements remain unverified."
+    },
+    {
+      "unitId": "regional-ru-pressure-filter",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified."
+    },
+    {
+      "unitId": "regional-ru-welding-fume",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "The full issuer attachments for833н/884н and original amendment chain after the reproduced2025 extension remain unverified."
+    },
+    {
+      "unitId": "regional-kr-welding-fume",
+      "status": "unresolved",
+      "countsAsLegalCompletion": false,
+      "reason": "Annex16/17 and the dust chapter have been read; the complete current constituent-specific exposure and applicable chemical-control framework remains unverified."
+    }
+  ],
+  "officialEvidence": [
+    {
+      "id": "kr-annex16",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=155899351&gubun=",
+      "retrievalRef": "turn12view0",
+      "sections": [
+        "Annex16, all26 entries; item19 indoor metal welding"
+      ],
+      "statusObserved": "Annex16 amended2025-09-01, linked from the rule page selected for2026-03-02.",
+      "method": "web extracted official PDF text; downloaded PDF bytes not captured",
+      "finding": "The bounded indoor metal-welding task is listed in item19. This does not resolve the separate constituent-specific chemical exposure framework.",
+      "observedOn": "2026-10-17",
+      "directFetchSucceeded": false,
+      "rawFileSha256": null,
+      "representationPath": "data/recommendation-knowledge/review-evidence/batch20-kr-annex16.txt",
+      "representationSha256": "05ef53e32460b512bcbaba4ddb25672b84358b2770f4416deb1713ac1d5dded3",
+      "representationUtf8Bytes": 5706
+    },
+    {
+      "id": "kr-annex17",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=155899359&gubun=",
+      "retrievalRef": "turn12view3",
+      "sections": [
+        "Annex17, tables1 and2 and measurement notes"
+      ],
+      "statusObserved": "Annex17 linked from the same official rule page.",
+      "method": "web extracted official PDF text; downloaded PDF bytes not captured",
+      "finding": "For other dust workplaces the table distinguishes enclosing0.7, side1.0, downward1.0 and upward1.2 m/s; all hoods open, measured at the opening for enclosing hoods or furthest captured working position for external hoods. Rotating-machine values are a separate table, not the welding requirement. Capture velocity is not an exposure limit.",
+      "observedOn": "2026-10-17",
+      "directFetchSucceeded": false,
+      "rawFileSha256": null,
+      "representationPath": "data/recommendation-knowledge/review-evidence/batch20-kr-annex17.txt",
+      "representationSha256": "3e99d319b6e2995344c1719024fb7ad80a21ec90e72d9a4871d397f1947efe4a",
+      "representationUtf8Bytes": 2195
+    },
+    {
+      "id": "kr-dust-chapter",
+      "url": "https://www.law.go.kr/LSW/lsInfoR.do?efYd=20260302&lsiSeq=273603",
+      "retrievalRef": "turn21view2",
+      "sections": [
+        "Articles605–617, complete returned selected chapter"
+      ],
+      "statusObserved": "Official rule page requested with effective date2026-03-02. This selected-chapter reading does not certify every amendment or applicable chemical provision.",
+      "method": "web extracted official HTML selected lines; original page bytes not captured",
+      "finding": "Classification, limited exemptions, enclosure/local exhaust, conditional general ventilation, Annex17 performance, first-use/repair inspections, hygiene, education, respiratory-program triggers and conditional personal RPE duties were read. Chemical controls and constituent exposure requirements still require reconciliation.",
+      "observedOn": "2026-10-17",
+      "directFetchSucceeded": false,
+      "rawFileSha256": null,
+      "representationPath": "data/recommendation-knowledge/review-evidence/batch20-kr-dust-chapter.txt",
+      "representationSha256": "24dba20bfce283bdcf23558ddc81b4227844b9d5736c26b3a3bb7bdcbb7114fb",
+      "representationUtf8Bytes": 8915
+    }
+  ],
+  "checklist": [
+    {
+      "step": 1,
+      "label": "초안 작성",
+      "completed": 57,
+      "total": 57
+    },
+    {
+      "step": 2,
+      "label": "근거 연결",
+      "completed": 57,
+      "total": 57
+    },
+    {
+      "step": 3,
+      "label": "내용 검수",
+      "completed": 170,
+      "total": 180
+    },
+    {
+      "step": 4,
+      "label": "원문 충돌 정리",
+      "completed": 0,
+      "total": 19
+    },
+    {
+      "step": 5,
+      "label": "번역 부모 연결 복구",
+      "completed": 0,
+      "total": 4892
+    },
+    {
+      "step": 6,
+      "label": "독립 라벨 검수",
+      "completed": 0,
+      "total": 6
+    },
+    {
+      "step": 7,
+      "label": "실측 비교",
+      "completed": 0,
+      "total": 3
+    },
+    {
+      "step": 8,
+      "label": "실제 데이터 로케일 검증",
+      "completed": 0,
+      "total": 19
+    }
+  ]
+}

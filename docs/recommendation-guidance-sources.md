@@ -6,7 +6,7 @@ All **57/57 current guidance draft revisions** have fingerprints binding every a
 
 `guidance-evidence-dossiers.json` contains the twelve authored evidence dossiers: exact draft content and hash, source/section/fragment mapping, replacement rationale, prior sources and scope, and outstanding review limits. These dossiers are authoring records, not primary authorities or review approvals. `guidance-source-retrieval-status.json` preserves the earlier 12-draft retrieval blockage as history and marks the current revisions complete.
 
-Content desk-review progress is **170/180**:60 technical,50 regional and60 translation/terminology areas. Batch18 completed30 of43 pending regional areas; batch19 completes3 Singapore areas using newly read selected official provisions and replaces6 technical/translation reviews. Ten official-text/currency gaps remain incomplete. Latest findings: `recommendation-content-review-batch19-20261017.md`; structured records: `content-review-batch19.json`. Current official checks record indexed retrieval separately from direct download. Historical captures and decisions remain unchanged; Korean annex numbering is corrected by an explicit erratum. All60 units remain drafts with pending publication statuses, null scores and zero eligibility. Workstream3 remains active.
+Content desk-review progress is **170/180**:60 technical,50 regional and60 translation/terminology areas. Batch19 completed three Singapore areas. Batch20 rechecks the ten pending areas and captures the Korean dust-work annexes and selected chapter without counting partial evidence as completion. Italy3,Saudi Arabia3,Russia3 and Korea welding1 remain blocked on the specific current-text/adoption/exposure checks recorded in `content-review-batch20.json`. Latest findings: `recommendation-content-review-batch20-20261017.md`. Selected extracted text is preserved with hashes distinct from original-file hashes. Earlier review history and authored unit hashes remain unchanged. All60 units remain drafts with pending publication statuses, null scores and zero eligibility. Workstream3 remains active.
 
 ## Evidence changes (historical source-acquisition scope)
 
@@ -47,3 +47,4 @@ OSHA sources are US federal regulatory text. HSE content is licensed under the O
 ## Additive source-section indexing
 
 Batch 13 explicitly indexes OSHA 1910.147(c)(2)-(3) together with (d)(1)-(6) for the two revised US isolation drafts. Those paragraphs were already present in the verified capture bytes. No source text or fragment digest changed. The two new citation meanings receive new source fingerprints; previous reviews retain their original section lists and exact fragment hashes.
+
