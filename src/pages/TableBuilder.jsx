@@ -1,3 +1,6 @@
+import { defaultColumns } from '../utils/documentLayout';
+import { ACTION_COLUMNS, actionColumnLabel } from '../utils/actionPlan';
+import { getActionPlanUi } from '../locales/actionPlanUi';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
@@ -17,6 +20,7 @@ import DraftSaveStatus from '../components/DraftSaveStatus';
  */
 
 const TAG_META = {
+  ...ACTION_COLUMNS,
   // 일반 JSA 및 공통 태그
   'DATA_STEP_NO': { label: '작업번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
@@ -101,10 +105,7 @@ export default function TableBuilder() {
   const PAPER_WIDTH = orientation === 'landscape' ? '1080px' : '750px';
 
   const [activeOrder, setActiveOrder] = useState(() => {
-    const initialOrder = savedActiveOrder || [
-      'DATA_STEP_NO', 'DATA_STEP_TITLE', 'DATA_HAZARD', 'DATA_RECOMMEND_MEASURE',
-      'DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK'
-    ];
+    const initialOrder = savedActiveOrder || defaultColumns(formData.jsaType);
     return getNormalizedOrder(initialOrder);
   }); 
 
@@ -257,7 +258,7 @@ const renderDataTablePreview = () => {
               } else {
                 const key = group.keys[0];
                 const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-                let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label));
                 if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                 if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
                 return <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f0f0f0', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
@@ -269,7 +270,7 @@ const renderDataTablePreview = () => {
               {layoutGroups.filter(g => g.isGroup).flatMap(group =>
                 group.keys.map(key => {
                   const meta = TAG_META[key] || userColumns.find(u => u.id === key);
-                  let label = key.startsWith('USER_') ? meta.label : t(`tags.${key}`, meta.label);
+                  let label = key.startsWith('USER_') ? meta.label : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label));
                   if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
                   if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
                   return <th key={`th-sub-${key}`} style={{ border: '1px solid #000', padding: '6px 4px', backgroundColor: '#f9f9f9', fontSize: isEnglish ? '9px' : '11px', lineHeight: '1.2', textAlign: 'center', whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word', color: '#000' }}>{label}</th>;
@@ -368,7 +369,7 @@ const renderDataTablePreview = () => {
                       .filter(key => !['DATA_FREQUENCY', 'DATA_SEVERITY'].includes(key)) 
                       .map(key => {
                         const isActive = activeOrder.includes(key);
-                        const label = key === 'DATA_RISK' ? t('toolbar.riskToggle') : t(`tags.${key}`, TAG_META[key].label);
+                        const label = key === 'DATA_RISK' ? t('toolbar.riskToggle') : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, TAG_META[key].label));
                         return (
                           <button 
                             key={key} 
@@ -408,7 +409,7 @@ const renderDataTablePreview = () => {
                               <button onClick={() => { setActiveOrder(prev => prev.filter(k=>k!==key)); setUserColumns(prev => prev.filter(u=>u.id!==key)); }} style={styles.miniDelBtnActive}>×</button>
                             </div>
                           ) : (
-                            <span style={{flex:1, fontSize:'0.75rem', color:"var(--text-primary)"}}>{isRiskGroup ? t('toolbar.riskGroupLabel') : t(`tags.${key}`, meta.label)}</span>
+                            <span style={{flex:1, fontSize:'0.75rem', color:"var(--text-primary)"}}>{isRiskGroup ? t('toolbar.riskGroupLabel') : (actionColumnLabel(key, getActionPlanUi(formData.context?.documentLocale || i18n.language)) || t(`tags.${key}`, meta.label))}</span>
                           )}
                         </div>
                       );

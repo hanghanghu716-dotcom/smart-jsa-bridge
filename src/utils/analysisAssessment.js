@@ -1,3 +1,4 @@
+import { isActionVerified, clearActionVerification } from './actionPlan.js';
 export const LEGACY_ASSESSMENT = Object.freeze({ version: 1, name: '5 × 5', frequencyMax: 5, severityMax: 5, highFrom: 9 });
 export function assessmentProfile(value = {}) {
   value = value && typeof value === 'object' ? value : {};
@@ -23,13 +24,16 @@ export function riskProgressBlock(steps, activeIndex, value, complete = false) {
   for (const index of indices) {
     const step = steps[index];
     if (!step) continue;
-    const score = unacceptableRiskScore(step.frequency, step.severity, value);
+    const residual = step.actionPlan;
+    const verified = isActionVerified(residual) && assessedScore(residual?.residualFrequency, residual?.residualSeverity, value) !== null;
+    const score = verified ? unacceptableRiskScore(residual.residualFrequency, residual.residualSeverity, value)
+      : unacceptableRiskScore(step.frequency, step.severity, value);
     if (score !== null) return { index, score, limit: 15 };
   }
   return null;
 }
 export function changeAssessmentProfile(steps, before, after) {
   if (JSON.stringify(assessmentProfile(before)) === JSON.stringify(assessmentProfile(after))) return steps;
-  return steps.map(step => ({ ...step, frequency: null, severity: null, riskLevel: null,
+  return steps.map(step => ({ ...step, ...(step.actionPlan ? { actionPlan: clearActionVerification(step.actionPlan) } : {}), frequency: null, severity: null, riskLevel: null,
     previousAssessment: { frequency: step.frequency, severity: step.severity, riskLevel: step.riskLevel, profile: assessmentProfile(before) } }));
 }

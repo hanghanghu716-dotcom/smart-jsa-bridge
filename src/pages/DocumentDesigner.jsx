@@ -1,3 +1,5 @@
+import { ACTION_COLUMNS, actionColumnLabel } from '../utils/actionPlan';
+import { getActionPlanUi } from '../locales/actionPlanUi';
 import DocumentTemplateManager from '../components/DocumentTemplateManager';
 import PaperSizeSelect from '../components/PaperSizeSelect';
 import { normalizePaperSize, paperPreviewWidth } from '../utils/paperFormat';
@@ -14,6 +16,7 @@ import useJsaDraftAutosave from '../hooks/useJsaDraftAutosave';
 import useJsaDraftRecovery from '../hooks/useJsaDraftRecovery';
 
 const SYSTEM_COLUMNS = {
+  ...ACTION_COLUMNS,
   DATA_STEP_NO: { fallback: 'No.', width: 2, align: 'center' },
   DATA_STEP_TITLE: { fallback: 'Work Step', width: 4, align: 'left' },
   DATA_PHOTO: { fallback: 'Photo', width: 3, align: 'center' },
@@ -153,6 +156,8 @@ function DesignerEditor({ recoveredDraft }) {
 
   const getSystemLabel = key =>
     columnOverrides[key]?.label
+    || (key === 'DATA_RECOMMEND_MEASURE' && formData.jsaType !== '3-step' && activeOrder.includes('DATA_ADDITIONAL_CONTROLS') ? i18n.getFixedT(documentLocale, 'analysis')('table.measure') : '')
+    || actionColumnLabel(key, getActionPlanUi(documentLocale))
     || t('tablebuilder:tags.' + key, SYSTEM_COLUMNS[key]?.fallback || key);
 
   const getColumnMeta = key => {
@@ -253,7 +258,7 @@ function DesignerEditor({ recoveredDraft }) {
                 onChange={e => updateCustomFieldValue(stepIndex, custom.id, e.target.value)}
                 style={styles.valueInput}
               >
-                <option value="">—</option>
+                <option value=""></option>
                 {(custom.options || []).map(option => <option key={option} value={option}>{option}</option>)}
               </select>
             </label>

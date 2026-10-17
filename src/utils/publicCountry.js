@@ -14,5 +14,5 @@ export function exploreCountry(country, locale) {
   return country === 'all' ? null : validCountry(country) ? country : localeCountry(locale);
 }
 export function countryLabel(country, locale) {
-  return validCountry(country) ? new Intl.DisplayNames([getLanguageTag(locale)], { type: 'region' }).of(country) : '—';
+  return validCountry(country) ? new Intl.DisplayNames([getLanguageTag(locale)], { type: 'region' }).of(country) : '';
 }

@@ -1,6 +1,8 @@
+import ActionPlanEditor from '../components/ActionPlanEditor';
+import { reconcileActionPlans } from '../utils/actionPlan';
 import { pickDocumentLayout } from '../utils/documentLayout';
 import { mergeKnowledgeRisks, matchingProjectSteps, knowledgeLocale, languageDiffers } from '../utils/analysisKnowledge';
-import { assessmentProfile, assessedScore, changeAssessmentProfile, unacceptableRiskScore, riskProgressBlock } from '../utils/analysisAssessment';
+import { assessmentProfile, assessedScore, changeAssessmentProfile, riskProgressBlock } from '../utils/analysisAssessment';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { recommendationContext, localizedHazards, matchesHazardKeywords, updateRiskValue, applyControl, formatSimilarity, loadMeasureRecommendations, searchMeasureTranslations } from '../utils/analysisRecommendations.js';
 import React, { useState, useEffect, useRef, useMemo } from 'react';
@@ -61,8 +63,10 @@ function AnalysisEditor({ recoveredDraft }) {
   const isFastTrack = JSON.parse(localStorage.getItem('jsa_isFastTrack') || 'false');
   const [dbRisks, setDbRisks] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [analysisData, setAnalysisData] = useState(() => procedures.length ? procedures.map((proc, id) =>
+  const [analysisData, setAnalysisState] = useState(() => procedures.length ? procedures.map((proc, id) =>
     reconcileProcedureAnalysis(incomingAnalysisData.find(step => step.id === id), proc, id)) : incomingAnalysisData);
+
+  const setAnalysisData = update => setAnalysisState(before => reconcileActionPlans(before, typeof update === 'function' ? update(before) : update));
 
   const draftSave = useJsaDraftAutosave({
     enabled: Boolean(
@@ -106,7 +110,7 @@ function AnalysisEditor({ recoveredDraft }) {
   const isSearchOpen = measureSearchModal.isOpen && measureSearchModal.contextKey === interactionKey;
 
   const currentStep = analysisData[activeIdx] || { proc: {}, risks: [], frequency: null, severity: null, riskLevel: null };
-  const unacceptableScore = unacceptableRiskScore(currentStep.frequency, currentStep.severity, assessment);
+  const unacceptableScore = riskProgressBlock([currentStep], 0, assessment)?.score ?? null;
   const recommendations = useMemo(() => {
     const query = searchTerm.toLowerCase();
     const text = [currentStep.proc?.stepTitle, currentStep.proc?.stepDetail].filter(Boolean).join(' ');
@@ -696,11 +700,11 @@ function AnalysisEditor({ recoveredDraft }) {
                   <div style={styles.rightHeader}>
                     <span style={styles.label}>{t('result.label')} ({currentStep.risks.length})</span>
                     <div style={styles.riskScoreContainer}>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select data-assessed-frequency aria-label={t('result.freq')} style={styles.miniSelect} value={currentStep.frequency ?? ''} onChange={(e) => updateStepRisk('frequency', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.frequencyMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.freq')}</span><select data-assessed-frequency aria-label={t('result.freq')} style={styles.miniSelect} value={currentStep.frequency ?? ''} onChange={(e) => updateStepRisk('frequency', e.target.value)}><option value=""></option>{Array.from({ length: assessment.frequencyMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskMultiply}>×</div>
-                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select data-assessed-severity aria-label={t('result.sev')} style={styles.miniSelect} value={currentStep.severity ?? ''} onChange={(e) => updateStepRisk('severity', e.target.value)}><option value="">—</option>{Array.from({ length: assessment.severityMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
+                      <div style={styles.riskInputSet}><span style={styles.miniLabel}>{t('result.sev')}</span><select data-assessed-severity aria-label={t('result.sev')} style={styles.miniSelect} value={currentStep.severity ?? ''} onChange={(e) => updateStepRisk('severity', e.target.value)}><option value=""></option>{Array.from({ length: assessment.severityMax }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}</select></div>
                       <div style={styles.riskEqual}>=</div>
-                      <div data-assessed-score style={{ ...styles.riskResultSelect, backgroundColor: assessedScore(currentStep.frequency, currentStep.severity, assessment) >= assessment.highFrom ? "var(--danger-action)" : "var(--action-bg)" }}>{assessedScore(currentStep.frequency, currentStep.severity, assessment) ?? t('review.notAssessed')}</div>
+                      <div data-assessed-score style={{ ...styles.riskResultSelect, backgroundColor: assessedScore(currentStep.frequency, currentStep.severity, assessment) >= assessment.highFrom ? "var(--danger-action)" : "var(--action-bg)" }}>{assessedScore(currentStep.frequency, currentStep.severity, assessment) ?? ''}</div>
                     </div>
                   </div>
 
@@ -810,6 +814,8 @@ function AnalysisEditor({ recoveredDraft }) {
                         ))}
                       </tbody>
                     </table>
+                    <ActionPlanEditor step={currentStep} jsaType={jsaType} assessment={assessment} locale={i18n.language}
+                      onChange={actionPlan => setAnalysisData(prev => prev.map((step, index) => index === activeIdx ? { ...step, actionPlan } : step))} />
                   </div>
                 </section>
 
@@ -884,7 +890,7 @@ function AnalysisEditor({ recoveredDraft }) {
                                 {risks.map((risk, idx) => (
                                   <div key={risk.id || idx} style={styles.knowledgeRiskLine}>
                                     <div style={styles.knowledgeRiskCopy}>
-                                      <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
+                                      <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || ''}</span>
                                       <span style={styles.knowledgeControlText}>
                                         {risk.measure || [risk.current_measure, risk.recommend_measure].filter(Boolean).join('\n') || t('knowledgeDock.noControl')}
                                       </span>
@@ -989,12 +995,12 @@ function AnalysisEditor({ recoveredDraft }) {
                                     </div>
                                   </div>
                                 </div>
-                                <p style={styles.knowledgeDetail}>{step.proc?.stepDetail || '-'}</p>
+                                <p style={styles.knowledgeDetail}>{step.proc?.stepDetail || ''}</p>
                                 <div style={styles.knowledgeRiskPreview}>
                                   {(step.risks || []).map((risk, riskIdx) => (
                                     <div key={risk.id || riskIdx} style={styles.knowledgeRiskLine}>
                                       <div style={styles.knowledgeRiskCopy}>
-                                        <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || '-'}</span>
+                                        <span style={styles.knowledgeHazardText}>{risk.factor || risk.risk_factor || ''}</span>
                                         <span style={styles.knowledgeControlText}>
                                           {risk.measure || risk.current_measure || risk.recommend_measure || t('knowledgeDock.noControl')}
                                         </span>

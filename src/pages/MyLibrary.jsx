@@ -1,3 +1,4 @@
+import { reusableActionStep } from '../utils/actionPlan';
 import LibraryWorkspaceOverview from '../components/LibraryWorkspaceOverview';
 import { isStorageLimitError } from '../services/projectStorageService';
 import { getStorageUi } from '../locales/storageUi';
@@ -204,7 +205,7 @@ export default function MyLibrary() {
     };
 
     const analysis = {
-      ...(step.analysis_data || {}),
+      ...reusableActionStep(step.analysis_data || {}),
       id: 0,
       proc,
       risks: Array.isArray(step.analysis_data?.risks)
@@ -384,7 +385,7 @@ export default function MyLibrary() {
   });
 
   const formatDate = (dateStr) => {
-    if (!dateStr) return "-";
+    if (!dateStr) return "";
     const date = new Date(dateStr);
     return date.toLocaleDateString(getLanguageTag(i18n.language), { year: 'numeric', month: '2-digit', day: '2-digit' });
   };
@@ -534,7 +535,7 @@ export default function MyLibrary() {
                                   <strong style={styles.assetTitle}>{step.title}</strong>
                                   {step.is_favorite && <span style={styles.favoriteBadge}>★</span>}
                                 </div>
-                                <span style={styles.assetDescription}>{step.detail || '-'}</span>
+                                <span style={styles.assetDescription}>{step.detail || ''}</span>
                               </>
                             )}
                             <span style={styles.assetMeta}>

@@ -1,3 +1,5 @@
+import { assessmentProfile } from './analysisAssessment.js';
+import { reusableActionStep, reusableActionPlan } from './actionPlan.js';
 import { documentCountry } from './publicCountry.js';
 import { pickDocumentLayout } from './documentLayout.js';
 
@@ -11,7 +13,7 @@ export function projectEditorState(project, own = false) {
   return {
     ...pickDocumentLayout(layout),
     formData: { ...project.form_data, ...(project.public_country && !project.form_data?.context ? { context: { jurisdiction: project.public_country, documentLocale: project.public_locale || '' } } : {}), saveVisibility: own && project.is_public ? 'public' : 'private' }, participants: project.participants || [],
-    analysisData: project.analysis_data || [],
+    analysisData: own ? project.analysis_data || [] : (project.analysis_data || []).map(reusableActionStep),
     procedures: layout.procedures || (project.analysis_data || []).map(step => step.proc).filter(Boolean),
     existingId: own ? project.id : null, id: own ? project.id : null,
     parentId: own ? project.parent_id : project.id,
@@ -24,11 +26,15 @@ export function publicProjectSnapshot(snapshot) {
   const form = snapshot.formData || {};
   const allowed = ['projectName', 'jsaType', 'workType', 'weather', 'hasNewWorker', 'ppe', 'permits'];
   const formData = Object.fromEntries(allowed.filter(key => key in form).map(key => [key, form[key]]));
+  if (form.assessment) {
+    const { frequencyMax, severityMax, highFrom } = assessmentProfile(form.assessment);
+    formData.assessment = { frequencyMax, severityMax, highFrom };
+  }
   const layoutData = { ...pickDocumentLayout(snapshot.layoutData), documentNotes: '' };
   delete layoutData.stepPhotos;
   delete layoutData.projectSaveContext;
   const analysisData = (snapshot.analysisData || []).filter(step => step && typeof step === 'object').map(step => {
-    const clean = { ...step, customFields: {} };
+    const clean = { ...step, customFields: {}, ...(step.actionPlan ? { actionPlan: reusableActionPlan(step.actionPlan) } : {}) };
     delete clean.sourceProjectId; delete clean.sourceProjectTitle; delete clean.sourceStepIndex;
     if (step.proc) {
       clean.proc = { stepTitle: step.proc.stepTitle || '', stepDetail: step.proc.stepDetail || '' };

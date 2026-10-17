@@ -1,3 +1,4 @@
+import { reusableActionStep } from '../utils/actionPlan';
 import { supabase } from '../supabaseClient';
 
 export const listWorkSteps = async ({ search = '', favoritesOnly = false, limit = 100 } = {}) => {
@@ -41,7 +42,7 @@ export const saveWorkStep = async ({
     user_id: user.id,
     title: title?.trim() || 'Untitled step',
     detail: detail || '',
-    analysis_data: analysisData || {},
+    analysis_data: reusableActionStep(analysisData || {}),
     tags: Array.isArray(tags) ? tags : [],
     locale,
     source_project_id: sourceProjectId || null,
@@ -83,7 +84,7 @@ export const saveProjectWorkSteps = async (project) => {
         title,
         detail: step?.proc?.stepDetail || '',
         analysis_data: {
-          ...step,
+          ...reusableActionStep(step),
           proc: {
             stepTitle: title,
             stepDetail: step?.proc?.stepDetail || ''

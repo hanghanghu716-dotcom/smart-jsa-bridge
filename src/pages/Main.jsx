@@ -687,7 +687,7 @@ export default function Main() {
                         {cleanSummary(caseItem.meta_description)}
                       </p>
                       <span style={{ fontSize: '0.9rem', color: '#888', fontWeight: 'bold' }}>
-                        {new Date(caseItem.created_at).toLocaleDateString()} · {caseUi.views} {caseItem.view_count === undefined ? '—' : caseItem.view_count.toLocaleString()}
+                        {new Date(caseItem.created_at).toLocaleDateString()} · {caseUi.views} {caseItem.view_count === undefined ? '' : caseItem.view_count.toLocaleString()}
                       </span>
                     </div>
                   </LanguageLink>

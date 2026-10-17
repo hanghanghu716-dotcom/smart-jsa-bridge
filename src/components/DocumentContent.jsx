@@ -1,9 +1,13 @@
+import { ACTION_COLUMNS, actionColumnLabel, actionColumnValue, actionPlan } from '../utils/actionPlan';
+import { getActionPlanUi } from '../locales/actionPlanUi';
+import { assessedScore } from '../utils/analysisAssessment';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import DocumentSignatures from './DocumentSignatures';
 import { columnPercentages, normalizeDocumentBlocks } from '../utils/documentLayout';
 import AssessmentSummary from './AssessmentSummary';
 const TAG_META = {
+  ...ACTION_COLUMNS,
   'DATA_STEP_NO': { label: '작업\n번호', color: '#6c757d', width: 2, align: 'center' },
   'DATA_STEP_TITLE': { label: '작업단계', color: '#0d6efd', width: 4, align: 'left' },
   'DATA_PHOTO': { label: '관련사진', color: '#6f42c1', width: 3, align: 'center' },
@@ -49,7 +53,8 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   const getColumnLabel = (key, meta) => {
     if (key.startsWith('USER_')) return meta?.label || key;
     if (savedColumnOverrides[key]?.label) return savedColumnOverrides[key].label;
-    return t(`tags.${key}`, meta?.label || key);
+    if (key === 'DATA_RECOMMEND_MEASURE' && jsaType === '2-step' && savedActiveOrder.includes('DATA_ADDITIONAL_CONTROLS')) return t('analysis:table.measure');
+    return actionColumnLabel(key, getActionPlanUi(language)) || t(`tags.${key}`, meta?.label || key);
   };
 
   const renderDesignerProjectInfo = () => {
@@ -124,7 +129,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
             {t('common:designer.blocks.NOTES', 'Notes')}
           </td>
           <td style={{ border: '1px solid #888', color: '#000', padding: '7px', whiteSpace: 'pre-wrap', fontSize: '10px', minHeight: '42px' }}>
-            {documentNotes || '—'}
+            {documentNotes || ''}
           </td>
         </tr>
       </tbody>
@@ -176,8 +181,8 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                 let label = getColumnLabel(key, meta);
                 if (!savedColumnOverrides[key]?.label && key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                 if (!savedColumnOverrides[key]?.label && key === 'DATA_SEVERITY') label = t('preview.sevBreak');
-                if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
-                if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
+                if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_AFTER') label = getActionPlanUi(language).residualRisk;
+                if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_SCHED') label = getActionPlanUi(language).dueDate;
                 return ( <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>{label}</th> );
               }
             })}</tr>
@@ -189,8 +194,8 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                   let label = getColumnLabel(key, meta);
                   if (!savedColumnOverrides[key]?.label && key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
                   if (!savedColumnOverrides[key]?.label && key === 'DATA_SEVERITY') label = t('preview.sevBreak');
-                  if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
-                  if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
+                  if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_AFTER') label = getActionPlanUi(language).residualRisk;
+                  if (!savedColumnOverrides[key]?.label && key === 'DATA_KRAS_SCHED') label = getActionPlanUi(language).dueDate;
                 return (
                     <th key={`th-sub-${key}`} style={{
                       ...commonTdStyle,
@@ -220,14 +225,17 @@ export default function DocumentContent({ formData = {}, participants = [], anal
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
                 const meta = getColumnMeta(key); let content = "";
-                if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
+                const plan = actionPlan(stepData.actionPlan);
+                const actionValue = actionColumnValue(key, stepData, getActionPlanUi(language), assessedScore(plan.residualFrequency, plan.residualSeverity, formData.assessment));
+                if (actionValue !== null) content = actionValue;
+                else if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
-                else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${t('analysis:review.unconfirmed')})` : ''}`).join('\n');
-                else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
-                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity ?? "");
-                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency ?? "");
-                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel ?? "");
+                else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).filter(r => typeof r.factor === 'string' && r.factor.trim()).map(r => `• ${r.factor}`).join('\n');
+                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.current_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${t('analysis:review.unconfirmed')})` : ''}`).join('\n');
+                else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.recommend_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
+                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(Number(stepData.severity) > 0 ? stepData.severity : "");
+                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(Number(stepData.frequency) > 0 ? stepData.frequency : "");
+                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(Number(stepData.riskLevel) > 0 ? stepData.riskLevel : "");
                 else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks?.[0]?.category || "";
                 else if (key.startsWith('USER_')) {
                   const raw = stepData.customFields?.[key];

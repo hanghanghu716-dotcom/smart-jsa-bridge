@@ -16,8 +16,8 @@ export default function SearchConsoleAdmin() {
  const previous = new Date(); previous.setUTCDate(1); previous.setUTCMonth(previous.getUTCMonth() - 1);
  const [month, setMonth] = useState(previous.toISOString().slice(0, 7)), [clicks, setClicks] = useState(''), [impressions, setImpressions] = useState(''), [source, setSource] = useState('');
  const lock = useRef(false);
- const number = value => value == null ? '—' : new Intl.NumberFormat(getLanguageTag(i18n.language)).format(value);
- const timestamp = value => value ? new Intl.DateTimeFormat(getLanguageTag(i18n.language), { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)) : '—';
+ const number = value => value == null ? '' : new Intl.NumberFormat(getLanguageTag(i18n.language)).format(value);
+ const timestamp = value => value ? new Intl.DateTimeFormat(getLanguageTag(i18n.language), { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)) : '';
  useEffect(() => {
   let active = true;
   request().then(result => { if (active) { setData(result); setMessage(''); } }).catch(() => { if (active) setMessage('error'); });
@@ -43,7 +43,7 @@ export default function SearchConsoleAdmin() {
    </article>;
   })}</div>
   <div className="discovery-table"><table><caption>{ui.title}</caption><thead><tr>{[common.month, ui.provider, ui.scope, common.search, ui.impressions, 'CTR', ui.range].map(label => <th key={label} scope="col">{label}</th>)}</tr></thead><tbody>
-   {(data?.monthly || []).map(row => <tr key={row.provider + row.scope + row.month}><th scope="row">{row.month.slice(0, 7)}</th><td>{row.provider === 'google' ? 'Google' : 'Bing'}</td><td>{ui[row.scope]}</td><td>{number(row.clicks)}</td><td>{number(row.impressions)}</td><td>{row.impressions ? new Intl.NumberFormat(getLanguageTag(i18n.language), { style: 'percent', maximumFractionDigits: 2 }).format(row.clicks / row.impressions) : '—'}</td><td>{row.first_day} – {row.last_day}</td></tr>)}
+   {(data?.monthly || []).map(row => <tr key={row.provider + row.scope + row.month}><th scope="row">{row.month.slice(0, 7)}</th><td>{row.provider === 'google' ? 'Google' : 'Bing'}</td><td>{ui[row.scope]}</td><td>{number(row.clicks)}</td><td>{number(row.impressions)}</td><td>{row.impressions ? new Intl.NumberFormat(getLanguageTag(i18n.language), { style: 'percent', maximumFractionDigits: 2 }).format(row.clicks / row.impressions) : ''}</td><td>{row.first_day} – {row.last_day}</td></tr>)}
    {!data?.monthly?.length && <tr><td colSpan={7}>{ui.empty}</td></tr>}
   </tbody></table></div>
   <details><summary>{ui.manual}</summary><p>{ui.naverHelp}</p><a href="https://searchadvisor.naver.com/" target="_blank" rel="noopener noreferrer">Naver Search Advisor ↗</a>

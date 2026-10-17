@@ -1,3 +1,4 @@
+import ActionPlanEditor from '../ActionPlanEditor';
 import { useEffect, useRef, useState } from "react";
 import {
   clone,
@@ -224,6 +225,16 @@ export default function WorkRun({ record, drawings, ui, onBack, ownerId }) {
               )}
             </details>
           ))}
+        {run.documents.filter(doc => doc.enabled && doc.type === 'jsa').map(doc => <details className="work-block" key={doc.id}>
+          <summary>{doc.title}</summary>
+          {(doc.analysisData || []).map((step, index) => <div key={index}>
+            <h4>{index + 1}. {step.proc?.stepTitle}</h4>
+            <ActionPlanEditor step={step} jsaType={doc.formData?.jsaType || '2-step'} assessment={doc.formData?.assessment}
+              locale={run.context?.documentLocale || i18n.language}
+              onChange={actionPlan => edit(r => ({ ...r, documents: r.documents.map(d => d.id === doc.id
+                ? { ...d, analysisData: d.analysisData.map((s, n) => n === index ? { ...s, actionPlan } : s) } : d) }))} />
+          </div>)}
+        </details>)}
         <div className="work-tools">
           {run.documents
             .filter((d) => d.type === "drawing")

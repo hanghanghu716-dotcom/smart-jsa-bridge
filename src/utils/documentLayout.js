@@ -17,8 +17,10 @@ export function normalizeDocumentBlocks(blocks) {
 
 export function defaultColumns(jsaType) {
   return ['DATA_STEP_NO', 'DATA_STEP_TITLE', 'DATA_HAZARD',
-    ...(jsaType === '3-step' ? ['DATA_CURRENT_MEASURE'] : []),
-    'DATA_RECOMMEND_MEASURE', 'DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK'];
+    ...(jsaType === '3-step' ? ['DATA_CURRENT_MEASURE'] : ['DATA_RECOMMEND_MEASURE']),
+    'DATA_FREQUENCY', 'DATA_SEVERITY', 'DATA_RISK',
+    ...(jsaType === '3-step' ? ['DATA_RECOMMEND_MEASURE'] : ['DATA_ADDITIONAL_CONTROLS']),
+    'DATA_ACTION_OWNER', 'DATA_ACTION_CHECK', 'DATA_RESIDUAL_RISK'];
 }
 
 export function moveItem(items, from, to) {

@@ -176,7 +176,7 @@ export default function CaseStudyDetail() {
             {post.title}
           </h1>
           <p style={styles.date}>
-            {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))} · {getPublicUi(i18n.language).views} {viewMetric?.id===post.id?viewMetric.count.toLocaleString(getLanguageTag(currentLang)):'—'}
+            {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))} · {getPublicUi(i18n.language).views} {viewMetric?.id===post.id?viewMetric.count.toLocaleString(getLanguageTag(currentLang)):''}
           </p>
         </div>
       </section>

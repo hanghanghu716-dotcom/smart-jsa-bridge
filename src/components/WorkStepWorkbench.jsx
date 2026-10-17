@@ -1,3 +1,4 @@
+import { reusableActionStep } from '../utils/actionPlan';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
@@ -316,7 +317,7 @@ export default function WorkStepWorkbench({
     const proc = buildProcedure(project, step, stepIndex);
     const analysis = importMode === 'full'
       ? {
-          ...step,
+          ...reusableActionStep(step),
           proc,
           risks: Array.isArray(step?.risks)
             ? step.risks.map(risk => ({
@@ -646,8 +647,8 @@ export default function WorkStepWorkbench({
                                 </button>
                               </div>
                             </div>
-                            <strong style={styles.stepTitle}>{step?.proc?.stepTitle || '-'}</strong>
-                            <p style={styles.stepDetail}>{step?.proc?.stepDetail || '-'}</p>
+                            <strong style={styles.stepTitle}>{step?.proc?.stepTitle || ''}</strong>
+                            <p style={styles.stepDetail}>{step?.proc?.stepDetail || ''}</p>
                             <div style={styles.riskCount}>
                               {t('workbench.riskCount')} {step?.risks?.length || 0}
                             </div>
@@ -665,14 +666,14 @@ export default function WorkStepWorkbench({
                     <div style={styles.previewHeadingGroup}>
                       <span style={styles.previewProjectName}>{previewStep.project.title}</span>
                       <strong style={styles.previewStepName}>
-                        {t('workbench.stepLabel', { number: previewStep.stepIndex + 1 })} · {previewStep.step?.proc?.stepTitle || '-'}
+                        {t('workbench.stepLabel', { number: previewStep.stepIndex + 1 })} · {previewStep.step?.proc?.stepTitle || ''}
                       </strong>
                     </div>
                     <button type="button" style={styles.previewCloseBtn} onClick={() => setPreviewStep(null)}>
                       {t('workbench.closePreview')}
                     </button>
                   </div>
-                  <div style={styles.previewDetailText}>{previewStep.step?.proc?.stepDetail || '-'}</div>
+                  <div style={styles.previewDetailText}>{previewStep.step?.proc?.stepDetail || ''}</div>
                   <div style={styles.previewRiskHeader}>
                     {t('workbench.previewHazards')} ({previewStep.step?.risks?.length || 0})
                   </div>
@@ -683,11 +684,11 @@ export default function WorkStepWorkbench({
                       <div key={risk.id || riskIndex} style={styles.previewRiskCard}>
                         <div style={styles.previewRiskFactor}>
                           <span style={styles.previewFieldLabel}>{t('workbench.hazard')}</span>
-                          <span>{risk.factor || risk.risk_factor || '-'}</span>
+                          <span>{risk.factor || risk.risk_factor || ''}</span>
                         </div>
                         <div style={styles.previewControlText}>
                           <span style={styles.previewFieldLabel}>{t('workbench.currentControl')}</span>
-                          <span>{risk.current_measure || risk.measure || '-'}</span>
+                          <span>{risk.current_measure || risk.measure || ''}</span>
                         </div>
                         {risk.recommend_measure && (
                           <div style={styles.previewControlText}>
@@ -742,7 +743,7 @@ export default function WorkStepWorkbench({
                     <div style={styles.dragHandle}>☰</div>
                     <div style={styles.todayStepBody}>
                       <strong style={styles.todayStepTitle}>
-                        {index + 1}. {item.proc.stepTitle || '-'}
+                        {index + 1}. {item.proc.stepTitle || ''}
                       </strong>
                       <div style={styles.todayMetaRow}>
                         {item.importMode === 'full' && (

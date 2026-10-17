@@ -40,7 +40,7 @@ export default function Business() {
  const document=detail?.document?.id===docId && detail.document.org_id===orgId?detail.document:null;
  const editable=currentOrg?.status.active && Date.parse(currentOrg.status.expires_at)>now && ['owner','editor'].includes(currentOrg.status.role);
  const docOptions={org:orgId,doc:docId,expected:document?.version};
- const personName=id=>currentOrg?.members.find(m=>m.user_id===id)?.name || id?.slice(0,8) || '—';
+ const personName=id=>currentOrg?.members.find(m=>m.user_id===id)?.name || id?.slice(0,8) || '';
  const date=value=>formatBusinessDate(value,i18n.language);
  const run=async(action,options={})=>{
   if(pending.current)return null;pending.current=true;setBusy(true);setError('');setMessage('');

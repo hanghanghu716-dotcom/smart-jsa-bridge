@@ -1,10 +1,11 @@
+import { clearActionVerification } from './actionPlan.js';
 import { updateRiskValue } from './analysisRecommendations.js';
 import { caseWorkSignature } from './caseRecommendations.js';
 
 export function reconcileProcedureAnalysis(analysis, proc, id, invalidate = false) {
   const changed = invalidate || (analysis?.proc && ['stepTitle', 'stepDetail'].some(key => analysis.proc[key] !== proc[key]));
   const risks = Array.isArray(analysis?.risks) ? analysis.risks : [];
-  return { ...analysis, id, proc,
+  return { ...analysis, id, proc, ...(changed && analysis?.actionPlan ? { actionPlan: clearActionVerification(analysis.actionPlan) } : {}),
     risks: changed ? risks.map(risk => ({ ...updateRiskValue(risk, 'factor', ''), factor: risk.factor, caseContext: null,
       recommendation_review_required: Boolean(risk.current_measure || risk.recommend_measure || risk.measure) })) : risks,
     frequency: changed ? null : analysis?.frequency ?? null,

@@ -7,7 +7,7 @@ import { getVisibilityUi } from '../locales/visibilityUi';
 import { getStorageUi } from '../locales/storageUi';
 import { saveProject } from '../services/projectPersistenceService';
 import DocumentSignatures from '../components/DocumentSignatures';
-import { normalizeDocumentBlocks } from '../utils/documentLayout';
+import { normalizeDocumentBlocks, defaultColumns } from '../utils/documentLayout';
 import DocumentContent from '../components/DocumentContent';
 import AssessmentSummary from '../components/AssessmentSummary';
 import ThemeSwitcher from '../components/ThemeSwitcher';
@@ -87,7 +87,7 @@ function ExportEditor({ recoveredDraft }) {
   const isFrench = documentLocale?.startsWith('fr');
   const participants = state.participants || recoveredDraft?.participants || [];
   const procedures = state.procedures || recoveredDraft?.procedures || [];
-  const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || [];
+  const savedActiveOrder = state.savedActiveOrder || recoveredLayout.savedActiveOrder || defaultColumns(formData.jsaType);
   const savedUserColumns = state.savedUserColumns || recoveredLayout.savedUserColumns || [];
   const savedOrientation = state.savedOrientation || recoveredLayout.savedOrientation || 'landscape';
   const [paperSize, setPaperSize] = useState(() => normalizePaperSize(state.paperSize || recoveredLayout.paperSize));
@@ -321,127 +321,9 @@ function ExportEditor({ recoveredDraft }) {
     return documentT(`tags.${key}`, meta?.label || key);
   };
 
-  const renderDataTable = () => {
-      const t = documentT;
-      const isEuroLang = ['en', 'fr', 'de'].some(lang => documentLocale?.startsWith(lang));
-
-      const commonTdStyle = { 
-        border: '1px solid #888', 
-        padding: '4px 4px 12px 4px', 
-        // 👇 [수정] 유럽권 언어일 경우 폰트 크기를 9px로 일괄 축소하여 공간 확보
-        fontSize: isEuroLang ? '9px' : '10.5px', 
-        verticalAlign: 'middle', 
-        lineHeight: '1.2', 
-        wordBreak: 'keep-all',
-        overflowWrap: 'anywhere',
-        // 👇 [기능 추가] 긴 단어 자동 하이픈 처리 (브라우저 지원 시)
-        hyphens: 'auto'
-      };
-    if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
-    const currentItems = savedActiveOrder.filter(key => getColumnMeta(key));
-    const fixedWidth = currentItems.reduce((sum, key) => {
-      const meta = getColumnMeta(key);
-      return sum + (meta?.isFlex ? 0 : (parseInt(meta?.width) || 5));
-    }, 0);
-    const flexItems = currentItems.filter(key => (TAG_META[key]?.isFlex || savedUserColumns.find(u => u.id === key)?.isFlex));
-    const remaining = COLS - fixedWidth;
-    let groups = []; let currentGroup = null;
-    currentItems.forEach(key => {
-      const groupDef = COLUMN_GROUPS.find(g => g.children.includes(key));
-      if (groupDef) {
-        if (currentGroup && currentGroup.label === groupDef.label) { currentGroup.keys.push(key); }
-        else { if (currentGroup) groups.push(currentGroup); currentGroup = { label: groupDef.label, keys: [key], isGroup: true }; }
-      } else { if (currentGroup) { groups.push(currentGroup); currentGroup = null; } groups.push({ label: null, keys: [key], isGroup: false }); }
-    });
-    if (currentGroup) groups.push(currentGroup);
-    const hasGroups = groups.some(g => g.isGroup);
-    return (
-      <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', tableLayout: 'fixed' }}>
-        <colgroup>{currentItems.map(key => {
-            const meta = getColumnMeta(key);
-            let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
-            return <col key={key} style={{ width: `${pct}%` }} />;
-          })}</colgroup>
-        <thead>
-          <tr>{groups.map((group, idx) => {
-              if (group.isGroup) { 
-                const groupLabel = group.label === '유해 위험요인 파악' ? t('groups.hazard') : t('groups.risk');
-                return ( <th key={`th-group-${idx}`} colSpan={group.keys.length} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold' }}>{groupLabel}</th> ); 
-              } 
-              else {
-                const key = group.keys[0]; const meta = getColumnMeta(key); 
-                let label = getColumnLabel(key, meta);
-                if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak'); 
-                if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
-                if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
-                if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
-                return ( <th key={`th-${key}`} rowSpan={hasGroups ? 2 : 1} style={{ ...commonTdStyle, backgroundColor: '#f0f0f0', textAlign: 'center', fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>{label}</th> );
-              }
-            })}</tr>
-          {hasGroups && (
-            <tr>
-              {groups.filter(g => g.isGroup).flatMap(group =>
-                group.keys.map(key => {
-                  const meta = getColumnMeta(key);
-                  let label = getColumnLabel(key, meta);
-                  if (key === 'DATA_FREQUENCY') label = t('preview.freqBreak');
-                  if (key === 'DATA_SEVERITY') label = t('preview.sevBreak');
-                  if (key === 'DATA_KRAS_AFTER') label = t('preview.afterBreak');
-                  if (key === 'DATA_KRAS_SCHED') label = t('preview.schedBreak');
-                return (
-                    <th key={`th-sub-${key}`} style={{ 
-                      ...commonTdStyle, 
-                      backgroundColor: '#f9f9f9', 
-                      textAlign: 'center', 
-                      fontWeight: 'bold', 
-                      whiteSpace: 'pre-wrap',
-                      wordBreak: 'keep-all',
-                      fontSize: isEuroLang ? '8px' : '10.5px'                    }}>
-                      {label}
-                    </th>
-                  );
-                })
-              )}
-            </tr>
-          )}
-        </thead>
-        <tbody>
-        <tr style={{ height: 0, visibility: 'hidden', border: 'none' }}>
-            {currentItems.map(key => {
-              const meta = getColumnMeta(key);
-              let pct = meta.isFlex ? (remaining / flexItems.length / COLS) * 100 : (meta.width / COLS) * 100;
-              return <td key={`ghost-${key}`} style={{ width: `${pct}%`, height: 0, padding: 0, margin: 0, border: 'none' }}></td>;
-            })}
-          </tr>
-
-          {analysisData.map((stepData, stepIdx) => (
-            <tr key={`tr-${stepIdx}`}>
-              {currentItems.map((key) => {
-                const meta = getColumnMeta(key); let content = "";
-                if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
-                else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
-                else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = stepData.risks.map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = stepData.risks.map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${documentT('analysis:review.unconfirmed')})` : ''}`).join('\n');
-                else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = stepData.risks.map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
-                else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(stepData.severity ?? "");
-                else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(stepData.frequency ?? "");
-                else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(stepData.riskLevel ?? "");
-                else if (key === 'DATA_KRAS_HAZARD_CLASS') content = stepData.risks[0]?.category || "";
-                else if (key.startsWith('USER_')) {
-                  const raw = stepData.customFields?.[key];
-                  if (raw !== undefined && raw !== null) content = typeof raw === 'boolean' ? (raw ? '☑' : '☐') : String(raw);
-                  else if (meta.fieldType === 'checkbox') content = '☐';
-                  else content = '';
-                }
-                if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => { setActivePhotoRow(stepIdx); fileInputRef.current.click(); }} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: 'pointer', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
-                return ( <td key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
+  const renderDataTable = () => <DocumentContent documentLocale={documentLocale} formData={formData} analysisData={analysisData}
+    layout={{ documentBlocks: [{ id: 'JSA_TABLE', enabled: true }], savedActiveOrder, savedUserColumns, savedColumnOverrides }}
+    stepPhotos={stepPhotos} onPhotoClick={index => { setActivePhotoRow(index); fileInputRef.current.click(); }} />;
 
   return (
     <div className="theme-workspace" style={styles.wrapper}>
@@ -477,7 +359,6 @@ function ExportEditor({ recoveredDraft }) {
               {!isModuleSkipped && renderUnifiedHeader()}
               {!isModuleSkipped && renderSignatureTable()}
               {renderDataTable()}
-              <AssessmentSummary value={formData.assessment} documentLocale={documentLocale} />
             </>
           )}        
         </div>

@@ -1,4 +1,5 @@
-import { templateLayout } from "./documentLayout.js";
+import { reusableActionStep, reusableActionPlan } from './actionPlan.js';
+import { templateLayout, defaultColumns } from "./documentLayout.js";
 import { workContext } from './workJurisdiction.js';
 import { defaultPaperSize } from './paperFormat.js';
 import { regionalContextMismatch } from './regionalWorkTemplates.js';
@@ -55,7 +56,7 @@ export function cleanPackage(data) {
                 : { ...b, field: normalizeField(b.field) },
             ),
           }
-        : clone(doc),
+        : doc.type === "jsa" ? { ...clone(doc), analysisData: (clone(doc).analysisData || []).map(reusableActionStep) } : clone(doc),
     ),
   };
 }
@@ -108,6 +109,7 @@ export function importJsa(project) {
       department: "",
       workDate: "",
       jsaType: f.jsaType || "2-step",
+      ...(f.assessment ? { assessment: clone(f.assessment) } : {}),
       ppe: clone(f.ppe || []),
       permits: clone(f.permits || []),
       equipment: f.equipment || '',
@@ -119,6 +121,7 @@ export function importJsa(project) {
         stepTitle: step.proc?.stepTitle || "",
         stepDetail: step.proc?.stepDetail || "",
       },
+      ...(step.actionPlan ? { actionPlan: reusableActionPlan(step.actionPlan) } : {}),
       frequency: step.frequency,
       severity: step.severity,
       riskLevel: step.riskLevel,
@@ -135,7 +138,7 @@ export function importJsa(project) {
         ),
       ),
     })),
-    layout: templateLayout(project.custom_layout || {}, { docTitle: "JSA" }),
+    layout: templateLayout(project.custom_layout || {}, { docTitle: "JSA", savedActiveOrder: defaultColumns(f.jsaType) }),
   };
 }
 export function newForm(type, ui) {
