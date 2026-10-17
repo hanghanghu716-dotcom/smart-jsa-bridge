@@ -1,22 +1,19 @@
 import fs from 'node:fs/promises';
-import { Buffer } from 'node:buffer';
 import process from 'node:process';
 import { createHash } from 'node:crypto';
 import { AUDIT_TABLES, MASTER_TABLES, auditRecommendationSnapshot } from './recommendation-data-audit.js';
 import { contentFingerprint } from './case-build-data.js';
 import { publicAuditSummary } from './recommendation-audit-summary.js';
+import { resolvePublicSupabaseConfig } from '../src/config/supabase.js';
 
-// Use only the public anon credential already shipped by this application.
-// No service-role keys, user sessions, writes or privileged schema queries.
-const client = await fs.readFile('src/supabaseClient.js', 'utf8');
-const literal = name => new RegExp(`const\\s+${name}\\s*=\\s*['"]([^'"\\n]+)['"]`).exec(client)?.[1];
-const url = literal('supabaseUrl'), key = literal('supabaseAnonKey');
+// Use the same validated public identity as the application. This resolver
+// rejects secret/service-role credentials; this audit remains anonymous and read-only.
+const { url, key } = resolvePublicSupabaseConfig();
 const project = new URL(url);
-const payload = JSON.parse(Buffer.from(key.split('.')[1], 'base64url').toString());
-if (payload.role !== 'anon' || project.protocol !== 'https:' || !/^[a-z0-9-]+\.supabase\.co$/.test(project.hostname)) {
-  throw Error('Expected the application public anon credential and Supabase project.');
+if (project.protocol !== 'https:' || !/^[a-z0-9-]+\.supabase\.co$/.test(project.hostname)) {
+  throw Error('Expected the application public credential and Supabase project.');
 }
-const headers = { apikey: key, Authorization: `Bearer ${key}` };
+const headers = { apikey: key, ...(key.startsWith('sb_publishable_') ? {} : { Authorization: `Bearer ${key}` }) };
 const tables = {}, failures = {};
 const startedAt = new Date().toISOString();
 const masters = MASTER_TABLES;
