@@ -1,0 +1,374 @@
+{
+  "checkedAt": "2026-10-14T08:11:15Z",
+  "run": "https://github.com/hanghanghu716-dotcom/smart-jsa-bridge/actions/runs/38533230252",
+  "scope": "https://smartjsabridge.com/ko/explore",
+  "summary": {
+    "documents": 36,
+    "eligible": 36,
+    "rssDocuments": 36,
+    "findings": []
+  },
+  "note": "Public technical checks only. Actual Google/Bing/Naver index membership has not been queried. Full canonical/body/robots details are in the workflow artifact.",
+  "documents": [
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/02d352b7-16ec-4b03-9474-9c9490288c1b",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/06a10242-7959-404e-8c04-cb8fe14213f6",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/0a47d7e9-12aa-4480-987f-a78bef771902",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/0f34eb76-a011-4704-a005-d39b4ab5c432",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/25cececb-6bd1-427d-97be-9b561577efcb",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/29da6477-9382-4016-9903-0bc34ca175dc",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/3b2091e6-3920-4bd5-84ac-6274d46e3314",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/409cfda3-1e2d-428f-96b5-b0f1986e7978",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/46474c2f-d7a8-4b26-95b2-c81d5262822d",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/4715caa2-5a82-4fc4-8c38-1b329f773e2a",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/47fc64ab-e646-4d3f-bbf0-5812208c9237",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/4c7a0b53-2789-4d16-a552-a60168cfc70c",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/4e3dc05d-12e9-485b-8d30-314fc89668fb",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/559e7018-b831-48c2-aa23-fc97105c19b0",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/61e4c256-75a6-40fb-8f88-0a775312fd12",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/71f0cd06-b24a-4361-9a2c-cda335242122",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/a3191f33-aade-42af-baf8-751047f0620c",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/ae075d9e-76c7-4f41-ad9c-a8d11f423e5c",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/c8acdbf9-2da1-44f8-bafe-bae20933c7a6",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/ccc5e77d-b251-477b-b1bd-2d689ae5cb71",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/d0c00661-cac8-4c25-910e-140b04f9bd6a",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/d72b36f4-80a8-44d2-995b-2f17da73d721",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/f3fc3c5f-ca66-463e-9612-1bea78d3b088",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/fe43eb3a-576c-4851-8ec7-4a2d4dcb05f9",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/0da5c9a1-46b1-4361-bdbc-88920dd6c18d",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/104048f5-003f-42e9-aa72-e003e80a308d",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/28e90655-e02e-46c2-80ca-2864cbf47965",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/46da3036-650b-472d-b8c4-8437d03da612",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/5cb972f5-5273-4e92-a988-ec09690c9a1e",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/767b2a36-1424-446f-99da-00ff513fe0bf",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/78198659-b107-42d1-8599-c2947c9d7c0d",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/81f48904-7abc-4b74-8a9a-1ed7cff5ecf6",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/8e9a2310-1774-41a2-b52c-4ca223ad754e",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/9cc48b08-23a9-433f-931a-c58823e9a952",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/cc43f9ae-102e-46f9-bcb0-79fd02bde517",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    },
+    {
+      "url": "https://smartjsabridge.com/ko/public-jsa/d220e5ba-f23c-4476-9915-65dc67b25b34",
+      "status": 200,
+      "robots": [
+        "index,follow"
+      ],
+      "inSitemap": true,
+      "inRss": true,
+      "issues": []
+    }
+  ]
+}

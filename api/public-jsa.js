@@ -1,4 +1,5 @@
 import {getOperatorUi} from '../src/locales/operatorUi.js';
+import { getPublicSupabaseConfig } from '../server/supabase-config.js';
 import {documentStats,riskValue,publicHref,editorialHref} from '../src/utils/discovery.js';
 import {getDiscoveryUi,getGuideTitle} from '../src/locales/discoveryUi.js';
 import {getCommunityUi} from '../src/locales/communityUi.js';
@@ -7,9 +8,8 @@ import { publicJsaView, publicJsaQuality, PUBLIC_JSA_FIELDS, validProjectId } fr
 import { SUPPORTED_LANGS, getLanguageTag } from '../src/locales/config.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
 
-const base = 'https://aajvezmhyrdawxxbulqz.supabase.co';
 // Anonymous publishable key only. This endpoint never uses a service-role key.
-const key = 'sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
+const { url: base, key } = getPublicSupabaseConfig();
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 export function renderPublicHtml(shell, row, locale, failed = false, links = null) {
   const ui = getPublicUi(locale), safe = publicJsaView(row);
@@ -54,3 +54,4 @@ export function createPublicHandler({ fetcher = fetch, readShell = () => readFil
   };
 }
 export default createPublicHandler();
+

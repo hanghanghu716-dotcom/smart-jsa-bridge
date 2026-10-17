@@ -1,4 +1,5 @@
 import { pageWindow } from '../src/utils/pagination.js';
+import { getPublicSupabaseConfig } from '../server/supabase-config.js';
 import { getPaginationUi } from '../src/locales/paginationUi.js';
 import { getOperatorUi } from '../src/locales/operatorUi.js';
 import { exploreCountry, countryLabel } from '../src/utils/publicCountry.js';
@@ -9,8 +10,7 @@ import { exploreQuery, exploreSearch } from '../src/utils/discovery.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
 import { SUPPORTED_LANGS, getLanguageTag } from '../src/locales/config.js';
 export const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export const publicBase='https://aajvezmhyrdawxxbulqz.supabase.co';
-export const publicKey='sb_publishable_cufRFMwEfGJxlH_UH5Yxog_PSlzSdPh';
+export const {url:publicBase,key:publicKey}=getPublicSupabaseConfig();
 
 export function renderExplorePagination(total, current, locale, link) {
  const {page,count,start,end,pages}=pageWindow(current,total),ui=getPaginationUi(locale),e=escapeHtml;
@@ -57,3 +57,4 @@ export function createExploreHandler({fetcher=fetch,readShell=()=>readFile(new U
  };
 }
 export default createExploreHandler();
+

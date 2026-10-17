@@ -1,0 +1,31 @@
+name: Audit live Explore SEO
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit-explore-seo.js'
+      - '.github/workflows/audit-explore-seo.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Check public HTML, pagination, robots, sitemap and RSS
+        run: node scripts/audit-explore-seo.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: explore-seo-audit
+          path: artifacts/explore-seo.json
+          retention-days: 14
