@@ -150,7 +150,7 @@ test('checked-in captures bind all fifty-seven current draft revisions', () => {
 test('replacement dossiers bind exact draft claims and preserve prior source provenance without approval', () => {
   const read=name=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`,import.meta.url),'utf8'));
   const dossiers=read('guidance-evidence-dossiers.json');
-  const units=reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections([...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units,...read('pilot.en-US.json').units],read('content-review-batch19.json').corrections),read('content-review-batch18.json').corrections),read('content-review-batch17.json').corrections),read('content-review-batch16.json').corrections);
+  const units=reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections([...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units,...read('pilot.en-US.json').units],read('content-review-batch21.json').corrections),read('content-review-batch19.json').corrections),read('content-review-batch18.json').corrections),read('content-review-batch17.json').corrections),read('content-review-batch16.json').corrections);
   const manifest=read('guidance-source-captures.json');
   assert.equal(dossiers.dossiers.length,12);
   assert.equal(dossiers.formalReviewDecisionsAdded,0);
@@ -185,3 +185,4 @@ test('replacement dossiers bind exact draft claims and preserve prior source pro
     for(const field of ['hazard','cause','consequence','control','verification','conditions','exclusions','coverageLimit'])assert.ok(d.claimMap.some(c=>c.fields.includes(field)));
   }
 });
+
