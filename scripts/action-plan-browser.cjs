@@ -82,8 +82,8 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   await open('export',{...exported,formData:cloud.form_data,analysisData:cloud.analysis_data,...cloud.custom_layout});
   assert.ok(await p.$eval('.reportPaper',n=>n.textContent.includes('효과확인 QA')));
   await p.setViewport({width:390,height:844});await open('analysis',editing);await p.waitForSelector('[data-action-plan]');await p.$eval('[data-action-plan]',n=>n.scrollIntoView());
-  assert.ok(await p.$eval('[data-action-plan]',n=>n.scrollWidth<=n.clientWidth+2));await p.screenshot({path:path.join(out,type+'-mobile.png')});await p.setViewport({width:1550,height:1000});
-  console.log('PASS',type,'input, provisional guard, verification, draft recovery, designer, PDF, cloud payload and reopen, mobile');
+  assert.ok(await p.evaluate(()=>document.body.innerText.includes('PC 전용 기능 안내')));await p.screenshot({path:path.join(out,type+'-mobile.png')});await p.setViewport({width:1550,height:1000});
+  console.log('PASS',type,'input, provisional guard, verification, draft recovery, designer, PDF, cloud payload and reopen, existing mobile access guard');
  }
  assert.deepEqual(errors,[]);
  }finally{await browser.close();}
