@@ -1225,7 +1225,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 7,
+      "revision": 8,
       "status": "draft",
       "task": "Manutenzione di una macchina ferma",
       "step": "Preparare l’isolamento delle energie",
@@ -1233,11 +1233,12 @@
       "cause": "Una fonte di energia resta collegata o può riattivarsi",
       "consequence": "Schiacciamento o altre lesioni durante l’intervento",
       "control": "Arrestare la macchina e seguire la procedura specifica per isolare e bloccare le fonti di energia; dissipare o trattenere in sicurezza le energie residue prima dell’accesso.",
-      "verification": "Una persona competente verifica l’isolamento secondo la procedura; ripetere i controlli se può riaccumularsi energia. Se non è possibile verificare isolamento e messa in sicurezza dell’energia residua, impedire l’accesso alla zona pericolosa.",
+      "verification": "Una persona competente verifica l’isolamento secondo la procedura; ripetere i controlli se può riaccumularsi energia. Se non è possibile verificare isolamento e messa in sicurezza dell’energia residua, impedire l’accesso alla zona pericolosa. Verificare che gli addetti alla riparazione o manutenzione siano specificamente qualificati e che siano disponibili istruzioni del fabbricante e registrazioni dei controlli applicabili ai sensi dell’articolo 71. Per le attrezzature a pressione, accertare classificazione e verifiche previste prima dell’intervento; non presumere un’esenzione perché il filtro è integrato in una macchina.",
       "conditions": [
         "È disponibile la procedura specifica della macchina",
         "È stata incaricata una persona competente",
-        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
+        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "Sono verificati la qualificazione specifica degli addetti, la classificazione dell’attrezzatura e i controlli applicabili con le relative registrazioni"
       ],
       "exclusions": [
         "È necessario intervenire con energia presente",
@@ -1277,7 +1278,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "competent-person-assigned",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "qualified-maintenance-and-checks-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1306,17 +1308,23 @@
         "live-intervention": "È necessario intervenire con energia presente",
         "confined-entry": "Il lavoro richiede accesso a uno spazio confinato",
         "unknown-energy-path": "Una fonte di energia o un limite di isolamento non è noto",
-        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
+        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "qualified-maintenance-and-checks-confirmed": "Sono verificati la qualificazione specifica degli addetti, la classificazione dell’attrezzatura e i controlli applicabili con le relative registrazioni"
       },
-      "coverageLimit": "Solo controllo delle energie prima della manutenzione. Accesso, riparazione, ripari e rimessa in servizio richiedono valutazioni e procedure separate. Guida tecnica limitata alla lavorazione indicata. I testi INAIL letti descrivono il contesto tecnico e le misure di prevenzione; i riferimenti OSHA mantengono il proprio ambito statunitense. La versione vigente completa del d.lgs.81/2008 e gli eventuali obblighi per attrezzature a pressione non sono stati verificati in questa revisione e devono essere controllati prima dell’uso.",
+      "coverageLimit": "Solo isolamento e controllo delle energie prima della manutenzione di una macchina ferma, confrontati con articolo 71 e allegato VI. Accesso, riparazione, ripari e rimessa in servizio richiedono valutazioni e procedure separate. Classificazione e controlli dell’attrezzatura reale devono essere confermati; la scheda non certifica la conformità dell’impianto.",
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+          "Read current article 71 and Annex VI safe-energy provisions, and Annex VII classification-dependent pressure inspection duties. Add specifically qualified repair/maintenance staff and documented equipment classification/checks. Preserve all original physical isolation, stored-energy, reaccumulation and no-access/no-opening holds; no generic pressure-equipment exemption or inspection interval."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-it-maintenance"
       }
     },
     {
@@ -1622,21 +1630,22 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 9,
+      "revision": 10,
       "status": "draft",
       "task": "Техническое обслуживание машины",
       "step": "Подготовка изоляции энергии",
       "hazard": "Неожиданный пуск или высвобождение остаточной энергии",
       "cause": "Источник остаётся подключённым или может быть восстановлен",
       "consequence": "Защемление при вмешательстве",
-      "control": "По инструкции машины отключить источники энергии, заблокировать восстановление подачи и обозначить запрет пуска; безопасно снять остаточное давление и выполнить предусмотренные процедурой меры контроля накопленной энергии до вмешательства. Отсоединение коммуникаций выполнять по утверждённой технологии ремонта.",
-      "verification": "По утверждённой процедуре проверить отключение, снятие остаточного давления и выполнение мер контроля накопленной энергии; исключить ошибочный пуск и воздействие смежного оборудования. Если отключение и безопасное состояние накопленной энергии не подтверждены, не допускать людей в опасную зону.",
+      "control": "По инструкции машины отключить источники энергии, заблокировать восстановление подачи и обозначить запрет пуска; безопасно снять остаточное давление и выполнить предусмотренные процедурой меры контроля накопленной энергии до вмешательства. Отсоединение коммуникаций выполнять по утверждённой технологии ремонта. По утверждённой технологии ремонта выполнить предусмотренные пунктом 75 Правил № 833н отключение подводящих коммуникаций, установку заглушек на трубопроводах и освобождение оборудования и коммуникаций от остатков рабочих веществ; эти операции не разрешают разборку под давлением.",
+      "verification": "По утверждённой процедуре проверить отключение, снятие остаточного давления и выполнение мер контроля накопленной энергии; исключить ошибочный пуск и воздействие смежного оборудования. Если отключение и безопасное состояние накопленной энергии не подтверждены, не допускать людей в опасную зону. Проверить выполнение утверждённой схемы отключения и заглушек, удаление остатков, разборку электрических цепей приводов и запрещающие знаки на ручных и дистанционных органах управления, где это предусмотрено пунктом 75. Электротехнические работы выполняет персонал с требуемой квалификацией. Обозначение запрета не заменяет физическое отключение и проверку безопасного состояния.",
       "conditions": [
         "Доступна инструкция для конкретной машины",
         "Назначен компетентный работник",
         "Обслуживается стационарная машина, используемая в промышленном производстве",
         "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
-        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
+        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "Назначены работники требуемой квалификации; утверждены отключение коммуникаций, заглушки, удаление остатков и меры против ошибочного включения"
       ],
       "exclusions": [
         "Требуется вмешательство при поданной энергии",
@@ -1704,7 +1713,8 @@
           "competent-person-assigned",
           "stationary-industrial-machine",
           "maintenance-authorization-complete",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "qualified-repair-isolation-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1736,22 +1746,24 @@
         "unknown-energy-path": "Источник энергии или граница отключения не определены",
         "stationary-industrial-machine": "Обслуживается стационарная машина, используемая в промышленном производстве",
         "maintenance-authorization-complete": "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
-        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
+        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "qualified-repair-isolation-confirmed": "Назначены работники требуемой квалификации; утверждены отключение коммуникаций, заглушки, удаление остатков и меры против ошибочного включения"
       },
       "sourceCheck": {
-        "status": "reauthored_evidence_ready_content_review_pending",
-        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
-        "checkedAt": "2026-10-16",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Separate inaccessible publication records/scans from active evidence. Use the captured 833n original-act reproduction for equipment/repair scope, CPC for technical pressure-isolation examples and the actually captured CCOHS steps 4-7. The 287n transcription supplies temporal context only; signed-source equivalence/currentness remains unresolved."
+          "Read registered signed 833n pages 1–3,7–9,14–15 and 287n operative paragraph 2/amendment15. Match manufacturer-based approved repair, high-risk permit scope, pipeline blanks, removal of residual working materials, electrical disconnection, prohibitory signs and unintended-operation prevention. Add qualified electrical personnel. All original zero-pressure/access holds remain; physical pipeline work must itself follow the safe approved procedure. Special industrial-safety applicability remains an explicit site prerequisite."
         ],
         "approvalGranted": false,
         "remainingIssues": [
-          "Independent technical, regional and translation review pending.",
-          "Equipment/site applicability and current legal requirements require separate review."
-        ]
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-ru-maintenance"
       },
-      "coverageLimit": "Только управление энергией стационарной промышленной машины перед обслуживанием. Использованы доступные воспроизведения приказов, зарубежное руководство CCOHS и корпоративный пример КТК. Подлинные сканы и действующая редакция не сверены; документ не подтверждает правовое соответствие. Доступ, ремонт и ввод в работу требуют отдельных процедур. Ограниченная техническая памятка для указанной работы. Использованы обозначенные воспроизведения приказов833н и884н и текста продления287н от29.04.2025; это не сверка всех последующих изменений. Корпоративный пример КТК и зарубежные материалы не являются общероссийскими нормами. Действующие требования, допуск и специальные режимы промышленной безопасности проверяются до применения."
+      "coverageLimit": "Только управление энергией стационарной промышленной машины перед обслуживанием. Сверены выбранные положения Правил № 833н по подписанному опубликованному скану и продление приказом № 287н: с 01.09.2025 срок действия продлён до 01.09.2031. Классификация объекта, специальные требования промышленной безопасности и утверждённый допуск проверяются для конкретного места работы. Зарубежные материалы и корпоративный пример не являются российскими нормами. Ремонт, открытие корпуса и ввод в работу требуют отдельных процедур; соответствие объекта не подтверждается этой карточкой."
     },
     {
       "id": "regional-kr-maintenance",

@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {knowledgeContentHash,validateKnowledgeUnit} from './recommendation-knowledge.js';
 import {reverseReviewCorrections} from './recommendation-review-history.js';
 const read=n=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${n}`,import.meta.url),'utf8'));
-const units=reverseReviewCorrections(['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n=>read(n).units),read('content-review-batch19.json').corrections);
+const units=reverseReviewCorrections(reverseReviewCorrections(['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n=>read(n).units),read('content-review-batch21.json').corrections),read('content-review-batch19.json').corrections);
 const batch=read('content-review-batch18.json'),prior=read('content-review-batch17.json');
 const history=['technical-review-records.json','content-review-records.json','content-review-batch13.json','content-review-batch14.json','content-review-batch15.json','content-review-batch16.json','content-review-batch17.json'].flatMap(n=>read(n).reviews);
 const key=r=>`${r.unitId}:${r.area}`;
@@ -69,3 +69,4 @@ test('source comparisons retain capture identity and distinguish fiction from fr
  assert.equal(batch.caseSourceCheck.rowsCompared,3);assert.equal(batch.caseSourceCheck.allUnchanged,true);assert.equal(batch.caseSourceCheck.sourceIsIndependentProfessionalEvidence,false);
  assert.equal(batch.unresolvedLegalChecks.length,13);assert.ok(batch.unresolvedLegalChecks.every(x=>x.status==='unresolved'&&x.countsAsLegalCompletion===false));
 });
+

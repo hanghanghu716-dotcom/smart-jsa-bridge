@@ -1,3 +1,4 @@
+import {reverseReviewCorrections} from './recommendation-review-history.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,7 +8,7 @@ const root = new URL('../', import.meta.url);
 const read = name => JSON.parse(fs.readFileSync(new URL('data/recommendation-knowledge/' + name, root), 'utf8'));
 const batch = read('content-review-batch20.json');
 const prior = read('content-review-batch19.json');
-const units = ['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n => read(n).units);
+const units = reverseReviewCorrections(['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n => read(n).units),read('content-review-batch21.json').corrections);
 test('partial evidence cannot inflate unique completed review areas', () => {
   const history = ['technical-review-records.json','content-review-records.json', ...Array.from({length:8}, (_,i) => 'content-review-batch' + (i+13) + '.json')].flatMap(n => read(n).reviews);
   const latest = new Map(history.map(r => [r.unitId + ':' + r.area, r]));

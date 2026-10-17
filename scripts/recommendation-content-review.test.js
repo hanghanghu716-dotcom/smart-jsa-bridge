@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {reverseReviewCorrections} from './recommendation-review-history.js';
 import {knowledgeContentHash,validateKnowledgeUnit} from './recommendation-knowledge.js';
 const read=n=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${n}`,import.meta.url),'utf8'));
-const units=reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections([...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units,...read('pilot.en-US.json').units],read('content-review-batch19.json').corrections),read('content-review-batch18.json').corrections),read('content-review-batch17.json').corrections),read('content-review-batch16.json').corrections);
+const units=reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections([...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units,...read('pilot.en-US.json').units],read('content-review-batch21.json').corrections),read('content-review-batch19.json').corrections),read('content-review-batch18.json').corrections),read('content-review-batch17.json').corrections),read('content-review-batch16.json').corrections);
 const batch=read('content-review-batch13.json');
 const prior=[...read('technical-review-records.json').reviews,...read('content-review-records.json').reviews];
 const batch14=read('content-review-batch14.json');
@@ -143,3 +143,4 @@ test('batch 13 correction history reconstructs the exact prior draft and binds n
     assert.notEqual(u.sourceFingerprint,c.previousSourceFingerprint);
   }
 });
+

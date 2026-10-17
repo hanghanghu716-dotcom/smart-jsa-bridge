@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {knowledgeContentHash,validateKnowledgeUnit} from './recommendation-knowledge.js';
 import {reverseReviewCorrections} from './recommendation-review-history.js';
 const read=n=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${n}`,import.meta.url),'utf8'));
-const units=['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n=>read(n).units);
+const units=reverseReviewCorrections(['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n=>read(n).units),read('content-review-batch21.json').corrections);
 const batch=read('content-review-batch19.json'),prior=read('content-review-batch18.json');
 const history=['technical-review-records.json','content-review-records.json',...Array.from({length:6},(_,i)=>`content-review-batch${i+13}.json`)].flatMap(n=>read(n).reviews);
 const key=r=>`${r.unitId}:${r.area}`;
@@ -50,3 +50,4 @@ test('official indexed evidence is auditable and corrected Korean reference does
  assert.doesNotMatch(JSON.stringify([kr.unresolvedLegalCheck,kr.requiredInputs,kr.requiredToComplete]),/16-2|16의2/);
  assert.equal(batch.unresolvedLegalChecks.length,10);
 });
+

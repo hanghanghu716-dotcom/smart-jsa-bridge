@@ -3005,7 +3005,7 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Manutenzione di un filtro per aria compressa",
       "step": "Preparare l’apertura del corpo del filtro",
@@ -3013,15 +3013,16 @@
       "cause": "Alimentazione, riflusso o aria intrappolata persistono",
       "consequence": "Lesioni da getto d’aria o proiezione di parti",
       "control": "Prima di applicare la procedura dell’attrezzatura, individuare ingresso, uscita, bypass e scarichi collegati che possono alimentare o ripressurizzare il filtro. Seguire la procedura dell’attrezzatura per isolare e bloccare tutte le alimentazioni e scaricare in sicurezza la pressione prima dell’apertura.",
-      "verification": "Una persona autorizzata verifica isolamento e depressurizzazione; proseguire i controlli se la pressione può riaccumularsi. Non aprire il corpo del filtro se non sono verificati i limiti dell’isolamento e l’assenza di pressione; non allentarlo per verificare la pressione.",
-      "coverageLimit": "Solo isolamento della pressione di un filtro ad aria compressa integrato in una macchina. INAIL descrive il contesto delle energie residue; OSHA e il manuale Parker sono riferimenti tecnici con ambito proprio. La procedura deve essere specifica dell’attrezzatura; conformità italiana e requisiti sulle attrezzature a pressione restano da verificare. Guida tecnica limitata alla lavorazione indicata. I testi INAIL letti descrivono il contesto tecnico e le misure di prevenzione; i riferimenti OSHA mantengono il proprio ambito statunitense. La versione vigente completa del d.lgs.81/2008 e gli eventuali obblighi per attrezzature a pressione non sono stati verificati in questa revisione e devono essere controllati prima dell’uso.",
+      "verification": "Una persona autorizzata verifica isolamento e depressurizzazione; proseguire i controlli se la pressione può riaccumularsi. Non aprire il corpo del filtro se non sono verificati i limiti dell’isolamento e l’assenza di pressione; non allentarlo per verificare la pressione. Verificare che gli addetti alla riparazione o manutenzione siano specificamente qualificati e che siano disponibili istruzioni del fabbricante e registrazioni dei controlli applicabili ai sensi dell’articolo 71. Per le attrezzature a pressione, accertare classificazione e verifiche previste prima dell’intervento; non presumere un’esenzione perché il filtro è integrato in una macchina.",
+      "coverageLimit": "Solo isolamento della pressione prima dell’apertura di un filtro per aria compressa integrato in una macchina. Articolo 71 e allegati VI e VII sono confrontati con la procedura tecnica; categoria, verifiche e obblighi specifici dell’attrezzatura a pressione devono essere accertati per l’impianto reale. Apertura, riparazione e rimessa in servizio richiedono la procedura del fabbricante e valutazioni separate. La scheda non certifica la conformità dell’impianto.",
       "conditions": [
         "Procedura di isolamento specifica disponibile",
         "Persona autorizzata incaricata",
         "Filtro ad aria compressa e circuiti di pressione identificati",
         "Filtro integrato in una macchina; zona pericolosa e percorsi dell’energia identificati",
         "La procedura dell’attrezzatura definisce lo scarico sicuro della pressione e la verifica della depressurizzazione prima dell’apertura",
-        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
+        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "Sono verificati la qualificazione specifica degli addetti, la classificazione dell’attrezzatura e i controlli applicabili con le relative registrazioni"
       ],
       "exclusions": [
         "Intervento sotto pressione",
@@ -3066,7 +3067,8 @@
           "compressed-air-filter-identified",
           "machine-integrated-filter",
           "safe-depressurization-method-available",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "qualified-maintenance-and-checks-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -3087,7 +3089,8 @@
         "safe-depressurization-method-available": "La procedura dell’attrezzatura definisce lo scarico sicuro della pressione e la verifica della depressurizzazione prima dell’apertura",
         "non-air-service": "Il filtro contiene un gas diverso dall’aria compressa",
         "breathing-air-certification": "L’attività comprende la certificazione dell’aria respirabile",
-        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
+        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "qualified-maintenance-and-checks-confirmed": "Sono verificati la qualificazione specifica degli addetti, la classificazione dell’attrezzatura e i controlli applicabili con le relative registrazioni"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "43bf64792c30a1249880e25eada0a6a25b3b47aa41e80615aaefcbd7f8f7622b",
@@ -3107,16 +3110,16 @@
       },
       "recommendationScore": null,
       "sourceCheck": {
-        "status": "reauthored_evidence_ready_content_review_pending",
-        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
-        "checkedAt": "2026-10-16",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Replace the inaccessible 2020 presentation with the captured 2023 INAIL research description for residual-energy context. It does not supply operating steps: those are attributed to OSHA and the retained Parker example, not to Italian law."
+          "Read current article 71 and Annex VI safe-energy provisions, and Annex VII classification-dependent pressure inspection duties. Add specifically qualified repair/maintenance staff and documented equipment classification/checks. Preserve all original physical isolation, stored-energy, reaccumulation and no-access/no-opening holds; no generic pressure-equipment exemption or inspection interval."
         ],
         "approvalGranted": false,
         "remainingIssues": [
-          "Independent technical, regional and translation review pending.",
-          "Equipment/site applicability and current legal requirements require separate review."
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
         ],
         "supportingReferences": [
           {
@@ -3129,7 +3132,8 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-it-pressure-filter"
       }
     },
     {
@@ -3138,7 +3142,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Saldatura regolare al chiuso di acciaio dolce non rivestito",
       "step": "Predisporre il controllo dei fumi",
@@ -3146,14 +3150,15 @@
       "cause": "I fumi raggiungono la zona respiratoria",
       "consequence": "Malattia respiratoria",
       "control": "Valutare prima l’eliminazione o la sostituzione del processo o del materiale pericoloso e, ove tecnicamente possibile, un sistema chiuso. Per il lavoro residuo usare aspirazione localizzata alla fonte e ventilazione generale adeguata; integrare la protezione respiratoria necessaria contro l’esposizione residua, con formazione e addestramento.",
-      "verification": "Controllare posizione della cappa e prestazioni previste dell’aspirazione; ripetere dopo spostamenti o modifiche del lavoro. Interrompere la saldatura se l’aspirazione è inefficace. Verificare l’esposizione ai costituenti pertinenti e l’adeguatezza della protezione respiratoria e dell’addestramento; la sola portata d’aria non dimostra il controllo dell’esposizione.",
-      "coverageLimit": "Solo fumi; valutare separatamente incendio, radiazioni, elettricità e gas. Guida tecnica limitata alla lavorazione indicata. I testi INAIL letti descrivono il contesto tecnico e le misure di prevenzione; i riferimenti OSHA mantengono il proprio ambito statunitense. La versione vigente completa del d.lgs.81/2008 e gli eventuali obblighi per attrezzature a pressione non sono stati verificati in questa revisione e devono essere controllati prima dell’uso.",
+      "verification": "Controllare posizione della cappa e prestazioni previste dell’aspirazione; ripetere dopo spostamenti o modifiche del lavoro. Interrompere la saldatura se l’aspirazione è inefficace. Verificare l’esposizione ai costituenti pertinenti e l’adeguatezza della protezione respiratoria e dell’addestramento; la sola portata d’aria non dimostra il controllo dell’esposizione. Prima dell’avvio, documentare la valutazione delle sostanze generate e delle esposizioni combinate, i limiti pertinenti e i tempi di riferimento, comprese le esposizioni brevi. Prevedere misurazioni periodiche e dopo modifiche, salvo dimostrazione con altri mezzi di un adeguato livello di prevenzione e protezione. Se ricorrono le definizioni dell’articolo 234, applicare anche gli obblighi degli articoli 235–237 e dell’allegato XLIII; la sola denominazione “acciaio dolce” non li esclude.",
+      "coverageLimit": "Solo controllo dell’esposizione ai fumi nella saldatura regolare al chiuso di acciaio dolce non rivestito. Confronto con articoli 223–225 e, secondo la classificazione effettiva delle sostanze o del processo, 234–237 e allegati pertinenti. La classificazione internazionale generica dei fumi non sostituisce la verifica delle definizioni legali. Informazione, addestramento e sorveglianza sanitaria applicabile devono essere previsti dalla procedura del sito; incendio, radiazioni, elettricità e gas richiedono valutazioni separate. Nessuna approvazione dell’esposizione reale.",
       "conditions": [
         "Persona autorizzata incaricata",
         "Saldatura regolare al chiuso",
         "Acciaio dolce non rivestito e consumabili identificati",
         "Procedura di controllo dell’esposizione disponibile",
-        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
+        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "La valutazione identifica sostanze, esposizioni combinate e classificazioni pertinenti, gli obblighi degli articoli 223–225 e l’eventuale applicazione degli articoli 234–237"
       ],
       "exclusions": [
         "Accesso a spazio confinato",
@@ -3195,7 +3200,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "constituent-risk-assessment-completed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -3213,7 +3219,8 @@
         "outdoor-welding": "Saldatura all’aperto",
         "coated-stainless-or-unknown-metal": "Metallo base rivestito, acciaio inossidabile o metallo base non identificato",
         "extraction-unavailable": "Aspirazione assente o inefficace",
-        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto"
+        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "constituent-risk-assessment-completed": "La valutazione identifica sostanze, esposizioni combinate e classificazioni pertinenti, gli obblighi degli articoli 223–225 e l’eventuale applicazione degli articoli 234–237"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "4d2ee4a741138410d6b54ad727be1ebcdd01fd9428cefa73396616103141b444",
@@ -3232,13 +3239,18 @@
       },
       "recommendationScore": null,
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements."
+          "Read current articles 223/225/235 and INL-hosted October2026 compilation articles 234–237, annexes XXXVIII/XLI/XLII/XLIII. Distinguish CLP/process definitions from generic IARC hazard classification and account for reprotoxic constituents; mild steel is not an exemption. Add combined exposure, time basis, periodic/change monitoring with the statutory demonstrated-protection condition; preserve substitution/closed-system hierarchy, LEV and RPE. Do not reuse expired transitional chromium/nickel limits or prescribe one universal fume limit."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-it-welding-fume"
       }
     },
     {
@@ -3984,16 +3996,16 @@
       "sourceGroupId": "compressed-air-filter-pressure-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Обслуживание фильтра сжатого воздуха",
       "step": "Подготовка к открытию корпуса фильтра",
       "hazard": "Выброс воздуха под остаточным давлением",
       "cause": "Сохраняется подача, обратный поток или запертый воздух",
       "consequence": "Травма от струи воздуха или выброшенных деталей",
-      "control": "До выполнения изоляции по инструкции определить вход, выход, байпас и подключённые дренажи, через которые возможна подача или обратное поступление давления. По инструкции оборудования изолировать и заблокировать все источники подачи; до открытия безопасно сбросить остаточное давление.",
-      "verification": "Уполномоченный работник проверяет изоляцию и отсутствие давления; при возможности его повторного накопления продолжать проверки. Не открывать корпус, если границы изоляции или отсутствие давления не подтверждены; не ослаблять корпус для проверки давления.",
-      "coverageLimit": "Фильтр сжатого воздуха в составе стационарного промышленного оборудования. Технические меры опираются на OSHA и пример изготовителя; воспроизведение приказа 833н задаёт контекст ремонта. Подлинные сканы, действующая редакция и специальные режимы промышленной безопасности не сверены. Порядок открытия определяется изготовителем. Ограниченная техническая памятка для указанной работы. Использованы обозначенные воспроизведения приказов833н и884н и текста продления287н от29.04.2025; это не сверка всех последующих изменений. Корпоративный пример КТК и зарубежные материалы не являются общероссийскими нормами. Действующие требования, допуск и специальные режимы промышленной безопасности проверяются до применения.",
+      "control": "До выполнения изоляции по инструкции определить вход, выход, байпас и подключённые дренажи, через которые возможна подача или обратное поступление давления. По инструкции оборудования изолировать и заблокировать все источники подачи; до открытия безопасно сбросить остаточное давление. По утверждённой технологии ремонта выполнить предусмотренные пунктом 75 Правил № 833н отключение подводящих коммуникаций, установку заглушек на трубопроводах и освобождение оборудования и коммуникаций от остатков рабочих веществ; эти операции не разрешают разборку под давлением.",
+      "verification": "Уполномоченный работник проверяет изоляцию и отсутствие давления; при возможности его повторного накопления продолжать проверки. Не открывать корпус, если границы изоляции или отсутствие давления не подтверждены; не ослаблять корпус для проверки давления. Проверить выполнение утверждённой схемы отключения и заглушек, удаление остатков, разборку электрических цепей приводов и запрещающие знаки на ручных и дистанционных органах управления, где это предусмотрено пунктом 75. Электротехнические работы выполняет персонал с требуемой квалификацией. Обозначение запрета не заменяет физическое отключение и проверку безопасного состояния.",
+      "coverageLimit": "Только изоляция давления фильтра сжатого воздуха в составе стационарного промышленного оборудования перед открытием. Сверены выбранные положения Правил № 833н по подписанному опубликованному скану и продление приказом № 287н: с 01.09.2025 срок действия продлён до 01.09.2031. Классификация объекта, специальные требования промышленной безопасности и утверждённый допуск проверяются для конкретного места работы. Зарубежные материалы и корпоративный пример не являются российскими нормами. Ремонт, открытие корпуса и ввод в работу требуют отдельных процедур; соответствие объекта не подтверждается этой карточкой.",
       "conditions": [
         "Имеется инструкция по изоляции конкретного оборудования",
         "Назначен уполномоченный работник",
@@ -4001,7 +4013,8 @@
         "Фильтр входит в стационарное технологическое оборудование промышленного производства",
         "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
         "Инструкция оборудования определяет безопасный сброс давления и проверку отсутствия давления в корпусе до открытия",
-        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
+        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "Назначены работники требуемой квалификации; утверждены отключение коммуникаций, заглушки, удаление остатков и меры против ошибочного включения"
       ],
       "exclusions": [
         "Работа под давлением",
@@ -4061,7 +4074,8 @@
           "machine-integrated-filter",
           "maintenance-authorization-complete",
           "safe-depressurization-method-available",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "qualified-repair-isolation-confirmed"
         ],
         "excludedConditions": [
           "pressurized-intervention",
@@ -4083,7 +4097,8 @@
         "safe-depressurization-method-available": "Инструкция оборудования определяет безопасный сброс давления и проверку отсутствия давления в корпусе до открытия",
         "non-air-service": "В фильтре находится газ, отличный от сжатого воздуха",
         "breathing-air-certification": "Задача включает подтверждение качества воздуха для дыхания",
-        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
+        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "qualified-repair-isolation-confirmed": "Назначены работники требуемой квалификации; утверждены отключение коммуникаций, заглушки, удаление остатков и меры против ошибочного включения"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "98504ed1a01cd651530f1d0a79d8da67cca06f4e5d911b214dd0fcabe35507f2",
@@ -4103,16 +4118,16 @@
       },
       "recommendationScore": null,
       "sourceCheck": {
-        "status": "reauthored_evidence_ready_content_review_pending",
-        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
-        "checkedAt": "2026-10-16",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Replace unread signed-scan leads with the captured act reproductions already cited, retaining foreign OSHA and manufacturer evidence for pressure controls. Do not represent an amendment to duration as task-control evidence or claim signed-scan verification."
+          "Read registered signed 833n pages 1–3,7–9,14–15 and 287n operative paragraph 2/amendment15. Match manufacturer-based approved repair, high-risk permit scope, pipeline blanks, removal of residual working materials, electrical disconnection, prohibitory signs and unintended-operation prevention. Add qualified electrical personnel. All original zero-pressure/access holds remain; physical pipeline work must itself follow the safe approved procedure. Special industrial-safety applicability remains an explicit site prerequisite."
         ],
         "approvalGranted": false,
         "remainingIssues": [
-          "Independent technical, regional and translation review pending.",
-          "Equipment/site applicability and current legal requirements require separate review."
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
         ],
         "supportingReferences": [
           {
@@ -4125,7 +4140,8 @@
             "section": "Printed pages 5 and 10",
             "role": "Manufacturer example of reverse-flow precautions and depressurisation before bowl removal. No model-specific sequence, timing or torque is generalized."
           }
-        ]
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-ru-pressure-filter"
       }
     },
     {
@@ -4134,16 +4150,16 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 7,
+      "revision": 8,
       "status": "draft",
-      "task": "Регулярная сварка стали с низким содержанием углерода без покрытия в помещении",
+      "task": "Регулярная ручная сварка низкоуглеродистой стали без покрытия в помещении",
       "step": "Подготовка удаления сварочного аэрозоля",
       "hazard": "Вдыхание сварочного аэрозоля",
       "cause": "Аэрозоль попадает в зону дыхания",
       "consequence": "Заболевание органов дыхания",
-      "control": "На стационарном рабочем месте использовать местную вытяжку и предусмотренную для сварочного участка общеобменную вентиляцию; защиту органов дыхания выбирать по оценке воздействия.",
-      "verification": "Проверить работу предусмотренной общеобменной вентиляции, положение местного вытяжного устройства и его работу по установленным критериям; повторить проверку после перемещения устройства или изменения работы. При неэффективной местной вытяжке или неработающей предусмотренной общеобменной вентиляции прекратить сварку.",
-      "coverageLimit": "Только сварочный аэрозоль на стационарном посту. Применимость исключений пункта 8 должна быть подтверждена для конкретного объекта. Использованы воспроизведения приказов и зарубежные технические руководства; подлинные сканы и действующая редакция не сверены. Пожар, излучение, электрические и газовые риски оцениваются отдельно. Ограниченная техническая памятка для указанной работы. Использованы обозначенные воспроизведения приказов833н и884н и текста продления287н от29.04.2025; это не сверка всех последующих изменений. Корпоративный пример КТК и зарубежные материалы не являются общероссийскими нормами. Действующие требования, допуск и специальные режимы промышленной безопасности проверяются до применения.",
+      "control": "Сначала оценить возможность уменьшения выделения вредных веществ выбором менее опасного процесса или материала. На стационарном рабочем месте использовать местную вытяжку и предусмотренную для сварочного участка общеобменную вентиляцию; защиту органов дыхания выбирать по оценке воздействия.",
+      "verification": "Проверить работу предусмотренной общеобменной вентиляции, положение местного вытяжного устройства и его работу по установленным критериям; повторить проверку после перемещения устройства или изменения работы. При неэффективной местной вытяжке или неработающей предусмотренной общеобменной вентиляции прекратить сварку. Проверить оценку воздействия выявленных компонентов аэрозоля и газов по применимым гигиеническим нормативам; расход воздуха сам по себе не подтверждает допустимую экспозицию. При появлении неучтённых опасностей остановить работу и пересмотреть допуск и меры безопасности; не применять исключение из оформления наряда автоматически.",
+      "coverageLimit": "Только сварочный аэрозоль при ручной сварке на стационарном посту. Сверены выбранные положения Правил № 884н по подписанному опубликованному скану, включая пункт 8 и пункты 12–14, 22–30, и продление приказом № 287н до 01.09.2031 с 01.09.2025. Исключённые пунктом 8 опасные объекты, автоматическая и механизированная сварка не входят в эту карточку. Применимые гигиенические нормативы и процедура оценки фактического воздействия проверяются до работы. Пожар, излучение, электрические и газовые риски оцениваются отдельно; соответствие объекта не подтверждается этой карточкой.",
       "conditions": [
         "Назначен уполномоченный работник",
         "Регулярная сварка в помещении",
@@ -4152,14 +4168,16 @@
         "Сварка выполняется на стационарном рабочем месте",
         "Подтверждено отсутствие исключений для опасных производственных объектов с опасными веществами",
         "Утверждена инструкция; необходимость наряда-допуска проверена и требования допуска выполнены",
-        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
+        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "Подтверждена ручная сварка на стационарном посту; автоматическая и механизированная сварка требуют отдельной процедуры"
       ],
       "exclusions": [
         "Вход в замкнутое пространство",
         "Сварка на открытом воздухе",
         "Материал с покрытием, нержавеющий или неизвестный",
         "Вытяжка отсутствует или неэффективна",
-        "Опасный производственный объект с опасными веществами по пункту 8 Правил № 884н"
+        "Опасный производственный объект с опасными веществами по пункту 8 Правил № 884н",
+        "Автоматическая или механизированная сварка"
       ],
       "keywords": [
         "Регулярная сварка стали с низким содержанием углерода без покрытия в помещении",
@@ -4221,14 +4239,16 @@
           "fixed-welding-station",
           "site-scope-confirmed",
           "welding-authorization-complete",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "manual-welding-process-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
           "outdoor-welding",
           "coated-stainless-or-unknown-metal",
           "extraction-unavailable",
-          "hazardous-substance-industrial-facility"
+          "hazardous-substance-industrial-facility",
+          "automated-or-mechanized-welding"
         ]
       },
       "conditionLabels": {
@@ -4244,7 +4264,9 @@
         "site-scope-confirmed": "Подтверждено отсутствие исключений для опасных производственных объектов с опасными веществами",
         "welding-authorization-complete": "Утверждена инструкция; необходимость наряда-допуска проверена и требования допуска выполнены",
         "hazardous-substance-industrial-facility": "Опасный производственный объект с опасными веществами по пункту 8 Правил № 884н",
-        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы"
+        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "manual-welding-process-confirmed": "Подтверждена ручная сварка на стационарном посту; автоматическая и механизированная сварка требуют отдельной процедуры",
+        "automated-or-mechanized-welding": "Автоматическая или механизированная сварка"
       },
       "sourceRevision": "reauthored-captured-evidence-2026-10-16",
       "sourceFingerprint": "dbf09af89a0db6c19b3f06ac7b40739c0a2bf4abab2f22f013103747b0c5c0c2",
@@ -4264,17 +4286,18 @@
       },
       "recommendationScore": null,
       "sourceCheck": {
-        "status": "reauthored_evidence_ready_content_review_pending",
-        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
-        "checkedAt": "2026-10-16",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Use the captured 884n reproduction for fixed-station ventilation and exclusions, retain 287n solely as temporal context, and use foreign OSHA/HSE for fume-control guidance. Do not assert that rule 8 applicability has already been checked at a real site."
+          "Read registered signed 884n rules1–8,12–30 and signed287n amendment30. Preserve excluded hazardous-substance industrial facilities, fixed-station local plus general ventilation and exposure-selected RPE. Narrow to manual welding because automated/mechanized equipment has additional specific rules. Add lower-emission process assessment, constituent exposure check and stop/reassess for unforeseen hazards. The recurring-work permit exception is not invoked automatically; no numerical sanitary compliance is claimed."
         ],
         "approvalGranted": false,
         "remainingIssues": [
-          "Independent technical, regional and translation review pending.",
-          "Equipment/site applicability and current legal requirements require separate review."
-        ]
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-ru-welding-fume"
       }
     },
     {
@@ -4406,7 +4429,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "실내에서 반복적으로 수행하는 무도장 연강 용접",
       "step": "용접 흄 제어 준비",
@@ -4414,15 +4437,16 @@
       "cause": "흄이 작업자의 호흡영역에 도달함",
       "consequence": "호흡기 질환",
       "control": "용접 공정에 맞는 발생원 국소배기를 가동하고, 분진작업에는 제617조의 지급·착용 원칙에 따라 적절한 호흡용 보호구를 사용한다. 같은 조 단서의 예외를 적용하려면 필요한 설비와 가동 등 요건이 실제로 충족되는지 확인한다.",
-      "verification": "후드 위치와 절차에 정한 배기 성능을 확인하고, 후드를 옮기거나 작업 조건이 바뀌면 다시 확인한다. 배기가 불충분하면 용접을 중지한다. 보호구의 적합성·개인전용 지급·착용·오염 방지 상태를 확인하고, 예외 적용 시 확인 근거를 남긴다. 흄 성분과 해당 노출기준을 확인하고 필요한 노출 평가를 수행한다. 배기 풍량이나 눈에 보이는 흄의 양만으로 노출 관리가 충분하다고 판정하지 않는다.",
-      "coverageLimit": "흄 노출 위험만 다룬다. 화재·광선·전기·가스 위험은 별도로 평가한다. 명시한 작업의 에너지 또는 흄 노출 관리만 다룬다. 필터는 기계에 연결된 압축공기 회로의 격리 범위이며 압력용기 분류·검사·수리 승인이 아니다. 용접의 분진작업 분류와 국소배기·호흡보호구 의무는 실제 공정과 현행 조문·별표에 따라 확인해야 한다. 이 검수로 특정 현장의 법적 적합성을 확인한 것은 아니다.",
+      "verification": "후드 위치와 절차에 정한 배기 성능을 확인하고, 후드를 옮기거나 작업 조건이 바뀌면 다시 확인한다. 배기가 불충분하면 용접을 중지한다. 보호구의 적합성·개인전용 지급·착용·오염 방지 상태를 확인하고, 예외 적용 시 확인 근거를 남긴다. 흄 성분과 해당 노출기준을 확인하고 필요한 노출 평가를 수행한다. 배기 풍량이나 눈에 보이는 흄의 양만으로 노출 관리가 충분하다고 판정하지 않는다. 안전보건규칙 제609조·별표17 및 관리대상 유해물질에 적용되는 제429조·별표13에 따라 후드 형식과 작업위치에 맞는 제어풍속을 확인한다. 제612조에 따라 최초 사용 및 수리 후 사용 전 덕트·배풍기·흡기와 배기·집진장치 상태를 점검하고 이상을 보수한다. 법 제125조와 시행규칙 제186~190조에 따른 측정 대상, 유자격 측정자, 정상작업 중 개인시료 채취 원칙, 최초·변경·정기 측정 및 결과 통지·개선 조치를 작업절차에 반영한다. 노출기준 고시의 성분별 시간가중평균·단시간·최고노출기준과 혼합물 적용원칙을 구분하며, 노출기준 이하라는 이유만으로 제617조 보호구 예외를 인정하지 않는다.",
+      "coverageLimit": "실내에서 반복적으로 수행하는 무도장 연강 용접의 흄 노출 관리만 다룬다. 안전보건규칙 별표16의 분진작업과 별표12의 관리대상 유해물질 해당 여부를 함께 검토하며, 반복 작업에 임시·단시간 작업 예외를 자동 적용하지 않는다. 노출 성분 확인, 교육·청소·세척, 해당 건강진단과 실제 설비·측정 계획은 사업장 절차로 정한다. 화재·광선·전기·가스 위험은 별도로 평가한다. 특정 현장의 노출 적합성이나 법적 적합성을 승인한 것은 아니다.",
       "conditions": [
         "권한 있는 담당자가 지정됨",
         "실내에서 반복적으로 수행하는 용접",
         "무도장 연강과 용접 재료가 확인됨",
         "노출 방지 작업절차가 있음",
         "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음",
-        "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함"
+        "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함",
+        "용접 흄과 구성성분의 측정 대상·방법·주기·담당 자격, 시간가중·단시간·혼합 노출 평가 및 필요한 건강진단 계획이 확인됨"
       ],
       "exclusions": [
         "밀폐공간 진입",
@@ -4465,7 +4489,8 @@
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
           "respiratory-requirements-reviewed",
-          "regional-applicability-confirmed"
+          "regional-applicability-confirmed",
+          "constituent-monitoring-plan-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -4484,7 +4509,8 @@
         "coated-stainless-or-unknown-metal": "도장·도금 재료, 스테인리스 또는 미확인 재질",
         "extraction-unavailable": "배기장치가 없거나 성능이 불충분함",
         "respiratory-requirements-reviewed": "분진작업 해당 여부와 제617조의 보호구 지급·착용 및 예외 요건을 검토한 절차가 있음",
-        "regional-applicability-confirmed": "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함"
+        "regional-applicability-confirmed": "해당 작업의 법령 적용범위와 현행 조문·별표, 사업장 작업절차를 확인함",
+        "constituent-monitoring-plan-confirmed": "용접 흄과 구성성분의 측정 대상·방법·주기·담당 자격, 시간가중·단시간·혼합 노출 평가 및 필요한 건강진단 계획이 확인됨"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "cc1d7f2e8bf25b1d617546da2616224fce76d7f08f4121b5e181ea55b2ed1da1",
@@ -4503,14 +4529,18 @@
       },
       "recommendationScore": null,
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Made hood position, specified performance, change-triggered rechecks and stop-work conditions explicit; retained jurisdiction-specific respiratory requirements.",
-          "Corrected the respiratory-protection default and statutory exception distinction using article 617; an exposure assessment alone does not establish the exception."
+          "Read exposure notice2020-48 articles2–6/11 and current official Annex1 HWP: distinguish manganese fume, iron-oxide fume and relevant gases, 8-hour TWA, 15-minute STEL/ceiling and mixture rule. Reconcile dust rules605–617/Annex16#19/Annex17 with managed-substance rules420–429/Annex12/13; add hood-specific performance and initial/post-repair inspection. Read current law125 and implementing rules186–190 for qualified measurement, method, timing, communication and improvement. Preserve617 RPE default and conditional exception; remove irrelevant filter boilerplate. No universal welding-fume concentration or hood speed is authored."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-kr-welding-fume"
       }
     },
     {

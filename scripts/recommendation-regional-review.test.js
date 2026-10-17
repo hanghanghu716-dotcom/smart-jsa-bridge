@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {knowledgeContentHash,validateKnowledgeUnit} from './recommendation-knowledge.js';
 import {reverseReviewCorrections} from './recommendation-review-history.js';
 const read=n=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${n}`,import.meta.url),'utf8'));
-const units=reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n=>read(n).units),read('content-review-batch19.json').corrections),read('content-review-batch18.json').corrections),read('content-review-batch17.json').corrections);
+const units=reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(reverseReviewCorrections(['regional-drafts.json','pressure-welding-drafts.json','pilot.en-US.json'].flatMap(n=>read(n).units),read('content-review-batch21.json').corrections),read('content-review-batch19.json').corrections),read('content-review-batch18.json').corrections),read('content-review-batch17.json').corrections);
 const batch=read('content-review-batch16.json');
 const prior=['technical-review-records.json','content-review-records.json','content-review-batch13.json','content-review-batch14.json','content-review-batch15.json'].flatMap(n=>read(n).reviews);
 const key=r=>`${r.unitId}:${r.area}`;
@@ -46,3 +46,4 @@ test('batch16 history is reversible and stale reviews fail on corrected content'
  assert.match(get('regional-de-maintenance').conditionLabels['competent-person-assigned'],/unterwiesene/);
  assert.ok(get('regional-ca-bc-welding-fume').applicability.conditionsRequired.includes('bc-regime-confirmed'));
 });
+
