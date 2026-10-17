@@ -611,21 +611,22 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
       "hazard": "Inhalation of welding fume",
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
-      "control": "Use suitable local exhaust ventilation positioned and operated for the process. Where ventilation does not adequately control exposure, provide and use suitable respiratory protection selected for the hazards and applicable requirements.",
-      "verification": "Check hood position and specified extraction performance, that operators are trained, and that the immediate ventilation-failure warning and protection arrangements work. Repeat checks after moving the hood or changing the work; stop welding if extraction is ineffective.",
-      "coverageLimit": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. Ventilation design, maintenance, discharge and make-up air, welding standards, exposure limits and respiratory programme requirements need a separate Alberta applicability review. Fire, radiation, electrical and gas hazards require separate assessment.",
+      "control": "First assess eliminating the hazard where reasonably practicable, including a safer process or material. For the remaining work, use suitable engineering controls including local exhaust ventilation positioned and operated for the process, with adequate make-up air. Add administrative measures and suitable respiratory protection where required for the remaining risk; respiratory protection does not replace feasible engineering controls.",
+      "verification": "Check hood position and specified extraction performance, that operators are trained, and that the immediate ventilation-failure warning and protection arrangements work. Repeat checks after moving the hood or changing the work; stop welding if extraction is ineffective. Verify constituent-specific exposure limits and the written respiratory-protection procedure, including approved equipment, selection, fit and inspection where required. Airflow alone does not establish safe exposure.",
+      "coverageLimit": "Routine indoor uncoated mild-steel fume control within Alberta OHS Code scope, including the exclusions in sections 1.1 and 1.2. Parts 2, 4, 18 and 26 govern hazard control, exposure, respiratory protection and ventilation. Section 171.1 incorporates CSA W117.2-06 and section 247 incorporates Z94.4-02; the complete standards were not reviewed by this card and remain separate compliance obligations. Recirculation is not authorized here. Oxygen-deficient or immediately dangerous atmospheres, fire, radiation, electrical and gas hazards require separate assessment and procedures.",
       "conditions": [
         "Authorized person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
-        "Exposure-control procedure available"
+        "Exposure-control procedure available",
+        "The workplace and task fall within the applicable Alberta OHS Code provisions, including the scope exclusions"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -675,7 +676,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "ab-code-scope-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -692,7 +694,8 @@
         "confined-entry": "Confined-space entry",
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
-        "extraction-unavailable": "Extraction unavailable or ineffective"
+        "extraction-unavailable": "Extraction unavailable or ineffective",
+        "ab-code-scope-confirmed": "The workplace and task fall within the applicable Alberta OHS Code provisions, including the scope exclusions"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
@@ -2833,21 +2836,22 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
       "hazard": "Inhalation de fumées de soudage",
       "cause": "Les fumées atteignent la zone respiratoire",
       "consequence": "Affection respiratoire",
-      "control": "Rechercher d’abord un procédé ou un consommable moins émissif. Capter les fumées au plus près de leur émission et compléter par une ventilation générale adaptée. Rejeter l’air extrait à l’extérieur, loin des prises d’air neuf, sans le recycler dans le local; prévoir la protection respiratoire nécessaire contre l’exposition résiduelle.",
-      "verification": "Contrôler la position du captage et son efficacité selon la procédure; recommencer après déplacement du captage ou modification du travail. Arrêter le soudage si le captage est inefficace.",
-      "coverageLimit": "Fumées uniquement; évaluer séparément incendie, rayonnements, électricité et gaz.",
+      "control": "Évaluer d’abord la suppression du risque, puis le remplacement par un procédé ou un produit moins dangereux. Pour le travail restant, capter les fumées au plus près de leur émission, avec une ventilation générale et un apport d’air adaptés. Rejeter l’air extrait à l’extérieur, loin des prises d’air neuf, sans le recycler dans le local; compléter par les mesures d’organisation et la protection respiratoire nécessaires contre l’exposition résiduelle.",
+      "verification": "Contrôler la position du captage et son efficacité selon la procédure; recommencer après déplacement du captage ou modification du travail. Arrêter le soudage si le captage est inefficace. Vérifier l’évaluation des constituants et leurs limites d’exposition, sans assimiler les valeurs de poussières générales à une preuve de maîtrise des fumées. Contrôler l’avertissement automatique requis pour une défaillance du captage non directement décelable; la formation et l’emploi des protections respiratoires doivent être adaptés. Le débit seul ne démontre pas la maîtrise de l’exposition.",
+      "coverageLimit": "Fumées de soudage régulier d’acier doux non revêtu en intérieur, dans le champ applicable du Code du travail. R4222-10, R4222-12 et R4222-13 encadrent les poussières et le captage; R4412-15 et R4412-16 définissent la prévention du risque chimique général. Si le régime CMR s’applique, ses exigences spécifiques de substitution, système clos et réduction de l’exposition doivent être traitées dans l’évaluation et la procédure du poste avant utilisation; cette fiche n’en constitue pas une procédure complète. L’absence de recyclage est un choix de cette fiche, pas une interdiction générale déduite de ces articles. Incendie, rayonnements, électricité et gaz nécessitent une évaluation distincte.",
       "conditions": [
         "Personne autorisée désignée",
         "Soudage régulier en intérieur",
         "Acier doux non revêtu et consommables identifiés",
-        "Procédure de maîtrise de l’exposition disponible"
+        "Procédure de maîtrise de l’exposition disponible",
+        "Le champ légal, les constituants, les limites applicables et les exigences CMR éventuelles sont traités dans l’évaluation et la procédure du poste"
       ],
       "exclusions": [
         "Entrée en espace confiné",
@@ -2888,7 +2892,8 @@
           "authorized-person-assigned",
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
-          "exposure-procedure-available"
+          "exposure-procedure-available",
+          "fr-chemical-scope-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -2905,7 +2910,8 @@
         "confined-entry": "Entrée en espace confiné",
         "outdoor-welding": "Soudage en extérieur",
         "coated-stainless-or-unknown-metal": "Métal de base revêtu, acier inoxydable ou métal de base non identifié",
-        "extraction-unavailable": "Captage absent ou inefficace"
+        "extraction-unavailable": "Captage absent ou inefficace",
+        "fr-chemical-scope-confirmed": "Le champ légal, les constituants, les limites applicables et les exigences CMR éventuelles sont traités dans l’évaluation et la procédure du poste"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "5a52b4d393ecaf08faca4765b3e6f5629fc7fd4ebe6ac25c71ce4083f7e14179",

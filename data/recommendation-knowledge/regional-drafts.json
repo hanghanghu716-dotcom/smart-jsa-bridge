@@ -203,7 +203,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
@@ -214,7 +214,8 @@
       "verification": "Each worker tests and confirms that the equipment is stopped and the hazardous energy is isolated or made safe before work. Keep the danger zone closed if this cannot be verified.",
       "conditions": [
         "Equipment-specific procedure is available",
-        "A competent person is assigned"
+        "A competent person is assigned",
+        "The machinery and work fall within the applicable Alberta OHS Code provisions, including the scope exclusions"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -254,7 +255,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "ab-code-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -282,7 +284,8 @@
         "competent-person-assigned": "A competent person is assigned",
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
-        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+        "unknown-energy-path": "An energy source or isolation boundary is unknown",
+        "ab-code-scope-confirmed": "The machinery and work fall within the applicable Alberta OHS Code provisions, including the scope exclusions"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -303,7 +306,7 @@
           ]
         }
       },
-      "coverageLimit": "Preparation for maintenance under the applicable Alberta machinery energy-control procedure only. Individual, group and complex-group arrangements have different requirements. Live-work exceptions, remotely controlled systems, shift transfers, lock removal, piping and return to service are not authorized by this card; confirm their separate requirements where relevant."
+      "coverageLimit": "Stopped machinery preparation under Alberta OHS Code Part 15 only, after confirming statutory scope. Sections 1.1 and 1.2 exclude specified farming/ranching and domestic-worker situations from these provisions; not every agricultural business is excluded. Individual securing, group securing and complex group securing are distinct procedures. Group securing under section 215 requires the supervisor verification/report and each worker securing the key system; complex-group procedures under section 215.1 require professional-engineer certification and their full verification/sign-on arrangements. Each worker still tests and confirms under section 213. This card does not authorize energized exceptions, remote-control procedures, shift transfer, lock removal, piping work or restart."
     },
     {
       "id": "regional-ca-on-maintenance",
@@ -1103,7 +1106,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
@@ -1114,7 +1117,8 @@
       "verification": "Vérifier la séparation des sources, la dissipation des énergies résiduelles et les moyens de retenue prévus par la procédure avant l’accès. Si la séparation des sources ou la maîtrise des énergies résiduelles ne peut être vérifiée, interdire l’accès à la zone dangereuse.",
       "conditions": [
         "La procédure propre à la machine est disponible",
-        "Une personne compétente est désignée"
+        "Une personne compétente est désignée et a reçu la formation spécifique aux travaux et équipements concernés",
+        "Le champ d’application du Code du travail à l’établissement et à l’opération est confirmé"
       ],
       "exclusions": [
         "Une intervention sous énergie est nécessaire",
@@ -1154,7 +1158,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "fr-labour-code-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1179,10 +1184,11 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "La procédure propre à la machine est disponible",
-        "competent-person-assigned": "Une personne compétente est désignée",
+        "competent-person-assigned": "Une personne compétente est désignée et a reçu la formation spécifique aux travaux et équipements concernés",
         "live-intervention": "Une intervention sous énergie est nécessaire",
         "confined-entry": "Le travail implique une entrée en espace clos",
-        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue"
+        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue",
+        "fr-labour-code-scope-confirmed": "Le champ d’application du Code du travail à l’établissement et à l’opération est confirmé"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -1193,7 +1199,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Cette fiche couvre uniquement la maîtrise des énergies avant la maintenance. L’accès, la réparation, les protecteurs et la remise en service nécessitent une évaluation et des procédures distinctes."
+      "coverageLimit": "Maîtrise des énergies avant maintenance, machine arrêtée, dans le champ applicable du Code du travail. Les articles R4323-4 et R4323-15 imposent la formation spécifique et la prévention de la remise en marche. Cette fiche ne couvre pas la dérogation pour une intervention techniquement impossible à réaliser à l’arrêt; elle ne dispense pas des instructions et protections propres à cette dérogation. Accès, réparation, protecteurs et remise en service nécessitent des procédures distinctes."
     },
     {
       "id": "regional-it-maintenance",
