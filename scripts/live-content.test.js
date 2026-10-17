@@ -22,8 +22,10 @@ test('missing translations and withdrawn cases return 404; upstream errors retur
   const res=response();await createCaseHandler({fetcher,readShell:async()=>shell})({query:{lng,slug:post.post_group_id}},res);assert.equal(res.statusCode,status);assert.equal(res.headers['x-robots-tag'],'noindex');
  }
 });
-test('Canadian fallback redirects to the actual source locale and malicious route inputs cannot escape paths',async()=>{
- const handler=createCaseHandler({fetcher:fake([{...post,language_code:'en-CA'}]),readShell:async()=>shell});let res=response();await handler({query:{lng:'en-CA-ON',slug:post.post_group_id}},res);assert.equal(res.statusCode,308);assert.equal(res.headers.location,'/en-CA/case-study/pipe%20%26%20tank');
+test('missing provincial content does not redirect to generic Canada and malicious route inputs cannot escape paths',async()=>{
+ const handler=createCaseHandler({fetcher:fake([{...post,language_code:'en-CA'}]),readShell:async()=>shell});let res;
+ for(const lng of ['en-CA-AB','en-CA-BC','en-CA-ON','fr-CA-QC']){res=response();await handler({query:{lng,slug:post.post_group_id}},res);assert.equal(res.statusCode,404);assert.equal(res.headers.location,undefined);}
+ res=response();await handler({query:{lng:'en-CA',slug:post.post_group_id}},res);assert.equal(res.statusCode,200);
  for(const slug of ['../x','x/y','x\\y',['x']]){res=response();await handler({query:{lng:'ko',slug}},res);assert.equal(res.statusCode,404);}
 });
 test('initial article HTML sanitizes active markup and keeps safe tables and escaped bootstrap content',()=>{
