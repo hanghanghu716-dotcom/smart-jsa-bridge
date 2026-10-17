@@ -9,20 +9,21 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-US",
       "jurisdiction": "US",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Follow the machine-specific procedure to shut down, isolate and secure each energy source using the required lockout or tagout system, then safely release or restrain stored energy before access.",
+      "control": "Follow the machine-specific procedure to shut down and isolate each energy source. Use lockout for lockable energy-isolating devices. Tagout is permitted only under the equipment energy-control programme meeting the applicable OSHA tagout requirements, including demonstrated full employee protection when used instead of lockout on a lockable device. Safely release or restrain stored energy before access.",
       "verification": "An authorized employee verifies isolation and control of stored energy before work; continue verification while hazardous energy could accumulate again. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
         "A competent person is assigned",
         "An employee authorized under the equipment energy-control procedure is assigned",
-        "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+        "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked",
+        "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -38,7 +39,7 @@
         {
           "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
           "authority": "OSHA",
-          "section": "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+          "section": "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification",
           "checkedAt": "2026-10-15",
           "scope": "US general industry; sector and exception scope need review",
           "retrieval": "primary_page_or_document",
@@ -54,7 +55,8 @@
           "equipment-procedure-available",
           "competent-person-assigned",
           "authorized-person-assigned",
-          "general-industry-scope-confirmed"
+          "general-industry-scope-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -62,8 +64,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "ef3cbcf6cb540f6c7c1fa46396349fa4d5b72908c349562e9e5ff9a5120185e0",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -84,7 +86,8 @@
         "confined-entry": "Work involves confined-space entry",
         "unknown-energy-path": "An energy source or isolation boundary is unknown",
         "authorized-person-assigned": "An employee authorized under the equipment energy-control procedure is assigned",
-        "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked"
+        "general-industry-scope-confirmed": "The work is within the cited general-industry scope; applicable Federal OSHA or State Plan requirements have been checked",
+        "regional-applicability-confirmed": "The task and workplace regime are identified; applicable Federal OSHA or State Plan requirements and the equipment procedure have been checked"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -95,7 +98,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures. Federal general-industry baseline only; applicable State Plan and sector-specific requirements must be checked before use. US federal general-industry technical baseline only. Federal versus State Plan coverage must be established before use; construction, agriculture, maritime, utility installations and the other exclusions of the cited provision cannot be inferred covered. This card does not establish compliance with all applicable standards."
     },
     {
       "id": "regional-ca-maintenance",
@@ -103,19 +106,20 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA",
       "jurisdiction": "CA",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Follow the equipment-specific procedure to shut down the machine, identify and isolate its energy sources, and apply each exposed worker's personal lock under the applicable lockout procedure. Safely release or restrain stored energy, including parts that could fall or move, before access.",
       "verification": "Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
         "A competent person is assigned",
-        "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+        "The applicable federal, provincial or territorial workplace regime has been identified and checked",
+        "The applicable Canadian federal, provincial or territorial regime and site procedure have been checked for this task"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -146,7 +150,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "competent-person-assigned",
-          "canadian-regime-confirmed"
+          "canadian-regime-confirmed",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -154,8 +159,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -175,7 +180,8 @@
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
         "unknown-energy-path": "An energy source or isolation boundary is unknown",
-        "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+        "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked",
+        "regional-applicability-confirmed": "The applicable Canadian federal, provincial or territorial regime and site procedure have been checked for this task"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -184,9 +190,18 @@
         "findings": [
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Federal/provincial/territorial applicability remains a prerequisite; CCOHS does not establish local legal compliance."
+          ]
+        }
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Canadian technical guidance for energy isolation before maintenance, conditional on the identified federal, provincial or territorial regime. Group arrangements, lock removal, access, repairs, guards and return to service require the applicable separate procedures; CCOHS guidance alone does not establish legal compliance. Canadian technical guidance from CCOHS. It is not a single nationwide legal procedure: the applicable federal, provincial or territorial regime must be resolved before use. Referenced CSA standards were not reviewed in full and this card does not certify compliance with them."
     },
     {
       "id": "regional-ca-ab-maintenance",
@@ -194,18 +209,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-AB",
       "jurisdiction": "CA-AB",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Bring the machine to a complete stop and isolate all hazardous energy using the equipment-specific procedure. Use the applicable individual or group securing procedure with identified personal locks; safely release or restrain stored energy before access. Each worker retains the duty to test and confirm a safe state.",
       "verification": "Each worker tests and confirms that the equipment is stopped and the hazardous energy is isolated or made safe before work. Keep the danger zone closed if this cannot be verified.",
       "conditions": [
         "Equipment-specific procedure is available",
-        "A competent person is assigned"
+        "A competent person is assigned",
+        "The machinery and work fall within the applicable Alberta OHS Code provisions, including the scope exclusions"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -245,7 +261,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "ab-code-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -253,8 +270,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -273,7 +290,8 @@
         "competent-person-assigned": "A competent person is assigned",
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
-        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+        "unknown-energy-path": "An energy source or isolation boundary is unknown",
+        "ab-code-scope-confirmed": "The machinery and work fall within the applicable Alberta OHS Code provisions, including the scope exclusions"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -283,9 +301,18 @@
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions.",
           "Restored verification by each worker under Alberta Part 15."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "Publisher disclaimer states current to March 2023. Verify subsequent amendments against the current official consolidation before regional approval."
+          ]
+        }
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Stopped machinery preparation under Alberta OHS Code Part 15 only, after confirming statutory scope. Sections 1.1 and 1.2 exclude specified farming/ranching and domestic-worker situations from these provisions; not every agricultural business is excluded. Individual securing, group securing and complex group securing are distinct procedures. Group securing under section 215 requires the supervisor verification/report and each worker securing the key system; complex-group procedures under section 215.1 require professional-engineer certification and their full verification/sign-on arrangements. Each worker still tests and confirms under section 213. This card does not authorize energized exceptions, remote-control procedures, shift transfer, lock removal, piping work or restart."
     },
     {
       "id": "regional-ca-on-maintenance",
@@ -293,18 +320,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-ON",
       "jurisdiction": "CA-ON",
-      "revision": 4,
+      "revision": 8,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Isolate and secure the machine energy sources; use the equipment-specific procedure to safely release stored energy and block parts against gravity or other unintended movement before access.",
+      "control": "Identify every hazardous energy source using the equipment-specific procedure; authorised workers isolate the supplies and secure the isolation devices with personally controlled locks. Safely release or restrain stored energy and block components against gravity or unintended movement before access.",
       "verification": "Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
-        "A competent person is assigned"
+        "A competent person is assigned",
+        "The Ontario sector and applicable legal requirements have been identified in the approved site procedure"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -318,24 +346,24 @@
       ],
       "sources": [
         {
-          "url": "https://www.ontario.ca/page/alert-equipment-blocking",
-          "authority": "Ontario Ministry of Labour",
-          "section": "Equipment blocking and hazardous energy",
-          "checkedAt": "2026-10-14",
-          "scope": "Ontario blocking alert; sector regulation and blocking design need review",
-          "retrieval": "primary_page_or_document",
-          "jurisdiction": "CA-ON",
-          "evidenceRole": "technical"
-        },
-        {
           "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
           "authority": "CCOHS",
           "section": "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
           "jurisdiction": "CA",
-          "checkedAt": "2026-10-15",
+          "checkedAt": "2026-10-16",
           "retrieval": "relevant_primary_sections_read",
           "evidenceRole": "technical",
           "scope": "Canadian technical guidance on stored energy; provincial requirements and the equipment procedure still need separate review."
+        },
+        {
+          "url": "https://www.wsps.ca/resource-hub/articles/left-hand-rule",
+          "authority": "Workplace Safety & Prevention Services (WSPS)",
+          "jurisdiction": "CA-ON",
+          "section": "2024-10-16 article: hazardous-energy types, pneumatic energy and machine-specific risk assessment",
+          "scope": "Ontario association technical guidance, read through the publisher’s embedded article. Supports identifying pneumatic energy and equipment-specific isolation and dissipation. Electrical switching advice is outside this draft; this is not legislation.",
+          "checkedAt": "2026-10-16",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical"
         }
       ],
       "applicability": {
@@ -344,7 +372,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -352,12 +381,13 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "reauthored-captured-evidence-2026-10-16",
+      "sourceFingerprint": "1f8bdf2da84e15ada54b7f213896b6fa90d50aed5cf2fae3b91f4e404adba8aa",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
-        "contentType": "paraphrased-guidance-draft"
+        "contentType": "paraphrased-guidance-draft",
+        "evidenceDossier": "guidance-evidence-dossiers.json#regional-ca-on-maintenance"
       },
       "review": {
         "technicalStatus": "pending",
@@ -372,18 +402,23 @@
         "competent-person-assigned": "A competent person is assigned",
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
-        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+        "unknown-energy-path": "An energy source or isolation boundary is unknown",
+        "regional-applicability-confirmed": "The Ontario sector and applicable legal requirements have been identified in the approved site procedure"
       },
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "reauthored_evidence_ready_content_review_pending",
+        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
+        "checkedAt": "2026-10-16",
         "findings": [
-          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+          "The inaccessible Ontario alert is replaced by actual Canadian technical guidance covering gravity blocking, residual energy and verification. No provincial statutory claim is retained."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and translation review pending.",
+          "Equipment/site applicability and current legal requirements require separate review."
+        ]
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Stopped-machine energy isolation using WSPS/CCOHS technical guidance. Blocking against gravity, securing all supplies and verifying stored-energy control must be specified for the equipment. The approved procedure must establish the Ontario sector and applicable duties. This card does not authorize live maintenance, access, repair, guard removal or restart. Ontario technical guidance within the stated task and sector only. The responsible person must identify the applicable sector rules and any equipment review duties before use. A construction welding source does not establish industrial-establishment duties, and an industrial machinery provision does not govern every Ontario task. Full CSA standards and site compliance are outside this review."
     },
     {
       "id": "regional-ca-bc-maintenance",
@@ -391,18 +426,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 4,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Shut down the machine, secure parts and attachments against unintended movement, and isolate its energy sources. Under the written lockout procedure, each exposed worker applies an identified personal lock and keeps immediate control of its key; where the Part 10.9 group procedure applies, each worker locks the key-securing system. Safely release or restrain stored energy before access.",
       "verification": "Before starting, each worker verifies that every energy source is effectively locked out and that stored energy has been made safe under the equipment procedure. Keep the danger zone closed if this cannot be verified.",
       "conditions": [
         "Equipment-specific procedure is available",
-        "A competent person is assigned"
+        "A competent person is assigned",
+        "The workplace falls within the British Columbia OHS Regulation"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -442,7 +478,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "bc-regime-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -450,8 +487,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -470,7 +507,8 @@
         "competent-person-assigned": "A competent person is assigned",
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
-        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+        "unknown-energy-path": "An energy source or isolation boundary is unknown",
+        "bc-regime-confirmed": "The workplace falls within the British Columbia OHS Regulation"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -480,9 +518,18 @@
           "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions.",
           "Restored verification by each worker under WorkSafeBC 10.6."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "captureComparison": {
+          "checkedAt": "2026-10-16",
+          "method": "AI-assisted source and scope comparison; not an independent review",
+          "approvalGranted": false,
+          "remainingIssues": [
+            "Independent technical, regional and translation decisions remain pending. Captured text is not approval.",
+            "WorkSafeBC publisher text was captured; site-specific applicability and regulatory requirements still need regional review."
+          ]
+        }
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Pre-maintenance isolation within the British Columbia OHS Regulation only. Combination locks are excluded. Group lockout requires the complete Part 10.9 procedure, including two qualified workers and the posted checklist. Shift transfer, removal and restart require separate procedures; alternative control, no-lock exceptions and energized work under 10.10-10.12 are outside this card."
     },
     {
       "id": "regional-ca-qc-maintenance",
@@ -490,18 +537,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
       "hazard": "Démarrage imprévu ou libération d’énergie résiduelle",
       "cause": "Une alimentation reste raccordée ou peut être rétablie",
       "consequence": "Écrasement pendant l’intervention",
-      "control": "Identifier les énergies et appliquer la procédure propre à la machine pour les isoler; chaque personne accédant à la zone dangereuse effectue le cadenassage.",
-      "verification": "Éliminer ou maîtriser les énergies résiduelles et vérifier l’efficacité du cadenassage avant l’intervention. Si la séparation des sources ou la maîtrise des énergies résiduelles ne peut être vérifiée, interdire l’accès à la zone dangereuse.",
+      "control": "Arrêter complètement la machine. Selon sa procédure écrite, identifier et isoler les sources, éliminer ou maîtriser les énergies résiduelles, puis cadenasser les points de coupure. Chaque personne accédant à la zone dangereuse effectue le cadenassage avant la vérification de son efficacité. Utiliser des cadenas à cléage unique identifiés au nom de la personne ou attribués par le registre prévu au RSST.",
+      "verification": "Selon la procédure propre à la machine, éliminer ou maîtriser les énergies résiduelles et vérifier l’isolement avant l’intervention. Chaque personne accédant à la zone dangereuse appose son cadenas. Si l’isolement ou l’état sûr ne peut être confirmé, interdire l’accès.",
       "conditions": [
         "La procédure propre à la machine est disponible",
-        "Une personne compétente est désignée"
+        "Les personnes qui accèdent à la zone dangereuse sont formées et informées des risques et de la méthode appliquée",
+        "Il s’agit d’un établissement assujetti au RSST; le travail n’est pas un chantier de construction"
       ],
       "exclusions": [
         "Une intervention sous énergie est nécessaire",
@@ -518,21 +566,21 @@
           "url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/identifier-corriger-risques/liste-informations-prevention/exposition-aux-zones-dangereuses-dune-machine",
           "authority": "CNESST",
           "section": "Cadenassage et zones dangereuses",
-          "checkedAt": "2026-10-14",
+          "checkedAt": "2026-10-16",
           "scope": "Québec; vérifier la méthode et les responsabilités de cadenassage applicables",
-          "retrieval": "primary_page_or_document",
+          "retrieval": "relevant_primary_sections_read",
           "jurisdiction": "CA-QC",
           "evidenceRole": "technical"
         },
         {
-          "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
-          "authority": "LégisQuébec",
-          "jurisdiction": "CA-QC",
-          "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
-          "scope": "Machine danger-zone energy control: each entrant participates in lockout, machine-specific procedures address residual energy and verification. Alternative methods and exceptions require their own assessment; this draft uses lockout and does not reproduce those exceptions.",
-          "checkedAt": "2026-10-15",
-          "retrieval": "primary_pdf_relevant_sections_read",
-          "evidenceRole": "technical"
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+          "jurisdiction": "CA",
+          "checkedAt": "2026-10-16",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Canadian technical guidance on stored energy; provincial requirements and the equipment procedure still need separate review."
         }
       ],
       "applicability": {
@@ -541,7 +589,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "qc-establishment-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -549,12 +598,13 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "reauthored-captured-evidence-2026-10-16",
+      "sourceFingerprint": "48d7b383d3121122aab85ff0d014f0851414afaf61a53c7b986ca54ef39b5331",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
-        "contentType": "paraphrased-guidance-draft"
+        "contentType": "paraphrased-guidance-draft",
+        "evidenceDossier": "guidance-evidence-dossiers.json#regional-ca-qc-maintenance"
       },
       "review": {
         "technicalStatus": "pending",
@@ -566,20 +616,25 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "La procédure propre à la machine est disponible",
-        "competent-person-assigned": "Une personne compétente est désignée",
+        "competent-person-assigned": "Les personnes qui accèdent à la zone dangereuse sont formées et informées des risques et de la méthode appliquée",
         "live-intervention": "Une intervention sous énergie est nécessaire",
         "confined-entry": "Le travail implique une entrée en espace clos",
-        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue"
+        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue",
+        "qc-establishment-scope-confirmed": "Il s’agit d’un établissement assujetti au RSST; le travail n’est pas un chantier de construction"
       },
-      "coverageLimit": "Cette fiche couvre uniquement la maîtrise des énergies avant la maintenance. L’accès, la réparation, les protecteurs et la remise en service nécessitent une évaluation et des procédures distinctes.",
+      "coverageLimit": "Cadenassage avant maintenance dans un établissement assujetti au RSST, articles 195 à 207. Les méthodes alternatives, les exceptions au cadenassage, les chantiers de construction et les installations électriques distinctes ne sont pas couverts. La procédure écrite accessible doit être révisée; coordination des employeurs, autorisation écrite des intervenants externes, transfert, retrait des cadenas et remise en marche exigent leurs procédures complètes.",
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "reauthored_evidence_ready_content_review_pending",
+        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
+        "checkedAt": "2026-10-16",
         "findings": [
-          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+          "Replace the unavailable 2026 RSST consolidation with the captured CNESST machine-safety guidance and CCOHS isolation/verification passages. Do not substitute the 2023 Gazette as a verified 2026 consolidation."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and translation review pending.",
+          "Equipment/site applicability and current legal requirements require separate review."
+        ]
       }
     },
     {
@@ -588,14 +643,14 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-GB",
       "jurisdiction": "GB",
-      "revision": 4,
+      "revision": 6,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Stop moving plant and identify and isolate its energy sources. Lock off against accidental reconnection and safely release or restrain stored energy, including supporting parts that could fall, using the equipment-specific procedure before access.",
       "verification": "Before work, verify isolation and that stored energy has been made safe using the equipment-specific procedure. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
@@ -639,8 +694,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "b9bd868287c11e63156e090e56c39a999a19e601fd04d8728373d73cb797ce67",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -671,7 +726,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Great Britain energy isolation before maintenance only, within the cited HSE work-equipment guidance. Northern Ireland and shipboard equipment outside that scope are not covered. Other applicable equipment regimes, access, repair, guards and return to service require separate assessment and procedures."
     },
     {
       "id": "regional-au-maintenance",
@@ -679,19 +734,20 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-AU",
       "jurisdiction": "AU",
-      "revision": 5,
+      "revision": 8,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+      "control": "Follow the equipment-specific procedure to stop the machine, identify and isolate all energy sources, and apply each exposed worker’s personal lock and identification tag under the applicable lockout procedure. Safely release or restrain stored energy before access; a tag alone does not provide isolation.",
       "verification": "Verify isolation and control of stored energy before access. An unsuccessful restart test alone does not establish that pressure or other stored energy is safe. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
       "conditions": [
         "Equipment-specific procedure is available",
         "A competent person is assigned",
-        "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
+        "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked",
+        "The Australian state or territory, adopted requirements and applicable equipment/site procedure have been checked"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -732,7 +788,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "competent-person-assigned",
-          "state-territory-requirements-checked"
+          "state-territory-requirements-checked",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -740,8 +797,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "77024af840e0f4a86b0e2389a1171e5a454e398d679f728c70c1a3be189e6341",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -761,7 +818,8 @@
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
         "unknown-energy-path": "An energy source or isolation boundary is unknown",
-        "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked"
+        "state-territory-requirements-checked": "The applicable Australian state or territory requirements and adoption of the cited guidance have been checked",
+        "regional-applicability-confirmed": "The Australian state or territory, adopted requirements and applicable equipment/site procedure have been checked"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -772,7 +830,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures. Australian technical guidance. Safe Work Australia model codes acquire legal effect through jurisdictional approval; Victorian guidance has its own jurisdiction. The applicable state or territory requirements must be checked before use. This card does not certify model-code adoption, a pressure-equipment classification or compliance with an entire code."
     },
     {
       "id": "regional-sg-maintenance",
@@ -780,18 +838,20 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "en-SG",
       "jurisdiction": "SG",
-      "revision": 4,
+      "revision": 8,
       "status": "draft",
       "task": "Machine maintenance",
       "step": "Prepare the isolation boundary",
       "hazard": "Unexpected motion or stored-energy release",
       "cause": "An energy path remains connected or can be restored",
       "consequence": "Crushing or other injury during intervention",
-      "control": "Isolate all machine energy sources, dissipate stored energy safely and apply lock-out and identification tags using the equipment procedure before access.",
-      "verification": "Verify that isolation and lock-out are effective and stored energy has been dissipated. A warning tag alone does not isolate energy. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone.",
+      "control": "Stop the machine and allow moving parts to stop. Isolate all machine energy sources, safely dissipate or restrain stored energy, and apply lock-out and identification tags using the equipment procedure before access.",
+      "verification": "Verify that isolation and lock-out are effective and stored energy has been safely dissipated or restrained as specified by the equipment procedure. A warning tag alone does not isolate energy. If isolation or stored-energy control cannot be verified, keep personnel outside the danger zone. After any prescribed try-start test, return the controls to the off or neutral position.",
       "conditions": [
         "Equipment-specific procedure is available",
-        "A competent person is assigned"
+        "A competent person is assigned",
+        "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "Every person performing the work has been fully instructed in the task-specific lock-out procedure before starting"
       ],
       "exclusions": [
         "Work requires intervention while energized",
@@ -821,7 +881,9 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "regional-applicability-confirmed",
+          "lockout-instruction-completed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -829,8 +891,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "11a716143a3c26cb65ecbd92113d3a600e1f7ff77b7486b048b4c05bb91adb66",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -849,7 +911,9 @@
         "competent-person-assigned": "A competent person is assigned",
         "live-intervention": "Work requires intervention while energized",
         "confined-entry": "Work involves confined-space entry",
-        "unknown-energy-path": "An energy source or isolation boundary is unknown"
+        "unknown-energy-path": "An energy source or isolation boundary is unknown",
+        "regional-applicability-confirmed": "The Singapore workplace requirements, current applicable provisions and approved task procedure have been checked before use",
+        "lockout-instruction-completed": "Every person performing the work has been fully instructed in the task-specific lock-out procedure before starting"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -860,7 +924,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures."
+      "coverageLimit": "Energy isolation before machinery maintenance only. Access, repair, guarding and return to service require their own assessment and procedures. The WSH Council guidance is compared with General Provisions regulation 16. This is a conditional draft review, not approval of an installation or every applicable statutory duty."
     },
     {
       "id": "regional-de-maintenance",
@@ -868,10 +932,10 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "Maschineninstandhaltung",
-      "step": "Stillsetzung vorbereiten",
+      "step": "Energietrennung vor der Störungsbeseitigung vorbereiten",
       "hazard": "Unerwarteter Anlauf oder Freisetzung gespeicherter Energie",
       "cause": "Eine Energieverbindung bleibt bestehen oder wird wiederhergestellt",
       "consequence": "Quetschungen bei Eingriffen",
@@ -879,7 +943,8 @@
       "verification": "Vor Arbeitsbeginn prüfen, ob die Energiequellen getrennt, Restenergien sicher abgeleitet oder gesichert und verkettete Anlagen gegen Anlauf gesichert sind. Ist die Trennung oder Beherrschung gespeicherter Energie nicht nachgewiesen, bleibt der Gefahrenbereich gesperrt.",
       "conditions": [
         "Anlagenspezifische Arbeitsanweisung liegt vor",
-        "Eine fachkundige Person ist beauftragt"
+        "Eine fachkundige, beauftragte und unterwiesene Person ist eingesetzt",
+        "Die Anwendung der BetrSichV auf Maschine und Tätigkeit ist geklärt"
       ],
       "exclusions": [
         "Eingriff bei eingeschalteter Energie erforderlich",
@@ -895,7 +960,7 @@
         {
           "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4529",
           "authority": "DGUV",
-          "section": "FBHM-127, section 2 and Annex 1, PDF pages 2 and 8: residual energy and secured linked machinery",
+          "section": "FBHM-127, section 2 and Annex 2, PDF pages 2 and 8: residual energy and secured linked machinery",
           "checkedAt": "2026-10-15",
           "scope": "Störungsbeseitigung; betriebliche Gefährdungsbeurteilung und Zuständigkeit prüfen",
           "retrieval": "primary_page_or_document",
@@ -909,7 +974,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "betrsichv-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -917,8 +983,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "9300fcc4baaf73d3cc7bae828b2db32aeae3b106f46df6ea6dafeadfdb302e1f",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -934,10 +1000,11 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "Anlagenspezifische Arbeitsanweisung liegt vor",
-        "competent-person-assigned": "Eine fachkundige Person ist beauftragt",
+        "competent-person-assigned": "Eine fachkundige, beauftragte und unterwiesene Person ist eingesetzt",
         "live-intervention": "Eingriff bei eingeschalteter Energie erforderlich",
         "confined-entry": "Einstieg in einen engen Raum vorgesehen",
-        "unknown-energy-path": "Energiequelle oder Trennstelle ist ungeklärt"
+        "unknown-energy-path": "Energiequelle oder Trennstelle ist ungeklärt",
+        "betrsichv-scope-confirmed": "Die Anwendung der BetrSichV auf Maschine und Tätigkeit ist geklärt"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -948,7 +1015,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Nur Energietrennung vor der Instandhaltung. Zugang, Reparatur, Schutzeinrichtungen und Wiederinbetriebnahme erfordern eine gesonderte Beurteilung und Arbeitsanweisung."
+      "coverageLimit": "Nur Energietrennung vor der Störungsbeseitigung an stillgesetzten Maschinen im Anwendungsbereich der BetrSichV. FBHM-127 ist keine allgemeine Instandhaltungsanweisung. Sonderbereiche nach § 1 sowie Eingriffe mit Energie oder außer Kraft gesetzten Schutzeinrichtungen nach § 10 Absatz 4 sind nicht abgedeckt. Zugang, Reparatur, Änderungen und Wiederinbetriebnahme erfordern gesonderte Beurteilung und Verfahren."
     },
     {
       "id": "regional-jp-maintenance",
@@ -956,7 +1023,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "機械の整備",
       "step": "停止と再起動防止の準備",
@@ -966,12 +1033,13 @@
       "control": "機械を停止し、機械ごとの手順に従ってエネルギー源を遮断し、施錠等により再供給を防ぐ。作業前に残圧などの蓄積エネルギーを安全に除去し、必要な部分を機械的に保持する。",
       "verification": "作業開始前に、エネルギー源の遮断、再供給防止、蓄積エネルギーの除去と必要な保持措置を機械別の手順で確認する。 遮断や蓄積エネルギーの安全な処置を確認できない場合は、危険区域に立ち入らない。",
       "conditions": [
-        "機械ごとの作業手順を確認しました",
-        "適切な知識と技能を持つ担当者を配置しました"
+        "機械ごとの作業手順が利用できる",
+        "適切な知識と技能を持つ担当者が配置されている",
+        "第107条又は第108条に該当する停止作業であることを確認している"
       ],
       "exclusions": [
         "通電・運転状態での作業が必要です",
-        "閉所への立入りを伴います",
+        "閉鎖空間（タンク内部等）への立入りを伴う",
         "エネルギー源または隔離範囲が不明です"
       ],
       "keywords": [
@@ -1007,7 +1075,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "stopped-work-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1015,8 +1084,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "c7391385634c6ea6e91bc1708a5171c266a56da3f77da9b9495b5da0aed07bbe",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1031,11 +1100,12 @@
       },
       "recommendationScore": null,
       "conditionLabels": {
-        "equipment-procedure-available": "機械ごとの作業手順を確認しました",
-        "competent-person-assigned": "適切な知識と技能を持つ担当者を配置しました",
+        "equipment-procedure-available": "機械ごとの作業手順が利用できる",
+        "competent-person-assigned": "適切な知識と技能を持つ担当者が配置されている",
         "live-intervention": "通電・運転状態での作業が必要です",
-        "confined-entry": "閉所への立入りを伴います",
-        "unknown-energy-path": "エネルギー源または隔離範囲が不明です"
+        "confined-entry": "閉鎖空間（タンク内部等）への立入りを伴う",
+        "unknown-energy-path": "エネルギー源または隔離範囲が不明です",
+        "stopped-work-scope-confirmed": "第107条又は第108条に該当する停止作業であることを確認している"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -1046,7 +1116,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "保守前のエネルギー遮断のみを対象とする。立入り、修理作業、防護装置、再稼働は別途評価し、手順を定める。"
+      "coverageLimit": "労働安全衛生規則第107条の掃除・給油・検査・修理・調整（刃部を除く）、又は第108条の刃部の掃除・検査・修理・取替え・調整について、停止して行う作業前のエネルギー遮断に限定する。第107条の運転中作業の例外及び第108条の危険がない構造の例外は扱わない。施錠等による再起動防止と蓄積エネルギーの処置を確認する。立入り、修理、ガード復旧、再稼働には別の手順を定める。"
     },
     {
       "id": "regional-fr-maintenance",
@@ -1054,18 +1124,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-FR",
       "jurisdiction": "FR",
-      "revision": 4,
+      "revision": 7,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
       "hazard": "Démarrage imprévu ou libération d’énergie résiduelle",
       "cause": "Une alimentation reste raccordée ou peut être rétablie",
       "consequence": "Écrasement pendant l’intervention",
-      "control": "Identifier et consigner les sources selon la procédure de la machine; dissiper les énergies résiduelles et sécuriser les éléments susceptibles de tomber avant l’intervention.",
+      "control": "Arrêter la machine puis, selon sa procédure de consignation, séparer les sources, condamner les organes de séparation et identifier la partie concernée. Dissiper les énergies résiduelles ou les retenir par des moyens adaptés lorsque leur dissipation est impossible; immobiliser les éléments susceptibles de tomber avant l’intervention.",
       "verification": "Vérifier la séparation des sources, la dissipation des énergies résiduelles et les moyens de retenue prévus par la procédure avant l’accès. Si la séparation des sources ou la maîtrise des énergies résiduelles ne peut être vérifiée, interdire l’accès à la zone dangereuse.",
       "conditions": [
         "La procédure propre à la machine est disponible",
-        "Une personne compétente est désignée"
+        "Une personne compétente est désignée et a reçu la formation spécifique aux travaux et équipements concernés",
+        "Le champ d’application du Code du travail à l’établissement et à l’opération est confirmé"
       ],
       "exclusions": [
         "Une intervention sous énergie est nécessaire",
@@ -1079,9 +1150,9 @@
       ],
       "sources": [
         {
-          "url": "https://www.inrs.fr/media.html?refINRS=ED+6109",
+          "url": "https://www.inrs.fr/dam/jcr%3A69feb470-6958-4e76-a6bb-f34f673b2b8c/ed6109.pdf",
           "authority": "INRS",
-          "section": "ED 6109, consignation et déconsignation",
+          "section": "ED 6109, October 2020, definitions and section 4.1, printed pages 8-9 and 11 (PDF pages 10-11 and 13)",
           "checkedAt": "2026-10-14",
           "scope": "Guide technique; procédure et habilitations adaptées à la situation à vérifier",
           "retrieval": "primary_page_or_document",
@@ -1092,7 +1163,7 @@
           "url": "https://www.inrs.fr/demarche/conception-utilisation-equipements-travail/machines-remise-service",
           "authority": "INRS",
           "jurisdiction": "FR",
-          "section": "Énergies des machines; mise à jour du 12/10/2022",
+          "section": "Énergies des machines: dissipation and suspended loads; retrieved 2026-10-16",
           "scope": "Conseils de remise en service après arrêt prolongé: définition de la dissipation et contrôle des masses suspendues. Complément technique, pas une procédure complète de maintenance ni une validation réglementaire.",
           "checkedAt": "2026-10-15",
           "retrieval": "relevant_primary_sections_read",
@@ -1105,7 +1176,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "fr-labour-code-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1113,8 +1185,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "a70b94f14ed7f6c8ea315c058659f90031caba33281a58c2539edeff9dc56806",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1130,10 +1202,11 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "La procédure propre à la machine est disponible",
-        "competent-person-assigned": "Une personne compétente est désignée",
+        "competent-person-assigned": "Une personne compétente est désignée et a reçu la formation spécifique aux travaux et équipements concernés",
         "live-intervention": "Une intervention sous énergie est nécessaire",
         "confined-entry": "Le travail implique une entrée en espace clos",
-        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue"
+        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue",
+        "fr-labour-code-scope-confirmed": "Le champ d’application du Code du travail à l’établissement et à l’opération est confirmé"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -1144,7 +1217,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Cette fiche couvre uniquement la maîtrise des énergies avant la maintenance. L’accès, la réparation, les protecteurs et la remise en service nécessitent une évaluation et des procédures distinctes."
+      "coverageLimit": "Maîtrise des énergies avant maintenance, machine arrêtée, dans le champ applicable du Code du travail. Les articles R4323-4 et R4323-15 imposent la formation spécifique et la prévention de la remise en marche. Cette fiche ne couvre pas la dérogation pour une intervention techniquement impossible à réaliser à l’arrêt; elle ne dispense pas des instructions et protections propres à cette dérogation. Accès, réparation, protecteurs et remise en service nécessitent des procédures distinctes."
     },
     {
       "id": "regional-it-maintenance",
@@ -1152,18 +1225,20 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "it-IT",
       "jurisdiction": "IT",
-      "revision": 4,
+      "revision": 8,
       "status": "draft",
       "task": "Manutenzione di una macchina ferma",
       "step": "Preparare l’isolamento delle energie",
       "hazard": "Riavvio inatteso o rilascio di energia residua",
       "cause": "Una fonte di energia resta collegata o può riattivarsi",
       "consequence": "Schiacciamento o altre lesioni durante l’intervento",
-      "control": "Seguire la procedura specifica per isolare e bloccare le fonti di energia della macchina e rendere sicure le energie residue prima dell’accesso.",
-      "verification": "Una persona competente verifica l’isolamento secondo la procedura; ripetere i controlli se può riaccumularsi energia. Se non è possibile verificare isolamento e messa in sicurezza dell’energia residua, impedire l’accesso alla zona pericolosa.",
+      "control": "Arrestare la macchina e seguire la procedura specifica per isolare e bloccare le fonti di energia; dissipare o trattenere in sicurezza le energie residue prima dell’accesso.",
+      "verification": "Una persona competente verifica l’isolamento secondo la procedura; ripetere i controlli se può riaccumularsi energia. Se non è possibile verificare isolamento e messa in sicurezza dell’energia residua, impedire l’accesso alla zona pericolosa. Verificare che gli addetti alla riparazione o manutenzione siano specificamente qualificati e che siano disponibili istruzioni del fabbricante e registrazioni dei controlli applicabili ai sensi dell’articolo 71. Per le attrezzature a pressione, accertare classificazione e verifiche previste prima dell’intervento; non presumere un’esenzione perché il filtro è integrato in una macchina.",
       "conditions": [
         "È disponibile la procedura specifica della macchina",
-        "È stata incaricata una persona competente"
+        "È stata incaricata una persona competente",
+        "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "Sono verificati la qualificazione specifica degli addetti, la classificazione dell’attrezzatura e i controlli applicabili con le relative registrazioni"
       ],
       "exclusions": [
         "È necessario intervenire con energia presente",
@@ -1202,7 +1277,9 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "regional-applicability-confirmed",
+          "qualified-maintenance-and-checks-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1210,8 +1287,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "672c683dbfed78c52beebc2551d59441345196ddddf8325b80e4bf10256aa044",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1230,17 +1307,24 @@
         "competent-person-assigned": "È stata incaricata una persona competente",
         "live-intervention": "È necessario intervenire con energia presente",
         "confined-entry": "Il lavoro richiede accesso a uno spazio confinato",
-        "unknown-energy-path": "Una fonte di energia o un limite di isolamento non è noto"
+        "unknown-energy-path": "Una fonte di energia o un limite di isolamento non è noto",
+        "regional-applicability-confirmed": "Prima dell’uso sono verificati gli obblighi italiani vigenti, il campo di applicazione e la procedura del sito per il lavoro previsto",
+        "qualified-maintenance-and-checks-confirmed": "Sono verificati la qualificazione specifica degli addetti, la classificazione dell’attrezzatura e i controlli applicabili con le relative registrazioni"
       },
-      "coverageLimit": "Solo controllo delle energie prima della manutenzione. Accesso, riparazione, ripari e rimessa in servizio richiedono valutazioni e procedure separate.",
+      "coverageLimit": "Solo isolamento e controllo delle energie prima della manutenzione di una macchina ferma, confrontati con articolo 71 e allegato VI. Accesso, riparazione, ripari e rimessa in servizio richiedono valutazioni e procedure separate. Classificazione e controlli dell’attrezzatura reale devono essere confermati; la scheda non certifica la conformità dell’impianto.",
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+          "Read current article 71 and Annex VI safe-energy provisions, and Annex VII classification-dependent pressure inspection duties. Add specifically qualified repair/maintenance staff and documented equipment classification/checks. Preserve all original physical isolation, stored-energy, reaccumulation and no-access/no-opening holds; no generic pressure-equipment exemption or inspection interval."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-it-maintenance"
       }
     },
     {
@@ -1249,18 +1333,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 3,
+      "revision": 6,
       "status": "draft",
       "task": "Mantenimiento de máquinas",
       "step": "Preparar la consignación",
       "hazard": "Arranque imprevisto o liberación de energía residual",
       "cause": "Una fuente permanece conectada o puede reconectarse",
       "consequence": "Atrapamiento durante la intervención",
-      "control": "Identificar las fuentes y aplicar la consignación específica de la máquina para impedir la puesta en marcha y controlar las energías residuales.",
+      "control": "Detener la máquina y aplicar su procedimiento de consignación: separar todas las fuentes de energía, bloquear los órganos de separación e identificarlos, y disipar o retener de forma segura la energía acumulada. Verificar el resultado antes de acceder; una etiqueta por sí sola no sustituye el bloqueo.",
       "verification": "Comprobar el aislamiento y la energía residual antes de acceder. Si no se verifica el aislamiento y el control de las energías residuales, impedir el acceso a la zona peligrosa.",
       "conditions": [
         "Está disponible el procedimiento específico del equipo",
-        "Se ha designado a una persona competente"
+        "Personal especialmente capacitado y designado para esta operación",
+        "Se ha confirmado la aplicación del Real Decreto 1215/1997 al equipo y a la tarea"
       ],
       "exclusions": [
         "Es necesario intervenir con energía presente",
@@ -1276,7 +1361,7 @@
         {
           "url": "https://www.insst.es/documentacion/colecciones-tecnicas/ntp-notas-tecnicas-de-prevencion/32-serie-ntp-numeros-1101-a-1135-ano-2018/ntp-1.117-consignacion-de-maquinas",
           "authority": "INSST",
-          "section": "NTP 1117, consignación de máquinas",
+          "section": "NTP 1117 (2018), selected sections 2-3: energy sources, separation, locking, dissipation and verification",
           "checkedAt": "2026-10-14",
           "scope": "Guía técnica; confirmar obligaciones y procedimiento aplicables",
           "retrieval": "primary_page_or_document",
@@ -1290,7 +1375,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "rd1215-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1298,8 +1384,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "7ea63d5385e77ac60c0c82d08b516064e6f4325ccf57bbd5fe87499a2d4170e1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1315,12 +1401,13 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "Está disponible el procedimiento específico del equipo",
-        "competent-person-assigned": "Se ha designado a una persona competente",
+        "competent-person-assigned": "Personal especialmente capacitado y designado para esta operación",
         "live-intervention": "Es necesario intervenir con energía presente",
         "confined-entry": "El trabajo implica entrar en un espacio confinado",
-        "unknown-energy-path": "Se desconoce una fuente de energía o el límite de aislamiento"
+        "unknown-energy-path": "Se desconoce una fuente de energía o el límite de aislamiento",
+        "rd1215-scope-confirmed": "Se ha confirmado la aplicación del Real Decreto 1215/1997 al equipo y a la tarea"
       },
-      "coverageLimit": "Solo control de energías antes del mantenimiento. El acceso, la reparación, los resguardos y la puesta en servicio requieren evaluación y procedimientos independientes.",
+      "coverageLimit": "Consignación previa al mantenimiento de equipos de trabajo comprendidos en el Real Decreto 1215/1997, con la máquina parada y desconectada. No cubre la excepción de trabajos que no puedan realizarse con el equipo parado del anexo II, apartado 1.14. Acceso, reparación, resguardos y puesta en servicio requieren evaluación y procedimientos independientes; NTP 1117 es orientación técnica.",
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
         "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
@@ -1337,7 +1424,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ar-SA",
       "jurisdiction": "SA",
-      "revision": 5,
+      "revision": 7,
       "status": "draft",
       "task": "صيانة الآلات",
       "step": "تجهيز عزل الطاقة",
@@ -1345,11 +1432,12 @@
       "cause": "بقاء مصدر طاقة متصلاً أو إمكان إعادة توصيله",
       "consequence": "إصابة أو سحق أثناء التدخل",
       "control": "تحديد مصادر الطاقة وتطبيق إجراء المعدة للعزل والقفل الشخصي وبطاقات التحذير؛ وتفريغ الضغط المخزن بأمان وتأمين بقية مصادر الطاقة المحددة في الإجراء قبل التدخل.",
-      "verification": "التحقق وفق إجراء المعدة من فعالية العزل وزوال الضغط المخزن واستيفاء تدابير تأمين الطاقة قبل بدء العمل. إذا تعذر التحقق من العزل وتأمين الطاقة المخزنة، يُمنع الدخول إلى منطقة الخطر.",
+      "verification": "التحقق وفق إجراء المعدة من فعالية العزل وزوال الضغط المخزن واستيفاء تدابير تأمين الطاقة قبل بدء العمل. إذا تعذر التحقق من العزل وتأمين الطاقة المخزنة، يُمنع الدخول إلى منطقة الخطر. يجب أن يتحقق عامل مخوّل مستقل عن منفذ العزل من نقاط العزل وفق الإجراء المعتمد قبل السماح بالعمل.",
       "conditions": [
         "إجراء المعدة المحدد متاح",
         "تم تعيين شخص مختص",
-        "اعتماد إجراء العزل والإغلاق ضمن إجراءات المشروع"
+        "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM",
+        "تم التحقق قبل الاستخدام من المتطلبات السعودية السارية ونطاق العمل والإجراء المعتمد في الموقع"
       ],
       "exclusions": [
         "يتطلب العمل تدخلاً مع وجود الطاقة",
@@ -1363,23 +1451,13 @@
       ],
       "sources": [
         {
-          "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
-          "authority": "EXPRO",
-          "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
-          "checkedAt": "2026-10-14",
-          "scope": "إرشادات إدارة المشاريع لدى الجهة؛ لا تثبت وحدها انطباق متطلبات قانونية على جميع المنشآت السعودية. يجب تأكيد النسخة المعتمدة بالمشروع.",
-          "retrieval": "relevant_primary_sections_read",
-          "jurisdiction": "SA",
-          "evidenceRole": "technical"
-        },
-        {
           "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20العزل.pdf",
           "authority": "هيئة كفاءة الإنفاق والمشروعات الحكومية",
           "jurisdiction": "SA",
           "section": "EOM-KSS-PR-000028-AR Rev 000; section 2, section 6.2 (PDF pages 10-11), section 7.2 (PDF page 14)",
           "scope": "دليل التشغيل والصيانة للمرافق والمشروعات الحكومية: يدعم تخفيف الضغط والتحقق من العزل. يُستخدم هنا كمرجع تقني مكمل؛ لا يحل محل إجراء المشروع المعتمد ولا يثبت انطباقًا قانونيًا عامًا.",
-          "checkedAt": "2026-10-15",
-          "retrieval": "primary_pdf_relevant_sections_read",
+          "checkedAt": "2026-10-16",
+          "retrieval": "relevant_primary_sections_read",
           "evidenceRole": "technical"
         }
       ],
@@ -1390,7 +1468,8 @@
         "conditionsRequired": [
           "equipment-procedure-available",
           "competent-person-assigned",
-          "project-isolation-procedure-adopted"
+          "government-om-isolation-procedure-adopted",
+          "regional-applicability-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1398,12 +1477,13 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "reauthored-captured-evidence-2026-10-16",
+      "sourceFingerprint": "0e97357de24d1f9d8012cba6d6ae18a567a719e478fa30cb8d762e606b6c98e1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
-        "contentType": "paraphrased-guidance-draft"
+        "contentType": "paraphrased-guidance-draft",
+        "evidenceDossier": "guidance-evidence-dossiers.json#regional-sa-maintenance"
       },
       "review": {
         "technicalStatus": "pending",
@@ -1419,18 +1499,23 @@
         "live-intervention": "يتطلب العمل تدخلاً مع وجود الطاقة",
         "confined-entry": "يتضمن العمل دخول حيز مغلق",
         "unknown-energy-path": "يوجد مصدر طاقة أو حد عزل غير معروف",
-        "project-isolation-procedure-adopted": "اعتماد إجراء العزل والإغلاق ضمن إجراءات المشروع"
+        "government-om-isolation-procedure-adopted": "العمل ضمن تشغيل وصيانة مرفق أو مشروع حكومي مع اعتماد إجراء عزل خاص بالمعدة وفق نطاق دليل EOM",
+        "regional-applicability-confirmed": "تم التحقق قبل الاستخدام من المتطلبات السعودية السارية ونطاق العمل والإجراء المعتمد في الموقع"
       },
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "reauthored_evidence_ready_content_review_pending",
+        "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
+        "checkedAt": "2026-10-16",
         "findings": [
-          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+          "Replace the unread EPM construction-project procedure with the actually captured EOM operation/maintenance procedure, Rev 000 (2020-03-31). Narrow the draft to government facilities/projects O&M with a locally adopted equipment procedure and independent isolation verification."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and translation review pending.",
+          "Equipment/site applicability and current legal requirements require separate review."
+        ]
       },
-      "coverageLimit": "تقتصر هذه البطاقة على التحكم في الطاقة قبل الصيانة. يتطلب الدخول والإصلاح والحواجز وإعادة التشغيل تقييمًا وإجراءات منفصلة."
+      "coverageLimit": "تقتصر البطاقة على عزل الطاقة قبل الصيانة ضمن تشغيل وصيانة المرافق والمشروعات الحكومية، استنادًا إلى دليل EOM الإصدار 000. يجب التحقق من النسخة المعتمدة وإجراء المعدة. لا تثبت البطاقة امتثالًا قانونيًا عامًا ولا تستخدم دليل EPM الخاص بإنشاء المشاريع. الدخول والإصلاح وإعادة التشغيل تتطلب إجراءات منفصلة. إرشاد تقني محدود بالمهمة المذكورة. دليل EOM الإصدار 000 يخص تشغيل وصيانة المرافق والمشروعات الحكومية، ولا يعمم على جميع المنشآت؛ ودليل الوزارة للحام ليس إجراء امتثال كاملًا. يلزم التحقق من النسخة المعتمدة والمتطلبات النظامية الحالية وإجراء الموقع قبل الاستخدام، ولم تعتمد هذه المراجعة امتثال موقع فعلي."
     },
     {
       "id": "regional-br-maintenance",
@@ -1438,18 +1523,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 4,
+      "revision": 6,
       "status": "draft",
       "task": "Manutenção de máquinas",
       "step": "Preparar o isolamento",
       "hazard": "Partida inesperada ou liberação de energia residual",
       "cause": "Uma fonte permanece ligada ou pode ser restabelecida",
       "consequence": "Esmagamento durante a intervenção",
-      "control": "Com a máquina parada, isolar e descarregar as fontes de energia, bloquear os dispositivos contra reenergização e identificar o bloqueio segundo o procedimento específico.",
+      "control": "Com a máquina parada, isolar e descarregar as fontes de energia, bloquear os dispositivos contra reenergização e identificar o bloqueio segundo o procedimento específico. A identificação informa data, horário, motivo e responsável; controlar a energia residual e reter mecanicamente as partes que possam retornar ou cair antes do acesso.",
       "verification": "Verificar energia residual e riscos após os pontos de corte; prever retenção mecânica para partes que possam retornar ou cair. Se não for possível verificar o isolamento e o controle das energias residuais, impedir o acesso à zona de perigo.",
       "conditions": [
         "O procedimento específico do equipamento está disponível",
-        "Há profissional capacitado, qualificado ou legalmente habilitado e formalmente autorizado"
+        "Há profissional capacitado, qualificado ou legalmente habilitado e formalmente autorizado",
+        "A máquina e a operação estão abrangidas pela NR-12, sem uso das exceções do item 12.11.3"
       ],
       "exclusions": [
         "É necessário intervir com energia presente",
@@ -1491,7 +1577,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "nr12-machine-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1501,8 +1588,8 @@
           "thermal-inertia-exception"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "6d48d72a95b7b238dea668e747dc9ccdaf81511d9dd78d633e22c136016b76b1",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1523,7 +1610,8 @@
         "confined-entry": "O trabalho envolve entrada em espaço confinado",
         "unknown-energy-path": "Uma fonte de energia ou limite de isolamento é desconhecido",
         "special-operating-mode": "É necessário modo especial de operação com acesso à zona de perigo",
-        "thermal-inertia-exception": "A inércia térmica impede as medidas normais e exige planejamento específico"
+        "thermal-inertia-exception": "A inércia térmica impede as medidas normais e exige planejamento específico",
+        "nr12-machine-scope-confirmed": "A máquina e a operação estão abrangidas pela NR-12, sem uso das exceções do item 12.11.3"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -1534,7 +1622,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Somente controle de energias antes da manutenção. Acesso, reparo, proteções e retorno à operação exigem avaliação e procedimentos separados."
+      "coverageLimit": "Controle de energias antes da manutenção de máquinas abrangidas pela NR-12, item 12.11.3. Equipamentos estáticos isoladamente e demais exclusões do item 12.1 não são abrangidos; máquinas integradas exigem classificação própria. Modos especiais, exceções de acesso sem risco e inércia térmica não estão autorizados por esta ficha. Acesso, reparo, proteções e retorno à operação exigem procedimentos separados."
     },
     {
       "id": "regional-ru-maintenance",
@@ -1542,20 +1630,22 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ru-RU",
       "jurisdiction": "RU",
-      "revision": 7,
+      "revision": 10,
       "status": "draft",
       "task": "Техническое обслуживание машины",
       "step": "Подготовка изоляции энергии",
       "hazard": "Неожиданный пуск или высвобождение остаточной энергии",
       "cause": "Источник остаётся подключённым или может быть восстановлен",
       "consequence": "Защемление при вмешательстве",
-      "control": "По инструкции машины отключить источники энергии, заблокировать восстановление подачи и обозначить запрет пуска; безопасно снять остаточное давление и выполнить предусмотренные процедурой меры контроля накопленной энергии до вмешательства. Отсоединение коммуникаций выполнять по утверждённой технологии ремонта.",
-      "verification": "По утверждённой процедуре проверить отключение, снятие остаточного давления и выполнение мер контроля накопленной энергии; исключить ошибочный пуск и воздействие смежного оборудования. Если отключение и безопасное состояние накопленной энергии не подтверждены, не допускать людей в опасную зону.",
+      "control": "По инструкции машины отключить источники энергии, заблокировать восстановление подачи и обозначить запрет пуска; безопасно снять остаточное давление и выполнить предусмотренные процедурой меры контроля накопленной энергии до вмешательства. Отсоединение коммуникаций выполнять по утверждённой технологии ремонта. По утверждённой технологии ремонта выполнить предусмотренные пунктом 75 Правил № 833н отключение подводящих коммуникаций, установку заглушек на трубопроводах и освобождение оборудования и коммуникаций от остатков рабочих веществ; эти операции не разрешают разборку под давлением.",
+      "verification": "По утверждённой процедуре проверить отключение, снятие остаточного давления и выполнение мер контроля накопленной энергии; исключить ошибочный пуск и воздействие смежного оборудования. Если отключение и безопасное состояние накопленной энергии не подтверждены, не допускать людей в опасную зону. Проверить выполнение утверждённой схемы отключения и заглушек, удаление остатков, разборку электрических цепей приводов и запрещающие знаки на ручных и дистанционных органах управления, где это предусмотрено пунктом 75. Электротехнические работы выполняет персонал с требуемой квалификацией. Обозначение запрета не заменяет физическое отключение и проверку безопасного состояния.",
       "conditions": [
         "Доступна инструкция для конкретной машины",
         "Назначен компетентный работник",
         "Обслуживается стационарная машина, используемая в промышленном производстве",
-        "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены"
+        "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
+        "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "Назначены работники требуемой квалификации; утверждены отключение коммуникаций, заглушки, удаление остатков и меры против ошибочного включения"
       ],
       "exclusions": [
         "Требуется вмешательство при поданной энергии",
@@ -1570,53 +1660,13 @@
       "sources": [
         {
           "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
-          "authority": "CCOHS (foreign technical guidance)",
-          "section": "Basic steps and verification",
-          "checkedAt": "2026-10-14",
-          "scope": "Технический черновик по зарубежному руководству; действующие требования РФ не подтверждены",
-          "retrieval": "primary_page_or_document",
+          "authority": "CCOHS",
+          "section": "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
           "jurisdiction": "CA",
-          "evidenceRole": "technical"
-        },
-        {
-          "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
-          "authority": "Официальное опубликование правовых актов",
-          "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
-          "checkedAt": "2026-10-14",
-          "scope": "Официальная публикация найдена; полный текст недоступен при проверке, применимость не подтверждена",
-          "retrieval": "primary_search_metadata_full_text_timeout",
-          "jurisdiction": "RU",
-          "evidenceRole": "lead"
-        },
-        {
-          "url": "https://publication.pravo.gov.ru/document/0001202505300025",
-          "authority": "Официальное опубликование правовых актов",
-          "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
-          "checkedAt": "2026-10-14",
-          "scope": "Требуется сверка изменений с исходным приказом; срок действия не подтверждён по полному первоисточнику",
-          "retrieval": "primary_search_metadata_full_text_timeout",
-          "jurisdiction": "RU",
-          "evidenceRole": "lead"
-        },
-        {
-          "url": "https://minjust.consultant.ru/files/24982",
-          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
-          "jurisdiction": "RU",
-          "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
-          "scope": "Registration and original issuing-ministry metadata correspond. The original scan is available but relevant technical clauses could not be read; the separate 2025 amendment must also be checked. No current validity or task applicability is inferred.",
-          "retrieval": "primary_scan_located_text_unavailable",
-          "evidenceRole": "lead",
-          "checkedAt": "2026-10-15"
-        },
-        {
-          "url": "https://minjust.consultant.ru/files/55545",
-          "authority": "Минтруд России; registered-act scan at minjust.consultant.ru",
-          "jurisdiction": "RU",
-          "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
-          "scope": "Seven-page registered-act scan is available, but the retrieval path returns no readable text or usable image content. Changes and current applicability remain unverified; not technical evidence.",
-          "retrieval": "primary_scan_located_text_unavailable",
-          "evidenceRole": "lead",
-          "checkedAt": "2026-10-15"
+          "checkedAt": "2026-10-16",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Canadian technical guidance on stored energy; provincial requirements and the equipment procedure still need separate review."
         },
         {
           "url": "https://xn----gtbbcec1agyaklb1d.xn--p1ai/sites/default/files/page/files/prikaz_mintrud_833n_ot_27.11.2020_pot_pri_razmeshchenii_montazhe_tehnicheskom_obsluzhivanii_i_remonte_tehnologicheskogo_oborudovaniya.pdf",
@@ -1624,11 +1674,11 @@
           "jurisdiction": "RU",
           "section": "Order 833н, rules 1, 3, 30-36 and 73-75; PDF pages 2, 7-9 and 14",
           "scope": "Stationary industrial equipment; approved repair procedures, supply isolation and prevention of unintended starting. Not a complete filter-opening procedure.",
-          "retrieval": "primary_pdf_relevant_sections_read",
+          "retrieval": "relevant_primary_sections_read",
           "evidenceRole": "technical",
           "publicationRecordUrl": "https://minjust.consultant.ru/documents/24982",
           "reproduction": "Original-act scan with an extracted text layer; issuer and registration matched to the publication record. Hosting organisation is not the issuer.",
-          "checkedAt": "2026-10-15"
+          "checkedAt": "2026-10-16"
         },
         {
           "url": "https://xn--80apcbbbbxfjtilmc.xn--p1ai/upload/iblock/fb7/u3gvvyd7tfa3d2fnj8lni81rt0pkmgd6.pdf",
@@ -1636,11 +1686,11 @@
           "jurisdiction": "RU",
           "section": "Order 287н (2025-04-29), operative paragraph 2 and amendment items 15 and 30; PDF pages 1, 3 and 5",
           "scope": "Effective 2025-09-01, extends orders 833н and 884н to 2031-09-01. Temporal context only; not task-control evidence or complete legal certification.",
-          "retrieval": "primary_pdf_relevant_sections_read",
+          "retrieval": "relevant_primary_sections_read",
           "evidenceRole": "legal-status",
           "publicationRecordUrl": "https://minjust.consultant.ru/documents/55545",
           "reproduction": "ConsultantPlus transcription of the normative act hosted by a local government. The signed Ministry of Justice scan remains unread.",
-          "checkedAt": "2026-10-15"
+          "checkedAt": "2026-10-16"
         },
         {
           "url": "https://www.cpc.ru/HSEDocuments_standards/Положение%20о%20системе%20блокировки%20и%20маркировки%20(LOTO).pdf",
@@ -1649,8 +1699,8 @@
           "jurisdiction": "RU",
           "section": "Редакция № 1; scope 2.1-2.2, steps 3-4 and clauses 5.2.3-5.2.5; PDF pages 3 and 10",
           "scope": "Корпоративный документ КТК для собственных объектов и подрядчиков, не общероссийская норма. Использован только как технический пример сброса остаточной энергии и проверки; применимость к конкретной машине требует отдельной оценки. Доступный PDF содержит 27 страниц при внутренней нумерации из 69; приложения не проверены.",
-          "checkedAt": "2026-10-15",
-          "retrieval": "primary_pdf_relevant_sections_read",
+          "checkedAt": "2026-10-16",
+          "retrieval": "relevant_primary_sections_read",
           "evidenceRole": "technical"
         }
       ],
@@ -1662,7 +1712,9 @@
           "equipment-procedure-available",
           "competent-person-assigned",
           "stationary-industrial-machine",
-          "maintenance-authorization-complete"
+          "maintenance-authorization-complete",
+          "regional-applicability-confirmed",
+          "qualified-repair-isolation-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1670,12 +1722,13 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-15",
-      "sourceFingerprint": null,
+      "sourceRevision": "reauthored-captured-evidence-2026-10-16",
+      "sourceFingerprint": "64aeb377cf05ea0090ba4c896518d5a9b2c7dc5b23a767e056f57bc21be92bd9",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
-        "contentType": "paraphrased-guidance-draft"
+        "contentType": "paraphrased-guidance-draft",
+        "evidenceDossier": "guidance-evidence-dossiers.json#regional-ru-maintenance"
       },
       "review": {
         "technicalStatus": "pending",
@@ -1692,18 +1745,25 @@
         "confined-entry": "Работа включает вход в замкнутое пространство",
         "unknown-energy-path": "Источник энергии или граница отключения не определены",
         "stationary-industrial-machine": "Обслуживается стационарная машина, используемая в промышленном производстве",
-        "maintenance-authorization-complete": "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены"
+        "maintenance-authorization-complete": "Порядок ремонта утверждён; необходимость наряда-допуска проверена и требования допуска выполнены",
+        "regional-applicability-confirmed": "До применения проверены действующие требования, область их применения и утверждённая инструкция для конкретной работы",
+        "qualified-repair-isolation-confirmed": "Назначены работники требуемой квалификации; утверждены отключение коммуникаций, заглушки, удаление остатков и меры против ошибочного включения"
       },
       "sourceCheck": {
-        "status": "content_and_condition_review_completed_publication_pending",
-        "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
-        "checkedAt": "2026-10-15",
+        "status": "bounded_content_desk_review_completed_publication_pending",
+        "method": "AI desk comparison of exact revised content with selected published provisions; not independent professional approval",
+        "checkedAt": "2026-10-17",
         "findings": [
-          "Added an energy-isolation-only coverage limit and a hold when the safe state cannot be established; synchronized selectable conditions with displayed conditions."
+          "Read registered signed 833n pages 1–3,7–9,14–15 and 287n operative paragraph 2/amendment15. Match manufacturer-based approved repair, high-risk permit scope, pipeline blanks, removal of residual working materials, electrical disconnection, prohibitory signs and unintended-operation prevention. Add qualified electrical personnel. All original zero-pressure/access holds remain; physical pipeline work must itself follow the safe approved procedure. Special industrial-safety applicability remains an explicit site prerequisite."
         ],
-        "approvalGranted": false
+        "approvalGranted": false,
+        "remainingIssues": [
+          "Independent technical, regional and native-language approval remains pending.",
+          "Actual equipment/site applicability and measured exposure are not certified."
+        ],
+        "deskReviewEvidence": "content-review-batch21.json#regional-ru-maintenance"
       },
-      "coverageLimit": "Только управление энергией перед обслуживанием. Доступ, ремонт, защитные ограждения и ввод в работу требуют отдельной оценки и процедур."
+      "coverageLimit": "Только управление энергией стационарной промышленной машины перед обслуживанием. Сверены выбранные положения Правил № 833н по подписанному опубликованному скану и продление приказом № 287н: с 01.09.2025 срок действия продлён до 01.09.2031. Классификация объекта, специальные требования промышленной безопасности и утверждённый допуск проверяются для конкретного места работы. Зарубежные материалы и корпоративный пример не являются российскими нормами. Ремонт, открытие корпуса и ввод в работу требуют отдельных процедур; соответствие объекта не подтверждается этой карточкой."
     },
     {
       "id": "regional-kr-maintenance",
@@ -1711,18 +1771,18 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ko",
       "jurisdiction": "KR",
-      "revision": 3,
+      "revision": 5,
       "status": "draft",
       "task": "기계 정비",
       "step": "차단 범위 준비",
       "hazard": "예기치 않은 기동 또는 잔류 에너지 방출",
       "cause": "에너지 경로가 남아 있거나 다시 공급됨",
       "consequence": "정비 중 끼임 등 상해",
-      "control": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 재기동을 방지한다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제한다.",
+      "control": "위험이 있는 정비 작업 전에 기계를 정지하고, 장비별 절차에 따라 기동장치의 잠금·열쇠 관리 등 필요한 방호 조치로 다른 사람의 재기동을 방지한다. 부적절한 작업방법으로 갑자기 가동될 우려가 있으면 작업지휘자 배치 등 필요한 조치를 한다. 압축 기체·액체가 남아 있으면 안전하게 방출하는 등 잔류 에너지 위험을 통제한다.",
       "verification": "작업 전 장비별 절차로 차단과 잔류 에너지의 안전한 처리 상태를 확인한다. 이를 확인할 수 없으면 위험구역에 들어가지 않는다.",
       "conditions": [
-        "장비별 작업 절차를 확보했습니다",
-        "작업에 적합한 담당자를 지정했습니다"
+        "장비별 작업 절차가 있음",
+        "작업에 적합한 담당자가 지정되어 있음"
       ],
       "exclusions": [
         "에너지가 공급된 상태에서 작업해야 합니다",
@@ -1760,8 +1820,8 @@
           "unknown-energy-path"
         ]
       },
-      "sourceRevision": "research-2026-10-14",
-      "sourceFingerprint": null,
+      "sourceRevision": "captured-sections-2026-10-16",
+      "sourceFingerprint": "7e2a88273eb85c31c100313168bfc981c137842df5fc1c1fdef578d946a31347",
       "origin": {
         "aiAssisted": true,
         "fictionalCase": false,
@@ -1776,8 +1836,8 @@
       },
       "recommendationScore": null,
       "conditionLabels": {
-        "equipment-procedure-available": "장비별 작업 절차를 확보했습니다",
-        "competent-person-assigned": "작업에 적합한 담당자를 지정했습니다",
+        "equipment-procedure-available": "장비별 작업 절차가 있음",
+        "competent-person-assigned": "작업에 적합한 담당자가 지정되어 있음",
         "live-intervention": "에너지가 공급된 상태에서 작업해야 합니다",
         "confined-entry": "밀폐공간에 들어가는 작업입니다",
         "unknown-energy-path": "에너지원 또는 차단 경계가 확인되지 않았습니다"
@@ -1791,7 +1851,112 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "정비 전 에너지 차단만을 다룬다. 출입, 실제 수리, 방호장치 및 재가동은 별도로 평가하고 절차를 정한다."
+      "coverageLimit": "동력기계 정비 전 운전정지·재기동 방지와 잔류 압축 기체·액체 위험 통제를 다룬다. 제92조의 구조상 예외를 자동 적용하지 않는다. 출입, 실제 수리, 방호장치, 그 밖의 에너지원 및 재가동은 장비별로 별도 평가하고 절차를 정한다."
+    },
+    {
+      "id": "regional-ro-maintenance",
+      "sourceType": "guidance",
+      "sourceGroupId": "machine-energy-isolation",
+      "locale": "ro-RO",
+      "jurisdiction": "RO",
+      "revision": 3,
+      "status": "draft",
+      "task": "Întreținerea utilajului",
+      "step": "Pregătirea izolării surselor de energie",
+      "hazard": "Pornire neașteptată sau eliberare de energie acumulată",
+      "cause": "O sursă de energie rămâne conectată ori poate fi reconectată",
+      "consequence": "Strivire sau alte leziuni în timpul intervenției",
+      "control": "Opriți utilajul și identificați sursele de energie. Izolați-le și aplicați blocarea fizică împotriva reconectării, cu lacăt personal și etichetă de identificare conform procedurii echipamentului. Eliminați sau rețineți în siguranță energia acumulată înainte de acces; eticheta singură nu asigură izolarea.",
+      "verification": "Verificați eficacitatea izolării și controlul energiei acumulate prin metoda prevăzută de procedură. Dacă starea sigură nu poate fi confirmată, nu permiteți accesul în zona periculoasă.",
+      "conditions": [
+        "Procedura specifică utilajului este disponibilă",
+        "Este desemnată o persoană competentă",
+        "Înainte de utilizare sunt verificate domeniul legal aplicabil și procedura aprobată pentru lucrare"
+      ],
+      "exclusions": [
+        "Este necesară o intervenție cu echipamentul sub energie",
+        "Lucrarea implică intrarea într-un spațiu confinat, de exemplu un rezervor",
+        "O sursă de energie sau limita izolării nu este cunoscută"
+      ],
+      "keywords": [
+        "întreținere",
+        "izolarea energiei",
+        "energie acumulată"
+      ],
+      "sources": [
+        {
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "authority": "CCOHS",
+          "section": "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+          "jurisdiction": "CA",
+          "checkedAt": "2026-10-15",
+          "retrieval": "relevant_primary_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Canadian technical guidance on stored energy; provincial requirements and the equipment procedure still need separate review."
+        },
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/99488/ROU-99488.pdf",
+          "authority": "Government of Romania; ILO NATLEX archived copy",
+          "jurisdiction": "RO",
+          "section": "HG 1146/2006, Annex 1, points 2.13-2.14: stopped maintenance and separation from energy sources",
+          "checkedAt": "2026-10-16",
+          "retrieval": "primary_pdf_relevant_sections_read",
+          "evidenceRole": "technical",
+          "scope": "Archived primary legal text. Current consolidation and site applicability remain unverified; this is not a pressure-filter opening procedure."
+        }
+      ],
+      "applicability": {
+        "taskType": "machine-maintenance",
+        "hazardType": "unexpected-energization",
+        "targetType": "machine",
+        "conditionsRequired": [
+          "equipment-procedure-available",
+          "competent-person-assigned",
+          "regional-applicability-confirmed"
+        ],
+        "excludedConditions": [
+          "live-intervention",
+          "confined-entry",
+          "unknown-energy-path"
+        ]
+      },
+      "sourceRevision": "research-2026-10-16",
+      "sourceFingerprint": "961a3b0f2fa213a36c7fe892f96973d3b8ab7abc6794eb4b7ef8f6b3d70e2f56",
+      "origin": {
+        "aiAssisted": true,
+        "fictionalCase": false,
+        "contentType": "paraphrased-guidance-draft"
+      },
+      "review": {
+        "technicalStatus": "pending",
+        "regionalStatus": "pending",
+        "translationStatus": "pending",
+        "reviewer": null,
+        "reviewedAt": null
+      },
+      "recommendationScore": null,
+      "conditionLabels": {
+        "equipment-procedure-available": "Procedura specifică utilajului este disponibilă",
+        "competent-person-assigned": "Este desemnată o persoană competentă",
+        "live-intervention": "Este necesară o intervenție cu echipamentul sub energie",
+        "confined-entry": "Lucrarea implică intrarea într-un spațiu confinat, de exemplu un rezervor",
+        "unknown-energy-path": "O sursă de energie sau limita izolării nu este cunoscută",
+        "regional-applicability-confirmed": "Înainte de utilizare sunt verificate domeniul legal aplicabil și procedura aprobată pentru lucrare"
+      },
+      "sourceCheck": {
+        "status": "draft_sources_read_review_pending",
+        "checkedAt": "2026-10-16",
+        "method": "AI-assisted Romanian drafting from bounded technical guidance and identified Romanian legal text; not independent approval",
+        "approvalGranted": false,
+        "findings": [
+          "Local-language hazard, control, verification, conditions and exclusions authored. Foreign technical sources retain their original jurisdiction; they are not Romanian legal authority."
+        ],
+        "remainingIssues": [
+          "Technical, regional and Romanian-language reviews are pending. Current legal applicability and site-specific procedures require verification.",
+          "HG 1146/2006 publisher page was unavailable. The cited ILO-hosted archived text was read, but current consolidation remains unverified."
+        ]
+      },
+      "coverageLimit": "Numai izolarea energiei înainte de întreținere. Reparația, accesul, apărătorile și repunerea în funcțiune necesită evaluări și proceduri separate. Ghid tehnic limitat la lucrarea indicată. HG1146/2006 susține întreținerea cu echipamentul oprit și separarea surselor; alternativa pentru intervenții fără oprire nu este acoperită. HG1218/2006 susține evaluarea și ierarhia măsurilor pentru agenți chimici. Clasificarea echipamentelor sub presiune și obligațiile suplimentare pentru agenți cancerigeni, mutageni sau toxici pentru reproducere necesită verificări distincte înainte de utilizare."
     }
   ]
 }

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-16",
+  "scope": "All 57 current draft revisions have complete active citation bindings; 12 were reauthored from captured evidence. Original inaccessible sources were not recovered or certified.",
+  "sequence": {
+    "activeWorkstream": 3,
+    "requiredBoundDraftsBeforeMoreContentReview": 57,
+    "completedBoundDrafts": 57,
+    "contentReviewPaused": false,
+    "existingReviewAreas": 123
+  },
+  "counts": {
+    "boundDrafts": 57,
+    "totalDrafts": 57,
+    "remainingDrafts": 0,
+    "selectedSourceCaptures": 47,
+    "addedCaptures": 0,
+    "newlyCompletedDrafts": 12
+  },
+  "sourceReplacement": {
+    "dossiers": 12,
+    "file": "guidance-evidence-dossiers.json",
+    "previousSourceRecordsPreserved": true,
+    "unreadSourcesClaimedRead": 0,
+    "newReviewDecisions": 0,
+    "productionDbWrites": 0
+  },
+  "drafts": [],
+  "historicalRetrievalBlockers": {
+    "counts": {
+      "boundDrafts": 45,
+      "totalDrafts": 57,
+      "remainingDrafts": 12,
+      "selectedSourceCaptures": 47,
+      "addedCaptures": 5,
+      "newlyCompletedDrafts": 0
+    },
+    "groups": [
+      {
+        "jurisdiction": "CA-ON",
+        "units": 3,
+        "blocker": "Ontario blocking alert, Regulation 851 and Item 8 return HTTP 403. WSPS article is now captured from the publisher-linked embedded page.",
+        "retrievalRefs": [
+          "turn61view1",
+          "turn64view1",
+          "turn66view1",
+          "turn62view2"
+        ]
+      },
+      {
+        "jurisdiction": "CA-QC",
+        "units": 2,
+        "blocker": "2026 consolidated RSST PDF/HTML return HTTP 502. CNESST guide exceeds size limit (17208132 bytes). The 2023 official Gazette articles 195-201 were read, but do not establish equivalence to the cited 2026 consolidation; no citation was replaced.",
+        "retrievalRefs": [
+          "turn71view1",
+          "turn66view2",
+          "turn71view3",
+          "turn76view1"
+        ],
+        "alternativeUrl": "https://www.publicationsduquebec.gouv.qc.ca/fileadmin/gazette/pdf_encrypte/gaz_entiere/2328-F.pdf"
+      },
+      {
+        "jurisdiction": "IT",
+        "units": 1,
+        "blocker": "Cited INAIL presentation still times out; the official event attachment link did not return the document. Slides 19-21 remain uncaptured.",
+        "retrievalRefs": [
+          "turn62view0",
+          "turn77view1"
+        ]
+      },
+      {
+        "jurisdiction": "SA",
+        "units": 2,
+        "blocker": "EPM Arabic Rev 000 project-procedure sections 6.0/7.1/7.2 time out. English Rev 003 was located but inaccessible and has not been substituted for the cited revision. EOM capture remains partial supporting evidence.",
+        "retrievalRefs": [
+          "turn62view1",
+          "turn63search18",
+          "turn64view0"
+        ],
+        "alternativeUrl": "https://expro.gov.sa/api/uploads/Project%20LockoutTagout%20Procedure.pdf"
+      },
+      {
+        "jurisdiction": "BR",
+        "units": 1,
+        "blocker": "GRO/PGR manual exceeds size limit (12819226 bytes), including alternate ministry path. CBIC article returns HTTP 403. Fundacentro capture does not complete the other citations.",
+        "retrievalRefs": [
+          "turn67view3",
+          "turn64view2"
+        ]
+      },
+      {
+        "jurisdiction": "RU",
+        "units": 3,
+        "blocker": "Readable 833n/287n/884n reproductions and CPC procedure selected sections are now captured. Separate official publication records/scans remain uncaptured. PDF screenshot calls returned only a text placeholder, no image bytes; OCR or visual verification was not possible. CCOHS Basic steps and verification remains outside its existing selected capture.",
+        "retrievalRefs": [
+          "turn68view0",
+          "turn68view1",
+          "turn68view2",
+          "turn70view0",
+          "turn70view1",
+          "turn70view2"
+        ]
+      }
+    ],
+    "drafts": [
+      {
+        "id": "regional-ca-on-maintenance",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.ontario.ca/page/alert-equipment-blocking",
+            "section": "Equipment blocking and hazardous energy",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ca-qc-maintenance",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
+            "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-sa-maintenance",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
+            "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ru-maintenance",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+            "section": "Basic steps and verification",
+            "location": "sources",
+            "reason": "section-not-captured"
+          },
+          {
+            "url": "https://publication.pravo.gov.ru/Document/View/0001202012140035",
+            "section": "Document metadata: order 833н of 27.11.2020; technical clauses not read",
+            "location": "sources",
+            "reason": "source-not-captured"
+          },
+          {
+            "url": "https://publication.pravo.gov.ru/document/0001202505300025",
+            "section": "Document metadata: amendment order 287н of 29.04.2025; amendment details not verified",
+            "location": "sources",
+            "reason": "source-not-captured"
+          },
+          {
+            "url": "https://minjust.consultant.ru/files/24982",
+            "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
+            "location": "sources",
+            "reason": "source-not-captured"
+          },
+          {
+            "url": "https://minjust.consultant.ru/files/55545",
+            "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ca-on-pressure-filter",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.ontario.ca/laws/regulation/900851",
+            "section": "Industrial Establishments Regulation 851, source lead only",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ca-on-welding-fume",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.ontario.ca/document/guideline-pre-start-health-and-safety-reviews/item-8-hazardous-biological-or-chemical-agents",
+            "section": "Item 8, official source lead only",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ca-qc-pressure-filter",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.legisquebec.gouv.qc.ca/fr/pdf/rc/S-2.1,%20R.%2013.pdf",
+            "section": "Règlement sur la santé et la sécurité du travail, articles 195-201; consolidated to 2026-06-01",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-it-pressure-filter",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.inail.it/content/dam/inail-hub-site/documenti/2020/12/1%20Presentazione%20Amaro%20rev.1.pdf",
+            "section": "2020-12-02 presentation, slides 19-21, intervention A-3.4: machine LOTO sequence",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-sa-pressure-filter",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://expro.gov.sa/api/uploads/الدليل%20الإجرائي%20لعمليات%20الإغلاق%20والعزل%20في%20المشاريع.pdf",
+            "section": "EPM-KSS-PR-000031-AR Rev 000, sections 6.0, 7.1, 7.2; pages 11–12",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-br-welding-fume",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/manuais-e-publicacoes/2026/manual_gro_pgr_da_nr_1.pdf",
+            "section": "Manual GRO/PGR 2026, welding example identified in search only",
+            "location": "sources",
+            "reason": "source-not-captured"
+          },
+          {
+            "url": "https://cbic.org.br/fumos-metalicos-riscos-invisiveis-na-atividade-de-soldagem/",
+            "section": "2026-01-30 Fumos Metálicos: engineering controls and exposure-management paragraphs",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ru-pressure-filter",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://minjust.consultant.ru/files/24982",
+            "section": "Order 833н of 2020-11-27, registration 61413; relevant clauses unread",
+            "location": "sources",
+            "reason": "source-not-captured"
+          },
+          {
+            "url": "https://minjust.consultant.ru/files/55545",
+            "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      },
+      {
+        "id": "regional-ru-welding-fume",
+        "state": "incomplete",
+        "sourceFingerprint": null,
+        "missing": [
+          {
+            "url": "https://minjust.consultant.ru/files/25450",
+            "section": "Order 884н of 2020-12-11, registration 61904; relevant clauses unread",
+            "location": "sources",
+            "reason": "source-not-captured"
+          },
+          {
+            "url": "https://minjust.consultant.ru/files/55545",
+            "section": "Order 287н of 2025-04-29, registration 82424; scan located, amendment clauses unread",
+            "location": "sources",
+            "reason": "source-not-captured"
+          }
+        ]
+      }
+    ],
+    "scope": "Historical missing citations for superseded draft revisions; retained for audit. These source URLs remain unverified, and active drafts no longer claim their authority or edition."
+  },
+  "reviewProgress": {
+    "completed": 123,
+    "total": 180,
+    "technical": 60,
+    "regional": 3,
+    "translation": 60,
+    "partialRegionalAssessmentsNotCounted": 57,
+    "publicationApprovals": 0
+  }
+}

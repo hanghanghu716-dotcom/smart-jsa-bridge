@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "kind": "ai-technical-desk-reviews",
+  "releaseApproval": false,
+  "repositoryCommit": "3939c0de99359ec0f54991bdfe3bea25d2f310e3",
+  "completedReviewAreas": 3,
+  "publicationApprovals": 0,
+  "reviews": [
+    {
+      "unitId": "regional-br-maintenance",
+      "area": "technical",
+      "decision": "completed_with_limitations",
+      "reviewer": "OpenAI Codex (AI technical desk review; not an independent professional reviewer)",
+      "reviewedAt": "2026-10-16",
+      "rationale": "The bounded energy-isolation draft is technically consistent with the captured NR-12 maintenance clauses: stopped machinery, isolation/discharge, prevention of reenergization, residual-energy control, mechanical retention and a hold before danger-zone access. No contradictory technical instruction was found in the reviewed text. This is a completed AI desk review, not a professional approval.",
+      "evidence": [
+        {
+          "captureId": "br-nr12-20261016",
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
+          "coveredSections": [
+            "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21"
+          ],
+          "fragments": [
+            {
+              "selector": "turn48view3: extracted lines 0-29",
+              "sha256": "f6871bf71a47df46d8c7327152c21b593b46736283dc52febc20824da563c3a3",
+              "utf8Bytes": 1651
+            },
+            {
+              "selector": "turn47view3: extracted lines 715-755",
+              "sha256": "270d2e3cba32cc20767b62afbdd24a5d4c0b5b113be64c81ee830a27f9f64204",
+              "utf8Bytes": 3103
+            }
+          ]
+        },
+        {
+          "captureId": "br-nr12-index-20261016",
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-12-nr-12",
+          "coveredSections": [
+            "Índice oficial: última modificação indicada, Portaria MTE 344/2024"
+          ],
+          "fragments": [
+            {
+              "selector": "turn51view1: extracted lines 340-341",
+              "sha256": "526e3f615921cd00dbbbe048e361d0656338ff31a72fc5241c2bbc1a63f893a0",
+              "utf8Bytes": 122
+            }
+          ]
+        }
+      ],
+      "remainingIssues": [
+        "Before use, a competent equipment-specific reviewer must verify isolation devices, stored-energy restraints and the verification method.",
+        "The equipment procedure must include applicable block/tag identification details (time, date, reason and responsible person); this summary does not enumerate them.",
+        "Current Brazilian legal applicability and Portuguese terminology require separate regional and translation reviews."
+      ],
+      "reviewedAtUtc": "2026-10-16T08:21:02.174878+00:00",
+      "reviewMethod": "Direct comparison of the exact frozen draft, all its captured citations, conditions, exclusions, control and verification text.",
+      "contentHash": "b4410731fe8f10c40523fe76e8a292a5afd18b24cd9005bb6b59eb7767a649d5",
+      "sourceFingerprint": "6d48d72a95b7b238dea668e747dc9ccdaf81511d9dd78d633e22c136016b76b1",
+      "checks": [
+        {
+          "field": "hazard/cause/consequence",
+          "finding": "Unexpected starting or stored-energy release is connected to the crushing consequence and the isolation control."
+        },
+        {
+          "field": "control",
+          "finding": "Isolation, discharge, blocking and identification correspond to 12.11.3(a)-(b). The equipment procedure must supply the exact devices and sequence; this draft is not an executable universal procedure."
+        },
+        {
+          "field": "verification",
+          "finding": "Downstream residual hazards and mechanical retention correspond to 12.11.3(c)-(e). Inability to verify prevents danger-zone entry."
+        },
+        {
+          "field": "conditions/exclusions",
+          "finding": "Competence and formal authorization are explicit. Live intervention, special operating modes and thermal-inertia exceptions are excluded; the draft does not use 12.11.3.1-.3 as permission to work energized."
+        },
+        {
+          "field": "coverageLimit",
+          "finding": "Access, repair, guarding and restart require separate procedures; isolation is not presented as complete maintenance safety."
+        }
+      ],
+      "approvalGranted": false
+    },
+    {
+      "unitId": "regional-sa-welding-fume",
+      "area": "technical",
+      "decision": "completed_with_limitations",
+      "reviewer": "OpenAI Codex (AI technical desk review; not an independent professional reviewer)",
+      "reviewedAt": "2026-10-16",
+      "rationale": "For the explicitly bounded regular indoor uncoated mild-steel task, source extraction, assessment-dependent additional respiratory protection, hood/performance checks and stopping after extraction failure form a coherent technical control. The HRSD table supports general ventilation and respiratory hazard recognition only; OSHA provides foreign technical comparison for local-exhaust positioning/performance. The review does not treat either as proof of complete Saudi compliance. This is a completed AI desk review, not a professional approval.",
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "sa-hrsd-welding-20261016",
+          "url": "https://www.hrsd.gov.sa/sites/default/files/2023-02/30122022_1.pdf",
+          "coveredSections": [
+            "دليل المخاطر، أعمال اللحام بالقوس الكهربائي، صفحة PDF 9 (المطبوعة 10)"
+          ],
+          "fragments": [
+            {
+              "selector": "turn47view4: extracted lines 255-288",
+              "sha256": "af1f4496f9fa69b0c65a76de14ae776e6d803afba50ff46ba4aac7e622b84058",
+              "utf8Bytes": 1378
+            }
+          ]
+        }
+      ],
+      "remainingIssues": [
+        "A competent industrial-hygiene/equipment reviewer must establish actual exposure assessment, exhaust performance criteria, discharge routing and respiratory selection/fit-testing requirements.",
+        "The captured HRSD table does not prescribe a complete LEV design, current exposure limits or all Saudi legal duties; regional review remains pending.",
+        "Arabic technical terminology and clarity require separate translation review. No historical OSHA numerical limit or old standard reference is adopted as a current Saudi requirement."
+      ],
+      "reviewedAtUtc": "2026-10-16T08:21:02.174908+00:00",
+      "reviewMethod": "Direct comparison of the exact frozen draft, all its captured citations, conditions, exclusions, control and verification text.",
+      "contentHash": "f8e7d1cecdcdaba88c16b89bf179e9175fded3b40e63b4b4cce7dc51e70dc46f",
+      "sourceFingerprint": "1cdc40818e2f9b8dcafb382dd1d65579b8a16430ff340e64784032effbbeba1a",
+      "checks": [
+        {
+          "field": "hazard/cause/consequence",
+          "finding": "Fume reaching the breathing zone is linked to respiratory illness; the content is limited to this hazard."
+        },
+        {
+          "field": "control",
+          "finding": "Source extraction is a conservative design choice for this narrow task. OSHA permits different ventilation arrangements under its own conditions, so the draft must not be described as a universal local-exhaust legal requirement."
+        },
+        {
+          "field": "verification",
+          "finding": "The text requires hood position and procedure-defined performance checks, rechecking after movement or changed conditions, and stopping if extraction becomes ineffective."
+        },
+        {
+          "field": "conditions/exclusions",
+          "finding": "Known uncoated mild steel/consumables and an exposure-control procedure are required; coated/stainless/unknown metals, outdoor work, confined entry and unavailable extraction are excluded."
+        },
+        {
+          "field": "coverageLimit",
+          "finding": "Fire, radiation, electrical and gas hazards require separate assessment. A welding-fume measure is not presented as complete welding authorization."
+        }
+      ],
+      "approvalGranted": false
+    },
+    {
+      "unitId": "regional-br-pressure-filter",
+      "area": "technical",
+      "decision": "completed_with_limitations",
+      "reviewer": "OpenAI Codex (AI technical desk review; not an independent professional reviewer)",
+      "reviewedAt": "2026-10-16",
+      "rationale": "The bounded compressed-air pressure-isolation draft is technically consistent with the captured energy-control and manufacturer example: identify potential backfeeds, isolate and lock supplies, depressurize safely, verify before opening and continue verification where pressure can reaccumulate. It explicitly forbids loosening the bowl as a pressure test. No universal valve sequence, waiting time or torque is imported. This is a completed AI desk review, not a professional approval.",
+      "evidence": [
+        {
+          "captureId": "br-nr12-20261016",
+          "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-12-atualizada-2025.pdf",
+          "coveredSections": [
+            "NR-12, 12.11.3 and scope/exceptions 12.11.3.1-12.11.3.3, PDF pages 20-21"
+          ],
+          "fragments": [
+            {
+              "selector": "turn48view3: extracted lines 0-29",
+              "sha256": "f6871bf71a47df46d8c7327152c21b593b46736283dc52febc20824da563c3a3",
+              "utf8Bytes": 1651
+            },
+            {
+              "selector": "turn47view3: extracted lines 715-755",
+              "sha256": "270d2e3cba32cc20767b62afbdd24a5d4c0b5b113be64c81ee830a27f9f64204",
+              "utf8Bytes": 3103
+            }
+          ]
+        },
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "remainingIssues": [
+        "A competent equipment-specific reviewer must verify isolation boundaries, blocked-drain failure modes, safe discharge routing and a reliable bowl-pressure verification method.",
+        "The machine-integrated condition does not determine every Brazilian pressure-equipment or piping duty; regional review remains pending.",
+        "Portuguese technical terminology and use conditions require translation review; this record approves no opening operation."
+      ],
+      "reviewedAtUtc": "2026-10-16T08:21:02.174915+00:00",
+      "reviewMethod": "Direct comparison of the exact frozen draft, all its captured citations, conditions, exclusions, control and verification text.",
+      "contentHash": "c43c040b44ee2fbb91e272b67f24cd766fdec4dfd8ca6f4e0ef31a5d472c32f5",
+      "sourceFingerprint": "5a952fb1171552bf1611c4d143cab9dee313aaf16d33e3396c06fbaeecd4639e",
+      "checks": [
+        {
+          "field": "hazard/cause/consequence",
+          "finding": "Supply, backfeed and trapped air explain the residual-pressure release and projectile/jet consequences."
+        },
+        {
+          "field": "control",
+          "finding": "Inlet, outlet, bypass and connected drains are included as possible pressure paths. OSHA 1910.147(d)(3)-(5) supports complete isolation and stored-energy control as foreign technical evidence."
+        },
+        {
+          "field": "verification",
+          "finding": "Authorized pre-opening verification and continued checks for reaccumulation correspond to 1910.147(d)(5)(ii)-(6). The no-opening hold and no-loosening pressure test avoid treating an uncertain indication as proof."
+        },
+        {
+          "field": "conditions/exclusions",
+          "finding": "The machine-integrated filter condition bounds the NR-12 reference. Non-air service, breathing-air certification, pressurized intervention, confined entry and unknown isolation are excluded."
+        },
+        {
+          "field": "manufacturer scope",
+          "finding": "Parker is a model-specific illustration of reverse-flow precautions and depressurization. This draft requires the actual equipment procedure and does not transfer the illustrated valve or bowl sequence to other products."
+        }
+      ],
+      "approvalGranted": false
+    }
+  ]
+}

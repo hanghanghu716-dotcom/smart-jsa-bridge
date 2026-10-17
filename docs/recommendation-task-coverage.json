@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "inputHash": "7204d49df8bbd8a4915d43f955bd1884012a2516414b0e7a969b28b939ef153f",
+  "inputHash": "f1f7a11c4493872cbf5fac55eb8f0e1fe157fdc2ac86362b65599e5f7769213b",
   "scope": "Authored knowledge-bank coverage only. Source geography is not legal applicability, review approval, production availability or measured recommendation accuracy.",
   "totals": {
     "locales": 19,
     "priorityCells": 57,
-    "cellsWithDraftOrReviewedContent": 54,
-    "missingCells": 3,
+    "cellsWithDraftOrReviewedContent": 57,
+    "missingCells": 0,
     "cellsWithPublicationEligibleContent": 0,
-    "activeUnits": 57,
-    "priorityUnits": 54,
+    "activeUnits": 60,
+    "priorityUnits": 57,
     "nonPriorityUnits": 3
   },
   "coverage": [
@@ -512,7 +512,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 1
+            "unreadOrMetadata": 0
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -532,7 +532,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 1
+            "unreadOrMetadata": 0
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -619,8 +619,8 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 2,
-            "nationalReference": 0,
+            "sameJurisdiction": 1,
+            "nationalReference": 1,
             "subnationalReference": 0,
             "foreignReference": 0,
             "unspecified": 0,
@@ -1015,7 +1015,7 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 2,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
             "foreignReference": 0,
@@ -1121,12 +1121,12 @@
           "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 2,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 1,
+            "foreignReference": 2,
             "unspecified": 0,
-            "unreadOrMetadata": 1
+            "unreadOrMetadata": 0
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1152,7 +1152,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 5
+            "unreadOrMetadata": 1
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1172,7 +1172,7 @@
             "subnationalReference": 0,
             "foreignReference": 1,
             "unspecified": 0,
-            "unreadOrMetadata": 3
+            "unreadOrMetadata": 1
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1190,9 +1190,9 @@
             "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 1,
+            "foreignReference": 2,
             "unspecified": 0,
-            "unreadOrMetadata": 3
+            "unreadOrMetadata": 1
           },
           "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
@@ -1207,63 +1207,63 @@
       "tasks": [
         {
           "taskType": "machine-maintenance",
-          "units": 0,
-          "draftUnits": 0,
+          "units": 1,
+          "draftUnits": 1,
           "publicationEligible": 0,
-          "guidanceUnits": 0,
+          "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 0,
+            "foreignReference": 1,
             "unspecified": 0,
             "unreadOrMetadata": 0
           },
-          "missingDraft": true,
+          "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
-          "requiresLocalSourceReview": false,
-          "needsContentReview": 0
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
         },
         {
           "taskType": "pressure-equipment-opening",
-          "units": 0,
-          "draftUnits": 0,
+          "units": 1,
+          "draftUnits": 1,
           "publicationEligible": 0,
-          "guidanceUnits": 0,
+          "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 0,
+            "foreignReference": 2,
             "unspecified": 0,
             "unreadOrMetadata": 0
           },
-          "missingDraft": true,
+          "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
-          "requiresLocalSourceReview": false,
-          "needsContentReview": 0
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
         },
         {
           "taskType": "welding-exposure",
-          "units": 0,
-          "draftUnits": 0,
+          "units": 1,
+          "draftUnits": 1,
           "publicationEligible": 0,
-          "guidanceUnits": 0,
+          "guidanceUnits": 1,
           "caseUnits": 0,
           "primarySourceReferences": {
-            "sameJurisdiction": 0,
+            "sameJurisdiction": 1,
             "nationalReference": 0,
             "subnationalReference": 0,
-            "foreignReference": 0,
+            "foreignReference": 2,
             "unspecified": 0,
             "unreadOrMetadata": 0
           },
-          "missingDraft": true,
+          "missingDraft": false,
           "missingSameJurisdictionPrimaryReference": false,
-          "requiresLocalSourceReview": false,
-          "needsContentReview": 0
+          "requiresLocalSourceReview": true,
+          "needsContentReview": 1
         }
       ]
     }

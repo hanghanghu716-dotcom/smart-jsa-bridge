@@ -1,0 +1,3000 @@
+{
+  "schemaVersion": 1,
+  "kind": "ai-content-desk-reviews",
+  "batch": 14,
+  "releaseApproval": false,
+  "reviewedBaseCommit": "b7c67772efecf03ada73e1922439f0a1435b3642",
+  "completedReviewAreas": 19,
+  "totalCompletedReviewAreasIncludingPrior": 72,
+  "publicationApprovals": 0,
+  "scope": "Nine CA, CA-AB and CA-BC drafts: nine technical, nine same-language terminology and one bounded BC maintenance regional review. Eight regional assessments remain incomplete.",
+  "reviews": [
+    {
+      "unitId": "regional-ca-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "0467232c2004c7ad474c5d3cc3a804cfdf0850e6630ee9a1e1f80a4a6414e62f",
+      "sourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The revision now includes stopping, personal lockout and restraint of movable parts. The verification hold still prevents entry until isolation and stored-energy control are established.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The revision now includes stopping, personal lockout and restraint of movable parts. The verification hold still prevents entry until isolation and stored-energy control are established."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "CCOHS is national technical guidance. A country-level card cannot establish which federal, provincial or territorial requirements govern a workplace; the regime-specific comparison remains incomplete."
+      ],
+      "correctionIds": [
+        "regional-ca-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "0467232c2004c7ad474c5d3cc3a804cfdf0850e6630ee9a1e1f80a4a6414e62f",
+      "sourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Lockout is a physical securing measure, not merely shutdown; release or restrain preserves the appropriate response to the energy. Required conditions do not claim that a check has already been performed.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Lockout is a physical securing measure, not merely shutdown; release or restrain preserves the appropriate response to the energy. Required conditions do not claim that a check has already been performed."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Lockout is a physical securing measure, not merely shutdown; release or restrain preserves the appropriate response to the energy. Required conditions do not claim that a check has already been performed.",
+      "correctionIds": [
+        "regional-ca-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-ab-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "fda082d152fb2bc37e3877a971c28ea02157665a363716492611cd08666165b5",
+      "sourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "alberta-energy-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "coveredSections": [
+            "Part 15, hazardous energy control",
+            "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+          ],
+          "fragments": [
+            {
+              "selector": "turn19view0: extracted lines 1142-1423",
+              "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+              "utf8Bytes": 15917
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Stopping, energy isolation, personal securing and each worker's test/confirmation are retained as separate steps. The wording refers to the applicable individual or group procedure rather than treating one operator's check as sufficient for all workers.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Stopping, energy isolation, personal securing and each worker's test/confirmation are retained as separate steps. The wording refers to the applicable individual or group procedure rather than treating one operator's check as sufficient for all workers."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "The 2025 King's Printer Part 15 text was compared with the older search-site capture. The core 212-215 duties agree in substance. Provincial coverage, relevant definitions and any later amendments still need reconciliation before regional closure."
+      ],
+      "correctionIds": [
+        "regional-ca-ab-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-ab-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "fda082d152fb2bc37e3877a971c28ea02157665a363716492611cd08666165b5",
+      "sourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "alberta-energy-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "coveredSections": [
+            "Part 15, hazardous energy control",
+            "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+          ],
+          "fragments": [
+            {
+              "selector": "turn19view0: extracted lines 1142-1423",
+              "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+              "utf8Bytes": 15917
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Identified personal locks and each worker retain distinct actors. Inoperative or otherwise made safe in the verification text is not used to authorize the excluded live-work case.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Identified personal locks and each worker retain distinct actors. Inoperative or otherwise made safe in the verification text is not used to authorize the excluded live-work case."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Identified personal locks and each worker retain distinct actors. Inoperative or otherwise made safe in the verification text is not used to authorize the excluded live-work case.",
+      "correctionIds": [
+        "regional-ca-ab-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-maintenance",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "bcacf95ed9c41e138eef745cbfc3e01e09505b87bee01b482eb1e5863edfe42c",
+      "sourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "worksafebc-lockout-20261016",
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "coveredSections": [
+            "Part 10, de-energization and lockout",
+            "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+          ],
+          "fragments": [
+            {
+              "selector": "turn13view0: extracted lines 321-440",
+              "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+              "utf8Bytes": 8658
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Parts must be secured against movement as well as energy isolated. Personal locks/key control and the alternative location of personal locks in a compliant group system are explicit. Each worker still verifies isolation before entry.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Parts must be secured against movement as well as energy isolated. Personal locks/key control and the alternative location of personal locks in a compliant group system are explicit. Each worker still verifies isolation before entry."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "Compared Parts 2.1 and 10.1-10.12 with this bounded isolation card. Its BC applicability condition, identified personal locks, key control, group-procedure boundary, worker verification and exclusion of alternative/no-lock/live-work cases are consistent. Site execution and full group procedures remain outside the review."
+      ],
+      "correctionIds": [
+        "regional-ca-bc-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-maintenance",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "bcacf95ed9c41e138eef745cbfc3e01e09505b87bee01b482eb1e5863edfe42c",
+      "sourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "worksafebc-lockout-20261016",
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "coveredSections": [
+            "Part 10, de-energization and lockout",
+            "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+          ],
+          "fragments": [
+            {
+              "selector": "turn13view0: extracted lines 321-440",
+              "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+              "utf8Bytes": 8658
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Energy-isolating device is distinct from a control switch. Personal key control does not import the CCOHS no-master-key wording into the BC definition. Group locking does not remove each worker's verification duty.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Energy-isolating device is distinct from a control switch. Personal key control does not import the CCOHS no-master-key wording into the BC definition. Group locking does not remove each worker's verification duty."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Energy-isolating device is distinct from a control switch. Personal key control does not import the CCOHS no-master-key wording into the BC definition. Group locking does not remove each worker's verification duty.",
+      "correctionIds": [
+        "regional-ca-bc-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "bcacf95ed9c41e138eef745cbfc3e01e09505b87bee01b482eb1e5863edfe42c",
+      "sourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "worksafebc-lockout-20261016",
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "coveredSections": [
+            "Part 10, de-energization and lockout",
+            "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+          ],
+          "fragments": [
+            {
+              "selector": "turn13view0: extracted lines 321-440",
+              "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+              "utf8Bytes": 8658
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Read the bounded card against current WorkSafeBC Parts 2 and 10, including definitions, responsibilities and exceptions; not site compliance certification.",
+      "rationale": "Compared Parts 2.1 and 10.1-10.12 with this bounded isolation card. Its BC applicability condition, identified personal locks, key control, group-procedure boundary, worker verification and exclusion of alternative/no-lock/live-work cases are consistent. Site execution and full group procedures remain outside the review.",
+      "checks": [
+        {
+          "field": "regional",
+          "finding": "Compared Parts 2.1 and 10.1-10.12 with this bounded isolation card. Its BC applicability condition, identified personal locks, key control, group-procedure boundary, worker verification and exclusion of alternative/no-lock/live-work cases are consistent. Site execution and full group procedures remain outside the review."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Actual workplace classification, isolation devices, group procedure, worker competence and implementation require site-specific verification."
+      ],
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "retrievalRef": "turn92view0",
+          "sections": "10.1-10.12; definition, personal/group lockout, worker verification and exceptions",
+          "observedOn": "2026-10-16"
+        },
+        {
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-02-applications",
+          "retrievalRef": "turn95view1",
+          "sections": "2.1 scope of application; 2.2 general duty; 2.3 conflict",
+          "observedOn": "2026-10-16"
+        }
+      ],
+      "correctionIds": [
+        "regional-ca-bc-maintenance"
+      ]
+    },
+    {
+      "unitId": "regional-ca-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "99246bfb27ea6136d0ac11d059d52cdd01945501ab535481737d201520270e97",
+      "sourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Personal lockout is now explicit. The inlet, outlet, bypass and drain-path check precedes safe pressure relief; the prohibition on loosening a housing to test pressure remains. No Parker valve order or torque is generalized.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Personal lockout is now explicit. The inlet, outlet, bypass and drain-path check precedes safe pressure relief; the prohibition on loosening a housing to test pressure remains. No Parker valve order or torque is generalized."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "No individual Canadian workplace regime or pressure-equipment classification is established by CCOHS, OSHA or the Parker example; those applicability checks remain incomplete."
+      ],
+      "correctionIds": [
+        "regional-ca-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-ca-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "99246bfb27ea6136d0ac11d059d52cdd01945501ab535481737d201520270e97",
+      "sourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Authorized and depressurization now follow consistent Canadian English. Supply, backfeed and trapped air remain distinct; the non-air and breathing-air exclusions are unchanged.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Authorized and depressurization now follow consistent Canadian English. Supply, backfeed and trapped air remain distinct; the non-air and breathing-air exclusions are unchanged."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Authorized and depressurization now follow consistent Canadian English. Supply, backfeed and trapped air remain distinct; the non-air and breathing-air exclusions are unchanged.",
+      "correctionIds": [
+        "regional-ca-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-ca-ab-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "bc695e02600757006da0253aa5473c0b2e19953689cbf10dc677f232baa2be0b",
+      "sourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "alberta-energy-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "coveredSections": [
+            "Part 15, hazardous energy control",
+            "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+          ],
+          "fragments": [
+            {
+              "selector": "turn19view0: extracted lines 1142-1423",
+              "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+              "utf8Bytes": 15917
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The revised text preserves each worker's test and confirmation alongside personal securing. Continued checks address pressure return. Piping is explicitly separate, so machinery isolation is not presented as a substitute for piping provisions.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The revised text preserves each worker's test and confirmation alongside personal securing. Continued checks address pressure return. Piping is explicitly separate, so machinery isolation is not presented as a substitute for piping provisions."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "The 2025 official Part 15 text confirms separate piping provisions at 215.4-215.5. Equipment-versus-piping classification and the applicable pressure-equipment regime remain unresolved; the newly found edition does not resolve those questions."
+      ],
+      "correctionIds": [
+        "regional-ca-ab-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-ca-ab-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "bc695e02600757006da0253aa5473c0b2e19953689cbf10dc677f232baa2be0b",
+      "sourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "alberta-energy-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "coveredSections": [
+            "Part 15, hazardous energy control",
+            "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+          ],
+          "fragments": [
+            {
+              "selector": "turn19view0: extracted lines 1142-1423",
+              "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+              "utf8Bytes": 15917
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Individual versus group securing is preserved without weakening each worker's verification. Depressurized describes the verified state; closed valves alone do not assert that state.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Individual versus group securing is preserved without weakening each worker's verification. Depressurized describes the verified state; closed valves alone do not assert that state."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Individual versus group securing is preserved without weakening each worker's verification. Depressurized describes the verified state; closed valves alone do not assert that state.",
+      "correctionIds": [
+        "regional-ca-ab-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-pressure-filter",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "624d5d19d39872247872919fd0fec2f69be220f338bbbff19e2f0da50db5f24e",
+      "sourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "worksafebc-lockout-20261016",
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "coveredSections": [
+            "Part 10, de-energization and lockout",
+            "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+          ],
+          "fragments": [
+            {
+              "selector": "turn13view0: extracted lines 321-440",
+              "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+              "utf8Bytes": 8658
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Personal lockout and each worker's verification are reinforced; the group procedure remains conditional. The housing stays closed when safe pressure relief or the boundary is uncertain.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Personal lockout and each worker's verification are reinforced; the group procedure remains conditional. The housing stays closed when safe pressure relief or the boundary is uncertain."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "BC Part 10 supports the energy-control elements, but the particular filter classification and separate pressure-equipment requirements have not been reconciled."
+      ],
+      "correctionIds": [
+        "regional-ca-bc-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-pressure-filter",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "624d5d19d39872247872919fd0fec2f69be220f338bbbff19e2f0da50db5f24e",
+      "sourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "worksafebc-lockout-20261016",
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "coveredSections": [
+            "Part 10, de-energization and lockout",
+            "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+          ],
+          "fragments": [
+            {
+              "selector": "turn13view0: extracted lines 321-440",
+              "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+              "utf8Bytes": 8658
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Personal lockout arranged is an applicability condition, not evidence of completion. Pressure return remains conditional, while the no-loosening prohibition remains unconditional.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Personal lockout arranged is an applicability condition, not evidence of completion. Pressure return remains conditional, while the no-loosening prohibition remains unconditional."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Personal lockout arranged is an applicability condition, not evidence of completion. Pressure return remains conditional, while the no-loosening prohibition remains unconditional.",
+      "correctionIds": [
+        "regional-ca-bc-pressure-filter"
+      ]
+    },
+    {
+      "unitId": "regional-ca-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "5a6cede81a8f471afe657ad436d200abb9214e494bb94fa858d2431a53ba7cb1",
+      "sourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "Ventilation insufficiency now explicitly requires suitable respiratory protection. Hood positioning, performance rechecks and the stop condition remain; the card does not prescribe a universal air-speed value.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "Ventilation insufficiency now explicitly requires suitable respiratory protection. Hood positioning, performance rechecks and the stop condition remain; the card does not prescribe a universal air-speed value."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "National guidance and US comparison do not establish the applicable Canadian exposure limits, welding-standard edition or respiratory programme duties."
+      ],
+      "correctionIds": [
+        "regional-ca-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-ca-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "5a6cede81a8f471afe657ad436d200abb9214e494bb94fa858d2431a53ba7cb1",
+      "sourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Source extraction is clarified as local exhaust ventilation. Coated material now means base metal rather than ambiguously excluding coated electrodes; identified consumables remain required.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Source extraction is clarified as local exhaust ventilation. Coated material now means base metal rather than ambiguously excluding coated electrodes; identified consumables remain required."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Source extraction is clarified as local exhaust ventilation. Coated material now means base metal rather than ambiguously excluding coated electrodes; identified consumables remain required.",
+      "correctionIds": [
+        "regional-ca-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-ca-ab-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "a740656bf049240c703173bef2e1e6e9bd64afc47b0e51e3bf290a1e795c1af0",
+      "sourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "alberta-ventilation-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-26-ventilation-systems/",
+          "coveredSections": [
+            "Part 26, sections 386-388; contaminant ventilation design, operation and failure warning"
+          ],
+          "fragments": [
+            {
+              "selector": "turn20view0: extracted lines 1118-1168",
+              "sha256": "9bab8a4a35e691d1d41e426744d28ac84449d4f7831ca8dccfd511fded8ffd74",
+              "utf8Bytes": 1926
+            },
+            {
+              "selector": "turn20view0: extracted lines 1179-1183",
+              "sha256": "c43d3e65e159a102ac1871ab0b7ffa9fc0ed60217f9a84a6def715ce57a5b444",
+              "utf8Bytes": 1506
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The ventilation-failure warning, worker training and protection arrangements from the captured Part 26 are added to verification. Specified performance and stop-on-failure remain, without inventing a design flow rate.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The ventilation-failure warning, worker training and protection arrangements from the captured Part 26 are added to verification. Specified performance and stop-on-failure remain, without inventing a design flow rate."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "Part 26 is a general ventilation provision. Welding-specific standards, exposure limits and respiratory requirements remain unreviewed. The official 2025 PDF was located but its Part 26 was not compared in this batch."
+      ],
+      "correctionIds": [
+        "regional-ca-ab-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-ca-ab-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "a740656bf049240c703173bef2e1e6e9bd64afc47b0e51e3bf290a1e795c1af0",
+      "sourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "alberta-ventilation-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-26-ventilation-systems/",
+          "coveredSections": [
+            "Part 26, sections 386-388; contaminant ventilation design, operation and failure warning"
+          ],
+          "fragments": [
+            {
+              "selector": "turn20view0: extracted lines 1118-1168",
+              "sha256": "9bab8a4a35e691d1d41e426744d28ac84449d4f7831ca8dccfd511fded8ffd74",
+              "utf8Bytes": 1926
+            },
+            {
+              "selector": "turn20view0: extracted lines 1179-1183",
+              "sha256": "c43d3e65e159a102ac1871ab0b7ffa9fc0ed60217f9a84a6def715ce57a5b444",
+              "utf8Bytes": 1506
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "Immediate failure warning differs from a routine pre-use check. Make-up air, discharge and maintenance remain separate from hood positioning; authorized is consistent across the labels.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "Immediate failure warning differs from a routine pre-use check. Make-up air, discharge and maintenance remain separate from hood positioning; authorized is consistent across the labels."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "Immediate failure warning differs from a routine pre-use check. Make-up air, discharge and maintenance remain separate from hood positioning; authorized is consistent across the labels.",
+      "correctionIds": [
+        "regional-ca-ab-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-welding-fume",
+      "area": "technical",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "75a7cf5bc3c8cf5c01eb723508ca36b3f11e747734c339a0fbfcdeb9bd32ead5",
+      "sourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "worksafebc-welding-20261016",
+          "url": "https://www.worksafebc.com/en/resources/health-safety/risk-advisory/welding-fume-exposure?lang=en",
+          "coveredSections": [
+            "Risk Advisory RA 2015-23; exposure control plan, LEV and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn18view0: extracted lines 130-186",
+              "sha256": "4749cedb9dec359ca4bf41751e627dac99295e615f4720ae69f8b8ec2f189d37",
+              "utf8Bytes": 6552
+            },
+            {
+              "selector": "turn18view0: extracted lines 196-196",
+              "sha256": "6366a96ce35c31c7546cc91317d3cd7c4239fb9ad8d3595aa07c86547e94c81e",
+              "utf8Bytes": 74
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Direct source-to-draft comparison of hazard, cause, consequence, control, verification, conditions, exclusions and scope.",
+      "rationale": "The correction restores elimination/substitution before engineering controls and connects respiratory protection to residual exposure. It adds the advisory's annual exposure-plan review without treating a working fan as proof of adequate protection.",
+      "checks": [
+        {
+          "field": "technical",
+          "finding": "The correction restores elimination/substitution before engineering controls and connects respiratory protection to residual exposure. It adds the advisory's annual exposure-plan review without treating a working fan as proof of adequate protection."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Equipment-specific execution, pressure relief and exposure/performance criteria need competent site assessment.",
+        "The official page for 12.112 and 12.114 shows a referenced welding standard and fixed-station local-exhaust duty. The incorporated standard, designated-substance/exposure provisions and respiratory programme have not been fully reconciled; regional completion remains pending."
+      ],
+      "correctionIds": [
+        "regional-ca-bc-welding-fume"
+      ]
+    },
+    {
+      "unitId": "regional-ca-bc-welding-fume",
+      "area": "translation",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "75a7cf5bc3c8cf5c01eb723508ca36b3f11e747734c339a0fbfcdeb9bd32ead5",
+      "sourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "worksafebc-welding-20261016",
+          "url": "https://www.worksafebc.com/en/resources/health-safety/risk-advisory/welding-fume-exposure?lang=en",
+          "coveredSections": [
+            "Risk Advisory RA 2015-23; exposure control plan, LEV and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn18view0: extracted lines 130-186",
+              "sha256": "4749cedb9dec359ca4bf41751e627dac99295e615f4720ae69f8b8ec2f189d37",
+              "utf8Bytes": 6552
+            },
+            {
+              "selector": "turn18view0: extracted lines 196-196",
+              "sha256": "6366a96ce35c31c7546cc91317d3cd7c4239fb9ad8d3595aa07c86547e94c81e",
+              "utf8Bytes": 74
+            }
+          ]
+        }
+      ],
+      "decision": "completed_with_limitations",
+      "reviewedAt": "2026-10-16",
+      "reviewedAtUtc": "2026-10-16T14:34:58.315Z",
+      "reviewMethod": "Same-language Canadian English terminology and meaning review against cited source text; all displayed fields and applicability labels were read.",
+      "rationale": "The exposure plan covers nearby workers as well as welders. Coated base metal is distinguished from consumables, and annual plan review is distinguished from checks after hood movement.",
+      "checks": [
+        {
+          "field": "translation",
+          "finding": "The exposure plan covers nearby workers as well as welders. Coated base metal is distinguished from consumables, and annual plan review is distinguished from checks after hood movement."
+        },
+        {
+          "field": "applicability and exclusions",
+          "finding": "Unknown boundaries, live/pressurized intervention and out-of-scope work remain excluded; displayed labels agree with condition codes."
+        }
+      ],
+      "remainingIssues": [
+        "Same-language AI review is not independent native-language certification; UI rendering and operator usability were not tested."
+      ],
+      "comparedFields": [
+        "task",
+        "step",
+        "hazard",
+        "cause",
+        "consequence",
+        "control",
+        "verification",
+        "conditions",
+        "exclusions",
+        "coverageLimit"
+      ],
+      "semanticCheck": "The exposure plan covers nearby workers as well as welders. Coated base metal is distinguished from consumables, and annual plan review is distinguished from checks after hood movement.",
+      "correctionIds": [
+        "regional-ca-bc-welding-fume"
+      ]
+    }
+  ],
+  "pendingRegionalReviews": [
+    {
+      "unitId": "regional-ca-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "0467232c2004c7ad474c5d3cc3a804cfdf0850e6630ee9a1e1f80a4a6414e62f",
+      "sourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "CCOHS is national technical guidance. A country-level card cannot establish which federal, provincial or territorial requirements govern a workplace; the regime-specific comparison remains incomplete."
+      ],
+      "requiredToComplete": "CCOHS is national technical guidance. A country-level card cannot establish which federal, provincial or territorial requirements govern a workplace; the regime-specific comparison remains incomplete."
+    },
+    {
+      "unitId": "regional-ca-ab-maintenance",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "fda082d152fb2bc37e3877a971c28ea02157665a363716492611cd08666165b5",
+      "sourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "alberta-energy-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "coveredSections": [
+            "Part 15, hazardous energy control",
+            "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+          ],
+          "fragments": [
+            {
+              "selector": "turn19view0: extracted lines 1142-1423",
+              "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+              "utf8Bytes": 15917
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "The 2025 King's Printer Part 15 text was compared with the older search-site capture. The core 212-215 duties agree in substance. Provincial coverage, relevant definitions and any later amendments still need reconciliation before regional closure."
+      ],
+      "requiredToComplete": "The 2025 King's Printer Part 15 text was compared with the older search-site capture. The core 212-215 duties agree in substance. Provincial coverage, relevant definitions and any later amendments still need reconciliation before regional closure.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.alberta.ca/occupational-health-and-safety-code",
+          "retrievalRef": "turn94view0",
+          "sections": "Current publisher link to free 2025 Code",
+          "observedOn": "2026-10-16"
+        },
+        {
+          "url": "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf",
+          "retrievalRef": "turn97view0 / turn97view1",
+          "sections": "Part 15, printed pages 15-1 through 15-6: 212-215.5",
+          "displayedEffectiveDate": "2025-03-31",
+          "observedOn": "2026-10-16"
+        }
+      ],
+      "editionComparison": "2025 Part 15 compared; further applicability and amendment checks remain"
+    },
+    {
+      "unitId": "regional-ca-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "99246bfb27ea6136d0ac11d059d52cdd01945501ab535481737d201520270e97",
+      "sourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "No individual Canadian workplace regime or pressure-equipment classification is established by CCOHS, OSHA or the Parker example; those applicability checks remain incomplete."
+      ],
+      "requiredToComplete": "No individual Canadian workplace regime or pressure-equipment classification is established by CCOHS, OSHA or the Parker example; those applicability checks remain incomplete."
+    },
+    {
+      "unitId": "regional-ca-ab-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "bc695e02600757006da0253aa5473c0b2e19953689cbf10dc677f232baa2be0b",
+      "sourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "alberta-energy-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-15-managing-the-control-of-hazardous-energy/",
+          "coveredSections": [
+            "Part 15, hazardous energy control",
+            "OHS Code Part 15, sections 212-215: isolation, worker verification and lockout methods"
+          ],
+          "fragments": [
+            {
+              "selector": "turn19view0: extracted lines 1142-1423",
+              "sha256": "019d93506b7f42b8acebbd4bc6239191e7d3da15139409091e9000197cf9cc0a",
+              "utf8Bytes": 15917
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "The 2025 official Part 15 text confirms separate piping provisions at 215.4-215.5. Equipment-versus-piping classification and the applicable pressure-equipment regime remain unresolved; the newly found edition does not resolve those questions."
+      ],
+      "requiredToComplete": "The 2025 official Part 15 text confirms separate piping provisions at 215.4-215.5. Equipment-versus-piping classification and the applicable pressure-equipment regime remain unresolved; the newly found edition does not resolve those questions.",
+      "currentOfficialChecks": [
+        {
+          "url": "https://www.alberta.ca/occupational-health-and-safety-code",
+          "retrievalRef": "turn94view0",
+          "sections": "Current publisher link to free 2025 Code",
+          "observedOn": "2026-10-16"
+        },
+        {
+          "url": "https://kings-printer.alberta.ca/documents/OHS/OHSCode_March_31,_2025_(rep_s850)_only.pdf",
+          "retrievalRef": "turn97view0 / turn97view1",
+          "sections": "Part 15, printed pages 15-1 through 15-6: 212-215.5",
+          "displayedEffectiveDate": "2025-03-31",
+          "observedOn": "2026-10-16"
+        }
+      ],
+      "editionComparison": "2025 Part 15 compared; further applicability and amendment checks remain"
+    },
+    {
+      "unitId": "regional-ca-bc-pressure-filter",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "624d5d19d39872247872919fd0fec2f69be220f338bbbff19e2f0da50db5f24e",
+      "sourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "coveredSections": [
+            "1910.147(d)(1)-(6), isolation, stored energy and verification",
+            "1910.147(d)(3)-(6)",
+            "1910.147(d)(3)-(6): isolation, lockout/tagout, stored-energy control, reaccumulation and verification",
+            "1910.147(c)(2)-(3) and (d)(1)-(6): lockout priority, tagout conditions, stored energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 54-154",
+              "sha256": "4e92021bc0ac2dbd5e876744e71d3757bf162670fec8519dc5034156088b8039",
+              "utf8Bytes": 7840
+            },
+            {
+              "selector": "web-extracted lines 159-210",
+              "sha256": "c8f385b007239ba8785d2bd9074fcf5ca0ece08fe853b083025c3d01f8003e1d",
+              "utf8Bytes": 4714
+            },
+            {
+              "selector": "web-extracted lines 349-395",
+              "sha256": "5dc52728df8019e694790219f4eb921462d41ceb24eb36298784894b7b361f16",
+              "utf8Bytes": 2903
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-lockout-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/hsprograms/lockout.html",
+          "coveredSections": [
+            "Lockout steps 4-7: energy isolation, dissipation or restraint, and verification",
+            "Written equipment procedure; residual energy and verification"
+          ],
+          "fragments": [
+            {
+              "selector": "turn9view0: extracted lines 118-132",
+              "sha256": "7b3bac44dd2e692fa711153c87e1cd31fcd7238c134d63984814c80c3592d122",
+              "utf8Bytes": 1061
+            },
+            {
+              "selector": "turn9view0: extracted lines 165-216",
+              "sha256": "7e8c58182b2cbeb85f74c17b22a7738d2b661ce5be83e0b7e4c82352a5b60cb8",
+              "utf8Bytes": 5284
+            },
+            {
+              "selector": "turn9view0: extracted lines 234-234",
+              "sha256": "1945f8e9e988d2e9438937536baf1e6d421ab2c11e945ab4898548aecaed0239",
+              "utf8Bytes": 39
+            }
+          ]
+        },
+        {
+          "captureId": "worksafebc-lockout-20261016",
+          "url": "https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation/ohs-regulation/part-10-de-energization-and-lockout",
+          "coveredSections": [
+            "Part 10, de-energization and lockout",
+            "OHS Regulation 10.1-10.6, pneumatic energy, lockout and verification before work"
+          ],
+          "fragments": [
+            {
+              "selector": "turn13view0: extracted lines 321-440",
+              "sha256": "6a45580ea4d1bd8ecf5f0e5ce7c032381474f2f38f5f2efca0f7e5c4cc225ef2",
+              "utf8Bytes": 8658
+            }
+          ]
+        },
+        {
+          "captureId": "parker-oil-x",
+          "url": "https://www.parker.com/content/dam/Parker-com/Literature/Hiross-Zander-Division/PDF-Files/Operating-Manuals/Parker-Oil-X-2.1-User-Guide_Online_EN.pdf",
+          "coveredSections": [
+            "Printed pages 5 and 10"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 0-10",
+              "sha256": "e7bf864c37478e669eab68f96180780c61905a70d0c1abe58b241c6ca873b4d8",
+              "utf8Bytes": 228
+            },
+            {
+              "selector": "web-extracted lines 68-91",
+              "sha256": "6cada2f8390fd1f845116c3351484335addb7cfdfbb8dc257dfb75d47cdcc156",
+              "utf8Bytes": 2077
+            },
+            {
+              "selector": "web-extracted lines 144-154",
+              "sha256": "fe0d93fdbc6318c43e1a854e867cdf55ddbbbca5a054dda4665b94725ff5d47c",
+              "utf8Bytes": 553
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "BC Part 10 supports the energy-control elements, but the particular filter classification and separate pressure-equipment requirements have not been reconciled."
+      ],
+      "requiredToComplete": "BC Part 10 supports the energy-control elements, but the particular filter classification and separate pressure-equipment requirements have not been reconciled."
+    },
+    {
+      "unitId": "regional-ca-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "5a6cede81a8f471afe657ad436d200abb9214e494bb94fa858d2431a53ba7cb1",
+      "sourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "National guidance and US comparison do not establish the applicable Canadian exposure limits, welding-standard edition or respiratory programme duties."
+      ],
+      "requiredToComplete": "National guidance and US comparison do not establish the applicable Canadian exposure limits, welding-standard edition or respiratory programme duties."
+    },
+    {
+      "unitId": "regional-ca-ab-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "a740656bf049240c703173bef2e1e6e9bd64afc47b0e51e3bf290a1e795c1af0",
+      "sourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "alberta-ventilation-20261016",
+          "url": "https://search-ohs-laws.alberta.ca/legislation/occupational-health-and-safety-code/part-26-ventilation-systems/",
+          "coveredSections": [
+            "Part 26, sections 386-388; contaminant ventilation design, operation and failure warning"
+          ],
+          "fragments": [
+            {
+              "selector": "turn20view0: extracted lines 1118-1168",
+              "sha256": "9bab8a4a35e691d1d41e426744d28ac84449d4f7831ca8dccfd511fded8ffd74",
+              "utf8Bytes": 1926
+            },
+            {
+              "selector": "turn20view0: extracted lines 1179-1183",
+              "sha256": "c43d3e65e159a102ac1871ab0b7ffa9fc0ed60217f9a84a6def715ce57a5b444",
+              "utf8Bytes": 1506
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "Part 26 is a general ventilation provision. Welding-specific standards, exposure limits and respiratory requirements remain unreviewed. The official 2025 PDF was located but its Part 26 was not compared in this batch."
+      ],
+      "requiredToComplete": "Part 26 is a general ventilation provision. Welding-specific standards, exposure limits and respiratory requirements remain unreviewed. The official 2025 PDF was located but its Part 26 was not compared in this batch."
+    },
+    {
+      "unitId": "regional-ca-bc-welding-fume",
+      "area": "regional",
+      "reviewer": "OpenAI Codex (AI desk review by the drafting assistant; not independent professional certification)",
+      "contentHash": "75a7cf5bc3c8cf5c01eb723508ca36b3f11e747734c339a0fbfcdeb9bd32ead5",
+      "sourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
+      "approvalGranted": false,
+      "evidence": [
+        {
+          "captureId": "osha-1910-252",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.252",
+          "coveredSections": [
+            "1910.252(c)(1)-(3), ventilation and local exhaust"
+          ],
+          "fragments": [
+            {
+              "selector": "web-extracted lines 357-470",
+              "sha256": "d4985b2b87ffaadd399029c8b628f8523b824b245aa0f5f0fa7384919a990f49",
+              "utf8Bytes": 7381
+            }
+          ]
+        },
+        {
+          "captureId": "ccohs-welding-ventilation-20261016",
+          "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/ventilation.html",
+          "coveredSections": [
+            "Ventilation selection, local exhaust and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn8view0: extracted lines 34-101",
+              "sha256": "24abaf35c522d23115e3cc01f359cf701d5975d2e25dbfb6c623d7dab9adce07",
+              "utf8Bytes": 4569
+            }
+          ]
+        },
+        {
+          "captureId": "worksafebc-welding-20261016",
+          "url": "https://www.worksafebc.com/en/resources/health-safety/risk-advisory/welding-fume-exposure?lang=en",
+          "coveredSections": [
+            "Risk Advisory RA 2015-23; exposure control plan, LEV and respiratory protection"
+          ],
+          "fragments": [
+            {
+              "selector": "turn18view0: extracted lines 130-186",
+              "sha256": "4749cedb9dec359ca4bf41751e627dac99295e615f4720ae69f8b8ec2f189d37",
+              "utf8Bytes": 6552
+            },
+            {
+              "selector": "turn18view0: extracted lines 196-196",
+              "sha256": "6366a96ce35c31c7546cc91317d3cd7c4239fb9ad8d3595aa07c86547e94c81e",
+              "utf8Bytes": 74
+            }
+          ]
+        }
+      ],
+      "decision": null,
+      "status": "pending_required_evidence",
+      "countedComplete": false,
+      "assessedAt": "2026-10-16T14:34:58.315Z",
+      "findings": [
+        "The official page for 12.112 and 12.114 shows a referenced welding standard and fixed-station local-exhaust duty. The incorporated standard, designated-substance/exposure provisions and respiratory programme have not been fully reconciled; regional completion remains pending."
+      ],
+      "requiredToComplete": "The official page for 12.112 and 12.114 shows a referenced welding standard and fixed-station local-exhaust duty. The incorporated standard, designated-substance/exposure provisions and respiratory programme have not been fully reconciled; regional completion remains pending."
+    }
+  ],
+  "corrections": [
+    {
+      "unitId": "regional-ca-maintenance",
+      "reason": "Replace vague securing with personal lockout and distinguish Canadian technical guidance from the applicable legal regime.",
+      "previousRevision": 5,
+      "revision": 6,
+      "previousContentHash": "a02ded556bb4de31efdbfb2e3d65497d06aecd38c958de79ba270397329026be",
+      "previousSourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
+      "contentHash": "0467232c2004c7ad474c5d3cc3a804cfdf0850e6630ee9a1e1f80a4a6414e62f",
+      "sourceFingerprint": "c17840f0b6e6f6b07a2ed5158a175f358c99ea62cd7cbd6a6f1028300c451832",
+      "changes": {
+        "revision": {
+          "before": 5,
+          "after": 6
+        },
+        "control": {
+          "before": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+          "after": "Follow the equipment-specific procedure to shut down the machine, identify and isolate its energy sources, and apply each exposed worker's personal lock under the applicable lockout procedure. Safely release or restrain stored energy, including parts that could fall or move, before access."
+        },
+        "coverageLimit": {
+          "before": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures.",
+          "after": "Canadian technical guidance for energy isolation before maintenance, conditional on the identified federal, provincial or territorial regime. Group arrangements, lock removal, access, repairs, guards and return to service require the applicable separate procedures; CCOHS guidance alone does not establish legal compliance."
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-ab-maintenance",
+      "reason": "Restore stopping and personal securing arrangements without treating individual and group procedures as identical.",
+      "previousRevision": 5,
+      "revision": 6,
+      "previousContentHash": "adb480baa6c39e30745780419f6cac0e79c749bb286c547d9fb86888e5d24914",
+      "previousSourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
+      "contentHash": "fda082d152fb2bc37e3877a971c28ea02157665a363716492611cd08666165b5",
+      "sourceFingerprint": "3165a363848a25df63922204db5e6f5ab22ac876c1b6808d7df975ba7d0165f9",
+      "changes": {
+        "revision": {
+          "before": 5,
+          "after": 6
+        },
+        "control": {
+          "before": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+          "after": "Bring the machine to a complete stop and isolate all hazardous energy using the equipment-specific procedure. Use the applicable individual or group securing procedure with identified personal locks; safely release or restrain stored energy before access. Each worker retains the duty to test and confirm a safe state."
+        },
+        "coverageLimit": {
+          "before": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures.",
+          "after": "Preparation for maintenance under the applicable Alberta machinery energy-control procedure only. Individual, group and complex-group arrangements have different requirements. Live-work exceptions, remotely controlled systems, shift transfers, lock removal, piping and return to service are not authorized by this card; confirm their separate requirements where relevant."
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-bc-maintenance",
+      "reason": "Make each worker's lock/key duties explicit, preserve the group-lockout distinction, and bound jurisdiction and exceptions.",
+      "previousRevision": 5,
+      "revision": 6,
+      "previousContentHash": "3d2b84fd25016047f5a284a45358afc67e59b856d82ad32fa76653b4840e10b0",
+      "previousSourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
+      "contentHash": "bcacf95ed9c41e138eef745cbfc3e01e09505b87bee01b482eb1e5863edfe42c",
+      "sourceFingerprint": "17943033c8172cefdb374f5dbffe6b90679833788d129b0ca0c4e41fd6bb56ab",
+      "changes": {
+        "revision": {
+          "before": 5,
+          "after": 6
+        },
+        "control": {
+          "before": "Identify and isolate the machine energy sources, secure against reconnection, and safely release or restrain stored energy using the equipment-specific procedure before access.",
+          "after": "Shut down the machine, secure parts and attachments against unintended movement, and isolate its energy sources. Under the written lockout procedure, each exposed worker applies an identified personal lock and keeps immediate control of its key; where the Part 10.9 group procedure applies, each worker locks the key-securing system. Safely release or restrain stored energy before access."
+        },
+        "conditions": {
+          "before": [
+            "Equipment-specific procedure is available",
+            "A competent person is assigned"
+          ],
+          "after": [
+            "Equipment-specific procedure is available",
+            "A competent person is assigned",
+            "The workplace falls within the British Columbia OHS Regulation"
+          ]
+        },
+        "applicability": {
+          "before": {
+            "taskType": "machine-maintenance",
+            "hazardType": "unexpected-energization",
+            "targetType": "machine",
+            "conditionsRequired": [
+              "equipment-procedure-available",
+              "competent-person-assigned"
+            ],
+            "excludedConditions": [
+              "live-intervention",
+              "confined-entry",
+              "unknown-energy-path"
+            ]
+          },
+          "after": {
+            "taskType": "machine-maintenance",
+            "hazardType": "unexpected-energization",
+            "targetType": "machine",
+            "conditionsRequired": [
+              "equipment-procedure-available",
+              "competent-person-assigned",
+              "bc-regime-confirmed"
+            ],
+            "excludedConditions": [
+              "live-intervention",
+              "confined-entry",
+              "unknown-energy-path"
+            ]
+          }
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "Equipment-specific procedure is available",
+            "competent-person-assigned": "A competent person is assigned",
+            "live-intervention": "Work requires intervention while energized",
+            "confined-entry": "Work involves confined-space entry",
+            "unknown-energy-path": "An energy source or isolation boundary is unknown"
+          },
+          "after": {
+            "equipment-procedure-available": "Equipment-specific procedure is available",
+            "competent-person-assigned": "A competent person is assigned",
+            "live-intervention": "Work requires intervention while energized",
+            "confined-entry": "Work involves confined-space entry",
+            "unknown-energy-path": "An energy source or isolation boundary is unknown",
+            "bc-regime-confirmed": "The workplace falls within the British Columbia OHS Regulation"
+          }
+        },
+        "coverageLimit": {
+          "before": "Energy isolation before maintenance only. Access, the repair itself, guards and return to service require separate assessment and procedures.",
+          "after": "Pre-maintenance isolation within the British Columbia OHS Regulation only. Combination locks are excluded. Group lockout requires the complete Part 10.9 procedure, including two qualified workers and the posted checklist. Shift transfer, removal and restart require separate procedures; alternative control, no-lock exceptions and energized work under 10.10-10.12 are outside this card."
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-pressure-filter",
+      "reason": "Add explicit personal lockout, retain worker verification and the no-opening hold, and align Canadian English pressure terminology.",
+      "previousRevision": 3,
+      "revision": 4,
+      "previousContentHash": "da7992729bc938e0c4ab6697ba0ad7a659ec6543c71cd8b130882d88fdd4d258",
+      "previousSourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
+      "contentHash": "99246bfb27ea6136d0ac11d059d52cdd01945501ab535481737d201520270e97",
+      "sourceFingerprint": "2373e0db420908fae0dd963475870630b6e0153526a27d0d0f73d6bcadf06826",
+      "changes": {
+        "revision": {
+          "before": 3,
+          "after": 4
+        },
+        "control": {
+          "before": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
+          "after": "Identify supply and backfeed through the inlet, outlet, bypass and connected drain lines. Apply personal lockout under the equipment procedure and the identified Canadian workplace regime. Isolate all supplies and safely relieve retained pressure before opening, following the actual filter procedure."
+        },
+        "verification": {
+          "before": "An authorised person verifies isolation and depressurisation; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
+          "after": "An authorized person verifies isolation and depressurization; continue checks if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test."
+        },
+        "coverageLimit": {
+          "before": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+          "after": "Pressure-release hazard only; other maintenance hazards need separate assessment. The identified federal, provincial or territorial regime controls applicability. The Parker manual is a model-specific example, not the operating procedure for every filter."
+        },
+        "conditions": {
+          "before": [
+            "Equipment-specific isolation procedure available",
+            "Authorised person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+            "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          ],
+          "after": [
+            "Equipment-specific isolation procedure available",
+            "Authorized person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+            "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Pressurised intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ],
+          "after": [
+            "Pressurized intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorised person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurised intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification",
+            "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          },
+          "after": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorized person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurized intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification",
+            "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          }
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-ab-pressure-filter",
+      "reason": "Add explicit personal lockout, retain worker verification and the no-opening hold, and align Canadian English pressure terminology.",
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "be3c9ade6c432c4145ad4fb5eb591156006dd93afce28e2683f756147929fd86",
+      "previousSourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
+      "contentHash": "bc695e02600757006da0253aa5473c0b2e19953689cbf10dc677f232baa2be0b",
+      "sourceFingerprint": "b9b403034262e492d628edc45ad6b8b784b20f5137980b4e8dcd2418c2c678dd",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "control": {
+          "before": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
+          "after": "Identify supply and backfeed through the inlet, outlet, bypass and connected drain lines. Apply the equipment-specific individual or group isolation procedure with identified personal locks; each worker tests and confirms the safe state. Isolate all supplies and safely relieve retained pressure before opening, following the actual filter procedure."
+        },
+        "verification": {
+          "before": "Each worker tests and confirms isolation and a safe depressurised state under the equipment procedure before work; recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
+          "after": "Each worker tests and confirms isolation and a safe depressurized state under the equipment procedure before work; recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test."
+        },
+        "coverageLimit": {
+          "before": "Pressure-release hazard of the identified compressed-air filter only. This is not a piping or pipeline isolation procedure; determine whether the separate piping requirements apply. Other maintenance hazards need separate assessment.",
+          "after": "Pressure-release hazard of the identified compressed-air filter only. This is not a piping or pipeline isolation procedure; determine whether the separate piping requirements apply. Other maintenance hazards need separate assessment. The applicable provincial regime and separate pressure-equipment requirements must be confirmed. The Parker manual is a model-specific example, not the operating procedure for every filter."
+        },
+        "conditions": {
+          "before": [
+            "Equipment-specific isolation procedure available",
+            "Authorised person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening"
+          ],
+          "after": [
+            "Equipment-specific isolation procedure available",
+            "Authorized person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Pressurised intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ],
+          "after": [
+            "Pressurized intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorised person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurised intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification"
+          },
+          "after": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorized person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurized intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification"
+          }
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-bc-pressure-filter",
+      "reason": "Add explicit personal lockout, retain worker verification and the no-opening hold, and align Canadian English pressure terminology.",
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "0bc2956d950e174114934960f823835a286dacdc78eb301b974ae54faf78eefc",
+      "previousSourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
+      "contentHash": "624d5d19d39872247872919fd0fec2f69be220f338bbbff19e2f0da50db5f24e",
+      "sourceFingerprint": "ef68185ce9f68aaedf2cb50e460e49b4e5946a4beff392ebf511d0ff9365e17a",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "control": {
+          "before": "Trace the inlet, outlet, bypass and connected drain lines for possible supply or backfeed before applying the equipment-specific isolation procedure. Use the equipment procedure to isolate and secure all supplies and safely relieve trapped pressure before opening.",
+          "after": "Identify supply and backfeed through the inlet, outlet, bypass and connected drain lines. Use the written equipment lockout procedure with each worker's personal lock and verification; group lockout requires the complete Part 10.9 procedure. Isolate all supplies and safely relieve retained pressure before opening, following the actual filter procedure."
+        },
+        "verification": {
+          "before": "Each worker verifies effective lockout before starting; verify retained pressure is released under the equipment procedure and recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurisation cannot be verified; do not loosen the housing as a pressure test.",
+          "after": "Each worker verifies effective lockout before starting; verify retained pressure is released under the equipment procedure and recheck if pressure can return. Keep the housing closed if the pressure boundary or safe depressurization cannot be verified; do not loosen the housing as a pressure test."
+        },
+        "coverageLimit": {
+          "before": "Pressure-release hazard only; other maintenance hazards need separate assessment.",
+          "after": "Pressure-release hazard only; other maintenance hazards need separate assessment. The applicable provincial regime and separate pressure-equipment requirements must be confirmed. The Parker manual is a model-specific example, not the operating procedure for every filter."
+        },
+        "conditions": {
+          "before": [
+            "Equipment-specific isolation procedure available",
+            "Authorised person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "Personal lockout and each worker’s verification are arranged",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening"
+          ],
+          "after": [
+            "Equipment-specific isolation procedure available",
+            "Authorized person assigned",
+            "Compressed-air filter and all pressure paths identified",
+            "Personal lockout and each worker’s verification are arranged",
+            "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Pressurised intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ],
+          "after": [
+            "Pressurized intervention",
+            "Confined-space entry",
+            "Unknown contents or isolation boundary",
+            "The filter handles a gas other than compressed air",
+            "The task includes breathing-air certification"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorised person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurised intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "personal-lockout-arranged": "Personal lockout and each worker’s verification are arranged",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurisation before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification"
+          },
+          "after": {
+            "equipment-procedure-available": "Equipment-specific isolation procedure available",
+            "authorized-person-assigned": "Authorized person assigned",
+            "compressed-air-filter-identified": "Compressed-air filter and all pressure paths identified",
+            "pressurized-intervention": "Pressurized intervention",
+            "confined-entry": "Confined-space entry",
+            "unknown-media-or-isolation": "Unknown contents or isolation boundary",
+            "personal-lockout-arranged": "Personal lockout and each worker’s verification are arranged",
+            "safe-depressurization-method-available": "The equipment procedure specifies safe pressure relief and a means to verify housing depressurization before opening",
+            "non-air-service": "The filter handles a gas other than compressed air",
+            "breathing-air-certification": "The task includes breathing-air certification"
+          }
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-welding-fume",
+      "reason": "Clarify local exhaust and residual-exposure protection, identify coated base metal, and retain locale-specific ventilation or exposure-plan duties.",
+      "previousRevision": 3,
+      "revision": 4,
+      "previousContentHash": "cdf626badc9bba8b3f870bd5f0b2304996c99c1a2698b18a30a0b76370947d1a",
+      "previousSourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
+      "contentHash": "5a6cede81a8f471afe657ad436d200abb9214e494bb94fa858d2431a53ba7cb1",
+      "sourceFingerprint": "b2a8d01d9a018fae1ac5243f11a3ba448259988435408f96b97bf5eeaa352517",
+      "changes": {
+        "revision": {
+          "before": 3,
+          "after": 4
+        },
+        "control": {
+          "before": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
+          "after": "Use suitable local exhaust ventilation positioned and operated for the process. Where ventilation does not adequately control exposure, provide and use suitable respiratory protection selected for the hazards and applicable requirements."
+        },
+        "coverageLimit": {
+          "before": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+          "after": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. Local exhaust is the selected technical control; the applicable Canadian workplace regime and respiratory programme must be checked. Fire, radiation, electrical and gas hazards require separate assessment."
+        },
+        "conditions": {
+          "before": [
+            "Authorised person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available",
+            "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          ],
+          "after": [
+            "Authorized person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available",
+            "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Confined-space entry",
+            "Outdoor welding",
+            "Coated, stainless or unidentified material",
+            "Extraction unavailable or ineffective"
+          ],
+          "after": [
+            "Confined-space entry",
+            "Outdoor welding",
+            "Coated or plated base metal, stainless steel, or unidentified base metal",
+            "Extraction unavailable or ineffective"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "authorized-person-assigned": "Authorised person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+            "extraction-unavailable": "Extraction unavailable or ineffective",
+            "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          },
+          "after": {
+            "authorized-person-assigned": "Authorized person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
+            "extraction-unavailable": "Extraction unavailable or ineffective",
+            "canadian-regime-confirmed": "The applicable federal, provincial or territorial workplace regime has been identified and checked"
+          }
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-ab-welding-fume",
+      "reason": "Clarify local exhaust and residual-exposure protection, identify coated base metal, and retain locale-specific ventilation or exposure-plan duties.",
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "59b821586c16fad699514cb77b42e617571743908ec6e84b605ad61a728dcd5e",
+      "previousSourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
+      "contentHash": "a740656bf049240c703173bef2e1e6e9bd64afc47b0e51e3bf290a1e795c1af0",
+      "sourceFingerprint": "60197efb1a1b2b8bac6216db0bc730cadf673a3334031221e067b8f0a867a58f",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "control": {
+          "before": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
+          "after": "Use suitable local exhaust ventilation positioned and operated for the process. Where ventilation does not adequately control exposure, provide and use suitable respiratory protection selected for the hazards and applicable requirements."
+        },
+        "verification": {
+          "before": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
+          "after": "Check hood position and specified extraction performance, that operators are trained, and that the immediate ventilation-failure warning and protection arrangements work. Repeat checks after moving the hood or changing the work; stop welding if extraction is ineffective."
+        },
+        "coverageLimit": {
+          "before": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+          "after": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. Ventilation design, maintenance, discharge and make-up air, welding standards, exposure limits and respiratory programme requirements need a separate Alberta applicability review. Fire, radiation, electrical and gas hazards require separate assessment."
+        },
+        "conditions": {
+          "before": [
+            "Authorised person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available"
+          ],
+          "after": [
+            "Authorized person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Confined-space entry",
+            "Outdoor welding",
+            "Coated, stainless or unidentified material",
+            "Extraction unavailable or ineffective"
+          ],
+          "after": [
+            "Confined-space entry",
+            "Outdoor welding",
+            "Coated or plated base metal, stainless steel, or unidentified base metal",
+            "Extraction unavailable or ineffective"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "authorized-person-assigned": "Authorised person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+            "extraction-unavailable": "Extraction unavailable or ineffective"
+          },
+          "after": {
+            "authorized-person-assigned": "Authorized person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
+            "extraction-unavailable": "Extraction unavailable or ineffective"
+          }
+        }
+      }
+    },
+    {
+      "unitId": "regional-ca-bc-welding-fume",
+      "reason": "Clarify local exhaust and residual-exposure protection, identify coated base metal, and retain locale-specific ventilation or exposure-plan duties.",
+      "previousRevision": 4,
+      "revision": 5,
+      "previousContentHash": "e2aaeaf5755e2641ee6084f52ecc16e141306c4786cdd662b441bfc08861e37d",
+      "previousSourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
+      "contentHash": "75a7cf5bc3c8cf5c01eb723508ca36b3f11e747734c339a0fbfcdeb9bd32ead5",
+      "sourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
+      "changes": {
+        "revision": {
+          "before": 4,
+          "after": 5
+        },
+        "control": {
+          "before": "Use suitable source extraction; position and operate it for the welding process, with respiratory protection where the exposure assessment requires it.",
+          "after": "First assess eliminating welding or substituting a less hazardous process or consumable. For the remaining task, use suitable local exhaust ventilation and the site exposure control plan; provide and use suitable respiratory protection where engineering controls do not adequately control exposure."
+        },
+        "verification": {
+          "before": "Check hood position and the specified extraction performance; repeat after moving the hood or changing the work. Stop welding if extraction is ineffective.",
+          "after": "Check hood position, specified extraction performance and required respiratory protection. Repeat after moving the hood or changing the work, and stop welding if extraction is ineffective. Check that the exposure control plan is reviewed at least annually with the joint committee or worker health and safety representative."
+        },
+        "coverageLimit": {
+          "before": "Fume exposure only; fire, radiation, electrical and gas hazards need separate assessment.",
+          "after": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. The exposure plan covers affected workers nearby as well as welders. Applicable welding standards, exposure limits and respiratory programme requirements need separate review. Fire, radiation, electrical and gas hazards require separate assessment."
+        },
+        "conditions": {
+          "before": [
+            "Authorised person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available",
+            "A site-specific welding fume exposure control plan is available"
+          ],
+          "after": [
+            "Authorized person assigned",
+            "Routine indoor welding",
+            "Uncoated mild steel and consumables identified",
+            "Exposure-control procedure available",
+            "A site-specific welding fume exposure control plan is available"
+          ]
+        },
+        "exclusions": {
+          "before": [
+            "Confined-space entry",
+            "Outdoor welding",
+            "Coated, stainless or unidentified material",
+            "Extraction unavailable or ineffective"
+          ],
+          "after": [
+            "Confined-space entry",
+            "Outdoor welding",
+            "Coated or plated base metal, stainless steel, or unidentified base metal",
+            "Extraction unavailable or ineffective"
+          ]
+        },
+        "conditionLabels": {
+          "before": {
+            "authorized-person-assigned": "Authorised person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated, stainless or unidentified material",
+            "extraction-unavailable": "Extraction unavailable or ineffective",
+            "exposure-control-plan-ready": "A site-specific welding fume exposure control plan is available"
+          },
+          "after": {
+            "authorized-person-assigned": "Authorized person assigned",
+            "regular-indoor-welding": "Routine indoor welding",
+            "uncoated-mild-steel-identified": "Uncoated mild steel and consumables identified",
+            "exposure-procedure-available": "Exposure-control procedure available",
+            "confined-entry": "Confined-space entry",
+            "outdoor-welding": "Outdoor welding",
+            "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
+            "extraction-unavailable": "Extraction unavailable or ineffective",
+            "exposure-control-plan-ready": "A site-specific welding fume exposure control plan is available"
+          }
+        }
+      }
+    }
+  ]
+}

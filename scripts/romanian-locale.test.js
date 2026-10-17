@@ -61,7 +61,9 @@ test('Romanian UI never invents reviewed regional starter forms or recommendatio
     assert.equal(workContext(context).jurisdiction, context.jurisdiction);
   }
   const row = (await readKnowledgeCoverage()).coverage.find(row => row.locale === 'ro-RO');
-  assert.ok(row.tasks.every(task => task.guidanceUnits === 0));
+  assert.equal(row.tasks.length,3);
+  assert.ok(row.tasks.every(task => task.guidanceUnits === 1 && task.draftUnits === 1));
+  assert.ok(row.tasks.every(task => task.publicationEligible === 0 && task.requiresLocalSourceReview));
 });
 
 const post = { id: 'SYNTHETIC-RO', post_group_id: 'SYNTHETIC-RO-TEST', language_code: 'ro-RO', title: 'Verificarea unei conducte', meta_description: 'Exemplu sintetic pentru testarea interfeței.', content_md: '## Exemplu sintetic\n\nMaterial de test, fără aprobare tehnică.\n\n| Etapă | Măsură |\n|---|---|\n| Pregătire | Verificare |', created_at: '2026-10-15T00:00:00Z', pdf_list: [{ name: 'Document de test', url: 'https://example.com/synthetic-ro.pdf' }] };
@@ -92,3 +94,4 @@ test('all six Romanian guides share their HTML/PDF edition and only Romanian sco
     assert.ok(guide.sources.every(source => /legislatie\.just\.ro|inspectiamuncii\.ro/.test(source.url)));
   }
 });
+

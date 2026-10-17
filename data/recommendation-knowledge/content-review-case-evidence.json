@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact-case-source-comparison",
+  "retrievedAt": "2026-10-16T14:51:16.593Z",
+  "sourceReadOnly": true,
+  "sourceProfessionalApproval": false,
+  "cases": [
+    {
+      "unitId": "compressed-air-filter-backfeed",
+      "sourceRowId": "db8e01d0-0b40-492f-aeeb-fbc898ebd41f",
+      "caseGroupId": "jsa-compressed-air-filter-element",
+      "locale": "en-US",
+      "sourceFingerprint": "b760df03db3a1ed81c9d11c0dc2a6ca31c957f06c33e44b2d4a476ac05bf2e79",
+      "url": "https://smartjsabridge.com/en-US/case-study/jsa-compressed-air-filter-element",
+      "sectionsRead": "Eight-stage JSA stages 2-3; scope exclusions; silent-drain hold and opening FAQ",
+      "verification": "Exact CASE_SOURCE_FIELDS fingerprint compared with the current DB row; relevant task, scope, failure and hold/proceed text read. The underlying case is AI-authored and not professionally approved."
+    },
+    {
+      "unitId": "asphalt-milling-truck-exchange",
+      "sourceRowId": "54db6aef-bf7a-4aad-a132-1a0a167fa8cd",
+      "caseGroupId": "jsa-asphalt-milling",
+      "locale": "en-US",
+      "sourceFingerprint": "03d59ec9ff7e2288951483b576e024e46d1f7f9a310f96cda6da58307907190a",
+      "url": "https://smartjsabridge.com/en-US/case-study/jsa-asphalt-milling",
+      "sectionsRead": "Eight-stage JSA stages 2, 5 and 6; lost-visibility scenario; stop and proceed decisions",
+      "verification": "Exact CASE_SOURCE_FIELDS fingerprint compared with the current DB row; relevant task, scope, failure and hold/proceed text read. The underlying case is AI-authored and not professionally approved."
+    },
+    {
+      "unitId": "aluminum-tig-air-exposure",
+      "sourceRowId": "27da8cf4-2f4c-49aa-9ea9-a56837ad62cd",
+      "caseGroupId": "jsa-aluminum-actig",
+      "locale": "en-US",
+      "sourceFingerprint": "95732a074a73c329c840838d5d647ef5bfa9255517eb5c07db1538900b8aaaf7",
+      "url": "https://smartjsabridge.com/en-US/case-study/jsa-aluminum-actig",
+      "sectionsRead": "Eight-stage JSA stage 4; ozone and argon explanation; hood-moved hold; scope exclusions",
+      "verification": "Exact CASE_SOURCE_FIELDS fingerprint compared with the current DB row; relevant task, scope, failure and hold/proceed text read. The underlying case is AI-authored and not professionally approved."
+    }
+  ],
+  "additionalTechnicalChecks": [
+    {
+      "unitId": "asphalt-milling-truck-exchange",
+      "url": "https://www.osha.gov/preventing-backovers/solutions",
+      "retrievalRef": "turn101view0",
+      "sections": "Spotter; Internal Traffic Control Plans",
+      "observedOn": "2026-10-16",
+      "finding": "Agreed signals, maintained sight of the spotter, immediate stop on lost visual contact and routes separating workers from vehicles support the control. This page is informational, not an independent legal duty."
+    },
+    {
+      "unitId": "aluminum-tig-air-exposure",
+      "url": "https://www.osha.gov/sites/default/files/publications/OSHA_FS-3647_WELDING.pdf",
+      "retrievalRef": "turn100view1",
+      "sections": "Pages 1-2: gases and exposure reduction",
+      "observedOn": "2026-10-16",
+      "finding": "Lists ozone among process gases and argon among shielding gases; describes oxygen displacement, local exhaust and residual respiratory protection. Fact sheet does not impose new requirements."
+    },
+    {
+      "unitId": "aluminum-tig-air-exposure",
+      "url": "https://www.ccohs.ca/oshanswers/safety_haz/welding/fumes.html",
+      "retrievalRef": "turn101view1",
+      "sections": "Welding gases; table 2",
+      "observedOn": "2026-10-16",
+      "finding": "Corroborates ozone in TIG/arc processes and oxygen deficiency from displacement by shielding gases. Canadian technical guidance is not US law."
+    }
+  ]
+}

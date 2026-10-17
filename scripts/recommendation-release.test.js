@@ -7,10 +7,10 @@ import { selectReviewedRecommendations } from '../src/utils/reviewedRecommendati
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
 const drafts = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/regional-drafts.json', import.meta.url)));
 
-test('18 regional drafts cover each Locale but cannot be published without actual content and regional reviews', () => {
-  assert.deepEqual(drafts.units.map(x => x.locale).sort(), SUPPORTED_LANGS.filter(locale => locale !== 'ro-RO').sort());
+test('regional drafts cover every supported Locale but cannot be published without actual content and regional reviews', () => {
+  assert.deepEqual(drafts.units.map(x => x.locale).sort(), [...SUPPORTED_LANGS].sort());
   assert.deepEqual(validateKnowledgeBank(drafts), []);
-  assert.equal(validateKnowledgeBank(drafts, { forPublication: true }).length, 18);
+  assert.equal(validateKnowledgeBank(drafts, { forPublication: true }).length, SUPPORTED_LANGS.length);
   assert.throws(() => compileRecommendationRelease(drafts, []), /Unreviewed/);
 });
 
@@ -47,3 +47,4 @@ test('changed source, changed score, duplicate mappings, and a broken advanced-c
   advanced.review = { ...mapping.review, mappingHash: mappingContentHash(advanced) };
   assert.throws(() => compileRecommendationRelease(bank, [advanced], options), /incompatible context/);
 });
+

@@ -6,22 +6,23 @@ import { buildKnowledgeCoverage, sourceRelationship, readKnowledgeCoverage } fro
 import { validateKnowledgeBank, knowledgeContentHash } from './recommendation-knowledge.js';
 import { compileRecommendationRelease, mappingContentHash } from './recommendation-release.js';
 import { selectReviewedRecommendations } from '../src/utils/reviewedRecommendationPolicy.js';
+import { verifyGuidanceBindings } from './recommendation-guidance-sources.js';
 
-// Existing authored banks predate the Romanian UI release; missing content stays visible.
-const authoredLocales = SUPPORTED_LANGS.filter(locale => locale !== 'ro-RO');
+const authoredLocales = SUPPORTED_LANGS;
 const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/pressure-welding-drafts.json', import.meta.url)));
+const captures = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/guidance-source-captures.json', import.meta.url)));
 
 test('pressure and welding have exact-locale drafts, explicit limitations and no releasable scores', () => {
   assert.equal(bank.units.length, authoredLocales.length * 2);
   assert.deepEqual(validateKnowledgeBank(bank), []);
   assert.equal(validateKnowledgeBank(bank, { forPublication: true }).length, bank.units.length);
+  assert.deepEqual(verifyGuidanceBindings(bank, captures), []);
   for (const locale of authoredLocales) {
     const units = bank.units.filter(unit => unit.locale === locale);
     assert.deepEqual(units.map(unit => unit.applicability.taskType).sort(), ['pressure-equipment-opening', 'welding-exposure']);
     for (const unit of units) {
       assert.ok(unit.coverageLimit.length > 10);
       assert.equal(unit.recommendationScore, null);
-      assert.equal(unit.sourceFingerprint, null);
       assert.equal(unit.review.technicalStatus, 'pending');
       assert.equal(unit.review.regionalStatus, 'pending');
       assert.equal(unit.review.translationStatus, 'pending');
@@ -103,7 +104,7 @@ test('coverage counts exact task and jurisdiction, preserving missing cells and 
   assert.equal(sg.requiresLocalSourceReview, true);
   const russia = report.coverage.find(row => row.locale === 'ru-RU').tasks.find(task => task.taskType === 'welding-exposure');
   assert.equal(russia.primarySourceReferences.sameJurisdiction, 1);
-  assert.equal(russia.primarySourceReferences.unreadOrMetadata, 3);
+  assert.equal(russia.primarySourceReferences.unreadOrMetadata, 1);
   assert.equal(russia.missingSameJurisdictionPrimaryReference, false);
   assert.equal(russia.requiresLocalSourceReview, true);
   const alberta = report.coverage.find(row => row.locale === 'en-CA-AB').tasks.find(task => task.taskType === 'pressure-equipment-opening');
@@ -135,4 +136,15 @@ test('committed coverage stays synchronized with all authored knowledge banks', 
   const stored = JSON.parse(fs.readFileSync(new URL('../docs/recommendation-task-coverage.json', import.meta.url)));
   assert.deepEqual(stored, expected);
   assert.equal(expected.totals.cellsWithPublicationEligibleContent, 0);
+  assert.equal(expected.totals.cellsWithDraftOrReviewedContent,57);
+  assert.equal(expected.totals.missingCells,0);
+  const romanian=expected.coverage.find(row=>row.locale==='ro-RO');
+  assert.equal(romanian.jurisdiction,'RO');
+  assert.equal(romanian.tasks.length,3);
+  for(const task of romanian.tasks) {
+    assert.equal(task.units,1);
+    assert.equal(task.primarySourceReferences.sameJurisdiction,1);
+    assert.equal(task.requiresLocalSourceReview,true);
+    assert.equal(task.publicationEligible,0);
+  }
 });
