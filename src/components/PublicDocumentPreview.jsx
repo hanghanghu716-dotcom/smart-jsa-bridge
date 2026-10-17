@@ -31,7 +31,7 @@ export default function PublicDocumentPreview({ row, locale }) {
    </div>
    <div className="jsa-paper-scroll" tabIndex={0} role="region" aria-label={ui[row.document_variant]||community.preview}>
     <div className="jsa-public-paper" ref={paper}>
-     <DocumentContent formData={row.form_data} participants={[]} analysisData={row.analysis_data} layout={layout} documentLocale={row.public_locale||locale}/>
+     <DocumentContent formData={row.form_data} participants={[]} analysisData={row.analysis_data} layout={layout} publicNotes={row.publication_context?.limitations || ''} documentLocale={row.public_locale||locale}/>
     </div>
    </div>
   </section>

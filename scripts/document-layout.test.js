@@ -75,3 +75,35 @@ test('shared document renders ordered enabled blocks, renamed grouped headers, v
     assert.ok(!html.includes('NaN')); assert.ok(!html.includes('undefined'));
   } finally { global.document = previousDocument; await server.close(); }
 });
+
+test('unconfirmed controls use one shared note, retain markers and show public assessment status', async () => {
+  const server = await createServer({server:{middlewareMode:true},appType:'custom'});
+  const previousDocument = global.document;
+  try {
+    const {default:i18n} = await server.ssrLoadModule('/src/i18n.js');
+    global.document = {documentElement:{}};
+    await i18n.changeLanguage('en-US');
+    const {default:Content} = await server.ssrLoadModule('/src/components/DocumentContent.jsx');
+    const steps=[{proc:{stepTitle:'Inspect'},risks:[
+      {current_measure:'Not verified',current_measure_confirmed:false},
+      {current_measure:'Not verified',current_measure_confirmed:false},
+      {current_measure:'Guard installed',current_measure_confirmed:true}
+    ]}];
+    const before=JSON.stringify(steps);
+    const html=renderToStaticMarkup(React.createElement(Content,{
+      formData:{jsaType:'3-step'},analysisData:steps,documentLocale:'en-US',
+      publicNotes:'Draft — pending site assessment.',
+      layout:{documentBlocks:[{id:'JSA_TABLE',enabled:true},{id:'NOTES',enabled:false}],
+        savedActiveOrder:['DATA_STEP_TITLE','DATA_CURRENT_MEASURE']}
+    }));
+    const notice=i18n.getFixedT('en-US','analysis')('review.unconfirmed');
+    assert.equal(html.split(notice).length-1,1);
+    assert.equal(html.split('Not verified *').length-1,1);
+    assert.ok(html.includes('Draft — pending site assessment.'));
+    assert.ok(html.includes('Guard installed'));
+    assert.ok(!html.includes('Guard installed *'));
+    assert.ok(html.includes('data-document-block="NOTES"'));
+    assert.ok(html.includes('overflow-wrap:normal'));
+    assert.equal(JSON.stringify(steps),before);
+  } finally { global.document=previousDocument; await server.close(); }
+});

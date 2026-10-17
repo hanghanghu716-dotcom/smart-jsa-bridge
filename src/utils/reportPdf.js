@@ -54,10 +54,25 @@ export async function createReportPdf(papers) {
           ),
         )
         .sort((a, b) => a - b);
+    // Raster slicing does not repeat HTML thead automatically. Copy the full
+    // heading band above each continuation and reserve its height on the page.
+    const headings = [...element.querySelectorAll('table')].flatMap(table => {
+      if (!table.tHead) return [];
+      const head = table.tHead.getBoundingClientRect();
+      const rect = table.getBoundingClientRect();
+      const top = Math.max(0, Math.floor((head.top - bounds.top) * pixelRatio));
+      const bottom = Math.ceil((head.bottom - bounds.top) * pixelRatio);
+      const tableBottom = Math.ceil((rect.bottom - bounds.top) * pixelRatio);
+      const height = bottom - top;
+      return height > 0 && height < pagePixels - 20
+        ? [{ top, bottom, tableBottom, height }] : [];
+    });
     let y = 0;
     while (y < contentHeight) {
       if (images.length >= 100) throw Error("WORK_OUTPUT_LARGE");
-      const max = Math.min(contentHeight, y + pagePixels);
+      const heading = headings.find(h => y >= h.bottom && y < h.tableBottom - 1);
+      const headingHeight = heading?.height || 0;
+      const max = Math.min(contentHeight, y + pagePixels - headingHeight);
       let end = max;
       if (max < contentHeight) {
         const candidates = cuts.filter((c) => c > y + 20 && c <= max);
@@ -65,10 +80,14 @@ export async function createReportPdf(papers) {
       }
       const slice = document.createElement("canvas");
       slice.width = canvas.width;
-      slice.height = end - y;
+      slice.height = headingHeight + end - y;
       const ctx = slice.getContext("2d");
       ctx.fillStyle = "#fff";
       ctx.fillRect(0, 0, slice.width, slice.height);
+      if (heading) {
+        ctx.drawImage(canvas, 0, heading.top, canvas.width, heading.height,
+          0, 0, canvas.width, heading.height);
+      }
       ctx.drawImage(
         canvas,
         0,
@@ -76,7 +95,7 @@ export async function createReportPdf(papers) {
         canvas.width,
         end - y,
         0,
-        0,
+        headingHeight,
         canvas.width,
         end - y,
       );

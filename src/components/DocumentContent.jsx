@@ -36,13 +36,24 @@ const COLUMN_GROUPS = [
 ];
 
 
-export default function DocumentContent({ formData = {}, participants = [], analysisData = [], layout = {}, stepPhotos = {}, onPhotoClick, documentLocale }) {
+export default function DocumentContent({ formData = {}, participants = [], analysisData = [], layout = {}, stepPhotos = {}, onPhotoClick, documentLocale, publicNotes = '' }) {
   const { t: screenT, i18n } = useTranslation(['export', 'common']);
   const language = documentLocale || i18n.language;
   const t = documentLocale ? i18n.getFixedT(documentLocale, ['export', 'common']) : screenT;
   const isEnglish = language?.startsWith('en');
   const jsaType = formData.jsaType || '2-step';
   const { documentBlocks = [], savedActiveOrder = [], savedUserColumns = [], savedColumnOverrides = {}, docTitle = '', appr1 = '', appr2 = '', appr3 = '', documentNotes = '' } = layout;
+  const unconfirmedControls = jsaType === '3-step' && savedActiveOrder.some(key => ['DATA_CURRENT_MEASURE', 'DATA_KRAS_CURRENT'].includes(key)) &&
+    analysisData.some(step => (step.risks || []).some(risk => risk.current_measure?.trim() && risk.current_measure_confirmed !== true));
+  const notes = [documentNotes, publicNotes,
+    unconfirmedControls ? `* ${t('tags.DATA_CURRENT_MEASURE')}: ${t('analysis:review.unconfirmed')}.` : ''
+  ].filter(Boolean).join('\n');
+  const blocks = normalizeDocumentBlocks(documentBlocks);
+  if ((publicNotes || unconfirmedControls) && !blocks.some(block => block.id === 'NOTES' && block.enabled)) {
+    const existing = blocks.find(block => block.id === 'NOTES');
+    if (existing) existing.enabled = true;
+    else blocks.push({ id: 'NOTES', enabled: true });
+  }
   const getColumnMeta = (key) => {
     const custom = savedUserColumns.find(u => u.id === key);
     if (custom) return custom;
@@ -130,7 +141,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
             {t('common:designer.blocks.NOTES', 'Notes')}
           </td>
           <td style={{ border: '1px solid #888', color: '#000', padding: '7px', whiteSpace: 'pre-wrap', fontSize: '10px', minHeight: '42px' }}>
-            {documentNotes || ''}
+            {notes}
           </td>
         </tr>
       </tbody>
@@ -147,10 +158,9 @@ export default function DocumentContent({ formData = {}, participants = [], anal
         fontSize: isEuroLang ? '9px' : '10.5px',
         verticalAlign: 'middle',
         lineHeight: '1.2',
-        wordBreak: 'keep-all',
-        overflowWrap: 'anywhere',
-        // 👇 [기능 추가] 긴 단어 자동 하이픈 처리 (브라우저 지원 시)
-        hyphens: 'auto'
+        wordBreak: /^(ja|zh)(-|$)/i.test(language || '') ? 'normal' : 'keep-all',
+        overflowWrap: 'normal',
+        hyphens: 'none'
       };
     if (!savedActiveOrder || savedActiveOrder.length === 0) return null;
     const currentItems = savedActiveOrder.filter(key => getColumnMeta(key));
@@ -232,7 +242,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                 else if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
                 else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).filter(r => typeof r.factor === 'string' && r.factor.trim()).map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = (stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.current_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure && r.current_measure_confirmed !== true ? ` (${t('analysis:review.unconfirmed')})` : ''}`).join('\n');
+                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = [...new Set((stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.current_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure_confirmed !== true ? ' *' : ''}`))].join('\n');
                 else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.recommend_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
                 else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(Number(stepData.severity) > 0 ? stepData.severity : "");
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(Number(stepData.frequency) > 0 ? stepData.frequency : "");
@@ -245,7 +255,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                   else content = '';
                 }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => onPhotoClick?.(stepIdx)} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: onPhotoClick ? 'pointer' : 'default', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
-                return ( <td key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</td> );
+                return ( <DocumentTableHeading as="td" lang={language} key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</DocumentTableHeading> );
               })}
             </tr>
           ))}
@@ -263,7 +273,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
     return null;
   };
   return <div className="document-content" dir={i18n.dir(language)} style={{ color: '#111', background: '#fff', overflowWrap: 'anywhere' }}>
-    {normalizeDocumentBlocks(documentBlocks).filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
+    {blocks.filter(block => block.enabled).map(block => <div key={block.id} data-document-block={block.id}>{renderBlock(block.id)}</div>)}
     <AssessmentSummary value={formData.assessment} documentLocale={language} />
   </div>;
 }
