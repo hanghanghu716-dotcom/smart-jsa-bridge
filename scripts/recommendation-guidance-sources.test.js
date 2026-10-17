@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {reverseReviewCorrections} from './recommendation-review-history.js';
 import { createHash } from 'node:crypto';
 import { bindGuidanceSources, guidanceCitations, guidanceSourceState, verifyGuidanceBindings, verifyGuidanceEvidence } from './recommendation-guidance-sources.js';
 import { knowledgeContentHash, validateKnowledgeBank } from './recommendation-knowledge.js';
@@ -149,7 +150,7 @@ test('checked-in captures bind all fifty-seven current draft revisions', () => {
 test('replacement dossiers bind exact draft claims and preserve prior source provenance without approval', () => {
   const read=name=>JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`,import.meta.url),'utf8'));
   const dossiers=read('guidance-evidence-dossiers.json');
-  const units=[...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units];
+  const units=reverseReviewCorrections([...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units],read('content-review-batch16.json').corrections);
   const manifest=read('guidance-source-captures.json');
   assert.equal(dossiers.dossiers.length,12);
   assert.equal(dossiers.formalReviewDecisionsAdded,0);

@@ -525,18 +525,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Maintenance de machine",
       "step": "Préparer la consignation",
       "hazard": "Démarrage imprévu ou libération d’énergie résiduelle",
       "cause": "Une alimentation reste raccordée ou peut être rétablie",
       "consequence": "Écrasement pendant l’intervention",
-      "control": "Identifier les énergies et appliquer la procédure propre à la machine pour les isoler; chaque personne accédant à la zone dangereuse effectue le cadenassage.",
+      "control": "Arrêter complètement la machine. Selon sa procédure écrite, identifier et isoler les sources, éliminer ou maîtriser les énergies résiduelles, puis cadenasser les points de coupure. Chaque personne accédant à la zone dangereuse effectue le cadenassage avant la vérification de son efficacité. Utiliser des cadenas à cléage unique identifiés au nom de la personne ou attribués par le registre prévu au RSST.",
       "verification": "Selon la procédure propre à la machine, éliminer ou maîtriser les énergies résiduelles et vérifier l’isolement avant l’intervention. Chaque personne accédant à la zone dangereuse appose son cadenas. Si l’isolement ou l’état sûr ne peut être confirmé, interdire l’accès.",
       "conditions": [
         "La procédure propre à la machine est disponible",
-        "Une personne compétente est désignée"
+        "Les personnes qui accèdent à la zone dangereuse sont formées et informées des risques et de la méthode appliquée",
+        "Il s’agit d’un établissement assujetti au RSST; le travail n’est pas un chantier de construction"
       ],
       "exclusions": [
         "Une intervention sous énergie est nécessaire",
@@ -576,7 +577,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "qc-establishment-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -602,12 +604,13 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "La procédure propre à la machine est disponible",
-        "competent-person-assigned": "Une personne compétente est désignée",
+        "competent-person-assigned": "Les personnes qui accèdent à la zone dangereuse sont formées et informées des risques et de la méthode appliquée",
         "live-intervention": "Une intervention sous énergie est nécessaire",
         "confined-entry": "Le travail implique une entrée en espace clos",
-        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue"
+        "unknown-energy-path": "Une source d’énergie ou une limite d’isolement est inconnue",
+        "qc-establishment-scope-confirmed": "Il s’agit d’un établissement assujetti au RSST; le travail n’est pas un chantier de construction"
       },
-      "coverageLimit": "Maîtrise des énergies avant la maintenance selon les orientations CNESST et CCOHS. La version consolidée du RSST et son applicabilité actuelle restent à vérifier; cette fiche ne certifie pas la conformité. L’accès, la réparation, les protecteurs et la remise en service nécessitent des procédures distinctes.",
+      "coverageLimit": "Cadenassage avant maintenance dans un établissement assujetti au RSST, articles 195 à 207. Les méthodes alternatives, les exceptions au cadenassage, les chantiers de construction et les installations électriques distinctes ne sont pas couverts. La procédure écrite accessible doit être révisée; coordination des employeurs, autorisation écrite des intervenants externes, transfert, retrait des cadenas et remise en marche exigent leurs procédures complètes.",
       "sourceCheck": {
         "status": "reauthored_evidence_ready_content_review_pending",
         "method": "AI-assisted drafting from captured primary guidance/reproductions; no content-review decision or approval",
@@ -908,7 +911,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "de-DE",
       "jurisdiction": "DE",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "Maschineninstandhaltung",
       "step": "Energietrennung vor der Störungsbeseitigung vorbereiten",
@@ -919,7 +922,8 @@
       "verification": "Vor Arbeitsbeginn prüfen, ob die Energiequellen getrennt, Restenergien sicher abgeleitet oder gesichert und verkettete Anlagen gegen Anlauf gesichert sind. Ist die Trennung oder Beherrschung gespeicherter Energie nicht nachgewiesen, bleibt der Gefahrenbereich gesperrt.",
       "conditions": [
         "Anlagenspezifische Arbeitsanweisung liegt vor",
-        "Eine fachkundige Person ist beauftragt"
+        "Eine fachkundige, beauftragte und unterwiesene Person ist eingesetzt",
+        "Die Anwendung der BetrSichV auf Maschine und Tätigkeit ist geklärt"
       ],
       "exclusions": [
         "Eingriff bei eingeschalteter Energie erforderlich",
@@ -949,7 +953,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "betrsichv-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -974,10 +979,11 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "Anlagenspezifische Arbeitsanweisung liegt vor",
-        "competent-person-assigned": "Eine fachkundige Person ist beauftragt",
+        "competent-person-assigned": "Eine fachkundige, beauftragte und unterwiesene Person ist eingesetzt",
         "live-intervention": "Eingriff bei eingeschalteter Energie erforderlich",
         "confined-entry": "Einstieg in einen engen Raum vorgesehen",
-        "unknown-energy-path": "Energiequelle oder Trennstelle ist ungeklärt"
+        "unknown-energy-path": "Energiequelle oder Trennstelle ist ungeklärt",
+        "betrsichv-scope-confirmed": "Die Anwendung der BetrSichV auf Maschine und Tätigkeit ist geklärt"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -988,7 +994,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Nur Energietrennung vor der Störungsbeseitigung an Maschinen. Die Quelle FBHM-127 deckt nicht jede Instandhaltungsaufgabe ab. Zugang, Reparatur, Schutzeinrichtungen und Wiederinbetriebnahme erfordern eine gesonderte Beurteilung und Arbeitsanweisung."
+      "coverageLimit": "Nur Energietrennung vor der Störungsbeseitigung an stillgesetzten Maschinen im Anwendungsbereich der BetrSichV. FBHM-127 ist keine allgemeine Instandhaltungsanweisung. Sonderbereiche nach § 1 sowie Eingriffe mit Energie oder außer Kraft gesetzten Schutzeinrichtungen nach § 10 Absatz 4 sind nicht abgedeckt. Zugang, Reparatur, Änderungen und Wiederinbetriebnahme erfordern gesonderte Beurteilung und Verfahren."
     },
     {
       "id": "regional-jp-maintenance",
@@ -996,7 +1002,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 6,
+      "revision": 7,
       "status": "draft",
       "task": "機械の整備",
       "step": "停止と再起動防止の準備",
@@ -1007,7 +1013,8 @@
       "verification": "作業開始前に、エネルギー源の遮断、再供給防止、蓄積エネルギーの除去と必要な保持措置を機械別の手順で確認する。 遮断や蓄積エネルギーの安全な処置を確認できない場合は、危険区域に立ち入らない。",
       "conditions": [
         "機械ごとの作業手順が利用できる",
-        "適切な知識と技能を持つ担当者が配置されている"
+        "適切な知識と技能を持つ担当者が配置されている",
+        "第107条又は第108条に該当する停止作業であることを確認している"
       ],
       "exclusions": [
         "通電・運転状態での作業が必要です",
@@ -1047,7 +1054,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "stopped-work-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1075,7 +1083,8 @@
         "competent-person-assigned": "適切な知識と技能を持つ担当者が配置されている",
         "live-intervention": "通電・運転状態での作業が必要です",
         "confined-entry": "閉鎖空間（タンク内部等）への立入りを伴う",
-        "unknown-energy-path": "エネルギー源または隔離範囲が不明です"
+        "unknown-energy-path": "エネルギー源または隔離範囲が不明です",
+        "stopped-work-scope-confirmed": "第107条又は第108条に該当する停止作業であることを確認している"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -1086,7 +1095,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "保守前のエネルギー遮断のみを対象とする。第107条・第108条の作業区分と現行の適用要件を別途確認する。立入り、修理作業、防護装置、再稼働は別途評価し、手順を定める。"
+      "coverageLimit": "労働安全衛生規則第107条の掃除・給油・検査・修理・調整（刃部を除く）、又は第108条の刃部の掃除・検査・修理・取替え・調整について、停止して行う作業前のエネルギー遮断に限定する。第107条の運転中作業の例外及び第108条の危険がない構造の例外は扱わない。施錠等による再起動防止と蓄積エネルギーの処置を確認する。立入り、修理、ガード復旧、再稼働には別の手順を定める。"
     },
     {
       "id": "regional-fr-maintenance",
@@ -1289,7 +1298,7 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Mantenimiento de máquinas",
       "step": "Preparar la consignación",
@@ -1300,7 +1309,8 @@
       "verification": "Comprobar el aislamiento y la energía residual antes de acceder. Si no se verifica el aislamiento y el control de las energías residuales, impedir el acceso a la zona peligrosa.",
       "conditions": [
         "Está disponible el procedimiento específico del equipo",
-        "Se ha designado a una persona competente"
+        "Personal especialmente capacitado y designado para esta operación",
+        "Se ha confirmado la aplicación del Real Decreto 1215/1997 al equipo y a la tarea"
       ],
       "exclusions": [
         "Es necesario intervenir con energía presente",
@@ -1330,7 +1340,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "rd1215-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1355,12 +1366,13 @@
       "recommendationScore": null,
       "conditionLabels": {
         "equipment-procedure-available": "Está disponible el procedimiento específico del equipo",
-        "competent-person-assigned": "Se ha designado a una persona competente",
+        "competent-person-assigned": "Personal especialmente capacitado y designado para esta operación",
         "live-intervention": "Es necesario intervenir con energía presente",
         "confined-entry": "El trabajo implica entrar en un espacio confinado",
-        "unknown-energy-path": "Se desconoce una fuente de energía o el límite de aislamiento"
+        "unknown-energy-path": "Se desconoce una fuente de energía o el límite de aislamiento",
+        "rd1215-scope-confirmed": "Se ha confirmado la aplicación del Real Decreto 1215/1997 al equipo y a la tarea"
       },
-      "coverageLimit": "Solo control de energías antes del mantenimiento. El acceso, la reparación, los resguardos y la puesta en servicio requieren evaluación y procedimientos independientes.",
+      "coverageLimit": "Consignación previa al mantenimiento de equipos de trabajo comprendidos en el Real Decreto 1215/1997, con la máquina parada y desconectada. No cubre la excepción de trabajos que no puedan realizarse con el equipo parado del anexo II, apartado 1.14. Acceso, reparación, resguardos y puesta en servicio requieren evaluación y procedimientos independientes; NTP 1117 es orientación técnica.",
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
         "method": "AI-assisted editorial comparison of hazard-control-verification, translated conditions, bounded scope and cited primary material; not independent professional approval",
@@ -1473,18 +1485,19 @@
       "sourceGroupId": "machine-energy-isolation",
       "locale": "pt-BR",
       "jurisdiction": "BR",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Manutenção de máquinas",
       "step": "Preparar o isolamento",
       "hazard": "Partida inesperada ou liberação de energia residual",
       "cause": "Uma fonte permanece ligada ou pode ser restabelecida",
       "consequence": "Esmagamento durante a intervenção",
-      "control": "Com a máquina parada, isolar e descarregar as fontes de energia, bloquear os dispositivos contra reenergização e identificar o bloqueio segundo o procedimento específico.",
+      "control": "Com a máquina parada, isolar e descarregar as fontes de energia, bloquear os dispositivos contra reenergização e identificar o bloqueio segundo o procedimento específico. A identificação informa data, horário, motivo e responsável; controlar a energia residual e reter mecanicamente as partes que possam retornar ou cair antes do acesso.",
       "verification": "Verificar energia residual e riscos após os pontos de corte; prever retenção mecânica para partes que possam retornar ou cair. Se não for possível verificar o isolamento e o controle das energias residuais, impedir o acesso à zona de perigo.",
       "conditions": [
         "O procedimento específico do equipamento está disponível",
-        "Há profissional capacitado, qualificado ou legalmente habilitado e formalmente autorizado"
+        "Há profissional capacitado, qualificado ou legalmente habilitado e formalmente autorizado",
+        "A máquina e a operação estão abrangidas pela NR-12, sem uso das exceções do item 12.11.3"
       ],
       "exclusions": [
         "É necessário intervir com energia presente",
@@ -1526,7 +1539,8 @@
         "targetType": "machine",
         "conditionsRequired": [
           "equipment-procedure-available",
-          "competent-person-assigned"
+          "competent-person-assigned",
+          "nr12-machine-scope-confirmed"
         ],
         "excludedConditions": [
           "live-intervention",
@@ -1558,7 +1572,8 @@
         "confined-entry": "O trabalho envolve entrada em espaço confinado",
         "unknown-energy-path": "Uma fonte de energia ou limite de isolamento é desconhecido",
         "special-operating-mode": "É necessário modo especial de operação com acesso à zona de perigo",
-        "thermal-inertia-exception": "A inércia térmica impede as medidas normais e exige planejamento específico"
+        "thermal-inertia-exception": "A inércia térmica impede as medidas normais e exige planejamento específico",
+        "nr12-machine-scope-confirmed": "A máquina e a operação estão abrangidas pela NR-12, sem uso das exceções do item 12.11.3"
       },
       "sourceCheck": {
         "status": "content_and_condition_review_completed_publication_pending",
@@ -1569,7 +1584,7 @@
         ],
         "approvalGranted": false
       },
-      "coverageLimit": "Somente controle de energias antes da manutenção. Acesso, reparo, proteções e retorno à operação exigem avaliação e procedimentos separados."
+      "coverageLimit": "Controle de energias antes da manutenção de máquinas abrangidas pela NR-12, item 12.11.3. Equipamentos estáticos isoladamente e demais exclusões do item 12.1 não são abrangidos; máquinas integradas exigem classificação própria. Modos especiais, exceções de acesso sem risco e inércia térmica não estão autorizados por esta ficha. Acesso, reparo, proteções e retorno à operação exigem procedimentos separados."
     },
     {
       "id": "regional-ru-maintenance",

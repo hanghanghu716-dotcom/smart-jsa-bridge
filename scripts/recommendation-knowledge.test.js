@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {reverseReviewCorrections} from './recommendation-review-history.js';
 import { validateKnowledgeBank, validateKnowledgeUnit, knowledgeContentHash, bindKnowledgeSources } from './recommendation-knowledge.js';
 
 const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledge/pilot.en-US.json', import.meta.url)));
@@ -8,7 +9,7 @@ const bank = JSON.parse(fs.readFileSync(new URL('../data/recommendation-knowledg
 test('recorded AI desk reviews match frozen content and evidence without granting publication approval', () => {
   const read = name => JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`, import.meta.url)));
   const records = read('technical-review-records.json');
-  const units = [...read('regional-drafts.json').units, ...read('pressure-welding-drafts.json').units];
+  const units = reverseReviewCorrections([...read('regional-drafts.json').units, ...read('pressure-welding-drafts.json').units],read('content-review-batch16.json').corrections);
   const captures = read('guidance-source-captures.json').captures;
   assert.equal(records.releaseApproval, false);
   assert.equal(records.completedReviewAreas, records.reviews.length);
@@ -47,7 +48,7 @@ test('content desk reviews cover exact revised text and do not count unfinished 
   const read = name => JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`, import.meta.url)));
   const records = read('content-review-records.json');
   const prior = read('technical-review-records.json');
-  const units = [...read('regional-drafts.json').units, ...read('pressure-welding-drafts.json').units];
+  const units = reverseReviewCorrections([...read('regional-drafts.json').units, ...read('pressure-welding-drafts.json').units],read('content-review-batch16.json').corrections);
   const captures = read('guidance-source-captures.json').captures;
   const all = [...prior.reviews, ...records.reviews];
   assert.equal(new Set(all.map(r => `${r.unitId}:${r.area}`)).size, all.length);
@@ -88,7 +89,7 @@ test('review corrections preserve previous content and match the revised dossier
   const read = name => JSON.parse(fs.readFileSync(new URL(`../data/recommendation-knowledge/${name}`, import.meta.url)));
   const records=read('content-review-records.json');
   const dossiers=read('guidance-evidence-dossiers.json').dossiers;
-  const units=[...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units];
+  const units=reverseReviewCorrections([...read('regional-drafts.json').units,...read('pressure-welding-drafts.json').units],read('content-review-batch16.json').corrections);
   assert.equal(records.corrections.length,5);
   for(const c of records.corrections) {
     const u=units.find(u=>u.id===c.unitId),d=dossiers.find(d=>d.unitId===c.unitId);

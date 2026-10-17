@@ -1140,7 +1140,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "en-CA-BC",
       "jurisdiction": "CA-BC",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Regular indoor welding of uncoated mild steel",
       "step": "Set up fume control",
@@ -1148,14 +1148,15 @@
       "cause": "Fume reaches the breathing zone",
       "consequence": "Respiratory illness",
       "control": "First assess eliminating welding or substituting a less hazardous process or consumable. For the remaining task, use suitable local exhaust ventilation and the site exposure control plan; provide and use suitable respiratory protection where engineering controls do not adequately control exposure.",
-      "verification": "Check hood position, specified extraction performance and required respiratory protection. Repeat after moving the hood or changing the work, and stop welding if extraction is ineffective. Check that the exposure control plan is reviewed at least annually with the joint committee or worker health and safety representative.",
-      "coverageLimit": "Routine indoor uncoated mild-steel welding fume only; the consumables must also be identified. The exposure plan covers affected workers nearby as well as welders. Applicable welding standards, exposure limits and respiratory programme requirements need separate review. Fire, radiation, electrical and gas hazards require separate assessment.",
+      "verification": "Check hood position, specified extraction performance and required respiratory protection. Repeat after moving the hood or changing the work, and stop welding if extraction is ineffective. Check that the exposure control plan is reviewed at least annually with the joint committee or worker health and safety representative. Confirm that exposure assessment addresses the applicable substance limits and carcinogen controls; airflow alone is not proof of adequate exposure control.",
+      "coverageLimit": "Routine indoor uncoated mild-steel fume control within the BC OHS Regulation only. Parts 5.48, 5.54 and 5.57 govern limits, the exposure plan and substitution/lowest practicable carcinogen exposure; Parts 8.5 and 8.32-8.33 govern the respiratory programme. Part 12.112 incorporates CSA W117.2-94, not automatically the newest edition; full welding-standard compliance is outside this fume card. Fixed-station capture, nearby workers, any recirculation and respiratory selection must be addressed in the site plan. Fire, radiation, electricity and gas hazards require separate assessment.",
       "conditions": [
         "Authorized person assigned",
         "Routine indoor welding",
         "Uncoated mild steel and consumables identified",
         "Exposure-control procedure available",
-        "A site-specific welding fume exposure control plan is available"
+        "A site-specific welding fume exposure control plan is available",
+        "The workplace falls within the British Columbia OHS Regulation"
       ],
       "exclusions": [
         "Confined-space entry",
@@ -1206,7 +1207,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "exposure-control-plan-ready"
+          "exposure-control-plan-ready",
+          "bc-regime-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -1224,7 +1226,8 @@
         "outdoor-welding": "Outdoor welding",
         "coated-stainless-or-unknown-metal": "Coated or plated base metal, stainless steel, or unidentified base metal",
         "extraction-unavailable": "Extraction unavailable or ineffective",
-        "exposure-control-plan-ready": "A site-specific welding fume exposure control plan is available"
+        "exposure-control-plan-ready": "A site-specific welding fume exposure control plan is available",
+        "bc-regime-confirmed": "The workplace falls within the British Columbia OHS Regulation"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "65da9e6df99d8361ed2ccae51a3e7eb3eaaf164b840bd14acc556602369ab17e",
@@ -1407,22 +1410,23 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "fr-CA-QC",
       "jurisdiction": "CA-QC",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Soudage régulier d’acier doux non revêtu en intérieur",
       "step": "Préparer le captage des fumées",
       "hazard": "Inhalation de fumées de soudage",
       "cause": "Les fumées atteignent la zone respiratoire",
       "consequence": "Affection respiratoire",
-      "control": "Au poste fixe, utiliser un captage local adapté au procédé et une ventilation générale avec apport d’air neuf suffisant. Placer le captage pour éloigner les fumées de la zone respiratoire et éviter de se tenir entre le foyer et le captage; compléter par la protection respiratoire requise contre l’exposition résiduelle.",
-      "verification": "Contrôler la position du captage et son efficacité selon la procédure; recommencer après déplacement du captage ou modification du travail. Arrêter le soudage si le captage est inefficace.",
-      "coverageLimit": "Fumées uniquement; évaluer séparément incendie, rayonnements, électricité et gaz.",
+      "control": "Évaluer d’abord la substitution par une substance ou un procédé moins dangereux lorsque possible. Au poste fixe, capter les fumées à la source, avec une ventilation générale et un apport d’air neuf suffisants. Éviter de placer la zone respiratoire entre le foyer et le captage; compléter par la protection respiratoire requise contre l’exposition résiduelle.",
+      "verification": "Contrôler la position du captage et son efficacité selon la procédure; recommencer après déplacement du captage ou modification du travail. Arrêter le soudage si le captage est inefficace. Vérifier les limites applicables de l’annexe I et, si un appareil respiratoire est requis, sa sélection et son utilisation dans le programme de protection respiratoire. Le débit seul ne démontre pas la maîtrise de l’exposition.",
+      "coverageLimit": "Fumées au poste fixe dans un établissement assujetti au RSST, hors chantier de construction. Articles 39 à 45.1 et 107 à 109: substitution, limites, captage, air de compensation et protection respiratoire. Tout recyclage doit satisfaire aux conditions de l’article 108; il n’est pas autorisé par cette fiche. Le programme respiratoire suit la version incorporée de CAN/CSA Z94.4-11 (septembre 2016), avec appareils approuvés selon les options du RSST. Les autres dangers et la conformité globale exigent une évaluation distincte.",
       "conditions": [
         "Personne autorisée désignée",
         "Soudage régulier en intérieur",
         "Acier doux non revêtu et consommables identifiés",
         "Procédure de maîtrise de l’exposition disponible",
-        "Le soudage est réalisé à un poste fixe"
+        "Le soudage est réalisé à un poste fixe",
+        "Il s’agit d’un établissement assujetti au RSST; le travail n’est pas un chantier de construction"
       ],
       "exclusions": [
         "Entrée en espace confiné",
@@ -1473,7 +1477,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "fixed-welding-station"
+          "fixed-welding-station",
+          "qc-establishment-scope-confirmed"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -1491,7 +1496,8 @@
         "outdoor-welding": "Soudage en extérieur",
         "coated-stainless-or-unknown-metal": "Métal de base revêtu, acier inoxydable ou métal de base non identifié",
         "extraction-unavailable": "Captage absent ou inefficace",
-        "fixed-welding-station": "Le soudage est réalisé à un poste fixe"
+        "fixed-welding-station": "Le soudage est réalisé à un poste fixe",
+        "qc-establishment-scope-confirmed": "Il s’agit d’un établissement assujetti au RSST; le travail n’est pas un chantier de construction"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "613e5c4b57d5f22dd1df37e61d6c68cf6a55244672991e942848506e81d1b8aa",
@@ -2594,7 +2600,7 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "ja-JP",
       "jurisdiction": "JP",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "同じ屋内作業場で継続して行う無塗装軟鋼の金属アーク溶接",
       "step": "溶接ヒューム対策の準備",
@@ -2602,8 +2608,8 @@
       "cause": "ヒュームが呼吸域に入る",
       "consequence": "呼吸器疾患",
       "control": "溶接方法に適した局所排気等を使用し、測定結果に応じて選定した有効な呼吸用保護具を着用する。",
-      "verification": "換気と測定結果に基づく保護具の選定・使用を確認する。面体を有する呼吸用保護具は、1年以内ごとのフィットテスト記録を確認する。溶接方法、材料又は作業場所の変更がヒューム濃度に大きく影響する場合は、必要な濃度測定と、その結果に基づく措置・保護具選定を確認する。フード位置と手順で定めた排気性能を確認し、位置や作業条件の変更後に再確認する。排気が機能しない場合は溶接を中止する。",
-      "coverageLimit": "同じ屋内作業場で継続して行う金属アーク溶接のヒューム管理に限定し、このカードでは局所排気を採用する。すべての溶接方法に局所排気を一律に義務付ける説明ではない。現行法令、作業主任者、健康診断、火災・光放射・電気・ガス等の要件は別途確認する。",
+      "verification": "換気と測定結果に基づく保護具の選定・使用を確認する。面体を有する呼吸用保護具は、1年以内ごとのフィットテスト記録を確認する。溶接方法、材料又は作業場所の変更がヒューム濃度に大きく影響する場合は、必要な濃度測定と、その結果に基づく措置・保護具選定を確認する。フード位置と手順で定めた排気性能を確認し、位置や作業条件の変更後に再確認する。排気が機能しない場合は溶接を中止する。 フィットテスト結果は3年間保存し、濃度測定記録は当該溶接方法を用いなくなった日から3年を経過する日まで保存する。改善措置後の再測定も確認する。",
+      "coverageLimit": "同じ屋内作業場で継続する金属アーク溶接のヒューム管理を対象とし、特定化学物質障害予防規則第38条の21と照合した。このカードでは局所排気を採用するが、全溶接への一律義務とはしない。請負人には測定結果に応じた有効な呼吸用保護具の必要性を周知する。床等は粉じんを飛散させない方法で毎日1回以上清掃する。作業主任者、健康診断、火災・光放射・電気・ガス等は別途管理し、このカードのみで作業全体を承認しない。",
       "conditions": [
         "権限を持つ担当者が選任されている",
         "同じ屋内作業場で継続して行う溶接である",
@@ -3293,22 +3299,23 @@
       "sourceGroupId": "regular-indoor-mild-steel-welding-fume",
       "locale": "es-ES",
       "jurisdiction": "ES",
-      "revision": 5,
+      "revision": 6,
       "status": "draft",
       "task": "Soldadura habitual en interiores de acero dulce sin recubrimiento",
       "step": "Preparar el control de humos",
       "hazard": "Inhalación de humos de soldadura",
       "cause": "Los humos alcanzan la zona respiratoria",
       "consequence": "Enfermedad respiratoria",
-      "control": "Utilizar extracción localizada adecuada a la soldadura eléctrica al arco, con la captación próxima al foco y descarga alejada de las tomas de aire limpio. Añadir la protección respiratoria que requiera la evaluación de la exposición residual.",
-      "verification": "Comprobar la posición de la campana y el funcionamiento de la extracción según el procedimiento; repetir tras moverla o cambiar el trabajo. Detener la soldadura si la extracción es ineficaz.",
-      "coverageLimit": "Solo humos; evaluar por separado incendio, radiación, electricidad y gases.",
+      "control": "Evaluar primero la eliminación del riesgo o la sustitución por un proceso o material menos peligroso. Para el trabajo restante, aplicar controles técnicos y protección colectiva, con extracción localizada próxima al foco y ventilación adecuada; descargar lejos de las tomas de aire limpio. Añadir medidas organizativas y la protección respiratoria necesaria frente al riesgo residual.",
+      "verification": "Comprobar la posición de la campana y el funcionamiento de la extracción según el procedimiento; repetir tras moverla o cambiar el trabajo. Detener la soldadura si la extracción es ineficaz. Verificar la evaluación por contaminantes y los valores límite aplicables; el caudal por sí solo no demuestra el control de la exposición.",
+      "coverageLimit": "Control de humos de soldadura eléctrica al arco habitual en interiores, con acero dulce sin recubrimiento, dentro del Real Decreto 374/2001. La evaluación considera los agentes generados, límites legales y referencias INSST aplicables, así como las exigencias más rigurosas para agentes cancerígenos cuando proceda. NTP 494 es orientación histórica, no una especificación normativa completa. Incendio, radiación, electricidad, gases y vigilancia de la salud requieren evaluación específica.",
       "conditions": [
         "Persona autorizada designada",
         "Soldadura habitual en interiores",
         "Acero dulce sin recubrimiento y consumibles identificados",
         "Procedimiento de control de exposición disponible",
-        "El proceso es soldadura eléctrica al arco"
+        "El proceso es soldadura eléctrica al arco",
+        "La evaluación de agentes químicos y el procedimiento cumplen el marco aplicable del Real Decreto 374/2001"
       ],
       "exclusions": [
         "Entrada en espacio confinado",
@@ -3350,7 +3357,8 @@
           "regular-indoor-welding",
           "uncoated-mild-steel-identified",
           "exposure-procedure-available",
-          "metal-arc-welding"
+          "metal-arc-welding",
+          "chemical-risk-assessment-ready"
         ],
         "excludedConditions": [
           "confined-entry",
@@ -3368,7 +3376,8 @@
         "outdoor-welding": "Soldadura en exteriores",
         "coated-stainless-or-unknown-metal": "Metal base recubierto, acero inoxidable o metal base no identificado",
         "extraction-unavailable": "Extracción ausente o ineficaz",
-        "metal-arc-welding": "El proceso es soldadura eléctrica al arco"
+        "metal-arc-welding": "El proceso es soldadura eléctrica al arco",
+        "chemical-risk-assessment-ready": "La evaluación de agentes químicos y el procedimiento cumplen el marco aplicable del Real Decreto 374/2001"
       },
       "sourceRevision": "captured-sections-2026-10-16",
       "sourceFingerprint": "7216524d1dd90d0023129074623bfeb5c2364fb289cddff25002183e15738403",
