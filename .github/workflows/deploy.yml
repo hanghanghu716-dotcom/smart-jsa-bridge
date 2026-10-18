@@ -44,6 +44,10 @@ jobs:
       - name: Deploy the verified build without rebuilding
         id: publish
         run: npx --yes vercel@59.23.2 deploy --prebuilt --prod --token="$VERCEL_TOKEN" > .cache/deployment-url.txt
+      # Rollback disables automatic domain assignment. Explicitly promote this
+      # exact build so a retry cannot validate the previous release by mistake.
+      - name: Promote the verified build and restore production domain assignment
+        run: npx --yes vercel@59.23.2 promote "$(cat .cache/deployment-url.txt)" --yes --scope "$VERCEL_ORG_ID"
       - name: Verify live content discovery and article delivery
         run: |
           node scripts/verify-security-release.js
