@@ -28,3 +28,6 @@
 .discovery-links--editorial li a { display:block; padding:10px 12px; border-radius:10px; line-height:1.6; overflow-wrap:anywhere; text-decoration:none; background:var(--accent-soft,#f1f6fc); }
 .discovery-links--editorial li a:hover { text-decoration:underline; }
 .discovery-links--editorial li a:focus-visible { outline:2px solid var(--accent,#246bc1); outline-offset:2px; }
+
+.public-control-text { margin-block: 1em; }
+.public-control-text > strong { display: block; margin-block-end: .35em; }

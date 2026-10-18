@@ -76,7 +76,7 @@ test('shared document renders ordered enabled blocks, renamed grouped headers, v
   } finally { global.document = previousDocument; await server.close(); }
 });
 
-test('unconfirmed controls use one shared note, retain markers and show public assessment status', async () => {
+test('unconfirmed controls use one shared note without repeated asterisks and preserve assessment status', async () => {
   const server = await createServer({server:{middlewareMode:true},appType:'custom'});
   const previousDocument = global.document;
   try {
@@ -98,7 +98,10 @@ test('unconfirmed controls use one shared note, retain markers and show public a
     }));
     const notice=i18n.getFixedT('en-US','analysis')('review.unconfirmed');
     assert.equal(html.split(notice).length-1,1);
-    assert.equal(html.split('Not verified *').length-1,1);
+    assert.equal(html.split('Not verified').length-1,1);
+    assert.ok(!html.includes('Not verified *'));
+    assert.ok(html.includes('data-document-list'));
+    assert.ok(html.includes('padding-inline-start:1.15em'));
     assert.ok(html.includes('Draft — pending site assessment.'));
     assert.ok(html.includes('Guard installed'));
     assert.ok(!html.includes('Guard installed *'));

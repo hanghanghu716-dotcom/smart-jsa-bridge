@@ -1,3 +1,7 @@
+import ListPagination from '../components/ListPagination';
+import { libraryPage, libraryTagLabel } from '../utils/libraryPresentation';
+import { readAllPages } from '../services/pagedRead';
+import { getPublicUi } from '../locales/publicUi';
 import ProcedureDocument from '../components/ProcedureDocument';
 import { projectProcedureDocument, draftProcedureDocument } from '../utils/procedureDocument';
 import { reusableActionStep } from '../utils/actionPlan';
@@ -10,15 +14,15 @@ import { saveProject } from '../services/projectPersistenceService';
 import { clearActiveDraft } from '../services/jsaDraftService';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getLanguageTag } from '../locales/config.js';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../supabaseClient';
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
-import { listRecentDrafts, setActiveDraftId, archiveDraft, deleteDraft } from '../services/jsaDraftService';
-import { listWorkSteps, deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed, cloneWorkStep, listWorkStepVersions, restoreWorkStepVersion } from '../services/workStepLibraryService';
+import { setActiveDraftId, archiveDraft, deleteDraft } from '../services/jsaDraftService';
+import { deleteWorkStep, updateWorkStep, setWorkStepFavorite, saveProjectWorkSteps, markWorkStepUsed, cloneWorkStep, listWorkStepVersions, restoreWorkStepVersion } from '../services/workStepLibraryService';
 
 export default function MyLibrary() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용[cite: 11]
@@ -35,6 +39,9 @@ export default function MyLibrary() {
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [pageSelection, setPageSelection] = useState({ scope: '', number: 1 });
+  const [projectPage, setProjectPage] = useState({ source: null, rows: [], error: false });
   const [activeMenuId, setActiveMenuId] = useState(null);
   const [workStepSearch, setWorkStepSearch] = useState('');
   const [workStepFavoritesOnly, setWorkStepFavoritesOnly] = useState(false);
@@ -68,37 +75,40 @@ export default function MyLibrary() {
   }, [navigate]);
 
   async function fetchLibraryData() {
-    setIsLoading(true);
+    setIsLoading(true); setLoadError(false);
+    try {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
     const [cats, favs, authored, reps, blks, pBlks, userLayouts, draftRows, stepRows] = await Promise.all([
       supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
-      supabase.from('user_favorites').select('*, jsa_projects(*)').eq('user_id', user.id),
-      supabase.from('jsa_projects').select('*').eq('author_id', user.id).order('created_at', { ascending: false }),
+      readAllPages(() => supabase.from('user_favorites').select('id,project_id,category_id').eq('user_id', user.id).order('id')),
+      readAllPages(() => supabase.from('jsa_projects').select('id,category_id,created_at').eq('author_id', user.id).order('created_at', { ascending: false }).order('id')),
       supabase.from('user_reports').select('*, jsa_projects(title)').eq('reporter_id', user.id),
       supabase.from('user_blocks').select('*, profiles:blocked_user_id(username)').eq('blocker_id', user.id),
       supabase.from('user_project_blocks').select('*, jsa_projects(title)').eq('user_id', user.id),
-      supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
-      listRecentDrafts(20),
-      listWorkSteps({ limit: 100 })
+      readAllPages(() => supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).order('id')),
+      readAllPages(() => supabase.from('user_jsa_drafts').select('*').eq('user_id', user.id).eq('is_archived', false).order('updated_at', { ascending: false }).order('id')),
+      readAllPages(() => supabase.from('user_work_steps').select('*').eq('user_id', user.id).order('is_favorite', { ascending: false }).order('last_used_at', { ascending: false, nullsFirst: false }).order('updated_at', { ascending: false }).order('id'))
     ]);
 
+    for (const result of [cats, reps, blks, pBlks]) if (result.error) throw result.error;
     setCategories(cats.data || []);
     setReports(reps.data || []);
     setBlocks(blks.data || []);
     setProjectBlocks(pBlks.data || []);
-    setLayouts(userLayouts.data || []);
+    setLayouts(userLayouts || []);
     setDrafts(draftRows || []);
     setWorkSteps(stepRows || []);
 
     const combined = [
-      ...(favs.data || []).map(item => ({ ...item, displayType: 'SCRAP', originData: item.jsa_projects })),
-      ...(authored.data || []).map(item => ({ id: `mine-${item.id}`, displayType: 'MY_JSA', originData: item, category_id: item.category_id || null }))
+      ...(favs || []).map(item => ({ ...item, displayType: 'SCRAP' })),
+      ...(authored || []).map(item => ({ id: `mine-${item.id}`, project_id: item.id, displayType: 'MY_JSA', category_id: item.category_id || null }))
     ];
 
     setFavorites(combined); 
-    setIsLoading(false);
+    } catch { setLoadError(true); }
+    finally { setIsLoading(false); }
   };
 
   const openProject = (project, own, route = '/analysis', openSaveDialog = false) => {
@@ -374,7 +384,7 @@ export default function MyLibrary() {
       step.title,
       step.detail,
       step.source_project_title,
-      ...(step.tags || []),
+      ...(step.tags || []).flatMap(tag => [tag, libraryTagLabel(tag, i18n.language)]),
       ...(step.analysis_data?.risks || []).flatMap(risk => [
         risk?.factor,
         risk?.risk_factor,
@@ -385,6 +395,31 @@ export default function MyLibrary() {
     ].filter(Boolean).join(' ').toLowerCase();
     return haystack.includes(q);
   });
+
+  const pageScope = JSON.stringify([selectedCatId, workStepSearch, workStepFavoritesOnly]);
+  const requestedPage = pageSelection.scope === pageScope ? pageSelection.number : 1;
+  const isProjectList = !['SYSTEM_FOLDER', 'DRAFT_FOLDER', 'WORK_STEP_FOLDER', 'LAYOUT_FOLDER'].includes(selectedCatId);
+  const activeRows = selectedCatId === 'DRAFT_FOLDER' ? drafts : selectedCatId === 'WORK_STEP_FOLDER' ? visibleWorkSteps : selectedCatId === 'LAYOUT_FOLDER' ? layouts : favorites;
+  // Stable metadata page: retrieve full private document bodies only for these 12 cards.
+  const projectItems = useMemo(() => libraryPage(favorites.filter(item => !selectedCatId || item.category_id === selectedCatId), requestedPage), [favorites, selectedCatId, requestedPage]);
+  const pagination = isProjectList ? projectItems : libraryPage(activeRows, requestedPage);
+  useEffect(() => {
+    if (!isProjectList) return;
+    const controller = new AbortController();
+    const source = projectItems.rows;
+    (async () => {
+      try {
+        const ids = [...new Set(source.map(item => item.project_id))];
+        const { data, error } = ids.length ? await supabase.from('jsa_projects').select('*').in('id', ids).abortSignal(controller.signal) : { data: [] };
+        if (error) throw error;
+        const documents = new Map((data || []).map(project => [project.id, project]));
+        if (!controller.signal.aborted) setProjectPage({ source, rows: source.map(item => ({ ...item, originData: documents.get(item.project_id) })).filter(item => item.originData), error: false });
+      } catch { if (!controller.signal.aborted) setProjectPage({ source, rows: [], error: true }); }
+    })();
+    return () => controller.abort();
+  }, [isProjectList, projectItems]);
+  const pageLoading = isProjectList && projectPage.source !== projectItems.rows;
+  const pageError = isProjectList && projectPage.source === projectItems.rows && projectPage.error;
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "";
@@ -436,8 +471,8 @@ export default function MyLibrary() {
                 </div>
               </aside>
 
-              <section style={styles.listSection}>
-                {isLoading ? (
+              <section style={styles.listSection} id="library-results" aria-busy={isLoading || pageLoading}>
+                {loadError || pageError ? <div role="alert">{getPublicUi(i18n.language).error}<button onClick={fetchLibraryData}>{getPublicUi(i18n.language).retry}</button></div> : isLoading || pageLoading ? (
                   <div style={styles.loader}>{t('loading')}</div>
                 ) : selectedCatId === 'SYSTEM_FOLDER' ? (
                   <div style={styles.managementView}>
@@ -471,7 +506,7 @@ export default function MyLibrary() {
                     <div style={styles.mGroup}>
                       <h4 style={styles.mTitle}>{t('draftListTitle')}</h4>
                       {drafts.length === 0 && <div style={styles.emptyAsset}>{t('noDrafts')}</div>}
-                      {drafts.map(draft => (
+                      {pagination.rows.map(draft => (
                         <div key={draft.id} style={styles.assetRow}>
                           <div style={styles.assetInfo}>
                             <strong style={styles.assetTitle}>{draft.title}</strong>
@@ -510,7 +545,7 @@ export default function MyLibrary() {
                         placeholder={t('searchWorkSteps')}
                       />
                       {visibleWorkSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
-                      {visibleWorkSteps.map(step => (
+                      {pagination.rows.map(step => (
                         <div key={step.id} style={styles.assetRow}>
                           <div style={styles.assetInfo}>
                             {editingWorkStepId === step.id ? (
@@ -603,7 +638,7 @@ export default function MyLibrary() {
                     <div style={styles.mGroup}>
                       <h4 style={styles.mTitle}>{t('layoutListTitle')}</h4>
                       {layouts.length === 0 && <div style={{color: "var(--text-muted)", fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
-                      {layouts.map(l => (
+                      {pagination.rows.map(l => (
                         <div key={l.id} style={styles.mRow}>
                           <span>[{t('layoutLabel')}] {l.name} <span style={{fontSize:'0.75rem', color:"var(--text-muted)", marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>
                           <button style={styles.mBtn} onClick={async () => {
@@ -617,7 +652,7 @@ export default function MyLibrary() {
                   </div>
                 ) : (
                   <div style={styles.jsaGrid}>
-                    {favorites.filter(f => !selectedCatId || f.category_id === selectedCatId).map(f => (
+                    {projectPage.rows.map(f => (
                       <div key={f.id} style={styles.jsaCard} className="card">
                         <div style={styles.cardTop}>
                           <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', flex: 1, alignItems: 'center' }}>
@@ -685,7 +720,7 @@ export default function MyLibrary() {
                         
                         <h4 style={styles.cardTitle}>{f.originData?.title}</h4>
                         <div style={styles.dateLabel}>{formatDate(f.originData?.created_at)}</div>
-                        <div style={styles.cardTags}>{f.originData?.tags?.slice(0, 2).map(t => <span key={t} style={styles.miniTag}>#{t}</span>)}</div>
+                        <div style={styles.cardTags}>{(f.originData?.tags || []).map(tag => ({ tag, label: libraryTagLabel(tag, i18n.language) })).filter(item => item.label).slice(0, 2).map(({ tag, label }) => <span key={tag} style={styles.miniTag}>#{label}</span>)}</div>
                         
                         <ProcedureDocument document={projectProcedureDocument(f.originData, f.displayType === 'MY_JSA')} uiLocale={i18n.language} />
                         <div style={styles.cardFooter}>
@@ -704,6 +739,11 @@ export default function MyLibrary() {
                     ))}
                   </div>
                 )}
+                {!isLoading && !loadError && !pageError && selectedCatId !== 'SYSTEM_FOLDER' && <ListPagination current={pagination.current} total={pagination.total} locale={i18n.language} controls="library-results" className="library-pagination" onPageChange={number => {
+                  setPageSelection({ scope: pageScope, number });
+                  setActiveMenuId(null);
+                  document.getElementById('library-results')?.scrollTo({ top: 0, behavior: 'smooth' });
+                }} />}
               </section>
             </div>
           </div>

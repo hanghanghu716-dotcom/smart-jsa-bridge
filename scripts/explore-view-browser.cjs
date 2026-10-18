@@ -29,9 +29,10 @@ const records = Array.from({ length: 97 }, (_, i) => ({
       const p = new URL(url).searchParams;
       let data = [];
       if (url.includes('/public_jsa_catalog')) {
-        requests.push(Object.fromEntries(p));
+        const metadata = p.get('select') === 'id,tags';
+        if (!metadata) requests.push(Object.fromEntries(p));
         const offset = Number(p.get('offset') || 0), size = Number(p.get('limit'));
-        assert.ok([12,24,48].includes(size), 'Request must be bounded by selected view');
+        assert.ok(metadata ? size === 500 : [12,24,48].includes(size), 'Document bodies must be bounded by selected view');
         data = records.slice(offset, offset + size).map(row => ({ ...row, public_country: p.get('public_country')?.slice(3) || 'US' }));
       }
       return request.respond({ status: 200, headers: { ...headers, 'content-type': 'application/json', 'content-range': `${p.get('offset') || 0}-${Number(p.get('offset') || 0) + data.length - 1}/97`, 'access-control-expose-headers': 'content-range' }, body: JSON.stringify(data) });
