@@ -5,6 +5,8 @@ const path=require('node:path');
 const puppeteer=require('puppeteer');
 const {spawn}=require('node:child_process');
 (async()=>{
+ const {explorePageSize}=await import('../src/utils/exploreView.js');
+ const pageSize=explorePageSize(),expectedDocuments=36,totalPages=Math.ceil(expectedDocuments/pageSize);
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'jsa-operator-'));
  const local=process.argv.includes('--local');
  const baseUrl=local?'http://127.0.0.1:4173':'https://smartjsabridge.com';
@@ -36,17 +38,20 @@ const {spawn}=require('node:child_process');
   }
   await page.evaluate(()=>{document.documentElement.dataset.theme='light';});
   await page.waitForSelector('.explore-pagination');
-  assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),[1,2]);
+  assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),Array.from({length:totalPages},(_,i)=>i+1));
   const contentLinks=new Set(await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)));
   const firstTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
-  await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
-  await page.waitForFunction(()=>new URL(location.href).searchParams.get('page')==='1'&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===12,{timeout:30000});
-  for(const link of await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)))contentLinks.add(link);
-  assert.equal(contentLinks.size,36,'Twelve jobs have three separate content cards each');
+  for(let index=1;index<totalPages;index++){
+   if(index===totalPages-1)await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
+   else await page.$$eval('.explore-pagination .list-pagination-number',(els,number)=>els.find(el=>Number(el.textContent)===number).click(),index+1);
+   await page.waitForFunction((index,count)=>new URL(location.href).searchParams.get('page')===String(index)&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count,{timeout:30000},index,Math.min(pageSize,expectedDocuments-index*pageSize));
+   for(const link of await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)))contentLinks.add(link);
+  }
+  assert.equal(contentLinks.size,expectedDocuments,'Twelve jobs have three separate content cards each');
   assert.equal(new URL(page.url()).searchParams.get('author'),'operator');
   assert.notEqual(await page.$eval('.explore-card > h2 > a',el=>el.textContent),firstTitle);
   await page.$eval('.explore-pagination .list-pagination-first',el=>el.click());
-  await page.waitForFunction(()=>!new URL(location.href).searchParams.has('page')&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===24,{timeout:30000});
+  await page.waitForFunction(count=>!new URL(location.href).searchParams.has('page')&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count,{timeout:30000},pageSize);
   for(const width of [320,390]){
    await page.setViewport({width,height:844});
    assert.equal(await page.$eval('.explore-pagination',el=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&el.scrollWidth<=el.clientWidth+1;}),true);
