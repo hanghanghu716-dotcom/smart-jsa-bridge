@@ -1,4 +1,5 @@
 import { validCountry } from '../utils/publicCountry.js';
+import { explorePageSize } from '../utils/exploreView.js';
 import { supabase } from '../supabaseClient';
 import { PUBLIC_JSA_FIELDS, publicJsaView, validProjectId, publicSortColumn } from '../utils/publicJsa.js';
 
@@ -8,7 +9,8 @@ export async function getPublicJsa(id, client = supabase) {
   if (error) throw error;
   return publicJsaView(data);
 }
-export async function listPublicJsa({ search = '', tags = [], sort = 'latest', page = 0, country = null, author = null, blocked = [], hidden = [], client = supabase } = {}) {
+export async function listPublicJsa({ search = '', tags = [], sort = 'latest', page = 0, view, country = null, author = null, blocked = [], hidden = [], client = supabase } = {}) {
+  const pageSize = explorePageSize(view);
   let query = client.from('public_jsa_catalog').select(PUBLIC_JSA_FIELDS, { count: 'exact' }).eq('is_public', true);
   if (author === 'operator') query = query.eq('is_operator', true);
   if (validCountry(country)) query = query.eq('public_country', country);
@@ -18,9 +20,9 @@ export async function listPublicJsa({ search = '', tags = [], sort = 'latest', p
   if (search.trim()) query = query.ilike('title', '%' + search.trim().replace(/[\\%_]/g, '\\$&') + '%');
   if (tags.length) query = query.contains('tags', tags);
   query = query.order(publicSortColumn(sort), { ascending: false }).order('id', { ascending: true });
-  const { data, error, count } = await query.range(page * 24, page * 24 + 23);
+  const { data, error, count } = await query.range(page * pageSize, (page + 1) * pageSize - 1);
   if (error) throw error;
-  return { rows: (data || []).map(publicJsaView).filter(Boolean), total: count || 0, hasMore: (page + 1) * 24 < count };
+  return { rows: (data || []).map(publicJsaView).filter(Boolean), total: count || 0, hasMore: (page + 1) * pageSize < count };
 }
 export async function scrapPublicJsa(id, client = supabase) {
   const { data: { user } } = await client.auth.getUser();
