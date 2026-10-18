@@ -22,7 +22,9 @@ export async function readAllPublic(table, params, fetcher = fetch, { pageSize =
   const signal = AbortSignal.timeout(timeoutMs);
   let bytes = 0;
   let last = '';
-  for (let page = 0; page <= Math.ceil(maxRows / pageSize); page++) {
+  // Bound actual rows and elapsed time, not a guessed number of pages: the
+  // database can return fewer rows than the requested page size.
+  while (all.length <= maxRows) {
     signal.throwIfAborted();
     const rows = await readPublic(table, { ...params, order: 'id.asc', limit: String(pageSize), ...(last ? { id: 'gt.' + last } : {}) }, fetcher, { signal });
     if (!rows.length) return all;

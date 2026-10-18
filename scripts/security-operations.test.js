@@ -47,4 +47,6 @@ test('public read budgets abort rather than returning a silently truncated sitem
  let count=0;const fetcher=async()=>({ok:true,json:async()=>[{id:String(++count).padStart(4,'0'),content:'x'.repeat(100)}]});
  await assert.rejects(readAllPublic('rows',{},fetcher,{pageSize:1,maxRows:3}),/PUBLIC_CONTENT_LIMIT/);assert.equal(count,4);
  count=0;await assert.rejects(readAllPublic('rows',{},fetcher,{pageSize:1,maxBytes:50}),/PUBLIC_CONTENT_LIMIT/);assert.equal(count,1);
+ count=0;const capped=async()=>({ok:true,json:async()=>++count<=5?[{id:String(count).padStart(4,'0')}]:[]});
+ assert.equal((await readAllPublic('rows',{},capped,{pageSize:1000,maxRows:10})).length,5);
 });
