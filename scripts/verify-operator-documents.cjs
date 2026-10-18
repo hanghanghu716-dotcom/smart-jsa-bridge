@@ -62,10 +62,13 @@ const {spawn}=require('node:child_process');
   const searchSelector='.explore-search input';
   const searchSession=await page.target().createCDPSession();
   const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-  let searchRequests=0;
+  let searchRequests=0,facetSearchRequests=0;
   page.on('request',request=>{
    const url=new URL(request.url());
-   if(request.method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.has('title'))searchRequests++;
+   if(request.method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.has('title')){
+    if(url.searchParams.get('select')==='id,tags')facetSearchRequests++;
+    else searchRequests++;
+   }
   });
   await page.focus(searchSelector);
   await page.$eval(searchSelector,input=>{window.__searchInput=input;});
@@ -76,6 +79,7 @@ const {spawn}=require('node:child_process');
    assert.equal(await page.$eval(searchSelector,input=>input.value),text);
   }
   assert.equal(searchRequests,0,'Do not fetch intermediate Korean syllables');
+  assert.equal(facetSearchRequests,0,'Do not count facets for intermediate Korean syllables');
   await searchSession.send('Input.insertText',{text:'도장'});
   await page.waitForFunction(()=>new URL(location.href).searchParams.get('q')==='도장'&&!document.querySelector('.explore-loading'),{timeout:30000});
   await delay(500);
