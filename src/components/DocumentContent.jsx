@@ -1,3 +1,4 @@
+import DocumentList from './DocumentList';
 import DocumentTableHeading from './DocumentTableHeading';
 import { ACTION_COLUMNS, actionColumnLabel, actionColumnValue, actionPlan } from '../utils/actionPlan';
 import { getActionPlanUi } from '../locales/actionPlanUi';
@@ -46,7 +47,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
   const unconfirmedControls = jsaType === '3-step' && savedActiveOrder.some(key => ['DATA_CURRENT_MEASURE', 'DATA_KRAS_CURRENT'].includes(key)) &&
     analysisData.some(step => (step.risks || []).some(risk => risk.current_measure?.trim() && risk.current_measure_confirmed !== true));
   const notes = [documentNotes, publicNotes,
-    unconfirmedControls ? `* ${t('tags.DATA_CURRENT_MEASURE')}: ${t('analysis:review.unconfirmed')}.` : ''
+    unconfirmedControls ? `${t('tags.DATA_CURRENT_MEASURE')}: ${t('analysis:review.unconfirmed')}.` : ''
   ].filter(Boolean).join('\n');
   const blocks = normalizeDocumentBlocks(documentBlocks);
   if ((publicNotes || unconfirmedControls) && !blocks.some(block => block.id === 'NOTES' && block.enabled)) {
@@ -235,15 +236,15 @@ export default function DocumentContent({ formData = {}, participants = [], anal
           {analysisData.map((stepData, stepIdx) => (
             <tr key={`tr-${stepIdx}`}>
               {currentItems.map((key) => {
-                const meta = getColumnMeta(key); let content = "";
+                const meta = getColumnMeta(key); let content = "", listValues = null;
                 const plan = actionPlan(stepData.actionPlan);
                 const actionValue = actionColumnValue(key, stepData, getActionPlanUi(language), assessedScore(plan.residualFrequency, plan.residualSeverity, formData.assessment));
                 if (actionValue !== null) content = actionValue;
                 else if (key === 'DATA_STEP_NO') content = String(stepIdx + 1);
                 else if (key === 'DATA_STEP_TITLE' || key === 'DATA_KRAS_STEP') content = stepData.proc?.stepTitle || "";
-                else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') content = (stepData.risks || []).filter(r => typeof r.factor === 'string' && r.factor.trim()).map(r => `• ${r.factor}`).join('\n');
-                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') content = [...new Set((stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.current_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.current_measure}${jsaType === '3-step' && r.current_measure_confirmed !== true ? ' *' : ''}`))].join('\n');
-                else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') content = (stepData.risks || []).filter(r => (jsaType === '2-step' ? r.measure : r.recommend_measure)?.trim()).map(r => `• ${jsaType === '2-step' ? r.measure : r.recommend_measure}`).join('\n');
+                else if (key === 'DATA_HAZARD' || key === 'DATA_KRAS_HAZARD_DETAIL') listValues = (stepData.risks || []).map(r => r.factor);
+                else if (key === 'DATA_CURRENT_MEASURE' || key === 'DATA_KRAS_CURRENT') listValues = [...new Set((stepData.risks || []).map(r => jsaType === '2-step' ? r.measure : r.current_measure))];
+                else if (key === 'DATA_RECOMMEND_MEASURE' || key === 'DATA_KRAS_RECOMMEND') listValues = (stepData.risks || []).map(r => jsaType === '2-step' ? r.measure : r.recommend_measure);
                 else if (key === 'DATA_SEVERITY' || key === 'DATA_KRAS_SEV') content = String(Number(stepData.severity) > 0 ? stepData.severity : "");
                 else if (key === 'DATA_FREQUENCY' || key === 'DATA_KRAS_FREQ') content = String(Number(stepData.frequency) > 0 ? stepData.frequency : "");
                 else if (key === 'DATA_RISK' || key === 'DATA_KRAS_RISK') content = String(Number(stepData.riskLevel) > 0 ? stepData.riskLevel : "");
@@ -255,7 +256,7 @@ export default function DocumentContent({ formData = {}, participants = [], anal
                   else content = '';
                 }
                 if (key === 'DATA_PHOTO') { return ( <td key={`td-${key}-${stepIdx}`} onClick={() => onPhotoClick?.(stepIdx)} style={{ border: '1px solid #000', padding: '0', textAlign: 'center', verticalAlign: 'middle', cursor: onPhotoClick ? 'pointer' : 'default', overflow: 'hidden' }}> {stepPhotos[stepIdx] ? <img src={stepPhotos[stepIdx]} style={{width:'100%', height:'100%', objectFit:'contain', display: 'block'}} alt="Photo" /> : <span style={{color:'#ccc', fontSize:'10px'}}>+ {t('table.addPhoto')}</span>} </td> ); }
-                return ( <DocumentTableHeading as="td" lang={language} key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{content}</DocumentTableHeading> );
+                return ( <DocumentTableHeading as="td" lang={language} key={`td-${key}-${stepIdx}`} dir="auto" style={{ ...commonTdStyle, textAlign: meta.align === 'left' ? 'start' : meta.align || 'center', whiteSpace: 'pre-wrap' }}>{listValues ? <DocumentList values={listValues} /> : content}</DocumentTableHeading> );
               })}
             </tr>
           ))}

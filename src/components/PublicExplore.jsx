@@ -17,7 +17,7 @@ import { useSearchParams } from 'react-router-dom';
 import { exploreQuery, exploreSearch } from '../utils/discovery';
 import { useTranslation } from 'react-i18next';
 import { LanguageLink } from '../hooks/useLanguage';
-import { listPublicJsa } from '../services/publicJsaService';
+import { listPublicJsa, listPublicTagCounts } from '../services/publicJsaService';
 import { getLanguageTag } from '../locales/config';
 import { getPublicUi } from '../locales/publicUi';
 import { supabase } from '../supabaseClient';
@@ -49,6 +49,17 @@ function ExploreIcon({ name, className = '' }) {
     details: 'M3 4h18v16H3z M3 9h18 M3 14h18 M14 4v16',
   };
   return <svg className={'explore-icon ' + className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>;
+}
+
+async function exploreExclusions() {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { blocked: [], hidden: [] };
+  const [users, projects] = await Promise.all([
+    supabase.from('user_blocks').select('blocked_user_id').eq('blocker_id', user.id),
+    supabase.from('user_project_blocks').select('project_id').eq('user_id', user.id),
+  ]);
+  if (users.error || projects.error) throw users.error || projects.error;
+  return { blocked: (users.data || []).map(item => item.blocked_user_id), hidden: (projects.data || []).map(item => item.project_id) };
 }
 
 function useExploreCards(rows, country, locale) {
@@ -105,17 +116,7 @@ export default function PublicExplore() {
     const timer = setTimeout(async () => {
       setLoading(true); setError(false);
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        let blocked = [], hidden = [];
-        if (user) {
-          const [users, projects] = await Promise.all([
-            supabase.from('user_blocks').select('blocked_user_id').eq('blocker_id', user.id),
-            supabase.from('user_project_blocks').select('project_id').eq('user_id', user.id),
-          ]);
-          if (users.error || projects.error) throw users.error || projects.error;
-          blocked = (users.data || []).map(item => item.blocked_user_id);
-          hidden = (projects.data || []).map(item => item.project_id);
-        }
+        const { blocked, hidden } = await exploreExclusions();
         const result = await listPublicJsa({ search, tags, sort, page, view, author, country: selectedCountry, blocked, hidden });
         if (active) {
           const visible = result.rows.filter(row => !blocked.includes(row.author_id) && !hidden.includes(row.id));
@@ -127,6 +128,22 @@ export default function PublicExplore() {
     }, 0);
     return () => { active = false; clearTimeout(timer); };
   }, [search, sort, tags, page, view, author, attempt, selectedCountry]);
+  const [tagCounts, setTagCounts] = useState(null);
+  const facetKey = JSON.stringify([search, tags, selectedCountry, author, attempt]);
+  useEffect(() => {
+    const controller = new AbortController();
+    const key = facetKey;
+    const [facetSearch, facetTags, facetCountry, facetAuthor] = JSON.parse(key);
+    (async () => {
+      try {
+        const exclusions = await exploreExclusions();
+        const counts = await listPublicTagCounts({ search: facetSearch, tags: facetTags, country: facetCountry, author: facetAuthor, ...exclusions, signal: controller.signal });
+        if (!controller.signal.aborted) setTagCounts({ key, counts });
+      } catch { if (!controller.signal.aborted) setTagCounts(null); }
+    })();
+    return () => controller.abort();
+  }, [facetKey]);
+  const facetCount = tag => tagCounts?.key === facetKey ? ` (${(tagCounts.counts[tag] || 0).toLocaleString(getLanguageTag(locale))})` : '';
   const cardRows = useExploreCards(rows, country, locale);
   const translation=usePublicTranslation(cardRows,i18n.language);
   return <div className="jsa-workspace explore-page" dir={i18n.dir()}>
@@ -153,7 +170,7 @@ export default function PublicExplore() {
         <summary>{t('sidebarTitle')}{tags.length>0 && <span>{tags.length}</span>}</summary>
         <label className="explore-operator-filter"><input type="checkbox" checked={author==='operator'} onChange={e=>change({author:e.target.checked?'operator':undefined})}/>{operatorUi.only}</label>
         <div className="explore-filter-tools"><button onClick={()=>{change({tags:[],search:'',sort:'latest',country:undefined,author:undefined});}}>{t('resetBtn')}</button></div>
-        <div className="explore-filter-groups">{groups.map(([id,label,values])=><details key={id}><summary>{t(label)}</summary><div className="explore-filter-options">{values.map(tag=><button key={tag} aria-pressed={tags.includes(tag)} onClick={()=>toggleTag(tag)}>{tagLabel(tag)}</button>)}</div></details>)}</div>
+        <div className="explore-filter-groups">{groups.map(([id,label,values])=><details key={id}><summary>{t(label)}</summary><div className="explore-filter-options">{values.map(tag=><button key={tag} aria-pressed={tags.includes(tag)} onClick={()=>toggleTag(tag)}>{tagLabel(tag)}<span className="explore-facet-count">{facetCount(tag)}</span></button>)}</div></details>)}</div>
       </details>
       <div className="explore-results-heading"><h2>{t('totalLabel')}<strong>{loading&&!rows.length?'…':total.toLocaleString(getLanguageTag(i18n.language))}</strong>{t('assetCountLabel')}</h2>{tags.map(tag => <button key={tag} className="explore-active-filter" onClick={() => toggleTag(tag)}>#{tagLabel(tag) || ui.search}<ExploreIcon name="close" /></button>)}</div>
       <div className="explore-view-toolbar">

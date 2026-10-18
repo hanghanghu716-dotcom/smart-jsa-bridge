@@ -2,6 +2,31 @@ import { validCountry } from '../utils/publicCountry.js';
 import { explorePageSize } from '../utils/exploreView.js';
 import { supabase } from '../supabaseClient';
 import { PUBLIC_JSA_FIELDS, publicJsaView, validProjectId, publicSortColumn } from '../utils/publicJsa.js';
+import { readAllPages } from './pagedRead.js';
+
+function publicFilters(query, { search = '', tags = [], country, author, blocked = [], hidden = [] }) {
+  query = query.eq('is_public', true);
+  if (author === 'operator') query = query.eq('is_operator', true);
+  if (validCountry(country)) query = query.eq('public_country', country);
+  const authors = blocked.filter(validProjectId), projects = hidden.filter(validProjectId);
+  if (authors.length) query = query.not('author_id', 'in', '(' + authors.join(',') + ')');
+  if (projects.length) query = query.not('id', 'in', '(' + projects.join(',') + ')');
+  if (search.trim()) query = query.ilike('title', '%' + search.trim().replace(/[\\%_]/g, '\\$&') + '%');
+  if (tags.length) query = query.contains('tags', tags);
+  return query;
+}
+
+export async function listPublicTagCounts({ client = supabase, signal, ...filters } = {}) {
+  // Fetch only tag metadata, not document bodies, and never count the current
+  // visible page as if it were the entire filtered catalog.
+  const rows = await readAllPages(() => publicFilters(client.from('public_jsa_catalog').select('id,tags'), filters)
+    .order('id', { ascending: true }), { signal });
+  const counts = Object.create(null);
+  for (const row of rows) for (const tag of new Set(Array.isArray(row.tags) ? row.tags.filter(tag => typeof tag === 'string') : [])) {
+    counts[tag] = (counts[tag] || 0) + 1;
+  }
+  return counts;
+}
 
 export async function getPublicJsa(id, client = supabase) {
   if (!validProjectId(id)) return null;
@@ -11,14 +36,7 @@ export async function getPublicJsa(id, client = supabase) {
 }
 export async function listPublicJsa({ search = '', tags = [], sort = 'latest', page = 0, view, country = null, author = null, blocked = [], hidden = [], client = supabase } = {}) {
   const pageSize = explorePageSize(view);
-  let query = client.from('public_jsa_catalog').select(PUBLIC_JSA_FIELDS, { count: 'exact' }).eq('is_public', true);
-  if (author === 'operator') query = query.eq('is_operator', true);
-  if (validCountry(country)) query = query.eq('public_country', country);
-  const excludedAuthors = blocked.filter(validProjectId), excludedProjects = hidden.filter(validProjectId);
-  if (excludedAuthors.length) query = query.not('author_id', 'in', '(' + excludedAuthors.join(',') + ')');
-  if (excludedProjects.length) query = query.not('id', 'in', '(' + excludedProjects.join(',') + ')');
-  if (search.trim()) query = query.ilike('title', '%' + search.trim().replace(/[\\%_]/g, '\\$&') + '%');
-  if (tags.length) query = query.contains('tags', tags);
+  let query = publicFilters(client.from('public_jsa_catalog').select(PUBLIC_JSA_FIELDS, { count: 'exact' }), { search, tags, country, author, blocked, hidden });
   query = query.order(publicSortColumn(sort), { ascending: false }).order('id', { ascending: true });
   const { data, error, count } = await query.range(page * pageSize, (page + 1) * pageSize - 1);
   if (error) throw error;
