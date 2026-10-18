@@ -9,6 +9,8 @@ import { PUBLIC_JSA_FIELDS, publicJsaView, publicSortColumn } from '../src/utils
 import { exploreQuery, exploreSearch } from '../src/utils/discovery.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
 import { SUPPORTED_LANGS, getLanguageTag } from '../src/locales/config.js';
+import { exploreCardTags, exploreExcerpt } from '../src/utils/explorePresentation.js';
+import { getExploreQualityUi } from '../src/locales/exploreQualityUi.js';
 export const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const {url:publicBase,key:publicKey}=getPublicSupabaseConfig();
 
@@ -28,7 +30,11 @@ export function renderExploreHtml(shell,result,locale,query,failed=false){
  const title=ui.title+' | Smart JSA Bridge',canonical=`https://smartjsabridge.com/${locale}/explore${exploreSearch({page:query.page})}`;
  const noindex=!exploreIndexable(rows,query,failed);
  const link=p=>`/${locale}/explore${exploreSearch({...query,page:p})}`;
- const body=`<main><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section id="explore-results">${rows.map(row=>`<article>${row.is_operator?`<span>${e(getOperatorUi(locale).badge)}</span>`:''}<h2><a href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></h2><p>${e(countryLabel(row.public_country,locale))}</p><p>${e(ui.steps)}: ${row.analysis_data.length}</p><p>${e(row.analysis_data.map(s=>s.proc.stepTitle).join(' · '))}</p><p>${e(row.tags.join(' · '))}</p><p>${e(ui.views)}: ${row.view_count} · ${e(ui.reuses)}: ${row.reuse_count} · ${e(ui.scraps)}: ${row.scrap_count}</p></article>`).join('')}</section>${renderExplorePagination(Math.ceil(result.total/24),query.page+1,locale,link)}`}</main>`;
+ const cards=rows.map(row=>{
+  const excerpt=exploreExcerpt(row),labels=exploreCardTags(row,locale),contentLang=getLanguageTag(row.public_locale||locale);
+  return `<article class="jsa-card explore-card">${row.is_operator?`<span>${e(getOperatorUi(locale).badge)}</span>`:''}<h2 lang="${e(contentLang)}"><a href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></h2><p>${e(countryLabel(row.public_country,locale))}</p><p>${e(ui.steps)}: ${row.analysis_data.length}</p>${excerpt?`<div class="explore-excerpt"><span>${e(getExploreQualityUi(locale).excerpt)}</span><p data-explore-excerpt lang="${e(contentLang)}" dir="auto">${e(excerpt)}</p></div>`:''}<div class="explore-tags">${labels.map(({tag,label})=>`<a data-explore-tag href="/${e(locale)}/explore${e(exploreSearch({...query,page:0,tags:[tag]}))}">#${e(label)}</a>`).join('')}</div><p>${e(ui.views)}: ${row.view_count} · ${e(ui.reuses)}: ${row.reuse_count} · ${e(ui.scraps)}: ${row.scrap_count}</p></article>`;
+ }).join('');
+ const body=`<div class="jsa-workspace explore-page"><main class="jsa-container"><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section id="explore-results" class="jsa-card-grid explore-grid">${cards}</section>${renderExplorePagination(Math.ceil(result.total/24),query.page+1,locale,link)}`}</main></div>`;
  const bootstrap=JSON.stringify({locale,query,...result,rows}).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
  return shell.replace(/<html[^>]*>/,`<html lang="${e(getLanguageTag(locale))}" dir="${locale.startsWith('ar')?'rtl':'ltr'}">`).replace('</head>',`<title data-rh="true">${e(title)}</title><meta data-rh="true" name="description" content="${e(ui.intro)}"><meta data-rh="true" name="robots" content="${noindex?'noindex':'index'},follow"><link data-rh="true" rel="canonical" href="${e(canonical)}"></head>`).replace('<div id="root"></div>',`<div id="root">${body}</div>`).replace('</body>',`<script>window.__PUBLIC_EXPLORE__=${bootstrap};</script></body>`);
 }

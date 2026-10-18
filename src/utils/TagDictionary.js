@@ -1,5 +1,6 @@
-import { matchesHazardKeywords } from './analysisRecommendations.js';
+import { matchesHazardKeywords, normalizeKeywords } from './analysisRecommendations.js';
 import { localizedTagTerms } from './localizedTagTerms.js';
+import { inferenceTerms, tagEvidenceGroup } from './tagInferenceRules.js';
 
 /** Search metadata with stable Korean tag IDs. Keyword matches are not safety judgments. */
 
@@ -292,16 +293,38 @@ export const DIMENSIONAL_KEYWORD_MAP = {
 
 }
 
-// Match authored content only. JSON property names, IDs and stored tags are not evidence.
-export const extractAutoTagsFromJSA = (projectName, analysisData, { locale = 'en-US', translateTag } = {}) => {
-  const content = [typeof projectName === 'string' ? projectName : '',
-    ...(Array.isArray(analysisData) ? analysisData : []).flatMap(step => [step?.proc?.stepTitle, step?.proc?.stepDetail,
-      ...(Array.isArray(step?.risks) ? step.risks : []).flatMap(risk => [risk?.factor, risk?.risk_factor, risk?.measure, risk?.current_measure, risk?.recommend_measure])])]
-    .filter(value => typeof value === 'string').join('\n');
+// Keep evidence fields separate: a precaution mentioning an unrelated industry
+// or machine must not classify the whole job as that industry or machine.
+export function rankedAutoTags(projectName, analysisData, { locale = 'en-US', translateTag } = {}) {
+  const fields = [{ text: projectName, kind: 'title', weight: 12 }];
+  for (const step of Array.isArray(analysisData) ? analysisData : []) {
+    fields.push({ text: step?.proc?.stepTitle, kind: 'step', weight: 6 }, { text: step?.proc?.stepDetail, kind: 'detail', weight: 2 });
+    for (const risk of Array.isArray(step?.risks) ? step.risks : []) {
+      for (const key of ['factor', 'risk_factor']) fields.push({ text: risk?.[key], kind: 'hazard', weight: 4 });
+      for (const key of ['measure', 'current_measure', 'recommend_measure']) fields.push({ text: risk?.[key], kind: 'control', weight: 1 });
+    }
+  }
+  const buckets = [...new Set(fields.map(field => field.kind))].map(kind => {
+    const text = [...new Set(fields.filter(field => field.kind === kind && typeof field.text === 'string').map(field => field.text))]
+      .join('\n').normalize('NFKC').toLowerCase().replace(/\s+/gu, ' ');
+    return { kind, weight: fields.find(field => field.kind === kind).weight, text, compact: text.replace(/\s/gu, '') };
+  });
   const native = localizedTagTerms(locale);
-  return Object.entries(DIMENSIONAL_KEYWORD_MAP).filter(([tag, original]) => {
+  return Object.entries(DIMENSIONAL_KEYWORD_MAP).flatMap(([tag, original]) => {
     const label = translateTag?.(tag);
-    const terms = [...original, ...(native[tag] || []), ...(typeof label === 'string' && label !== tag ? [label] : [])];
-    return matchesHazardKeywords({ keywords: terms }, content);
-  }).map(([tag]) => tag);
-};
+    const terms = normalizeKeywords(inferenceTerms(tag, [...original, ...(native[tag] || []), ...(typeof label === 'string' && label !== tag ? [label] : [])]));
+    const group = tagEvidenceGroup(tag);
+    const allowed = group === 'industry' ? ['title', 'step'] : group === 'task' ? ['title', 'step', 'detail']
+      : group === 'hazard' ? ['title', 'step', 'detail', 'hazard'] : ['title', 'step', 'detail', 'control'];
+    const evidence = buckets.filter(field => field.text && allowed.includes(field.kind) && terms.some(term => {
+      if (/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(term)) return field.compact.includes(term.replace(/\s/gu, ''));
+      // Avoid compiling Unicode-boundary expressions for absent terms on every card.
+      return field.text.includes(term) && matchesHazardKeywords({ keywords: [term] }, field.text);
+    }));
+    if (!evidence.length) return [];
+    // Repeated boilerplate does not outrank a direct match in the job title.
+    const score = (Math.max(...evidence.map(field => field.weight)) + Math.min(3, evidence.length - 1)) * (group === 'control' ? .3 : 1);
+    return [{ tag, score, group }];
+  }).sort((a, b) => b.score - a.score || a.tag.localeCompare(b.tag, 'ko'));
+}
+export const extractAutoTagsFromJSA = (projectName, analysisData, options) => rankedAutoTags(projectName, analysisData, options).map(item => item.tag);

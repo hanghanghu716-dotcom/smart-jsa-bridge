@@ -25,6 +25,9 @@ import SEO from './SEO';
 import ThemeSwitcher from './ThemeSwitcher';
 import PublicProjectActions from './PublicProjectActions';
 import { DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary';
+import { exploreCardTags, exploreExcerpt } from '../utils/explorePresentation.js';
+import { publicTagLabel } from '../locales/publicTagLabels.js';
+import { getExploreQualityUi } from '../locales/exploreQualityUi.js';
 import '../styles/workspaces.css';
 import '../styles/public-explore.css';
 
@@ -47,6 +50,8 @@ export default function PublicExplore() {
   const admin = useCommunityAdmin();
   const { t, i18n } = useTranslation(['explore', 'tags']);
   const ui = getPublicUi(i18n.language);
+  const qualityUi = getExploreQualityUi(i18n.language);
+  const tagLabel = tag => publicTagLabel(tag, i18n.language);
   const operatorUi=getOperatorUi(i18n.language);
   const [params,setParams]=useSearchParams();
   const query=useMemo(()=>exploreQuery(params),[params]);
@@ -62,19 +67,18 @@ export default function PublicExplore() {
   const [bootstrap]=useState(()=>window.__PUBLIC_EXPLORE__?.locale===i18n.language&&exploreSearch(window.__PUBLIC_EXPLORE__.query)===exploreSearch(query)?window.__PUBLIC_EXPLORE__:null);
   const [total, setTotal] = useState(bootstrap?.total||0);
   const [rows, setRows] = useState(bootstrap?.rows||[]);
-  const [hasMore, setHasMore] = useState(bootstrap?.hasMore||false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const toggleTag = value => { setTags(previous => previous.includes(value) ? previous.filter(tag => tag !== value) : [...previous, value]); };
-  const allTags = Object.keys(DIMENSIONAL_KEYWORD_MAP);
+  const allTags = Object.keys(DIMENSIONAL_KEYWORD_MAP).filter(tag => tagLabel(tag));
   const groups = [
     ['industry','categoryIndustry',allTags.filter(tag => !tag.startsWith('설비(') && !tag.startsWith('사고(') && !/^(관리|준비|보호구|절차|마무리|기타)\(/.test(tag))],
     ['safety','categorySafety',allTags.filter(tag => /^(관리|준비|보호구|절차|마무리|기타)\(/.test(tag))],
     ['machine','categoryMachine',allTags.filter(tag => tag.startsWith('설비('))],
     ['accident','categoryAccident',allTags.filter(tag => tag.startsWith('사고('))],
   ];
-  const suggestedTags = search.trim() ? allTags.filter(tag => !tags.includes(tag) && (tag + ' ' + t(tag,{ns:'tags'})).toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())).slice(0,10) : [];
+  const suggestedTags = search.trim() ? allTags.filter(tag => !tags.includes(tag) && (tag + ' ' + tagLabel(tag)).toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())).slice(0,10) : [];
   useEffect(() => {
     let active = true;
     const timer = setTimeout(async () => {
@@ -95,7 +99,6 @@ export default function PublicExplore() {
         if (active) {
           const visible = result.rows.filter(row => !blocked.includes(row.author_id) && !hidden.includes(row.id));
           setRows(visible);
-          setHasMore(result.hasMore);
           setTotal(result.total);
         }
       } catch { if (active) setError(true); }
@@ -103,7 +106,9 @@ export default function PublicExplore() {
     }, 0);
     return () => { active = false; clearTimeout(timer); };
   }, [search, sort, tags, page, author, attempt, selectedCountry]);
-  const translation=usePublicTranslation(rows.filter(row=>!selectedCountry||row.public_country===selectedCountry),i18n.language);
+  const cardRows = useMemo(() => rows.filter(row => !selectedCountry || row.public_country === selectedCountry)
+    .map(row => ({ ...row, cardExcerpt: exploreExcerpt(row), cardTags: exploreCardTags(row, i18n.language) })), [rows, selectedCountry, i18n.language]);
+  const translation=usePublicTranslation(cardRows,i18n.language);
   return <div className="jsa-workspace explore-page" dir={i18n.dir()}>
     <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={exploreSearch({page})} noIndex={!exploreIndexable(rows,query,error)} />
     <header className="jsa-nav explore-nav"><LanguageLink className="explore-brand" to="/"><span className="explore-brand-mark"><ExploreIcon name="library" /></span>Smart JSA Bridge</LanguageLink><ThemeSwitcher compact /></header>
@@ -123,14 +128,14 @@ export default function PublicExplore() {
         <option value="all">{countryUi.all}</option>
         {PUBLIC_COUNTRIES.map(code=><option key={code} value={code}>{countryLabel(code,i18n.language)}</option>)}
       </select></label>
-      {suggestedTags.length>0 && <div className="explore-suggestions"><strong>{t('tagSearchResultLabel')}</strong><div className="explore-tags">{suggestedTags.map(tag=><button key={tag} onClick={()=>{change({tags:tags.includes(tag)?tags.filter(t=>t!==tag):[...tags,tag],search:''});}}>#{t(tag,{ns:'tags'})}</button>)}</div></div>}
+      {suggestedTags.length>0 && <div className="explore-suggestions"><strong>{t('tagSearchResultLabel')}</strong><div className="explore-tags">{suggestedTags.map(tag=><button key={tag} onClick={()=>{change({tags:tags.includes(tag)?tags.filter(t=>t!==tag):[...tags,tag],search:''});}}>#{tagLabel(tag)}</button>)}</div></div>}
       <details className="explore-filters" open>
         <summary>{t('sidebarTitle')}{tags.length>0 && <span>{tags.length}</span>}</summary>
         <label className="explore-operator-filter"><input type="checkbox" checked={author==='operator'} onChange={e=>change({author:e.target.checked?'operator':undefined})}/>{operatorUi.only}</label>
         <div className="explore-filter-tools"><button onClick={()=>{change({tags:[],search:'',sort:'latest',country:undefined,author:undefined});}}>{t('resetBtn')}</button></div>
-        <div className="explore-filter-groups">{groups.map(([id,label,values])=><details key={id}><summary>{t(label)}</summary><div className="explore-filter-options">{values.map(tag=><button key={tag} aria-pressed={tags.includes(tag)} onClick={()=>toggleTag(tag)}>{t(tag,{ns:'tags'})}</button>)}</div></details>)}</div>
+        <div className="explore-filter-groups">{groups.map(([id,label,values])=><details key={id}><summary>{t(label)}</summary><div className="explore-filter-options">{values.map(tag=><button key={tag} aria-pressed={tags.includes(tag)} onClick={()=>toggleTag(tag)}>{tagLabel(tag)}</button>)}</div></details>)}</div>
       </details>
-      <div className="explore-results-heading"><h2>{t('totalLabel')}<strong>{loading&&!rows.length?'…':total.toLocaleString(getLanguageTag(i18n.language))}</strong>{t('assetCountLabel')}</h2>{tags.map(tag => <button key={tag} className="explore-active-filter" onClick={() => toggleTag(tag)}>#{t(tag,{ns:'tags'})}<ExploreIcon name="close" /></button>)}</div>
+      <div className="explore-results-heading"><h2>{t('totalLabel')}<strong>{loading&&!rows.length?'…':total.toLocaleString(getLanguageTag(i18n.language))}</strong>{t('assetCountLabel')}</h2>{tags.map(tag => <button key={tag} className="explore-active-filter" onClick={() => toggleTag(tag)}>#{tagLabel(tag) || ui.search}<ExploreIcon name="close" /></button>)}</div>
       <details className="jsa-metric-help"><summary>{ui.metricHelp}</summary><p>{ui.metricRules}</p></details>
       {error && <div className="explore-state" role="alert"><p>{ui.error}</p><button onClick={() => setAttempt(n => n + 1)}>{ui.retry}</button></div>}
       {loading && <div className="explore-loading" role="status" aria-label={ui.title}><span /><span /><span /></div>}
@@ -141,7 +146,8 @@ export default function PublicExplore() {
         <h2 lang={getLanguageTag(translation.translated?i18n.language:row.public_locale||i18n.language)}><LanguageLink to={'/public-jsa/' + row.id}>{row.title || ui.detail}</LanguageLink></h2>
         <p className="explore-meta"><ExploreIcon name="steps" />{ui.steps}<strong>{row.analysis_data.length}</strong></p>
         <p className="explore-document-meta"><span>{countryLabel(row.public_country,i18n.language)}</span><span>{row.form_data.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}</span><time dateTime={row.created_at}>{new Date(row.created_at).toLocaleDateString(getLanguageTag(i18n.language))}</time></p>
-        <div className="explore-tags">{row.tags.slice(0, 5).map(value => <button key={value} aria-pressed={tags.includes(value)} onClick={() => toggleTag(value)}>#{t(value,{ns:'tags'})}</button>)}</div>
+        {row.cardExcerpt && <div className="explore-excerpt"><span>{qualityUi.excerpt}</span><p data-explore-excerpt lang={getLanguageTag(translation.translated ? i18n.language : row.public_locale || i18n.language)} dir="auto">{row.cardExcerpt}</p></div>}
+        <div className="explore-tags">{row.cardTags.map(({tag,label}) => <button key={tag} data-explore-tag aria-pressed={tags.includes(tag)} onClick={() => toggleTag(tag)}>#{label}</button>)}</div>
         <dl className="explore-metrics">{[['eye',ui.views,row.view_count],['reuse',ui.reuses,row.reuse_count],['bookmark',ui.scraps,row.scrap_count]].map(([icon,label,count]) => <div key={icon}><dt><ExploreIcon name={icon} />{label}</dt><dd>{count.toLocaleString(getLanguageTag(i18n.language))}</dd></div>)}</dl>
         <div className="explore-card-footer"><LanguageLink className="explore-detail" to={'/public-jsa/' + row.id}>{ui.detail}<ExploreIcon name="arrow" /></LanguageLink></div>
         {admin && <ExploreModerationButton id={row.id} onChanged={() => setAttempt(n => n + 1)} />}
