@@ -1,3 +1,4 @@
+import ProcedureDocument from '../components/ProcedureDocument';
 import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState } from 'react';
@@ -242,6 +243,8 @@ const startAnalysis = (jsaType) => {
                 {t('workbench.openButton')}
               </button>
             </div>
+
+            <ProcedureDocument document={{ formData, procedures, locale: formData.context?.documentLocale, paperSize: location.state?.paperSize || recoveredDraft?.layout_data?.paperSize }} uiLocale={i18n.language} />
 
             <div style={styles.scrollArea}>
               <div style={styles.procedureContainer}>

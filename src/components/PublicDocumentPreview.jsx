@@ -1,3 +1,5 @@
+import ProcedureDocument from './ProcedureDocument';
+import { projectProcedureDocument } from '../utils/procedureDocument';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getOperatorUi } from '../locales/operatorUi';
@@ -25,6 +27,7 @@ export default function PublicDocumentPreview({ row, locale }) {
  }
  return <section className="public-document-preview" aria-labelledby="public-document-preview-title">
   <h2 id="public-document-preview-title">{community.preview}</h2>
+  <ProcedureDocument document={projectProcedureDocument(row)} uiLocale={locale} />
   <section className="public-document-version" data-project-id={row.id} data-document-variant={row.document_variant||undefined}>
    <div className="jsa-toolbar"><h3>{ui[row.document_variant]||community.preview}</h3>
     <button disabled={busy} onClick={download}>{busy?'…':ui.download}</button>

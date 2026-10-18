@@ -1,3 +1,5 @@
+import ProcedureDocument from '../components/ProcedureDocument';
+import { projectProcedureDocument, draftProcedureDocument } from '../utils/procedureDocument';
 import { reusableActionStep } from '../utils/actionPlan';
 import LibraryWorkspaceOverview from '../components/LibraryWorkspaceOverview';
 import { isStorageLimitError } from '../services/projectStorageService';
@@ -476,6 +478,7 @@ export default function MyLibrary() {
                             <span style={styles.assetMeta}>
                               {t('draftStage')}: {t(`draftStages.${draft.current_stage}`, draft.current_stage)} · {formatDate(draft.updated_at)}
                             </span>
+                            <ProcedureDocument document={draftProcedureDocument(draft)} uiLocale={i18n.language} />
                           </div>
                           <div style={styles.assetActions}>
                             <button style={styles.assetPrimaryBtn} onClick={() => resumeDraft(draft)}>{t('resumeDraft')}</button>
@@ -684,6 +687,7 @@ export default function MyLibrary() {
                         <div style={styles.dateLabel}>{formatDate(f.originData?.created_at)}</div>
                         <div style={styles.cardTags}>{f.originData?.tags?.slice(0, 2).map(t => <span key={t} style={styles.miniTag}>#{t}</span>)}</div>
                         
+                        <ProcedureDocument document={projectProcedureDocument(f.originData, f.displayType === 'MY_JSA')} uiLocale={i18n.language} />
                         <div style={styles.cardFooter}>
                           <select style={styles.moveSelect} value={f.category_id || ""} onChange={(e) => moveFavorite(f.id, e.target.value, f.displayType)}>
                             <option value="">{t('moveFolderSelect')}</option>
