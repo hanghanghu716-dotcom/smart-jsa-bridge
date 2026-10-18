@@ -46,8 +46,8 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   return r.respond({status,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(result)});
  });
  await p.evaluateOnNewDocument(s=>localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token',JSON.stringify(s)),session);
- async function click(text,selector='button'){await p.evaluate((text,selector)=>{const b=[...document.querySelectorAll(selector)].find(n=>n.textContent.trim()===text);if(!b)throw Error('Missing '+text);b.click()},text,selector);await p.waitFor(200);}
- async function fill(selector,value){await p.$eval(selector,(n,value)=>{Object.getOwnPropertyDescriptor(n.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,'value').set.call(n,value);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await p.waitFor(80);}
+ async function click(text,selector='button'){await p.evaluate((text,selector)=>{const b=[...document.querySelectorAll(selector)].find(n=>n.textContent.trim()===text);if(!b)throw Error('Missing '+text);b.click()},text,selector);await new Promise(resolve => setTimeout(resolve, 200));}
+ async function fill(selector,value){await p.$eval(selector,(n,value)=>{Object.getOwnPropertyDescriptor(n.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,'value').set.call(n,value);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await new Promise(resolve => setTimeout(resolve, 80));}
  async function open(route,state){await p.goto(baseURL+'/ko/'+route,{waitUntil:'networkidle0'});await p.evaluate(state=>{sessionStorage.removeItem('smartjsa_active_draft_id');sessionStorage.removeItem('smartjsa_active_draft_version');history.replaceState({usr:state},'',location.href)},state);await p.reload({waitUntil:'networkidle0'});}
 
  for (const type of ['2-step','3-step']) {
@@ -62,7 +62,7 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   await fill('[data-action-field=verifiedBy]','효과확인 QA');await fill('[data-action-field=verifiedOn]','2026-10-17');await p.select('[data-action-field=effectiveness]','effective');
   assert.equal(await p.$('[data-risk-limit-warning]'),null);
   assert.ok(await p.$eval('[data-residual-score]',n=>n.textContent.includes('1 × 4 = 4')));
-  await p.waitFor(1600);
+  await new Promise(resolve => setTimeout(resolve, 1600));
   const saved=Object.values(drafts).filter(d=>d.current_stage==='analysis').at(-1);assert.equal(saved.analysis_data[0].actionPlan.verifiedBy,'효과확인 QA');
   await p.evaluate(()=>history.replaceState({},'',location.href));await p.reload({waitUntil:'networkidle0'});await p.waitForSelector('[data-action-plan]');
   assert.equal(await p.$eval('[data-action-field=verifiedBy]',n=>n.value),'효과확인 QA');
@@ -77,7 +77,7 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   const exported=await p.evaluate(()=>history.state.usr);
   const pdf=await p.evaluate(async()=>{await document.fonts.ready;const {createReportPdf}=await import('/src/utils/reportPdf.js');const result=await createReportPdf([{element:document.querySelector('.reportPaper'),orientation:'landscape',paperSize:'a4'}]);return {size:result.blob.size,pages:result.images.length,image:result.images[0].url};});
   assert.ok(pdf.size>5000);assert.ok(pdf.pages>=1);fs.writeFileSync(path.join(out,type+'-pdf.jpg'),Buffer.from(pdf.image.split(',')[1],'base64'));
-  await click('작업물 저장');await p.click('[data-save-mode=private]');await p.waitFor(1500);
+  await click('작업물 저장');await p.click('[data-save-mode=private]');await new Promise(resolve => setTimeout(resolve, 1500));
   const cloud=projects.at(-1);assert.equal(cloud.analysis_data[0].actionPlan.verifiedBy,'효과확인 QA');
   await open('export',{...exported,formData:cloud.form_data,analysisData:cloud.analysis_data,...cloud.custom_layout});
   assert.ok(await p.$eval('.reportPaper',n=>n.textContent.includes('효과확인 QA')));

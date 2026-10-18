@@ -1,5 +1,6 @@
 import { romanianUi } from './romanianUi.js';
 import { getAnalyticsText } from './analyticsText.js';
+import { supportChannelText } from './supportChannelText.js';
 const rows={
  en:['General inquiry','Suggestion','Support & rights','Requests are private. The operator can review them; replies appear here. Do not include passwords, identity documents or confidential site details.','Community reuse v1: ownership stays with the author. Permission covers copying, adapting and republishing for work, with a link to the source and a note of changes. It does not grant rights to third-party material or certify safety. Removing a public page does not recall copies already obtained. Mandatory legal rights remain unaffected.','Shared material is a reference, not an approved work permit. A competent person must check site conditions, local rules and controls before work.','Advertising and external visitor analytics are currently disabled. Public views count signed-in visits; reuse counts recorded actions, not unique people or proof of use on site.','Operator identity and a non-member contact channel are awaiting verification. This beta request form currently requires sign-in.'],
  ko:['일반 문의','기능 건의','고객센터·권리 보호','문의는 비공개이며 운영자가 확인합니다. 답변은 이 화면에서 확인하세요. 비밀번호·신분증·현장 기밀은 입력하지 마세요.','커뮤니티 재사용 v1: 저작권은 작성자에게 남습니다. 원문 링크와 변경 내용을 표시하는 업무상 복사·수정·재공개를 허락합니다. 제3자 자료에 대한 권리나 안전 인증을 부여하지 않습니다. 공개 페이지를 내려도 이미 받은 사본이 회수되지는 않습니다. 법률상 강행규정에 따른 권리는 제한하지 않습니다.','공유 자료는 참고용이며 승인된 작업허가서가 아닙니다. 작업 전에 담당 전문가가 현장 조건·해당 지역 법령·안전대책을 확인해야 합니다.','광고와 외부 방문 분석은 현재 꺼져 있습니다. 공개 조회는 로그인 방문을, 활용은 기록된 동작을 집계하며 실제 현장 사용이나 고유 인원 수를 뜻하지 않습니다.','운영자 신원과 비회원 연락 경로는 확인 중입니다. 현재 베타 문의 접수는 로그인이 필요합니다.'],
@@ -13,10 +14,12 @@ const rows={
  ar:['استفسار عام','اقتراح','الدعم والحقوق','الطلبات خاصة ويراجعها المشغّل. تظهر الردود هنا. لا تدخل كلمات مرور أو وثائق هوية أو أسرار الموقع.','إعادة الاستخدام v1: تبقى الحقوق للمؤلف. يسمح بالنسخ والتعديل وإعادة النشر للعمل مع رابط المصدر وبيان التغييرات. لا يمنح حقوق الغير أو شهادة سلامة. حذف الصفحة لا يسترجع النسخ السابقة. لا تتأثر الحقوق القانونية الإلزامية.','المحتوى مرجع وليس تصريح عمل معتمداً. يجب على مختص مراجعة ظروف الموقع والقواعد المحلية والتدابير قبل العمل.','الإعلانات والتحليلات الخارجية معطلة. المشاهدات تحصي الزيارات المسجلة والاستخدام يحصي الإجراءات، لا الأشخاص الفريدين أو العمل الفعلي بالموقع.','هوية المشغّل وقناة غير الأعضاء قيد التحقق. تتطلب طلبات النسخة التجريبية تسجيل الدخول.'],
 };
 export function getCommunityPolicy(locale='en-US') {
-  if (locale?.split('-')[0] === 'ro') return romanianUi.communityPolicy;
+  const channel=supportChannelText(locale);
+  if (locale?.split('-')[0] === 'ro') return {...romanianUi.communityPolicy,measurement:getAnalyticsText(locale).body+' '+channel.metrics,pendingContact:channel.contact};
  const row=rows[locale.split('-')[0]]||rows.en;
  const policy=Object.fromEntries(['general','suggestion','support','privateHelp','reuseTerms','safetyHelp','measurement','pendingContact'].map((k,i)=>[k,row[i]]));
  // Replace the historical disabled-analytics sentence, retaining the explanation of public counters.
- policy.measurement=getAnalyticsText(locale).body+' '+row[6].replace(/^[^.。]*[.。]\s*/, '');
+ policy.measurement=getAnalyticsText(locale).body+' '+channel.metrics;
+ policy.pendingContact=channel.contact;
  return policy;
 }

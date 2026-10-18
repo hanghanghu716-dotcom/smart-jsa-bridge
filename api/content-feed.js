@@ -7,7 +7,7 @@ import { Buffer } from 'node:buffer';
 import { indexableExploreLocales } from '../src/utils/exploreIndexing.js';
 import { PUBLIC_JSA_FIELDS, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
 import { buildSitemap } from '../scripts/sitemap-data.js';
-import { CASE_SUMMARY_FIELDS, SITE, casePath, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
+import { CASE_SUMMARY_FIELDS, SITE, casePath, readPublic, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
 const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
 export const RSS_MAX_BYTES = 4_000_000;
@@ -34,7 +34,7 @@ export function buildFeed(cases, publicRows, locale) {
   const start = xmlHeader + `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Smart JSA Bridge</title><link>${SITE}/${locale}/</link><description>${feedXml(locale === 'ro-RO' ? romanianUi.editorial.feedDescription : 'Latest Case Studies and public JSA documents')}</description><language>${feedXml(getLanguageTag(locale))}</language><atom:link href="${SITE}/${locale}/feed.xml" rel="self" type="application/rss+xml"/>`;
   const end = '</channel></rss>';
   const items = []; let bytes = Buffer.byteLength(start + end);
-  for (const row of entries) {
+  for (const row of entries.slice(0, 50)) {
     const body = row.document ? publicFeedBody(row.document, locale)
       : `<h1>${feedXml(row.title)}</h1><p>${feedXml(cleanSummary(row.post.meta_description))}</p>${renderCaseBody(row.post, row.url)}`;
     const item = `<item><title>${feedXml(row.title)}</title><link>${feedXml(row.url)}</link><guid isPermaLink="true">${feedXml(row.url)}</guid><description>${feedXml(body)}</description>${row.date ? `<pubDate>${new Date(row.date).toUTCString()}</pubDate>` : ''}</item>`;
@@ -68,8 +68,8 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
       if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
-          readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher, { pageSize: 25 }),
-          readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true', public_locale: 'eq.' + locale }, fetcher),
+          readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),
+          readPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true', public_locale: 'eq.' + locale, order: 'content_updated_at.desc.nullslast,published_at.desc,id', limit: '50' }, fetcher),
         ]);
         body = buildFeed(cases, documents, locale);
       }

@@ -1,4 +1,8 @@
 import ThemeSettings from '../components/ThemeSettings';
+import AdminVerification from '../components/AdminVerification';
+import { accountSecurity } from '../locales/accountSecurity';
+import { getCommunityUi } from '../locales/communityUi';
+import { communityAction } from '../services/communityService';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { useTranslation } from 'react-i18next';
@@ -9,12 +13,15 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 
 export default function Profile() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 다국어 네비게이트 사용
-  const { t } = useTranslation('profile'); // profile 네임스페이스 사용
+  const { t, i18n } = useTranslation('profile');
+  const security = accountSecurity(i18n.language);
+  const [message,setMessage] = useState('');
+  const [saving,setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     username: '', company_name: '', bio: '', sector: '',
     default_department: '', default_manager: '',
-    default_publicity: true, signature_url: ''
+    default_publicity: false, signature_url: ''
   });
   const [stats, setStats] = useState({ myCount: 0, scrapCount: 0 });
   const [notifications, setNotifications] = useState([]);
@@ -24,23 +31,25 @@ export default function Profile() {
   const [withdrawalConfirmText, setWithdrawalConfirmText] = useState("");
 
   useEffect(() => {
-    fetchUserData();
+    fetchUserData().catch(()=>setMessage(getCommunityUi(i18n.language).error)).finally(()=>setLoading(false));
   }, []);
+  useEffect(()=>()=>{if(profile.signature_url?.startsWith('blob:'))URL.revokeObjectURL(profile.signature_url);},[profile.signature_url]);
 
   const fetchUserData = async () => {
     setLoading(true);
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { navigate('/login'); return; }
 
-    const [pRes, jsaRes, notiRes, sessionRes] = await Promise.all([
+    const [pRes, jsaRes, notiRes, sessionRes, prefs] = await Promise.all([
       supabase.from('profiles').select('*').eq('id', user.id).single(),
       supabase.from('jsa_projects').select('id, scrap_count').eq('author_id', user.id),
-      supabase.from('notifications').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(3),
-      supabase.auth.getSession()
+      supabase.from('community_notices').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(3),
+      supabase.auth.getSession(),
+      supabase.from('profile_preferences').select('sector,default_department,default_manager,default_publicity').eq('user_id',user.id).maybeSingle()
     ]);
 
     if (pRes.data) {
-      setProfile({ ...pRes.data, default_publicity: pRes.data.default_publicity ?? true });
+      setProfile(prev=>({ ...prev, ...pRes.data, ...prefs.data }));
     }
     if (jsaRes.data) {
       const totalScraps = jsaRes.data.reduce((acc, curr) => acc + (curr.scrap_count || 0), 0);
@@ -48,27 +57,34 @@ export default function Profile() {
     }
     if (notiRes.data) setNotifications(notiRes.data);
     setSessionInfo(sessionRes.data.session);
+    if(pRes.error||prefs.error||notiRes.error)throw pRes.error||prefs.error||notiRes.error;
+    const signature=await supabase.storage.from('profile-assets').download(`${user.id}/signature`);
+    if(signature.data)setProfile(prev=>({...prev,signature_url:URL.createObjectURL(signature.data)}));
     setLoading(false);
   };
 
   const handleUpdate = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    const { error } = await supabase.from('profiles').update(profile).eq('id', user.id);
-    if (!error) alert(t('messages.updateSuccess')); // ✅ [다국어화]
+    setSaving(true);setMessage('');
+    try {
+      const {error}=await supabase.rpc('save_profile_preferences',{
+        p_profile:{username:profile.username,company_name:profile.company_name,bio:profile.bio},
+        p_preferences:{sector:profile.sector,default_department:profile.default_department,default_manager:profile.default_manager,default_publicity:profile.default_publicity}
+      });
+      if(error)throw error;setMessage(t('messages.updateSuccess'));
+    }catch{setMessage(getCommunityUi(i18n.language).error);}finally{setSaving(false);}
   };
 
   const handleSignatureUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const { data: { user } } = await supabase.auth.getUser();
-    const filePath = `signatures/${user.id}/${Date.now()}`;
-    const { error: uploadError } = await supabase.storage.from('user_assets').upload(filePath, file);
-    if (!uploadError) {
-      const { data: { publicUrl } } = supabase.storage.from('user_assets').getPublicUrl(filePath);
-      setProfile(prev => ({ ...prev, signature_url: publicUrl }));
-      await supabase.from('profiles').update({ signature_url: publicUrl }).eq('id', user.id);
-      alert(t('messages.signatureSuccess')); // ✅ [다국어화]
-    }
+    if(!['image/png','image/jpeg'].includes(file.type)||file.size>1048576){setMessage(security.signatureLimit);return;}
+    setSaving(true);
+    try{
+      const {data:{user},error}=await supabase.auth.getUser();if(error||!user)throw error||Error('AUTH_REQUIRED');
+      const uploaded=await supabase.storage.from('profile-assets').upload(`${user.id}/signature`,file,{upsert:true,contentType:file.type});
+      if(uploaded.error)throw uploaded.error;
+      setProfile(prev=>({...prev,signature_url:URL.createObjectURL(file)}));setMessage(t('messages.signatureSuccess'));
+    }catch{setMessage(getCommunityUi(i18n.language).error);}finally{setSaving(false);e.target.value='';}
   };
 
   const handleGlobalSignOut = async () => {
@@ -82,8 +98,13 @@ export default function Profile() {
       alert(t('messages.withdrawMismatch')); // ✅ [다국어화]
       return;
     }
-    if (window.confirm(t('messages.confirmWithdrawal'))) { // ✅ [다국어화]
-      await supabase.auth.signOut(); navigate('/login');
+    if (window.confirm(security.withdrawConfirm)) {
+      setSaving(true);
+      try{
+        await communityAction('request',null,{category:'erasure',detail:'Account deletion requested by the signed-in account owner.',evidence:''});
+        setMessage(security.withdrawReceived);setIsWithdrawVisible(false);setWithdrawalConfirmText('');
+        navigate('/community');
+      }catch{setMessage(getCommunityUi(i18n.language).error);}finally{setSaving(false);}
     }
   };
 
@@ -117,6 +138,8 @@ export default function Profile() {
 
             <div style={styles.scrollArea}>
               <ThemeSettings />
+              {message&&<p role="status">{message}</p>}
+              <AdminVerification />
               <div style={styles.formGrid}>
                 {/* 왼쪽 섹션: 통계 및 기본 프로필 */}
                 <section style={styles.leftSection}>
@@ -225,7 +248,7 @@ export default function Profile() {
                     )}
                     <label style={styles.uploadBtn}>
                       {t('ui.uploadSignature')}
-                      <input type="file" hidden accept="image/*" onChange={handleSignatureUpload} />
+                      <input type="file" hidden accept="image/png,image/jpeg" disabled={saving} onChange={handleSignatureUpload} />
                     </label>
                   </div>
 
@@ -245,12 +268,12 @@ export default function Profile() {
                   style={styles.withdrawToggle} 
                   onClick={() => setIsWithdrawVisible(!isWithdrawVisible)}
                 >
-                  {isWithdrawVisible ? t('ui.closeWithdraw') : t('ui.openWithdraw')}
+                  {isWithdrawVisible ? t('ui.closeWithdraw') : security.withdraw}
                 </div>
                 {isWithdrawVisible && (
                   <div style={styles.withdrawForm}>
                     <div style={styles.withdrawInfo}>
-                      {t('ui.withdrawWarning')}
+                      {security.withdrawHelp}
                     </div>
                     <input 
                       style={styles.input} 
@@ -261,9 +284,9 @@ export default function Profile() {
                     <button 
                       style={{...styles.withdrawBtn, opacity: withdrawalConfirmText === t('messages.withdrawConsentText') ? 1 : 0.5}}
                       onClick={handleWithdrawal}
-                      disabled={withdrawalConfirmText !== t('messages.withdrawConsentText')}
+                      disabled={saving||withdrawalConfirmText !== t('messages.withdrawConsentText')}
                     >
-                      {t('ui.withdrawSubmit')}
+                      {security.withdraw}
                     </button>
                   </div>
                 )}
@@ -272,7 +295,7 @@ export default function Profile() {
 
             <div style={styles.btnArea}>
               <button style={styles.prevBtn} onClick={() => navigate('/')}>{t('ui.goMain')}</button>
-              <button style={styles.nextBtn} onClick={handleUpdate}>{t('ui.saveProfile')}</button>
+              <button disabled={loading||saving} style={styles.nextBtn} onClick={handleUpdate}>{t('ui.saveProfile')}</button>
             </div>
           </div>
         </main>

@@ -75,15 +75,16 @@ function mockClient(result = { data: { id: 'saved', updated_at: 'revision2', is_
 test('an in-flight save for the previous draft cannot replace the new draft revision', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   const previousWindow = globalThis.window, previousStorage = globalThis.sessionStorage;
-  let client, previousGetUser, previousRpc;
+  let client, previousGetUser, previousGetSession, previousRpc;
   try {
     const { supabase } = await server.ssrLoadModule('/src/supabaseClient.js');
-    client = supabase; previousGetUser = client.auth.getUser; previousRpc = client.rpc;
+    client = supabase; previousGetUser = client.auth.getUser; previousGetSession=client.auth.getSession; previousRpc = client.rpc;
     const drafts = await server.ssrLoadModule('/src/services/jsaDraftService.js');
     const memory = new Map();
     globalThis.window = {};
     globalThis.sessionStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value), removeItem: key => memory.delete(key) };
     client.auth.getUser = async () => ({ data: { user: { id: 'owner' } } });
+    client.auth.getSession=async()=>({data:{session:{user:{id:'owner'}}}});
     let releaseSave, notifyStarted;
     const started = new Promise(resolve => { notifyStarted = resolve; });
     client.rpc = () => { notifyStarted(); return new Promise(resolve => { releaseSave = resolve; }); };
@@ -96,7 +97,7 @@ test('an in-flight save for the previous draft cannot replace the new draft revi
     assert.equal(drafts.getExistingActiveDraftId(), 'new');
     assert.equal(drafts.getActiveDraftVersion(), 1);
   } finally {
-    if (client) { client.auth.getUser = previousGetUser; client.rpc = previousRpc; }
+    if (client) { client.auth.getUser = previousGetUser; client.auth.getSession=previousGetSession; client.rpc = previousRpc; }
     globalThis.window = previousWindow; globalThis.sessionStorage = previousStorage;
     await server.close();
   }

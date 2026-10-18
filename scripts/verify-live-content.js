@@ -40,6 +40,8 @@ for (const [locale, route] of samples) {
   assert.match(archive.body, /window\.__CASE_LIST__=/, `${locale}: stale archive`);
   const home = await get(`/${locale}`);
   assert.match(home.body, /window\.__CASE_LIST__=/, `${locale}: stale home`);
+  const slash = await get(`/${locale}/`, 308);
+  assert.equal(new URL(slash.response.headers.get('location'),base).pathname,`/${locale}`);
 }
 assert.match((await get('/en-US/feed.xml')).body, /<rss /);
 const publicMap = (await get('/sitemap-public.xml')).body;

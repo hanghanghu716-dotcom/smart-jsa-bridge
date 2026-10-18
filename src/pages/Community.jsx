@@ -13,6 +13,8 @@ import PublicationFields from '../components/PublicationFields';
 import DiscoveryAdmin from '../components/DiscoveryAdmin';
 import ModerationInbox from '../components/ModerationInbox';
 import AuthorCorrections from '../components/AuthorCorrections';
+import ExternalSupport from '../components/ExternalSupport';
+import AdminVerification from '../components/AdminVerification';
 import { getSocialUi } from '../locales/socialUi';
 import { supabase } from '../supabaseClient';
 import '../styles/community.css';
@@ -28,9 +30,11 @@ export default function Community(){
  const date=value=>new Date(value).toLocaleString(getLanguageTag(i18n.language));
  return <div className="jsa-workspace" dir={i18n.dir()}><SEO pageTitle={ui.hub+' | Smart JSA Bridge'} noIndex/><header className="jsa-nav"><LanguageLink to="/explore">Smart JSA Bridge</LanguageLink><ThemeSwitcher compact/></header><main className="jsa-container community-center"><h1>{ui.support}</h1><p>{ui.privateHelp}</p><p>{ui.freeCore}</p><p>{ui.orgControl}</p>
  {message&&<p role="status">{message}</p>}
- {account?.status.admin&&<><ModerationInbox/><DiscoveryAdmin/></>}
+ {account&&<AdminVerification onVerified={()=>setRefresh(n=>n+1)}/>}
+ {account?.status.admin&&<><ModerationInbox/><ExternalSupport admin/><DiscoveryAdmin/></>}
  {account&&<><div className="jsa-toolbar"><LanguageLink to={'/authors/'+account.user.id}>{ui.author}</LanguageLink><LanguageLink to="/following">{ui.following}</LanguageLink></div><AuthorCorrections/></>}
  {account===null&&<LanguageLink to={'/login?next='+encodeURIComponent(location.pathname+location.search)}>{ui.login}</LanguageLink>}
+ {account===null&&<ExternalSupport/>}
  {account?.projects.length>0&&<details className="jsa-card community-policy"><summary>{ui.licensePending}</summary><select aria-label={ui.selectSteps} value={publication} onChange={e=>{setPublication(e.target.value);setConsent(false);setContext(account.projects.find(p=>p.id===e.target.value)?.publication_context||{});}}><option value=""></option>{account.projects.map(p=><option value={p.id} key={p.id}>{p.title}</option>)}</select>{publication&&<><PublicationFields consent={consent} onConsent={setConsent} context={context} onContext={setContext}/><button disabled={busy||!consent} onClick={()=>run(async()=>{const {data,error}=await supabase.from('jsa_projects').update({reuse_license:'community-v1',publication_context:context,updated_at:new Date().toISOString()}).eq('id',publication).eq('author_id',account.user.id).select('id').single();if(error||!data)throw error||Error('NOT_FOUND');setPublication('');setConsent(false);})}>{ui.send}</button></>}</details>}
  {account&&<><section className="jsa-card"><h2>{ui.send}</h2><p>{ui.privacyHelp}</p><form onSubmit={e=>{e.preventDefault();run(async()=>{const receipt=await communityAction('request',project||null,{category,detail,evidence});if(!receipt.duplicate){setDetail('');setEvidence('');}return (receipt.duplicate?ui.duplicate:ui.receipt)+': '+receipt.id;});}}>
  <label>{ui.category}<select value={category} onChange={e=>setCategory(e.target.value)}>{['general','suggestion','privacy','copyright','safety','spam','appeal','access','erasure','correction'].map(key=><option value={key} key={key}>{ui[key]}</option>)}</select></label>

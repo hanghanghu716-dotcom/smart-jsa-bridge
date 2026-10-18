@@ -61,7 +61,7 @@ test('RSS handler requests full article text and removes withdrawn documents imm
   let documents = [doc]; const selected = [];
   const handler = createContentFeedHandler({ fetcher: async value => {
     const url = new URL(value); selected.push(url.searchParams.get('select'));
-    if (url.pathname.endsWith('/case_studies')) assert.equal(url.searchParams.get('limit'), '25');
+    if (url.pathname.endsWith('/case_studies')) {assert.equal(url.searchParams.get('limit'), '50');assert.match(url.searchParams.get('order'),/^content_updated_at.desc/);}
     return Response.json(url.searchParams.has('id') ? [] : url.pathname.endsWith('/case_studies') ? [post] : documents);
   } });
   const call = async () => { const res = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } }; await handler({ query: { kind: 'rss', lng: 'ko' }, headers: {} }, res); return res; };
@@ -78,7 +78,7 @@ test('RSS limits byte size by omitting whole oversized articles instead of trunc
   assert.match(xml, /마지막 본문/); assert.doesNotMatch(xml, /\/case-study\/oversized/);
 });
 
-test('RSS includes more than 100 complete articles when they fit the byte budget', () => {
+test('RSS includes only the latest 50 complete articles; the sitemap retains discovery of older content', () => {
   const rows = Array.from({ length: 125 }, (_, i) => ({ ...post, id: `post-${i}`, post_group_id: `article-${i}` }));
-  assert.equal(descriptions(buildFeed(rows, [], 'ko')).length, 125);
+  assert.equal(descriptions(buildFeed(rows, [], 'ko')).length, 50);
 });

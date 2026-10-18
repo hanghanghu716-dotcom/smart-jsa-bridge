@@ -4,11 +4,13 @@ import { createServer } from 'vite';
 
 test('drawing and PDF retries verify existing bytes and preserve one immutable record', async () => {
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
-  let client, originalAuth, originalFrom, originalStorage;
+  let client, originalAuth, originalFrom, originalStorage, originalRpc;
   try {
     ({ supabase: client } = await server.ssrLoadModule('/src/supabaseClient.js'));
     const { uploadDrawing, archiveWorkOutput } = await server.ssrLoadModule('/src/services/workPackageService.js');
     originalAuth = client.auth.getUser; originalFrom = client.from; originalStorage = client.storage.from;
+    originalRpc=client.rpc;
+    client.rpc=async(name,payload)=>{assert.equal(name,'reserve_work_upload');assert.ok(payload.p_path.startsWith('owner/'));return {data:null,error:null};};
     client.auth.getUser = async () => ({ data: { user: { id: 'owner' } } });
     const files = new Map(), records = new Map();
     let metadataFailure = true, lostResponse = false, uploadError = null, writes = 0, downloads = 0;
@@ -70,7 +72,7 @@ test('drawing and PDF retries verify existing bytes and preserve one immutable r
       assert.equal(writes, beforeMismatch);
     }
   } finally {
-    if (client) { client.auth.getUser = originalAuth; client.from = originalFrom; client.storage.from = originalStorage; }
+    if (client) { client.auth.getUser = originalAuth; client.from = originalFrom; client.storage.from = originalStorage; client.rpc=originalRpc; }
     await server.close();
   }
 });

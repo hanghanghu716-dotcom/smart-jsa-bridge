@@ -43,8 +43,8 @@ else if(!url.includes('/rest/v1/'))return r.abort();
 return r.respond({status,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(result)});
 });
 await p.evaluateOnNewDocument(s=>localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token',JSON.stringify(s)),session());
-async function click(text,scope=''){await p.evaluate((text,scope)=>{const b=[...document.querySelectorAll((scope?scope+' ':'')+'button')].find(n=>n.textContent.trim()===text);if(!b)throw Error('Missing '+text);if(b.disabled)throw Error('Disabled '+text);b.click()},text,scope);await p.waitFor(500);}
-async function fill(selector,value){await p.$eval(selector,(n,v)=>{Object.getOwnPropertyDescriptor(n.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype,'value').set.call(n,v);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await p.waitFor(100);}
+async function click(text,scope=''){await p.evaluate((text,scope)=>{const b=[...document.querySelectorAll((scope?scope+' ':'')+'button')].find(n=>n.textContent.trim()===text);if(!b)throw Error('Missing '+text);if(b.disabled)throw Error('Disabled '+text);b.click()},text,scope);await new Promise(resolve => setTimeout(resolve, 500));}
+async function fill(selector,value){await p.$eval(selector,(n,v)=>{Object.getOwnPropertyDescriptor(n.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype,'value').set.call(n,v);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await new Promise(resolve => setTimeout(resolve, 100));}
 async function openAs(nextRole){role=nextRole;await p.evaluate(s=>localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token',JSON.stringify(s)),session());await p.goto('http://127.0.0.1:5173/ko/business',{waitUntil:'networkidle0'});}
 
 const {SUPPORTED_LANGS,getLanguageTag}=await import('../src/locales/config.js');
@@ -57,7 +57,7 @@ orgs=[{id:ids.org,name:'QA organization',owner_id:ids.owner}];
 docs=[{id:ids.doc,org_id:ids.org,title:'QA document',snapshot,state:'submitted',version:2,edited_by:ids.reviewer,reviewer_id:ids.owner,submitted_by:ids.reviewer,updated_at:future}];
 revisions=[{...docs[0],id:2,document_id:ids.doc,actor_id:ids.reviewer,created_at:future}];
 templates=[{id:'company-template',org_id:ids.org,name:'QA template',layout_data:{docTitle:'QA template'},version:1}];
-async function choose(label,value,scope=''){const selector=scope+'select[aria-label='+JSON.stringify(label)+']';await p.select(selector,value);await p.waitFor(150);}
+async function choose(label,value,scope=''){const selector=scope+'select[aria-label='+JSON.stringify(label)+']';await p.select(selector,value);await new Promise(resolve => setTimeout(resolve, 150));}
 async function noOverflow(label,scope){
  const bad=await p.evaluate(scope=>{const elements=scope?[...document.querySelectorAll(scope+' button,'+scope+' input,'+scope+' select')]:[document.documentElement];return elements.filter(n=>n.getBoundingClientRect().width>0&&n.scrollWidth>n.clientWidth+2).map(n=>({tag:n.tagName,text:n.textContent.slice(0,90),width:n.clientWidth,scroll:n.scrollWidth}));},scope);
  assert.deepEqual(bad,[],label+' overflow');
@@ -76,7 +76,7 @@ for(const locale of SUPPORTED_LANGS.filter(locale=>!process.env.JSA_QA_LOCALES||
  assert.equal(await p.$eval('.jsa-workspace',n=>getComputedStyle(n).direction),locale==='ar-SA'?'rtl':'ltr');
  await noOverflow(locale+' desktop');await noOverflow(locale+' controls','.jsa-container');
  if(locale==='de-DE')await p.screenshot({path:path.join(out,'business-de-desktop.png')});
- await p.setViewport({width:390,height:844});await p.waitFor(120);await noOverflow(locale+' mobile');await noOverflow(locale+' mobile controls','.jsa-container');
+ await p.setViewport({width:390,height:844});await new Promise(resolve => setTimeout(resolve, 120));await noOverflow(locale+' mobile');await noOverflow(locale+' mobile controls','.jsa-container');
  if(locale==='ar-SA'){await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:path.join(out,'business-ar-mobile.png')});}
  // Company template controls keep their own reading direction within the designer.
  await p.setViewport({width:1450,height:1000});

@@ -48,14 +48,14 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
   return r.respond({status,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(result)});
  });
  await p.evaluateOnNewDocument(s=>localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token',JSON.stringify(s)),session);
- async function click(text,selector='button'){await p.evaluate((text,selector)=>{const b=[...document.querySelectorAll(selector)].find(n=>n.textContent.trim()===text);if(!b)throw Error('Missing '+text);b.click()},text,selector);await p.waitFor(200);}
- async function fill(selector,value){await p.$eval(selector,(n,value)=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(n,value);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await p.waitFor(80);}
+ async function click(text,selector='button'){await p.evaluate((text,selector)=>{const b=[...document.querySelectorAll(selector)].find(n=>n.textContent.trim()===text);if(!b)throw Error('Missing '+text);b.click()},text,selector);await new Promise(resolve => setTimeout(resolve, 200));}
+ async function fill(selector,value){await p.$eval(selector,(n,value)=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(n,value);n.dispatchEvent(new Event('input',{bubbles:true}))},value);await new Promise(resolve => setTimeout(resolve, 80));}
  async function open(route,state){await p.goto(baseURL+'/ko/'+route,{waitUntil:'networkidle0'});await p.evaluate(state=>{sessionStorage.removeItem('smartjsa_active_draft_id');sessionStorage.removeItem('smartjsa_active_draft_version');history.replaceState({usr:state},'',location.href)},state);await p.reload({waitUntil:'networkidle0'});}
 
 
  await open('info',initial);
  assert.equal(await p.$eval('[data-storage-visibility=private]',n=>n.checked),true);
- await p.click('[data-storage-visibility=public]');await p.waitFor(1200);
+ await p.click('[data-storage-visibility=public]');await new Promise(resolve => setTimeout(resolve, 1200));
  assert.ok(calls.some(c=>c[0]==='draft'&&c[1].p_form_data.saveVisibility==='public'));
  await p.screenshot({path:path.join(out,'info-public-visibility.png')});
  const next=JSON.parse(fs.readFileSync(path.join(root,'src/locales/ko/info.json'))).btn.next;
@@ -70,7 +70,7 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  assert.equal(await p.$('.publication-consent'),null);
  assert.ok(await p.$('[data-save-mode=private]'));
  // Changing the preference survives a draft restore with no route state.
- await p.waitFor(1200);await p.evaluate(()=>history.replaceState({},'',location.href));
+ await new Promise(resolve => setTimeout(resolve, 1200));await p.evaluate(()=>history.replaceState({},'',location.href));
  await p.reload({waitUntil:'networkidle0'});await click('작업물 저장');
  assert.equal(await p.$eval('[data-storage-visibility=private]',n=>n.checked),true);
  // Public source reuse must start privately even if the source carries a public preference.
@@ -84,7 +84,7 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  // Another tab takes the last slot after this modal has loaded.
  usage={...usage,used:3,can_create:false};quotaReject=true;
  const archived=calls.filter(x=>x[0]==='archive').length;
- await p.click('[data-save-mode=private]');await p.waitFor(1400);
+ await p.click('[data-save-mode=private]');await new Promise(resolve => setTimeout(resolve, 1400));
  assert.ok(p.url().endsWith('/export'));assert.equal(calls.filter(x=>x[0]==='archive').length,archived);
  assert.ok(await p.evaluate(()=>sessionStorage.getItem('smartjsa_active_draft_id')));
  assert.equal(await p.$eval('[data-save-mode=private]',n=>n.disabled),true);
@@ -93,29 +93,29 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  await p.screenshot({path:require('path').join(out,'storage-full.png')});
  // Active trial reopens the slot; expiry preserves all four existing documents.
  usage={used:4,limit:null,trial_active:true,can_create:true,trial_expires_at:'2099-01-01T00:00:00Z'};
- await p.evaluate(()=>window.dispatchEvent(new Event('focus')));await p.waitFor(400);
+ await p.evaluate(()=>window.dispatchEvent(new Event('focus')));await new Promise(resolve => setTimeout(resolve, 400));
  assert.equal(await p.$eval('[data-save-mode=private]',n=>n.disabled),false);
  assert.equal(await p.$('[role=alert]'),null);
  usage={...usage,limit:3,trial_active:false,can_create:false,trial_expires_at:'2020-01-01T00:00:00Z'};
- await p.evaluate(()=>window.dispatchEvent(new Event('focus')));await p.waitFor(400);
+ await p.evaluate(()=>window.dispatchEvent(new Event('focus')));await new Promise(resolve => setTimeout(resolve, 400));
  assert.equal(await p.$eval('[data-save-mode=private]',n=>n.disabled),true);
  assert.match(await p.$eval('[data-storage-usage]',n=>n.textContent),/기존 문서는 보존/);
- await p.click('[data-save-mode=update]');await p.waitFor(1200);
+ await p.click('[data-save-mode=update]');await new Promise(resolve => setTimeout(resolve, 1200));
  assert.ok(calls.some(x=>x[0]==='PATCH'));assert.equal(calls.filter(x=>x[0]==='archive').length,archived+1);
  assert.ok(p.url().endsWith('/library'));await p.waitForSelector('[data-storage-usage]');
  assert.match(await p.$eval('[data-storage-usage]',n=>n.textContent),/4 \/ 3/);
  // A failed private save retains both the editor and draft; retry saves once.
  usage={used:2,limit:3,trial_active:false,can_create:true};quotaReject=false;failProject=true;
- await open('export',{...initial,openSaveDialog:true});await p.waitFor(1200);
+ await open('export',{...initial,openSaveDialog:true});await new Promise(resolve => setTimeout(resolve, 1200));
  const failedArchiveCount=calls.filter(x=>x[0]==='archive').length,failedProjectCount=projects.length;
  const draftBeforeFailure=await p.evaluate(()=>sessionStorage.getItem('smartjsa_active_draft_id'));
  assert.ok(draftBeforeFailure);
- await p.click('[data-save-mode=private]');await p.waitFor(1200);
+ await p.click('[data-save-mode=private]');await new Promise(resolve => setTimeout(resolve, 1200));
  assert.equal(projects.length,failedProjectCount);
  assert.equal(calls.filter(x=>x[0]==='archive').length,failedArchiveCount);
  assert.equal(await p.evaluate(()=>sessionStorage.getItem('smartjsa_active_draft_id')),draftBeforeFailure);
  assert.ok(p.url().endsWith('/export'));assert.ok(dialogs.some(x=>x.includes('저장하지 못했습니다')));
- failProject=false;await p.click('[data-save-mode=private]');await p.waitFor(1400);
+ failProject=false;await p.click('[data-save-mode=private]');await new Promise(resolve => setTimeout(resolve, 1400));
  assert.equal(projects.length,failedProjectCount+1);assert.equal(calls.filter(x=>x[0]==='archive').length,failedArchiveCount+1);
  assert.ok(p.url().endsWith('/library'));
  usage={used:3,limit:3,trial_active:false,can_create:false};quotaReject=true;
@@ -124,7 +124,7 @@ const initial={formData:{projectName:'배관 점검',department:'비공개 부�
  assert.equal(await p.$eval('[data-save-mode=public]',n=>n.disabled),true);
  await p.click('.publication-consent input');
  const beforePublicArchive=calls.filter(x=>x[0]==='archive').length;
- await p.click('[data-save-mode=public]');await p.waitFor(1200);
+ await p.click('[data-save-mode=public]');await new Promise(resolve => setTimeout(resolve, 1200));
  const savedPublic=projects.find(x=>x.is_public);
  assert.ok(savedPublic);assert.equal(savedPublic.form_data.department,undefined);
  assert.equal(savedPublic.reuse_license,'community-v1');assert.deepEqual(savedPublic.participants,[]);
