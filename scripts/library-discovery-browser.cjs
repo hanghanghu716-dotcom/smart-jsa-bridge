@@ -9,7 +9,7 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
  try{
   for(let n=0;n<60;n++){try{if((await fetch(base)).ok)break;}catch{}await new Promise(r=>setTimeout(r,250));}
   browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||(process.platform==='win32'?'C:/Program Files/Google/Chrome/Application/chrome.exe':undefined),args:['--no-sandbox']});
-  const page=await browser.newPage(),errors=[],bodyReads=[],writes=[];
+  const page=await browser.newPage(),errors=[],bodyReads=[],writes=[],facetReads=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.evaluateOnNewDocument(s=>localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token',JSON.stringify(s)),session);
   await page.setRequestInterception(true);
@@ -26,6 +26,7 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
     data=records.filter(row=>!q.has('id')||q.get('id').includes(row.id));
     if(q.get('select')==='*'){bodyReads.push(data.length);assert.ok(data.length<=12,'Load only one page of private document bodies');}
    }else if(url.includes('/public_jsa_catalog')){
+    if(q.get('select')==='id,tags')facetReads.push(url);
     data=records.filter(row=>(!q.has('public_country')||q.get('public_country')==='eq.'+row.public_country)&&(!q.has('id')||q.get('id')==='eq.'+row.id));
     if(q.has('tags'))data=data.filter(row=>row.tags.includes('高')||row.tags.some(tag=>q.get('tags').includes(tag)));
    }else if(url.includes('/user_jsa_categories'))data=[{id:folder,user_id:uid,category_name:'Fixture folder',parent_id:null}];
@@ -58,6 +59,10 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
   assert.ok(await page.$eval('.library-pagination',el=>el.getBoundingClientRect().right<=innerWidth+1));
   await page.goto(base+'/en-US/explore',{waitUntil:'networkidle2'});
   await page.waitForFunction(()=>[...document.querySelectorAll('.explore-facet-count')].some(el=>el.textContent===' (25)'));
+  const initialFacetReads=facetReads.length;
+  await page.$$eval('.list-pagination-number',els=>els.find(el=>el.textContent==='2').click());
+  await page.waitForNetworkIdle();
+  assert.equal(facetReads.length,initialFacetReads,'Changing pages must not reload all tag metadata');
   await page.select('.explore-country select','all');
   await page.waitForFunction(()=>[...document.querySelectorAll('.explore-facet-count')].some(el=>el.textContent===' (37)'));
   await page.setViewport({width:1440,height:1000});

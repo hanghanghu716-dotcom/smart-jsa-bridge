@@ -132,16 +132,17 @@ export default function PublicExplore() {
   const facetKey = JSON.stringify([search, tags, selectedCountry, author, attempt]);
   useEffect(() => {
     const controller = new AbortController();
-    const key = JSON.stringify([search, tags, selectedCountry, author, attempt]);
+    const key = facetKey;
+    const [facetSearch, facetTags, facetCountry, facetAuthor] = JSON.parse(key);
     (async () => {
       try {
         const exclusions = await exploreExclusions();
-        const counts = await listPublicTagCounts({ search, tags, country: selectedCountry, author, ...exclusions, signal: controller.signal });
+        const counts = await listPublicTagCounts({ search: facetSearch, tags: facetTags, country: facetCountry, author: facetAuthor, ...exclusions, signal: controller.signal });
         if (!controller.signal.aborted) setTagCounts({ key, counts });
       } catch { if (!controller.signal.aborted) setTagCounts(null); }
     })();
     return () => controller.abort();
-  }, [search, tags, selectedCountry, author, attempt]);
+  }, [facetKey]);
   const facetCount = tag => tagCounts?.key === facetKey ? ` (${(tagCounts.counts[tag] || 0).toLocaleString(getLanguageTag(locale))})` : '';
   const cardRows = useExploreCards(rows, country, locale);
   const translation=usePublicTranslation(cardRows,i18n.language);
