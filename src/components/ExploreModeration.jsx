@@ -17,7 +17,7 @@ export function ExploreModerationButton({ id, restricted = false, onChanged }) {
     catch { setError(common.error); }
   }
   async function submit(e) {
-    e.preventDefault(); if (lock.current || !snapshot || reason.trim().length < 10) return;
+    e.preventDefault(); if (lock.current || !snapshot || snapshot.id !== id || reason.trim().length < 10) return;
     lock.current = true; setBusy(true); setError('');
     try {
       await exploreModeration(snapshot.restricted ? 'restore' : 'restrict', id, { reason: reason.trim(), version: snapshot.version, updated_at: snapshot.updated_at });

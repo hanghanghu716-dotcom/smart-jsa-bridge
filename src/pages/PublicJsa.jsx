@@ -113,7 +113,7 @@ export default function PublicJsa() {
       {currentRow && <><span className="jsa-eyebrow">{ui.community}</span><h1 lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}>{currentRow.title}</h1>
         <p>{getPublicCountryUi(i18n.language).origin}: {countryLabel(sourceRow.public_country,i18n.language)}</p>
         {sourceRow.restricted && <p className="explore-moderation-notice">{getExploreModerationUi(i18n.language).restricted}</p>}
-        {admin && <ExploreModerationButton id={id} restricted={sourceRow.restricted} onChanged={() => setAttempt(n => n + 1)} />}
+        {admin && <ExploreModerationButton key={id} id={id} restricted={sourceRow.restricted} onChanged={() => setAttempt(n => n + 1)} />}
         <PublicTranslationNotice translation={translation} locale={i18n.language}/>
         <AuthorLink id={currentRow.author_id}/>{sourceRow.is_operator&&<span className="operator-badge">{getOperatorUi(i18n.language).badge}</span>}
         <PublicDocumentPreview key={sourceRow.id} row={sourceRow} locale={i18n.language}/>
