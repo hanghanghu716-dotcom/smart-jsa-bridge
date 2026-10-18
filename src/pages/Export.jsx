@@ -1,4 +1,5 @@
 import PublicationFields from '../components/PublicationFields';
+import PublicationQualityNotice from '../components/PublicationQualityNotice';
 import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
 import { getSaveVisibility } from '../utils/projectPersistence';
 import ProjectStorageUsage from '../components/ProjectStorageUsage';
@@ -382,6 +383,7 @@ function ExportEditor({ recoveredDraft }) {
             <ProjectStorageUsage refreshKey={storageRefresh} onStatus={setStorageUsage} />
             {storageLimited && !storageUsage?.can_create && <p role="alert" dir={i18n.dir()} style={{color:'var(--danger)'}}>{getStorageUi(i18n.language).limitError}</p>}
             {saveVisibility === 'public' && <PublicationFields consent={publicationConsent} onConsent={setPublicationConsent} context={publicationContext} onContext={setPublicationContext} />}
+            {saveVisibility === 'public' && <PublicationQualityNotice title={formData.projectName} analysisData={analysisData} context={publicationContext} />}
             <div style={{ ...styles.typeGrid, pointerEvents: isProcessing ? 'none' : 'auto', opacity: isProcessing ? 0.6 : 1 }}>
               {saveVisibility === 'private' && canUpdate && <button type="button" data-save-mode="update" style={styles.typeCard} disabled={isProcessing} onClick={() => handleCloudAction('update')}><h4 style={styles.typeLabel}>{t('common:saveFlow.updatePrivate')}</h4><p style={styles.typeDesc}>{formData.projectName}</p></button>}
               {saveVisibility === 'public' && ((isFork && !isValuableFork) ? (

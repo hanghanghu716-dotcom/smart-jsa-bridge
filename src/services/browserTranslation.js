@@ -1,4 +1,5 @@
 // Only public, already-redacted text is translated. No network translation fallback.
+import { exploreExcerpt } from '../utils/explorePresentation.js';
 export const textLanguage = locale => typeof locale === 'string' ? locale.split('-')[0] : '';
 export function translationPairs(rows, locale) {
   const targetLanguage=textLanguage(locale);
@@ -7,7 +8,7 @@ export function translationPairs(rows, locale) {
 }
 export function translationPayload(rows, detail=false) {
   return rows.map(row=>({id:row.id,updated_at:row.updated_at,public_locale:row.public_locale,title:row.title,
-    ...(detail?{form_data:row.form_data,analysis_data:row.analysis_data,custom_layout:row.custom_layout,publication_context:row.publication_context}:{})}));
+    ...(detail?{form_data:row.form_data,analysis_data:row.analysis_data,custom_layout:row.custom_layout,publication_context:row.publication_context}:{cardExcerpt:exploreExcerpt(row)})}));
 }
 export async function translationAvailability(rows, locale, api=globalThis.Translator) {
   const pairs=translationPairs(rows,locale);
@@ -42,6 +43,7 @@ export async function translatePublicRows(rows, locale, {detail=false,api=global
         return cache.get(key);
       };
       row.title=await text(row.title);
+      if (typeof row.cardExcerpt === 'string') row.cardExcerpt=await text(row.cardExcerpt);
       if(!detail)continue;
       row.form_data.projectName=await text(row.form_data.projectName);
       for(const key of ['ppe','permits'])row.form_data[key]=await Promise.all((row.form_data[key]||[]).map(text));

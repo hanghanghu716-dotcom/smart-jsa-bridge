@@ -1,0 +1,6 @@
+.publication-quality { margin: 16px 0; padding: 14px 16px; border: 1px solid var(--border-default); border-inline-start: 3px solid var(--accent); border-radius: 12px; background: var(--panel-bg); color: var(--text-primary); text-align: start; }
+.publication-quality h4 { margin: 0 0 8px; font-size: 15px; }
+.publication-quality p, .publication-quality li { font-size: 13px; line-height: 1.6; }
+.publication-quality ul { margin: 12px 0 0; padding-inline-start: 20px; }
+.publication-quality li + li { margin-top: 12px; }
+.publication-quality q { display: block; margin-top: 4px; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text-secondary); }

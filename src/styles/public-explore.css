@@ -32,6 +32,9 @@
 .explore-meta strong { color: var(--text-secondary); font-weight: 600; }
 .explore-page .explore-meta svg { width: 16px; height: 16px; }
 .explore-tags { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 4px 6px; margin-bottom: 20px; }
+.explore-excerpt { margin: 0 0 18px; padding-inline-start: 12px; border-inline-start: 2px solid var(--border-default); }
+.explore-excerpt > span { color: var(--text-muted); font-size: 11px; font-weight: 650; }
+.explore-page .explore-excerpt p { margin: 6px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
 .explore-page .explore-tags button { position: relative; padding: 9px 10px; border: 0; border-radius: 10px; background: var(--card-bg); color: var(--text-secondary); font-size: 12px; line-height: 1.5; transition: background .15s; }
 .explore-page .explore-tags button:hover, .explore-page .explore-tags button[aria-pressed=true] { background: var(--accent-soft); color: var(--accent); }
 .explore-card-footer { display: flex; justify-content: flex-end; border-top: 1px solid var(--border-default); padding-top: 14px; margin-top: auto; }

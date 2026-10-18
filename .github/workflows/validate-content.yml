@@ -44,6 +44,7 @@ jobs:
       - name: Build frontend and verify list navigation and operator documents
         run: |
           npx vite build
+          node scripts/explore-quality-browser.cjs
           node scripts/verify-operator-documents.cjs --local
       - name: Render and verify every current case-study URL
         run: npm run build
