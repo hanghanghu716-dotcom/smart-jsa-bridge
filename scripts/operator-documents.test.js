@@ -19,12 +19,12 @@ test('operator filter is applied at the database query before pagination',async(
  const res={setHeader(){},end(body){this.body=body;}};
  const handler=createExploreHandler({readShell:async()=>'<html><head></head><body><div id="root"></div></body></html>',fetcher:async url=>{
   requested=new URL(url).searchParams;
-  return {ok:true,headers:new Headers({'content-range':'24-35/36'}),json:async()=>[]};
+  return {ok:true,headers:new Headers({'content-range':'12-23/36'}),json:async()=>[]};
  }});
  await handler({query:{lng:'ko',author:'operator',page:'1'}},res);
  assert.equal(res.statusCode,200);
  assert.equal(requested.get('is_operator'),'eq.true');
- assert.equal(requested.get('offset'),'24');
+ assert.equal(requested.get('offset'),'12');
  assert.match(res.body,/noindex,follow/);
 });
 test('operator identity and document grouping only accept typed public projection fields',()=>{

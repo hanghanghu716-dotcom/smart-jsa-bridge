@@ -11,6 +11,9 @@ import { getPublicUi } from '../src/locales/publicUi.js';
 import { SUPPORTED_LANGS, getLanguageTag } from '../src/locales/config.js';
 import { exploreCardTags, exploreExcerpt } from '../src/utils/explorePresentation.js';
 import { getExploreQualityUi } from '../src/locales/exploreQualityUi.js';
+import { getExploreViewUi } from '../src/locales/exploreViewUi.js';
+import { getPublicCountryUi } from '../src/locales/publicCountryUi.js';
+import { EXPLORE_VIEWS, exploreView, explorePageSize, changeExploreView } from '../src/utils/exploreView.js';
 export const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const {url:publicBase,key:publicKey}=getPublicSupabaseConfig();
 
@@ -26,15 +29,18 @@ export function renderExplorePagination(total, current, locale, link) {
 }
 
 export function renderExploreHtml(shell,result,locale,query,failed=false){
- const e=escapeHtml,ui=getPublicUi(locale),rows=result.rows.map(publicJsaView).filter(Boolean);
- const title=ui.title+' | Smart JSA Bridge',canonical=`https://smartjsabridge.com/${locale}/explore${exploreSearch({page:query.page})}`;
+ const e=escapeHtml,ui=getPublicUi(locale),viewUi=getExploreViewUi(locale),view=exploreView(query.view),pageSize=explorePageSize(view),rows=result.rows.map(publicJsaView).filter(Boolean).slice(0,pageSize);
+ const title=ui.title+' | Smart JSA Bridge',canonical=`https://smartjsabridge.com/${locale}/explore${exploreSearch({page:query.page,view})}`;
  const noindex=!exploreIndexable(rows,query,failed);
  const link=p=>`/${locale}/explore${exploreSearch({...query,page:p})}`;
  const cards=rows.map(row=>{
-  const excerpt=exploreExcerpt(row),labels=exploreCardTags(row,locale),contentLang=getLanguageTag(row.public_locale||locale);
+  const excerpt=view==='large'?exploreExcerpt(row):'',labels=exploreCardTags(row,locale).slice(0,view==='small'?3:5),contentLang=getLanguageTag(row.public_locale||locale);
   return `<article class="jsa-card explore-card">${row.is_operator?`<span>${e(getOperatorUi(locale).badge)}</span>`:''}<h2 lang="${e(contentLang)}"><a href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></h2><p>${e(countryLabel(row.public_country,locale))}</p><p>${e(ui.steps)}: ${row.analysis_data.length}</p>${excerpt?`<div class="explore-excerpt"><span>${e(getExploreQualityUi(locale).excerpt)}</span><p data-explore-excerpt lang="${e(contentLang)}" dir="auto">${e(excerpt)}</p></div>`:''}<div class="explore-tags">${labels.map(({tag,label})=>`<a data-explore-tag href="/${e(locale)}/explore${e(exploreSearch({...query,page:0,tags:[tag]}))}">#${e(label)}</a>`).join('')}</div><p>${e(ui.views)}: ${row.view_count} · ${e(ui.reuses)}: ${row.reuse_count} · ${e(ui.scraps)}: ${row.scrap_count}</p></article>`;
  }).join('');
- const body=`<div class="jsa-workspace explore-page"><main class="jsa-container"><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section id="explore-results" class="jsa-card-grid explore-grid">${cards}</section>${renderExplorePagination(Math.ceil(result.total/24),query.page+1,locale,link)}`}</main></div>`;
+ const countryUi=getPublicCountryUi(locale);
+ const details=`<table><caption class="explore-sr-only">${e(ui.title)}</caption><thead><tr>${[viewUi.title,countryUi.country,viewUi.date,ui.steps,ui.views,ui.reuses,ui.scraps,viewUi.actions].map(label=>`<th scope="col">${e(label)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr><th scope="row" class="explore-details-title"><a lang="${e(getLanguageTag(row.public_locale||locale))}" href="/${e(locale)}/public-jsa/${e(row.id)}">${e(row.title)}</a></th>${[[countryUi.country,countryLabel(row.public_country,locale)],[viewUi.date,new Date(row.created_at).toLocaleDateString(getLanguageTag(locale))],[ui.steps,row.analysis_data.length],[ui.views,row.view_count],[ui.reuses,row.reuse_count],[ui.scraps,row.scrap_count]].map(([label,value])=>`<td data-label="${e(label)}">${e(value)}</td>`).join('')}<td class="explore-details-actions"></td></tr>`).join('')}</tbody></table>`;
+ const toolbar=`<div class="explore-view-toolbar"><div class="explore-view-switch" role="group" aria-label="${e(viewUi.view)}">${Object.entries(EXPLORE_VIEWS).map(([mode,count])=>`<a data-explore-view="${mode}"${mode===view?' aria-current="true"':''} href="/${e(locale)}/explore${e(exploreSearch(changeExploreView(query,mode)))}"><span>${e(viewUi[mode])}</span><small>${count}</small></a>`).join('')}</div><span class="explore-page-size">${e(viewUi.perPage.replace('{count}',pageSize))}</span></div>`;
+ const body=`<div class="jsa-workspace explore-page"><main class="jsa-container"><h1>${e(ui.title)}</h1><p>${e(ui.intro)}</p>${toolbar}${failed?`<p role="alert">${e(ui.error)}</p>`:`<p>${result.total}</p><section id="explore-results" class="${view==='details'?'explore-details':'jsa-card-grid explore-grid explore-view-'+view}">${view==='details'?details:cards}</section>${renderExplorePagination(Math.ceil(result.total/pageSize),query.page+1,locale,link)}`}</main></div>`;
  const bootstrap=JSON.stringify({locale,query,...result,rows}).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
  return shell.replace(/<html[^>]*>/,`<html lang="${e(getLanguageTag(locale))}" dir="${locale.startsWith('ar')?'rtl':'ltr'}">`).replace('</head>',`<title data-rh="true">${e(title)}</title><meta data-rh="true" name="description" content="${e(ui.intro)}"><meta data-rh="true" name="robots" content="${noindex?'noindex':'index'},follow"><link data-rh="true" rel="canonical" href="${e(canonical)}"></head>`).replace('<div id="root"></div>',`<div id="root">${body}</div>`).replace('</body>',`<script>window.__PUBLIC_EXPLORE__=${bootstrap};</script></body>`);
 }
@@ -44,10 +50,10 @@ export function createExploreHandler({fetcher=fetch,readShell=()=>readFile(new U
   res.setHeader('Content-Type','text/html; charset=utf-8');
   const locale=SUPPORTED_LANGS.includes(req.query?.lng)?req.query.lng:'en-US';
   const params=new URLSearchParams();for(const [key,value]of Object.entries(req.query||{}))for(const v of Array.isArray(value)?value:[value])params.append(key,v);
-  const query=exploreQuery(params);let result={rows:[],total:0,hasMore:false},failed=false;
+  const query=exploreQuery(params),pageSize=explorePageSize(query.view);let result={rows:[],total:0,hasMore:false},failed=false;
   try{
    if(!SUPPORTED_LANGS.includes(req.query?.lng)){res.statusCode=404;res.setHeader('X-Robots-Tag','noindex');res.end(renderExploreHtml(await readShell(),result,locale,query,true));return;}
-   const p=new URLSearchParams({select:PUBLIC_JSA_FIELDS,is_public:'eq.true',order:publicSortColumn(query.sort)+'.desc,id.asc',offset:String(query.page*24),limit:'24'});
+   const p=new URLSearchParams({select:PUBLIC_JSA_FIELDS,is_public:'eq.true',order:publicSortColumn(query.sort)+'.desc,id.asc',offset:String(query.page*pageSize),limit:String(pageSize)});
    if(query.author==='operator')p.set('is_operator','eq.true');
    const country=exploreCountry(query.country,locale);if(country)p.set('public_country','eq.'+country);
    if(query.search.trim())p.set('title','ilike.%'+query.search.trim().replace(/[\\%_]/g,'\\$&')+'%');
@@ -56,7 +62,7 @@ export function createExploreHandler({fetcher=fetch,readShell=()=>readFile(new U
    if(!response.ok)throw Error('READ_FAILED');
    const rows=await response.json(),count=Number(response.headers.get('content-range')?.split('/')[1]);
    if(!Array.isArray(rows)||!Number.isFinite(count))throw Error('INVALID_RESULT');
-   result={rows:rows.map(publicJsaView).filter(Boolean),total:count,hasMore:(query.page+1)*24<count};
+   result={rows:rows.map(publicJsaView).filter(Boolean),total:count,hasMore:(query.page+1)*pageSize<count};
   }catch{failed=true;}
   res.statusCode=failed?503:200;
   try{res.end(renderExploreHtml(await readShell(),result,locale,query,failed));}catch{res.statusCode=503;res.setHeader('X-Robots-Tag','noindex');res.end('Temporarily unavailable');}
