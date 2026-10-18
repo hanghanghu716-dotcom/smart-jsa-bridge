@@ -42,16 +42,17 @@ const {spawn}=require('node:child_process');
   const contentLinks=new Set(await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)));
   const firstTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
   for(let index=1;index<totalPages;index++){
+   const previousTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
    if(index===totalPages-1)await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
    else await page.$$eval('.explore-pagination .list-pagination-number',(els,number)=>els.find(el=>Number(el.textContent)===number).click(),index+1);
-   await page.waitForFunction((index,count)=>new URL(location.href).searchParams.get('page')===String(index)&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count,{timeout:30000},index,Math.min(pageSize,expectedDocuments-index*pageSize));
+   await page.waitForFunction((index,count,previousTitle)=>new URL(location.href).searchParams.get('page')===String(index)&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count&&document.querySelector('.explore-card > h2 > a')?.textContent!==previousTitle,{timeout:30000},index,Math.min(pageSize,expectedDocuments-index*pageSize),previousTitle);
    for(const link of await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)))contentLinks.add(link);
   }
   assert.equal(contentLinks.size,expectedDocuments,'Twelve jobs have three separate content cards each');
   assert.equal(new URL(page.url()).searchParams.get('author'),'operator');
   assert.notEqual(await page.$eval('.explore-card > h2 > a',el=>el.textContent),firstTitle);
   await page.$eval('.explore-pagination .list-pagination-first',el=>el.click());
-  await page.waitForFunction(count=>!new URL(location.href).searchParams.has('page')&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count,{timeout:30000},pageSize);
+  await page.waitForFunction((count,title)=>!new URL(location.href).searchParams.has('page')&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count&&document.querySelector('.explore-card > h2 > a')?.textContent===title,{timeout:30000},pageSize,firstTitle);
   for(const width of [320,390]){
    await page.setViewport({width,height:844});
    assert.equal(await page.$eval('.explore-pagination',el=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&el.scrollWidth<=el.clientWidth+1;}),true);
