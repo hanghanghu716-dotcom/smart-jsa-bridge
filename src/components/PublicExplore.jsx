@@ -1,4 +1,6 @@
 import ListPagination from './ListPagination';
+import useCommunityAdmin from '../hooks/useCommunityAdmin';
+import { ExploreModerationButton, RestrictedExploreDocuments } from './ExploreModeration';
 import ExploreSearchInput from './ExploreSearchInput';
 import '../styles/operator-documents.css';
 import { getOperatorUi } from '../locales/operatorUi';
@@ -42,6 +44,7 @@ function ExploreIcon({ name, className = '' }) {
 }
 
 export default function PublicExplore() {
+  const admin = useCommunityAdmin();
   const { t, i18n } = useTranslation(['explore', 'tags']);
   const ui = getPublicUi(i18n.language);
   const operatorUi=getOperatorUi(i18n.language);
@@ -110,6 +113,7 @@ export default function PublicExplore() {
         <div className="explore-hero-art" aria-hidden="true"><ExploreIcon name="library" /></div>
       </section>
       <nav className="jsa-toolbar"><LanguageLink to="/explore" aria-current="page">{getSocialUi(i18n.language).all}</LanguageLink><LanguageLink to="/following">{getSocialUi(i18n.language).following}</LanguageLink></nav>
+      {admin && <RestrictedExploreDocuments refreshKey={attempt} onChanged={() => setAttempt(n => n + 1)} />}
       <div className="explore-searchbar" role="search">
         <label className="explore-search"><ExploreIcon name="search" /><ExploreSearchInput label={ui.search} value={search} resetKey={params.toString()+":"+searchReset} onSearch={setSearch} /></label>
         <select aria-label={ui.sort} value={sort} onChange={e => { setSort(e.target.value); }}><option value="latest">{ui.latest}</option><option value="popular">{ui.popular}</option><option value="views">{ui.mostViewed}</option><option value="reused">{ui.mostReused}</option></select>
@@ -140,6 +144,7 @@ export default function PublicExplore() {
         <div className="explore-tags">{row.tags.slice(0, 5).map(value => <button key={value} aria-pressed={tags.includes(value)} onClick={() => toggleTag(value)}>#{t(value,{ns:'tags'})}</button>)}</div>
         <dl className="explore-metrics">{[['eye',ui.views,row.view_count],['reuse',ui.reuses,row.reuse_count],['bookmark',ui.scraps,row.scrap_count]].map(([icon,label,count]) => <div key={icon}><dt><ExploreIcon name={icon} />{label}</dt><dd>{count.toLocaleString(getLanguageTag(i18n.language))}</dd></div>)}</dl>
         <div className="explore-card-footer"><LanguageLink className="explore-detail" to={'/public-jsa/' + row.id}>{ui.detail}<ExploreIcon name="arrow" /></LanguageLink></div>
+        {admin && <ExploreModerationButton id={row.id} onChanged={() => setAttempt(n => n + 1)} />}
       </article>)}</div>
       <ListPagination className="explore-pagination" current={page+1} total={Math.ceil(total/24)}
         locale={i18n.language} controls="explore-results" hrefForPage={number=>'/explore'+exploreSearch({...query,page:number-1})}

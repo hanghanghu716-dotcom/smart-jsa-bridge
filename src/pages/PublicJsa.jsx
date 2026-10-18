@@ -1,4 +1,8 @@
 import '../styles/operator-documents.css';
+import useCommunityAdmin from '../hooks/useCommunityAdmin';
+import { ExploreModerationButton } from '../components/ExploreModeration';
+import { moderatedDocument } from '../services/exploreModeration';
+import { getExploreModerationUi } from '../locales/exploreModerationUi';
 import PublicDocumentPreview from '../components/PublicDocumentPreview';
 import { getOperatorUi } from '../locales/operatorUi';
 import { usePublicTranslation } from '../hooks/usePublicTranslation';
@@ -29,6 +33,7 @@ import SEO from '../components/SEO';
 import '../styles/workspaces.css';
 
 export default function PublicJsa() {
+  const admin = useCommunityAdmin();
   const { id } = useParams(), location = useLocation(), navigate = useLanguageNavigate();
   const { t, i18n } = useTranslation('export');
   const ui = getPublicUi(i18n.language);
@@ -40,7 +45,7 @@ export default function PublicJsa() {
   const [status, setStatus] = useState(row ? 'ready' : 'loading');
   const [attempt, setAttempt] = useState(0), [busy, setBusy] = useState(false), [message, setMessage] = useState('');
   const pending = useRef(false);
-  const readyId = status === 'ready' && row?.id === id ? id : null;
+  const readyId = status === 'ready' && row?.id === id && !row.restricted ? id : null;
   useEffect(() => {
     if (!readyId) return;
     let active = true;
@@ -52,12 +57,19 @@ export default function PublicJsa() {
   useEffect(() => {
     let active = true;
     const refresh = async () => {
-      try { const result = await getPublicJsa(id); if (active) { setRow(result); setStatus(result ? 'ready' : 'missing'); } }
+      try {
+        let result = await getPublicJsa(id);
+        if (!result && admin) {
+          try { result = await moderatedDocument(id); }
+          catch (error) { if (!/NOT_FOUND/.test(error.message)) throw error; }
+        }
+        if (active) { setRow(result); setStatus(result ? 'ready' : 'missing'); }
+      }
       catch { if (active) { setRow(null); setStatus('error'); } }
     };
     refresh(); window.addEventListener('focus', refresh);
     return () => { active = false; window.removeEventListener('focus', refresh); };
-  }, [id, attempt]);
+  }, [id, attempt, admin]);
   const requireUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) navigate('/login?next=' + encodeURIComponent(location.pathname));
@@ -86,13 +98,13 @@ export default function PublicJsa() {
     } catch { setMessage(ui.error); }
     finally { pending.current = false; setBusy(false); }
   };
-  const sourceRow = row?.id === id ? row : null;
+  const sourceRow = row?.id === id && (!row.restricted || admin) ? row : null;
   const translation=usePublicTranslation(sourceRow?[sourceRow]:[],i18n.language,true);
   const currentRow=translation.rows[0]||null;
   const quality = publicJsaQuality(sourceRow), stats=documentStats(currentRow), d=getDiscoveryUi(i18n.language);
   return <div className="jsa-workspace" dir={i18n.dir()}>
     <SEO pageTitle={(sourceRow?.title || ui.title) + ' | Smart JSA Bridge'} pageDescription={sourceRow?.analysis_data?.map(step => step.proc?.stepTitle).filter(Boolean).join(' · ') || ui.intro}
-      canonicalLocale={currentRow?.public_locale || undefined} availableLocales={currentRow?.public_locale ? [currentRow.public_locale] : []} noIndex={!quality.indexable||Boolean(sourceRow?.public_locale&&sourceRow.public_locale!==i18n.language)} />
+      canonicalLocale={currentRow?.public_locale || undefined} availableLocales={currentRow?.public_locale ? [currentRow.public_locale] : []} noIndex={Boolean(sourceRow?.restricted)||!quality.indexable||Boolean(sourceRow?.public_locale&&sourceRow.public_locale!==i18n.language)} />
     <header className="jsa-nav"><LanguageLink to="/explore">← {ui.back}</LanguageLink><ThemeSwitcher compact /></header>
     <main className="jsa-container">
       {status === 'loading' && <p role="status">…</p>}
@@ -100,20 +112,22 @@ export default function PublicJsa() {
       {status === 'missing' && <h1>{ui.unavailable}</h1>}
       {currentRow && <><span className="jsa-eyebrow">{ui.community}</span><h1 lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}>{currentRow.title}</h1>
         <p>{getPublicCountryUi(i18n.language).origin}: {countryLabel(sourceRow.public_country,i18n.language)}</p>
+        {sourceRow.restricted && <p className="explore-moderation-notice">{getExploreModerationUi(i18n.language).restricted}</p>}
+        {admin && <ExploreModerationButton id={id} restricted={sourceRow.restricted} onChanged={() => setAttempt(n => n + 1)} />}
         <PublicTranslationNotice translation={translation} locale={i18n.language}/>
         <AuthorLink id={currentRow.author_id}/>{sourceRow.is_operator&&<span className="operator-badge">{getOperatorUi(i18n.language).badge}</span>}
         <PublicDocumentPreview key={sourceRow.id} row={sourceRow} locale={i18n.language}/>
         <p>{ui.steps}: {quality.steps} · {ui.quality}</p><p className="jsa-notice">{ui.notice}</p>
         <p>{ui.views} {currentRow.view_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.reuses} {currentRow.reuse_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.scraps} {currentRow.scrap_count.toLocaleString(getLanguageTag(i18n.language))}</p>
         <details className="jsa-metric-help"><summary>{ui.metricHelp}</summary><p>{ui.metricRules}</p></details>
-        <div className="jsa-toolbar"><button className="jsa-primary" disabled={busy || !currentRow.reuse_license} onClick={() => action('reuse')}>{ui.reuse}</button><button disabled={busy} onClick={() => action('scrap')}>{ui.scrap}</button><button disabled={busy} onClick={() => action('share')}>{ui.share}</button><LanguageLink to={'/community?project='+id}>{ui.report}</LanguageLink></div>
+        <div className="jsa-toolbar"><button className="jsa-primary" disabled={busy || sourceRow.restricted || !currentRow.reuse_license} onClick={() => action('reuse')}>{ui.reuse}</button><button disabled={busy || sourceRow.restricted} onClick={() => action('scrap')}>{ui.scrap}</button><button disabled={busy || sourceRow.restricted} onClick={() => action('share')}>{ui.share}</button><LanguageLink to={'/community?project='+id}>{ui.report}</LanguageLink></div>
         {!currentRow.reuse_license && <p className="jsa-notice">{community.licensePending}</p>}
         <p>{currentRow.public_locale} · {new Date(currentRow.updated_at).toLocaleDateString(getLanguageTag(i18n.language))} · {d.derived} {currentRow.fork_count}</p>
         <dl className="public-stats"><div><dt>{d.hazards}</dt><dd>{stats.hazards}</dd></div><div><dt>{d.controls}</dt><dd>{stats.controls}</dd></div><div><dt>{d.categories}</dt><dd>{stats.categories.map(c=>t(c,{ns:'risk',defaultValue:c})).join(' · ')||''}</dd></div></dl>
         <div className="public-context">{['scope','region','limitations','sources'].filter(key=>currentRow.publication_context[key]).map(key=><section key={key}><h2>{community[key]}</h2><p>{currentRow.publication_context[key]}</p></section>)}</div>
-        <section className="public-reading" lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}><h2>{community.overview}</h2>{currentRow.analysis_data.map((step,index)=><article className="public-step" key={index}><header><input type="checkbox" disabled={!currentRow.reuse_license} aria-label={community.selectSteps+' '+(index+1)} checked={selectedSteps.includes(index)} onChange={e=>setSelectedSteps(previous=>e.target.checked?[...previous,index].sort((a,b)=>a-b):previous.filter(value=>value!==index))}/><h2>{index+1}. {step.proc.stepTitle}</h2></header><p>{step.proc.stepDetail}</p><p className="public-risk-score">{d.frequency}: {riskValue(step.frequency)??''} · {d.severity}: {riskValue(step.severity)??''} · {d.risk}: {riskValue(step.riskLevel)??''}</p>{step.risks.map((risk,riskIndex)=><div className="public-risk" key={riskIndex}><h3>{risk.factor}</h3>{risk.category&&<small>{d.categories}: {t(risk.category,{ns:"risk",defaultValue:risk.category})}</small>}<p><strong>{t('tags.DATA_CURRENT_MEASURE')}</strong><br/>{risk.current_measure||risk.measure}</p>{risk.recommend_measure&&<p><strong>{t('tags.DATA_RECOMMEND_MEASURE')}</strong><br/>{risk.recommend_measure}</p>}</div>)}</article>)}<button className="jsa-primary" disabled={busy||!selectedSteps.length||!currentRow.reuse_license} onClick={()=>action('selected')}>{community.useSelected} ({selectedSteps.length})</button></section>
+        <section className="public-reading" lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}><h2>{community.overview}</h2>{currentRow.analysis_data.map((step,index)=><article className="public-step" key={index}><header><input type="checkbox" disabled={sourceRow.restricted || !currentRow.reuse_license} aria-label={community.selectSteps+' '+(index+1)} checked={selectedSteps.includes(index)} onChange={e=>setSelectedSteps(previous=>e.target.checked?[...previous,index].sort((a,b)=>a-b):previous.filter(value=>value!==index))}/><h2>{index+1}. {step.proc.stepTitle}</h2></header><p>{step.proc.stepDetail}</p><p className="public-risk-score">{d.frequency}: {riskValue(step.frequency)??''} · {d.severity}: {riskValue(step.severity)??''} · {d.risk}: {riskValue(step.riskLevel)??''}</p>{step.risks.map((risk,riskIndex)=><div className="public-risk" key={riskIndex}><h3>{risk.factor}</h3>{risk.category&&<small>{d.categories}: {t(risk.category,{ns:"risk",defaultValue:risk.category})}</small>}<p><strong>{t('tags.DATA_CURRENT_MEASURE')}</strong><br/>{risk.current_measure||risk.measure}</p>{risk.recommend_measure&&<p><strong>{t('tags.DATA_RECOMMEND_MEASURE')}</strong><br/>{risk.recommend_measure}</p>}</div>)}</article>)}<button className="jsa-primary" disabled={busy||sourceRow.restricted||!selectedSteps.length||!currentRow.reuse_license} onClick={()=>action('selected')}>{community.useSelected} ({selectedSteps.length})</button></section>
 
-        <DiscoveryLinks id={id}/><AdSenseUnit client="ca-pub-9791625990220699" slot="1284119169" content={{indexable:quality.indexable,review:currentRow.assessment.review}}/>
+        {!sourceRow.restricted && <><DiscoveryLinks id={id}/><AdSenseUnit client="ca-pub-9791625990220699" slot="1284119169" content={{indexable:quality.indexable,review:currentRow.assessment.review}}/></>}
         {message && <p role="status">{message}</p>}
       </>}
     </main><CommunityFooter/>

@@ -1,0 +1,16 @@
+const rows = {
+ ko: ['노출 중단', '노출 복구', '노출 중단 자료', '운영자 관리', '처리 사유 (10자 이상)', '사유는 작성자에게 안내되며 처리 이력에 남습니다. 원본은 삭제되지 않습니다.', '취소', '적용', '노출 중단됨 · 운영자에게만 표시', '제목 검색'],
+ en: ['Stop public display', 'Restore public display', 'Restricted documents', 'Operator controls', 'Reason (at least 10 characters)', 'The author receives the reason and the decision is logged. The original is not deleted.', 'Cancel', 'Apply', 'Restricted · operator preview only', 'Search titles'],
+ de: ['Veröffentlichung sperren', 'Veröffentlichung wiederherstellen', 'Gesperrte Dokumente', 'Moderation', 'Begründung (mindestens 10 Zeichen)', 'Die Begründung wird dem Autor mitgeteilt und protokolliert. Das Original wird nicht gelöscht.', 'Abbrechen', 'Anwenden', 'Gesperrt · nur Moderationsvorschau', 'Titel suchen'],
+ ja: ['公開を停止', '公開を再開', '公開停止中の資料', '運営者管理', '理由（10文字以上）', '理由は作成者に通知され、処理履歴に記録されます。原本は削除されません。', 'キャンセル', '適用', '公開停止中 · 運営者のみ表示', 'タイトルを検索'],
+ fr: ['Suspendre la publication', 'Rétablir la publication', 'Documents suspendus', 'Modération', 'Motif (au moins 10 caractères)', 'Le motif est communiqué à l’auteur et la décision est consignée. L’original reste conservé.', 'Annuler', 'Appliquer', 'Suspendu · aperçu réservé à la modération', 'Rechercher un titre'],
+ it: ['Sospendi la pubblicazione', 'Ripristina la pubblicazione', 'Documenti sospesi', 'Moderazione', 'Motivo (almeno 10 caratteri)', 'Il motivo viene comunicato all’autore e la decisione registrata. L’originale non viene eliminato.', 'Annulla', 'Applica', 'Sospeso · anteprima riservata alla moderazione', 'Cerca titoli'],
+ es: ['Suspender publicación', 'Restaurar publicación', 'Documentos suspendidos', 'Moderación', 'Motivo (mínimo 10 caracteres)', 'Se comunica el motivo al autor y se registra la decisión. No se elimina el original.', 'Cancelar', 'Aplicar', 'Suspendido · vista solo para moderación', 'Buscar títulos'],
+ ar: ['إيقاف العرض العام', 'استعادة العرض العام', 'المستندات الموقوفة', 'إدارة المحتوى', 'السبب (10 أحرف على الأقل)', 'يُبلّغ المؤلف بالسبب ويُسجّل القرار. لا تُحذف النسخة الأصلية.', 'إلغاء', 'تطبيق', 'موقوف · معاينة للمشرف فقط', 'البحث في العناوين'],
+ pt: ['Suspender publicação', 'Restaurar publicação', 'Documentos suspensos', 'Moderação', 'Motivo (pelo menos 10 caracteres)', 'O autor recebe o motivo e a decisão é registrada. O original não é excluído.', 'Cancelar', 'Aplicar', 'Suspenso · prévia exclusiva da moderação', 'Buscar títulos'],
+ ru: ['Скрыть публикацию', 'Восстановить публикацию', 'Скрытые документы', 'Модерация', 'Причина (не менее 10 символов)', 'Причина сообщается автору, решение сохраняется в журнале. Оригинал не удаляется.', 'Отмена', 'Применить', 'Скрыто · просмотр только для модератора', 'Поиск по заголовку'],
+ ro: ['Oprește afișarea publică', 'Restabilește afișarea publică', 'Documente restricționate', 'Moderare', 'Motiv (minimum 10 caractere)', 'Autorul primește motivul, iar decizia este înregistrată. Originalul nu este șters.', 'Anulează', 'Aplică', 'Restricționat · previzualizare doar pentru moderator', 'Caută titluri'],
+};
+export function getExploreModerationUi(locale = 'en-US') {
+  return Object.fromEntries(['restrict','restore','restrictedList','manage','reason','help','cancel','apply','restricted','search'].map((key, i) => [key, (rows[locale.split('-')[0]] || rows.en)[i]]));
+}
