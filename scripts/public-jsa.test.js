@@ -84,7 +84,9 @@ test('static publishing never snapshots user-owned routes, even when they are li
   assert.ok(routes.includes('/ko/case-study/example'));
   assert.ok(routes.includes('/en-CA-AB/guideline/common'));
   assert.ok(routes.every(route=>!/(?:explore|public-jsa|business|library|login|export|profile)/.test(route)));
-  assert.match(fs.readFileSync(new URL('./prerender-cases.js',import.meta.url),'utf8'),/crawl: false/);
+  const renderer=fs.readFileSync(new URL('./prerender-cases.js',import.meta.url),'utf8');
+  assert.match(renderer,/renderStatic\(\{routes:include/);
+  assert.doesNotMatch(renderer,/import reactSnap/);
 });
 test('malformed community fields cannot inject objects into the document renderer',()=>{
   const safe=publicJsaView({...row,form_data:{projectName:{bad:true},ppe:'bad',permits:[{}]},analysis_data:[null,{proc:{stepTitle:{}},risks:[null,{factor:{bad:true}}]}],custom_layout:{docTitle:{},documentBlocks:[null],savedActiveOrder:[null,{}],savedUserColumns:[null],savedColumnOverrides:{DATA_HAZARD:null}}});

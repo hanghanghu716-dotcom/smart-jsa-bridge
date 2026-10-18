@@ -97,6 +97,7 @@ export async function hashBlob(blob) {
     .join("");
 }
 async function uploadOnce(path, blob, expectedHash) {
+  await result(supabase.rpc('reserve_work_upload', { p_path: path }));
   const { error } = await supabase.storage
     .from(bucket)
     .upload(path, blob, { contentType: blob.type, upsert: false });

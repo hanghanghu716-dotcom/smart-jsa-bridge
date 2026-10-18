@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getAnalyticsText } from '../locales/analyticsText.js';
-import { analyticsOptedOut, OPT_OUT_KEY, ANALYTICS_CHANGE_EVENT, clearAnalyticsCookies } from '../utils/analytics.js';
+import { analyticsRegion,analyticsChoice,storeAnalyticsChoice } from '../utils/analyticsConsent.js';
+import { analyticsOptedOut, ANALYTICS_CHANGE_EVENT, clearAnalyticsCookies } from '../utils/analytics.js';
 
 function read() { try { return analyticsOptedOut(window.localStorage); } catch { return true; } }
 export default function AnalyticsSettings() {
   const { i18n } = useTranslation();
   const text = getAnalyticsText(i18n.language);
   const [disabled, setDisabled] = useState(read), [error, setError] = useState(false);
+  const [required,setRequired]=useState(null);
   useEffect(() => {
-    const sync = () => setDisabled(read());
+    const sync = () => setDisabled(read()||(required===true&&analyticsChoice(window.localStorage)!=='allowed'));
+    analyticsRegion().then(value=>{setRequired(value);setDisabled(read()||(value&&analyticsChoice(window.localStorage)!=='allowed'));});
     window.addEventListener('storage', sync);
-    return () => window.removeEventListener('storage', sync);
-  }, []);
+    window.addEventListener(ANALYTICS_CHANGE_EVENT,sync);
+    return () => {window.removeEventListener('storage', sync);window.removeEventListener(ANALYTICS_CHANGE_EVENT,sync);};
+  }, [required]);
   function change() {
     try {
-      window.localStorage.setItem(OPT_OUT_KEY, String(!disabled));
+      storeAnalyticsChoice(window.localStorage,disabled);
       if (!disabled) clearAnalyticsCookies(document, window.location.hostname);
       setDisabled(!disabled); setError(false);
       window.dispatchEvent(new Event(ANALYTICS_CHANGE_EVENT));

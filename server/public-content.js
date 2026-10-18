@@ -6,9 +6,9 @@ const DB = `${url}/rest/v1/`;
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const jsonScript = value => JSON.stringify(value).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 export const casePath = (locale, slug) => `/${locale}/case-study/${encodeURIComponent(slug)}`;
-export async function readPublic(table, params, fetcher = fetch) {
+export async function readPublic(table, params, fetcher = fetch, { signal } = {}) {
   const response = await fetcher(DB + table + '?' + new URLSearchParams(params), {
-    headers: { apikey: KEY }, cache: 'no-store', signal: AbortSignal.timeout(8000),
+    headers: { apikey: KEY }, cache: 'no-store', signal: signal || AbortSignal.timeout(8000),
   });
   if (!response.ok) throw new Error('PUBLIC_CONTENT_READ_FAILED');
   const rows = await response.json();
@@ -16,15 +16,22 @@ export async function readPublic(table, params, fetcher = fetch) {
   return rows;
 }
 // Keyset pagination also works when PostgREST caps results below our requested size.
-export async function readAllPublic(table, params, fetcher = fetch, { pageSize = 1000 } = {}) {
+export async function readAllPublic(table, params, fetcher = fetch, { pageSize = 1000, maxRows = 50000, maxBytes = 32_000_000, timeoutMs = 12000 } = {}) {
   if (!Number.isSafeInteger(pageSize) || pageSize < 1 || pageSize > 1000) throw new Error('INVALID_PUBLIC_PAGE_SIZE');
   const all = [];
+  const signal = AbortSignal.timeout(timeoutMs);
+  let bytes = 0;
   let last = '';
-  for (let page = 0; page < Math.ceil(1_000_000 / pageSize); page++) {
-    const rows = await readPublic(table, { ...params, order: 'id.asc', limit: String(pageSize), ...(last ? { id: 'gt.' + last } : {}) }, fetcher);
+  // Bound actual rows and elapsed time, not a guessed number of pages: the
+  // database can return fewer rows than the requested page size.
+  while (all.length <= maxRows) {
+    signal.throwIfAborted();
+    const rows = await readPublic(table, { ...params, order: 'id.asc', limit: String(pageSize), ...(last ? { id: 'gt.' + last } : {}) }, fetcher, { signal });
     if (!rows.length) return all;
     const next = rows.at(-1).id;
     if (typeof next !== 'string' || next <= last) throw new Error('INVALID_PUBLIC_PAGINATION');
+    bytes += Buffer.byteLength(JSON.stringify(rows));
+    if (all.length + rows.length > maxRows || bytes > maxBytes) throw new Error('PUBLIC_CONTENT_LIMIT');
     all.push(...rows); last = next;
   }
   throw new Error('PUBLIC_CONTENT_LIMIT');

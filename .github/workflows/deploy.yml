@@ -20,7 +20,7 @@ jobs:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+      PUPPETEER_SKIP_DOWNLOAD: true
       PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
       JSA_PRERENDER_CONCURRENCY: 4
     steps:
@@ -39,10 +39,14 @@ jobs:
         run: npx --yes vercel@59.23.2 pull --yes --environment=production --token="$VERCEL_TOKEN"
       - name: Build current database content and verify initial HTML
         run: npx --yes vercel@59.23.2 build --prod --token="$VERCEL_TOKEN"
+      - name: Record the current production deployment for recovery
+        run: node scripts/production-recovery.js capture
       - name: Deploy the verified build without rebuilding
-        run: npx --yes vercel@59.23.2 deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+        id: publish
+        run: npx --yes vercel@59.23.2 deploy --prebuilt --prod --token="$VERCEL_TOKEN" > .cache/deployment-url.txt
       - name: Verify live content discovery and article delivery
         run: |
+          node scripts/verify-security-release.js
           node scripts/verify-live-content.js
           node scripts/verify-live-exclusions.js
           python3 scripts/verify-live-rss.py
@@ -50,6 +54,9 @@ jobs:
         run: node scripts/verify-operator-documents.cjs
       - name: Verify production HTML and every localized PDF
         run: node scripts/verify-live-release.js dist/assets/guides/manifest.json
+      - name: Restore the previous deployment when release verification fails
+        if: failure() && steps.publish.outcome == 'success'
+        run: node scripts/production-recovery.js rollback
       - name: Preserve failed release comparison evidence
         if: failure()
         uses: actions/upload-artifact@v4
@@ -62,3 +69,5 @@ jobs:
             dist/assets/guides/manifest.json
             .vercel/output/static/assets/guides/manifest.json
             .cache/live-release-check.json
+            .cache/production-recovery.json
+            .cache/deployment-url.txt

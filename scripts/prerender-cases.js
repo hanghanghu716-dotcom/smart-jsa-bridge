@@ -1,6 +1,5 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import reactSnap from 'react-snap';
+import { renderStatic } from './static-renderer.js';
 import { staticRoutes } from './static-routes.js';
 import { renderGuides } from './render-guides.js';
 
@@ -15,17 +14,8 @@ const concurrency = Number(process.env.JSA_PRERENDER_CONCURRENCY || configuratio
 if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 8) {
   throw new Error('JSA_PRERENDER_CONCURRENCY must be an integer between 1 and 8.');
 }
-const puppeteerArgs = [...(configuration.puppeteerArgs || [])];
-if (process.platform === 'win32' && !puppeteerArgs.some(arg => arg.startsWith('--user-data-dir'))) {
-  // The bundled legacy Puppeteer otherwise uses taskkill for a temporary
-  // profile, which can hang in restricted Windows sessions. A dedicated
-  // build profile lets it close Chrome gracefully through its normal API.
-  const profile = path.resolve('.cache', `prerender-chrome-${process.pid}`);
-  fs.mkdirSync(profile, { recursive: true });
-  puppeteerArgs.push(`--user-data-dir=${profile}`);
-}
-await reactSnap.run({ ...configuration, include, crawl: false, concurrency, puppeteerArgs,
-  puppeteerExecutablePath: process.env.PUPPETEER_EXECUTABLE_PATH || configuration.puppeteerExecutablePath });
+await renderStatic({routes:include,concurrency,
+ executablePath:process.env.PUPPETEER_EXECUTABLE_PATH || (process.platform==='win32'?'C:/Program Files/Google/Chrome/Application/chrome.exe':configuration.puppeteerExecutablePath)});
 console.log('Case studies are served live from the database.');
 const guides = await renderGuides();
 console.log(`Verified ${guides.length} localised guide HTML/PDF pairs.`);

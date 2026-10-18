@@ -54,7 +54,7 @@ const row = { id, title:'Moderation browser fixture', author_id:user.id, is_publ
   await open();stale=true;await submit();await page.waitForSelector('dialog[open] [role=alert]');assert.equal(mutations,2);assert.equal(await page.$eval('[data-moderation-submit]',n=>n.disabled),true);
   await page.keyboard.press('Escape');
   // Ordinary users cannot see either the controls or an admin-only preview.
-  admin=false;restricted=true;await page.reload({waitUntil:'networkidle0'});await page.waitFor(300);
+  admin=false;restricted=true;await page.reload({waitUntil:'networkidle0'});await new Promise(resolve => setTimeout(resolve, 300));
   assert.equal(await page.$('[data-moderation-open]'),null);assert.equal(await page.$('.public-document-preview'),null);
   await page.goto(base+'/en-US/explore',{waitUntil:'networkidle0'});assert.equal(await page.$('[data-restricted-toggle]'),null);
   assert.deepEqual(errors,[]);

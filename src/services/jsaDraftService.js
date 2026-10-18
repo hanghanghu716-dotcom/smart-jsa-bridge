@@ -1,4 +1,5 @@
 import { supabase } from '../supabaseClient';
+import { draftIdentity } from '../utils/draftIdentity.js';
 
 const GUEST_DRAFT_PREFIX = 'smartjsa_guest_draft:';
 const ACTIVE_DRAFT_KEY = 'smartjsa_active_draft_id';
@@ -64,6 +65,7 @@ const performDraftSnapshotSave = async ({
   analysisData = [],
   layoutData = {},
   sourceProjectId = null,
+  expectedActor,
 }) => {
   if (!draftId) return { draftId: null, storage: 'none' };
 
@@ -81,7 +83,8 @@ const performDraftSnapshotSave = async ({
     last_opened_at: new Date().toISOString(),
   };
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await draftIdentity(supabase);
+  if ((user?.id || null) !== expectedActor) throw new Error('DRAFT_AUTH_CHANGED');
 
   if (!user) {
     const raw = localStorage.getItem(GUEST_DRAFT_PREFIX + draftId);
@@ -146,9 +149,16 @@ export const saveDraftSnapshot = (snapshot) => {
   if (!draftId) return Promise.resolve({ draftId: null, storage: 'none' });
 
   const previous = draftSaveQueues.get(draftId) || Promise.resolve();
+  const identity = draftIdentity(supabase);
+  // Attach a rejection handler immediately while an earlier save is running.
+  const actor = identity.then(user => ({ id: user?.id || null }), error => ({ error }));
   const queued = previous
     .catch(() => {})
-    .then(() => performDraftSnapshotSave(snapshot));
+    .then(async () => {
+      const captured = await actor;
+      if (captured.error) throw captured.error;
+      return performDraftSnapshotSave({ ...snapshot, expectedActor: captured.id });
+    });
 
   draftSaveQueues.set(draftId, queued);
 
@@ -168,7 +178,7 @@ export const loadActiveDraft = async () => {
 export const loadDraft = async (draftId) => {
   if (!draftId) return null;
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await draftIdentity(supabase);
 
   if (!user) {
     const raw = localStorage.getItem(GUEST_DRAFT_PREFIX + draftId);

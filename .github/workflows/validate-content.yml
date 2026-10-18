@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+      PUPPETEER_SKIP_DOWNLOAD: true
       PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
       JSA_PRERENDER_CONCURRENCY: 4
     steps:
@@ -40,6 +40,7 @@ jobs:
           export PGLITE_MODULE="$RUNNER_TEMP/work-db/node_modules/@electric-sql/pglite"
           node scripts/work-packages-db.cjs
           node scripts/author-moderation-db.cjs
+          node scripts/security-operations-db.cjs
       - name: Build frontend and verify list navigation and operator documents
         run: |
           npx vite build

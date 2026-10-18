@@ -17,7 +17,7 @@ export default function WorkStorageUsage({ locale }) {
   return <aside className="work-storage jsa-notice" aria-label={t.usage}>
     <strong>{t.usage}</strong>
     {failed ? <p role="status">{t.usageError}</p> : <>
-      <p>{mb(usage.bytes)} · {t.files}: {usage.files}</p>
+      <p>{mb(usage.bytes)} / 250 MB · {t.files}: {usage.files} / 100</p>
       {usage.unregisteredFiles > 0 && <p>{t.unlinked}: {usage.unregisteredFiles} · {mb(usage.unregisteredBytes)}</p>}
       <p>{t.usageHelp}</p>
     </>}

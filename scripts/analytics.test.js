@@ -38,15 +38,15 @@ test('acquisition retains referring domains while removing search terms and priv
   assert.equal(publicAnalyticsTitle(null), 'Smart JSA Bridge');
   assert.equal(publicAnalyticsTitle('a'.repeat(250)).length, 200);
 });
-test('frame automatically loads GA with acquisition and page titles; one event per navigation', () => {
+test('automatic-region frame loads GA with acquisition and page titles; one event per navigation', async () => {
   let handler, value = null; const scripts = [], parent = {};
   const win = { parent, location: { origin:'https://smartjsabridge.com', protocol:'https:', hostname:'smartjsabridge.com', pathname:'/analytics-frame.html' }, navigator:{userAgent:'Browser'}, localStorage:{getItem: key => key === CONSENT_KEY ? value : null}, addEventListener: (_, cb) => {handler=cb;}, removeEventListener:()=>{} };
   const doc = { createElement: () => ({}), head: { appendChild: script => scripts.push(script) } };
-  startAnalyticsFrame(win, doc);
+  startAnalyticsFrame(win, doc,()=>Promise.resolve(false));
   const send = (path, sequence, extra={}) => handler({source:parent,origin:win.location.origin,data:{type:'smartjsa:page-view',path,sequence,referrer:'https://search.naver.com/search.naver?query=PRIVATE',title:'공개 위험성평가 가이드'},...extra});
   send('/ko/info',2); send('/ko/explore?token=secret',3); send('/ko/',4,{origin:'https://evil.test'}); send('/ko/',5,{source:{}});
   assert.equal(scripts.length,0);
-  send('/ko/',6); send('/ko/',6); send('/ko/explore',7); send('/ko/',8);
+  await send('/ko/',6); await send('/ko/',6); await send('/ko/explore',7); await send('/ko/',8);
   assert.equal(scripts.length,1);
   const commands=win.dataLayer.map(args=>Array.from(args));
   assert.equal(commands.filter(c=>c[0]==='event').length,3);

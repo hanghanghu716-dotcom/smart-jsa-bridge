@@ -1,5 +1,6 @@
 // Run GA in a separate, same-origin document. Enhanced measurement cannot read
 // the application's forms, links or history, even if enabled in GA Admin.
+import { analyticsRegion, analyticsChoice } from './analyticsConsent.js';
 export const MEASUREMENT_ID = 'G-73YTNRN5KJ';
 export const CONSENT_KEY = 'smartjsa_analytics_consent_v1';
 export const OPT_OUT_KEY = 'smartjsa_analytics_opt_out';
@@ -50,14 +51,17 @@ export function clearAnalyticsCookies(doc, hostname) {
     doc.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax${domain ? `; domain=${domain}` : ''}`;
   }
 }
-export function startAnalyticsFrame(win, doc) {
+export function startAnalyticsFrame(win, doc, regionCheck=()=>analyticsRegion(win.fetch.bind(win))) {
   if (win.parent === win || win.location.pathname !== '/analytics-frame.html' || !analyticsHost(win.location, win.navigator.userAgent)) return;
   let started = false, previous = '', lastSequence = -1;
   const denied = { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
-  function message(event) {
+  const region=regionCheck();
+  async function message(event) {
     if (event.source !== win.parent || event.origin !== win.location.origin) return;
     const data = event.data;
     if (data?.type !== 'smartjsa:page-view' || analyticsOptedOut(win.localStorage)) return;
+    if ((await region) && analyticsChoice(win.localStorage)!=='allowed') return;
+    if(analyticsOptedOut(win.localStorage))return;
     const path = publicAnalyticsPath(data.path);
     if (!path || !Number.isSafeInteger(data.sequence) || data.sequence <= lastSequence) return;
     const referrer = previous ? win.location.origin + previous : publicAnalyticsReferrer(data.referrer);

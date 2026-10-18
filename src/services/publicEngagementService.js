@@ -1,4 +1,5 @@
 import { supabase } from '../supabaseClient';
+import { publicGateway } from './publicGateway';
 import { validProjectId } from '../utils/publicJsa';
 
 function visitorId() { return null; }
@@ -7,6 +8,7 @@ function visitorId() { return null; }
 export async function recordPublicEngagement(id, kind, steps = [], client = supabase) {
   if (!validProjectId(id)) return null;
   try {
+    if(kind==='view')return await publicGateway('jsa_view',{id});
     const indices = [...new Set(steps)].filter(index => Number.isInteger(index) && index >= 0);
     const visitor = visitorId();
     let metrics = null;
