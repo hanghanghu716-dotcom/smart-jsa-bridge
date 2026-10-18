@@ -50,6 +50,7 @@ const row = { id, title:'Moderation browser fixture', author_id:user.id, is_publ
   await page.click('.explore-moderation-panel li a');await page.waitForSelector('.explore-moderation-notice');
   assert.ok(await page.$eval('meta[name=robots]',n=>n.content.includes('noindex')));
   await open();await submit();await page.waitForFunction(()=>!document.querySelector('.explore-moderation-notice'));assert.equal(mutations,2);assert.equal(restricted,false);
+  assert.equal(await page.$$eval('[data-moderation-open]',nodes=>nodes.length),1);
   await open();stale=true;await submit();await page.waitForSelector('dialog[open] [role=alert]');assert.equal(mutations,2);assert.equal(await page.$eval('[data-moderation-submit]',n=>n.disabled),true);
   await page.keyboard.press('Escape');
   // Ordinary users cannot see either the controls or an admin-only preview.
