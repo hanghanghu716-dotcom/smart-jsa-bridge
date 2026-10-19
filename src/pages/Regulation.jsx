@@ -1,21 +1,24 @@
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거 및 useLocation 추가
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
-import { useTranslation } from 'react-i18next';
+import { useFixedGuidance } from '../hooks/useFixedGuidance';
+import UsGuidanceReferences from '../components/UsGuidanceReferences';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
 export default function Regulation() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
-  const { t } = useTranslation('regulation');
+  const { t, guidance } = useFixedGuidance('regulation');
+  const BrandTag = guidance ? 'p' : 'h1';
+  const Heading = guidance ? 'h1' : 'h2';
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />
 
       {/* HEADER */}
       <header style={styles.header}>
         <div style={styles.container}>
-          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+          <BrandTag style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</BrandTag>
         </div>
       </header>
 
@@ -23,13 +26,13 @@ export default function Regulation() {
       <section style={styles.heroSection}>
         <div style={styles.container}>
           <span style={styles.m3Tag}>{t('hero.tag')}</span>
-          <h2 style={styles.mainTitle} dangerouslySetInnerHTML={{ __html: t('hero.mainTitle') }} />
+          <Heading style={styles.mainTitle} dangerouslySetInnerHTML={{ __html: t('hero.mainTitle') }} />
           <p style={styles.subTitle} dangerouslySetInnerHTML={{ __html: t('hero.subTitle') }} />
         </div>
       </section>
 
       {/* [스티키 광고] */}
-      <aside className="hidden min-[1600px]:block">
+      {!guidance && <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
           <AdBanner 
             slot="3978298367" 
@@ -37,9 +40,9 @@ export default function Regulation() {
             format="vertical" 
           />
         </div>
-      </aside>
+      </aside>}
 
-      <aside className="hidden min-[1600px]:block">
+      {!guidance && <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
           <AdBanner 
             slot="3978298367" 
@@ -47,7 +50,7 @@ export default function Regulation() {
             format="vertical" 
           />
         </div>
-      </aside>
+      </aside>}
 
       <div style={styles.mainContentArea}>
         {/* SECTION 1: 실시규정의 정의 및 의무 */}
@@ -126,6 +129,7 @@ export default function Regulation() {
         </section>
       </div>
 
+      <UsGuidanceReferences guidance={guidance} />
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <p dangerouslySetInnerHTML={{ __html: t('footer') }} />

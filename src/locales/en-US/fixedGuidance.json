@@ -1,0 +1,341 @@
+{
+  "regulation": {
+    "copy": {
+      "hero": {
+        "tag": "US WORKPLACE SAFETY PLANNING",
+        "mainTitle": "JHA Guidance and<br />US OSHA Requirements",
+        "subTitle": "Distinguish task-planning recommendations, specific regulatory duties and site procedures before preparing a Job Hazard Analysis (JHA)."
+      },
+      "section1": {
+        "title": "1. What a JHA does — and what determines the requirements",
+        "para": "A <strong>Job Hazard Analysis (JHA), also called a Job Safety Analysis (JSA)</strong>, connects the steps of a job with hazards and controls. OSHA publishes guidance on this method. The applicable legal duties depend on the work, hazards and jurisdiction; there is no single universal OSHA JHA form, risk matrix or review schedule for every workplace.",
+        "infoTitle": "Identify the applicable requirements first",
+        "infoList": {
+          "item1": "Determine whether federal OSHA or an OSHA-approved State Plan covers the workplace. State requirements can differ.",
+          "item2": "Identify the applicable industry standards, such as general industry (29 CFR 1910), construction (29 CFR 1926), or maritime standards.",
+          "item3": "Check task-specific duties. For example, 1910.132(d) requires a PPE hazard assessment and written certification within its scope; a generic JHA does not automatically satisfy it.",
+          "item4": "Keep required permits, energy-control procedures, training and records alongside the JHA when applicable. Identify the people responsible for each requirement."
+        }
+      },
+      "section2": {
+        "title": "2. Recommended elements of a site JHA procedure",
+        "para": "Use these planning elements to organize your process. They are not a universal ten-item OSHA mandate; check the specific standards that apply to the work.",
+        "items": {
+          "item1": {
+            "title": "Purpose & Methodology",
+            "content": "Goals of the risk assessment and selection of evaluation techniques tailored to the specific workplace."
+          },
+          "item2": {
+            "title": "Organization & Roles",
+            "content": "Clear definition of roles and responsibilities (R&R) for employers, supervisors, and workers."
+          },
+          "item3": {
+            "title": "Assessment Scope",
+            "content": "Inclusion of buildings, machinery, equipment, and all routine/non-routine tasks."
+          },
+          "item4": {
+            "title": "Timing & Frequency",
+            "content": "Plan the initial analysis, review triggers and a review interval appropriate to the work. Apply any specific regulatory inspection or review period separately."
+          },
+          "item5": {
+            "title": "Hazard Identification",
+            "content": "Practical methods for deriving hazards, such as site inspections and worker interviews."
+          },
+          "item6": {
+            "title": "Risk Evaluation",
+            "content": "Describe how hazards are prioritized. If using a likelihood/severity matrix, define its scales and limitations; a low score does not waive a required control."
+          },
+          "item7": {
+            "title": "Control Measures",
+            "content": "Consider elimination, substitution and engineering controls before administrative controls and PPE. Assign action owners and verify effectiveness before release."
+          },
+          "item8": {
+            "title": "Worker Participation",
+            "content": "Systematic approaches to gathering worker feedback during hazard identification and mitigation planning."
+          },
+          "item9": {
+            "title": "Recordkeeping",
+            "content": "Identify each required record, its governing standard, custodian and retention period. Do not assign a universal three-to-five-year period to all JHAs."
+          },
+          "item10": {
+            "title": "Training & Communication",
+            "content": "Procedures for communicating assessment results to field workers and conducting relevant training."
+          }
+        }
+      },
+      "section3": {
+        "title": "3. When to prepare and revisit an analysis",
+        "table": {
+          "header": {
+            "col1": "Assessment Type",
+            "col2": "Timing & Conditions",
+            "col3": "Key Notes"
+          },
+          "rows": {
+            "row1": {
+              "col1": "Before the work",
+              "col2": "Analyze the planned task and its actual conditions before starting. Prioritize serious hazards, unfamiliar work and nonroutine tasks.",
+              "col3": "This is a planning recommendation, not a universal 30-day deadline. Complete any required assessment, permit or authorization before the activity it governs."
+            },
+            "row2": {
+              "col1": "Periodic review",
+              "col2": "Set a review interval that reflects the hazards and changes at the site. OSHA JHA guidance recommends periodic review.",
+              "col3": "There is no general annual JHA rule for every job. Separate requirements can prescribe intervals: 1910.147(c)(6), for example, requires at least annual inspection of an energy-control procedure within its scope."
+            },
+            "row3": {
+              "col1": "Change, incident or near miss",
+              "col2": "Revisit the analysis when equipment, materials, sequence or conditions change, or when an incident or near miss reveals a gap.",
+              "col3": "Resolve immediate hazards and verify changed controls before affected work resumes. Check any task-specific management-of-change or authorization requirements."
+            }
+          }
+        }
+      },
+      "section4": {
+        "title": "4. Requirements, guidance and site decisions",
+        "para": "Use the distinction below when reading a source or completing a form. A completed JHA is a planning record, not proof that every applicable requirement has been met.",
+        "legalList": {
+          "item1": "<strong>Regulatory duties:</strong> Identify the current applicable provision and its scope. For PPE assessment, consult 1910.132(d); for hazardous energy, consult 1910.147 and its exclusions.",
+          "item2": "<strong>OSHA recommendations:</strong> The JHA booklet and Recommended Practices explain useful methods. Do not present every suggested method as a separate legal obligation.",
+          "item3": "<strong>Site decisions:</strong> Risk scales, review arrangements and document approval steps can be set by the organization, subject to applicable requirements. Record the reason for the decision and verify the controls in the field."
+        }
+      },
+      "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+    },
+    "title": "JHA Guidance and US OSHA Requirements | Smart JSA Bridge",
+    "description": "Understand JHA planning recommendations, task-specific OSHA duties, State Plans, review timing and records before preparing a US job safety analysis.",
+    "links": [
+      {
+        "label": "OSHA 3071 — Job Hazard Analysis",
+        "href": "https://www.osha.gov/sites/default/files/publications/osha3071.pdf",
+        "note": "Task analysis, worker participation and periodic review guidance."
+      },
+      {
+        "label": "OSHA-approved State Plans",
+        "href": "https://www.osha.gov/stateplans",
+        "note": "Check the authority and requirements covering the work location."
+      },
+      {
+        "label": "29 CFR 1910.132(d) — PPE hazard assessment",
+        "href": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.132",
+        "note": "Assessment and written certification within this standard’s scope."
+      },
+      {
+        "label": "29 CFR 1910.147(c)(6) — Energy-control procedure inspections",
+        "href": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+        "note": "A specific inspection interval; not a universal annual JHA requirement."
+      }
+    ]
+  },
+  "jrajsa": {
+    "copy": {
+      "nav": {
+        "regulation": "US JHA guidance and requirements",
+        "jrajsa": "JHA / JSA practical process",
+        "ppe": "About Personal Protective Equipment",
+        "riskClass": "General / High-Risk Tasks"
+      },
+      "hero": {
+        "tag": "US JHA / JSA PRACTICAL GUIDE",
+        "title1": "Build a Job Hazard Analysis",
+        "title2": " from Task Steps to Verified Controls",
+        "subTitle1": "Use worker input and task-specific evidence to identify hazards, choose controls and prepare the crew.",
+        "subTitle2": " Confirm the applicable requirements and site conditions before putting the plan into use."
+      },
+      "section3": {
+        "title": "1. A practical nine-step workflow",
+        "process": {
+          "step1": {
+            "idx": "01",
+            "title": "Set the scope",
+            "desc": "Define the job, boundaries and applicable requirements. This nine-step workflow is a planning aid, not a mandated OSHA sequence."
+          },
+          "step2": {
+            "idx": "02",
+            "title": "Involve the people doing the work",
+            "desc": "Bring workers, supervisors and relevant specialists together to review the task and its conditions."
+          },
+          "step3": {
+            "idx": "03",
+            "title": "Prioritize the jobs",
+            "desc": "Start with potentially serious harm, incident history, changes and nonroutine work."
+          },
+          "step4": {
+            "idx": "04",
+            "title": "Analyze the steps",
+            "desc": "Break down the actual work; identify how harm could occur and connect each hazard to suitable controls."
+          },
+          "step5": {
+            "idx": "05",
+            "title": "Review the plan",
+            "desc": "Confirm assumptions, required permits and the people authorized to release work under the site procedure."
+          },
+          "step6": {
+            "idx": "06",
+            "title": "Implement the controls",
+            "desc": "Put controls in place, assign action owners and verify the required conditions before starting."
+          },
+          "step7": {
+            "idx": "07",
+            "title": "Record and brief",
+            "desc": "Record the analysis and explain the controls, responsibilities and stop-work conditions to the crew."
+          },
+          "step8": {
+            "idx": "08",
+            "title": "Check during the work",
+            "desc": "Confirm that the plan matches actual conditions. Stop and reassess when controls fail or the task changes."
+          },
+          "step9": {
+            "idx": "09",
+            "title": "Review and improve",
+            "desc": "Use observations, changes and incident learning to update the analysis. Apply any separate regulatory inspection intervals."
+          }
+        }
+      },
+      "section4": {
+        "title": "2. Decisions to document in your procedure",
+        "rules": {
+          "item1": {
+            "title": "Purpose & Method",
+            "desc": "Objectives and selection of site-specific techniques."
+          },
+          "item2": {
+            "title": "Organization & Roles",
+            "desc": "Specific R&R for management and field workers."
+          },
+          "item3": {
+            "title": "Target Selection",
+            "desc": "Define the job boundaries, interfaces and relevant equipment; prioritize the work requiring analysis."
+          },
+          "item4": {
+            "title": "Timing & Frequency",
+            "desc": "Define review triggers and a suitable interval. Check specific regulatory schedules separately."
+          },
+          "item5": {
+            "title": "Risk Criteria",
+            "desc": "Define the likelihood and severity scales if a matrix is used. A score does not override required safeguards."
+          },
+          "item6": {
+            "title": "Record Retention",
+            "desc": "Select retention periods by record type and applicable requirements. There is no single retention period for every JHA."
+          }
+        }
+      },
+      "section5": {
+        "title": "3. JHA, JSA and broader risk assessment",
+        "table": {
+          "header": {
+            "col1": "Question",
+            "col2": "JHA / JSA",
+            "col3": "Broader risk assessment"
+          },
+          "rows": {
+            "row1": {
+              "col1": "What is assessed?",
+              "col2": "A job and its steps, hazards and controls. OSHA also refers to JHAs as JSAs.",
+              "col3": "The scope may include a process, equipment, facility or job. Define what your organization means by JRA; it is not a universal separate OSHA category."
+            },
+            "row2": {
+              "col1": "Who contributes?",
+              "col2": "People doing the work, supervisors and relevant specialists.",
+              "col3": "People familiar with the assessed operation, including affected workers and relevant technical specialists."
+            }
+          }
+        }
+      },
+      "section6": {
+        "title": "4. Jobs that deserve early attention",
+        "checklist": {
+          "item1": "Could a failure cause serious harm, even if there has not yet been an incident?",
+          "item2": "Have injuries, illnesses or near misses occurred during this work?",
+          "item3": "Is the task new, changed or unfamiliar to the people assigned?",
+          "item4": "Is the job complex or dependent on a particular sequence, training or control?"
+        }
+      },
+      "section7": {
+        "title": "5. Using a risk matrix",
+        "math": {
+          "risk": "Risk",
+          "frequency": "Likelihood",
+          "severity": "Severity",
+          "caption": "Example prioritization method: risk score = likelihood × severity. Define both scales and reassess after controls. OSHA does not prescribe one universal JHA matrix, and a low score does not remove an applicable legal duty."
+        }
+      },
+      "footer": "© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong>"
+    },
+    "title": "How to Prepare a JHA / JSA: US Practical Guide | Smart JSA Bridge",
+    "description": "A practical JHA workflow covering worker input, task steps, hazards, control verification, review triggers and the limits of risk scores.",
+    "links": [
+      {
+        "label": "OSHA 3071 — Job Hazard Analysis",
+        "href": "https://www.osha.gov/sites/default/files/publications/osha3071.pdf",
+        "note": "Task analysis, worker participation and periodic review guidance."
+      },
+      {
+        "label": "OSHA — Hazard identification and assessment",
+        "href": "https://www.osha.gov/safety-management/hazard-identification",
+        "note": "Recommended practices for finding hazards and prioritizing controls."
+      },
+      {
+        "label": "OSHA — Hazard prevention and control",
+        "href": "https://www.osha.gov/safety-management/hazard-prevention",
+        "note": "Control selection, implementation and follow-up."
+      }
+    ]
+  },
+  "about": {
+    "copy": {
+      "pageTag": "THE SAFETY REPOSITORY",
+      "mainHeading": {
+        "line1": "About Smart JSA Bridge",
+        "line2": "Work Examples, Shared JHAs and Document Tools"
+      },
+      "section1": {
+        "title": "A workspace for task-level safety planning",
+        "content": "Smart JSA Bridge brings together <strong>reference examples, user-published JHAs and tools for preparing job documents</strong>. Read an example, adapt suitable public work steps to your site, and assemble documents for review and PDF output.<br />Publication, an operator account or a popularity count does not establish professional approval or suitability for a particular workplace."
+      },
+      "section2": {
+        "title": "Understand the material you are using",
+        "item1": {
+          "bold": "Case Study references:",
+          "desc": "These are editorial reference materials and attached worksheets. Read the authorship and review notes on each page. A hypothetical scenario is an illustration, not evidence of an actual incident; AI-assisted material is not automatically professionally verified."
+        },
+        "item2": {
+          "bold": "Public JHAs in Explore:",
+          "desc": "These are documents shared by users. Check their scope, source notes and applicability before reusing work steps. Public visibility and community feedback are not a safety certification."
+        },
+        "item3": {
+          "bold": "Your work documents:",
+          "desc": "The tools help you organize a JHA, procedure and associated job documents. The responsible site team must confirm current conditions, applicable requirements and effective controls before using them."
+        }
+      },
+      "section3": {
+        "title": "From reference to a site-specific plan",
+        "subtitle": "Keep reference content separate from the evidence and authorization required for your actual job.",
+        "step1": {
+          "bold": "Find a relevant reference:",
+          "desc": "Use Case Study for worked examples and Explore for public JHAs. Check the country, task boundaries and source information."
+        },
+        "step2": {
+          "bold": "Adapt and check:",
+          "desc": "Reuse suitable public steps where available, or prepare your own. Case Study starting options may provide only a task name when no reviewed step connection is available."
+        },
+        "step3": {
+          "bold": "Review and export:",
+          "desc": "Confirm current site inputs, responsibilities and controls, then use the document and PDF tools. An exported document does not itself authorize the work."
+        },
+        "step4": {
+          "bold": "Improve and share deliberately:",
+          "desc": "Use feedback to improve the analysis. Choose whether to publish a document, and check the public version for confidential or personal information before sharing."
+        }
+      },
+      "section4": {
+        "title": "Private work and public sharing",
+        "content": "Your private workspace can store the information you enter, including project details. <strong>Private storage and public publication are different actions.</strong> Only share information you have permission to publish.<br />Public-document processing limits which fields are exposed, but names or confidential details typed into titles, work steps or other public text can still be disclosed. Check the public content before publishing. Publishing a JHA does not make private job-package drawings and attachments public."
+      },
+      "imageCaption": "Smart JSA Bridge connects reference materials with tools for preparing and reviewing work documents."
+    },
+    "title": "About Smart JSA Bridge: References and JHA Tools",
+    "description": "Learn how Smart JSA Bridge distinguishes Case Study references, user-published JHAs, private work documents and site-specific review responsibilities.",
+    "links": []
+  }
+}

@@ -1,13 +1,16 @@
 import PlanOverview from '../components/PlanOverview';
 import {getPlansUi} from '../locales/plansUi';
-import { useTranslation } from 'react-i18next';
+import { useFixedGuidance } from '../hooks/useFixedGuidance';
+import UsGuidanceReferences from '../components/UsGuidanceReferences';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ 커스텀 다국어 라우팅 훅[cite: 19]
 
 export default function About() {
   const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 19]
-  const { t,i18n } = useTranslation('about'); // ✅ 'about' 네임스페이스 로드[cite: 19]
+  const { t, i18n, guidance } = useFixedGuidance('about');
+  const BrandTag = guidance ? 'p' : 'h1';
+  const Heading = guidance ? 'h1' : 'h2';
 
   // 애드센스 설정 정보[cite: 19]
   const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
@@ -18,13 +21,13 @@ export default function About() {
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 수행 */}
+      <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />
 
       {/* HEADER[cite: 19] */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
           {/* ✅ 로고 클릭 시 현재 선택된 언어의 메인 페이지로 이동 */}
-          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+          <BrandTag style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</BrandTag>
         </div>
       </header>
       
@@ -32,7 +35,7 @@ export default function About() {
         <div style={{ ...styles.container, position: 'relative' }}>
           
           {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 19] */}
-          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
+          {!guidance && <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
               <AdSenseUnit 
                 client={PUBLISHER_ID} 
@@ -41,10 +44,10 @@ export default function About() {
                 style={{ width: '160px', height: '600px' }} 
               />
             </div>
-          </aside>
+          </aside>}
 
           {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 19] */}
-          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
+          {!guidance && <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
               <AdSenseUnit 
                 client={PUBLISHER_ID} 
@@ -53,13 +56,13 @@ export default function About() {
                 style={{ width: '160px', height: '600px' }} 
               />
             </div>
-          </aside>
+          </aside>}
 
           {/* 다국어 처리 반영 영역[cite: 19] */}
           <span style={styles.tag}>{t('pageTag')}</span>
-          <h2 style={styles.heading} className="max-lg:!text-[2rem]">
+          <Heading style={styles.heading} className="max-lg:!text-[2rem]">
             {t('mainHeading.line1')}<br />{t('mainHeading.line2')}
-          </h2>
+          </Heading>
           
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
@@ -103,6 +106,7 @@ export default function About() {
         </div>
       </section>
 
+      <UsGuidanceReferences guidance={guidance} />
       <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
       <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
     </div>

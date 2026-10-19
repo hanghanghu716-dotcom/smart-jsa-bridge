@@ -2,23 +2,26 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
-import { useTranslation } from 'react-i18next';
+import { useFixedGuidance } from '../hooks/useFixedGuidance';
+import UsGuidanceReferences from '../components/UsGuidanceReferences';
 // ✅ [추가] 다국어 전용 라우팅 도구
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function JraJsa() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
-  const { t } = useTranslation('jrajsa');
+  const { t, guidance } = useFixedGuidance('jrajsa');
+  const BrandTag = guidance ? 'p' : 'h1';
+  const Heading = guidance ? 'h1' : 'h2';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />
 
       {/* HEADER */}
       <header style={styles.header} className="max-lg:!px-6">
         <div style={styles.container} className="flex justify-between items-center h-full w-full">
-          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+          <BrandTag style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</BrandTag>
           <div style={styles.menuTrigger} onClick={() => setIsMenuOpen(true)}>
             <span style={styles.menuText} className="max-lg:hidden">MENU</span>
             <div style={styles.hamburger}>
@@ -54,10 +57,10 @@ export default function JraJsa() {
       <section style={styles.heroSection} className="max-lg:!py-20 max-lg:!px-6">
         <div style={styles.container}>
           <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.tag')}</span>
-          <h2 style={{...styles.mainTitle, fontSize: undefined}} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
+          <Heading style={{...styles.mainTitle, fontSize: undefined}} className="text-[24px] lg:text-[2.8rem] font-extrabold leading-tight mb-6">
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.title1')}</span>
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.title2')}</span>
-          </h2>
+          </Heading>
           <p style={styles.subTitle} className="text-[14px] lg:text-[1.15rem]">
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.subTitle1')}</span>
             <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('hero.subTitle2')}</span>
@@ -65,17 +68,17 @@ export default function JraJsa() {
         </div>
       </section>
 
-      <aside className="hidden min-[1600px]:block">
+      {!guidance && <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
-      </aside>
+      </aside>}
 
-      <aside className="hidden min-[1600px]:block">
+      {!guidance && <aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
           <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
-      </aside>
+      </aside>}
 
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
@@ -164,6 +167,7 @@ export default function JraJsa() {
         </div>
       </div>
 
+      <UsGuidanceReferences guidance={guidance} />
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
           <p className="m-0 text-sm opacity-60" dangerouslySetInnerHTML={{ __html: t('footer') }} />
