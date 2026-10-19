@@ -17,6 +17,22 @@ import { EXPLORE_VIEWS, exploreView, explorePageSize, changeExploreView } from '
 export const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const {url:publicBase,key:publicKey}=getPublicSupabaseConfig();
 
+// One bounded retry for transient upstream failures; never substitute an empty
+// successful page when the catalog cannot be read.
+async function readCatalog(fetcher,url){
+ for(let attempt=0;attempt<2;attempt++){
+  let response;
+  try{
+   response=await fetcher(url,{headers:{apikey:publicKey,Prefer:'count=exact'},cache:'no-store',signal:AbortSignal.timeout(8000)});
+  }catch(error){if(attempt===1)throw error;}
+  if(response){
+   if(response.ok||response.status<500||attempt===1)return response;
+   await response.body?.cancel();
+  }
+  await new Promise(resolve=>setTimeout(resolve,250));
+ }
+}
+
 export function renderExplorePagination(total, current, locale, link) {
  const {page,count,start,end,pages}=pageWindow(current,total),ui=getPaginationUi(locale),e=escapeHtml;
  if(count<=1)return '';
@@ -58,7 +74,7 @@ export function createExploreHandler({fetcher=fetch,readShell=()=>readFile(new U
    const country=exploreCountry(query.country,locale);if(country)p.set('public_country','eq.'+country);
    if(query.search.trim())p.set('title','ilike.%'+query.search.trim().replace(/[\\%_]/g,'\\$&')+'%');
    if(query.tags.length)p.set('tags','cs.{'+query.tags.map(tag=>JSON.stringify(tag)).join(',')+'}');
-   const response=await fetcher(`${publicBase}/rest/v1/public_jsa_catalog?${p}`,{headers:{apikey:publicKey,Prefer:'count=exact'},cache:'no-store',signal:AbortSignal.timeout(8000)});
+   const response=await readCatalog(fetcher,`${publicBase}/rest/v1/public_jsa_catalog?${p}`);
    if(!response.ok)throw Error('READ_FAILED');
    const rows=await response.json(),count=Number(response.headers.get('content-range')?.split('/')[1]);
    if(!Array.isArray(rows)||!Number.isFinite(count))throw Error('INVALID_RESULT');

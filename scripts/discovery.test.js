@@ -28,6 +28,32 @@ test('risk summaries do not invent values or double count legacy controls',()=>{
  for(const value of [undefined,null,'',{},'bad',-1])assert.equal(riskValue(value),null);
  assert.equal(riskValue('3'),3);assert.equal(riskValue(0),0);
 });
+
+test('Explore retries one transient read, preserving filters and real document content',async()=>{
+ for(const failure of [new Error('timeout'),500,503]){
+  const calls=[];
+  const fetcher=async(url,options)=>{
+   calls.push({url,options});
+   if(calls.length===1){if(failure instanceof Error)throw failure;return new Response('unavailable',{status:failure});}
+   return new Response(JSON.stringify([row]),{headers:{'content-range':'0-0/1'}});
+  };
+  const res={setHeader(){},end(body){this.body=body;}};
+  await createExploreHandler({fetcher,readShell:async()=>shell})({query:{lng:'en-US',country:'US',tag:'mechanical'}},res);
+  assert.equal(res.statusCode,200);assert.equal(calls.length,2);
+  assert.equal(calls[0].url,calls[1].url);assert.notEqual(calls[0].options.signal,calls[1].options.signal);
+  assert.equal(new URL(calls[1].url).searchParams.get('public_country'),'eq.US');
+  assert.equal(new URL(calls[1].url).searchParams.get('tags'),'cs.{"mechanical"}');
+  assert.match(res.body,/10000000-0000-4000-8000-000000000001/);
+ }
+});
+
+test('Explore keeps persistent failures unavailable and never retries authorization or invalid data',async()=>{
+ for(const [status,expectedCalls] of [[500,2],[503,2],[400,1],[401,1],[403,1],[429,1],[200,1]]){
+  let calls=0;const res={setHeader(){},end(body){this.body=body;}};
+  await createExploreHandler({readShell:async()=>shell,fetcher:async()=>{calls++;return new Response('{}',{status});}})({query:{lng:'en-US'}},res);
+  assert.equal(calls,expectedCalls);assert.equal(res.statusCode,503);assert.match(res.body,/noindex,follow/);
+ }
+});
 test('missing assessment and duplicate content cannot be indexed; unreviewed content cannot show ads',()=>{
  for(const assessment of [undefined,{checked:false},{checked:true,duplicate_of:row.id},{checked:true,review:'rejected'}])assert.equal(publicJsaQuality({...row,assessment}).indexable,false);
  const config={adsEnabled:true,contactsVerified:true,regionalReviewComplete:true,certifiedCmpConfigured:true,approvedRegions:['KR'],approvedCmpIds:[10]},consent={region:'KR',cmpId:10,ads:true,verified:true,expiresAt:2000},path='/ko/public-jsa/'+row.id;

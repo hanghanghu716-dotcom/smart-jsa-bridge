@@ -23,7 +23,7 @@ const locations=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 for(const url of locations) {
   assert.ok(!/\/en-CA-(AB|ON|BC)\/(about|terms|privacy|protectiveequipment)$/.test(url),url);
   if(url.endsWith('/explore')) {
-    const response=await fetch(url,{signal:AbortSignal.timeout(20000)});assert.equal(response.status,200);
+    const response=await fetch(url,{signal:AbortSignal.timeout(20000)});assert.equal(response.status,200,`Explore initial HTML: ${url}`);
     const robots=find(parse(await response.text()),n=>n.tagName==='meta'&&attr(n,'name')==='robots');
     assert.equal(robots.length,1);assert.equal(attr(robots[0],'content'),'index,follow',url);
   }
