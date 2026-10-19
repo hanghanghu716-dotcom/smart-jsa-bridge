@@ -1,4 +1,4 @@
-import content from '../locales/en-US/fixedGuidance.json';
+import content from '../data/us-fixed-guidance.json';
 
 // Scope by URL: other locales can fall back to en-US translations, but must
 // never inherit US-only regulatory statements or editorial changes implicitly.
