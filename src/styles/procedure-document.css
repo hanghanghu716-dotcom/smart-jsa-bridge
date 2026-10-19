@@ -7,7 +7,7 @@
 .procedure-document-toolbar h2{flex:1 1 200px;margin:0;font-size:20px;font-weight:750}
 .procedure-document-scroll{overflow:auto;max-width:100%;padding:16px;background:var(--surface-hover);border-radius:10px}
 .procedure-document-paper{box-sizing:border-box;max-width:none;padding:28px;background:#fff;color:#111;font-family:Arial,sans-serif;font-size:12px;line-height:1.5;text-align:start}
-.procedure-document-paper h1{margin:0 0 18px;text-align:center;font-size:22px;font-weight:700;color:#111}
+.procedure-document-paper h1,.procedure-document-paper h3{margin:0 0 18px;text-align:center;font-size:22px;font-weight:700;color:#111}
 .procedure-document-paper dl{display:grid;grid-template-columns:1fr 1fr;margin:0 0 18px;border:1px solid #888}
 .procedure-document-paper dl>div{padding:8px 10px;min-width:0}
 .procedure-document-paper dt{font-size:10px;font-weight:700;color:#444}
@@ -17,3 +17,7 @@
 .procedure-document-paper th{background:#eee;font-weight:700}
 .procedure-document-paper th:first-child,.procedure-document-paper td:first-child{text-align:center}
 @media(max-width:600px){.procedure-document-dialog{padding:12px}.procedure-document-scroll{padding:8px}.procedure-document-toolbar{gap:8px}.procedure-document-toolbar button{padding:9px 11px}}
+
+.procedure-document-inline{margin-block:0 32px}.procedure-document-inline .procedure-document-paper{margin-inline:auto}
+
+.public-document-toolbar h2{flex:1 1 200px;margin:0}.public-document-toolbar{margin-block:0 16px}

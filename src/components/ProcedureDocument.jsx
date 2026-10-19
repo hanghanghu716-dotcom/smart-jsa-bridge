@@ -4,8 +4,9 @@ import { getProcedureDocumentUi } from '../locales/procedureDocumentUi';
 import { procedureRows } from '../utils/procedureDocument';
 import { normalizePaperSize, paperPreviewWidth } from '../utils/paperFormat';
 import '../styles/procedure-document.css';
+import { getPublicDocumentUi } from '../locales/publicDocumentUi';
 
-export default function ProcedureDocument({ document: data, uiLocale }) {
+export default function ProcedureDocument({ document: data, uiLocale, inline = false }) {
   const { i18n, t } = useTranslation('common');
   const dialog = useRef(null), paper = useRef(null), pending = useRef(false);
   const [opened, setOpened] = useState(false), [busy, setBusy] = useState(false), [failed, setFailed] = useState(false);
@@ -29,19 +30,18 @@ export default function ProcedureDocument({ document: data, uiLocale }) {
     finally { pending.current = false; setBusy(false); }
   }
   if (!data) return null;
-  return <div className="procedure-document-access">
-    <button type="button" data-procedure-document-open disabled={!rows.length} onClick={() => { setOpened(true); setFailed(false); dialog.current.showModal(); }}>{ui.open}</button>
-    <dialog ref={dialog} className="procedure-document-dialog" aria-labelledby={heading} onClose={() => setOpened(false)}>
+  const PaperTitle = inline ? 'h3' : 'h1';
+  const content = <>
       <div className="procedure-document-toolbar">
-        <h2 id={heading}>{ui.title}</h2>
+        <h2 id={heading}>{inline ? getPublicDocumentUi(uiLocale || locale).procedurePreview : ui.title}</h2>
         <button type="button" data-procedure-pdf disabled={busy} onClick={() => output(false)}>{busy ? '…' : ui.download}</button>
-        <button type="button" data-procedure-print disabled={busy} onClick={() => output(true)}>{ui.print}</button>
-        <button type="button" onClick={() => dialog.current.close()}>{ui.close}</button>
+        {!inline && <button type="button" data-procedure-print disabled={busy} onClick={() => output(true)}>{ui.print}</button>}
+        {!inline && <button type="button" onClick={() => dialog.current.close()}>{ui.close}</button>}
       </div>
       {failed && <p role="alert">{t('saveFlow.failed')}</p>}
-      {opened && <div className="procedure-document-scroll" tabIndex={0} role="region" aria-label={ui.title}>
+      {(inline || opened) && <div className="procedure-document-scroll" tabIndex={0} role="region" aria-label={ui.title}>
         <article ref={paper} className="procedure-document-paper" lang={locale} dir={i18n.dir(locale)} style={{ width: paperPreviewWidth(size, 'portrait') }}>
-          <h1>{doc.title}</h1>
+          <PaperTitle>{doc.title}</PaperTitle>
           <dl>{[[labels('header.projectName'), title], [labels('header.workDate'), form.workDate], [labels('header.workLocation'), form.workLocation], [labels('header.department'), form.department]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{typeof value === 'string' ? value : ''}</dd></div>)}</dl>
           <table><colgroup><col style={{ width: '7%' }} /><col style={{ width: '27%' }} /><col style={{ width: '66%' }} /></colgroup>
             <thead><tr><th>{doc.number}</th><th>{doc.step}</th><th>{doc.detail}</th></tr></thead>
@@ -49,6 +49,9 @@ export default function ProcedureDocument({ document: data, uiLocale }) {
           </table>
         </article>
       </div>}
-    </dialog>
+  </>;
+  return inline ? <section className="procedure-document-access procedure-document-inline" aria-labelledby={heading}>{content}</section> : <div className="procedure-document-access">
+    <button type="button" data-procedure-document-open disabled={!rows.length} onClick={() => { setOpened(true); setFailed(false); dialog.current.showModal(); }}>{ui.open}</button>
+    <dialog ref={dialog} className="procedure-document-dialog" aria-labelledby={heading} onClose={() => setOpened(false)}>{content}</dialog>
   </div>;
 }

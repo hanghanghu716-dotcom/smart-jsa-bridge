@@ -47,5 +47,14 @@ assert.match((await get('/en-US/feed.xml')).body, /<rss /);
 const publicMap = (await get('/sitemap-public.xml')).body;
 assert.match(publicMap, /<urlset/);
 assert.equal(index.body.includes('/sitemap-public.xml'), publicMap.includes('<url>'), 'Empty public sitemap must not be advertised');
+// Verify crawlable public procedure and JHA content after every release.
+const publicPaths=[...publicMap.matchAll(/<loc>https:\/\/smartjsabridge\.com([^<]+)<\/loc>/g)].map(match=>match[1]);
+for(const route of publicPaths.slice(0,3)) {
+  const {body}=await get(route),tree=parse(body);
+  assert.equal(all(tree,n=>n.tagName==='h1').length,1,route+': one document title');
+  assert.equal(all(tree,n=>n.tagName==='section'&&attr(n,'aria-labelledby')==='procedure-preview-title').length,1,route+': initial procedure HTML');
+  assert.equal(all(tree,n=>n.tagName==='script'&&attr(n,'type')==='application/ld+json').length,1,route+': document metadata');
+  assert.ok(!all(tree,n=>n.tagName==='meta'&&attr(n,'name')==='robots').some(n=>attr(n,'content').includes('noindex')),route+': indexable public URL');
+}
 await get('/ko/case-study/nonexistent-live-content-verification', 404);
 console.log(`Verified live sitemap, RSS, ${samples.size} locale article/home/archive groups, and missing-article 404.`);

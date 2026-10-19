@@ -5,7 +5,7 @@ import { renderCaseBody } from './case-study.js';
 import { feedXml, publicFeedBody } from '../server/feed-content.js';
 import { Buffer } from 'node:buffer';
 import { indexableExploreLocales } from '../src/utils/exploreIndexing.js';
-import { PUBLIC_JSA_FIELDS, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
+import { PUBLIC_JSA_FIELDS, PUBLIC_INDEX_FIELDS, publicIndexQuality, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
 import { buildSitemap } from '../scripts/sitemap-data.js';
 import { CASE_SUMMARY_FIELDS, SITE, casePath, readPublic, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
@@ -13,7 +13,7 @@ const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
 export const RSS_MAX_BYTES = 4_000_000;
 export const validDate = value => value && Number.isFinite(Date.parse(value)) ? new Date(value).toISOString() : null;
 export function buildPublicSitemap(rows) {
-  const urls = rows.map(publicJsaView).filter(row => publicJsaQuality(row).indexable).map(row => {
+  const urls = rows.filter(row => publicIndexQuality(row).indexable).map(row => {
     const modified = validDate(row.content_updated_at);
     return `<url><loc>${SITE}/${row.public_locale}/public-jsa/${row.id}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}</url>`;
   });
@@ -53,19 +53,19 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
     try {
       let body;
       if (kind === 'index') {
-        const documents = await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher);
+        const documents = await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher);
         const parts = ['static', 'cases'];
         // A urlset requires at least one url. Advertise this section only when
         // there is an eligible public document; it appears on the next request.
-        if (documents.map(publicJsaView).some(row => publicJsaQuality(row).indexable)) parts.push('public');
+        if (documents.some(row => publicIndexQuality(row).indexable)) parts.push('public');
         body = xmlHeader + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + parts.map(part => `<sitemap><loc>${SITE}/sitemap-${part}.xml</loc></sitemap>`).join('') + '</sitemapindex>';
       }
       if (kind === 'static') {
-        const documents = await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher);
-        body = buildSitemap([], { includeStatic: true, exploreLocales: indexableExploreLocales(documents.map(publicJsaView)) });
+        const documents = await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher);
+        body = buildSitemap([], { includeStatic: true, exploreLocales: indexableExploreLocales(documents) });
       }
       if (kind === 'cases') body = buildSitemap(await readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS }, fetcher), { includeStatic: false });
-      if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true' }, fetcher));
+      if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
           readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),

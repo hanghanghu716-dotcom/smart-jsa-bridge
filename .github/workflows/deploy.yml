@@ -41,7 +41,9 @@ jobs:
         run: npx --yes vercel@59.23.2 build --prod --token="$VERCEL_TOKEN"
       - name: Verify isolated library loading and original-document editing
         # Remote requests are intercepted; this fixture performs no real writes.
-        run: node scripts/library-discovery-browser.cjs
+        run: |
+          node scripts/library-discovery-browser.cjs
+          node scripts/public-document-preview-browser.cjs
       - name: Record the current production deployment for recovery
         run: node scripts/production-recovery.js capture
       - name: Deploy the verified build without rebuilding

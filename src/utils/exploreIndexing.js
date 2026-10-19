@@ -1,4 +1,4 @@
-import { publicJsaQuality } from './publicJsa.js';
+import { publicJsaQuality, publicIndexQuality } from './publicJsa.js';
 import { localeCountry } from './publicCountry.js';
 import { SUPPORTED_LANGS } from '../locales/config.js';
 import { explorePageSize, exploreView } from './exploreView.js';
@@ -17,6 +17,6 @@ export function indexableExploreLocales(rows) {
     const firstPage = rows.filter(row => row?.public_country === localeCountry(locale))
       .sort((a, b) => (Date.parse(b.published_at) || 0) - (Date.parse(a.published_at) || 0)
         || String(a.id).localeCompare(String(b.id))).slice(0, explorePageSize());
-    return exploreIndexable(firstPage);
+    return firstPage.some(row => publicIndexQuality(row).indexable);
   });
 }

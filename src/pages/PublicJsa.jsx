@@ -1,3 +1,7 @@
+import { Helmet } from 'react-helmet-async';
+import { publicCategoryLabel, publicDescription, contentDate, publicDocumentSchema, structuredJson } from '../utils/publicDocumentPresentation';
+import { getPublicDocumentUi } from '../locales/publicDocumentUi';
+import { getActionPlanUi } from '../locales/actionPlanUi';
 import DocumentList from '../components/DocumentList';
 import '../styles/operator-documents.css';
 import useCommunityAdmin from '../hooks/useCommunityAdmin';
@@ -35,8 +39,9 @@ import '../styles/workspaces.css';
 
 export default function PublicJsa() {
   const admin = useCommunityAdmin();
+  const [author,setAuthor]=useState(()=>typeof window !== 'undefined'?window.__PUBLIC_JSA_AUTHOR__ || null:null);
   const { id } = useParams(), location = useLocation(), navigate = useLanguageNavigate();
-  const { t, i18n } = useTranslation('export');
+  const { i18n } = useTranslation('export');
   const ui = getPublicUi(i18n.language);
   const community = getCommunityUi(i18n.language);
   const [selection,setSelection] = useState({id,indices:[]});
@@ -103,9 +108,11 @@ export default function PublicJsa() {
   const translation=usePublicTranslation(sourceRow?[sourceRow]:[],i18n.language,true);
   const currentRow=translation.rows[0]||null;
   const quality = publicJsaQuality(sourceRow), stats=documentStats(currentRow), d=getDiscoveryUi(i18n.language);
+  const modified=contentDate(sourceRow), documentUi=getPublicDocumentUi(i18n.language);
   return <div className="jsa-workspace" dir={i18n.dir()}>
-    <SEO pageTitle={(sourceRow?.title || ui.title) + ' | Smart JSA Bridge'} pageDescription={sourceRow?.analysis_data?.map(step => step.proc?.stepTitle).filter(Boolean).join(' · ') || ui.intro}
+    <SEO pageTitle={(sourceRow?.title || ui.title) + ' | Smart JSA Bridge'} pageDescription={publicDescription(sourceRow) || ui.intro}
       canonicalLocale={currentRow?.public_locale || undefined} availableLocales={currentRow?.public_locale ? [currentRow.public_locale] : []} noIndex={Boolean(sourceRow?.restricted)||!quality.indexable||Boolean(sourceRow?.public_locale&&sourceRow.public_locale!==i18n.language)} />
+    {sourceRow?.public_locale && !sourceRow.restricted && <Helmet><script type="application/ld+json">{structuredJson(publicDocumentSchema(sourceRow,author,ui.back))}</script></Helmet>}
     <header className="jsa-nav"><LanguageLink to="/explore">← {ui.back}</LanguageLink><ThemeSwitcher compact /></header>
     <main className="jsa-container">
       {status === 'loading' && <p role="status">…</p>}
@@ -116,17 +123,18 @@ export default function PublicJsa() {
         {sourceRow.restricted && <p className="explore-moderation-notice">{getExploreModerationUi(i18n.language).restricted}</p>}
         {admin && <ExploreModerationButton key={'moderation-' + id} id={id} restricted={sourceRow.restricted} onChanged={() => setAttempt(n => n + 1)} />}
         <PublicTranslationNotice translation={translation} locale={i18n.language}/>
-        <AuthorLink id={currentRow.author_id}/>{sourceRow.is_operator&&<span className="operator-badge">{getOperatorUi(i18n.language).badge}</span>}
+        <AuthorLink id={currentRow.author_id} initialProfile={author} onLoaded={setAuthor}/>{sourceRow.is_operator&&<span className="operator-badge">{getOperatorUi(i18n.language).badge}</span>}
+        {modified && <p>{documentUi.modified}: <time dateTime={modified}>{modified.slice(0,10)}</time></p>}
         <PublicDocumentPreview key={sourceRow.id} row={sourceRow} locale={i18n.language}/>
         <p>{ui.steps}: {quality.steps} · {ui.quality}</p><p className="jsa-notice">{ui.notice}</p>
         <p>{ui.views} {currentRow.view_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.reuses} {currentRow.reuse_count.toLocaleString(getLanguageTag(i18n.language))} · {ui.scraps} {currentRow.scrap_count.toLocaleString(getLanguageTag(i18n.language))}</p>
         <details className="jsa-metric-help"><summary>{ui.metricHelp}</summary><p>{ui.metricRules}</p></details>
         <div className="jsa-toolbar"><button className="jsa-primary" disabled={busy || sourceRow.restricted || !currentRow.reuse_license} onClick={() => action('reuse')}>{ui.reuse}</button><button disabled={busy || sourceRow.restricted} onClick={() => action('scrap')}>{ui.scrap}</button><button disabled={busy || sourceRow.restricted} onClick={() => action('share')}>{ui.share}</button><LanguageLink to={'/community?project='+id}>{ui.report}</LanguageLink></div>
         {!currentRow.reuse_license && <p className="jsa-notice">{community.licensePending}</p>}
-        <p>{currentRow.public_locale} · {new Date(currentRow.updated_at).toLocaleDateString(getLanguageTag(i18n.language))} · {d.derived} {currentRow.fork_count}</p>
-        <dl className="public-stats"><div><dt>{d.hazards}</dt><dd>{stats.hazards}</dd></div><div><dt>{d.controls}</dt><dd>{stats.controls}</dd></div><div><dt>{d.categories}</dt><dd>{stats.categories.map(c=>t(c,{ns:'risk',defaultValue:c})).join(' · ')||''}</dd></div></dl>
+        <p>{currentRow.public_locale} · {d.derived} {currentRow.fork_count}</p>
+        <dl className="public-stats"><div><dt>{d.hazards}</dt><dd>{stats.hazards}</dd></div><div><dt>{d.controls}</dt><dd>{stats.controls}</dd></div><div><dt>{d.categories}</dt><dd>{stats.categories.map(c=>publicCategoryLabel(c,i18n.language)).filter(Boolean).join(' · ')||''}</dd></div></dl>
         <div className="public-context">{['scope','region','limitations','sources'].filter(key=>currentRow.publication_context[key]).map(key=><section key={key}><h2>{community[key]}</h2><p>{currentRow.publication_context[key]}</p></section>)}</div>
-        <section className="public-reading" lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}><h2>{community.overview}</h2>{currentRow.analysis_data.map((step,index)=><article className="public-step" key={index}><header><input type="checkbox" disabled={sourceRow.restricted || !currentRow.reuse_license} aria-label={community.selectSteps+' '+(index+1)} checked={selectedSteps.includes(index)} onChange={e=>setSelectedSteps(previous=>e.target.checked?[...previous,index].sort((a,b)=>a-b):previous.filter(value=>value!==index))}/><h2>{index+1}. {step.proc.stepTitle}</h2></header><DocumentList values={[step.proc.stepDetail]} bullet={false} /><p className="public-risk-score">{d.frequency}: {riskValue(step.frequency)??''} · {d.severity}: {riskValue(step.severity)??''} · {d.risk}: {riskValue(step.riskLevel)??''}</p>{step.risks.map((risk,riskIndex)=><div className="public-risk" key={riskIndex}><h3><DocumentList values={[risk.factor]} bullet={false} /></h3>{risk.category&&<small>{d.categories}: {t(risk.category,{ns:"risk",defaultValue:risk.category})}</small>}<div className="public-control-text"><strong>{t('tags.DATA_CURRENT_MEASURE')}</strong><DocumentList values={[risk.current_measure||risk.measure]} bullet={false} /></div>{risk.recommend_measure&&<div className="public-control-text"><strong>{t('tags.DATA_RECOMMEND_MEASURE')}</strong><DocumentList values={[risk.recommend_measure]} bullet={false} /></div>}</div>)}</article>)}<button className="jsa-primary" disabled={busy||sourceRow.restricted||!selectedSteps.length||!currentRow.reuse_license} onClick={()=>action('selected')}>{community.useSelected} ({selectedSteps.length})</button></section>
+        <section className="public-reading" lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}><h2>{community.overview}</h2>{currentRow.analysis_data.map((step,index)=><article className="public-step" key={index}><header><input type="checkbox" disabled={sourceRow.restricted || !currentRow.reuse_license} aria-label={community.selectSteps+' '+(index+1)} checked={selectedSteps.includes(index)} onChange={e=>setSelectedSteps(previous=>e.target.checked?[...previous,index].sort((a,b)=>a-b):previous.filter(value=>value!==index))}/><h2>{index+1}. {step.proc.stepTitle}</h2></header><DocumentList values={[step.proc.stepDetail]} bullet={false} /><p className="public-risk-score">{d.frequency}: {riskValue(step.frequency)??''} · {d.severity}: {riskValue(step.severity)??''} · {d.risk}: {riskValue(step.riskLevel)??''}</p>{step.risks.map((risk,riskIndex)=><div className="public-risk" key={riskIndex}><h3><DocumentList values={[risk.factor]} bullet={false} /></h3>{risk.category&&<small>{d.categories}: {publicCategoryLabel(risk.category,i18n.language)}</small>}<div className="public-control-text"><strong>{documentUi.current}</strong><DocumentList values={[risk.current_measure||risk.measure]} bullet={false} /></div>{risk.recommend_measure&&<div className="public-control-text"><strong>{documentUi.recommended}</strong><DocumentList values={[risk.recommend_measure]} bullet={false} /></div>}</div>)}{step.actionPlan?.additionalControls && <section className="public-additional-controls"><h3>{getActionPlanUi(i18n.language).additionalControls}</h3><DocumentList values={[step.actionPlan.additionalControls]} bullet={false}/></section>}</article>)}<button className="jsa-primary" disabled={busy||sourceRow.restricted||!selectedSteps.length||!currentRow.reuse_license} onClick={()=>action('selected')}>{community.useSelected} ({selectedSteps.length})</button></section>
 
         {!sourceRow.restricted && <><DiscoveryLinks id={id}/><AdSenseUnit client="ca-pub-9791625990220699" slot="1284119169" content={{indexable:quality.indexable,review:currentRow.assessment.review}}/></>}
         {message && <p role="status">{message}</p>}

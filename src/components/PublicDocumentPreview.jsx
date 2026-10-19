@@ -26,10 +26,9 @@ export default function PublicDocumentPreview({ row, locale }) {
   finally {pending.current=false;setBusy(false);}
  }
  return <section className="public-document-preview" aria-labelledby="public-document-preview-title">
-  <h2 id="public-document-preview-title">{community.preview}</h2>
-  <ProcedureDocument document={projectProcedureDocument(row)} uiLocale={locale} />
+  <ProcedureDocument document={projectProcedureDocument(row)} uiLocale={locale} inline />
   <section className="public-document-version" data-project-id={row.id} data-document-variant={row.document_variant||undefined}>
-   <div className="jsa-toolbar"><h3>{ui[row.document_variant]||community.preview}</h3>
+   <div className="jsa-toolbar public-document-toolbar"><h2 id="public-document-preview-title">{community.preview}</h2>{row.document_variant && <span>{ui[row.document_variant]}</span>}
     <button disabled={busy} onClick={download}>{busy?'…':ui.download}</button>
    </div>
    <div className="jsa-paper-scroll" tabIndex={0} role="region" aria-label={ui[row.document_variant]||community.preview}>

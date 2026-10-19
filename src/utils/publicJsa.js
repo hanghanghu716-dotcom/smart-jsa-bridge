@@ -56,14 +56,24 @@ export function publicJsaQuality(row) {
   const complete = steps.filter(step => step && cleanText(step.proc?.stepTitle) && cleanText(step.proc?.stepDetail)
     && Array.isArray(step.risks) && step.risks.some(risk => cleanText(risk?.factor)
       && (cleanText(risk.measure) || cleanText(risk.current_measure) || cleanText(risk.recommend_measure))));
-  const distinct = new Set(complete.map(step => cleanText(step.proc.stepTitle).toLowerCase())).size;
   const meaningful = complete.reduce((sum, step) => sum + cleanText(step.proc.stepDetail).length
     + step.risks.reduce((n, risk) => n + ['factor','measure','current_measure','recommend_measure'].reduce((count, field) => count + cleanText(risk[field]).length, 0), 0), 0);
-  return { indexable: row?.assessment?.checked === true && !row.assessment.duplicate_of && row.assessment.review !== 'rejected' && row?.is_public === true && row?.reuse_license === 'community-v1' && SUPPORTED_LANGS.includes(row.public_locale)
+  return { indexable: indexablePublication(row, complete.map(step => cleanText(step.proc.stepTitle)), meaningful),
+    steps: steps.length, complete: complete.length };
+}
+function indexablePublication(row, titles, meaningful) {
+  return row?.assessment?.checked === true && !row.assessment.duplicate_of && row.assessment.review !== 'rejected' && row?.is_public === true && row?.reuse_license === 'community-v1' && SUPPORTED_LANGS.includes(row.public_locale)
     && !/^test[_\s-]/i.test(cleanText(row.title))
     && cleanText(row.title).length >= 4 && !/^(untitled(?: jsa)?|제목 없음)$/i.test(cleanText(row.title))
-    && complete.length >= 3 && distinct >= 3 && meaningful >= 180,
-  steps: steps.length, complete: complete.length };
+    && titles.length >= 3 && new Set(titles.map(title => title.toLowerCase())).size >= 3 && meaningful >= 180;
+}
+export const PUBLIC_INDEX_FIELDS = 'id,title,is_public,public_locale,public_country,reuse_license,assessment,published_at,content_updated_at,index_facts';
+export function publicIndexQuality(row) {
+  // Full rows remain supported for existing callers/tests; the live sitemap
+  // requests only the explicit projection above.
+  if (!row?.index_facts) return publicJsaQuality(row);
+  const titles = strings(row.index_facts.titles);
+  return { indexable: indexablePublication(row, titles, Number(row.index_facts.meaningful) || 0) };
 }
 
 export function publicForkState(row, selectedIndices = null) {
