@@ -1,6 +1,6 @@
 import ListPagination from '../components/ListPagination';
 import { libraryPage, libraryTagLabel } from '../utils/libraryPresentation';
-import { readAllPages } from '../services/pagedRead';
+import { readLibrary } from '../services/libraryReadService';
 import { getPublicUi } from '../locales/publicUi';
 import ProcedureDocument from '../components/ProcedureDocument';
 import { projectProcedureDocument, draftProcedureDocument } from '../utils/procedureDocument';
@@ -40,6 +40,7 @@ export default function MyLibrary() {
   const [selectedCatId, setSelectedCatId] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [sectionErrors, setSectionErrors] = useState({});
   const [pageSelection, setPageSelection] = useState({ scope: '', number: 1 });
   const [projectPage, setProjectPage] = useState({ source: null, rows: [], error: false });
   const [activeMenuId, setActiveMenuId] = useState(null);
@@ -78,32 +79,20 @@ export default function MyLibrary() {
     setIsLoading(true); setLoadError(false);
     try {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user) throw Error('AUTH_REQUIRED');
 
-    const [cats, favs, authored, reps, blks, pBlks, userLayouts, draftRows, stepRows] = await Promise.all([
-      supabase.from('user_jsa_categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
-      readAllPages(() => supabase.from('user_favorites').select('id,project_id,category_id').eq('user_id', user.id).order('id')),
-      readAllPages(() => supabase.from('jsa_projects').select('id,category_id,created_at').eq('author_id', user.id).order('created_at', { ascending: false }).order('id')),
-      supabase.from('user_reports').select('*, jsa_projects(title)').eq('reporter_id', user.id),
-      supabase.from('user_blocks').select('*, profiles:blocked_user_id(username)').eq('blocker_id', user.id),
-      supabase.from('user_project_blocks').select('*, jsa_projects(title)').eq('user_id', user.id),
-      readAllPages(() => supabase.from('user_layouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).order('id')),
-      readAllPages(() => supabase.from('user_jsa_drafts').select('*').eq('user_id', user.id).eq('is_archived', false).order('updated_at', { ascending: false }).order('id')),
-      readAllPages(() => supabase.from('user_work_steps').select('*').eq('user_id', user.id).order('is_favorite', { ascending: false }).order('last_used_at', { ascending: false, nullsFirst: false }).order('updated_at', { ascending: false }).order('id'))
-    ]);
-
-    for (const result of [cats, reps, blks, pBlks]) if (result.error) throw result.error;
-    setCategories(cats.data || []);
-    setReports(reps.data || []);
-    setBlocks(blks.data || []);
-    setProjectBlocks(pBlks.data || []);
-    setLayouts(userLayouts || []);
-    setDrafts(draftRows || []);
-    setWorkSteps(stepRows || []);
-
+    const { data, errors } = await readLibrary(supabase, user.id);
+    setSectionErrors(errors);
+    setCategories(data.categories);
+    setReports(data.reports);
+    setBlocks(data.blocks);
+    setProjectBlocks(data.projectBlocks);
+    setLayouts(data.layouts);
+    setDrafts(data.drafts);
+    setWorkSteps(data.workSteps);
     const combined = [
-      ...(favs || []).map(item => ({ ...item, displayType: 'SCRAP' })),
-      ...(authored || []).map(item => ({ id: `mine-${item.id}`, project_id: item.id, displayType: 'MY_JSA', category_id: item.category_id || null }))
+      ...data.favorites.map(item => ({ ...item, displayType: 'SCRAP' })),
+      ...data.authored.map(item => ({ id: `mine-${item.id}`, project_id: item.id, displayType: 'MY_JSA', category_id: item.category_id || null }))
     ];
 
     setFavorites(combined); 
@@ -421,6 +410,11 @@ export default function MyLibrary() {
   const pageLoading = isProjectList && projectPage.source !== projectItems.rows;
   const pageError = isProjectList && projectPage.source === projectItems.rows && projectPage.error;
 
+  const sourceLabels = { categories: 'folderLabel', favorites: 'typeScrap', authored: 'typeMyJsa', reports: 'reportHistoryTitle', blocks: 'userBlockLabel', projectBlocks: 'projectHideLabel', layouts: 'menuLayout', drafts: 'menuDrafts', workSteps: 'menuWorkSteps' };
+  const visibleSources = selectedCatId === 'SYSTEM_FOLDER' ? ['reports', 'blocks', 'projectBlocks'] : selectedCatId === 'DRAFT_FOLDER' ? ['drafts'] : selectedCatId === 'WORK_STEP_FOLDER' ? ['workSteps'] : selectedCatId === 'LAYOUT_FOLDER' ? ['layouts'] : ['categories', 'favorites', 'authored'];
+  const failedSources = visibleSources.filter(key => sectionErrors[key]);
+  const countLabel = (keys, count) => isLoading || loadError || keys.some(key => sectionErrors[key]) ? '' : ` (${count})`;
+
   const formatDate = (dateStr) => {
     if (!dateStr) return "";
     const date = new Date(dateStr);
@@ -459,11 +453,11 @@ export default function MyLibrary() {
             <div style={styles.contentGrid} className="library-grid">
               <aside style={styles.catSidebar}>
                 <div style={selectedCatId === 'SYSTEM_FOLDER' ? styles.systemCatActive : styles.systemCat} onClick={() => setSelectedCatId('SYSTEM_FOLDER')}>{t('menuSystem')}</div>
-                <div style={selectedCatId === 'DRAFT_FOLDER' ? styles.draftCatActive : styles.draftCat} onClick={() => setSelectedCatId('DRAFT_FOLDER')}>{t('menuDrafts')} ({drafts.length})</div>
-                <div style={selectedCatId === 'WORK_STEP_FOLDER' ? styles.workStepCatActive : styles.workStepCat} onClick={() => setSelectedCatId('WORK_STEP_FOLDER')}>{t('menuWorkSteps')} ({workSteps.length})</div>
-                <div style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat} onClick={() => setSelectedCatId('LAYOUT_FOLDER')}>{t('menuLayout')} ({layouts.length})</div>
+                <div style={selectedCatId === 'DRAFT_FOLDER' ? styles.draftCatActive : styles.draftCat} onClick={() => setSelectedCatId('DRAFT_FOLDER')}>{t('menuDrafts')}{countLabel(['drafts'], drafts.length)}</div>
+                <div style={selectedCatId === 'WORK_STEP_FOLDER' ? styles.workStepCatActive : styles.workStepCat} onClick={() => setSelectedCatId('WORK_STEP_FOLDER')}>{t('menuWorkSteps')}{countLabel(['workSteps'], workSteps.length)}</div>
+                <div style={selectedCatId === 'LAYOUT_FOLDER' ? styles.layoutCatActive : styles.layoutCat} onClick={() => setSelectedCatId('LAYOUT_FOLDER')}>{t('menuLayout')}{countLabel(['layouts'], layouts.length)}</div>
                 <div style={styles.catDivider} />
-                <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>{t('menuViewAll')} ({favorites.length})</div>
+                <div style={!selectedCatId ? styles.catItemActive : styles.catItem} onClick={() => setSelectedCatId(null)}>{t('menuViewAll')}{countLabel(['favorites', 'authored'], favorites.length)}</div>
                 <div style={styles.catScrollArea}>
                   {buildFolderTree(categories).map(root => (
                     <FolderItem key={root.id} folder={root} selectedId={selectedCatId} onSelect={setSelectedCatId} onDelete={deleteCategory} favorites={favorites} />
@@ -472,6 +466,10 @@ export default function MyLibrary() {
               </aside>
 
               <section style={styles.listSection} id="library-results" aria-busy={isLoading || pageLoading}>
+                {!isLoading && !loadError && failedSources.length > 0 && <div role="alert" style={{ marginBottom: '1rem' }}>
+                  {failedSources.map(key => <p key={key}>{t(sourceLabels[key])}: {getPublicUi(i18n.language).error}</p>)}
+                  <button onClick={fetchLibraryData}>{getPublicUi(i18n.language).retry}</button>
+                </div>}
                 {loadError || pageError ? <div role="alert">{getPublicUi(i18n.language).error}<button onClick={fetchLibraryData}>{getPublicUi(i18n.language).retry}</button></div> : isLoading || pageLoading ? (
                   <div style={styles.loader}>{t('loading')}</div>
                 ) : selectedCatId === 'SYSTEM_FOLDER' ? (
@@ -489,7 +487,7 @@ export default function MyLibrary() {
                       <h4 style={styles.mTitle}>{t('blockManagementTitle')}</h4>
                       {blocks.map(b => (
                         <div key={b.id} style={styles.mRow}>
-                          <span>{t('userBlockLabel')}: {b.profiles?.username || t('anonymous')}</span>
+                          <span>{t('userBlockLabel')}: {t('anonymous')}{b.blocked_user_id ? ` · ${b.blocked_user_id.slice(0, 8)}` : ''}</span>
                           <button style={styles.mBtn} onClick={() => handleWithdraw('block', b.id)}>{t('releaseBtn')}</button>
                         </div>
                       ))}
@@ -505,7 +503,7 @@ export default function MyLibrary() {
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
                       <h4 style={styles.mTitle}>{t('draftListTitle')}</h4>
-                      {drafts.length === 0 && <div style={styles.emptyAsset}>{t('noDrafts')}</div>}
+                      {!sectionErrors.drafts && drafts.length === 0 && <div style={styles.emptyAsset}>{t('noDrafts')}</div>}
                       {pagination.rows.map(draft => (
                         <div key={draft.id} style={styles.assetRow}>
                           <div style={styles.assetInfo}>
@@ -544,7 +542,7 @@ export default function MyLibrary() {
                         onChange={(e) => setWorkStepSearch(e.target.value)}
                         placeholder={t('searchWorkSteps')}
                       />
-                      {visibleWorkSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
+                      {!sectionErrors.workSteps && visibleWorkSteps.length === 0 && <div style={styles.emptyAsset}>{t('noWorkSteps')}</div>}
                       {pagination.rows.map(step => (
                         <div key={step.id} style={styles.assetRow}>
                           <div style={styles.assetInfo}>
@@ -637,7 +635,7 @@ export default function MyLibrary() {
                   <div style={styles.managementView}>
                     <div style={styles.mGroup}>
                       <h4 style={styles.mTitle}>{t('layoutListTitle')}</h4>
-                      {layouts.length === 0 && <div style={{color: "var(--text-muted)", fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
+                      {!sectionErrors.layouts && layouts.length === 0 && <div style={{color: "var(--text-muted)", fontSize: '0.85rem'}}>{t('noLayouts')}</div>}
                       {pagination.rows.map(l => (
                         <div key={l.id} style={styles.mRow}>
                           <span>[{t('layoutLabel')}] {l.name} <span style={{fontSize:'0.75rem', color:"var(--text-muted)", marginLeft:'10px'}}>{formatDate(l.created_at)}</span></span>

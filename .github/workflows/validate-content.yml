@@ -46,6 +46,7 @@ jobs:
           npx vite build
           node scripts/explore-quality-browser.cjs
           node scripts/explore-view-browser.cjs
+          node scripts/library-discovery-browser.cjs
           node scripts/verify-operator-documents.cjs --local
       - name: Render and verify every current case-study URL
         run: npm run build

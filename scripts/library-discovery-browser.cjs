@@ -10,6 +10,7 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
   for(let n=0;n<60;n++){try{if((await fetch(base)).ok)break;}catch{}await new Promise(r=>setTimeout(r,250));}
   browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||(process.platform==='win32'?'C:/Program Files/Google/Chrome/Application/chrome.exe':undefined),args:['--no-sandbox']});
   const page=await browser.newPage(),errors=[],bodyReads=[],writes=[],facetReads=[];
+  const readFailures=new Set();
   page.on('pageerror',e=>errors.push(e.message));
   await page.evaluateOnNewDocument(s=>localStorage.setItem('sb-aajvezmhyrdawxxbulqz-auth-token',JSON.stringify(s)),session);
   await page.setRequestInterception(true);
@@ -21,6 +22,11 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
    if(url.includes('/auth/v1/user'))data=user;
    else if(url.includes('/rpc/'))data=url.includes('get_project_storage_usage')?{used:0,limit:3,can_create:true}:[];
    else if(!['GET','HEAD'].includes(request.method())){writes.push(url);return request.abort();}
+   else if(readFailures.has(u.pathname.split('/').pop()))return request.respond({status:400,headers:{...headers,'content-type':'application/json'},body:JSON.stringify({code:'PGRST200',message:'Fixture read failure'})});
+   else if(url.includes('/user_blocks')){
+    assert.ok(['id,blocked_user_id,created_at','blocked_user_id'].includes(q.get('select')),'Do not embed a nonexistent private-profile relationship');
+    data=[{id:'block-1',blocked_user_id:'90000000-0000-4000-8000-000000000001'}];
+   }
    else if(url.includes('/jsa_projects')){
     assert.ok(q.get('author_id')==='eq.'+uid||q.get('id')?.startsWith('in.'));
     data=records.filter(row=>!q.has('id')||q.get('id').includes(row.id));
@@ -44,6 +50,20 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
   const ready=async n=>page.waitForFunction(n=>document.querySelector('#library-results')?.getAttribute('aria-busy')==='false'&&document.querySelectorAll('#library-results .card').length===n,{},n);
   await ready(12);
   assert.doesNotMatch(await page.$eval('#library-results',el=>el.textContent),/[가-힣]/);
+  readFailures.add('user_blocks');readFailures.add('user_jsa_drafts');
+  await page.goto(base+'/en-US/library',{waitUntil:'networkidle2'});await ready(12);
+  assert.equal(await page.$('#library-results [role="alert"]'),null,'Unrelated failures must not block documents');
+  assert.ok(!(await page.$eval('.library-grid > aside',el=>el.textContent)).includes('Drafts (0)'),'Failed reads are not empty libraries');
+  await page.$$eval('#library-results .card button',els=>els.find(el=>el.textContent==='Edit & Modify').click());
+  await page.waitForFunction(()=>location.pathname.endsWith('/analysis')&&history.state?.usr?.existingId);
+  assert.deepEqual(await page.evaluate(()=>({id:history.state.usr.existingId,own:history.state.usr.projectSaveContext.own,isFork:history.state.usr.isFork})),{id:records[0].id,own:true,isFork:false});
+  await page.goto(base+'/en-US/library',{waitUntil:'networkidle2'});await ready(12);
+  await page.$$eval('.library-grid > aside > div',els=>els.find(el=>el.textContent.includes('Reports & Blocks')).click());
+  await page.waitForSelector('#library-results [role="alert"]');
+  readFailures.clear();
+  await page.click('#library-results [role="alert"] button');
+  await page.waitForFunction(()=>!document.querySelector('#library-results [role="alert"]')&&document.querySelector('#library-results')?.textContent.includes('90000000'));
+  await page.goto(base+'/en-US/library',{waitUntil:'networkidle2'});await ready(12);
   await page.$$eval('.library-pagination .list-pagination-number',els=>els.find(el=>el.textContent==='2').click());await ready(12);
   await page.waitForFunction(()=>document.querySelector('#library-results h4')?.textContent.startsWith('Document 13:'));
   await page.click('.library-pagination .list-pagination-last');await ready(1);
@@ -75,6 +95,6 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
   assert.ok(await page.$$eval('.public-control-text [data-document-list] > span > span',els=>els.some(el=>parseFloat(el.style.paddingInlineStart)>1)));
   await fs.mkdir('.cache',{recursive:true});await page.screenshot({path:'.cache/library-discovery-document.png',fullPage:true});
   assert.deepEqual(errors,[]);assert.deepEqual(writes,[]);
-  console.log(JSON.stringify({passed:true,libraryPageSize:12,privateBodyReads:bodyReads,folders:true,facets:[25,37],indentation:true,unconfirmedNote:true,writes:0}));
+  console.log(JSON.stringify({passed:true,libraryPageSize:12,privateBodyReads:bodyReads,folders:true,isolatedFailures:true,retryRecovery:true,editOriginal:true,facets:[25,37],indentation:true,unconfirmedNote:true,writes:0}));
  }finally{if(browser)await browser.close();preview.kill();}
 })().catch(e=>{console.error(e);process.exitCode=1});
