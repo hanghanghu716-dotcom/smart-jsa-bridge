@@ -15,7 +15,7 @@ export default function DiscoveryLinks({id=null,kind=null,target=null,showReuseH
  if(state?.key!==key)return null;
  if(state.error)return <p role="status">{p.error} <button onClick={()=>setAttempt(n=>n+1)}>{p.retry}</button></p>;
  const data=state.result;
- const list=(label,items)=> <section key={label}><h2>{label}</h2>{items?.length?<ul>{items.map(item=><li key={item.id}><LanguageLink to={publicHref(item,i18n.language)}>{item.title}</LanguageLink></li>)}</ul>:<p>{ui.empty}</p>}</section>;
+ const list=(label,items)=> items?.length ? <section key={label}><h2>{label}</h2>{items?.length?<ul>{items.map(item=><li key={item.id}><LanguageLink to={publicHref(item,i18n.language)}>{item.title}</LanguageLink></li>)}</ul>:null}</section>:null;
  if(!id)return data?.length?<aside className="discovery-links discovery-links--editorial" dir={i18n.dir()}>
   <section>
    <h2>{ui.related}</h2>
@@ -23,5 +23,5 @@ export default function DiscoveryLinks({id=null,kind=null,target=null,showReuseH
    <ul>{data.map(item=><li key={item.id}><LanguageLink to={'/public-jsa/'+item.id}>{item.title}</LanguageLink></li>)}</ul>
   </section>
  </aside>:null;
- return <aside className="discovery-links">{data?.source&&list(ui.source,[data.source])}{list(ui.derived,data?.children)}{list(ui.related,data?.related)}<section><h2>{ui.editorial}</h2>{data?.editorial?.length?<ul>{data.editorial.map(l=><li key={l.kind+l.target}><LanguageLink to={editorialHref(l,i18n.language)}>{l.title||getGuideTitle(l.target,i18n.language)}</LanguageLink></li>)}</ul>:<p>{ui.empty}</p>}</section></aside>;
+ return <aside className="discovery-links">{data?.source&&list(ui.source,[data.source])}{list(ui.derived,data?.children)}{list(ui.related,data?.related)}{!!data?.editorial?.length&&<section><h2>{ui.editorial}</h2>{data?.editorial?.length?<ul>{data.editorial.map(l=><li key={l.kind+l.target}><LanguageLink to={editorialHref(l,i18n.language)}>{l.title||getGuideTitle(l.target,i18n.language)}</LanguageLink></li>)}</ul>:<p>{ui.empty}</p>}</section>}</aside>;
 }

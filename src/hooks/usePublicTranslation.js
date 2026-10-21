@@ -25,7 +25,7 @@ export function usePublicTranslation(rows,locale,detail=false){
   const current=state.key===key?state:{status:'checking'};
   const translated=current.status==='translated'&&!current.original;
   // Live metrics, country and publication state are always taken from the fresh source.
-  const visible=translated?rows.map(row=>{const match=current.rows.find(item=>item.id===row.id);return match?{...row,title:match.title,...(detail?{form_data:match.form_data,analysis_data:match.analysis_data,custom_layout:match.custom_layout,publication_context:match.publication_context}:{cardExcerpt:match.cardExcerpt})}:row;}):rows;
+  const visible=translated?rows.map(row=>{const match=current.rows.find(item=>item.id===row.id);return match?{...row,title:match.title,...(detail?{form_data:match.form_data,analysis_data:match.analysis_data,custom_layout:match.custom_layout,publication_context:match.publication_context}:{cardExcerpt:match.cardExcerpt,cardEvidence:match.cardEvidence})}:row;}):rows;
   return {rows:visible,status:current.status,progress:current.progress,translated,original:current.original,start,
     toggle:()=>setState(previous=>({...previous,original:!previous.original}))};
 }

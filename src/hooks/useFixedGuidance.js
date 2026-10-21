@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { fixedGuidanceText, usFixedGuidance } from '../utils/usFixedGuidance';
+import { regionalFixedGuidance } from '../utils/regionalFixedGuidance';
 
 export function useFixedGuidance(namespace) {
   const translation = useTranslation(namespace);
@@ -10,5 +11,5 @@ export function useFixedGuidance(namespace) {
     const value = fixedGuidanceText(guidance, key);
     return typeof value === 'string' ? value : translation.t(key, options);
   };
-  return { ...translation, t, guidance };
+  return { ...translation, t, guidance, regional: regionalFixedGuidance(pathname, namespace) };
 }

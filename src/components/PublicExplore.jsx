@@ -1,3 +1,6 @@
+import DiscoveryTopics from './DiscoveryTopics';
+import { discoveryToolsUi } from '../locales/discoveryToolsUi';
+import '../styles/public-discovery-tools.css';
 import ListPagination from './ListPagination';
 import useCommunityAdmin from '../hooks/useCommunityAdmin';
 import { ExploreModerationButton, RestrictedExploreDocuments } from './ExploreModeration';
@@ -25,7 +28,7 @@ import SEO from './SEO';
 import ThemeSwitcher from './ThemeSwitcher';
 import PublicProjectActions from './PublicProjectActions';
 import { DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary';
-import { exploreCardTags, exploreExcerpt } from '../utils/explorePresentation.js';
+import { exploreCardTags, exploreExcerpt, exploreEvidence } from '../utils/explorePresentation.js';
 import { publicTagLabel } from '../locales/publicTagLabels.js';
 import { getExploreQualityUi } from '../locales/exploreQualityUi.js';
 import { getExploreViewUi } from '../locales/exploreViewUi.js';
@@ -66,7 +69,7 @@ function useExploreCards(rows, country, locale) {
   return useMemo(() => {
     const selected = exploreCountry(country, locale);
     return rows.filter(row => !selected || row.public_country === selected)
-      .map(row => ({ ...row, cardExcerpt: exploreExcerpt(row), cardTags: exploreCardTags(row, locale) }));
+      .map(row => ({ ...row, cardExcerpt: exploreExcerpt(row), cardEvidence: exploreEvidence(row), cardTags: exploreCardTags(row, locale) }));
   }, [rows, country, locale]);
 }
 
@@ -147,7 +150,7 @@ export default function PublicExplore() {
   const cardRows = useExploreCards(rows, country, locale);
   const translation=usePublicTranslation(cardRows,i18n.language);
   return <div className="jsa-workspace explore-page" dir={i18n.dir()}>
-    <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={exploreSearch({page,view})} noIndex={!exploreIndexable(rows,query,error)} />
+    <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} availableLocales={[]} canonicalSearch={exploreSearch({page,view})} noIndex={!exploreIndexable(rows,query,error)} />
     <header className="jsa-nav explore-nav"><LanguageLink className="explore-brand" to="/"><span className="explore-brand-mark"><ExploreIcon name="library" /></span>Smart JSA Bridge</LanguageLink><ThemeSwitcher compact /></header>
     <main className="jsa-container">
       <section className="explore-hero">
@@ -156,6 +159,7 @@ export default function PublicExplore() {
       </section>
       <nav className="jsa-toolbar"><LanguageLink to="/explore" aria-current="page">{getSocialUi(i18n.language).all}</LanguageLink><LanguageLink to="/following">{getSocialUi(i18n.language).following}</LanguageLink></nav>
       {admin && <RestrictedExploreDocuments refreshKey={attempt} onChanged={() => setAttempt(n => n + 1)} />}
+      <DiscoveryTopics rows={rows} locale={i18n.language} query={query}/>
       <div className="explore-searchbar" role="search">
         <label className="explore-search"><ExploreIcon name="search" /><ExploreSearchInput label={ui.search} value={search} resetKey={params.toString()+":"+searchReset} onSearch={setSearch} /></label>
         <select aria-label={ui.sort} value={sort} onChange={e => { setSort(e.target.value); }}><option value="latest">{ui.latest}</option><option value="popular">{ui.popular}</option><option value="views">{ui.mostViewed}</option><option value="reused">{ui.mostReused}</option></select>
@@ -211,6 +215,7 @@ export default function PublicExplore() {
         <p className="explore-meta"><ExploreIcon name="steps" />{ui.steps}<strong>{row.analysis_data.length}</strong></p>
         <p className="explore-document-meta"><span>{countryLabel(row.public_country,i18n.language)}</span><span>{row.form_data.jsaType === '3-step' ? t('typeAdvanced') : t('typeBasic')}</span><time dateTime={row.created_at}>{new Date(row.created_at).toLocaleDateString(getLanguageTag(i18n.language))}</time></p>
         {view === 'large' && row.cardExcerpt && <div className="explore-excerpt"><span>{qualityUi.excerpt}</span><p data-explore-excerpt lang={getLanguageTag(translation.translated ? i18n.language : row.public_locale || i18n.language)} dir="auto">{row.cardExcerpt}</p></div>}
+        {view === 'large' && <dl className="explore-evidence" lang={getLanguageTag(translation.translated?i18n.language:row.public_locale||i18n.language)}>{(row.cardEvidence||[]).map(item=><div key={item.key}><dt lang={getLanguageTag(i18n.language)}>{discoveryToolsUi(i18n.language)[item.key]}</dt><dd dir="auto">{item.text}</dd></div>)}</dl>}
         <div className="explore-tags">{row.cardTags.slice(0,view === 'small' ? 3 : 5).map(({tag,label}) => <button key={tag} data-explore-tag aria-pressed={tags.includes(tag)} onClick={() => toggleTag(tag)}>#{label}</button>)}</div>
         <dl className="explore-metrics">{[['eye',ui.views,row.view_count],['reuse',ui.reuses,row.reuse_count],['bookmark',ui.scraps,row.scrap_count]].map(([icon,label,count]) => <div key={icon}><dt><ExploreIcon name={icon} />{label}</dt><dd>{count.toLocaleString(getLanguageTag(i18n.language))}</dd></div>)}</dl>
         <div className="explore-card-footer"><LanguageLink className="explore-detail" to={'/public-jsa/' + row.id}>{ui.detail}<ExploreIcon name="arrow" /></LanguageLink></div>

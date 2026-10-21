@@ -1,14 +1,14 @@
 import { normalizeLocale } from './locales/config.js';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AuthProvider } from './contexts/AuthContext';
 
 import Main from './pages/Main';
-import Info from './pages/Info';
-import Analysis from './pages/Analysis';
-import Export from './pages/Export';
-import Procedure from './pages/Procedure';
+const Info = lazy(() => import('./pages/Info'));
+const Analysis = lazy(() => import('./pages/Analysis'));
+const Export = lazy(() => import('./pages/Export'));
+const Procedure = lazy(() => import('./pages/Procedure'));
 import About from './pages/About';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
@@ -17,31 +17,31 @@ import JraJsa from './pages/Jrajsa';
 import Regulation from './pages/Regulation';
 import ProtectiveEquipment from './pages/ProtectiveEquipment';
 import RiskClassification from './pages/RiskClassification';
-import JsaSamplePreview from './pages/JsaSamplePreview';
-import MyLibrary from './pages/MyLibrary'; 
+const JsaSamplePreview = lazy(() => import('./pages/JsaSamplePreview'));
+const MyLibrary = lazy(() => import('./pages/MyLibrary'));
 import ConstructionGuide from './pages/guideline/ConstructionGuide';
 import HighRiskGuide from './pages/guideline/HighRiskGuide';
 import GeneralGuide from './pages/guideline/GeneralGuide';
 import ManufacturingGuide from './pages/guideline/ManufacturingGuide';
 import ChemicalGasGuide from './pages/guideline/ChemicalGasGuide';
 import CommonGuide from './pages/guideline/CommonGuide';
-import Login from './pages/Login'; 
-import ResetPassword from './pages/ResetPassword'; 
-import Profile from './pages/Profile';
+const Login = lazy(() => import('./pages/Login'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
+const Profile = lazy(() => import('./pages/Profile'));
 import PublicExplore from './components/PublicExplore';
 import PublicJsa from './pages/PublicJsa';
-import Business from './pages/Business';
-import Community from './pages/Community';
+const Business = lazy(() => import('./pages/Business'));
+const Community = lazy(() => import('./pages/Community'));
 import Authors from './pages/Authors';
-import WorkPackages from './pages/WorkPackages';
+const WorkPackages = lazy(() => import('./pages/WorkPackages'));
 import { communityAction } from './services/communityService';
-import LayoutBuilder from './pages/LayoutBuilder';
+const LayoutBuilder = lazy(() => import('./pages/LayoutBuilder'));
 import FactorDictionary from './pages/FactorDictionary';
-import ModuleBuilder from './pages/ModuleBuilder';
-import TableBuilder from './pages/TableBuilder';
-import DocumentDesigner from './pages/DocumentDesigner';
+const ModuleBuilder = lazy(() => import('./pages/ModuleBuilder'));
+const TableBuilder = lazy(() => import('./pages/TableBuilder'));
+const DocumentDesigner = lazy(() => import('./pages/DocumentDesigner'));
 import CaseStudyDetail from './pages/CaseStudyDetail';
-import AdminPostUpload from './pages/AdminPostUpload';
+const AdminPostUpload = lazy(() => import('./pages/AdminPostUpload'));
 import Archive from './pages/Archive';
 import SEO from './components/SEO';
 import Analytics from './components/Analytics';
@@ -95,11 +95,11 @@ export default function App() {
   return (
     <AuthProvider>
       <Router>
-        <LanguageInit /> 
+        <LanguageInit />
         <Analytics />
-        
+
         <MobileGuard>
-          <Routes>
+          <Suspense fallback={<p role="status" aria-live="polite">…</p>}><Routes>
             <Route path="/" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
@@ -114,7 +114,7 @@ export default function App() {
             <Route path="/:lng/jrajsa" element={<LanguageWrapper><JraJsa /></LanguageWrapper>} />
             <Route path="/:lng/regulation" element={<LanguageWrapper><Regulation /></LanguageWrapper>} />
             <Route path="/:lng/riskclassification" element={<LanguageWrapper><RiskClassification /></LanguageWrapper>} />
-            <Route path="/:lng/protectiveequipment" element={<LanguageWrapper><ProtectiveEquipment /></LanguageWrapper>} /> 
+            <Route path="/:lng/protectiveequipment" element={<LanguageWrapper><ProtectiveEquipment /></LanguageWrapper>} />
             <Route path="/:lng/guideline/common" element={<LanguageWrapper><CommonGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/construction" element={<LanguageWrapper><ConstructionGuide /></LanguageWrapper>} />
             <Route path="/:lng/guideline/manufacturing" element={<LanguageWrapper><ManufacturingGuide /></LanguageWrapper>} />
@@ -123,7 +123,7 @@ export default function App() {
             <Route path="/:lng/guideline/general" element={<LanguageWrapper><GeneralGuide /></LanguageWrapper>} />
             <Route path="/:lng/login" element={<CrawlerBlocker><LanguageWrapper><Login /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/reset-password" element={<CrawlerBlocker><LanguageWrapper><ResetPassword /></LanguageWrapper></CrawlerBlocker>} />
-            <Route path="/:lng/profile" element={<CrawlerBlocker><LanguageWrapper><Profile /></LanguageWrapper></CrawlerBlocker>} /> 
+            <Route path="/:lng/profile" element={<CrawlerBlocker><LanguageWrapper><Profile /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/library" element={<CrawlerBlocker><LanguageWrapper><MyLibrary /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/info" element={<LanguageWrapper><Info /></LanguageWrapper>} />
             <Route path="/:lng/analysis" element={<CrawlerBlocker><LanguageWrapper><Analysis /></LanguageWrapper></CrawlerBlocker>} />
@@ -141,7 +141,7 @@ export default function App() {
             <Route path="/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/archive" element={<LanguageWrapper><Archive /></LanguageWrapper>} />
-          </Routes>
+          </Routes></Suspense>
         </MobileGuard>
       </Router>
     </AuthProvider>

@@ -1,0 +1,13 @@
+.public-document-contents { margin:20px 0; padding:16px; border:1px solid var(--border-default,#d9dfe8); border-radius:14px; }
+.public-document-contents ol { padding-inline-start:24px; display:grid; gap:8px; }
+.public-document-contents a { color:var(--accent-primary,#0065cd); text-decoration:underline; text-underline-offset:3px; }
+.public-step, #public-analysis-reading, #public-procedure-preview, #public-document-preview-title { scroll-margin-top:24px; }
+.explore-evidence { margin:12px 0; font-size:.88rem; line-height:1.6; }
+.explore-evidence dt { font-weight:700; margin-top:8px; }
+.explore-evidence dd { margin:4px 0 0; overflow-wrap:anywhere; }
+.discovery-topic-nav { margin:20px 0; padding:16px; border:1px solid var(--border-default,#d9dfe8); border-radius:14px; }
+.discovery-topic-nav ul { display:flex; flex-wrap:wrap; gap:12px 24px; padding-inline-start:20px; }
+.seo-diagnostics { margin-block:24px; overflow-wrap:anywhere; }
+.seo-diagnostics dl > div { display:grid; grid-template-columns:minmax(100px,1fr) 2fr; gap:8px 16px; }
+.seo-diagnostics dd { margin:0; }
+@media(max-width:600px) {.seo-diagnostics dl > div {grid-template-columns:1fr;} .public-document-contents .jsa-toolbar {gap:12px;} }

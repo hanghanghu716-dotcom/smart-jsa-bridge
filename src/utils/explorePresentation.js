@@ -18,6 +18,16 @@ export function exploreExcerpt(row) {
     || steps.slice(0, 3).map(step => text(step?.proc?.stepTitle)).filter(Boolean).join(' · '));
 }
 
+// Labelled quotations from the first documented hazard/control pair. This is
+// not a generated summary, a severity ranking or proof of implementation.
+export function exploreEvidence(row) {
+ const risks=(Array.isArray(row?.analysis_data)?row.analysis_data:[]).flatMap(step=>Array.isArray(step?.risks)?step.risks:[]);
+ const risk=risks.find(r=>text(r?.factor));
+ if(!risk)return [];
+ return [['risk',risk.factor],['controls',risk.current_measure||risk.measure||risk.recommend_measure]]
+   .filter(([,value])=>text(value)).map(([key,value])=>({key,text:excerptText(value,170)}));
+}
+
 export function exploreCardTags(row, locale, limit = 5) {
   const saved = new Set(Array.isArray(row?.tags) ? row.tags : []);
   const sourceLocale = row?.public_locale || locale;

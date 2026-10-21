@@ -1,3 +1,4 @@
+import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거 및 useLocation 추가
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
@@ -7,10 +8,11 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다�
 
 export default function Regulation() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
-  const { t, guidance } = useFixedGuidance('regulation');
+  const { t, guidance, regional } = useFixedGuidance('regulation');
   const BrandTag = guidance ? 'p' : 'h1';
   const Heading = guidance ? 'h1' : 'h2';
 
+  if (regional) return <RegionalGuidancePage guidance={regional}/>;
   return (
     <div style={styles.wrapper}>
       <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />
@@ -75,7 +77,7 @@ export default function Regulation() {
           <div style={styles.container}>
             <h3 style={styles.sectionTitle}>{t('section2.title')}</h3>
             <p style={styles.para}>{t('section2.para')}</p>
-            <div style={styles.checkGrid}>
+            <div style={styles.checkGrid} className="max-sm:!grid-cols-1">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                 <div key={num} style={styles.checkItem}>
                   <h4 style={styles.itemHeader}>● {t(`section2.items.item${num}.title`)}</h4>

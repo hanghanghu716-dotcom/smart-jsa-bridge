@@ -1,3 +1,4 @@
+import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
@@ -9,11 +10,12 @@ import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
 
 export default function JraJsa() {
   const navigate = useLanguageNavigate(); // ✅ [변경] 커스텀 네비게이트 적용
-  const { t, guidance } = useFixedGuidance('jrajsa');
+  const { t, guidance, regional } = useFixedGuidance('jrajsa');
   const BrandTag = guidance ? 'p' : 'h1';
   const Heading = guidance ? 'h1' : 'h2';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  if (regional) return <RegionalGuidancePage guidance={regional}/>;
   return (
     <div style={styles.wrapper}>
       <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />

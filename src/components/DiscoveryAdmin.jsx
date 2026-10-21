@@ -1,3 +1,4 @@
+import SeoDiagnostics from './SeoDiagnostics';
 import { useEffect,useRef,useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageLink } from '../hooks/useLanguage';
@@ -19,6 +20,7 @@ export default function DiscoveryAdmin(){
  return <section className="jsa-card discovery-admin"><h2>{ui.insights}</h2><p>{ui.metricsHelp}</p><p>{getCohortNote(i18n.language)}</p><button onClick={()=>setRevision(n=>n+1)} disabled={busy}>{ui.refresh}</button>{message&&<p role="status">{message}</p>}
  <div className="discovery-table"><table><caption>{ui.insights} · UTC</caption><thead><tr>{['month','reuseSteps','reuseActions','published','ratio'].map(k=><th key={k} scope="col">{ui[k]}</th>)}</tr></thead><tbody>{data?.map(row=><tr key={row.month}><th scope="row">{row.month.slice(0,7)}</th><td>{row.reused_steps}</td><td>{row.reuse_actions}</td><td>{row.published}</td><td>{row.published?new Intl.NumberFormat(getLanguageTag(i18n.language),{style:'percent',maximumFractionDigits:1}).format(row.derived/row.published):''}</td></tr>)}</tbody></table></div>
  <SearchConsoleAdmin />
+ <SeoDiagnostics id={id}/>
  <h3>{ui.review}</h3><p>{ui.reviewHelp}</p><select aria-label={ui.review} value={id} onChange={e=>{setId(e.target.value);setReason('');setLinks([]);}}><option value=""></option>{queue.map(row=><option value={row.id} key={row.id}>{row.title} · {ui[row.assessment?.review]||ui.pending}</option>)}</select><nav><button disabled={!offset||busy} onClick={()=>{setId('');setOffset(n=>Math.max(0,n-100));}}>{ui.previous}</button><button disabled={queue.length<100||busy} onClick={()=>{setId('');setOffset(n=>n+100);}}>{ui.next}</button></nav>
  {selected&&<><LanguageLink to={'/public-jsa/'+id} target="_blank" rel="noopener">{selected.title} ↗</LanguageLink>{selected.assessment?.duplicate_of&&<p>{ui.duplicate}: <LanguageLink to={'/public-jsa/'+selected.assessment.duplicate_of}>{ui.source} ↗</LanguageLink></p>}
  <form onSubmit={e=>{e.preventDefault();run('review',{state,reason,revision:selected.assessment.revision});}}><label>{ui.review}<select value={state} onChange={e=>setState(e.target.value)}><option value="approved">{ui.approved}</option><option value="rejected">{ui.rejected}</option></select></label><label>{ui.reason}<textarea required minLength={10} maxLength={2000} value={reason} onChange={e=>setReason(e.target.value)}/></label><button disabled={busy||!selected.assessment?.revision}>{ui.save}</button></form>

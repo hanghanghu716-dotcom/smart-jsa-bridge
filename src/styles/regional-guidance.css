@@ -1,0 +1,13 @@
+.regional-guidance-main {max-width:1120px;margin:auto;padding:32px 24px 64px;line-height:1.8;}
+.regional-guidance-hero {padding:32px 0;}
+.regional-guidance-hero h1 {font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.25;text-wrap:balance;margin:12px 0 24px;}
+.regional-guidance-section {background:var(--bg-surface,#fff);color:var(--text-primary,#1c1b1f);border:1px solid var(--border-default,#d9dfe8);border-radius:18px;padding:28px;margin-block:24px;}
+.regional-guidance-section h2 {font-size:1.3rem;line-height:1.5;margin:0 0 16px;}
+.regional-guidance-section p+p {margin-top:18px;}
+.regional-guidance-section ul,.regional-guidance-steps {padding-inline-start:24px;display:grid;gap:16px;}
+.regional-guidance-section a {color:var(--accent-primary,#0065cd);text-decoration:underline;overflow-wrap:anywhere;}
+.regional-guidance-tabs {display:flex;flex-wrap:wrap;gap:12px 24px;margin-block:20px;}
+.regional-guidance-tabs a {color:var(--accent-primary,#0065cd);text-decoration:underline;text-underline-offset:4px;}
+.regional-guidance-tabs [aria-current=page] {font-weight:800;}
+.regional-guidance-terms {padding:16px;border-inline-start:4px solid var(--accent-primary,#0065cd);background:var(--bg-page,#f6f8fb);}
+@media(max-width:600px){.regional-guidance-main{padding-inline:16px}.regional-guidance-section{padding:20px}.regional-guidance-tabs{flex-direction:column;}}

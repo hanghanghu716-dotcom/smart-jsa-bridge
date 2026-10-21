@@ -39,7 +39,8 @@ export function buildSitemap(rows, { includeStatic = true, exploreLocales = [] }
       && (page !== 'explore' || exploreLocales.includes(getSeoLocale(code))));
     for (const locale of SUPPORTED_LANGS) {
       if (!isIndexableStaticPage(locale, page) || staticCanonicalLocale(locale, page) !== locale || (page === 'explore' && !exploreLocales.includes(locale))) continue;
-      addEntry(locale, page ? '/' + page : '', alternates);
+      // Country catalogs contain different documents, not translated copies.
+      addEntry(locale, page ? '/' + page : '', page === 'explore' ? [] : alternates);
     }
   }
   const groups = new Map();

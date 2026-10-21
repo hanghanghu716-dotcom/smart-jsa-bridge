@@ -1,0 +1,110 @@
+{
+ "en-GB": {
+  "name":"United Kingdom", "terms":"Risk Assessment · Method Statement (RAMS) · Permit to Work · Toolbox Talk",
+  "scope":"For Great Britain, HSE guidance starts with identifying hazards, assessing and controlling risks, recording findings and reviewing controls. Employers with five or more employees must record significant findings. A method statement explains how work will be done; combining it with a risk assessment is commonly called RAMS. That label is not a universal statutory form. Northern Ireland has its own legislation and regulator, HSENI.",
+  "application":"Describe who may be harmed, existing precautions, further actions, the responsible person and completion date. Review when conditions change or controls may be ineffective. Check task-specific permit and construction requirements separately. Do not treat a generic annual review date or a matrix score as evidence that risks are controlled.",
+  "links":[["HSE · Managing risks","https://www.hse.gov.uk/simple-health-safety/risk/steps-needed-to-manage-risk.htm"],["HSENI · Risk assessment","https://www.hseni.gov.uk/articles/risk-assessment"]]
+ },
+ "en-AU": {
+  "name":"Australia", "terms":"Risk Assessment · Safe Work Method Statement (SWMS) · Pre-start / Toolbox Talk",
+  "scope":"Safe Work Australia publishes model WHS guidance; enforcement and the applicable law sit with the relevant jurisdiction. A SWMS addresses high risk construction work within the applicable rules. It is not the required name for every task assessment. Determine the state or territory, whether the activity is construction work, and which high-risk categories apply before choosing the form.",
+  "application":"For applicable high risk construction work, identify the activities, hazards and controls and how controls will be implemented, monitored and reviewed. Consult the people carrying out the work. A pre-start discussion supports communication but does not replace the SWMS or required permits. Check the state or territory regulator, including different arrangements in Victoria.",
+  "links":[["Safe Work Australia · SWMS for high risk construction work","https://www.safeworkaustralia.gov.au/doc/safe-work-method-statement-high-risk-construction-work-information-sheet"]]
+ },
+ "en-SG": {
+  "name":"Singapore", "terms":"Risk Assessment (RA) · Safe Work Procedure (SWP) · Permit to Work (PTW) · Toolbox Meeting",
+  "scope":"MOM explains risk management as assessing, controlling, monitoring and communicating workplace risks. The WSH (Risk Management) Regulations place responsibilities on employers, self-employed persons and principals. RA identifies and evaluates risks; SWP explains the work sequence and safeguards. PTW is a separate authorisation process where applicable, not a substitute for RA.",
+  "application":"Use a team familiar with the work, consider routine and non-routine activities, and communicate controls to affected workers. MOM states that assessments and risk management practices should be reviewed at least once every three years and when relevant changes or incidents require review. Do not copy a review interval from another country or assume a toolbox meeting alone satisfies these duties.",
+  "links":[["MOM · Risk management","https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management"],["MOM · When to review a risk assessment","https://www.mom.gov.sg/faq/safety-and-health-management-systems/when-should-my-company-review-its-risk-assessment"]]
+ },
+ "en-CA": {
+  "name":"Canada — jurisdiction selection", "terms":"Job Safety Analysis (JSA) · Hazard Assessment · Safe Work Procedure",
+  "scope":"Canada has federal, provincial and territorial occupational health and safety jurisdictions. First establish which jurisdiction covers the workplace. CCOHS explains risk assessment methods but does not make every province's requirements identical. This common Canadian page is an orientation, not a province-specific compliance checklist.",
+  "application":"Identify hazards and exposed people, evaluate risk and select controls with workers' input. Use the province-specific information for Alberta, Ontario, British Columbia or Québec when applicable. For other provinces, territories or federally regulated work, consult the relevant authority. Confirm required records, review triggers and task-specific permits locally.",
+  "links":[["CCOHS · Risk assessment","https://www.ccohs.ca/oshanswers/hsprograms/hazard/risk_assessment.html"],["CCOHS · Canadian OHS legislation","https://www.ccohs.ca/oshanswers/legisl/intro.html"]]
+ },
+ "en-CA-AB": {
+  "name":"Canada — Alberta", "terms":"Hazard Assessment · Safe Work Procedure · Safe Work Permit · Toolbox Meeting",
+  "scope":"Alberta's OHS resource explains hazard assessment, elimination and control with reference to sections 7, 8 and 9 of the OHS Code. Use Alberta requirements for provincially regulated work rather than borrowing an Ontario, British Columbia or US form as a legal checklist. Confirm federal coverage separately when relevant.",
+  "application":"Identify and assess existing and potential hazards, involve affected workers, document the assessment and choose controls. Distinguish a formal assessment from a site-specific check as work conditions change. Use current Alberta requirements for reassessment and control implementation. This workflow is a planning aid, not competency training or certification.",
+  "links":[["Alberta OHS · Hazard assessment and control","https://ohs-pubstore.labour.alberta.ca/el003"],["CCOHS · Risk assessment method","https://www.ccohs.ca/oshanswers/hsprograms/hazard/risk_assessment.html"]]
+ },
+ "en-CA-ON": {
+  "name":"Canada — Ontario", "terms":"Job Safety Analysis (JSA) · Safe Work Procedure · Safety Talk",
+  "scope":"Ontario's Occupational Health and Safety Act sets out duties for employers, supervisors, workers and other workplace parties. Relevant regulations depend on the sector and activity. JSA is a useful task-analysis method, not a single document that replaces all OHSA duties or the required measures and procedures.",
+  "application":"Connect the task analysis to the applicable sector rules, equipment precautions, instruction and supervision. Include the health and safety representative or joint health and safety committee where relevant. Record who implements each action and how it will be checked. Verify particular assessment, training, permit and record requirements rather than applying one universal retention period.",
+  "links":[["Ontario · Guide to the OHSA","https://www.ontario.ca/document/guide-occupational-health-and-safety-act"],["Ontario · Duties of employers and other persons","https://www.ontario.ca/document/guide-occupational-health-and-safety-act/part-iii-duties-employers-and-other-persons"]]
+ },
+ "en-CA-BC": {
+  "name":"Canada — British Columbia", "terms":"Risk Assessment · Safe Work Procedure · Toolbox Meeting",
+  "scope":"WorkSafeBC explains systematic assessment of workplace hazards and how people could be harmed. Specific assessment requirements appear in different parts of the OHS Regulation. A full-site assessment is a useful planning practice; a task sheet should be connected to those wider workplace arrangements.",
+  "application":"Assess each location and include contractors, visitors and workers with particular needs, such as new, young or lone workers. WorkSafeBC guidance recommends regular review, including at least annual updates and changes to equipment, materials or processes. Distinguish that general guidance from a specific regulatory inspection or review requirement and document the controls actually in place.",
+  "links":[["WorkSafeBC · Assessing risks","https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks"]]
+ },
+ "fr-CA-QC": {
+  "name":"Canada — Québec", "terms":"Analyse de la sécurité des tâches (AST) · Méthode de travail sécuritaire · Rencontre de sécurité",
+  "scope":"Au Québec, la démarche de prévention de la CNESST consiste à identifier, corriger et contrôler les risques du milieu de travail. L'AST aide à examiner une tâche. Elle doit s'intégrer aux mécanismes de prévention applicables à l'établissement ou au chantier ; elle ne remplace pas automatiquement ces obligations. Le DUERP français n'est pas le document légal de référence du Québec.",
+  "application":"Associez les travailleuses et travailleurs à l'identification des risques et examinez les équipements, les méthodes, l'organisation et l'environnement. Prévoyez les mesures, les responsables et leur suivi. Vérifiez les exigences québécoises applicables ainsi que les règles particulières au chantier. Une traduction d'un modèle français ou canadien anglophone ne suffit pas à établir sa conformité locale.",
+  "links":[["CNESST · Identifier les risques du milieu de travail","https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail"]]
+ },
+ "de-DE": {
+  "name":"Deutschland", "terms":"Gefährdungsbeurteilung · Arbeitsanweisung · Unterweisung · Arbeitserlaubnis",
+  "scope":"Nach § 5 ArbSchG ermittelt der Arbeitgeber durch die Beurteilung der Arbeitsbedingungen die erforderlichen Arbeitsschutzmaßnahmen. Dabei sind auch Arbeitsorganisation, Qualifikation und psychische Belastungen zu berücksichtigen. Eine tätigkeitsbezogene JSA kann die Analyse unterstützen; sie bildet nicht automatisch die vollständige betriebliche Gefährdungsbeurteilung ab.",
+  "application":"Beschreiben Sie Tätigkeit, betroffene Personen und Gefährdungen. Legen Sie Maßnahmen und Zuständigkeiten fest und prüfen Sie die Wirksamkeit. Dokumentation, Unterweisung und besondere Anforderungen für Arbeitsmittel oder Gefahrstoffe sind gesondert zu beachten. Eine Arbeitsanweisung erklärt das sichere Vorgehen; sie ersetzt weder die Beurteilung noch erforderliche Erlaubnisse.",
+  "links":[["ArbSchG · § 5 Beurteilung der Arbeitsbedingungen","https://www.gesetze-im-internet.de/arbschg/__5.html"],["ArbSchG · § 6 Dokumentation","https://www.gesetze-im-internet.de/arbschg/__6.html"]]
+ },
+ "fr-FR": {
+  "name":"France", "terms":"Évaluation des risques professionnels · DUERP · Mode opératoire · Plan de prévention",
+  "scope":"En France, les résultats de l'évaluation des risques professionnels sont transcrits dans le DUERP, organisé selon les unités de travail. Une fiche d'analyse par tâche peut alimenter cette démarche, mais ne constitue pas à elle seule le DUERP. L'INRS distingue l'évaluation, sa transcription et la mise en œuvre des actions de prévention.",
+  "application":"Reliez la tâche à son unité de travail, aux personnes exposées et aux mesures retenues. L'INRS précise notamment la mise à jour annuelle pour les entreprises d'au moins 11 salariés, ainsi que lors de changements importants ou d'informations nouvelles sur les risques. Les versions du DUERP ont des règles de conservation propres ; n'appliquez pas une durée générique à tous les documents. Les interventions d'entreprises extérieures demandent une analyse de coordination distincte.",
+  "links":[["INRS · Document unique d'évaluation des risques","https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html"]]
+ },
+ "it-IT": {
+  "name":"Italia", "terms":"Valutazione dei rischi · DVR · Procedura di lavoro · DUVRI, ove applicabile",
+  "scope":"Il D.Lgs. 81/2008 disciplina la valutazione dei rischi e il relativo DVR. La scheda di una singola attività aiuta a collegare fasi, pericoli e misure, ma non sostituisce il documento aziendale né l'analisi di tutti i rischi richiesta dalla normativa. I rischi interferenziali e gli obblighi di coordinamento devono essere esaminati separatamente quando applicabili.",
+  "application":"Descrivere persone esposte, attrezzature, sostanze e condizioni operative. Collegare le misure al DVR e alle procedure aziendali, con responsabilità e verifica dell'efficacia. Controllare separatamente gli obblighi per cantieri, formazione, autorizzazioni e attività specialistiche. Non considerare un punteggio basso o un modello compilato come autorizzazione all'esecuzione del lavoro.",
+  "links":[["Normattiva · D.Lgs. 81/2008, articolo 28","https://www.normattiva.it/uri-res/N2Ls?urn%3Anir%3Astato%3Adecreto.legislativo%3A2008-04-9%3B81~art28%21vig="],["INAIL · Strumento OiRA e DVR","https://www.inail.it/portale/it/inail-comunica/avvisi/avviso.2018.05.oira-online-intercactive-risk-assesment-disponibile-il-software-per-l-italia.html"]]
+ },
+ "es-ES": {
+  "name":"España", "terms":"Evaluación de riesgos laborales · Planificación preventiva · Procedimiento de trabajo",
+  "scope":"Las directrices del INSST orientan la evaluación hacia la mejora efectiva de las condiciones de trabajo. La evaluación y la planificación preventiva forman parte de la gestión de prevención; una ficha JSA de una tarea no sustituye el conjunto de obligaciones. Las directrices técnicas y los requisitos jurídicos deben distinguirse.",
+  "application":"Identifique puestos, tareas, personas expuestas y condiciones reales, incluidas actividades no rutinarias. Relacione cada peligro con medidas, responsables, plazos y seguimiento. Verifique los requisitos aplicables de coordinación empresarial, construcción, formación y trabajos especiales. Una autorización de trabajo es un control específico y no reemplaza la evaluación de riesgos.",
+  "links":[["INSST · Directrices básicas para la evaluación de riesgos laborales","https://www.insst.es/noticias-insst/directrices-basicas-para-la-evaluacion-de-riesgos-laborales"],["INSST · Alcance de las directrices básicas","https://www.insst.es/directrices-basicas"]]
+ },
+ "ja-JP": {
+  "name":"日本", "terms":"リスクアセスメント · 安全作業手順書 · 危険予知活動（KY） · 作業許可",
+  "scope":"厚生労働省の資料では、危険性・有害性の特定、リスクの見積り、低減措置の検討と実施を扱っています。一般的な作業分析と、対象化学物質などに関する個別の法的義務は区別してください。KY活動は作業前の共有に役立ちますが、必要なリスクアセスメントや作業計画の代わりにはなりません。",
+  "application":"作業者、設備、物質、非定常作業を含めて調べ、対策の実施者と確認方法を明確にします。対象化学物質では危険性と健康障害の両面を確認し、適用される指針や濃度基準等を参照してください。安全作業手順書には実際の手順と停止条件を反映し、現場で確認していない測定値や実施結果を記入しないでください。",
+  "links":[["厚生労働省 · リスクアセスメント関連資料","https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/"],["厚生労働省 · 化学物質リスクアセスメントQ&A","https://www.mhlw.go.jp/stf/newpage_11389.html"]]
+ },
+ "ko": {
+  "name":"대한민국", "terms":"위험성평가 · 작업절차서 · 작업허가서 · 작업 전 안전점검회의(TBM)",
+  "scope":"산업안전보건법 제36조에 따른 위험성평가는 유해·위험요인을 찾아 위험성의 허용 가능 여부를 판단하고 개선대책을 수립·이행하는 과정입니다. 작업단계별 JSA는 이를 정리하는 방법 중 하나입니다. 특정 표 형식이나 점수표를 채우는 것만으로 모든 법적 의무를 이행했다고 볼 수는 없습니다.",
+  "application":"해당 작업의 근로자를 참여시키고 비정상 작업, 설비 변경, 주변 작업과의 간섭도 확인하세요. 현재 대책과 추가 대책을 구분하고 담당자·기한·이행 확인을 연결하세요. 작업허가, 작업계획서, 교육, 측정 및 기록 보존 요건은 적용 법령과 작업별 기준을 확인해야 합니다. TBM은 결과를 공유하고 현장 변화를 확인하는 데 활용하며, 위험성평가 자체를 대신하지 않습니다.",
+  "links":[["국가법령정보센터 · 산업안전보건법 제36조","https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024071891"]]
+ },
+ "pt-BR": {
+  "name":"Brasil", "terms":"Análise de Risco (AR) · GRO/PGR · Permissão de Trabalho (PT) · DDS",
+  "scope":"O PGR integra o gerenciamento de riscos ocupacionais e inclui, no mínimo, inventário de riscos e plano de ação. Uma análise de risco de tarefa contribui para esse processo, mas não substitui todo o PGR. A aplicação das NRs e as condições específicas da organização devem ser verificadas; DDS e PT têm finalidades distintas.",
+  "application":"Relacione perigos, possíveis agravos, pessoas expostas e medidas existentes. Registre ações, responsáveis, prazos e acompanhamento. A NR aplicável à atividade pode estabelecer requisitos adicionais, como autorização, capacitação e permissão. Não reutilize resultados antigos de medições ou assinaturas como comprovação das condições atuais. Consulte a versão vigente da NR e o programa da organização.",
+  "links":[["Ministério do Trabalho e Emprego · PGR","https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal"]]
+ },
+ "ru-RU": {
+  "name":"Россия", "terms":"Оценка профессиональных рисков · Инструкция по охране труда · Наряд-допуск, когда требуется",
+  "scope":"Рекомендации Минтруда № 926 посвящены выбору методов оценки уровней профессиональных рисков и их снижению. Метод анализа отдельной работы следует связать с системой управления охраной труда организации. Рабочая таблица JSA не заменяет все обязательные документы, обучение или специальную оценку условий труда.",
+  "application":"Укажите опасности, возможный вред, работников и условия выполнения работы. Выберите меры и способ проверки их выполнения. Для отдельных работ проверьте действующие правила, требования к квалификации и наряду-допуску. Обсуждение безопасности перед работой не следует выдавать за установленный законом журнал инструктажа. Периоды пересмотра и хранения определяются применимыми требованиями, а не общей таблицей сайта.",
+  "links":[["Минтруд · Рекомендации по оценке профессиональных рисков, № 926","https://mintrud.gov.ru/docs/mintrud/orders/2220"]]
+ },
+ "ar-SA": {
+  "name":"المملكة العربية السعودية", "terms":"تقييم مخاطر المهمة · إجراء العمل الآمن · تصريح العمل · اجتماع السلامة",
+  "scope":"توضح وزارة الموارد البشرية والتنمية الاجتماعية مسؤوليات صاحب العمل في الوقاية من أخطار العمل وإبلاغ العامل بالمخاطر وتوفير وسائل الحماية والتدريب. يجب التمييز بين الإرشادات التوعوية والمتطلبات النظامية الخاصة بالقطاع والمنشأة. نموذج تحليل المهمة لا يغني عن جميع هذه الالتزامات أو عن تصاريح الأعمال المطلوبة.",
+  "application":"حدد العاملين المعرضين والآلات والمواد ومراحل العمل، واربط كل خطر بإجراء وقائي ومسؤول وطريقة تحقق. قدم التعليمات بالعربية وباللغة التي يفهمها العاملون عند الحاجة. راجع متطلبات الموقع والجهة المختصة للأعمال الخاصة وخطط الطوارئ. لا تعتبر توقيع النموذج أو انخفاض درجة الخطر دليلاً على تنفيذ التدابير فعلياً.",
+  "links":[["وزارة الموارد البشرية · الوقاية من المخاطر والحوادث","https://www.hrsd.gov.sa/knowledge-centre/articles/64379"],["وزارة الموارد البشرية · الصحة والسلامة في بيئة العمل","https://www.hrsd.gov.sa/care-about-you/health-and-safety"]]
+ },
+ "ro-RO": {
+  "name":"România", "terms":"Evaluarea riscurilor profesionale · Plan de prevenire și protecție · Instrucțiuni proprii SSM",
+  "scope":"Legea nr. 319/2006 prevede obligațiile angajatorului privind evaluarea riscurilor și planul de prevenire și protecție. O fișă de analiză a unei sarcini poate sprijini documentarea, dar nu înlocuiește evaluarea locurilor de muncă, organizarea activităților de prevenire sau instrucțiunile proprii cerute de legislație.",
+  "application":"Identificați lucrătorii expuși, echipamentele, substanțele și condițiile reale. Asociați măsurile cu responsabili, termene și verificarea aplicării. Consultați Legea nr. 319/2006 și normele aprobate prin HG nr. 1425/2006 pentru organizare și competențe. Discuția înaintea lucrării nu înlocuiește instruirea SSM și evidențele obligatorii. Nu utilizați un termen universal de revizuire pentru toate documentele.",
+  "links":[["Portal Legislativ · Legea nr. 319/2006","https://legislatie.just.ro/public/detaliidocument/73772"],["Portal Legislativ · HG nr. 1425/2006","https://legislatie.just.ro/Public/DetaliiDocumentAfis/252028"]]
+ }
+}

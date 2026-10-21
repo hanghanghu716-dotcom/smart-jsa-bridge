@@ -6,7 +6,7 @@ import { normalizePaperSize, paperPreviewWidth } from '../utils/paperFormat';
 import '../styles/procedure-document.css';
 import { getPublicDocumentUi } from '../locales/publicDocumentUi';
 
-export default function ProcedureDocument({ document: data, uiLocale, inline = false }) {
+export default function ProcedureDocument({ document: data, uiLocale, inline = false, id }) {
   const { i18n, t } = useTranslation('common');
   const dialog = useRef(null), paper = useRef(null), pending = useRef(false);
   const [opened, setOpened] = useState(false), [busy, setBusy] = useState(false), [failed, setFailed] = useState(false);
@@ -50,7 +50,7 @@ export default function ProcedureDocument({ document: data, uiLocale, inline = f
         </article>
       </div>}
   </>;
-  return inline ? <section className="procedure-document-access procedure-document-inline" aria-labelledby={heading}>{content}</section> : <div className="procedure-document-access">
+  return inline ? <section id={id} className="procedure-document-access procedure-document-inline" aria-labelledby={heading}>{content}</section> : <div className="procedure-document-access">
     <button type="button" data-procedure-document-open disabled={!rows.length} onClick={() => { setOpened(true); setFailed(false); dialog.current.showModal(); }}>{ui.open}</button>
     <dialog ref={dialog} className="procedure-document-dialog" aria-labelledby={heading} onClose={() => setOpened(false)}>{content}</dialog>
   </div>;

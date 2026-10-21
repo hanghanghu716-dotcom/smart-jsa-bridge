@@ -1,3 +1,4 @@
+import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import PlanOverview from '../components/PlanOverview';
 import {getPlansUi} from '../locales/plansUi';
 import { useFixedGuidance } from '../hooks/useFixedGuidance';
@@ -8,7 +9,7 @@ import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ 커스텀 다
 
 export default function About() {
   const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 19]
-  const { t, i18n, guidance } = useFixedGuidance('about');
+  const { t, i18n, guidance, regional } = useFixedGuidance('about');
   const BrandTag = guidance ? 'p' : 'h1';
   const Heading = guidance ? 'h1' : 'h2';
 
@@ -19,6 +20,7 @@ export default function About() {
   
   // 모바일 전용 광고 슬롯 ID[cite: 19]
 
+  if (regional) return <RegionalGuidancePage guidance={regional}/>;
   return (
     <div style={styles.wrapper}>
       <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />
