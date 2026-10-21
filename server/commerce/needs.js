@@ -1,9 +1,10 @@
+import { TASK_CATEGORIES, taskNeeds } from './task-needs.js';
 // Ordinary accessories only. Never infer PPE, isolation devices, rated lifting
 // equipment, calibrated instruments or process-compatible parts from keywords.
 export const ACCESSORY_CATEGORIES = [
  'clipboard','document-holder','tool-storage','parts-organizer','measuring-tape',
  'carpenter-pencil','masking-tape','paint-roller','paint-tray','paint-brush',
- 'cleaning-cloth','dustpan','packing-tape','stretch-film',
+ 'cleaning-cloth','dustpan','packing-tape','stretch-film',...TASK_CATEGORIES,
 ];
 const clean = value => String(value || '').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ')
  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')
@@ -42,11 +43,13 @@ export function extractAccessoryNeeds(snapshot) {
  if(manualPaint.test(title)){
   add('paint-roller',90);add('paint-tray',85);add('paint-brush',75);
  }
- if(paintTerms.test(title)&&masking.test(body))add('masking-tape',80);
+ if(manualPaint.test(title)||(paintTerms.test(title)&&masking.test(body)))add('masking-tape',80);
  if(ordinaryCleaning.test(title)){
   add('cleaning-cloth',70);add('dustpan',75);
  }
  if(packing.test(title)&&/테이프|tape|テープ|klebeband|ruban|nastro|cinta|fita|лент|bandă|شريط/iu.test(body))add('packing-tape',75);
  if(film.test(title))add('stretch-film',90);
- return needs;
+ const specific=taskNeeds(title,body);
+ if(!needs.some(n=>n.category==='measuring-tape')&&specific.some(n=>['carpenter-square','chalk-line','spirit-level'].includes(n.category)))add('measuring-tape',67);
+ return [...needs,...specific];
 }

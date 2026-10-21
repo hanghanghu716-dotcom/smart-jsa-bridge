@@ -19,7 +19,6 @@ import { countryLabel } from '../utils/publicCountry';
 import { getPublicCountryUi } from '../locales/publicCountryUi';
 import DiscoveryLinks from '../components/DiscoveryLinks';
 import AuthorLink from '../components/AuthorLink';
-import WorkSupportRail from '../components/WorkSupportRail';
 import {documentStats,riskValue} from '../utils/discovery';
 import {getDiscoveryUi} from '../locales/discoveryUi';
 import { useEffect, useRef, useState } from 'react';
@@ -117,7 +116,6 @@ export default function PublicJsa() {
       canonicalLocale={currentRow?.public_locale || undefined} availableLocales={currentRow?.public_locale ? [currentRow.public_locale] : []} noIndex={Boolean(sourceRow?.restricted)||!quality.indexable||Boolean(sourceRow?.public_locale&&sourceRow.public_locale!==i18n.language)} />
     {sourceRow?.public_locale && !sourceRow.restricted && <Helmet><script type="application/ld+json">{structuredJson(publicDocumentSchema(sourceRow,author,ui.back))}</script></Helmet>}
     <header className="jsa-nav"><LanguageLink to="/explore">← {ui.back}</LanguageLink><ThemeSwitcher compact /></header>
-    {currentRow && !sourceRow.restricted && <WorkSupportRail locale={i18n.language} kind="ugc" contentId={id} onStart={()=>action('reuse')} disabled={busy||!currentRow.reuse_license} downloadHref="#public-document-preview-title"/>}
     <main className="jsa-container">
       {status === 'loading' && <p role="status">…</p>}
       {status === 'error' && <p role="alert">{ui.error} <button onClick={() => setAttempt(n => n + 1)}>{ui.retry}</button></p>}

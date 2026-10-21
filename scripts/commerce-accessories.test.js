@@ -22,13 +22,13 @@ test('ordinary cleaning tools are not inferred from housekeeping in hazardous pr
 test('source boilerplate, HTML attributes and URLs do not create shopping needs',()=>{
  assert.deepEqual(categories({title:'A task',body:'<div class="toolbox"><a href="https://example.com/checklist">Guide</a></div><h2>9. Sources</h2>clipboard tool organizer'}),[]);
 });
-test('one merchant can supply four different purposes, with task tools ahead of paperwork',()=>{
+test('one merchant can supply up to eight different purposes, with task tools ahead of paperwork',()=>{
  const now=Date.parse('2026-10-22T01:00:00Z'), checkedAt='2026-10-22T00:00:00Z',expiresAt='2026-11-20T00:00:00Z';
  const offers=['clipboard','document-holder','paint-roller','paint-tray','paint-brush'].map(category=>({id:category,merchantId:'m',country:'KR',title:category,category,mode:'link-only',affiliateUrl:'https://shop.example/'+category,availability:'unknown',checkedAt,expiresAt}));
  const catalog={version:1,merchants:[{id:'m',enabled:true,affiliateApproved:true,displayApproved:true,linkOnlyApproved:true,countries:['KR'],linkHosts:['shop.example'],maxAgeHours:720}],profiles:[],offers,reviews:offers.map(o=>({offerFingerprint:offerFingerprint(o),status:'approved',reviewer:'test',reviewedAt:checkedAt,validUntil:expiresAt}))};
  const items=selectOffers({snapshot:{title:'지상 벽면 수성페인트 롤러 도장',body:'점검표',locale:'ko'},catalog,country:'KR',now});
- assert.deepEqual(items.map(x=>x.category),['paint-roller','paint-tray','paint-brush','clipboard']);
- assert.equal(new Set(items.map(x=>x.category)).size,4);
+ assert.deepEqual(items.map(x=>x.category),['paint-roller','paint-tray','paint-brush','clipboard','document-holder']);
+ assert.equal(new Set(items.map(x=>x.category)).size,5);
  assert.deepEqual(selectOffers({snapshot:{title:'점검표'},catalog,country:'US',now}),[]);
 });
 test('site locales have localized rail text and accessory purposes',()=>{

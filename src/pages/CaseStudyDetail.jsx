@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import CommerceRecommendations from '../components/CommerceRecommendations';
-import WorkSupportRail from '../components/WorkSupportRail';
+import { splitCaseSections, caseResourcesTitle } from '../utils/caseSections.js';
 import SEO from '../components/SEO';
 import { getCaseBootstrap } from '../utils/caseBootstrap.js';
 
@@ -30,6 +30,7 @@ export default function CaseStudyDetail() {
   const [loadError, setLoadError] = useState(false);
   const [retry, setRetry] = useState(0);
   const viewerRef = useRef(null);
+  const sections = splitCaseSections(post?.content_md || '');
   const [viewMetric,setViewMetric]=useState(null);
   const metricId=post?.post_group_id===id&&!loading&&!loadError?post.id:null;
   useEffect(()=>{
@@ -84,7 +85,7 @@ export default function CaseStudyDetail() {
   // The Toast UI React wrapper only reads initialValue when it mounts.
   // A fresher DB response for the same ID must replace the snapshot body too.
   useEffect(() => {
-    viewerRef.current?.getInstance().setMarkdown(post?.content_md || '');
+    viewerRef.current?.getInstance().setMarkdown(splitCaseSections(post?.content_md || '').main);
   }, [post?.content_md]);
 
   if (loading) return <div style={styles.loading}><SEO />{ro?.loading || 'Loading...'}</div>;
@@ -179,11 +180,23 @@ export default function CaseStudyDetail() {
         </div>
       </section>
 
-      <WorkSupportRail locale={i18n.language} kind="case" contentId={id} startHref="#case-start-actions" downloadHref="#case-start-actions"/>
 
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
           
+
+          <DiscoveryLinks kind="case" target={id} showReuseHelp/>
+
+          <div 
+            style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
+            dir={isRtl ? 'rtl' : 'ltr'}
+            lang={isRtl ? 'ar' : currentLang}
+            className={isRtl ? 'rtl-viewer' : ''}
+          >
+            <Viewer ref={viewerRef} initialValue={sections.main} key={post.id || post.language_code} />
+          </div>
+
+          <section id="section-11" style={{marginTop:40}}><h2 style={{fontSize:24,fontWeight:700,marginBottom:20}}>11. {caseResourcesTitle(i18n.language)}</h2>
           {((post.pdf_list && post.pdf_list.length > 0) || post.pdf_download_url) && (
             <div style={{ 
               marginBottom: '24px', 
@@ -230,18 +243,10 @@ export default function CaseStudyDetail() {
             </div>
           )}
 
-          <DiscoveryLinks kind="case" target={id} showReuseHelp/>
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
-          <div 
-            style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
-            dir={isRtl ? 'rtl' : 'ltr'}
-            lang={isRtl ? 'ar' : currentLang}
-            className={isRtl ? 'rtl-viewer' : ''}
-          >
-            <Viewer ref={viewerRef} initialValue={post.content_md} key={post.id || post.language_code} />
-          </div>
-
-          <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" />
+          </section>
+          <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={12} />
+          {sections.review && <div style={styles.markdownContent} dir={isRtl?'rtl':'ltr'} className={isRtl?'rtl-viewer':''}><Viewer initialValue={sections.review} key={sections.review}/></div>}
 
           
         </div>
