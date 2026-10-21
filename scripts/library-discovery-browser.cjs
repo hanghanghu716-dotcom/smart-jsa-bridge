@@ -84,7 +84,7 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
   // Wait for the requested page's data, not unrelated background connections.
   await page.waitForFunction(()=>document.querySelector('#explore-results')?.getAttribute('aria-busy')==='false'
     && document.querySelector('.explore-pagination [aria-current="page"]')?.textContent==='2'
-    && document.querySelector('#explore-results .explore-card h2')?.textContent.startsWith('Document 13:')); 
+    && document.querySelector('#explore-results .explore-card > h2')?.textContent.startsWith('Document 13:')); 
   assert.equal(facetReads.length,initialFacetReads,'Changing pages must not reload all tag metadata');
   await page.select('.explore-country select','all');
   await page.waitForFunction(()=>[...document.querySelectorAll('.explore-facet-count')].some(el=>el.textContent===' (37)'));
