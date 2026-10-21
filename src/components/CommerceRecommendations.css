@@ -15,3 +15,10 @@
 @media(min-width:1740px){.commerce-panel--rail{display:block;position:fixed;top:112px;width:240px;max-height:calc(100vh - 140px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;margin:0;padding:14px;z-index:30;box-sizing:border-box}.commerce-panel--left{left:calc(50% - 860px)}.commerce-panel--right{right:calc(50% - 860px)}
 .commerce-panel--rail h2{font-size:15px}.commerce-panel--rail .commerce-grid{display:flex;flex-direction:column;gap:10px;margin:0}.commerce-panel--rail .commerce-grid li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px;padding:9px}.commerce-panel--rail .commerce-image-link{width:64px;height:64px;align-self:start}.commerce-panel--rail .commerce-purpose{font-size:10px;margin-top:0}.commerce-panel--rail .commerce-grid h3{font-size:11px;line-height:1.5;margin:4px 0}.commerce-panel--rail .commerce-merchant{font-size:10px;margin-bottom:4px}.commerce-panel--rail .commerce-product-link{font-size:11px;padding:5px 7px}.commerce-panel--rail .commerce-notes{font-size:11px;line-height:1.6}}
 @media print{.commerce-panel{display:none!important}}
+
+.commerce-disclosures{margin:0 0 1rem}.commerce-disclosure{font-size:.9rem;line-height:1.65;margin:.5rem 0}
+.commerce-panel--rail .commerce-disclosure{font-size:12px;line-height:1.6}
+.commerce-panel--article{--card-bg:#fff;--text-primary:#222;--text-secondary:#475569;--border-default:#dbdbdb;--accent:#1d4ed8;background:#fff;color:#222;border:0;border-radius:0;padding:0;margin:0;box-shadow:none}
+.case-numbered-section>h2,.commerce-panel--article>h2{font-size:22px;font-weight:700;line-height:1.4;border-bottom:1px solid #dbdbdb;margin:48px 0 20px;padding:0 0 7px;color:#222}
+.commerce-panel--article .commerce-grid{margin:20px 0}.commerce-panel--article .commerce-grid li{background:#fff}
+@media(max-width:480px){.commerce-panel--article{padding:0}}

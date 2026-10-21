@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { ACCESSORY_CATEGORIES, extractAccessoryNeeds } from './needs.js';
+import { PPE_PURPOSES, extractPpeNeeds } from './ppe-needs.js';
 
 export const COUNTRIES = ['KR','US','CA','GB','AU','JP','DE','FR','IT','ES','SG','SA','BR','RO','RU'];
 export const LOW_RISK = new Set(ACCESSORY_CATEGORIES);
@@ -24,7 +25,7 @@ export function contentSnapshot(kind, row) {
       controls: array(step.risks).filter(Boolean).slice(0,100).map(r => [text(r.current_measure || r.measure), text(r.recommend_measure)]),
       additional: text(step.actionPlan?.additionalControls) })) };
 }
-export const extractNeeds = extractAccessoryNeeds;
+export const extractNeeds = snapshot => [...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot)];
 export function approvedProfile(snapshot, profiles, now) {
   const hash = fingerprint(snapshot);
   return array(profiles).find(p => p && p.sourceFingerprint === hash && p.status === 'approved' && text(p.reviewer)
@@ -55,10 +56,14 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     if (!merchant || merchant.enabled !== true || merchant.affiliateApproved !== true || merchant.displayApproved !== true
       || !array(merchant.countries).includes(country) || offer.country !== country) continue;
     const linkOnly = offer.mode === 'link-only';
+    const reviewedPpe = Boolean(PPE_PURPOSES[offer.category] && offer.attributes?.purpose === PPE_PURPOSES[offer.category]
+      && review?.specificationReviewed === true && array(review.specificationSources).some(source => {
+        try { const u=new URL(source); return u.protocol==='https:' && ['www.3m.co.kr','www.ansell.com'].includes(u.hostname) && !u.username && !u.password; } catch { return false; }
+      }));
     // Manually curated links make no live-stock or price claim. They require
-    // explicit permission, a low-risk category, and a dated review (max 30 days).
+    // explicit permission, a reviewed purpose, and a dated review (max 30 days).
     if (linkOnly) {
-      if (merchant.linkOnlyApproved !== true || !LOW_RISK.has(offer.category) || offer.availability !== 'unknown') continue;
+      if (merchant.linkOnlyApproved !== true || (!LOW_RISK.has(offer.category) && !reviewedPpe) || offer.availability !== 'unknown') continue;
     } else if ((offer.mode && offer.mode !== 'feed') || offer.availability !== 'in_stock') continue;
     if (!text(offer.id) || !text(offer.title) || offer.title.length > 240 || !validDate(offer.checkedAt, now)
       || !future(offer.expiresAt, now) || !Number.isFinite(merchant.maxAgeHours) || merchant.maxAgeHours <= 0
@@ -68,7 +73,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     const href = safeLink(offer.affiliateUrl, merchant.linkHosts);
     if (!href) continue;
     const need = needs.find(n => n && n.category === offer.category && n.constraints && typeof n.constraints === 'object'
-      && !Array.isArray(n.constraints) && (LOW_RISK.has(n.category) || (profile && Object.keys(n.constraints).length > 0 && review.safetyReviewed === true))
+      && !Array.isArray(n.constraints) && (LOW_RISK.has(n.category) || (reviewedPpe && n.constraints.purpose === PPE_PURPOSES[n.category]) || (profile && Object.keys(n.constraints).length > 0 && review.safetyReviewed === true))
       && Object.entries(n.constraints).every(([key,value]) => typeof value === 'string' && value.length > 0 && offer.attributes?.[key] === value));
     if (!need) continue;
     // No commissions, user profiling or invented popularity enters the ranking.
@@ -78,7 +83,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
       linkOnly,
       disclosure: text(merchant.disclosures?.[snapshot.locale] || merchant.disclosures?.en),
       reason: need.reason || need.category,
-      score: Object.keys(need.constraints).length * 100 + (Number.isFinite(need.score) ? need.score : 0), checkedAt: offer.checkedAt });
+      score: (Number.isFinite(need.score) ? need.score : 0) + Math.min(5,Object.keys(need.constraints).length), checkedAt: offer.checkedAt });
   }
   candidates.sort((a,b) => b.score-a.score || Date.parse(b.checkedAt)-Date.parse(a.checkedAt) || a.id.localeCompare(b.id));
   const chosen=[], seen=new Set(), counts=new Map(), categoryCounts=new Map();

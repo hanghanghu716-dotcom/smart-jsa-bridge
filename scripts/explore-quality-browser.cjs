@@ -62,7 +62,8 @@ const fixture = {
     await page.evaluate(state => history.replaceState({ usr: state }, '', location.href), state);
     await page.reload({ waitUntil: 'networkidle0' });
     await page.waitForSelector('.publication-quality', { visible: true });
-    assert.match(await page.$eval('.publication-quality', node => node.textContent), /Step 2.*ㅂReinstate/s);
+    // Review hints and text warnings are separate visible sections. Check both.
+    assert.match(await page.$$eval('.publication-quality', nodes => nodes.map(node => node.textContent).join('\n')), /Step 2.*ㅂReinstate/s);
     assert.equal(await page.$eval('[data-save-mode="public"]', node => node.disabled), true, 'Consent stays required');
     await page.$eval('.publication-consent input', node => node.click());
     assert.equal(await page.$eval('[data-save-mode="public"]', node => node.disabled), false, 'Warning does not add a publishing gate');
