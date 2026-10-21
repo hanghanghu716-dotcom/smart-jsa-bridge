@@ -226,3 +226,16 @@ Production uses `JSA_COMMERCE_ENABLED=true` and the server-only `JSA_COMMERCE_CA
 Manual offers use `mode: link-only`, unknown availability, a merchant opt-in (`linkOnlyApproved`), low-risk categories only, and independent dated product review. They expire no later than 30 days from `checkedAt`; normal feed offers retain their 24-hour maximum. Refreshing a deployment does not refresh review dates. The initial review expires on 2026-11-20 and must be rechecked before then.
 
 A4 clipboards can match explicit clipboard mentions or checklist/inspection-sheet paperwork. The panel explicitly calls these related suggestions, not products used in the case. No matching product means no initial panel. Country is determined by the visitor's explicit selection, trusted Vercel country, then locale. English content viewed from Korea can therefore display Korean purchase links. Other countries do not receive this KR offer.
+
+
+## Contextual accessories and support rails (2026-10-22)
+
+Case-study and public-UGC pages replace the advertising slots with document/reuse and discovery links on the left and contextual commerce on the right. At widths below 1740 px, the same commerce component stays inline. Home slots lead to document creation and content discovery.
+
+Ordinary accessory needs are derived from the current content on retrieval. Work-specific needs rank ahead of document supplies; one product per merchant/category and at most four per merchant are selected. PPE, rated equipment and process-compatible parts retain the existing explicit-review requirement. No match means no placeholder advertisement.
+
+The production catalog is maintained in the server-only JSA_COMMERCE_CATALOG_JSON setting. It contains 13 manually generated Coupang product links, with unknown availability and no price claims. Link reviews expire after 30 days; no API approval is implied. Tracking URLs and account identifiers must not be committed.
+
+Corpus audit: 199 Korean case studies plus 50 public UGC entries; 230 match at least two products, 85 match four, seven match one and 12 remain empty. Across 1,472 localized case variants and 50 UGC entries, using KR as the purchase country, 1,338 match multiple products, 127 match one and 57 remain empty. These are localized page counts, not distinct tasks or overseas merchant coverage. Reproduce with scripts/audit-commerce-corpus.mjs and private input/catalog paths.
+
+Validation: 524 Node tests pass; Vite production bundle builds. The commerce workflow also executes the accessory relevance tests.

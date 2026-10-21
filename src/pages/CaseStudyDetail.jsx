@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import CommerceRecommendations from '../components/CommerceRecommendations';
-import AdSenseUnit from '../components/AdSenseUnit';
+import WorkSupportRail from '../components/WorkSupportRail';
 import SEO from '../components/SEO';
 import { getCaseBootstrap } from '../utils/caseBootstrap.js';
 
@@ -45,9 +45,6 @@ export default function CaseStudyDetail() {
   const ro = i18n.language === 'ro-RO' ? romanianUi.editorial : null;
   const journeyUi = regionalJourneyUi(i18n.language);
 
-  const PUBLISHER_ID = 'ca-pub-9791625990220699';
-  const ARTICLE_BOTTOM_SLOT_ID = '1284119169'; 
-  const SIDE_SLOT_ID = '3978298367';
 
   const currentLang = post?.language_code || i18n.language || '';
   const isRtl = currentLang.startsWith('ar');
@@ -182,16 +179,7 @@ export default function CaseStudyDetail() {
         </div>
       </section>
 
-      <aside className="hidden min-[1600px]:block">
-        <div style={styles.adPlaceholderFixedLeft}>
-          <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
-        </div>
-      </aside>
-      <aside className="hidden min-[1600px]:block">
-        <div style={styles.adPlaceholderFixedRight}>
-          <AdSenseUnit client={PUBLISHER_ID} slot={SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
-        </div>
-      </aside>
+      <WorkSupportRail locale={i18n.language} kind="case" contentId={id} startHref="#case-start-actions" downloadHref="#case-start-actions"/>
 
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
@@ -243,7 +231,7 @@ export default function CaseStudyDetail() {
           )}
 
           <DiscoveryLinks kind="case" target={id} showReuseHelp/>
-          <RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/>
+          <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
             dir={isRtl ? 'rtl' : 'ltr'}
@@ -253,11 +241,8 @@ export default function CaseStudyDetail() {
             <Viewer ref={viewerRef} initialValue={post.content_md} key={post.id || post.language_code} />
           </div>
 
-          <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} />
-          <div style={styles.adSection}>
-            <span style={styles.adLabel}>{ro?.advertisement || 'ADVERTISEMENT'}</span>
-            <AdSenseUnit client={PUBLISHER_ID} slot={ARTICLE_BOTTOM_SLOT_ID} format="auto" />
-          </div>
+          <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" />
+
           
         </div>
       </div>

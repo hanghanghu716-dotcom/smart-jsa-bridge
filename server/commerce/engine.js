@@ -1,7 +1,8 @@
 import { createHash } from 'node:crypto';
+import { ACCESSORY_CATEGORIES, extractAccessoryNeeds } from './needs.js';
 
 export const COUNTRIES = ['KR','US','CA','GB','AU','JP','DE','FR','IT','ES','SG','SA','BR','RO','RU'];
-export const LOW_RISK = new Set(['clipboard','document-holder','tool-storage']);
+export const LOW_RISK = new Set(ACCESSORY_CATEGORIES);
 const array = value => Array.isArray(value) ? value : [];
 const text = value => typeof value === 'string' ? value : '';
 const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
@@ -23,20 +24,7 @@ export function contentSnapshot(kind, row) {
       controls: array(step.risks).filter(Boolean).slice(0,100).map(r => [text(r.current_measure || r.measure), text(r.recommend_measure)]),
       additional: text(step.actionPlan?.additionalControls) })) };
 }
-// Conservative bootstrapping only: safety equipment never gets selected by keyword.
-// A reviewed profile can express other categories and exact required attributes.
-const TERMS = {
-  clipboard: ['clipboard','클립보드','서류 받침','クリップボード','Klemmbrett','porte-bloc','portablocco','portapapeles','prancheta','планшет для бумаг','clipboard de scris','لوح كتابة'],
-  'document-holder': ['document holder','document pouch','서류 보관함','서류 파우치','書類ケース','Dokumentenhalter','porte-documents','portadocumenti','portadocumentos','porta-documentos','держатель документов','suport documente','حافظة مستندات'],
-  'tool-storage': ['toolbox','tool box','tool organizer','공구함','공구 정리함','工具箱','Werkzeugkasten','boîte à outils','cassetta degli attrezzi','caja de herramientas','caixa de ferramentas','ящик для инструментов','cutie de scule','صندوق أدوات'],
-};
-export function extractNeeds(snapshot) {
-  const body = JSON.stringify(snapshot).toLowerCase();
-  // A clipboard is an optional paperwork accessory, never a safety control.
-  const paperwork = /점검표|체크리스트|기록지|\bchecklists?\b|\bcheck\s+sheets?\b|\binspection\s+(?:sheets?|forms?)\b/i.test(body);
-  return Object.entries(TERMS).filter(([category, words]) => (category === 'clipboard' && paperwork) || words.some(word => body.includes(word.toLowerCase())))
-    .map(([category]) => ({ category, constraints: {}, origin: 'explicit-term' }));
-}
+export const extractNeeds = extractAccessoryNeeds;
 export function approvedProfile(snapshot, profiles, now) {
   const hash = fingerprint(snapshot);
   return array(profiles).find(p => p && p.sourceFingerprint === hash && p.status === 'approved' && text(p.reviewer)
@@ -88,13 +76,14 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
       merchantId: merchant.id, category: offer.category, href, country,
       linkOnly,
       disclosure: text(merchant.disclosures?.[snapshot.locale] || merchant.disclosures?.en),
-      score: Object.keys(need.constraints).length, checkedAt: offer.checkedAt });
+      reason: need.reason || need.category,
+      score: Object.keys(need.constraints).length * 100 + (Number.isFinite(need.score) ? need.score : 0), checkedAt: offer.checkedAt });
   }
   candidates.sort((a,b) => b.score-a.score || Date.parse(b.checkedAt)-Date.parse(a.checkedAt) || a.id.localeCompare(b.id));
-  const chosen=[], seen=new Set(), counts=new Map();
+  const chosen=[], seen=new Set(), counts=new Map(), categoryCounts=new Map();
   for (const item of candidates) {
-    if (seen.has(item.id) || seen.has(item.href) || (counts.get(item.merchantId)||0)>=2) continue;
-    seen.add(item.id);seen.add(item.href);counts.set(item.merchantId,(counts.get(item.merchantId)||0)+1);
+    if (seen.has(item.id) || seen.has(item.href) || (counts.get(item.merchantId)||0)>=4 || seen.has(item.merchantId+':'+item.category) || (categoryCounts.get(item.category)||0)>=2) continue;
+    seen.add(item.id);seen.add(item.href);seen.add(item.merchantId+':'+item.category);counts.set(item.merchantId,(counts.get(item.merchantId)||0)+1);categoryCounts.set(item.category,(categoryCounts.get(item.category)||0)+1);
     const {score: _score, checkedAt: _checkedAt, ...publicItem}=item;
     chosen.push(publicItem);
     if(chosen.length>=Math.max(1,Math.min(6,limit)))break;

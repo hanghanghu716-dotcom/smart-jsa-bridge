@@ -41,10 +41,10 @@ test('unsafe and deceptive URLs never pass exact-host validation',()=>{
   assert.equal(safeLink(url,['a.example']),null);
  }
 });
-test('merchant diversity is capped and commissions do not affect ranking',()=>{
+test('duplicate purpose within a merchant is capped and commissions do not affect ranking',()=>{
  const c=fixture();c.offers.push(...[2,3,4].map(id=>({...c.offers[0],id:String(id),affiliateUrl:'https://a.example/product/'+id,commission:999})));
  c.reviews=c.offers.map(o=>({...c.reviews[0],offerFingerprint:offerFingerprint(o)}));
- const result=select(c);assert.equal(result.filter(x=>x.merchantId==='a').length,2);assert.ok(result.some(x=>x.merchantId==='b'));
+ const result=select(c);assert.equal(result.filter(x=>x.merchantId==='a').length,1);assert.ok(result.some(x=>x.merchantId==='b'));
  assert.equal('commission' in result[0],false);assert.equal('score' in result[0],false);
 });
 test('PPE needs exact reviewed requirements and separately reviewed offers',()=>{
