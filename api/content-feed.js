@@ -1,7 +1,7 @@
 import { romanianUi } from '../src/locales/romanianUi.js';
 import { SUPPORTED_LANGS, getLanguageTag, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
-import { renderCaseBody } from './case-study.js';
+import { renderCaseArticle } from './case-study.js';
 import { feedXml, publicFeedBody } from '../server/feed-content.js';
 import { Buffer } from 'node:buffer';
 import { indexableExploreLocales } from '../src/utils/exploreIndexing.js';
@@ -36,7 +36,7 @@ export function buildFeed(cases, publicRows, locale) {
   const items = []; let bytes = Buffer.byteLength(start + end);
   for (const row of entries.slice(0, 50)) {
     const body = row.document ? publicFeedBody(row.document, locale)
-      : `<h1>${feedXml(row.title)}</h1><p>${feedXml(cleanSummary(row.post.meta_description))}</p>${renderCaseBody(row.post, row.url)}`;
+      : `<h1>${feedXml(row.title)}</h1><p>${feedXml(cleanSummary(row.post.meta_description))}</p>${renderCaseArticle(row.post, locale, row.url)}`;
     const item = `<item><title>${feedXml(row.title)}</title><link>${feedXml(row.url)}</link><guid isPermaLink="true">${feedXml(row.url)}</guid><description>${feedXml(body)}</description>${row.date ? `<pubDate>${new Date(row.date).toUTCString()}</pubDate>` : ''}</item>`;
     const size = Buffer.byteLength(item);
     // Keep whole articles below Vercel's 4.5 MB response limit and Naver's 10 MB limit.
@@ -68,7 +68,7 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
       if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
-          readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),
+          readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md,pdf_list,pdf_download_url', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),
           readPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true', public_locale: 'eq.' + locale, order: 'content_updated_at.desc.nullslast,published_at.desc,id', limit: '50' }, fetcher),
         ]);
         body = buildFeed(cases, documents, locale);
