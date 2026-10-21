@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
 import { ACCESSORY_CATEGORIES, extractAccessoryNeeds } from './needs.js';
 import { PPE_PURPOSES, extractPpeNeeds } from './ppe-needs.js';
+import { EQUIPMENT_PURPOSES, equipmentNeeds, SPECIFICATION_HOSTS } from './context-needs.js';
+const REVIEWED_PURPOSES = {...PPE_PURPOSES,...EQUIPMENT_PURPOSES};
 
 export const COUNTRIES = ['KR','US','CA','GB','AU','JP','DE','FR','IT','ES','SG','SA','BR','RO','RU'];
 export const LOW_RISK = new Set(ACCESSORY_CATEGORIES);
@@ -22,10 +24,11 @@ export function contentSnapshot(kind, row) {
   return { kind, id: row.id, locale: row.public_locale, title: text(row.title),
     scope: text(row.publication_context?.scope), ppe: array(row.form_data?.ppe).filter(x => typeof x === 'string'),
     steps: array(row.analysis_data).filter(Boolean).slice(0,300).map(step => ({ title: text(step.proc?.stepTitle), detail: text(step.proc?.stepDetail),
+      hazards: array(step.risks).filter(Boolean).slice(0,100).map(r=>text(r.factor)),
       controls: array(step.risks).filter(Boolean).slice(0,100).map(r => [text(r.current_measure || r.measure), text(r.recommend_measure)]),
       additional: text(step.actionPlan?.additionalControls) })) };
 }
-export const extractNeeds = snapshot => [...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot)];
+export const extractNeeds = snapshot => [...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot), ...equipmentNeeds(snapshot)];
 export function approvedProfile(snapshot, profiles, now) {
   const hash = fingerprint(snapshot);
   return array(profiles).find(p => p && p.sourceFingerprint === hash && p.status === 'approved' && text(p.reviewer)
@@ -56,9 +59,9 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     if (!merchant || merchant.enabled !== true || merchant.affiliateApproved !== true || merchant.displayApproved !== true
       || !array(merchant.countries).includes(country) || offer.country !== country) continue;
     const linkOnly = offer.mode === 'link-only';
-    const reviewedPpe = Boolean(PPE_PURPOSES[offer.category] && offer.attributes?.purpose === PPE_PURPOSES[offer.category]
+    const reviewedPpe = Boolean(REVIEWED_PURPOSES[offer.category] && offer.attributes?.purpose === REVIEWED_PURPOSES[offer.category]
       && review?.specificationReviewed === true && array(review.specificationSources).some(source => {
-        try { const u=new URL(source); return u.protocol==='https:' && ['www.3m.co.kr','multimedia.3m.com','www.ansell.com'].includes(u.hostname) && !u.username && !u.password; } catch { return false; }
+        try { const u=new URL(source); return u.protocol==='https:' && (SPECIFICATION_HOSTS[offer.category] || ['www.3m.co.kr','multimedia.3m.com','www.ansell.com']).includes(u.hostname) && !u.username && !u.password; } catch { return false; }
       }));
     // Manually curated links make no live-stock or price claim. They require
     // explicit permission, a reviewed purpose, and a dated review (max 30 days).
@@ -73,7 +76,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     const href = safeLink(offer.affiliateUrl, merchant.linkHosts);
     if (!href) continue;
     const need = needs.find(n => n && n.category === offer.category && n.constraints && typeof n.constraints === 'object'
-      && !Array.isArray(n.constraints) && (LOW_RISK.has(n.category) || (reviewedPpe && n.constraints.purpose === PPE_PURPOSES[n.category]) || (profile && Object.keys(n.constraints).length > 0 && review.safetyReviewed === true))
+      && !Array.isArray(n.constraints) && (LOW_RISK.has(n.category) || (reviewedPpe && n.constraints.purpose === REVIEWED_PURPOSES[n.category]) || (profile && Object.keys(n.constraints).length > 0 && review.safetyReviewed === true))
       && Object.entries(n.constraints).every(([key,value]) => typeof value === 'string' && value.length > 0 && offer.attributes?.[key] === value));
     if (!need) continue;
     // No commissions, user profiling or invented popularity enters the ranking.

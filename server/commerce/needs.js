@@ -1,22 +1,22 @@
 import { TASK_CATEGORIES, taskNeeds } from './task-needs.js';
+import { CONTEXT_ACCESSORIES, contextNeeds } from './context-needs.js';
 // Ordinary accessories only. Never infer PPE, isolation devices, rated lifting
 // equipment, calibrated instruments or process-compatible parts from keywords.
 export const ACCESSORY_CATEGORIES = [
  'clipboard','document-holder','tool-storage','parts-organizer','measuring-tape',
  'carpenter-pencil','masking-tape','paint-roller','paint-tray','paint-brush',
- 'cleaning-cloth','dustpan','packing-tape','stretch-film',...TASK_CATEGORIES,
+ 'cleaning-cloth','dustpan','packing-tape','stretch-film',...TASK_CATEGORIES,...CONTEXT_ACCESSORIES,
 ];
 const clean = value => String(value || '').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ')
  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')
  .replace(/https?:\/\/\S+/g,' ').replace(/\s+/g,' ').toLowerCase();
 export function commerceText(snapshot) {
  // Editorial sources/revision boilerplate is not evidence of a shopping need.
- const body=String(snapshot.body||'').split(/<h2\b[^>]*>\s*9[.\s]/i)[0];
+ const body=String(snapshot.body||'').split(/<h2\b[^>]*>\s*9[.\s]/i)[0]
+  .replace(/<h[3-6]\b[^>]*>[^<]*(?:별도\s*검토|제외\s*범위|out.of.scope|excluded\s*scope)[^<]*<\/h[3-6]>\s*<p\b[^>]*>[\s\S]*?<\/p>/gi,' ');
  return clean([snapshot.title,snapshot.scope,body,...(snapshot.steps||[]).map(s=>
-  [s.title,s.detail,...(s.controls||[]).flat(),s.additional].join(' '))].filter(Boolean).join(' '));
+  [s.title,s.detail,...(s.hazards||[]),...(s.controls||[]).flat(),s.additional].join(' '))].filter(Boolean).join(' '));
 }
-const paperwork=/점검표|체크리스트|기록지|기록 항목|작업허가서|검사 기록|인계 기록|clipboard|checklist|check\s+sheet|inspection\s+(?:sheet|form|record)|handover\s+record|check-sheet|クリップボード|チェックリスト|点検表|確認表|記録項目|作業許可書|klemmbrett|checkliste|prüfprotokoll|porte-bloc|liste de contrôle|fiche de contrôle|vérifications et intervention|portablocco|lista di controllo|registro di ispezione|portapapeles|lista de verificación|lista de comprobación|registro de inspección|prancheta|lista de verificação|планшет для бумаг|контрольный список|контрольный лист|лист проверки|чек-лист|clipboard de scris|listă de verificare|قائمة التحقق|قائمة فحص|سجل الفحص|لوحة كتابة/iu;
-const documents=/문서 보관|문서 홀더|서류 보관|도면|document holder|document pouch|drawing|permit|checklist|record|書類|図面|dokumentenhalter|zeichnung|porte-documents|plan de travail|portadocumenti|disegn|portadocumentos|plano|porta-documentos|desenho|чертеж|документ|suport documente|desen|حافظة مستندات|مخطط/iu;
 const tools=/공구|toolbox|tool box|tool organizer|\btools?\b|工具|werkzeug|\boutil|attrezz|utensil|herramient|ferrament|инструмент|scule|unelte|أدوات/iu;
 const parts=/볼트|너트|나사|부품[^.!?。]{0,24}(?:분류|보관|분리)|\bbolts?\b|\bnuts?\b|\bscrews?\b|small parts|ボルト|ナット|ねじ|schraub|mutter|boulon|écrou|bullon|dadi|tornill|tuerca|parafuso|porca|болт|гайк|șurub|piuliț|براغي|صواميل/iu;
 const tape=/줄자|tape measure|measuring tape|巻尺|コンベックス|bandmaß|maßband|mètre ruban|metro a nastro|cinta métrica|trena|fita métrica|рулетк|ruletă|شريط قياس/iu;
@@ -33,11 +33,11 @@ const film=/스트레치|stretch.*(?:film|wrap)|ストレッチ|stretchfolie|fil
 export function extractAccessoryNeeds(snapshot) {
  const body=commerceText(snapshot), title=clean(snapshot.title), needs=[];
  const add=(category,score,reason=category)=>needs.push({category,constraints:{},origin:'content-rule',score,reason});
- const paper=paperwork.test(body);
- if(paper)add('clipboard',20);
- if(paper||documents.test(body))add('document-holder',15);
- if(tools.test(body))add('tool-storage',45);
- if(parts.test(body)&&!specialistArea.test(title))add('parts-organizer',55);
+ // Paperwork is not evidence that a visitor needs stationery.
+ if(/클립보드|서류 받침|clipboard|クリップボード|klemmbrett|porte-bloc|portapapeles/iu.test(title))add('clipboard',70);
+ if(/문서 홀더|지퍼파일|서류 보관함|document (?:holder|pouch)|porte-documents/iu.test(title))add('document-holder',70);
+ if(/(?:공구|tools?)[^.!?。]{0,20}(?:운반|수거|회수|정리|보관|transport|storage)|tool(?:box| box| organizer)/iu.test(body))add('tool-storage',62);
+ if(parts.test(body)&&/(?:볼트|너트|나사|부품|parts?|bolts?|screws?)[^.!?。]{0,24}(?:분류|보관|수거|분리|sort|store|collect)/iu.test(body)&&!specialistArea.test(title))add('parts-organizer',65);
  if(tape.test(body))add('measuring-tape',65);
  if(wood.test(title)&&marking.test(body))add('carpenter-pencil',70);
  if(manualPaint.test(title)){
@@ -51,5 +51,5 @@ export function extractAccessoryNeeds(snapshot) {
  if(film.test(title))add('stretch-film',90);
  const specific=taskNeeds(title,body);
  if(!needs.some(n=>n.category==='measuring-tape')&&specific.some(n=>['carpenter-square','chalk-line','spirit-level'].includes(n.category)))add('measuring-tape',67);
- return [...needs,...specific];
+ return [...needs,...specific,...contextNeeds(snapshot,body)];
 }

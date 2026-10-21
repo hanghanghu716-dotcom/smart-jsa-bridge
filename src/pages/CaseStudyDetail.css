@@ -1,0 +1,10 @@
+.case-study-page{color-scheme:var(--theme-color-scheme)}
+.case-study-page .toastui-editor-contents{color:var(--text-primary);background:transparent}
+.case-study-page .toastui-editor-contents :is(p,li,dl,dt,dd,strong,em,h1,h2,h3,h4,h5,h6,td){color:var(--text-primary)!important}
+.case-study-page .toastui-editor-contents :is(h1,h2,h3,h4,h5,h6,hr,table,th,td){border-color:var(--border-default)!important}
+.case-study-page .toastui-editor-contents :is(table,td){background:var(--panel-bg)!important}
+.case-study-page .toastui-editor-contents th{background:var(--surface-hover)!important;color:var(--text-primary)!important}
+.case-study-page .toastui-editor-contents th :is(p,strong){color:var(--text-primary)!important}
+.case-study-page .toastui-editor-contents a{color:var(--accent)!important}
+.case-study-page .toastui-editor-contents :is(pre,code,blockquote){background:var(--card-bg);color:var(--text-secondary);border-color:var(--border-strong)}
+.case-study-page :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
