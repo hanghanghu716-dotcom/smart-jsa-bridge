@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { Buffer } from 'node:buffer';
 import { parse, parseFragment } from 'parse5';
 import { buildFeed, createContentFeedHandler } from '../api/content-feed.js';
+import { renderCaseHtml } from '../api/case-study.js';
 import { feedXml } from '../server/feed-content.js';
 
 const doc = {
@@ -81,4 +82,17 @@ test('RSS limits byte size by omitting whole oversized articles instead of trunc
 test('RSS includes only the latest 50 complete articles; the sitemap retains discovery of older content', () => {
   const rows = Array.from({ length: 125 }, (_, i) => ({ ...post, id: `post-${i}`, post_group_id: `article-${i}` }));
   assert.equal(descriptions(buildFeed(rows, [], 'ko')).length, 50);
+});
+
+test('case RSS matches the complete delivered article after resources and review are reordered', () => {
+  const row = { ...post, content_md: '<h2>1. 작업</h2><p>본문 전체</p><h2 id="section-11">11. 작성·전문검토 상태와 수정 이력</h2><p>검토 기록 전체</p>', pdf_list: [{ name: '사례 PDF', url: 'https://smartjsabridge.com/example.pdf' }] };
+  const page = parse(renderCaseHtml('<html><head></head><body><div id="root"></div></body></html>', row, 'ko', ['ko']));
+  const article = all(page, n => n.tagName === 'article')[0];
+  const body = parseFragment(descriptions(buildFeed([row], [], 'ko'))[0]);
+  const normalized = node => text(node).replace(/\s+/g, ' ').trim();
+  assert.ok(normalized(body).includes(normalized(article)));
+  const headings = all(body, n => n.tagName === 'h2').map(text);
+  assert.deepEqual(headings.map(s => s.split('.')[0]), ['1', '11', '12', '13']);
+  assert.match(text(body), /검토 기록 전체/);
+  assert.ok(all(body, n => n.tagName === 'a').some(n => n.attrs.some(a => a.name === 'href' && a.value.endsWith('/example.pdf'))));
 });

@@ -21,6 +21,14 @@ export function renderCaseBody(post, baseUrl) {
   } : defaultUrlTransform;
   return renderToStaticMarkup(React.createElement(Markdown, { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]], urlTransform, children: post.content_md || '' }));
 }
+export function renderCaseArticle(post, locale, baseUrl) {
+  const sections = splitCaseSections(post.content_md || '');
+  const body = renderCaseBody({...post,content_md:sections.main}, baseUrl);
+  const review = sections.review ? renderCaseBody({...post,content_md:sections.review}, baseUrl) : '';
+  const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
+  const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');
+  return `${body}<section id="section-11"><h2>11. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}</section><section id="section-12"><h2>12. ${e(getCommerceUi(locale).title)}</h2></section>${review}`;
+}
 export function renderCaseHtml(shell, post, locale, availableLocales) {
   const ro = locale === 'ro-RO' ? romanianUi.editorial : null;
   const path = casePath(locale, post.post_group_id);
@@ -29,13 +37,8 @@ export function renderCaseHtml(shell, post, locale, availableLocales) {
   const alternatives = SEO_LANGUAGES.filter(code => availableLocales.some(value => normalizeLocale(value) === getSeoLocale(code)));
   const links = alternatives.map(code => `<link data-rh="true" rel="alternate" hreflang="${e(code)}" href="${e(SITE + casePath(getSeoLocale(code), post.post_group_id))}">`).join('');
   const metadata = `<title data-rh="true">${e(title)}</title><meta data-rh="true" name="description" content="${e(description)}"><meta data-rh="true" name="robots" content="index,follow"><link data-rh="true" rel="canonical" href="${e(SITE + path)}"><meta data-rh="true" property="og:title" content="${e(title)}"><meta data-rh="true" property="og:description" content="${e(description)}"><meta data-rh="true" property="og:url" content="${e(SITE + path)}">${links}${alternatives.includes('en-US') ? `<link data-rh="true" rel="alternate" hreflang="x-default" href="${e(SITE + casePath('en-US', post.post_group_id))}">` : ''}<link rel="alternate" type="application/rss+xml" title="Smart JSA Bridge" href="/${e(locale)}/feed.xml">`;
-  const sections = splitCaseSections(post.content_md || '');
-  const body = renderCaseBody({...post,content_md:sections.main});
-  const review = sections.review ? renderCaseBody({...post,content_md:sections.review}) : '';
   const structured = serializeStructuredData(post.schema_markup);
-  const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
-  const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');
-  const article = `<main style="max-width:1100px;margin:0 auto;padding:32px 24px"><nav><a href="/${e(locale)}/">Smart JSA Bridge</a> · <a href="/${e(locale)}/archive">${e(ro?.cases || 'Case Studies')}</a> · <a href="/${e(locale)}/explore">${e(ro?.explore || 'Explore')}</a></nav><h1>${e(post.title)}</h1><p>${e(description)}</p><article class="toastui-editor-contents" data-case-study-id="${e(post.id)}">${body}<section id="section-11"><h2>11. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}</section><section id="section-12"><h2>12. ${e(getCommerceUi(locale).title)}</h2></section>${review}</article></main>`;
+  const article = `<main style="max-width:1100px;margin:0 auto;padding:32px 24px"><nav><a href="/${e(locale)}/">Smart JSA Bridge</a> · <a href="/${e(locale)}/archive">${e(ro?.cases || 'Case Studies')}</a> · <a href="/${e(locale)}/explore">${e(ro?.explore || 'Explore')}</a></nav><h1>${e(post.title)}</h1><p>${e(description)}</p><article class="toastui-editor-contents" data-case-study-id="${e(post.id)}">${renderCaseArticle(post, locale)}</article></main>`;
   return shell.replace(/<html[^>]*>/, `<html lang="${e(getLanguageTag(locale))}" dir="${locale.startsWith('ar') ? 'rtl' : 'ltr'}">`)
     .replace('</head>', metadata + '</head>').replace('<div id="root"></div>', `<div id="root">${article}${structured ? `<script type="application/ld+json">${structured}</script>` : ''}<script id="jsa-case-bootstrap" type="application/json">${jsonScript({ path, post, availableLocales })}</script></div>`);
 }
