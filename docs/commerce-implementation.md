@@ -215,3 +215,14 @@ Awin은 링크 생성 API를 제공하지만 브라우저 실시간 링크 생�
 서버는 원격 카탈로그를 2.5초 이내, 2MB 및 5,000개 이하로 제한한다. 공급 피드는 각 15초·8MB·5,000행 이하이다. 최대 유효 기간은 판매처 설정과 24시간 중 짧은 값이다. 판매처 약관이 더 짧으면 해당 maxAgeHours를 사용한다.
 
 카탈로그가 이 범위를 넘으면 동일 인터페이스를 유지한 채 국가/카테고리별 서버 저장소와 인덱스로 전환한다. 사용자 요청마다 전체 글로벌 피드를 다운로드하는 방식으로 확대하지 않는다. 새 판매처 추가는 어댑터·매핑·승인을 추가하는 작업이며 사용자 화면을 판매처별로 다시 구현하는 작업이 아니다.
+
+
+## Korea manual-link launch (2026-10-21)
+
+The first catalog uses a portal-issued Coupang product link for an ordinary A4 clipboard. Product titles and links are operator-reviewed; no product image, price, stock promise, PPE suitability or API approval is claimed. `affiliateApproved` describes permission to publish partner links after enrollment; the separate `finalApproval` remains pending and `apiApproved` remains false.
+
+Production uses `JSA_COMMERCE_ENABLED=true` and the server-only `JSA_COMMERCE_CATALOG_JSON`. The tracking URL is held in hosting configuration, not public Git. This catalog overrides the empty checked-in catalog. Existing remote feed support remains unchanged.
+
+Manual offers use `mode: link-only`, unknown availability, a merchant opt-in (`linkOnlyApproved`), low-risk categories only, and independent dated product review. They expire no later than 30 days from `checkedAt`; normal feed offers retain their 24-hour maximum. Refreshing a deployment does not refresh review dates. The initial review expires on 2026-11-20 and must be rechecked before then.
+
+A4 clipboards can match explicit clipboard mentions or checklist/inspection-sheet paperwork. The panel explicitly calls these related suggestions, not products used in the case. No matching product means no initial panel. Country is determined by the visitor's explicit selection, trusted Vercel country, then locale. English content viewed from Korea can therefore display Korean purchase links. Other countries do not receive this KR offer.

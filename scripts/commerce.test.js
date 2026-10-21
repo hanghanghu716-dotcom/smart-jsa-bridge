@@ -138,3 +138,35 @@ test('catalog remote URL is allowlisted, never follows redirects and uses no-sto
  }});
  assert.equal(result.offers.length,2);
 });
+
+// Manual link pilot: separate permissions and freshness from live feed offers.
+function manualFixture(){
+ const c=fixture();
+ for(const m of c.merchants){m.linkOnlyApproved=true;m.maxAgeHours=720;}
+ for(const o of c.offers){o.mode='link-only';o.availability='unknown';o.checkedAt='2026-10-14T12:00:00Z';}
+ c.reviews=c.offers.map(o=>({...c.reviews[0],offerFingerprint:offerFingerprint(o)}));
+ return c;
+}
+test('manually reviewed low-risk links work without making live-stock claims',()=>{
+ const c=manualFixture();assert.equal(select(c).length,2);assert.equal(select(c)[0].linkOnly,true);
+ for(const mutate of [c=>c.merchants[0].linkOnlyApproved=false,c=>c.offers[0].availability='in_stock',c=>c.offers[0].checkedAt='2026-09-20T12:00:00Z',c=>c.offers[0].mode='unexpected']){
+ const changed=manualFixture();mutate(changed);assert.equal(select(changed).length,1);}
+ // A feed still cannot silently inherit the longer manual review window.
+ const feed=manualFixture();feed.offers[0].mode='feed';feed.offers[0].availability='in_stock';feed.reviews[0].offerFingerprint=offerFingerprint(feed.offers[0]);assert.equal(select(feed).length,1);
+});
+test('manual links cannot be used to bypass protective equipment review',()=>{
+ const c=manualFixture();c.offers[0].category='respirator';c.offers[0].attributes={standard:'TEST'};
+ c.reviews[0]={...c.reviews[0],offerFingerprint:offerFingerprint(c.offers[0]),safetyReviewed:true};
+ c.profiles=[{sourceFingerprint:fingerprint(snapshot),status:'approved',reviewer:'reviewer',reviewedAt:past,validUntil:future,needs:[{category:'respirator',constraints:{standard:'TEST'}}]}];
+ assert.equal(select(c).length,0);
+});
+test('paperwork context selects ordinary clipboard only, unrelated text stays empty',()=>{
+ const c=manualFixture();
+ for(const title of ['점검표 작성','체크리스트 준비','Complete inspection checklist'])assert.equal(selectOffers({catalog:c,snapshot:{...snapshot,title},country:'US',now}).length,2);
+ assert.equal(selectOffers({catalog:c,snapshot:{...snapshot,title:'Motor overhaul'},country:'US',now}).length,0);
+});
+test('server-configured catalog takes precedence without contacting a feed',async()=>{
+ const c=manualFixture();const result=await loadCatalog({env:{JSA_COMMERCE_CATALOG_JSON:JSON.stringify(c),JSA_COMMERCE_CATALOG_URL:'https://unused.example'},fetcher:()=>assert.fail('must not fetch')});
+ assert.equal(result.offers[0].mode,'link-only');
+ await assert.rejects(loadCatalog({env:{JSA_COMMERCE_CATALOG_JSON:'invalid'}}));
+});

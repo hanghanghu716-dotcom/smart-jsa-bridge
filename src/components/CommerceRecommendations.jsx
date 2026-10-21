@@ -21,6 +21,9 @@ export default function CommerceRecommendations({ kind, contentId, locale, conte
  },[kind,contentId,contentLocale,selectedCountry,requestKey]);
  const data=result?.key===requestKey?result.data:null;
  if(!data || !['ready','empty'].includes(data.status))return null;
+ // Do not insert an empty advertising panel into unrelated content. Keep the
+ // country switch available after an explicit selection with no matches.
+ if(!data.items?.length && !selectedCountry)return null;
  const country=selectedCountry||data.country||commerceCountry(locale);
  let names;
  try{names=new Intl.DisplayNames([getLanguageTag(locale)],{type:'region'});}catch{/* ISO codes remain usable. */}
@@ -31,9 +34,10 @@ export default function CommerceRecommendations({ kind, contentId, locale, conte
        {COMMERCE_COUNTRIES.map(code=><option value={code} key={code}>{names?.of(code)||code}</option>)}
      </select></label>
    </div>
-   <p className="commerce-disclosure">{ui.disclosure}</p>
+   {!disclosures.length && <p className="commerce-disclosure">{ui.disclosure}</p>}
    {disclosures.map(value=><p className="commerce-disclosure" key={value}>{value}</p>)}
    <p className="commerce-context">{ui.context}</p>
+   {data.items?.some(item=>item.linkOnly) && <p className="commerce-context">{ui.merchantCheck}</p>}
    {data.items?.length ? <ul className="commerce-grid">{data.items.map(item=><li key={item.id}>
      <span className="commerce-merchant">{item.merchant}</span><h3>{item.title}</h3>
      <a href={item.href} target="_blank" rel="sponsored noopener noreferrer">{ui.view}<span aria-hidden="true"> ↗</span></a>

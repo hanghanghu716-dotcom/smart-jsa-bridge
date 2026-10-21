@@ -32,7 +32,9 @@ const TERMS = {
 };
 export function extractNeeds(snapshot) {
   const body = JSON.stringify(snapshot).toLowerCase();
-  return Object.entries(TERMS).filter(([, words]) => words.some(word => body.includes(word.toLowerCase())))
+  // A clipboard is an optional paperwork accessory, never a safety control.
+  const paperwork = /점검표|체크리스트|기록지|\bchecklists?\b|\bcheck\s+sheets?\b|\binspection\s+(?:sheets?|forms?)\b/i.test(body);
+  return Object.entries(TERMS).filter(([category, words]) => (category === 'clipboard' && paperwork) || words.some(word => body.includes(word.toLowerCase())))
     .map(([category]) => ({ category, constraints: {}, origin: 'explicit-term' }));
 }
 export function approvedProfile(snapshot, profiles, now) {
@@ -48,7 +50,7 @@ export function safeLink(value, hosts) {
 }
 export function offerFingerprint(offer) {
   return fingerprint({ id: offer.id, merchantId: offer.merchantId, title: offer.title, category: offer.category,
-    country: offer.country, affiliateUrl: offer.affiliateUrl, attributes: offer.attributes || {} });
+    country: offer.country, mode: offer.mode || 'feed', affiliateUrl: offer.affiliateUrl, attributes: offer.attributes || {} });
 }
 export function selectOffers({ snapshot, catalog, country, now = Date.now(), limit = 4 }) {
   if (!snapshot || !COUNTRIES.includes(country) || catalog?.version !== 1) return [];
@@ -63,10 +65,16 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     if(!offer || typeof offer !== 'object')continue;
     const merchant = merchants.get(offer.merchantId), review = reviews.get(offerFingerprint(offer));
     if (!merchant || merchant.enabled !== true || merchant.affiliateApproved !== true || merchant.displayApproved !== true
-      || !array(merchant.countries).includes(country) || offer.country !== country || offer.availability !== 'in_stock') continue;
+      || !array(merchant.countries).includes(country) || offer.country !== country) continue;
+    const linkOnly = offer.mode === 'link-only';
+    // Manually curated links make no live-stock or price claim. They require
+    // explicit permission, a low-risk category, and a dated review (max 30 days).
+    if (linkOnly) {
+      if (merchant.linkOnlyApproved !== true || !LOW_RISK.has(offer.category) || offer.availability !== 'unknown') continue;
+    } else if ((offer.mode && offer.mode !== 'feed') || offer.availability !== 'in_stock') continue;
     if (!text(offer.id) || !text(offer.title) || offer.title.length > 240 || !validDate(offer.checkedAt, now)
       || !future(offer.expiresAt, now) || !Number.isFinite(merchant.maxAgeHours) || merchant.maxAgeHours <= 0
-      || now - Date.parse(offer.checkedAt) > Math.min(merchant.maxAgeHours,24) * 3600000) continue;
+      || now - Date.parse(offer.checkedAt) > Math.min(merchant.maxAgeHours,linkOnly ? 720 : 24) * 3600000) continue;
     if (!review || review.status !== 'approved' || !text(review.reviewer) || !validDate(review.reviewedAt, now)
       || !future(review.validUntil, now)) continue;
     const href = safeLink(offer.affiliateUrl, merchant.linkHosts);
@@ -78,6 +86,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     // No commissions, user profiling or invented popularity enters the ranking.
     candidates.push({ id: `${merchant.id}:${offer.id}`, title: offer.title, merchant: text(merchant.name) || merchant.id,
       merchantId: merchant.id, category: offer.category, href, country,
+      linkOnly,
       disclosure: text(merchant.disclosures?.[snapshot.locale] || merchant.disclosures?.en),
       score: Object.keys(need.constraints).length, checkedAt: offer.checkedAt });
   }

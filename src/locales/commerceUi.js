@@ -13,7 +13,20 @@ const messages = {
 };
 export function getCommerceUi(locale) {
  const [title,country,view,disclosure,context,empty] = messages[locale?.split('-')[0]] || messages.en;
- return {title,country,view,disclosure,context,empty};
+ const merchantCheck = {
+ en: 'Check current price, availability and product options at the retailer.',
+ ko: '가격·재고·상품 옵션은 쿠팡 등 판매처에서 확인해 주세요.',
+ ja: '価格・在庫・商品オプションは販売店でご確認ください。',
+ de: 'Aktuelle Preise, Verfügbarkeit und Varianten beim Händler prüfen.',
+ fr: 'Vérifiez le prix, la disponibilité et les options chez le vendeur.',
+ it: 'Verifica prezzo, disponibilità e varianti presso il venditore.',
+ es: 'Consulta el precio, la disponibilidad y las opciones en la tienda.',
+ pt: 'Confira preço, disponibilidade e opções na loja.',
+ ro: 'Verificați prețul, disponibilitatea și opțiunile la comerciant.',
+ ru: 'Проверьте цену, наличие и варианты товара у продавца.',
+ ar: 'تحقق من السعر والتوفر وخيارات المنتج لدى البائع.'
+ }[locale?.split('-')[0]] || 'Check current price, availability and product options at the retailer.';
+ return {title,country,view,disclosure,context,empty,merchantCheck};
 }
 export const COMMERCE_COUNTRIES = ['KR','US','CA','GB','AU','JP','DE','FR','IT','ES','SG','SA','BR','RO','RU'];
 export function commerceCountry(locale) {

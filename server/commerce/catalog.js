@@ -8,6 +8,8 @@ export function parseCatalog(body){
 }
 // Server-only snapshot. Credentials and raw vendor feeds never go to the browser.
 export async function loadCatalog({env=process.env,fetcher=fetch}={}){
+ // Operator-curated catalog stays in server configuration, outside public Git.
+ if(env.JSA_COMMERCE_CATALOG_JSON)return parseCatalog(env.JSA_COMMERCE_CATALOG_JSON);
  if(!env.JSA_COMMERCE_CATALOG_URL)return parseCatalog(await readFile(new URL('../../data/commerce/catalog.json',import.meta.url),'utf8'));
  const url=new URL(env.JSA_COMMERCE_CATALOG_URL);
  if(url.protocol!=='https:'||url.hostname!==env.JSA_COMMERCE_CATALOG_HOST||url.username||url.password||url.port)throw Error('INVALID_CATALOG_HOST');
