@@ -24,10 +24,11 @@ export function renderCaseBody(post, baseUrl) {
 export function renderCaseArticle(post, locale, baseUrl) {
   const sections = splitCaseSections(post.content_md || '');
   const body = renderCaseBody({...post,content_md:sections.main}, baseUrl);
+  const introduction = sections.introduction ? renderCaseBody({...post,content_md:sections.introduction}, baseUrl) : '';
   const review = sections.review ? renderCaseBody({...post,content_md:sections.review}, baseUrl) : '';
   const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
   const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');
-  return `${body}<section id="section-11"><h2>11. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}</section><section id="section-12"><h2>12. ${e(getCommerceUi(locale).title)}</h2></section>${review}`;
+  return `${body}<section id="section-11"><h2>11. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}${introduction}</section><section id="section-12"><h2>12. ${e(getCommerceUi(locale).title)}</h2></section>${review}`;
 }
 export function renderCaseHtml(shell, post, locale, availableLocales) {
   const ro = locale === 'ro-RO' ? romanianUi.editorial : null;

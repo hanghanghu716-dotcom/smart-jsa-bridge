@@ -39,3 +39,18 @@ test('eight distinct products are selected once and image changes invalidate the
  catalog.merchants[0].imageHosts=[];
  assert.ok(selectOffers({snapshot,catalog,country:'KR',now}).every(x=>x.imageUrl===null));
 });
+
+test('case introduction moves to resources without removing article or review content',()=>{
+ const {main,introduction,review}=splitCaseSections('<div><p>Intro and usage</p><h3>Stop condition</h3><p>Stop text</p><h2 id="section-1">1. Basis</h2><p>Body</p><h2>11. Review</h2><p>Record</p></div>');
+ assert.ok(!main.includes('Intro and usage'));assert.ok(!main.includes('Stop text'));
+ assert.ok(main.includes('1. Basis'));assert.ok(main.includes('Body'));
+ assert.ok(introduction.includes('Intro and usage'));assert.ok(introduction.includes('Stop text'));
+ assert.ok(review.includes('13. Review'));assert.ok(review.includes('Record'));
+});
+
+test('legacy Markdown introductions move too, including bold headings and inline anchors',()=>{
+ for(const heading of ['## **1. Body**','## <span id="section-1"></span>1. Body']){
+ const result=splitCaseSections('# Title\nIntro\n'+heading+'\nMain text\n## **11. Review**\nRecord');
+ assert.equal(result.introduction,'# Title\nIntro');assert.ok(result.main.startsWith(heading));assert.ok(result.main.includes('Main text'));assert.ok(result.review.startsWith('## **13. Review**'));assert.ok(result.review.includes('Record'));
+ }
+});

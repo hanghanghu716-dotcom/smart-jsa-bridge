@@ -58,7 +58,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     const linkOnly = offer.mode === 'link-only';
     const reviewedPpe = Boolean(PPE_PURPOSES[offer.category] && offer.attributes?.purpose === PPE_PURPOSES[offer.category]
       && review?.specificationReviewed === true && array(review.specificationSources).some(source => {
-        try { const u=new URL(source); return u.protocol==='https:' && ['www.3m.co.kr','www.ansell.com'].includes(u.hostname) && !u.username && !u.password; } catch { return false; }
+        try { const u=new URL(source); return u.protocol==='https:' && ['www.3m.co.kr','multimedia.3m.com','www.ansell.com'].includes(u.hostname) && !u.username && !u.password; } catch { return false; }
       }));
     // Manually curated links make no live-stock or price claim. They require
     // explicit permission, a reviewed purpose, and a dated review (max 30 days).

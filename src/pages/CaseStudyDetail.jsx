@@ -242,6 +242,7 @@ export default function CaseStudyDetail() {
             </div>
           )}
 
+          {sections.introduction && <div className="case-usage-notes"><Viewer initialValue={sections.introduction} key={sections.introduction}/></div>}
           <DiscoveryLinks kind="case" target={id} showReuseHelp/>
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           </section>

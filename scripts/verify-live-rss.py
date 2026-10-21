@@ -1,5 +1,6 @@
 """Read-only checks of complete RSS bodies against the public detail pages."""
 import concurrent.futures
+from collections import Counter
 import html.parser
 import json
 import pathlib
@@ -76,7 +77,11 @@ def check(item):
                 raise ValueError(f'Missing public text in RSS: {url}')
         return 'public-jsa'
     expected = visible(page, article_only=True)
-    if not expected or expected not in body:
+    # Candidate HTML may intentionally move complete sections relative to the
+    # currently deployed page. Keep every text token (including multiplicity)
+    # mandatory before release; after deployment also require identical order.
+    missing = Counter(expected.split()) - Counter(body.split()) if CANDIDATE else None
+    if not expected or (bool(missing) if CANDIDATE else expected not in body):
         raise ValueError(f'Missing full case body in RSS: {url}')
     return 'case-study'
 
