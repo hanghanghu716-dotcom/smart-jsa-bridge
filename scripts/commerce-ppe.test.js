@@ -46,3 +46,8 @@ test('protective clothing recognizes body evidence and dust tasks while retainin
  assert.ok(!categories({title:'감염성 폐기물 처리',body:'오염방지복 착용.'}).includes('contamination-coverall'));
  assert.ok(!categories({title:'서류 정리',body:'PDF 인쇄'}).includes('protective-coverall'));
 });
+
+test('safety-measure wording is not a fall-arrest harness reference',()=>{
+ assert.ok(!categories({title:'지게차 자재 운반',scope:'단계별 위험요인과 현재 안전대책·감소권고대책을 정리합니다.',ppe:['안전모']}).includes('fall-arrest-harness'));
+ assert.ok(categories({title:'상부 작업',body:'전신형 안전대를 착용하고 연결장치 적합성을 확인한다.'}).includes('fall-arrest-harness'));
+});
