@@ -161,7 +161,7 @@ export default function CaseStudyDetail() {
       )}
       
       <header style={styles.header}>
-        <div style={{...styles.container,display:"flex",justifyContent:"space-between",alignItems:"center",gap:16}}>
+        <div style={{...styles.container,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:16}}>
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
           <ThemeSwitcher compact />
         </div>
