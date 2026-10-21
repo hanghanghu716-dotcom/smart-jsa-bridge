@@ -38,9 +38,9 @@ export function safeLink(value, hosts) {
 }
 export function offerFingerprint(offer) {
   return fingerprint({ id: offer.id, merchantId: offer.merchantId, title: offer.title, category: offer.category,
-    country: offer.country, mode: offer.mode || 'feed', affiliateUrl: offer.affiliateUrl, attributes: offer.attributes || {} });
+    country: offer.country, mode: offer.mode || 'feed', affiliateUrl: offer.affiliateUrl, imageUrl: offer.imageUrl || null, attributes: offer.attributes || {} });
 }
-export function selectOffers({ snapshot, catalog, country, now = Date.now(), limit = 4 }) {
+export function selectOffers({ snapshot, catalog, country, now = Date.now(), limit = 8 }) {
   if (!snapshot || !COUNTRIES.includes(country) || catalog?.version !== 1) return [];
   const profile = approvedProfile(snapshot, catalog.profiles, now);
   // Explicit suppression takes precedence; edited content invalidates it just like other reviews.
@@ -74,6 +74,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     // No commissions, user profiling or invented popularity enters the ranking.
     candidates.push({ id: `${merchant.id}:${offer.id}`, title: offer.title, merchant: text(merchant.name) || merchant.id,
       merchantId: merchant.id, category: offer.category, href, country,
+      imageUrl: safeLink(offer.imageUrl, merchant.imageHosts),
       linkOnly,
       disclosure: text(merchant.disclosures?.[snapshot.locale] || merchant.disclosures?.en),
       reason: need.reason || need.category,
@@ -82,11 +83,11 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
   candidates.sort((a,b) => b.score-a.score || Date.parse(b.checkedAt)-Date.parse(a.checkedAt) || a.id.localeCompare(b.id));
   const chosen=[], seen=new Set(), counts=new Map(), categoryCounts=new Map();
   for (const item of candidates) {
-    if (seen.has(item.id) || seen.has(item.href) || (counts.get(item.merchantId)||0)>=4 || seen.has(item.merchantId+':'+item.category) || (categoryCounts.get(item.category)||0)>=2) continue;
+    if (seen.has(item.id) || seen.has(item.href) || (counts.get(item.merchantId)||0)>=8 || seen.has(item.merchantId+':'+item.category) || (categoryCounts.get(item.category)||0)>=2) continue;
     seen.add(item.id);seen.add(item.href);seen.add(item.merchantId+':'+item.category);counts.set(item.merchantId,(counts.get(item.merchantId)||0)+1);categoryCounts.set(item.category,(categoryCounts.get(item.category)||0)+1);
     const {score: _score, checkedAt: _checkedAt, ...publicItem}=item;
     chosen.push(publicItem);
-    if(chosen.length>=Math.max(1,Math.min(6,limit)))break;
+    if(chosen.length>=Math.max(1,Math.min(8,limit)))break;
   }
   return chosen;
 }

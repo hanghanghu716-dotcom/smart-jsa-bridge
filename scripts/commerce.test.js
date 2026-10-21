@@ -86,15 +86,15 @@ test('API rechecks public visibility on every request and never returns a cached
 test('API is off by default; rejects malformed inputs; isolates provider outages',async()=>{
  const disabled=response();await createCommerceHandler({env:{},reader:()=>assert.fail('must not read')})({method:'GET'},disabled);assert.equal(disabled.body.status,'disabled');
  const handler=createCommerceHandler({env:{JSA_COMMERCE_ENABLED:'true'},reader:async()=>[row],catalogReader:async()=>{throw Error('private upstream details');}});
- for(const query of [{kind:'ugc',id:'-'.repeat(36),locale:'en-US'},{kind:'ugc',id:row.id,locale:'en-US',country:'ZZ'},{kind:['ugc'],id:row.id,locale:'en-US'}]){
+ for(const query of [{kind:'ugc',id:'-'.repeat(36),locale:'en-US'},{kind:'ugc',id:row.id,locale:'en-US',marketLocale:'ZZ'},{kind:['ugc'],id:row.id,locale:'en-US'}]){
   const res=response();await handler({method:'GET',query},res);assert.equal(res.statusCode,400);
  }
  const res=response();await handler({method:'GET',query:{kind:'ugc',id:row.id,locale:'en-US'}},res);assert.equal(res.statusCode,503);assert.ok(!JSON.stringify(res.body).includes('private upstream'));
 });
-test('trusted purchase geography can default country, explicit choice wins, untrusted headers ignored',async()=>{
- for(const [env,explicit,expected] of [[{VERCEL:'1'},undefined,'US'],[{VERCEL:'1'},'KR','KR'],[{},undefined,'KR']]){
-  const handler=createCommerceHandler({env:{...env,JSA_COMMERCE_ENABLED:'true'},reader:async()=>[row],catalogReader:async()=>fixture(),now:()=>now});
-  const res=response();await handler({method:'GET',headers:{'x-vercel-ip-country':'US'},query:{kind:'ugc',id:row.id,locale:'ko',...(explicit?{country:explicit}:{})}},res);assert.equal(res.body.country,expected);
+test('page locale controls the market, independently of geo headers and legacy country input',async()=>{
+ for(const [marketLocale,expected] of [[undefined,'KR'],['en-US','US'],['ko','KR']]){
+  const handler=createCommerceHandler({env:{VERCEL:'1',JSA_COMMERCE_ENABLED:'true'},reader:async()=>[row],catalogReader:async()=>fixture(),now:()=>now});
+  const res=response();await handler({method:'GET',headers:{'x-vercel-ip-country':'US'},query:{kind:'ugc',id:row.id,locale:'ko',country:'US',...(marketLocale?{marketLocale}:{})}},res);assert.equal(res.body.country,expected);
  }
 });
 test('CSV supports quoted delimiters, newlines, escaped quotes and BOM',()=>{

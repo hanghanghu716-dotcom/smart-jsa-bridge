@@ -1,47 +1,50 @@
 import { useEffect, useId, useState } from 'react';
-import { getCommerceUi, COMMERCE_COUNTRIES, commerceCountry } from '../locales/commerceUi.js';
-import { getLanguageTag } from '../locales/config.js';
+import { getCommerceUi } from '../locales/commerceUi.js';
 import './CommerceRecommendations.css';
 import { productPurpose } from '../locales/supportUi.js';
 
-export default function CommerceRecommendations({ kind, contentId, locale, contentLocale = locale, placement = 'inline' }) {
- const [selectedCountry,setSelectedCountry] = useState('');
+function ProductList({items,ui,locale}) {
+ return <ul className="commerce-grid">{items.map(item=><li key={item.id}>
+   <a className="commerce-image-link" href={item.href} target="_blank" rel="sponsored noopener noreferrer" aria-label={item.title}>
+     {item.imageUrl && <img src={item.imageUrl} alt={item.title} width="160" height="160" loading="lazy" decoding="async" referrerPolicy="no-referrer" onError={event=>{event.currentTarget.hidden=true;}}/>}
+   </a>
+   <div className="commerce-product-copy"><span className="commerce-purpose">{productPurpose(item.category,locale)}</span><h3>{item.title}</h3>
+   <span className="commerce-merchant">{item.merchant}</span><a className="commerce-product-link" href={item.href} target="_blank" rel="sponsored noopener noreferrer">{ui.view}<span aria-hidden="true"> ↗</span></a></div>
+ </li>)}</ul>;
+}
+function ProductNotes({items,ui}) {
+ const disclosures=[...new Set(items.map(item=>item.disclosure).filter(Boolean))];
+ return <footer className="commerce-notes">
+   {(disclosures.length?disclosures:[ui.disclosure]).map(text=><p className="commerce-disclosure" key={text}><strong>{text}</strong></p>)}
+   <p>{ui.context}</p><p>{ui.merchantCheck}</p>
+ </footer>;
+}
+export default function CommerceRecommendations({ kind, contentId, locale, contentLocale = locale, placement = 'inline', sectionNumber }) {
  const [result,setResult] = useState(null);
  const labelId=useId(), ui=getCommerceUi(locale);
- const requestKey=JSON.stringify([kind,contentId,contentLocale,selectedCountry]);
+ const requestKey=JSON.stringify([kind,contentId,contentLocale,locale]);
  useEffect(()=>{
    const controller=new AbortController();
    let active=true;
-   const query=new URLSearchParams({kind,id:contentId,locale:contentLocale});
-   if(selectedCountry)query.set('country',selectedCountry);
+   const query=new URLSearchParams({kind,id:contentId,locale:contentLocale,marketLocale:locale});
    fetch('/api/commerce?'+query,{signal:controller.signal,cache:'no-store'})
      .then(response=>response.ok?response.json():null)
      .then(data=>{if(active)setResult({key:requestKey,data});})
      .catch(()=>{if(active)setResult({key:requestKey,data:null});});
    return()=>{active=false;controller.abort();};
- },[kind,contentId,contentLocale,selectedCountry,requestKey]);
+ },[kind,contentId,contentLocale,locale,requestKey]);
  const data=result?.key===requestKey?result.data:null;
- if(!data || !['ready','empty'].includes(data.status))return null;
- // Do not insert an empty advertising panel into unrelated content. Keep the
- // country switch available after an explicit selection with no matches.
- if(!data.items?.length && !selectedCountry)return null;
- const country=selectedCountry||data.country||commerceCountry(locale);
- let names;
- try{names=new Intl.DisplayNames([getLanguageTag(locale)],{type:'region'});}catch{/* ISO codes remain usable. */}
- const disclosures=[...new Set((data.items||[]).map(item=>item.disclosure).filter(Boolean))];
- return <aside className={'commerce-panel'+(placement==='rail'?' commerce-panel--rail':'')} aria-labelledby={labelId} dir={locale?.startsWith('ar')?'rtl':'ltr'}>
-   <div className="commerce-heading"><h2 id={labelId}>{ui.title}</h2>
-     <label>{ui.country}<select value={country} onChange={event=>setSelectedCountry(event.target.value)}>
-       {COMMERCE_COUNTRIES.map(code=><option value={code} key={code}>{names?.of(code)||code}</option>)}
-     </select></label>
-   </div>
-   {!disclosures.length && <p className="commerce-disclosure">{ui.disclosure}</p>}
-   {disclosures.map(value=><p className="commerce-disclosure" key={value}>{value}</p>)}
-   <p className="commerce-context">{ui.context}</p>
-   {data.items?.some(item=>item.linkOnly) && <p className="commerce-context">{ui.merchantCheck}</p>}
-   {data.items?.length ? <ul className="commerce-grid">{data.items.map(item=><li key={item.id}>
-     <span className="commerce-purpose">{productPurpose(item.category,locale)}</span><h3>{item.title}</h3><span className="commerce-merchant">{item.merchant}</span>
-     <a href={item.href} target="_blank" rel="sponsored noopener noreferrer">{ui.view}<span aria-hidden="true"> ↗</span></a>
-   </li>)}</ul>:<p role="status">{ui.empty}</p>}
- </aside>;
+ const items=(data?.status==='ready'?data.items:[])?.slice(0,8)||[];
+ // Numbered case sections remain stable while the catalogue loads or has no
+ // matching merchant. Sidebars only exist when there are reviewed matches.
+ if(!items.length&&!sectionNumber)return null;
+ return <>
+   <section id={sectionNumber?'section-'+sectionNumber:undefined} className="commerce-panel commerce-panel--inline" aria-labelledby={labelId} dir={locale?.startsWith('ar')?'rtl':'ltr'}>
+     <h2 id={labelId}>{sectionNumber?sectionNumber+'. ':''}{ui.title}</h2>
+     {items.length?<><ProductList items={items} ui={ui} locale={locale}/><ProductNotes items={items} ui={ui}/></>:<p className="commerce-empty">{ui.empty}</p>}
+   </section>
+   {placement==='rail'&&[items.slice(0,4),items.slice(4,8)].map((group,index)=>group.length>0&&<aside key={index} className={'commerce-panel commerce-panel--rail commerce-panel--'+(index?'right':'left')} aria-label={ui.title+' '+(index+1)} dir={locale?.startsWith('ar')?'rtl':'ltr'}>
+     <h2>{ui.title}</h2><ProductList items={group} ui={ui} locale={locale}/><ProductNotes items={group} ui={ui}/>
+   </aside>)}
+ </>;
 }

@@ -1,6 +1,6 @@
 import { readPublic } from '../server/public-content.js';
 import { readProjectEnv } from '../server/supabase-config.js';
-import { purchaseCountry, selectOffers, fingerprint, COUNTRIES } from '../server/commerce/engine.js';
+import { purchaseCountry, selectOffers, fingerprint } from '../server/commerce/engine.js';
 import { readCommerceSnapshot } from '../server/commerce/source.js';
 import { loadCatalog } from '../server/commerce/catalog.js';
 import { SUPPORTED_LANGS } from '../src/locales/config.js';
@@ -13,9 +13,8 @@ export function createCommerceHandler({ env = readProjectEnv(), reader = readPub
     const send=(status,value)=>{res.statusCode=status;res.end(JSON.stringify(value));};
     if(req.method!=='GET'){res.setHeader('Allow','GET');return send(405,{error:'METHOD_NOT_ALLOWED'});}
     if(env.JSA_COMMERCE_ENABLED!=='true')return send(200,{status:'disabled',items:[]});
-    const {kind,id,locale,country:explicit}=req.query||{};
-    const geo=env.VERCEL==='1' && COUNTRIES.includes(req.headers?.['x-vercel-ip-country']) ? req.headers['x-vercel-ip-country'] : undefined;
-    const country=purchaseCountry(locale,explicit===undefined?geo:explicit);
+    const {kind,id,locale,marketLocale=locale}=req.query||{};
+    const country=SUPPORTED_LANGS.includes(marketLocale)?purchaseCountry(marketLocale):null;
     if(!['case','ugc'].includes(kind)||typeof id!=='string'||!id||id.length>300||/[\/\\\x00-\x1f]/.test(id)
       || !SUPPORTED_LANGS.includes(locale)||!country || (kind==='ugc'&&!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)))return send(400,{error:'INVALID_REQUEST'});
     try {
