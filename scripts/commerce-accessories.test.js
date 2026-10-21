@@ -27,14 +27,14 @@ test('one merchant can supply up to eight different purposes, with task tools ah
  const offers=['clipboard','document-holder','paint-roller','paint-tray','paint-brush'].map(category=>({id:category,merchantId:'m',country:'KR',title:category,category,mode:'link-only',affiliateUrl:'https://shop.example/'+category,availability:'unknown',checkedAt,expiresAt}));
  const catalog={version:1,merchants:[{id:'m',enabled:true,affiliateApproved:true,displayApproved:true,linkOnlyApproved:true,countries:['KR'],linkHosts:['shop.example'],maxAgeHours:720}],profiles:[],offers,reviews:offers.map(o=>({offerFingerprint:offerFingerprint(o),status:'approved',reviewer:'test',reviewedAt:checkedAt,validUntil:expiresAt}))};
  const items=selectOffers({snapshot:{title:'지상 벽면 수성페인트 롤러 도장',body:'점검표',locale:'ko'},catalog,country:'KR',now});
- assert.deepEqual(items.map(x=>x.category),['paint-roller','paint-tray','paint-brush','clipboard','document-holder']);
- assert.equal(new Set(items.map(x=>x.category)).size,5);
+ assert.deepEqual(items.map(x=>x.category),['paint-roller','paint-tray','paint-brush']);
+ assert.equal(new Set(items.map(x=>x.category)).size,3);
  assert.deepEqual(selectOffers({snapshot:{title:'점검표'},catalog,country:'US',now}),[]);
 });
 test('site locales have localized rail text and accessory purposes',()=>{
  for(const locale of SUPPORTED_LANGS){assert.ok(getSupportUi(locale).use);assert.ok(productPurpose('parts-organizer',locale));}
  for(const title of ['現場確認表と記録項目','Vérifications et intervention d’urgence','Lista de comprobación','قائمة فحص']){
-  assert.ok(categories({title}).includes('clipboard'));
+  assert.ok(!categories({title}).includes('clipboard'));
  }
 });
 

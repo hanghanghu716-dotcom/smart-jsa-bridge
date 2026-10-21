@@ -160,9 +160,10 @@ test('manual links cannot be used to bypass protective equipment review',()=>{
  c.profiles=[{sourceFingerprint:fingerprint(snapshot),status:'approved',reviewer:'reviewer',reviewedAt:past,validUntil:future,needs:[{category:'respirator',constraints:{standard:'TEST'}}]}];
  assert.equal(select(c).length,0);
 });
-test('paperwork context selects ordinary clipboard only, unrelated text stays empty',()=>{
+test('generic paperwork never pads recommendations; explicit clipboard task still matches',()=>{
  const c=manualFixture();
- for(const title of ['점검표 작성','체크리스트 준비','Complete inspection checklist'])assert.equal(selectOffers({catalog:c,snapshot:{...snapshot,title},country:'US',now}).length,2);
+ for(const title of ['점검표 작성','체크리스트 준비','Complete inspection checklist'])assert.equal(selectOffers({catalog:c,snapshot:{...snapshot,title},country:'US',now}).length,0);
+ assert.equal(selectOffers({catalog:c,snapshot:{...snapshot,title:'클립보드 사용'},country:'US',now}).length,2);
  assert.equal(selectOffers({catalog:c,snapshot:{...snapshot,title:'Motor overhaul'},country:'US',now}).length,0);
 });
 test('server-configured catalog takes precedence without contacting a feed',async()=>{

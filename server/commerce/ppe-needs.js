@@ -28,8 +28,8 @@ export function extractPpeNeeds(snapshot) {
  if((positiveMention(/안전모|보호모|hard hat|safety helmet/)
    ||(construction&&/낙하|낙하물|머리|상부 작업|falling object|overhead/.test(evidence)))
    &&!/아크 플래시|arc flash/.test(title))add('safety-helmet',108);
- if(positiveMention(/안전대(?!책|상)|안전그네|전신형 하네스|full.body harness|fall.arrest harness/)
-   &&!/로프 접근|로프접근|rope access|수목 등반|tree climbing/.test(title))add('fall-arrest-harness',106);
+ if(positiveMention(/안전대(?!책|상)|안전그네|전신형 하네스|full.body harness|fall.arrest harness|추락방지장치|추락\s*방지\s*시스템|fall.protection\s*(?:device|system)/)
+   &&!/로프 접근|로프접근|rope access|수목 등반|tree climbing/.test(title)){add('fall-arrest-harness',116); if(/고소\s*작업대|aerial\s*platform|mewp|boom\s*lift/.test(title))needs.at(-1).constraints.configuration='harness-only';}
  const chemical=/세정|세척|약품|화학|도장|페인트|모르타르|콘크리트|레미콘|방수|chemical|paint|solvent/.test(title);
  const eye=/보안경|고글|눈 보호|safety glasses|goggles|eye protection/.test(evidence);
  if(eye&&!/레이저|용접|laser|아크|weld/.test(title))add(chemical||/밀착형|고글|goggles/.test(evidence)?'safety-goggles':'safety-glasses',96);

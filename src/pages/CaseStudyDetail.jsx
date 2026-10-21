@@ -17,6 +17,8 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import CommerceRecommendations from '../components/CommerceRecommendations';
 import { splitCaseSections, caseResourcesTitle } from '../utils/caseSections.js';
 import SEO from '../components/SEO';
+import ThemeSwitcher from '../components/ThemeSwitcher';
+import './CaseStudyDetail.css';
 import { getCaseBootstrap } from '../utils/caseBootstrap.js';
 
 export default function CaseStudyDetail() {
@@ -94,7 +96,7 @@ export default function CaseStudyDetail() {
   const structuredData = serializeStructuredData(post.schema_markup);
 
   return (
-    <div style={styles.wrapper} data-case-study-id={post.id}>
+    <div className="case-study-page" style={styles.wrapper} data-case-study-id={post.id}>
       <script id="jsa-case-bootstrap" type="application/json"
         dangerouslySetInnerHTML={{ __html: serializeStructuredData({
           path: window.location.pathname, post, availableLocales,
@@ -159,8 +161,9 @@ export default function CaseStudyDetail() {
       )}
       
       <header style={styles.header}>
-        <div style={styles.container}>
+        <div style={{...styles.container,display:"flex",justifyContent:"space-between",alignItems:"center",gap:16}}>
           <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
+          <ThemeSwitcher compact />
         </div>
       </header>
 
@@ -200,7 +203,7 @@ export default function CaseStudyDetail() {
             <div style={{ 
               marginBottom: '24px', 
               padding: '16px 20px', 
-              backgroundColor: '#f8fafc', 
+              backgroundColor: 'var(--card-bg)', 
               borderLeft: '4px solid #0284c7', 
               borderRadius: '4px', 
               display: 'flex', 
@@ -208,10 +211,10 @@ export default function CaseStudyDetail() {
               gap: '16px'
             }}>
               <div>
-                <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginBottom: '4px' }}>
+                <strong style={{ display: 'block', color: 'var(--text-primary)', fontSize: '1.1rem', marginBottom: '4px' }}>
                   {journeyUi.attachments}
                 </strong>
-                <span style={{ fontSize: '0.9rem', color: '#475569' }}>
+                <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
                   {journeyUi.attachmentHelp}</span>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
@@ -221,7 +224,7 @@ export default function CaseStudyDetail() {
                     href={post.pdf_download_url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    style={{ padding: '10px 20px', backgroundColor: '#0284c7', color: '#fff', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
+                    style={{ padding: '10px 20px', backgroundColor: 'var(--action-bg)', color: 'var(--on-accent)', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
                   >
                     ↓ {journeyUi.download} PDF
                   </a>
@@ -233,7 +236,7 @@ export default function CaseStudyDetail() {
                     href={pdf.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    style={{ padding: '10px 20px', backgroundColor: '#0284c7', color: '#fff', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
+                    style={{ padding: '10px 20px', backgroundColor: 'var(--action-bg)', color: 'var(--on-accent)', textDecoration: 'none', fontWeight: 'bold', borderRadius: '4px', whiteSpace: 'nowrap', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
                   >
                     ↓ {journeyUi.download} {pdf.name}
                   </a>
@@ -271,19 +274,19 @@ export default function CaseStudyDetail() {
 }
 
 const styles = {
-  wrapper: { width: '100%', backgroundColor: '#fff', color: '#1c1b1f', position: 'relative', overflowX: 'hidden' },
+  wrapper: { width: '100%', backgroundColor: 'var(--app-bg)', color: 'var(--text-primary)', position: 'relative', overflowX: 'hidden' },
   container: { maxWidth: '1200px', margin: '0 auto' },
-  heroSection: { padding: '100px 0', backgroundColor: '#1c1b1f', color: '#fff', width: '100%', position: 'relative', zIndex: 10 },
-  m3Tag: { color: '#007bff', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
-  mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3', color: '#fff' },
-  date: { color: '#bbb', fontSize: '1rem' },
+  heroSection: { padding: '100px 0', backgroundColor: 'var(--panel-bg)', color: 'var(--text-primary)', width: '100%', position: 'relative', zIndex: 10 },
+  m3Tag: { color: 'var(--accent)', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
+  mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3', color: 'var(--text-primary)' },
+  date: { color: 'var(--text-secondary)', fontSize: '1rem' },
   mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px 100px 24px' },
   centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px' },
   markdownContent: { 
     width: '100%', 
     fontSize: '1.1rem', 
     lineHeight: '1.9', 
-    color: '#222', 
+    color: 'var(--text-primary)', 
     wordBreak: 'break-word', 
     overflowX: 'hidden' 
   },
@@ -294,7 +297,7 @@ const styles = {
   adSection: { marginTop: '80px', paddingTop: '40px', borderTop: '1px solid #eee', textAlign: 'center', width: '100%' },
   adLabel: { fontSize: '10px', color: '#ccc', fontWeight: 'bold', display: 'block', marginBottom: '15px' },
   adLabelDark: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
-  loading: { textAlign: 'center', padding: '100px', color: '#888' },
+  loading: { textAlign: 'center', padding: '100px', color: 'var(--text-muted)' },
   error: { textAlign: 'center', padding: '100px', color: '#ff4d4d' },
   adPlaceholderFixedLeft: { 
     position: 'fixed', top: '50%', left: 'calc(50% - 600px - 160px - 20px)', transform: 'translateY(-50%)',
@@ -306,11 +309,11 @@ const styles = {
     width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', 
     borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0', zIndex: 100
   },
-  header: { padding: '20px 24px', backgroundColor: '#1c1b1f', borderBottom: '1px solid rgba(255,255,255,0.1)', position: 'relative', zIndex: 20 },
-  logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase', color: '#fff', cursor: 'pointer', margin: 0 },
-  finalFooter: { padding: '60px 24px', backgroundColor: '#1c1b1f', color: '#fff', width: '100%', marginTop: 'auto' },
+  header: { padding: '20px 24px', backgroundColor: 'var(--panel-bg)', borderBottom: '1px solid var(--border-default)', position: 'relative', zIndex: 20 },
+  logo: { fontSize: '1.2rem', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--text-primary)', cursor: 'pointer', margin: 0 },
+  finalFooter: { padding: '60px 24px', backgroundColor: 'var(--panel-bg)', color: 'var(--text-primary)', width: '100%', marginTop: 'auto' },
   footerFlex: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' },
   copyright: { margin: 0, fontSize: '0.9rem', opacity: 0.6 },
   footerLinks: { display: 'flex', gap: '24px', flexWrap: 'wrap' },
-  fLink: { color: '#888', textDecoration: 'none', fontSize: '0.95rem' }
+  fLink: { color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.95rem' }
 };
