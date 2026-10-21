@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "provider": "coupang-kr",
+  "country": "KR",
+  "registeredWebsite": "https://smartjsabridge.com",
+  "checkedAt": "2026-10-21T14:14:52.264Z",
+  "enrollment": {
+    "status": "completed",
+    "type": "individual",
+    "finalApproval": "pending"
+  },
+  "capabilities": {
+    "portalProductSearch": true,
+    "portalLinkGeneration": true,
+    "apiKeyIssuance": false,
+    "apiBlocker": "Final approval is required; Generate button disabled in account portal."
+  },
+  "publication": {
+    "status": "not-deployed",
+    "activityScreenshot": "not-submitted"
+  },
+  "requiredDisclosureKo": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+  "manualLink": {
+    "issued": true,
+    "productTitle": "모닝글로리 클립보드 A4, 1개, 블랙",
+    "category": "clipboard",
+    "availability": "unknown",
+    "reviewStatus": "pending-content-match",
+    "trackingLinkStorage": "private operator record; deliberately omitted from this repository"
+  }
+}
