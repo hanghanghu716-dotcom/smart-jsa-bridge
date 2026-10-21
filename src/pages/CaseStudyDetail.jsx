@@ -185,7 +185,6 @@ export default function CaseStudyDetail() {
         <div style={styles.centerContent}>
           
 
-          <DiscoveryLinks kind="case" target={id} showReuseHelp/>
 
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
@@ -196,7 +195,7 @@ export default function CaseStudyDetail() {
             <Viewer ref={viewerRef} initialValue={sections.main} key={post.id || post.language_code} />
           </div>
 
-          <section id="section-11" style={{marginTop:40}}><h2 style={{fontSize:24,fontWeight:700,marginBottom:20}}>11. {caseResourcesTitle(i18n.language)}</h2>
+          <section id="section-11" className="case-numbered-section"><h2>11. {caseResourcesTitle(i18n.language)}</h2>
           {((post.pdf_list && post.pdf_list.length > 0) || post.pdf_download_url) && (
             <div style={{ 
               marginBottom: '24px', 
@@ -243,6 +242,7 @@ export default function CaseStudyDetail() {
             </div>
           )}
 
+          <DiscoveryLinks kind="case" target={id} showReuseHelp/>
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           </section>
           <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={12} />
