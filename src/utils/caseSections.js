@@ -27,7 +27,21 @@ export function splitCaseSections(content = '') {
     return children.some(visit);
   }
   visit(root);
-  return { main: review ? serialize(root) : content, review };
+  let introduction = '';
+  function moveIntroduction(parent) {
+    const children = parent.childNodes || [];
+    const index = children.findIndex(node => node.tagName === 'h2' && /^\s*1[.\s]/.test(nodeText(node)));
+    if (index >= 0) {
+      const before = children.splice(0, index);
+      if (before.some(node => nodeText(node).trim() || node.tagName === 'img')) {
+        introduction = serialize({nodeName:'#document-fragment', childNodes:before});
+      }
+      return true;
+    }
+    return children.some(moveIntroduction);
+  }
+  moveIntroduction(root);
+  return { main: review || introduction ? serialize(root) : content, review, ...(introduction ? {introduction} : {}) };
 }
 
 export function caseResourcesTitle(locale) {

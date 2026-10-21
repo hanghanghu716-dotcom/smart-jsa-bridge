@@ -31,3 +31,18 @@ test('manual PPE requires exact purpose, dated product review and manufacturer s
   const changed=structuredClone(catalog);mutate(changed);assert.equal(run(changed).length,0);
  }
 });
+
+test('helmets and harnesses are selected from case and UGC content, not only title fields',()=>{
+ assert.ok(categories({title:'블록벽 쌓기',body:'자재 낙하와 통로 위험을 관리한다.'}).includes('safety-helmet'));
+ assert.ok(categories({title:'상부 설비 정비',steps:[{title:'작업 준비',controls:[['전신형 안전대 착용 및 앵커 확인','']]}]}).includes('fall-arrest-harness'));
+ assert.ok(categories({title:'자재 운반',ppe:['안전모']}).includes('safety-helmet'));
+ assert.ok(!categories({title:'지상 작업',body:'안전대 착용 불필요.'}).includes('fall-arrest-harness'));
+ assert.ok(!categories({title:'로프 접근 작업',ppe:['안전대']}).includes('fall-arrest-harness'));
+});
+test('protective clothing recognizes body evidence and dust tasks while retaining exposure boundaries',()=>{
+ assert.ok(categories({title:'분체 투입',body:'분진 발생. 방진복 착용.'}).includes('protective-coverall'));
+ assert.ok(categories({title:'석고보드 집진 샌딩',body:'분진 발생을 통제한다.'}).includes('protective-coverall'));
+ assert.ok(categories({title:'일반 건식 정리',body:'오염방지복 착용.'}).includes('contamination-coverall'));
+ assert.ok(!categories({title:'감염성 폐기물 처리',body:'오염방지복 착용.'}).includes('contamination-coverall'));
+ assert.ok(!categories({title:'서류 정리',body:'PDF 인쇄'}).includes('protective-coverall'));
+});

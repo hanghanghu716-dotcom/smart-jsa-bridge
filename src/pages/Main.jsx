@@ -10,7 +10,6 @@ import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCas
 import { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import WorkSupportRail from '../components/WorkSupportRail';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
@@ -493,7 +492,6 @@ export default function Main() {
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
         <div style={styles.mainLayout} className="max-lg:!px-6 max-lg:!flex-col">
-          <div className="main-support-slot"><WorkSupportRail locale={currentLanguage} onStart={handleStartClick}/></div>
 
           <main style={styles.centerContent} className="max-lg:!pl-0 max-lg:w-full min-w-0">
             <div className="main-entry-copy" lang={baseLanguage} style={styles.heroContent}>
@@ -551,8 +549,6 @@ export default function Main() {
               </a>
             </div>
           </main>
-
-          <div className="main-support-slot"><WorkSupportRail locale={currentLanguage} side="right"/></div>
         </div>
       </section>
 

@@ -3,6 +3,9 @@ import { commerceText } from './needs.js';
 // Product suggestions, not a determination of workplace PPE suitability.
 // Each supported purpose must also match a separately reviewed product spec.
 export const PPE_PURPOSES = {
+ 'safety-helmet':'industrial-falling-object-head-protection',
+ 'fall-arrest-harness':'full-body-harness-system-component',
+ 'contamination-coverall':'non-hazardous-dry-contamination-only',
  'safety-glasses':'general-impact-eye-protection',
  'safety-goggles':'indirect-vent-splash-eye-protection',
  'earplugs':'disposable-foam-hearing-protection',
@@ -15,6 +18,18 @@ export function extractPpeNeeds(snapshot) {
  const listed=(snapshot.ppe||[]).join(' ').toLowerCase();
  const evidence=body+' '+listed, needs=[];
  const add=(category,score)=>needs.push({category,constraints:{purpose:PPE_PURPOSES[category]},origin:'ppe-content-rule',score});
+ // Match the actual document body as well as the structured PPE selection.
+ // A product is a purchase candidate; the purpose never asserts site approval.
+ const positiveMention = pattern => {
+   const parts=evidence.split(/[。.!?\n]/);
+   return parts.some(part=>pattern.test(part)&&!/(?:착용|사용)\s*(?:금지|불필요|하지\s*않)|불필요|미사용|not required|do not (?:use|wear)/i.test(part));
+ };
+ const construction=/조적|블록벽|옹벽|비계|거푸집|철근|해체|철거|굴착|양중|크레인|지붕|타설|건설|construction|scaffold|demolition|masonry|lifting/.test(title);
+ if((positiveMention(/안전모|보호모|hard hat|safety helmet/)
+   ||(construction&&/낙하|낙하물|머리|상부 작업|falling object|overhead/.test(evidence)))
+   &&!/아크 플래시|arc flash/.test(title))add('safety-helmet',108);
+ if(positiveMention(/안전대|안전그네|전신형 하네스|full.body harness|fall.arrest harness/)
+   &&!/로프 접근|로프접근|rope access|수목 등반|tree climbing/.test(title))add('fall-arrest-harness',106);
  const chemical=/세정|세척|약품|화학|도장|페인트|모르타르|콘크리트|레미콘|방수|chemical|paint|solvent/.test(title);
  const eye=/보안경|고글|눈 보호|safety glasses|goggles|eye protection/.test(evidence);
  if(eye&&!/레이저|용접|laser|아크|weld/.test(title))add(chemical||/밀착형|고글|goggles/.test(evidence)?'safety-goggles':'safety-glasses',96);
@@ -25,8 +40,10 @@ export function extractPpeNeeds(snapshot) {
  if(gloveContext&&!chemical&&!gloveExclusion)add('work-gloves',88);
  // Manufacturer lists painting/coating as an application; no flame, hot-work,
  // chemical immersion, asbestos or hazardous-material removal inference.
- if(/수성페인트.*롤러|water.based.*paint.*roller|방진복|분진복/.test(title+' '+listed)
-   &&!/용접|화기|화염|유기용제|석면|방사|납 |weld|flame|solvent|asbestos|radioactive/.test(title))add('protective-coverall',92);
+ if((/수성페인트.*롤러|water.based.*paint.*roller/.test(title)||(/샌딩|샌더|면갈이|분체|시멘트|모르타르|sanding|powder handling/.test(title)&&/분진|먼지|dust/.test(evidence))||positiveMention(/방진복|분진복|분진.{0,16}보호복|보호복.{0,16}분진|dust.{0,16}(?:coverall|suit)/))
+   &&!/용접|화기|화염|유기용제|석면|방사|납 |weld|flame|solvent|asbestos|radioactive/.test(title))add('protective-coverall',104);
+ const ordinaryContamination=positiveMention(/오염방지복|오염 방지복|일회용 작업복|일반.{0,12}오염.{0,12}보호복|non.hazardous.{0,20}coverall/);
+ if(ordinaryContamination&&!/석면|유해분진|생물|감염|멸균|무균|방사|화학|약품|유기용제|용접|화염|asbestos|hazardous dust|biohazard|infect|steril|aseptic|chemical|solvent|weld|flame/.test(evidence))add('contamination-coverall',102);
  const respiratoryRisk=/유해가스|산소결핍|일산화탄소|석면|발파|용접|방독|가스·|가스 및|증기|oxygen|carbon monoxide|asbestos|vapou?r|gas|weld/.test(evidence);
  const positiveMask=/방진마스크/.test(listed)||/방진마스크.{0,25}(?:착용|준비|밀착|선정)|(?:착용|준비).{0,15}방진마스크/.test(body);
  if(positiveMask&&!respiratoryRisk&&!/방진마스크.{0,30}(?:아니|않|못|부적합|금지)/.test(body))add('particulate-respirator',90);
