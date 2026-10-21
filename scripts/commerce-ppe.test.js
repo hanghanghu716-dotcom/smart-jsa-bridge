@@ -6,6 +6,7 @@ const categories=s=>extractPpeNeeds(s).map(n=>n.category);
 test('PPE follows explicit content and structured UGC needs, with task-specific clothing',()=>{
  assert.deepEqual(categories({title:'자재 취급',ppe:['보안경','장갑','귀마개']}),['safety-glasses','earplugs','work-gloves']);
  assert.ok(categories({title:'지상 벽면 수성페인트 롤러 도장',body:'장갑·눈 보호. 화기 사용 금지.'}).includes('protective-coverall'));
+ assert.ok(!categories({title:'도장·유기용제 철재 보수도장',ppe:['분진복']}).includes('protective-coverall'));
  assert.ok(categories({title:'세정제 청소',body:'눈 보호'}).includes('safety-goggles'));
  assert.ok(!categories({title:'용접',ppe:['보안경']}).includes('safety-glasses'));
 });

@@ -26,7 +26,7 @@ export function extractPpeNeeds(snapshot) {
  // Manufacturer lists painting/coating as an application; no flame, hot-work,
  // chemical immersion, asbestos or hazardous-material removal inference.
  if(/수성페인트.*롤러|water.based.*paint.*roller|방진복|분진복/.test(title+' '+listed)
-   &&!/용접|화기|화염|석면|방사|납 |weld|flame|asbestos|radioactive/.test(title))add('protective-coverall',92);
+   &&!/용접|화기|화염|유기용제|석면|방사|납 |weld|flame|solvent|asbestos|radioactive/.test(title))add('protective-coverall',92);
  const respiratoryRisk=/유해가스|산소결핍|일산화탄소|석면|발파|용접|방독|가스·|가스 및|증기|oxygen|carbon monoxide|asbestos|vapou?r|gas|weld/.test(evidence);
  const positiveMask=/방진마스크/.test(listed)||/방진마스크.{0,25}(?:착용|준비|밀착|선정)|(?:착용|준비).{0,15}방진마스크/.test(body);
  if(positiveMask&&!respiratoryRisk&&!/방진마스크.{0,30}(?:아니|않|못|부적합|금지)/.test(body))add('particulate-respirator',90);
