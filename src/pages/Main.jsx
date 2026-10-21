@@ -10,7 +10,7 @@ import { LANGUAGE_OPTIONS, SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCas
 import { useState, useEffect, useLayoutEffect, useContext, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import AdSenseUnit from '../components/AdSenseUnit';
+import WorkSupportRail from '../components/WorkSupportRail';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
@@ -231,7 +231,7 @@ export default function Main() {
     }
 
     const newPath = segments.join('/') || '/';
-    window.location.href = newPath + location.search + location.hash;
+    window.location.assign(newPath + location.search + location.hash);
     setIsLanguageOpen(false);
   };
 
@@ -244,9 +244,6 @@ export default function Main() {
     '/images/image6.jpg'
   ];
 
-  const PUBLISHER_ID = 'ca-pub-9791625990220699';
-  const MAIN_SIDE_SLOT_ID = '3978298367';
-  const MAIN_MOBILE_BRIDGE_SLOT_ID = '1284119169';
 
   useEffect(() => {
     let active=true;
@@ -496,11 +493,7 @@ export default function Main() {
         {isMenuOpen && <div style={styles.menuOverlay} onClick={() => setIsMenuOpen(false)} />}
 
         <div style={styles.mainLayout} className="max-lg:!px-6 max-lg:!flex-col">
-          <aside className="hidden lg:block" style={styles.sideAd}>
-            <div style={styles.adPlaceholderFixedLeft}>
-              <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
-            </div>
-          </aside>
+          <div className="main-support-slot"><WorkSupportRail locale={currentLanguage} onStart={handleStartClick}/></div>
 
           <main style={styles.centerContent} className="max-lg:!pl-0 max-lg:w-full min-w-0">
             <div className="main-entry-copy" lang={baseLanguage} style={styles.heroContent}>
@@ -559,19 +552,9 @@ export default function Main() {
             </div>
           </main>
 
-          <aside className="hidden lg:block" style={styles.sideAd}>
-            <div style={styles.adPlaceholderFixedRight}>
-              <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_SIDE_SLOT_ID} format="vertical" style={{ width: '160px', height: '600px' }} />
-            </div>
-          </aside>
+          <div className="main-support-slot"><WorkSupportRail locale={currentLanguage} side="right"/></div>
         </div>
       </section>
-
-      <div className="lg:hidden" style={styles.mobileAdSector}>
-        <div style={styles.mobileAdBox}>
-          <AdSenseUnit client={PUBLISHER_ID} slot={MAIN_MOBILE_BRIDGE_SLOT_ID} format="horizontal" style={{ display: 'block' }} />
-        </div>
-      </div>
 
       <section style={styles.m3Section} className="max-lg:!py-20">
         <div style={styles.container} className="max-lg:!px-6">

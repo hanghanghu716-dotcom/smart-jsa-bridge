@@ -2,8 +2,9 @@ import { useEffect, useId, useState } from 'react';
 import { getCommerceUi, COMMERCE_COUNTRIES, commerceCountry } from '../locales/commerceUi.js';
 import { getLanguageTag } from '../locales/config.js';
 import './CommerceRecommendations.css';
+import { productPurpose } from '../locales/supportUi.js';
 
-export default function CommerceRecommendations({ kind, contentId, locale, contentLocale = locale }) {
+export default function CommerceRecommendations({ kind, contentId, locale, contentLocale = locale, placement = 'inline' }) {
  const [selectedCountry,setSelectedCountry] = useState('');
  const [result,setResult] = useState(null);
  const labelId=useId(), ui=getCommerceUi(locale);
@@ -28,7 +29,7 @@ export default function CommerceRecommendations({ kind, contentId, locale, conte
  let names;
  try{names=new Intl.DisplayNames([getLanguageTag(locale)],{type:'region'});}catch{/* ISO codes remain usable. */}
  const disclosures=[...new Set((data.items||[]).map(item=>item.disclosure).filter(Boolean))];
- return <aside className="commerce-panel" aria-labelledby={labelId} dir={locale?.startsWith('ar')?'rtl':'ltr'}>
+ return <aside className={'commerce-panel'+(placement==='rail'?' commerce-panel--rail':'')} aria-labelledby={labelId} dir={locale?.startsWith('ar')?'rtl':'ltr'}>
    <div className="commerce-heading"><h2 id={labelId}>{ui.title}</h2>
      <label>{ui.country}<select value={country} onChange={event=>setSelectedCountry(event.target.value)}>
        {COMMERCE_COUNTRIES.map(code=><option value={code} key={code}>{names?.of(code)||code}</option>)}
@@ -39,7 +40,7 @@ export default function CommerceRecommendations({ kind, contentId, locale, conte
    <p className="commerce-context">{ui.context}</p>
    {data.items?.some(item=>item.linkOnly) && <p className="commerce-context">{ui.merchantCheck}</p>}
    {data.items?.length ? <ul className="commerce-grid">{data.items.map(item=><li key={item.id}>
-     <span className="commerce-merchant">{item.merchant}</span><h3>{item.title}</h3>
+     <span className="commerce-purpose">{productPurpose(item.category,locale)}</span><h3>{item.title}</h3><span className="commerce-merchant">{item.merchant}</span>
      <a href={item.href} target="_blank" rel="sponsored noopener noreferrer">{ui.view}<span aria-hidden="true"> ↗</span></a>
    </li>)}</ul>:<p role="status">{ui.empty}</p>}
  </aside>;

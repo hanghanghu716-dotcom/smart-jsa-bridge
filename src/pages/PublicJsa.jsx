@@ -19,7 +19,7 @@ import { countryLabel } from '../utils/publicCountry';
 import { getPublicCountryUi } from '../locales/publicCountryUi';
 import DiscoveryLinks from '../components/DiscoveryLinks';
 import AuthorLink from '../components/AuthorLink';
-import AdSenseUnit from '../components/AdSenseUnit';
+import WorkSupportRail from '../components/WorkSupportRail';
 import {documentStats,riskValue} from '../utils/discovery';
 import {getDiscoveryUi} from '../locales/discoveryUi';
 import { useEffect, useRef, useState } from 'react';
@@ -117,6 +117,7 @@ export default function PublicJsa() {
       canonicalLocale={currentRow?.public_locale || undefined} availableLocales={currentRow?.public_locale ? [currentRow.public_locale] : []} noIndex={Boolean(sourceRow?.restricted)||!quality.indexable||Boolean(sourceRow?.public_locale&&sourceRow.public_locale!==i18n.language)} />
     {sourceRow?.public_locale && !sourceRow.restricted && <Helmet><script type="application/ld+json">{structuredJson(publicDocumentSchema(sourceRow,author,ui.back))}</script></Helmet>}
     <header className="jsa-nav"><LanguageLink to="/explore">← {ui.back}</LanguageLink><ThemeSwitcher compact /></header>
+    {currentRow && !sourceRow.restricted && <WorkSupportRail locale={i18n.language} kind="ugc" contentId={id} onStart={()=>action('reuse')} disabled={busy||!currentRow.reuse_license} downloadHref="#public-document-preview-title"/>}
     <main className="jsa-container">
       {status === 'loading' && <p role="status">…</p>}
       {status === 'error' && <p role="alert">{ui.error} <button onClick={() => setAttempt(n => n + 1)}>{ui.retry}</button></p>}
@@ -139,7 +140,7 @@ export default function PublicJsa() {
         <div className="public-context">{['scope','region','limitations','sources'].filter(key=>currentRow.publication_context[key]).map(key=><section key={key}><h2>{community[key]}</h2><p>{currentRow.publication_context[key]}</p></section>)}</div>
         <section id="public-analysis-reading" className="public-reading" lang={getLanguageTag(translation.translated?i18n.language:sourceRow.public_locale||i18n.language)}><h2>{community.overview}</h2>{currentRow.analysis_data.map((step,index)=><article id={"public-step-"+(index+1)} className="public-step" key={index}><header><input type="checkbox" disabled={sourceRow.restricted || !currentRow.reuse_license} aria-label={community.selectSteps+' '+(index+1)} checked={selectedSteps.includes(index)} onChange={e=>setSelectedSteps(previous=>e.target.checked?[...previous,index].sort((a,b)=>a-b):previous.filter(value=>value!==index))}/><h2>{index+1}. {step.proc.stepTitle}</h2></header><DocumentList values={[step.proc.stepDetail]} bullet={false} /><p className="public-risk-score">{d.frequency}: {riskValue(step.frequency)??''} · {d.severity}: {riskValue(step.severity)??''} · {d.risk}: {riskValue(step.riskLevel)??''}</p>{step.risks.map((risk,riskIndex)=><div className="public-risk" key={riskIndex}><h3><DocumentList values={[risk.factor]} bullet={false} /></h3>{risk.category&&<small>{d.categories}: {publicCategoryLabel(risk.category,i18n.language)}</small>}<div className="public-control-text"><strong>{documentUi.current}</strong><DocumentList values={[risk.current_measure||risk.measure]} bullet={false} /></div>{risk.recommend_measure&&<div className="public-control-text"><strong>{documentUi.recommended}</strong><DocumentList values={[risk.recommend_measure]} bullet={false} /></div>}</div>)}{step.actionPlan?.additionalControls && <section className="public-additional-controls"><h3>{getActionPlanUi(i18n.language).additionalControls}</h3><DocumentList values={[step.actionPlan.additionalControls]} bullet={false}/></section>}</article>)}<button className="jsa-primary" disabled={busy||sourceRow.restricted||!selectedSteps.length||!currentRow.reuse_license} onClick={()=>action('selected')}>{community.useSelected} ({selectedSteps.length})</button></section>
 
-        {!sourceRow.restricted && <><CommerceRecommendations key={id+i18n.language} kind="ugc" contentId={id} locale={i18n.language}/><DiscoveryLinks id={id}/><AdSenseUnit client="ca-pub-9791625990220699" slot="1284119169" content={{indexable:quality.indexable,review:currentRow.assessment.review}}/></>}
+        {!sourceRow.restricted && <><CommerceRecommendations key={id+i18n.language} kind="ugc" contentId={id} locale={i18n.language} placement="rail"/><DiscoveryLinks id={id}/></>}
         {message && <p role="status">{message}</p>}
       </>}
     </main><CommunityFooter/>
