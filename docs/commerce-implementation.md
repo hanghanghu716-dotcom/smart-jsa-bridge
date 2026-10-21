@@ -236,6 +236,6 @@ Ordinary accessory needs are derived from the current content on retrieval. Work
 
 The production catalog is maintained in the server-only JSA_COMMERCE_CATALOG_JSON setting. It contains 13 manually generated Coupang product links, with unknown availability and no price claims. Link reviews expire after 30 days; no API approval is implied. Tracking URLs and account identifiers must not be committed.
 
-Corpus audit: 199 Korean case studies plus 50 public UGC entries; 230 match at least two products, 85 match four, seven match one and 12 remain empty. Across 1,472 localized case variants and 50 UGC entries, using KR as the purchase country, 1,338 match multiple products, 127 match one and 57 remain empty. These are localized page counts, not distinct tasks or overseas merchant coverage. Reproduce with scripts/audit-commerce-corpus.mjs and private input/catalog paths.
+Corpus audit: 199 Korean case studies plus 50 public UGC entries; 230 match at least two products, 58 match four, seven match one and 12 remain empty. Across 1,472 localized case variants and 50 UGC entries, using KR as the purchase country, 1,338 match multiple products, 127 match one and 57 remain empty. These are localized page counts, not distinct tasks or overseas merchant coverage. Reproduce with scripts/audit-commerce-corpus.mjs and private input/catalog paths.
 
-Validation: 524 Node tests pass; Vite production bundle builds. The commerce workflow also executes the accessory relevance tests.
+Validation: 525 Node tests pass; Vite production bundle builds. The commerce workflow also executes the accessory relevance tests.

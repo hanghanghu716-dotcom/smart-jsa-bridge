@@ -37,3 +37,8 @@ test('site locales have localized rail text and accessory purposes',()=>{
   assert.ok(categories({title}).includes('clipboard'));
  }
 });
+
+test('distant parts disclaimer and later separation do not imply a parts organizer',()=>{
+ const needs=extractAccessoryNeeds({title:'지상 벽면 수성페인트 롤러 도장',body:'장비·부품·방호 방법은 모델과 현장에 따라 달라집니다. 일반적으로 현장 구역을 충분히 확인한 뒤 작업 구역을 분리합니다.'});
+ assert.equal(needs.some(n=>n.category==='parts-organizer'),false);
+});
