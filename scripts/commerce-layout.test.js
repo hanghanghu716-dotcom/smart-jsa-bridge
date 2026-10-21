@@ -47,3 +47,10 @@ test('case introduction moves to resources without removing article or review co
  assert.ok(introduction.includes('Intro and usage'));assert.ok(introduction.includes('Stop text'));
  assert.ok(review.includes('13. Review'));assert.ok(review.includes('Record'));
 });
+
+test('legacy Markdown introductions move too, including bold headings and inline anchors',()=>{
+ for(const heading of ['## **1. Body**','## <span id="section-1"></span>1. Body']){
+ const result=splitCaseSections('# Title\nIntro\n'+heading+'\nMain text\n## **11. Review**\nRecord');
+ assert.equal(result.introduction,'# Title\nIntro');assert.ok(result.main.startsWith(heading));assert.ok(result.main.includes('Main text'));assert.ok(result.review.startsWith('## **13. Review**'));assert.ok(result.review.includes('Record'));
+ }
+});
