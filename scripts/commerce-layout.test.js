@@ -21,6 +21,10 @@ test('task matching distinguishes ordinary tools from installed machine and stru
  assert.ok(!cats('아스팔트 도로 포장','품목 라벨').includes('packing-dispenser'));
  assert.ok(!cats('활선 전기 분전반 점검','나사 볼트 렌치').includes('adjustable-wrench'));
  assert.ok(cats('실내 바닥·계단 수작업 청소').includes('floor-squeegee'));
+ assert.ok(!cats('목재 세로켜기','목재를 고정하지 못한다').includes('claw-hammer'));
+ assert.ok(!cats('테이블쏘 목재 세로켜기','가이드 고정').includes('wood-clamp'));
+ assert.ok(!cats('보강토 옹벽 블록 쌓기','건식 블록').includes('masonry-trowel'));
+ assert.ok(!cats('파레트 스트레치 랩 포장','필름으로 감싸기').includes('packing-dispenser'));
 });
 test('eight distinct products are selected once and image changes invalidate their review',()=>{
  const snapshot={kind:'case',id:'sample',locale:'ko',title:'Task'};

@@ -12,26 +12,26 @@ export function taskNeeds(title, body) {
  const mechanical=/정비|교체|조립|가체결|체결|maintenance|replacement|restoration|assembl|fasten/iu.test(title)
    && !/활선|전기|전압|분전|배전|결선|애자|감지기|인버터|전신주|가스|산소|아르곤|electri|energized|hydrogen|oxygen|argon|gas|aseptic|semiconductor|sanitary/iu.test(title);
  if((wood||finish)&&/수평|수직|level|vertical|水平|垂直/iu.test(body))add('spirit-level','layout-level-check',68);
- if(wood&&/못|망치|nail|hammer/iu.test(body))add('claw-hammer','wood-nail-work');
+ if(wood&&/타정|팔레트 보수|망치|\bnails?\b|hammer/iu.test(title+' '+body))add('claw-hammer','wood-nail-work');
  if(/칸막이.*철거|몰딩.*해체|partition.*demolition|trim.*remov/iu.test(title))add('trim-pry-bar','trim-disassembly');
  if(/정밀 드라이버|precision screwdriver/iu.test(body)&&mechanical)add('precision-screwdriver','small-fastener-work');
  // A tilting hobby vise is not a drill-press or milling-machine fixture.
  if(wood&&/수작업|hand.tool|hand.work/iu.test(body)&&/바이스|bench vise/iu.test(body))add('bench-vise','hand-bench-work');
  if(mechanical&&/볼트|너트|렌치|bolt|nut|wrench|spanner/iu.test(body))add('adjustable-wrench','general-fastener-tools',72);
- if(wood&&/클램프|고정|clamp|secur|固定/iu.test(body))add('wood-clamp','wood-workpiece-holding',88);
+ if(wood&&/클램프|clamp|クランプ/iu.test(body))add('wood-clamp','wood-workpiece-holding',88);
  if(wood&&/연마|샌딩|마감|sanding|finish/iu.test(body)||/퍼티|putty/iu.test(title))add('hand-sanding','manual-surface-preparation',77);
  if((wood||finish)&&/표시|먹매김|먹줄|mark|layout|墨/iu.test(body))add('chalk-line','layout-marking',73);
  if(paint||/퍼티|putty|drywall joint/iu.test(title))add('putty-knife','wall-surface-preparation',79);
  if(paint)add('covering-film','paint-area-covering',81);
  if(cleaning){add('floor-mop','manual-floor-cleaning',88);add('cleaning-bucket','cleaning-water-container',76);add('floor-squeegee','manual-water-removal',84);add('scrub-brush','manual-surface-scrubbing',82);}
- if(packing){add('packing-dispenser','carton-tape-dispensing',74);if(/라벨|품목|label|identif/iu.test(body))add('shipping-label','package-identification',78);}
- if(/표시|마킹|마크|mark|label|identify/iu.test(body)&&!/무균|반도체|aseptic|semiconductor/iu.test(title))add('marker-pen','workpiece-identification',46);
+ if(packing){if(/테이프|tape|テープ/iu.test(body))add('packing-dispenser','carton-tape-dispensing',74);if(/라벨|품목|label|identif/iu.test(body))add('shipping-label','package-identification',78);}
+ if(/(?:부품|위치|절단선|품목|목재|재료|자재)[^.!?。]{0,20}(?:표시|마킹)|mark[^.!?。]{0,20}(?:part|cut|piece|location)/iu.test(body)&&!/무균|반도체|aseptic|semiconductor/iu.test(title))add('marker-pen','workpiece-identification',46);
  if(mechanical&&/육각|hex.key|allen/iu.test(body))add('hex-key','hex-fastener-tools',83);
  if(mechanical&&/나사|screw(?! conveyor)/iu.test(body))add('hand-screwdriver','general-screw-work',74);
  if(/코킹|실리콘.*시공|caulk|sealant.*appl/iu.test(title))add('caulking-gun','manual-sealant-application',90);
- if(/모르타르|미장|블록.*쌓기|mortar|plaster|block.*lay/iu.test(title))add('masonry-trowel','mortar-finishing',90);
+ if(/모르타르|미장|블록벽.*쌓기|mortar|plaster|block.wall.*lay/iu.test(title))add('masonry-trowel','mortar-finishing',90);
  if(/타일.*시공|블록.*쌓기|tiling|block.*lay/iu.test(title))add('rubber-mallet','layout-seating',78);
- if(wood&&/직각|수직|절단선|square|right.angle|cut.line/iu.test(body))add('carpenter-square','wood-square-marking',84);
+ if(wood&&/치수|길이|절단|직각|수직|dimension|length|cut|square|right.angle/iu.test(body))add('carpenter-square','wood-square-marking',84);
  if(/봉제|미싱|sewing/iu.test(title)){add('sewing-scissors','fabric-cutting',85);add('sewing-tape','fabric-length-check',80);}
  if(/식기.*세척|dish.*wash/iu.test(title))add('dish-brush','manual-dish-cleaning',85);
  if(/배식|식재료 손질|food.*serv|food.*prep/iu.test(title))add('food-tongs','food-handling',85);

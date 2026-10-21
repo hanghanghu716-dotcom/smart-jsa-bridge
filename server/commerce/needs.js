@@ -49,5 +49,7 @@ export function extractAccessoryNeeds(snapshot) {
  }
  if(packing.test(title)&&/테이프|tape|テープ|klebeband|ruban|nastro|cinta|fita|лент|bandă|شريط/iu.test(body))add('packing-tape',75);
  if(film.test(title))add('stretch-film',90);
- return [...needs,...taskNeeds(title,body)];
+ const specific=taskNeeds(title,body);
+ if(!needs.some(n=>n.category==='measuring-tape')&&specific.some(n=>['carpenter-square','chalk-line','spirit-level'].includes(n.category)))add('measuring-tape',67);
+ return [...needs,...specific];
 }
