@@ -14,6 +14,7 @@ import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next'; 
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import CommerceRecommendations from '../components/CommerceRecommendations';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO';
 import { getCaseBootstrap } from '../utils/caseBootstrap.js';
@@ -252,6 +253,7 @@ export default function CaseStudyDetail() {
             <Viewer ref={viewerRef} initialValue={post.content_md} key={post.id || post.language_code} />
           </div>
 
+          <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} />
           <div style={styles.adSection}>
             <span style={styles.adLabel}>{ro?.advertisement || 'ADVERTISEMENT'}</span>
             <AdSenseUnit client={PUBLISHER_ID} slot={ARTICLE_BOTTOM_SLOT_ID} format="auto" />

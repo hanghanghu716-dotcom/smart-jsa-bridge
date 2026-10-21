@@ -73,6 +73,7 @@
     }
   ],
   "functions": {
+    "api/commerce.js": { "includeFiles": "data/commerce/catalog.json" },
     "api/public-jsa.js": {
       "includeFiles": "dist/public-jsa-shell.html"
     },
