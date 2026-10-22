@@ -19,11 +19,12 @@ const path=require('node:path');
   page.on('pageerror',error=>errors.push(error.message));
   await page.setRequestInterception(true);
   page.on('request',async request=>{
+   if(request.url()==='https://images.example/product.svg')return request.respond({status:200,contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect x="35" y="15" width="90" height="130" rx="10" fill="#94a3b8"/></svg>'});
    if(!request.url().includes('/api/commerce?'))return request.continue();
    const u=new URL(request.url()),id=u.searchParams.get('id');
    const country=u.searchParams.get('marketLocale')==='ja-JP'?'JP':u.searchParams.get('marketLocale')==='ko'?'KR':'SA';
    if(id==='slow')await new Promise(resolve=>setTimeout(resolve,300));
-   const items=country==='JP'?[]:[{id:'a:1',title:'TEST · Clipboard '+id,merchant:'TEST supplier A',href:'https://a.example/product'},{id:'b:1',title:'TEST · Document holder '+id,merchant:'TEST supplier B',href:'https://b.example/product'}];
+   const items=country==='JP'?[]:[{id:'a:1',title:'TEST · 식품 생산구역 위생 작업복 긴팔 상하의 세트 '+id,category:'food-hygiene-clothing',imageUrl:'https://images.example/product.svg',merchant:'TEST supplier A',href:'https://a.example/product'},{id:'b:1',title:'TEST · Document holder '+id,merchant:'TEST supplier B',href:'https://b.example/product'}];
    try{await request.respond({status:id==='withdrawn'?404:200,contentType:'application/json',body:JSON.stringify(id==='withdrawn'?{status:'unavailable',items:[]}:{status:items.length?'ready':'empty',country,items})});}catch{/* An aborted old request has no recipient. */}
   });
   await page.setViewport({width:1920,height:1080});
@@ -50,6 +51,18 @@ const path=require('node:path');
   }
   assert.equal(await page.$eval('.commerce-panel--rail',el=>getComputedStyle(el).display),'block');
   assert.equal(await page.$eval('[data-preview]',el=>el.nextElementSibling.id),'section-4');
+  const cardSize=()=>page.$eval('.commerce-panel--inline .commerce-grid li',el=>({height:el.getBoundingClientRect().height,image:el.querySelector('.commerce-image-link').getBoundingClientRect().height}));
+  assert.equal((await cardSize()).image,80);
+  assert.ok((await cardSize()).height<210,JSON.stringify(await cardSize()));
+  assert.equal(await page.$eval('.commerce-panel--rail .commerce-image-link',el=>el.getBoundingClientRect().height),64);
+  for(const width of [768,600,390]){
+   await page.setViewport({width,height:900});
+   const size=await cardSize();assert.equal(size.image,width<=600?64:80);
+   assert.ok(size.height<240,JSON.stringify({width,...size}));
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);
+  }
+  await page.screenshot({path:path.join(cache,'commerce-compact-mobile.png'),fullPage:true});
+  await page.setViewport({width:1920,height:1080});
 
   await page.evaluate(()=>window.showLocale('ja-JP'));
   await page.waitForSelector('.commerce-empty');
