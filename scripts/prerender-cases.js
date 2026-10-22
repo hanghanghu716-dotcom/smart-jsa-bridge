@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { loadEnv } from 'vite';
 import { renderStatic } from './static-renderer.js';
 import { staticRoutes } from './static-routes.js';
 import { renderGuides } from './render-guides.js';
@@ -12,7 +13,9 @@ const configuration = JSON.parse(fs.readFileSync('package.json', 'utf8')).reactS
 // Case studies and their sitemap are already served live; enumerating the whole
 // database here only to discard those routes adds unnecessary deployment I/O.
 const include = staticRoutes([]).filter(route => !route.includes('/guideline/'));
-const cache = createRenderCache();
+// Resolve public values just as Vite does (including .env interpolation).
+// Deployment tokens/run IDs must not invalidate otherwise identical content.
+const cache = createRenderCache({environment: loadEnv('production', process.cwd(), 'VITE_')});
 const concurrency = Number(process.env.JSA_PRERENDER_CONCURRENCY || configuration.concurrency || 1);
 if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 8) {
   throw new Error('JSA_PRERENDER_CONCURRENCY must be an integer between 1 and 8.');

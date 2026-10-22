@@ -42,12 +42,12 @@ function htmlPath(route) {
   return `${route.slice(1).replace(/\/$/, '')}${route === '/' ? '' : '/'}index.html`;
 }
 
-export function createRenderCache({sourceRoot = '.', outputRoot = 'dist', cacheRoot = '.cache/rendered-content', context = process.env.JSA_RENDER_CACHE_CONTEXT} = {}) {
+export function createRenderCache({sourceRoot = '.', outputRoot = 'dist', cacheRoot = '.cache/rendered-content', context = process.env.JSA_RENDER_CACHE_CONTEXT,
+  environment = Object.fromEntries(Object.entries(process.env).filter(([key]) => key.startsWith('VITE_')))} = {}) {
   const enabled = Boolean(context) && process.env.JSA_RENDER_CACHE !== 'off';
   const files = enabled ? [
     ...['src', 'public', 'scripts'].flatMap(dir => walk(sourceRoot, dir)).filter(file => !/\.(test|spec)\.[cm]?[jt]sx?$/.test(file)),
-    ...fs.readdirSync(sourceRoot).filter(file => (/\.(?:json|[cm]?[jt]s|html)$/.test(file) || file.startsWith('.env')) && fs.statSync(path.join(sourceRoot, file)).isFile()),
-    ...walk(sourceRoot, '.vercel').filter(file => /\/\.env[^/]*$/.test(file)),
+    ...fs.readdirSync(sourceRoot).filter(file => /\.(?:json|[cm]?[jt]s|html)$/.test(file) && fs.statSync(path.join(sourceRoot, file)).isFile()),
   ].sort() : [];
   const shared = [], locales = new Map();
   for (const file of files) {
@@ -57,8 +57,8 @@ export function createRenderCache({sourceRoot = '.', outputRoot = 'dist', cacheR
     else shared.push(entry);
   }
   // Environment values are hashed, never persisted in the artifact cache.
-  const environment = Object.entries(process.env).filter(([key]) => key.startsWith('VITE_')).sort(([a], [b]) => a.localeCompare(b));
-  const common = digest(JSON.stringify({schema, context, shared, environment}));
+  const publicEnvironment = Object.entries(environment).filter(([key]) => key.startsWith('VITE_')).sort(([a], [b]) => a.localeCompare(b));
+  const common = digest(JSON.stringify({schema, context, shared, environment: publicEnvironment}));
   const fingerprint = (route, kind) => {
     const locale = route.split('/')[1] || 'en-US';
     const dependencies = [...new Set([locale, getDataLocale(locale), ...getTranslationFallbacks(locale)])].sort();

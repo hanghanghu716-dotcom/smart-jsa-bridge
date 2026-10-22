@@ -21,7 +21,7 @@ function fixture(t) {
   write('dist/public-jsa-shell.html', shell('new'));
   write('dist/assets/new.js', 'current application');
   write('dist/assets/style.css', 'body{color:black}');
-  const create = (context = 'chrome-and-fonts-v1') => createRenderCache({sourceRoot: root, outputRoot: path.join(root, 'dist'), cacheRoot: path.join(root, 'cache'), context});
+  const create = (context = 'chrome-and-fonts-v1', environment = {}) => createRenderCache({sourceRoot: root, outputRoot: path.join(root, 'dist'), cacheRoot: path.join(root, 'cache'), context, environment});
   const save = (route, cache = create()) => {write(`dist${route}/index.html`, document());cache.save(route, 'static');};
   return {root, write, create, save};
 }
@@ -62,7 +62,8 @@ test('shared code, styles, build environment and rendering environment invalidat
   assert.equal(create('chrome-and-fonts-v2').restore('/ko/about', 'static'), null);
   write('src/App.jsx', 'changed component');assert.equal(create().restore('/ko/about', 'static'), null);
   save('/ko/about');write('src/app.css', 'changed styles');assert.equal(create().restore('/ko/about', 'static'), null);
-  save('/ko/about');write('.env.production', 'VITE_PUBLIC_VALUE=changed');assert.equal(create().restore('/ko/about', 'static'), null);
+  save('/ko/about');assert.equal(create('chrome-and-fonts-v1', {VITE_PUBLIC_VALUE: 'changed'}).restore('/ko/about', 'static'), null);
+  assert.deepEqual(create('chrome-and-fonts-v1', {VERCEL_OIDC_TOKEN: 'ephemeral'}).restore('/ko/about', 'static'), {});
 });
 
 test('missing or corrupted HTML, assets and records become cache misses', t => {

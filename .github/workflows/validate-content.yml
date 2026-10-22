@@ -27,14 +27,22 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Restore rendering fonts
-        uses: actions/cache@v4
+        id: fonts-cache
+        uses: actions/cache/restore@v4
         with:
           path: .cache/build-fonts
           key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
       - name: Prepare Chrome and cached fonts
         run: bash scripts/setup-rendering.sh
+      - name: Save verified fonts for retries
+        if: steps.fonts-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/build-fonts
+          key: ${{ steps.fonts-cache.outputs.cache-primary-key }}
       - name: Restore generated HTML and PDF
-        uses: actions/cache@v4
+        id: render-cache
+        uses: actions/cache/restore@v4
         with:
           path: .cache/rendered-content
           key: rendered-ubuntu24-v1-${{ runner.arch }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
@@ -42,10 +50,6 @@ jobs:
             rendered-ubuntu24-v1-${{ runner.arch }}-
       - name: Verify content and locale logic
         run: npm run test:all
-      - name: Verify complete RSS bodies against public content
-        run: |
-          node scripts/render-rss-check.js
-          python3 scripts/verify-live-rss.py --candidate
       - name: Verify isolated work-package and moderation access controls
         run: |
           npm install --prefix "$RUNNER_TEMP/work-db" --no-save --ignore-scripts @electric-sql/pglite@0.5.8
@@ -63,3 +67,12 @@ jobs:
           node scripts/verify-operator-documents.cjs --local
       - name: Render and verify static HTML, PDF and live-content templates
         run: npm run build
+      - name: Save verified HTML and PDF for retries
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/rendered-content
+          key: ${{ steps.render-cache.outputs.cache-primary-key }}
+      - name: Verify complete RSS bodies against public content
+        run: |
+          node scripts/render-rss-check.js
+          python3 scripts/verify-live-rss.py --candidate
