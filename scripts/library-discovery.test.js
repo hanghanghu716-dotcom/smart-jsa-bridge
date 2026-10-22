@@ -70,3 +70,48 @@ test('Explore facets count distinct matching documents beyond the page with the 
     }
   } finally {await server.close();}
 });
+
+test('Explore page lookup preserves exclusions and sort while evaluating only selected IDs', async () => {
+  const server=await createServer({server:{middlewareMode:true},appType:'custom'});
+  try {
+    const {listPublicJsa}=await server.ssrLoadModule('/src/services/publicJsaService.js');
+    const id=n=>'10000000-0000-4000-8000-'+String(n).padStart(12,'0');
+    const rows=Array.from({length:24},(_,i)=>({id:id(i),is_public:true,title:'Document '+i}));
+    const calls=[];
+    const client={from(table){
+      const call={table,filters:[],orders:[]};calls.push(call);
+      const q={
+        select(value,options){call.select=value;call.options=options;return q;},
+        eq(...v){call.filters.push(['eq',...v]);return q;},
+        not(...v){call.filters.push(['not',...v]);return q;},
+        ilike(...v){call.filters.push(['ilike',...v]);return q;},
+        contains(...v){call.filters.push(['contains',...v]);return q;},
+        order(...v){call.orders.push(v);return q;},
+        range(...v){call.range=v;return q;},
+        in(column,ids){assert.equal(column,'id');call.ids=ids;return q;},
+        then(resolve,reject){
+          return Promise.resolve(call.select==='id'
+            ?{data:rows.map(({id})=>({id})),count:100}
+            :{data:rows.filter(row=>call.ids.includes(row.id)&&row.id!==id(4)).reverse()}).then(resolve,reject);
+        },
+      };return q;
+    }};
+    const result=await listPublicJsa({client,view:'small',page:2,sort:'views',country:'US',author:'operator',search:'100% valve',tags:['gas'],blocked:[id(90),'bad'],hidden:[id(91)]});
+    assert.equal(result.total,100);assert.equal(result.hasMore,true);
+    assert.deepEqual(result.rows.map(row=>row.id),rows.filter(row=>row.id!==id(4)).map(row=>row.id));
+    assert.equal(calls[0].select,'id');assert.deepEqual(calls[0].options,{count:'exact'});
+    assert.deepEqual(calls[0].range,[48,71]);
+    assert.deepEqual(calls[0].orders,[['view_count',{ascending:false}],['id',{ascending:true}]]);
+    for(const call of calls){
+      assert.equal(call.table,'public_jsa_catalog');
+      assert.deepEqual(call.filters,calls[0].filters);
+      if(call!==calls[0]){assert.ok(call.ids.length<=10);assert.equal(call.range,undefined);assert.equal(call.options,undefined);assert.ok(call.select.includes('assessment'));}
+    }
+    assert.ok(calls[0].filters.some(f=>f[1]==='public_country'&&f[2]==='US'));
+    assert.ok(calls[0].filters.some(f=>f[1]==='is_public'&&f[2]===true));
+    assert.ok(calls[0].filters.some(f=>f[1]==='is_operator'&&f[2]===true));
+    assert.equal(calls[0].filters.filter(f=>f[0]==='not').length,2);
+    assert.ok(calls[0].filters.some(f=>f[0]==='contains'&&f[1]==='tags'));
+    assert.ok(calls[0].filters.some(f=>f[0]==='ilike'&&f[2]==='%100\\% valve%'));
+  } finally {await server.close();}
+});

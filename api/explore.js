@@ -1,3 +1,4 @@
+import { readPublicCatalogPage } from '../src/utils/publicCatalogPage.js';
 import { discoveryTopics } from '../src/utils/discoveryTopics.js';
 import { discoveryToolsUi } from '../src/locales/discoveryToolsUi.js';
 import { pageWindow } from '../src/utils/pagination.js';
@@ -21,11 +22,11 @@ export const {url:publicBase,key:publicKey}=getPublicSupabaseConfig();
 
 // One bounded retry for transient upstream failures; never substitute an empty
 // successful page when the catalog cannot be read.
-async function readCatalog(fetcher,url){
+async function readCatalog(fetcher,url,exact=false){
  for(let attempt=0;attempt<2;attempt++){
   let response;
   try{
-   response=await fetcher(url,{headers:{apikey:publicKey,Prefer:'count=exact'},cache:'no-store',signal:AbortSignal.timeout(8000)});
+   response=await fetcher(url,{headers:{apikey:publicKey,...(exact?{Prefer:'count=exact'}:{})},cache:'no-store',signal:AbortSignal.timeout(8000)});
   }catch(error){if(attempt===1)throw error;}
   if(response){
    if(response.ok||response.status<500||attempt===1)return response;
@@ -72,16 +73,29 @@ export function createExploreHandler({fetcher=fetch,readShell=()=>readFile(new U
   const query=exploreQuery(params),pageSize=explorePageSize(query.view);let result={rows:[],total:0,hasMore:false},failed=false;
   try{
    if(!SUPPORTED_LANGS.includes(req.query?.lng)){res.statusCode=404;res.setHeader('X-Robots-Tag','noindex');res.end(renderExploreHtml(await readShell(),result,locale,query,true));return;}
-   const p=new URLSearchParams({select:PUBLIC_JSA_FIELDS,is_public:'eq.true',order:publicSortColumn(query.sort)+'.desc,id.asc',offset:String(query.page*pageSize),limit:String(pageSize)});
+   const p=new URLSearchParams({select:'id',is_public:'eq.true',order:publicSortColumn(query.sort)+'.desc,id.asc',offset:String(query.page*pageSize),limit:String(pageSize)});
    if(query.author==='operator')p.set('is_operator','eq.true');
    const country=exploreCountry(query.country,locale);if(country)p.set('public_country','eq.'+country);
    if(query.search.trim())p.set('title','ilike.%'+query.search.trim().replace(/[\\%_]/g,'\\$&')+'%');
    if(query.tags.length)p.set('tags','cs.{'+query.tags.map(tag=>JSON.stringify(tag)).join(',')+'}');
-   const response=await readCatalog(fetcher,`${publicBase}/rest/v1/public_jsa_catalog?${p}`);
-   if(!response.ok)throw Error('READ_FAILED');
-   const rows=await response.json(),count=Number(response.headers.get('content-range')?.split('/')[1]);
-   if(!Array.isArray(rows)||!Number.isFinite(count))throw Error('INVALID_RESULT');
-   result={rows:rows.map(publicJsaView).filter(Boolean),total:count,hasMore:(query.page+1)*pageSize<count};
+   result=await readPublicCatalogPage({
+    page:query.page,pageSize,
+    readPage:async()=>{
+     const response=await readCatalog(fetcher,`${publicBase}/rest/v1/public_jsa_catalog?${p}`,true);
+     if(!response.ok)throw Error('READ_FAILED');
+     const rawCount=response.headers.get('content-range')?.split('/')[1];
+     return {data:await response.json(),count:rawCount && /^\d+$/.test(rawCount)?Number(rawCount):NaN};
+    },
+    readBatch:async ids=>{
+     const detail=new URLSearchParams(p);
+     detail.set('select',PUBLIC_JSA_FIELDS);detail.delete('offset');detail.delete('order');detail.delete('limit');
+     detail.set('id','in.('+ids.join(',')+')');
+     const response=await readCatalog(fetcher,`${publicBase}/rest/v1/public_jsa_catalog?${detail}`);
+     if(!response.ok)throw Error('READ_FAILED');
+     return {data:await response.json()};
+    },
+   });
+   result.rows=result.rows.map(publicJsaView).filter(Boolean);
   }catch{failed=true;}
   res.statusCode=failed?503:200;
   try{res.end(renderExploreHtml(await readShell(),result,locale,query,failed));}catch{res.statusCode=503;res.setHeader('X-Robots-Tag','noindex');res.end('Temporarily unavailable');}

@@ -33,7 +33,7 @@ const records=Array.from({length:37},(_,i)=>({id:'30000000-0000-4000-8000-'+Stri
     if(q.get('select')==='*'){bodyReads.push(data.length);assert.ok(data.length<=12,'Load only one page of private document bodies');}
    }else if(url.includes('/public_jsa_catalog')){
     if(q.get('select')==='id,tags')facetReads.push(url);
-    data=records.filter(row=>(!q.has('public_country')||q.get('public_country')==='eq.'+row.public_country)&&(!q.has('id')||q.get('id')==='eq.'+row.id));
+    data=records.filter(row=>(!q.has('public_country')||q.get('public_country')==='eq.'+row.public_country)&&(!q.has('id')||(q.get('id').startsWith('in.')?q.get('id').slice(4,-1).split(',').includes(row.id):q.get('id')==='eq.'+row.id)));
     if(q.has('tags'))data=data.filter(row=>row.tags.includes('高')||row.tags.some(tag=>q.get('tags').includes(tag)));
    }else if(url.includes('/user_jsa_categories'))data=[{id:folder,user_id:uid,category_name:'Fixture folder',parent_id:null}];
    else if(url.includes('/user_jsa_drafts')||url.includes('/user_work_steps')||url.includes('/user_layouts'))data=Array.from({length:25},(_,i)=>({id:'fixture-'+i,title:'Saved '+(i+1),name:'Layout '+(i+1),current_stage:'info',updated_at:'2026-10-19T00:00:00Z',tags:['밸브조작'],analysis_data:url.includes('/user_work_steps')?{risks:[]}:[]}));

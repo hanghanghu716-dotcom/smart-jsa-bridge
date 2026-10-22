@@ -30,10 +30,14 @@ const records = Array.from({ length: 97 }, (_, i) => ({
       let data = [];
       if (url.includes('/public_jsa_catalog')) {
         const metadata = p.get('select') === 'id,tags';
-        if (!metadata) requests.push(Object.fromEntries(p));
+        if (p.get('select') === 'id') requests.push(Object.fromEntries(p));
         const offset = Number(p.get('offset') || 0), size = Number(p.get('limit'));
-        assert.ok(metadata ? size === 500 : [12,24,48].includes(size), 'Document bodies must be bounded by selected view');
-        data = records.slice(offset, offset + size).map(row => ({ ...row, public_country: p.get('public_country')?.slice(3) || 'US' }));
+        const detail = !metadata && p.get('select') !== 'id';
+        const ids = detail ? p.get('id')?.slice(4,-1).split(',') : null;
+        if (detail) assert.ok(ids?.length > 0 && ids.length <= 10, 'Document bodies must be constrained by page IDs');
+        else assert.ok(metadata ? size === 500 : [12,24,48].includes(size), 'ID pages retain selected view size');
+        data = (detail ? records.filter(row => ids.includes(row.id)).reverse() : records.slice(offset, offset + size))
+          .map(row => ({ ...row, public_country: p.get('public_country')?.slice(3) || 'US' }));
       }
       return request.respond({ status: 200, headers: { ...headers, 'content-type': 'application/json', 'content-range': `${p.get('offset') || 0}-${Number(p.get('offset') || 0) + data.length - 1}/97`, 'access-control-expose-headers': 'content-range' }, body: JSON.stringify(data) });
     });
