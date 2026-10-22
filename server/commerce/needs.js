@@ -1,6 +1,8 @@
 import { TASK_CATEGORIES, taskNeeds } from './task-needs.js';
 import { CONTEXT_ACCESSORIES, contextNeeds } from './context-needs.js';
 import { ROUTE_ACCESSORIES } from './route-needs.js';
+import { commerceText, cleanCommerceText as clean } from './text.js';
+export { commerceText } from './text.js';
 // Ordinary accessories only. Never infer PPE, isolation devices, rated lifting
 // equipment, calibrated instruments or process-compatible parts from keywords.
 export const ACCESSORY_CATEGORIES = [
@@ -8,16 +10,6 @@ export const ACCESSORY_CATEGORIES = [
  'carpenter-pencil','masking-tape','paint-roller','paint-tray','paint-brush',
  'cleaning-cloth','dustpan','packing-tape','stretch-film',...TASK_CATEGORIES,...CONTEXT_ACCESSORIES,...ROUTE_ACCESSORIES,
 ];
-const clean = value => String(value || '').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ')
- .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')
- .replace(/https?:\/\/\S+/g,' ').replace(/\s+/g,' ').toLowerCase();
-export function commerceText(snapshot) {
- // Editorial sources/revision boilerplate is not evidence of a shopping need.
- const body=String(snapshot.body||'').split(/<h2\b[^>]*>\s*9[.\s]/i)[0]
-  .replace(/<h[3-6]\b[^>]*>[^<]*(?:별도\s*검토|제외\s*범위|out.of.scope|excluded\s*scope)[^<]*<\/h[3-6]>\s*<p\b[^>]*>[\s\S]*?<\/p>/gi,' ');
- return clean([snapshot.title,snapshot.scope,body,...(snapshot.steps||[]).map(s=>
-  [s.title,s.detail,...(s.hazards||[]),...(s.controls||[]).flat(),s.additional].join(' '))].filter(Boolean).join(' '));
-}
 const tools=/공구|toolbox|tool box|tool organizer|\btools?\b|工具|werkzeug|\boutil|attrezz|utensil|herramient|ferrament|инструмент|scule|unelte|أدوات/iu;
 const parts=/볼트|너트|나사|부품[^.!?。]{0,24}(?:분류|보관|분리)|\bbolts?\b|\bnuts?\b|\bscrews?\b|small parts|ボルト|ナット|ねじ|schraub|mutter|boulon|écrou|bullon|dadi|tornill|tuerca|parafuso|porca|болт|гайк|șurub|piuliț|براغي|صواميل/iu;
 const tape=/줄자|tape measure|measuring tape|巻尺|コンベックス|bandmaß|maßband|mètre ruban|metro a nastro|cinta métrica|trena|fita métrica|рулетк|ruletă|شريط قياس/iu;

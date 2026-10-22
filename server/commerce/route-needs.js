@@ -1,4 +1,4 @@
-import { commerceText } from './needs.js';
+import { commerceText } from './text.js';
 
 // These categories describe visual wayfinding, not vehicle restraint or fall protection.
 export const ROUTE_ACCESSORIES=['floor-marking-tape','direction-sign','wet-floor-sign','cable-hanger','tool-pouch'];
