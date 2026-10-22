@@ -95,7 +95,7 @@ test('HTML and byte-identical PDF restore together; damaged PDFs are regenerated
 
 test('live database pages and unconfigured local builds are never cached', t => {
   const {create, save} = fixture(t);
-  for (const route of ['/ko/dictionary', '/ko/case-study/example']) {
+  for (const route of ['/', '/ko/dictionary', '/ko/case-study/example']) {
     save(route);assert.equal(create().restore(route, 'static'), null);
   }
   save('/ko/about');assert.equal(create('').restore('/ko/about', 'static'), null);
@@ -123,5 +123,5 @@ test('lazy styles remain attached to cached HTML instead of being silently remov
 test('only the static build browser skips live case-list requests', () => {
   assert.equal(isStaticContentBuild('ReactSnap SmartJSAStaticBuild'), true);
   assert.equal(isStaticContentBuild('ReactSnap SmartJSAGuideBuild'), true);
-  for (const ua of ['Mozilla/5.0 Chrome/130', 'Googlebot', 'bingbot', '']) assert.equal(isStaticContentBuild(ua), false);
+  for (const ua of ['ReactSnap SmartJSARootBuild', 'Mozilla/5.0 Chrome/130', 'Googlebot', 'bingbot', '']) assert.equal(isStaticContentBuild(ua), false);
 });

@@ -65,9 +65,9 @@ export function createRenderCache({sourceRoot = '.', outputRoot = 'dist', cacheR
     return digest(JSON.stringify([common, route, kind, dependencies.map(code => [code, locales.get(code) || []])]));
   };
   const location = (route, kind) => path.join(cacheRoot, digest(`${kind}:${route}`));
-  // Dictionary snapshots depend on live hazard data without a revision token.
-  // Always render them until that data has a trustworthy change identifier.
-  const canCache = route => enabled && !/\/(dictionary|case-study)(\/|$)/.test(route);
+  // Dictionary snapshots and the root landing snapshot depend on live data
+  // without a revision token. Localized home/archive pages are live templates.
+  const canCache = route => enabled && route !== '/' && !/\/(dictionary|case-study)(\/|$)/.test(route);
   return {
     enabled,
     restore(route, kind, pdfRelative) {

@@ -34,7 +34,11 @@ export async function renderStatic({routes,concurrency=2,executablePath,outputRo
     const route=routes[next++],locale=route.split('/')[1];
     const context=await browser.createBrowserContext();
     try{
-     const page=await context.newPage();await page.setUserAgent('ReactSnap SmartJSAStaticBuild');await page.setViewport({width:1280,height:960});
+     const page=await context.newPage();
+     // The bare root is still a static landing page, not a server-injected list
+     // template. Preserve its case content and refresh that one snapshot.
+     await page.setUserAgent(route==='/'?'ReactSnap SmartJSARootBuild':'ReactSnap SmartJSAStaticBuild');
+     await page.setViewport({width:1280,height:960});
      const errors=[];page.on('pageerror',e=>errors.push(e.message));
      // The root snapshot is the global English entry, independent of the build
      // machine's language. Interactive visitors still use the app's locale flow.
