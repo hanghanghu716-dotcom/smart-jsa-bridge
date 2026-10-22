@@ -49,10 +49,11 @@ test('server traversal returns every result exactly once in each view and keeps 
     const seen = [];
     const handler = createExploreHandler({ readShell: async () => shell, fetcher: async value => {
       const p = new URL(value).searchParams, start = Number(p.get('offset'));
-      assert.equal(p.get('limit'), String(size));
+      if(p.get('select')==='id')assert.equal(p.get('limit'), String(size));
+      else {assert.equal(p.get('offset'),null);assert.ok(p.get('id').slice(4,-1).split(',').length<=10);}
       assert.equal(p.get('public_country'), 'eq.US'); assert.equal(p.get('is_operator'), 'eq.true');
-      assert.equal(p.get('order'), 'view_count.desc,id.asc'); assert.equal(p.get('tags'), 'cs.{"gas"}');
-      const data = records.slice(start, start + size);
+      if(p.get('select')==='id')assert.equal(p.get('order'), 'view_count.desc,id.asc'); assert.equal(p.get('tags'), 'cs.{"gas"}');
+      const data = p.get('select')==='id'?records.slice(start, start + size):records.filter(row=>p.get('id').slice(4,-1).split(',').includes(row.id)).reverse();
       return Response.json(data, { headers: { 'content-range': `${start}-${start + data.length - 1}/97` } });
     } });
     for (let page = 0; page < Math.ceil(records.length / size); page++) {

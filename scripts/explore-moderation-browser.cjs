@@ -33,7 +33,7 @@ const row = { id, title:'Moderation browser fixture', author_id:user.id, is_publ
      else {restricted=body.p_action==='restrict';version++;mutations++;data={id,restricted};}
     }
    }
-   else if(url.includes('/public_jsa_catalog'))data=params.has('id')?(restricted?null:row):(restricted?[]:[row]);
+   else if(url.includes('/public_jsa_catalog'))data=request.headers().accept?.includes('vnd.pgrst.object')?(restricted?null:row):(restricted?[]:[row]);
    else if(url.includes('/rpc/'))data=null;
    return request.respond({status,contentType:'application/json',headers:{'access-control-allow-origin':'*','access-control-expose-headers':'content-range','content-range':restricted?'*/0':'0-0/1'},body:JSON.stringify(data)});
   });

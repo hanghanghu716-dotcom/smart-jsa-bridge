@@ -35,7 +35,7 @@ jobs:
           path: artifacts/recommendations/public-data-audit.json
           retention-days: 14
   recommendations:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
       PUPPETEER_SKIP_DOWNLOAD: true
@@ -47,8 +47,27 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Install browser libraries
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core poppler-utils
+      - name: Restore rendering fonts
+        id: fonts-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - name: Prepare Chrome and cached fonts
+        run: bash scripts/setup-rendering.sh
+      - name: Save verified fonts for retries
+        if: steps.fonts-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/build-fonts
+          key: ${{ steps.fonts-cache.outputs.cache-primary-key }}
+      - name: Install PDF inspection tools
+        run: |
+          if ! command -v pdfinfo >/dev/null || ! command -v pdftoppm >/dev/null; then
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update
+            sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y --no-install-recommends poppler-utils
+          fi
+
       - name: Verify recommendation and locale logic
         run: node --test --test-concurrency=1 scripts/analysis-*.test.js scripts/recommendation-*.test.js
       - name: Verify knowledge coverage matches the authored input files

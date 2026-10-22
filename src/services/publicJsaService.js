@@ -2,6 +2,7 @@ import { validCountry } from '../utils/publicCountry.js';
 import { explorePageSize } from '../utils/exploreView.js';
 import { supabase } from '../supabaseClient';
 import { PUBLIC_JSA_FIELDS, publicJsaView, validProjectId, publicSortColumn } from '../utils/publicJsa.js';
+import { readPublicCatalogPage } from '../utils/publicCatalogPage.js';
 import { readAllPages } from './pagedRead.js';
 
 function publicFilters(query, { search = '', tags = [], country, author, blocked = [], hidden = [] }) {
@@ -36,11 +37,16 @@ export async function getPublicJsa(id, client = supabase) {
 }
 export async function listPublicJsa({ search = '', tags = [], sort = 'latest', page = 0, view, country = null, author = null, blocked = [], hidden = [], client = supabase } = {}) {
   const pageSize = explorePageSize(view);
-  let query = publicFilters(client.from('public_jsa_catalog').select(PUBLIC_JSA_FIELDS, { count: 'exact' }), { search, tags, country, author, blocked, hidden });
-  query = query.order(publicSortColumn(sort), { ascending: false }).order('id', { ascending: true });
-  const { data, error, count } = await query.range(page * pageSize, (page + 1) * pageSize - 1);
-  if (error) throw error;
-  return { rows: (data || []).map(publicJsaView).filter(Boolean), total: count || 0, hasMore: (page + 1) * pageSize < count };
+  const filters = { search, tags, country, author, blocked, hidden };
+  const result = await readPublicCatalogPage({
+    page, pageSize,
+    readPage: () => publicFilters(client.from('public_jsa_catalog').select('id', { count: 'exact' }), filters)
+      .order(publicSortColumn(sort), { ascending: false }).order('id', { ascending: true })
+      .range(page * pageSize, (page + 1) * pageSize - 1),
+    readBatch: ids => publicFilters(client.from('public_jsa_catalog').select(PUBLIC_JSA_FIELDS), filters)
+      .in('id', ids),
+  });
+  return { ...result, rows: result.rows.map(publicJsaView).filter(Boolean) };
 }
 export async function scrapPublicJsa(id, client = supabase) {
   const { data: { user } } = await client.auth.getUser();

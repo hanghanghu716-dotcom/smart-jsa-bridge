@@ -1,3 +1,4 @@
+import { readPublicIndex } from '../server/public-index.js';
 import { romanianUi } from '../src/locales/romanianUi.js';
 import { SUPPORTED_LANGS, getLanguageTag, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
@@ -5,7 +6,7 @@ import { renderCaseArticle } from './case-study.js';
 import { feedXml, publicFeedBody } from '../server/feed-content.js';
 import { Buffer } from 'node:buffer';
 import { indexableExploreLocales } from '../src/utils/exploreIndexing.js';
-import { PUBLIC_JSA_FIELDS, PUBLIC_INDEX_FIELDS, publicIndexQuality, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
+import { PUBLIC_JSA_FIELDS, publicIndexQuality, publicJsaView, publicJsaQuality } from '../src/utils/publicJsa.js';
 import { buildSitemap } from '../scripts/sitemap-data.js';
 import { CASE_SUMMARY_FIELDS, SITE, casePath, readPublic, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
@@ -53,7 +54,7 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
     try {
       let body;
       if (kind === 'index') {
-        const documents = await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher);
+        const documents = await readPublicIndex(fetcher, { firstIndexable: true });
         const parts = ['static', 'cases'];
         // A urlset requires at least one url. Advertise this section only when
         // there is an eligible public document; it appears on the next request.
@@ -61,11 +62,11 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
         body = xmlHeader + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + parts.map(part => `<sitemap><loc>${SITE}/sitemap-${part}.xml</loc></sitemap>`).join('') + '</sitemapindex>';
       }
       if (kind === 'static') {
-        const documents = await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher);
+        const documents = await readPublicIndex(fetcher);
         body = buildSitemap([], { includeStatic: true, exploreLocales: indexableExploreLocales(documents) });
       }
       if (kind === 'cases') body = buildSitemap(await readAllPublic('case_studies', { select: CASE_SUMMARY_FIELDS }, fetcher), { includeStatic: false });
-      if (kind === 'public') body = buildPublicSitemap(await readAllPublic('public_jsa_index', { select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true' }, fetcher));
+      if (kind === 'public') body = buildPublicSitemap(await readPublicIndex(fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
           readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md,pdf_list,pdf_download_url', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),

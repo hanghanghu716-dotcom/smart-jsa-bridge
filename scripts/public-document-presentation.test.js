@@ -38,7 +38,7 @@ test('lightweight discovery eligibility uses the exact same publication gates',(
 });
 test('sitemap requests only compact index fields and does not request full document bodies',async()=>{
  for(const kind of ['index','static','public']){
-  const response=res();await createContentFeedHandler({fetcher:async url=>{const u=new URL(url);assert.ok(u.pathname.endsWith('/public_jsa_index'));assert.equal(u.searchParams.get('select'),PUBLIC_INDEX_FIELDS);return Response.json(u.searchParams.has('id')?[]:[{...row,analysis_data:undefined,index_facts:{titles:['a','b','c'],meaningful:800}}]);}})({query:{kind},headers:{}},response);
+  const response=res();await createContentFeedHandler({fetcher:async url=>{const u=new URL(url);assert.ok(u.pathname.endsWith('/public_jsa_index'));const select=u.searchParams.get('select');assert.ok(select==='id'||select===PUBLIC_INDEX_FIELDS);if(select!== 'id')assert.equal(u.searchParams.get('and'),'(id.in.('+id+'))');return Response.json(u.searchParams.has('id')?[]:select==='id'?[{id}]:[{...row,analysis_data:undefined,index_facts:{titles:['a','b','c'],meaningful:800}}]);}})({query:{kind},headers:{}},response);
   assert.equal(response.statusCode,200);assert.doesNotMatch(response.body,/PRIVATE_|Detailed authored/);
  }
 });

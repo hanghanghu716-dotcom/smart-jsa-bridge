@@ -19,8 +19,8 @@ test('URL filters round-trip safely and SQL sort injection is rejected',()=>{
 });
 test('Explore server passes pagination and tag filters and fails closed on network errors',async()=>{
  const response=()=>({headers:{},setHeader(k,v){this.headers[k]=v;},end(body){this.body=body;}});
- let query;const handler=createExploreHandler({readShell:async()=>shell,fetcher:async url=>{query=new URL(url).searchParams;return {ok:true,headers:new Headers({'content-range':'12-12/25'}),json:async()=>[row]};}});
- const r=response();await handler({query:{lng:'ko',page:'1',sort:'views',tag:'가스'}},r);assert.equal(r.statusCode,200);assert.equal(query.get('offset'),'12');assert.equal(query.get('order'),'view_count.desc,id.asc');assert.equal(query.get('tags'),'cs.{"가스"}');assert.match(r.body,/noindex/);assert.equal(r.headers['CDN-Cache-Control'],'no-store');
+ const queries=[];const handler=createExploreHandler({readShell:async()=>shell,fetcher:async url=>{queries.push(new URL(url).searchParams);return {ok:true,headers:new Headers({'content-range':'12-12/25'}),json:async()=>[row]};}});
+ const r=response();await handler({query:{lng:'ko',page:'1',sort:'views',tag:'가스'}},r);assert.equal(r.statusCode,200);const query=queries[0];assert.equal(query.get('select'),'id');assert.equal(queries[1].get('id'),'in.('+row.id+')');assert.equal(queries[1].get('offset'),null);assert.equal(query.get('offset'),'12');assert.equal(query.get('order'),'view_count.desc,id.asc');assert.equal(query.get('tags'),'cs.{"가스"}');assert.match(r.body,/noindex/);assert.equal(r.headers['CDN-Cache-Control'],'no-store');
  const failure=response();await createExploreHandler({readShell:async()=>shell,fetcher:async()=>{throw Error('offline');}})({query:{lng:'ko'}},failure);assert.equal(failure.statusCode,503);assert.match(failure.body,/noindex/);
 });
 test('risk summaries do not invent values or double count legacy controls',()=>{
@@ -39,7 +39,7 @@ test('Explore retries one transient read, preserving filters and real document c
   };
   const res={setHeader(){},end(body){this.body=body;}};
   await createExploreHandler({fetcher,readShell:async()=>shell})({query:{lng:'en-US',country:'US',tag:'mechanical'}},res);
-  assert.equal(res.statusCode,200);assert.equal(calls.length,2);
+  assert.equal(res.statusCode,200);assert.equal(calls.length,3);
   assert.equal(calls[0].url,calls[1].url);assert.notEqual(calls[0].options.signal,calls[1].options.signal);
   assert.equal(new URL(calls[1].url).searchParams.get('public_country'),'eq.US');
   assert.equal(new URL(calls[1].url).searchParams.get('tags'),'cs.{"mechanical"}');

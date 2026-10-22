@@ -24,7 +24,8 @@ const rows=[doc(1,'KR','ko','한국 자료'),doc(2,'US','en-US','US document'),d
    if(request.method()==='OPTIONS')return request.respond({status:204,headers});
    const url=new URL(request.url());let data=[];
    if(url.pathname.endsWith('/public_jsa_catalog')){
-    data=rows.filter(row=>(!url.searchParams.get('public_country')||url.searchParams.get('public_country')==='eq.'+row.public_country)&&(!url.searchParams.get('id')||url.searchParams.get('id')==='eq.'+row.id));
+    const filterId=url.searchParams.get('id');
+    data=rows.filter(row=>(!url.searchParams.get('public_country')||url.searchParams.get('public_country')==='eq.'+row.public_country)&&(!filterId||(filterId.startsWith('in.')?filterId.slice(4,-1).split(',').includes(row.id):filterId==='eq.'+row.id)));
     headers['content-range']=`0-${data.length-1}/${data.length}`;
     if(request.headers().accept?.includes('vnd.pgrst.object'))data=data[0]||null;
    }else if(url.pathname.endsWith('/case_studies')){
