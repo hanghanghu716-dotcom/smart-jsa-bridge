@@ -2,12 +2,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
 import puppeteer from 'puppeteer';
+import {verifyStaticMetadata} from './static-metadata.js';
 import {getLanguageTag} from '../src/locales/config.js';
 
 // Explicit route list, fresh browser context per route, and no link crawling.
 // Keep the ReactSnap user-agent marker because the app uses it to disable
 // private routes and analytics; the retired react-snap package is not loaded.
-export async function renderStatic({routes,concurrency=2,executablePath,outputRoot='dist'}){
+export async function renderStatic({routes,concurrency=2,executablePath,outputRoot='dist',cache}){
+ const requested=routes.length;
+ routes=routes.filter(route=>!cache?.restore(route,'static'));
+ console.log(`Static HTML: ${requested-routes.length} reused, ${routes.length} to render.`);
+ if(!routes.length)return;
  const root=path.resolve(outputRoot),shell=fs.readFileSync(path.join(root,'public-jsa-shell.html'));
  const types={'.js':'text/javascript','.css':'text/css','.json':'application/json','.woff2':'font/woff2','.woff':'font/woff','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.pdf':'application/pdf'};
  const server=http.createServer((req,res)=>{
@@ -30,18 +35,42 @@ export async function renderStatic({routes,concurrency=2,executablePath,outputRo
     const route=routes[next++],locale=route.split('/')[1];
     const context=await browser.createBrowserContext();
     try{
-     const page=await context.newPage();await page.setUserAgent('ReactSnap SmartJSAStaticBuild');await page.setViewport({width:1280,height:960});
+     const page=await context.newPage();
+     // The bare root is still a static landing page, not a server-injected list
+     // template. Preserve its case content and refresh that one snapshot.
+     await page.setUserAgent(route==='/'?'ReactSnap SmartJSARootBuild':'ReactSnap SmartJSAStaticBuild');
+     await page.setViewport({width:1280,height:960});
      const errors=[];page.on('pageerror',e=>errors.push(e.message));
      // The root snapshot is the global English entry, independent of the build
      // machine's language. Interactive visitors still use the app's locale flow.
      await page.goto(base+(route==='/'?'/en-US/':route),{waitUntil:'networkidle0',timeout:60000});
      await page.waitForFunction(()=>document.getElementById('root')?.textContent.trim().length>50,{timeout:20000});
+     // Network-idle alone can also describe a failed live dictionary request.
+     // Wait for real entries and retry only this read-only route, never save an error page.
+     if(route.endsWith('/dictionary')){
+      for(let attempt=0;attempt<3;attempt++){
+       try{
+        await page.waitForFunction(()=>document.querySelector('#dictionary-results')?.getAttribute('aria-busy')==='false',{timeout:60000});
+        const ready=await page.evaluate(()=>!document.querySelector('#dictionary-results [role="alert"]')&&document.querySelectorAll('.dictionary-hazard').length>0);
+        if(!ready)throw Error('Dictionary data did not load');
+        break;
+       }catch(error){
+        if(attempt===2)throw Error(`Dictionary snapshot failed: ${route}: ${error.message}`);
+        console.warn(`Retrying dictionary snapshot: ${route} (attempt ${attempt+2}/3)`);
+        await new Promise(resolve=>setTimeout(resolve,1000*(attempt+1)));
+        await page.reload({waitUntil:'networkidle0',timeout:60000});
+       }
+      }
+     }
      await page.evaluate(()=>document.fonts.ready);
      const state=await page.evaluate(()=>({lang:document.documentElement.lang,canonical:document.querySelector('link[rel=canonical]')?.href,title:document.title}));
      if(errors.length||!state.title||!state.canonical|| (locale&&state.lang!==getLanguageTag(locale)))throw Error(`Static page verification failed: ${route} (${errors.join('; ')})`);
      const target=path.resolve(root,'.'+route,'index.html');
      if(!target.startsWith(root+path.sep))throw Error('INVALID_STATIC_PATH');
-     fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,await page.content());
+     const html=await page.content();
+     verifyStaticMetadata(html,route);
+     fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,html);
+     cache?.save(route,'static');
     }finally{await context.close();}
    }
   }));

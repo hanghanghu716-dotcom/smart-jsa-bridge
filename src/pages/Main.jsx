@@ -1,4 +1,4 @@
-import { caseListBootstrap } from '../utils/caseListBootstrap.js';
+import { caseListBootstrap, isStaticContentBuild } from '../utils/caseListBootstrap.js';
 import { caseViewCounts } from '../services/caseStudyMetrics';
 import { sortCases } from '../utils/caseSort';
 import { getPublicUi } from '../locales/publicUi';
@@ -247,6 +247,7 @@ export default function Main() {
   useEffect(() => {
     let active=true;
     const fetchRecentCases = async () => {
+      if (isStaticContentBuild()) return;
       const pathLang = window.location.pathname.split('/')[1];
       const supportedCodes = SUPPORTED_LANGS;
       const currentLang = supportedCodes.includes(pathLang) ? pathLang : (i18n.language || 'ko');

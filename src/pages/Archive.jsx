@@ -1,6 +1,6 @@
 import { romanianUi } from '../locales/romanianUi.js';
 import { getLanguageTag } from '../locales/config.js';
-import { caseListBootstrap } from '../utils/caseListBootstrap.js';
+import { caseListBootstrap, isStaticContentBuild } from '../utils/caseListBootstrap.js';
 import { cleanSummary } from '../utils/content.js';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
 import { useState, useEffect } from 'react';
@@ -16,6 +16,7 @@ export default function Archive() {
 
   useEffect(() => {
     const fetchAllCases = async () => {
+      if (isStaticContentBuild()) return;
       const currentLang = i18n.language || 'ko';
       const { data, error } = await supabase
         .from('case_studies')

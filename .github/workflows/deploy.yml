@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -31,14 +31,40 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
-      - name: Install Chrome system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core
+      - name: Restore rendering fonts
+        id: fonts-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - name: Prepare Chrome and cached fonts
+        run: bash scripts/setup-rendering.sh
+      - name: Save verified fonts for retries
+        if: steps.fonts-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/build-fonts
+          key: ${{ steps.fonts-cache.outputs.cache-primary-key }}
+      - name: Restore generated HTML and PDF
+        id: render-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/rendered-content
+          key: rendered-ubuntu24-v1-${{ runner.arch }}-${{ env.JSA_RENDER_CACHE_CONTEXT }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rendered-ubuntu24-v1-${{ runner.arch }}-${{ env.JSA_RENDER_CACHE_CONTEXT }}-
+            rendered-ubuntu24-v1-${{ runner.arch }}-
       - name: Verify content and locale logic
         run: npm run test:all
       - name: Load Vercel project configuration
         run: npx --yes vercel@59.23.2 pull --yes --environment=production --token="$VERCEL_TOKEN"
-      - name: Build current database content and verify initial HTML
+      - name: Build and verify incremental HTML and PDF
         run: npx --yes vercel@59.23.2 build --prod --token="$VERCEL_TOKEN"
+      - name: Save verified HTML and PDF for retries
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/rendered-content
+          key: ${{ steps.render-cache.outputs.cache-primary-key }}
       - name: Verify isolated library loading and original-document editing
         # Remote requests are intercepted; this fixture performs no real writes.
         run: |
