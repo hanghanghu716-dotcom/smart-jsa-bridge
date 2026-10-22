@@ -9,7 +9,7 @@ import { verifyCaseHtml, buildCaseManifest } from './case-build-data.js';
 const shell='<!doctype html><html><head></head><body><div id="root"></div></body></html>';
 const post={id:'a',post_group_id:'pipe & tank',language_code:'ko',title:'Pipe & Tank',meta_description:'Current summary',content_md:'## Current body\n\n<table><tr><td colspan="2">Safe</td></tr></table>',created_at:'2026-10-01T00:00:00Z'};
 function response(){return {headers:{},setHeader(k,v){this.headers[k.toLowerCase()]=v;},end(body){this.body=body;}};}
-function fake(rows){return async url=>{const p=new URL(url).searchParams;return Response.json(p.has('id')?[]:rows);};}
+function fake(rows){return async url=>{const p=new URL(url).searchParams;return Response.json(p.get('id')?.startsWith('gt.')?[]:rows);};}
 test('new and edited cases are read on every request without a rebuild',async()=>{
  let rows=[post];const handler=createCaseHandler({fetcher:async url=>fake(rows)(url),readShell:async()=>shell});
  const req={query:{lng:'ko',slug:post.post_group_id},headers:{}};
