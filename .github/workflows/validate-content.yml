@@ -45,8 +45,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .cache/rendered-content
-          key: rendered-ubuntu24-v1-${{ runner.arch }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: rendered-ubuntu24-v1-${{ runner.arch }}-${{ env.JSA_RENDER_CACHE_CONTEXT }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
+            rendered-ubuntu24-v1-${{ runner.arch }}-${{ env.JSA_RENDER_CACHE_CONTEXT }}-
             rendered-ubuntu24-v1-${{ runner.arch }}-
       - name: Verify content and locale logic
         run: npm run test:all
