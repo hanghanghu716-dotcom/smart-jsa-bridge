@@ -24,10 +24,30 @@ const {spawn}=require('node:child_process');
   }
   browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-setuid-sandbox']});
   const page=await browser.newPage();await page.setViewport({width:1440,height:1000});
-  const catalogRows=new Map();
+  const catalogRows=new Map(),detailReads=[],catalogErrors=[];
+  page.on('response',response=>{
+   const url=new URL(response.url());
+   if(response.request().method()!=='GET'||!url.pathname.endsWith('/public_jsa_catalog')||url.searchParams.get('is_operator')!=='eq.true'||!url.searchParams.get('select')?.includes('analysis_data')||url.searchParams.has('title'))return;
+   detailReads.push((async()=>{
+    assert.ok(response.ok(),'Operator detail batch must load successfully');
+    const ids=url.searchParams.get('id');
+    assert.match(ids||'',/^in\.\(.+\)$/,'Details must be constrained to selected IDs');
+    const selected=ids.slice(4,-1).split(',');
+    assert.ok(selected.length<=10,'Assessment batches stay bounded');
+    const rows=await response.json();
+    assert.ok(Array.isArray(rows),'Operator details must be an array');
+    for(const row of rows){
+     assert.ok(selected.includes(row.id));
+     assert.equal(row.is_operator,true);
+     assert.equal(row.is_public,true);
+     assert.ok(row.document_variant==null||['basic','technical','handover'].includes(row.document_variant),'Known document variant');
+     catalogRows.set(row.id,row);
+    }
+   })().catch(error=>catalogErrors.push(error)));
+  });
   const waitForCatalog=()=>page.waitForResponse(response=>{
    const url=new URL(response.url());
-   return response.request().method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.get('is_operator')==='eq.true'&&url.searchParams.get('select')?.includes('analysis_data')&&!url.searchParams.has('title');
+   return response.request().method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.get('is_operator')==='eq.true'&&url.searchParams.get('select')==='id'&&!url.searchParams.has('title');
   },{timeout:60000});
   const readCatalog=async response=>{
    assert.ok(response.ok(),'Operator catalog must load successfully');
@@ -36,12 +56,9 @@ const {spawn}=require('node:child_process');
    const total=Number(range.split('/')[1]);
    const rows=await response.json();
    assert.ok(Array.isArray(rows)&&rows.length>0,'Operator catalog must contain documents');
-   for(const row of rows){
-    assert.equal(row.is_operator,true);
-    assert.equal(row.is_public,true);
-    assert.ok(row.document_variant==null||['basic','technical','handover'].includes(row.document_variant),'Known document variant');
-    catalogRows.set(row.id,row);
-   }
+   await Promise.all(detailReads);
+   if(catalogErrors.length)throw catalogErrors[0];
+   for(const row of rows)assert.ok(catalogRows.has(row.id),'Every selected ID must have current public details');
    return {total,rows};
   };
   let catalogResponse=waitForCatalog();
@@ -99,7 +116,7 @@ const {spawn}=require('node:child_process');
    const url=new URL(request.url());
    if(request.method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.has('title')){
     if(url.searchParams.get('select')==='id,tags')facetSearchRequests++;
-    else searchRequests++;
+    else if(url.searchParams.get('select')==='id')searchRequests++;
    }
   });
   await page.focus(searchSelector);
