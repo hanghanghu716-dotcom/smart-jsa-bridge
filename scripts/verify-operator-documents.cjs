@@ -6,7 +6,8 @@ const puppeteer=require('puppeteer');
 const {spawn}=require('node:child_process');
 (async()=>{
  const {explorePageSize}=await import('../src/utils/exploreView.js');
- const pageSize=explorePageSize(),expectedDocuments=36,totalPages=Math.ceil(expectedDocuments/pageSize);
+ const pageSize=explorePageSize();
+ const {pageWindow}=await import('../src/utils/pagination.js');
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'jsa-operator-'));
  const local=process.argv.includes('--local');
  const baseUrl=local?'http://127.0.0.1:4173':'https://smartjsabridge.com';
@@ -23,8 +24,33 @@ const {spawn}=require('node:child_process');
   }
   browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-setuid-sandbox']});
   const page=await browser.newPage();await page.setViewport({width:1440,height:1000});
+  const catalogRows=new Map();
+  const waitForCatalog=()=>page.waitForResponse(response=>{
+   const url=new URL(response.url());
+   return response.request().method()==='GET'&&url.pathname.endsWith('/public_jsa_catalog')&&url.searchParams.get('is_operator')==='eq.true'&&url.searchParams.get('select')?.includes('analysis_data')&&!url.searchParams.has('title');
+  },{timeout:60000});
+  const readCatalog=async response=>{
+   assert.ok(response.ok(),'Operator catalog must load successfully');
+   const range=response.headers()['content-range']||'';
+   assert.match(range,/[/][0-9]+$/,'Catalog must return an exact public total');
+   const total=Number(range.split('/')[1]);
+   const rows=await response.json();
+   assert.ok(Array.isArray(rows)&&rows.length>0,'Operator catalog must contain documents');
+   for(const row of rows){
+    assert.equal(row.is_operator,true);
+    assert.equal(row.is_public,true);
+    assert.ok(row.document_variant==null||['basic','technical','handover'].includes(row.document_variant),'Known document variant');
+    catalogRows.set(row.id,row);
+   }
+   return {total,rows};
+  };
+  let catalogResponse=waitForCatalog();
   await page.goto(baseUrl+'/ko/explore?author=operator',{waitUntil:'networkidle2',timeout:60000});
   await page.waitForFunction(()=>document.querySelectorAll('.explore-card').length>0&&!document.querySelector('.explore-loading'),{timeout:30000});
+  const firstCatalog=await readCatalog(await catalogResponse);
+  const expectedDocuments=firstCatalog.total,totalPages=Math.ceil(expectedDocuments/pageSize);
+  assert.ok(totalPages>1,'Live operator catalog must exercise pagination');
+  assert.equal(await page.$eval('.explore-card',cards=>cards.length),Math.min(pageSize,expectedDocuments));
   assert.equal(await page.$eval('.explore-operator-filter input',el=>el.checked),true);
   assert.equal(await page.$$eval('.explore-card',cards=>cards.every(card=>card.querySelector('.operator-badge')?.textContent==='운영자')),true);
   assert.equal(await page.$('.explore-document-icon'),null,'Remove the decorative document icon');
@@ -38,17 +64,23 @@ const {spawn}=require('node:child_process');
   }
   await page.evaluate(()=>{document.documentElement.dataset.theme='light';});
   await page.waitForSelector('.explore-pagination');
-  assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),Array.from({length:totalPages},(_,i)=>i+1));
+  assert.deepEqual(await page.$$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),pageWindow(1,totalPages).pages);
   const contentLinks=new Set(await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)));
   const firstTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
   for(let index=1;index<totalPages;index++){
    const previousTitle=await page.$eval('.explore-card > h2 > a',el=>el.textContent);
+   catalogResponse=waitForCatalog();
    if(index===totalPages-1)await page.$eval('.explore-pagination .list-pagination-last',el=>el.click());
-   else await page.$$eval('.explore-pagination .list-pagination-number',(els,number)=>els.find(el=>Number(el.textContent)===number).click(),index+1);
+   else if(index%15===0)await page.$eval('.explore-pagination .list-pagination-next',el=>el.click());
+   else await page.$eval('.explore-pagination .list-pagination-number',(els,number)=>els.find(el=>Number(el.textContent)===number).click(),index+1);
    await page.waitForFunction((index,count,previousTitle)=>new URL(location.href).searchParams.get('page')===String(index)&&!document.querySelector('.explore-loading')&&document.querySelectorAll('.explore-card').length===count&&document.querySelector('.explore-card > h2 > a')?.textContent!==previousTitle,{timeout:30000},index,Math.min(pageSize,expectedDocuments-index*pageSize),previousTitle);
-   for(const link of await page.$$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)))contentLinks.add(link);
+   const currentCatalog=await readCatalog(await catalogResponse);
+   assert.equal(currentCatalog.total,expectedDocuments,'Public catalog changed during verification; retry against a stable publication');
+   assert.deepEqual(await page.$eval('.explore-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent))),pageWindow(index+1,totalPages).pages);
+   for(const link of await page.$eval('.explore-card > h2 > a',links=>links.map(link=>link.href)))contentLinks.add(link);
   }
-  assert.equal(contentLinks.size,expectedDocuments,'Twelve jobs have three separate content cards each');
+  assert.equal(contentLinks.size,expectedDocuments,'Every public operator document appears exactly once across pages');
+  assert.deepEqual([...contentLinks].map(href=>new URL(href).pathname.split('/').pop()).sort(),[...catalogRows.keys()].sort(),'Cards match the complete public catalog');
   assert.equal(new URL(page.url()).searchParams.get('author'),'operator');
   assert.notEqual(await page.$eval('.explore-card > h2 > a',el=>el.textContent),firstTitle);
   await page.$eval('.explore-pagination .list-pagination-first',el=>el.click());
@@ -106,7 +138,9 @@ const {spawn}=require('node:child_process');
   await page.waitForFunction(()=>new URL(location.href).searchParams.get('author')==='operator'&&document.querySelectorAll('.explore-card').length>0&&!document.querySelector('.explore-loading'),{timeout:30000});
   const session=await page.target().createCDPSession();
   await session.send('Page.setDownloadBehavior',{behavior:'allow',downloadPath:dir});
-  const variants={basic:0,technical:0,handover:0}, downloaded=new Set();
+  const variants={basic:0,technical:0,handover:0,standard:0},expectedVariants={...variants},downloaded=new Set();
+  for(const row of catalogRows.values())expectedVariants[row.document_variant||'standard']++;
+  for(const variant of ['basic','technical','handover'])assert.ok(expectedVariants[variant]>0,'Keep coverage for '+variant+' documents');
   for(const href of contentLinks){
    const id=new URL(href).pathname.split('/').pop();
    await page.goto(href,{waitUntil:'domcontentloaded',timeout:60000});
@@ -118,12 +152,15 @@ const {spawn}=require('node:child_process');
    })));
    assert.equal(details.length,1,'Each content page shows only its own document');
    assert.equal(details[0].id,id);
-   assert.ok(Object.hasOwn(variants,details[0].variant));
-   variants[details[0].variant]++;
-   assert.ok(!details[0].testText&&details[0].scores.length>0&&details[0].scores.every(values=>values.every(v=>v==='')));
+   const expectedVariant=catalogRows.get(id).document_variant||undefined;
+   assert.equal(details[0].variant,expectedVariant,'Preview retains its own catalog variant');
+   const variant=expectedVariant||'standard';
+   variants[variant]++;
+   assert.ok(!details[0].testText&&details[0].scores.length>0,'Every document has real analysis rows');
+   if(expectedVariant)assert.ok(details[0].scores.every(values=>values.every(v=>v==='')),'A/B/C reference risk cells stay blank');
    const buttons=await page.$$('.public-document-version .jsa-toolbar button');
    assert.equal(buttons.length,1,'Each content has exactly one PDF download');
-   if(!downloaded.has(details[0].variant)){
+   if(!downloaded.has(variant)){
     await buttons[0].click();
     await page.waitForFunction(()=>!document.querySelector('.public-document-version .jsa-toolbar button').disabled,{timeout:60000});
     let files=[];
@@ -133,10 +170,10 @@ const {spawn}=require('node:child_process');
      await new Promise(resolve=>setTimeout(resolve,250));
     }
     assert.equal(files.length,downloaded.size+1);
-    downloaded.add(details[0].variant);
+    downloaded.add(variant);
    }
   }
-  assert.deepEqual(variants,{basic:12,technical:12,handover:12});
+  assert.deepEqual(variants,expectedVariants,'Verify every published variant and standard document');
   const files=(await fs.readdir(dir)).filter(f=>f.endsWith('.pdf'));
   for(const name of files){const bytes=await fs.readFile(path.join(dir,name));assert.equal(bytes.subarray(0,5).toString(),'%PDF-');assert.ok(bytes.length>10000);}
   await page.setViewport({width:390,height:844});
