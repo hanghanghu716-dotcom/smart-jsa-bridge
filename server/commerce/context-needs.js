@@ -33,15 +33,20 @@ function context(snapshot,body=commerceText(snapshot)){
  const title=String(snapshot.title||'').toLowerCase();
  const confined=/밀폐\s*공간|탱크\s*내부|맨홀\s*(?:내부|진입)|confined\s*space|tank\s*entr/.test(body);
  const explosive=/가연성[\s·・/및유해]{0,7}(?:가스|증기|분진)|폭발성|폭발\s*위험|방폭|flammable\s*(?:gas|vapou?r|dust)|explosive\s*atmosphere|intrinsically\s*safe/.test(body);
- const specialist=/무균|멸균|반도체|클린룸|석면|방사성|생물학|감염|aseptic|steril|semiconductor|cleanroom|asbestos|radioactive|biohazard/.test(title);
+ const specialist=/위생|살균|식품|유제품|무균|멸균|반도체|클린룸|석면|방사성|생물학|감염|sanitary|pasteuri|food|dairy|aseptic|steril|semiconductor|cleanroom|asbestos|radioactive|biohazard/.test(title);
  const hazardousCleaning=specialist||confined||/유기용제|산성|강산|강알칼리|화학물질|산·알칼리|용접|고온|플라즈마|열간|숏크리트|화학|solvent|acid|caustic|weld|plasma/.test(title);
- return {title,body,confined,explosive,specialist,hazardousCleaning};
+ const chemicalResidue=/유기용제|화학물질|유해\s*폐기물|지정\s*폐기물|세정\s*약품|접착제|산[·ㆍ/\s-]*알칼리|가성\s*소다|강산|강알칼리|solvent|caustic|hazardous\s*waste/.test(body);
+ return {title,body,confined,explosive,specialist,hazardousCleaning:hazardousCleaning||chemicalResidue};
 }
 export function contextNeeds(snapshot,body=commerceText(snapshot)){
  const c=context(snapshot,body),needs=[];
+ // Korean particles and list punctuation carry the same control meaning.
+ // Remove explicit negative instructions before matching procurement controls.
+ const controls=body.replace(/(?:출입|접근)(?:을|은|는)?\s*통제(?:를)?\s*(?:하지\s*않|불필요|제외)[^.!?;]*/g,' ')
+  .replace(/잠금[\s·ㆍ・/]*(?:(?:및|과|와)\s*)?표지(?:는|를|가)?\s*(?:불필요|제외|하지\s*않)[^.!?;]*/g,' ');
  const add=(category,reason,stage,score)=>needs.push({category,constraints:{},reason,stage,score,origin:'work-context'});
- if(/출입\s*통제|접근\s*통제|위험\s*구역.{0,15}구획|하부\s*통제|통제선|barricad|exclusion\s*zone|restrict.{0,15}access/.test(body))add('barrier-tape','work-area-boundary','preparation',86);
- if(/잠금\s*표지|잠금표지|사용\s*금지\s*(?:표시|표지)|격리.{0,20}표시|lockout|tagout|out.of.service\s*tag/.test(body))add('lockout-tag','isolation-identification','preparation',89);
+ if(/(?:출입|접근)(?:을|은|는)?\s*통제|위험\s*구역.{0,15}구획|하부\s*통제|통제선|barricad|exclusion\s*zone|restrict.{0,15}access/.test(controls))add('barrier-tape','work-area-boundary','preparation',86);
+ if(/잠금[\s·ㆍ・/]*(?:(?:및|과|와)\s*)?표지|사용\s*금지\s*(?:표시|표지)|격리.{0,20}표시|lockout|tagout|\bloto\b|out.of.service\s*tag/.test(controls))add('lockout-tag','isolation-identification','preparation',89);
  const communication=/무전기|무전\s*연락|지상\s*(?:유도자|감시자)|감시자.{0,30}(?:연락|통신)|연락\s*수단|신호수|two.way\s*radio|communication|signalperson/.test(body);
  if(communication&&!c.explosive&&!c.confined)add('ordinary-two-way-radio','worker-spotter-communication','communication',92);
  // These are cleanup needs from the whole workflow, not just cleaning titles.
@@ -52,7 +57,7 @@ export function contextNeeds(snapshot,body=commerceText(snapshot)){
    add('floor-mop','residual-moisture-cleanup','cleanup',78);
   }
   if(/(?:오염|얼룩|찌꺼기|물기).{0,18}(?:닦|청소)|wipe.{0,20}(?:surface|residue)/.test(body))add('cleaning-cloth','surface-residue-wiping','cleanup',74);
-  if(/(?:잔재|파편|포장재|쓰레기|폐기물|절단편|debris|packaging\s*waste).{0,30}(?:수거|분리|정리|처리|collect|remov)|(?:수거|분리).{0,15}(?:잔재|폐기물)/.test(body))add('waste-sack','non-hazardous-debris-collection','cleanup',83);
+  if(!/실리카|석면|유리\s*(?:파편|섬유)|날카로운|미세\s*분진|분진\s*(?:회수|수거)|silica|asbestos|sharp\s*(?:debris|shards)/.test(body)&&/(?:잔재|파편|포장재|쓰레기|폐기물|절단편|debris|packaging\s*waste).{0,30}(?:수거|분리|정리|처리|collect|remov)|(?:수거|분리).{0,15}(?:잔재|폐기물)/.test(body))add('waste-sack','non-hazardous-debris-collection','cleanup',83);
   if(/(?:빗자루|쓰레받기|broom|dustpan)/.test(body)&&!/분진|미세먼지|dust|silica/.test(body))add('dustpan','coarse-debris-sweeping','cleanup',75);
  }
  return needs;
@@ -72,8 +77,10 @@ export function equipmentNeeds(snapshot){
  if(/추락\s*방호망|추락\s*방지망|personnel\s*safety\s*net|fall.arrest\s*net/.test(body)&&!/방호망.{0,15}(?:설치\s*불가|사용\s*금지)/.test(body))add('fall-safety-net','collective-fall-protection','protection',115);
  if(/송기\s*마스크|공기\s*호흡기|공급식\s*호흡|supplied.air\s*respirator|self.contained\s*breathing|\bscba\b/.test(body))add('supplied-air-respirator','independent-breathing-air','protection',118);
  if(/탈출용\s*(?:호흡기|공기)|escape\s*breathing|\beebd\b/.test(body))add('escape-breathing-apparatus','emergency-escape-air','emergency',119);
- if(/(?:기름|윤활유|유압유|오일|oil).{0,25}(?:누유|누출|유출|흘|제거|spill|leak)|흡착포|흡유|oil\s*absorb/.test(body)&&!c.specialist&&!/산성|산·알칼리|강산|acid|caustic/.test(title))add('oil-absorbent','oil-spill-housekeeping','cleanup',94);
- if(/집진|분진.{0,15}(?:흡입|제거)|dust\s*extract/.test(body)&&!c.explosive&&!c.hazardousCleaning&&!/금속\s*분진|알루미늄\s*분진|용접|고온|metal\s*dust|hot\s*ash/.test(title))add('dust-extractor','source-dust-collection','environment',101);
+ if(/(?:기름|윤활유|유압유|오일|oil).{0,25}(?:누유|누출|유출|흘|제거|spill|leak)|흡착포|흡유|oil\s*absorb/.test(body)&&!c.hazardousCleaning&&!/산성|산·알칼리|강산|acid|caustic/.test(title))add('oil-absorbent','oil-spill-housekeeping','cleanup',94);
+ // A fixed dust collector being repaired is not a portable extractor need.
+ const portableDustControl=/(?:이동식|휴대용)\s*집진기.{0,20}(?:사용|연결|가동|설치)|(?:공구|샌더|드릴|톱).{0,20}집진기.{0,12}(?:연결|접속)|집진기.{0,10}연결.{0,10}(?:샌더|드릴|톱)|휴대.{0,12}연마기.{0,30}집진기.{0,12}연마|(?:use|connect).{0,20}portable\s*dust\s*extractor/.test(body);
+ if(portableDustControl&&!/집진기.{0,12}(?:사용\s*금지|사용하지|불필요)/.test(body)&&!c.explosive&&!c.hazardousCleaning&&!/금속\s*분진|알루미늄\s*분진|용접|고온|metal\s*dust|hot\s*ash/.test(body))add('dust-extractor','source-dust-collection','environment',101);
  if(/조경|낙엽|정원|landscap|leaf\s*clear|garden/.test(title)&&/낙엽|나뭇잎|잔디\s*잔재|leaves|leaf|grass\s*clipping/.test(body)&&!c.explosive&&!/분진|석면|실리카|유해|dust|silica/.test(body))add('air-blower','outdoor-leaf-cleanup','cleanup',86);
  return needs;
 }

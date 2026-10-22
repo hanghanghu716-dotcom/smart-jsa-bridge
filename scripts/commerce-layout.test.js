@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseFragment } from 'parse5';
-import { splitCaseSections } from '../src/utils/caseSections.js';
+import { splitCaseSections, splitCaseForCommerce } from '../src/utils/caseSections.js';
 import { extractAccessoryNeeds } from '../server/commerce/needs.js';
 import { offerFingerprint, fingerprint, selectOffers } from '../server/commerce/engine.js';
 const cats=(title,body='')=>extractAccessoryNeeds({title,body}).map(n=>n.category);
@@ -53,4 +53,51 @@ test('legacy Markdown introductions move too, including bold headings and inline
  const result=splitCaseSections('# Title\nIntro\n'+heading+'\nMain text\n## **11. Review**\nRecord');
  assert.equal(result.introduction,'# Title\nIntro');assert.ok(result.main.startsWith(heading));assert.ok(result.main.includes('Main text'));assert.ok(result.review.startsWith('## **13. Review**'));assert.ok(result.review.includes('Record'));
  }
+});
+
+
+test('products split after the complete master table; later sections and links shift together',()=>{
+ const content='<div id="article" dir="rtl"><h2 id="section-1">1. Basis</h2><a href="#section-4">Details</a><h2 id="section-3">3. Master</h2><div><table><tbody><tr><td>4. Keep this cell</td></tr></tbody></table><p>Table notes</p></div><section><h2 id="section-4"><strong>4. Controls</strong></h2><p>Keep all controls</p></section><h2 id="section-10">10. FAQ</h2><h2 id="section-11">11. Review</h2><p>Reviewed record</p></div>';
+ const s=splitCaseForCommerce(content);
+ assert.equal(s.productSection,4);assert.equal(s.resourcesSection,12);
+ assert.ok(s.beforeProducts.includes('</table>'));assert.ok(s.beforeProducts.includes('Table notes'));
+ assert.ok(s.beforeProducts.includes('4. Keep this cell'));assert.ok(s.beforeProducts.includes('href="#section-5"'));
+ assert.ok(!s.beforeProducts.includes('Keep all controls'));
+ assert.ok(s.afterProducts.includes('5. Controls'));assert.ok(s.afterProducts.includes('id="section-5"'));
+ assert.ok(s.afterProducts.includes('11. FAQ'));assert.ok(s.afterProducts.includes('id="section-11"'));
+ assert.ok(s.afterProducts.includes('dir="rtl"'));assert.ok(!s.afterProducts.includes('id="article"'));
+ assert.ok(s.review.includes('13. Review'));assert.ok(s.review.includes('Reviewed record'));
+ for(const html of [s.beforeProducts,s.afterProducts])assert.equal(parseFragment(html).childNodes[0].tagName,'div');
+});
+
+test('Markdown product insertion respects bold headings, inline anchors, tables and fenced examples',()=>{
+ const source='# Intro\nNotes\n## 1. Basis\n[Controls](#section-4)\n## 3. Master\n|Step|Control|\n|---|---|\n|3|4. Keep|\n~~~text\n## 4. Example\n~~~\n## <span id="section-4"></span>**4. Controls**\nBody\n## **10. FAQ**\nFAQ\n## **11. Review**\nRecord';
+ const s=splitCaseForCommerce(source);
+ assert.equal(s.productSection,4);assert.equal(s.resourcesSection,12);
+ assert.ok(s.beforeProducts.includes('## 4. Example'));
+ assert.ok(s.beforeProducts.includes('[Controls](#section-5)'));
+ assert.ok(s.afterProducts.includes('id="section-5"'));assert.ok(s.afterProducts.includes('**5. Controls**'));
+ assert.ok(s.afterProducts.includes('**11. FAQ**'));assert.ok(s.review.includes('13. Review'));
+ assert.equal(s.introduction,'# Intro\nNotes');
+});
+
+test('legacy cases without the master section retain their previous layout',()=>{
+ const s=splitCaseForCommerce('## 6. Legacy\nContent');
+ assert.equal(s.earlyProducts,false);assert.equal(s.productSection,12);assert.equal(s.resourcesSection,11);
+ assert.equal(s.beforeProducts,'## 6. Legacy\nContent');assert.equal(s.afterProducts,'');
+ const last=splitCaseForCommerce('<h2>3. Master</h2><table><tr><td>Last row</td></tr></table>');
+ assert.equal(last.productSection,4);assert.ok(last.beforeProducts.includes('Last row'));assert.equal(last.afterProducts,'');
+});
+
+
+test('server article presents products fourth, resources twelfth, and review thirteenth',async()=>{
+ const {renderCaseArticle}=await import('../api/case-study.js');
+ const content=Array.from({length:11},(_,i)=>'<h2 id="section-'+(i+1)+'">'+(i+1)+'. Section</h2><p>Body '+(i+1)+'</p>').join('');
+ const html=renderCaseArticle({content_md:content,pdf_download_url:'https://example.com/case.pdf'},'ko');
+ const headings=[...html.matchAll(/<h2[^>]*>(.*?)<\/h2>/g)].map(match=>Number(match[1].match(/^\d+/)?.[0]));
+ assert.deepEqual(headings,[1,2,3,4,5,6,7,8,9,10,11,12,13]);
+ assert.ok(html.indexOf('Body 3')<html.indexOf('4. '));
+ assert.ok(html.indexOf('4. ')<html.indexOf('Body 4'));
+ assert.ok(html.indexOf('case.pdf')>html.indexOf('12. '));
+ for(let n=1;n<=11;n++)assert.ok(html.includes('Body '+n+'</p>'));
 });

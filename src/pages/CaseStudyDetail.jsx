@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import CommerceRecommendations from '../components/CommerceRecommendations';
-import { splitCaseSections, caseResourcesTitle } from '../utils/caseSections.js';
+import { splitCaseForCommerce, caseResourcesTitle } from '../utils/caseSections.js';
 import SEO from '../components/SEO';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import './CaseStudyDetail.css';
@@ -32,7 +32,8 @@ export default function CaseStudyDetail() {
   const [loadError, setLoadError] = useState(false);
   const [retry, setRetry] = useState(0);
   const viewerRef = useRef(null);
-  const sections = splitCaseSections(post?.content_md || '');
+  const afterProductsRef = useRef(null);
+  const sections = splitCaseForCommerce(post?.content_md || '');
   const [viewMetric,setViewMetric]=useState(null);
   const metricId=post?.post_group_id===id&&!loading&&!loadError?post.id:null;
   useEffect(()=>{
@@ -87,13 +88,16 @@ export default function CaseStudyDetail() {
   // The Toast UI React wrapper only reads initialValue when it mounts.
   // A fresher DB response for the same ID must replace the snapshot body too.
   useEffect(() => {
-    viewerRef.current?.getInstance().setMarkdown(splitCaseSections(post?.content_md || '').main);
+    const next=splitCaseForCommerce(post?.content_md || '');
+    viewerRef.current?.getInstance().setMarkdown(next.beforeProducts);
+    afterProductsRef.current?.getInstance().setMarkdown(next.afterProducts);
   }, [post?.content_md]);
 
   if (loading) return <div style={styles.loading}><SEO />{ro?.loading || 'Loading...'}</div>;
   if (loadError) return <div style={styles.error} role="alert"><SEO noIndex />{ui.loadError} <button onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>;
   if (!post) return <div style={styles.error}><SEO noIndex />{ui.caseEmpty} <LanguageLink to="/archive">{ro?.archive || 'Archive'}</LanguageLink></div>;
   const structuredData = serializeStructuredData(post.schema_markup);
+  const products = <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={sections.productSection} />;
 
   return (
     <div className="case-study-page" style={styles.wrapper} data-case-study-id={post.id}>
@@ -195,10 +199,15 @@ export default function CaseStudyDetail() {
             lang={isRtl ? 'ar' : currentLang}
             className={isRtl ? 'rtl-viewer' : ''}
           >
-            <Viewer ref={viewerRef} initialValue={sections.main} key={post.id || post.language_code} />
+            <Viewer ref={viewerRef} initialValue={sections.beforeProducts} key={post.id || post.language_code} />
           </div>
 
-          <section id="section-11" className="case-numbered-section"><h2>11. {caseResourcesTitle(i18n.language)}</h2>
+          {sections.earlyProducts && products}
+          {sections.afterProducts && <div style={{...styles.markdownContent,...(isRtl?styles.rtlMarkdown:{})}} dir={isRtl?'rtl':'ltr'} lang={currentLang} className={isRtl?'rtl-viewer':''}>
+            <Viewer ref={afterProductsRef} initialValue={sections.afterProducts} key={(post.id || post.language_code)+':after-products'} />
+          </div>}
+
+          <section id={'section-'+sections.resourcesSection} className="case-numbered-section"><h2>{sections.resourcesSection}. {caseResourcesTitle(i18n.language)}</h2>
           {((post.pdf_list && post.pdf_list.length > 0) || post.pdf_download_url) && (
             <div style={{ 
               marginBottom: '24px', 
@@ -249,7 +258,7 @@ export default function CaseStudyDetail() {
           <DiscoveryLinks kind="case" target={id} showReuseHelp/>
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           </section>
-          <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={12} />
+          {!sections.earlyProducts && products}
           {sections.review && <div style={styles.markdownContent} dir={isRtl?'rtl':'ltr'} className={isRtl?'rtl-viewer':''}><Viewer initialValue={sections.review} key={sections.review}/></div>}
 
           

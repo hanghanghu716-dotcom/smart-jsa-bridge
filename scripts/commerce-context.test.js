@@ -45,3 +45,48 @@ test('floor obstacles are not water; equipment under maintenance is not a ventil
  assert.ok(!c.includes('floor-mop'));assert.ok(!c.includes('floor-squeegee'));
  assert.ok(!categories({title:'송풍기 V벨트 교체',body:'송풍기 점검 후 환기 확인'}).includes('portable-ventilator'));
 });
+
+
+test('Korean isolation and boundary controls work across case and public JSA formats',()=>{
+ for(const phrase of ['잠금·표지','잠금 및 표지','잠금과 표지','잠금/표지','LOTO']){
+  const instruction=phrase+' 시행. 접근을 통제해 서서히 가압한다.';
+  const snapshots=[
+   {kind:'case',title:'설비 복구',body:'<table><tr><td>'+instruction+'</td></tr></table>'},
+   {kind:'ugc',title:'설비 복구',steps:[{controls:[[instruction]]}]},
+  ];
+  for(const snapshot of snapshots){
+   const result=categories(snapshot);
+   assert.ok(result.includes('lockout-tag'),phrase);
+   assert.ok(result.includes('barrier-tape'),phrase);
+  }
+ }
+ for(const body of ['잠금·표지는 불필요하다. 접근 통제 불필요.','접근을 통제하지 않는다. 잠금 및 표지를 하지 않는다.']){
+  const result=categories({title:'일반 점검',body});
+  assert.ok(!result.includes('lockout-tag'));assert.ok(!result.includes('barrier-tape'));
+ }
+});
+
+test('sanitary and chemical workflows do not turn fragments or residue into ordinary waste sacks',()=>{
+ const examples=[
+  {title:'HTST 우유 살균기 판형열교환기 복구',body:'차단점 잠금·표지. MSDS에 맞춰 환기·장갑을 선정. 파편을 회수하고 잔재를 수거한다. 접근을 통제해 가압한다.'},
+  {title:'도료 비드밀 분리기 복구',body:'접착제와 유기용제 잔재를 수거한다. 잠금 및 표지.'},
+  {title:'식품 이송라인 점검',body:'세척수 제거와 폐기물 수거.'},
+  {title:'일반 설비 교체',body:'화학물질 오염 폐기물 수거. 바닥 물기 제거.'},
+ ];
+ for(const snapshot of examples){
+  const result=categories(snapshot);
+  for(const category of ['waste-sack','floor-mop','floor-squeegee'])assert.ok(!result.includes(category),snapshot.title+':'+category);
+ }
+ assert.ok(categories(examples[0]).includes('lockout-tag'));
+ assert.ok(categories(examples[0]).includes('barrier-tape'));
+ assert.ok(categories({title:'일반 배관 조립',body:'깨끗한 포장재 수거'}).includes('waste-sack'));
+});
+
+test('dust extraction requires explicit portable tool control, not a machine component mention',()=>{
+ for(const title of ['풍력발전기 요 구동계통 복구','교량 받침 교체','원유 증류탑 점검','설탕 이송설비 집진기 정비']){
+  assert.ok(!categories({title,body:'집진설비 상태 확인. 분진을 제거한다.'}).includes('dust-extractor'),title);
+ }
+ assert.ok(categories({title:'목재 샌딩',body:'샌더에 집진기를 연결한다.'}).includes('dust-extractor'));
+ assert.ok(!categories({title:'목재 샌딩',body:'휴대용 집진기 사용하지 않는다.'}).includes('dust-extractor'));
+ assert.ok(!categories({title:'금속 샌딩',body:'이동식 집진기 사용. 가연성 알루미늄 분진.'}).includes('dust-extractor'));
+});

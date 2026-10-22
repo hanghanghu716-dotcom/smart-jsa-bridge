@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'api/commerce.js'
+      - 'api/case-study.js'
+      - 'src/utils/caseSections.js'
       - 'server/commerce/**'
       - 'src/components/CommerceRecommendations*'
       - 'src/locales/commerceUi.js'
@@ -23,6 +25,7 @@ jobs:
     timeout-minutes: 10
     env:
       PUPPETEER_SKIP_DOWNLOAD: 'true'
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,5 +33,14 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: node --test scripts/commerce.test.js scripts/commerce-accessories.test.js
+      - run: npm run test:all
       - run: npx vite build
+      - run: node scripts/commerce-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: commerce-preview
+          path: .cache/commerce-*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 7
