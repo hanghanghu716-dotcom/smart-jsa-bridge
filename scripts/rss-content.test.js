@@ -63,7 +63,18 @@ test('RSS handler requests full article text and removes withdrawn documents imm
   const handler = createContentFeedHandler({ fetcher: async value => {
     const url = new URL(value); selected.push(url.searchParams.get('select'));
     if (url.pathname.endsWith('/case_studies')) {assert.equal(url.searchParams.get('limit'), '50');assert.match(url.searchParams.get('order'),/^content_updated_at.desc/);}
-    return Response.json(url.searchParams.has('id') ? [] : url.pathname.endsWith('/case_studies') ? [post] : documents);
+    if(url.pathname.endsWith('/case_studies'))return Response.json([post]);
+    assert.equal(url.searchParams.get('is_public'),'eq.true');
+    assert.equal(url.searchParams.get('public_locale'),'eq.ko');
+    if(url.searchParams.get('select')==='id'){
+      assert.equal(url.searchParams.get('limit'),'50');
+      assert.equal(url.searchParams.get('order'),'content_updated_at.desc.nullslast,published_at.desc,id');
+      return Response.json(documents.map(({id})=>({id})));
+    }
+    assert.equal(url.searchParams.get('id'),'in.('+doc.id+')');
+    assert.equal(url.searchParams.has('offset'),false);
+    assert.equal(url.searchParams.has('order'),false);
+    return Response.json(documents);
   } });
   const call = async () => { const res = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } }; await handler({ query: { kind: 'rss', lng: 'ko' }, headers: {} }, res); return res; };
   let res = await call(); assert.equal(res.statusCode, 200); assert.match(res.headers['Content-Type'], /rss\+xml/);
@@ -95,4 +106,38 @@ test('case RSS matches the complete delivered article after resources and review
   assert.deepEqual(headings.map(s => s.split('.')[0]), ['1', '11', '12', '13']);
   assert.match(text(body), /검토 기록 전체/);
   assert.ok(all(body, n => n.tagName === 'a').some(n => n.attrs.some(a => a.name === 'href' && a.value.endsWith('/example.pdf'))));
+});
+
+test('RSS bounds full-document assessments and omits withdrawn rows without truncating remaining bodies',async()=>{
+ const records=Array.from({length:12},(_,n)=>({...doc,id:'10000000-0000-4000-8000-'+String(n).padStart(12,'0'),title:'RSS document '+n}));
+ const calls=[];
+ const handler=createContentFeedHandler({fetcher:async value=>{
+  const p=new URL(value).searchParams;
+  if(new URL(value).pathname.endsWith('/case_studies'))return Response.json([]);
+  assert.equal(p.get('public_locale'),'eq.ko');assert.equal(p.get('is_public'),'eq.true');
+  if(p.get('select')==='id')return Response.json(records.map(({id})=>({id})));
+  const ids=p.get('id').slice(4,-1).split(',');calls.push(ids);
+  assert.ok(ids.length<=10);assert.ok(p.get('select').includes('analysis_data'));
+  return Response.json(records.filter(row=>ids.includes(row.id)&&row.id!==records[3].id).reverse().slice(0,4));
+ }});
+ const res={setHeader(){},end(body){this.body=body;}};
+ await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
+ assert.equal(res.statusCode,200);assert.equal(descriptions(res.body).length,11);
+ assert.doesNotMatch(res.body,/RSS document 3</);
+ for(const html of descriptions(res.body))assert.ok(html.includes('권고 대책 3'));
+ assert.ok(calls.length>2);
+});
+test('RSS rejects a later assessment failure instead of publishing only cases or partial documents',async()=>{
+ let batches=0;
+ const records=Array.from({length:12},(_,n)=>({...doc,id:'10000000-0000-4000-8000-'+String(n).padStart(12,'0')}));
+ const handler=createContentFeedHandler({fetcher:async value=>{
+  const u=new URL(value),p=u.searchParams;
+  if(u.pathname.endsWith('/case_studies'))return Response.json([post]);
+  if(p.get('select')==='id')return Response.json(records.map(({id})=>({id})));
+  if(++batches>1)return new Response('timeout',{status:500});
+  return Response.json(records.slice(0,10));
+ }});
+ const res={setHeader(){},end(body){this.body=body;}};
+ await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
+ assert.equal(res.statusCode,503);assert.doesNotMatch(res.body,/<rss /);
 });
