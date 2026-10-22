@@ -57,14 +57,13 @@ jobs:
           node scripts/work-packages-db.cjs
           node scripts/author-moderation-db.cjs
           node scripts/security-operations-db.cjs
-      - name: Build frontend and verify list navigation and operator documents
+      - name: Build frontend and verify isolated navigation and document previews
         run: |
           npx vite build
           node scripts/explore-quality-browser.cjs
           node scripts/explore-view-browser.cjs
           node scripts/library-discovery-browser.cjs
           node scripts/public-document-preview-browser.cjs
-          node scripts/verify-operator-documents.cjs --local
       - name: Render and verify static HTML, PDF and live-content templates
         run: npm run build
       - name: Save verified HTML and PDF for retries
@@ -72,6 +71,8 @@ jobs:
         with:
           path: .cache/rendered-content
           key: ${{ steps.render-cache.outputs.cache-primary-key }}
+      - name: Verify operator documents against public data
+        run: node scripts/verify-operator-documents.cjs --local
       - name: Verify complete RSS bodies against public content
         run: |
           node scripts/render-rss-check.js
