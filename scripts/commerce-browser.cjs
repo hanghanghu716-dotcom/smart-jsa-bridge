@@ -40,7 +40,7 @@ const path=require('node:path');
     const vars=theme==='dark'?{'--app-bg':'#0f172a','--card-bg':'#1e293b','--text-primary':'#f1f5f9','--text-secondary':'#cbd5e1','--accent':'#60a5fa'}:{'--app-bg':'#ffffff','--card-bg':'#f8fafc','--text-primary':'#172033','--text-secondary':'#475569','--accent':'#2563eb'};
     for(const [name,value]of Object.entries(vars))document.documentElement.style.setProperty(name,value);
    },theme);
-   const links=await page.$eval('.commerce-product-link',els=>els.map(el=>({color:getComputedStyle(el).color,bg:getComputedStyle(el).backgroundColor})));
+   const links=await page.$$eval('.commerce-product-link',els=>els.map(el=>({color:getComputedStyle(el).color,bg:getComputedStyle(el).backgroundColor})));
    assert.ok(links.length>=4);
    for(const link of links){assert.equal(link.color,'rgb(255, 255, 255)');assert.equal(link.bg,'rgb(29, 78, 216)');}
    await page.hover('.commerce-panel--rail .commerce-product-link');
