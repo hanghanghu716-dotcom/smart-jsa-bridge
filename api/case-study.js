@@ -3,6 +3,7 @@ import { canonicalCaseSlug, caseLookupSlugs } from '../src/utils/caseRouting.js'
 import { getCommerceUi } from '../src/locales/commerceUi.js';
 import { romanianUi } from '../src/locales/romanianUi.js';
 import { readFile } from 'node:fs/promises';
+import { setTimeout as delay } from 'node:timers/promises';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import Markdown, { defaultUrlTransform } from 'react-markdown';
@@ -14,6 +15,24 @@ import { cleanSummary, serializeStructuredData } from '../src/utils/content.js';
 import { SITE, casePath, escapeHtml as e, jsonScript, readAllPublic, sendContent, sendUnavailable } from '../server/public-content.js';
 
 const schema = { ...defaultSchema, attributes: { ...defaultSchema.attributes, td: [...(defaultSchema.attributes.td || []), 'colSpan', 'rowSpan'], th: [...(defaultSchema.attributes.th || []), 'colSpan', 'rowSpan'] } };
+// Retry only transient transport/upstream failures, within readAllPublic's
+// existing deadline. Never turn authorization failures or withdrawn rows into content.
+export async function fetchCaseWithRetry(fetcher, url, options) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    options.signal?.throwIfAborted();
+    let response;
+    try {
+      response = await fetcher(url, options);
+    } catch (error) {
+      if (attempt || options.signal?.aborted) throw error;
+      await delay(250, undefined, { signal: options.signal });
+      continue;
+    }
+    if (attempt || (response.status !== 429 && response.status < 500)) return response;
+    await response.body?.cancel();
+    await delay(250, undefined, { signal: options.signal });
+  }
+}
 export function renderCaseBody(post, baseUrl) {
   const urlTransform = baseUrl ? value => {
     const safe = defaultUrlTransform(value);
@@ -58,9 +77,10 @@ export function createCaseHandler({ fetcher = fetch, readShell = () => readFile(
       const groupFilter = slugs.length === 1 ? 'eq.' + slug : 'in.(' + slugs.map(value => JSON.stringify(value)).join(',') + ')';
       // Fetch only the requested language's body; hreflang discovery needs IDs,
       // not every translated article and PDF payload on each page request.
+      const resilientFetch = (url, options) => fetchCaseWithRetry(fetcher, url, options);
       const [localized, variants] = await Promise.all([
-        readAllPublic('case_studies', { select: '*', post_group_id: groupFilter, language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher),
-        readAllPublic('case_studies', { select: 'id,language_code,post_group_id', post_group_id: groupFilter }, fetcher),
+        readAllPublic('case_studies', { select: '*', post_group_id: groupFilter, language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, resilientFetch),
+        readAllPublic('case_studies', { select: 'id,language_code,post_group_id', post_group_id: groupFilter }, resilientFetch),
       ]);
       const candidates = localized.filter(row => getCaseLanguages(locale).includes(row.language_code));
       const post = selectLocalizedCases(candidates, locale)[0];

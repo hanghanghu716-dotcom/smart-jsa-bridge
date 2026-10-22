@@ -35,6 +35,23 @@ declared Quebec canonical. The Quebec page inherited France-specific PPE copy.
 
 ## Boundaries and follow-up
 
+### Current checks on October 23
+
+- All 432 discovered/not-indexed and 73 crawled/not-indexed exported URLs were
+  fetched, with two concurrent requests. First pass: 501 HTTP 200, four HTTP 503.
+  All four returned HTTP 200 with article content on a targeted recheck. This
+  confirms intermittent failures, but does not establish the upstream root cause
+  or explain all Google exclusions. The two empty Explore pages remain intentionally
+  noindex; successful Case Study responses included their article HTML.
+- Case Study reads now retry transport failures, HTTP 429 and upstream 5xx once,
+  within the original read deadline. Other 4xx responses are not retried. Persistent
+  failures still return 503; missing/withdrawn rows remain 404. No stale fallback.
+- URL Inspection already reports indexed for the US oxyacetylene-cutting and
+  AHU-ducting cases, despite their presence in the older excluded-page exports.
+- The original US public JSA `a3598d85-2f6c-4f40-a555-5fc242dee9d9` also reports
+  "URL is on Google" / "Page is indexed". These results preceded this deployment;
+  they are not evidence that this patch caused indexing or guarantees ranking.
+
 No Case Study/JSA body, attachment, database schema, permission, publication state,
 advertising setting or stored metadata was modified. Live-read checks compared
 original content fingerprints for the affected aliases and a normal US article.
