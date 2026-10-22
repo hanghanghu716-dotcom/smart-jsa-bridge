@@ -2,7 +2,10 @@ import { createHash } from 'node:crypto';
 import { ACCESSORY_CATEGORIES, extractAccessoryNeeds } from './needs.js';
 import { PPE_PURPOSES, extractPpeNeeds } from './ppe-needs.js';
 import { EQUIPMENT_PURPOSES, equipmentNeeds, SPECIFICATION_HOSTS } from './context-needs.js';
-const REVIEWED_PURPOSES = {...PPE_PURPOSES,...EQUIPMENT_PURPOSES};
+import { ROUTE_PURPOSES, ROUTE_SPECIFICATION_HOSTS, routeNeeds } from './route-needs.js';
+import { ppeGroupFor } from '../../src/data/ppeGroups.js';
+const REVIEWED_PURPOSES = {...PPE_PURPOSES,...EQUIPMENT_PURPOSES,...ROUTE_PURPOSES};
+const REVIEWED_HOSTS = {...SPECIFICATION_HOSTS,...ROUTE_SPECIFICATION_HOSTS};
 
 export const COUNTRIES = ['KR','US','CA','GB','AU','JP','DE','FR','IT','ES','SG','SA','BR','RO','RU'];
 export const LOW_RISK = new Set(ACCESSORY_CATEGORIES);
@@ -28,7 +31,7 @@ export function contentSnapshot(kind, row) {
       controls: array(step.risks).filter(Boolean).slice(0,100).map(r => [text(r.current_measure || r.measure), text(r.recommend_measure)]),
       additional: text(step.actionPlan?.additionalControls) })) };
 }
-export const extractNeeds = snapshot => [...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot), ...equipmentNeeds(snapshot)];
+export const extractNeeds = snapshot => [...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot), ...equipmentNeeds(snapshot), ...routeNeeds(snapshot)];
 export function approvedProfile(snapshot, profiles, now) {
   const hash = fingerprint(snapshot);
   return array(profiles).find(p => p && p.sourceFingerprint === hash && p.status === 'approved' && text(p.reviewer)
@@ -44,12 +47,16 @@ export function offerFingerprint(offer) {
   return fingerprint({ id: offer.id, merchantId: offer.merchantId, title: offer.title, category: offer.category,
     country: offer.country, mode: offer.mode || 'feed', affiliateUrl: offer.affiliateUrl, imageUrl: offer.imageUrl || null, attributes: offer.attributes || {} });
 }
-export function selectOffers({ snapshot, catalog, country, now = Date.now(), limit = 8 }) {
+function offerCandidates({ snapshot, catalog, country, now, guide = false }) {
   if (!snapshot || !COUNTRIES.includes(country) || catalog?.version !== 1) return [];
-  const profile = approvedProfile(snapshot, catalog.profiles, now);
+  const profile = guide ? null : approvedProfile(snapshot, catalog.profiles, now);
   // Explicit suppression takes precedence; edited content invalidates it just like other reviews.
   if (profile?.suppress === true) return [];
-  const needs = profile ? array(profile.needs) : extractNeeds(snapshot);
+  // A reference guide lists product purposes; it does not invent a worksite or
+  // fabricate an approved content profile. The same product review gates apply.
+  const needs = guide ? Object.entries(REVIEWED_PURPOSES).filter(([category])=>ppeGroupFor(category))
+    .map(([category,purpose])=>({category,constraints:{purpose},reason:category,score:0}))
+    : profile ? array(profile.needs) : extractNeeds(snapshot);
   const merchants = new Map(array(catalog.merchants).filter(Boolean).map(m => [m.id, m]));
   const reviews = new Map(array(catalog.reviews).filter(Boolean).map(r => [r.offerFingerprint, r]));
   const candidates = [];
@@ -61,7 +68,7 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     const linkOnly = offer.mode === 'link-only';
     const reviewedPpe = Boolean(REVIEWED_PURPOSES[offer.category] && offer.attributes?.purpose === REVIEWED_PURPOSES[offer.category]
       && review?.specificationReviewed === true && array(review.specificationSources).some(source => {
-        try { const u=new URL(source); return u.protocol==='https:' && (SPECIFICATION_HOSTS[offer.category] || ['www.3m.co.kr','multimedia.3m.com','www.ansell.com']).includes(u.hostname) && !u.username && !u.password; } catch { return false; }
+        try { const u=new URL(source); return u.protocol==='https:' && (REVIEWED_HOSTS[offer.category] || ['www.3m.co.kr','multimedia.3m.com','www.ansell.com']).includes(u.hostname) && !u.username && !u.password; } catch { return false; }
       }));
     // Manually curated links make no live-stock or price claim. They require
     // explicit permission, a reviewed purpose, and a dated review (max 30 days).
@@ -89,6 +96,10 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
       score: (Number.isFinite(need.score) ? need.score : 0) + Math.min(5,Object.keys(need.constraints).length), checkedAt: offer.checkedAt });
   }
   candidates.sort((a,b) => b.score-a.score || Date.parse(b.checkedAt)-Date.parse(a.checkedAt) || a.id.localeCompare(b.id));
+  return candidates;
+}
+export function selectOffers({ snapshot, catalog, country, now = Date.now(), limit = 8 }) {
+  const candidates=offerCandidates({snapshot,catalog,country,now});
   const chosen=[], seen=new Set(), counts=new Map(), categoryCounts=new Map();
   for (const item of candidates) {
     if (seen.has(item.id) || seen.has(item.href) || (counts.get(item.merchantId)||0)>=8 || seen.has(item.merchantId+':'+item.category) || (categoryCounts.get(item.category)||0)>=2) continue;
@@ -98,4 +109,18 @@ export function selectOffers({ snapshot, catalog, country, now = Date.now(), lim
     if(chosen.length>=Math.max(1,Math.min(8,limit)))break;
   }
   return chosen;
+}
+
+export function selectPpeGuideOffers({catalog,country,locale,now=Date.now()}) {
+ const candidates=offerCandidates({snapshot:{kind:'guide',id:'protectiveequipment',locale},catalog,country,now,guide:true});
+ const seen=new Set(),items=[];
+ for(const item of candidates){
+  if(seen.has(item.id)||seen.has(item.href))continue;
+  seen.add(item.id);seen.add(item.href);
+  const {score:_score,checkedAt:_checkedAt,...publicItem}=item;
+  items.push({...publicItem,group:ppeGroupFor(item.category)});
+ }
+ // The guide is a catalogue browser, so it may show multiple models per type.
+ // Per-content recommendation limits remain unchanged in selectOffers above.
+ return items;
 }

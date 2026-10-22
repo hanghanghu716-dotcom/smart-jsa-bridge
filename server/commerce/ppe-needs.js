@@ -1,4 +1,4 @@
-import { commerceText } from './needs.js';
+import { commerceText } from './text.js';
 
 // Product suggestions, not a determination of workplace PPE suitability.
 // Each supported purpose must also match a separately reviewed product spec.

@@ -1,4 +1,4 @@
-import { commerceText } from './needs.js';
+import { commerceText } from './text.js';
 
 // Needs are derived before looking at the catalogue. A missing reviewed offer
 // remains an unmet procurement need; it must never be replaced with stationery.

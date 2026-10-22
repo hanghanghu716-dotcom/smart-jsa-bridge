@@ -1,0 +1,33 @@
+.ppe-page{background:var(--app-bg);color:var(--text-primary);min-height:100vh;font-family:inherit}
+.ppe-container{width:min(1200px,calc(100% - 48px));margin-inline:auto;box-sizing:border-box}
+.ppe-header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-block:24px}
+.ppe-logo{font-size:1.15rem;font-weight:900;letter-spacing:1px;text-decoration:none;color:var(--text-primary)}
+.ppe-header-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ppe-page button,.ppe-page input{font:inherit}.ppe-page button{cursor:pointer;min-height:44px}
+.ppe-menu-button,.ppe-product-search button,.ppe-show-more,.ppe-products [role=status] button{padding:10px 16px;border:1px solid var(--border-default);border-radius:8px;background:var(--surface);color:var(--text-primary)}
+.ppe-navigation:not([hidden]){display:flex;flex-wrap:wrap;gap:20px;padding-block:16px 24px;border-top:1px solid var(--border-default)}
+.ppe-navigation a{color:var(--text-primary);text-underline-offset:4px;font-size:.9rem}
+.ppe-hero{background:var(--panel-bg);border-block:1px solid var(--border-default);padding-block:64px}
+.ppe-eyebrow{font-size:.75rem;letter-spacing:2px;font-weight:800;color:var(--accent)}
+.ppe-hero h1{font-size:clamp(1.7rem,3vw,2.7rem);line-height:1.35;max-width:900px;margin:18px 0;word-break:keep-all}
+.ppe-hero p{max-width:850px;color:var(--text-secondary);line-height:1.8;margin:0}
+.ppe-content{padding-block:40px 64px}.ppe-filter-area{margin-bottom:36px}.ppe-filter-area h2{font-size:1rem;margin:0 0 8px}.ppe-filter-area>p{font-size:.9rem;color:var(--text-secondary);margin:0 0 18px}
+.ppe-filters{display:flex;flex-wrap:wrap;gap:8px}.ppe-filters button{border:1px solid var(--border-default);background:var(--card-bg);color:var(--text-secondary);border-radius:999px;padding:10px 17px;font-size:.85rem;font-weight:700}
+.ppe-filters button[aria-pressed=true]{background:var(--action-bg);color:var(--on-accent);border-color:var(--action-bg)}
+.ppe-page :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.ppe-guidance>h2,.ppe-products h2,.ppe-faq>h2{font-size:clamp(1.15rem,2vw,1.6rem);line-height:1.5;margin:0 0 24px;border-bottom:1px solid var(--border-default);padding-bottom:12px}
+.ppe-type-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.ppe-type-grid--selected{grid-template-columns:minmax(0,1fr)}
+.ppe-type-card{padding:22px;border:1px solid var(--border-default);border-top:3px solid var(--accent);border-radius:10px;background:var(--card-bg);min-width:0}
+.ppe-type-number{font-size:.75rem;color:var(--accent);font-weight:800}.ppe-type-card h3{font-size:1.05rem;margin:10px 0}.ppe-type-card p{color:var(--text-secondary);font-size:.87rem;line-height:1.7;margin:8px 0 16px}
+.ppe-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}.ppe-tags li{border-radius:5px;padding:4px 8px;background:var(--surface-hover);color:var(--text-secondary);font-size:.72rem;line-height:1.5}
+.ppe-products.commerce-panel{background:transparent;border:0;padding:0;margin-block:48px;box-shadow:none}
+.ppe-section-heading{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}.ppe-section-heading h2{flex:1}.ppe-section-heading>span{color:var(--text-secondary);font-size:.85rem}
+.ppe-product-search{max-width:660px;margin-block:8px 20px}.ppe-product-search label{display:block;font-size:.85rem;margin-bottom:8px;font-weight:700}.ppe-product-search>div{display:flex;gap:8px;flex-wrap:wrap}
+.ppe-product-search input{flex:1;min-width:180px;min-height:44px;padding:11px 14px;border:1px solid var(--border-strong);border-radius:8px;color:var(--text-primary);background:var(--surface)}
+.ppe-result-count{font-size:.85rem;color:var(--text-secondary);margin-bottom:16px}.ppe-empty{padding:26px;border:1px dashed var(--border-strong);border-radius:8px;color:var(--text-secondary);line-height:1.7}
+.ppe-products .commerce-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ppe-products .commerce-disclosure{font-size:.78rem}.ppe-show-more{display:block;margin:24px auto}
+.ppe-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.ppe-faq-grid article{padding:24px;border:1px solid var(--border-default);border-radius:10px;background:var(--card-bg)}.ppe-faq h3{font-size:1rem;line-height:1.6;margin:0 0 10px}.ppe-faq p{font-size:.88rem;line-height:1.8;color:var(--text-secondary);margin:0}
+.ppe-footer{background:var(--panel-bg);border-top:1px solid var(--border-default);padding-block:32px;color:var(--text-secondary);font-size:.8rem}
+@media(max-width:960px){.ppe-type-grid,.ppe-products .commerce-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ppe-type-grid--selected{grid-template-columns:1fr}}
+@media(max-width:600px){.ppe-container{width:calc(100% - 32px)}.ppe-header{gap:16px}.ppe-header-actions{justify-content:space-between;width:100%;gap:8px}.ppe-hero{padding-block:36px}.ppe-content{padding-block:28px 40px}.ppe-type-grid,.ppe-faq-grid{grid-template-columns:1fr}.ppe-type-card{padding:18px}.ppe-filters button{padding:9px 13px}.ppe-products .commerce-grid{gap:10px}.ppe-section-heading{gap:0}.ppe-section-heading>span{width:100%;margin-bottom:12px}}
+@media print{.ppe-header-actions,.ppe-navigation,.ppe-filter-area,.ppe-products{display:none!important}.ppe-page{background:#fff;color:#111}}
