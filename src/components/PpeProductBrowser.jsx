@@ -9,6 +9,9 @@ export default function PpeProductBrowser({locale,group,label}) {
  const ui=getPpeGuideUi(locale),commerce=getCommerceUi(locale);
  const [result,setResult]=useState(null),[attempt,setAttempt]=useState(0),[search,setSearch]=useState(''),[limit,setLimit]=useState(24);
  useEffect(()=>{
+  // Static page/PDF generation has no commerce API. Hydrated visits request
+  // the current catalogue instead of embedding an outage in generated HTML.
+  if(navigator.userAgent.includes('ReactSnap'))return;
   const controller=new AbortController();let active=true;
   const query=new URLSearchParams({kind:'guide',id:'protectiveequipment',locale});
   setResult(null);
