@@ -57,13 +57,13 @@
       "permanent": true
     },
     {
-      "source": "/:lng(en-US|en-AU|ar-SA|en-GB|ja-JP|ru-RU|it-IT|es-ES|de-DE|fr-FR|pt-BR|en-CA)/case-study/jsa-form-work",
-      "destination": "/:lng/case-study/%20jsa-form-work",
+      "source": "/:lng/case-study/%20jsa-form-work",
+      "destination": "/:lng/case-study/jsa-form-work",
       "permanent": true
     },
     {
-      "source": "/de-DE/case-study/jsa-leak-testing",
-      "destination": "/de-DE/case-study/%20jsa-leak-testing",
+      "source": "/:lng/case-study/%20jsa-leak-testing",
+      "destination": "/:lng/case-study/jsa-leak-testing",
       "permanent": true
     },
     {

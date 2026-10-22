@@ -1,4 +1,5 @@
 import { splitCaseForCommerce, caseResourcesTitle } from '../src/utils/caseSections.js';
+import { canonicalCaseSlug, caseLookupSlugs } from '../src/utils/caseRouting.js';
 import { getCommerceUi } from '../src/locales/commerceUi.js';
 import { romanianUi } from '../src/locales/romanianUi.js';
 import { readFile } from 'node:fs/promises';
@@ -53,13 +54,20 @@ export function createCaseHandler({ fetcher = fetch, readShell = () => readFile(
       sendContent(req, res, 'Not found', { status: 404 }); return;
     }
     try {
-      const variants = await readAllPublic('case_studies', { select: '*', post_group_id: 'eq.' + slug }, fetcher);
-      const candidates = variants.filter(row => getCaseLanguages(locale).includes(row.language_code));
+      const slugs = caseLookupSlugs(slug);
+      const groupFilter = slugs.length === 1 ? 'eq.' + slug : 'in.(' + slugs.map(value => JSON.stringify(value)).join(',') + ')';
+      // Fetch only the requested language's body; hreflang discovery needs IDs,
+      // not every translated article and PDF payload on each page request.
+      const [localized, variants] = await Promise.all([
+        readAllPublic('case_studies', { select: '*', post_group_id: groupFilter, language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, fetcher),
+        readAllPublic('case_studies', { select: 'id,language_code,post_group_id', post_group_id: groupFilter }, fetcher),
+      ]);
+      const candidates = localized.filter(row => getCaseLanguages(locale).includes(row.language_code));
       const post = selectLocalizedCases(candidates, locale)[0];
       // Do not publish Korean fallback text under non-existent translations.
       if (!post) { sendContent(req, res, 'Not found', { status: 404 }); return; }
       const canonicalLocale = normalizeLocale(post.language_code);
-      if (canonicalLocale !== locale) {
+      if (canonicalLocale !== locale || canonicalCaseSlug(slug) !== slug) {
         res.setHeader('Location', casePath(canonicalLocale, slug));
         sendContent(req, res, '', { status: 308 }); return;
       }

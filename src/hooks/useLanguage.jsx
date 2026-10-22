@@ -1,4 +1,5 @@
 import { hasLanguagePrefix } from '../locales/config.js';
+import { canonicalCaseLink } from '../utils/caseRouting.js';
 import { useCallback } from 'react';
 import { useNavigate, Link as ReactRouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,7 @@ export function useLanguageNavigate() {
   const { i18n } = useTranslation();
 
   return useCallback((to, options) => {
+    to = canonicalCaseLink(to);
     if (typeof to !== 'string' || hasLangPrefix(to) || to.startsWith('http')) {
       return navigate(to, options);
     }
@@ -29,6 +31,7 @@ export function LanguageLink({ to, children, ...props }) {
   const { i18n } = useTranslation();
   
   const getLangPath = (path) => {
+    path = canonicalCaseLink(path);
     if (hasLangPrefix(path) || path.startsWith('http')) {
       return path;
     }

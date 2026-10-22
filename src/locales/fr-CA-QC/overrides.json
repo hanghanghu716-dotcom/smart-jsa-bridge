@@ -39,5 +39,77 @@
       "confinedSpace": "Espace clos",
       "electrical": "Cadenassage"
     }
+  },
+  "ppe": {
+    "hero": {
+      "tag": "ÉQUIPEMENT DE PROTECTION INDIVIDUELLE AU QUÉBEC",
+      "title1": "Choisir ses EPI",
+      "title2": "pour un travail au Québec",
+      "subTitle1": "Reliez chaque équipement aux dangers de la tâche et aux conditions du poste.",
+      "subTitle2": "Consultez les exigences québécoises applicables et les instructions du fabricant.",
+      "subTitle3": "Les références françaises ne constituent pas une validation pour le Québec."
+    },
+    "section1": {
+      "types": {
+        "item1": {
+          "tags": [
+            "Casques adaptés aux risques",
+            "Protection contre les impacts",
+            "Risque électrique à vérifier"
+          ]
+        },
+        "item2": {
+          "tags": [
+            "Lunettes de sécurité",
+            "Lunettes étanches",
+            "Écrans faciaux"
+          ]
+        },
+        "item3": {
+          "tags": [
+            "Bouchons",
+            "Coquilles",
+            "Atténuation adaptée au bruit"
+          ]
+        },
+        "item4": {
+          "desc": "Choisir un appareil selon le contaminant et les conditions de travail. Un appareil filtrant ne fournit pas d’oxygène.",
+          "tags": [
+            "Appareils filtrants",
+            "Cartouches adaptées",
+            "Appareils à apport d’air"
+          ]
+        },
+        "item6": {
+          "tags": [
+            "Chaussures de protection",
+            "Résistance à la perforation",
+            "Adhérence adaptée"
+          ]
+        }
+      }
+    },
+    "section3": {
+      "title": "3. Choix et utilisation des EPI au Québec",
+      "faq": {
+        "item1": {
+          "q": "Par où commencer le choix des EPI ?",
+          "a": "Identifier les dangers et réduire les risques à la source. Les EPI complètent les mesures de prévention; ils ne les remplacent pas."
+        },
+        "item2": {
+          "q": "Une référence CE ou NF suffit-elle pour choisir ?",
+          "a": "Vérifiez les exigences applicables à la tâche au Québec, la certification du modèle et sa documentation. Une référence issue d’une fiche française ne suffit pas à établir son adéquation au poste."
+        },
+        "item3": {
+          "q": "Quels points vérifier avant utilisation ?",
+          "a": "Contrôlez l’état, l’ajustement et la compatibilité des équipements portés ensemble. Prévoyez l’inspection, l’entretien et le remplacement selon les instructions du fabricant."
+        },
+        "item4": {
+          "q": "Où trouver les références locales ?",
+          "a": "Consultez la CNESST pour la prévention au Québec et le CCHST pour la conception d’un programme d’EPI. Vérifiez aussi les règles propres au secteur et à la tâche."
+        }
+      }
+    },
+    "footer": "© 2026 <strong>Smart JSA Bridge</strong> · Références : <a href=\"https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/equipement-protection-individuelle\">CNESST — EPI</a> · <a href=\"https://www.cchst.ca/oshanswers/prevention/ppe/designin.html\">CCHST — Programme d’EPI</a>"
   }
 }

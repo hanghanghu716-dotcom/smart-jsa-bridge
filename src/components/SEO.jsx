@@ -1,4 +1,5 @@
 import { cleanSummary } from '../utils/content.js';
+import { canonicalCaseLink } from '../utils/caseRouting.js';
 import { staticCanonicalLocale } from '../utils/indexing.js';
 import { SUPPORTED_LANGS, SEO_LANGUAGES, getLanguageTag, getSeoLocale, normalizeLocale } from '../locales/config.js';
 import { useLocation } from 'react-router-dom';
@@ -48,7 +49,7 @@ const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, ca
   const hasDefault = alternates.includes('en-US');
 
   // 3. 현재 URL 동적 조합
-  const pathSuffix = purePath ? `/${purePath}` : '';
+  const pathSuffix = purePath ? canonicalCaseLink(`/${purePath}`) : '';
   const currentUrl = `${baseUrl}/${staticCanonicalLocale(currentLang, purePath)}${pathSuffix}${canonicalSearch}`;
 
   return (

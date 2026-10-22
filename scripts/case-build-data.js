@@ -3,8 +3,9 @@ import { createHash } from 'node:crypto';
 import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases } from '../src/locales/config.js';
 import { cleanSummary } from '../src/utils/content.js';
 import { caseSourceContent } from '../src/utils/caseSource.js';
+import { casePath } from '../src/utils/caseRouting.js';
 
-export const caseRoute = row => `/${row.language_code}/case-study/${encodeURIComponent(row.post_group_id)}`;
+export const caseRoute = row => casePath(row.language_code, row.post_group_id);
 export function contentFingerprint(post) {
   return createHash('sha256').update(caseSourceContent(post)).digest('hex');
 }

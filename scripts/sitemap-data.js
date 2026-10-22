@@ -1,5 +1,6 @@
 import { SUPPORTED_LANGS, SEO_LANGUAGES, getSeoLocale, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
 import { staticCanonicalLocale, isIndexableStaticPage } from '../src/utils/indexing.js';
+import { canonicalCaseSlug } from '../src/utils/caseRouting.js';
 
 const baseUrl = 'https://smartjsabridge.com';
 const staticPages = ['', 'about', 'archive', 'explore', 'dictionary', 'jrajsa', 'regulation',
@@ -45,7 +46,8 @@ export function buildSitemap(rows, { includeStatic = true, exploreLocales = [] }
   }
   const groups = new Map();
   const variants = new Map();
-  for (const row of rows) {
+  for (const source of rows) {
+    const row = { ...source, post_group_id: canonicalCaseSlug(source.post_group_id) };
     const locale = normalizeLocale(row.language_code);
     if (!row.post_group_id || !SUPPORTED_LANGS.includes(locale)) continue;
     if (!groups.has(row.post_group_id)) groups.set(row.post_group_id, new Set());

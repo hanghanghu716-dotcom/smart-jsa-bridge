@@ -1,4 +1,5 @@
 import { romanianUi } from '../locales/romanianUi.js';
+import { canonicalCaseSlug, caseLookupSlugs } from '../utils/caseRouting.js';
 import { caseViewCounts, recordCaseView } from '../services/caseStudyMetrics';
 import { getPublicUi } from '../locales/publicUi';
 import DiscoveryLinks from '../components/DiscoveryLinks';
@@ -35,7 +36,7 @@ export default function CaseStudyDetail() {
   const afterProductsRef = useRef(null);
   const sections = splitCaseForCommerce(post?.content_md || '');
   const [viewMetric,setViewMetric]=useState(null);
-  const metricId=post?.post_group_id===id&&!loading&&!loadError?post.id:null;
+  const metricId=canonicalCaseSlug(post?.post_group_id)===canonicalCaseSlug(id)&&!loading&&!loadError?post?.id:null;
   useEffect(()=>{
     if(!metricId)return;
     let active=true,timer;
@@ -67,13 +68,13 @@ export default function CaseStudyDetail() {
       const targetLang = SUPPORTED_LANGS.includes(segment) ? segment : (i18n.language || 'ko');
       try {
         const { data, error } = await supabase.from('case_studies').select('*')
-          .eq('post_group_id', id).in('language_code', getCaseLanguages(targetLang));
+          .in('post_group_id', caseLookupSlugs(id)).in('language_code', getCaseLanguages(targetLang));
         if (error) throw error;
         let selected = selectLocalizedCases(data || [], targetLang)[0] || null;
         if (!active) return;
         setPost(selected);
         const variants = await supabase.from('case_studies').select('language_code')
-          .eq('post_group_id', id);
+          .in('post_group_id', caseLookupSlugs(id));
         if (active && !variants.error) setAvailableLocales((variants.data || []).map(row => row.language_code));
       } catch (error) {
         if (active) { console.error('Case study lookup failed:', error.message); setLoadError(true); }
@@ -97,7 +98,7 @@ export default function CaseStudyDetail() {
   if (loadError) return <div style={styles.error} role="alert"><SEO noIndex />{ui.loadError} <button onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>;
   if (!post) return <div style={styles.error}><SEO noIndex />{ui.caseEmpty} <LanguageLink to="/archive">{ro?.archive || 'Archive'}</LanguageLink></div>;
   const structuredData = serializeStructuredData(post.schema_markup);
-  const products = <CommerceRecommendations key={id+currentLang} kind="case" contentId={id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={sections.productSection} />;
+  const products = <CommerceRecommendations key={id+currentLang} kind="case" contentId={post.post_group_id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={sections.productSection} />;
 
   return (
     <div className="case-study-page" style={styles.wrapper} data-case-study-id={post.id}>
@@ -255,7 +256,7 @@ export default function CaseStudyDetail() {
           )}
 
           {sections.introduction && <div className="case-usage-notes"><Viewer initialValue={sections.introduction} key={sections.introduction}/></div>}
-          <DiscoveryLinks kind="case" target={id} showReuseHelp/>
+          <DiscoveryLinks kind="case" target={post.post_group_id} showReuseHelp/>
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           </section>
           {!sections.earlyProducts && products}

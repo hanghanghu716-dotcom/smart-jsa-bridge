@@ -5,7 +5,7 @@ const { url, key: KEY } = getPublicSupabaseConfig();
 const DB = `${url}/rest/v1/`;
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const jsonScript = value => JSON.stringify(value).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
-export const casePath = (locale, slug) => `/${locale}/case-study/${encodeURIComponent(slug)}`;
+export { casePath } from '../src/utils/caseRouting.js';
 export async function readPublic(table, params, fetcher = fetch, { signal } = {}) {
   const response = await fetcher(DB + table + '?' + new URLSearchParams(params), {
     headers: { apikey: KEY }, cache: 'no-store', signal: signal || AbortSignal.timeout(8000),
