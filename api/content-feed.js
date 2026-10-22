@@ -1,3 +1,4 @@
+import { readPublicCatalogPage } from '../src/utils/publicCatalogPage.js';
 import { readPublicIndex } from '../server/public-index.js';
 import { romanianUi } from '../src/locales/romanianUi.js';
 import { SUPPORTED_LANGS, getLanguageTag, getCaseLanguages, normalizeLocale, selectLocalizedCases } from '../src/locales/config.js';
@@ -47,6 +48,23 @@ export function buildFeed(cases, publicRows, locale) {
   }
   return start + items.join('') + end;
 }
+async function readFeedDocuments(locale, fetcher) {
+  const signal = AbortSignal.timeout(20000);
+  const boundedFetch = (url, options) => fetcher(url, { ...options, signal });
+  const filters = { is_public: 'eq.true', public_locale: 'eq.' + locale };
+  const result = await readPublicCatalogPage({
+    page: 0, pageSize: 50,
+    readPage: async () => {
+      const data = await readPublic('public_jsa_catalog', { ...filters, select: 'id',
+        order: 'content_updated_at.desc.nullslast,published_at.desc,id', limit: '50' }, boundedFetch);
+      return { data, count: data.length };
+    },
+    readBatch: async ids => ({ data: await readPublic('public_jsa_catalog', {
+      ...filters, select: PUBLIC_JSA_FIELDS, id: 'in.(' + ids.join(',') + ')',
+    }, boundedFetch) }),
+  });
+  return result.rows;
+}
 export function createContentFeedHandler({ fetcher = fetch } = {}) {
   return async (req, res) => {
     const { kind = 'index', lng: locale } = req.query || {};
@@ -70,7 +88,7 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
           readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md,pdf_list,pdf_download_url', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),
-          readPublic('public_jsa_catalog', { select: PUBLIC_JSA_FIELDS, is_public: 'eq.true', public_locale: 'eq.' + locale, order: 'content_updated_at.desc.nullslast,published_at.desc,id', limit: '50' }, fetcher),
+          readFeedDocuments(locale, fetcher),
         ]);
         body = buildFeed(cases, documents, locale);
       }
