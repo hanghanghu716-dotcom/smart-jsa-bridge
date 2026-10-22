@@ -3,7 +3,7 @@ import { getCommerceUi } from '../locales/commerceUi.js';
 import './CommerceRecommendations.css';
 import { productPurpose } from '../locales/supportUi.js';
 
-function ProductList({items,ui,locale}) {
+export function ProductList({items,ui,locale}) {
  return <ul className="commerce-grid">{items.map(item=><li key={item.id}>
    <a className="commerce-image-link" href={item.href} target="_blank" rel="sponsored noopener noreferrer" aria-label={item.title}>
      {item.imageUrl && <img src={item.imageUrl} alt={item.title} width="160" height="160" loading="lazy" decoding="async" referrerPolicy="no-referrer" onError={event=>{event.currentTarget.hidden=true;}}/>}
@@ -12,7 +12,7 @@ function ProductList({items,ui,locale}) {
    <span className="commerce-merchant">{item.merchant}</span><a className="commerce-product-link" href={item.href} target="_blank" rel="sponsored noopener noreferrer">{ui.view}<span aria-hidden="true"> ↗</span></a></div>
  </li>)}</ul>;
 }
-function ProductDisclosure({items,ui,locale,compact=false}) {
+export function ProductDisclosure({items,ui,locale,compact=false}) {
  const disclosures=[...new Set(items.map(item=>item.disclosure).filter(Boolean))];
  const short=locale==='ko'&&items.every(item=>item.merchant==='쿠팡')?'쿠팡 제휴광고 · 구매 시 수수료를 제공받습니다.':ui.disclosure;
  return <div className="commerce-disclosures">{(compact?[short]:disclosures.length?disclosures:[ui.disclosure]).map(text=><p className="commerce-disclosure" key={text}><strong>{text}</strong></p>)}</div>;

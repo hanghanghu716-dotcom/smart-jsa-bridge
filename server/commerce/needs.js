@@ -1,11 +1,12 @@
 import { TASK_CATEGORIES, taskNeeds } from './task-needs.js';
 import { CONTEXT_ACCESSORIES, contextNeeds } from './context-needs.js';
+import { ROUTE_ACCESSORIES } from './route-needs.js';
 // Ordinary accessories only. Never infer PPE, isolation devices, rated lifting
 // equipment, calibrated instruments or process-compatible parts from keywords.
 export const ACCESSORY_CATEGORIES = [
  'clipboard','document-holder','tool-storage','parts-organizer','measuring-tape',
  'carpenter-pencil','masking-tape','paint-roller','paint-tray','paint-brush',
- 'cleaning-cloth','dustpan','packing-tape','stretch-film',...TASK_CATEGORIES,...CONTEXT_ACCESSORIES,
+ 'cleaning-cloth','dustpan','packing-tape','stretch-film',...TASK_CATEGORIES,...CONTEXT_ACCESSORIES,...ROUTE_ACCESSORIES,
 ];
 const clean = value => String(value || '').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ')
  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')
