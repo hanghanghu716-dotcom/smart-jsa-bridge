@@ -7,7 +7,11 @@ import {getLanguageTag} from '../src/locales/config.js';
 // Explicit route list, fresh browser context per route, and no link crawling.
 // Keep the ReactSnap user-agent marker because the app uses it to disable
 // private routes and analytics; the retired react-snap package is not loaded.
-export async function renderStatic({routes,concurrency=2,executablePath,outputRoot='dist'}){
+export async function renderStatic({routes,concurrency=2,executablePath,outputRoot='dist',cache}){
+ const requested=routes.length;
+ routes=routes.filter(route=>!cache?.restore(route,'static'));
+ console.log(`Static HTML: ${requested-routes.length} reused, ${routes.length} to render.`);
+ if(!routes.length)return;
  const root=path.resolve(outputRoot),shell=fs.readFileSync(path.join(root,'public-jsa-shell.html'));
  const types={'.js':'text/javascript','.css':'text/css','.json':'application/json','.woff2':'font/woff2','.woff':'font/woff','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.pdf':'application/pdf'};
  const server=http.createServer((req,res)=>{
@@ -42,6 +46,7 @@ export async function renderStatic({routes,concurrency=2,executablePath,outputRo
      const target=path.resolve(root,'.'+route,'index.html');
      if(!target.startsWith(root+path.sep))throw Error('INVALID_STATIC_PATH');
      fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,await page.content());
+     cache?.save(route,'static');
     }finally{await context.close();}
    }
   }));

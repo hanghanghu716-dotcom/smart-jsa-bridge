@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
       PUPPETEER_SKIP_DOWNLOAD: true
@@ -26,8 +26,20 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Install Chrome system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libnss3 libnspr4 libgbm-dev libasound2t64 fonts-noto-cjk fonts-noto-core
+      - name: Restore rendering fonts
+        uses: actions/cache@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - name: Prepare Chrome and cached fonts
+        run: bash scripts/setup-rendering.sh
+      - name: Restore generated HTML and PDF
+        uses: actions/cache@v4
+        with:
+          path: .cache/rendered-content
+          key: rendered-ubuntu24-v1-${{ runner.arch }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rendered-ubuntu24-v1-${{ runner.arch }}-
       - name: Verify content and locale logic
         run: npm run test:all
       - name: Verify complete RSS bodies against public content
@@ -49,5 +61,5 @@ jobs:
           node scripts/library-discovery-browser.cjs
           node scripts/public-document-preview-browser.cjs
           node scripts/verify-operator-documents.cjs --local
-      - name: Render and verify every current case-study URL
+      - name: Render and verify static HTML, PDF and live-content templates
         run: npm run build

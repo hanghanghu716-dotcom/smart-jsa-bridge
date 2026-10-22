@@ -91,3 +91,16 @@ Vite 개발 서버와 `npm run preview`는 Vercel API 재작성 규칙을 실행
 - 개발 서버가 열린 상태에서는 일부 내부 Vite 테스트에서 24678 포트 사용 중 메시지가 나올 수 있습니다. 최종 테스트 수와 종료 코드를 함께 확인하세요.
 
 문제 보고에는 페이지 주소, 언어, 계정 역할, 재현 순서, 기대 결과/실제 결과를 남깁니다. 비밀번호나 세션 토큰은 포함하지 않습니다.
+
+
+## Incremental deployment rendering
+
+The normal build no longer exports the full case-study database before rendering. Case-study HTML, home/archive lists, and the case sitemap continue to use their existing live endpoints. The explicit `node scripts/generate-sitemap.js` export utility remains available. Static home/archive templates skip case-list and view-count requests only in the build browser; visitors still receive current server-injected rows.
+
+GitHub Actions preserves generated HTML/PDF in `.cache/rendered-content` and downloaded Noto fonts in `.cache/build-fonts`. Existing content is retained, not converted to client-only rendering. Unchanged route outputs are restored; new routes and invalidated outputs are rendered. Cached HTML keeps its body and SEO metadata while referencing the current release bundle. PDF bytes are reused exactly. Every release still runs the full public HTML/PDF checks and the existing live release/rollback gates.
+
+Invalidation is deliberately conservative: a translation JSON change rebuilds that locale and locales using its fallback; shared source, styles, public assets, dependencies, build environment, Chrome or fonts rebuild affected shared output (currently all locales). Dictionary pages always render because their live data has no revision token. Case-study pages are never put in this cache, preserving updates and withdrawals without a deployment. This does not make Vite compilation incremental.
+
+The first successful run populates the cache. Cache eviction, missing files or failed integrity checks trigger normal rendering. CI logs report reused and rendered HTML/PDF counts. Font downloads are skipped on a verified cache hit; Chrome uses the runner installation and Puppeteer downloads remain disabled. PR caches stay scoped by GitHub Actions and cannot replace production branch caches. Only generated public artifacts/fonts are cached, never the complete `.cache` directory or recovery credentials.
+
+To force a cold render set `JSA_RENDER_CACHE=off`. Local rendering is uncached unless `JSA_RENDER_CACHE_CONTEXT` explicitly identifies its Chrome/font environment. To refresh fonts, increment the font cache key version in both workflows.

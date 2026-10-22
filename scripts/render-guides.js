@@ -10,7 +10,9 @@ import { guideText } from '../src/locales/guideText.js';
 
 // Chromium keeps Korean/Japanese/Arabic shaping and searchable text identical to HTML.
 // PDFs are build artifacts, never independent translations or database attachments.
-export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_LANGS,categories=Object.keys(GUIDE_CATEGORIES),snapshots=!baseUrl}={}){
+export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_LANGS,categories=Object.keys(GUIDE_CATEGORIES),snapshots=!baseUrl,cache}={}){
+ // Live verification must always visit the deployed pages, never cached output.
+ if(baseUrl||!snapshots)cache=undefined;
  let server;
  if(!baseUrl){
   const root=path.resolve(outputRoot),shell=fs.readFileSync(path.join(root,'public-jsa-shell.html'));
@@ -28,6 +30,7 @@ export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_
  const profile=path.resolve('.cache',`guide-chrome-${process.pid}`);fs.mkdirSync(profile,{recursive:true});
  let browser;
  const manifest=[];
+ let reused=0,rendered=0;
  try{
   browser=await puppeteer.launch({executablePath,headless:true,args:['--no-sandbox',`--user-data-dir=${profile}`]});
   const page=await browser.newPage();await page.setUserAgent('ReactSnap SmartJSAGuideBuild');
@@ -39,6 +42,9 @@ export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_
    const version = guideVersion(locale);
    for(const category of categories){
     const route=`/${locale}/guideline/${category}`;
+    const relative=`assets/guides/${locale}/${category}-${version}.pdf`,target=path.join(outputRoot,relative);
+    const cached=cache?.restore(route,'guide',relative);
+    if(cached){manifest.push(cached);reused++;continue;}
     await page.goto(baseUrl+route,{waitUntil:'networkidle0'});
     await page.waitForSelector(`[data-guide-locale="${locale}"][data-guide-category="${category}"] #guide-document`);
     await page.evaluate(()=>document.fonts.ready);
@@ -49,17 +55,18 @@ export async function renderGuides({baseUrl,outputRoot='dist',locales=SUPPORTED_
      const directory=path.join(outputRoot,locale,'guideline',category);fs.mkdirSync(directory,{recursive:true});
      fs.writeFileSync(path.join(directory,'index.html'),await page.content());
     }
-    const relative=`assets/guides/${locale}/${category}-${version}.pdf`,target=path.join(outputRoot,relative);
     fs.mkdirSync(path.dirname(target),{recursive:true});
     await page.pdf({path:target,format:'A4',printBackground:true,preferCSSPageSize:true,displayHeaderFooter:true,
      headerTemplate:'<div></div>',footerTemplate:`<div style="font-family:Arial,sans-serif;font-size:8px;width:100%;margin:0 16mm;display:flex;justify-content:space-between;color:#607084"><span>Smart JSA Bridge · ${locale} · ${version}</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
      margin:{top:'16mm',bottom:'18mm',left:'16mm',right:'16mm'}});
     const bytes=fs.readFileSync(target);if(bytes.subarray(0,5).toString()!=='%PDF-'||bytes.length<10000)throw new Error(`Invalid PDF: ${route}`);
     manifest.push({locale,category,route,pdf:`/${relative}`,version,title:guideText(locale,category),examples:state.examples,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});
+    cache?.save(route,'guide',manifest.at(-1),relative);rendered++;
    }
    console.log(`Guides ready: ${locale} (${categories.length} HTML/PDF pairs)`);
   }
   const manifestPath=path.join(outputRoot,'assets/guides/manifest.json');fs.mkdirSync(path.dirname(manifestPath),{recursive:true});fs.writeFileSync(manifestPath,JSON.stringify(manifest,null,2));
+  console.log(`Guide HTML/PDF: ${reused} reused, ${rendered} rendered.`);
  }finally{if(browser)await browser.close();if(server)await new Promise(resolve=>server.close(resolve));}
  return manifest;
 }
