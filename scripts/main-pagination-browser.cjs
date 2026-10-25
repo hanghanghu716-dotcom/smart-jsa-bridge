@@ -1,69 +1,64 @@
 const assert = require('node:assert/strict');
 
-async function verifyListPagination(browser, base) {
-  const page = await browser.newPage();
-  const errors = [];
+// The home now exposes a short public catalog; full browsing lives in Explore.
+async function verifyHomeDiscovery(browser, base) {
+  const page = await browser.newPage(), errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.setRequestInterception(true);
   page.on('request', request => {
     if (request.url().startsWith(base + '/') || /^(data|blob):/.test(request.url())) return request.continue();
-    const headers = {'access-control-allow-origin':'*','access-control-allow-headers':'*'};
+    const headers = {'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-expose-headers':'content-range'};
     if (request.method() === 'OPTIONS') return request.respond({status:204,headers});
-    const locale = new URL(page.url()).pathname.split('/')[1];
-    const rows = Array.from({length:210},(_,i)=>({
+    const url=new URL(request.url()),locale = new URL(page.url()).pathname.split('/')[1],country={ko:'KR','en-US':'US','ar-SA':'SA'}[locale];
+    const cases = Array.from({length:210},(_,i)=>({
       id:'10000000-0000-4000-8000-'+String(i+1).padStart(12,'0'),
       post_group_id:'fixture-'+(i+1),title:'Example '+String(i+1).padStart(3,'0'),
       meta_description:'Fixture case',language_code:locale,
       created_at:new Date(Date.UTC(2026,0,300-i)).toISOString(),
     }));
-    if(request.url().includes('/rest/v1/'))return request.respond({status:200,headers,contentType:'application/json',body:JSON.stringify(request.url().includes('/case_studies')?rows:[])});
+    let rows=[];
+    if(url.pathname.endsWith('/case_studies'))rows=cases;
+    if(url.pathname.endsWith('/public_jsa_catalog')){
+      const documents=cases.slice(0,12).map(c=>({id:c.id,title:'Valve task '+c.title,is_public:true,public_locale:locale,public_country:country,
+        publication_context:{scope:'Authored valve task scope.'},analysis_data:[{proc:{stepTitle:'Isolation',stepDetail:'Verify the boundary.'},risks:[{factor:'Pressure',measure:'Verify zero pressure.'}]}],tags:[]}));
+      const selected=url.searchParams.get('id')?.slice(4,-1).split(',');
+      rows=documents.filter(d=>!selected||selected.includes(d.id));
+      if(url.searchParams.get('select')==='id')rows=rows.map(({id})=>({id}));
+      headers['content-range']='0-'+(rows.length-1)+'/12';
+    }
+    if(url.pathname.includes('/rest/v1/'))return request.respond({status:200,headers,contentType:'application/json',body:JSON.stringify(rows)});
     return request.abort();
   });
-  const active=()=>page.$eval('.case-pagination [aria-current="page"]',el=>Number(el.textContent));
-  const numbers=()=>page.$$eval('.case-pagination .list-pagination-number',els=>els.map(el=>Number(el.textContent)));
-  const click=async kind=>{
-    await page.$eval('.case-pagination .list-pagination-'+kind,el=>el.click());
-  };
   try {
     for(const locale of ['ko','en-US','ar-SA']){
       await page.setViewport({width:1440,height:1000});
       await page.goto(base+'/'+locale+'/',{waitUntil:'networkidle2',timeout:60000});
-      await page.waitForFunction(()=>document.querySelector('#case-study-results h5')?.textContent==='Example 001');
-      assert.deepEqual(await numbers(),Array.from({length:15},(_,i)=>i+1));
-      await click('next');
-      assert.equal(await active(),16);
-      assert.deepEqual(await numbers(),Array.from({length:15},(_,i)=>i+16));
-      assert.equal(await page.$eval('#case-study-results h5',el=>el.textContent),'Example 091');
-      await click('last');assert.equal(await active(),35);
-      assert.deepEqual(await numbers(),[31,32,33,34,35]);
-      assert.equal(await page.$eval('.case-pagination .list-pagination-last',el=>el.getAttribute('aria-disabled')),'true');
-      await click('previous');assert.equal(await active(),16);
-      await click('first');assert.equal(await active(),1);
+      await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card').length===6&&document.querySelector('.home-case-card h3')?.textContent==='Example 001');
+      assert.equal(await page.$$eval('.home-case-card',cards=>cards.length),3);
+      assert.equal(await page.$('.case-pagination'),null,'Full catalog navigation belongs in Explore');
+      assert.equal(await page.$$eval('.home-resource-card h3 a',links=>links.every(a=>a.href.includes('/public-jsa/'))),true);
+      assert.equal(await page.$$eval('.public-site-footer nav a',links=>links.length),5);
       for(const width of [320,390,1440]){
         await page.setViewport({width,height:900});
-        await page.waitForFunction(expected=>document.querySelectorAll('.case-pagination .list-pagination-number').length===expected,{},width<640?5:15);
-        assert.equal(await page.$eval('.case-pagination',el=>{
-          const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&el.scrollWidth<=el.clientWidth+1;
-        }),true,locale+' pagination fits '+width);
+        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,locale+' home fits '+width);
       }
-      await page.setViewport({width:390,height:844});
-      await page.waitForFunction(()=>document.querySelectorAll('.case-pagination .list-pagination-number').length===5);
-      await click('next');assert.equal(await active(),6);
-      await page.type('#case-studies input','Example 00');
-      await page.waitForFunction(()=>document.querySelector('.case-pagination [aria-current="page"]')?.textContent==='1');
-      assert.deepEqual(await numbers(),[1,2]);
-      await page.type('#case-studies input','1');
-      await page.waitForFunction(()=>!document.querySelector('.case-pagination'));
-      assert.equal(await page.$eval('#case-study-results h5',el=>el.textContent),'Example 001');
+      await page.click('.home-intro .home-create');
+      await page.waitForSelector('[role="dialog"]');
+      await page.keyboard.press('Escape');
+      await page.waitForSelector('[role="dialog"]',{hidden:true});
+      assert.equal(await page.$eval('.home-intro .home-create',el=>document.activeElement===el),true,'Return focus after closing the guest dialog');
+      await page.type('.home-search input','Valve');await page.click('.home-search button');
+      await page.waitForFunction(()=>location.pathname.endsWith('/explore')&&new URL(location.href).searchParams.get('q')==='Valve');
+      assert.equal(new URL(page.url()).searchParams.get('country'),{ko:'KR','en-US':'US','ar-SA':'SA'}[locale]);
     }
     assert.deepEqual(errors,[]);
-    console.log(JSON.stringify({sharedPagination:true,desktopGroup:15,mobileGroup:5,firstLast:true,caseFilterReset:true,locales:3,widths:[320,390,1440]}));
+    console.log(JSON.stringify({homeDiscovery:true,publicCards:6,caseArticles:3,searchRouting:true,guestDialogFocus:true,locales:3,widths:[320,390,1440]}));
   } finally { await page.close(); }
 }
-module.exports={verifyListPagination};
+module.exports={verifyHomeDiscovery};
 if(require.main===module){
   const puppeteer=require('puppeteer');
   (async()=>{const browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||process.env.CHROME_PATH||undefined,args:['--no-sandbox']});
-    try{await verifyListPagination(browser,process.env.TEST_BASE_URL||'http://127.0.0.1:4173');}finally{await browser.close();}
+    try{await verifyHomeDiscovery(browser,process.env.TEST_BASE_URL||'http://127.0.0.1:4173');}finally{await browser.close();}
   })().catch(error=>{console.error(error);process.exitCode=1;});
 }

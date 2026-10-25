@@ -51,6 +51,16 @@ const doc={id,author_id:author,is_public:true,title:'Valve isolation procedure',
    if(locale==='en-US')await page.screenshot({path:'.cache/public-preview/mobile.png'});
    report.push(locale);
   }
-  assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,locales:report.length,procedureFirst:true,downloadOnly:true,pdfs:2,mobile:true,privateFieldsHidden:true}));
+  // Legacy variants must remain printable even when none are currently public.
+  for(const variant of ['basic','technical','handover']){
+   doc.public_locale='en-US';doc.document_variant=variant;
+   await page.goto(base+'/en-US/public-jsa/'+id,{waitUntil:'networkidle2'});
+   await page.click('a[href="#public-preview-panel"]');
+   await page.waitForFunction(expected=>document.querySelector('.public-document-version')?.dataset.documentVariant===expected,{},variant);
+   await page.click('.public-document-version .jsa-toolbar button');
+   await page.waitForFunction(()=>window.__pdfBlobs.length===1,{timeout:60000});
+   assert.equal(await page.evaluate(()=>window.__pdfBlobs[0].slice(0,5).text()),'%PDF-');
+  }
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,locales:report.length,procedureFirst:true,downloadOnly:true,pdfs:5,legacyVariants:3,mobile:true,privateFieldsHidden:true}));
  }finally{await browser?.close();preview.kill();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
