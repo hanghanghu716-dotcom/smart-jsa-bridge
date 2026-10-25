@@ -8,6 +8,7 @@ import { communityAction,myCommunityData } from '../services/communityService';
 import { validProjectId } from '../utils/publicJsa';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import SEO from '../components/SEO';
+import OperatorContact from '../components/OperatorContact';
 import { getCommunityPolicy } from '../locales/communityPolicy';
 import PublicationFields from '../components/PublicationFields';
 import DiscoveryAdmin from '../components/DiscoveryAdmin';
@@ -29,6 +30,7 @@ export default function Community(){
  const run=async fn=>{if(pending.current)return;pending.current=true;setBusy(true);setMessage('');try{const result=await fn();setMessage(typeof result==='string'?result:ui.saved);setRefresh(n=>n+1);}catch{setMessage(ui.error);}finally{pending.current=false;setBusy(false);}};
  const date=value=>new Date(value).toLocaleString(getLanguageTag(i18n.language));
  return <div className="jsa-workspace" dir={i18n.dir()}><SEO pageTitle={ui.hub+' | Smart JSA Bridge'} noIndex/><header className="jsa-nav"><LanguageLink to="/explore">Smart JSA Bridge</LanguageLink><ThemeSwitcher compact/></header><main className="jsa-container community-center"><h1>{ui.support}</h1><p>{ui.privateHelp}</p><p>{ui.freeCore}</p><p>{ui.orgControl}</p>
+ <OperatorContact locale={i18n.language} showFormLink={false}/>
  {message&&<p role="status">{message}</p>}
  {account&&<AdminVerification onVerified={()=>setRefresh(n=>n+1)}/>}
  {account?.status.admin&&<><ModerationInbox/><ExternalSupport admin/><DiscoveryAdmin/></>}

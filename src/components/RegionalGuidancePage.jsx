@@ -4,6 +4,7 @@ import PublicSiteHeader from './PublicSiteHeader';
 import CommunityFooter from './CommunityFooter';
 import DiscoveryTopics from './DiscoveryTopics';
 import PlanOverview from './PlanOverview';
+import OperatorProfile from './OperatorProfile';
 import { getPlansUi } from '../locales/plansUi';
 import '../styles/regional-guidance.css';
 import '../styles/public-discovery-tools.css';
@@ -23,7 +24,7 @@ export default function RegionalGuidancePage({guidance}){
     {section(l[3],<p>{text.limits}</p>)}
     <section className="regional-guidance-section" data-regional-guidance-sources><h2>{l[6]}: <time dateTime={checked}>{checked}</time></h2><ul>{profile.links.map(([title,href])=><li key={href}><a href={href} rel="noopener noreferrer">{title}</a></li>)}</ul></section>
    </>}
-   {namespace==='about'&&<>{section(l[4],<><p>{text.about[1]}</p><p>{text.about[2]}</p></>)}{section(l[5],<p>{text.about[3]}</p>)}{section(getPlansUi(locale).title,<><p>{getPlansUi(locale).intro}</p><PlanOverview/></>)}</>}
+   {namespace==='about'&&<><OperatorProfile locale={locale}/>{section(l[4],<><p>{text.about[1]}</p><p>{text.about[2]}</p></>)}{section(l[5],<p>{text.about[3]}</p>)}{section(getPlansUi(locale).title,<><p>{getPlansUi(locale).intro}</p><PlanOverview/></>)}</>}
    <DiscoveryTopics locale={locale}/>
    <nav className="regional-guidance-tabs"><LanguageLink to="/info">{l[9]}</LanguageLink><LanguageLink to="/community">{l[7]}</LanguageLink><LanguageLink to="/privacy">{l[8]}</LanguageLink></nav>
   </main><CommunityFooter/>

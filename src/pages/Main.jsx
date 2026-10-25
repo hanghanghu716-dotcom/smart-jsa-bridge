@@ -17,6 +17,7 @@ import { getPublicUi } from '../locales/publicUi';
 import PublicSiteHeader from '../components/PublicSiteHeader';
 import HomePublicCatalog from '../components/HomePublicCatalog';
 import CommunityFooter from '../components/CommunityFooter';
+import OperatorProfile from '../components/OperatorProfile';
 import SEO from '../components/SEO';
 import '../styles/community-home.css';
 
@@ -90,6 +91,7 @@ export default function Main() {
         <section><p className="home-kicker">SHARE YOUR KNOWLEDGE</p><h2>{ui.shareTitle}</h2><p>{ui.shareText}</p><button onClick={create}>{ui.create} →</button></section>
         <section><p className="home-kicker">YOUR WORKSPACE</p><h2>{ui.privateTitle}</h2><p>{ui.privateText}</p><LanguageLink to="/work-packages">{w.openPackages} →</LanguageLink><p><LanguageLink to="/business">{w.openPlans}</LanguageLink></p></section>
       </div>
+      <OperatorProfile locale={locale} compact />
     </main>
     <CommunityFooter />
     {startOpen && <div className="home-start-overlay" onClick={() => setStartOpen(false)}>

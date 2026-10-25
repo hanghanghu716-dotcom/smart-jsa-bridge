@@ -1,0 +1,211 @@
+{
+  "ko": {
+    "title": "운영자 소개",
+    "role": "Smart JSA Bridge 운영자",
+    "summary": "대한민국 수소생산기지의 안전관리 경력과 일반시설안전관리자 자격을 바탕으로, 작업 조건에 맞게 검토하고 활용할 수 있는 위험성평가 자료 공유 서비스를 운영합니다.",
+    "experienceTitle": "경력 및 자격",
+    "experience": [
+      "한국가스기술공사 수소생산기지 안전관리자 경력",
+      "한국가스안전공사 일반시설안전관리자 자격 취득 — 양성교육 과정",
+      "의용소방대 양성교관 등록",
+      "순천소방서 의무소방 복무"
+    ],
+    "scope": "위 경력과 자격은 대한민국 기준입니다.",
+    "independence": "Smart JSA Bridge는 독립적으로 운영하는 서비스이며, 경력에 기재된 기관의 공식 서비스나 인증 서비스가 아닙니다.",
+    "more": "운영자 자세히 보기",
+    "contactTitle": "운영자 연락처",
+    "contactText": "서비스 이용, 자료 오류 정정 및 개인정보 관련 문의는 이메일 또는 사이트 문의 페이지로 보내주세요.",
+    "emailLabel": "문의 이메일",
+    "formLink": "사이트 문의 페이지"
+  },
+  "en": {
+    "title": "About the operator",
+    "role": "Operator of Smart JSA Bridge",
+    "summary": "Drawing on safety management experience at a hydrogen production facility in South Korea and a Korean General Facility Safety Manager qualification, the operator runs a service for sharing risk assessments that users can review and adapt to their work conditions.",
+    "experienceTitle": "Experience and qualifications",
+    "experience": [
+      "Safety manager experience at a Korea Gas Technology Corporation hydrogen production facility",
+      "General Facility Safety Manager qualification through Korea Gas Safety Corporation’s training programme (일반시설안전관리자)",
+      "Registered as a training instructor for a Korean volunteer fire brigade",
+      "Auxiliary firefighter service at Suncheon Fire Station (의무소방)"
+    ],
+    "scope": "These roles and qualifications relate to South Korea.",
+    "independence": "Smart JSA Bridge is independently operated. It is not an official service or certification service of the organisations listed above.",
+    "more": "Read the operator profile",
+    "contactTitle": "Contact the operator",
+    "contactText": "For service questions, content corrections or personal data enquiries, use the email address or the site’s contact page.",
+    "emailLabel": "Contact email",
+    "formLink": "Site contact page"
+  },
+  "ja": {
+    "title": "運営者紹介",
+    "role": "Smart JSA Bridge 運営者",
+    "summary": "韓国の水素製造拠点での安全管理経験と一般施設安全管理者の資格をもとに、各現場の作業条件に合わせて確認・活用できるリスクアセスメント資料の共有サービスを運営しています。",
+    "experienceTitle": "経歴・資格",
+    "experience": [
+      "韓国ガス技術公社の水素製造拠点での安全管理者としての勤務経験",
+      "韓国ガス安全公社の一般施設安全管理者資格を取得 — 養成教育課程（일반시설안전관리자）",
+      "韓国の義勇消防隊の養成教官として登録",
+      "順天消防署での義務消防服務（의무소방）"
+    ],
+    "scope": "上記の経歴・資格は韓国におけるものです。",
+    "independence": "Smart JSA Bridge は独立して運営するサービスであり、記載された機関の公式サービスや認証サービスではありません。",
+    "more": "運営者の詳細を見る",
+    "contactTitle": "運営者へのお問い合わせ",
+    "contactText": "サービスに関する質問、資料の訂正、個人情報に関するお問い合わせは、メールまたはお問い合わせページからお送りください。",
+    "emailLabel": "お問い合わせメール",
+    "formLink": "お問い合わせページ"
+  },
+  "de": {
+    "title": "Über den Betreiber",
+    "role": "Betreiber von Smart JSA Bridge",
+    "summary": "Auf Grundlage seiner Erfahrung im Sicherheitsmanagement einer Wasserstoffproduktionsanlage in Südkorea und seiner koreanischen Qualifikation für die Sicherheit allgemeiner Gasanlagen betreibt er einen Dienst zum Teilen von Gefährdungsbeurteilungen, die Nutzer für ihre Arbeitsbedingungen prüfen und anpassen können.",
+    "experienceTitle": "Erfahrung und Qualifikationen",
+    "experience": [
+      "Erfahrung als Sicherheitsverantwortlicher in einer Wasserstoffproduktionsanlage der Korea Gas Technology Corporation",
+      "Qualifikation für die Sicherheit allgemeiner Gasanlagen durch das Ausbildungsprogramm der Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Als Ausbilder für eine koreanische Freiwillige Feuerwehr registriert",
+      "Dienst als Hilfsfeuerwehrmann bei der Feuerwache Suncheon im koreanischen Pflichtdienstsystem (의무소방)"
+    ],
+    "scope": "Diese Tätigkeiten und Qualifikationen beziehen sich auf Südkorea.",
+    "independence": "Smart JSA Bridge wird unabhängig betrieben und ist weder ein offizieller Dienst noch ein Zertifizierungsdienst der genannten Organisationen.",
+    "more": "Betreiberprofil ansehen",
+    "contactTitle": "Kontakt zum Betreiber",
+    "contactText": "Fragen zum Dienst, Hinweise auf Fehler und Anfragen zu personenbezogenen Daten können Sie per E-Mail oder über die Kontaktseite senden.",
+    "emailLabel": "Kontakt-E-Mail",
+    "formLink": "Kontaktseite"
+  },
+  "fr": {
+    "title": "À propos de l’exploitant",
+    "role": "Exploitant de Smart JSA Bridge",
+    "summary": "Fort d’une expérience en gestion de la sécurité dans une installation de production d’hydrogène en Corée du Sud et d’une qualification coréenne en sécurité des installations générales de gaz, l’exploitant propose un service de partage d’évaluations des risques à examiner et à adapter aux conditions de travail.",
+    "experienceTitle": "Expérience et qualifications",
+    "experience": [
+      "Expérience de responsable de la sécurité dans une installation de production d’hydrogène de Korea Gas Technology Corporation",
+      "Qualification en sécurité des installations générales de gaz obtenue par le programme de formation de Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Inscription comme instructeur de formation pour un corps de pompiers volontaires coréen",
+      "Service de pompier auxiliaire à la caserne de Suncheon dans le cadre du service obligatoire coréen (의무소방)"
+    ],
+    "scope": "Ces fonctions et qualifications concernent la Corée du Sud.",
+    "independence": "Smart JSA Bridge est exploité de manière indépendante. Il ne s’agit ni d’un service officiel ni d’un service de certification des organismes cités.",
+    "more": "Consulter le profil de l’exploitant",
+    "contactTitle": "Contacter l’exploitant",
+    "contactText": "Pour toute question sur le service, correction de contenu ou demande relative aux données personnelles, utilisez l’adresse e-mail ou la page de contact.",
+    "emailLabel": "Adresse e-mail de contact",
+    "formLink": "Page de contact"
+  },
+  "it": {
+    "title": "Il gestore",
+    "role": "Gestore di Smart JSA Bridge",
+    "summary": "Grazie all’esperienza nella gestione della sicurezza di un impianto di produzione di idrogeno in Corea del Sud e a una qualifica coreana per la sicurezza degli impianti generali di gas, il gestore offre un servizio per condividere valutazioni dei rischi da verificare e adattare alle condizioni di lavoro.",
+    "experienceTitle": "Esperienza e qualifiche",
+    "experience": [
+      "Esperienza come responsabile della sicurezza presso un impianto di produzione di idrogeno di Korea Gas Technology Corporation",
+      "Qualifica per la sicurezza degli impianti generali di gas ottenuta tramite il programma formativo di Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Registrato come istruttore di formazione per un corpo coreano di vigili del fuoco volontari",
+      "Servizio come vigile del fuoco ausiliario presso la stazione di Suncheon nell’ambito del servizio obbligatorio coreano (의무소방)"
+    ],
+    "scope": "Questi ruoli e queste qualifiche si riferiscono alla Corea del Sud.",
+    "independence": "Smart JSA Bridge è gestito in modo indipendente e non è un servizio ufficiale o di certificazione degli enti elencati.",
+    "more": "Leggi il profilo del gestore",
+    "contactTitle": "Contatta il gestore",
+    "contactText": "Per domande sul servizio, correzioni dei contenuti o richieste sui dati personali, usa l’indirizzo e-mail o la pagina di contatto.",
+    "emailLabel": "E-mail di contatto",
+    "formLink": "Pagina di contatto"
+  },
+  "es": {
+    "title": "Acerca del responsable",
+    "role": "Responsable de Smart JSA Bridge",
+    "summary": "Con experiencia en la gestión de seguridad de una planta de producción de hidrógeno en Corea del Sur y una cualificación coreana en seguridad de instalaciones generales de gas, el responsable ofrece un servicio para compartir evaluaciones de riesgos que se pueden revisar y adaptar a las condiciones de trabajo.",
+    "experienceTitle": "Experiencia y cualificaciones",
+    "experience": [
+      "Experiencia como responsable de seguridad en una planta de producción de hidrógeno de Korea Gas Technology Corporation",
+      "Cualificación en seguridad de instalaciones generales de gas obtenida mediante el programa de formación de Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Registrado como instructor de formación para un cuerpo coreano de bomberos voluntarios",
+      "Servicio como bombero auxiliar en la estación de Suncheon dentro del sistema de servicio obligatorio coreano (의무소방)"
+    ],
+    "scope": "Estos cargos y cualificaciones corresponden a Corea del Sur.",
+    "independence": "Smart JSA Bridge se gestiona de forma independiente. No es un servicio oficial ni de certificación de las organizaciones indicadas.",
+    "more": "Ver el perfil del responsable",
+    "contactTitle": "Contactar con el responsable",
+    "contactText": "Para preguntas sobre el servicio, correcciones de contenido o consultas sobre datos personales, utilice el correo electrónico o la página de contacto.",
+    "emailLabel": "Correo de contacto",
+    "formLink": "Página de contacto"
+  },
+  "pt": {
+    "title": "Sobre o responsável",
+    "role": "Responsável pelo Smart JSA Bridge",
+    "summary": "Com experiência na gestão de segurança de uma instalação de produção de hidrogênio na Coreia do Sul e uma qualificação coreana em segurança de instalações gerais de gás, o responsável oferece um serviço de compartilhamento de avaliações de riscos para revisão e adaptação às condições de trabalho.",
+    "experienceTitle": "Experiência e qualificações",
+    "experience": [
+      "Experiência como responsável pela segurança em uma instalação de produção de hidrogênio da Korea Gas Technology Corporation",
+      "Qualificação em segurança de instalações gerais de gás obtida pelo programa de formação da Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Registrado como instrutor de formação para um corpo coreano de bombeiros voluntários",
+      "Serviço como bombeiro auxiliar no quartel de Suncheon pelo sistema de serviço obrigatório coreano (의무소방)"
+    ],
+    "scope": "Essas funções e qualificações se referem à Coreia do Sul.",
+    "independence": "O Smart JSA Bridge é operado de forma independente. Não é um serviço oficial ou de certificação das organizações citadas.",
+    "more": "Ver o perfil do responsável",
+    "contactTitle": "Contato com o responsável",
+    "contactText": "Para dúvidas sobre o serviço, correções de conteúdo ou solicitações sobre dados pessoais, use o e-mail ou a página de contato.",
+    "emailLabel": "E-mail de contato",
+    "formLink": "Página de contato"
+  },
+  "ru": {
+    "title": "Об операторе",
+    "role": "Оператор Smart JSA Bridge",
+    "summary": "Опираясь на опыт управления безопасностью на объекте производства водорода в Южной Корее и корейскую квалификацию по безопасности газовых объектов общего назначения, оператор развивает сервис обмена оценками рисков для проверки и адаптации к конкретным условиям работы.",
+    "experienceTitle": "Опыт и квалификации",
+    "experience": [
+      "Опыт работы ответственным за безопасность на объекте производства водорода Korea Gas Technology Corporation",
+      "Квалификация по безопасности газовых объектов общего назначения, полученная по программе подготовки Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Регистрация в качестве инструктора по подготовке корейской добровольной пожарной дружины",
+      "Служба вспомогательным пожарным в пожарной части Сунчхона в рамках корейской системы обязательной службы (의무소방)"
+    ],
+    "scope": "Указанные должности и квалификации относятся к Южной Корее.",
+    "independence": "Smart JSA Bridge работает независимо и не является официальным сервисом или службой сертификации перечисленных организаций.",
+    "more": "Подробнее об операторе",
+    "contactTitle": "Связаться с оператором",
+    "contactText": "По вопросам сервиса, исправления материалов и персональных данных обращайтесь по электронной почте или через страницу связи.",
+    "emailLabel": "Электронная почта",
+    "formLink": "Страница связи"
+  },
+  "ar": {
+    "title": "نبذة عن المشغّل",
+    "role": "مشغّل Smart JSA Bridge",
+    "summary": "استنادًا إلى خبرته في إدارة السلامة في منشأة لإنتاج الهيدروجين في كوريا الجنوبية ومؤهله الكوري في سلامة منشآت الغاز العامة، يدير المشغّل خدمة لمشاركة تقييمات المخاطر التي يمكن مراجعتها وتكييفها مع ظروف العمل.",
+    "experienceTitle": "الخبرات والمؤهلات",
+    "experience": [
+      "خبرة كمسؤول سلامة في منشأة لإنتاج الهيدروجين تابعة لشركة Korea Gas Technology Corporation",
+      "مؤهل في سلامة منشآت الغاز العامة من خلال برنامج التدريب لدى Korea Gas Safety Corporation (일반시설안전관리자)",
+      "مسجّل كمدرّب لتأهيل أفراد فرقة إطفاء تطوعية كورية",
+      "خدمة كرجل إطفاء مساعد في مركز إطفاء سونتشون ضمن نظام الخدمة الإلزامية الكوري (의무소방)"
+    ],
+    "scope": "تتعلق هذه الأدوار والمؤهلات بكوريا الجنوبية.",
+    "independence": "تُدار Smart JSA Bridge بصورة مستقلة، وليست خدمة رسمية أو جهة إصدار شهادات تابعة للمؤسسات المذكورة.",
+    "more": "عرض ملف المشغّل",
+    "contactTitle": "التواصل مع المشغّل",
+    "contactText": "للاستفسارات عن الخدمة أو تصحيح المحتوى أو طلبات البيانات الشخصية، استخدم البريد الإلكتروني أو صفحة التواصل.",
+    "emailLabel": "البريد الإلكتروني للتواصل",
+    "formLink": "صفحة التواصل"
+  },
+  "ro": {
+    "title": "Despre operator",
+    "role": "Operator Smart JSA Bridge",
+    "summary": "Pe baza experienței în gestionarea siguranței la o instalație de producție a hidrogenului din Coreea de Sud și a unei calificări coreene în siguranța instalațiilor generale de gaze, operatorul dezvoltă un serviciu de partajare a evaluărilor de risc pentru verificare și adaptare la condițiile de lucru.",
+    "experienceTitle": "Experiență și calificări",
+    "experience": [
+      "Experiență ca responsabil cu siguranța la o instalație de producție a hidrogenului a Korea Gas Technology Corporation",
+      "Calificare în siguranța instalațiilor generale de gaze obținută prin programul de formare al Korea Gas Safety Corporation (일반시설안전관리자)",
+      "Înregistrat ca instructor de formare pentru un corp coreean de pompieri voluntari",
+      "Serviciu ca pompier auxiliar la stația de pompieri Suncheon, în cadrul sistemului coreean de serviciu obligatoriu (의무소방)"
+    ],
+    "scope": "Aceste funcții și calificări se referă la Coreea de Sud.",
+    "independence": "Smart JSA Bridge este operat independent și nu este un serviciu oficial sau de certificare al organizațiilor enumerate.",
+    "more": "Vezi profilul operatorului",
+    "contactTitle": "Contactează operatorul",
+    "contactText": "Pentru întrebări despre serviciu, corectarea conținutului sau solicitări privind datele personale, folosește adresa de e-mail sau pagina de contact.",
+    "emailLabel": "E-mail de contact",
+    "formLink": "Pagina de contact"
+  }
+}
