@@ -5,6 +5,8 @@ import CommunityFooter from '../components/CommunityFooter';
 import '../styles/community.css';
 import { useTranslation } from 'react-i18next';
 import PublicSiteHeader from '../components/PublicSiteHeader';
+import OperatorContact from '../components/OperatorContact';
+import { supportChannelText } from '../locales/supportChannelText';
 import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
 // ✅ 커스텀 다국어 라우팅 훅 임포트[cite: 12]
 
@@ -61,13 +63,14 @@ export default function Privacy() {
 
 
             <h3 style={styles.articleH3}>{t('section4.title')}</h3>
-            <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section4.content') }} />
+            <p style={styles.articleP}>{getAnalyticsText(i18n.language).body} {supportChannelText(i18n.language).metrics}</p>
             <ul style={styles.listWrapper}>
               <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">{ui.googlePrivacy}</a></li>
               <li><a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">{ui.adSettings}</a></li>
             </ul>
           </div>
 
+          <OperatorContact locale={i18n.language}/>
           <div style={styles.imgContainer}>
              <div style={{...styles.heroImg, backgroundImage: 'url(/images/image6.jpg)'}} />
              <p style={{...styles.articleP, fontSize: '0.85rem', color: '#888', textAlign: 'center', marginTop: '12px'}}>

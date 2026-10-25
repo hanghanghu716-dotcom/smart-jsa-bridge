@@ -1,5 +1,6 @@
 import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import PlanOverview from '../components/PlanOverview';
+import OperatorProfile from '../components/OperatorProfile';
 import {getPlansUi} from '../locales/plansUi';
 import { useFixedGuidance } from '../hooks/useFixedGuidance';
 import UsGuidanceReferences from '../components/UsGuidanceReferences';
@@ -66,6 +67,7 @@ export default function About() {
             {t('mainHeading.line1')}<br />{t('mainHeading.line2')}
           </Heading>
           
+          <OperatorProfile locale={i18n.language}/>
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section1.content') }} />
