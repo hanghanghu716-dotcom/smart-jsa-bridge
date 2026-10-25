@@ -25,7 +25,10 @@ const doc={id,author_id:author,is_public:true,title:'Valve isolation procedure',
   const report=[];
   for(const locale of SUPPORTED_LANGS){
    doc.public_locale=locale;await page.setViewport({width:1440,height:1000});await page.goto(base+'/'+locale+'/public-jsa/'+id,{waitUntil:'networkidle2'});
-   await page.waitForSelector('.procedure-document-inline .procedure-document-paper');
+   await page.waitForSelector('#public-preview-panel');
+   assert.equal(await page.$eval('#public-preview-panel',el=>el.open),false);
+   await page.click('a[href="#public-preview-panel"]');
+   await page.waitForSelector('.procedure-document-inline .procedure-document-paper',{visible:true});
    const ui=getPublicDocumentUi(locale);
    assert.equal(await page.$eval('.procedure-document-toolbar h2',e=>e.textContent),ui.procedurePreview);
    assert.equal(await page.$('[data-procedure-document-open]'),null);assert.equal(await page.$('[data-procedure-print]'),null);

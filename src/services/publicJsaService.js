@@ -5,6 +5,17 @@ import { PUBLIC_JSA_FIELDS, publicJsaView, validProjectId, publicSortColumn } fr
 import { readPublicCatalogPage } from '../utils/publicCatalogPage.js';
 import { readAllPages } from './pagedRead.js';
 
+export async function publicExclusions(client = supabase) {
+  const { data: { user } } = await client.auth.getUser();
+  if (!user) return { blocked: [], hidden: [] };
+  const [users, projects] = await Promise.all([
+    client.from('user_blocks').select('blocked_user_id').eq('blocker_id', user.id),
+    client.from('user_project_blocks').select('project_id').eq('user_id', user.id),
+  ]);
+  if (users.error || projects.error) throw users.error || projects.error;
+  return { blocked: (users.data || []).map(item => item.blocked_user_id), hidden: (projects.data || []).map(item => item.project_id) };
+}
+
 function publicFilters(query, { search = '', tags = [], country, author, blocked = [], hidden = [] }) {
   query = query.eq('is_public', true);
   if (author === 'operator') query = query.eq('is_operator', true);

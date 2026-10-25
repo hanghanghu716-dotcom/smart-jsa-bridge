@@ -5,7 +5,7 @@ import { getPublicUi } from '../locales/publicUi';
 import DiscoveryLinks from '../components/DiscoveryLinks';
 import RegionalStartActions from '../components/RegionalStartActions';
 import { regionalJourneyUi } from '../locales/regionalJourneyUi';
-import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
+import { LanguageLink } from '../hooks/useLanguage';
 import { cleanSummary, serializeStructuredData } from '../utils/content.js';
 import { getSiteUi } from '../locales/siteUi.js';
 import { SUPPORTED_LANGS, getCaseLanguages, selectLocalizedCases, getLanguageTag } from '../locales/config.js';
@@ -18,13 +18,13 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import CommerceRecommendations from '../components/CommerceRecommendations';
 import { splitCaseForCommerce, caseResourcesTitle } from '../utils/caseSections.js';
 import SEO from '../components/SEO';
-import ThemeSwitcher from '../components/ThemeSwitcher';
+import PublicSiteHeader from '../components/PublicSiteHeader';
+import CommunityFooter from '../components/CommunityFooter';
 import './CaseStudyDetail.css';
 import { getCaseBootstrap } from '../utils/caseBootstrap.js';
 
 export default function CaseStudyDetail() {
   const { id } = useParams(); 
-  const navigate = useLanguageNavigate();
   const { i18n } = useTranslation(); 
   const [initialCase] = useState(() => getCaseBootstrap(window.location.pathname));
   const [post, setPost] = useState(initialCase?.post || null);
@@ -165,17 +165,12 @@ export default function CaseStudyDetail() {
         />
       )}
       
-      <header style={styles.header}>
-        <div style={{...styles.container,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:16}}>
-          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-          <ThemeSwitcher compact />
-        </div>
-      </header>
+      <PublicSiteHeader />
 
       <section 
         style={{ ...styles.heroSection, textAlign: isRtl ? 'right' : 'left' }} 
         dir={isRtl ? 'rtl' : 'ltr'} 
-        className="max-lg:!py-20 max-lg:!px-6"
+        className="max-lg:!py-8 max-lg:!px-6"
       >
         <div style={styles.container}>
           <span style={styles.m3Tag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.caseStudy || 'CASE STUDY'}</span>
@@ -193,6 +188,8 @@ export default function CaseStudyDetail() {
         <div style={styles.centerContent}>
           
 
+
+          {sections.introduction && <div className="case-usage-notes"><Viewer initialValue={sections.introduction} key={sections.introduction}/></div>}
 
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
@@ -255,7 +252,7 @@ export default function CaseStudyDetail() {
             </div>
           )}
 
-          {sections.introduction && <div className="case-usage-notes"><Viewer initialValue={sections.introduction} key={sections.introduction}/></div>}
+
           <DiscoveryLinks kind="case" target={post.post_group_id} showReuseHelp/>
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           </section>
@@ -266,19 +263,7 @@ export default function CaseStudyDetail() {
         </div>
       </div>
 
-      <footer style={styles.finalFooter}>
-        <div style={styles.container}>
-          <div style={styles.footerFlex}>
-            <p style={styles.copyright}>© 2026 <strong>Smart JSA Bridge</strong>. {ro ? 'Design:' : 'Designed by'} <strong>yizuno</strong></p>
-            <div style={styles.footerLinks}>
-              <LanguageLink to="/" style={styles.fLink}>{ro?.home || 'Home'}</LanguageLink>
-              <LanguageLink to="/privacy" style={styles.fLink}>{ro?.privacy || 'Privacy Policy'}</LanguageLink>
-              <LanguageLink to="/terms" style={styles.fLink}>{ro?.terms || 'Terms of Service'}</LanguageLink>
-              <LanguageLink to="/about" style={styles.fLink}>{ro?.about || 'About Us'}</LanguageLink>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <CommunityFooter />
     </div>
   );
 }
@@ -286,11 +271,11 @@ export default function CaseStudyDetail() {
 const styles = {
   wrapper: { width: '100%', backgroundColor: 'var(--app-bg)', color: 'var(--text-primary)', position: 'relative', overflowX: 'hidden' },
   container: { maxWidth: '1200px', margin: '0 auto' },
-  heroSection: { padding: '100px 0', backgroundColor: 'var(--panel-bg)', color: 'var(--text-primary)', width: '100%', position: 'relative', zIndex: 10 },
+  heroSection: { padding: '40px 24px', backgroundColor: 'var(--panel-bg)', color: 'var(--text-primary)', width: '100%', position: 'relative', zIndex: 10 },
   m3Tag: { color: 'var(--accent)', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '20px', display: 'block' },
   mainTitle: { fontWeight: '800', marginBottom: '24px', wordBreak: 'keep-all', lineHeight: '1.3', color: 'var(--text-primary)' },
   date: { color: 'var(--text-secondary)', fontSize: '1rem' },
-  mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px 100px 24px' },
+  mainContentArea: { position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '28px 24px 64px 24px' },
   centerContent: { flex: 1, display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1200px' },
   markdownContent: { 
     width: '100%', 

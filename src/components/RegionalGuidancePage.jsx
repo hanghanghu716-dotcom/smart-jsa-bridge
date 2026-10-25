@@ -1,6 +1,7 @@
 import { LanguageLink } from '../hooks/useLanguage';
 import SEO from './SEO';
-import ThemeSwitcher from './ThemeSwitcher';
+import PublicSiteHeader from './PublicSiteHeader';
+import CommunityFooter from './CommunityFooter';
 import DiscoveryTopics from './DiscoveryTopics';
 import PlanOverview from './PlanOverview';
 import { getPlansUi } from '../locales/plansUi';
@@ -11,7 +12,7 @@ export default function RegionalGuidancePage({guidance}){
  const section=(title,body)=><section className="regional-guidance-section"><h2>{title}</h2>{body}</section>;
  return <div className="jsa-workspace regional-guidance-page" dir={locale.startsWith('ar')?'rtl':'ltr'}>
   <SEO pageTitle={guidance.title} pageDescription={guidance.description}/>
-  <header className="jsa-nav"><LanguageLink to="/">Smart JSA Bridge</LanguageLink><ThemeSwitcher compact/></header>
+  <PublicSiteHeader/>
   <main className="regional-guidance-main" data-regional-guidance={locale}>
    <header className="regional-guidance-hero"><p className="jsa-eyebrow">{profile.name}</p><h1>{text.titles[namespace]}</h1><p>{namespace==='about'?text.about[0]:text.intro}</p></header>
    <nav className="regional-guidance-tabs">{Object.entries(text.titles).map(([path,title])=><LanguageLink key={path} to={'/'+path} aria-current={path===namespace?'page':undefined}>{title}</LanguageLink>)}</nav>
@@ -25,6 +26,6 @@ export default function RegionalGuidancePage({guidance}){
    {namespace==='about'&&<>{section(l[4],<><p>{text.about[1]}</p><p>{text.about[2]}</p></>)}{section(l[5],<p>{text.about[3]}</p>)}{section(getPlansUi(locale).title,<><p>{getPlansUi(locale).intro}</p><PlanOverview/></>)}</>}
    <DiscoveryTopics locale={locale}/>
    <nav className="regional-guidance-tabs"><LanguageLink to="/info">{l[9]}</LanguageLink><LanguageLink to="/community">{l[7]}</LanguageLink><LanguageLink to="/privacy">{l[8]}</LanguageLink></nav>
-  </main>
+  </main><CommunityFooter/>
  </div>;
 }

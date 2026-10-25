@@ -90,13 +90,13 @@ test('legacy cases without the master section retain their previous layout',()=>
 });
 
 
-test('server article presents products fourth, resources twelfth, and review thirteenth',async()=>{
+test('server article keeps the product anchor without an empty heading and retains resources and review',async()=>{
  const {renderCaseArticle}=await import('../api/case-study.js');
  const content=Array.from({length:11},(_,i)=>'<h2 id="section-'+(i+1)+'">'+(i+1)+'. Section</h2><p>Body '+(i+1)+'</p>').join('');
  const html=renderCaseArticle({content_md:content,pdf_download_url:'https://example.com/case.pdf'},'ko');
  const headings=[...html.matchAll(/<h2[^>]*>(.*?)<\/h2>/g)].map(match=>Number(match[1].match(/^\d+/)?.[0]));
- assert.deepEqual(headings,[1,2,3,4,5,6,7,8,9,10,11,12,13]);
- assert.ok(html.indexOf('Body 3')<html.indexOf('4. '));
+ assert.deepEqual(headings,[1,2,3,5,6,7,8,9,10,11,12,13]);
+ assert.ok(html.indexOf('Body 3')<html.indexOf('data-commerce-slot'));
  assert.ok(html.indexOf('4. ')<html.indexOf('Body 4'));
  assert.ok(html.indexOf('case.pdf')>html.indexOf('12. '));
  for(let n=1;n<=11;n++)assert.ok(html.includes('Body '+n+'</p>'));

@@ -162,6 +162,7 @@ const {spawn}=require('node:child_process');
    const id=new URL(href).pathname.split('/').pop();
    await page.goto(href,{waitUntil:'domcontentloaded',timeout:60000});
    await page.waitForFunction(id=>document.querySelector('.public-document-version')?.dataset.projectId===id,{timeout:30000},id);
+   await page.click('a[href="#public-preview-panel"]');
    const details=await page.$$eval('.public-document-version',sections=>sections.map(section=>({
     id:section.dataset.projectId,variant:section.dataset.documentVariant,
     testText:/TEST_[A-D][1-3]|TEST 위험성평가/.test(section.textContent),

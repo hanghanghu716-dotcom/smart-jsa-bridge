@@ -1,6 +1,5 @@
 import { splitCaseForCommerce, caseResourcesTitle } from '../src/utils/caseSections.js';
 import { canonicalCaseSlug, caseLookupSlugs } from '../src/utils/caseRouting.js';
-import { getCommerceUi } from '../src/locales/commerceUi.js';
 import { romanianUi } from '../src/locales/romanianUi.js';
 import { readFile } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -49,9 +48,9 @@ export function renderCaseArticle(post, locale, baseUrl) {
   const review = sections.review ? renderCaseBody({...post,content_md:sections.review}, baseUrl) : '';
   const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
   const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');
-  const products = `<section id="section-${sections.productSection}"><h2>${sections.productSection}. ${e(getCommerceUi(locale).title)}</h2></section>`;
-  const resources = `<section id="section-${sections.resourcesSection}"><h2>${sections.resourcesSection}. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}${introduction}</section>`;
-  return `${body}${sections.earlyProducts ? products : ''}${afterProducts}${resources}${sections.earlyProducts ? '' : products}${review}`;
+  const products = `<span id="section-${sections.productSection}" data-commerce-slot></span>`;
+  const resources = `<section id="section-${sections.resourcesSection}"><h2>${sections.resourcesSection}. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}</section>`;
+  return `${introduction}${body}${sections.earlyProducts ? products : ''}${afterProducts}${resources}${sections.earlyProducts ? '' : products}${review}`;
 }
 export function renderCaseHtml(shell, post, locale, availableLocales) {
   const ro = locale === 'ro-RO' ? romanianUi.editorial : null;
@@ -69,7 +68,7 @@ export function renderCaseHtml(shell, post, locale, availableLocales) {
 export function createCaseHandler({ fetcher = fetch, readShell = () => readFile(new URL('../dist/public-jsa-shell.html', import.meta.url), 'utf8') } = {}) {
   return async (req, res) => {
     const { lng: locale, slug } = req.query || {};
-    if (!SUPPORTED_LANGS.includes(locale) || typeof slug !== 'string' || !slug || slug.length > 300 || /[\/\\\x00-\x1f]/.test(slug)) {
+    if (!SUPPORTED_LANGS.includes(locale) || typeof slug !== 'string' || !slug || slug.length > 300 || slug.includes('/') || slug.includes(String.fromCharCode(92)) || [...slug].some(char => char.codePointAt(0) < 32)) {
       sendContent(req, res, 'Not found', { status: 404 }); return;
     }
     try {
