@@ -5,6 +5,18 @@ import { exploreExcerpt, excerptText, exploreCardTags } from './explorePresentat
 
 export const HOME_PUBLIC_LIMIT = 6;
 
+// Decorative category images only; they do not represent the submitted job.
+export function homeResourceImage(tags = []) {
+  const category = tags.map(item => item.tag).join(' ');
+  if (/밀폐/.test(category)) return '/images/image3.jpg';
+  if (/비계|고소|추락/.test(category)) return '/images/image2.jpg';
+  if (/전기|감전/.test(category)) return '/images/image6.jpg';
+  if (/토목|건축|교량|양중|굴착/.test(category)) return '/images/image4.jpg';
+  if (/용접/.test(category)) return '/images/image1.jpg';
+  if (/방사선/.test(category)) return '/images/image5.jpg';
+  return null;
+}
+
 // A compact, public-only projection shared by the live response and the client.
 // Never serialize private form fields, document bodies or internal review data.
 export function homePublicCards(rows, locale) {
