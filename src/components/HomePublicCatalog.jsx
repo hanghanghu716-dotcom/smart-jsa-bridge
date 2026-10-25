@@ -6,7 +6,7 @@ import { getPublicUi } from '../locales/publicUi';
 import { getOperatorUi } from '../locales/operatorUi';
 import { getLanguageTag } from '../locales/config';
 import { localeCountry, countryLabel } from '../utils/publicCountry';
-import { homePublicCards } from '../utils/homePublicCatalog';
+import { homePublicCards, homeResourceImage } from '../utils/homePublicCatalog';
 import { isStaticContentBuild } from '../utils/caseListBootstrap';
 import { listPublicJsa, publicExclusions } from '../services/publicJsaService';
 
@@ -30,17 +30,20 @@ export default function HomePublicCatalog() {
   }, [locale, attempt]);
   const current = state?.locale === locale ? state : null;
   return <section className="home-public-section" aria-labelledby="home-public-title">
-    <div className="home-section-heading"><div><p className="home-kicker">COMMUNITY / JSA</p><h2 id="home-public-title">{ui.latest}</h2></div><LanguageLink to="/explore">{ui.all} <span aria-hidden="true">→</span></LanguageLink></div>
+    <div className="home-section-heading"><h2 id="home-public-title">{ui.latest}</h2><LanguageLink to="/explore">{ui.all} <span aria-hidden="true">→</span></LanguageLink></div>
     <div data-live-public-list="home">
       {!current && <p role="status">{p.title} …</p>}
       {current?.error && <p role="alert">{p.error} <button onClick={() => setAttempt(n => n + 1)}>{p.retry}</button></p>}
       {current && !current.error && !current.cards.length && <p>{p.empty}</p>}
       <div className="home-public-grid">{current?.cards.map(card => <article className="home-resource-card" key={card.id}>
+        <div className="home-card-media" aria-hidden="true">{homeResourceImage(card.tags) && <img src={homeResourceImage(card.tags)} alt="" loading="lazy" decoding="async" width="2048" height="868"/>}<span>JSA</span></div>
+        <div className="home-card-body">
         <div className="home-card-meta"><span className={card.operator ? 'home-source home-source--operator' : 'home-source'}>{card.operator ? getOperatorUi(locale).badge : ui.member}</span><span>{countryLabel(card.country, locale)} · {p.steps} {card.steps}{card.variant && <> · {getOperatorUi(locale)[card.variant]}</>}</span></div>
         <h3 lang={getLanguageTag(card.locale)} dir="auto"><LanguageLink to={'/public-jsa/' + card.id}>{card.title}</LanguageLink></h3>
         <p className="home-card-excerpt" lang={getLanguageTag(card.locale)} dir="auto">{card.excerpt}</p>
         <div className="home-card-tags">{card.tags.map(({ tag, label }) => <LanguageLink key={tag} to={'/explore?' + new URLSearchParams({ tag, country: card.country || '' })}>#{label}</LanguageLink>)}</div>
         <div className="home-card-bottom"><time dateTime={card.date || undefined}>{card.date?.slice(0, 10)}</time><LanguageLink to={'/public-jsa/' + card.id}>{ui.read} <span aria-hidden="true">↗</span></LanguageLink></div>
+        </div>
       </article>)}</div>
     </div>
   </section>;

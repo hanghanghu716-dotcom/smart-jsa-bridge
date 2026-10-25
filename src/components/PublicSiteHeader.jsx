@@ -8,7 +8,7 @@ import { getWorkspaceNavUi } from '../locales/workspaceNavUi';
 import ThemeSwitcher from './ThemeSwitcher';
 import '../styles/community-home.css';
 
-export default function PublicSiteHeader() {
+export default function PublicSiteHeader({ community = false }) {
   const { i18n } = useTranslation(), location = useLocation();
   const locale = location.pathname.split('/')[1] || i18n.language;
   const ui = communityHomeUi(locale), p = getPublicUi(locale), w = getWorkspaceNavUi(locale);
@@ -18,8 +18,8 @@ export default function PublicSiteHeader() {
     else parts.splice(1, 0, event.target.value);
     window.location.assign(parts.join('/') + location.search + location.hash);
   }
-  return <header className="public-site-header">
-    <div className="public-site-top"><LanguageLink className="public-site-brand" to="/">
+  return <header className={'public-site-header' + (community ? ' public-site-header--community' : '')}>
+    <div className="public-site-masthead"><div className="public-site-top"><LanguageLink className="public-site-brand" to="/">
       <span className="public-site-mark" aria-hidden="true">J</span><span>Smart JSA Bridge<small>{ui.publicLabel}</small></span>
     </LanguageLink><div className="public-site-account">
       <LanguageLink to="/library">{w.workspace}</LanguageLink>
@@ -27,12 +27,12 @@ export default function PublicSiteHeader() {
         {!LANGUAGE_OPTIONS.some(item => item.code === locale) && <option value={locale}>{locale}</option>}
         {LANGUAGE_OPTIONS.map(item => <option key={item.code} value={item.code}>{item.label}</option>)}
       </select><ThemeSwitcher compact />
-    </div></div>
-    <nav className="public-site-nav" aria-label={p.title}>
+    </div></div></div>
+    <div className="public-site-nav-shell"><nav className="public-site-nav" aria-label={p.title}>
       <LanguageLink to="/explore">{p.title}</LanguageLink>
       <LanguageLink to="/archive">{ui.cases}</LanguageLink>
       <LanguageLink to="/jrajsa">{ui.guide}</LanguageLink>
       <LanguageLink to="/work-packages">{w.packages}</LanguageLink>
-    </nav>
+    </nav></div>
   </header>;
 }

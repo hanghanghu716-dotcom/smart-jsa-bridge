@@ -10,14 +10,13 @@ import { cleanSummary } from '../utils/content';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config';
 import { communityHomeUi } from '../locales/communityHomeUi';
 import { getWorkspaceNavUi } from '../locales/workspaceNavUi';
-import { publicTagLabel } from '../locales/publicTagLabels';
 import { localeCountry } from '../utils/publicCountry';
 import { exploreSearch } from '../utils/discovery';
 import { getPublicUi } from '../locales/publicUi';
 import PublicSiteHeader from '../components/PublicSiteHeader';
 import HomePublicCatalog from '../components/HomePublicCatalog';
+import HomeTopicNavigation from '../components/HomeTopicNavigation';
 import CommunityFooter from '../components/CommunityFooter';
-import OperatorProfile from '../components/OperatorProfile';
 import SEO from '../components/SEO';
 import '../styles/community-home.css';
 
@@ -61,7 +60,7 @@ export default function Main() {
   const rows = cases.locale === locale ? cases.rows.slice(0, 3) : [];
   return <div className="community-home" dir={i18n.dir()}>
     <SEO pageTitle={p.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} />
-    <PublicSiteHeader />
+    <PublicSiteHeader community />
     <main className="home-content">
       <section className="home-intro">
         <div><h1>{ui.title}</h1><p>{ui.intro}</p></div>
@@ -72,13 +71,10 @@ export default function Main() {
         <input name="q" type="search" aria-label={ui.search} placeholder={ui.placeholder} value={query} onChange={event => setQuery(event.target.value)} />
         <button type="submit">{ui.search}</button>
       </form>
-      <nav className="home-topics" aria-label={p.title}>
-        {['정비/보수','건축공사','기계분해/조립','용접(아크)','전기정전작업','식품제조'].map(tag =>
-          <LanguageLink key={tag} to={'/explore' + exploreSearch({ tags: [tag], country: localeCountry(locale) })}>{publicTagLabel(tag, locale)}</LanguageLink>)}
-      </nav>
+      <HomeTopicNavigation locale={locale} />
       <HomePublicCatalog />
       <section id="case-studies" className="home-cases" aria-labelledby="home-cases-title">
-        <div className="home-section-heading"><div><p className="home-kicker">GUIDES / INSIGHTS</p><h2 id="home-cases-title">{ui.cases}</h2></div><LanguageLink to="/archive">{ui.cases} →</LanguageLink></div>
+        <div className="home-section-heading"><h2 id="home-cases-title">{ui.cases}</h2><LanguageLink to="/archive">{ui.cases} →</LanguageLink></div>
         <div data-live-case-list="home">
           <div className="home-case-grid">{rows.map(row => <article className="home-case-card" key={row.post_group_id}>
             <h3><LanguageLink to={'/case-study/' + row.post_group_id}>{row.title}</LanguageLink></h3>
@@ -88,10 +84,9 @@ export default function Main() {
         </div>
       </section>
       <div className="home-contribute">
-        <section><p className="home-kicker">SHARE YOUR KNOWLEDGE</p><h2>{ui.shareTitle}</h2><p>{ui.shareText}</p><button onClick={create}>{ui.create} →</button></section>
-        <section><p className="home-kicker">YOUR WORKSPACE</p><h2>{ui.privateTitle}</h2><p>{ui.privateText}</p><LanguageLink to="/work-packages">{w.openPackages} →</LanguageLink><p><LanguageLink to="/business">{w.openPlans}</LanguageLink></p></section>
+        <section><h2>{ui.shareTitle}</h2><p>{ui.shareText}</p><button onClick={create}>{ui.create} →</button></section>
+        <section><h2>{ui.privateTitle}</h2><p>{ui.privateText}</p><LanguageLink to="/work-packages">{w.openPackages} →</LanguageLink><p><LanguageLink to="/business">{w.openPlans}</LanguageLink></p></section>
       </div>
-      <OperatorProfile locale={locale} compact />
     </main>
     <CommunityFooter />
     {startOpen && <div className="home-start-overlay" onClick={() => setStartOpen(false)}>

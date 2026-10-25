@@ -6,12 +6,11 @@ import { useFixedGuidance } from '../hooks/useFixedGuidance';
 import UsGuidanceReferences from '../components/UsGuidanceReferences';
 import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
-import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ 커스텀 다국어 라우팅 훅[cite: 19]
+import PublicSiteHeader from '../components/PublicSiteHeader';
+import CommunityFooter from '../components/CommunityFooter'; // ✅ 커스텀 다국어 라우팅 훅[cite: 19]
 
 export default function About() {
-  const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 19]
   const { t, i18n, guidance, regional } = useFixedGuidance('about');
-  const BrandTag = guidance ? 'p' : 'h1';
   const Heading = guidance ? 'h1' : 'h2';
 
   // 애드센스 설정 정보[cite: 19]
@@ -27,12 +26,7 @@ export default function About() {
       <SEO pageTitle={guidance?.title} pageDescription={guidance?.description} />
 
       {/* HEADER[cite: 19] */}
-      <header style={styles.header} className="max-lg:!px-6">
-        <div style={styles.container} className="flex justify-between items-center h-full w-full">
-          {/* ✅ 로고 클릭 시 현재 선택된 언어의 메인 페이지로 이동 */}
-          <BrandTag style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</BrandTag>
-        </div>
-      </header>
+      <PublicSiteHeader />
       
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
@@ -103,7 +97,7 @@ export default function About() {
 
           <div style={styles.imgContainer}>
              <div style={{...styles.heroImg, backgroundImage: 'url(/images/image6.jpg)'}} />
-             <p style={{...styles.articleP, fontSize: '0.85rem', color: '#888', textAlign: 'center', marginTop: '12px'}}>
+             <p style={{...styles.articleP, fontSize: '0.85rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: '12px'}}>
                {t('imageCaption')}
              </p>
           </div>
@@ -112,36 +106,36 @@ export default function About() {
 
       <UsGuidanceReferences guidance={guidance} />
       <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
-      <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
+      <CommunityFooter />
     </div>
   );
 }
 
 // 스타일 객체는 기존 소스코드와 동일하게 유지합니다.[cite: 19]
 const styles = {
-  wrapper: { backgroundColor: '#fff', color: '#1c1b1f', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
-  header: { padding: '1.5rem 10%', borderBottom: '1px solid #f2f2f2' },
-  logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: '#000', cursor: 'pointer' },
+  wrapper: { backgroundColor: 'var(--app-bg)', color: 'var(--text-primary)', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
+  header: { padding: '1.5rem 10%', borderBottom: '1px solid var(--border-default)' },
+  logo: { fontSize: '1.1rem', fontWeight: '900', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--text-primary)', cursor: 'pointer' },
   contentSection: { padding: '80px 0', flex: 1 },
   container: { maxWidth: '750px', margin: '0 auto', padding: '0 32px' },
-  tag: { color: '#007bff', fontWeight: '900', fontSize: '0.75rem', letterSpacing: '3px', marginBottom: '16px', display: 'block' },
-  heading: { fontSize: '2.5rem', fontWeight: '900', marginBottom: '24px', letterSpacing: '-1.5px', lineHeight: '1.2', wordBreak: 'keep-all', color: '#000' },
-  subHeading: { fontSize: '1.1rem', lineHeight: '1.6', color: '#49454f', marginBottom: '60px', wordBreak: 'keep-all' },
+  tag: { color: 'var(--accent)', fontWeight: '900', fontSize: '0.75rem', letterSpacing: '3px', marginBottom: '16px', display: 'block' },
+  heading: { fontSize: '2.5rem', fontWeight: '900', marginBottom: '24px', letterSpacing: '-1.5px', lineHeight: '1.2', wordBreak: 'keep-all', color: 'var(--text-primary)' },
+  subHeading: { fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '60px', wordBreak: 'keep-all' },
   articleSection: { marginBottom: '60px' },
-  articleH3: { fontSize: '1.3rem', fontWeight: '800', marginTop: '40px', marginBottom: '20px', color: '#000' },
-  articleP: { fontSize: '1.05rem', lineHeight: '1.8', color: '#444', marginBottom: '24px', wordBreak: 'keep-all' },
+  articleH3: { fontSize: '1.3rem', fontWeight: '800', marginTop: '40px', marginBottom: '20px', color: 'var(--text-primary)' },
+  articleP: { fontSize: '1.05rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '24px', wordBreak: 'keep-all' },
   listWrapper: { paddingLeft: '0', marginBottom: '32px', listStyleType: 'none' },
-  listItem: { position: 'relative', fontSize: '1rem', lineHeight: '1.8', color: '#444', marginBottom: '12px', wordBreak: 'keep-all', paddingLeft: '24px' },
-  listBullet: { position: 'absolute', left: 0, color: '#007bff', fontWeight: 'bold' },
+  listItem: { position: 'relative', fontSize: '1rem', lineHeight: '1.8', color: 'var(--text-secondary)', marginBottom: '12px', wordBreak: 'keep-all', paddingLeft: '24px' },
+  listBullet: { position: 'absolute', left: 0, color: 'var(--accent)', fontWeight: 'bold' },
   imgContainer: { marginTop: '40px' },
   heroImg: { width: '100%', height: '350px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '16px' },
-  footer: { padding: '60px 0', backgroundColor: '#1c1b1f', color: '#666', textAlign: 'center', fontSize: '0.85rem' },
+  footer: { padding: '60px 0', backgroundColor: 'var(--panel-bg)', color: 'var(--text-secondary)', textAlign: 'center', fontSize: '0.85rem' },
 
-  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: '#f5f5f5', border: '1px dashed #ddd', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
-  adLabel: { fontSize: '11px', color: '#ccc', fontWeight: 'bold', marginBottom: '10px' },
+  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: 'var(--card-bg)', border: '1px dashed var(--border-default)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
+  adLabel: { fontSize: '11px', color: 'var(--text-muted)', fontWeight: 'bold', marginBottom: '10px' },
 
   mobileAdWrapper: { margin: '40px 0', width: '100%' },
-  mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: '#f9f9f9', border: '1px dashed #eee', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' },
+  mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: 'var(--card-bg)', border: '1px dashed var(--border-default)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' },
 
   adSlotFixedLeft: { 
     position: 'fixed',
