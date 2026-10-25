@@ -25,7 +25,7 @@ import { getLanguageTag } from '../locales/config';
 import { getPublicUi } from '../locales/publicUi';
 import { supabase } from '../supabaseClient';
 import SEO from './SEO';
-import ThemeSwitcher from './ThemeSwitcher';
+import PublicSiteHeader from './PublicSiteHeader';
 import PublicProjectActions from './PublicProjectActions';
 import { DIMENSIONAL_KEYWORD_MAP } from '../utils/TagDictionary';
 import { exploreCardTags, exploreExcerpt, exploreEvidence } from '../utils/explorePresentation.js';
@@ -151,7 +151,7 @@ export default function PublicExplore() {
   const translation=usePublicTranslation(cardRows,i18n.language);
   return <div className="jsa-workspace explore-page" dir={i18n.dir()}>
     <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} availableLocales={[]} canonicalSearch={exploreSearch({page,view})} noIndex={!exploreIndexable(rows,query,error)} />
-    <header className="jsa-nav explore-nav"><LanguageLink className="explore-brand" to="/"><span className="explore-brand-mark"><ExploreIcon name="library" /></span>Smart JSA Bridge</LanguageLink><ThemeSwitcher compact /></header>
+    <PublicSiteHeader/>
     <main className="jsa-container">
       <section className="explore-hero">
         <div><p className="jsa-eyebrow">EXPLORE / JSA</p><h1>{ui.title}</h1><p className="explore-intro">{ui.intro}</p></div>

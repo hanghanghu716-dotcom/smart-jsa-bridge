@@ -10,6 +10,8 @@ The home now starts with task/equipment search and six recent public JSA cards, 
 - The home uses public-only, bounded database reads and a compact bootstrap. Restricted, rejected and known duplicate rows are excluded. Failed reads return a retryable error; withdrawn rows are not served from a static catalog snapshot.
 - All 11 supported base languages have the new copy. Saved private documents, reuse permissions, payment access and risk assessment content are unchanged.
 
+The public sitemap now overlaps at most two five-document batches under its original 20-second deadline. A sampled live request completed in 9.8 seconds after this change (14.4 seconds with sequential batches; latency varies). Its existence probe still stops after the first eligible batch, and any failed batch still fails the full response.
+
 ## Verified tag correction
 
 Two Korean public documents had substring classification errors: battery wording matched pruning, and workbench wording matched ladders. Three incorrect tags were removed from those two records, and the inference rules now require specific evidence. The exact original arrays are in home-tag-corrections-2026-10-25.json. No documents or search index entries were deleted. Restore only the removed tags if necessary, after comparing current tags to avoid overwriting later edits.
@@ -26,3 +28,9 @@ The public-JSA ad unit is after the reading content. Its existing eligibility ch
 - Desktop and 390px mobile home inspected; public reading and disclosure navigation checked in a guest browser session.
 - Full unit/regression suite: 597 passed. Changed JavaScript files pass ESLint.
 - Run npm run build before release. The release workflow also checks document PDF generation, regional navigation and live content delivery.
+
+## Screenshots
+
+![Desktop home](screenshots/public-resource-home.jpg)
+
+![Mobile home](screenshots/public-resource-home-mobile.jpg)
