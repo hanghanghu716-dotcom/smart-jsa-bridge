@@ -82,6 +82,8 @@ const ambiguous = {
   '설비(배관자재)': 'bolt|nut|coupling|볼트|너트|커플링',
   '준비(접지확인)': 'earth|bonding',
   '준비(안전표지)': 'tag',
+  '벌목작업': '전지',
+  '설비(사다리류)': '작업대|work platform',
 };
 const additions = {
   '왕복동/끼임위험': ['pinch points'],
@@ -96,6 +98,8 @@ const additions = {
   '용접흄': ['welding fumes'],
   '사고(추락)': ['fall from height', 'falls from height'],
   '준비(접지확인)': ['electrical bonding', 'earth connection'],
+  '벌목작업': ['가지치기', '수목 전지', '수목전지', 'tree pruning'],
+  '설비(사다리류)': ['이동식 사다리', '접이식 사다리', '작업발판', 'portable ladder', 'stepladder'],
 };
 export function inferenceTerms(tag, original) {
   const excluded = new Set((ambiguous[tag] || '').split('|'));

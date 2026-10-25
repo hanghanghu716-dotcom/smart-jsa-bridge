@@ -4,67 +4,33 @@ import AnalyticsSettings from '../components/AnalyticsSettings';
 import CommunityFooter from '../components/CommunityFooter';
 import '../styles/community.css';
 import { useTranslation } from 'react-i18next';
-import AdSenseUnit from '../components/AdSenseUnit';
+import PublicSiteHeader from '../components/PublicSiteHeader';
 import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
 // ✅ 커스텀 다국어 라우팅 훅 임포트[cite: 12]
-import { useLanguageNavigate } from '../hooks/useLanguage';
 
 export default function Privacy() {
-  const navigate = useLanguageNavigate(); // ✅ 현재 언어 상태를 유지하는 네비게이트 사용[cite: 12]
   const { t, i18n } = useTranslation('privacy');
   const ui = getSiteUi(i18n.language); // ✅ 'privacy' 네임스페이스 로드[cite: 12]
 
-  // 애드센스 설정 정보[cite: 12]
-  const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
-  const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
-  const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
   
-  // 모바일 전용 광고 슬롯 ID[cite: 12]
 
   return (
     <div style={styles.wrapper}>
       <SEO /> {/* ✅ 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 수행 */}
 
       {/* HEADER[cite: 12] */}
-      <header style={styles.header} className="max-lg:!px-6">
-        <div style={styles.container} className="flex justify-between items-center h-full w-full">
-          {/* ✅ 로고 클릭 시 현재 선택된 언어의 메인 페이지로 이동[cite: 12] */}
-          <h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1>
-        </div>
-      </header>
+      <PublicSiteHeader/>
       
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
           
-          {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 12] */}
-          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
-            <div style={styles.adPlaceholderBox}>
-              <AdSenseUnit 
-                client={PUBLISHER_ID} 
-                slot={LEFT_SIDEBAR_SLOT_ID} 
-                format="vertical" 
-                style={{ width: '160px', height: '600px' }} 
-              />
-            </div>
-          </aside>
 
-          {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 12] */}
-          <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
-            <div style={styles.adPlaceholderBox}>
-              <AdSenseUnit 
-                client={PUBLISHER_ID} 
-                slot={RIGHT_SIDEBAR_SLOT_ID} 
-                format="vertical" 
-                style={{ width: '160px', height: '600px' }} 
-              />
-            </div>
-          </aside>
 
           {/* 다국어 처리 반영 영역[cite: 12] */}
           <span style={styles.tag}>{t('pageTag')}</span>
-          <h2 style={styles.heading} className="max-lg:!text-[2rem]">
+          <h1 style={styles.heading} className="max-lg:!text-[2rem]">
             {t('heading.line1')}<br />{t('heading.line2')}
-          </h2>
+          </h1>
           
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{getAnalyticsText(i18n.language).title}</h3>
@@ -111,7 +77,7 @@ export default function Privacy() {
         </div>
       </section><CommunityFooter/>
 
-      <footer style={styles.footer}><p>© 2026 Smart JSA Bridge. All rights reserved.</p></footer>
+
     </div>
   );
 }

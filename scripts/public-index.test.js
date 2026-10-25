@@ -1,3 +1,4 @@
+import { setImmediate } from 'node:timers';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readPublicIndex } from '../server/public-index.js';
@@ -53,4 +54,13 @@ test('a failed assessment batch fails the sitemap instead of publishing a partia
 test('invalid IDs cannot enter an assessment filter',async()=>{
   const {fetcher}=upstream([{id:'bad-filter'}]);
   await assert.rejects(readPublicIndex(fetcher),/INVALID_PUBLIC_INDEX_ID/);
+});
+
+test('full indexes overlap at most two bounded batches and preserve deterministic output order',async()=>{
+  const rows=makeRows(71),base=upstream(rows,{cap:3});let active=0,peak=0;
+  const fetcher=async url=>{const detail=new URL(url).searchParams.get('select')!=='id';
+    if(detail){active++;peak=Math.max(peak,active);await new Promise(resolve=>setImmediate(resolve));}
+    try{return await base.fetcher(url);}finally{if(detail)active--;}
+  };
+  assert.deepEqual(await readPublicIndex(fetcher),rows);assert.equal(peak,2);assert.equal(active,0);
 });

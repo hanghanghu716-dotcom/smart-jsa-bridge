@@ -13,12 +13,14 @@ const row={id,author_id:author,title:'Valve isolation',is_public:true,public_cou
 const all=(n,p)=>[...(p(n)?[n]:[]),...(n.childNodes||[]).flatMap(x=>all(x,p))];
 const text=n=>n.nodeName==='#text'?n.value:(n.childNodes||[]).filter(x=>!['script','style'].includes(x.tagName)).map(text).join(' ');
 const res=()=>({headers:{},setHeader(k,v){this.headers[k]=v;},end(b){this.body=b;}});
-test('every supported locale has procedure-first readable HTML, localized categories and additional controls without private fields',()=>{
+test('every supported locale has reading-first HTML with an optional procedure preview, localized categories and additional controls without private fields',()=>{
  for(const locale of SUPPORTED_LANGS){
   const html=renderPublicHtml(shell,{...row,public_locale:locale},locale,false,null,{id:author,nickname:'Public author'}),tree=parse(html),body=text(tree),ui=getPublicDocumentUi(locale);
   assert.ok(body.includes(ui.procedurePreview));assert.ok(body.includes('Confirm the vent remains open.'));
   assert.ok(body.includes(publicCategoryLabel('고압유체/압력',locale)));if(locale!=='ko')assert.ok(!body.includes('고압유체/압력'));
-  assert.equal(all(tree,n=>n.tagName==='h1').length,1);assert.ok(body.indexOf(ui.procedurePreview)<body.indexOf('Trapped pressure'));
+  assert.equal(all(tree,n=>n.tagName==='h1').length,1);assert.ok(body.indexOf('Trapped pressure')<body.indexOf(ui.procedurePreview));
+  const preview=all(tree,n=>n.tagName==='details'&&n.attrs.some(a=>a.name==='id'&&a.value==='public-preview-panel'))[0];
+  assert.ok(preview); assert.ok(!preview.attrs.some(a=>a.name==='open'));
   assert.ok(body.includes('Public author'));assert.ok(body.includes('2026-10-19'));assert.doesNotMatch(html,/PRIVATE_MANAGER|PRIVATE_LOCATION|PRIVATE_OWNER|PRIVATE_VERIFIER/);
  }
 });

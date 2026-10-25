@@ -38,9 +38,8 @@ export default function CommerceRecommendations({ kind, contentId, locale, conte
  },[kind,contentId,contentLocale,locale,requestKey]);
  const data=result?.key===requestKey?result.data:null;
  const items=(data?.status==='ready'?data.items:[])?.slice(0,8)||[];
- // Numbered case sections remain stable while the catalogue loads or has no
- // matching merchant. Sidebars only exist when there are reviewed matches.
- if(!items.length&&!sectionNumber)return null;
+ // Render commercial sections only when reviewed, available products exist.
+ if(!items.length)return null;
  return <>
    <section id={sectionNumber?'section-'+sectionNumber:undefined} className={'commerce-panel commerce-panel--inline'+(sectionNumber?' commerce-panel--article':'')} aria-labelledby={labelId} dir={locale?.startsWith('ar')?'rtl':'ltr'}>
      <h2 id={labelId}>{sectionNumber?sectionNumber+'. ':''}{ui.title}</h2>

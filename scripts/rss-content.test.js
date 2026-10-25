@@ -103,7 +103,7 @@ test('case RSS matches the complete delivered article after resources and review
   const normalized = node => text(node).replace(/\s+/g, ' ').trim();
   assert.ok(normalized(body).includes(normalized(article)));
   const headings = all(body, n => n.tagName === 'h2').map(text);
-  assert.deepEqual(headings.map(s => s.split('.')[0]), ['1', '11', '12', '13']);
+  assert.deepEqual(headings.map(s => s.split('.')[0]), ['1', '11', '13']);
   assert.match(text(body), /검토 기록 전체/);
   assert.ok(all(body, n => n.tagName === 'a').some(n => n.attrs.some(a => a.name === 'href' && a.value.endsWith('/example.pdf'))));
 });

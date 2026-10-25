@@ -76,6 +76,13 @@ def check(item):
             if value and normalize(value) not in body:
                 raise ValueError(f'Missing public text in RSS: {url}')
         return 'public-jsa'
+    if CANDIDATE:
+        # The previous release renders an empty commerce section. The candidate
+        # intentionally removes only this exact heading-only placeholder; keep
+        # all populated sections and every actual article token mandatory.
+        page = re.sub(
+            r'<section id="section-\d+"><h2>\d+\. (?:Related products|관련 상품)</h2></section>',
+            '', page)
     expected = visible(page, article_only=True)
     # Candidate HTML may intentionally move complete sections relative to the
     # currently deployed page. Keep every text token (including multiplicity)

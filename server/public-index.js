@@ -9,15 +9,23 @@ export async function readPublicIndex(fetcher = fetch, { firstIndexable = false 
   const ids = await readAllPublic('public_jsa_index', { select: 'id', is_public: 'eq.true' }, boundedFetch);
   if (ids.some(row => !validProjectId(row.id))) throw Error('INVALID_PUBLIC_INDEX_ID');
   const result = [];
-  for (let offset = 0; offset < ids.length; offset += 10) {
+  // Independent bounded batches share one deadline. Keep the existence probe
+  // sequential so it still stops after the first eligible batch.
+  const batchSize = firstIndexable ? 10 : 5;
+  const windowSize = 10;
+  for (let offset = 0; offset < ids.length; offset += windowSize) {
     signal.throwIfAborted();
-    const batch = ids.slice(offset, offset + 10).map(row => row.id);
-    // Keep the ID constraint in AND so keyset pagination never overwrites it.
-    const rows = await readAllPublic('public_jsa_index', {
-      select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true',
-      and: '(id.in.(' + batch.join(',') + '))',
-    }, boundedFetch, { pageSize: 10 });
-    if (rows.some(row => !batch.includes(row.id))) throw Error('INVALID_PUBLIC_INDEX_BATCH');
+    const batches = [];
+    for (let start = offset; start < Math.min(ids.length, offset + windowSize); start += batchSize) batches.push(ids.slice(start, start + batchSize).map(row => row.id));
+    const rows = (await Promise.all(batches.map(async batch => {
+      // Keep the ID constraint in AND so keyset pagination never overwrites it.
+      const records = await readAllPublic('public_jsa_index', {
+        select: PUBLIC_INDEX_FIELDS, is_public: 'eq.true',
+        and: '(id.in.(' + batch.join(',') + '))',
+      }, boundedFetch, { pageSize: batchSize });
+      if (records.some(row => !batch.includes(row.id))) throw Error('INVALID_PUBLIC_INDEX_BATCH');
+      return records;
+    }))).flat();
     result.push(...rows);
     if (firstIndexable && rows.some(row => publicIndexQuality(row).indexable)) break;
   }
