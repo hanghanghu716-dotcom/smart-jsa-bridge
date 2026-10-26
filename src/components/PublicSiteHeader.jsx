@@ -45,13 +45,14 @@ export default function PublicSiteHeader({ community = false }) {
     <div className="public-site-masthead"><div className="public-site-top"><LanguageLink className="public-site-brand" to="/">
       <span className="public-site-mark public-site-logo" aria-hidden="true"><svg viewBox="250 135 300 300" width="42" height="42" focusable="false"><image href="/logo.png" width="800" height="800" /></svg></span><span>Smart JSA Bridge<small>{ui.tagline}</small></span>
     </LanguageLink><div className="public-site-settings">
-      <PublicSiteMenu locale={locale}/>
       <select aria-label="Language / Region" value={locale} onChange={changeLocale}>
         {!LANGUAGE_OPTIONS.some(item => item.code === locale) && <option value={locale}>{locale}</option>}
         {LANGUAGE_OPTIONS.map(item => <option key={item.code} value={item.code}>{item.label}</option>)}
       </select><ThemeSwitcher compact />
     </div></div></div>
-    <div className="public-site-nav-shell"><div className="public-site-nav-row"><nav className="public-site-nav" aria-label={p.title}>
+    <div className="public-site-nav-shell"><div className="public-site-nav-row">
+      <PublicSiteMenu locale={locale}/>
+      <nav className="public-site-nav" aria-label={p.title}>
       <LanguageLink to="/explore">{p.title}</LanguageLink>
       <LanguageLink to="/archive">{ui.cases}</LanguageLink>
       <LanguageLink to="/jrajsa">{ui.guide}</LanguageLink>
