@@ -59,9 +59,17 @@ async function readFeedDocuments(locale, fetcher) {
         order: 'content_updated_at.desc.nullslast,published_at.desc,id', limit: '50' }, boundedFetch);
       return { data, count: data.length };
     },
-    readBatch: async ids => ({ data: await readPublic('public_jsa_catalog', {
-      ...filters, select: PUBLIC_JSA_FIELDS, id: 'in.(' + ids.join(',') + ')',
-    }, boundedFetch) }),
+    readBatch: async ids => {
+      const data = [];
+      // Keep each expensive assessment query below the anonymous DB deadline.
+      // Read every sub-batch, including those after wholly withdrawn groups.
+      for (let offset = 0; offset < ids.length; offset += 3) {
+        data.push(...await readPublic('public_jsa_catalog', {
+          ...filters, select: PUBLIC_JSA_FIELDS, id: 'in.(' + ids.slice(offset, offset + 3).join(',') + ')',
+        }, boundedFetch));
+      }
+      return { data };
+    },
   });
   return result.rows;
 }

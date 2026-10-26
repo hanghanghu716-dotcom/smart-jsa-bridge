@@ -117,13 +117,13 @@ test('RSS bounds full-document assessments and omits withdrawn rows without trun
   assert.equal(p.get('public_locale'),'eq.ko');assert.equal(p.get('is_public'),'eq.true');
   if(p.get('select')==='id')return Response.json(records.map(({id})=>({id})));
   const ids=p.get('id').slice(4,-1).split(',');calls.push(ids);
-  assert.ok(ids.length<=10);assert.ok(p.get('select').includes('analysis_data'));
-  return Response.json(records.filter(row=>ids.includes(row.id)&&row.id!==records[3].id).reverse().slice(0,4));
+  assert.ok(ids.length<=3);assert.ok(p.get('select').includes('analysis_data'));
+  return Response.json(records.filter(row=>ids.includes(row.id)&&![records[3].id,records[4].id,records[5].id].includes(row.id)).reverse().slice(0,4));
  }});
  const res={setHeader(){},end(body){this.body=body;}};
  await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
- assert.equal(res.statusCode,200);assert.equal(descriptions(res.body).length,11);
- assert.doesNotMatch(res.body,/RSS document 3</);
+ assert.equal(res.statusCode,200);assert.equal(descriptions(res.body).length,9);
+ assert.doesNotMatch(res.body,/RSS document [345]</);
  for(const html of descriptions(res.body))assert.ok(html.includes('권고 대책 3'));
  assert.ok(calls.length>2);
 });
@@ -135,7 +135,8 @@ test('RSS rejects a later assessment failure instead of publishing only cases or
   if(u.pathname.endsWith('/case_studies'))return Response.json([post]);
   if(p.get('select')==='id')return Response.json(records.map(({id})=>({id})));
   if(++batches>1)return new Response('timeout',{status:500});
-  return Response.json(records.slice(0,10));
+  const ids=p.get('id').slice(4,-1).split(',');
+  return Response.json(records.filter(row=>ids.includes(row.id)));
  }});
  const res={setHeader(){},end(body){this.body=body;}};
  await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
