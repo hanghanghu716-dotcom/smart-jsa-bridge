@@ -22,3 +22,5 @@
 .operator-bio-disclosure>summary{width:fit-content;color:var(--text-secondary);font-size:.85rem;cursor:pointer;line-height:1.6;padding:4px 0;text-decoration:underline;text-underline-offset:3px;}
 .operator-bio-disclosure>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
 .operator-bio-disclosure .operator-profile{margin-block:12px 0;font-size:.9rem;}
+
+.operator-bio-disclosure:not([open])>.operator-profile{display:none;}

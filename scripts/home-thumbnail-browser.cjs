@@ -63,6 +63,14 @@ const documentRow = {
   });
   await page.goto(base+'/ko',{waitUntil:'domcontentloaded'});
   await page.waitForSelector('.home-resource-card');
+  await page.click('.public-site-all-menu>summary');
+  for(const theme of ['light','dark']){
+   await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;},theme);
+   const colors=await page.$eval('.public-site-menu-panel',node=>({panel:getComputedStyle(node).color,link:getComputedStyle(node.querySelector('a')).color}));
+   assert.equal(colors.link,colors.panel,'Full-menu links retain theme text color inside the blue masthead');
+  }
+  await page.evaluate(()=>{document.documentElement.dataset.theme='light';});
+  await page.click('.public-site-all-menu>summary');
   await page.$eval('.home-public-section',n=>n.scrollIntoView());
   await page.waitForFunction(()=>document.querySelector('.risk-pdf-thumbnail img'));
   assert.equal(await page.$('.home-risk-thumbnail .document-paper'),null,'loading must never show a scope summary');
