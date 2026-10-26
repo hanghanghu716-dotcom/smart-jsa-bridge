@@ -26,11 +26,34 @@ const base='http://127.0.0.1:4214';
    if(g){
     assert.equal(await page.title(),g.title);
     assert.equal(await page.$eval('[data-regional-guidance]',el=>el.dataset.regionalGuidance),locale);
-    if(ns!=='about')for(const [,href] of g.profile.links)assert.ok(await page.$$eval('[data-regional-guidance-sources] a',(links,href)=>links.some(a=>a.href===href),href));
+    if(ns==='regulation')for(const [,href] of g.profile.links)assert.ok(await page.$$eval('[data-regional-guidance-sources] a',(links,href)=>links.some(a=>a.href===href),href));
     if(ns==='about')assert.ok(await page.$('.plan-overview'),'Existing plan information remains available');
+   }
+   if(g&&ns==='jrajsa'){
+    assert.equal(await page.$$eval('.regional-guidance-steps li',nodes=>nodes.length),g.text.steps.length);
+    assert.equal(await page.$('[data-regional-guidance-sources]'),null,'Official sources belong on regulation');
+    assert.ok(await page.$('a[href="/'+locale+'/regulation"]'),'Writing guide links to the requirements page');
+   }
+   if(ns==='about'){
+    assert.ok(await page.$eval('.operator-bio-disclosure',el=>!el.open&&el.previousElementSibling.matches('[data-operator-contact]')),'Biography starts closed directly below contact');
+    assert.equal(await page.$eval('[data-operator-profile]',el=>el.getBoundingClientRect().height),0);
+    await page.click('.operator-bio-disclosure>summary');
+    assert.ok(await page.$eval('[data-operator-profile]',el=>el.getBoundingClientRect().height>0));
+    await page.click('.operator-bio-disclosure>summary');
+    await page.click('.public-site-all-menu>summary');
+    for(const route of ['regulation','jrajsa','protectiveequipment','riskclassification','dictionary','guideline/common','guideline/construction','guideline/manufacturing','guideline/chemical','guideline/high-risk','guideline/general']){
+     assert.ok(await page.$('.public-site-menu-panel a[href="/'+locale+'/'+route+'"]'),'Restore old sidebar route '+route);
+    }
+    await page.focus('.public-site-all-menu>summary');await page.keyboard.press('Escape');
+    assert.equal(await page.$eval('.public-site-all-menu',el=>el.open),false);
    }
    await page.setViewport({width:390,height:844});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),`${locale}/${ns}: mobile overflow`);
+   if(ns==='about'){
+    await page.click('.public-site-all-menu>summary');
+    assert.ok(await page.$eval('.public-site-menu-panel',el=>{const r=el.getBoundingClientRect();return r.left>=-2&&r.right<=innerWidth+2;}),'Mobile full menu stays within the viewport');
+    await page.click('.public-site-all-menu>summary');
+   }
    if(locale==='ar-SA')assert.equal(await page.$eval('[dir="rtl"]',el=>el.dir),'rtl');
    count++;
   }

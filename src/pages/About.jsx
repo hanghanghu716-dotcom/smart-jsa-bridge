@@ -61,7 +61,6 @@ export default function About() {
             {t('mainHeading.line1')}<br />{t('mainHeading.line2')}
           </Heading>
           
-          <OperatorProfile locale={i18n.language}/>
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section1.content') }} />
@@ -106,6 +105,7 @@ export default function About() {
 
       <UsGuidanceReferences guidance={guidance} />
       <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
+      <div className="about-operator-footer"><OperatorProfile locale={i18n.language} collapsed/></div>
       <CommunityFooter />
     </div>
   );

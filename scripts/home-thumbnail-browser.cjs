@@ -27,13 +27,14 @@ const documentRow = {
  browser=await puppeteer.launch({executablePath:process.env.PUPPETEER_EXECUTABLE_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,userDataDir:fs.mkdtempSync(path.join(out,'browser-')),dumpio:process.env.JSA_QA_DEBUG==='1',args:['--no-sandbox']});
   const page=await browser.newPage();await page.setViewport({width:1280,height:900});
   const errors=[],requests=[],writes=[];let legacy=false,published=false;
+  let releaseThumbnail;const thumbnailReady=new Promise(resolve=>{releaseThumbnail=resolve;});
   page.on('pageerror',error=>errors.push(String(error)));
   const sample=await page.evaluate(()=>{const c=document.createElement('canvas');c.width=720;c.height=509;const x=c.getContext('2d');x.fillStyle='white';x.fillRect(0,0,720,509);x.fillStyle='#1667b1';x.fillRect(20,30,680,20);x.font='24px sans-serif';x.fillText('Saved risk assessment preview',30,100);return c.toDataURL('image/webp').split(',')[1];});
   await page.setRequestInterception(true);
   page.on('request',async request=>{
     const url=request.url(),u=new URL(url);requests.push(url);
     if(url.startsWith('data:')||url.startsWith('blob:'))return request.continue();
-    if(u.pathname==='/api/jsa-thumbnail')return request.respond(u.searchParams.get('id')===id(2) ? {status:404,contentType:'text/plain',body:'Not found'} : {status:200,contentType:'image/webp',body:Buffer.from(sample,'base64')});
+    if(u.pathname==='/api/jsa-thumbnail'){await thumbnailReady;return request.respond(u.searchParams.get('id')===id(2) ? {status:404,contentType:'text/plain',body:'Not found'} : {status:200,contentType:'image/webp',body:Buffer.from(sample,'base64')});}
     if(url.startsWith(base))return request.continue();
     if(request.method()==='OPTIONS')return request.respond({status:200,headers:{'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-allow-methods':'*'}});
     if(u.hostname.endsWith('.supabase.co')){
@@ -60,10 +61,17 @@ const documentRow = {
     }
     return request.abort();
   });
-  await page.goto(base+'/ko',{waitUntil:'networkidle0'});
+  await page.goto(base+'/ko',{waitUntil:'domcontentloaded'});
   await page.waitForSelector('.home-resource-card');
   await page.$eval('.home-public-section',n=>n.scrollIntoView());
-  await page.waitForFunction(()=>document.querySelector('.risk-pdf-thumbnail img')?.naturalWidth>0);
+  await page.waitForFunction(()=>document.querySelector('.risk-pdf-thumbnail img'));
+  assert.equal(await page.$('.home-risk-thumbnail .document-paper'),null,'loading must never show a scope summary');
+  const placeholder=await page.$eval('.home-risk-thumbnail',node=>({height:node.getBoundingClientRect().height,background:getComputedStyle(node).backgroundColor,opacity:getComputedStyle(node.querySelector('.risk-pdf-thumbnail')).opacity}));
+  assert.ok(placeholder.height>100,'placeholder reserves the image height');
+  assert.notEqual(placeholder.background,'rgba(0, 0, 0, 0)');assert.equal(placeholder.opacity,'0');
+  releaseThumbnail();
+  await page.waitForFunction(()=>document.querySelector('.risk-pdf-thumbnail img')?.naturalWidth>0&&getComputedStyle(document.querySelector('.risk-pdf-thumbnail')).opacity==='1');
+  assert.equal(await page.$('.home-risk-thumbnail .document-paper'),null,'loaded image has no summary underneath');
   await page.$$eval('.home-resource-card',nodes=>nodes[1].scrollIntoView());
   await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card')[1]?.querySelector('.risk-pdf-thumbnail')===null).catch(async error=>{
     console.error('Thumbnail states',await page.$$eval('.home-resource-card',nodes=>nodes.map(n=>({title:n.querySelector('h3')?.textContent,src:n.querySelector('img')?.src,complete:n.querySelector('img')?.complete,width:n.querySelector('img')?.naturalWidth}))));throw error;
@@ -77,6 +85,7 @@ const documentRow = {
   legacy=true;await page.reload({waitUntil:'networkidle0'});await page.waitForSelector('.home-resource-card');
   assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),6);
   assert.equal(await page.$('.risk-thumbnail-renderer'),null);
+  assert.equal(await page.$('.home-risk-thumbnail .document-paper'),null,'missing images retain only the blank placeholder');
   legacy=false;
   const captures=await page.evaluate(async row=>{
     const {renderRiskThumbnail}=await import('/src/utils/renderRiskThumbnail.jsx');
@@ -110,6 +119,6 @@ const documentRow = {
   assert.equal(published,true,'workspace must generate and save existing public thumbnails');
   assert.deepEqual(writes,['image','metadata']);
   assert.deepEqual(errors,[]);
-  console.log(JSON.stringify({passed:['metadata-only home','no PDF/canvas code on home','image error fallback','old-schema fallback','first-page WebP in light/dark','owner workspace backfill'],captures:captures.map(({base64,...rest})=>rest),out},null,2));
+  console.log(JSON.stringify({passed:['metadata-only home','no PDF/canvas code on home','blank loading/error placeholder without summary overlap','old-schema fallback','first-page WebP in light/dark','owner workspace backfill'],captures:captures.map(({base64,...rest})=>rest),out},null,2));
  }finally{await browser?.close();await server.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

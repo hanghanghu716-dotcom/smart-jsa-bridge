@@ -6,5 +6,5 @@ export function regionalFixedGuidance(pathname,namespace){
  const language=locale?.split('-')[0],text=copy[language];
  if(!profile||!text?.titles[namespace])return null;
  return {locale,profile,text,namespace,title:`${text.titles[namespace]} — ${profile.name} | Smart JSA Bridge`,
-  description:namespace==='about'?text.about[0]:namespace==='jrajsa'?text.intro:profile.scope,checked:'2026-10-20'};
+  description:namespace==='about'?text.about[0]:namespace==='jrajsa'?text.intro:text.regulationIntro,checked:'2026-10-20'};
 }

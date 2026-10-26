@@ -15,16 +15,25 @@ export default function RegionalGuidancePage({guidance}){
   <SEO pageTitle={guidance.title} pageDescription={guidance.description}/>
   <PublicSiteHeader/>
   <main className="regional-guidance-main" data-regional-guidance={locale}>
-   <header className="regional-guidance-hero"><p className="jsa-eyebrow">{profile.name}</p><h1>{text.titles[namespace]}</h1><p>{namespace==='about'?text.about[0]:text.intro}</p></header>
+   <header className="regional-guidance-hero"><p className="jsa-eyebrow">{profile.name}</p><h1>{text.titles[namespace]}</h1><p>{namespace==='about'?text.about[0]:namespace==='regulation'?text.regulationIntro:text.intro}</p></header>
    <nav className="regional-guidance-tabs">{Object.entries(text.titles).map(([path,title])=><LanguageLink key={path} to={'/'+path} aria-current={path===namespace?'page':undefined}>{title}</LanguageLink>)}</nav>
-   {namespace!=='about'&&<>
+   {namespace==='regulation'&&<>
     {section(l[0],<><p>{profile.scope}</p><p className="regional-guidance-terms">{profile.terms}</p></>)}
     {section(l[1],<p>{profile.application}</p>)}
-    {namespace==='jrajsa'&&section(l[2],<ol className="regional-guidance-steps">{text.steps.map((step,i)=><li key={i}>{step}</li>)}</ol>)}
-    {section(l[3],<p>{text.limits}</p>)}
     <section className="regional-guidance-section" data-regional-guidance-sources><h2>{l[6]}: <time dateTime={checked}>{checked}</time></h2><ul>{profile.links.map(([title,href])=><li key={href}><a href={href} rel="noopener noreferrer">{title}</a></li>)}</ul></section>
    </>}
-   {namespace==='about'&&<><OperatorProfile locale={locale}/>{section(l[4],<><p>{text.about[1]}</p><p>{text.about[2]}</p></>)}{section(l[5],<p>{text.about[3]}</p>)}{section(getPlansUi(locale).title,<><p>{getPlansUi(locale).intro}</p><PlanOverview/></>)}</>}
+   {namespace==='jrajsa'&&<>
+    {section(l[2],<ol className="regional-guidance-steps">{text.steps.map((step,i)=><li key={i}>{step}</li>)}</ol>)}
+    {section(l[1],<p>{text.about[2]}</p>)}
+    {section(l[3],<p>{text.limits}</p>)}
+    <p className="regional-guidance-related"><LanguageLink to="/regulation">{text.titles.regulation}</LanguageLink></p>
+   </>}
+   {namespace==='about'&&<>
+    {section(l[4],<p>{text.about[1]}</p>)}
+    {section(l[5],<p>{text.about[3]}</p>)}
+    {section(getPlansUi(locale).title,<><p>{getPlansUi(locale).intro}</p><PlanOverview/></>)}
+    <OperatorProfile locale={locale} collapsed/>
+   </>}
    <DiscoveryTopics locale={locale}/>
    <nav className="regional-guidance-tabs"><LanguageLink to="/info">{l[9]}</LanguageLink><LanguageLink to="/community">{l[7]}</LanguageLink><LanguageLink to="/privacy">{l[8]}</LanguageLink></nav>
   </main><CommunityFooter/>

@@ -17,11 +17,10 @@
 .document-paper--summary>small {font-size:9px;color:#1667b1;}
 :root[data-theme="dark"] .document-paper {filter:brightness(.9);box-shadow:0 3px 14px #0003;}
 
-.home-risk-thumbnail {position:relative;overflow:hidden;}
+.home-risk-thumbnail {position:relative;overflow:hidden;aspect-ratio:3/2;background:var(--home-tint);}
 .risk-pdf-thumbnail {position:absolute;inset:0;background:var(--home-tint);padding:12px;display:grid;place-items:center;}
 .risk-pdf-thumbnail>img {width:100%;height:100%;object-fit:contain;box-shadow:0 2px 7px #0001;}
 .risk-thumbnail-renderer {position:fixed;left:-20000px;top:0;width:1050px;pointer-events:none;z-index:-1;}
 .risk-thumbnail-renderer .jsa-public-paper {width:1050px;max-width:none;background:white;color:black;box-sizing:border-box;}
 
-.home-risk-thumbnail .document-thumbnail {aspect-ratio:3/2;}
 .risk-pdf-thumbnail>img {position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);object-fit:contain;}

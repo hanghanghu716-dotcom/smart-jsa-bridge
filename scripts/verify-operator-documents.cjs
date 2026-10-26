@@ -24,6 +24,21 @@ const {spawn}=require('node:child_process');
   }
   browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-setuid-sandbox']});
   const page=await browser.newPage();await page.setViewport({width:1440,height:1000});
+  if(!local){
+   await page.goto(baseUrl+'/ko',{waitUntil:'networkidle2',timeout:60000});
+   await page.waitForSelector('.home-risk-thumbnail',{timeout:30000});
+   assert.equal(await page.$('.home-risk-thumbnail .document-paper'),null,'Live home must not contain the scope summary underneath images');
+   const thumbnails=await page.$$('.home-risk-thumbnail');let loaded=0;
+   for(const thumbnail of thumbnails){
+    await thumbnail.evaluate(node=>node.scrollIntoView({block:'center'}));
+    if(await thumbnail.$('img')){
+     await page.waitForFunction(node=>node.querySelector('img')?.naturalWidth===720&&getComputedStyle(node.querySelector('.risk-pdf-thumbnail')).opacity==='1',{timeout:20000},thumbnail);loaded++;
+    }
+    assert.ok(await thumbnail.evaluate(node=>node.getBoundingClientRect().height>100),'Live placeholder keeps its height');
+   }
+   assert.ok(loaded>0,'Existing saved previews must still display');
+   console.log(JSON.stringify({liveHomeImages:loaded,scopeSummaryUnderImages:false}));
+  }
   const catalogRows=new Map(),detailReads=[],catalogErrors=[];
   page.on('response',response=>{
    const url=new URL(response.url());

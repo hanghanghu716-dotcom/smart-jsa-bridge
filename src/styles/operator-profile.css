@@ -15,3 +15,10 @@
 .operator-profile-compact{margin-block:40px 0;background:transparent;border-inline-start:4px solid var(--accent,#1265a8);}
 .operator-profile-compact>p:not(.operator-name):not(.operator-role){max-width:85ch;}
 @media(max-width:600px){.operator-profile{padding:20px}.operator-contact-links{flex-direction:column}.operator-profile .operator-name,.operator-contact .operator-name{font-size:1.3rem}}
+
+.about-operator-footer{max-width:1100px;width:100%;margin-inline:auto;padding:0 24px 32px;}
+.operator-about .operator-contact{margin-block-end:8px;}
+.operator-bio-disclosure{margin:0 24px 28px;text-align:start;}
+.operator-bio-disclosure>summary{width:fit-content;color:var(--text-secondary);font-size:.85rem;cursor:pointer;line-height:1.6;padding:4px 0;text-decoration:underline;text-underline-offset:3px;}
+.operator-bio-disclosure>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
+.operator-bio-disclosure .operator-profile{margin-block:12px 0;font-size:.9rem;}

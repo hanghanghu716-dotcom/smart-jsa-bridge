@@ -3,9 +3,9 @@ import { getOperatorProfileUi, operatorDisplayName } from '../locales/operatorPr
 import OperatorContact from './OperatorContact';
 import '../styles/operator-profile.css';
 
-export default function OperatorProfile({ locale, compact = false }) {
+export default function OperatorProfile({ locale, compact = false, collapsed = false }) {
   const ui = getOperatorProfileUi(locale);
-  return <section className={'operator-profile' + (compact ? ' operator-profile-compact' : '')} data-operator-profile={compact ? 'compact' : 'full'} dir={locale?.startsWith('ar') ? 'rtl' : 'ltr'}>
+  const profile = <section className={'operator-profile' + (compact ? ' operator-profile-compact' : '')} data-operator-profile={compact ? 'compact' : 'full'} dir={locale?.startsWith('ar') ? 'rtl' : 'ltr'}>
     <h2>{ui.title}</h2>
     <p className="operator-name"><bdi dir="ltr">{operatorDisplayName(locale)}</bdi></p>
     <p className="operator-role">{ui.role}</p>
@@ -15,7 +15,14 @@ export default function OperatorProfile({ locale, compact = false }) {
       <ul data-operator-experience>{ui.experience.map((item, index) => <li key={index}>{item}</li>)}</ul>
       <p className="operator-scope">{ui.scope}</p>
       <p>{ui.independence}</p>
-      <OperatorContact locale={locale} embedded />
+      {!collapsed && <OperatorContact locale={locale} embedded />}
     </>}
   </section>;
+  return collapsed ? <div className="operator-about">
+    <OperatorContact locale={locale}/>
+    <details className="operator-bio-disclosure">
+      <summary>{ui.title}</summary>
+      {profile}
+    </details>
+  </div> : profile;
 }

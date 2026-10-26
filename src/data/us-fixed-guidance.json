@@ -309,23 +309,23 @@
         }
       },
       "section3": {
-        "title": "From reference to a site-specific plan",
-        "subtitle": "Keep reference content separate from the evidence and authorization required for your actual job.",
+        "title": "How the service maintains its content",
+        "subtitle": "Editorial references, community publications and personal documents have different authors and responsibilities.",
         "step1": {
-          "bold": "Find a relevant reference:",
-          "desc": "Use Case Study for worked examples and Explore for public JHAs. Check the country, task boundaries and source information."
+          "bold": "Authorship and sources:",
+          "desc": "Content pages distinguish operator material from user contributions and provide source notes where available."
         },
         "step2": {
-          "bold": "Adapt and check:",
-          "desc": "Reuse suitable public steps where available, or prepare your own. Case Study starting options may provide only a task name when no reviewed step connection is available."
+          "bold": "Editing and review:",
+          "desc": "Source checking and editorial review help maintain the material. An operator badge does not imply independent professional certification."
         },
         "step3": {
-          "bold": "Review and export:",
-          "desc": "Confirm current site inputs, responsibilities and controls, then use the document and PDF tools. An exported document does not itself authorize the work."
+          "bold": "Corrections:",
+          "desc": "Report an error with the page address and the passage concerned through the contact options below."
         },
         "step4": {
-          "bold": "Improve and share deliberately:",
-          "desc": "Use feedback to improve the analysis. Choose whether to publish a document, and check the public version for confidential or personal information before sharing."
+          "bold": "Original attachments:",
+          "desc": "Attached files remain in the language and format provided by their author. Changing the site language does not translate those files."
         }
       },
       "section4": {

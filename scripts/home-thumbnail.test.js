@@ -64,7 +64,7 @@ test('current revisions render saved images; stale or malformed paths never rend
   assert.equal(thumbnailObjectPath(id(1),'../../private'),null);
   const cards=homeSummaryCards([current],'ko'), html=renderHomePublic({cards},'ko');
   assert.match(html,/api\/jsa-thumbnail/);assert.match(html,/loading="lazy"/);assert.match(html,/decoding="async"/);
-  assert.doesNotMatch(html,/PRIVATE_|canvas|iframe|\.pdf/);
+  assert.doesNotMatch(html,/PRIVATE_|canvas|iframe|\.pdf|document-paper|document-thumbnail/);
 });
 
 test('image endpoint revalidates publication before returning 304 and refuses withdrawn content', async () => {
