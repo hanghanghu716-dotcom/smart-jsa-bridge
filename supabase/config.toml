@@ -1,0 +1,3 @@
+# GitHub OIDC is verified inside the handler; no anonymous writes are allowed.
+[functions.publish-jsa-thumbnail]
+verify_jwt = false

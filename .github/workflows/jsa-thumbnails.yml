@@ -1,0 +1,53 @@
+name: Generate public JSA thumbnails
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/jsa-thumbnails.yml'
+      - 'scripts/publish-jsa-thumbnails.js'
+      - 'supabase/functions/publish-jsa-thumbnail/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+concurrency:
+  group: public-jsa-thumbnail-generation
+  cancel-in-progress: false
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  thumbnails:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: true
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Verify worker authorization and publication races
+        run: node --test scripts/thumbnail-worker.test.js
+      - name: Restore rendering fonts
+        id: fonts-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - name: Prepare Chrome and fonts
+        run: bash scripts/setup-rendering.sh
+      - name: Generate missing risk assessment images and verify production
+        run: node scripts/publish-jsa-thumbnails.js
+      - name: Preserve actual rendering and production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-jsa-thumbnails-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/thumbnail-worker/
+          include-hidden-files: true
+          retention-days: 3
+          if-no-files-found: ignore
