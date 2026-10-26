@@ -59,7 +59,7 @@ export default function Main() {
   }, [startOpen]);
   const start = isMember => {
     clearActiveDraft({ preserveGuest: !isMember });
-    navigate('/info', { state: { ...newJourneyState(journeyContext(locale)), isMember } });
+    navigate('/templates', { state: { ...newJourneyState(journeyContext(locale)), isMember } });
   };
   const create = () => user ? start(true) : setStartOpen(true);
   const rows = cases.locale === locale ? cases.rows.slice(0, 3) : [];
@@ -98,7 +98,7 @@ export default function Main() {
     {startOpen && <div className="home-start-overlay" onClick={() => setStartOpen(false)}>
       <section ref={dialogRef} className="home-start-dialog" role="dialog" aria-modal="true" aria-labelledby="home-start-title" onClick={event => event.stopPropagation()}>
         <h2 id="home-start-title">{t('modalTitle')}</h2><p>{t('modalSub1')}<br/>{t('modalSub2')}</p>
-        <button className="home-create" onClick={() => navigate('/login?next=' + encodeURIComponent('/' + locale + '/info'))}>{t('loginBtn')}</button>
+        <button className="home-create" onClick={() => navigate('/login?next=' + encodeURIComponent('/' + locale + '/templates'))}>{t('loginBtn')}</button>
         <button onClick={() => start(false)}>{t('guestBtn')}</button><button onClick={() => setStartOpen(false)}>{t('cancelBtn')}</button>
       </section>
     </div>}

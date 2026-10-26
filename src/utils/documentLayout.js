@@ -57,7 +57,7 @@ export function templateLayout(data = {}, defaults = {}) {
 export function pickDocumentLayout(state = {}, fallback = {}) {
   state = state || {};
   fallback = fallback || {};
-  const keys = ['documentBlocks', 'savedActiveOrder', 'savedUserColumns', 'savedColumnOverrides', 'savedOrientation', 'paperSize', 'savedSignatureRows', 'docTitle', 'appr1', 'appr2', 'appr3', 'documentNotes', 'isModuleSkipped', 'stepPhotos', 'projectSaveContext'];
+  const keys = ['templateId', 'documentBlocks', 'savedActiveOrder', 'savedUserColumns', 'savedColumnOverrides', 'savedOrientation', 'paperSize', 'savedSignatureRows', 'docTitle', 'appr1', 'appr2', 'appr3', 'documentNotes', 'isModuleSkipped', 'stepPhotos', 'projectSaveContext'];
   return Object.fromEntries(keys.filter(key => state[key] !== undefined || fallback[key] !== undefined)
     .map(key => [key, state[key] !== undefined ? state[key] : fallback[key]]));
 }

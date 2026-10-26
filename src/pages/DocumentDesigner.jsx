@@ -1,3 +1,6 @@
+import AuthoringSteps from '../components/AuthoringSteps';
+import { AUTHORING_ROUTES } from '../utils/jsaTemplates';
+import { jsaTemplateUi } from '../locales/jsaTemplateUi';
 import { ACTION_COLUMNS, actionColumnLabel } from '../utils/actionPlan';
 import { getActionPlanUi } from '../locales/actionPlanUi';
 import DocumentTemplateManager from '../components/DocumentTemplateManager';
@@ -110,7 +113,9 @@ function DesignerEditor({ recoveredDraft }) {
     return () => observer.disconnect();
   }, [orientation, paperSize]);
 
+  const returnTo = AUTHORING_ROUTES.includes(state.designerReturnTo) ? state.designerReturnTo : null;
   const layoutData = {
+    templateId: 'custom',
     documentBlocks: blocks,
     savedActiveOrder: activeOrder,
     savedUserColumns: userColumns,
@@ -140,7 +145,7 @@ function DesignerEditor({ recoveredDraft }) {
 
   const draftSave = useJsaDraftAutosave({
     enabled: Boolean(state.formData || recoveredDraft),
-    stage: 'table',
+    stage: returnTo ? (analysisData.length ? 'analysis' : 'info') : 'table',
     formData,
     participants,
     procedures,
@@ -293,7 +298,7 @@ function DesignerEditor({ recoveredDraft }) {
   };
 
   const goToExport = () => {
-    navigate('/export', {
+    navigate(returnTo || '/export', {
       state: {
         ...state,
         existingId,
@@ -301,12 +306,13 @@ function DesignerEditor({ recoveredDraft }) {
         participants,
         procedures,
         analysisData,
-        ...layoutData
+        ...layoutData,
+        designerReturnTo: undefined
       }
     });
   };
 
-  const goBack = () => navigate('/analysis', {
+  const goBack = () => navigate(returnTo || '/analysis', {
     state: {
       ...state,
       existingId,
@@ -314,7 +320,8 @@ function DesignerEditor({ recoveredDraft }) {
       participants,
       procedures,
       analysisData,
-      ...layoutData
+      ...layoutData,
+      designerReturnTo: undefined
     }
   });
 
@@ -516,6 +523,7 @@ function DesignerEditor({ recoveredDraft }) {
       </header>
 
       <main style={styles.main} onChangeCapture={() => { userEdited.current = true; }} onClickCapture={() => { userEdited.current = true; }}>
+        <AuthoringSteps current={0}/>
         <section style={styles.topbar}>
           <div>
             <div style={styles.eyebrow}>{t('designer.eyebrow')}</div>
@@ -527,7 +535,7 @@ function DesignerEditor({ recoveredDraft }) {
               {t('designer.back')}
             </button>
             <button type="button" data-designer-next style={styles.primaryBtn} onClick={goToExport}>
-              {t('designer.next')}
+              {returnTo ? jsaTemplateUi(i18n.language).apply : t('designer.next')}
             </button>
           </div>
         </section>

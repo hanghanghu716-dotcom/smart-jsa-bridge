@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthProvider } from './contexts/AuthContext';
 
 import Main from './pages/Main';
+const DocumentTemplates = lazy(() => import('./pages/DocumentTemplates'));
 const Info = lazy(() => import('./pages/Info'));
 const Analysis = lazy(() => import('./pages/Analysis'));
 const Export = lazy(() => import('./pages/Export'));
@@ -127,6 +128,7 @@ export default function App() {
             <Route path="/:lng/reset-password" element={<CrawlerBlocker><LanguageWrapper><ResetPassword /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/profile" element={<CrawlerBlocker><LanguageWrapper><Profile /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/library" element={<CrawlerBlocker><LanguageWrapper><MyLibrary /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/templates" element={<CrawlerBlocker><LanguageWrapper><DocumentTemplates /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/info" element={<LanguageWrapper><Info /></LanguageWrapper>} />
             <Route path="/:lng/analysis" element={<CrawlerBlocker><LanguageWrapper><Analysis /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/procedure" element={<CrawlerBlocker><LanguageWrapper><Procedure /></LanguageWrapper></CrawlerBlocker>} />

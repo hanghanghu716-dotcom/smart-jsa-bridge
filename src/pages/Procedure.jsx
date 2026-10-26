@@ -1,3 +1,6 @@
+import AuthoringSteps from '../components/AuthoringSteps';
+import AuthoringWorkspace from '../components/AuthoringWorkspace';
+import { authoringSnapshot } from '../utils/jsaTemplates';
 import ProcedureDocument from '../components/ProcedureDocument';
 import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
@@ -54,6 +57,7 @@ function ProcedureEditor({ recoveredDraft }) {
     proc => proc?.stepTitle?.trim() || proc?.stepDetail?.trim()
   );
 
+  const authoringState = { ...authoringSnapshot(location.state, recoveredDraft), formData, participants, procedures, analysisData: effectiveAnalysisData, stepPhotos };
   const draftSave = useJsaDraftAutosave({
     enabled: Boolean(
       formData?.projectName?.trim() || hasMeaningfulProcedure || location.state?.draftId || recoveredDraft?.id
@@ -99,7 +103,8 @@ function ProcedureEditor({ recoveredDraft }) {
       alert(caseRecommendationUi(i18n.language).minSteps);
       return;
     }
-    setIsTypeModalOpen(true);
+    if (formData.jsaType) startAnalysis(formData.jsaType);
+    else setIsTypeModalOpen(true);
   };
 
 const startAnalysis = (jsaType) => {
@@ -147,7 +152,7 @@ const startAnalysis = (jsaType) => {
     };
 
   return (
-    <div className="theme-workspace" style={styles.wrapper}>
+    <div className="theme-workspace authoring-page" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
 
@@ -205,34 +210,12 @@ const startAnalysis = (jsaType) => {
         <ThemeSwitcher compact />
       </header>
 
-      <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+      <AuthoringWorkspace snapshot={authoringState}>
+        
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            <nav style={styles.stepper}>
-              <div style={styles.stepItemDone}>
-                <div style={styles.stepBadgeDone}>✓</div>
-                <span style={styles.stepTextDone}>{t('step.basicInfo')}</span>
-              </div>
-              <div style={styles.stepLineActive} />
-
-              <div style={styles.stepItemActive}>
-                <div style={styles.stepBadgeActive}>2</div>
-                <span style={styles.stepTextActive}>{t('step.procedure')}</span>
-              </div>
-              <div style={styles.stepLine} />
-
-              <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
-            </nav>
+            <AuthoringSteps current={2} />
 
             <div style={styles.formHeader}>
               <div>
@@ -288,11 +271,7 @@ const startAnalysis = (jsaType) => {
             </div>
           </div>
         </main>
-
-        <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
-      </div>
+      </AuthoringWorkspace>
 
       <footer style={styles.footerArea}>
         <div style={styles.bottomAdWrapper}>

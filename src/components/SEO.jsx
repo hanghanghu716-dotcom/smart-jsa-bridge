@@ -42,7 +42,7 @@ const SEO = ({ pageTitle, pageDescription, canonicalLocale, availableLocales, ca
   const routeDescription = pageMetadata ? plainText(translate(pageMetadata[2], pageMetadata[0])) : '';
   const finalTitle = pageTitle || (routeTitle ? routeTitle + ' | Smart JSA Bridge' : t('seo.title', 'Smart JSA Bridge | Intelligent Risk Assessment'));
   const finalDescription = cleanSummary(plainText(pageDescription || routeDescription || t('seo.description', 'Intelligent and Data-driven Risk Assessment Platform')));
-  const privatePage = /^(?:business|login|reset-password|profile|library|info|analysis|procedure|export|jsa-preview|layoutbuilder|layout-module|layout-table|document-designer|admin)(?:\/|$)/.test(purePath);
+  const privatePage = /^(?:business|login|reset-password|profile|library|templates|info|analysis|procedure|export|jsa-preview|layoutbuilder|layout-module|layout-table|document-designer|admin)(?:\/|$)/.test(purePath);
   const alternates = SEO_LANGUAGES.filter(lang => availableLocales === undefined
     ? !purePath.startsWith('case-study/')
     : availableLocales.some(locale => normalizeLocale(locale) === getSeoLocale(lang)));

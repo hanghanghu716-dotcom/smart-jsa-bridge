@@ -1,3 +1,4 @@
+import { reportPageGeometry, reportPages } from './reportPagination';
 import { reportFirstPageHeight } from './reportFirstPage';
 import jsPDF from "jspdf";
 import { captureReport } from "./captureReport";
@@ -33,51 +34,11 @@ export async function createReportPdf(papers, { firstPageOnly = false } = {}) {
       contentWidth = pw - 20,
       scale = contentWidth / canvas.width;
     const pagePixels = Math.floor((ph - 20) / scale);
-    const bounds = element.getBoundingClientRect(),
-      pixelRatio = firstPageOnly ? canvas.width / bounds.width : canvas.height / bounds.height,
-      cuts = [...element.querySelectorAll("tr,[data-print-block]")]
-        // Keep table headings with at least their first body row. A heading-only
-        // cut strands the measurement columns at the foot of the previous page.
-        .filter(el => el.tagName !== 'TR' || !el.closest('thead'))
-        // A short attendance/measurement table should travel with its heading,
-        // rather than leave a few unlabelled rows on the next page. Long tables
-        // still break at row boundaries and cannot force a mostly empty page.
-        .filter(el => {
-          if (el.tagName !== 'TR') return true;
-          const table = el.closest('table');
-          return !table || table.getBoundingClientRect().height * pixelRatio > pagePixels * 0.4 ||
-            el === table.rows[table.rows.length - 1];
-        })
-        .map((el) =>
-          1 + Math.ceil(
-            (el.getBoundingClientRect().bottom - bounds.top) * pixelRatio,
-          ),
-        )
-        .sort((a, b) => a - b);
-    // Raster slicing does not repeat HTML thead automatically. Copy the full
-    // heading band above each continuation and reserve its height on the page.
-    const headings = [...element.querySelectorAll('table')].flatMap(table => {
-      if (!table.tHead) return [];
-      const head = table.tHead.getBoundingClientRect();
-      const rect = table.getBoundingClientRect();
-      const top = Math.max(0, Math.floor((head.top - bounds.top) * pixelRatio));
-      const bottom = Math.ceil((head.bottom - bounds.top) * pixelRatio);
-      const tableBottom = Math.ceil((rect.bottom - bounds.top) * pixelRatio);
-      const height = bottom - top;
-      return height > 0 && height < pagePixels - 20
-        ? [{ top, bottom, tableBottom, height }] : [];
-    });
-    let y = 0;
-    while (y < contentHeight) {
-      if (images.length >= 100) throw Error("WORK_OUTPUT_LARGE");
-      const heading = headings.find(h => y >= h.bottom && y < h.tableBottom - 1);
-      const headingHeight = heading?.height || 0;
-      const max = Math.min(contentHeight, y + pagePixels - headingHeight);
-      let end = max;
-      if (max < contentHeight) {
-        const candidates = cuts.filter((c) => c > y + 20 && c <= max);
-        if (candidates.length) end = candidates[candidates.length - 1];
-      }
+    const bounds = element.getBoundingClientRect();
+    const pixelRatio = firstPageOnly ? canvas.width / bounds.width : canvas.height / bounds.height;
+    const pages = reportPages(contentHeight, pagePixels, reportPageGeometry(element, pagePixels, pixelRatio));
+    for (const {start:y,end,heading,headingHeight} of pages) {
+      if (images.length >= 100) throw Error('WORK_OUTPUT_LARGE');
       const slice = document.createElement("canvas");
       slice.width = canvas.width;
       slice.height = headingHeight + end - y;
@@ -116,7 +77,6 @@ export async function createReportPdf(papers, { firstPageOnly = false } = {}) {
         width: contentWidth,
         height: slice.height * scale,
       });
-      y = end;
       slice.width = 0;
       slice.height = 0;
       if (firstPageOnly) break;

@@ -1,3 +1,5 @@
+import AuthoringSteps from '../components/AuthoringSteps';
+import { jsaTemplateUi } from '../locales/jsaTemplateUi';
 import PublicationFields from '../components/PublicationFields';
 import PublicationQualityNotice from '../components/PublicationQualityNotice';
 import StorageVisibilityChoice from '../components/StorageVisibilityChoice';
@@ -152,7 +154,7 @@ function ExportEditor({ recoveredDraft }) {
       paperSize,
       documentBlocks,
       documentNotes,
-      isModuleSkipped, stepPhotos, projectSaveContext: projectTarget
+      templateId: state.templateId ?? recoveredLayout.templateId, isModuleSkipped, stepPhotos, projectSaveContext: projectTarget
     },
     sourceProjectId: parentId || existingId || null,
   });
@@ -191,7 +193,7 @@ function ExportEditor({ recoveredDraft }) {
       savedProject = await saveProject({
         mode, targetId: projectTarget?.id, expectedUpdatedAt: projectTarget?.updatedAt, tags,
         parentId: mode === 'public' ? (parentId || projectTarget?.id) : parentId,
-        snapshot: { publicationConsent, publicationContext, locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, documentBlocks, documentNotes, isModuleSkipped, stepPhotos } }
+        snapshot: { publicationConsent, publicationContext, locale: i18n.language, formData, participants, analysisData, procedures, layoutData: { docTitle, appr1, appr2, appr3, savedSignatureRows, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, documentBlocks, documentNotes, templateId: state.templateId ?? recoveredLayout.templateId, isModuleSkipped, stepPhotos } }
       });
       if (mode !== 'public') {
         try { await archiveActiveDraft(draftResult.version); }
@@ -337,14 +339,7 @@ function ExportEditor({ recoveredDraft }) {
       <div style={styles.mainLayout}>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            <nav style={styles.stepper} className="no-print">
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.riskAnalysis')}</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.moduleConfig')}</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.tableConfig')}</span></div><div style={styles.stepLineActive} />
-              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>6</div><span style={styles.stepTextActive}>{t('step.finalOutput')}</span></div>
-            </nav>
+            <AuthoringSteps current={4} />
             <div style={styles.formHeader}><h2 style={styles.formTitle}>{t('title.main')}</h2></div>
             <PaperSizeSelect locale={i18n.language} value={paperSize} onChange={setPaperSize} disabled={isProcessing}/>
             <div style={styles.previewArea}>
@@ -365,7 +360,8 @@ function ExportEditor({ recoveredDraft }) {
         </div>
             </div>
             <div style={styles.btnArea} className="no-print">
-              <button style={styles.prevBtn} onClick={() => navigate(hasDesignerLayout ? '/document-designer' : '/layout-table', { state: { ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{hasDesignerLayout ? t('common:designer.title') : t('btn.prev')}</button>
+               <button style={styles.prevBtn} onClick={() => navigate('/analysis', { state: { ...recoveredLayout, ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget } })}>{jsaTemplateUi(i18n.language).back}</button>
+               <button style={styles.prevBtn} data-change-template onClick={() => navigate('/templates', { state: {...{ ...recoveredLayout, ...state, existingId, formData, participants, procedures, analysisData, documentBlocks, savedActiveOrder, savedUserColumns, savedColumnOverrides, savedOrientation, paperSize, savedSignatureRows, docTitle, appr1, appr2, appr3, documentNotes, stepPhotos, projectSaveContext: projectTarget },templateReturnTo:'/export'} })}>{jsaTemplateUi(i18n.language).change}</button>
               <button style={styles.cloudSaveBtn} onClick={() => setShowPublishModal(true)}>{t('common:saveFlow.saveDocument')}</button>
               <button data-export-pdf style={styles.pdfBtn} onClick={handlePdfDownload}>{t('btn.pdfSave')}</button>
               <button data-export-copy style={{...styles.pdfBtn, backgroundColor: "var(--success-action)", color: "var(--on-accent)"}} onClick={handleCopyToClipboard}>{t('btn.copyTable')}</button>
@@ -445,7 +441,7 @@ const styles = {
   formTitle: { fontSize: '1.4rem', fontWeight: '800', color: "var(--text-primary)" },
   previewArea: { flex: 1, overflow: 'auto', backgroundColor: "var(--card-bg)", borderRadius: '10px', padding: '3rem', border: "1px solid var(--border-default)" },
   reportPaper: { color: '#000', backgroundColor: '#fff', height: 'auto', display: 'flex', flexDirection: 'column', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)', boxSizing: 'border-box', fontFamily: '"Malgun Gothic", sans-serif', margin: '0 auto' },
-  btnArea: { display: 'flex', gap: '1.2rem', marginTop: '1.5rem' },
+  btnArea: { display: 'flex', flexWrap: 'wrap', gap: '1.2rem', marginTop: '1.5rem' },
   prevBtn: { flex: 1, padding: '1rem', backgroundColor: 'transparent', color: "var(--text-muted)", border: "1px solid var(--border-default)", borderRadius: '8px', cursor: 'pointer', fontWeight: '700' },
   cloudSaveBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },
   pdfBtn: { flex: 2, padding: '1rem', backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '800', fontSize: '1.05rem' },

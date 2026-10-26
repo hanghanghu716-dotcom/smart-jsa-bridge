@@ -1,0 +1,39 @@
+name: Template authoring verification
+on:
+  push:
+    branches: [jsa-template-first-20261027]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: true
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/cache/restore@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - run: bash scripts/setup-rendering.sh
+      - name: Check template and pagination logic
+        run: npm run test:all
+      - name: Build application
+        run: npx vite build
+      - name: Verify template selection, editing, recovery and PDF output
+        run: node scripts/authoring-workflow-browser.cjs
+      - name: Preserve browser review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: authoring-review
+          path: .cache/authoring-qa
+          include-hidden-files: true
+          retention-days: 7

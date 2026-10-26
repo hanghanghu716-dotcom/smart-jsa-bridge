@@ -1,7 +1,11 @@
+import AuthoringSteps from '../components/AuthoringSteps';
+import AuthoringWorkspace from '../components/AuthoringWorkspace';
+import { authoringSnapshot, needsTemplate } from '../utils/jsaTemplates';
+import { jsaTemplateUi } from '../locales/jsaTemplateUi';
 import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
+import { Navigate, useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
@@ -37,6 +41,7 @@ export default function Info() {
   const shouldRecover = !location.state?.formData && !location.state?.isFork;
   const { draft, status } = useJsaDraftRecovery(shouldRecover);
   if (shouldRecover && !['ready', 'empty', 'error'].includes(status)) return <div className="theme-workspace"><p role="status">{t('draftSave.pending')}</p></div>;
+  if (status !== 'error' && needsTemplate(authoringSnapshot(location.state, draft))) return <Navigate replace to={location.pathname.replace(/\/info\/?$/, '/templates')} state={location.state} />;
   return <InfoEditor key={location.key} recoveredDraft={draft} />;
 }
 
@@ -59,6 +64,7 @@ function InfoEditor({ recoveredDraft }) {
   });
   const analysisData = reconcileWorkContextAnalysis(location.state?.analysisData || recoveredDraft?.analysis_data || [],
     location.state?.formData || recoveredDraft?.form_data || {}, formData);
+  const authoringState = { ...authoringSnapshot(location.state, recoveredDraft), formData, participants, analysisData };
   const draftSave = useJsaDraftAutosave({
     enabled: Boolean(formData.projectName.trim() || location.state?.draftId || recoveredDraft?.id),
     layoutData: pickDocumentLayout(location.state, recoveredDraft?.layout_data),
@@ -141,7 +147,7 @@ function InfoEditor({ recoveredDraft }) {
   const permitOptions = ['일반', '화기', '밀폐', '정전', '굴착', '방사선', '고소', '중량물', '가연성가스'];
 
   return (
-    <div className="theme-workspace" style={styles.wrapper}>
+    <div className="theme-workspace authoring-page" style={styles.wrapper}>
       <SEO />
       <DraftSaveStatus status={draftSave.status} lastSavedAt={draftSave.lastSavedAt} /> {/* ✅ [추가] 페이지별 hreflang 태그 자동 삽입 및 SEO 최적화 */}
       
@@ -157,29 +163,12 @@ function InfoEditor({ recoveredDraft }) {
         <ThemeSwitcher compact />
       </header>
 
-      <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+      <AuthoringWorkspace snapshot={authoringState}>
+        
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
-            <nav style={styles.stepper}>
-              <div style={styles.stepItemActive}>
-                <div style={styles.stepBadgeActive}>1</div>
-                <span style={styles.stepTextActive}>{t('step.basicInfo')}</span>
-              </div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>2</div><span style={styles.stepText}>{t('step.procedure')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>3</div><span style={styles.stepText}>{t('step.riskAnalysis')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
-            </nav>
+            <AuthoringSteps current={1} />
 
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>{t('form.title')}</h2>
@@ -383,8 +372,8 @@ function InfoEditor({ recoveredDraft }) {
             </div>
 
             <div style={styles.btnArea}>
-              <button style={styles.prevBtn} onClick={handleLogoClick}>
-                {t('btn.home')}
+              <button style={styles.prevBtn} onClick={() => navigate('/templates', { state: { ...authoringState, templateReturnTo: '/info' } })}>
+                {jsaTemplateUi(i18n.language).steps[0]}
               </button>
               <button data-info-next style={styles.nextBtn} onClick={handleNext}>
                 {t('btn.next')}
@@ -392,11 +381,7 @@ function InfoEditor({ recoveredDraft }) {
             </div>
           </div>
         </main>
-
-        <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
-      </div>
+      </AuthoringWorkspace>
 
       <footer style={styles.footerArea}>
         <div style={styles.bottomAdWrapper}>

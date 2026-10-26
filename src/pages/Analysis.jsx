@@ -1,3 +1,7 @@
+import AuthoringSteps from '../components/AuthoringSteps';
+import AuthoringWorkspace from '../components/AuthoringWorkspace';
+import { authoringSnapshot } from '../utils/jsaTemplates';
+import { jsaTemplateUi } from '../locales/jsaTemplateUi';
 import ActionPlanEditor from '../components/ActionPlanEditor';
 import { reconcileActionPlans } from '../utils/actionPlan';
 import { pickDocumentLayout } from '../utils/documentLayout';
@@ -68,6 +72,7 @@ function AnalysisEditor({ recoveredDraft }) {
 
   const setAnalysisData = update => setAnalysisState(before => reconcileActionPlans(before, typeof update === 'function' ? update(before) : update));
 
+  const authoringState = { ...authoringSnapshot(state, recoveredDraft), existingId, formData, participants, procedures, analysisData };
   const draftSave = useJsaDraftAutosave({
     enabled: Boolean(
       formData?.projectName?.trim() || procedures.length || analysisData.length || state.draftId || recoveredDraft?.id
@@ -571,26 +576,12 @@ function AnalysisEditor({ recoveredDraft }) {
         <ThemeSwitcher compact />
       </header>
 
-      <div className="analysis-main" style={styles.mainLayout}>
-        <aside className="analysis-ad" style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+      <AuthoringWorkspace snapshot={authoringState}>
+        
 
         <main style={styles.centerContent}>
           <div className="analysis-card" style={styles.formCard}>
-            <nav style={styles.stepper}>
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.basicInfo')}</span></div>
-              <div style={styles.stepLineActive} />
-              <div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>{t('step.procedure')}</span></div>
-              <div style={styles.stepLineActive} />
-              <div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>3</div><span style={styles.stepTextActive}>{t('step.riskAnalysis')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>4</div><span style={styles.stepText}>{t('step.moduleConfig')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>{t('step.tableConfig')}</span></div>
-              <div style={styles.stepLine} />
-              <div style={styles.stepItem}><div style={styles.stepBadge}>6</div><span style={styles.stepText}>{t('step.finalOutput')}</span></div>
-            </nav>
+            <AuthoringSteps current={3} />
 
             <div style={styles.formHeader}>
               <div style={styles.headerTitleGroup}>
@@ -674,7 +665,7 @@ function AnalysisEditor({ recoveredDraft }) {
                       {t('base.label')}
                     </span>
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <button style={{ backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
+                      <button style={{ backgroundColor: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border-default)", padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }} data-add-manual onClick={() => addRisk({ factor: '', measure: '' })}>{t('base.addEmptyBtn')}</button>
                       <button data-add-selected style={{ backgroundColor: "var(--action-bg)", color: "var(--on-accent)", border: 'none', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleBulkAdd}>{t('base.addBulkBtn')}</button>
                     </div>
                   </div>
@@ -1141,7 +1132,7 @@ function AnalysisEditor({ recoveredDraft }) {
                     if (isFastTrack) {
                       setIsFastTrackModalOpen(true);
                     } else {
-                      navigate('/document-designer', {
+                      navigate('/export', {
                         state: {
                           ...recoveredDraft?.layout_data, ...state, existingId, analysisData, formData, participants, procedures,
                           isFork: location.state?.isFork, parentId: location.state?.parentId, originalAnalysisData: location.state?.originalAnalysisData
@@ -1151,17 +1142,13 @@ function AnalysisEditor({ recoveredDraft }) {
                   }
                 }}
               >
-                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete') : t('common:designer.title')) : t('btn.nextStep')}
+                {activeIdx === analysisData.length - 1 ? (isFastTrack ? t('btn.fastTrackComplete') : jsaTemplateUi(i18n.language).steps[4]) : t('btn.nextStep')}
               </button>
             </div>
 
           </div>
         </main>
-
-        <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
-      </div>
+      </AuthoringWorkspace>
 
       <footer style={styles.footerArea}>
         <div style={styles.bottomAdWrapper}>
