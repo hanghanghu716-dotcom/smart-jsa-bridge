@@ -33,7 +33,7 @@ const documentRow = {
   page.on('request',async request=>{
     const url=request.url(),u=new URL(url);requests.push(url);
     if(url.startsWith('data:')||url.startsWith('blob:'))return request.continue();
-    if(u.pathname==='/api/jsa-thumbnail')return request.respond({status:u.searchParams.get('id')===id(2)?404:200,contentType:'image/webp',body:Buffer.from(sample,'base64')});
+    if(u.pathname==='/api/jsa-thumbnail')return request.respond(u.searchParams.get('id')===id(2) ? {status:404,contentType:'text/plain',body:'Not found'} : {status:200,contentType:'image/webp',body:Buffer.from(sample,'base64')});
     if(url.startsWith(base))return request.continue();
     if(request.method()==='OPTIONS')return request.respond({status:200,headers:{'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-allow-methods':'*'}});
     if(u.hostname.endsWith('.supabase.co')){
@@ -58,7 +58,10 @@ const documentRow = {
   await page.waitForSelector('.home-resource-card');
   await page.$eval('.home-public-section',n=>n.scrollIntoView());
   await page.waitForFunction(()=>document.querySelector('.risk-pdf-thumbnail img')?.naturalWidth>0);
-  await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card')[1]?.querySelector('.risk-pdf-thumbnail')===null);
+  await page.$eval('.home-resource-card',nodes=>nodes[1].scrollIntoView());
+  await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card')[1]?.querySelector('.risk-pdf-thumbnail')===null).catch(async error=>{
+    console.error('Thumbnail states',await page.$eval('.home-resource-card',nodes=>nodes.map(n=>({title:n.querySelector('h3')?.textContent,src:n.querySelector('img')?.src,complete:n.querySelector('img')?.complete,width:n.querySelector('img')?.naturalWidth}))));throw error;
+  });
   assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),6);
   assert.equal(requests.filter(url=>/renderRiskThumbnail|RiskAssessmentThumbnail|html2canvas|jspdf/i.test(url)).length,0,'anonymous home must not load canvas/PDF code');
   const summaryReads=requests.filter(url=>url.includes('/rest/v1/public_jsa_cards'));
