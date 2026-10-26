@@ -35,6 +35,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await fill('input[name=projectName]','Preview workflow fixture');
   await page.waitForFunction(()=>document.querySelector('.authoring-preview [data-preview-body]')?.textContent.includes('Preview workflow fixture'));
   await page.setViewport({width:390,height:844});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'Mobile inputs must not overflow');
   await page.click('.authoring-mobile-tabs button:nth-child(2)');
   assert.ok(await page.$eval('.authoring-preview',n=>n.getBoundingClientRect().width>0));
   assert.equal(await page.$eval('.authoring-grid>main',n=>getComputedStyle(n).display),'none');

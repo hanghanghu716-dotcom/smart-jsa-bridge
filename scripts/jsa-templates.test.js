@@ -7,13 +7,13 @@ import { templateCopy } from '../src/locales/jsaTemplateUi.js';
 const i18n={language:'ko',getFixedT:locale=>key=>locale+':'+key};
 test('every free format preserves entered work, people, photos, ratings and custom field values',()=>{
  const input={formData:{projectName:'Existing',jsaType:'3-step',context:{documentLocale:'en-US',jurisdiction:'US'}},participants:['Person'],procedures:[{stepTitle:'Valve'}],
-  analysisData:[{risks:[{factor:'Pressure',current_measure:'Isolation'}],frequency:2,customFields:{USER_1:'Keep'}}],stepPhotos:{0:'photo'},projectSaveContext:{id:'private-project',own:true}};
+  analysisData:[{risks:[{factor:'Pressure',current_measure:'Isolation'}],frequency:2,customFields:{USER_1:'Keep'}}],stepPhotos:{0:'photo'},documentNotes:'Site instructions',savedUserColumns:[{id:'USER_1',label:'Supervisor',width:5}],savedActiveOrder:['USER_1'],projectSaveContext:{id:'private-project',own:true}};
  const before=structuredClone(input);
  for(const id of JSA_TEMPLATES){const result=builtInTemplate(id,input,i18n);
-  for(const key of ['participants','procedures','analysisData','stepPhotos','projectSaveContext'])assert.deepEqual(result[key],input[key]);
+  for(const key of ['participants','procedures','analysisData','stepPhotos','projectSaveContext','documentNotes','savedUserColumns'])assert.deepEqual(result[key],input[key]);
   assert.deepEqual(result.formData,input.formData);assert.equal(result.templateId,id);
   assert.ok(result.savedActiveOrder.includes('DATA_ACTION_CHECK'));assert.ok(result.savedActiveOrder.includes('DATA_CURRENT_MEASURE'));
-  assert.equal(result.paperSize,'letter');assert.match(result.docTitle,/^en-US:/);
+  assert.ok(result.savedActiveOrder.includes('USER_1'));assert.equal(result.paperSize,'letter');assert.match(result.docTitle,/^en-US:/);
  }
  assert.deepEqual(input,before);
  assert.equal(builtInTemplate('portrait',input,i18n).savedOrientation,'portrait');
@@ -27,7 +27,7 @@ test('fresh templates contain no fabricated work or completed controls',()=>{
  }
 });
 test('new work chooses a template while existing drafts and legacy saved layouts remain intact',()=>{
- assert.equal(needsTemplate(authoringSnapshot()),true);
+ assert.equal(needsTemplate(authoringSnapshot()),true);assert.equal(needsTemplate(authoringSnapshot(null)),true);
  for(const state of [{savedActiveOrder:['USER_X']},{documentBlocks:[{id:'JSA_TABLE'}]},{existingId:'p'},{isFork:true},{formData:{projectName:'Existing'}},{analysisData:[{}]}])assert.equal(needsTemplate(authoringSnapshot(state)),false);
  const draft={form_data:{projectName:'Draft'},analysis_data:[{id:1}],layout_data:{templateId:'photo',documentNotes:'Keep'},source_project_id:'p'};
  assert.equal(authoringSnapshot({},draft).templateId,'photo');

@@ -39,6 +39,15 @@ export function builtInTemplate(id, snapshot, i18n) {
   layout.documentBlocks = [{id:'PROJECT_INFO',enabled:true},{id:'SAFETY',enabled:true},{id:'JSA_TABLE',enabled:true},{id:'NOTES',enabled:true},{id:'PARTICIPANTS',enabled:true}];
   layout.savedColumnOverrides = {DATA_ACTION_OWNER:{width:6},DATA_ACTION_CHECK:{width:12},DATA_RESIDUAL_RISK:{width:6}};
  }
+ for (const key of ['docTitle','documentNotes','appr1','appr2','appr3','savedSignatureRows']) {
+  if (snapshot[key] !== undefined) layout[key] = snapshot[key];
+ }
+ if (snapshot.savedUserColumns?.length) {
+  layout.savedUserColumns = snapshot.savedUserColumns;
+  for (const key of snapshot.savedActiveOrder || []) {
+   if (snapshot.savedUserColumns.some(column => column.id === key) && !layout.savedActiveOrder.includes(key)) layout.savedActiveOrder.push(key);
+  }
+ }
  // A format changes layout only. Work details, verification values and photos stay with their owner.
  return { ...snapshot, ...layout, stepPhotos: snapshot.stepPhotos || {}, formData: {...snapshot.formData, jsaType:snapshot.formData?.jsaType || '2-step'} };
 }
