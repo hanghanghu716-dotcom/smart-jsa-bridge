@@ -1,120 +1,67 @@
-import { romanianUi } from '../locales/romanianUi.js';
-import { getLanguageTag } from '../locales/config.js';
-import { caseListBootstrap, isStaticContentBuild } from '../utils/caseListBootstrap.js';
-import { cleanSummary } from '../utils/content.js';
-import { getCaseLanguages, selectLocalizedCases } from '../locales/config.js';
-import { useState, useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { supabase } from '../supabaseClient';
 import { LanguageLink } from '../hooks/useLanguage';
+import { archiveUi } from '../locales/archiveUi';
+import { getPublicUi } from '../locales/publicUi';
+import { getLanguageTag } from '../locales/config';
+import { archiveQuery, archiveSearch, archiveResults, casePdf, loadArchiveRows } from '../utils/archiveDiscovery';
+import { canonicalCaseSlug } from '../utils/caseRouting';
+import { caseListBootstrap, isStaticContentBuild } from '../utils/caseListBootstrap';
+import { cleanSummary } from '../utils/content';
+import PublicSiteHeader from '../components/PublicSiteHeader';
+import CommunityFooter from '../components/CommunityFooter';
+import ExploreSearchInput from '../components/ExploreSearchInput';
+import ListPagination from '../components/ListPagination';
+import PdfThumbnail from '../components/PdfThumbnail';
 import SEO from '../components/SEO';
+import '../styles/archive.css';
 
 export default function Archive() {
-  const { i18n } = useTranslation();
-  const ro = i18n.language === 'ro-RO' ? romanianUi.editorial : null;
-  const [cases, setCases] = useState(caseListBootstrap);
-
-  useEffect(() => {
-    const fetchAllCases = async () => {
-      if (isStaticContentBuild()) return;
-      const currentLang = i18n.language || 'ko';
-      const { data, error } = await supabase
-        .from('case_studies')
-        .select('post_group_id, title, meta_description, created_at, language_code')
-        .in('language_code', getCaseLanguages(currentLang))
-        .order('created_at', { ascending: false });
-
-      if (data) setCases(selectLocalizedCases(data, currentLang));
-    };
-    fetchAllCases();
-  }, [i18n.language]);
-
-  return (
-    <div style={styles.wrapper}>
-      <SEO pageTitle={`${ro?.archiveTitle || 'Case Studies Archive'} | Smart JSA Bridge`} pageDescription={ro?.archiveIntro} />
-
-      <main style={styles.mainLayout}>
-        <div style={styles.centerContent}>
-          <section style={styles.section} className="max-lg:!py-16 max-lg:!px-6">
-            
-            {/* SEO 및 텍스트 비율 확보용 헤더 영역 */}
-            <header style={styles.headerBox}>
-              <span style={styles.categoryTag} className="max-lg:before:content-['\00a0\00a0\00a0\00a0']">
-                {ro?.database || 'DATABASE'}
-              </span>
-              <h1 style={{...styles.title, fontSize: undefined}} className="text-[24px] lg:text-[2.5rem] font-extrabold leading-tight mb-6">
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.cases || 'Case Studies'}</span>
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.archive || 'Archive'}</span>
-              </h1>
-              <p style={styles.description} className="text-[14px] lg:text-[1.1rem]">
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.archiveIntro || 'Explore comprehensive Job Safety Analysis (JSA) and Risk Assessment (JRA) records across various industrial operations.'}</span>
-                <span className="max-lg:block max-lg:before:content-['\00a0\00a0\00a0\00a0']">{ro?.archiveNotice || 'Each case study strictly details specific hazard factors, regulatory compliance measures, and engineering controls designed to prevent critical incidents, ensure workplace safety, and maintain OSHA compliance.'}</span>
-              </p>
-            </header>
-
-            {/* 카드 리스트 렌더링 영역 */}
-            <div data-live-case-list="archive" style={styles.listContainer}>
-              {cases.map(item => (
-                <article key={item.post_group_id} style={styles.card} className="max-lg:!p-6 max-lg:!rounded-2xl flex flex-col">
-                  <div style={styles.cardHeader}>
-                    <span style={styles.jsaId}>{item.post_group_id}</span>
-                    <LanguageLink 
-                      to={`/case-study/${item.post_group_id}`} 
-                      style={{ textDecoration: 'none' }}
-                    >
-                      <h2 style={styles.jsaTitle} className="text-[18px] lg:text-[1.6rem] hover:text-[#e91e63] transition-colors">
-                        {item.title}
-                      </h2>
-                    </LanguageLink>
-                  </div>
-
-                  {/* meta_description 텍스트 데이터 노출부 */}
-                  <div style={styles.infoBox} className="max-lg:!p-4">
-                    <strong style={styles.labelBlue}>{ro?.summary || 'Case Study Summary'}</strong>
-                    <p style={styles.infoText}>{cleanSummary(item.meta_description)}</p>
-                  </div>
-
-                  <div style={styles.cardFooter} className="max-lg:flex-col max-lg:gap-4">
-                    <span style={styles.dateText}>
-                      {ro?.published || 'Published'}: {new Date(item.created_at).toLocaleDateString(getLanguageTag(i18n.language))}
-                    </span>
-                    <LanguageLink 
-                      to={`/case-study/${item.post_group_id}`} 
-                      style={styles.readMoreBtn} 
-                      className="max-lg:!w-full max-lg:!text-sm"
-                    >
-                      {ro?.read || 'Read Case Study'}
-                    </LanguageLink>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        </div>
-      </main>
+ const {i18n} = useTranslation(), locale = i18n.language, ui = archiveUi(locale), p = getPublicUi(locale);
+ const [params,setParams] = useSearchParams(), query = archiveQuery(params), queryRef = useRef(query);
+ useEffect(() => {queryRef.current = query;},[query]);
+ const [state,setState] = useState(() => ({locale,rows:caseListBootstrap(),loading:true})), [attempt,setAttempt] = useState(0);
+ const [resetKey,setResetKey] = useState(0);
+ useEffect(() => {
+  if (isStaticContentBuild()) return;
+  const controller = new AbortController(), timer = setTimeout(() => controller.abort(),20000);
+  let active = true;
+  loadArchiveRows(supabase,locale,controller.signal).then(rows => {if(active)setState({locale,rows});}).catch(() => {if(active)setState({locale,rows:[],error:true});}).finally(() => clearTimeout(timer));
+  return () => {active = false;clearTimeout(timer);controller.abort();};
+ },[locale,attempt]);
+ const current = state.locale === locale ? state : {rows:[],loading:true};
+ const result = archiveResults(current.rows,query,locale);
+ const years = [...new Set(current.rows.map(row => String(row.created_at || '').slice(0,4)).filter(year => /^\d{4}$/.test(year)))].sort().reverse();
+ const update = patch => {const next = {...queryRef.current,...patch,page:1};queryRef.current=next;setParams(archiveSearch(next).slice(1),{replace:true});};
+ const reset = () => {setResetKey(n=>n+1);update({search:'',pdf:false,year:'',sort:'latest'});};
+ const retry = () => {setState({locale,rows:[],loading:true});setAttempt(n=>n+1);};
+ return <div className="community-home archive-page" dir={i18n.dir()}>
+  <SEO pageTitle={ui.title + ' | Smart JSA Bridge'} pageDescription={ui.intro} canonicalSearch={archiveSearch({page:result.page})} noIndex={Boolean(query.search || query.pdf || query.year || query.sort !== 'latest')} />
+  <PublicSiteHeader community/>
+  <main className="home-content">
+   <div className="archive-heading"><div><h1>{ui.title}</h1><p>{ui.intro}</p></div><LanguageLink to="/explore">{p.title} <span aria-hidden="true">↗</span></LanguageLink></div>
+   <section className="archive-tools" aria-label={ui.search}>
+    <div className="archive-search" role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg><ExploreSearchInput value={query.search} resetKey={resetKey} onSearch={search => update({search})} label={ui.search}/></div>
+    <div className="archive-filters"><div className="archive-type-filter" role="group" aria-label={ui.pdfOnly}><button type="button" aria-pressed={!query.pdf} onClick={() => update({pdf:false})}>{ui.all}</button><button type="button" aria-pressed={query.pdf} onClick={() => update({pdf:true})}>{ui.pdfOnly}</button></div>
+     <select aria-label={ui.year} value={query.year} onChange={e=>update({year:e.target.value})}><option value="">{ui.year}</option>{query.year && !years.includes(query.year) && <option value={query.year}>{query.year}</option>}{years.map(year=><option key={year}>{year}</option>)}</select>
+     <label className="archive-sort">{ui.sort}<select aria-label={ui.sort} value={query.sort} onChange={e=>update({sort:e.target.value})}>{['latest','oldest','title'].map(value=><option key={value} value={value}>{ui[value === 'title' ? 'alphabetical' : value]}</option>)}</select></label>
+     <button className="archive-reset" type="button" onClick={reset}>{ui.reset}</button>
     </div>
-  );
+   </section>
+   <section data-live-case-list="archive" aria-busy={Boolean(current.loading)}>
+    <div className="archive-results-heading"><p role="status">{current.loading ? ui.loading : current.error ? p.error : ui.results.replace('{count}',result.total.toLocaleString(getLanguageTag(locale)))}</p></div>
+    {current.error && <button className="home-create" onClick={retry}>{p.retry}</button>}
+    {!current.loading && !current.error && !result.total && <div className="archive-empty"><p>{ui.empty}</p><button onClick={reset}>{ui.reset}</button></div>}
+    <div id="archive-results" className="archive-grid">{result.rows.map(row => <article className="archive-card" key={row.post_group_id}>
+     <LanguageLink className="archive-card-preview" tabIndex={-1} aria-hidden="true" to={'/case-study/'+encodeURIComponent(canonicalCaseSlug(row.post_group_id))}><PdfThumbnail url={casePdf(row)} title={row.title} summary={cleanSummary(row.meta_description)} locale={locale}/></LanguageLink>
+     <div className="archive-card-body"><div className="archive-card-meta"><time dateTime={row.created_at || undefined}>{Number.isFinite(Date.parse(row.created_at)) ? new Intl.DateTimeFormat(getLanguageTag(locale),{timeZone:'UTC'}).format(new Date(row.created_at)) : ''}</time>{casePdf(row) && <span>PDF</span>}</div>
+      <h2><LanguageLink to={'/case-study/'+encodeURIComponent(canonicalCaseSlug(row.post_group_id))}>{row.title}</LanguageLink></h2><p>{cleanSummary(row.meta_description)}</p>
+     </div>
+    </article>)}</div>
+    <ListPagination current={result.page} total={result.pages} locale={locale} controls="archive-results" hrefForPage={page=>'/archive'+archiveSearch({...query,page})}/>
+   </section>
+  </main><CommunityFooter/>
+ </div>;
 }
-
-// 기존 ChemicalGasGuide의 스타일 컨셉 계승
-const styles = {
-  wrapper: { backgroundColor: '#fcfcfc', color: '#1c1b1f', width: '100%', minHeight: '100vh', overflowX: 'hidden' },
-  mainLayout: { position: 'relative', display: 'flex', justifyContent: 'center', padding: '0 1rem', zIndex: 10 },
-  centerContent: { flex: 1, maxWidth: '1000px', width: '100%' },
-  section: { padding: '60px 0' },
-  headerBox: { textAlign: 'left', marginBottom: '60px' },
-  categoryTag: { color: '#e91e63', fontWeight: '900', fontSize: '0.8rem', letterSpacing: '2.5px', display: 'block', marginBottom: '20px' },
-  title: { fontWeight: '900', color: '#111' },
-  description: { color: '#666', lineHeight: '1.6', wordBreak: 'keep-all', marginTop: '20px' },
-  listContainer: { display: 'flex', flexDirection: 'column', gap: '40px' },
-  card: { backgroundColor: '#fff', borderRadius: '24px', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.04)', border: '1px solid #f0f0f0' },
-  cardHeader: { borderBottom: '1px solid #f8f8f8', paddingBottom: '20px', marginBottom: '25px' },
-  jsaId: { color: '#e91e63', fontWeight: '900', fontSize: '0.85rem', textTransform: 'uppercase' },
-  jsaTitle: { fontWeight: '800', marginTop: '10px', wordBreak: 'keep-all', color: '#111' },
-  infoBox: { padding: '20px', borderRadius: '12px', backgroundColor: '#fffafb', border: '1px solid #ffeff2', marginBottom: '20px' },
-  labelBlue: { color: '#0056b3', fontSize: '0.8rem', display: 'block', marginBottom: '8px', fontWeight: 'bold' },
-  infoText: { fontSize: '0.95rem', color: '#333', margin: 0, fontWeight: '600', lineHeight: '1.5', wordBreak: 'keep-all' },
-  cardFooter: { marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '20px', borderTop: '1px solid #f8f8f8' },
-  dateText: { fontSize: '0.85rem', color: '#888', fontWeight: '500' },
-  readMoreBtn: { display: 'inline-block', padding: '12px 35px', backgroundColor: '#1c1b1f', color: '#fff', borderRadius: '50px', fontWeight: '700', textDecoration: 'none', textAlign: 'center' }
-};

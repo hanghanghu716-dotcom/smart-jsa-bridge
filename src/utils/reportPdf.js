@@ -1,8 +1,9 @@
+import { reportFirstPageHeight } from './reportFirstPage';
 import jsPDF from "jspdf";
 import { captureReport } from "./captureReport";
 import { normalizePaperSize, paperDimensions, paperPrintStyles } from './paperFormat';
 // Both the existing JSA export and work packages share row-aware pagination.
-export async function createReportPdf(papers) {
+export async function createReportPdf(papers, { firstPageOnly = false } = {}) {
   if (!papers.length) throw Error("WORK_EMPTY");
   const doc = new jsPDF(
       papers[0].orientation === "portrait" ? "p" : "l",
@@ -11,9 +12,9 @@ export async function createReportPdf(papers) {
     ),
     images = [];
   for (const { element, orientation, paperSize } of papers) {
-    if (element.getBoundingClientRect().height > 16000)
+    if (!firstPageOnly && element.getBoundingClientRect().height > 16000)
       throw Error("WORK_OUTPUT_LARGE");
-    const canvas = await captureReport(element);
+    const canvas = await captureReport(element, firstPageOnly ? {scale: 1, height: reportFirstPageHeight(element,orientation,paperSize)} : {});
     if (!canvas.width || !canvas.height) throw Error("WORK_RENDER_FAILED");
     // html2canvas includes the paper's bottom padding. Do not turn trailing
     // white rows into an extra page after the last printable block.
@@ -33,7 +34,7 @@ export async function createReportPdf(papers) {
       scale = contentWidth / canvas.width;
     const pagePixels = Math.floor((ph - 20) / scale);
     const bounds = element.getBoundingClientRect(),
-      pixelRatio = canvas.height / bounds.height,
+      pixelRatio = firstPageOnly ? canvas.width / bounds.width : canvas.height / bounds.height,
       cuts = [...element.querySelectorAll("tr,[data-print-block]")]
         // Keep table headings with at least their first body row. A heading-only
         // cut strands the measurement columns at the foot of the previous page.
@@ -49,8 +50,7 @@ export async function createReportPdf(papers) {
         })
         .map((el) =>
           1 + Math.ceil(
-            ((el.getBoundingClientRect().bottom - bounds.top) / bounds.height) *
-              canvas.height,
+            (el.getBoundingClientRect().bottom - bounds.top) * pixelRatio,
           ),
         )
         .sort((a, b) => a - b);
@@ -119,9 +119,11 @@ export async function createReportPdf(papers) {
       y = end;
       slice.width = 0;
       slice.height = 0;
+      if (firstPageOnly) break;
     }
     canvas.width = 0;
     canvas.height = 0;
+    if (firstPageOnly) break;
   }
   return { doc, blob: doc.output("blob"), images };
 }

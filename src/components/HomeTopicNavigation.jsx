@@ -1,27 +1,28 @@
+import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { LanguageLink } from '../hooks/useLanguage';
-import { homeTopicsUi } from '../locales/homeTopicsUi';
-import { publicTagLabel } from '../locales/publicTagLabels';
+import { getLanguageTag } from '../locales/config';
+import { archiveUi } from '../locales/archiveUi';
+import { browseTags, TAG_GROUPS } from '../utils/tagBrowser';
 import { localeCountry } from '../utils/publicCountry';
 import { exploreSearch } from '../utils/discovery';
-
-const topics = [
-  ['정비/보수', 'M14 6a5 5 0 0 0-6 6L3 17l4 4 5-5a5 5 0 0 0 6-6l-3 3-4-4 3-3Z'],
-  ['건축공사', 'M4 21V5h10v16M14 10h6v11M8 9h2M8 13h2M8 17h2M17 14h1M17 18h1M2 21h20'],
-  ['용접(아크)', 'M5 6h9v9H5zM8 9h3v3H8zM14 9l4 4M18 3v3M21 8h-3M19 18l2 2M14 18v3M5 15v6'],
-  ['전기정전작업', 'M13 2 4 14h7l-1 8 10-13h-8l1-7Z'],
-  ['식품제조', 'M4 3v6a3 3 0 0 0 6 0V3M7 3v18M17 3v18M17 3c5 2 5 9 0 9'],
-];
+import ExploreSearchInput from './ExploreSearchInput';
 
 export default function HomeTopicNavigation({ locale }) {
-  const ui = homeTopicsUi(locale);
-  return <section className="home-topic-section" aria-labelledby="home-topics-title">
-    <h2 id="home-topics-title">{ui.title}</h2>
-    <nav className="home-topics" aria-label={ui.title}>
-      {topics.map(([tag, shape], index) => <LanguageLink className="home-topic-card" key={tag} to={'/explore' + exploreSearch({ tags: [tag], country: localeCountry(locale) })}>
-        <span className="home-topic-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={shape}/></svg></span>
-        <span className="home-topic-title">{publicTagLabel(tag, locale)} <span aria-hidden="true">›</span></span>
-        <span className="home-topic-description">{ui.descriptions[index]}</span>
-      </LanguageLink>)}
-    </nav>
-  </section>;
+ const { t } = useTranslation('explore'), ui = archiveUi(locale);
+ const [search, setSearch] = useState(''), [group, setGroup] = useState('');
+ const rail = useRef(null), tags = browseTags(locale, search, group);
+ const move = direction => { const el = rail.current; el?.scrollBy({ left: direction * el.clientWidth * .8 * (locale.startsWith('ar') ? -1 : 1), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); };
+ return <section className="home-topic-section home-tag-browser" aria-labelledby="home-topics-title">
+  <div className="tag-browser-heading"><div><h2 id="home-topics-title">{ui.tagTitle}</h2><p>{ui.tagHint}</p></div>
+   <div className="tag-search"><span aria-hidden="true">#</span><ExploreSearchInput value={search} onSearch={setSearch} label={ui.tagSearch}/></div>
+  </div>
+  <div className="tag-browser-toolbar"><div className="tag-groups" role="group" aria-label={ui.tagTitle}>
+   {[[ '', ui.all ], ...TAG_GROUPS.map(([id,label]) => [id,t(label)])].map(([id,label]) => <button key={id} type="button" aria-pressed={group === id} onClick={() => {setGroup(id);rail.current?.scrollTo({left:0});}}>{label}</button>)}
+  </div><div className="tag-rail-controls"><span aria-live="polite">{tags.length.toLocaleString(getLanguageTag(locale))}</span><button type="button" aria-label={ui.previous} onClick={() => move(-1)}>‹</button><button type="button" aria-label={ui.next} onClick={() => move(1)}>›</button></div></div>
+  <nav className="home-tag-rail" ref={rail} aria-label={ui.tagTitle} tabIndex={0}>
+   {tags.map(({tag,label}) => <LanguageLink className="home-tag-link" key={tag} to={'/explore' + exploreSearch({tags:[tag], country:localeCountry(locale)})}><span aria-hidden="true">#</span>{label}<span aria-hidden="true">↗</span></LanguageLink>)}
+  </nav>
+  {!tags.length && <p role="status">{ui.noTags}</p>}
+ </section>;
 }

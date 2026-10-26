@@ -6,6 +6,7 @@ import { supabase } from '../supabaseClient';
 import { clearActiveDraft } from '../services/jsaDraftService';
 import { caseListBootstrap, isStaticContentBuild } from '../utils/caseListBootstrap';
 import { journeyContext, newJourneyState } from '../utils/regionalJourney';
+import { loadHomeCaseThumbnails } from '../utils/caseThumbnail';
 import { cleanSummary } from '../utils/content';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config';
 import { communityHomeUi } from '../locales/communityHomeUi';
@@ -33,7 +34,11 @@ export default function Main() {
     let active = true;
     supabase.from('case_studies').select('id,post_group_id,title,meta_description,created_at,language_code')
       .in('language_code', getCaseLanguages(locale)).order('created_at', { ascending: false })
-      .then(({ data, error }) => { if (active) setCases({ locale, rows: error ? [] : selectLocalizedCases(data || [], locale), error: Boolean(error) }); });
+      .then(async ({ data, error }) => {
+        const selected=error?[]:selectLocalizedCases(data||[],locale);
+        if(active)setCases({locale,rows:selected,error:Boolean(error)});
+        if(!error){try{const rows=await loadHomeCaseThumbnails(supabase,selected);if(active)setCases({locale,rows});}catch{/* Keep readable summaries when an image read fails. */}}
+      });
     return () => { active = false; };
   }, [locale]);
   useEffect(() => {
@@ -77,6 +82,7 @@ export default function Main() {
         <div className="home-section-heading"><h2 id="home-cases-title">{ui.cases}</h2><LanguageLink to="/archive">{ui.cases} →</LanguageLink></div>
         <div data-live-case-list="home">
           <div className="home-case-grid">{rows.map(row => <article className="home-case-card" key={row.post_group_id}>
+            {row.thumbnail && <LanguageLink to={'/case-study/' + row.post_group_id} className="home-case-image" tabIndex={-1} aria-hidden="true"><img src={row.thumbnail} alt="" loading="lazy" decoding="async" width="1536" height="1024" onError={event=>{event.currentTarget.hidden=true;}}/></LanguageLink>}
             <h3><LanguageLink to={'/case-study/' + row.post_group_id}>{row.title}</LanguageLink></h3>
             <p>{cleanSummary(row.meta_description)}</p>
           </article>)}</div>

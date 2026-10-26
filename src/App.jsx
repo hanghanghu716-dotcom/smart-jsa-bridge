@@ -45,6 +45,7 @@ const AdminPostUpload = lazy(() => import('./pages/AdminPostUpload'));
 import Archive from './pages/Archive';
 import SEO from './components/SEO';
 import Analytics from './components/Analytics';
+import ThumbnailPublisher from './components/ThumbnailPublisher';
 
 import { useLanguageDetect } from './hooks/useLanguageDetect';
 
@@ -97,6 +98,7 @@ export default function App() {
       <Router>
         <LanguageInit />
         <Analytics />
+        <ThumbnailPublisher />
 
         <MobileGuard>
           <Suspense fallback={<p role="status" aria-live="polite">…</p>}><Routes>

@@ -56,6 +56,8 @@ jobs:
             rendered-ubuntu24-v1-${{ runner.arch }}-
       - name: Verify content and locale logic
         run: npm run test:all
+      - name: Verify cached JSA thumbnails without real account writes
+        run: node scripts/home-thumbnail-browser.cjs
       - name: Load Vercel project configuration
         run: npx --yes vercel@59.23.2 pull --yes --environment=production --token="$VERCEL_TOKEN"
       - name: Build and verify incremental HTML and PDF

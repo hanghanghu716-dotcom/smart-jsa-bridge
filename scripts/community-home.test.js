@@ -30,22 +30,23 @@ test('home excludes private, restricted, rejected and known duplicate documents 
  assert.doesNotMatch(JSON.stringify(cards),/PRIVATE_|form_data|analysis_data|assessment/);
 });
 
-test('home uses bounded public-only reads and omits rows withdrawn between ID and detail reads',async()=>{
+test('home uses bounded metadata reads, handles server caps and stops at six cards',async()=>{
  const records=Array.from({length:12},(_,i)=>row(i+1));let reads=0;
  const result=await readHomePublic('ko',async value=>{
-  const p=new URL(value).searchParams; assert.equal(p.get('is_public'),'eq.true');assert.equal(p.get('public_country'),'eq.KR');
-  if(p.get('select')==='id'){assert.equal(p.get('limit'),'12');return Response.json(records.map(({id})=>({id})));}
-  reads++;const ids=p.get('id').slice(4,-1).split(',');assert.ok(ids.length<=10);
-  return Response.json(records.filter(r=>ids.includes(r.id)&&r.id!==id(1)).reverse().slice(0,3));
+  const u=new URL(value),p=u.searchParams; assert.ok(u.pathname.endsWith('/public_jsa_cards'));
+  assert.equal(p.get('is_public'),'eq.true');assert.equal(p.get('public_country'),'eq.KR');
+  assert.equal(p.get('limit'),'12');assert.doesNotMatch(p.get('select'),/form_data|analysis_data|custom_layout/);
+  reads++;const offset=Number(p.get('offset'));
+  return Response.json(records.slice(offset,offset+3));
  });
- assert.ok(reads>2);assert.deepEqual(result.cards.map(c=>c.id),[2,3,4,5,6,7].map(id));
+ assert.equal(reads,2);assert.deepEqual(result.cards.map(c=>c.id),[1,2,3,4,5,6].map(id));
 });
 
 test('live home includes real public cards and safely escaped compact bootstrap; withdrawals change the response',async()=>{
  let documents=[{...row(1),title:'Task </script><img src=x onerror=alert(1)>'}];
  const handler=createContentIndexHandler({readTemplate:async()=>shell,fetcher:async value=>{
   const u=new URL(value);if(u.pathname.endsWith('/case_studies'))return Response.json([]);
-  return Response.json(u.searchParams.get('select')==='id'?documents.map(({id})=>({id})):documents);
+  return Response.json(documents.slice(Number(u.searchParams.get('offset') || 0)));
  }});
  let res=response();await handler({query:{lng:'ko',kind:'home'},headers:{}},res);
  assert.equal(res.statusCode,200);const tree=parse(res.body);

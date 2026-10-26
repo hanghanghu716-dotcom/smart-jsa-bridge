@@ -1,0 +1,8 @@
+:root {--ui-radius-control:7px;--ui-radius-card:10px;--ui-radius-panel:12px;}
+/* Screen controls only: printed JSA tables and document sheets retain their geometry. */
+@media screen {
+ #root :is(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),select,textarea,[role="button"]):not(.list-pagination-number) {border-radius:var(--ui-radius-control)!important;}
+ #root :is(.home-resource-card,.home-case-card,.home-topic-card,.home-tag-link,.archive-card,.jsa-card,.explore-card,.library-card,.workspace-card,.guide-card,.plan-card,.community-card,.public-context,.public-preview-disclosure) {border-radius:var(--ui-radius-card)!important;}
+ #root :is(.home-topic-section,.archive-tools,.jsa-panel,.jsa-section,.explore-sidebar,.main-side-drawer,.home-start-dialog,.jsa-modal,.public-site-settings select) {border-radius:var(--ui-radius-panel)!important;}
+ #root :is(.home-search,.archive-search,.tag-search,.home-source,.document-preview-badge,.public-site-mark,.list-pagination-control) {border-radius:var(--ui-radius-control)!important;}
+}

@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas';
 
-export async function captureReport(paper) {
+export async function captureReport(paper, { scale = 2, height } = {}) {
   await document.fonts.ready;
   const metricsStyle = document.createElement('style');
   // html2canvas 1.4 measures font baselines with a hidden image in the live
@@ -11,7 +11,7 @@ export async function captureReport(paper) {
   document.head.appendChild(metricsStyle);
   try {
     return await html2canvas(paper, {
-      scale: 2, useCORS: true, backgroundColor: '#ffffff',
+      scale, ...(height ? { height } : {}), useCORS: true, backgroundColor: '#ffffff',
       logging: false, imageTimeout: 0, scrollY: 0
     });
   } finally {

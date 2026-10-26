@@ -233,6 +233,7 @@ const copy = {
 },
 };
 
+const taglines = {"ko":"현장에 맞게 만들고 나누는 위험성평가","en":"Create and share risk assessments for your workplace","ja":"現場に合ったリスクアセスメントを作成・共有","de":"Gefährdungsbeurteilungen für Ihren Arbeitsplatz erstellen und teilen","fr":"Créer et partager des évaluations des risques adaptées au terrain","it":"Crea e condividi valutazioni dei rischi per il tuo lavoro","es":"Crea y comparte evaluaciones de riesgos para tu trabajo","pt":"Crie e compartilhe avaliações de riscos para o seu trabalho","ru":"Создавайте и делитесь оценками рисков для вашего рабочего места","ar":"أنشئ وشارك تقييمات المخاطر المناسبة لمكان عملك","ro":"Creați și distribuiți evaluări de risc pentru locul de muncă"};
 export function communityHomeUi(locale = 'en-US') {
-  return copy[locale.split('-')[0]] || copy.en;
+  return {...(copy[locale.split('-')[0]] || copy.en), tagline: taglines[locale.split('-')[0]] || taglines.en};
 }

@@ -73,7 +73,7 @@ test('Romanian initial article, archive, feed and sitemap use exact Romanian con
   assert.match(html, /lang="ro-RO"/); assert.match(html, /hreflang="ro-RO"/);
   assert.match(html, /Studii de caz/); assert.match(html, /synthetic-ro\.pdf/); assert.match(html, /<table>/);
   const archive = renderIndexHtml('<html><head></head><body><div data-live-case-list="archive"></div></body></html>', [post], 'ro-RO', 'archive');
-  assert.match(archive, /15\.10\.2026/); assert.match(archive, /Studii de caz/);
+  assert.match(archive, /15\.10\.2026/); assert.match(archive, /Previzualizarea conținutului/);
   const feed = buildFeed([post], [], 'ro-RO'); assert.match(feed, /<language>ro-RO<\/language>/); assert.match(feed, /Studii de caz recente/); assert.match(feed, /Exemplu sintetic/);
   const sitemap = buildSitemap([post]); assert.match(sitemap, /\/ro-RO\/case-study\/SYNTHETIC-RO-TEST/);
   assert.ok(staticRoutes([]).includes('/ro-RO/archive'));

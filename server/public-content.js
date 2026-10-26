@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { createHash } from 'node:crypto';
 import { getPublicSupabaseConfig } from './supabase-config.js';
 export const SITE = 'https://smartjsabridge.com';
@@ -10,7 +11,10 @@ export async function readPublic(table, params, fetcher = fetch, { signal } = {}
   const response = await fetcher(DB + table + '?' + new URLSearchParams(params), {
     headers: { apikey: KEY }, cache: 'no-store', signal: signal || AbortSignal.timeout(8000),
   });
-  if (!response.ok) throw new Error('PUBLIC_CONTENT_READ_FAILED');
+  if (!response.ok) {
+    const detail = await response.json().catch(() => ({}));
+    throw Object.assign(new Error('PUBLIC_CONTENT_READ_FAILED'), { code: detail.code, status: response.status });
+  }
   const rows = await response.json();
   if (!Array.isArray(rows)) throw new Error('INVALID_PUBLIC_CONTENT');
   return rows;
