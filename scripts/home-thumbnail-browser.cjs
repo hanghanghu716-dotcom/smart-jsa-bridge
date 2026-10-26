@@ -58,9 +58,9 @@ const documentRow = {
   await page.waitForSelector('.home-resource-card');
   await page.$eval('.home-public-section',n=>n.scrollIntoView());
   await page.waitForFunction(()=>document.querySelector('.risk-pdf-thumbnail img')?.naturalWidth>0);
-  await page.$eval('.home-resource-card',nodes=>nodes[1].scrollIntoView());
+  await page.$$eval('.home-resource-card',nodes=>nodes[1].scrollIntoView());
   await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card')[1]?.querySelector('.risk-pdf-thumbnail')===null).catch(async error=>{
-    console.error('Thumbnail states',await page.$eval('.home-resource-card',nodes=>nodes.map(n=>({title:n.querySelector('h3')?.textContent,src:n.querySelector('img')?.src,complete:n.querySelector('img')?.complete,width:n.querySelector('img')?.naturalWidth}))));throw error;
+    console.error('Thumbnail states',await page.$$eval('.home-resource-card',nodes=>nodes.map(n=>({title:n.querySelector('h3')?.textContent,src:n.querySelector('img')?.src,complete:n.querySelector('img')?.complete,width:n.querySelector('img')?.naturalWidth}))));throw error;
   });
   assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),6);
   assert.equal(requests.filter(url=>/renderRiskThumbnail|RiskAssessmentThumbnail|html2canvas|jspdf/i.test(url)).length,0,'anonymous home must not load canvas/PDF code');
