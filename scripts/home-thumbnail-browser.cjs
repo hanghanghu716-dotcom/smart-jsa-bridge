@@ -45,10 +45,16 @@ const documentRow = {
       }else if(u.pathname.endsWith('/public_jsa_cards')){
         if(legacy){status=404;data={code:'PGRST205',message:'Missing view'};}
         else if(q.has('author_id'))data=published?[]:[{id:id(1),revision}];
-        else data=Array.from({length:6},(_,i)=>({...documentRow,id:id(i+1),title:'Public task '+(i+1),thumbnail_revision:i<2?revision:null,thumbnail_width:720,thumbnail_height:509,form_data:undefined,analysis_data:undefined,custom_layout:undefined}));
+        else data=Array.from({length:6},(_,i)=>({...documentRow,id:id(i+1),title:'Public task '+(i+1),thumbnail_revision:i<2?revision:null,thumbnail_width:720,thumbnail_height:509,form_data:undefined,analysis_data:undefined,custom_layout:undefined})).slice(Number(q.get('offset')||0),Number(q.get('offset')||0)+Number(q.get('limit')||6));
       }else if(u.pathname.endsWith('/public_jsa_catalog')){
         if(q.has('id'))data=[documentRow];
-        else if((q.get('select')||'').includes('excerpt:'))data=Array.from({length:6},(_,i)=>({...documentRow,id:id(i+1),analysis_data:undefined,form_data:undefined,custom_layout:undefined}));
+        else if((q.get('select')||'').includes('excerpt:'))data=Array.from({length:6},(_,i)=>({...documentRow,id:id(i+1),analysis_data:undefined,form_data:undefined,custom_layout:undefined})).slice(Number(q.get('offset')||0),Number(q.get('offset')||0)+Number(q.get('limit')||6));
+      }
+      if(Array.isArray(data) && q.get('or')){
+        const afterId=q.get('or').match(/id[.]gt[.]([0-9a-f-]+)/)?.[1];
+        if(afterId && (u.pathname.endsWith('/public_jsa_cards') || u.pathname.endsWith('/public_jsa_catalog'))) {
+          data=Array.from({length:6},(_,i)=>({...documentRow,id:id(i+1),title:'Public task '+(i+1),thumbnail_revision:i<2?revision:null,thumbnail_width:720,thumbnail_height:509,form_data:undefined,analysis_data:undefined,custom_layout:undefined})).filter(row=>row.id>afterId).slice(0,Number(q.get('limit')||6));
+        }
       }
       return request.respond({status,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(data)});
     }

@@ -25,7 +25,9 @@ async function verifyHomeDiscovery(browser, base) {
       const selected=url.searchParams.get('id')?.slice(4,-1).split(',');
       rows=documents.filter(d=>!selected||selected.includes(d.id));
       if(url.searchParams.get('select')==='id')rows=rows.map(({id})=>({id}));
-      headers['content-range']='0-'+(rows.length-1)+'/12';
+      const offset=Number(url.searchParams.get('offset')||0),limit=Number(url.searchParams.get('limit')||rows.length);
+      rows=rows.slice(offset,offset+limit);
+      headers['content-range']=offset+'-'+(offset+rows.length-1)+'/12';
     }
     if(url.pathname.includes('/rest/v1/'))return request.respond({status:200,headers,contentType:'application/json',body:JSON.stringify(rows)});
     return request.abort();

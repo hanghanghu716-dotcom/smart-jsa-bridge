@@ -1,6 +1,6 @@
 # Public discovery and cached JSA thumbnails
 
-The public home now reads metadata for six visible document groups and displays saved first-page WebP images instead of rendering risk PDFs on each visitor's device. Missing images retain readable title/summary previews.
+The public home now reads metadata in three-row cursor batches for six visible document groups and displays saved first-page WebP images instead of rendering risk PDFs on each visitor's device. Missing images retain readable title/summary previews.
 
 Authenticated authors generate missing current-revision thumbnails serially in the library/export workspace. Captures use the persisted, sanitized public risk assessment, its language and saved layout. A failed capture never changes document-save success. Images are capped at 200 KiB; the private bucket checks current publication before serving them.
 
@@ -11,8 +11,11 @@ This release also includes archive search/filter/sort and localization, the comp
 Applied migrations: 
 - 20261026091423_cached_public_jsa_thumbnails
 - 20261026092008_optimize_public_thumbnail_reads
+- 20261026102048_lightweight_thumbnail_revision_checks
 
 The second migration allows the query planner to apply LIMIT before expensive assessment calculations and uses indexed project IDs in storage permission checks. Table RLS and security-invoker access remain enforced.
+
+The third migration separates revision/review checks from near-duplicate assessment. Cursor pagination avoids reassessing earlier rows, and small metadata batches remain within the anonymous database statement budget. US batches with thumbnail metadata completed in approximately 1.0-1.3 seconds in production transaction checks.
 
 Production transaction tests verified owner inserts, rejection of stale revisions and foreign-owner writes, and anonymous current-public reads. Test writes were rolled back. No JSA body content was modified.
 

@@ -1,7 +1,7 @@
 import { renderDocumentThumbnail } from '../src/utils/documentThumbnail.js';
 import { readPublic, escapeHtml as e } from './public-content.js';
 import { localeCountry, countryLabel } from '../src/utils/publicCountry.js';
-import { readHomeSummary } from '../src/utils/homeSummary.js';
+import { readHomeSummary, homeAfterFilter } from '../src/utils/homeSummary.js';
 import { archiveUi } from '../src/locales/archiveUi.js';
 import { communityHomeUi } from '../src/locales/communityHomeUi.js';
 import { getPublicUi } from '../src/locales/publicUi.js';
@@ -11,9 +11,10 @@ import { exploreSearch } from '../src/utils/discovery.js';
 
 export async function readHomePublic(locale, fetcher = fetch) {
   const country = localeCountry(locale), signal = AbortSignal.timeout(12000);
-  return readHomeSummary(locale, ({ table, fields, offset, limit }) => readPublic(table, {
+  return readHomeSummary(locale, ({ table, fields, offset, after, limit }) => readPublic(table, {
     is_public: 'eq.true', ...(country ? { public_country: 'eq.' + country } : {}),
-    select: fields, order: 'published_at.desc,id.asc', offset: String(offset), limit: String(limit),
+    select: fields, order: 'published_at.desc.nullslast,id.asc', limit: String(limit),
+    ...(homeAfterFilter(after) ? { or: '(' + homeAfterFilter(after) + ')' } : { offset: String(offset) }),
   }, fetcher, { signal }), signal);
 }
 

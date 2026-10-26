@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readHomeSummary, homeSummaryCards, HOME_SUMMARY_FIELDS, HOME_LEGACY_FIELDS } from '../src/utils/homeSummary.js';
+import { readHomeSummary, homeSummaryCards, homePageCursor, homeAfterFilter, HOME_SUMMARY_FIELDS, HOME_LEGACY_FIELDS } from '../src/utils/homeSummary.js';
 import { thumbnailObjectPath, storedThumbnail, THUMBNAIL_MAX_BYTES } from '../src/utils/publicThumbnail.js';
 import { createJsaThumbnailHandler } from '../api/jsa-thumbnail.js';
 import { publishThumbnail, pendingThumbnails } from '../src/services/thumbnailPublishingService.js';
@@ -21,7 +21,7 @@ test('home requests metadata only, collapses groups and stops once six cards are
     ...Array.from({length:8},(_,i)=>row(i+5))];
   let calls = 0;
   const result = await readHomeSummary('ko', async ({ fields, offset, limit }) => {
-    calls++; assert.equal(fields, HOME_SUMMARY_FIELDS); assert.equal(limit,12);
+    calls++; assert.equal(fields, HOME_SUMMARY_FIELDS); assert.equal(limit,3);
     assert.doesNotMatch(fields,/form_data|analysis_data|custom_layout/);
     return records.slice(offset,offset+3);
   });
@@ -50,8 +50,8 @@ test('home aborts stale reads, bounds sparse results, and rejects repeated pagin
   const controller = new AbortController(); controller.abort();
   await assert.rejects(readHomeSummary('ko',()=>assert.fail('must not read'),controller.signal),{name:'AbortError'});
   let count=0;
-  await readHomeSummary('ko',async({offset})=>{count++;return Array.from({length:12},(_,n)=>({...row(offset+n+1),assessment:{review:'rejected'}}));});
-  assert.equal(count,10);
+  await readHomeSummary('ko',async({offset,limit})=>{count++;return Array.from({length:limit},(_,n)=>({...row(offset+n+1),assessment:{review:'rejected'}}));});
+  assert.equal(count,40);
   await assert.rejects(readHomeSummary('ko',async()=>[row(1)]),/HOME_PAGINATION_STALLED/);
 });
 
@@ -158,4 +158,22 @@ test('publisher only queues the signed-in owner and rejects oversize images/canc
   const controller=new AbortController();
   await assert.rejects(publishThumbnail({client:fixture.client,ownerId,item,signal:controller.signal,render:async()=>{controller.abort();return image;}}),{name:'AbortError'});
   assert.equal(fixture.uploads.length,0);
+});
+
+
+test('home cursor preserves timestamp precision, handles null dates and rejects filter injection', async () => {
+  const timestamp='2026-10-26T10:00:00.123456+00:00';
+  const cursor=homePageCursor({...row(3),published_at:timestamp});
+  assert.deepEqual(cursor,{id:id(3),publishedAt:timestamp});
+  assert.ok(homeAfterFilter(cursor).includes('published_at.eq.'+timestamp));
+  assert.equal(homeAfterFilter(homePageCursor({...row(3),published_at:null})),'and(published_at.is.null,id.gt.'+id(3)+')');
+  assert.equal(homeAfterFilter({id:id(3),publishedAt:'2026-10-26),is_public.eq.false'}),null);
+  assert.equal(homeAfterFilter({id:'invalid',publishedAt:timestamp}),null);
+  const records=Array.from({length:6},(_,n)=>({...row(n+1),published_at:timestamp}));let calls=0;
+  const result=await readHomeSummary('ko',async ({after,limit})=>{
+    calls++;assert.equal(limit,3);
+    if(calls===2)assert.deepEqual(after,cursor);
+    return records.filter(row=>!after||row.id>after.id).slice(0,limit);
+  });
+  assert.equal(calls,2);assert.equal(result.cards.length,6);
 });

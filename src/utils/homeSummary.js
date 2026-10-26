@@ -10,6 +10,20 @@ export const HOME_SUMMARY_FIELDS = COMMON_FIELDS + ',excerpt,step_count,thumbnai
 export const HOME_LEGACY_FIELDS = COMMON_FIELDS + ',excerpt:publication_context->>scope';
 export const homeSchemaMissing = error => ['42P01','PGRST205','42703','PGRST204'].includes(error?.code);
 
+// Preserve database timestamp precision; never interpolate unvalidated filters.
+export function homePageCursor(row) {
+  if (!validProjectId(row?.id)) return null;
+  if (row.published_at === null) return { id: row.id, publishedAt: null };
+  const value = row.published_at;
+  return typeof value === 'string' && /^[0-9TZ:+.-]+$/.test(value) && Number.isFinite(Date.parse(value))
+    ? { id: row.id, publishedAt: value } : null;
+}
+export function homeAfterFilter(after) {
+  if (!after || !homePageCursor({ id: after.id, published_at: after.publishedAt })) return null;
+  if (after.publishedAt === null) return 'and(published_at.is.null,id.gt.' + after.id + ')';
+  return 'published_at.lt.' + after.publishedAt + ',and(published_at.eq.' + after.publishedAt + ',id.gt.' + after.id + '),published_at.is.null';
+}
+
 export function homeSummaryCards(rows, locale) {
   const country = localeCountry(locale), groups = new Set();
   return rows.filter(row => row?.is_public === true && validProjectId(row.id) && !row.restricted &&
@@ -28,14 +42,15 @@ export function homeSummaryCards(rows, locale) {
 }
 
 // Six visible groups, no exact count or full-document fetch. Bound sparse catalogs
-// to 120 metadata rows, while still handling server-side result caps.
+// to 120 metadata rows. Small batches keep live duplicate checks within the
+// anonymous database statement budget, including when several readers arrive.
 export async function readHomeSummary(locale, readPage, signal) {
-  let table = 'public_jsa_cards', fields = HOME_SUMMARY_FIELDS, offset = 0;
+  let table = 'public_jsa_cards', fields = HOME_SUMMARY_FIELDS, offset = 0, after = null;
   const rows = [], seen = new Set();
-  for (let page = 0; page < 10; page++) {
+  for (let page = 0; page < 40; page++) {
     signal?.throwIfAborted();
     let batch;
-    try { batch = await readPage({ table, fields, offset, limit: 12, signal }); }
+    try { batch = await readPage({ table, fields, offset, after, limit: 3, signal }); }
     catch (error) {
       if (table !== 'public_jsa_cards' || offset !== 0 || !homeSchemaMissing(error)) throw error;
       table = 'public_jsa_catalog'; fields = HOME_LEGACY_FIELDS;
@@ -48,6 +63,7 @@ export async function readHomeSummary(locale, readPage, signal) {
     if (!fresh.length) throw new Error('HOME_PAGINATION_STALLED');
     for (const row of fresh) { seen.add(row.id); rows.push(row); }
     offset += batch.length;
+    after = homePageCursor(batch.at(-1));
     if (homeSummaryCards(rows, locale).length === 6) break;
   }
   return { locale, cards: homeSummaryCards(rows, locale) };
