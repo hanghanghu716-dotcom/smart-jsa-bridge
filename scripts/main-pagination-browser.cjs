@@ -18,8 +18,9 @@ async function verifyHomeDiscovery(browser, base) {
     }));
     let rows=[];
     if(url.pathname.endsWith('/case_studies'))rows=cases;
-    if(url.pathname.endsWith('/public_jsa_catalog')){
+    if(url.pathname.endsWith('/public_jsa_cards') || url.pathname.endsWith('/public_jsa_catalog')){
       const documents=cases.slice(0,12).map(c=>({id:c.id,title:'Valve task '+c.title,is_public:true,public_locale:locale,public_country:country,
+        excerpt:'Authored valve task scope.',step_count:1,assessment:{checked:true,review:'approved',revision:'a'.repeat(32)},thumbnail_revision:null,
         publication_context:{scope:'Authored valve task scope.'},analysis_data:[{proc:{stepTitle:'Isolation',stepDetail:'Verify the boundary.'},risks:[{factor:'Pressure',measure:'Verify zero pressure.'}]}],tags:[]}));
       const selected=url.searchParams.get('id')?.slice(4,-1).split(',');
       rows=documents.filter(d=>!selected||selected.includes(d.id));
@@ -57,8 +58,19 @@ async function verifyHomeDiscovery(browser, base) {
 }
 module.exports={verifyHomeDiscovery};
 if(require.main===module){
-  const puppeteer=require('puppeteer');
-  (async()=>{const browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||process.env.CHROME_PATH||undefined,args:['--no-sandbox']});
-    try{await verifyHomeDiscovery(browser,process.env.TEST_BASE_URL||'http://127.0.0.1:4173');}finally{await browser.close();}
+  const puppeteer=require('puppeteer'),{spawn}=require('node:child_process');
+  (async()=>{
+    const local=process.argv.includes('--local'),base=process.env.TEST_BASE_URL||(local?'http://127.0.0.1:4216':'http://127.0.0.1:4173');
+    let browser,preview;
+    try {
+      if(local){
+        preview=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4216','--strictPort'],{stdio:'ignore',windowsHide:true});
+        let ready=false;
+        for(let attempt=0;attempt<60;attempt++){try{if((await fetch(base)).ok){ready=true;break;}}catch{}await new Promise(resolve=>setTimeout(resolve,250));}
+        assert.ok(ready,'Local production preview must start');
+      }
+      browser=await puppeteer.launch({headless:true,executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||process.env.CHROME_PATH||undefined,args:['--no-sandbox']});
+      await verifyHomeDiscovery(browser,base);
+    }finally{await browser?.close();preview?.kill();}
   })().catch(error=>{console.error(error);process.exitCode=1;});
 }
