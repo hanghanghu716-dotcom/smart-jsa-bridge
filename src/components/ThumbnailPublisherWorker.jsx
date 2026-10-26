@@ -9,7 +9,9 @@ export default function ThumbnailPublisherWorker({ ownerId }) {
   useEffect(() => {
     const controller = new AbortController(), failures = new Map();
     let running = false, stopped = false, timer;
-    const run = async () => {
+    // Keep a function declaration: the production async transform must preserve
+    // the self-reference used when scheduling the next queue pass.
+    async function run() {
       if (running || stopped || controller.signal.aborted || document.hidden) return;
       running = true;
       clearTimeout(timer);
@@ -44,7 +46,7 @@ export default function ThumbnailPublisherWorker({ ownerId }) {
         running = false;
         if (!stopped && !controller.signal.aborted) timer = setTimeout(run, 15000);
       }
-    };
+    }
     const wake = () => { clearTimeout(timer); timer = setTimeout(run, 1500); };
     wake();
     window.addEventListener('jsa-storage-changed', wake);
