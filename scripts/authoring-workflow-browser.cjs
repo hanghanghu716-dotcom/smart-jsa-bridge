@@ -56,6 +56,9 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await page.click('[data-change-template]');await wait('[data-template=current]');
   await page.click('[data-template=photo]');await page.click('[data-template-customize]');await wait('[data-designer-next]');
   assert.ok(await page.$eval('.designer-paper',n=>n.textContent.includes('Stored pressure')));
+  await page.setViewport({width:390,height:844});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'Mobile designer must not overflow');
+  await page.setViewport({width:1600,height:1000});
   await page.click('[data-designer-next]');await wait('[data-template-continue]');
   await page.click('[data-template-continue]');await wait('.reportPaper');
   assert.ok(page.url().endsWith('/export'));assert.ok(await page.$eval('.reportPaper',n=>n.textContent.includes('Stored pressure')));

@@ -1,3 +1,4 @@
+import { reportPageGeometry, reportPages } from '../src/utils/reportPagination.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -15,8 +16,8 @@ async function render(tables, height, orientation = 'landscape') {
   const nodes = tables.flatMap(table => table.rows);
   const element = {getBoundingClientRect:()=>bounds,querySelectorAll:sel=>sel === 'table' ? tables : nodes};
   class PDF { addPage(){} addImage(){} output(){return {};} }
-  const fn = new Function('jsPDF','captureReport','normalizePaperSize','paperDimensions','paperPrintStyles','document',source+';return createReportPdf;');
-  const create = fn(PDF,async()=>sourceCanvas,x=>x,(_,o)=>o === 'portrait' ? {width:210,height:297}:{width:297,height:210},()=>'',document);
+  const fn = new Function('jsPDF','captureReport','normalizePaperSize','paperDimensions','paperPrintStyles','document','reportPageGeometry','reportPages',source+';return createReportPdf;');
+  const create = fn(PDF,async()=>sourceCanvas,x=>x,(_,o)=>o === 'portrait' ? {width:210,height:297}:{width:297,height:210},()=>'',document,reportPageGeometry,reportPages);
   await create([{element,orientation,paperSize:'a4'}]);
   return output;
 }

@@ -77,3 +77,13 @@
  .template-actions>button{width:100%}
 }
 @media print{.authoring-workspace,.template-page,.authoring-steps{display:none!important}}
+
+@media(max-width:1000px){
+ .designer-workspace>header{padding:12px 16px!important;height:auto!important;flex-wrap:wrap}
+ .designer-workspace>main{padding:16px!important;min-width:0}
+ .designer-workspace>main>section{flex-wrap:wrap}
+ .designer-grid{grid-template-columns:minmax(0,1fr)!important;height:auto!important;min-height:0!important}
+ .designer-grid>*{min-width:0;max-width:100%;box-sizing:border-box}
+ .designer-canvas{max-height:65vh}
+ .designer-workspace input,.designer-workspace textarea,.designer-workspace select{font-size:16px!important}
+}

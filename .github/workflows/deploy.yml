@@ -70,6 +70,7 @@ jobs:
       - name: Verify isolated library loading and original-document editing
         # Remote requests are intercepted; this fixture performs no real writes.
         run: |
+          node scripts/authoring-workflow-browser.cjs
           node scripts/main-pagination-browser.cjs --local
           node scripts/library-discovery-browser.cjs
           node scripts/public-document-preview-browser.cjs
