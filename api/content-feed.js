@@ -48,6 +48,42 @@ export function buildFeed(cases, publicRows, locale) {
   }
   return start + items.join('') + end;
 }
+// Keep full bodies and duplicate checks out of sorted, large-row projections.
+// A timed-out group is divided; persistent single-document failures still fail
+// the feed rather than silently publishing incomplete or stale content.
+async function readFeedDetails(table, ids, filters, fields, fetcher) {
+  if (ids.some(id => !/^[A-Za-z0-9_-]+$/.test(String(id)))) throw Error('INVALID_FEED_ID');
+  try {
+    return await readPublic(table, { ...filters, select: fields, id: 'in.(' + ids.join(',') + ')' }, fetcher);
+  } catch (error) {
+    if (error.code !== '57014' || ids.length < 2) throw error;
+    const middle = Math.ceil(ids.length / 2);
+    const first = await readFeedDetails(table, ids.slice(0, middle), filters, fields, fetcher);
+    const second = await readFeedDetails(table, ids.slice(middle), filters, fields, fetcher);
+    return [...first, ...second];
+  }
+}
+async function readFeedCases(locale, fetcher) {
+  const signal = AbortSignal.timeout(20000);
+  const boundedFetch = (url, options) => fetcher(url, { ...options, signal });
+  const filters = { language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' };
+  const ids = await readPublic('case_studies', { ...filters, select: 'id',
+    order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, boundedFetch);
+  const rows = [];
+  for (let offset = 0; offset < ids.length; offset += 3) {
+    let pending = ids.slice(offset, offset + 3).map(row => row.id);
+    while (pending.length) {
+      const batch = await readFeedDetails('case_studies', pending, filters,
+        CASE_SUMMARY_FIELDS + ',content_md,pdf_list,pdf_download_url', boundedFetch);
+      if (!batch.length) break;
+      if (batch.some(row => !pending.includes(row.id))) throw Error('INVALID_FEED_BATCH');
+      rows.push(...batch);
+      const returned = new Set(batch.map(row => row.id));
+      pending = pending.filter(id => !returned.has(id));
+    }
+  }
+  return rows;
+}
 async function readFeedDocuments(locale, fetcher) {
   const signal = AbortSignal.timeout(20000);
   const boundedFetch = (url, options) => fetcher(url, { ...options, signal });
@@ -64,9 +100,8 @@ async function readFeedDocuments(locale, fetcher) {
       // Keep each expensive assessment query below the anonymous DB deadline.
       // Read every sub-batch, including those after wholly withdrawn groups.
       for (let offset = 0; offset < ids.length; offset += 3) {
-        data.push(...await readPublic('public_jsa_catalog', {
-          ...filters, select: PUBLIC_JSA_FIELDS, id: 'in.(' + ids.slice(offset, offset + 3).join(',') + ')',
-        }, boundedFetch));
+        data.push(...await readFeedDetails('public_jsa_catalog', ids.slice(offset, offset + 3),
+          filters, PUBLIC_JSA_FIELDS, boundedFetch));
       }
       return { data };
     },
@@ -95,7 +130,7 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
       if (kind === 'public') body = buildPublicSitemap(await readPublicIndex(fetcher));
       if (kind === 'rss') {
         const [cases, documents] = await Promise.all([
-          readPublic('case_studies', { select: CASE_SUMMARY_FIELDS + ',content_md,pdf_list,pdf_download_url', language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')', order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, fetcher),
+          readFeedCases(locale, fetcher),
           readFeedDocuments(locale, fetcher),
         ]);
         body = buildFeed(cases, documents, locale);

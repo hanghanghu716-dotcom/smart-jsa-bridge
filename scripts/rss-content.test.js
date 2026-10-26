@@ -62,7 +62,10 @@ test('RSS handler requests full article text and removes withdrawn documents imm
   let documents = [doc]; const selected = [];
   const handler = createContentFeedHandler({ fetcher: async value => {
     const url = new URL(value); selected.push(url.searchParams.get('select'));
-    if (url.pathname.endsWith('/case_studies')) {assert.equal(url.searchParams.get('limit'), '50');assert.match(url.searchParams.get('order'),/^content_updated_at.desc/);}
+    if (url.pathname.endsWith('/case_studies')) {
+      if (url.searchParams.get('select') === 'id') { assert.equal(url.searchParams.get('limit'), '50'); assert.match(url.searchParams.get('order'),/^content_updated_at.desc/); }
+      else { assert.equal(url.searchParams.get('id'),'in.('+post.id+')'); assert.equal(url.searchParams.has('order'),false); }
+    }
     if(url.pathname.endsWith('/case_studies'))return Response.json([post]);
     assert.equal(url.searchParams.get('is_public'),'eq.true');
     assert.equal(url.searchParams.get('public_locale'),'eq.ko');
@@ -141,4 +144,36 @@ test('RSS rejects a later assessment failure instead of publishing only cases or
  const res={setHeader(){},end(body){this.body=body;}};
  await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
  assert.equal(res.statusCode,503);assert.doesNotMatch(res.body,/<rss /);
+});
+
+test('RSS divides timed-out assessment groups and fetches full case bodies in bounded ID groups',async()=>{
+ const records=Array.from({length:7},(_,n)=>({...doc,id:'10000000-0000-4000-8000-'+String(n).padStart(12,'0'),title:'Recovered document '+n}));
+ const articles=Array.from({length:7},(_,n)=>({...post,id:'post-'+n,post_group_id:'article-'+n}));
+ let splits=0, bodies=0;
+ const handler=createContentFeedHandler({fetcher:async value=>{
+  const u=new URL(value),p=u.searchParams, cases=u.pathname.endsWith('/case_studies'), rows=cases?articles:records;
+  if(p.get('select')==='id')return Response.json(rows.map(({id})=>({id})));
+  const ids=p.get('id').slice(4,-1).split(',');
+  assert.ok(ids.length<=3);assert.equal(p.has('order'),false);
+  if(cases){bodies++;assert.ok(p.get('select').includes('content_md'));assert.ok(p.has('language_code'));}
+  else assert.equal(p.get('is_public'),'eq.true');
+  if(ids.length>1){splits++;return Response.json({code:'57014'},{status:500});}
+  return Response.json(rows.filter(row=>ids.includes(row.id)));
+ }});
+ const res={setHeader(){},end(body){this.body=body;}};
+ await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
+ assert.equal(res.statusCode,200);assert.equal(descriptions(res.body).length,14);
+ assert.ok(splits>0&&bodies>0);assert.match(res.body,/마지막 본문/);assert.match(res.body,/권고 대책 3/);
+});
+test('RSS never suppresses a persistent single-document timeout',async()=>{
+ let detailCalls=0;
+ const handler=createContentFeedHandler({fetcher:async value=>{
+  const u=new URL(value),p=u.searchParams;
+  if(u.pathname.endsWith('/case_studies'))return Response.json([]);
+  if(p.get('select')==='id')return Response.json([{id:doc.id}]);
+  detailCalls++;return Response.json({code:'57014'},{status:500});
+ }});
+ const res={setHeader(){},end(body){this.body=body;}};
+ await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
+ assert.equal(res.statusCode,503);assert.equal(detailCalls,1);assert.doesNotMatch(res.body,/<rss /);
 });

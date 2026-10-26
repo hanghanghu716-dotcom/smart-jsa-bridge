@@ -25,6 +25,10 @@ jobs:
       - run: bash scripts/setup-rendering.sh
       - name: Check template and pagination logic
         run: npm run test:all
+      - name: Verify complete RSS against public source data
+        run: |
+          node scripts/render-rss-check.js
+          python3 scripts/verify-live-rss.py --candidate
       - name: Build application
         run: npx vite build
       - name: Verify template selection, editing, recovery and PDF output
