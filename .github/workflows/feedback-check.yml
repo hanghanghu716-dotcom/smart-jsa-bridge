@@ -29,6 +29,11 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - uses: actions/cache/restore@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - run: bash scripts/setup-rendering.sh
       - run: npm ci
       - run: node --test scripts/feedback.test.js scripts/security-operations.test.js scripts/live-content.test.js
       - run: timeout 300 node scripts/feedback-browser.cjs

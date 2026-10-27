@@ -22,6 +22,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
    }
    if(url.startsWith(base)||/^(blob|data):/.test(url))return r.continue();
    if(r.method()==='OPTIONS')return r.respond({status:204,headers});
+   if(adminFixture&&url.includes('/storage/v1/object/authenticated/feedback-attachments/'))return r.respond({status:200,headers,contentType:'application/pdf',body:fs.readFileSync(filePath)});
    if(url.includes('/storage/v1/object/feedback-attachments/')){
     uploadCount++;if(failNextUpload){failNextUpload=false;return json({message:'temporary error'},503);}
     uploads.add(Number(url.split('/').pop()));return json({Key:'feedback-attachments/test',Id:id});
@@ -33,7 +34,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
     const body=JSON.parse(r.postData());adminCalls.push(body);
     const row={id,category:'case_request',title:'Operator review fixture',locale:'ko',country:'KR',status:'open',created_at:'2026-10-28T00:00:00Z',updated_at:'2026-10-28T00:00:00Z',attachments:0};
     if(body.p_action==='list')return json([row]);
-    if(body.p_action==='detail')return json({...row,detail:'A private work story.',context:'Equipment: pump.',contact_email:'fixture@example.test',internal_notes:'',response:'',files:[]});
+    if(body.p_action==='detail')return json({...row,detail:'A private work story.',context:'Equipment: pump.',contact_email:'fixture@example.test',internal_notes:'',response:'',files:[{id:'attachment-fixture',name:'permit.pdf',type:'application/pdf',size:fs.statSync(filePath).size,path:'test/0'}]});
     return json({ok:true});
    }
    if(url.includes('/rest/v1/case_studies')){
@@ -71,7 +72,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await page.click('.case-language-switch summary');await page.click('.case-language-switch a[href^="/en-US"]');await wait('.case-language-switch');assert.ok(page.url().includes('/en-US/case-study/qa-pump'));
   console.log('Feedback QA: mobile file-only request and retry');
   await page.setViewport({width:390,height:844});await page.goto(base+'/ko',{waitUntil:'networkidle0'});await launch();
-  const filePath=path.join(out,'permit.pdf');fs.writeFileSync(filePath,'%PDF-1.4\nQA attachment fixture');await (await page.$('.feedback-dialog input[type=file]')).uploadFile(filePath);
+  const filePath=path.join(out,'permit.pdf');const {jsPDF}=require('jspdf'),pdf=new jsPDF();pdf.text('QA permit: no real workplace data',15,20);fs.writeFileSync(filePath,Buffer.from(pdf.output('arraybuffer')));await (await page.$('.feedback-dialog input[type=file]')).uploadFile(filePath);
   await page.click('.feedback-check input[required]');await page.click('.feedback-dialog .feedback-primary');await wait('.feedback-review');failNextUpload=true;
   await page.click('.feedback-dialog .feedback-primary');await wait('.feedback-error');assert.equal(submission,1);assert.ok(await page.$('.feedback-review'));assert.equal(prepared.at(-1).title,'');
   await page.click('.feedback-dialog .feedback-primary');await wait('.feedback-success');assert.equal(submission,2);assert.equal(uploadCount,2);assert.equal(prepared.at(-1).client_id,prepared.at(-2).client_id);
@@ -97,8 +98,10 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   },id);
   await page.setViewport({width:1280,height:900});await page.goto(base+'/ko/admin/requests',{waitUntil:'networkidle0'});await wait('.feedback-queue button');
   await page.click('.feedback-queue button');await wait('.feedback-inbox-detail');
+  await page.click('.feedback-inbox-detail .feedback-files button');await wait('.feedback-attachment-preview');
+  assert.ok(await page.$eval('.feedback-attachment-preview',image=>image.src.startsWith('data:image/webp')));
   await fill('.feedback-inbox-detail form textarea','Private operator note');
-  await page.$eval('.feedback-inbox-detail form textarea',nodes=>{Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(nodes[1],'Public reply');nodes[1].dispatchEvent(new Event('input',{bubbles:true}));});
+  await page.$$eval('.feedback-inbox-detail form textarea',nodes=>{Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(nodes[1],'Public reply');nodes[1].dispatchEvent(new Event('input',{bubbles:true}));});
   await page.screenshot({path:path.join(out,'admin-inbox.png')});
   await page.click('.feedback-inbox-detail form button');await page.waitForFunction(()=>!document.querySelector('.feedback-inbox-detail'));
   const update=adminCalls.find(call=>call.p_action==='update');assert.equal(update.p_payload.notes,'Private operator note');assert.equal(update.p_payload.response,'Public reply');assert.equal(update.p_payload.expected,'2026-10-28T00:00:00Z');

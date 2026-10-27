@@ -9,7 +9,7 @@ export default function FeedbackWidget(){
  const {i18n}=useTranslation(),ui=feedbackUi(i18n.language),location=useLocation();
  const dialog=useRef(null),button=useRef(null),[opened,setOpened]=useState(false),[mounted,setMounted]=useState(false);
  const authoring=/\/(templates|info|procedure|analysis|export|document-designer|layoutbuilder|layout-module|layout-table|work-packages|jsa-preview)(\/|$)/.test(location.pathname);
- useEffect(()=>{dialog.current?.close();setOpened(false);},[location.pathname]);
+ useEffect(()=>{dialog.current?.close();},[location.pathname]);
  useEffect(()=>{
   if(!opened)return;
   const previous=document.body.style.overflow;document.body.style.overflow='hidden';
