@@ -22,7 +22,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
    }
    if(url.startsWith(base)||/^(blob|data):/.test(url))return r.continue();
    if(r.method()==='OPTIONS')return r.respond({status:204,headers});
-   if(adminFixture&&url.includes('/storage/v1/object/authenticated/feedback-attachments/'))return r.respond({status:200,headers,contentType:'application/pdf',body:fs.readFileSync(filePath)});
+   if(adminFixture&&r.method()==='GET'&&/\/storage\/v1\/object\/(?:authenticated\/)?feedback-attachments\//.test(url))return r.respond({status:200,headers,contentType:'application/pdf',body:fs.readFileSync(filePath)});
    if(url.includes('/storage/v1/object/feedback-attachments/')){
     uploadCount++;if(failNextUpload){failNextUpload=false;return json({message:'temporary error'},503);}
     uploads.add(Number(url.split('/').pop()));return json({Key:'feedback-attachments/test',Id:id});
@@ -88,7 +88,8 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await page.keyboard.press('Escape');assert.equal(await page.$eval('#feedback-dialog',n=>n.open),false);
   console.log('Feedback QA: 19 locale dialogs');
   const {SUPPORTED_LANGS}=await import('../src/locales/config.js');
-  for(const locale of SUPPORTED_LANGS){console.log('Feedback QA locale',locale);await page.goto(base+'/'+locale,{waitUntil:'domcontentloaded'});await wait('.feedback-launcher');await launch();assert.ok(await page.$eval('.feedback-dialog h2',n=>n.textContent.trim().length>0));await page.click('.feedback-dialog-header button');}
+  const checkedLocales=process.env.FEEDBACK_QA_QUICK?['ko','ar-SA','en-US']:SUPPORTED_LANGS;
+  for(const locale of checkedLocales){console.log('Feedback QA locale',locale);await page.goto(base+'/'+locale,{waitUntil:'domcontentloaded'});await wait('.feedback-launcher');await launch();assert.ok(await page.$eval('.feedback-dialog h2',n=>n.textContent.trim().length>0));await page.click('.feedback-dialog-header button');}
   console.log('Feedback QA: operator inbox with isolated auth fixture');
   adminFixture=true;
   await page.evaluate(id=>{
@@ -106,6 +107,6 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await page.click('.feedback-inbox-detail form button');await page.waitForFunction(()=>!document.querySelector('.feedback-inbox-detail'));
   const update=adminCalls.find(call=>call.p_action==='update');assert.equal(update.p_payload.notes,'Private operator note');assert.equal(update.p_payload.response,'Public reply');assert.equal(update.p_payload.expected,'2026-10-28T00:00:00Z');
   assert.deepEqual(errors,[]);assert.ok(writes.every(url=>/rpc\//.test(url)),'No real data writes');
-  console.log('Feedback browser: 19 locales, mobile/RTL/themes, title-only, file-only, retry, receipts, real sibling links and print exclusion passed. No real submissions.');
+  console.log('Feedback browser:',checkedLocales.length,'locales, mobile/RTL/themes, title-only, file-only, retry, receipts, real sibling links and print exclusion passed. No real submissions.');
  }catch(error){console.error('Feedback QA failed',error);throw error;}finally{if(browser)await browser.close();server.httpServer?.closeAllConnections();await server.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

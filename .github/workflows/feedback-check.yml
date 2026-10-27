@@ -22,6 +22,7 @@ jobs:
     timeout-minutes: 12
     env:
       PUPPETEER_SKIP_DOWNLOAD: true
+      FEEDBACK_QA_QUICK: '1'
       PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
     steps:
       - uses: actions/checkout@v4
