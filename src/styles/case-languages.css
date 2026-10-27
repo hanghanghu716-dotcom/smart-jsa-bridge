@@ -1,0 +1,11 @@
+.case-language-switch { position:relative; width:fit-content; max-width:100%; margin-block:16px 4px; font-size:.875rem; color:var(--text-primary); z-index:15; }
+.case-language-switch summary { display:flex; align-items:center; flex-wrap:wrap; gap:6px; min-height:44px; padding:10px 14px; box-sizing:border-box; border:1px solid var(--border-default); border-radius:14px; background:var(--panel-bg); cursor:pointer; list-style:none; }
+.case-language-switch summary::-webkit-details-marker { display:none; }
+.case-language-switch summary::after { content:'⌄'; margin-inline-start:6px; }
+.case-language-switch[open] summary { border-color:var(--accent); background:var(--accent-soft); }
+.case-language-switch nav { position:absolute; inset-inline-start:0; inset-block-start:calc(100% + 6px); width:max-content; min-width:100%; max-width:min(340px,calc(100vw - 48px)); max-height:min(360px,50dvh); overflow:auto; background:var(--panel-bg); border:1px solid var(--border-default); border-radius:14px; box-shadow:var(--shadow-panel); padding:6px; box-sizing:border-box; }
+.case-language-switch nav a { display:flex; align-items:center; min-height:44px; padding:8px 12px; box-sizing:border-box; border-radius:8px; text-decoration:none; color:var(--text-primary); overflow-wrap:anywhere; }
+.case-language-switch nav a:hover { background:var(--surface-hover); }
+.case-language-switch nav a[aria-current] { background:var(--accent-soft); color:var(--accent); font-weight:700; }
+.case-language-switch :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media print { .case-language-switch { display:none!important; } }

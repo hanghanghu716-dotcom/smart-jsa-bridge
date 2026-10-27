@@ -14,6 +14,7 @@ import PublicationFields from '../components/PublicationFields';
 import DiscoveryAdmin from '../components/DiscoveryAdmin';
 import ModerationInbox from '../components/ModerationInbox';
 import AuthorCorrections from '../components/AuthorCorrections';
+import { feedbackUi } from '../locales/feedbackUi.js';
 import ExternalSupport from '../components/ExternalSupport';
 import AdminVerification from '../components/AdminVerification';
 import { getSocialUi } from '../locales/socialUi';
@@ -33,7 +34,7 @@ export default function Community(){
  <OperatorContact locale={i18n.language} showFormLink={false}/>
  {message&&<p role="status">{message}</p>}
  {account&&<AdminVerification onVerified={()=>setRefresh(n=>n+1)}/>}
- {account?.status.admin&&<><ModerationInbox/><ExternalSupport admin/><DiscoveryAdmin/></>}
+ {account?.status.admin&&<><LanguageLink to="/admin/requests">{feedbackUi(i18n.language).manage}</LanguageLink><ModerationInbox/><ExternalSupport admin/><DiscoveryAdmin/></>}
  {account&&<><div className="jsa-toolbar"><LanguageLink to={'/authors/'+account.user.id}>{ui.author}</LanguageLink><LanguageLink to="/following">{ui.following}</LanguageLink></div><AuthorCorrections/></>}
  {account===null&&<LanguageLink to={'/login?next='+encodeURIComponent(location.pathname+location.search)}>{ui.login}</LanguageLink>}
  {account===null&&<ExternalSupport/>}

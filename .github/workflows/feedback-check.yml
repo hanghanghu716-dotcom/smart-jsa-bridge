@@ -1,0 +1,41 @@
+name: Feedback and case language checks
+on:
+  push:
+    branches: [codex/feedback-case-requests]
+  pull_request:
+    paths:
+      - 'src/components/Feedback*'
+      - 'src/components/CaseLanguageSwitch.jsx'
+      - 'src/utils/feedback.js'
+      - 'src/utils/caseLanguages.js'
+      - 'src/services/feedback.js'
+      - 'src/locales/feedbackUi.js'
+      - 'api/public-gateway.js'
+      - 'api/case-study.js'
+      - 'scripts/feedback*'
+      - '.github/workflows/feedback-check.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: true
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: node --test scripts/feedback.test.js scripts/security-operations.test.js scripts/live-content.test.js
+      - run: node scripts/feedback-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: feedback-ui-review
+          path: .cache/feedback-qa/*.png
+          include-hidden-files: true
+          retention-days: 7

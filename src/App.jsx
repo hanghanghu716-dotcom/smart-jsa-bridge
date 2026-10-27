@@ -46,6 +46,8 @@ const AdminPostUpload = lazy(() => import('./pages/AdminPostUpload'));
 import Archive from './pages/Archive';
 import SEO from './components/SEO';
 import Analytics from './components/Analytics';
+import FeedbackWidget from './components/FeedbackWidget';
+const FeedbackAdmin = lazy(() => import('./pages/FeedbackAdmin'));
 import ThumbnailPublisher from './components/ThumbnailPublisher';
 
 import { useLanguageDetect } from './hooks/useLanguageDetect';
@@ -100,6 +102,7 @@ export default function App() {
         <LanguageInit />
         <Analytics />
         <ThumbnailPublisher />
+        <FeedbackWidget />
 
         <MobileGuard>
           <Suspense fallback={<p role="status" aria-live="polite">…</p>}><Routes>
@@ -143,6 +146,7 @@ export default function App() {
             <Route path="/case-study/:id" element={<LanguageWrapper><CaseStudyDetail /></LanguageWrapper>} />
             <Route path="/:lng/case-study/:id" element={<LanguageWrapper><CaseStudyDetail /></LanguageWrapper>} />
             <Route path="/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/:lng/admin/requests" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><FeedbackAdmin /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/admin/upload" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><AdminPostUpload /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/archive" element={<LanguageWrapper><Archive /></LanguageWrapper>} />
           </Routes></Suspense>

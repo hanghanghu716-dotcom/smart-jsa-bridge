@@ -1,3 +1,4 @@
+import CaseLanguageSwitch from '../components/CaseLanguageSwitch';
 import { romanianUi } from '../locales/romanianUi.js';
 import { canonicalCaseSlug, caseLookupSlugs } from '../utils/caseRouting.js';
 import { caseViewCounts, recordCaseView } from '../services/caseStudyMetrics';
@@ -180,6 +181,7 @@ export default function CaseStudyDetail() {
           <p style={styles.date}>
             {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))} · {getPublicUi(i18n.language).views} {viewMetric?.id===post.id?viewMetric.count.toLocaleString(getLanguageTag(currentLang)):''}
           </p>
+          <CaseLanguageSwitch locales={availableLocales} locale={currentLang} slug={post.post_group_id} />
         </div>
       </section>
 

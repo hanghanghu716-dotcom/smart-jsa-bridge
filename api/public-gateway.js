@@ -1,3 +1,4 @@
+import { feedbackPayloadError } from '../src/utils/feedback.js';
 import { createHmac, randomBytes } from 'node:crypto';
 import { isIP } from 'node:net';
 import { getPublicSupabaseConfig, readProjectEnv } from '../server/supabase-config.js';
@@ -19,17 +20,19 @@ export function createGateway({fetcher=fetch,env=readProjectEnv(),config=getPubl
     const body=req.body;
     if(!body||typeof body!=='object'||Array.isArray(body)||Buffer.byteLength(JSON.stringify(body))>20000)return send(400,{error:'INVALID_REQUEST'});
     const {action,payload={}}=body;
-    if(!['case_view','jsa_view','support_create','support_status'].includes(action))return send(400,{error:'INVALID_REQUEST'});
+    if(!['case_view','jsa_view','support_create','support_status','feedback_prepare','feedback_resume','feedback_submit','feedback_status'].includes(action))return send(400,{error:'INVALID_REQUEST'});
     if(!payload||typeof payload!=='object'||Array.isArray(payload))return send(400,{error:'INVALID_REQUEST'});
-    if(action!=='support_create'&&!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(payload.id||''))return send(400,{error:'INVALID_REQUEST'});
-    if(action==='support_status'&&!/^[a-f0-9]{64}$/.test(payload.receipt||''))return send(400,{error:'INVALID_REQUEST'});
+    if(!['support_create','feedback_prepare'].includes(action)&&!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(payload.id||''))return send(400,{error:'INVALID_REQUEST'});
+    if((action==='support_status'||['feedback_resume','feedback_submit','feedback_status'].includes(action))&&!/^[a-f0-9]{64}$/.test(payload.receipt||''))return send(400,{error:'INVALID_REQUEST'});
     if(payload.website)return send(400,{error:'INVALID_REQUEST'});
-    const receipt=action==='support_create'?randomBytes(32).toString('hex'):null;
+    if(action==='feedback_prepare'&&(feedbackPayloadError(payload)||! /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(payload.client_id||'')))return send(400,{error:'INVALID_REQUEST'});
+    const receipt=action==='support_create'?randomBytes(32).toString('hex'):action==='feedback_prepare'?createHmac('sha256',key).update('feedback:'+payload.client_id).digest('hex'):null;
+    const rpc=action.startsWith('feedback_')?'feedback_gateway':'public_gateway';
     try{
-      const response=await fetcher(`${config.url}/rest/v1/rpc/public_gateway`,{method:'POST',headers:{apikey:config.key,'Content-Type':'application/json'},body:JSON.stringify({p_key:key,p_actor:dailyNetworkActor(ip,key),p_action:action,p_payload:receipt?{...payload,receipt}:payload}),signal:AbortSignal.timeout(8000)});
+      const response=await fetcher(`${config.url}/rest/v1/rpc/${rpc}`,{method:'POST',headers:{apikey:config.key,'Content-Type':'application/json'},body:JSON.stringify({p_key:key,p_actor:dailyNetworkActor(ip,key),p_action:action,p_payload:receipt?{...payload,receipt}:payload}),signal:AbortSignal.timeout(8000)});
       if(!response.ok)return send(503,{error:'UNAVAILABLE'});
       const result=await response.json();
-      if(result?.error)return send(result.error==='RATE_LIMIT'?429:404,{error:result.error});
+      if(result?.error)return send(result.error==='RATE_LIMIT'?429:result.error==='NOT_FOUND'?404:409,{error:result.error});
       return send(200,receipt?{...result,receipt}:result);
     }catch{return send(503,{error:'UNAVAILABLE'});}
   };

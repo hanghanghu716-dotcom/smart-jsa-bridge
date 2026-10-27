@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import PublicSiteHeader from '../components/PublicSiteHeader';
 import OperatorContact from '../components/OperatorContact';
 import { supportChannelText } from '../locales/supportChannelText';
+import { feedbackUi } from '../locales/feedbackUi.js';
 import SEO from '../components/SEO'; // ✅ 글로벌 SEO 컴포넌트 임포트
 // ✅ 커스텀 다국어 라우팅 훅 임포트[cite: 12]
 
@@ -39,6 +40,8 @@ export default function Privacy() {
             <p style={styles.articleP}>{getAnalyticsText(i18n.language).body}</p>
             <p style={styles.articleP}>{getAnalyticsText(i18n.language).detail}</p>
             <AnalyticsSettings />
+            <h3 style={styles.articleH3}>{feedbackUi(i18n.language).launcher}</h3>
+            <p style={styles.articleP}>{feedbackUi(i18n.language).privacyNotice}</p>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section1.content') }} />
 
