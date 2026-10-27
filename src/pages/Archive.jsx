@@ -5,7 +5,7 @@ import { supabase } from '../supabaseClient';
 import { LanguageLink } from '../hooks/useLanguage';
 import { archiveUi } from '../locales/archiveUi';
 import { getPublicUi } from '../locales/publicUi';
-import { getLanguageTag } from '../locales/config';
+import { getCaseLanguages, getLanguageTag } from '../locales/config';
 import { archiveQuery, archiveSearch, archiveResults, casePdf, loadArchiveRows } from '../utils/archiveDiscovery';
 import { canonicalCaseSlug } from '../utils/caseRouting';
 import { caseListBootstrap, isStaticContentBuild } from '../utils/caseListBootstrap';
@@ -14,7 +14,8 @@ import PublicSiteHeader from '../components/PublicSiteHeader';
 import CommunityFooter from '../components/CommunityFooter';
 import ExploreSearchInput from '../components/ExploreSearchInput';
 import ListPagination from '../components/ListPagination';
-import PdfThumbnail from '../components/PdfThumbnail';
+import { safeCaseImage } from '../utils/caseThumbnail';
+import { caseImageKey, loadArchiveImages } from '../utils/archiveImages';
 import SEO from '../components/SEO';
 import '../styles/archive.css';
 
@@ -24,6 +25,7 @@ export default function Archive() {
  useEffect(() => {queryRef.current = query;},[query]);
  const [state,setState] = useState(() => ({locale,rows:caseListBootstrap(),loading:true})), [attempt,setAttempt] = useState(0);
  const [resetKey,setResetKey] = useState(0);
+ const [images,setImages] = useState(()=>Object.fromEntries(caseListBootstrap().filter(row=>Object.hasOwn(row,'thumbnail')).map(row=>[caseImageKey(row),safeCaseImage(row.thumbnail)])));
  useEffect(() => {
   if (isStaticContentBuild()) return;
   const controller = new AbortController(), timer = setTimeout(() => controller.abort(),20000);
@@ -33,6 +35,19 @@ export default function Archive() {
  },[locale,attempt]);
  const current = state.locale === locale ? state : {rows:[],loading:true};
  const result = archiveResults(current.rows,query,locale);
+ const imageRows = JSON.stringify(result.rows.filter(row=>!Object.hasOwn(images,caseImageKey(row))).map(({id,content_updated_at,created_at})=>({id,content_updated_at,created_at})));
+ useEffect(()=>{
+  const rows=JSON.parse(imageRows);
+  if(isStaticContentBuild() || !rows.length)return;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),8000);
+  let active=true;
+  loadArchiveImages(rows,async ids=>{
+   const {data,error}=await supabase.from('case_studies').select('id,content_md').in('id',ids).in('language_code',getCaseLanguages(locale)).limit(ids.length).abortSignal(controller.signal);
+   if(error)throw error;
+   return data;
+  }).then(loaded=>{if(active)setImages(previous=>({...previous,...Object.fromEntries(loaded.map(row=>[row.key,row.thumbnail]))}));}).catch(()=>{/* Keep readable cards without substituting another preview. */}).finally(()=>clearTimeout(timer));
+  return()=>{active=false;clearTimeout(timer);controller.abort();};
+ },[imageRows,locale,attempt]);
  const years = [...new Set(current.rows.map(row => String(row.created_at || '').slice(0,4)).filter(year => /^\d{4}$/.test(year)))].sort().reverse();
  const update = patch => {const next = {...queryRef.current,...patch,page:1};queryRef.current=next;setParams(archiveSearch(next).slice(1),{replace:true});};
  const reset = () => {setResetKey(n=>n+1);update({search:'',pdf:false,year:'',sort:'latest'});};
@@ -54,12 +69,12 @@ export default function Archive() {
     <div className="archive-results-heading"><p role="status">{current.loading ? ui.loading : current.error ? p.error : ui.results.replace('{count}',result.total.toLocaleString(getLanguageTag(locale)))}</p></div>
     {current.error && <button className="home-create" onClick={retry}>{p.retry}</button>}
     {!current.loading && !current.error && !result.total && <div className="archive-empty"><p>{ui.empty}</p><button onClick={reset}>{ui.reset}</button></div>}
-    <div id="archive-results" className="archive-grid">{result.rows.map(row => <article className="archive-card" key={row.post_group_id}>
-     <LanguageLink className="archive-card-preview" tabIndex={-1} aria-hidden="true" to={'/case-study/'+encodeURIComponent(canonicalCaseSlug(row.post_group_id))}><PdfThumbnail url={casePdf(row)} title={row.title} summary={cleanSummary(row.meta_description)} locale={locale}/></LanguageLink>
+    <div id="archive-results" className="archive-grid">{result.rows.map(row => {const image=safeCaseImage(images[caseImageKey(row)] || row.thumbnail);return <article className="archive-card" key={row.post_group_id}>
+     <LanguageLink className="archive-card-preview" tabIndex={-1} aria-hidden="true" to={'/case-study/'+encodeURIComponent(canonicalCaseSlug(row.post_group_id))}>{image && <img key={image} className="archive-card-image" src={image} alt="" loading="lazy" decoding="async" width="1536" height="1024" onError={event=>{event.currentTarget.style.display='none';}}/>}</LanguageLink>
      <div className="archive-card-body"><div className="archive-card-meta"><time dateTime={row.created_at || undefined}>{Number.isFinite(Date.parse(row.created_at)) ? new Intl.DateTimeFormat(getLanguageTag(locale),{timeZone:'UTC'}).format(new Date(row.created_at)) : ''}</time>{casePdf(row) && <span>PDF</span>}</div>
       <h2><LanguageLink to={'/case-study/'+encodeURIComponent(canonicalCaseSlug(row.post_group_id))}>{row.title}</LanguageLink></h2><p>{cleanSummary(row.meta_description)}</p>
      </div>
-    </article>)}</div>
+    </article>;})}</div>
     <ListPagination current={result.page} total={result.pages} locale={locale} controls="archive-results" hrefForPage={page=>'/archive'+archiveSearch({...query,page})}/>
    </section>
   </main><CommunityFooter/>

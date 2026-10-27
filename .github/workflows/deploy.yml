@@ -71,6 +71,7 @@ jobs:
         # Remote requests are intercepted; this fixture performs no real writes.
         run: |
           node scripts/feedback-browser.cjs
+          node scripts/archive-images-browser.cjs
           node scripts/authoring-workflow-browser.cjs
           node scripts/main-pagination-browser.cjs --local
           node scripts/library-discovery-browser.cjs
@@ -93,7 +94,9 @@ jobs:
           node scripts/verify-live-exclusions.js
           python3 scripts/verify-live-rss.py
       - name: Verify operator filter, document previews and PDF downloads
-        run: node scripts/verify-operator-documents.cjs
+        run: |
+          node scripts/archive-images-browser.cjs --live
+          node scripts/verify-operator-documents.cjs
       - name: Verify production HTML and every localized PDF
         run: node scripts/verify-live-release.js dist/assets/guides/manifest.json
       - name: Restore the previous deployment when release verification fails

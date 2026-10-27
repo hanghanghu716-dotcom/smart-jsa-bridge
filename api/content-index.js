@@ -1,4 +1,5 @@
 import { caseThumbnail, safeCaseImage } from '../src/utils/caseThumbnail.js';
+import { loadArchiveImages } from '../src/utils/archiveImages.js';
 import { archiveQuery, archiveSearch, archiveResults, ARCHIVE_FIELDS } from '../src/utils/archiveDiscovery.js';
 import { renderArchiveCatalog } from '../server/archive-catalog.js';
 import { readFile } from 'node:fs/promises';
@@ -54,6 +55,7 @@ export function createContentIndexHandler({ fetcher = fetch, readTemplate = (loc
         kind === 'home' ? readHomePublic(locale, fetcher) : null,
       ]);
       let displayRows=rows;
+      const query=archiveQuery(new URLSearchParams(req.query));
       if(kind==='home') {
         const featured=selectLocalizedCases(rows,locale).slice(0,3), ids=featured.map(row=>row.id).filter(id=>/^[a-f0-9-]{36}$/i.test(id));
         if(ids.length) {try {
@@ -62,7 +64,16 @@ export function createContentIndexHandler({ fetcher = fetch, readTemplate = (loc
           displayRows=rows.map(row=>({...row,thumbnail:images.get(row.id)||''}));
         } catch { /* Image availability does not hide readable cases. */ }}
       }
-      sendContent(req, res, renderIndexHtml(template, displayRows, locale, kind, publicCatalog, archiveQuery(new URLSearchParams(req.query))));
+      if(kind==='archive') {
+        const visible=archiveResults(selectLocalizedCases(rows,locale),query,locale).rows;
+        try {
+          const signal=AbortSignal.timeout(8000);
+          const media=await loadArchiveImages(visible,ids=>readPublic('case_studies',{select:'id,content_md',language_code:'in.('+getCaseLanguages(locale).join(',')+')',id:'in.('+ids.join(',')+')',limit:String(ids.length)},fetcher,{signal}));
+          const images=new Map(media.map(row=>[row.id,row.thumbnail]));
+          displayRows=rows.map(row=>images.has(row.id)?{...row,thumbnail:images.get(row.id)}:row);
+        } catch { /* The client can retry image reads without replacing the article list. */ }
+      }
+      sendContent(req, res, renderIndexHtml(template, displayRows, locale, kind, publicCatalog, query));
     } catch { sendUnavailable(req, res); }
   };
 }
