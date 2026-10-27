@@ -15,6 +15,7 @@ export default function FeedbackForm({includePolicyCategories=false}) {
  const [stage,setStage]=useState('edit'),[busy,setBusy]=useState(false),[error,setError]=useState(''),[receipt,setReceipt]=useState(''),[result,setResult]=useState(null);
  const submission=useRef(null), guard=useRef(false), root=useRef(null);
  useEffect(()=>{const body=root.current?.closest('.feedback-dialog-body');if(body)body.scrollTop=0;root.current?.querySelector('[data-feedback-stage]')?.focus();},[stage]);
+ useEffect(()=>{if(!submission.current&&stage==='edit')setForm(previous=>({...previous,locale:i18n.language,country:feedbackCountry(i18n.language)}));},[i18n.language]);
  const field=(key,label,options={})=><label className="feedback-field">{label}{options.area?<textarea value={form[key]} maxLength={options.max||4000} rows={options.rows||4} onChange={e=>setForm({...form,[key]:e.target.value})}/>:<input value={form[key]} type={options.type||'text'} maxLength={options.max||200} onChange={e=>setForm({...form,[key]:e.target.value})}/>}</label>;
  const errorText=error==='EMPTY'?ui.empty:error==='INVALID_FILE'?ui.invalidFile:error==='EXPIRED'?ui.expired:ui.error;
  async function run(fn){if(guard.current)return;guard.current=true;setBusy(true);setError('');try{await fn();}catch(e){setError(e.message||'FAILED');}finally{guard.current=false;setBusy(false);}}
@@ -56,11 +57,11 @@ export default function FeedbackForm({includePolicyCategories=false}) {
   {stage==='review'&&<section aria-label={ui.review}>
    <h3 data-feedback-stage tabIndex={-1}>{ui.review}</h3>
    <dl className="feedback-review">{[['category',ui.category],['title',ui.title],['detail',ui.detail],['context',ui.context],['locale',ui.locale],['country',ui.country],['email',ui.email]].filter(([key])=>form[key]).map(([key,label])=><div key={key}><dt>{label}</dt><dd>{key==='category'?ui[form[key]]:form[key]}</dd></div>)}
-    {includePage&&<div><dt>{ui.source}</dt><dd>{location.pathname}</dd></div>}
+    {includePage&&<div><dt>{ui.source}</dt><dd>{submission.current?.payload.source_path||location.pathname}</dd></div>}
    </dl>
    <ul className="feedback-files">{files.map((file,index)=><li key={index}>{file.name} · {(file.size/1024/1024).toFixed(2)} MB</li>)}</ul>
    <p className="feedback-help">{ui.consent}</p>
-   <div className="feedback-actions"><button type="button" disabled={busy||!!submission.current} onClick={()=>setStage('edit')}>{ui.back}</button><button className="feedback-primary" type="button" disabled={busy} onClick={submit}>{busy?ui.sending:ui.send}</button></div>
+   <div className="feedback-actions"><button type="button" disabled={busy||!!submission.current?.receipt} onClick={()=>{submission.current=null;setStage('edit');}}>{ui.back}</button><button className="feedback-primary" type="button" disabled={busy} onClick={submit}>{busy?ui.sending:ui.send}</button></div>
    {error==='EXPIRED'&&<button type="button" disabled={busy} onClick={reset}>{ui.reset}</button>}
   </section>}
   {stage==='success'&&<p className="feedback-success" role="status" data-feedback-stage tabIndex={-1}>{ui.success}</p>}

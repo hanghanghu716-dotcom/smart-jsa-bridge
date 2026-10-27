@@ -74,7 +74,7 @@ export default function CaseStudyDetail() {
         let selected = selectLocalizedCases(data || [], targetLang)[0] || null;
         if (!active) return;
         setPost(selected);
-        const variants = await supabase.from('case_studies').select('language_code')
+        const variants = await supabase.from('case_studies').select('language_code').not('content_md','is',null).neq('content_md','')
           .in('post_group_id', caseLookupSlugs(id));
         if (active && !variants.error) setAvailableLocales((variants.data || []).map(row => row.language_code));
       } catch (error) {

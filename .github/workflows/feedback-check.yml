@@ -31,7 +31,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node --test scripts/feedback.test.js scripts/security-operations.test.js scripts/live-content.test.js
-      - run: node scripts/feedback-browser.cjs
+      - run: timeout 300 node scripts/feedback-browser.cjs
+      - name: Capture compact visual review in the run log
+        if: always()
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; for(const name of ['language-dark.png','mobile-ar-light.png','admin-inbox.png']){const p='.cache/feedback-qa/'+name;if(fs.existsSync(p))console.log('UI_REVIEW:'+name+':'+fs.readFileSync(p).toString('base64'));}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

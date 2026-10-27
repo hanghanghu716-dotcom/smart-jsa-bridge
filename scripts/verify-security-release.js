@@ -37,3 +37,11 @@ for (const [resource, body] of [
   assert.ok([401, 403].includes((await direct(resource, body)).status), 'Anonymous private/write access must be rejected');
 }
 console.log('Verified production security headers, regional privacy, limited gateway and anonymous access boundaries. No views or support tickets created.');
+
+
+const feedbackMissing = await gateway({action:'feedback_status',payload:{id:'00000000-0000-0000-0000-000000000000',receipt:'0'.repeat(64)}});
+assert.equal(feedbackMissing.status,404,'Feedback gateway and private inbox migration must be connected');
+assert.deepEqual(await feedbackMissing.json(),{error:'NOT_FOUND'});
+const feedbackAdminDenied=await direct('rpc/feedback_admin',{p_action:'list',p_payload:{}});
+assert.ok(feedbackAdminDenied.status>=400,'Anonymous users must not reach the private inbox');
+console.log('Verified feedback receipt gateway and private administrator boundary without creating a request.');

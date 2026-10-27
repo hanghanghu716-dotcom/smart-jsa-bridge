@@ -80,7 +80,7 @@ export function createCaseHandler({ fetcher = fetch, readShell = () => readFile(
       const resilientFetch = (url, options) => fetchCaseWithRetry(fetcher, url, options);
       const [localized, variants] = await Promise.all([
         readAllPublic('case_studies', { select: '*', post_group_id: groupFilter, language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' }, resilientFetch),
-        readAllPublic('case_studies', { select: 'id,language_code,post_group_id', post_group_id: groupFilter }, resilientFetch),
+        readAllPublic('case_studies', { select: 'id,language_code,post_group_id', post_group_id: groupFilter, content_md:'not.is.null', and:'(content_md.neq."")' }, resilientFetch),
       ]);
       const candidates = localized.filter(row => getCaseLanguages(locale).includes(row.language_code));
       const post = selectLocalizedCases(candidates, locale)[0];

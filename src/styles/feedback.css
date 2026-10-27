@@ -58,3 +58,5 @@
 }
 body:has(dialog[open]:not(.feedback-dialog)) .feedback-launcher { visibility:hidden; }
 @media print { .feedback-widget,.feedback-dialog { display:none!important; } }
+
+@media(max-width:640px) { body:has(aside[role="region"][style*="position: fixed"]) .feedback-launcher { visibility:hidden; } }
