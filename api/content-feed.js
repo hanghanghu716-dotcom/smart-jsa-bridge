@@ -63,15 +63,31 @@ async function readFeedDetails(table, ids, filters, fields, fetcher) {
     return [...first, ...second];
   }
 }
+// Small projections protect the DB statement deadline; two workers also keep
+// network round trips below the feed's unchanged overall 20-second deadline.
+async function readFeedGroups(ids, readGroup) {
+  const groups = [];
+  for (let offset = 0; offset < ids.length; offset += 3) groups.push(ids.slice(offset, offset + 3));
+  const results = new Array(groups.length);
+  let next = 0, failed = false;
+  await Promise.all(Array.from({ length: Math.min(2, groups.length) }, async () => {
+    try {
+      while (!failed && next < groups.length) {
+        const index = next++;
+        results[index] = await readGroup(groups[index]);
+      }
+    } catch (error) { failed = true; throw error; }
+  }));
+  return results.flat();
+}
 async function readFeedCases(locale, fetcher) {
   const signal = AbortSignal.timeout(20000);
   const boundedFetch = (url, options) => fetcher(url, { ...options, signal });
   const filters = { language_code: 'in.(' + getCaseLanguages(locale).join(',') + ')' };
   const ids = await readPublic('case_studies', { ...filters, select: 'id',
     order: 'content_updated_at.desc.nullslast,created_at.desc,id', limit: '50' }, boundedFetch);
-  const rows = [];
-  for (let offset = 0; offset < ids.length; offset += 3) {
-    let pending = ids.slice(offset, offset + 3).map(row => row.id);
+  return readFeedGroups(ids.map(row => row.id), async group => {
+    const rows = []; let pending = group;
     while (pending.length) {
       const batch = await readFeedDetails('case_studies', pending, filters,
         CASE_SUMMARY_FIELDS + ',content_md,pdf_list,pdf_download_url', boundedFetch);
@@ -81,8 +97,8 @@ async function readFeedCases(locale, fetcher) {
       const returned = new Set(batch.map(row => row.id));
       pending = pending.filter(id => !returned.has(id));
     }
-  }
-  return rows;
+    return rows;
+  });
 }
 async function readFeedDocuments(locale, fetcher) {
   const signal = AbortSignal.timeout(20000);
@@ -95,16 +111,10 @@ async function readFeedDocuments(locale, fetcher) {
         order: 'content_updated_at.desc.nullslast,published_at.desc,id', limit: '50' }, boundedFetch);
       return { data, count: data.length };
     },
-    readBatch: async ids => {
-      const data = [];
-      // Keep each expensive assessment query below the anonymous DB deadline.
-      // Read every sub-batch, including those after wholly withdrawn groups.
-      for (let offset = 0; offset < ids.length; offset += 3) {
-        data.push(...await readFeedDetails('public_jsa_catalog', ids.slice(offset, offset + 3),
-          filters, PUBLIC_JSA_FIELDS, boundedFetch));
-      }
-      return { data };
-    },
+    readBatch: async ids => ({
+      data: await readFeedGroups(ids, group =>
+        readFeedDetails('public_jsa_catalog', group, filters, PUBLIC_JSA_FIELDS, boundedFetch)),
+    }),
   });
   return result.rows;
 }
@@ -136,7 +146,10 @@ export function createContentFeedHandler({ fetcher = fetch } = {}) {
         body = buildFeed(cases, documents, locale);
       }
       sendContent(req, res, body, { type: kind === 'rss' ? 'application/rss+xml; charset=utf-8' : 'application/xml; charset=utf-8', privateContent: ['public', 'rss'].includes(kind) });
-    } catch { sendUnavailable(req, res); }
+    } catch (error) {
+      if (kind === 'rss') console.warn('rss_read_failed', { locale, code: error.code || error.name });
+      sendUnavailable(req, res);
+    }
   };
 }
 export default createContentFeedHandler();

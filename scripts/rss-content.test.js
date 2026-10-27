@@ -177,3 +177,22 @@ test('RSS never suppresses a persistent single-document timeout',async()=>{
  await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
  assert.equal(res.statusCode,503);assert.equal(detailCalls,1);assert.doesNotMatch(res.body,/<rss /);
 });
+
+test('RSS overlaps bounded reads instead of paying all network round trips serially',async()=>{
+ const records=Array.from({length:20},(_,n)=>({...doc,id:'10000000-0000-4000-8000-'+String(n).padStart(12,'0')}));
+ const articles=Array.from({length:20},(_,n)=>({...post,id:'post-'+n,post_group_id:'article-'+n}));
+ let active=0,peak=0;
+ const handler=createContentFeedHandler({fetcher:async value=>{
+  const url=new URL(value),p=url.searchParams,cases=url.pathname.endsWith('/case_studies'),rows=cases?articles:records;
+  if(p.get('select')==='id')return Response.json(rows.map(({id})=>({id})));
+  const ids=p.get('id').slice(4,-1).split(',');assert.ok(ids.length<=3);
+  active++;peak=Math.max(peak,active);
+  await new Promise(resolve=>setTimeout(resolve,8));
+  active--;
+  return Response.json(rows.filter(row=>ids.includes(row.id)));
+ }});
+ const res={setHeader(){},end(body){this.body=body;}};
+ await handler({query:{kind:'rss',lng:'ko'},headers:{}},res);
+ assert.equal(res.statusCode,200);assert.equal(descriptions(res.body).length,40);
+ assert.ok(peak>=3&&peak<=4,'At most two case and two document reads may overlap');
+});
