@@ -117,6 +117,9 @@
     },
     "api/content-index.js": {
       "includeFiles": ".cache/content-shells/**"
+    },
+    "api/resource-hub.js": {
+      "includeFiles": "dist/public-jsa-shell.html"
     }
   },
   "rewrites": [
@@ -155,6 +158,14 @@
     {
       "source": "/:lng/public-jsa/:id",
       "destination": "/api/public-jsa?lng=:lng&id=:id"
+    },
+    {
+      "source": "/:lng/search",
+      "destination": "/api/resource-hub?lng=:lng&mode=search"
+    },
+    {
+      "source": "/:lng/resources",
+      "destination": "/api/resource-hub?lng=:lng&mode=resources"
     },
     {
       "source": "/(.*)",

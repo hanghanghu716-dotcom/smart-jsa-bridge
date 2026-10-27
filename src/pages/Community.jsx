@@ -1,3 +1,4 @@
+import { resourceHubUi } from '../locales/resourceHubUi';
 import { useEffect,useRef,useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -34,7 +35,7 @@ export default function Community(){
  <OperatorContact locale={i18n.language} showFormLink={false}/>
  {message&&<p role="status">{message}</p>}
  {account&&<AdminVerification onVerified={()=>setRefresh(n=>n+1)}/>}
- {account?.status.admin&&<><LanguageLink to="/admin/requests">{feedbackUi(i18n.language).manage}</LanguageLink><ModerationInbox/><ExternalSupport admin/><DiscoveryAdmin/></>}
+ {account?.status.admin&&<><LanguageLink to="/admin/requests">{feedbackUi(i18n.language).manage}</LanguageLink><LanguageLink to="/admin/resources">{resourceHubUi(i18n.language).admin}</LanguageLink><ModerationInbox/><ExternalSupport admin/><DiscoveryAdmin/></>}
  {account&&<><div className="jsa-toolbar"><LanguageLink to={'/authors/'+account.user.id}>{ui.author}</LanguageLink><LanguageLink to="/following">{ui.following}</LanguageLink></div><AuthorCorrections/></>}
  {account===null&&<LanguageLink to={'/login?next='+encodeURIComponent(location.pathname+location.search)}>{ui.login}</LanguageLink>}
  {account===null&&<ExternalSupport/>}

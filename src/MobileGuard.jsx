@@ -7,7 +7,7 @@ export default function MobileGuard({ children }) {
   const segments = pathname.split('/');
   const purePath = SUPPORTED_LANGS.includes(segments[1])
     ? '/' + segments.slice(2).join('/') : pathname;
-  const allowedPaths = ['/jrajsa', '/about', '/terms', '/privacy', '/regulation',
+  const allowedPaths = ['/search', '/resources', '/admin/resources', '/jrajsa', '/about', '/terms', '/privacy', '/regulation',
     '/riskclassification', '/protectiveequipment', '/guideline', '/admin/upload',
     '/community', '/case-study', '/explore', '/public-jsa', '/authors', '/following', '/work-packages', '/business', '/login', '/dictionary', '/info', '/templates', '/document-designer', '/procedure', '/analysis', '/export', '/archive'];
   const isAllowedPath = purePath === '/' || purePath === ''

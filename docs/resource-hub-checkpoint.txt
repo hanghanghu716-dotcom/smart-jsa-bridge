@@ -1,0 +1,90 @@
+Safety resource hub — paused checkpoint, 2026-10-28 (Asia/Seoul)
+
+User explicitly requested a pause. Do not resume work or collection until asked.
+Base: origin/main 962ea74457ec07e8e942f8dba4778fa40f6da332.
+Repository: C:/Users/ljh90/Documents/Codex/2026-09-30/smartjsa-x20/work/smart-jsa-bridge
+Desktop checkout: C:/Users/ljh90/OneDrive/Desktop/smart-jsa-bridge
+Desktop has a pre-existing modification in src/locales/it-IT/mylibrary.json. Preserve it.
+Untracked tmp/ predates this work; do not commit it or erase it wholesale.
+
+Scope
+- Unified public metadata search (JSA / Case Study / guides / approved resources).
+- Country-specific resource directory, news/incident/legal/form filters, related guide/search links.
+- In-site country/topic follows; no email delivery or paid external service.
+- Operator-only review with existing admin MFA guard; source and item copyright checks,
+  commercial/adaptation flags, evidence URLs, accuracy/privacy/jurisdiction checklist,
+  90-day expiry, immediate withdrawal, source-policy change invalidation, audit records.
+- Source collection is private metadata only; no automatic publication or copied PDFs/images.
+- Existing Case Study/JSA content, metadata, PDFs, prompts and authoring flows were NOT changed.
+- Public UI covers all 19 supported locale routes (15 countries; Canadian jurisdictions distinct).
+- New search/resource routes are intentionally noindex,follow with readable initial HTML.
+  Do not present short external-link listings as original editorial articles for indexing/ads.
+
+Production DB changes already applied to aajvezmhyrdawxxbulqz
+1. 20261027220549_safety_resource_hub.sql
+2. 20261027221555_safety_resource_collection.sql
+3. 20261027222118_safety_resource_review_invalidation.sql
+All new data is isolated in resource_private. No original content tables were modified.
+19 official navigation entries were seeded; their short link labels are locally written.
+Country reuse rights are not assumed: all source commercial/adaptation flags start FALSE.
+Some source policies remain unverified; outbound official navigation only is enabled there.
+
+Prepared but NOT applied
+4. 20261027222724_safety_resource_admin_pagination.sql
+This adds pagination to the review inbox; apply before app deployment.
+
+Collection
+Edge function collect-safety-resources, version 2, deployed.
+Its JWT gateway is disabled deliberately: a dedicated Vault-held credential is verified by
+service-role-only resource_collect before reading feeds. No credentials are in the repository.
+Runtime uses platform service credentials internally; no admin key added to GitHub/Vercel.
+Deployment tool requires import_map_path: deno.json explicitly when updating the function.
+Files sent to deploy: index.ts (replace ../../../src/utils/resourceFeed.js with ./resourceFeed.js),
+resourceFeed.js from src/utils, deno.json. No changes to the actual module contents otherwise.
+
+HSE feed successfully collected 10 private PENDING entries; none auto-published.
+Safe Work Australia feed timed out in runtime and in a later local probe; keep failure visible.
+Other jurisdictions: official directory + manual registration/review, no automatic scraping.
+Do not claim automated news collection works for all countries or all reuse rights are cleared.
+Cron safety-resource-metadata (06:15 UTC daily) is explicitly PAUSED (active=false) at user request.
+Resume only after user resumes and the app/review UI has been deployed.
+
+Validation completed
+- npm run test:all: 653 passed, 0 failed.
+- scripts/resource-hub.test.js: 8 passed, latest rerun after minor fixes.
+- scripts/resource-hub-browser.js: 19 locale mobile screens, four-language unified search,
+  no overflow / JavaScript errors; mocked remote writes. Screenshots under tmp/resource-hub/.
+- scripts/resource-hub-security.sql: passed against production in a ROLLBACK transaction.
+  Validated account separation, unauthenticated denial, non-admin denial, pending/expired/
+  withdrawn visibility, adaptation permission gate and collector grants.
+- Initial HTML handler read the real public DB: search/resources both HTTP 200.
+- Vite build passed before the last inbox-pagination change; run again before release.
+- Security advisors: private RLS-with-no-policy is intentional deny-all; public resource_hub
+  is an intentionally public, filtered SECURITY DEFINER RPC. Admin/follows have explicit
+  authorization. Existing pg_trgm/vector extension placement warnings were not changed.
+  https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable
+
+Resume checklist
+1. Re-read current Git status and remote main; other threads may have advanced it.
+2. Review/admin pagination migration, apply it; verify its actual admin flow and source-change
+   invalidation as well as existing security tests (transaction rollback).
+3. Final review of country source catalog and UX. Do not call manual-only countries automatic.
+4. Recheck build, relevant tests; browser fixture currently expects localhost:5194 and Windows
+   Chrome by default. Adapt to self-start test server/Linux if adding it to CI.
+5. Commit/push/merge to GitHub main only after checks, preserving unrelated main updates.
+6. Sync Desktop checkout by fast-forward while preserving it-IT/mylibrary.json modification.
+7. Existing GitHub Actions deploy.yml performs Vercel build/deploy/promote/verification.
+   Do not disable it or force-push. Vercel Git deploymentEnabled:false is intentional.
+8. Confirm deployment success. Enable this new collector cron only after user resumes work.
+
+Copyright evidence consulted
+HSE https://www.hse.gov.uk/help/copyright.htm (OGL with exceptions)
+Australia https://www.safeworkaustralia.gov.au/copyright (CC BY 4.0, excluded assets)
+France https://www.inrs.fr/footer/mentions-legales.html (links allowed; public copying prohibited)
+Singapore https://www.mom.gov.sg/terms-of-use (commercial reuse requires permission)
+Canada https://www.ccohs.ca/copyright/copyright.html (permission for excerpts/reprints)
+Japan https://www.mhlw.go.jp/chosakuken/ (PDL1.0, item/third-party exceptions)
+Spain https://www.insst.es/informacion-general/aviso-legal (reuse conditions/exclusions)
+Saudi Arabia https://www.hrsd.gov.sa/how-use (personal noncommercial, no blanket adaptation)
+Other sources remain link-only pending exact permission review. Never treat an RSS feed,
+public accessibility, attribution or AI rewriting alone as a republication licence.

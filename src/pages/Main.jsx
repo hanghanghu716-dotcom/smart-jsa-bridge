@@ -11,8 +11,8 @@ import { cleanSummary } from '../utils/content';
 import { getCaseLanguages, selectLocalizedCases } from '../locales/config';
 import { communityHomeUi } from '../locales/communityHomeUi';
 import { getWorkspaceNavUi } from '../locales/workspaceNavUi';
-import { localeCountry } from '../utils/publicCountry';
-import { exploreSearch } from '../utils/discovery';
+import { hubSearch } from '../utils/resourceHub';
+import { resourceHubUi } from '../locales/resourceHubUi';
 import { getPublicUi } from '../locales/publicUi';
 import PublicSiteHeader from '../components/PublicSiteHeader';
 import HomePublicCatalog from '../components/HomePublicCatalog';
@@ -71,11 +71,12 @@ export default function Main() {
         <div><h1>{ui.title}</h1><p>{ui.intro}</p></div>
         <button className="home-create" onClick={create}><span aria-hidden="true">＋</span>{ui.create}</button>
       </section>
-      <form className="home-search" role="search" action={'/' + locale + '/explore'} onSubmit={event => { event.preventDefault(); navigate('/explore' + exploreSearch({ search: query, country: localeCountry(locale) })); }}>
+      <form className="home-search" role="search" action={'/' + locale + '/search'} onSubmit={event => { event.preventDefault(); navigate('/search' + hubSearch({ q: query, type: 'all' })); }}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg>
-        <input name="q" type="search" aria-label={ui.search} placeholder={ui.placeholder} value={query} onChange={event => setQuery(event.target.value)} />
+        <input name="q" type="search" aria-label={resourceHubUi(locale).search} placeholder={resourceHubUi(locale).title} value={query} onChange={event => setQuery(event.target.value)} />
         <button type="submit">{ui.search}</button>
       </form>
+      <p><LanguageLink to="/resources">{resourceHubUi(locale).title} →</LanguageLink></p>
       <HomeTopicNavigation locale={locale} />
       <HomePublicCatalog />
       <section id="case-studies" className="home-cases" aria-labelledby="home-cases-title">

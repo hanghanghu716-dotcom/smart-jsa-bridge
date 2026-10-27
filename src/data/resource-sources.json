@@ -1,0 +1,269 @@
+[
+  {
+    "id": "official-en-gb",
+    "name": "HSE",
+    "locales": [
+      "en-GB"
+    ],
+    "domains": [
+      "www.hse.gov.uk",
+      "press.hse.gov.uk"
+    ],
+    "home_url": "https://www.hse.gov.uk/simple-health-safety/risk/steps-needed-to-manage-risk.htm",
+    "policy_url": "https://www.hse.gov.uk/help/copyright.htm",
+    "policy_note": "OGL source policy; verify item and third-party exclusions before adapted text. Great Britain; not Northern Ireland law.",
+    "feed_url": "https://press.hse.gov.uk/feed/"
+  },
+  {
+    "id": "official-en-au",
+    "name": "Safe Work Australia",
+    "locales": [
+      "en-AU"
+    ],
+    "domains": [
+      "www.safeworkaustralia.gov.au"
+    ],
+    "home_url": "https://www.safeworkaustralia.gov.au/doc/safe-work-method-statement-high-risk-construction-work-information-sheet",
+    "policy_url": "https://www.safeworkaustralia.gov.au/copyright",
+    "policy_note": "CC BY 4.0 except logos, third-party material and marked exceptions. Model guidance; state/territory applicability requires review.",
+    "feed_url": "https://www.safeworkaustralia.gov.au/rss.xml"
+  },
+  {
+    "id": "official-en-sg",
+    "name": "MOM",
+    "locales": [
+      "en-SG"
+    ],
+    "domains": [
+      "www.mom.gov.sg"
+    ],
+    "home_url": "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
+    "policy_url": "https://www.mom.gov.sg/terms-of-use",
+    "policy_note": "No blanket commercial adaptation permission recorded. Link-only.",
+    "feed_url": null
+  },
+  {
+    "id": "official-en-ca",
+    "name": "CCOHS",
+    "locales": [
+      "en-CA"
+    ],
+    "domains": [
+      "www.ccohs.ca"
+    ],
+    "home_url": "https://www.ccohs.ca/oshanswers/hsprograms/hazard/risk_assessment.html",
+    "policy_url": "https://www.ccohs.ca/copyright/copyright.html",
+    "policy_note": "Permission required for reprints and excerpts. Link-only.",
+    "feed_url": null
+  },
+  {
+    "id": "official-en-ca-ab",
+    "name": "Alberta OHS",
+    "locales": [
+      "en-CA-AB"
+    ],
+    "domains": [
+      "ohs-pubstore.labour.alberta.ca"
+    ],
+    "home_url": "https://ohs-pubstore.labour.alberta.ca/el003",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-en-ca-on",
+    "name": "Ontario",
+    "locales": [
+      "en-CA-ON"
+    ],
+    "domains": [
+      "www.ontario.ca"
+    ],
+    "home_url": "https://www.ontario.ca/document/guide-occupational-health-and-safety-act",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-en-ca-bc",
+    "name": "WorkSafeBC",
+    "locales": [
+      "en-CA-BC"
+    ],
+    "domains": [
+      "www.worksafebc.com"
+    ],
+    "home_url": "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-fr-ca-qc",
+    "name": "CNESST",
+    "locales": [
+      "fr-CA-QC"
+    ],
+    "domains": [
+      "www.cnesst.gouv.qc.ca"
+    ],
+    "home_url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-de-de",
+    "name": "ArbSchG",
+    "locales": [
+      "de-DE"
+    ],
+    "domains": [
+      "www.gesetze-im-internet.de"
+    ],
+    "home_url": "https://www.gesetze-im-internet.de/arbschg/__5.html",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-fr-fr",
+    "name": "INRS",
+    "locales": [
+      "fr-FR"
+    ],
+    "domains": [
+      "www.inrs.fr"
+    ],
+    "home_url": "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
+    "policy_url": "https://www.inrs.fr/footer/mentions-legales.html",
+    "policy_note": "Public reproduction/adaptation prohibited without permission. Links permitted; no logos or embedding.",
+    "feed_url": null
+  },
+  {
+    "id": "official-it-it",
+    "name": "Normattiva",
+    "locales": [
+      "it-IT"
+    ],
+    "domains": [
+      "www.normattiva.it"
+    ],
+    "home_url": "https://www.normattiva.it/uri-res/N2Ls?urn%3Anir%3Astato%3Adecreto.legislativo%3A2008-04-9%3B81~art28%21vig=",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-es-es",
+    "name": "INSST",
+    "locales": [
+      "es-ES"
+    ],
+    "domains": [
+      "www.insst.es"
+    ],
+    "home_url": "https://www.insst.es/noticias-insst/directrices-basicas-para-la-evaluacion-de-riesgos-laborales",
+    "policy_url": "https://www.insst.es/informacion-general/aviso-legal",
+    "policy_note": "Reuse conditions and excluded works must be checked per item. No automatic reuse grant.",
+    "feed_url": null
+  },
+  {
+    "id": "official-ja-jp",
+    "name": "厚生労働省",
+    "locales": [
+      "ja-JP"
+    ],
+    "domains": [
+      "www.mhlw.go.jp"
+    ],
+    "home_url": "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/",
+    "policy_url": "https://www.mhlw.go.jp/chosakuken/",
+    "policy_note": "PDL 1.0 with source-specific and third-party exceptions. Item permission still required.",
+    "feed_url": null
+  },
+  {
+    "id": "official-ko",
+    "name": "국가법령정보센터",
+    "locales": [
+      "ko"
+    ],
+    "domains": [
+      "law.go.kr"
+    ],
+    "home_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024071891",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-pt-br",
+    "name": "Ministério do Trabalho e Emprego",
+    "locales": [
+      "pt-BR"
+    ],
+    "domains": [
+      "www.gov.br"
+    ],
+    "home_url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
+    "policy_url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+    "policy_note": "Portal footer uses BY-ND; do not translate or adapt without separate permission.",
+    "feed_url": null
+  },
+  {
+    "id": "official-ru-ru",
+    "name": "Минтруд",
+    "locales": [
+      "ru-RU"
+    ],
+    "domains": [
+      "mintrud.gov.ru"
+    ],
+    "home_url": "https://mintrud.gov.ru/docs/mintrud/orders/2220",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-ar-sa",
+    "name": "وزارة الموارد البشرية",
+    "locales": [
+      "ar-SA"
+    ],
+    "domains": [
+      "www.hrsd.gov.sa"
+    ],
+    "home_url": "https://www.hrsd.gov.sa/knowledge-centre/articles/64379",
+    "policy_url": "https://www.hrsd.gov.sa/how-use",
+    "policy_note": "Personal noncommercial use only; modification and commercial reuse require written permission. Link-only.",
+    "feed_url": null
+  },
+  {
+    "id": "official-ro-ro",
+    "name": "Portal Legislativ",
+    "locales": [
+      "ro-RO"
+    ],
+    "domains": [
+      "legislatie.just.ro"
+    ],
+    "home_url": "https://legislatie.just.ro/public/detaliidocument/73772",
+    "policy_url": "",
+    "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
+    "feed_url": null
+  },
+  {
+    "id": "official-en-us",
+    "name": "OSHA",
+    "locales": [
+      "en-US"
+    ],
+    "domains": [
+      "www.osha.gov"
+    ],
+    "home_url": "https://www.osha.gov/publications",
+    "policy_url": "https://www.dol.gov/general/aboutdol/copyright",
+    "policy_note": "Federal works: US public-domain status is not a worldwide reuse grant; third-party exclusions. Link-only.",
+    "feed_url": null
+  }
+]

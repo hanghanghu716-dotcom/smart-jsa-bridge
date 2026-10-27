@@ -47,6 +47,8 @@ import Archive from './pages/Archive';
 import SEO from './components/SEO';
 import Analytics from './components/Analytics';
 import FeedbackWidget from './components/FeedbackWidget';
+const ResourceHub = lazy(() => import('./pages/ResourceHub'));
+const ResourceAdmin = lazy(() => import('./pages/ResourceAdmin'));
 const FeedbackAdmin = lazy(() => import('./pages/FeedbackAdmin'));
 import ThumbnailPublisher from './components/ThumbnailPublisher';
 
@@ -109,6 +111,9 @@ export default function App() {
             <Route path="/" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng" element={<LanguageWrapper><Main /></LanguageWrapper>} />
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
+            <Route path="/:lng/search" element={<LanguageWrapper><ResourceHub /></LanguageWrapper>} />
+            <Route path="/:lng/resources" element={<LanguageWrapper><ResourceHub /></LanguageWrapper>} />
+            <Route path="/:lng/admin/resources" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><ResourceAdmin /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
             <Route path="/:lng/community" element={<CrawlerBlocker><LanguageWrapper><Community /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/business" element={<CrawlerBlocker><LanguageWrapper><Business /></LanguageWrapper></CrawlerBlocker>} />
