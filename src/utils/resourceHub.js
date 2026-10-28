@@ -21,6 +21,6 @@ export function officialUrl(value, domains) {
 export function visibleResource(item, source, now = Date.now()) {
   return source?.active === true && item?.state === 'published' && Date.parse(source.review_until) > now &&
     Date.parse(item.review_until) > now && Boolean(item.evidence_url) && Boolean(officialUrl(item.url, source.domains || [])) &&
-    (!item.summary || (source.commercial === true && source.adaptation === true && item.reuse_confirmed === true)) &&
-    (!item.translated || (source.adaptation === true && item.reuse_confirmed === true));
+    (!item.summary || (source.commercial === true && source.adaptation === true && item.reuse_confirmed === true && (item.attribution || '').trim().length >= 12)) &&
+    (!item.translated || (source.commercial === true && source.adaptation === true && item.reuse_confirmed === true && (item.attribution || '').trim().length >= 12));
 }

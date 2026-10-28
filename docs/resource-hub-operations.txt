@@ -1,0 +1,48 @@
+Safety resource hub — operations and release checks (2026-10-28)
+
+Public entry points: /:locale/search and /:locale/resources across the 19 supported routes.
+Unified search uses public JSA/Case Study metadata, guides and approved resources.
+Existing saved content, PDFs and authoring workflows are unchanged.
+Topic follows are private, in-site subscriptions; they do not send email.
+These directory/search pages intentionally use noindex,follow with readable initial HTML.
+
+Operator workflow
+Open /ko/admin/resources from Community. Existing administrator verification and MFA apply.
+A source must have a reviewed policy before enabling collection or expanded reuse.
+Public access is not a republication licence. Official sites and RSS feeds may have exclusions.
+For summaries/translations, confirm commercial and adaptation rights, item-specific evidence,
+third-party exceptions, jurisdiction, accuracy and privacy, and provide attribution.
+Keep uncertain material pending. Linking to an official original does not authorize copying it.
+Publishing is an explicit operator action; collection never publishes an item.
+Use withdrawal or source suspension for immediate removal. Suspending requires no new evidence.
+Policy changes send affected published entries back for review. Reviews expire after 90 days.
+Review inboxes have 100-item pages. Audit records retain operator actions.
+No copyrighted full articles, images or PDFs are imported by this feature.
+
+Country coverage and collection limits
+19 official navigation entries are available; country/province and UI language remain distinct.
+Source commercial/adaptation permissions start false. Unverified sources remain link-only.
+HSE RSS successfully produced 10 private pending entries in the deployment verification.
+Safe Work Australia RSS timed out; use official links/manual registration until it is reachable.
+Other countries currently use the official directory and manual operator review, not automatic feeds.
+Do not describe all countries as automatically collected or legally cleared for republication.
+The collector uses fixed HTTPS hosts, bounded responses, no redirects, a 20-hour lease,
+a private Vault credential and a service-only RPC. No admin secrets are added to the frontend.
+Cron safety-resource-metadata runs daily at 06:15 UTC (15:15 Korea) when enabled.
+It was paused for the user-requested pause and must be enabled only after the web release succeeds.
+
+Validation
+653 automated tests passed; final Vite build passed.
+Resource-specific tests: 8 passed. Isolated browser checks passed across 19 locale routes,
+including search, follows, administrator publication checklist and review pagination.
+Transactional DB tests verified authentication, account isolation, item visibility, rights gates,
+attribution, source-change re-review, suspension and withdrawal; all fixtures were rolled back.
+Actual operator MFA remains required; tests do not bypass it or change an operator account.
+Applied migrations are recorded under their server-assigned timestamps in supabase/migrations.
+Private deny-all RLS and deliberately filtered public SECURITY DEFINER RPC advisor notices
+are expected; they are not evidence that raw private tables are exposed.
+
+Release
+GitHub main triggers the existing production verification/deployment workflow.
+Desktop synchronization must preserve the pre-existing it-IT/mylibrary.json edit.
+The final deployment and cron state are checked after publishing, not inferred from a push.

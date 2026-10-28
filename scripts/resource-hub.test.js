@@ -19,9 +19,10 @@ test('all supported jurisdictions have their own official source and complete UI
 test('copyright publication gate fails closed on expiry, withdrawal, adaptation and unknown evidence',()=>{
  assert.equal(visibleResource(item,source),true);
  for(const patch of [{state:'pending'},{review_until:'2000-01-01'},{evidence_url:''},{summary:'adapted text'},{translated:true}])assert.equal(visibleResource({...item,...patch},source),false);
+ assert.equal(visibleResource({...item,translated:true,reuse_confirmed:true,attribution:'Licensed translated title.'},{...source,adaptation:true,commercial:false}),false);
  assert.equal(visibleResource(item,{...source,active:false}),false);
  assert.equal(visibleResource(item,{...source,review_until:'2000-01-01'}),false);
- assert.equal(visibleResource({...item,summary:'permitted summary',reuse_confirmed:true},{...source,commercial:true,adaptation:true}),true);
+ assert.equal(visibleResource({...item,summary:'permitted summary',attribution:'Official source, licensed adaptation.',reuse_confirmed:true},{...source,commercial:true,adaptation:true}),true);
 });
 test('official URLs reject credentials, schemes, redirects to foreign domains and malformed authority',()=>{
  for(const u of ['http://official.example/a','https://official.example@evil.test/a','https://official.example.evil.test/a','https://official.example:443/a','javascript:alert(1)','https://127.0.0.1/a','https://official.example\\@evil.test/a'])assert.equal(officialUrl(u,source.domains),null,u);

@@ -1,6 +1,6 @@
 Safety resource hub — paused checkpoint, 2026-10-28 (Asia/Seoul)
 
-User explicitly requested a pause. Do not resume work or collection until asked.
+Historical pause checkpoint. User resumed on 2026-10-28. See resource-hub-operations.txt for the release state.
 Base: origin/main 962ea74457ec07e8e942f8dba4778fa40f6da332.
 Repository: C:/Users/ljh90/Documents/Codex/2026-09-30/smartjsa-x20/work/smart-jsa-bridge
 Desktop checkout: C:/Users/ljh90/OneDrive/Desktop/smart-jsa-bridge
@@ -21,17 +21,18 @@ Scope
   Do not present short external-link listings as original editorial articles for indexing/ads.
 
 Production DB changes already applied to aajvezmhyrdawxxbulqz
-1. 20261027220549_safety_resource_hub.sql
-2. 20261027221555_safety_resource_collection.sql
-3. 20261027222118_safety_resource_review_invalidation.sql
+1. 20261027221443_safety_resource_hub.sql
+2. 20261027221721_safety_resource_collection.sql
+3. 20261027222207_safety_resource_review_invalidation.sql
 All new data is isolated in resource_private. No original content tables were modified.
 19 official navigation entries were seeded; their short link labels are locally written.
 Country reuse rights are not assumed: all source commercial/adaptation flags start FALSE.
 Some source policies remain unverified; outbound official navigation only is enabled there.
 
-Prepared but NOT applied
-4. 20261027222724_safety_resource_admin_pagination.sql
-This adds pagination to the review inbox; apply before app deployment.
+Applied after resume
+4. 20261028065328_safety_resource_admin_pagination.sql
+Adds review-inbox pagination and mandatory attribution for summaries/translations.
+5. 20261028065945_safety_resource_withdrawal_guards.sql also applied.
 
 Collection
 Edge function collect-safety-resources, version 2, deployed.

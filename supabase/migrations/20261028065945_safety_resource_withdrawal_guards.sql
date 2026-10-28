@@ -7,7 +7,7 @@ declare s resource_private.sources; i resource_private.items; page_number intege
  'has_more',(select count(*)>100 from (select 1 from resource_private.items order by updated_at desc,id limit 101 offset page_number*100)x),
  'audit',coalesce((select jsonb_agg(to_jsonb(x)) from (select * from resource_private.audit order by id desc limit 30)x),'[]'));end if;
  if p_action='source' then
- if length(p_data->>'policy_note')<12 or (p_data->>'policy_url') !~ '^https://[^[:space:]]+$' then raise exception 'SOURCE_EVIDENCE_REQUIRED';end if;
+ if coalesce((p_data->>'active')::boolean,false) and (coalesce(length(btrim(p_data->>'policy_note')),0)<12 or coalesce(p_data->>'policy_url','') !~ '^https://[^[:space:]]+$') then raise exception 'SOURCE_EVIDENCE_REQUIRED';end if;
  update resource_private.sources set active=coalesce((p_data->>'active')::boolean,false),
  commercial=coalesce((p_data->>'commercial')::boolean,false),adaptation=coalesce((p_data->>'adaptation')::boolean,false),
  policy_url=p_data->>'policy_url',policy_note=p_data->>'policy_note',checked_at=now(),review_until=now()+interval '90 days' where id=p_id returning * into s;
@@ -20,13 +20,23 @@ declare s resource_private.sources; i resource_private.items; page_number intege
  if not s.active or s.review_until<=now() or not coalesce(p_data->'checks' @> '{"rights":true,"accuracy":true,"privacy":true,"scope":true}'::jsonb,false)
  or (p_data->>'evidence_url') !~ '^https://[^[:space:]]+$' or coalesce(length(p_data->>'evidence_url'),0)=0 then raise exception 'PUBLICATION_REVIEW_REQUIRED';end if;
  if (coalesce(p_data->>'summary','')<>'' or coalesce((p_data->>'translated')::boolean,false)) and not (s.commercial and s.adaptation and coalesce((p_data->>'reuse_confirmed')::boolean,false)) then raise exception 'REUSE_PERMISSION_REQUIRED';end if;
+ if (coalesce(p_data->>'summary','')<>'' or coalesce((p_data->>'translated')::boolean,false)) and coalesce(length(btrim(p_data->>'attribution')),0)<12 then raise exception 'ATTRIBUTION_REQUIRED';end if;
  end if;
- insert into resource_private.items(id,source_id,url,title,locale,kind,topic,summary,search_term,source_date,event_date,effective_date,translated,state,reuse_confirmed,evidence_url,review_until,checks,checked_by,checked_at,published_at)
- values(coalesce(i.id,gen_random_uuid()),s.id,p_data->>'url',btrim(p_data->>'title'),p_data->>'locale',p_data->>'kind',p_data->>'topic',coalesce(p_data->>'summary',''),coalesce(p_data->>'search_term',''),nullif(p_data->>'source_date','')::date,nullif(p_data->>'event_date','')::date,nullif(p_data->>'effective_date','')::date,coalesce((p_data->>'translated')::boolean,false),case when p_action='publish' then 'published' else 'pending' end,coalesce((p_data->>'reuse_confirmed')::boolean,false),coalesce(p_data->>'evidence_url',''),case when p_action='publish' then now()+interval '90 days' end,coalesce(p_data->'checks','{}'),auth.uid(),now(),case when p_action='publish' then coalesce(i.published_at,now()) end)
- on conflict(id) do update set source_id=excluded.source_id,url=excluded.url,title=excluded.title,locale=excluded.locale,kind=excluded.kind,topic=excluded.topic,summary=excluded.summary,search_term=excluded.search_term,source_date=excluded.source_date,event_date=excluded.event_date,effective_date=excluded.effective_date,translated=excluded.translated,state=excluded.state,reuse_confirmed=excluded.reuse_confirmed,evidence_url=excluded.evidence_url,review_until=excluded.review_until,checks=excluded.checks,checked_by=excluded.checked_by,checked_at=excluded.checked_at,published_at=excluded.published_at,updated_at=now() returning * into i;
+ insert into resource_private.items(id,source_id,url,title,locale,kind,topic,summary,attribution,search_term,source_date,event_date,effective_date,translated,state,reuse_confirmed,evidence_url,review_until,checks,checked_by,checked_at,published_at)
+ values(coalesce(i.id,gen_random_uuid()),s.id,p_data->>'url',btrim(p_data->>'title'),p_data->>'locale',p_data->>'kind',p_data->>'topic',coalesce(p_data->>'summary',''),coalesce(p_data->>'attribution',''),coalesce(p_data->>'search_term',''),nullif(p_data->>'source_date','')::date,nullif(p_data->>'event_date','')::date,nullif(p_data->>'effective_date','')::date,coalesce((p_data->>'translated')::boolean,false),case when p_action='publish' then 'published' else 'pending' end,coalesce((p_data->>'reuse_confirmed')::boolean,false),coalesce(p_data->>'evidence_url',''),case when p_action='publish' then now()+interval '90 days' end,coalesce(p_data->'checks','{}'),auth.uid(),now(),case when p_action='publish' then coalesce(i.published_at,now()) end)
+ on conflict(id) do update set source_id=excluded.source_id,url=excluded.url,title=excluded.title,locale=excluded.locale,kind=excluded.kind,topic=excluded.topic,summary=excluded.summary,attribution=excluded.attribution,search_term=excluded.search_term,source_date=excluded.source_date,event_date=excluded.event_date,effective_date=excluded.effective_date,translated=excluded.translated,state=excluded.state,reuse_confirmed=excluded.reuse_confirmed,evidence_url=excluded.evidence_url,review_until=excluded.review_until,checks=excluded.checks,checked_by=excluded.checked_by,checked_at=excluded.checked_at,published_at=excluded.published_at,updated_at=now() returning * into i;
  p_id=i.id::text;
  elsif p_action='withdraw' then update resource_private.items set state='withdrawn',updated_at=now() where id=p_id::uuid;
  else raise exception 'INVALID_ACTION';end if;
  insert into resource_private.audit(actor,action,target) values(auth.uid(),p_action,p_id);
  return jsonb_build_object('ok',true,'id',p_id);
 end $$;
+
+
+create or replace function resource_private.visible(i resource_private.items,s resource_private.sources) returns boolean
+language sql stable set search_path='' as $$
+ select s.active and i.state='published' and s.review_until>now() and i.review_until>now()
+ and i.evidence_url<>'' and resource_private.valid_url(i.url,s.domains)
+ and (i.summary='' or (s.commercial and s.adaptation and i.reuse_confirmed and length(btrim(i.attribution))>=12))
+ and (not i.translated or (s.commercial and s.adaptation and i.reuse_confirmed and length(btrim(i.attribution))>=12));
+$$;
