@@ -12,7 +12,18 @@
     "home_url": "https://www.hse.gov.uk/simple-health-safety/risk/steps-needed-to-manage-risk.htm",
     "policy_url": "https://www.hse.gov.uk/help/copyright.htm",
     "policy_note": "OGL source policy; verify item and third-party exclusions before adapted text. Great Britain; not Northern Ireland law.",
-    "feed_url": "https://press.hse.gov.uk/feed/"
+    "feed_url": "https://press.hse.gov.uk/feed/",
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed",
+      "url": "https://press.hse.gov.uk/feed/",
+      "evidence_urls": [
+        "https://www.hse.gov.uk/help/copyright.htm"
+      ],
+      "note": "공식 RSS의 제목·주소·날짜만 수집. 본문·사진 제외. / Official RSS metadata only; no body or images."
+    }
   },
   {
     "id": "official-en-au",
@@ -26,7 +37,21 @@
     "home_url": "https://www.safeworkaustralia.gov.au/doc/safe-work-method-statement-high-risk-construction-work-information-sheet",
     "policy_url": "https://www.safeworkaustralia.gov.au/copyright",
     "policy_note": "CC BY 4.0 except logos, third-party material and marked exceptions. Model guidance; state/territory applicability requires review.",
-    "feed_url": "https://www.safeworkaustralia.gov.au/rss.xml"
+    "feed_url": "https://www.safeworkaustralia.gov.au/rss.xml",
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.safeworkaustralia.gov.au/media-centre/news",
+      "evidence_urls": [
+        "https://www.safeworkaustralia.gov.au/copyright"
+      ],
+      "note": "공식 최신 소식의 주소만 수집. RSS의 오래된 항목에 의존하지 않음. / Current official news links only; no copied text.",
+      "item_prefixes": [
+        "/media-centre/news/"
+      ]
+    }
   },
   {
     "id": "official-en-sg",
@@ -39,8 +64,15 @@
     ],
     "home_url": "https://www.mom.gov.sg/workplace-safety-and-health/safety-and-health-management-systems/risk-management",
     "policy_url": "https://www.mom.gov.sg/terms-of-use",
-    "policy_note": "No blanket commercial adaptation permission recorded. Link-only.",
-    "feed_url": null
+    "policy_note": "Terms section 6 requires prior permission for internal links. Source suspended pending permission; no automatic collection or publication.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "MOM은 내부 페이지 링크에 사전 서면 허가가 필요합니다. / MOM requires prior permission for deep links."
+    },
+    "active": false
   },
   {
     "id": "official-en-ca",
@@ -54,7 +86,13 @@
     "home_url": "https://www.ccohs.ca/oshanswers/hsprograms/hazard/risk_assessment.html",
     "policy_url": "https://www.ccohs.ca/copyright/copyright.html",
     "policy_note": "Permission required for reprints and excerpts. Link-only.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "기존 CCOHS 법령 RSS가 오류이고 다른 피드는 비어 있습니다. 새 공식 피드 확인 필요. / Advertised legislation feed unavailable; alternate feed empty."
+    }
   },
   {
     "id": "official-en-ca-ab",
@@ -68,7 +106,13 @@
     "home_url": "https://ohs-pubstore.labour.alberta.ca/el003",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "공식 OHS RSS 서버가 robots.txt로 자동 접근을 차단합니다. / Official OHS RSS host disallows automated access."
+    }
   },
   {
     "id": "official-en-ca-on",
@@ -82,7 +126,13 @@
     "home_url": "https://www.ontario.ca/document/guide-occupational-health-and-safety-act",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "새 소식은 별도 Ontario Labour RSS 출처에서 수집합니다. / Updates use separate Ontario Labour feed."
+    }
   },
   {
     "id": "official-en-ca-bc",
@@ -96,7 +146,24 @@
     "home_url": "https://www.worksafebc.com/en/health-safety/create-manage/managing-risk/assessing-risks",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.worksafebc.com/en/about-us/news-events",
+      "evidence_urls": [
+        "https://www.worksafebc.com/en/legal/terms-of-use"
+      ],
+      "note": "정보 제공 링크만 수집. 본문·제목·로고 복제 금지. / Informational links only; no copied text, titles or logos.",
+      "item_prefixes": [
+        "/en/about-us/news-events/announcements/",
+        "/about-us/news-events/announcements/",
+        "/en/about-us/news-events/news-releases/",
+        "/about-us/news-events/news-releases/"
+      ]
+    }
   },
   {
     "id": "official-fr-ca-qc",
@@ -110,7 +177,13 @@
     "home_url": "https://www.cnesst.gouv.qc.ca/fr/prevention-securite/organiser-prevention/sante-securite-travail-pour-tous/demarche-prevention/identifier-risques-milieu-travail",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "CNESST의 자동 접근과 재사용 허가를 확인하지 못해 중지했습니다. / Access / reuse permission not verified; collection disabled."
+    }
   },
   {
     "id": "official-de-de",
@@ -124,7 +197,13 @@
     "home_url": "https://www.gesetze-im-internet.de/arbschg/__5.html",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "법령 원문은 기존 링크 유지. 새 소식은 별도 DGUV 출처에서 수집합니다. / News collected from separate DGUV source."
+    }
   },
   {
     "id": "official-fr-fr",
@@ -138,7 +217,21 @@
     "home_url": "https://www.inrs.fr/demarche/document-unique/ce-qu-il-faut-retenir.html",
     "policy_url": "https://www.inrs.fr/footer/mentions-legales.html",
     "policy_note": "Public reproduction/adaptation prohibited without permission. Links permitted; no logos or embedding.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.inrs.fr/actualites.html",
+      "evidence_urls": [
+        "https://www.inrs.fr/footer/mentions-legales.html"
+      ],
+      "note": "링크 허용 조항에 따라 주소만 수집. / Link permission only; no copied text.",
+      "item_prefixes": [
+        "/actualites/"
+      ]
+    }
   },
   {
     "id": "official-it-it",
@@ -152,7 +245,13 @@
     "home_url": "https://www.normattiva.it/uri-res/N2Ls?urn%3Anir%3Astato%3Adecreto.legislativo%3A2008-04-9%3B81~art28%21vig=",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "법령 원문은 기존 링크 유지. 새 소식은 별도 INAIL 출처에서 수집합니다. / News collected from separate INAIL source."
+    }
   },
   {
     "id": "official-es-es",
@@ -166,7 +265,21 @@
     "home_url": "https://www.insst.es/noticias-insst/directrices-basicas-para-la-evaluacion-de-riesgos-laborales",
     "policy_url": "https://www.insst.es/informacion-general/aviso-legal",
     "policy_note": "Reuse conditions and excluded works must be checked per item. No automatic reuse grant.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.insst.es/noticias-insst",
+      "evidence_urls": [
+        "https://www.insst.es/informacion-general/aviso-legal"
+      ],
+      "note": "공식 소식 주소만 수집. 개별 자료의 이용 조건 검수 필요. / Official news links only; item-specific rights review required.",
+      "item_prefixes": [
+        "/noticias-insst/"
+      ]
+    }
   },
   {
     "id": "official-ja-jp",
@@ -180,7 +293,23 @@
     "home_url": "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei14/",
     "policy_url": "https://www.mhlw.go.jp/chosakuken/",
     "policy_note": "PDL 1.0 with source-specific and third-party exceptions. Item permission still required.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.mhlw.go.jp/hourei/new/tsuchi/newindex.html",
+      "evidence_urls": [
+        "https://www.mhlw.go.jp/chosakuken/"
+      ],
+      "note": "RSS 재배포는 사용하지 않음. 공식 노동기준국 공지 목록의 주소만 수집. PDF 다운로드 없음. / Labour notices links only; RSS redistribution not used; PDFs not downloaded.",
+      "item_prefixes": [
+        "/hourei/doc/tsuchi/"
+      ],
+      "section_start": "tu_5",
+      "section_end": "tu_6"
+    }
   },
   {
     "id": "official-ko",
@@ -194,7 +323,13 @@
     "home_url": "https://law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1024071891",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "법령 원문은 기존 링크 유지. 새 소식은 별도 고용노동부 출처에서 수집합니다. / Updates collected from separate MOEL source."
+    }
   },
   {
     "id": "official-pt-br",
@@ -208,7 +343,22 @@
     "home_url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/pgr/principal",
     "policy_url": "https://www.gov.br/trabalho-e-emprego/pt-br",
     "policy_note": "Portal footer uses BY-ND; do not translate or adapt without separate permission.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br",
+      "evidence_urls": [
+        "https://www.gov.br/trabalho-e-emprego/pt-br"
+      ],
+      "note": "BY-ND 조건. 뉴스 주소만 수집하며 본문 번역·변경 없음. / BY-ND; news URLs only, no translation or adaptation.",
+      "item_prefixes": [
+        "/trabalho-e-emprego/pt-br/noticias-e-conteudo/"
+      ],
+      "min_segments": 6
+    }
   },
   {
     "id": "official-ru-ru",
@@ -222,7 +372,18 @@
     "home_url": "https://mintrud.gov.ru/docs/mintrud/orders/2220",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://mintrud.gov.ru/document/rss",
+      "evidence_urls": [
+        "https://mintrud.gov.ru/docs"
+      ],
+      "note": "공식 RSS 주소·날짜만 수집. 현재 DNS 연결 오류는 상태에 표시하고 우회하지 않음. / Official feed links only; DNS failures reported without bypass."
+    }
   },
   {
     "id": "official-ar-sa",
@@ -236,7 +397,21 @@
     "home_url": "https://www.hrsd.gov.sa/knowledge-centre/articles/64379",
     "policy_url": "https://www.hrsd.gov.sa/how-use",
     "policy_note": "Personal noncommercial use only; modification and commercial reuse require written permission. Link-only.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "links",
+      "url": "https://www.hrsd.gov.sa/media-center/news",
+      "evidence_urls": [
+        "https://www.hrsd.gov.sa/how-use"
+      ],
+      "note": "정보 링크만 수집. 공식 기관의 보증으로 표현 금지. 노동 외 주제는 검수 때 제외. / Informational links only; no endorsement; exclude unrelated ministry news.",
+      "item_prefixes": [
+        "/media-center/news/"
+      ]
+    }
   },
   {
     "id": "official-ro-ro",
@@ -250,7 +425,13 @@
     "home_url": "https://legislatie.just.ro/public/detaliidocument/73772",
     "policy_url": "",
     "policy_note": "Reuse permission not verified. Official outbound navigation only; no copied text, translation, images or attachments.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "공식 노동감독기관의 수집·재사용 조건 확인이 필요합니다. / Collection and reuse terms require verification."
+    }
   },
   {
     "id": "official-en-us",
@@ -264,6 +445,179 @@
     "home_url": "https://www.osha.gov/publications",
     "policy_url": "https://www.dol.gov/general/aboutdol/copyright",
     "policy_note": "Federal works: US public-domain status is not a worldwide reuse grant; third-party exclusions. Link-only.",
-    "feed_url": null
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": false,
+      "note": "OSHA RSS 접근 오류로 별도의 DOL 출처를 사용합니다. / Separate DOL feed used because OSHA feed access fails."
+    }
+  },
+  {
+    "id": "news-en-us-dol",
+    "name": "US Department of Labor",
+    "locales": [
+      "en-US"
+    ],
+    "domains": [
+      "www.dol.gov"
+    ],
+    "home_url": "https://www.dol.gov/rss",
+    "policy_url": "https://www.dol.gov/general/aboutdol/copyright",
+    "policy_note": "Official DOL RSS; only OSHA release URLs. No automatic reuse permission for third-party content.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://www.dol.gov/rss/releases.xml",
+      "evidence_urls": [
+        "https://www.dol.gov/rss",
+        "https://www.dol.gov/general/aboutdol/copyright"
+      ],
+      "note": "OSHA 보도자료 주소·날짜만 수집. / OSHA release URLs and dates only.",
+      "item_prefixes": [
+        "/newsroom/releases/osha/"
+      ]
+    }
+  },
+  {
+    "id": "news-de-de-dguv",
+    "name": "DGUV",
+    "locales": [
+      "de-DE"
+    ],
+    "domains": [
+      "www.dguv.de"
+    ],
+    "home_url": "https://www.dguv.de/de/sonstiges/rss-feed-so-gehts/index.jsp",
+    "policy_url": "https://www.dguv.de/en/about-us/legal-information/index.jsp",
+    "policy_note": "Official reader feed; external links excluded; private URL discovery only.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://www.dguv.de/de/index.xml.jsp",
+      "evidence_urls": [
+        "https://www.dguv.de/de/sonstiges/rss-feed-so-gehts/index.jsp",
+        "https://www.dguv.de/en/about-us/legal-information/index.jsp"
+      ],
+      "note": "RSS 주소·날짜만 수집. 외부 기관 자료는 제외. / Feed URLs and dates only; external domains excluded."
+    }
+  },
+  {
+    "id": "news-it-it-inail",
+    "name": "INAIL",
+    "locales": [
+      "it-IT"
+    ],
+    "domains": [
+      "www.inail.it"
+    ],
+    "home_url": "https://www.inail.it/portale/it/rss.html",
+    "policy_url": "https://www.inail.it/portale/it/rss.html",
+    "policy_note": "Official RSS reader service. Discovery is not a commercial republication licence; check each item before publication.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://www.inail.it/portale/it.rss.news.xml",
+      "evidence_urls": [
+        "https://www.inail.it/portale/it/rss.html"
+      ],
+      "note": "RSS 주소·날짜만 수집. 공개 전 직접 작성한 안내와 개별 권리 검수 필요. / Feed URLs/dates only; write a label and verify rights before publishing.",
+      "robots_url": "https://www.inail.it/portale/robots.txt",
+      "item_prefixes": [
+        "/portale/it/inail-comunica/news/"
+      ],
+      "date_format": "dmy"
+    }
+  },
+  {
+    "id": "news-ko-moel",
+    "name": "고용노동부",
+    "locales": [
+      "ko"
+    ],
+    "domains": [
+      "www.moel.go.kr"
+    ],
+    "home_url": "https://www.moel.go.kr/site/rss/rssList.do",
+    "policy_url": "https://www.moel.go.kr/site/copyright/copyrightList.do",
+    "policy_note": "Official RSS reader service. KOGL type and third-party exceptions require item review.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://www.moel.go.kr/rss/policy.do",
+      "evidence_urls": [
+        "https://www.moel.go.kr/site/rss/rssList.do",
+        "https://www.moel.go.kr/site/copyright/copyrightList.do"
+      ],
+      "note": "정책 자료 주소·날짜만 수집. 안전보건 관련 여부와 공공누리 유형 검수 필요. / Policy links only; verify safety relevance and each KOGL licence."
+    }
+  },
+  {
+    "id": "news-en-ca-on-labour",
+    "name": "Ontario Labour news",
+    "locales": [
+      "en-CA-ON"
+    ],
+    "domains": [
+      "news.ontario.ca"
+    ],
+    "home_url": "https://news.ontario.ca/mltsd/en",
+    "policy_url": "https://www.ontario.ca/page/copyright-information",
+    "policy_note": "Official ministry RSS. Private URL discovery only; verify item rights, dates and applicability.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://news.ontario.ca/mltsd/en/rss/news.rss",
+      "evidence_urls": [
+        "https://news.ontario.ca/mltsd/en",
+        "https://www.ontario.ca/page/copyright-information"
+      ],
+      "note": "노동부 RSS 주소·날짜만 수집. 접근 제한 시 자동 중지. / Labour RSS URLs/dates only; stop on access restrictions."
+    }
+  },
+  {
+    "id": "news-en-ca-esdc",
+    "name": "Employment and Social Development Canada",
+    "locales": [
+      "en-CA"
+    ],
+    "domains": [
+      "www.canada.ca",
+      "api.io.canada.ca"
+    ],
+    "home_url": "https://www.canada.ca/en/employment-social-development/news.html",
+    "policy_url": "https://www.canada.ca/en/transparency/terms.html",
+    "policy_note": "Government of Canada official reader feed. Federal scope only; private URL discovery, not a blanket republication licence.",
+    "feed_url": null,
+    "collection": {
+      "checked_at": "2026-10-28",
+      "review_until": "2027-01-26T00:00:00Z",
+      "enabled": true,
+      "mode": "feed-links",
+      "url": "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofemploymentandsocialdevelopment&sort=publishedDate&orderBy=desc&pick=40&format=atom",
+      "evidence_urls": [
+        "https://www.canada.ca/en/news/subscribe-emails.html",
+        "https://www.canada.ca/en/transparency/terms.html"
+      ],
+      "item_prefixes": [
+        "/en/employment-social-development/news/"
+      ],
+      "note": "연방 소식 주소·날짜만 수집. 주별 법령이 아니며 산업안전 관련 여부를 검수해야 합니다. / Federal news URLs/dates only; not provincial law; verify safety relevance."
+    }
   }
 ]

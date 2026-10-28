@@ -1,4 +1,4 @@
-import { collectResourceFeed } from '../../../src/utils/resourceFeed.js';
+import { collectResourceBatch } from '../../../src/utils/resourceCollection.js';
 // The invocation credential can only collect allowlisted metadata into a private queue.
 // Platform service credentials remain inside the Edge runtime, never in Vercel or GitHub.
 Deno.serve(async req => {
@@ -14,10 +14,6 @@ Deno.serve(async req => {
  };
  let sources;
  try{sources=await rpc('claim');}catch{return new Response('Unauthorized',{status:401});}
- const results=[];
- for(const source of sources){
-  try{const items=await collectResourceFeed(source);await rpc('commit',source.id,items,'ok');results.push({source:source.id,queued:items.length});}
-  catch(error){try{await rpc('commit',source.id,[],'fetch_failed');}catch{/* retry at next scheduled run */}results.push({source:source.id,error:error instanceof Error && /^(FEED_|UNSAFE_|INVALID_)[A-Z0-9_]+$/.test(error.message)?error.message:'COLLECTION_FAILED'});}
- }
+ const results=await collectResourceBatch(sources,(id:string,items:unknown[],status:string)=>rpc('commit',id,items,status));
  return Response.json({sources:results},{headers:{'Cache-Control':'no-store'}});
 });

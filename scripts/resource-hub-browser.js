@@ -12,7 +12,7 @@ let browser;
 try{
  browser=await puppeteer.launch({executablePath:process.env.PUPPETEER_EXECUTABLE_PATH||(process.platform==='win32'?'C:/Program Files/Google/Chrome/Application/chrome.exe':undefined),headless:true,args:['--no-sandbox']});
  const page=await browser.newPage(),errors=[],adminCalls=[];let admin=false,follows=[];
- const id='a2aa88cb-505c-4265-998e-af68ff0a0038',fixture={id,source_id:'official-en-us',locale:'en-US',url:'https://www.osha.gov/publications',title:'Review fixture',summary:'',attribution:'',search_term:'',kind:'form',topic:'general',checks:{},state:'pending',evidence_url:'https://www.dol.gov/general/aboutdol/copyright',translated:false,reuse_confirmed:false};
+ const id='a2aa88cb-505c-4265-998e-af68ff0a0038',fixture={id,source_id:'official-en-us',locale:'en-US',url:'https://www.osha.gov/publications',title:'OSHA — link awaiting review',collection_provenance:{mode:'links',placeholder:'OSHA — link awaiting review'},summary:'',attribution:'',search_term:'',kind:'form',topic:'general',checks:{},state:'pending',evidence_url:'https://www.dol.gov/general/aboutdol/copyright',translated:false,reuse_confirmed:false};
  page.on('pageerror',e=>errors.push(e.message));await page.setRequestInterception(true);
  page.on('request',r=>{
   if(!r.url().includes('.supabase.co'))return r.continue();
@@ -45,10 +45,13 @@ try{
  await page.setViewport({width:1366,height:900});await page.goto(base+'/ko/admin/resources',{waitUntil:'networkidle0'});await page.waitForSelector('.resource-admin-list button');await page.click('.resource-admin-list button');
  assert.ok(await page.$$eval('button',buttons=>buttons.find(b=>b.textContent==='검토 완료·공개').disabled));
  await page.$$eval('input[type=checkbox]',inputs=>inputs.filter(i=>i.closest('label')?.textContent.match(/권리·상업적|내용·출처|개인정보·피해자|적용 국가·지역/)).forEach(i=>i.click()));
+ assert.ok(await page.$$eval('button',buttons=>buttons.find(b=>b.textContent==='검토 완료·공개').disabled),'Copied/placeholder labels cannot be published');
+ await page.$$eval('label',labels=>{const input=labels.find(l=>l.textContent.startsWith('제목 / 직접 작성한 링크 안내')).querySelector('input');input.focus();input.select();});
+ await page.keyboard.type('Reviewed official resource');
  await page.$$eval('button',buttons=>buttons.find(b=>b.textContent==='검토 완료·공개').click());
  await page.waitForFunction(()=>document.querySelector('[role=status]')?.textContent.includes('반영했습니다'));
  assert.ok(adminCalls.some(c=>c.p_action==='publish'&&c.p_data.checks.rights&&c.p_data.checks.privacy));
  await page.$$eval('.resource-pages button',buttons=>buttons.find(b=>b.textContent==='다음').click());await page.waitForFunction(()=>document.querySelector('.resource-pages span')?.textContent==='2');
  await page.waitForNetworkIdle();assert.ok(adminCalls.some(c=>c.p_action==='list'&&c.p_data.page===1));
- assert.deepEqual(errors,[]);console.log('PASS: 19 locales, responsive layout, country isolation, unified search, follows, admin checklist and review pagination; all remote writes mocked');
+ assert.deepEqual(errors,[]);console.log('PASS: 19 locales, responsive layout, country isolation, unified search, follows, admin checklist, placeholder publication block and review pagination; all remote writes mocked');
 }finally{await browser?.close();await server.close();}

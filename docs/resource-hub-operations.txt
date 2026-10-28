@@ -19,25 +19,58 @@ Policy changes send affected published entries back for review. Reviews expire a
 Review inboxes have 100-item pages. Audit records retain operator actions.
 No copyrighted full articles, images or PDFs are imported by this feature.
 
-Country coverage and collection limits
-19 official navigation entries are available; country/province and UI language remain distinct.
-Source commercial/adaptation permissions start false. Unverified sources remain link-only.
-HSE RSS successfully produced 10 private pending entries in the deployment verification.
-Safe Work Australia RSS timed out; use official links/manual registration until it is reachable.
-Other countries currently use the official directory and manual operator review, not automatic feeds.
-Do not describe all countries as automatically collected or legally cleared for republication.
-The collector uses fixed HTTPS hosts, bounded responses, no redirects, a 20-hour lease,
-a private Vault credential and a service-only RPC. No admin secrets are added to the frontend.
-Cron safety-resource-metadata runs daily at 06:15 UTC (15:15 Korea) when enabled.
-It was paused for the user-requested pause and must be enabled only after the web release succeeds.
+Country coverage and collection limits — expanded 2026-10-28
+25 registered official sources cover the 19 supported country/province routes.
+15 sources have scheduled collection configured. The first production run returned HTTP 200:
+12 successful source/region checks, 154 new pending entries, zero automatically published entries.
+HSE's 10 already collected URLs were found but not duplicated or overwritten.
+Working: GB (HSE), US (DOL/OSHA releases), CA federal (ESDC), CA-BC (WorkSafeBC),
+DE (DGUV), FR (INRS), IT (INAIL), ES (INSST), JP (MHLW labour notices), KR (MOEL),
+BR (Ministry of Labour) and SA (HRSD). Broad ministry feeds still need safety-relevance review.
+ESDC is federal information, not provincial law. Japanese discovery is restricted to the
+labour-bureau section, not the ministry's medical notices or restricted RSS redistribution.
+AU (Safe Work Australia): configured, but automated requests failed from the Edge server.
+RU (Mintrud): configured, but connection timeout. ON: RSS available, but robots response
+is not a readable robots policy, so scheduled collection fails closed.
+Disabled: SG (MOM deep-link permission required), AB (official OHS RSS robots disallows),
+QC (access / collection permission unverified), RO (collection permission unverified).
+CCOHS's advertised legislation feed is unavailable; the separate ESDC feed is the CA alternative.
+MOM's existing resource-directory entry is now pending and its source suspended; this does
+not edit any saved JSA or Case Study. Terms section 6 requires prior deep-link permission.
+Do not describe configured or failed sources as successfully collected, or claim worldwide
+copyright clearance. Robots permission is not a copyright licence.
+
+Except HSE's licensed title metadata, new collection retains URLs and available dates only.
+The source name plus a neutral placeholder is generated locally. No article headings,
+descriptions, bodies, images, PDFs or translations are retained by link-only collection.
+The operator must replace the placeholder with an original descriptive label and complete
+rights / accuracy / privacy / jurisdiction checks. DB triggers reject unchanged placeholders.
+The inbox shows original URL paths to distinguish items and links to collection evidence;
+collection evidence is not automatically accepted as commercial republication permission.
+Source commercial/adaptation flags remain false until explicitly reviewed by an operator.
+
+The collector uses fixed HTTPS hosts and paths, bounded responses (1 MiB, 40 entries/source),
+robots checks, no redirects, concurrency 4, a bounded run, a 20-hour lease and a private Vault
+credential with service-only RPC. Discovered PDFs are links only and are never downloaded.
+Server-generated provenance cannot be removed through the review form. Repeated collection
+does not overwrite reviewed or withdrawn entries. Insert counts exclude existing URLs.
+Cron safety-resource-metadata remains active daily at 06:15 UTC (15:15 Korea).
+Collection permission review expires 2027-01-26; changing the ordinary source review does
+not silently renew the separately reviewed collection endpoints or permission window.
+No paid translation/crawling service was added; existing Supabase quotas still apply.
+
+Feedback is separate from the resource queue: /ko/admin/requests, reachable from Community.
+The chat-bubble widget is FeedbackWidget / FeedbackForm. It stores submitted requests,
+not a general archive of every unsubmitted conversation or keystroke.
 
 Validation
-653 automated tests passed; final Vite build passed.
-Resource-specific tests: 8 passed. Isolated browser checks passed across 19 locale routes,
-including search, follows, administrator publication checklist and review pagination.
+661 automated tests passed during this expansion; 16 resource/collector tests passed.
+Isolated browser checks cover all 19 locale routes, search, follows, administrator checklist,
+placeholder publication block and review pagination. All remote writes in browser QA are mocked.
 Transactional DB tests verified authentication, account isolation, item visibility, rights gates,
 attribution, source-change re-review, suspension and withdrawal; all fixtures were rolled back.
-Actual operator MFA remains required; tests do not bypass it or change an operator account.
+Collector role/token rejection, placeholder publication denial and raw-table grants passed
+transactional DB checks. Actual operator MFA remains required; no operator account was changed.
 Applied migrations are recorded under their server-assigned timestamps in supabase/migrations.
 Private deny-all RLS and deliberately filtered public SECURITY DEFINER RPC advisor notices
 are expected; they are not evidence that raw private tables are exposed.
