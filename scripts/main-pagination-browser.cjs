@@ -2,13 +2,17 @@ const assert = require('node:assert/strict');
 
 // The home now exposes a short public catalog; full browsing lives in Explore.
 async function verifyHomeDiscovery(browser, base) {
-  const page = await browser.newPage(), errors = [];
+  const page = await browser.newPage(), errors = [], resourceCalls = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.setRequestInterception(true);
   page.on('request', request => {
     if (request.url().startsWith(base + '/') || /^(data|blob):/.test(request.url())) return request.continue();
     const headers = {'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-expose-headers':'content-range'};
     if (request.method() === 'OPTIONS') return request.respond({status:204,headers});
+    if (new URL(request.url()).pathname.endsWith('/rpc/resource_hub')) {
+      resourceCalls.push(JSON.parse(request.postData()));
+      return request.respond({status:200,headers,contentType:'application/json',body:JSON.stringify({items:[],sources:[],has_more:false})});
+    }
     const url=new URL(request.url()),locale = new URL(page.url()).pathname.split('/')[1],country={ko:'KR','en-US':'US','ar-SA':'SA'}[locale];
     const cases = Array.from({length:210},(_,i)=>({
       id:'10000000-0000-4000-8000-'+String(i+1).padStart(12,'0'),
@@ -51,8 +55,11 @@ async function verifyHomeDiscovery(browser, base) {
       await page.waitForSelector('[role="dialog"]',{hidden:true});
       assert.equal(await page.$eval('.home-intro .home-create',el=>document.activeElement===el),true,'Return focus after closing the guest dialog');
       await page.type('.home-search input','Valve');await page.click('.home-search button');
-      await page.waitForFunction(()=>location.pathname.endsWith('/explore')&&new URL(location.href).searchParams.get('q')==='Valve');
-      assert.equal(new URL(page.url()).searchParams.get('country'),{ko:'KR','en-US':'US','ar-SA':'SA'}[locale]);
+      await page.waitForFunction(()=>location.pathname.endsWith('/search')&&new URL(location.href).searchParams.get('q')==='Valve');
+      assert.equal(new URL(page.url()).pathname,'/'+locale+'/search');
+      await page.waitForSelector('.resource-results section');
+      assert.equal((await page.$$('.resource-results section')).length,4,'Unified search exposes all four public content types');
+      assert.ok(resourceCalls.some(call=>call.p_locale===locale&&call.p_query==='Valve'),'Search retains the selected country/locale');
     }
     assert.deepEqual(errors,[]);
     console.log(JSON.stringify({homeDiscovery:true,publicCards:6,caseArticles:3,searchRouting:true,guestDialogFocus:true,locales:3,widths:[320,390,1440]}));
