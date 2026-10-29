@@ -64,3 +64,23 @@ test('full indexes overlap at most two bounded batches and preserve deterministi
   };
   assert.deepEqual(await readPublicIndex(fetcher),rows);assert.equal(peak,2);assert.equal(active,0);
 });
+
+test('statement timeouts split expensive groups without omitting documents',async()=>{
+  const rows=makeRows(23),base=upstream(rows,{cap:1});let retries=0;
+  const fetcher=async url=>{
+    const group=new URL(url).searchParams.get('and');
+    if(group&&group.split(',').length>2){retries++;return Response.json({code:'57014'},{status:500});}
+    return base.fetcher(url);
+  };
+  assert.deepEqual(await readPublicIndex(fetcher),rows);assert.ok(retries>0);
+  const probe=await readPublicIndex(fetcher,{firstIndexable:true});assert.ok(probe.length>0&&probe.length<=2);
+});
+
+test('persistent single-document timeouts still fail closed',async()=>{
+  const base=upstream(makeRows(3));let attempts=0;
+  const fetcher=async url=>{
+    if(new URL(url).searchParams.get('and')){attempts++;return Response.json({code:'57014'},{status:500});}
+    return base.fetcher(url);
+  };
+  await assert.rejects(readPublicIndex(fetcher),e=>e.code==='57014');assert.equal(attempts,3);
+});
