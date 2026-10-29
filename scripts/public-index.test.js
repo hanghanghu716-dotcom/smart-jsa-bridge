@@ -56,13 +56,13 @@ test('invalid IDs cannot enter an assessment filter',async()=>{
   await assert.rejects(readPublicIndex(fetcher),/INVALID_PUBLIC_INDEX_ID/);
 });
 
-test('full indexes overlap at most two bounded batches and preserve deterministic output order',async()=>{
+test('full indexes overlap at most four bounded batches and preserve deterministic output order',async()=>{
   const rows=makeRows(71),base=upstream(rows,{cap:3});let active=0,peak=0;
   const fetcher=async url=>{const detail=new URL(url).searchParams.get('select')!=='id';
     if(detail){active++;peak=Math.max(peak,active);await new Promise(resolve=>setImmediate(resolve));}
     try{return await base.fetcher(url);}finally{if(detail)active--;}
   };
-  assert.deepEqual(await readPublicIndex(fetcher),rows);assert.equal(peak,2);assert.equal(active,0);
+  assert.deepEqual(await readPublicIndex(fetcher),rows);assert.equal(peak,4);assert.equal(active,0);
 });
 
 test('statement timeouts split expensive groups without omitting documents',async()=>{

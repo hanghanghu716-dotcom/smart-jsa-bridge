@@ -4,7 +4,9 @@ import { readAllPublic, readPublic } from './public-content.js';
 // The security-barrier projection evaluates assessment before an outer LIMIT.
 // Enumerate cheap IDs first, then constrain evaluation inside each small batch.
 export async function readPublicIndex(fetcher = fetch, { firstIndexable = false } = {}) {
-  const signal = AbortSignal.timeout(20000);
+  // A full catalog needs network headroom beyond the short existence probe;
+  // still finish below the release verifier's 30-second request deadline.
+  const signal = AbortSignal.timeout(firstIndexable ? 20000 : 25000);
   const boundedFetch = (url, options) => fetcher(url, { ...options, signal });
   const ids = await readAllPublic('public_jsa_index', { select: 'id', is_public: 'eq.true' }, boundedFetch);
   if (ids.some(row => !validProjectId(row.id))) throw Error('INVALID_PUBLIC_INDEX_ID');
@@ -42,7 +44,7 @@ export async function readPublicIndex(fetcher = fetch, { firstIndexable = false 
   // Independent bounded batches share one deadline. Keep the existence probe
   // sequential so it still stops after the first eligible batch.
   const batchSize = firstIndexable ? 10 : 5;
-  const windowSize = 10;
+  const windowSize = firstIndexable ? 10 : 20;
   for (let offset = 0; offset < ids.length; offset += windowSize) {
     signal.throwIfAborted();
     const batches = [];
