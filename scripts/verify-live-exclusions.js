@@ -3,7 +3,7 @@ import { parse } from 'parse5';
 const site='https://smartjsabridge.com';
 const attr=(n,k)=>n.attrs?.find(a=>a.name===k)?.value;
 function find(n,p){return [...(p(n)?[n]:[]),...(n.childNodes||[]).flatMap(c=>find(c,p))];}
-const read=path=>fetch(site+path,{redirect:'manual',signal:AbortSignal.timeout(20000)});
+const read=(path,timeoutMs=20000)=>fetch(site+path,{redirect:'manual',signal:AbortSignal.timeout(timeoutMs)});
 
 for(const [from,to] of [['/about','/en-US/about'],['/en-US/ppe','/en-US/protectiveequipment'],['/ko/guide/common','/ko/guideline/common'],['/en-US/case-study/%20jsa-form-work','/en-US/case-study/jsa-form-work'],['/de-DE/case-study/%20jsa-leak-testing','/de-DE/case-study/jsa-leak-testing'],['/it-IT/case-study/jsa-%20roof-truss','/it-IT/case-study/jsa-roof-truss'],['/ja-JP/case-study/jsa-%20roof-truss','/ja-JP/case-study/jsa-roof-truss']]) {
   const response=await read(from);
@@ -17,7 +17,9 @@ for(const locale of ['en-CA-ON','en-CA-AB','en-CA-BC']) for(const page of ['abou
   const canonical=find(parse(await response.text()),n=>n.tagName==='link'&&attr(n,'rel')==='canonical');
   assert.equal(canonical.length,1);assert.equal(attr(canonical[0],'href'),`${site}/en-CA/${page}`);
 }
-const sitemapResponse=await read('/sitemap-static.xml');assert.equal(sitemapResponse.status,200);
+// Full catalog discovery has a bounded 25s server budget; allow its response to
+// complete, as verify-live-content does, instead of aborting a valid response.
+const sitemapResponse=await read('/sitemap-static.xml',30000);assert.equal(sitemapResponse.status,200);
 const xml=await sitemapResponse.text();
 const locations=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 for(const url of locations) {
