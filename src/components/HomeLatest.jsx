@@ -30,6 +30,7 @@ export default function HomeLatest({locale}){
      {kind==='jobs'?<p className="home-latest-detail" dir="auto">{item.location}{item.deadline_text&&<> · {jobsUi.deadline}: {item.deadline_text}</>}</p>:<>
       {item.automatic&&<small>{ui.automatic}</small>}
       {item.attribution&&<small dir="auto">{item.attribution}</small>}
+      {item.policy_url?.startsWith('https://')&&<a className="resource-policy" href={item.policy_url} target="_blank" rel="noopener noreferrer">{resourcesUi.policy}</a>}
      </>}
     </li>)}</ul>
     {!(data[kind]||[]).some(i=>kind!=='jobs'||jobStatus(i,now)==='open')&&<><p className="home-latest-empty">{kind==='news'?ui.newsEmpty:data.jobs_connected?jobsUi.empty:ui.jobsEmpty}</p>{locale==='ko'&&<KoreanSourceLinks kind={kind}/>}</>}

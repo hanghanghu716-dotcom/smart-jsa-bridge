@@ -1,0 +1,109 @@
+{
+  "review_date_kst": "2026-11-03",
+  "authorization": "Operator explicitly requested review and publication of collected Korean news with verified rights.",
+  "scope": "11 existing pending news-ko-moel items; existing JSA/Case Study content untouched.",
+  "policy_url": "https://www.moel.go.kr/site/copyright/copyrightList.do",
+  "publication_basis": "Policy section 02 describes linking with a companion copyright-policy link. Self-authored navigation labels and factual dates only. No blanket commercial reuse or adaptation permission has been verified. No source body, statistics table, photo, attachment, or translation is republished.",
+  "automatic_publication": false,
+  "items": [
+    {
+      "id": "781cc20b-1da8-4269-84a1-f831add9c112",
+      "seq": "20261000676",
+      "title": "2026년 9월 말 기준 재해조사 대상 사망사고 잠정 통계 확인",
+      "source_date": "2026-10-20",
+      "decision": "publish_link_only",
+      "note": "공식 페이지의 통계명·기준시점·게시일 확인. 공공누리 제1유형 재게시 허가는 확인되지 않아 원문으로 연결하는 자체 안내 제목만 공개.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20261000676"
+    },
+    {
+      "id": "cc860004-bae2-4e1e-b249-0aee25f8922a",
+      "seq": "20260900226",
+      "title": "2026년 상반기 산업재해 통계: 고용노동부 발표자료 확인",
+      "source_date": "2026-09-07",
+      "decision": "publish_link_only",
+      "note": "공식 페이지에서 2026년 1~6월 누적 산업재해 현황과 게시일 확인. 원문으로 연결하는 자체 안내 제목만 공개.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20260900226"
+    },
+    {
+      "id": "51535ef8-7ca7-4cd5-8366-9718fa3b3409",
+      "seq": "20260900324",
+      "title": "2026년 8월 중대재해사이렌 자료 안내",
+      "source_date": "2026-09-09",
+      "decision": "hold_restricted",
+      "note": "원문에 출처표시·상업적 이용금지·변형금지 조건 및 통계자료 활용 금지 명시. 상업적 재게시·요약·번역 허가 미확인으로 공개 보류.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20260900324"
+    },
+    {
+      "id": "b450f914-ddea-498e-b1f2-1950e0d0c158",
+      "seq": "20261000063",
+      "title": "2026년 9월 중대재해사이렌 자료 안내",
+      "source_date": "2026-10-01",
+      "decision": "hold_restricted",
+      "note": "원문에 출처표시·상업적 이용금지·변형금지 조건 및 통계자료 활용 금지 명시. 상업적 재게시·요약·번역 허가 미확인으로 공개 보류.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20261000063"
+    },
+    {
+      "id": "0e238d8a-8263-4b87-8b4d-be3f4c0afc40",
+      "seq": "20261001078",
+      "title": "2026년 3분기 퇴직연금 디폴트옵션 공시 안내",
+      "source_date": "2026-10-31",
+      "decision": "hold_scope",
+      "note": "퇴직연금 상품 운용현황 공시로 산업안전·보건 뉴스 범위에서 제외. 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20261001078"
+    },
+    {
+      "id": "368211c7-58e0-4240-946b-0d95db923a9e",
+      "seq": "20261000955",
+      "title": "2025년 기준 노동시장 통계 자료 안내",
+      "source_date": "2026-10-28",
+      "decision": "hold_scope",
+      "note": "일반 노동시장 통계 자료로 이번 안전보건 뉴스 선정에서 제외. 첨부 전체 내용의 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20261000955"
+    },
+    {
+      "id": "d95bff52-dd41-4903-a6e7-82362e70f7ec",
+      "seq": "20261000902",
+      "title": "노무제공자의 미수금 회수 지원 안내",
+      "source_date": "2026-10-27",
+      "decision": "hold_scope",
+      "note": "보수 청구·법률구조 지원사업으로 산업안전·보건 뉴스 범위에서 제외. 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20261000902"
+    },
+    {
+      "id": "0197ea0e-81e8-4814-8c3b-a698d5acf52b",
+      "seq": "20261000526",
+      "title": "2026년 3분기 고용노동부 위원회 운영 자료 안내",
+      "source_date": "2026-10-14",
+      "decision": "hold_scope",
+      "note": "정부위원회 행정 운영 자료로 산업안전·보건 뉴스 범위에서 제외. 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20261000526"
+    },
+    {
+      "id": "fb72c46d-0554-4941-bbc4-e902bd1cc198",
+      "seq": "20260900562",
+      "title": "2026년 9월 배우자 지원 제도 안내",
+      "source_date": "2026-09-17",
+      "decision": "hold_scope",
+      "note": "배우자 지원 제도 안내로 이번 산업안전·보건 뉴스 범위에서 제외. 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20260900562"
+    },
+    {
+      "id": "7a691d66-e151-4c0f-a4dc-c216d1188c1d",
+      "seq": "20260900305",
+      "title": "2026년 재정지원 일자리사업 평가 자료 안내",
+      "source_date": "2026-09-08",
+      "decision": "hold_scope",
+      "note": "일자리사업 성과평가로 산업안전·보건 뉴스 범위에서 제외. 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20260900305"
+    },
+    {
+      "id": "286c3de1-952a-44af-9fc6-dbacc590362d",
+      "seq": "20260900151",
+      "title": "2024년 기준 퇴직연금 통계 안내",
+      "source_date": "2026-09-03",
+      "decision": "hold_scope",
+      "note": "퇴직연금 통계로 산업안전·보건 뉴스 범위에서 제외. 재게시 허가는 승인하지 않음.",
+      "url": "https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20260900151"
+    }
+  ]
+}
