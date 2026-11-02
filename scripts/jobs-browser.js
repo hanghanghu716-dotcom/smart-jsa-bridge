@@ -50,6 +50,7 @@ try{
  await page.setViewport({width:1366,height:900});await page.screenshot({path:'.cache/jobs-qa/home-desktop.png',fullPage:true});
  admin=true;await page.goto(base+'/ko/admin/jobs',{waitUntil:'networkidle0'});await page.waitForSelector('.resource-admin-panel details');
  assert.equal((await page.$$('.resource-admin-panel details')).length,JOB_SOURCES.length);
- assert.equal((await page.$$('.resource-admin-panel form')).length,2);
+ assert.deepEqual(JOB_SOURCES.filter(s=>s.adapter).map(s=>s.id).sort(),['narailter','usajobs','work24']);
+ assert.equal((await page.$$('.resource-admin-panel form')).length,3);
  assert.deepEqual(errors,[]);console.log('PASS: requested locale set, visible mobile layout, country queries, status navigation, pagination, search reset, homepage sections and gated source admin; all external traffic mocked');
 }finally{await browser?.close();await server.close();}
