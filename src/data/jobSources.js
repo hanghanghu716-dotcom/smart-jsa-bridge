@@ -1,6 +1,7 @@
 // Government/public employment services only. A directory entry is NOT a reuse licence.
 // These are candidates; public listing/collection needs an explicit, unexpired DB approval.
 export const JOB_SOURCES = [
+  { id:'narailter', name:'나라일터 · 인사혁신처', locales:['ko'], home:'https://www.gojobs.go.kr/', hosts:['www.gojobs.go.kr'], adapter:'narailter', policy:'https://www.data.go.kr/data/15156780/openapi.do', requirement:'공공데이터포털 일반회원 신청 가능 · 무료 · 이용허락범위 제한 없음. 활용신청 승인·서버 인증키와 실응답 검증 후 활성화. 공공부문 안전·보건 채용의 목록 정보만 표시.' },
   { id:'work24', name:'고용24', locales:['ko'], home:'https://www.work24.go.kr/', hosts:['www.work24.go.kr'], adapter:'work24', policy:'https://www.work24.go.kr/cm/e/a/0110/selectOpenApiIntro.do', requirement:'기업회원 API 승인·인증키 및 채용정보 게시 이용 조건 확인 필요.' },
   { id:'usajobs', name:'USAJOBS', locales:['en-US'], home:'https://www.usajobs.gov/', hosts:['www.usajobs.gov'], adapter:'usajobs', policy:'https://developer.usajobs.gov/apirequest/index', requirement:'연방정부 채용만 해당. API 등록·인증키, 승인 용도·출처·비제휴 표기 확인 필요.' },
   { id:'jobbank', name:'Job Bank / Guichet-Emplois', locales:['en-CA','en-CA-AB','en-CA-ON','en-CA-BC','fr-CA-QC'], home:'https://www.jobbank.gc.ca/', hosts:['www.jobbank.gc.ca','www.guichetemplois.gc.ca'], adapter:null, policy:'', requirement:'공식 배포 경로·게시 조건 미확인. 각 주의 근무지로 구분해야 하며 캐나다 전체 공고를 주별로 복제하지 않음.' },

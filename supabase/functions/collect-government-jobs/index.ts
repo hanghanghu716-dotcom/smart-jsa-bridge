@@ -12,12 +12,12 @@ Deno.serve(async req=>{
  };
  let sources;try{sources=await rpc('claim');}catch{return new Response('Unauthorized',{status:401});}
  const results=[];
- // Two prepared adapters, at most four external API calls per scheduled run.
- for(const source of sources.slice(0,2)){
+ // Three prepared adapters, at most nine external list calls per scheduled run.
+ for(const source of sources.slice(0,3)){
   try{const items=await collectJobs(source,(name:string)=>Deno.env.get(name));
    results.push({source:source.id,...await rpc('commit',source.id,items,items.length?'ok':'empty')});
   }catch(error){
-   // Never log request URLs: Work24 carries its API credential in the query string.
+   // Never log request URLs: Korean APIs carry credentials in query strings.
    const status=['missing_credentials','invalid_data'].includes(error?.message)?error.message:'source_error';
    try{await rpc('commit',source.id,[],status);}catch{/* No write; preserve existing data. */}
    results.push({source:source.id,status});

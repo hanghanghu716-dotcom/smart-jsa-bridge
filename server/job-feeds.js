@@ -1,5 +1,6 @@
 import { XMLParser } from 'fast-xml-parser';
 import { jobUrl } from '../src/utils/jobs.js';
+import { narailterWindow, parseNarailterPage } from './narailter-jobs.js';
 
 // Called only from the private Edge collector after source approval, never from the browser.
 // Bounded discovery, no job-detail crawling, contact data, logos or application handling.
@@ -66,7 +67,7 @@ export function parseUsajobs(data) {
     return [{external_id:id,locale:'en-US',url,title,employer:plain(d.OrganizationName,250),location:plain(d.PositionLocationDisplay,250),deadline_text:label,closes_at:instant}];
   });
 }
-export async function collectJobs(source,env,fetcher=fetch) {
+export async function collectJobs(source,env,fetcher=fetch,now=new Date()) {
   const entries=[];
   if(source.id==='work24'&&source.adapter==='work24'){
     const key=env('WORK24_API_KEY');if(!key)throw Error('missing_credentials');
@@ -75,6 +76,19 @@ export async function collectJobs(source,env,fetcher=fetch) {
       url.search=new URLSearchParams({authKey:key,callTp:'L',returnType:'XML',startPage:'1',display:'100',keyword});
       entries.push(...parseWork24(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)}))));
     }
+  }else if(source.id==='narailter'&&source.adapter==='narailter'){
+    const key=env('NARAILTER_API_KEY');if(!key)throw Error('missing_credentials');
+    const window=narailterWindow(now);
+    let total=0;
+    for(let page=1;page<=5;page++){
+      const url=new URL('https://apis.data.go.kr/1760000/PblJobService/getList');
+      url.search=new URLSearchParams({serviceKey:key,pageNo:String(page),numOfRows:'1000',Pblanc_ty:'',Instt_se:'',Begin_de:window.begin,End_de:window.end,Sort_order:'DESC'});
+      const result=parseNarailterPage(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)})),{...window,page});
+      if(page>1&&result.total!==total)throw Error('invalid_data');
+      total=result.total;entries.push(...result.items);
+      if(page*1000>=total)break;
+    }
+    if(new Set(entries.map(item=>item.external_id)).size>200)throw Error('invalid_data');
   }else if(source.id==='usajobs'&&source.adapter==='usajobs'){
     const key=env('USAJOBS_API_KEY'),email=env('USAJOBS_API_EMAIL');if(!key||!email)throw Error('missing_credentials');
     for(const title of ['safety','industrial hygien']){
