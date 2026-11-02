@@ -76,6 +76,7 @@ jobs:
           node scripts/feedback-browser.cjs
           node scripts/archive-images-browser.cjs
           node scripts/authoring-workflow-browser.cjs
+          node scripts/korean-account-browser.js
           node scripts/main-pagination-browser.cjs --local
           node scripts/library-discovery-browser.cjs
           node scripts/public-document-preview-browser.cjs

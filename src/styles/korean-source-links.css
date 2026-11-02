@@ -1,0 +1,4 @@
+.korean-source-links{margin:8px 0 20px;padding:16px;border:1px solid var(--border-default,#dbe2e8);border-radius:12px;background:var(--surface-muted,transparent)}
+.korean-source-links p{font-size:14px;line-height:1.75;margin:0 0 12px;color:var(--text-secondary,#526273);word-break:keep-all;overflow-wrap:anywhere}
+.korean-source-links>div{display:flex;flex-wrap:wrap;gap:10px 16px}
+.korean-source-links a{font-size:14px;line-height:1.6;color:var(--accent,#0064ce);text-underline-offset:4px}

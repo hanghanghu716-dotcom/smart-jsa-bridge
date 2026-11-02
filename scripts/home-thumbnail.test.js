@@ -16,7 +16,7 @@ const row = n => ({ id: id(n), title: 'Task ' + n, is_public: true, author_id: o
 const image = { blob: new Blob(['RIFFtestWEBP'], { type: 'image/webp' }), width: 720, height: 509 };
 const res = () => ({ headers: {}, setHeader(k,v) { this.headers[k] = v; }, end(body) { this.body = body; } });
 
-test('home requests metadata only, collapses groups and stops once six cards are available', async () => {
+test('home requests metadata only, collapses groups and stops once three cards are available', async () => {
   const records = [row(1), {...row(2),document_group_id:id(99)}, {...row(3),document_group_id:id(99)}, {...row(4),assessment:{review:'rejected'}},
     ...Array.from({length:8},(_,i)=>row(i+5))];
   let calls = 0;
@@ -25,8 +25,8 @@ test('home requests metadata only, collapses groups and stops once six cards are
     assert.doesNotMatch(fields,/form_data|analysis_data|custom_layout/);
     return records.slice(offset,offset+3);
   });
-  assert.equal(calls,3);
-  assert.deepEqual(result.cards.map(c=>c.id),[1,2,5,6,7,8].map(id));
+  assert.equal(calls,2);
+  assert.deepEqual(result.cards.map(c=>c.id),[1,2,5].map(id));
   assert.doesNotMatch(JSON.stringify(result),/PRIVATE_|form_data|analysis_data|custom_layout|assessment/);
 });
 
@@ -170,10 +170,11 @@ test('home cursor preserves timestamp precision, handles null dates and rejects 
   assert.equal(homeAfterFilter({id:id(3),publishedAt:'2026-10-26),is_public.eq.false'}),null);
   assert.equal(homeAfterFilter({id:'invalid',publishedAt:timestamp}),null);
   const records=Array.from({length:6},(_,n)=>({...row(n+1),published_at:timestamp}));let calls=0;
+  records[1].assessment={review:'rejected'};
   const result=await readHomeSummary('ko',async ({after,limit})=>{
     calls++;assert.equal(limit,3);
     if(calls===2)assert.deepEqual(after,cursor);
     return records.filter(row=>!after||row.id>after.id).slice(0,limit);
   });
-  assert.equal(calls,2);assert.equal(result.cards.length,6);
+  assert.equal(calls,2);assert.deepEqual(result.cards.map(c=>c.id),[1,3,4].map(id));
 });

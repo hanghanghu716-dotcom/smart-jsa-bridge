@@ -40,7 +40,7 @@ async function verifyHomeDiscovery(browser, base) {
     for(const locale of ['ko','en-US','ar-SA']){
       await page.setViewport({width:1440,height:1000});
       await page.goto(base+'/'+locale+'/',{waitUntil:'networkidle2',timeout:60000});
-      await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card').length===6&&document.querySelector('.home-case-card h3')?.textContent==='Example 001');
+      await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card').length===3&&document.querySelector('.home-case-card h3')?.textContent==='Example 001');
       assert.equal(await page.$$eval('.home-case-card',cards=>cards.length),3);
       assert.equal(await page.$('.case-pagination'),null,'Full catalog navigation belongs in Explore');
       assert.equal(await page.$$eval('.home-resource-card h3 a',links=>links.every(a=>a.href.includes('/public-jsa/'))),true);
@@ -62,7 +62,7 @@ async function verifyHomeDiscovery(browser, base) {
       assert.ok(resourceCalls.some(call=>call.p_locale===locale&&call.p_query==='Valve'),'Search retains the selected country/locale');
     }
     assert.deepEqual(errors,[]);
-    console.log(JSON.stringify({homeDiscovery:true,publicCards:6,caseArticles:3,searchRouting:true,guestDialogFocus:true,locales:3,widths:[320,390,1440]}));
+    console.log(JSON.stringify({homeDiscovery:true,publicCards:3,caseArticles:3,searchRouting:true,guestDialogFocus:true,locales:3,widths:[320,390,1440]}));
   } finally { await page.close(); }
 }
 module.exports={verifyHomeDiscovery};

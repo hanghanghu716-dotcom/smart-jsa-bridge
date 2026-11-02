@@ -84,14 +84,14 @@ const documentRow = {
   await page.waitForFunction(()=>document.querySelectorAll('.home-resource-card')[1]?.querySelector('.risk-pdf-thumbnail')===null).catch(async error=>{
     console.error('Thumbnail states',await page.$$eval('.home-resource-card',nodes=>nodes.map(n=>({title:n.querySelector('h3')?.textContent,src:n.querySelector('img')?.src,complete:n.querySelector('img')?.complete,width:n.querySelector('img')?.naturalWidth}))));throw error;
   });
-  assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),6);
+  assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),3);
   assert.equal(requests.filter(url=>/renderRiskThumbnail|RiskAssessmentThumbnail|html2canvas|jspdf/i.test(url)).length,0,'anonymous home must not load canvas/PDF code');
   const summaryReads=requests.filter(url=>url.includes('/rest/v1/public_jsa_cards'));
   assert.ok(summaryReads.length>0);
   for(const url of summaryReads)assert.doesNotMatch(new URL(url).searchParams.get('select'),/analysis_data|form_data|custom_layout/);
   await page.screenshot({path:path.join(out,'saved-thumbnail-home.png')});
   legacy=true;await page.reload({waitUntil:'networkidle0'});await page.waitForSelector('.home-resource-card');
-  assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),6);
+  assert.equal(await page.$$eval('.home-resource-card',nodes=>nodes.length),3);
   assert.equal(await page.$('.risk-thumbnail-renderer'),null);
   assert.equal(await page.$('.home-risk-thumbnail .document-paper'),null,'missing images retain only the blank placeholder');
   legacy=false;

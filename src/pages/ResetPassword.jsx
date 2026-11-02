@@ -96,7 +96,7 @@ export default function ResetPassword() {
 
   return (
     <div className="theme-workspace" style={styles.wrapper}>
-      <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
+      <SEO noIndex pageTitle={t('reset.title',{defaultValue:''}) ? t('reset.title')+' | Smart JSA Bridge' : undefined} />
       
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
@@ -160,14 +160,14 @@ export default function ResetPassword() {
 
 const styles = {
   // 기존 디자인 규격을 엄격히 보존합니다[cite: 6].
-  wrapper: { position: 'relative', height: '100vh', width: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' },
+  wrapper: { position: 'relative', minHeight: '100dvh', width: '100%', display: 'flex', flexDirection: 'column' },
   bgWrapper: { position: 'absolute', inset: 0, zIndex: 0 },
   bgImage: { position: 'absolute', inset: 0, backgroundImage: 'url(/images/image1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' },
   dimOverlay: { position: 'absolute', inset: 0, background: "var(--workspace-overlay)", zIndex: 1 },
-  header: { padding: '1.5rem 4rem', zIndex: 10 },
+  header: { padding: '1.5rem clamp(20px,5vw,64px)', zIndex: 10 },
   logo: { fontSize: '1.2rem', fontWeight: '900', color: "var(--text-primary)", cursor: 'pointer' },
   mainLayout: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10, padding: '20px' },
-  formCard: { width: '100%', maxWidth: '440px', backgroundColor: "var(--panel-bg)", backdropFilter: 'blur(10px)', border: "1px solid var(--border-default)", borderRadius: '16px', padding: '40px', boxShadow: "var(--shadow-panel)" },
+  formCard: { width: '100%', boxSizing:'border-box', maxWidth: '440px', backgroundColor: "var(--panel-bg)", backdropFilter: 'blur(10px)', border: "1px solid var(--border-default)", borderRadius: '16px', padding: 'clamp(20px,5vw,40px)', boxShadow: "var(--shadow-panel)" },
   formHeader: { marginBottom: '12px', borderLeft: "4px solid var(--accent)", paddingLeft: '12px' },
   formTitle: { fontSize: '1.5rem', fontWeight: '800', color: "var(--text-primary)", margin: 0 },
   guideText: { color: "var(--text-muted)", fontSize: '0.85rem', marginBottom: '32px' },

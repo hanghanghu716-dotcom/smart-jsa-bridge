@@ -9,6 +9,7 @@ import { resourceHubUi } from '../locales/resourceHubUi';
 import PublicSiteHeader from '../components/PublicSiteHeader';
 import CommunityFooter from '../components/CommunityFooter';
 import SEO from '../components/SEO';
+import KoreanSourceLinks from '../components/KoreanSourceLinks';
 import '../styles/resource-hub.css';
 export default function Jobs(){
  const {i18n}=useTranslation(),locale=i18n.language,ui=jobUi(locale),[params,setParams]=useSearchParams(),query=jobQuery(params),key=locale+jobSearch(query);
@@ -29,7 +30,7 @@ export default function Jobs(){
  <section className="resource-cards" aria-live="polite">{items.map(item=><article key={item.id}><div className="resource-meta">{ui[jobStatus(item,now)]} · {item.source}</div><h2 dir="auto"><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title} ↗</a></h2>
  <dl>{[['employer',item.employer],['location',item.location],['deadline',item.deadline_text||ui.unknown],['checked',new Date(item.verified_at).toLocaleString(i18n.language==='fr-CA-QC'?'fr-CA':i18n.language.startsWith('en-CA')?'en-CA':i18n.language)]].filter(([,v])=>v).map(([k,v])=><div key={k}><dt>{ui[k]}</dt><dd dir="auto">{v}</dd></div>)}</dl>
  <a href={item.url} target="_blank" rel="noopener noreferrer">{ui.original} ↗</a></article>)}</section>
- {!items.length&&<p>{ui.empty}</p>}
+ {!items.length&&<><p>{!data.sources.some(s=>s.connected)?ui.preparing:ui.empty}</p>{locale==='ko'&&<KoreanSourceLinks kind="jobs"/>}</>}
  <nav className="resource-pages">{query.page>0&&<LanguageLink to={'/jobs'+jobSearch({...query,page:query.page-1})}>{ui.previous}</LanguageLink>}<span>{query.page+1}</span>{data.has_more&&<LanguageLink to={'/jobs'+jobSearch({...query,page:query.page+1})}>{ui.next}</LanguageLink>}</nav>
  <section className="resource-directory"><h2>{ui.sources}</h2>{!data.sources.some(s=>s.connected)&&<p>{ui.preparing}</p>}<ul>{data.sources.map(s=><li key={s.id}>{s.name}</li>)}</ul></section></>}
  </main><CommunityFooter/></div>;

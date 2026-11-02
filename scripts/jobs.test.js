@@ -74,6 +74,9 @@ test('USAJOBS bounded summary requests accept official default-port links, not l
 test('job SSR has readable content, escapes text, no JobPosting markup and country-scoped request',async()=>{
  const fixture={items:[{title:'<script>bad</script>',url:'https://www.usajobs.gov/job/1',status:'closed',employer:'Government',source:'USAJOBS'}],sources:[],has_more:false};
  const shell='<html lang="en"><head></head><body><div id="root"></div></body></html>';
+ const empty=renderJobHtml(shell,'ko',jobQuery(''),{items:[],sources:[],has_more:false});
+ assert.ok(empty.includes('https://www.work24.go.kr/'));assert.ok(empty.includes('자동 연동을 준비'));
+ assert.ok(!renderJobHtml(shell,'en-US',jobQuery(''),{items:[],sources:[],has_more:false}).includes('work24.go.kr'));
  const html=renderJobHtml(shell,'en-US',jobQuery('?status=closed'),fixture);
  assert.ok(html.includes('Government'));assert.ok(!html.includes('<script>bad</script>'));assert.ok(html.includes('noindex,follow'));assert.ok(!html.includes('"@type":"JobPosting"'));
  const res={headers:{},setHeader(k,v){this.headers[k]=v;},end(v){this.body=v;}};

@@ -3,6 +3,7 @@ import { contentDate, publicCategoryLabel } from './publicDocumentPresentation.j
 import { localeCountry } from './publicCountry.js';
 import { excerptText } from './explorePresentation.js';
 import { storedThumbnail } from './publicThumbnail.js';
+export const HOME_PUBLIC_LIMIT = 3;
 
 const COMMON_FIELDS = 'id,title,author_id,is_public,public_locale,public_country,tags,published_at,content_updated_at,is_operator,document_group_id,document_variant,assessment';
 export const HOME_SUMMARY_FIELDS = COMMON_FIELDS + ',excerpt,step_count,thumbnail_revision,thumbnail_width,thumbnail_height';
@@ -29,7 +30,7 @@ export function homeSummaryCards(rows, locale) {
   return rows.filter(row => row?.is_public === true && validProjectId(row.id) && !row.restricted &&
     !row.assessment?.duplicate_of && row.assessment?.review !== 'rejected' && (!country || row.public_country === country))
     .filter(row => { const group = row.document_group_id || row.id; if (groups.has(group)) return false; groups.add(group); return true; })
-    .slice(0, 6).map(row => ({
+    .slice(0, HOME_PUBLIC_LIMIT).map(row => ({
       id: row.id, title: typeof row.title === 'string' ? row.title : '', authorId: row.author_id,
       operator: row.is_operator === true, locale: row.public_locale || locale, country: row.public_country,
       date: contentDate(row), variant: ['basic','technical','handover'].includes(row.document_variant) ? row.document_variant : null,
@@ -41,7 +42,7 @@ export function homeSummaryCards(rows, locale) {
     }));
 }
 
-// Six visible groups, no exact count or full-document fetch. Bound sparse catalogs
+// Three visible groups, no exact count or full-document fetch. Bound sparse catalogs
 // to 120 metadata rows. Small batches keep live duplicate checks within the
 // anonymous database statement budget, including when several readers arrive.
 export async function readHomeSummary(locale, readPage, signal) {
@@ -64,7 +65,7 @@ export async function readHomeSummary(locale, readPage, signal) {
     for (const row of fresh) { seen.add(row.id); rows.push(row); }
     offset += batch.length;
     after = homePageCursor(batch.at(-1));
-    if (homeSummaryCards(rows, locale).length === 6) break;
+    if (homeSummaryCards(rows, locale).length === HOME_PUBLIC_LIMIT) break;
   }
   return { locale, cards: homeSummaryCards(rows, locale) };
 }

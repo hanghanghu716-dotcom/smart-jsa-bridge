@@ -25,12 +25,12 @@ test('home excludes private, restricted, rejected and known duplicate documents 
  {...row(5),assessment:{review:'rejected'}},{...row(6),assessment:{duplicate_of:id(1)}},
  {...row(7),document_group_id:id(70),document_variant:'basic'},{...row(8),document_group_id:id(70),document_variant:'technical'},...Array.from({length:9},(_,i)=>row(i+10))];
  const cards=homePublicCards(rows,'ko');
- assert.deepEqual(cards.map(c=>c.id),[id(1),id(7),id(10),id(11),id(12),id(13)]);
+ assert.deepEqual(cards.map(c=>c.id),[id(1),id(7),id(10)]);
  assert.equal(cards[1].variant,'basic');assert.equal(cards[0].date,'2026-10-11T00:00:00.000Z');
  assert.doesNotMatch(JSON.stringify(cards),/PRIVATE_|form_data|analysis_data|assessment/);
 });
 
-test('home uses bounded metadata reads, handles server caps and stops at six cards',async()=>{
+test('home uses bounded metadata reads and stops after three cards',async()=>{
  const records=Array.from({length:12},(_,i)=>row(i+1));let reads=0;
  const result=await readHomePublic('ko',async value=>{
   const u=new URL(value),p=u.searchParams; assert.ok(u.pathname.endsWith('/public_jsa_cards'));
@@ -39,7 +39,7 @@ test('home uses bounded metadata reads, handles server caps and stops at six car
   reads++;const offset=Number(p.get('offset')),after=p.get('or')?.match(/id[.]gt[.]([0-9a-f-]+)/)?.[1];
   return Response.json(after?records.filter(row=>row.id>after).slice(0,3):records.slice(offset,offset+3));
  });
- assert.equal(reads,2);assert.deepEqual(result.cards.map(c=>c.id),[1,2,3,4,5,6].map(id));
+ assert.equal(reads,1);assert.deepEqual(result.cards.map(c=>c.id),[1,2,3].map(id));
 });
 
 test('live home includes real public cards and safely escaped compact bootstrap; withdrawals change the response',async()=>{

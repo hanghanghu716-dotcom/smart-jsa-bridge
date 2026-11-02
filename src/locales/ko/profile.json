@@ -1,6 +1,6 @@
 {
   "ui": {
-    "title": "계정 정보 및 지능형 안전 활동 관리",
+    "title": "계정 정보 및 작업 설정",
     "statsLabel": "지식 기여 및 활용 통계",
     "myDocs": "작성한 JSA",
     "scraps": "전체 스크랩 수",
@@ -12,7 +12,7 @@
     "presetTitle": "작업 리포트 기본 프리셋 설정",
     "department": "기본 부서명",
     "manager": "기본 검토자/승인자명",
-    "autoPublicity": "작성 시 지식베이스(Explore)에 자동 공유 허용",
+    "autoPublicity": "새 문서의 기본 저장 방식을 공개로 설정",
     "signatureLabel": "전자 서명 (이미지)",
     "noSignature": "등록된 서명이 없습니다.",
     "uploadSignature": "서명 이미지 업로드",
@@ -24,7 +24,7 @@
     "withdrawPlaceholder": "'탈퇴 확약' 문구를 입력해 주세요.",
     "withdrawSubmit": "회원 탈퇴 처리",
     "goMain": "메인으로 돌아가기",
-    "saveProfile": "프로필 정보 업데이트"
+    "saveProfile": "프로필 저장"
   },
   "sectors": {
     "default": "산업 분야를 선택하세요",

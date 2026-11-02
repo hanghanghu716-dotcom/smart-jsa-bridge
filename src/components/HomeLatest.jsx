@@ -6,6 +6,7 @@ import {jobUi} from '../locales/jobUi';
 import {resourceHubUi} from '../locales/resourceHubUi';
 import {isStaticContentBuild} from '../utils/caseListBootstrap';
 import {jobStatus} from '../utils/jobs';
+import KoreanSourceLinks from './KoreanSourceLinks';
 import '../styles/home-latest.css';
 
 export default function HomeLatest({locale}){
@@ -31,7 +32,7 @@ export default function HomeLatest({locale}){
       {item.attribution&&<small dir="auto">{item.attribution}</small>}
      </>}
     </li>)}</ul>
-    {!(data[kind]||[]).some(i=>kind!=='jobs'||jobStatus(i,now)==='open')&&<p className="home-latest-empty">{kind==='news'?ui.newsEmpty:data.jobs_connected?jobsUi.empty:ui.jobsEmpty}</p>}
+    {!(data[kind]||[]).some(i=>kind!=='jobs'||jobStatus(i,now)==='open')&&<><p className="home-latest-empty">{kind==='news'?ui.newsEmpty:data.jobs_connected?jobsUi.empty:ui.jobsEmpty}</p>{locale==='ko'&&<KoreanSourceLinks kind={kind}/>}</>}
    </>}
   </section>)}
  </div>;

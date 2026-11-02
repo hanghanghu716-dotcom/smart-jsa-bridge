@@ -11,6 +11,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import { loadHomeSummary } from '../services/homeSummaryService';
 import { isStaticContentBuild } from '../utils/caseListBootstrap';
 import { publicExclusions } from '../services/publicJsaService';
+import { HOME_PUBLIC_LIMIT } from '../utils/homeSummary';
 
 export default function HomePublicCatalog() {
   const { i18n } = useTranslation(), locale = i18n.language;
@@ -45,7 +46,7 @@ export default function HomePublicCatalog() {
       {!current && <p role="status">{p.title} …</p>}
       {current?.error && <p role="alert">{p.error} <button onClick={() => setAttempt(n => n + 1)}>{p.retry}</button></p>}
       {current && !current.error && !current.cards.length && <p>{p.empty}</p>}
-      <div className="home-public-grid">{current?.cards.map(card => <article className="home-resource-card" key={card.id}>
+      <div className="home-public-grid">{current?.cards.slice(0, HOME_PUBLIC_LIMIT).map(card => <article className="home-resource-card" key={card.id}>
         <LanguageLink to={'/public-jsa/' + card.id} tabIndex={-1} aria-hidden="true" className="home-document-link" ><HomeRiskThumbnail card={card} locale={locale}/></LanguageLink>
         <div className="home-card-body">
         <div className="home-card-meta"><span className={card.operator ? 'home-source home-source--operator' : 'home-source'}>{card.operator ? getOperatorUi(locale).badge : ui.member}</span><span>{countryLabel(card.country, locale)}{card.steps !== null && <> · {p.steps} {card.steps}</>}{card.variant && <> · {getOperatorUi(locale)[card.variant]}</>}</span></div>

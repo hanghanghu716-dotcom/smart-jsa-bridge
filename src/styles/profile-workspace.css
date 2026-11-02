@@ -1,0 +1,17 @@
+.profile-workspace .profile-centerContent,
+.profile-workspace .profile-flexItem { min-width: 0; }
+.profile-workspace .profile-formCard { box-sizing: border-box; }
+.profile-workspace h2,
+.profile-workspace button { word-break: keep-all; }
+@media (max-width: 1023px) {
+ .profile-workspace .profile-header { padding: 20px !important; }
+ .profile-workspace .profile-mainLayout { padding: 0 16px 110px !important; gap: 0 !important; align-items: flex-start !important; }
+ .profile-workspace .profile-sideAd { display: none !important; }
+ .profile-workspace .profile-formCard { height: auto !important; padding: 24px 20px !important; overflow: visible !important; }
+ .profile-workspace .profile-scrollArea { overflow: visible !important; padding-right: 0 !important; }
+ .profile-workspace .profile-formGrid { grid-template-columns: minmax(0,1fr) !important; gap: 24px !important; }
+ .profile-workspace .profile-row { flex-wrap: wrap; }
+ .profile-workspace .profile-flexItem { flex-basis: 140px !important; }
+ .profile-workspace .profile-sessionBox { flex-wrap: wrap; gap: 12px; overflow-wrap: anywhere; }
+ .profile-workspace button { overflow-wrap: anywhere; }
+}

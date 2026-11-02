@@ -1,3 +1,4 @@
+import '../styles/profile-workspace.css';
 import ThemeSettings from '../components/ThemeSettings';
 import AdminVerification from '../components/AdminVerification';
 import { accountSecurity } from '../locales/accountSecurity';
@@ -113,7 +114,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="theme-workspace" style={styles.wrapper}>
+    <div className="theme-workspace profile-workspace" style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
       
       <div style={styles.bgWrapper}>
@@ -121,26 +122,26 @@ export default function Profile() {
         <div style={styles.dimOverlay} />
       </div>
 
-      <header style={styles.header}>
+      <header className="profile-header" style={styles.header}>
         <h1 style={styles.logo} onClick={handleLogoClick}>Smart JSA Bridge</h1>
       </header>
 
-      <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
+      <div className="profile-mainLayout" style={styles.mainLayout}>
+        <aside className="profile-sideAd" style={styles.sideAd}>
           <AdBanner slot="2000000004" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
-        <main style={styles.centerContent}>
-          <div style={styles.formCard}>
+        <main className="profile-centerContent" style={styles.centerContent}>
+          <div className="profile-formCard" style={styles.formCard}>
             <div style={styles.formHeader}>
               <h2 style={styles.formTitle}>{t('ui.title')}</h2>
             </div>
 
-            <div style={styles.scrollArea}>
+            <div className="profile-scrollArea" style={styles.scrollArea}>
               <ThemeSettings />
               {message&&<p role="status">{message}</p>}
               <AdminVerification />
-              <div style={styles.formGrid}>
+              <div className="profile-formGrid" style={styles.formGrid}>
                 {/* 왼쪽 섹션: 통계 및 기본 프로필 */}
                 <section style={styles.leftSection}>
                   <label style={styles.label}>{t('ui.statsLabel')}</label>
@@ -155,8 +156,8 @@ export default function Profile() {
                     </div>
                   </div>
 
-                  <div style={styles.row}>
-                    <div style={styles.flexItem}>
+                  <div className="profile-row" style={styles.row}>
+                    <div className="profile-flexItem" style={styles.flexItem}>
                       <label style={styles.label}>{t('ui.nickname')}</label>
                       <input 
                         style={styles.input} 
@@ -164,7 +165,7 @@ export default function Profile() {
                         onChange={e => setProfile({...profile, username: e.target.value})} 
                       />
                     </div>
-                    <div style={styles.flexItem}>
+                    <div className="profile-flexItem" style={styles.flexItem}>
                       <label style={styles.label}>{t('ui.sector')}</label>
                       <select 
                         style={styles.selectInput} 
@@ -208,8 +209,8 @@ export default function Profile() {
                 <section style={styles.rightSection}>
                   <label style={styles.label}>{t('ui.presetTitle')}</label>
                   <div style={styles.presetBox}>
-                    <div style={styles.row}>
-                      <div style={styles.flexItem}>
+                    <div className="profile-row" style={styles.row}>
+                      <div className="profile-flexItem" style={styles.flexItem}>
                         <label style={styles.subLabel}>{t('ui.department')}</label>
                         <input 
                           style={styles.inputSmall} 
@@ -217,7 +218,7 @@ export default function Profile() {
                           onChange={e => setProfile({...profile, default_department: e.target.value})} 
                         />
                       </div>
-                      <div style={styles.flexItem}>
+                      <div className="profile-flexItem" style={styles.flexItem}>
                         <label style={styles.subLabel}>{t('ui.manager')}</label>
                         <input 
                           style={styles.inputSmall} 
@@ -253,7 +254,7 @@ export default function Profile() {
                   </div>
 
                   <label style={{...styles.label, marginTop: '1rem'}}>{t('ui.securityLabel')}</label>
-                  <div style={styles.sessionBox}>
+                  <div className="profile-sessionBox" style={styles.sessionBox}>
                     <span style={styles.sessionEmail}>{sessionInfo?.user?.email}</span>
                     <button style={styles.globalLogoutBtn} onClick={handleGlobalSignOut}>
                       {t('ui.remoteLogout')}
@@ -300,7 +301,7 @@ export default function Profile() {
           </div>
         </main>
 
-        <aside style={styles.sideAd}>
+        <aside className="profile-sideAd" style={styles.sideAd}>
           <AdBanner slot="2000000005" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>

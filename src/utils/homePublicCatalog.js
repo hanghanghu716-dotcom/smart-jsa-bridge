@@ -4,7 +4,8 @@ import { contentDate } from './publicDocumentPresentation.js';
 import { localeCountry } from './publicCountry.js';
 import { exploreExcerpt, excerptText, exploreCardTags } from './explorePresentation.js';
 
-export const HOME_PUBLIC_LIMIT = 6;
+import { HOME_PUBLIC_LIMIT } from './homeSummary.js';
+export { HOME_PUBLIC_LIMIT };
 
 // Decorative category images only; they do not represent the submitted job.
 export function homeResourceImage(tags = []) {
