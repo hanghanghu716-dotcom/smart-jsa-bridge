@@ -22,5 +22,12 @@ export function visibleResource(item, source, now = Date.now()) {
   return source?.active === true && item?.state === 'published' && Date.parse(source.review_until) > now &&
     Date.parse(item.review_until) > now && Boolean(item.evidence_url) && Boolean(officialUrl(item.url, source.domains || [])) &&
     (!item.summary || (source.commercial === true && source.adaptation === true && item.reuse_confirmed === true && (item.attribution || '').trim().length >= 12)) &&
-    (!item.translated || (source.commercial === true && source.adaptation === true && item.reuse_confirmed === true && (item.attribution || '').trim().length >= 12));
+    (!item.translated || (source.commercial === true && source.adaptation === true && item.reuse_confirmed === true && (item.attribution || '').trim().length >= 12)) &&
+    (!item.collection_provenance?.automatic_publication || canPublishFeed(item,source,now));
+}
+export function canPublishFeed(item,source,now=Date.now()){
+ const approval=source?.automatic_publication,collection=source?.collection,date=Date.parse(item?.source_date),today=Date.parse(new Date(now).toISOString().slice(0,10));
+ return Boolean(source?.active&&source.commercial&&Date.parse(source.review_until)>now&&approval?.eligible&&approval.enabled&&Date.parse(approval.review_until)>now&&/^https:\/\/[^\s]+$/.test(approval.evidence_url||'')&&(approval.attribution||'').length>=12
+ &&collection?.enabled&&collection.mode==='feed'&&Date.parse(collection.review_until)>now&&item?.collection_provenance?.mode==='feed'&&source.locales?.includes(item.locale)&&officialUrl(item.url,source.domains||[])
+ &&item.kind==='news'&&!item.summary&&!item.translated&&item.title?.trim().length>=8&&item.title.length<=250&&!/[<>\u0000-\u001f\u007f]/.test(item.title)&&!/link awaiting review/i.test(item.title)&&date>=today-180*86400000&&date<=today+86400000);
 }

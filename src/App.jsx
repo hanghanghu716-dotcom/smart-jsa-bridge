@@ -49,6 +49,8 @@ import Analytics from './components/Analytics';
 import FeedbackWidget from './components/FeedbackWidget';
 const ResourceHub = lazy(() => import('./pages/ResourceHub'));
 const ResourceAdmin = lazy(() => import('./pages/ResourceAdmin'));
+const Jobs = lazy(() => import('./pages/Jobs'));
+const JobAdmin = lazy(() => import('./pages/JobAdmin'));
 const FeedbackAdmin = lazy(() => import('./pages/FeedbackAdmin'));
 import ThumbnailPublisher from './components/ThumbnailPublisher';
 
@@ -113,6 +115,8 @@ export default function App() {
             <Route path="/:lng/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
             <Route path="/:lng/search" element={<LanguageWrapper><ResourceHub /></LanguageWrapper>} />
             <Route path="/:lng/resources" element={<LanguageWrapper><ResourceHub /></LanguageWrapper>} />
+            <Route path="/:lng/jobs" element={<LanguageWrapper><Jobs /></LanguageWrapper>} />
+            <Route path="/:lng/admin/jobs" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><JobAdmin /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/admin/resources" element={<CrawlerBlocker><LanguageWrapper><AdminRoute><ResourceAdmin /></AdminRoute></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
             <Route path="/:lng/community" element={<CrawlerBlocker><LanguageWrapper><Community /></LanguageWrapper></CrawlerBlocker>} />

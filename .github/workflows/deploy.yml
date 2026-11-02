@@ -72,6 +72,7 @@ jobs:
         run: |
           node scripts/admin-verification-browser.js
           node scripts/resource-hub-browser.js
+          node scripts/jobs-browser.js
           node scripts/feedback-browser.cjs
           node scripts/archive-images-browser.cjs
           node scripts/authoring-workflow-browser.cjs

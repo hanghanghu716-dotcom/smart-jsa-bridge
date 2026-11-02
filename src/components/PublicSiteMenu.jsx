@@ -1,4 +1,5 @@
 import { resourceHubUi } from '../locales/resourceHubUi';
+import { jobUi } from '../locales/jobUi';
 import { useTranslation } from 'react-i18next';
 import { LanguageLink } from '../hooks/useLanguage';
 import { allPagesLabel } from '../locales/allPagesUi';
@@ -29,6 +30,7 @@ export default function PublicSiteMenu({ locale }) {
       )}</section>
       <section><h2>Smart JSA Bridge</h2>{links([
         ['/search', resourceHubUi(locale).search], ['/resources', resourceHubUi(locale).title],
+        ['/jobs', jobUi(locale).title],
         ['/explore', t('navExplore')], ['/archive', ui.cases], ['/about', ui.about],
         ['/community', ui.contact], ['/privacy', ui.privacy], ['/terms', ui.terms],
       ])}</section>

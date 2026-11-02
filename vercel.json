@@ -168,6 +168,10 @@
       "destination": "/api/resource-hub?lng=:lng&mode=resources"
     },
     {
+      "source": "/:lng/jobs",
+      "destination": "/api/resource-hub?lng=:lng&mode=jobs"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
