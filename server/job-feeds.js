@@ -2,9 +2,11 @@ import { XMLParser } from 'fast-xml-parser';
 import { jobUrl } from '../src/utils/jobs.js';
 import { narailterWindow, parseNarailterPage } from './narailter-jobs.js';
 import { parseQueensland, parseCastillaLeon, parseTrudvsem } from './open-government-jobs.js';
+import { MHLW_LIST, parseMhlwList, parseMhlwDetail } from './japan-government-jobs.js';
 
 // Called only from the private Edge collector after source approval, never from the browser.
-// Bounded discovery, no job-detail crawling, contact data, logos or application handling.
+// Bounded discovery; MHLW reads at most five licensed HTML notices for deadlines.
+// No stored contact data, descriptions, logos, attachments or application handling.
 const MAX_BYTES=2*1024*1024;
 async function read(response) {
   if(!response.ok)throw Error('source_error');
@@ -111,6 +113,10 @@ export async function collectJobs(source,env,fetcher=fetch,now=new Date()) {
       url.search=new URLSearchParams({text:title,limit:'100',offset:'0'});
       entries.push(...parseTrudvsem(JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)})))));
     }
+  }else if(source.id==='mhlwjobs'&&source.adapter==='mhlwjobs'){
+    const urls=parseMhlwList(await read(await fetcher(new URL(MHLW_LIST),{redirect:'error',signal:AbortSignal.timeout(12000)})),now);
+    const rows=await Promise.all(urls.map(async url=>parseMhlwDetail(await read(await fetcher(new URL(url),{redirect:'error',signal:AbortSignal.timeout(12000)})),url)));
+    entries.push(...rows.filter(Boolean));
   }else throw Error('source_error');
   return [...new Map(entries.map(item=>[item.external_id,item])).values()].slice(0,200);
 }

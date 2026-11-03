@@ -1,6 +1,11 @@
 // Display alongside every reused listing, including the homepage and initial HTML.
 // Source text is not translated; these notes describe our selection of metadata.
 export const JOB_ATTRIBUTION = {
+  mhlwjobs: {
+    credit:'出典：厚生労働省ホームページ（各公募の原文リンク）',
+    note:'厚生労働省の安全・化学物質関連の公募を選び、Smart JSA Bridgeが掲載項目を抽出・整理しています。全国の求人一覧ではありません。応募資格・必着時刻は原文をご確認ください。政府による推奨を意味しません。',
+    license:'PDL1.0・利用条件', url:'https://www.mhlw.go.jp/chosakuken/index.html',
+  },
   qldsmartjobs: {
     credit:'© The State of Queensland · Smart jobs and careers',
     note:'Queensland public-sector roles only. Selected listing fields; no government endorsement.',

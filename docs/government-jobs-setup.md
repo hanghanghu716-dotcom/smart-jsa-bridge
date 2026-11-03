@@ -35,7 +35,7 @@ After credentials and permission are confirmed, deploy `collect-government-jobs`
 It reuses the existing Vault-backed `safety_resource_collector` invocation credential and does not expose it to the browser or GitHub.
 `government-jobs-daily` invokes the collector at 06:45 UTC (15:45 KST). The existing news collector remains at 06:15 UTC (15:15 KST). A private Vault token authenticates invocations and cannot be read by browser users.
 Approve the applicable source in the administrator page, including evidence URL, permitted commercial display scope and account approval. Approval expires after 90 days.
-The six prepared adapters issue at most 13 list requests/run (11 with Work24 disabled). No detail-page crawling or paid translation service is used. Source requests are bounded and run concurrently.
+Seven adapters are prepared; six sources maximum are claimed per invocation. With Work24 disabled, the six active sources issue at most 17 requests/run. Japan uses one MHLW list and at most five licensed direct recruitment HTML pages to extract deadlines, concurrently; no recursive crawling, attachments or paid translation. See [source review and request limits](international-jobs-review.md).
 
 ## News publication and homepage
 
