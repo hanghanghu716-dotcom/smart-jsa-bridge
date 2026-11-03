@@ -3,7 +3,7 @@
 Public route: `/:locale/jobs`. Operator route: `/ko/admin/jobs` (Community → 채용정보 관리).
 All 19 supported locale routes have their own source mapping and translated public UI.
 Source registry: `src/data/jobSources.js`. Registration is not access/publication approval.
-The catalogue migration starts sources disabled. The following publication migration enables only the operator-approved USAJOBS connection and a bounded daily collector. Work24 and all other job sources remain disabled.
+The catalogue migrations start sources disabled. USAJOBS and Narailter are connected. The international expansion adds licence-reviewed Queensland, Castilla y León and Rostrud adapters, with separate production activation after attribution UI deployment. Work24 and unverified providers remain disabled. See [country review and operating bounds](international-jobs-review.md).
 Existing JSA, Case Study and document authoring content are unchanged.
 
 ## Implemented
@@ -35,7 +35,7 @@ After credentials and permission are confirmed, deploy `collect-government-jobs`
 It reuses the existing Vault-backed `safety_resource_collector` invocation credential and does not expose it to the browser or GitHub.
 `government-jobs-daily` invokes the collector at 06:45 UTC (15:45 KST). The existing news collector remains at 06:15 UTC (15:15 KST). A private Vault token authenticates invocations and cannot be read by browser users.
 Approve the applicable source in the administrator page, including evidence URL, permitted commercial display scope and account approval. Approval expires after 90 days.
-Both prepared adapters together issue at most four external list requests/run. No detail-page crawling or paid translation service is used.
+The six prepared adapters issue at most 13 list requests/run (11 with Work24 disabled). No detail-page crawling or paid translation service is used. Source requests are bounded and run concurrently.
 
 ## News publication and homepage
 

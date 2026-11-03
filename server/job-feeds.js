@@ -1,6 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import { jobUrl } from '../src/utils/jobs.js';
 import { narailterWindow, parseNarailterPage } from './narailter-jobs.js';
+import { parseQueensland, parseCastillaLeon, parseTrudvsem } from './open-government-jobs.js';
 
 // Called only from the private Edge collector after source approval, never from the browser.
 // Bounded discovery, no job-detail crawling, contact data, logos or application handling.
@@ -94,6 +95,21 @@ export async function collectJobs(source,env,fetcher=fetch,now=new Date()) {
     for(const title of ['safety','industrial hygien']){
       const url=new URL('https://data.usajobs.gov/api/search');url.search=new URLSearchParams({PositionTitle:title,ResultsPerPage:'50',Page:'1',Fields:'Min',SortField:'opendate',SortDirection:'Desc'});
       entries.push(...parseUsajobs(JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000),headers:{'Authorization-Key':key,'User-Agent':email,Accept:'application/json'}})))));
+    }
+  }else if(source.id==='qldsmartjobs'&&source.adapter==='qldsmartjobs'){
+    // The public search form's Occupational Health & Safety group; one list, no detail crawling.
+    const url=new URL('https://smartjobs.qld.gov.au/jobtools/jncustomsearch.searchResults');
+    url.search=new URLSearchParams({in_organid:'14904',in_multi01_id:'1108',in_multi01:'"53.5"',in_searchBut:'Search',in_orderby:'dateinput desc'});
+    entries.push(...parseQueensland(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)}))));
+  }else if(source.id==='jcyljobs'&&source.adapter==='jcyljobs'){
+    const url=new URL('https://jcyl.opendatasoft.com/api/explore/v2.1/catalog/datasets/convocatorias-de-empleo-publico/records');
+    url.search=new URLSearchParams({limit:'100',select:'titulo,identificador,organismo_gestor,fecha_de_inicio,fecha_de_finalizacion,enlace_al_contenido,municipio',where:'search(titulo,"prevención") OR search(titulo,"seguridad") OR search(titulo,"higiene")',order_by:'fecha_de_inicio desc'});
+    entries.push(...parseCastillaLeon(JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)}))),now));
+  }else if(source.id==='trudvsem'&&source.adapter==='trudvsem'){
+    for(const title of ['охране труда','промышленной безопасности']){
+      const url=new URL('https://opendata.trudvsem.ru/api/v1/vacancies');
+      url.search=new URLSearchParams({text:title,limit:'100',offset:'0'});
+      entries.push(...parseTrudvsem(JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)})))));
     }
   }else throw Error('source_error');
   return [...new Map(entries.map(item=>[item.external_id,item])).values()].slice(0,200);

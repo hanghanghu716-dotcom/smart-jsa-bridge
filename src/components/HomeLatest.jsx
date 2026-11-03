@@ -7,6 +7,7 @@ import {resourceHubUi} from '../locales/resourceHubUi';
 import {isStaticContentBuild} from '../utils/caseListBootstrap';
 import {jobStatus} from '../utils/jobs';
 import KoreanSourceLinks from './KoreanSourceLinks';
+import JobAttribution from './JobAttribution';
 import '../styles/home-latest.css';
 
 export default function HomeLatest({locale}){
@@ -32,6 +33,7 @@ export default function HomeLatest({locale}){
       {item.attribution&&<small dir="auto">{item.attribution}</small>}
       {item.policy_url?.startsWith('https://')&&<a className="resource-policy" href={item.policy_url} target="_blank" rel="noopener noreferrer">{resourcesUi.policy}</a>}
      </>}
+     {kind==='jobs'&&<JobAttribution sourceId={item.source_id}/>}
     </li>)}</ul>
     {!(data[kind]||[]).some(i=>kind!=='jobs'||jobStatus(i,now)==='open')&&<><p className="home-latest-empty">{kind==='news'?ui.newsEmpty:data.jobs_connected?jobsUi.empty:ui.jobsEmpty}</p>{locale==='ko'&&<KoreanSourceLinks kind={kind}/>}</>}
    </>}

@@ -11,17 +11,17 @@ Deno.serve(async req=>{
   if(!r.ok)throw Error('COLLECTION_DENIED');return r.json();
  };
  let sources;try{sources=await rpc('claim');}catch{return new Response('Unauthorized',{status:401});}
- const results=[];
- // Three prepared adapters, at most nine external list calls per scheduled run.
- for(const source of sources.slice(0,3)){
+ // DB atomically claims at most six reviewed sources; each has a fixed request budget.
+ // Independent sources run concurrently so one slow provider cannot starve another.
+ const results=await Promise.all(sources.slice(0,6).map(async source=>{
   try{const items=await collectJobs(source,(name:string)=>Deno.env.get(name));
-   results.push({source:source.id,...await rpc('commit',source.id,items,items.length?'ok':'empty')});
+   return {source:source.id,...await rpc('commit',source.id,items,items.length?'ok':'empty')};
   }catch(error){
    // Never log request URLs: Korean APIs carry credentials in query strings.
    const status=['missing_credentials','invalid_data'].includes(error?.message)?error.message:'source_error';
    try{await rpc('commit',source.id,[],status);}catch{/* No write; preserve existing data. */}
-   results.push({source:source.id,status});
+   return {source:source.id,status};
   }
- }
+ }));
  return Response.json({sources:results},{headers:{'Cache-Control':'no-store'}});
 });
