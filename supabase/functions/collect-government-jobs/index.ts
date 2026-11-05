@@ -1,4 +1,4 @@
-import { collectJobs } from '../../../server/job-feeds.js';
+import { collectJobs, jobSourceFailure } from '../../../server/job-feeds.js';
 Deno.serve(async req=>{
  if(req.method!=='POST')return new Response('Method not allowed',{status:405});
  const token=req.headers.get('x-resource-token')||'';
@@ -19,6 +19,7 @@ Deno.serve(async req=>{
   }catch(error){
    // Never log request URLs: Korean APIs carry credentials in query strings.
    const status=['missing_credentials','invalid_data'].includes(error?.message)?error.message:'source_error';
+   console.warn(JSON.stringify({event:'job_source_failed',source:source.id,reason:jobSourceFailure(error)}));
    try{await rpc('commit',source.id,[],status);}catch{/* No write; preserve existing data. */}
    return {source:source.id,status};
   }

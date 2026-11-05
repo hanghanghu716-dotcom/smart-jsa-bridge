@@ -8,6 +8,45 @@ import { MHLW_LIST, parseMhlwList, parseMhlwDetail } from './japan-government-jo
 // Bounded discovery; MHLW reads at most five licensed HTML notices for deadlines.
 // No stored contact data, descriptions, logos, attachments or application handling.
 const MAX_BYTES=2*1024*1024;
+// Only fixed diagnostic codes may reach logs; upstream errors can contain API keys.
+export function jobSourceFailure(error) {
+  if(/^upstream_http_[1-5]\d{2}$/.test(error?.sourceReason))return error.sourceReason;
+  if(['upstream_timeout','upstream_network'].includes(error?.sourceReason))return error.sourceReason;
+  if(['TimeoutError','AbortError'].includes(error?.name))return 'upstream_timeout';
+  if(error instanceof SyntaxError)return 'invalid_json';
+  if(error instanceof TypeError)return 'upstream_network';
+  if(['missing_credentials','invalid_data','COLLECTION_DENIED'].includes(error?.message))return error.message;
+  return 'source_error';
+}
+const sourceError=reason=>Object.assign(Error('source_error'),{sourceReason:reason});
+// Russia's public list can take ~10s before headers. Keep queries sequential,
+// allow 18s per attempt including the body, and retry a transient failure once.
+// At most 4 requests / 76s, leaving room for both RPC calls in the 100s dispatch.
+async function readTrudvsem(url,fetcher) {
+  for(let attempt=0;attempt<2;attempt++){
+    let retryDelay=1000;
+    try{
+      const response=await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(18000)});
+      if(!response.ok){
+        const retryAfter=response.headers.get('retry-after');
+        if(retryAfter!==null){
+          const seconds=/^\d+(?:\.\d+)?$/.test(retryAfter)?Number(retryAfter)*1000:Date.parse(retryAfter)-Date.now();
+          // Do not retry sooner than the provider allows, or extend our budget.
+          retryDelay=Number.isFinite(seconds)?Math.max(0,seconds):Infinity;
+        }
+        await response.body?.cancel().catch(()=>{});
+        throw sourceError('upstream_http_'+response.status);
+      }
+      return await read(response);
+    }catch(error){
+      const reason=jobSourceFailure(error);
+      const transient=['upstream_timeout','upstream_network','upstream_http_408','upstream_http_429','upstream_http_500','upstream_http_502','upstream_http_503','upstream_http_504'].includes(reason);
+      if(attempt||!transient||retryDelay>2000)throw error;
+      console.warn(JSON.stringify({event:'job_source_retry',source:'trudvsem',reason,attempt:2}));
+      await new Promise(resolve=>setTimeout(resolve,retryDelay));
+    }
+  }
+}
 async function read(response) {
   if(!response.ok)throw Error('source_error');
   const reader=response.body?.getReader();if(!reader)throw Error('source_error');
@@ -111,7 +150,7 @@ export async function collectJobs(source,env,fetcher=fetch,now=new Date()) {
     for(const title of ['охране труда','промышленной безопасности']){
       const url=new URL('https://opendata.trudvsem.ru/api/v1/vacancies');
       url.search=new URLSearchParams({text:title,limit:'100',offset:'0'});
-      entries.push(...parseTrudvsem(JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000)})))));
+      entries.push(...parseTrudvsem(JSON.parse(await readTrudvsem(url,fetcher))));
     }
   }else if(source.id==='mhlwjobs'&&source.adapter==='mhlwjobs'){
     const urls=parseMhlwList(await read(await fetcher(new URL(MHLW_LIST),{redirect:'error',signal:AbortSignal.timeout(12000)})),now);

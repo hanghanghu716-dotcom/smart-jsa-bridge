@@ -1,6 +1,6 @@
 # Official job connections without business registration
 
-Reviewed 2026-11-03. Scope: all 15 supported countries / 19 locale routes.
+Reviewed 2026-11-03; Russia, Australia and Singapore rechecked 2026-11-06. Scope: all 15 supported countries / 19 locale routes.
 This is a provider-by-provider access and publication review, not a claim that every vacancy or every national job market is covered. Existing JSA, Case Study, news and authoring content are unchanged.
 
 ## Connections selected for this release
@@ -40,7 +40,7 @@ Australia alternative excluded: [Jobs ACT's own copyright page](https://www.jobs
 ## Operating bounds and lifecycle
 
 - Reuse the existing once-daily `government-jobs-daily` schedule. No per-visitor collection or new paid services/API keys.
-- Seven prepared adapters; maximum six sources claimed per invocation. With Work24 disabled, six active sources make at most **17** requests/run: USAJOBS 2, Korea 5, Queensland 1, Castilla y León 1, Russia 2, Japan 1 list + at most 5 notice pages (currently 3 requests). Each response is capped at 2 MiB and each call at 12 seconds. The Japanese notices run concurrently and are read only for minimal metadata/deadlines; no recursive links, PDFs, images or full-text storage.
+- Seven prepared adapters; maximum six sources claimed per invocation. With Work24 disabled, six active sources normally make at most **17** requests/run: USAJOBS 2, Korea 5, Queensland 1, Castilla y León 1, Russia 2, Japan 1 list + at most 5 notice pages (currently 3 requests). Russia may retry each query once for a transient failure, raising the absolute bound to **19** requests/run. Each response is capped at 2 MiB. Russia has an 18-second attempt budget including response body, other calls remain at 12 seconds. The Japanese notices run concurrently and are read only for minimal metadata/deadlines; no recursive links, PDFs, images or full-text storage.
 - Six claims maximum, locked atomically, 20-hour source cooldown. Independent sources run concurrently; each failure preserves other sources and existing records. Invocation timeout 100 seconds, below the Edge free-plan 150-second wall limit.
 - Maximum 200 minimal records/source/import. Database upsert preserves operator withdrawal. No paid bulk downloads or AI translation.
 - API access is free; hosting still depends on total project usage. These limits do not promise unlimited free hosting.
@@ -55,6 +55,16 @@ Australia alternative excluded: [Jobs ACT's own copyright page](https://www.jobs
 `node scripts/jobs-browser.js` (isolated fixtures; all external traffic mocked)
 
 `scripts/jobs-security.sql` and `scripts/international-jobs-security.sql` run in rollback transactions. They cover admin/MFA, private-table grants, service credentials, source approval expiry, six-source claim/cooldown, country isolation, attribution ID, deadlines and withdrawal retention.
+
+## Russia recovery / Australia / Singapore recheck (2026-11-06)
+
+- Russia's 5 November scheduled run stored `source_error`. The former collector discarded the reason; the invocation log shows HTTP 200 for the overall batch, not successful Russian collection. A later live check returned valid data for both queries, taking 9.93 and 9.88 seconds against the former 12-second timeout. This supports latency as a risk, **not proof of the historical failure cause**.
+- Russian queries remain sequential: 18 seconds per attempt, one retry for network/timeouts or HTTP 408/429/500/502/503/504. Backoff is one second unless the provider specifies `Retry-After`; a wait over two seconds is not retried during that invocation. Maximum four requests / 76 seconds, leaving time for two 10-second RPC calls within the existing 100-second dispatch. HTTP 401/403/404, invalid JSON/schema and oversize responses are not retried. A failed second query cannot commit a partial sample. Existing stored records and withdrawal decisions retain the same rules.
+- Logs now contain only fixed reason codes, source ID and retry attempt. No raw errors, source URLs, headers, API keys or copied job descriptions. `scripts/job-source-recovery.test.js` checks these bounds and failure cases.
+- Australia was **already enabled**. The live Queensland list still returns three matching occupational-safety posts. Its footer continues to identify the [Queensland copyright terms](https://www.qld.gov.au/legal/copyright), covering eligible state material under CC BY 4.0 with attribution and exclusions. No new account, business registration, key or paid provider. This remains Queensland public-sector coverage, not all Australian vacancies. APS Jobs was not newly cleared.
+- Singapore is **not connected**. [Careers@Gov terms](https://www.careers.gov.sg/terms-of-use/) (last updated 6 March 2026) require prior written permission for republication and linking. MyCareersFuture has not supplied a separate permission/approved feed. The freely reusable [MOM vacancy dataset](https://data.gov.sg/datasets/d_86dffa3d28e4c3ee085c3f99abad6e9f/view) contains quarterly counts, not individual live vacancies, and is not imported as job advertisements. Official-source searches did not establish an alternative current safety-job feed with republication permission. No scraping, invented vacancies, permission request or paid signup was performed. Connecting this country needs a provider's written grant and official feed, or a separately verified licensed source.
+- Daily schedule and hosting plan are unchanged. Two extra bounded Russian retry requests at most; no per-visitor collection or new recurring service.
+- Production verification: collector v10 returned HTTP 200 with Russia `updated: 200` and Queensland `updated: 3` on 6 November KST. Both source statuses changed/retained `ok`. Only these two sources were made eligible for the one-off check; their prior claim timestamps were restored afterward so today's normal daily run is not skipped by the cooldown. No stored JSA, Case Study or news content was changed. Singapore stays disabled.
 
 ## Japan alternative-source review (2026-11-03)
 
