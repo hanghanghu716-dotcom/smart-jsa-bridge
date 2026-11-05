@@ -8,6 +8,7 @@ import {isStaticContentBuild} from '../utils/caseListBootstrap';
 import {jobStatus} from '../utils/jobs';
 import KoreanSourceLinks from './KoreanSourceLinks';
 import JobAttribution from './JobAttribution';
+import {jobCoverage} from '../data/jobAttribution';
 import '../styles/home-latest.css';
 
 export default function HomeLatest({locale}){
@@ -24,6 +25,7 @@ export default function HomeLatest({locale}){
  return <div className="home-latest" data-home-latest>
   {['news','jobs'].map(kind=><section key={kind} aria-labelledby={'latest-'+kind}>
    <header><h2 id={'latest-'+kind}>{ui[kind]}</h2><LanguageLink to={kind==='news'?'/resources?kind=news':'/jobs'}>{ui.all} <span aria-hidden="true">→</span></LanguageLink></header>
+   {kind==='jobs'&&jobCoverage(locale)&&<p className="home-latest-detail job-coverage">{jobCoverage(locale)}</p>}
    {error?<p role="status">{resourcesUi.error} <button onClick={()=>setRetry(n=>n+1)}>↻</button></p>:!data?<p role="status">{resourcesUi.loading}</p>:<>
     <ul>{(data[kind]||[]).filter(i=>kind!=='jobs'||jobStatus(i,now)==='open').slice(0,4).map(item=><li key={item.id}>
      <p className="home-latest-meta">{kind==='news'?item.source:item.employer}{kind==='news'&&item.source_date&&<> · <time dateTime={item.source_date}>{item.source_date}</time></>}</p>

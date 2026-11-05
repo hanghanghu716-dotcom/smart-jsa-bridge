@@ -11,7 +11,7 @@ const now=Date.parse('2026-11-03T09:00:00Z');
 test('all 19 locales have government candidates and complete translated job UI',()=>{
  assert.equal(new Set(JOB_SOURCES.map(s=>s.id)).size,JOB_SOURCES.length);
  for(const l of SUPPORTED_LANGS){assert.ok(jobSourcesFor(l).length,l);for(const k of JOB_UI_KEYS)assert.ok(jobUi(l)[k],l+k);}
- assert.deepEqual(jobSourcesFor('en-SG').map(s=>s.id),['mycareersfuture']);
+ assert.deepEqual(jobSourcesFor('en-SG').map(s=>s.id),['usajobssg','mycareersfuture']);
  assert.deepEqual(jobSourcesFor('fr-CA-QC').map(s=>s.id),['jobbank']);
 });
 test('deadline boundary, stale data, withdrawal and confirmed closure are separate',()=>{

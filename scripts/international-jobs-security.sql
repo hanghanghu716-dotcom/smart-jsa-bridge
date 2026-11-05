@@ -6,10 +6,10 @@ begin
  select decrypted_secret into token from vault.decrypted_secrets where name='safety_resource_collector';
  perform set_config('request.jwt.claims','{"role":"service_role"}',true);
  update resource_private.job_sources set enabled=true,review_until=now()+interval '1 day',evidence_url='https://example.invalid/fixture',last_attempt_at=null
- where id in ('work24','usajobs','narailter','qldsmartjobs','jcyljobs','trudvsem','mhlwjobs');
+ where id in ('work24','usajobs','narailter','qldsmartjobs','jcyljobs','trudvsem','mhlwjobs','usajobssg');
  claimed=public.job_catalog_collect('claim',token);
- if jsonb_array_length(claimed)<>6 then raise exception 'SOURCE_STARVATION';end if;
- if jsonb_array_length(public.job_catalog_collect('claim',token))<>1 then raise exception 'SEVENTH_SOURCE_STARVED';end if;
+ if jsonb_array_length(claimed)<>7 then raise exception 'SOURCE_STARVATION';end if;
+ if jsonb_array_length(public.job_catalog_collect('claim',token))<>1 then raise exception 'EIGHTH_SOURCE_STARVED';end if;
  if jsonb_array_length(public.job_catalog_collect('claim',token))<>0 then raise exception 'DUPLICATE_CLAIM';end if;
  update resource_private.job_sources set last_attempt_at=null,evidence_url='' where id='qldsmartjobs';
  if jsonb_array_length(public.job_catalog_collect('claim',token))<>0 then raise exception 'MISSING_EVIDENCE_CLAIMED';end if;
@@ -36,4 +36,4 @@ begin
  if jsonb_array_length(public.job_catalog('ja-JP','closed','Japan safety fixture')->'items')<>0 then raise exception 'JAPAN_EXPIRED_PERMISSION';end if;
 end $$;
 rollback;
-select 'PASS: seven sources within six-source claim limit, cooldown, evidence gate, attribution ID, locale isolation and withdrawal; rolled back' as result;
+select 'PASS: eight sources within seven-source claim limit, cooldown, evidence gate, attribution ID, locale isolation and withdrawal; rolled back' as result;

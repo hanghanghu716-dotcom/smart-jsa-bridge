@@ -11,6 +11,7 @@ import CommunityFooter from '../components/CommunityFooter';
 import SEO from '../components/SEO';
 import KoreanSourceLinks from '../components/KoreanSourceLinks';
 import JobAttribution from '../components/JobAttribution';
+import {jobCoverage} from '../data/jobAttribution';
 import '../styles/resource-hub.css';
 export default function Jobs(){
  const {i18n}=useTranslation(),locale=i18n.language,ui=jobUi(locale),[params,setParams]=useSearchParams(),query=jobQuery(params),key=locale+jobSearch(query);
@@ -27,6 +28,7 @@ export default function Jobs(){
  <form className="resource-search" role="search" onSubmit={e=>{e.preventDefault();change({q:new FormData(e.currentTarget).get('q')});}}><input key={query.q} name="q" type="search" maxLength={120} defaultValue={query.q} aria-label={ui.search} placeholder={ui.search}/><button>{ui.search}</button></form>
  <nav className="resource-tabs">{['open','closed','unconfirmed'].map(status=><button key={status} aria-pressed={query.status===status} onClick={()=>change({status})}>{ui[status]}</button>)}</nav>
  <p className="resource-admin-note">{ui.notice}</p>
+ {jobCoverage(locale)&&<p className="resource-admin-note job-coverage">{jobCoverage(locale)}</p>}
  {result.key===key&&result.error?<p role="alert">{ui.error} <button onClick={()=>setRetry(n=>n+1)}>↻</button></p>:!data?<p role="status">{ui.loading}</p>:<>
  <section className="resource-cards" aria-live="polite">{items.map(item=><article key={item.id}><div className="resource-meta">{ui[jobStatus(item,now)]} · {item.source}</div><h2 dir="auto"><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title} ↗</a></h2>
  <dl>{[['employer',item.employer],['location',item.location],['deadline',item.deadline_text||ui.unknown],['checked',new Date(item.verified_at).toLocaleString(i18n.language==='fr-CA-QC'?'fr-CA':i18n.language.startsWith('en-CA')?'en-CA':i18n.language)]].filter(([,v])=>v).map(([k,v])=><div key={k}><dt>{ui[k]}</dt><dd dir="auto">{v}</dd></div>)}</dl>

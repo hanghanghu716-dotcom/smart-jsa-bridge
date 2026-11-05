@@ -11,9 +11,9 @@ Deno.serve(async req=>{
   if(!r.ok)throw Error('COLLECTION_DENIED');return r.json();
  };
  let sources;try{sources=await rpc('claim');}catch{return new Response('Unauthorized',{status:401});}
- // DB atomically claims at most six reviewed sources; each has a fixed request budget.
+ // DB atomically claims at most seven reviewed sources; each has a fixed request budget.
  // Independent sources run concurrently so one slow provider cannot starve another.
- const results=await Promise.all(sources.slice(0,6).map(async source=>{
+ const results=await Promise.all(sources.slice(0,7).map(async source=>{
   try{const items=await collectJobs(source,(name:string)=>Deno.env.get(name));
    return {source:source.id,...await rpc('commit',source.id,items,items.length?'ok':'empty')};
   }catch(error){

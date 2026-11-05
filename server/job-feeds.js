@@ -109,6 +109,21 @@ export function parseUsajobs(data) {
     return [{external_id:id,locale:'en-US',url,title,employer:plain(d.OrganizationName,250),location:plain(d.PositionLocationDisplay,250),deadline_text:label,closes_at:instant}];
   });
 }
+const singaporeLocation=p=>typeof p?.CountryCode==='string'&&/^(SG|Singapore)$/i.test(p.CountryCode.trim());
+export function parseSingaporeUsajobs(data) {
+  const rows=data?.SearchResult?.SearchResultItems;
+  if(!Array.isArray(rows)||rows.length>100)throw Error('invalid_data');
+  return rows.flatMap(row=>{
+    const d=row.MatchedObjectDescriptor||{};
+    // Verify structured work locations, never keywords in the job title/body.
+    // Missing location metadata is a provider/schema failure, not an empty feed.
+    if(!Array.isArray(d.PositionLocation)||!d.PositionLocation.length||d.PositionLocation.some(p=>typeof p.CountryCode!=='string'))throw Error('invalid_data');
+    const locations=d.PositionLocation.filter(singaporeLocation);
+    if(!locations.length||String(d.UserArea?.Details?.RemoteIndicator).toLowerCase()==='true')return [];
+    const parsed=parseUsajobs({SearchResult:{SearchResultItems:[row]}});
+    return parsed.map(item=>({...item,locale:'en-SG',location:[...new Set(locations.map(p=>plain(p.LocationName,250)||'Singapore'))].join('; ').slice(0,250)}));
+  });
+}
 export async function collectJobs(source,env,fetcher=fetch,now=new Date()) {
   const entries=[];
   if(source.id==='work24'&&source.adapter==='work24'){
@@ -137,6 +152,16 @@ export async function collectJobs(source,env,fetcher=fetch,now=new Date()) {
       const url=new URL('https://data.usajobs.gov/api/search');url.search=new URLSearchParams({PositionTitle:title,ResultsPerPage:'50',Page:'1',Fields:'Min',SortField:'opendate',SortDirection:'Desc'});
       entries.push(...parseUsajobs(JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000),headers:{'Authorization-Key':key,'User-Agent':email,Accept:'application/json'}})))));
     }
+  }else if(source.id==='usajobssg'&&source.adapter==='usajobssg'){
+    const key=env('USAJOBS_API_KEY'),email=env('USAJOBS_API_EMAIL');if(!key||!email)throw Error('missing_credentials');
+    // One bounded Singapore list; only safety-related, verified local roles survive.
+    // Keep independent of the US source so one country's failure cannot affect it.
+    const url=new URL('https://data.usajobs.gov/api/search');
+    url.search=new URLSearchParams({LocationName:'Singapore',RemoteIndicator:'False',ResultsPerPage:'100',Page:'1',Fields:'Min',SortField:'opendate',SortDirection:'Desc'});
+    const data=JSON.parse(await read(await fetcher(url,{redirect:'error',signal:AbortSignal.timeout(12000),headers:{'Authorization-Key':key,'User-Agent':email,Accept:'application/json'}})));
+    const items=parseSingaporeUsajobs(data);entries.push(...items);
+    // Counts alone support live verification without storing unrelated jobs or text.
+    console.info(JSON.stringify({event:'job_source_sample',source:'usajobssg',received:data.SearchResult.SearchResultItems.length,confirmed_location:data.SearchResult.SearchResultItems.filter(row=>row.MatchedObjectDescriptor.PositionLocation.some(singaporeLocation)).length,selected:items.length}));
   }else if(source.id==='qldsmartjobs'&&source.adapter==='qldsmartjobs'){
     // The public search form's Occupational Health & Safety group; one list, no detail crawling.
     const url=new URL('https://smartjobs.qld.gov.au/jobtools/jncustomsearch.searchResults');
