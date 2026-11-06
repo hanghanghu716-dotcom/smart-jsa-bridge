@@ -1,0 +1,42 @@
+name: Adsterra integration checks
+on:
+  pull_request:
+    paths:
+      - 'api/adsterra-frame.js'
+      - 'src/config/adsterra.js'
+      - 'src/utils/adsterra.js'
+      - 'src/components/AdsterraBanner*'
+      - 'src/locales/adsterraUi.js'
+      - 'src/pages/Main.jsx'
+      - 'src/pages/CaseStudyDetail.jsx'
+      - 'src/pages/Privacy.jsx'
+      - 'scripts/adsterra*'
+      - '.github/workflows/adsterra-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run test:all
+      - run: npx vite build
+      - run: node scripts/adsterra-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adsterra-preview
+          path: .cache/adsterra-*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 7

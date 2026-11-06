@@ -1,3 +1,4 @@
+import { AdsterraSettings } from '../components/AdsterraBanner';
 import { getSiteUi } from '../locales/siteUi.js';
 import { getAnalyticsText } from '../locales/analyticsText.js';
 import AnalyticsSettings from '../components/AnalyticsSettings';
@@ -40,6 +41,7 @@ export default function Privacy() {
             <p style={styles.articleP}>{getAnalyticsText(i18n.language).body}</p>
             <p style={styles.articleP}>{getAnalyticsText(i18n.language).detail}</p>
             <AnalyticsSettings />
+            <AdsterraSettings locale={i18n.language} />
             <h3 style={styles.articleH3}>{feedbackUi(i18n.language).launcher}</h3>
             <p style={styles.articleP}>{feedbackUi(i18n.language).privacyNotice}</p>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>

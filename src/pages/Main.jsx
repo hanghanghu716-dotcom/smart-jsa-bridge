@@ -1,3 +1,4 @@
+import AdsterraBanner from '../components/AdsterraBanner';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../contexts/AuthContext';
@@ -93,6 +94,7 @@ export default function Main() {
           {cases.error && <p role="status">{p.error}</p>}
         </div>
       </section>
+      <AdsterraBanner contentReady={rows.length > 0} />
       <HomeLatest locale={locale} />
       <div className="home-contribute">
         <section><h2>{ui.shareTitle}</h2><p>{ui.shareText}</p><button onClick={create}>{ui.create} →</button></section>
