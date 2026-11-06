@@ -1,4 +1,3 @@
-import {AdsterraPageAds} from './AdsterraBanner';
 import { LanguageLink } from '../hooks/useLanguage';
 import SEO from './SEO';
 import PublicSiteHeader from './PublicSiteHeader';
@@ -37,6 +36,6 @@ export default function RegionalGuidancePage({guidance}){
    </>}
    <DiscoveryTopics locale={locale}/>
    <nav className="regional-guidance-tabs"><LanguageLink to="/info">{l[9]}</LanguageLink><LanguageLink to="/community">{l[7]}</LanguageLink><LanguageLink to="/privacy">{l[8]}</LanguageLink></nav>
-  </main><AdsterraPageAds contentReady/><CommunityFooter/>
+  </main><CommunityFooter/>
  </div>;
 }

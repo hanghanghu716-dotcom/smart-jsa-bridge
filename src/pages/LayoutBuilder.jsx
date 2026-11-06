@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import AdBanner from '../AdBanner';
 import { supabase } from '../supabaseClient';
 
 /**
@@ -91,7 +90,7 @@ const SERVICE_LAYOUT_PRESETS = [
 export default function LayoutBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const { 
     existingId, analysisData = [], formData = {}, participants = [], procedures = [], 
     savedActiveOrder, savedOrientation, savedUserColumns, savedHeaderPreset, savedFooterPreset
@@ -105,7 +104,7 @@ export default function LayoutBuilder() {
     savedActiveOrder || Object.keys(TAG_META).filter(k => k !== 'DATA_PHOTO')
   ); 
   const [userColumns, setUserColumns] = useState(savedUserColumns || []);
-  
+
   const [headerPreset, setHeaderPreset] = useState(savedHeaderPreset || 'h_kras'); // 기본값을 KRAS로 변경
   const [footerPreset, setFooterPreset] = useState(savedFooterPreset || 'f_none');
 
@@ -337,7 +336,7 @@ export default function LayoutBuilder() {
       const meta = TAG_META[key] || userColumns.find(u => u.id === key);
       return sum + (meta?.isFlex ? 0 : (parseInt(meta?.width) || 5));
     }, 0);
-    
+
     const flexItems = currentItems.filter(key => (TAG_META[key]?.isFlex || userColumns.find(u => u.id === key)?.isFlex));
     const remaining = COLS - fixedWidth;
 
@@ -360,11 +359,11 @@ export default function LayoutBuilder() {
       }
     });
     if (currentGroup) groups.push(currentGroup);
-    
+
     return (
       <div style={{ display: 'flex', borderBottom: '1px solid #000', borderLeft: '1px solid #000', backgroundColor: '#fff' }}>
         {groups.map((group, idx) => {
-          
+
           if (group.isGroup) {
             // 병합된 헤더 (다단 구조)
             let groupFlexBasis = 0;
@@ -438,14 +437,14 @@ export default function LayoutBuilder() {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>기본 정보</span></div><div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>작업 절차</span></div><div style={styles.stepLineActive} /><div style={styles.stepItemDone}><div style={styles.stepBadgeDone}>✓</div><span style={styles.stepTextDone}>위험 분석</span></div><div style={styles.stepLineActive} /><div style={styles.stepItemActive}><div style={styles.stepBadgeActive}>4</div><span style={styles.stepTextActive}>양식 설정</span></div><div style={styles.stepLine} /><div style={styles.stepItem}><div style={styles.stepBadge}>5</div><span style={styles.stepText}>최종 출력</span></div></nav>
             <div style={styles.formHeader}><h2 style={styles.formTitle}>| 04. 양식 설정 (구역 분할형)</h2></div>
             <div style={styles.builderLayout}>
               <aside style={styles.toolbarSliding}>
-                
+
                 <div style={styles.toolSectionCompact}>
                   <h3 style={styles.toolTitleMini}>양식 템플릿 로드</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -475,7 +474,7 @@ export default function LayoutBuilder() {
               <section style={styles.gridCanvasWrapper}>
                 <div style={styles.canvasScrollArea}>
                   <div className="canvas-container" style={{ transform: `scale(${zoom})`, width: orientation === 'landscape' ? '1100px' : '750px' }}>
-                    
+
                     {/* 상단: 헤더 구역 */}
                     <div style={styles.sectionBlock}>
                       <div style={styles.sectionOverlay} onClick={() => openPresetModal('header')}>
@@ -509,7 +508,7 @@ export default function LayoutBuilder() {
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToAnalysis}>처음으로</button><button style={styles.nextBtnLight} onClick={goToExport}>최종 출력 단계로 이동</button></div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+
       </div>
 
       {showPresetModal && (

@@ -1,4 +1,3 @@
-import { AdsterraSettings } from '../components/AdsterraBanner';
 import { getSiteUi } from '../locales/siteUi.js';
 import { getAnalyticsText } from '../locales/analyticsText.js';
 import AnalyticsSettings from '../components/AnalyticsSettings';
@@ -16,7 +15,6 @@ export default function Privacy() {
   const { t, i18n } = useTranslation('privacy');
   const ui = getSiteUi(i18n.language); // ✅ 'privacy' 네임스페이스 로드[cite: 12]
 
-  
 
   return (
     <div style={styles.wrapper}>
@@ -24,10 +22,9 @@ export default function Privacy() {
 
       {/* HEADER[cite: 12] */}
       <PublicSiteHeader/>
-      
+
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
-          
 
 
           {/* 다국어 처리 반영 영역[cite: 12] */}
@@ -35,13 +32,13 @@ export default function Privacy() {
           <h1 style={styles.heading} className="max-lg:!text-[2rem]">
             {t('heading.line1')}<br />{t('heading.line2')}
           </h1>
-          
+
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{getAnalyticsText(i18n.language).title}</h3>
             <p style={styles.articleP}>{getAnalyticsText(i18n.language).body}</p>
             <p style={styles.articleP}>{getAnalyticsText(i18n.language).detail}</p>
             <AnalyticsSettings />
-            <AdsterraSettings locale={i18n.language} />
+
             <h3 style={styles.articleH3}>{feedbackUi(i18n.language).launcher}</h3>
             <p style={styles.articleP}>{feedbackUi(i18n.language).privacyNotice}</p>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>

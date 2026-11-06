@@ -1,4 +1,3 @@
-import { AdsterraPageAds } from '../components/AdsterraBanner';
 import CaseLanguageSwitch from '../components/CaseLanguageSwitch';
 import CaseQuickLinks from '../components/CaseQuickLinks';
 import { romanianUi } from '../locales/romanianUi.js';
@@ -159,7 +158,7 @@ export default function CaseStudyDetail() {
         canonicalLocale={post.language_code}
         availableLocales={availableLocales} 
       />
-      
+
       {/* Google SEO 구조화 데이터(JSON-LD) 주입 */}
       {structuredData && (
         <script 
@@ -167,7 +166,7 @@ export default function CaseStudyDetail() {
           dangerouslySetInnerHTML={{ __html: structuredData }} 
         />
       )}
-      
+
       <PublicSiteHeader />
 
       <section 
@@ -192,7 +191,6 @@ export default function CaseStudyDetail() {
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
           <div id="case-body" className="case-reading-target" tabIndex={-1} />
-          
 
 
           {sections.introduction && <div className="case-usage-notes"><Viewer initialValue={sections.introduction} key={sections.introduction}/></div>}
@@ -266,11 +264,11 @@ export default function CaseStudyDetail() {
           {!sections.earlyProducts && products}
           {sections.review && <div id="case-review" tabIndex={-1} style={styles.markdownContent} dir={isRtl?'rtl':'ltr'} className={isRtl?'rtl-viewer':''}><Viewer initialValue={sections.review} key={sections.review}/></div>}
 
-          
+
         </div>
       </div>
 
-      <AdsterraPageAds contentReady={Boolean(post.content_md?.trim())} />
+
       <CommunityFooter />
     </div>
   );

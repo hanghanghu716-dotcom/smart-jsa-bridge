@@ -1,8 +1,6 @@
-import {AdsterraBottom} from '../components/AdsterraBanner';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { useTranslation } from 'react-i18next';
-import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 // ✅ [추가] 다국어 전용 라우팅 도구
 import { useLanguageNavigate, LanguageLink } from '../hooks/useLanguage';
@@ -87,9 +85,7 @@ export default function RiskClassification() {
 
       {/* MAIN LAYOUT */}
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
-          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
 
         <div style={styles.centerContent}>
           {/* SECTION 1: DEFINITION */}
@@ -113,7 +109,7 @@ export default function RiskClassification() {
           <section style={{...styles.m3Section, backgroundColor: '#fcfcfc', width: '100%'}} className="max-lg:!py-16 max-lg:!px-6">
             <div style={styles.container}>
               <h3 style={styles.sectionTitle} className="text-[22px] lg:text-[2rem] max-lg:before:content-['\00a0\00a0\00a0\00a0']">{t('ui.section2')}</h3>
-              
+
               <div style={styles.mathCardNormal} className="max-lg:!px-4 max-lg:!py-10 max-lg:!mb-10">
                 <div style={styles.mathDisplay} className="max-lg:!flex-wrap max-lg:!gap-2">
                   <span style={styles.mathVar}>Risk Score</span>
@@ -189,12 +185,10 @@ export default function RiskClassification() {
           </section>
         </div>
 
-        <aside style={styles.sideAd}>
-          <AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
       </div>
 
-      <AdsterraBottom/>
+
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
           <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>

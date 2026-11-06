@@ -1,4 +1,3 @@
-import {AdsterraPageAds} from '../components/AdsterraBanner';
 import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import PlanOverview from '../components/PlanOverview';
 import OperatorProfile from '../components/OperatorProfile';
@@ -20,16 +19,16 @@ export default function About() {
 
       {/* HEADER[cite: 19] */}
       <PublicSiteHeader />
-      
+
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
-          
+
           {/* 다국어 처리 반영 영역[cite: 19] */}
           <span style={styles.tag}>{t('pageTag')}</span>
           <Heading style={styles.heading} className="max-lg:!text-[2rem]">
             {t('mainHeading.line1')}<br />{t('mainHeading.line2')}
           </Heading>
-          
+
           <div style={styles.articleSection}>
             <h3 style={styles.articleH3}>{t('section1.title')}</h3>
             <p style={styles.articleP} dangerouslySetInnerHTML={{ __html: t('section1.content') }} />
@@ -75,7 +74,7 @@ export default function About() {
       <UsGuidanceReferences guidance={guidance} />
       <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
       <div className="about-operator-footer"><OperatorProfile locale={i18n.language} collapsed/></div>
-      <AdsterraPageAds contentReady/><CommunityFooter />
+      <CommunityFooter />
     </div>
   );
 }
