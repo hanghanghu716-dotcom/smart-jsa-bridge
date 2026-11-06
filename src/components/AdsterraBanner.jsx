@@ -58,14 +58,14 @@ export function AdsterraSettings({ locale, configuration = adsterra }) {
   </section>;
 }
 
-function VisibleCreative({ text }) {
+function VisibleCreative({ text, canStart }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const element = ref.current;
     const check = () => {
       const rect = element?.getBoundingClientRect();
-      setVisible(Boolean(rect && rect.width >= 300 && document.visibilityState === 'visible'
+      setVisible(Boolean(canStart && rect && rect.width >= 300 && document.visibilityState === 'visible'
         && rect.top < window.innerHeight && rect.bottom > 0 && rect.left < window.innerWidth && rect.right > 0));
     };
     const intersection = typeof IntersectionObserver === 'function' ? new IntersectionObserver(check) : null;
@@ -80,11 +80,11 @@ function VisibleCreative({ text }) {
       window.removeEventListener('resize', check); window.removeEventListener('scroll', check);
       document.removeEventListener('visibilitychange', check);
     };
-  }, []);
+  }, [canStart]);
   // The frame is mounted once when visible; scrolling cannot refresh an impression.
   const [started, setStarted] = useState(false);
   useEffect(() => { if (visible) setStarted(true); }, [visible]);
-  return <div ref={ref} className="adsterra-creative">
+  return <div ref={ref} className="adsterra-creative" style={{ display: canStart ? undefined : 'none' }}>
     {started && <iframe title={text.label} src="/api/adsterra-frame" width="300" height="250"
       sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" referrerPolicy="origin" />}
   </div>;
@@ -111,7 +111,7 @@ export default function AdsterraBanner({ contentReady = false, configuration = a
   return <aside ref={ref} className={'adsterra-banner' + (active ? ' adsterra-banner--active' : '')} aria-label={text.label} data-adsterra-banner>
     <span className="adsterra-label">{text.label}</span>
     {active ? <>
-      {width >= 300 && <VisibleCreative key={pathname} text={text} />}
+      <VisibleCreative key={pathname} text={text} canStart={width >= 300} />
       <button type="button" className="adsterra-disable" data-adsterra-disable onClick={() => choose(false)}>{text.disable}</button>
     </> : <AdChoices {...{ text, choose, error }} />}
   </aside>;
