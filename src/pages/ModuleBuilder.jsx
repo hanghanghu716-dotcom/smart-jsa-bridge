@@ -1,7 +1,6 @@
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import AdBanner from '../AdBanner';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage';
@@ -19,7 +18,7 @@ export default function ModuleBuilder() {
   const navigate = useLanguageNavigate();
   const location = useLocation();
   const { t, i18n } = useTranslation(['modulebuilder']);
-  
+
   const isEnglish = i18n.language?.startsWith('en');
   const isFrench = i18n.language?.startsWith('fr');
 
@@ -124,7 +123,7 @@ export default function ModuleBuilder() {
       WebkitHyphens: 'auto'
     };
 
-    
+
     const labelTdStyle = { 
       ...commonTdStyle, 
       backgroundColor: '#f2f2f2', 
@@ -286,7 +285,7 @@ const renderModulePreview = () => {
     };
     const sigRows = Array.from({ length: signatureRows }, (_, i) => i);
     const cols = Array.from({ length: 8 }, (_, i) => i);
-    
+
     return (
       <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #000', borderTop: 'none', tableLayout: 'fixed' }}>
         <tbody>
@@ -341,7 +340,7 @@ const renderModulePreview = () => {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
@@ -396,7 +395,7 @@ const renderModulePreview = () => {
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+
       </div>
     </div>
   );

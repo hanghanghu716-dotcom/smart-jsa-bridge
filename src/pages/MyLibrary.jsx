@@ -16,7 +16,6 @@ import ThemeSwitcher from '../components/ThemeSwitcher';
 import { getLanguageTag } from '../locales/config.js';
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../supabaseClient';
-import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 // ✅ [추가] 다국어 전용 라우팅 도구[cite: 11]
@@ -35,7 +34,7 @@ export default function MyLibrary() {
   const [layouts, setLayouts] = useState([]);
   const [drafts, setDrafts] = useState([]);
   const [workSteps, setWorkSteps] = useState([]); 
-  
+
   const [newCatName, setNewCatName] = useState("");
   const [selectedCatId, setSelectedCatId] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
@@ -69,7 +68,7 @@ export default function MyLibrary() {
       fetchLibraryData();
     };
     checkAuth();
-    
+
     const closeMenu = () => setActiveMenuId(null);
     window.addEventListener('click', closeMenu);
     return () => window.removeEventListener('click', closeMenu);
@@ -435,9 +434,7 @@ export default function MyLibrary() {
       </header>
 
       <div style={styles.mainLayout} className="library-main">
-        <aside style={styles.sideAd}>
-          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
 
         <main style={styles.centerContent} className="library-content">
           <LibraryWorkspaceOverview refreshKey={favorites}/>
@@ -657,7 +654,7 @@ export default function MyLibrary() {
                             <span style={{...styles.typeBadge, backgroundColor: f.displayType === 'MY_JSA' ? "var(--success-action)" : "var(--action-bg)"}}>
                               {f.displayType === 'MY_JSA' ? t('typeMyJsa') : t('typeScrap')}
                             </span>
-                            
+
                             {f.displayType === 'MY_JSA' && (
                               <span style={{
                                 ...styles.typeBadge, 
@@ -715,11 +712,11 @@ export default function MyLibrary() {
                             )}
                           </div>
                         </div>
-                        
+
                         <h4 style={styles.cardTitle}>{f.originData?.title}</h4>
                         <div style={styles.dateLabel}>{formatDate(f.originData?.created_at)}</div>
                         <div style={styles.cardTags}>{(f.originData?.tags || []).map(tag => ({ tag, label: libraryTagLabel(tag, i18n.language) })).filter(item => item.label).slice(0, 2).map(({ tag, label }) => <span key={tag} style={styles.miniTag}>#{label}</span>)}</div>
-                        
+
                         <ProcedureDocument document={projectProcedureDocument(f.originData, f.displayType === 'MY_JSA')} uiLocale={i18n.language} />
                         <div style={styles.cardFooter}>
                           <select style={styles.moveSelect} value={f.category_id || ""} onChange={(e) => moveFavorite(f.id, e.target.value, f.displayType)}>
@@ -746,11 +743,9 @@ export default function MyLibrary() {
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}>
-          <AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
       </div>
-      <footer style={styles.footerArea}><div style={styles.bottomAdWrapper}><AdBanner slot="1284119169" style={{ width: '728px', height: '90px' }} format="horizontal" /></div></footer>
+
     </div>
   );
 }

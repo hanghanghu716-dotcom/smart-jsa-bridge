@@ -1,2 +1,5 @@
-import AdsterraBanner,{AdsterraBottom} from './components/AdsterraBanner';
-export default function AdBanner({placement='left',format}){return format==='vertical'?<AdsterraBanner placement={placement} contentReady/>:<AdsterraBottom/>;}
+import AdSenseUnit from './components/AdSenseUnit';
+
+export default function AdBanner(props) {
+  return <AdSenseUnit client="ca-pub-9791625990220699" {...props} />;
+}

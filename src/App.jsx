@@ -1,4 +1,3 @@
-import { AdsterraConsent, AdsterraRouteBottom } from './components/AdsterraBanner';
 import { normalizeLocale } from './locales/config.js';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams, useLocation, Navigate } from 'react-router-dom';
@@ -106,7 +105,7 @@ export default function App() {
       <Router>
         <LanguageInit />
         <Analytics />
-        <AdsterraConsent />
+
         <ThumbnailPublisher />
         <FeedbackWidget />
 
@@ -162,7 +161,7 @@ export default function App() {
             <Route path="/:lng/archive" element={<LanguageWrapper><Archive /></LanguageWrapper>} />
           </Routes></Suspense>
         </MobileGuard>
-        <AdsterraRouteBottom/>
+
       </Router>
     </AuthProvider>
   );

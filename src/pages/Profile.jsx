@@ -8,7 +8,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../supabaseClient';
-import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
 
@@ -116,7 +115,7 @@ export default function Profile() {
   return (
     <div className="theme-workspace profile-workspace" style={styles.wrapper}>
       <SEO /> {/* ✅ [추가] 글로벌 SEO 태그 자동 삽입 */}
-      
+
       <div style={styles.bgWrapper}>
         <div style={styles.bgImage} />
         <div style={styles.dimOverlay} />
@@ -127,9 +126,7 @@ export default function Profile() {
       </header>
 
       <div className="profile-mainLayout" style={styles.mainLayout}>
-        <aside className="profile-sideAd" style={styles.sideAd}>
-          <AdBanner placement="left" slot="2000000004" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
 
         <main className="profile-centerContent" style={styles.centerContent}>
           <div className="profile-formCard" style={styles.formCard}>
@@ -301,9 +298,7 @@ export default function Profile() {
           </div>
         </main>
 
-        <aside className="profile-sideAd" style={styles.sideAd}>
-          <AdBanner placement="right" slot="2000000005" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
       </div>
     </div>
   );

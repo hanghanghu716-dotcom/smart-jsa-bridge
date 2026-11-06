@@ -1,4 +1,3 @@
-import { AdsterraPageAds } from '../components/AdsterraBanner';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../contexts/AuthContext';
@@ -100,7 +99,7 @@ export default function Main() {
         <section><h2>{ui.privateTitle}</h2><p>{ui.privateText}</p><LanguageLink to="/work-packages">{w.openPackages} →</LanguageLink><p><LanguageLink to="/business">{w.openPlans}</LanguageLink></p></section>
       </div>
     </main>
-    <AdsterraPageAds contentReady={rows.length > 0} />
+
     <CommunityFooter />
     {startOpen && <div className="home-start-overlay" onClick={() => setStartOpen(false)}>
       <section ref={dialogRef} className="home-start-dialog" role="dialog" aria-modal="true" aria-labelledby="home-start-title" onClick={event => event.stopPropagation()}>

@@ -5,7 +5,6 @@ import { getActionPlanUi } from '../locales/actionPlanUi';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
-import AdBanner from '../AdBanner';
 import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO'; // ✅ [추가] 시킨 기능만 추가
@@ -80,7 +79,7 @@ export default function TableBuilder() {
   const location = useLocation();
   const { t, i18n } = useTranslation(['tablebuilder']);
   const isEnglish = i18n.language?.startsWith('en'); 
-  
+
   const { draft: recoveredDraft } = useJsaDraftRecovery(!location.state?.formData);
   const state = location.state || {};
   const recoveredLayout = recoveredDraft?.layout_data || {};
@@ -196,11 +195,11 @@ export default function TableBuilder() {
   const handleDragOver = (e, targetGroupIdx) => {
     e.preventDefault();
     if (draggedIdx === null || draggedIdx === targetGroupIdx) return;
-    
+
     const newGroups = [...layoutGroups];
     const movedGroup = newGroups.splice(draggedIdx, 1)[0];
     newGroups.splice(targetGroupIdx, 0, movedGroup);
-    
+
     const newOrder = newGroups.flatMap(g => g.keys);
     setActiveOrder(newOrder);
     setDraggedIdx(targetGroupIdx);
@@ -313,7 +312,7 @@ const renderDataTablePreview = () => {
       originalAnalysisData: location.state?.originalAnalysisData 
     } 
   });
-  
+
   const goToExport = () => navigate('/export', { 
     state: { 
       ...location.state, 
@@ -342,9 +341,7 @@ const renderDataTablePreview = () => {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}>
-          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
-        </aside>
+
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
@@ -389,7 +386,7 @@ const renderDataTablePreview = () => {
                       const meta = isRiskGroup 
                         ? { label: t('toolbar.riskGroupLabel'), color: TAG_META['DATA_RISK'].color } 
                         : (TAG_META[key] || userColumns.find(u => u.id === key));
-                      
+
                       if (!meta) return null;
                       const isUser = key.startsWith('USER_');
 
@@ -432,7 +429,7 @@ const renderDataTablePreview = () => {
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToModuleBuilder}>{t('btn.prev')}</button><button style={styles.nextBtnLight} onClick={goToExport}>{t('btn.next')}</button></div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+
       </div>
       {showSaveModal && ( <div style={styles.modalOverlay}><div style={styles.modalContent}><h3 style={styles.modalTitle}>{t('modal.title')}</h3><p style={{ color: "var(--text-secondary)", fontSize: '0.8rem', marginTop: '-10px', textAlign: 'center' }}>{t('modal.desc')}</p><input style={styles.modalInput} placeholder={t('modal.placeholder')} value={saveName} onChange={(e) => setSaveName(e.target.value)} /><div style={styles.modalBtnGroup}><button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>{t('modal.cancel')}</button><button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>{t('modal.save')}</button></div></div></div> )}
     </div>

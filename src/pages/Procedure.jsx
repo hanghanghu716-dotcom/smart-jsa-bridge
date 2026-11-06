@@ -6,7 +6,6 @@ import { pickDocumentLayout } from '../utils/documentLayout';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
-import AdBanner from '../AdBanner';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트
 import { useTranslation } from 'react-i18next';
 import { useLanguageNavigate } from '../hooks/useLanguage'; // ✅ [추가] 다국어 네비게이션 훅
@@ -176,10 +175,7 @@ const startAnalysis = (jsaType) => {
           <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
             <h3 style={styles.modalTitle}>{t('modal.title')}</h3>
             <p style={styles.modalSub}>{t('modal.sub')}</p>
-            
-            <div style={styles.modalAdWrapper}>
-              {/* The bottom placement is rendered once, after the document. */}
-            </div>
+
 
             <div style={styles.typeGrid}>
               <button type="button" data-analysis-type="2-step" style={styles.typeCard} onClick={() => startAnalysis('2-step')}>
@@ -187,14 +183,14 @@ const startAnalysis = (jsaType) => {
                 <h4 style={styles.typeLabel}>{t('modal.standardLabel')}</h4>
                 <p style={styles.typeDesc}>{t('modal.standardDesc1')}<br/>{t('modal.standardDesc2')}</p>
               </button>
-              
+
               <button type="button" data-analysis-type="3-step" style={styles.typeCardHighlight} onClick={() => startAnalysis('3-step')}>
                 <div style={styles.typeBadgeActive}>Advanced</div>
                 <h4 style={styles.typeLabel}>{t('modal.advancedLabel')}</h4>
                 <p style={styles.typeDesc}>{t('modal.advancedDesc1')}<br/>{t('modal.advancedDesc2')}</p>
               </button>
             </div>
-            
+
             <button style={styles.modalCloseBtn} onClick={() => setIsTypeModalOpen(false)}>{t('modal.closeBtn')}</button>
           </div>
         </div>
@@ -211,7 +207,7 @@ const startAnalysis = (jsaType) => {
       </header>
 
       <AuthoringWorkspace snapshot={authoringState}>
-        
+
 
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
@@ -273,11 +269,7 @@ const startAnalysis = (jsaType) => {
         </main>
       </AuthoringWorkspace>
 
-      <footer style={styles.footerArea}>
-        <div style={styles.bottomAdWrapper}>
-          <AdBanner slot="1284119169" style={{ width: '728px', height: '90px' }} format="horizontal" />
-        </div>
-      </footer>
+
     </div>
   );
 }
