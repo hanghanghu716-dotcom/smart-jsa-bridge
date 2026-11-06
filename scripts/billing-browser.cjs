@@ -53,7 +53,7 @@ async function main(){
   await click('환불 요청 기록');await page.waitForFunction(()=>document.body.textContent.includes('환불 요청 접수됨'));
   fs.mkdirSync(path.join(root,'.cache'),{recursive:true});
   await page.screenshot({path:path.join(root,'.cache/billing-desktop.png'),fullPage:true});
-  await page.setViewport({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  await page.setViewport({width:390,height:844});await page.waitForSelector('.billing-purchase',{visible:true});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   await page.screenshot({path:path.join(root,'.cache/billing-mobile.png'),fullPage:true});
   confirmFails=true;order={...order,status:'PENDING',refund_requested_at:null};
   await page.goto(origin+'/ko/billing?result=success&orderId='+orderId+'&paymentKey=fixture-key&amount=9900',{waitUntil:'networkidle0'});

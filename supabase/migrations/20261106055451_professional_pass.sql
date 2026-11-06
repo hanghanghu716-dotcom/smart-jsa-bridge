@@ -113,7 +113,10 @@ begin
    or next_status not in ('DONE','CANCELED','PARTIAL_CANCELED','ABORTED','EXPIRED') then raise exception 'PAYMENT_MISMATCH'; end if;
   -- Cancellation is terminal, including stale/out-of-order DONE observations.
   if payment.status='CANCELED' or (payment.status='PARTIAL_CANCELED' and next_status<>'CANCELED')
-   or (payment.status='DONE' and next_status in ('ABORTED','EXPIRED')) then return to_jsonb(payment); end if;
+   or (payment.status='DONE' and next_status in ('ABORTED','EXPIRED')) then
+   update jsa_private.billing_orders set checked_at=now() where id=payment.id returning * into payment;
+   return to_jsonb(payment);
+  end if;
   if next_status='DONE' and payment.starts_at is null then
    if p_payload->>'approved_at' is null or (p_payload->>'balance')::integer is distinct from payment.amount then raise exception 'PAYMENT_MISMATCH'; end if;
    perform pg_catalog.pg_advisory_xact_lock(pg_catalog.hashtextextended(payment.user_id::text,70));

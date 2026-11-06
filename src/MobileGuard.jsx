@@ -9,7 +9,7 @@ export default function MobileGuard({ children }) {
     ? '/' + segments.slice(2).join('/') : pathname;
   const allowedPaths = ['/search', '/resources', '/admin/resources', '/jobs', '/admin/jobs', '/profile', '/reset-password', '/library', '/admin/requests', '/jrajsa', '/about', '/terms', '/privacy', '/regulation',
     '/riskclassification', '/protectiveequipment', '/guideline', '/admin/upload',
-    '/community', '/case-study', '/explore', '/public-jsa', '/authors', '/following', '/work-packages', '/business', '/login', '/dictionary', '/info', '/templates', '/document-designer', '/procedure', '/analysis', '/export', '/archive'];
+    '/community', '/case-study', '/explore', '/public-jsa', '/authors', '/following', '/work-packages', '/business', '/billing', '/login', '/dictionary', '/info', '/templates', '/document-designer', '/procedure', '/analysis', '/export', '/archive'];
   const isAllowedPath = purePath === '/' || purePath === ''
     || allowedPaths.some(path => purePath === path || purePath.startsWith(path + '/'));
 
@@ -39,3 +39,4 @@ export default function MobileGuard({ children }) {
     </>
   );
 }
+

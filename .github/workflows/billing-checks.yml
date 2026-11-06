@@ -10,6 +10,7 @@ on:
       - 'src/services/billingService.js'
       - 'src/services/businessService.js'
       - 'src/pages/Business.jsx'
+      - 'src/MobileGuard.jsx'
       - 'src/styles/billing.css'
       - 'supabase/migrations/*professional_pass.sql'
       - 'scripts/billing*'
