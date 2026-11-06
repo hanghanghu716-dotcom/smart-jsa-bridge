@@ -48,3 +48,22 @@ export function adsterraFrameHtml(config) {
 }
 
 export const ADSTERRA_FRAME_CSP = "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors https://smartjsabridge.com https://www.smartjsabridge.com; form-action 'none'; sandbox allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox; script-src 'unsafe-inline' https:; style-src 'unsafe-inline' https:; img-src data: https:; frame-src https:; connect-src https:; font-src data: https:";
+
+export function adsterraCanLoad(choice, policy, browser = {}) {
+  if (!policy || policy.blocked === true || browser.globalPrivacyControl === true
+    || browser.doNotTrack === '1' || choice?.choice === 'denied') return false;
+  return choice?.choice === 'allowed' || policy.requiresConsent === false;
+}
+export function createAdsterraPolicyLoader(fetcher = (...args) => fetch(...args)) {
+  let pending;
+  return () => {
+    if (!pending) pending = Promise.resolve().then(() => fetcher('/api/adsterra-policy', {
+      cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(5000),
+    })).then(async response => {
+      if (!response.ok) throw new Error('Policy unavailable');
+      const policy = await response.json();
+      return { requiresConsent: policy?.requiresConsent !== false, blocked: policy?.blocked === true };
+    }).catch(() => ({ requiresConsent: true, blocked: false }));
+    return pending;
+  };
+}

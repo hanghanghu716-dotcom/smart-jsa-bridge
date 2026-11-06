@@ -1,6 +1,7 @@
+import adsterraPolicyHandler, { adsterraPolicy } from '../api/adsterra-policy.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ADSTERRA_MAX_AGE, ADSTERRA_CHOICE_KEY, ADSTERRA_FRAME_CSP, validAdsterra, adsterraHost, adsterraPath, adsterraChoice, storeAdsterraChoice, adsterraFrameHtml } from '../src/utils/adsterra.js';
+import { ADSTERRA_MAX_AGE, ADSTERRA_CHOICE_KEY, ADSTERRA_FRAME_CSP, validAdsterra, adsterraHost, adsterraPath, adsterraChoice, storeAdsterraChoice, adsterraFrameHtml, adsterraCanLoad, createAdsterraPolicyLoader } from '../src/utils/adsterra.js';
 import { createAdsterraFrame } from '../api/adsterra-frame.js';
 import { ADSTERRA_FRAME_HOST, adsterraPlacements } from '../src/config/adsterra.js';
 import { adsterraUi } from '../src/locales/adsterraUi.js';
@@ -72,4 +73,47 @@ test('the application origin never executes the advertisement endpoint',()=>{
  const res={headers:{},setHeader(k,v){this.headers[k]=v},end(v){this.body=v}};
  createAdsterraFrame()({method:'GET',url:'/api/adsterra-frame?placement=left',headers:{host:'smartjsabridge.com',referer:'https://smartjsabridge.com/','sec-fetch-dest':'iframe'}},res);
  assert.equal(res.statusCode,404);
+});
+
+test('automatic ads use trusted KR/JP location, not interface language or client input', () => {
+  for (const country of ['KR','JP']) assert.equal(adsterraPolicy({'x-vercel-ip-country':country},true).requiresConsent,false);
+  for (const country of ['GB','DE','US','AU','SG','CA','BR',undefined,'','kr','KR,DE']) assert.equal(adsterraPolicy({'x-vercel-ip-country':country},true).requiresConsent,true);
+  assert.equal(adsterraPolicy({'x-vercel-ip-country':'KR'},false).requiresConsent,true);
+  assert.equal(adsterraPolicy({'sec-gpc':'1'},true).blocked,true);
+  assert.equal(adsterraPolicy({dnt:'1'},true).blocked,true);
+});
+test('explicit denial and browser privacy signals take precedence over automatic advertising', () => {
+  const automatic={requiresConsent:false}, strict={requiresConsent:true};
+  assert.equal(adsterraCanLoad(null,automatic),true);
+  assert.equal(adsterraCanLoad(null,strict),false);
+  assert.equal(adsterraCanLoad({choice:'allowed'},strict),true);
+  for (const policy of [automatic,strict]) {
+    assert.equal(adsterraCanLoad({choice:'denied'},policy),false);
+    assert.equal(adsterraCanLoad({choice:'allowed'},policy,{globalPrivacyControl:true}),false);
+    assert.equal(adsterraCanLoad(null,policy,{doNotTrack:'1'}),false);
+    assert.equal(adsterraCanLoad({choice:'allowed'},{...policy,blocked:true}),false);
+  }
+  assert.equal(adsterraCanLoad({choice:'allowed'},null),false);
+});
+test('policy lookup is shared, sends no cookies and fails closed', async () => {
+  let calls=0;
+  const load=createAdsterraPolicyLoader(async (url,options) => {
+    calls++; assert.equal(url,'/api/adsterra-policy'); assert.equal(options.cache,'no-store'); assert.equal(options.credentials,'omit');
+    return {ok:true,json:async()=>({requiresConsent:false,blocked:false})};
+  });
+  assert.deepEqual(await Promise.all([load(),load()]),[{requiresConsent:false,blocked:false},{requiresConsent:false,blocked:false}]);
+  assert.equal(calls,1);
+  for(const fetcher of [()=>{throw Error('offline');},async()=>({ok:false}),async()=>({ok:true,json:async()=>({})})]) {
+    assert.equal((await createAdsterraPolicyLoader(fetcher)()).requiresConsent,true);
+  }
+});
+test('regional advertising response is uncached and contains no IP or user identifier', () => {
+  const response=()=>({headers:{},setHeader(k,v){this.headers[k]=v;},end(v){this.body=v;}});
+  const res=response();
+  adsterraPolicyHandler({method:'GET',headers:{}},res);
+  assert.deepEqual(JSON.parse(res.body),{requiresConsent:true,blocked:false});
+  assert.equal(res.headers['Cache-Control'],'private, no-store');
+  assert.equal(res.headers['Vercel-CDN-Cache-Control'],'no-store');
+  const rejected=response();adsterraPolicyHandler({method:'POST',headers:{}},rejected);
+  assert.equal(rejected.statusCode,405);
 });
