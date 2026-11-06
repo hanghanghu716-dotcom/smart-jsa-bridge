@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import i18n from '../../src/i18n';
 import Analysis from '../../src/pages/Analysis';
 import DocumentDesigner from '../../src/pages/DocumentDesigner';
+import Export from '../../src/pages/Export';
 import { supabase } from './client';
 import { fixtureText } from '../analysis-fixture/text';
 import '../../src/index.css';
@@ -41,7 +42,8 @@ function App() {
   </form>;
   return <HelmetProvider><MemoryRouter initialEntries={[{ pathname: `/${locale}/analysis`, state }]}>
     <Routes><Route path="/:locale/analysis" element={<Analysis />} />
-      <Route path="/:locale/document-designer" element={<DocumentDesigner />} /></Routes>
+      <Route path="/:locale/document-designer" element={<DocumentDesigner />} />
+      <Route path="/:locale/export" element={<Export />} /></Routes>
   </MemoryRouter></HelmetProvider>;
 }
 createRoot(document.getElementById('root')).render(<App />);

@@ -94,15 +94,22 @@ const cp = require('node:child_process');
         });
         await page.click('[data-analysis-next]');
         assert.ok((await limitDialog).includes('16'), locale + ': localized blocking message');
-        assert.equal(await page.$('.designer-paper'), null);
+        assert.equal(await page.$('.designer-paper, .reportPaper'), null);
         assert.ok(await page.$('[data-risk-limit-warning]'));
         await page.select('[data-assessed-frequency]', '3');
         await page.select('[data-assessed-severity]', '5');
         await page.waitForFunction(() => document.querySelector('[data-assessed-score]')?.textContent === '15');
         assert.equal(await page.$('[data-risk-limit-warning]'), null);
         await page.click('[data-analysis-next]');
+        await page.waitForSelector('.reportPaper .document-content');
+        // Analysis opens the report; optional layout editing is reached through templates.
+        await page.click('[data-change-template]');
+        await page.waitForSelector('[data-template-customize]');
+        await page.click('[data-template-customize]');
         await page.waitForSelector('.designer-paper .document-content');
         await page.click('[data-designer-next]');
+        await page.waitForSelector('[data-template-continue]');
+        await page.click('[data-template-continue]');
         await page.waitForSelector('.reportPaper .document-content');
         const output = await page.$eval('.document-content', el => ({ text: el.textContent, scroll: el.scrollWidth, width: el.clientWidth }));
         assert.ok(output.text.includes(words[1]) && output.text.includes(words[2]), locale + ': retained controls in document');
@@ -227,7 +234,7 @@ const cp = require('node:child_process');
           page.once('dialog', dialog => { clearTimeout(timer); resolve(dialog.message()); });
         });
         await page.click(selector); assert.ok((await message).includes('15'));
-        assert.equal(await page.$('.designer-paper'), null);
+        assert.equal(await page.$('.designer-paper, .reportPaper'), null);
       };
       try {
         await page.goto('http://127.0.0.1:' + port + '/scripts/analysis-fixture/index.html?locale=ko&riskGate=1&standard=1' + (fastTrack ? '&fastTrack=1' : ''), { waitUntil: 'networkidle0' });
@@ -243,7 +250,7 @@ const cp = require('node:child_process');
         assert.equal(await page.$('[data-fast-track-result]'), null);
         await page.select('[data-assessed-frequency]', '3'); await page.select('[data-assessed-severity]', '5');
         await page.click('[data-analysis-next]');
-        await page.waitForSelector(fastTrack ? '[data-fast-track-result]' : '.designer-paper');
+        await page.waitForSelector(fastTrack ? '[data-fast-track-result]' : '.reportPaper .document-content');
       } finally { await page.close(); }
     }
     await fs.writeFile('artifacts/recommendations/browser-results.json', JSON.stringify({ data: 'isolated data, guest storage, real Analysis/DocumentDesigner/Export and PDF/clipboard; not live DB/account testing', results }, null, 2));
