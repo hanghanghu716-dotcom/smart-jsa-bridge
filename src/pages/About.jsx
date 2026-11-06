@@ -1,11 +1,10 @@
-import AdsterraBanner,{AdsterraBottom} from '../components/AdsterraBanner';
+import {AdsterraPageAds} from '../components/AdsterraBanner';
 import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import PlanOverview from '../components/PlanOverview';
 import OperatorProfile from '../components/OperatorProfile';
 import {getPlansUi} from '../locales/plansUi';
 import { useFixedGuidance } from '../hooks/useFixedGuidance';
 import UsGuidanceReferences from '../components/UsGuidanceReferences';
-import AdSenseUnit from '../components/AdSenseUnit';
 import SEO from '../components/SEO'; // ✅ [추가] 글로벌 SEO 컴포넌트 임포트
 import PublicSiteHeader from '../components/PublicSiteHeader';
 import CommunityFooter from '../components/CommunityFooter'; // ✅ 커스텀 다국어 라우팅 훅[cite: 19]
@@ -13,13 +12,6 @@ import CommunityFooter from '../components/CommunityFooter'; // ✅ 커스텀 �
 export default function About() {
   const { t, i18n, guidance, regional } = useFixedGuidance('about');
   const Heading = guidance ? 'h1' : 'h2';
-
-  // 애드센스 설정 정보[cite: 19]
-  const PUBLISHER_ID = 'ca-pub-9791625990220699'; 
-  const LEFT_SIDEBAR_SLOT_ID = '3978298367'; 
-  const RIGHT_SIDEBAR_SLOT_ID = '3978298367';
-  
-  // 모바일 전용 광고 슬롯 ID[cite: 19]
 
   if (regional) return <RegionalGuidancePage guidance={regional}/>;
   return (
@@ -32,20 +24,6 @@ export default function About() {
       <section style={styles.contentSection} className="max-lg:!py-10">
         <div style={{ ...styles.container, position: 'relative' }}>
           
-          {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 19] */}
-          {<aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
-            <div style={styles.adPlaceholderBox}>
-              <AdsterraBanner placement="left" contentReady/>
-            </div>
-          </aside>}
-
-          {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 19] */}
-          {<aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
-            <div style={styles.adPlaceholderBox}>
-              <AdsterraBanner placement="right" contentReady/>
-            </div>
-          </aside>}
-
           {/* 다국어 처리 반영 영역[cite: 19] */}
           <span style={styles.tag}>{t('pageTag')}</span>
           <Heading style={styles.heading} className="max-lg:!text-[2rem]">
@@ -97,7 +75,7 @@ export default function About() {
       <UsGuidanceReferences guidance={guidance} />
       <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
       <div className="about-operator-footer"><OperatorProfile locale={i18n.language} collapsed/></div>
-      <AdsterraBottom/><CommunityFooter />
+      <AdsterraPageAds contentReady/><CommunityFooter />
     </div>
   );
 }
@@ -122,28 +100,4 @@ const styles = {
   heroImg: { width: '100%', height: '350px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '16px' },
   footer: { padding: '60px 0', backgroundColor: 'var(--panel-bg)', color: 'var(--text-secondary)', textAlign: 'center', fontSize: '0.85rem' },
 
-  adPlaceholderBox: { width: '160px', minHeight: '600px', backgroundColor: 'var(--card-bg)', border: '1px dashed var(--border-default)', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' },
-  adLabel: { fontSize: '11px', color: 'var(--text-muted)', fontWeight: 'bold', marginBottom: '10px' },
-
-  mobileAdWrapper: { margin: '40px 0', width: '100%' },
-  mobileAdPlaceholder: { width: '100%', minHeight: '250px', backgroundColor: 'var(--card-bg)', border: '1px dashed var(--border-default)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0' },
-
-  adSlotFixedLeft: { 
-    position: 'fixed',
-    top: '50%',
-    left: 'calc(50% - 375px - 160px - 20px)', 
-    transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    zIndex: 100
-  },
-  adSlotFixedRight: { 
-    position: 'fixed',
-    top: '50%',
-    right: 'calc(50% - 375px - 160px - 20px)', 
-    transform: 'translateY(-50%)',
-    width: '160px', 
-    minHeight: '600px', 
-    zIndex: 100
-  }
 };
