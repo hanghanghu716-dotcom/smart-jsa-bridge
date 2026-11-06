@@ -8,7 +8,7 @@ console.log('SDK_SOURCE_BASE64',Buffer.from(source).toString('base64'));
 for(const url of ['https://www.smartjsabridge.com/ko','https://smartjsabridge.com/ko']){
 try{const r=await fetch(url,{redirect:'manual',signal:AbortSignal.timeout(15000)});console.log('HOST',url,r.status,r.headers.get('location'));}catch(e){console.log('HOST_ERROR',url,e.message);}
 }
-if(!source)source=\`const inner=document.createElement('iframe');inner.src='about:blank';document.body.append(inner);try{inner.contentWindow.document.open();inner.contentWindow.document.write('<h1>Nested creative</h1>');inner.contentWindow.document.close();}catch(e){console.error(e.name+': '+e.message);}\`;
+if(!source)source=`const inner=document.createElement('iframe');inner.src='about:blank';document.body.append(inner);try{inner.contentWindow.document.open();inner.contentWindow.document.write('<h1>Nested creative</h1>');inner.contentWindow.document.close();}catch(e){console.error(e.name+': '+e.message);}`;
 const browser=await puppeteer.launch({executablePath:process.env.PUPPETEER_EXECUTABLE_PATH,headless:true,args:['--no-sandbox']});
 try{for(const mode of ['opaque','separate-origin']){
  const page=await browser.newPage();const errors=[],blocked=[];
