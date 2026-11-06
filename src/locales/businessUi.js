@@ -25,7 +25,7 @@ const businessCache=new Map();
 export function getBusinessUi(locale='en-US') {
   if (locale?.split('-')[0] === 'ro') return romanianUi.businessUi;
  const language=phase6Language(locale),base=getPhase6Ui('business',locale)||(language==='ko'?ko:en),plans=getPlansUi(locale);
- if(!businessCache.has(base))businessCache.set(base,{...base,title:plans.title,intro:plans.intro,start:plans.start,trialIncludes:plans.trialIncludes,expired:plans.expired});
+ if(!businessCache.has(base))businessCache.set(base,{...base,...(language==='ko'?{beta:'팀 문서 관리',active:'이용 종료일',expiredError:'Professional 이용 기간이 종료되어 변경할 수 없습니다. 기존 자료는 열람할 수 있습니다.',limit:'계정당 최대 3개의 회사를 만들 수 있습니다.',orgExpired:'회사 소유자의 Professional 이용 기간이 종료되어 열람만 가능합니다.',historyHint:'Professional 이용 기간 중 비공개 문서를 저장할 때 개정 이력이 기록됩니다. 복원은 새 개정으로 저장되며 기존 이력은 유지됩니다. 최근 100건을 표시합니다.'}:{}),title:plans.title,intro:plans.intro,start:plans.start,trialIncludes:plans.trialIncludes,expired:plans.expired});
  return businessCache.get(base);
 }
 export function businessError(error, ui) {
@@ -37,3 +37,4 @@ export function businessError(error, ui) {
  if (code.includes('INVITE_UNAVAILABLE')) return ui.unavailable;
  return ui.error;
 }
+

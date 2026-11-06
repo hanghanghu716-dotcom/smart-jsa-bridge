@@ -27,7 +27,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https: wss://*.supabase.co; worker-src 'self' blob:; frame-src 'self' blob: https://*.supabase.co https://www.youtube.com https://www.youtube-nocookie.com"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.tosspayments.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https: wss://*.supabase.co; worker-src 'self' blob:; frame-src 'self' blob: https://*.supabase.co https://www.youtube.com https://www.youtube-nocookie.com"
         }
       ]
     },
@@ -41,6 +41,23 @@
         {
           "key": "Cache-Control",
           "value": "private, no-store"
+        }
+      ]
+    },
+    {
+      "source": "/ko/billing",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     }
@@ -102,6 +119,7 @@
       "permanent": true
     }
   ],
+  "crons": [{"path": "/api/billing?action=sweep", "schedule": "0 3 * * *"}],
   "functions": {
     "api/commerce.js": {
       "includeFiles": "data/commerce/catalog.json"
@@ -120,6 +138,9 @@
     },
     "api/resource-hub.js": {
       "includeFiles": "dist/public-jsa-shell.html"
+    },
+    "api/billing.js": {
+      "maxDuration": 60
     }
   },
   "rewrites": [
@@ -177,3 +198,4 @@
     }
   ]
 }
+

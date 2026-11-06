@@ -15,13 +15,13 @@ const values={
   },
   "ko": {
     "title": "Community / Professional",
-    "intro": "개인 핵심 기능은 체험 기한 없이 무료입니다. 고급 이력·조직 관리는 30일 무료 베타로 제공합니다. 카드 등록·결제·자동 과금은 없습니다.",
+    "intro": "개인 핵심 기능은 체험 기한 없이 무료입니다. Professional은 최초 30일 동안 카드 등록 없이 체험할 수 있습니다. 자동 과금은 없습니다. 유료 이용권의 가격과 판매 상태는 이용권 안내에서 확인하세요.",
     "freeStatus": "핵심 기능 무료",
-    "proStatus": "무료 베타",
+    "proStatus": "30일 무료 체험",
     "proDescription": "개인 문서 개정 이력, 회사 양식, 구성원 권한, 비공개 팀 문서와 문서 버전별 결재를 제공합니다.",
     "start": "Professional 무료 베타 시작",
     "trialIncludes": "30일 베타는 개인 문서 개정 이력과 조직 관리에 적용됩니다. 무료 작성·개인 비공개 저장·재사용·기본 PDF 출력에는 체험 기한이 없습니다.",
-    "expired": "Professional 체험이 종료되었습니다. 기존 문서·이력은 열람할 수 있으며 Community의 작성·개인 저장·재사용·기본 PDF는 계속 무료입니다.",
+    "expired": "Professional 이용 기간이 종료되었습니다. 기존 문서·이력은 열람할 수 있으며 Community의 작성·개인 저장·재사용·기본 PDF는 계속 무료입니다.",
     "saved": "개인 문서 {used}개 저장됨",
     "storageError": "지금 저장하지 못했습니다. 작성 중인 내용은 유지됩니다. 저장 상태를 새로고침한 뒤 다시 시도해 주세요. 기존 문서의 수정·출력은 가능합니다."
   },
@@ -123,3 +123,4 @@ const values={
   }
 };
 export const getPlansUi=locale=>locale?.split('-')[0] === 'ro' ? romanianUi.plansUi : values[phase6Language(locale)]||values.en;
+

@@ -1,0 +1,70 @@
+name: Professional billing checks
+on:
+  pull_request:
+    paths:
+      - 'api/billing.js'
+      - 'server/billing/**'
+      - 'src/pages/Billing.jsx'
+      - 'src/components/ProfessionalOffer.jsx'
+      - 'src/components/PlanOverview.jsx'
+      - 'src/services/billingService.js'
+      - 'src/services/businessService.js'
+      - 'src/pages/Business.jsx'
+      - 'src/MobileGuard.jsx'
+      - 'src/styles/billing.css'
+      - 'supabase/migrations/*professional_pass.sql'
+      - 'scripts/billing*'
+      - '.github/workflows/billing-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: billing-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated_billing_fixture
+          POSTGRES_DB: billing_test
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: isolated_billing_fixture
+      PGDATABASE: billing_test
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run test:billing:db
+      - run: npm run test:all
+      - run: npx vite build
+      - name: Restore verified production rendering fonts
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/build-fonts
+          key: fonts-ubuntu24-v1-${{ runner.arch }}-${{ hashFiles('scripts/setup-rendering.sh') }}
+      - name: Prepare cached Korean fonts for visual verification
+        run: bash scripts/setup-rendering.sh
+      - run: node scripts/billing-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: billing-preview
+          path: .cache/billing-*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 7
