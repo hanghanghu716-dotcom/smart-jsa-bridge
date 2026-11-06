@@ -23,6 +23,7 @@ const path = require('node:path');
     await page.setViewport({width:390,height:844});
     let frames=0,ads=0;
     page.on('pageerror',e=>errors.push(e.message));
+    page.on('console',message=>{if(message.type()==='error')console.log('BROWSER:',message.text());});
     await page.setRequestInterception(true);
     page.on('request',async request=>{
       try {
@@ -31,7 +32,8 @@ const path = require('node:path');
           if(url.pathname==='/api/adsterra-frame'){
             frames++;
             const res={statusCode:200,headers:{},setHeader(k,v){this.headers[k]=v;},end(v){this.body=v||'';}};
-            handler({method:request.method(),headers:{...request.headers(),host:'smartjsabridge.com'}},res);
+            handler({method:request.method(),headers:{...request.headers(),host:'smartjsabridge.com','sec-fetch-dest':request.frame()?.parentFrame()?'iframe':'document'}},res);
+            if(res.statusCode!==200)console.log('FRAME REJECTED',res.statusCode,request.headers().referer,request.resourceType());
             return request.respond({status:res.statusCode,headers:res.headers,body:res.body});
           }
           const response=await fetch('http://127.0.0.1:'+port+url.pathname+url.search);
