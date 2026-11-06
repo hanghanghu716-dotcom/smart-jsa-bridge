@@ -27,7 +27,7 @@ export function adsterraChoice(storage, now = Date.now()) {
   try {
     const value = JSON.parse(storage.getItem(ADSTERRA_CHOICE_KEY));
     if (!['allowed', 'denied'].includes(value?.choice) || !Number.isFinite(value?.time)
-      || value.time > now || now - value.time >= ADSTERRA_MAX_AGE) return null;
+      || value.time > now || (value.choice === 'allowed' && now - value.time >= ADSTERRA_MAX_AGE)) return null;
     return value;
   } catch { return null; }
 }

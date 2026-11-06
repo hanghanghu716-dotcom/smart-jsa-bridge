@@ -18,3 +18,6 @@
 
 .adsterra-notice{max-width:728px;margin:8px auto 0;padding:0 12px;text-align:center;font-size:12px;line-height:1.5;color:var(--text-secondary,#526173)}
 .adsterra-notice a{text-decoration:underline;white-space:nowrap}
+
+.adsterra-notice--inline{box-sizing:border-box;max-width:1200px;padding:8px 16px;margin:0 auto;position:relative;z-index:1}
+@media print{.adsterra-notice--inline{display:none!important}}
