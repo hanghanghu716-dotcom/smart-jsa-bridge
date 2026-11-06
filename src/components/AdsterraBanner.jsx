@@ -35,7 +35,7 @@ function useAdChoice() {
     };
   }, []);
   useEffect(() => {
-    if (!choice) return;
+    if (!choice || choice.choice === 'denied') return;
     const remaining = choice.time + ADSTERRA_MAX_AGE - Date.now();
     const timer = setTimeout(() => setChoice(readChoice()), Math.max(0, Math.min(remaining, 2147483647)));
     return () => clearTimeout(timer);
@@ -93,7 +93,8 @@ function VisibleCreative({ text, canStart, config, placement }) {
 
 export function AdsterraConsent() {
  const {pathname}=useLocation(),{choice,error,choose}=useAdChoice(),text=adsterraUi(pathname.split('/')[1]),policy=useAdPolicy();
- if(!policy||policy.requiresConsent===false||policy.blocked||navigator.globalPrivacyControl===true||navigator.doNotTrack==='1'||choice||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
+ if(!policy||policy.blocked||navigator.globalPrivacyControl===true||navigator.doNotTrack==='1'||choice||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
+ if(policy.requiresConsent===false)return <aside className="adsterra-notice adsterra-notice--inline" aria-label={text.settings}>{text.notice} <Link to={'/'+pathname.split('/')[1]+'/privacy#advertising-preferences'}>{text.settings}</Link></aside>;
  return <aside className="adsterra-consent" aria-label={text.settings}><AdChoices {...{text,error,choose}}/></aside>;
 }
 

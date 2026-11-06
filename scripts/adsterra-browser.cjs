@@ -9,7 +9,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=r
  const root=process.cwd(),cache=path.join(root,'.cache');await fs.mkdir(cache,{recursive:true});
  await fs.writeFile(cache+'/adsterra-test.html','<html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div id="root"></div><script type="module" src="/.cache/adsterra-test.jsx"></script></body></html>');
  await fs.writeFile(cache+'/adsterra-test.jsx',`import React from 'react';import {createRoot} from 'react-dom/client';import {MemoryRouter,useNavigate,useLocation} from 'react-router-dom';import {AdsterraConsent,AdsterraPageAds,AdsterraSettings} from '/src/components/AdsterraBanner.jsx';function Fixture(){const nav=useNavigate(),{pathname}=useLocation();window.fixtureNavigate=nav;if(pathname==='/ko/privacy')return <AdsterraSettings locale="ko"/>;return <><main style={{maxWidth:1200,margin:'auto',minHeight:200}}>Public article</main><AdsterraConsent/><AdsterraPageAds contentReady/></>;}createRoot(document.getElementById('root')).render(<MemoryRouter initialEntries={['/ko/case-study/demo']}><Fixture/></MemoryRouter>);`);
- const handler=createAdsterraFrame(),requests=[],errors=[];let server,browser,country='KR',policyFails=false;
+ const handler=createAdsterraFrame(),requests=[],errors=[];let server,browser,country='US',region='',policyFails=false;
  try{
   server=await createServer({root,server:{host:'127.0.0.1',port:0,hmr:false},logLevel:'error'});await server.listen();const port=server.httpServer.address().port;
   browser=await puppeteer.launch({executablePath:process.env.PUPPETEER_EXECUTABLE_PATH,headless:true,args:['--no-sandbox']});
@@ -17,7 +17,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=r
   page.on('pageerror',e=>errors.push(e.message));await page.setRequestInterception(true);
   page.on('request',async request=>{try{
    const u=new URL(request.url());
-   if(u.origin==='https://smartjsabridge.com'&&u.pathname==='/api/adsterra-policy')return request.respond({status:policyFails?503:200,contentType:'application/json',body:JSON.stringify(adsterraPolicy({'x-vercel-ip-country':country},true))});
+   if(u.origin==='https://smartjsabridge.com'&&u.pathname==='/api/adsterra-policy')return request.respond({status:policyFails?503:200,contentType:'application/json',body:JSON.stringify(adsterraPolicy({'x-vercel-ip-country':country,'x-vercel-ip-country-region':region},true))});
    if(u.origin==='https://smartjsabridge.com'){const r=await fetch('http://127.0.0.1:'+port+u.pathname+u.search);return request.respond({status:r.status,contentType:r.headers.get('content-type')||'text/plain',body:Buffer.from(await r.arrayBuffer())});}
    if(u.origin===ADSTERRA_FRAME_ORIGIN){const res={statusCode:200,headers:{},setHeader(k,v){this.headers[k]=v},end(v){this.body=v||''}};
     handler({method:request.method(),url:u.pathname+u.search,headers:{...request.headers(),host:u.host,'sec-fetch-dest':'iframe'}},res);
@@ -31,7 +31,8 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=r
   assert.equal(await page.$('.adsterra-consent'),null);
   assert.equal(await page.$('[data-adsterra-disable]'),null);
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),ADSTERRA_CHOICE_KEY),null);
-  assert.ok(await page.$('.adsterra-notice a'));
+  assert.ok(await page.$('.adsterra-notice--inline a'));
+  assert.equal(await page.$('.adsterra-notice--inline button'),null);
   const creatives=page.frames().filter(frame=>frame.url()==='about:blank');assert.equal(creatives.length,3);
   for(const frame of creatives)assert.equal(await frame.$eval('[data-mock-ad]',el=>el.dataset.isolated),'true');
   await page.screenshot({path:cache+'/adsterra-desktop.png'});
@@ -56,24 +57,41 @@ const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=r
   await new Promise(r=>setTimeout(r,200));assert.equal(requests.length,7);
   assert.equal(await page.$('.adsterra-consent'),null);
 
+  // Every additional automatic region works even on a Korean-language page.
+  for (const location of [{country:'AU'},{country:'CA',region:'ON'},{country:'CA',region:'BC'}]) {
+    country=location.country;region=location.region||'';
+    const before=requests.length;await page.reload();
+    await page.waitForFunction(()=>document.querySelectorAll('[data-adsterra-banner] iframe').length===3);
+    await new Promise(r=>setTimeout(r,200));assert.equal(requests.length,before+3);
+    assert.equal(await page.$('.adsterra-consent'),null);
+    assert.ok(await page.$('.adsterra-notice--inline a'));
+  }
+
+  // Quebec and Singapore retain consent even when the interface is Korean.
+  for (const location of [{country:'CA',region:'QC'},{country:'CA',region:''},{country:'SG',region:''}]) {
+    country=location.country;region=location.region;
+    const before=requests.length;await page.reload();await page.waitForSelector('.adsterra-consent [data-adsterra-allow]');
+    assert.equal(requests.length,before);assert.equal(await page.$('[data-adsterra-banner]'),null);
+  }
+
   // A Korean-language page in a consent region still requires an explicit choice.
   country='DE';await page.reload();await page.waitForSelector('.adsterra-consent [data-adsterra-allow]');
-  assert.equal(requests.length,7);assert.equal(await page.$('[data-adsterra-banner]'),null);
+  assert.equal(requests.length,16);assert.equal(await page.$('[data-adsterra-banner]'),null);
   await page.click('.adsterra-consent [data-adsterra-allow]');
   await page.waitForFunction(()=>document.querySelectorAll('[data-adsterra-banner] iframe').length===3);
-  await new Promise(r=>setTimeout(r,200));assert.equal(requests.length,10);
+  await new Promise(r=>setTimeout(r,200));assert.equal(requests.length,19);
 
   // A stored permission cannot override a browser-level privacy signal.
   country='KR';
   const gpc=await page.evaluateOnNewDocument(()=>Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true}));
   await page.reload();await new Promise(r=>setTimeout(r,200));
-  assert.equal(requests.length,10);assert.equal(await page.$('[data-adsterra-banner]'),null);
+  assert.equal(requests.length,19);assert.equal(await page.$('[data-adsterra-banner]'),null);
   await page.removeScriptToEvaluateOnNewDocument(gpc.identifier);
   await page.evaluate(key=>localStorage.removeItem(key),ADSTERRA_CHOICE_KEY);
   policyFails=true;await page.reload();await page.waitForSelector('.adsterra-consent [data-adsterra-allow]');
-  assert.equal(requests.length,10);
+  assert.equal(requests.length,19);
   await page.evaluate(()=>window.fixtureNavigate('/ko/login'));
-  await page.waitForFunction(()=>!document.querySelector('[data-adsterra-allow]'));assert.equal(requests.length,10);
+  await page.waitForFunction(()=>!document.querySelector('[data-adsterra-allow]'));assert.equal(requests.length,19);
   assert.deepEqual(errors,[]);console.log('Independent placements, nested writes, cross-origin storage isolation, regional automatic ads, explicit consent, opt-out, GPC, failed policy lookup, responsive switching, print and no refresh verified.');
  }finally{await browser?.close();await server?.close();}
 })().catch(e=>{console.error(e);process.exit(1)});

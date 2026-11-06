@@ -75,9 +75,9 @@ test('the application origin never executes the advertisement endpoint',()=>{
  assert.equal(res.statusCode,404);
 });
 
-test('automatic ads use trusted KR/JP location, not interface language or client input', () => {
-  for (const country of ['KR','JP']) assert.equal(adsterraPolicy({'x-vercel-ip-country':country},true).requiresConsent,false);
-  for (const country of ['GB','DE','US','AU','SG','CA','BR',undefined,'','kr','KR,DE']) assert.equal(adsterraPolicy({'x-vercel-ip-country':country},true).requiresConsent,true);
+test('automatic ads use reviewed notice/opt-out regions, not interface language', () => {
+  for (const country of ['KR','JP','US','AU']) assert.equal(adsterraPolicy({'x-vercel-ip-country':country},true).requiresConsent,false);
+  for (const country of ['GB','DE','FR','IT','ES','RO','CH','NO','SG','CA','BR','RU','SA',undefined,'','kr','KR,DE']) assert.equal(adsterraPolicy({'x-vercel-ip-country':country},true).requiresConsent,true);
   assert.equal(adsterraPolicy({'x-vercel-ip-country':'KR'},false).requiresConsent,true);
   assert.equal(adsterraPolicy({'sec-gpc':'1'},true).blocked,true);
   assert.equal(adsterraPolicy({dnt:'1'},true).blocked,true);
@@ -116,4 +116,22 @@ test('regional advertising response is uncached and contains no IP or user ident
   assert.equal(res.headers['Vercel-CDN-Cache-Control'],'no-store');
   const rejected=response();adsterraPolicyHandler({method:'POST',headers:{}},rejected);
   assert.equal(rejected.statusCode,405);
+});
+
+test('Canadian opt-out regions exclude Quebec and unknown subdivisions', () => {
+  for(const region of ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','SK','YT']) {
+    assert.equal(adsterraPolicy({'x-vercel-ip-country':'CA','x-vercel-ip-country-region':region},true).requiresConsent,false);
+  }
+  for(const region of ['QC',undefined,'','ca-on','ON,QC','XX']) {
+    assert.equal(adsterraPolicy({'x-vercel-ip-country':'CA','x-vercel-ip-country-region':region},true).requiresConsent,true);
+  }
+  assert.equal(adsterraPolicy({'x-vercel-ip-country':'CA','x-vercel-ip-country-region':'ON'},false).requiresConsent,true);
+  assert.equal(adsterraPolicy({'x-vercel-ip-country':'SG','x-vercel-ip-country-region':'ON'},true).requiresConsent,true);
+});
+test('saved advertising opt-outs do not expire into automatic tracking', () => {
+  const data=new Map(),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v)};
+  storeAdsterraChoice(storage,false,1000);
+  assert.equal(adsterraChoice(storage,1000+ADSTERRA_MAX_AGE*10).choice,'denied');
+  storeAdsterraChoice(storage,true,2000);
+  assert.equal(adsterraChoice(storage,2000+ADSTERRA_MAX_AGE),null);
 });

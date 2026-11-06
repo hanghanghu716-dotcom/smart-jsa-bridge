@@ -17,8 +17,27 @@ Deploy the advertising host with scripts/deploy-adsterra-host.js. Mock browser c
 
 ## Regional behavior
 
-KR and JP requests use automatic ads unless a visitor has opted out or sends GPC/DNT. The country comes from the Vercel request header, never the page language. All other countries, missing/untrusted location and failed policy requests require an explicit choice. Automatic serving does not write an allowed consent record. Existing denials are preserved. This is a limited product rollout, not a general claim about each country's law.
+Location is derived from trusted Vercel country/subdivision headers, never the selected language. Every supported locale uses the same policy:
 
-The blanket prompt and repeated per-banner disable buttons are removed for automatic regions. An inline advertising/data-use notice and a link to privacy settings remain below the bottom banner. The privacy page retains explicit allow/deny controls. Analytics preferences are separate and unchanged.
+| Visitor location | Initial behavior |
+|---|---|
+| Korea, Japan, United States, Australia | Automatic visible ads with data-use notice and opt-out settings |
+| Canada, known province/territory other than Quebec | Automatic visible ads with notice and opt-out settings |
+| Quebec or unknown Canadian subdivision | Explicit consent before ads |
+| Other countries, missing location, untrusted host or failed lookup | Explicit consent before ads |
 
-Policy reference: https://adsterra.com/publishers-terms-managed/ (4.9 requires a privacy policy and a cookie consent message when collecting information with cookies). This implementation does not assert the provider is cookie-free or non-personalized. Provider confirmation of collection and consent requirements remains advisable. Section 4.7 also requires prior written approval for the existing custom iframe wrapper; do not treat successful rendering as proof of that approval.
+This is an implementation policy for the current service, not a guarantee of legal compliance for every provider data flow. All pages remain accessible when advertising is refused. Existing denials and GPC/DNT take priority everywhere. Denials are persistent until changed; affirmative consent expires after 180 days. Automatic display never fabricates consent. No signed-in user identifiers, document content or full article URLs are passed by our frame endpoint.
+
+A short non-modal notice appears before advertising starts in automatic regions, with a direct link to privacy choices. There are no accept/decline questions or per-banner off buttons in those regions. The bottom advertising notice remains. Privacy settings retain explicit allow/deny controls. Analytics preferences are separate.
+
+### Basis and limits
+
+- US: California DOJ describes notice at collection, sale/sharing opt-out and GPC requirements: https://oag.ca.gov/privacy/ccpa and https://www.oag.ca.gov/privacy/ccpa/gpc
+- Australia: OAIC guidance permits advertising tracking subject to transparency, minimisation, opt-out and other APP obligations; sensitive information needs consent: https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/organisations/tracking-pixels-and-privacy-obligations
+- Canada: OPC allows opt-out for non-sensitive online behavioural advertising subject to clear advance notice, meaningful persistent opt-out and other limits: https://www.priv.gc.ca/en/privacy-topics/technology/online-privacy-tracking-cookies/tracking-and-ads/gl_ba_1112/
+- Quebec: identification/profiling cookies start disabled: https://www.cai.gouv.qc.ca/protection-renseignements-personnels/sujets-et-domaines-dinteret/interfaces-truquees
+- Singapore: advertising using personal data requires notification and consent: https://www.mddi.gov.sg/newsroom/mci-response-pq-accountability-coys-surveillanceadvertising/
+- UK: advertising storage/access technologies require consent: https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/how-do-the-rules-apply-to-online-advertising
+- Other or unreviewed locations remain consent-first rather than being assumed exempt.
+
+Provider policy: https://adsterra.com/publishers-terms-managed/ section 4.9 requires privacy disclosure and a cookie consent message when cookies collect information. We do not claim a documented cookie-free or non-personalized Adsterra mode. Provider confirmation of its actual collection/retention and regional consent requirements remains unresolved. Section 4.7 also requires prior written approval for the existing custom iframe wrapper; successful rendering does not prove approval.
