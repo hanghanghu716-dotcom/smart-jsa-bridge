@@ -1,11 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { adsterra, adsterraPlacements, ADSTERRA_FRAME_ORIGIN } from '../config/adsterra.js';
 import { adsterraUi } from '../locales/adsterraUi.js';
-import { ADSTERRA_CHANGE_EVENT, ADSTERRA_MAX_AGE, adsterraChoice, storeAdsterraChoice, validAdsterra, adsterraHost, adsterraPath } from '../utils/adsterra.js';
+import { ADSTERRA_CHANGE_EVENT, ADSTERRA_MAX_AGE, adsterraChoice, storeAdsterraChoice, validAdsterra, adsterraHost, adsterraPath, adsterraCanLoad, createAdsterraPolicyLoader } from '../utils/adsterra.js';
 import './AdsterraBanner.css';
 
-function readChoice() { try { return adsterraChoice(window.localStorage); } catch { return null; } }
+let unsavedDenial = null;
+function readChoice() { if (unsavedDenial) return unsavedDenial; try { return adsterraChoice(window.localStorage); } catch { return null; } }
+const loadPolicy = createAdsterraPolicyLoader();
+function useAdPolicy() {
+  const { pathname } = useLocation();
+  const eligible = adsterraPath(pathname) && adsterraHost(window.location, navigator.userAgent);
+  const [policy, setPolicy] = useState(null);
+  useEffect(() => {
+    if (!eligible) return;
+    let live = true;
+    loadPolicy().then(value => { if (live) setPolicy(value); });
+    return () => { live = false; };
+  }, [eligible]);
+  return policy;
+}
 function useAdChoice() {
   const [choice, setChoice] = useState(readChoice);
   const [error, setError] = useState(false);
@@ -29,9 +43,14 @@ function useAdChoice() {
   function choose(allow) {
     try {
       const saved = storeAdsterraChoice(window.localStorage, allow);
-      setChoice(saved); setError(false);
+      unsavedDenial = null; setChoice(saved); setError(false);
       window.dispatchEvent(new Event(ADSTERRA_CHANGE_EVENT));
-    } catch { setChoice(null); setError(true); }
+     } catch {
+      // A failed opt-out write must never turn automatic ads back on in this tab.
+      unsavedDenial = { choice: 'denied', time: Date.now() };
+      setChoice(unsavedDenial); setError(true);
+      window.dispatchEvent(new Event(ADSTERRA_CHANGE_EVENT));
+    }
   }
   return { choice, error, choose };
 }
@@ -49,12 +68,11 @@ function AdChoices({ text, choose, error }) {
 }
 
 export function AdsterraSettings({ locale, configuration = adsterra }) {
-  const text = adsterraUi(locale), { choice, error, choose } = useAdChoice();
+  const text = adsterraUi(locale), { error, choose } = useAdChoice();
   if (!validAdsterra(configuration)) return null;
-  return <section className="adsterra-settings" aria-label={text.settings}>
+  return <section id="advertising-preferences" className="adsterra-settings" aria-label={text.settings}>
     <h3>{text.settings}</h3>
     <AdChoices {...{ text, choose, error }} />
-    {choice?.choice === 'allowed' && <button className="adsterra-disable" onClick={() => choose(false)}>{text.disable}</button>}
   </section>;
 }
 
@@ -74,26 +92,25 @@ function VisibleCreative({ text, canStart, config, placement }) {
 }
 
 export function AdsterraConsent() {
- const {pathname}=useLocation(),{choice,error,choose}=useAdChoice(),text=adsterraUi(pathname.split('/')[1]);
- if(choice||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
+ const {pathname}=useLocation(),{choice,error,choose}=useAdChoice(),text=adsterraUi(pathname.split('/')[1]),policy=useAdPolicy();
+ if(!policy||policy.requiresConsent===false||policy.blocked||navigator.globalPrivacyControl===true||navigator.doNotTrack==='1'||choice||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
  return <aside className="adsterra-consent" aria-label={text.settings}><AdChoices {...{text,error,choose}}/></aside>;
 }
 
 export default function AdsterraBanner({contentReady=false,placement='mobile',configuration}) {
- const {pathname}=useLocation(),text=adsterraUi(pathname.split('/')[1]),{choice,choose}=useAdChoice();
+ const {pathname}=useLocation(),text=adsterraUi(pathname.split('/')[1]),{choice}=useAdChoice(),policy=useAdPolicy();
  const config=configuration||adsterraPlacements[placement];
- if(!contentReady||!validAdsterra(config)||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent)||choice?.choice!=='allowed')return null;
+ if(!contentReady||!validAdsterra(config)||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent)||!adsterraCanLoad(choice,policy,navigator))return null;
  return <aside className={'adsterra-banner adsterra-banner--'+placement} data-adsterra-banner data-placement={placement} aria-label={text.label}>
   <span className="adsterra-label">{text.label}</span>
   <VisibleCreative key={pathname+':'+placement} text={text} canStart={true} config={config} placement={placement}/>
-  <button type="button" className="adsterra-disable" data-adsterra-disable onClick={()=>choose(false)}>{text.disable}</button>
  </aside>;
 }
 
 export function AdsterraBottom({contentReady=true}) {
- const {pathname}=useLocation(),{choice}=useAdChoice();
- if(!contentReady||choice?.choice!=='allowed'||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
- return <div className="adsterra-bottom"><div className="adsterra-bottom-wide"><AdsterraBanner placement="bottom" contentReady={contentReady}/></div><div className="adsterra-bottom-small"><AdsterraBanner placement="mobile" contentReady={contentReady}/></div></div>;
+ const {pathname}=useLocation(),{choice}=useAdChoice(),policy=useAdPolicy(),text=adsterraUi(pathname.split('/')[1]);
+ if(!contentReady||!adsterraCanLoad(choice,policy,navigator)||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
+ return <div className="adsterra-bottom"><div className="adsterra-bottom-wide"><AdsterraBanner placement="bottom" contentReady={contentReady}/></div><div className="adsterra-bottom-small"><AdsterraBanner placement="mobile" contentReady={contentReady}/></div><p className="adsterra-notice">{text.notice} <Link to={'/'+pathname.split('/')[1]+'/privacy#advertising-preferences'}>{text.settings}</Link></p></div>;
 }
 export function AdsterraPageAds({contentReady=false}) {
  return <><div className="adsterra-side adsterra-side-left"><AdsterraBanner placement="left" contentReady={contentReady}/></div><div className="adsterra-side adsterra-side-right"><AdsterraBanner placement="right" contentReady={contentReady}/></div><AdsterraBottom contentReady={contentReady}/></>;
