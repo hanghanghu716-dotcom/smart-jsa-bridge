@@ -194,6 +194,7 @@ export default function RiskClassification() {
         </aside>
       </div>
 
+      <AdsterraBottom/>
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
           <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>
