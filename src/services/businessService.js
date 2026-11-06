@@ -7,12 +7,16 @@ export const businessAction = (action, { org = null, doc = null, expected = null
 export async function getBusinessAccount(client = supabase) {
   const { data: { user }, error } = await client.auth.getUser();
   if (!user) { if (error && error.name !== 'AuthSessionMissingError') throw error; return { user: null, organizations: [], projects: [] }; }
-  const [beta, organizations, projects] = await Promise.all([
+  const [beta, organizations, projects, access] = await Promise.all([
     checked(client.from('jsa_beta_access').select('*').eq('user_id', user.id).maybeSingle()),
     checked(client.from('jsa_organizations').select('*').order('created_at')),
     checked(client.from('jsa_projects').select('id,title,updated_at').eq('author_id', user.id).eq('user_id', user.id).eq('is_public', false).order('updated_at', { ascending: false })),
+    client.rpc('jsa_professional_access').then(({data,error}) => {
+      if (error && error.code !== 'PGRST202') throw error;
+      return typeof data?.active === 'boolean' ? data : null;
+    }),
   ]);
-  return { user, beta, organizations: organizations || [], projects: projects || [] };
+  return { user, beta, access, organizations: organizations || [], projects: projects || [] };
 }
 export async function getOrganization(org, client = supabase) {
   const [status, members, documents, templates] = await Promise.all([
@@ -41,3 +45,4 @@ export function companyEditorCopy(snapshot) {
   // Team documents are edited through explicit private copies and re-imported.
   return { ...projectEditorState({ ...snapshot, id: null }, false), isFork: false, parentId: null, projectSaveContext: null, originalAnalysisData: null };
 }
+

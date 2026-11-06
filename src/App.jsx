@@ -32,6 +32,7 @@ const Profile = lazy(() => import('./pages/Profile'));
 import PublicExplore from './components/PublicExplore';
 import PublicJsa from './pages/PublicJsa';
 const Business = lazy(() => import('./pages/Business'));
+const Billing = lazy(() => import('./pages/Billing'));
 const Community = lazy(() => import('./pages/Community'));
 import Authors from './pages/Authors';
 const WorkPackages = lazy(() => import('./pages/WorkPackages'));
@@ -121,6 +122,7 @@ export default function App() {
             <Route path="/:lng/explore" element={<LanguageWrapper><PublicExplore /></LanguageWrapper>} />
             <Route path="/:lng/community" element={<CrawlerBlocker><LanguageWrapper><Community /></LanguageWrapper></CrawlerBlocker>} />
             <Route path="/:lng/business" element={<CrawlerBlocker><LanguageWrapper><Business /></LanguageWrapper></CrawlerBlocker>} />
+            <Route path="/ko/billing" element={<CrawlerBlocker><Billing /></CrawlerBlocker>} />
             <Route path="/:lng/public-jsa/:id" element={<LanguageWrapper><PublicJsa /></LanguageWrapper>} />
             <Route path="/:lng/authors/:id" element={<LanguageWrapper><Authors /></LanguageWrapper>} />
             <Route path="/:lng/following" element={<CrawlerBlocker><LanguageWrapper><Authors /></LanguageWrapper></CrawlerBlocker>} />
@@ -164,3 +166,4 @@ export default function App() {
     </AuthProvider>
   );
 }
+

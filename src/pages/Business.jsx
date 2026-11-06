@@ -30,7 +30,8 @@ export default function Business() {
  const pending=useRef(false),previewRequest=useRef(0);
  const [now,setNow]=useState(()=>Date.now());
  useEffect(()=>{const focus=()=>{setNow(Date.now());setRefresh(n=>n+1);};window.addEventListener('focus',focus);const timer=setInterval(()=>setNow(Date.now()),60000);return()=>{clearInterval(timer);window.removeEventListener('focus',focus);};},[]);
- const active=Boolean(account?.beta && Date.parse(account.beta.expires_at)>now);
+ const accessExpiry=account?.access?.expires_at || account?.beta?.expires_at;
+ const active=Boolean(accessExpiry && Date.parse(accessExpiry)>now);
  useEffect(()=>{if(preview)window.document.querySelector('[data-revision-preview]')?.scrollIntoView({behavior:'smooth',block:'start'});},[preview]);
  useEffect(()=>{let live=true;getBusinessAccount().then(value=>{if(live)setAccount(value);}).catch(e=>{if(live)setError(e.message);});return()=>{live=false;};},[refresh]);
  useEffect(()=>{let live=true;if(orgId)getOrganization(orgId).then(value=>{if(live)setOrg(value);}).catch(e=>{if(live){setOrg(null);setPreview(null);previewRequest.current++;setError(e.message);}});return()=>{live=false;};},[orgId,refresh]);
@@ -76,7 +77,7 @@ export default function Business() {
    {account && !account.user && <LanguageLink className="jsa-primary" to={'/login?next='+encodeURIComponent(location.pathname+location.hash)}>{ui.login}</LanguageLink>}
    {account?.user && <>
     <ProjectStorageUsage refreshKey={refresh} showTrialLink={false} />
-    <section className="jsa-card"><p>{ui.trialIncludes}</p>{!account.beta?<button className="jsa-primary" disabled={busy} onClick={()=>run('start_beta',{payload:{plan:'business'}})}>{ui.start}</button>:<><p>{active?ui.active+': '+date(account.beta.expires_at):ui.expired}</p></>}</section>
+    <section className="jsa-card">{account.access?.source==='paid'?<p>Professional · {date(accessExpiry)}</p>:<><p>{ui.trialIncludes}</p>{!account.beta?<button className="jsa-primary" disabled={busy} onClick={()=>run('start_beta',{payload:{plan:'business'}})}>{ui.start}</button>:<p>{active?ui.active+': '+date(accessExpiry):ui.expired}</p>}</>}</section>
     {token && <section className="jsa-card"><h2>{ui.join}</h2><p>{ui.joinHint}</p><button disabled={busy} onClick={async()=>{const result=await run('join',{payload:{token}});if(result){setToken('');chooseOrganization(result.org_id);navigate('/business',{replace:true});}}}>{ui.join}</button></section>}
     <section className="jsa-card jsa-section"><h2>{ui.history}</h2><p>{ui.historyHint}</p><select aria-label={ui.history} value={personalId} onChange={e=>{setPersonalId(e.target.value);setPersonalHistory([]);setPreview(null);previewRequest.current++;}}><option value="">{ui.chooseSource}</option>{account.projects.map(p=><option value={p.id} key={p.id}>{p.title}</option>)}</select>
      {personalId && <div className="jsa-history">{personalHistory.length?personalHistory.map(item=><button key={item.id} onClick={()=>readPreview(item.id,false)}>{date(item.created_at)} · {ui.preview}</button>):<p>{ui.empty}</p>}</div>}
@@ -104,3 +105,4 @@ export default function Business() {
   </main>
  </div>;
 }
+

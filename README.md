@@ -104,3 +104,8 @@ Invalidation is deliberately conservative: a translation JSON change rebuilds th
 The first verified build populates the cache before live checks, so a failed release can reuse it on retry. Cache eviction, missing files or failed integrity checks trigger normal rendering. CI logs report reused and rendered HTML/PDF counts. Font downloads are skipped on a verified cache hit; Chrome uses the runner installation and Puppeteer downloads remain disabled. PR caches stay scoped by GitHub Actions and cannot replace production branch caches. Only generated public artifacts/fonts are cached, never the complete `.cache` directory or recovery credentials.
 
 To force a cold render set `JSA_RENDER_CACHE=off`. Local rendering is uncached unless `JSA_RENDER_CACHE_CONTEXT` explicitly identifies its Chrome/font environment. To refresh fonts, increment the font cache key version in both workflows.
+
+# Professional 이용권 준비
+
+한국어 구매 화면과 Toss 1회 결제·30일 이용권 연결을 추가했습니다. 판매는 기본 비활성화 상태이며, 실제 판매자 정보·구매/환불 약관·결제키·웹훅 설정 전에는 결제를 받지 않습니다. 제안 가격은 30일 9,900원이며 자동 갱신은 없습니다. 기본 작성·개인 저장·PDF 출력과 기존 무료 체험은 유지합니다. 설정·검증·판매 개시 절차는 [Professional billing](docs/professional-billing.md)을 참고하세요.
+
