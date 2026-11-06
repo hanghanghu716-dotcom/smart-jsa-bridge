@@ -1,3 +1,4 @@
+import {AdsterraBottom} from '../components/AdsterraBanner';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { useTranslation } from 'react-i18next';
@@ -87,7 +88,7 @@ export default function RiskClassification() {
       {/* MAIN LAYOUT */}
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <div style={styles.centerContent}>
@@ -189,10 +190,11 @@ export default function RiskClassification() {
         </div>
 
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 
+      <AdsterraBottom/>
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
           <p className="m-0 text-sm opacity-60">© 2026 <strong>Smart JSA Bridge</strong>. Designed by <strong>yizuno</strong></p>

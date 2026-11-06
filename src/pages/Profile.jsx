@@ -128,7 +128,7 @@ export default function Profile() {
 
       <div className="profile-mainLayout" style={styles.mainLayout}>
         <aside className="profile-sideAd" style={styles.sideAd}>
-          <AdBanner slot="2000000004" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="left" slot="2000000004" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main className="profile-centerContent" style={styles.centerContent}>
@@ -302,7 +302,7 @@ export default function Profile() {
         </main>
 
         <aside className="profile-sideAd" style={styles.sideAd}>
-          <AdBanner slot="2000000005" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="right" slot="2000000005" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
     </div>

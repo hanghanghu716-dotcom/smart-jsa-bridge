@@ -1,3 +1,4 @@
+import {AdsterraBottom} from '../components/AdsterraBanner';
 import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
@@ -70,15 +71,15 @@ export default function JraJsa() {
         </div>
       </section>
 
-      {!guidance && <aside className="hidden min-[1600px]:block">
+      {<aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
       </aside>}
 
-      {!guidance && <aside className="hidden min-[1600px]:block">
+      {<aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </div>
       </aside>}
 
@@ -169,7 +170,7 @@ export default function JraJsa() {
         </div>
       </div>
 
-      <UsGuidanceReferences guidance={guidance} />
+      <AdsterraBottom/><UsGuidanceReferences guidance={guidance} />
       <footer style={styles.finalFooter} className="max-lg:!py-12">
         <div style={styles.container} className="max-lg:!px-6 text-center">
           <p className="m-0 text-sm opacity-60" dangerouslySetInnerHTML={{ __html: t('footer') }} />

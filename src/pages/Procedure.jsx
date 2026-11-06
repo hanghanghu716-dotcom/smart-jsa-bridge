@@ -178,7 +178,7 @@ const startAnalysis = (jsaType) => {
             <p style={styles.modalSub}>{t('modal.sub')}</p>
             
             <div style={styles.modalAdWrapper}>
-              <AdBanner slot="9761676307" style={{ width: '100%', height: '90px' }} format="horizontal" />
+              {/* The bottom placement is rendered once, after the document. */}
             </div>
 
             <div style={styles.typeGrid}>

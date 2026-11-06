@@ -341,7 +341,7 @@ const renderModulePreview = () => {
       <div style={styles.bgWrapper}><div style={styles.bgImage} /><div style={styles.dimOverlay} /></div>
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
             <nav style={styles.stepper}>
@@ -396,7 +396,7 @@ const renderModulePreview = () => {
             </div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
     </div>
   );

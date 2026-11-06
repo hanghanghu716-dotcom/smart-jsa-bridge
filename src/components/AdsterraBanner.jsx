@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { adsterra } from '../config/adsterra.js';
+import { adsterra, adsterraPlacements, ADSTERRA_FRAME_ORIGIN } from '../config/adsterra.js';
 import { adsterraUi } from '../locales/adsterraUi.js';
 import { ADSTERRA_CHANGE_EVENT, ADSTERRA_MAX_AGE, adsterraChoice, storeAdsterraChoice, validAdsterra, adsterraHost, adsterraPath } from '../utils/adsterra.js';
 import './AdsterraBanner.css';
@@ -58,61 +58,45 @@ export function AdsterraSettings({ locale, configuration = adsterra }) {
   </section>;
 }
 
-function VisibleCreative({ text, canStart }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const element = ref.current;
-    const check = () => {
-      const rect = element?.getBoundingClientRect();
-      setVisible(Boolean(canStart && rect && rect.width >= 300 && document.visibilityState === 'visible'
-        && rect.top < window.innerHeight && rect.bottom > 0 && rect.left < window.innerWidth && rect.right > 0));
-    };
-    const intersection = typeof IntersectionObserver === 'function' ? new IntersectionObserver(check) : null;
-    const resize = typeof ResizeObserver === 'function' ? new ResizeObserver(check) : null;
-    if (element) { intersection?.observe(element); resize?.observe(element); }
-    window.addEventListener('resize', check);
-    window.addEventListener('scroll', check, { passive: true });
-    document.addEventListener('visibilitychange', check);
-    check();
-    return () => {
-      intersection?.disconnect(); resize?.disconnect();
-      window.removeEventListener('resize', check); window.removeEventListener('scroll', check);
-      document.removeEventListener('visibilitychange', check);
-    };
-  }, [canStart]);
-  // The frame is mounted once when visible; scrolling cannot refresh an impression.
-  const [started, setStarted] = useState(false);
-  useEffect(() => { if (visible) setStarted(true); }, [visible]);
-  return <div ref={ref} className="adsterra-creative" style={{ display: canStart ? undefined : 'none' }}>
-    {started && <iframe title={text.label} src="/api/adsterra-frame" width="300" height="250"
-      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" referrerPolicy="origin" />}
-  </div>;
+
+function VisibleCreative({ text, canStart, config, placement }) {
+ const ref=useRef(null),[started,setStarted]=useState(false);
+ useEffect(()=>{
+  const el=ref.current;const check=()=>{const r=el?.getBoundingClientRect();if(canStart&&r&&r.width>=config.width&&r.height>=config.height&&document.visibilityState==='visible'&&r.top<innerHeight&&r.bottom>0&&r.left>=0&&r.right<=innerWidth)setStarted(true);};
+  const io=new IntersectionObserver(check),ro=new ResizeObserver(check);if(el){io.observe(el);ro.observe(el);}
+  window.addEventListener('resize',check);window.addEventListener('scroll',check,{passive:true});document.addEventListener('visibilitychange',check);check();
+  return()=>{io.disconnect();ro.disconnect();window.removeEventListener('resize',check);window.removeEventListener('scroll',check);document.removeEventListener('visibilitychange',check);};
+ },[canStart,config]);
+ return <div ref={ref} className="adsterra-creative" style={{width:config.width,height:config.height,display:canStart?undefined:'none'}}>
+  {started&&<iframe title={text.label+' '+placement} src={ADSTERRA_FRAME_ORIGIN+'/api/adsterra-frame?placement='+placement} width={config.width} height={config.height}
+   sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerPolicy="origin"/>}
+ </div>;
 }
 
-export default function AdsterraBanner({ contentReady = false, configuration = adsterra }) {
-  const { pathname } = useLocation();
-  const locale = pathname.split('/')[1], text = adsterraUi(locale);
-  const { choice, error, choose } = useAdChoice();
-  const [width, setWidth] = useState(0);
-  const ref = useRef(null);
-  const allowed = validAdsterra(configuration) && contentReady && adsterraPath(pathname)
-    && adsterraHost(window.location, navigator.userAgent);
-  useEffect(() => {
-    if (!allowed) return;
-    const check = () => setWidth(ref.current?.getBoundingClientRect().width || 0);
-    const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(check) : null;
-    if (ref.current) observer?.observe(ref.current);
-    window.addEventListener('resize', check); check();
-    return () => { observer?.disconnect(); window.removeEventListener('resize', check); };
-  }, [allowed, choice?.choice]);
-  if (!allowed || choice?.choice === 'denied') return null;
-  const active = choice?.choice === 'allowed';
-  return <aside ref={ref} className={'adsterra-banner' + (active ? ' adsterra-banner--active' : '')} aria-label={text.label} data-adsterra-banner>
-    <span className="adsterra-label">{text.label}</span>
-    {active ? <>
-      <VisibleCreative key={pathname} text={text} canStart={width >= 300} />
-      <button type="button" className="adsterra-disable" data-adsterra-disable onClick={() => choose(false)}>{text.disable}</button>
-    </> : <AdChoices {...{ text, choose, error }} />}
-  </aside>;
+export function AdsterraConsent() {
+ const {pathname}=useLocation(),{choice,error,choose}=useAdChoice(),text=adsterraUi(pathname.split('/')[1]);
+ if(choice||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
+ return <aside className="adsterra-consent" aria-label={text.settings}><AdChoices {...{text,error,choose}}/></aside>;
 }
+
+export default function AdsterraBanner({contentReady=false,placement='mobile',configuration}) {
+ const {pathname}=useLocation(),text=adsterraUi(pathname.split('/')[1]),{choice,choose}=useAdChoice();
+ const config=configuration||adsterraPlacements[placement];
+ if(!contentReady||!validAdsterra(config)||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent)||choice?.choice!=='allowed')return null;
+ return <aside className={'adsterra-banner adsterra-banner--'+placement} data-adsterra-banner data-placement={placement} aria-label={text.label}>
+  <span className="adsterra-label">{text.label}</span>
+  <VisibleCreative key={pathname+':'+placement} text={text} canStart={true} config={config} placement={placement}/>
+  <button type="button" className="adsterra-disable" data-adsterra-disable onClick={()=>choose(false)}>{text.disable}</button>
+ </aside>;
+}
+
+export function AdsterraBottom({contentReady=true}) {
+ const {pathname}=useLocation(),{choice}=useAdChoice();
+ if(!contentReady||choice?.choice!=='allowed'||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
+ return <div className="adsterra-bottom"><div className="adsterra-bottom-wide"><AdsterraBanner placement="bottom" contentReady={contentReady}/></div><div className="adsterra-bottom-small"><AdsterraBanner placement="mobile" contentReady={contentReady}/></div></div>;
+}
+export function AdsterraPageAds({contentReady=false}) {
+ return <><div className="adsterra-side adsterra-side-left"><AdsterraBanner placement="left" contentReady={contentReady}/></div><div className="adsterra-side adsterra-side-right"><AdsterraBanner placement="right" contentReady={contentReady}/></div><AdsterraBottom contentReady={contentReady}/></>;
+}
+
+export function AdsterraRouteBottom(){const {pathname}=useLocation();return /\/(?:profile|layoutbuilder|layout-module|layout-table)$/.test(pathname)?<AdsterraBottom/>:null;}
