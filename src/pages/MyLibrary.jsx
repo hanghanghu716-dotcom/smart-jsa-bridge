@@ -436,7 +436,7 @@ export default function MyLibrary() {
 
       <div style={styles.mainLayout} className="library-main">
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <main style={styles.centerContent} className="library-content">
@@ -747,7 +747,7 @@ export default function MyLibrary() {
           </div>
         </main>
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
       <footer style={styles.footerArea}><div style={styles.bottomAdWrapper}><AdBanner slot="1284119169" style={{ width: '728px', height: '90px' }} format="horizontal" /></div></footer>

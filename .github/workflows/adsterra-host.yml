@@ -1,0 +1,26 @@
+name: Deploy isolated advertising host
+on:
+  push:
+    branches: [main]
+    paths: ['api/adsterra-frame.js', 'src/config/adsterra.js', 'src/utils/adsterra.js', 'scripts/deploy-adsterra-host.js', '.github/workflows/adsterra-host.yml']
+  pull_request:
+    paths: ['api/adsterra-frame.js', 'src/config/adsterra.js', 'src/utils/adsterra.js', 'scripts/deploy-adsterra-host.js', '.github/workflows/adsterra-host.yml']
+permissions:
+  contents: read
+concurrency:
+  group: isolated-advertising-host
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.event_name == 'push' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/adsterra-side-rails')
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/deploy-adsterra-host.js

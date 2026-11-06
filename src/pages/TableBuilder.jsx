@@ -343,7 +343,7 @@ const renderDataTablePreview = () => {
       <header style={styles.header}><h1 style={styles.logo} onClick={() => navigate('/')}>Smart JSA Bridge</h1><ThemeSwitcher compact /></header>
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
         <main style={styles.centerContent}>
           <div style={styles.formCard}>
@@ -432,7 +432,7 @@ const renderDataTablePreview = () => {
             <div style={styles.btnAreaLayout}><button style={styles.prevBtnDark} onClick={goBackToModuleBuilder}>{t('btn.prev')}</button><button style={styles.nextBtnLight} onClick={goToExport}>{t('btn.next')}</button></div>
           </div>
         </main>
-        <aside style={styles.sideAd}><AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
+        <aside style={styles.sideAd}><AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" /></aside>
       </div>
       {showSaveModal && ( <div style={styles.modalOverlay}><div style={styles.modalContent}><h3 style={styles.modalTitle}>{t('modal.title')}</h3><p style={{ color: "var(--text-secondary)", fontSize: '0.8rem', marginTop: '-10px', textAlign: 'center' }}>{t('modal.desc')}</p><input style={styles.modalInput} placeholder={t('modal.placeholder')} value={saveName} onChange={(e) => setSaveName(e.target.value)} /><div style={styles.modalBtnGroup}><button style={styles.modalBtnSecondary} onClick={() => setShowSaveModal(false)}>{t('modal.cancel')}</button><button style={styles.modalBtnPrimary} onClick={handleSaveLayout}>{t('modal.save')}</button></div></div></div> )}
     </div>

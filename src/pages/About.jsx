@@ -1,3 +1,4 @@
+import AdsterraBanner,{AdsterraBottom} from '../components/AdsterraBanner';
 import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import PlanOverview from '../components/PlanOverview';
 import OperatorProfile from '../components/OperatorProfile';
@@ -32,26 +33,16 @@ export default function About() {
         <div style={{ ...styles.container, position: 'relative' }}>
           
           {/* [데스크탑 전용]: 왼쪽 사이드바 광고[cite: 19] */}
-          {!guidance && <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
+          {<aside className="hidden min-[1140px]:block" style={styles.adSlotFixedLeft}>
             <div style={styles.adPlaceholderBox}>
-              <AdSenseUnit 
-                client={PUBLISHER_ID} 
-                slot={LEFT_SIDEBAR_SLOT_ID} 
-                format="vertical" 
-                style={{ width: '160px', height: '600px' }} 
-              />
+              <AdsterraBanner placement="left" contentReady/>
             </div>
           </aside>}
 
           {/* [데스크탑 전용]: 오른쪽 사이드바 광고[cite: 19] */}
-          {!guidance && <aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
+          {<aside className="hidden min-[1140px]:block" style={styles.adSlotFixedRight}>
             <div style={styles.adPlaceholderBox}>
-              <AdSenseUnit 
-                client={PUBLISHER_ID} 
-                slot={RIGHT_SIDEBAR_SLOT_ID} 
-                format="vertical" 
-                style={{ width: '160px', height: '600px' }} 
-              />
+              <AdsterraBanner placement="right" contentReady/>
             </div>
           </aside>}
 
@@ -106,7 +97,7 @@ export default function About() {
       <UsGuidanceReferences guidance={guidance} />
       <section className="jsa-workspace" style={{padding:"32px 24px"}}><div style={{maxWidth:1100,margin:"auto"}}><h2>{getPlansUi(i18n.language).title}</h2><p>{getPlansUi(i18n.language).intro}</p><PlanOverview/></div></section>
       <div className="about-operator-footer"><OperatorProfile locale={i18n.language} collapsed/></div>
-      <CommunityFooter />
+      <AdsterraBottom/><CommunityFooter />
     </div>
   );
 }

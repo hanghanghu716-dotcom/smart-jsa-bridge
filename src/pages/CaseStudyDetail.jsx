@@ -1,4 +1,4 @@
-import AdsterraBanner from '../components/AdsterraBanner';
+import { AdsterraPageAds } from '../components/AdsterraBanner';
 import CaseLanguageSwitch from '../components/CaseLanguageSwitch';
 import CaseQuickLinks from '../components/CaseQuickLinks';
 import { romanianUi } from '../locales/romanianUi.js';
@@ -197,7 +197,6 @@ export default function CaseStudyDetail() {
 
           {sections.introduction && <div className="case-usage-notes"><Viewer initialValue={sections.introduction} key={sections.introduction}/></div>}
 
-          <AdsterraBanner contentReady={Boolean(post.content_md?.trim())} />
 
           <div 
             style={{ ...styles.markdownContent, ...(isRtl ? styles.rtlMarkdown : {}) }}
@@ -271,6 +270,7 @@ export default function CaseStudyDetail() {
         </div>
       </div>
 
+      <AdsterraPageAds contentReady={Boolean(post.content_md?.trim())} />
       <CommunityFooter />
     </div>
   );

@@ -4,7 +4,7 @@ export const ADSTERRA_MAX_AGE = 180 * 24 * 60 * 60 * 1000;
 export const ADSTERRA_HOSTS = ['smartjsabridge.com', 'www.smartjsabridge.com'];
 
 export function validAdsterra(config) {
-  if (config?.enabled !== true || config.width !== 300 || config.height !== 250
+  if (config?.enabled !== true || !['160x600','160x300','728x90','300x250'].includes(config.width+'x'+config.height)
     || !/^[a-f0-9]{32}$/.test(config.key || '')) return false;
   try {
     const url = new URL(config.scriptUrl);
@@ -20,7 +20,7 @@ export function adsterraHost(location, userAgent = '') {
 }
 
 export function adsterraPath(pathname) {
-  return /^\/(?:ko|en-US|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-AU|en-GB|en-SG|ja-JP|de-DE|fr-FR|it-IT|es-ES|ar-SA|pt-BR|ru-RU|ro-RO)(?:\/case-study\/[a-z0-9-]+)?\/?$/.test(pathname || '');
+  return /^\/(?:ko|en-US|en-CA|en-CA-AB|en-CA-ON|en-CA-BC|fr-CA-QC|en-AU|en-GB|en-SG|ja-JP|de-DE|fr-FR|it-IT|es-ES|ar-SA|pt-BR|ru-RU|ro-RO)(?:\/(?:case-study\/[a-z0-9-]+|about|archive|jrajsa|regulation|riskclassification|protectiveequipment|guideline\/[a-z-]+|dictionary|info|analysis|procedure|library|profile|layoutbuilder|layout-module|layout-table))?\/?$/.test(pathname || '');
 }
 
 export function adsterraChoice(storage, now = Date.now()) {
@@ -42,9 +42,9 @@ export function adsterraFrameHtml(config) {
   if (!validAdsterra(config)) return '';
   // All interpolated values have been validated; user or document data is never included.
   return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-    + '<title>Advertisement</title><style>html,body{margin:0;width:300px;height:250px;overflow:hidden}iframe{border:0}</style></head><body>'
-    + '<script>window.atOptions=' + JSON.stringify({key:config.key,format:'iframe',height:250,width:300,params:{}}) + ';</script>'
+    + '<title>Advertisement</title><style>html,body{margin:0;width:' + config.width + 'px;height:' + config.height + 'px;overflow:hidden}iframe{border:0}</style></head><body>'
+    + '<script>window.atOptions=' + JSON.stringify({key:config.key,format:'iframe',height:config.height,width:config.width,params:{}}) + ';</script>'
     + '<script src="' + config.scriptUrl + '"></script></body></html>';
 }
 
-export const ADSTERRA_FRAME_CSP = "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'self'; form-action 'none'; sandbox allow-scripts allow-popups allow-popups-to-escape-sandbox; script-src 'unsafe-inline' https:; style-src 'unsafe-inline' https:; img-src data: https:; frame-src https:; connect-src https:; font-src data: https:";
+export const ADSTERRA_FRAME_CSP = "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors https://smartjsabridge.com https://www.smartjsabridge.com; form-action 'none'; sandbox allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox; script-src 'unsafe-inline' https:; style-src 'unsafe-inline' https:; img-src data: https:; frame-src https:; connect-src https:; font-src data: https:";

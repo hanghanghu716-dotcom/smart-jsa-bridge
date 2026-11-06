@@ -1,3 +1,4 @@
+import {AdsterraBottom} from '../components/AdsterraBanner';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거
 import { useTranslation } from 'react-i18next';
@@ -87,7 +88,7 @@ export default function RiskClassification() {
       {/* MAIN LAYOUT */}
       <div style={styles.mainLayout}>
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="left" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
 
         <div style={styles.centerContent}>
@@ -189,7 +190,7 @@ export default function RiskClassification() {
         </div>
 
         <aside style={styles.sideAd}>
-          <AdBanner slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
+          <AdBanner placement="right" slot="3978298367" style={{ width: '160px', height: '600px' }} format="vertical" />
         </aside>
       </div>
 

@@ -1,3 +1,4 @@
+import {AdsterraBottom} from '../components/AdsterraBanner';
 import RegionalGuidancePage from '../components/RegionalGuidancePage';
 import { useLocation } from 'react-router-dom'; // ✅ useNavigate 제거 및 useLocation 추가
 import AdBanner from '../AdBanner';
@@ -34,9 +35,9 @@ export default function Regulation() {
       </section>
 
       {/* [스티키 광고] */}
-      {!guidance && <aside className="hidden min-[1600px]:block">
+      {<aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedLeft}>
-          <AdBanner 
+          <AdBanner placement="left" 
             slot="3978298367" 
             style={{ width: '160px', height: '600px' }} 
             format="vertical" 
@@ -44,9 +45,9 @@ export default function Regulation() {
         </div>
       </aside>}
 
-      {!guidance && <aside className="hidden min-[1600px]:block">
+      {<aside className="hidden min-[1600px]:block">
         <div style={styles.adPlaceholderFixedRight}>
-          <AdBanner 
+          <AdBanner placement="right" 
             slot="3978298367" 
             style={{ width: '160px', height: '600px' }} 
             format="vertical" 
@@ -131,7 +132,7 @@ export default function Regulation() {
         </section>
       </div>
 
-      <UsGuidanceReferences guidance={guidance} />
+      <AdsterraBottom/><UsGuidanceReferences guidance={guidance} />
       <footer style={styles.finalFooter}>
         <div style={styles.container}>
           <p dangerouslySetInnerHTML={{ __html: t('footer') }} />
