@@ -101,7 +101,7 @@ export default function CaseStudyDetail() {
   if (loadError) return <div style={styles.error} role="alert"><SEO noIndex />{ui.loadError} <button onClick={() => setRetry(value => value + 1)}>{ui.retry}</button></div>;
   if (!post) return <div style={styles.error}><SEO noIndex />{ui.caseEmpty} <LanguageLink to="/archive">{ro?.archive || 'Archive'}</LanguageLink></div>;
   const structuredData = serializeStructuredData(post.schema_markup);
-  const products = <CommerceRecommendations key={id+currentLang} kind="case" contentId={post.post_group_id} locale={i18n.language} contentLocale={currentLang} placement="rail" sectionNumber={sections.productSection} />;
+  const products = <CommerceRecommendations key={id+currentLang} kind="case" contentId={post.post_group_id} locale={i18n.language} contentLocale={currentLang} placement="inline" sectionNumber={sections.productSection} />;
 
   return (
     <div className="case-study-page" style={styles.wrapper} data-case-study-id={post.id}>
