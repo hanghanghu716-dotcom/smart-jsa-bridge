@@ -91,6 +91,8 @@ export default function AdsterraBanner({contentReady=false,placement='mobile',co
 }
 
 export function AdsterraBottom({contentReady=true}) {
+ const {pathname}=useLocation(),{choice}=useAdChoice();
+ if(!contentReady||choice?.choice!=='allowed'||!adsterraPath(pathname)||!adsterraHost(window.location,navigator.userAgent))return null;
  return <div className="adsterra-bottom"><div className="adsterra-bottom-wide"><AdsterraBanner placement="bottom" contentReady={contentReady}/></div><div className="adsterra-bottom-small"><AdsterraBanner placement="mobile" contentReady={contentReady}/></div></div>;
 }
 export function AdsterraPageAds({contentReady=false}) {
