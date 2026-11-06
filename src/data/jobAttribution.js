@@ -3,7 +3,7 @@
 export const JOB_ATTRIBUTION = {
   usajobssg: {
     credit:'Source: USAJOBS · U.S. federal agencies',
-    note:'Selected listing fields. U.S. citizenship or other hiring restrictions may apply; check the original announcement. Smart JSA Bridge is not operated, sponsored or endorsed by OPM.',
+    note:'Selected listing fields. Standing recruitment notices may not represent a current vacancy or guarantee placement in Singapore. U.S. citizenship or other hiring restrictions may apply; check the original announcement. Smart JSA Bridge is not operated, sponsored or endorsed by OPM.',
     license:'USAJOBS public-data terms', url:'https://developer.usajobs.gov/apirequest/index',
   },
   mhlwjobs: {
@@ -29,5 +29,5 @@ export const JOB_ATTRIBUTION = {
 };
 export const jobAttribution = id => Object.hasOwn(JOB_ATTRIBUTION,id || '') ? JOB_ATTRIBUTION[id] : null;
 export const jobCoverage = locale => locale==='en-SG'
-  ? 'Coverage: safety-related U.S. federal agency vacancies with a confirmed work location in Singapore. This is a limited source, not Singapore government or nationwide recruitment. U.S. citizenship or other hiring restrictions may apply; check the original announcement.'
+  ? 'Coverage: safety-related U.S. federal agency announcements that list a Singapore work location. This is a limited source, not Singapore government or nationwide recruitment. Standing recruitment notices may not represent a current vacancy or guarantee placement in Singapore. U.S. citizenship or other hiring restrictions may apply; check the original announcement.'
   : '';

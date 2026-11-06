@@ -26,20 +26,33 @@ test('Singapore rejects keyword matches abroad, unknown countries, remote and un
  assert.throws(()=>parseSingaporeUsajobs({SearchResult:{SearchResultItems:Array(101).fill({})}}),/invalid_data/);
  assert.deepEqual(parseSingaporeUsajobs({SearchResult:{SearchResultItems:[]}}),[]);
 });
-test('Singapore uses one official bounded request and existing private USAJOBS credentials',async t=>{
+test('Singapore uses three small official title samples and existing private USAJOBS credentials',async t=>{
  t.mock.method(console,'info',()=>{});let calls=0;
  const rows=await collectJobs({id:'usajobssg',adapter:'usajobssg'},name=>({USAJOBS_API_KEY:'fixture-key',USAJOBS_API_EMAIL:'fixture@example.test'})[name],async(url,options)=>{
-  calls++;assert.equal(url.origin,'https://data.usajobs.gov');assert.equal(url.searchParams.get('LocationName'),'Singapore');assert.equal(url.searchParams.get('RemoteIndicator'),'False');assert.equal(url.searchParams.get('ResultsPerPage'),'100');assert.equal(url.searchParams.get('Page'),'1');assert.equal(url.searchParams.get('Fields'),'Min');assert.ok(!url.href.includes('fixture-key'));assert.equal(options.headers['Authorization-Key'],'fixture-key');assert.equal(options.redirect,'error');assert.ok(options.signal);return Response.json(data(descriptor));
+  calls++;assert.equal(url.origin,'https://data.usajobs.gov');assert.equal(url.searchParams.get('PositionTitle'),['safety','industrial hygien','occupational health'][calls-1]);assert.equal(url.searchParams.get('LocationName'),'Singapore');assert.equal(url.searchParams.get('RemoteIndicator'),'False');assert.equal(url.searchParams.get('ResultsPerPage'),'10');assert.equal(url.searchParams.get('Page'),'1');assert.equal(url.searchParams.get('Fields'),'Min');assert.ok(!url.href.includes('fixture-key'));assert.equal(options.headers['Authorization-Key'],'fixture-key');assert.equal(options.redirect,'error');assert.ok(options.signal);return Response.json(data(descriptor));
  });
- assert.equal(calls,1);assert.equal(rows[0].locale,'en-SG');
+ assert.equal(calls,3);assert.equal(rows.length,1,'overlapping title searches are deduplicated');assert.equal(rows[0].locale,'en-SG');
  await assert.rejects(collectJobs({id:'usajobssg',adapter:'usajobssg'},()=>null,()=>{throw Error('must not fetch');}),/missing_credentials/);
  await assert.rejects(collectJobs({id:'mycareersfuture',adapter:'usajobssg'},()=> 'fixture'),/source_error/);
+});
+test('Singapore normalizes live unzoned end-of-day timestamps without guessing arbitrary wall times',()=>{
+ const [summer]=parseSingaporeUsajobs(data({...descriptor,ApplicationCloseDate:'2027-04-13T23:59:59.9970'}));
+ assert.equal(summer.closes_at,'2027-04-14T04:00:00.000Z');assert.equal(summer.deadline_text,'2027-04-13 · 11:59 p.m. ET');
+ const [winter]=parseSingaporeUsajobs(data({...descriptor,ApplicationCloseDate:'2026-11-30T23:59:59.9970'}));
+ assert.equal(winter.closes_at,'2026-12-01T05:00:00.000Z');
+ assert.equal(parseSingaporeUsajobs(data({...descriptor,ApplicationCloseDate:'2026-11-30T12:00:00'}))[0].closes_at,null);
+});
+test('Singapore never returns a partial sample after a later query fails and retains the size limit',async t=>{
+ t.mock.method(console,'info',()=>{});let calls=0;
+ await assert.rejects(collectJobs({id:'usajobssg',adapter:'usajobssg'},()=> 'fixture',async()=>++calls===1?Response.json(data(descriptor)):new Response('unavailable',{status:503})),/source_error/);
+ assert.equal(calls,2);
+ await assert.rejects(collectJobs({id:'usajobssg',adapter:'usajobssg'},()=> 'fixture',async()=>new Response('x'.repeat(2*1024*1024+1))),/invalid_data/);
 });
 test('Singapore scope and eligibility remain readable with zero current listings',()=>{
  const empty={items:[],sources:[{id:'usajobssg',name:'USAJOBS · U.S. federal roles in Singapore',connected:true}],has_more:false};
  const shell='<html lang="en"><head></head><body><div id="root"></div></body></html>';
  const html=renderJobHtml(shell,'en-SG',jobQuery(''),empty);
- assert.ok(html.includes(jobCoverage('en-SG')));assert.match(html,/U.S. citizenship/);assert.match(html,/noindex,follow/);assert.ok(!html.includes('JobPosting'));
+ assert.ok(html.includes(jobCoverage('en-SG')));assert.match(html,/U.S. citizenship/);assert.match(html,/Standing recruitment notices/);assert.match(html,/noindex,follow/);assert.ok(!html.includes('JobPosting'));
  assert.ok(!renderJobHtml(shell,'en-US',jobQuery(''),empty).includes('job-coverage'));
  const withItem=renderJobHtml(shell,'en-SG',jobQuery(''),{...empty,items:[{...parseSingaporeUsajobs(data(descriptor))[0],source_id:'usajobssg',source:'USAJOBS',status:'open'}]});
  assert.match(withItem,/USAJOBS public-data terms/);assert.match(withItem,/endorsed by OPM/);
