@@ -1,5 +1,6 @@
-import { mkdir, writeFile, cp } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { mkdir, writeFile, cp, mkdtemp } from 'node:fs/promises';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { ADSTERRA_FRAME_HOST } from '../src/config/adsterra.js';
 const token=process.env.VERCEL_TOKEN,teamId=process.env.VERCEL_ORG_ID;
@@ -9,14 +10,14 @@ async function api(path,options={}){const response=await fetch('https://api.verc
 let found=await api('/v9/projects/'+encodeURIComponent(name));
 if(found.response.status===404)found=await api('/v10/projects',{method:'POST',body:JSON.stringify({name,framework:null,buildCommand:null,installCommand:null})});
 if(!found.response.ok||found.value.name!==name||!found.value.id)throw Error('Cannot prepare advertising project: '+found.response.status);
-const project=found.value,stage=resolve('.cache/adsterra-host');
+const project=found.value,stage=await mkdtemp(join(tmpdir(),'smartjsa-ad-host-'));
 for(const dir of ['api','src/config','src/utils','public','.vercel'])await mkdir(stage+'/'+dir,{recursive:true});
 for(const path of ['api/adsterra-frame.js','src/config/adsterra.js','src/utils/adsterra.js'])await cp(path,stage+'/'+path);
 await writeFile(stage+'/package.json',JSON.stringify({name,type:'module',private:true,engines:{node:'24.x'}}));
 await writeFile(stage+'/vercel.json',JSON.stringify({version:2,framework:null,buildCommand:null,installCommand:null,headers:[{source:'/(.*)',headers:[{key:'X-Robots-Tag',value:'noindex, nofollow, noarchive'}]}]}));
 await writeFile(stage+'/public/index.html','<!doctype html><meta name="robots" content="noindex,nofollow"><title>Advertisement service</title>');
 await writeFile(stage+'/.vercel/project.json',JSON.stringify({projectId:project.id,orgId:teamId}));
-const run=spawnSync('npx',['--yes','vercel@59.23.2','deploy','--prod','--yes','--cwd',stage,'--token',token],{env:{...process.env,VERCEL_PROJECT_ID:project.id},stdio:'inherit',shell:false,timeout:240000});
+const run=spawnSync('npx',['--yes','vercel@59.23.2','deploy','--prod','--yes','--cwd',stage,'--local-config',stage+'/vercel.json','--token',token],{cwd:stage,env:{...process.env,VERCEL_PROJECT_ID:project.id},stdio:'inherit',shell:false,timeout:240000});
 if(run.status!==0)throw Error('Advertising host deployment failed');
 const check=await fetch('https://'+ADSTERRA_FRAME_HOST+'/api/adsterra-frame?placement=left',{headers:{Referer:'https://smartjsabridge.com/','sec-fetch-dest':'iframe'},signal:AbortSignal.timeout(20000)});
 if(check.status!==200)throw Error('Advertising host not publicly embeddable: '+check.status);
