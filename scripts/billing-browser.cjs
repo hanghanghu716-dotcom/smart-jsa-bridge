@@ -64,6 +64,7 @@ async function main(){
   assert.deepEqual(errors,[]);
   console.log('PASS: disabled sales, consent gate, SDK redirect, confirmation, query removal, refund-request record, failure/recovery, mobile layout, no runtime errors.');
   console.log('BILLING_PREVIEW_BASE64 '+fs.readFileSync(path.join(root,'.cache/billing-desktop.png')).toString('base64'));
+  console.log('BILLING_MOBILE_BASE64 '+fs.readFileSync(path.join(root,'.cache/billing-mobile.png')).toString('base64'));
  }finally{await browser.close();await new Promise(resolve=>server.httpServer.close(resolve));}
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

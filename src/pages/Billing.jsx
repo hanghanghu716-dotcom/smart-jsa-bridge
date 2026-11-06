@@ -30,7 +30,7 @@ export default function Billing() {
     if (window.location.search) window.history.replaceState(window.history.state, '', window.location.pathname);
     let live = true;
     billingRequest('config').then(value => { if (live) setConfig(value); }).catch(() => { if (live) setError(BILLING_ERRORS.BILLING_UNAVAILABLE); });
-    supabase.auth.getUser().then(({ data }) => { if (live) setUser(data?.user || null); });
+    supabase.auth.getUser().then(({ data }) => { if (live) setUser(data?.user || null); }).catch(() => { if (live) { setUser(null); setError(BILLING_ERRORS.AUTH_REQUIRED); } });
     return () => { live = false; };
   }, []);
   useEffect(() => {
