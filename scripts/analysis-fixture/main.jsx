@@ -6,6 +6,7 @@ import i18n from '../../src/i18n';
 import Analysis from '../../src/pages/Analysis';
 import DocumentDesigner from '../../src/pages/DocumentDesigner';
 import Export from '../../src/pages/Export';
+import DocumentTemplates from '../../src/pages/DocumentTemplates';
 import Info from '../../src/pages/Info';
 import Procedure from '../../src/pages/Procedure';
 import RegionalStartActions from '../../src/components/RegionalStartActions';
@@ -30,6 +31,6 @@ createRoot(document.getElementById('root')).render(
   <HelmetProvider><MemoryRouter initialEntries={[{ pathname: `/${uiLocale}/${params.has('case') ? 'case-start' : draft ? 'export' : 'analysis'}`, state: initialState }]}>
     <Routes><Route path="/:locale/case-start" element={<RegionalStartActions locale={locale} activity={fixtureCasePost(locale).title} casePost={fixtureCasePost(locale)} />} />
       <Route path="/:locale/info" element={<Info />} /><Route path="/:locale/procedure" element={<Procedure />} />
-      <Route path="/:locale/analysis" element={<Analysis />} /><Route path="/:locale/document-designer" element={<DocumentDesigner />} /><Route path="/:locale/export" element={<Export />} /></Routes>
+      <Route path="/:locale/templates" element={<DocumentTemplates />} /><Route path="/:locale/analysis" element={<Analysis />} /><Route path="/:locale/document-designer" element={<DocumentDesigner />} /><Route path="/:locale/export" element={<Export />} /></Routes>
   </MemoryRouter></HelmetProvider>
 );

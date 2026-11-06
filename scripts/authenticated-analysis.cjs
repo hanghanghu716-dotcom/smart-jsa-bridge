@@ -178,7 +178,7 @@ const { randomUUID } = require('node:crypto');
         await page.waitForFunction(text => document.querySelector('.analysis-selected tbody textarea')?.value === text, {}, edited);
         assert.equal(await page.$('[data-current-confirmed]'), null);
         await page.click('[data-analysis-next]');
-        await page.waitForSelector('.designer-paper .document-content');
+        await page.waitForSelector('.reportPaper .document-content');
         const document = await page.$eval('.document-content', el => ({ text: el.textContent, dir: el.dir }));
         assert.ok(document.text.includes(words[1]) && document.text.includes(words[2]));
         assert.equal(document.dir, locale.startsWith('ar') ? 'rtl' : 'ltr');

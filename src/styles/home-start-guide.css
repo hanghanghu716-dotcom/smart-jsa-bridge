@@ -1,0 +1,13 @@
+.home-start-guide{margin:28px 0;color:var(--text-primary)}
+.home-start-guide-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;margin-bottom:14px}
+.home-start-guide-heading h2{margin:0;font-size:1.2rem}
+.home-start-guide-heading p{margin:0;color:var(--text-secondary);font-size:.92rem}
+.home-start-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.home-start-guide-grid article{padding:20px;border:1px solid var(--border-default);border-radius:12px;background:var(--card-bg);min-width:0}
+.home-start-guide-grid h3{font-size:1rem;line-height:1.5;margin:0 0 10px}
+.home-start-guide-grid a{color:var(--accent);text-decoration:none}
+.home-start-guide-grid a:hover{text-decoration:underline}
+.home-start-guide-grid a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.home-start-guide-grid p{color:var(--text-secondary);font-size:.93rem;line-height:1.7;margin:0;word-break:keep-all;overflow-wrap:anywhere}
+.home-start-guide-note{color:var(--text-secondary);font-size:.86rem;line-height:1.7;margin:12px 0 0}
+@media(max-width:700px){.home-start-guide-grid{grid-template-columns:1fr}.home-start-guide-grid article{padding:16px}}

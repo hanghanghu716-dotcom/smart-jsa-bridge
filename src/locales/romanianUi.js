@@ -133,7 +133,7 @@ export const romanianUi = {
     "selectSteps": "Selectați etapele",
     "useSelected": "Folosiți etapele selectate",
     "licensePending": "Documente mai vechi care așteaptă confirmarea partajării publice",
-    "freeCore": "Căutarea, crearea, salvarea privată, reutilizarea, publicarea și exportul PDF de bază sunt gratuite. Community: maximum 3 documente private; documentele publice, ciornele și marcajele nu se numără.",
+    "freeCore": "Căutarea, crearea, salvarea privată, reutilizarea, publicarea și exportul PDF de bază sunt gratuite.",
     "orgControl": "Professional · Beta gratuită — Istoric personal, șabloane de companie, roluri, documente private ale echipei și aprobare pe versiune.",
     "category": "Categorie",
     "detail": "Detalii",
