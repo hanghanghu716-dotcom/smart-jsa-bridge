@@ -240,7 +240,7 @@ const cp = require('node:child_process');
         await page.goto('http://127.0.0.1:' + port + '/scripts/analysis-fixture/index.html?locale=ko&riskGate=1&standard=1' + (fastTrack ? '&fastTrack=1' : ''), { waitUntil: 'networkidle0' });
         await page.select('[data-assessed-frequency]', '4'); await page.select('[data-assessed-severity]', '4');
         await expectBlocked('[data-analysis-step="1"]');
-        assert.equal(await page.$eval('[aria-current="step"]', el => el.getAttribute('data-analysis-step')), '0');
+        assert.equal(await page.$eval('[data-analysis-step][aria-current="step"]', el => el.getAttribute('data-analysis-step')), '0');
         await expectBlocked('[data-analysis-next]');
         await page.select('[data-assessed-frequency]', '3'); await page.select('[data-assessed-severity]', '5');
         await page.click('[data-analysis-next]');
