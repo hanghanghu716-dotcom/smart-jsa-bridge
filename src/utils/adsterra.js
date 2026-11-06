@@ -43,7 +43,7 @@ export function adsterraFrameHtml(config) {
   // All interpolated values have been validated; user or document data is never included.
   return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     + '<title>Advertisement</title><style>html,body{margin:0;width:300px;height:250px;overflow:hidden}iframe{border:0}</style></head><body>'
-    + '<script>var atOptions=' + JSON.stringify({key:config.key,format:'iframe',height:250,width:300,params:{}}) + ';</script>'
+    + '<script>window.atOptions=' + JSON.stringify({key:config.key,format:'iframe',height:250,width:300,params:{}}) + ';</script>'
     + '<script src="' + config.scriptUrl + '"></script></body></html>';
 }
 
