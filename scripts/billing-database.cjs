@@ -42,6 +42,9 @@ async function main(){
  const concurrent=await Promise.all([1,2,3,4].map(n=>asyncSql(service('create',create('live',n))).then(JSON.parse)));
  assert.equal(new Set(concurrent.map(x=>x.id)).size,1,'parallel checkout creation reuses one pending order');
  const paid=bind(concurrent[0]);
+ assert.throws(()=>rpc('create',create('live',9)),/PAYMENT_PENDING/);
+ sql(`update jsa_private.billing_orders set checkout_expires_at=now()-interval '1 minute' where id='${paid.id}';`);
+ assert.throws(()=>rpc('create',create('live',9)),/PAYMENT_PENDING/,'a potentially charged order must be reconciled before any new checkout');
  assert.throws(()=>rpc('get',{order_id:paid.id,mode:'live',user_id:other}),/NOT_FOUND/);
  assert.throws(()=>rpc('bind',{order_id:paid.id,mode:'live',user_id:user,payment_key:'substitution'}),/PAYMENT_KEY_CONFLICT/);
  const confirmations=await Promise.all([1,2,3,4].map(()=>asyncSql(service('apply',applied(paid))).then(JSON.parse)));

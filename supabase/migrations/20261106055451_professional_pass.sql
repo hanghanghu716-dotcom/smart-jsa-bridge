@@ -85,6 +85,11 @@ begin
   perform pg_catalog.pg_advisory_xact_lock(pg_catalog.hashtextextended(actor::text,70));
   access:=jsa_private.professional_access(actor);
   if (access->>'active')::boolean then raise exception 'ACCESS_ACTIVE'; end if;
+  -- An expired local checkout may already be charged at the provider. Resolve a
+  -- bound pending payment before creating another order, even after 30 minutes.
+  if exists(select 1 from jsa_private.billing_orders where user_id=actor and mode=p_payload->>'mode' and status='PENDING' and payment_key is not null) then
+   raise exception 'PAYMENT_PENDING';
+  end if;
   select * into payment from jsa_private.billing_orders where user_id=actor and mode=p_payload->>'mode' and status='PENDING'
    and checkout_expires_at>now() and terms_version=p_payload->>'terms_version' order by created_at desc limit 1;
   if found then return to_jsonb(payment); end if;

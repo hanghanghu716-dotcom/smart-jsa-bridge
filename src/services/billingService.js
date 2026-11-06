@@ -40,6 +40,7 @@ export const BILLING_ERRORS = {
   ORDER_EXPIRED: '주문 시간이 만료되었습니다. 새 주문으로 진행해 주세요.', PAYMENT_KEY_CONFLICT: '이 주문의 결제 정보가 다릅니다. 결제 내역을 확인해 주세요.',
   PAYMENT_MISMATCH: '결제 정보가 주문과 일치하지 않아 이용권을 발급하지 않았습니다. 고객지원에 문의해 주세요.',
   PAYMENT_NOT_CONFIRMED: '결제 완료 여부를 아직 확인하지 못했습니다. 다시 결제하기 전에 결제 내역의 상태 확인을 눌러 주세요.',
+  PAYMENT_PENDING: '확인 중인 결제가 있습니다. 중복 결제를 막기 위해 새 주문을 만들지 않았습니다. 기존 주문의 상태를 먼저 확인해 주세요.',
   CHECKOUT_UNAVAILABLE: '결제창을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', NOT_FOUND: '이 계정의 주문을 찾을 수 없습니다.',
   REFUND_UNAVAILABLE: '이 주문은 환불 요청을 접수할 수 없는 상태입니다.',
 };

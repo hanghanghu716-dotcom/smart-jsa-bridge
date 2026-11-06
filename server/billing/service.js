@@ -5,7 +5,7 @@ import { resolvePublicSupabaseConfig } from '../../src/config/supabase.js';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const orderPattern = /^jsa_(test|live)_[0-9a-f-]{36}$/;
-const allowedErrors = new Set(['AUTH_REQUIRED','NOT_FOUND','ACCESS_ACTIVE','INVALID_INPUT','ORDER_EXPIRED','PAYMENT_KEY_CONFLICT','PAYMENT_MISMATCH','TERMS_REQUIRED','REFUND_UNAVAILABLE']);
+const allowedErrors = new Set(['AUTH_REQUIRED','NOT_FOUND','ACCESS_ACTIVE','INVALID_INPUT','ORDER_EXPIRED','PAYMENT_KEY_CONFLICT','PAYMENT_MISMATCH','PAYMENT_PENDING','TERMS_REQUIRED','REFUND_UNAVAILABLE']);
 const safeOrder = o => ({ id: o.id, amount: o.amount, currency: o.currency, mode: o.mode, status: o.status,
   created_at: o.created_at, starts_at: o.starts_at, expires_at: o.expires_at, refund_requested_at: o.refund_requested_at });
 
