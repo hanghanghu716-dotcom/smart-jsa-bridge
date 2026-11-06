@@ -41,7 +41,7 @@ const path = require('node:path');
         }
         if(url.href===config.scriptUrl){
           ads++;
-          return request.respond({status:200,contentType:'application/javascript',body:"let isolated=false;try{window.parent.localStorage.getItem('private-fixture')}catch{isolated=true}document.body.innerHTML='<div data-mock-ad data-isolated='+isolated+' style=\"width:300px;height:250px;background:#e7eef5;display:grid;place-items:center\">TEST AD · 300 × 250</div>';"}); 
+          return request.respond({status:200,contentType:'application/javascript',body:"'use strict';delete window.atOptions;let isolated=false;try{window.parent.localStorage.getItem('private-fixture')}catch{isolated=true}document.body.innerHTML='<div data-mock-ad data-isolated='+isolated+' style=\"width:300px;height:250px;background:#e7eef5;display:grid;place-items:center\">TEST AD · 300 × 250</div>';"}); 
         }
         if(url.protocol==='data:')return request.continue();
         external.push(url.origin);return request.abort();
