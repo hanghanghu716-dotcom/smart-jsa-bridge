@@ -18,6 +18,7 @@ import PublicSiteHeader from '../components/PublicSiteHeader';
 import HomePublicCatalog from '../components/HomePublicCatalog';
 import HomeTopicNavigation from '../components/HomeTopicNavigation';
 import HomeLatest from '../components/HomeLatest';
+import HomeGettingStarted from '../components/HomeGettingStarted';
 import CommunityFooter from '../components/CommunityFooter';
 import SEO from '../components/SEO';
 import '../styles/community-home.css';
@@ -78,6 +79,7 @@ export default function Main() {
         <button type="submit">{ui.search}</button>
       </form>
       <p><LanguageLink to="/resources">{resourceHubUi(locale).title} →</LanguageLink></p>
+      {locale === 'ko' && <HomeGettingStarted />}
       <HomeTopicNavigation locale={locale} />
       <HomePublicCatalog />
       <section id="case-studies" className="home-cases" aria-labelledby="home-cases-title">

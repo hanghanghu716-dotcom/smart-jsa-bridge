@@ -1,4 +1,5 @@
 import CaseLanguageSwitch from '../components/CaseLanguageSwitch';
+import CaseQuickLinks from '../components/CaseQuickLinks';
 import { romanianUi } from '../locales/romanianUi.js';
 import { canonicalCaseSlug, caseLookupSlugs } from '../utils/caseRouting.js';
 import { caseViewCounts, recordCaseView } from '../services/caseStudyMetrics';
@@ -182,12 +183,14 @@ export default function CaseStudyDetail() {
             {new Date(post.created_at).toLocaleDateString(getLanguageTag(currentLang))} · {getPublicUi(i18n.language).views} {viewMetric?.id===post.id?viewMetric.count.toLocaleString(getLanguageTag(currentLang)):''}
           </p>
           <CaseLanguageSwitch locales={availableLocales} locale={currentLang} slug={post.post_group_id} />
+          <CaseQuickLinks locale={currentLang} hasReview={Boolean(sections.review)} />
         </div>
       </section>
 
 
       <div style={styles.mainContentArea}>
         <div style={styles.centerContent}>
+          <div id="case-body" className="case-reading-target" tabIndex={-1} />
           
 
 
@@ -207,7 +210,7 @@ export default function CaseStudyDetail() {
             <Viewer ref={afterProductsRef} initialValue={sections.afterProducts} key={(post.id || post.language_code)+':after-products'} />
           </div>}
 
-          <section id={'section-'+sections.resourcesSection} className="case-numbered-section"><h2>{sections.resourcesSection}. {caseResourcesTitle(i18n.language)}</h2>
+          <section id="case-resources" className="case-numbered-section case-reading-target" tabIndex={-1}><h2 id={'section-'+sections.resourcesSection}>{sections.resourcesSection}. {caseResourcesTitle(i18n.language)}</h2>
           {((post.pdf_list && post.pdf_list.length > 0) || post.pdf_download_url) && (
             <div style={{ 
               marginBottom: '24px', 
@@ -259,7 +262,7 @@ export default function CaseStudyDetail() {
           <div id="case-start-actions"><RegionalStartActions key={`${id}:${i18n.language}`} locale={i18n.language} activity={post.title} casePost={post}/></div>
           </section>
           {!sections.earlyProducts && products}
-          {sections.review && <div style={styles.markdownContent} dir={isRtl?'rtl':'ltr'} className={isRtl?'rtl-viewer':''}><Viewer initialValue={sections.review} key={sections.review}/></div>}
+          {sections.review && <div id="case-review" tabIndex={-1} style={styles.markdownContent} dir={isRtl?'rtl':'ltr'} className={isRtl?'rtl-viewer':''}><Viewer initialValue={sections.review} key={sections.review}/></div>}
 
           
         </div>

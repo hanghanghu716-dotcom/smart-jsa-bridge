@@ -1,4 +1,5 @@
 import { renderCaseLanguages } from '../src/utils/caseLanguages.js';
+import { caseNavigation } from '../src/utils/caseNavigation.js';
 import { splitCaseForCommerce, caseResourcesTitle } from '../src/utils/caseSections.js';
 import { canonicalCaseSlug, caseLookupSlugs } from '../src/utils/caseRouting.js';
 import { romanianUi } from '../src/locales/romanianUi.js';
@@ -50,8 +51,10 @@ export function renderCaseArticle(post, locale, baseUrl) {
   const pdfs = post.pdf_list?.length ? post.pdf_list : post.pdf_download_url ? [{ name: 'PDF', url: post.pdf_download_url }] : [];
   const downloads = pdfs.filter(pdf => /^https?:\/\//i.test(pdf.url || '')).map(pdf => `<li><a href="${e(pdf.url)}">${e(pdf.name || 'PDF')}</a></li>`).join('');
   const products = `<span id="section-${sections.productSection}" data-commerce-slot></span>`;
-  const resources = `<section id="section-${sections.resourcesSection}"><h2>${sections.resourcesSection}. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}</section>`;
-  return `${introduction}${body}${sections.earlyProducts ? products : ''}${afterProducts}${resources}${sections.earlyProducts ? '' : products}${review}`;
+  const resources = `<section id="case-resources" tabindex="-1"><h2 id="section-${sections.resourcesSection}">${sections.resourcesSection}. ${e(caseResourcesTitle(locale))}</h2>${downloads ? `<ul>${downloads}</ul>` : ''}</section>`;
+  const navigation = caseNavigation(locale, Boolean(review), baseUrl);
+  const quickLinks = `<nav class="case-quick-links" aria-label="${e(navigation.label)}">${navigation.links.map(link => `<a href="${e(link.href)}">${e(link.text)}</a>`).join('')}</nav>`;
+  return `${quickLinks}<div id="case-body" tabindex="-1">${introduction}${body}${sections.earlyProducts ? products : ''}${afterProducts}</div>${resources}${sections.earlyProducts ? '' : products}${review ? `<div id="case-review" tabindex="-1">${review}</div>` : ''}`;
 }
 export function renderCaseHtml(shell, post, locale, availableLocales) {
   const ro = locale === 'ro-RO' ? romanianUi.editorial : null;
