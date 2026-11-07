@@ -23,4 +23,16 @@
 .commerce-panel--article{background:transparent;color:var(--text-primary);border:0;border-radius:0;padding:0;margin:0;box-shadow:none}
 .case-numbered-section>h2,.commerce-panel--article>h2{font-size:22px;font-weight:700;line-height:1.4;border-bottom:1px solid var(--border-default);margin:48px 0 20px;padding:0 0 7px;color:var(--text-primary)}
 .commerce-panel--article .commerce-grid{margin:20px 0}.commerce-panel--article .commerce-grid li{background:var(--card-bg)}
+/* Compact body cards; sidebar dimensions are independent. Titles stay readable
+   and may wrap without clipping or imposing a fixed card height. */
+.commerce-panel--inline .commerce-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;align-items:start}
+.commerce-panel--inline .commerce-grid li{display:grid;grid-template-columns:80px minmax(0,1fr);gap:.75rem;padding:.75rem;align-items:start}
+.commerce-panel--inline .commerce-image-link{width:80px;height:80px;aspect-ratio:auto}
+.commerce-panel--inline .commerce-image-link:empty+.commerce-product-copy{grid-column:1/-1}
+.commerce-panel--inline .commerce-purpose{margin-top:0}
+.commerce-panel--inline .commerce-grid h3{margin:.25rem 0;line-height:1.4}
+.commerce-panel--inline .commerce-merchant{margin-bottom:.4rem}
+.commerce-panel--inline a.commerce-product-link{padding:.4rem .65rem}
+@media(max-width:600px){.commerce-panel--inline .commerce-grid{grid-template-columns:minmax(0,1fr)}.commerce-panel--inline .commerce-grid li{grid-template-columns:64px minmax(0,1fr);gap:.65rem}.commerce-panel--inline .commerce-image-link{width:64px;height:64px}}
 @media(max-width:480px){.commerce-panel--article{padding:0}}
+

@@ -4,8 +4,9 @@ import { PPE_PURPOSES, extractPpeNeeds } from './ppe-needs.js';
 import { EQUIPMENT_PURPOSES, equipmentNeeds, SPECIFICATION_HOSTS } from './context-needs.js';
 import { ROUTE_PURPOSES, ROUTE_SPECIFICATION_HOSTS, routeNeeds } from './route-needs.js';
 import { ppeGroupFor } from '../../src/data/ppeGroups.js';
-const REVIEWED_PURPOSES = {...PPE_PURPOSES,...EQUIPMENT_PURPOSES,...ROUTE_PURPOSES};
-const REVIEWED_HOSTS = {...SPECIFICATION_HOSTS,...ROUTE_SPECIFICATION_HOSTS};
+import { INDUSTRY_PURPOSES, INDUSTRY_SPECIFICATION_HOSTS, PROCESS_CHEMICALS, foodHygieneContext, industryNeeds, ORDINARY_HYGIENE_SUBSTITUTES } from './industry-needs.js';
+const REVIEWED_PURPOSES = {...PPE_PURPOSES,...EQUIPMENT_PURPOSES,...ROUTE_PURPOSES,...INDUSTRY_PURPOSES};
+const REVIEWED_HOSTS = {...SPECIFICATION_HOSTS,...ROUTE_SPECIFICATION_HOSTS,...INDUSTRY_SPECIFICATION_HOSTS};
 
 export const COUNTRIES = ['KR','US','CA','GB','AU','JP','DE','FR','IT','ES','SG','SA','BR','RO','RU'];
 export const LOW_RISK = new Set(ACCESSORY_CATEGORIES);
@@ -31,7 +32,10 @@ export function contentSnapshot(kind, row) {
       controls: array(step.risks).filter(Boolean).slice(0,100).map(r => [text(r.current_measure || r.measure), text(r.recommend_measure)]),
       additional: text(step.actionPlan?.additionalControls) })) };
 }
-export const extractNeeds = snapshot => [...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot), ...equipmentNeeds(snapshot), ...routeNeeds(snapshot)];
+export function extractNeeds(snapshot) {
+ const needs=[...extractAccessoryNeeds(snapshot), ...extractPpeNeeds(snapshot), ...equipmentNeeds(snapshot), ...routeNeeds(snapshot)];
+ return [...(foodHygieneContext(snapshot)?needs.filter(n=>!ORDINARY_HYGIENE_SUBSTITUTES.has(n.category)):needs),...industryNeeds(snapshot)];
+}
 export function approvedProfile(snapshot, profiles, now) {
   const hash = fingerprint(snapshot);
   return array(profiles).find(p => p && p.sourceFingerprint === hash && p.status === 'approved' && text(p.reviewer)
@@ -80,6 +84,12 @@ function offerCandidates({ snapshot, catalog, country, now, guide = false }) {
       || now - Date.parse(offer.checkedAt) > Math.min(merchant.maxAgeHours,linkOnly ? 720 : 24) * 3600000) continue;
     if (!review || review.status !== 'approved' || !text(review.reviewer) || !validDate(review.reviewedAt, now)
       || !future(review.validUntil, now)) continue;
+    // A product label cannot establish compatibility with an unknown process.
+    // Both product evidence and an unexpired exact-content approval are needed.
+    if (PROCESS_CHEMICALS.has(offer.category) && (!reviewedPpe || !profile
+      || review.countryUseReviewed !== true || review.labelUseReviewed !== true
+      || !array(profile.processApprovals).some(a=>a?.offerFingerprint===offerFingerprint(offer)
+        && a.materialCompatibilityReviewed===true && a.processConditionsReviewed===true))) continue;
     const href = safeLink(offer.affiliateUrl, merchant.linkHosts);
     if (!href) continue;
     const need = needs.find(n => n && n.category === offer.category && n.constraints && typeof n.constraints === 'object'
@@ -124,3 +134,4 @@ export function selectPpeGuideOffers({catalog,country,locale,now=Date.now()}) {
  // Per-content recommendation limits remain unchanged in selectOffers above.
  return items;
 }
+
